@@ -6,6 +6,7 @@
         scope.first = {};
         scope.first.date = new Date();
         scope.formData = {};
+       
         scope.clientCategoryDatas=[];
         scope.configurationProperty=[];
        scope.formData.entryType ='ORP';
@@ -44,6 +45,7 @@
         	alert(1);
         };*/
       scope.getStateAndCountry=function(city){
+    	  
       	  resourceFactory.AddressTemplateResource.get({city :city}, function(data) {
           		scope.formData.state = data.state;
           		scope.formData.country = data.country;
@@ -73,32 +75,33 @@
             this.formData.dateFormat = 'dd MMMM yyyy';
             this.formData.activationDate = reqDate;
             this.formData.flag=scope.configurationProperty;
-            resourceFactory.clientResource.save(this.formData,function(data){
+            	resourceFactory.clientResource.save(this.formData,function(data){
 
-              if (scope.file) {
-                http.uploadFile({
-                  url: $rootScope.hostUrl+ API_VERSION +'/clients/'+data.clientId+'/images', 
-                  data: {},
-                  file: scope.file
-                }).then(function(imageData) {
-                  // to fix IE not refreshing the model
-                  if (!scope.$$phase) {
-                    scope.$apply();
-                  }
-                  if(PermissionService.showMenu('READ_CLIENT'))
-                	  location.path('/viewclient/'+data.resourceId);
-                  else
-                	  location.path('/clients');
-                });
-              } else{
-            	  if(PermissionService.showMenu('READ_CLIENT'))
-            		  location.path('/viewclient/' + data.resourceId);
-            	  else
-            		  location.path('/clients');
-              }
-            },function(errData){
-          	  scope.flag = false;
-            });
+                    if (scope.file) {
+                      http.uploadFile({
+                        url: $rootScope.hostUrl+ API_VERSION +'/clients/'+data.clientId+'/images', 
+                        data: {},
+                        file: scope.file
+                      }).then(function(imageData) {
+                        // to fix IE not refreshing the model
+                        if (!scope.$$phase) {
+                          scope.$apply();
+                        }
+                        if(PermissionService.showMenu('READ_CLIENT'))
+                      	  location.path('/viewclient/'+data.resourceId);
+                        else
+                      	  location.path('/clients');
+                      });
+                    } else{
+                  	  if(PermissionService.showMenu('READ_CLIENT'))
+                  		  location.path('/viewclient/' + data.resourceId);
+                  	  else
+                  		  location.path('/clients');
+                    }
+                  },function(errData){
+                	  scope.flag = false;
+                  });
+            
           };
     }
   });

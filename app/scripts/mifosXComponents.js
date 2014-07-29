@@ -239,6 +239,7 @@ define(['underscore', 'mifosX'], function() {
       'client/CreditDistributionController',
       'client/ClientCloseController',
       'system/IpPoolingController',
+      'system/IpPoolingController',
       'system/CreateIpPoolingController',
       'organization/ItemSaleController',
       'organization/OfficeAdjustmentsController',

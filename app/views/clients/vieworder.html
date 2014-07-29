@@ -79,14 +79,14 @@
 		     <a ng-show ="orderData.status != 'PENDING'" ng-click="extension()" class="btn btn-primary"><i class="icon-cog"></i>Extension</a>
 
 		     <a ng-show ="(orderData.status == 'ACTIVE')&&PermissionService.showMenu('CHANGEPLAN_ORDER')" href="#/neworder/{{orderData.pdid}}/{{clientId}}" class="btn btn-primary"><i class="icon-cog"></i>Change Plan</a>
-		     <a ng-show ="orderData.status == 'PENDING'" href="#/provision/{{orderData.id}}/{{clientId}}/{{orderServicesData[0].serviceId}}" class="btn btn-primary"><i class="icon-cog"></i>Provision It</a>
-		     <a ng-show ="orderData.status == 'ACTIVE'" href="#/editprovison/{{orderData.id}}/{{clientId}}/{{orderServicesData[0].serviceId}}" class="btn btn-primary"><i class="icon-cog"></i>Edit Provision</a>
+		     <a ng-show ="(orderData.status == 'PENDING')&&(association.orderId != null)" href="#/provision/{{orderData.id}}/{{clientId}}/{{orderServicesData[0].serviceId}}" class="btn btn-primary"><i class="icon-cog"></i>Provision It</a>
+		     <a ng-show ="(orderData.status == 'ACTIVE')&&(association.orderId != null)" href="#/editprovison/{{orderData.id}}/{{clientId}}/{{orderServicesData[0].serviceId}}" class="btn btn-primary"><i class="icon-cog"></i>Edit Provision</a>
 		     <a ng-show="(orderData.status == 'DISCONNECTED')&&PermissionService.showMenu('RECONNECT_ORDER')" ng-click="terminate()" class="btn btn-primary"><i class=" icon-repeat icon-white"></i> Terminate</a> 
 		     <!-- <a ng-show ="orderData.status == 'PENDING'" href="#/provision/{{orderData.id}}" class="btn btn-primary"><i class="icon-cog"></i>Provision It</a> -->
 		    
 	      	
 	        <span  class="btn-group">
-              <a class="btn btn-primary dropdown-toggle" ng-show="(orderData.status == 'ACTIVE')&&PermissionService.showMenu('RETRACKOSDMESSAGE_ORDER')">
+              <a class="btn btn-primary dropdown-toggle" ng-show="PermissionService.showMenu('RETRACKOSDMESSAGE_ORDER')">
                 {{ 'label.button.more' | translate}}
                 <span class="caret"></span>
               </a>

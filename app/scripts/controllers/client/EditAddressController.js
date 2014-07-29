@@ -20,15 +20,25 @@
                                 scope.formData=data; 
                                 scope.addressTypeData=data.addressOptionsData;
                                 scope.cityDatas=data.cityData;
-                                $("#city").change(function(){
-                	            	
-                	            	resourceFactory.AddressTemplateResource.get({city : scope.formData.city}, function(data) {
+                                /*$("#city").change(function(){               
+                                	scope.formData.state = '';
+            	            		scope.formData.country = '';
+                	            	resourceFactory.AddressTemplateResource.get({city : scope.formData.city}, function(data) {           	            		
                 	            		scope.formData.state = data.state;
                 	            		scope.formData.country = data.country;
                 	             
                 	            });
-                	            });
+                	            });*/
 							});		
+							
+							scope.getStateAndCountry=function(city){
+								scope.formData.state = '';
+        	            		scope.formData.country = '';
+						      	  resourceFactory.AddressTemplateResource.get({city : scope.formData.city}, function(data) {
+						          		scope.formData.state = data.state;
+						          		scope.formData.country = data.country;
+						      	  });
+						        };
 							/*resourceFactory.clientTemplateResource.get(function(data) {
 						           
 					            scope.cities=data.addressTemplateData.cityData;

@@ -122,7 +122,7 @@
 					<div class="control-group">
 						<label class="control-label" for="city">{{'label.city' | translate}}</label>
 						<div class="controls">
-							<input type="text" id="city" ng-model="formData.city" list="citylist">
+							<input type="text" id="city" ng-model="formData.city" list="citylist" ng-change="getStateAndCountry(formData.city)">
 						</div>
 					</div>
 					<datalist id="citylist">
@@ -137,7 +137,7 @@
 					<div class="control-group">
 						<label class="control-label" for="state">{{'label.state' | translate}}</label>
 						<div class="controls">
-							<input type="text" id="state" ng-model="formData.state">
+							<input type="text" id="state" ng-model="formData.state" readonly>
 						</div>
 					</div>
 				</td>
@@ -147,7 +147,7 @@
 					<div class="control-group">
 						<label class="control-label" for="country">{{'label.country' | translate}}</label>
 						<div class="controls">
-							<input type="text" id="country" ng-model="formData.country">
+							<input type="text" id="country" ng-model="formData.country" readonly>
 						</div>
 					</div>
 				</td>

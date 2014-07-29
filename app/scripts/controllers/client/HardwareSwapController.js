@@ -10,6 +10,7 @@
 	            scope.hwSerialNumber=clientData.hwSerialNumber;
 	            scope.accountNo=clientData.accountNo;
 	            scope.officeName=clientData.officeName;
+	            scope.officeId=clientData.officeId;
 	            scope.balanceAmount=clientData.balanceAmount;
 	            scope.currency=clientData.currency;
 	            scope.imagePresent=clientData.imagePresent;
@@ -23,7 +24,7 @@
 	            });
 	        scope.getData = function(query){
 	        	if(query.length>0){
-	        		resourceFactory.allocateHardwareDetails.getSerialNumbers({oneTimeSaleId: scope.association.itemId,query: query}, function(data) { 	        	
+	        		resourceFactory.allocateHardwareDetails.getSerialNumbers({oneTimeSaleId: scope.association.itemId,query: query, officeId: scope.officeId}, function(data) { 	        	
 	     	            scope.itemDetails = data.serials;
 	     	        }); 
 	        	}else{

@@ -126,7 +126,7 @@
                 
                     
                     webStorage.add("clientData", {clientId:routeParams.id,balanceAmount: data.balanceAmount, displayName: data.displayName,hwSerialNumber: data.hwSerialNumber,
-                     statusActive: data.status.value, accountNo: data.accountNo, officeName: data.officeName,
+                     statusActive: data.status.value, accountNo: data.accountNo, officeName: data.officeName, officeId: data.officeId, 
                      currency: data.currency, imagePresent: data.imagePresent,phone:data.phone,email:data.email,categoryType:data.categoryType });
                     
                     scope.staffData.staffId = data.staffId;
