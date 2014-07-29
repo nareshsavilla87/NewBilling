@@ -20,7 +20,7 @@
             var key = mifosX.models.encrptionKey;
             
             scope.reset123 = function(){
-            	webStorage.add("callingTab", {someString: "documents" });
+            	webStorage.add("callingTab", {someString: "identities" });
             };
 			  scope.submit = function () {
 				    this.formEncryptedData.type="ACH";
@@ -30,7 +30,7 @@
 				    this.formEncryptedData.name = this.formData.name;
 				    this.formEncryptedData.accountType=this.formData.accountType;				   
 	                resourceFactory.creditCardSaveResource.save({clientId:scope.clientId},this.formEncryptedData,function(data){
-	                	webStorage.add("callingTab", {someString: "documents" });
+	                	webStorage.add("callingTab", {someString: "identities" });
 	                    location.path('/viewclient/' + data.clientId);
 	                });
 	            };

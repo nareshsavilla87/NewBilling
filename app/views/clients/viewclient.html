@@ -273,16 +273,14 @@
                 </div>
           </div>
       </tab>
-      <tab heading="{{'tab.identities' | translate}}" select="getClientIdentityDocuments()" active="identitiesTab" 
+      <tab heading="Add Info" select="getClientIdentityDocuments()" active="identitiesTab" 
       			ng-show="$parent.PermissionService.showMenu('read_CLIENTIDENTIFIER')">
-    
-     
      
      <div class="pull-right "> 
           Tax Exemption 
           <div class="btn-group">
-            <a id="onbtn" ng-click="onbtn()" class="btn btn-default">ON</a>
-          <a id="offbtn" ng-click="offbtn()" class="btn  btn-primary">OFF</a>
+            <a id="onbtn" ng-click="onbtn()" class="btn btn-default">NO</a>
+          <a id="offbtn" ng-click="offbtn()" class="btn  btn-primary">YES</a>
           </div>
       <!--  <div  style="float: left;"  class="onoffswitch"> 
          		<input type="checkbox" name="onoffswitch" ng-model="checkboxVal" class="onoffswitch-checkbox" id="myonoffswitch"  ng-click="tax()" >
@@ -292,9 +290,13 @@
     			</label>
     	 </div>  -->
     	<a  href="#/addbillmodes/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Apply BillModes</a>
-       	<a ng-show="PermissionService.showMenu('CREATE_CLIENTIDENTIFIER')" href="#/addclientidentifier/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
+       	
        </div>
         <br>
+        <div class="pull-left">
+          <a ng-show="PermissionService.showMenu('CREATE_CLIENTIDENTIFIER')" href="#/addclientidentifier/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'tab.identities' | translate}}
+		  </a>
+        </div><br/>
         <table class="table" ng-show="(identitydocuments.length > 0)">
             <thead>
               <tr class="graybg">
@@ -321,7 +323,88 @@
                 </td>
               </tr>
             </tbody>
+          </table><br/>
+           <div class="pull-left">
+          	<a ng-show=" PermissionService.showMenu('CREATE_DOCUMENT')" href="#/addclientdocument/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Documents Uploads
+</a>
+       	   </div> <br/>
+       	 <table class="table" ng-show="(clientdocuments.length > 0)&&PermissionService.showMenu('READ_DOCUMENT')">
+            <thead>
+              <tr class="graybg">
+                <th>{{'table.heading.name' | translate}}</th>
+                <th>{{'table.heading.description' | translate}}</th>
+                <th>{{'table.heading.filename' | translate}}</th>
+                <th>{{'table.heading.actions' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="clientdocument in clientdocuments">
+                <td>{{clientdocument.name}}</td>
+                <td>{{clientdocument.description}}</td>
+                <td>{{clientdocument.fileName}}</td>
+                <td>
+                  <a ng-click="downloadDocument(clientdocument.id)"><i class="icon-cloud-download"></i></a>&nbsp;
+                  <a ng-show="PermissionService.showMenu('DELETE_DOCUMENT')" ng-click="deleteDocument(clientdocument.id,$index)"><i class="icon-remove"></i></a>
+                </td>
+              </tr>
+            </tbody>
           </table>
+          <br/>
+          <div>
+          <div class="pull-left">
+         	 <a href="#/addcreditcarddetails/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>CreditCard Details</a>
+          </div>
+          <br>
+          <table class="table" ng-show="clientcarddetails.length > 0">
+            <thead>
+              <tr class="graybg">
+                <th>{{'table.heading.id' | translate}}</th>
+                <th>{{'table.heading.name' | translate}}</th>
+                <th>{{'table.heading.cardNumber' | translate}}</th>
+                <th>{{'table.heading.cardType' | translate}}</th>
+                <th>{{'table.heading.cardExpiryDate' | translate}}</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="pointer-main" ng-repeat="clientcarddetails1 in clientcarddetails" ng-show="clientcarddetails1.type=='CreditCard'">
+                <td class="pointer" data-ng-click="routeToCardDetails(clientcarddetails1.clientId,clientcarddetails1.id,clientcarddetails1.type)">{{clientcarddetails1.id}}</td>
+                <td class="pointer" data-ng-click="routeToCardDetails(clientcarddetails1.clientId,clientcarddetails1.id,clientcarddetails1.type)">{{clientcarddetails1.name}}</td>
+                <td class="pointer" data-ng-click="routeToCardDetails(clientcarddetails1.clientId,clientcarddetails1.id,clientcarddetails1.type)">{{clientcarddetails1.cardNumber}}</td>
+                <td class="pointer" data-ng-click="routeToCardDetails(clientcarddetails1.clientId,clientcarddetails1.id,clientcarddetails1.type)">{{clientcarddetails1.cardType}}</td>
+                <td class="pointer" data-ng-click="routeToCardDetails(clientcarddetails1.clientId,clientcarddetails1.id,clientcarddetails1.type)">{{clientcarddetails1.cardExpiryDate}}</td>
+              </tr>
+            </tbody>
+          </table>
+          </div><br/>
+          <div>
+        <div class="pull-left">
+          <a href="#/addachdetails/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>ACH Details</a>
+        </div>
+        <br>
+        <table class="table" ng-show="clientcarddetails.length > 0">
+            <thead>
+              <tr class="graybg">
+                <th>{{'table.heading.id' | translate}}</th>
+                <th>{{'table.heading.name' | translate}}</th>
+                <th>{{'table.heading.routingNumber' | translate}}</th>
+                <th>{{'table.heading.bankAccountNumber' | translate}}</th>
+                <th>{{'table.heading.bankName' | translate}}</th>
+                <th>{{'table.heading.accountType' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="pointer-main" ng-repeat="clientcarddetails2 in clientcarddetails" ng-show="clientcarddetails2.type=='ACH'">
+                <td class="pointer" data-ng-click="routeToCardDetails(clientcarddetails2.clientId,clientcarddetails2.id,clientcarddetails2.type)">{{clientcarddetails2.id}}</td>
+                <td class="pointer" data-ng-click="routeToCardDetails(clientcarddetails2.clientId,clientcarddetails2.id,clientcarddetails2.type)">{{clientcarddetails2.name}}</td>
+                <td class="pointer" data-ng-click="routeToCardDetails(clientcarddetails2.clientId,clientcarddetails2.id,clientcarddetails2.type)">{{clientcarddetails2.routingNumber}}</td>
+                <td class="pointer" data-ng-click="routeToCardDetails(clientcarddetails2.clientId,clientcarddetails2.id,clientcarddetails2.type)">{{clientcarddetails2.bankAccountNumber}}</td>
+                <td class="pointer" data-ng-click="routeToCardDetails(clientcarddetails2.clientId,clientcarddetails2.id,clientcarddetails2.type)">{{clientcarddetails2.bankName}}</td>
+                <td class="pointer" data-ng-click="routeToCardDetails(clientcarddetails2.clientId,clientcarddetails2.id,clientcarddetails2.type)">{{clientcarddetails2.accountType}}</td>               
+              </tr>
+            </tbody>
+          </table>
+          </div>
    
           
           
@@ -345,7 +428,7 @@
         </div>
       </tab> -->
 
-      <tab heading="{{'tab.heading.client.documents' | translate}}" select="getClientDocuments()" active="documentsTab"
+     <!--  <tab heading="{{'tab.heading.client.documents' | translate}}" select="getClientDocuments()" active="documentsTab"
       				ng-show="$parent.PermissionService.showMenu('CREATE_DOCUMENT','READ_DOCUMENT')">
         <div class="pull-right">
           <a ng-show=" PermissionService.showMenu('CREATE_DOCUMENT')" href="#/addclientdocument/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'button.upload' | translate}}</a>
@@ -428,7 +511,7 @@
             </tbody>
           </table>
           </div>
-      </tab>
+      </tab> -->
        <tab heading="Notes" select="getClientNotes()" ng-show="$parent.PermissionService.showMenu('CREATE_CLIENTNOTE','READ_CLIENTNOTE')">
         <br/>
         <form ng-show="PermissionService.showMenu('CREATE_CLIENTNOTE')">
@@ -1055,7 +1138,7 @@
          <tab heading="Statements" select="getClientStatements()" active="StatementsTab"
          ng-show="$parent.PermissionService.showMenu('READ_BILLMASTER')">
              <div class="pull-right">
-		         <a ng-show="PermissionService.showMenu('CREATE_BILLMASTER')" href="#/statement/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Add</a>
+		         <a ng-show="PermissionService.showMenu('CREATE_BILLMASTER')" href="#/statement/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Generate</a>
 	        </div>
 	<div class="paddedbottom10">
     <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by id">
@@ -1068,17 +1151,19 @@
                 <th>amount</th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-            <tr class="pointer-main" ng-repeat="statement in states  | filter:filterText">                 
-                <td class="pointer" data-ng-click="routeTostatement(statement.id)">{{statement.id}}</td>
-                 <td class="pointer" data-ng-click="routeTostatement(statement.id)">{{statement.billDate | DateFormat}}</td>
-                   <td class="pointer" data-ng-click="routeTostatement(statement.id)">{{statement.dueDate | DateFormat}}</td>
-                      <td class="pointer" data-ng-click="routeTostatement(statement.id)">{{statement.amount | number:2}}</td>
-                        <td><a ng-click="downloadFile(statement.id)" class="btn btn-primary"><i class=" icon-download-alt icon-white"></i></a></td>
-                          <td><a class="btn btn-primary" href="{{url}}={{mail}}&item_name=first&amount={{statement.amount | number:2}}&custom={{client.id}}" target="_blank" 
-                ><i class=" icon-download-alt icon-white"></i>Paypal</a></td>
+            <tr ng-repeat="statement in states  | filter:filterText">                 
+                <td>{{statement.id}}</td>
+                <td>{{statement.billDate | DateFormat}}</td>
+                <td>{{statement.dueDate | DateFormat}}</td>
+                <td>{{statement.amount}}</td>
+                <td><a ng-click="routeTostatement(statement.id)" class="btn btn-primary">HTML</a></td>
+                <td><a ng-click="downloadFile(statement.id)" class="btn btn-primary"><i class=" icon-download-alt icon-white"></i>PDF</a></td>
+                <td><a class="btn btn-primary" href="{{url}}={{mail}}&item_name=first&amount={{statement.amount}}&custom={{client.id}}" target="_blank">
+                <i class=" icon-download-alt icon-white"></i>Paypal</a></td>
             </tr>
         </tbody>
     </table>

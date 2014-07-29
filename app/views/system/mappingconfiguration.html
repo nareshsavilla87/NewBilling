@@ -10,7 +10,7 @@
     <div>
       <tabset  style="margin-bottom: 0px;">
       
-      <tab heading="Service Mapping" select="getsupplierdetails()" ng-show="$parent.PermissionService.showMenu('READ_SERVICEMAPPING')">
+      <tab heading="Service Provcode" select="getsupplierdetails()" ng-show="$parent.PermissionService.showMenu('READ_SERVICEMAPPING')">
        <div class="pull-right btn-group">
           <a ng-show="PermissionService.showMenu('CREATE_SERVICEMAPPING')" href="#/createServiceMapping" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
         </div>
@@ -48,7 +48,38 @@
          </div>
       </tab>	
       
-  <tab heading="Hardware Mapping" select="getHardwareMappingData()" active="hardwarePlanMappingTab"
+      <tab heading=" Plan Provcode" select="getplanMappingdetails()" ng-show="$parent.PermissionService.showMenu('READ_PLANMAPPING')">
+       <div class="pull-right btn-group">
+          <a ng-show="PermissionService.showMenu('CREATE_PLANMAPPING')" href="#/createPlanMapping" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
+        </div>
+        <div class="row-fluid">
+                   <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+        <table class="table">
+            <thead>
+              <tr class="graybg">
+                <th>{{'table.planmapping.id' | translate}}</th>
+                <th>{{'table.planmapping.planCode' | translate}}</th>
+                <th>{{'table.planmapping.planIdentification' | translate}}</th>
+                <th>{{'table.planmapping.planStatus' | translate}}</th>                    
+              </tr>
+            </thead>
+            <tbody>
+             <tr class="pointer-main" ng-repeat="planmappingdata in planmappingdatas  | filter:filterText">
+                <td class="pointer" data-ng-click="routeToplanmapping(planmappingdata.id)">{{planmappingdata.id}}</td>
+                <td class="pointer" data-ng-click="routeToplanmapping(planmappingdata.id)">{{planmappingdata.planCode}}</td>
+                <td class="pointer" data-ng-click="routeToplanmapping(planmappingdata.id)">{{planmappingdata.planIdentification}}</td>
+                <td class="pointer" data-ng-click="routeToplanmapping(planmappingdata.id)">{{planmappingdata.planStatus}}</td>
+                </tr>
+     		 </tbody>
+          </table>
+        <!--   <ul class="pager">
+        			<li class="previous"><a ng-click="supplier.previous()" href="" ng-disabled="!supplier.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="supplier.next()" href="" ng-disabled="!supplier.hasNext()">Next &rarr;</a></li>
+    			</ul> -->
+         </div>
+      </tab>
+      
+  <tab heading="Hardware Plan" select="getHardwareMappingData()" active="hardwarePlanMappingTab"
   ng-show="$parent.PermissionService.showMenu('READ_PLANMAPPING')">
         <div class="pull-right btn-group">
           <a ng-show="PermissionService.showMenu('CREATE_PLANMAPPING')" href="#/createhardwareplanmapping" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
@@ -79,7 +110,7 @@
       </tab>
       			
       				
-      	<tab heading="Provisioning Commands" select="getProvisiongCommandData()"
+      	<tab heading="Provision Command" select="getProvisiongCommandData()"
       		ng-show="$parent.PermissionService.showMenu('READ_PROVISIONINGSYSTEM')">
         <div class="pull-right btn-group">
           <a ng-show="PermissionService.showMenu('CREATE_PROVISIONINGSYSTEM')" href="#/createProvisioningmapping" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
@@ -108,7 +139,7 @@
       </tab>	
       	
 
-<tab heading="EventAction Mapping" select="getEventActionMappingData()"
+<tab heading="Event Action" select="getEventActionMappingData()"
 	ng-show="$parent.PermissionService.showMenu('READ_EVENTACTIONMAP')">
         <div class="pull-right btn-group">
           <a ng-show="PermissionService.showMenu('CREATE_EVENTACTIONMAP')" href="#/createeventactionmapping" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
@@ -123,6 +154,8 @@
                 <th>{{'table.eventactionmapping.event' | translate}}</th>
                 <th>{{'table.eventactionmapping.action' | translate}}</th>
                 <th>{{'table.eventactionmapping.process' | translate}}</th>
+                <!-- <th>Mapping</th> -->
+                <th></th>
                
               </tr>
             </thead>
@@ -132,12 +165,15 @@
                 <td><a href="#/vieweventactionmapping/{{data.id}}">{{data.eventName}}</a></td>
                 <td>{{data.actionName}}</td>
                 <td>{{data.process}}</td>
+                <!-- <td>{{data.isDeleted}}</td> -->
+                <td ng-show="data.isDeleted=='N'"><button type="button" class="btn btn-success flag" data-ng-click="isDeleted(data.id,data.isDeleted)"><i class="icon-flag-alt"></i></button></td>
+                <td ng-show="data.isDeleted=='Y'"><button type="button" class="btn btn-danger flag" data-ng-click="isDeleted(data.id,data.isDeleted)"><i class="icon-flag-alt"></i></button></td>
      		 </tbody>
           </table>
       
          </div>
       </tab>
-	<tab heading="Currency Configuration" select="getCurrencyConfig()"
+	<tab heading="Currency Config" select="getCurrencyConfig()"
 	ng-show="$parent.PermissionService.showMenu('READ_CURRENCY')">
         <div class="pull-right btn-group">
          <a ng-show="PermissionService.showMenu('UPDATE_CURRENCY')" href="#/createCurrencyMapping" class="btn btn-primary"><i class="icon-plus icon-white"></i> Edit</a>
@@ -177,37 +213,6 @@
          </div>
       </tab>
       
-      <tab heading="Plan Mapping" select="getplanMappingdetails()" ng-show="$parent.PermissionService.showMenu('READ_PLANMAPPING')">
-       <div class="pull-right btn-group">
-          <a ng-show="PermissionService.showMenu('CREATE_PLANMAPPING')" href="#/createPlanMapping" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
-        </div>
-        <div class="row-fluid">
-                   <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
-        <table class="table">
-            <thead>
-              <tr class="graybg">
-                <th>{{'table.planmapping.id' | translate}}</th>
-                <th>{{'table.planmapping.planCode' | translate}}</th>
-                <th>{{'table.planmapping.planIdentification' | translate}}</th>
-                <th>{{'table.planmapping.planStatus' | translate}}</th>                    
-              </tr>
-            </thead>
-            <tbody>
-             <tr class="pointer-main" ng-repeat="planmappingdata in planmappingdatas  | filter:filterText">
-                <td class="pointer" data-ng-click="routeToplanmapping(planmappingdata.id)">{{planmappingdata.id}}</td>
-                <td class="pointer" data-ng-click="routeToplanmapping(planmappingdata.id)">{{planmappingdata.planCode}}</td>
-                <td class="pointer" data-ng-click="routeToplanmapping(planmappingdata.id)">{{planmappingdata.planIdentification}}</td>
-                <td class="pointer" data-ng-click="routeToplanmapping(planmappingdata.id)">{{planmappingdata.planStatus}}</td>
-                </tr>
-     		 </tbody>
-          </table>
-        <!--   <ul class="pager">
-        			<li class="previous"><a ng-click="supplier.previous()" href="" ng-disabled="!supplier.hasPrevious()">&larr; Prev</a></li>
-        			<li class="next" ><a ng-click="supplier.next()" href="" ng-disabled="!supplier.hasNext()">Next &rarr;</a></li>
-    			</ul> -->
-         </div>
-      </tab>
-	
     </tabset>
     </div>
   </div>

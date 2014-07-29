@@ -5306,14 +5306,14 @@ input[type="submit"].btn.btn-mini {
   display: block;
   font-size: 11px;
   line-height: 1.4;
-  opacity: 0;
-  filter: alpha(opacity=0);
+   opacity: 0;
+  filter: alpha(opacity=0); 
   visibility: visible;
 }
 
 .tooltip.in {
-  opacity: 0.8;
-  filter: alpha(opacity=80);
+  /* opacity: 0.8;
+  filter: alpha(opacity=80); */
 }
 
 .tooltip.top {
@@ -5327,7 +5327,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .tooltip.bottom {
-  padding: 5px 0;
+  padding: 1px 0;
   margin-top: 3px;
 }
 
@@ -5338,11 +5338,11 @@ input[type="submit"].btn.btn-mini {
 
 .tooltip-inner {
   max-width: 200px;
-  padding: 8px;
-  color: #ffffff;
+  padding: 6px;
+  color: #000000;
   text-align: center;
   text-decoration: none;
-  background-color: #000000;
+  background-color: red;
   -webkit-border-radius: 0;
      -moz-border-radius: 0;
           border-radius: 0;

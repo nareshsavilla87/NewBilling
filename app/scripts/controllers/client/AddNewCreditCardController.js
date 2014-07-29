@@ -23,7 +23,7 @@
             var key = mifosX.models.encrptionKey;
             
             scope.reset123 = function(){
-            	webStorage.add("callingTab", {someString: "documents" });
+            	webStorage.add("callingTab", {someString: "identities" });
             };
             var errors = []; 
            /* scope.cradNameErrorHide = function(){
@@ -176,7 +176,7 @@
 	                resourceFactory.creditCardSaveResource.save({clientId:scope.clientId},this.formEncryptedData,function(data){
 	                    location.path('/viewclient/' + data.clientId);
 	                });
-	                webStorage.add("callingTab", {someString: "documents" });
+	                webStorage.add("callingTab", {someString: "identities" });
 				  }
 			  };
 	      }

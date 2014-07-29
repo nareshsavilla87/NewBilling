@@ -45,7 +45,7 @@
         });
         
         scope.documentsTab = function(){
-        	 webStorage.add("callingTab", {someString: "documents" });
+        	 webStorage.add("callingTab", {someString: "identities" });
         };
         scope.deletecardDetails = function (){
         	
@@ -61,7 +61,7 @@
              
         	  $scope.approve = function () {
             	  resourceFactory.creditCardUpdateResource.delete({clientId: routeParams.clientId, id: routeParams.id} , {} , function(data) {
-                 	 webStorage.add("callingTab", {someString: "documents" });
+                 	 webStorage.add("callingTab", {someString: "identities" });
                        location.path('/viewclient/'+routeParams.clientId);      
                  });
             	  $modalInstance.close('delete');

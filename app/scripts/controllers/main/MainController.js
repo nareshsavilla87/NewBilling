@@ -13,6 +13,10 @@
         scope.unreadMessage=data.unReadMessages;
       });
      
+      scope.goBack = function(){
+    	  window.history.go(-1);
+      };
+      
       scope.search = function(){
           location.path('/search/' + scope.search.query );
       };

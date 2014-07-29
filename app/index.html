@@ -218,6 +218,15 @@
                     </ul>
                     <ul class="nav pull-right" id="main-menu-right">
                         <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                        <li style="margin-top:15px;" ng-click="goBack()">
+                         <input type="image"  tooltip-placement="bottom" 
+                               tooltip="Go Back" src="./images/go-back-icon.png" alt="GoBack" width="20px" height="20px">
+                        	<!-- <a href="" ng-click="goBack()">
+                        			<img src="./images/go-back-icon.png" alt="GoBack" width="20px">
+                        		<i class="icon-circle-arrow-left icon-white"></i>
+                        	</a> popover-placement="bottom"
+                  				popover-trigger="mouseenter"-->
+                        </li>
                         <li class="dropdown" id="preview-menu">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{currentSession.user.name}}<b class="caret"></b>
                               <span  style="font-family:arial;color:red;font-size:15px;">{{unreadMessage}}</span>

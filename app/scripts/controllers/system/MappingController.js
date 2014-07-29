@@ -111,6 +111,14 @@
             	
             };
             
+          scope.isDeleted=function(id,value){
+        	  
+        	  resourceFactory.EventActionMappingResource.delete({id: id} , {} , function(data) {
+                  location.path('/mappingconfig');
+                  scope.getEventActionMappingData();
+            });
+          };
+          
           scope.routeToservice = function(id){
         		location.path('/viewServiceMapping/'+ id);
             };

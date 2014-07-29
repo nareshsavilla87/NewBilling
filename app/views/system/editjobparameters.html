@@ -30,14 +30,14 @@
             </div>
            </div>
            
-              <div class="control-group" ng-show="formData.displayName =='Generate Statment'">
+              <div class="control-group" ng-show="formData.displayName =='Generate Statement'">
             <label class="control-label" for="startDate">{{ 'label.job.duedate' | translate }}</label>
             <div class="controls">
                  <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.dueDate" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"/>
             </div>
            </div>
            
-            <div class="control-group" ng-show="formData.displayName =='Generate Statment'">
+            <div class="control-group" ng-show="formData.displayName =='Generate Statement'">
 			<label class="control-label" for="promotionalMessage">{{'label.job.promotionalmessage' | translate}}</label>
 			<div class="controls">
 				<textarea rows="2" cols="2" ng-model="formData.promotionalMessage"></textarea>

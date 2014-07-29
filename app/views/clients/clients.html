@@ -5,12 +5,15 @@
     </ul>
     <div class="pull-left">
         <a  ng-show="PermissionService.showMenu('CREATE_CLIENT')" href="#/createclient" class="btn btn-primary"><i class="icon-plus icon-white"></i> Create Client</a>
+    <span style="padding:1.5em; font-style: oblique;"><img src="./images/Icons-users.png" alt="TotalClients" width="28px" height="15px"/>{{totalClients}}&nbsp;Total</span>
+    <span style="padding:1.5em; font-style: oblique;color:#FFA500;"><img src="./images/Icons-new.png" alt="NewClients" width="28px" height="15px"/>{{newClients}}&nbsp;New</span>
     </div>
-    <strong style="padding:2em;"><span><i class="icon-group"></i>&nbsp;{{totalClients}}&nbsp;Total</span></strong>
-    <strong style="padding:2em;"><span><img src="./images/circle_plus.png" alt="NewClients" width="28px" height="15px">{{newClients}}&nbsp;New</span></strong>
-    <strong style="padding:2em;"><span><img src="./images/active_check_mark.png" alt="ActiveClients" width="18px" height="15px">&nbsp;{{activeClients}}&nbsp;Active</span></strong>
-    <strong style="padding:2em;"><span><img src="./images/inactive_sign.png" alt="InActiveClients" width="25px" height="15px">&nbsp;{{InActiveClients}}&nbsp;InActive</span></strong>
-    <div class="pull-right">
+    <!-- <span style="padding:1.5em; font-style: oblique;color:#228b22;"><img src="./images/Icons-active.png" alt="ActiveClients" width="28px" height="15px"/>&nbsp;{{activeClients}}&nbsp;Active</span>
+    <span style="padding:1.5em; font-style: oblique;color:#FF0000;"><img src="./images/Icons-inactive.png" alt="InActiveClients" width="28px" height="15px"/>&nbsp;{{InActiveClients}}&nbsp;InActive</span>
+     --><div class="pull-right">
+     <span style="padding:1.5em; font-style: oblique;color:#228b22;"><img src="./images/Icons-active.png" alt="ActiveClients" width="28px" height="15px"/>&nbsp;{{activeClients}}&nbsp;Active</span>
+    <span style="padding:1.5em; font-style: oblique;color:#FF0000;"><img src="./images/Icons-inactive.png" alt="InActiveClients" width="28px" height="15px"/>&nbsp;{{InActiveClients}}&nbsp;InActive</span>
+    
           <!-- <a href="#/createclientnewwizard" class="btn btn-primary"
           		ng-show="PermissionService.showMenu('ACTIVATIONPROCESS_ACTIVATE')"><i class="icon-plus icon-white"></i> New Activation</a> -->
         <a ng-show="PermissionService.showMenu('ACTIVATIONPROCESS_ACTIVATE')" href="#/createsimpleActivation" class="btn btn-primary"><i class="icon-plus icon-white"></i>Simple Activation</a>
@@ -47,10 +50,10 @@
     </table>
       <ul class="pager">
     	<li class="previous" ng-click="firstPageNo()"><a  ng-click="clients.firstPage()" href="" ng-disabled="!clients.hasFirstPage()">First</a></li>
-        <li class="previous" ng-click="previousPageNo()"><a  id="prev" ng-click="clients.previous()"  href="" ng-hide="!clients.hasPrevious()">&larr; Prev</a></li>
+        <li class="previous" ng-click="previousPageNo()"><a  id="prev" ng-click="clients.previous()"  href="" ng-disabled="!clients.hasPrevious()">&larr; Prev</a></li>
         <strong>Page No:&nbsp;&nbsp;{{pageNo}}/{{totalPages}}</strong>
         <li class="next" ng-click="lastPageNo()"><a  ng-click="clients.lastPage()" href="" ng-disabled="!clients.hasLastPage()">Last</a></li>
-        <li class="next" ng-click="nextPageNo()"><a  id="next" ng-click="clients.next()" href="" ng-hide="!clients.hasNext()">Next &rarr;</a></li>
+        <li class="next" ng-click="nextPageNo()"><a  id="next" ng-click="clients.next()" href="" ng-disabled="!clients.hasNext()">Next &rarr;</a></li>
     </ul>
 </div>
 </div>

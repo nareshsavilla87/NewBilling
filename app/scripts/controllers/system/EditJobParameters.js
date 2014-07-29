@@ -55,8 +55,9 @@
     	  this.formData.Password=this.formData.jobparameters.password;
     	  
     	  if(this.formData.name == "Invoice"){this.formData.processDate = dateFilter(scope.date.processDate,'dd MMMM yyyy');}
-    	  if(this.formData.name== "Generate Statment"){this.formData.dueDate = dateFilter(scope.date.dueDate,'dd MMMM yyyy');}
+    	  if(this.formData.name== "Generate Statement"){this.formData.dueDate = dateFilter(scope.date.dueDate,'dd MMMM yyyy');}
     	  if(this.formData.name== "Auto Exipiry"){this.formData.exipiryDate = dateFilter(scope.date.exipiryDate,'dd MMMM yyyy');}
+    	  if(this.formData.name == "Generate PDF"){this.formData.processDate = dateFilter(scope.date.processDate,'dd MMMM yyyy');}
          
       delete this.formData.jobId;
    	  delete this.formData.displayName;

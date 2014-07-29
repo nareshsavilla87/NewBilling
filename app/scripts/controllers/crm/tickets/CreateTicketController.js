@@ -33,6 +33,10 @@
 			    scope.categoryType=clientData.categoryType;
 		        scope.email=clientData.email;
 		        scope.phone=clientData.phone;
+		        
+		        var sessionData=webStorage.get('sessionData');
+		        scope.formData.assignedTo=sessionData.userId;
+		       
             resourceFactory.ticketResourceTemplate.get(function(data){ 
             	
               scope.date = data.ticketDate;
