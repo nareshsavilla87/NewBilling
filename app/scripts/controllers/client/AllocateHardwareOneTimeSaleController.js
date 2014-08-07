@@ -15,8 +15,9 @@
 	            scope.categoryType=clientData.categoryType;
 	            scope.email=clientData.email;
 	            scope.phone=clientData.phone;
+	            scope.officeId = clientData.officeId;
 			  
-			  resourceFactory.allocateHardwareDetails.getItemDetails({oneTimeSaleId: routeParams.id}, function(data) {
+			  resourceFactory.allocateHardwareDetails.getItemDetails({oneTimeSaleId: routeParams.id, officeId:scope.officeId}, function(data) {
 	 	          scope.formData=data;
 	 	    }); 
 	        
