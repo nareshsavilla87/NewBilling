@@ -22,7 +22,7 @@
         <tr ng-repeat="config in configs  | filter:filterText">
             <td>{{config.name}}</a></td>
             <td>{{config.enabled}}</td>
-            <td>{{config.value}}</td>
+            <td style="word-break:break-all;">{{config.value}}</td>
             <td><button type="button" class="btn btn-success flag" data-ng-hide="config.enabled" data-ng-click="enable(config.id,config.name)"><i class="icon-flag-alt"></i></button>
                 <button type="button" class="btn btn-danger flag" data-ng-show="config.enabled" data-ng-click="disable(config.id,config.name)"><i class="icon-remove"></i></button>
             </td>

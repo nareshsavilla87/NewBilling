@@ -143,10 +143,12 @@
                    }
                    for(var i in scope.days)
                    {
-                       var tday = scope.days[i][2];
-                       var tmonth = scope.days[i][1];
-                       var tyear = scope.days[i][0];
-                       scope.tempDate[i] = tday + "/" + tmonth;
+                	   if (scope.days[i] && scope.days[i].length > 2) {
+                           var tday = scope.days[i][2];
+                           var tmonth = scope.days[i][1];
+                           var tyear = scope.days[i][0];
+                           scope.tempDate[i] = tday + "/" + tmonth;
+                       }
                    }
                    scope.getFcount(scope.formattedDate,scope.tempDate,scope.client);
    		 scope.id = this.officeId || 1;
@@ -160,10 +162,12 @@
                        }
                        for(var i in scope.ldays)
                        {
-                           var tday = scope.ldays[i][2];
-                           var tmonth = scope.ldays[i][1];
-                           var tyear = scope.ldays[i][0];
-                           scope.ltempDate[i] = tday + "/" + tmonth;
+                    	   if (scope.ldays[i] && scope.ldays[i].length > 2) {
+                               var tday = scope.ldays[i][2];
+                               var tmonth = scope.ldays[i][1];
+                               var tyear = scope.ldays[i][0];
+                               scope.ltempDate[i] = tday + "/" + tmonth;
+                           }
                        }
                        scope.getLcount(scope.formattedDate,scope.ltempDate,data);
                        scope.getBarData(scope.formattedDate,scope.fcount,scope.lcount);
@@ -189,10 +193,12 @@
                 }
                 for(var i in scope.days)
                 {
+                	if(scope.days[i] && scope.days[i].length > 2){
                     var tday = scope.days[i][2];
                     var tmonth = scope.days[i][1];
                     var tyear = scope.days[i][0];
                     scope.tempDate[i] = tday + "/" + tmonth;
+                	}
                 }
                 scope.getFcount(scope.formattedDate,scope.tempDate,scope.client);
 		 scope.id = this.officeId || 1;
@@ -206,10 +212,12 @@
                     }
                     for(var i in scope.ldays)
                     {
+                    	if(scope.ldays[i] && scope.ldays[i].length > 2){
                         var tday = scope.ldays[i][2];
                         var tmonth = scope.ldays[i][1];
                         var tyear = scope.ldays[i][0];
                         scope.ltempDate[i] = tday + "/" + tmonth;
+                    	}
                     }
                     scope.getLcount(scope.formattedDate,scope.ltempDate,data);
                     scope.getBarData(scope.formattedDate,scope.fcount,scope.lcount);
@@ -220,7 +228,7 @@
 
 
            
- resourceFactory.groupTemplateResource.get(function(data) {scope.offices = data.officeOptions;});
+ resourceFactory.groupTemplateResource.get(function(data) {scope.offices = data.officeOptions;scope.officeId=data.officeId;});
 
  
  //tab2 active
@@ -430,10 +438,12 @@
         }
         for(var i in scope.days1)
         {
+        	if(scope.days1[i] && scope.days1[i].length > 2){
             var tday = scope.days1[i][2];
             var tmonth = scope.days1[i][1];
            // var tyear = scope.days1[i][0];
             scope.tempDate1[i] = tday + "/" + tmonth;
+        	}
         }
         scope.getFcount1(scope.tempDate1,scope.client1);
  scope.id1 = this.officeId1 || 1;
@@ -447,16 +457,18 @@
             }
             for(var i in scope.ldays1)
             {
+            	if(scope.ldays1[i] && scope.ldays1[i].length > 2){
                 var tday = scope.ldays1[i][2];
                 var tmonth = scope.ldays1[i][1];
                 scope.ltempDate1[i] = tday + "/" + tmonth;
+            	}
             }
             scope.getLcount1(scope.ltempDate1,data);
             scope.getBarData1(scope.ltempDate1,scope.fcount1,scope.lcount1);
         });
     });
 
-resourceFactory.groupTemplateResource.get(function(data) {scope.offices1 = data.officeOptions;});
+resourceFactory.groupTemplateResource.get(function(data) {scope.offices1 = data.officeOptions;scope.officeId1=data.officeId;});
 
 /*Daily Data */
 scope.getDailyData1 = function(){
@@ -478,9 +490,11 @@ resourceFactory.runReportsResource.get({reportSource: 'TicketsbyDays',R_officeId
     }
     for(var i in scope.days1)
     {
+    	if(scope.days1[i] && scope.days1[i].length > 2){
         var tday = scope.days1[i][2];
         var tmonth = scope.days1[i][1];
         scope.tempDate1[i] = tday + "/" + tmonth;
+    	}
     }
     scope.getFcount1(scope.tempDate1,scope.client1);
     scope.id1 = this.officeId1 || 1;
@@ -494,9 +508,11 @@ resourceFactory.runReportsResource.get({reportSource: 'TicketsbyDays',R_officeId
         }
         for(var i in scope.ldays1)
         {
+        	if(scope.ldays1[i] && scope.ldays1[i].length > 2){
             var tday = scope.ldays1[i][2];
             var tmonth = scope.ldays1[i][1];
             scope.ltempDate1[i] = tday + "/" + tmonth;
+        	}
         }
         scope.getLcount1(scope.ltempDate1,data);
         scope.getBarData1(scope.ltempDate1,scope.fcount1,scope.lcount1);
@@ -615,11 +631,13 @@ return function(d, i) {
                         scope.days[i] = scope.client[i].days;
                     }
                     for(var i in scope.days)
-                    {
+                    {	
+                    	if (scope.days[i] && scope.days[i].length > 2){
                         var tday = scope.days[i][2];
                         var tmonth = scope.days[i][1];
                         var tyear = scope.days[i][0];
                         scope.tempDate[i] = tday + "/" + tmonth;
+                    	}
                     }
                     scope.getFcount(scope.formattedDate,scope.tempDate,scope.client);
 			 scope.id = this.officeId || 1;
@@ -633,10 +651,12 @@ return function(d, i) {
                         }
                         for(var i in scope.ldays)
                         {
+                        	if(scope.ldays[i] && scope.ldays[i].length > 2){
                             var tday = scope.ldays[i][2];
                             var tmonth = scope.ldays[i][1];
                             var tyear = scope.ldays[i][0];
                             scope.ltempDate[i] = tday + "/" + tmonth;
+                        	}
                         }
                         scope.getLcount(scope.formattedDate,scope.ltempDate,data);
                         scope.getBarData(scope.formattedDate,scope.fcount,scope.lcount);

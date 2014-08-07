@@ -179,7 +179,7 @@
 									</div>
 								</td>
 								<td>
-									<div class="control-group" ng-show="formData.quantity" ng-repeat="item in getNumber(formData.quantity)" name="serialNumberDiv">
+									<div class="control-group" ng-show="formData.quantity" ng-repeat="item in getNumber(formData.quantity) track by $index" name="serialNumberDiv">
                                      <label class="control-label" for="serialNumber">{{ 'label.serialNumber' | translate }}&nbsp;<span class="required">*</span></label>
                                       <div class="controls">
              	                        <input type="text" ng-model="itemDetail" name="serialNumber" typeahead="itemDetail for itemDetail in getData($viewValue)">

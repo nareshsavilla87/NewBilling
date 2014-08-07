@@ -1,6 +1,6 @@
 (function(module) {
 	mifosX.controllers = _.extend(module,{
-		EditTicketController : function(scope,webStorage,routeParams,resourceFactory, location, http,API_VERSION,$rootScope) {
+		EditTicketController : function(scope,webStorage,routeParams,resourceFactory, location, http,API_VERSION,$rootScope,$upload) {
 							scope.formData = {};	
 							scope.data={};
 							var clientData = webStorage.get('clientData');
@@ -40,7 +40,7 @@
 								this.data.assignedTo=this.formData.userId;
 								this.data.comments=this.formData.comments;
 								this.data.status=this.formData.status;
-						        http.uploadFile({
+								$upload.upload({
 						          url: $rootScope.hostUrl+ API_VERSION +'/clients/'+routeParams.clientId+'/documents/'+routeParams.id+'/attachment', 
 						          data: scope.data,
 						          file: scope.file
@@ -55,7 +55,7 @@
 							};
 						}
 					});
-	mifosX.ng.application.controller('EditTicketController', ['$scope','webStorage' ,'$routeParams', 'ResourceFactory', '$location', '$http','API_VERSION','$rootScope', mifosX.controllers.EditTicketController]).run(function($log) {
+	mifosX.ng.application.controller('EditTicketController', ['$scope','webStorage' ,'$routeParams', 'ResourceFactory', '$location', '$http','API_VERSION','$rootScope','$upload', mifosX.controllers.EditTicketController]).run(function($log) {
 	    $log.info("EditTicketController initialized");
 	  });
 	

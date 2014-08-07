@@ -90,6 +90,10 @@
 		</table>
 	</div>			
 	</div>
+	<div class="pull-right">
+        <a  href="" class="btn btn-primary" tooltip-placement="top" tooltip="To See Click on Me" ng-click="freeIpsPopupFun()">
+        		<i class="icon-list icon-white"></i>Free IPs</a>
+    </div>
 
 	<table >
 				<tr valign="top" align="left">
@@ -184,8 +188,8 @@
 					
 					<td width="1.5" bgcolor="black"><BR></td>
 					
-					<td width="150" valign="top" align="center">
-						<p style="color:black;">&nbsp;&nbsp;&nbsp;Existing Service Parameters</p>
+					<td width="200" valign="top" align="left">
+						<strong>Existing Service Parameters</strong>
 						
 						<table>
 							<tr>
@@ -250,4 +254,31 @@
 		</div>
 	</fieldset>
 </form>
+
+<script type="text/ng-template" id="freeIps.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">IP Details</h3>
+                    </div>
+                    <div class="modal-body modal-big">
+						<div class="span5">
+							<table width="100%" class="table table-striped table-bordered">
+								<thead>
+            						<tr class="graybg">
+             						   <th>Ip Address</th>
+               						   <th>Notes</th>
+           							</tr>
+        						</thead>
+       							 <tbody>
+    						        <tr  ng-repeat="ipAddressesData in ipAddressesData" >
+      							          <td >{{ipAddressesData.ip_address}}</td>
+             							  <td >{{ipAddressesData.notes}}</td>
+          						    </tr>
+        						 </tbody>
+							</table>
+						</div>	
+                    </div>
+                    <div class="modal-footer">
+                        <button id="cancel" class="btn btn-primary" ng-click="cancel()">{{'button.done' | translate}}</button>
+                    </div>
+ </script>
 </div>

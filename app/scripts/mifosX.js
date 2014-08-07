@@ -3,7 +3,7 @@ var mifosX = (function(module) {
 	config: angular.module('config_params' , ['configurations']),
     services: angular.module('MifosX_Services', ['ngResource']),
     application: angular.module('MifosX_Application', ['MifosX_Services','config_params', 'webStorageModule', 'ui.bootstrap' , 'pascalprecht.translate','nvd3ChartDirectives','notificationWidget', 'angularFileUpload','modified.datepicker',
-                                                       'ngSanitize','frAngular','LocalStorageModule'])
+                                                       'ngSanitize','frAngular','LocalStorageModule','ngRoute','ngIdle'])
   };
   return module;
 }(mifosX || {}));

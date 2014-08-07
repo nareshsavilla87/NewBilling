@@ -16,16 +16,16 @@
 	            scope.email=clientData.email;
 	            scope.phone=clientData.phone;
 	            scope.officeId = clientData.officeId;
-			  
-			  resourceFactory.allocateHardwareDetails.getItemDetails({oneTimeSaleId: routeParams.id, officeId:scope.officeId}, function(data) {
-	 	          scope.formData=data;
-	 	    }); 
+	            
+	            resourceFactory.allocateHardwareDetails.getItemDetails({oneTimeSaleId: routeParams.id, officeId:scope.officeId}, function(data) {
+	            	 	          scope.formData=data;
+	            });
 	        
 	        scope.getData = function(query){
 	        	  /*resourceFactory.allocateHardwareDetails.getSerialNumbers({oneTimeSaleId:  scope.formData.itemMasterId,query: query}, function(data) {
 	        		  scope.itemDetails  = data.serials;
 	     	        }); */
-	        	 return http.get($rootScope.hostUrl+ API_VERSION+'/itemdetails/'+scope.formData.itemMasterId, {
+	        	 return http.get($rootScope.hostUrl+ API_VERSION+'/itemdetails/'+scope.formData.itemMasterId+'/'+scope.officeId, {
 	        	      params: {
 	        	    	  query: query
 	        	      }

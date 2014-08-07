@@ -92,7 +92,7 @@
               <td>
            
              <accordion close-others="true">
-            	 <accordion-group is-open="postpaid.open" ng-click="postpaid.open=!postpaid.open">
+            	 <accordion-group is-open="postpaid.open">
              		<accordion-heading>
             	 		<strong>{{'label.postpaidplans' | translate}}</strong> 
             	 		<i class="pull-right" ng-class="{'icon-chevron-up': postpaid.open, 'icon-chevron-down': !postpaid.open}"></i>
@@ -200,8 +200,8 @@
             
                <a href='#/viewclient/{{clientId}}' class="btn">Cancel</a>
           <!--  <button id="submit" type="submit" class="btn btn-primary" ng-dblclick="dbClick()" ng-disabled="flag">Save</button> -->
-               <button id="submit" ng-click="submit()" class="btn btn-primary" ng-show="todayDate==selectedDate">Save</button>
-               <button  ng-click="submitschedule()"  class="btn btn-primary" ng-hide="todayDate==selectedDate">Save Later</button>
+               <button id="submit" ng-click="submit()" class="btn btn-primary" ng-show="isnow">Save</button>
+               <button  ng-click="submitschedule()"  class="btn btn-primary" ng-hide="isnow">Save Later</button>
           </div>
               </td>
             </tr>

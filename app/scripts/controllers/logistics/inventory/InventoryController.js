@@ -57,7 +57,8 @@
               location.path('/viewgrn/'+ parseInt(id));
            };
          scope.routeTomrn = function(id){
-             location.path('/viewmrn/'+ parseInt(id));
+        	 scope.val=id.split(" ");
+             location.path('/viewmrn/'+ scope.val[1]);
            };
         scope.routeToitem = function(id){
             location.path('/viewitem/'+ parseInt(id));

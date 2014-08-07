@@ -17,6 +17,7 @@
 	            scope.categoryType=clientData.categoryType;
 	            scope.email=clientData.email;
 	            scope.phone=clientData.phone;
+	            scope.officeId = clientData.officeId;
 	            var config = webStorage.get('CPE_TYPE');
 	  		  scope.config=config;
 	            resourceFactory.associationResource.getAssociation({clientId: routeParams.clientId,id:routeParams.orderId} , function(data) {
@@ -24,13 +25,13 @@
 	            });
 	        scope.getData = function(query){
 	        	if(query.length>0){
-	        		resourceFactory.allocateHardwareDetails.getSerialNumbers({oneTimeSaleId: scope.association.itemId,query: query, officeId: scope.officeId}, function(data) { 	        	
+	        		resourceFactory.allocateHardwareDetails.getSerialNumbers({oneTimeSaleId: scope.association.itemId,officeId:scope.officeId,query: query}, function(data) { 	        	
 	     	            scope.itemDetails = data.serials;
 	     	        }); 
 	        	}else{
 	            	
 	        	}
-            }
+            };
 	        	
 	        scope.getNumber = function(num) {
 	             return new Array(num);   

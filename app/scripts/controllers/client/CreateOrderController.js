@@ -34,16 +34,27 @@
         scope.categoryType=clientData.categoryType;
         scope.email=clientData.email;
         scope.phone=clientData.phone;
-        scope.minDate=scope.start.date;
+        //scope.minDate=scope.start.date;
         scope.postpaid  ={};
         scope.postpaid.open = true;
-        
+        scope.isnow=true;
         scope.$watch('start.date', function() {
     	    scope.doSomething();  
     	});
        scope.doSomething =function(){
     	   scope.todayDate=new Date().toDateString();
     	   scope.selectedDate=scope.start.date.toDateString();
+    	   
+    	   if(Date.parse(scope.todayDate) > Date.parse(scope.selectedDate)){
+    		
+    		   scope.isnow=true;
+    	   }else if(Date.parse(scope.todayDate) < Date.parse(scope.selectedDate)){
+    		
+    		   scope.isnow=false;
+    	   }else if(scope.todayDate == scope.selectedDate){
+    		
+    		   scope.isnow=true;
+    	   }
     	   console.log("todayDate:"+scope.todayDate);
     	   console.log("selectedDate:"+scope.selectedDate);
        };

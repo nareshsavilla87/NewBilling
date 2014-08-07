@@ -39,13 +39,14 @@ describe("MainController", function() {
         this.translate = jasmine.createSpyObj("translate", ["uses"]);
         this.rootScope = jasmine.createSpy();
         this.localStorageService = jasmine.createSpyObj("localStorageService", ["get"]);
-
+        
+        this.idle = jasmine.createSpyObj("$idle", ['watch','unwatch']);
         this.controller = new mifosX.controllers.MainController(this.scope,
                                                                 this.location,
                                                                 this.sessionManager,
                                                                 this.translate,
                                                                 this.rootScope,
-                                                                this.localStorageService, this.keyboardManager);
+                                                                this.localStorageService, this.keyboardManager,this.idle);
       });});
 
     it("should start a new session", function() {

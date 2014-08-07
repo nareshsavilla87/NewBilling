@@ -12,10 +12,6 @@ define(['underscore'], function() {
       'jquery.jWizard.min',
       'chosen.min',
       'multiple-select'
-    ],
-    less: [
-      'mifosX'
-
     ]
   };
 

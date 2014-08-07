@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    ClientDocumentController: function(scope,webStorage, location, http, routeParams,API_VERSION,$rootScope) {
+    ClientDocumentController: function(scope,webStorage, location, http, routeParams,API_VERSION,$rootScope,$upload) {
       scope.clientId = routeParams.clientId;
       var clientData = webStorage.get('clientData');
       scope.hwSerialNumber=clientData.hwSerialNumber;
@@ -22,7 +22,7 @@
       	   webStorage.add("callingTab", {someString: "identities" });
          };
       scope.submit = function () {
-        http.uploadFile({
+        $upload.upload({
           url: $rootScope.hostUrl+ API_VERSION +'/clients/'+scope.clientId+'/documents', 
           data: scope.formData,
           file: scope.file
@@ -37,7 +37,7 @@
       };
     }
   });
-  mifosX.ng.application.controller('ClientDocumentController', ['$scope','webStorage', '$location', '$http', '$routeParams','API_VERSION','$rootScope', mifosX.controllers.ClientDocumentController]).run(function($log) {
+  mifosX.ng.application.controller('ClientDocumentController', ['$scope','webStorage', '$location', '$http', '$routeParams','API_VERSION','$rootScope','$upload', mifosX.controllers.ClientDocumentController]).run(function($log) {
     $log.info("ClientDocumentController initialized"); 
   });
 }(mifosX.controllers || {}));

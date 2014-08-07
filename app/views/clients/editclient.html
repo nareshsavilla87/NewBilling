@@ -91,7 +91,7 @@
             <label ng-hide="entryType =='ORP'" class="control-label" for="firstname">{{'label.firstname' | translate}}<span class="required">*</span></label> 
              <label ng-show="entryType =='ORP'" class="control-label" for="firstname">{{'label.corporate' | translate}}<span class="required">*</span></label>
                         <div class="controls">
-                           <input type="text" name="firstname" ng-model="formData.firstname" ng-pattern="/^[a-zA-Z0-9\s]+$/" required ng-minlength=3 late-Validate/>
+                           <input type="text" name="firstname" ng-model="formData.firstname" ng-pattern="/^[a-zA-Z0-9\-\&\s]+$/" required ng-minlength=3 late-Validate/>
                                <span  ng-show="editclientform.firstname.$invalid">
                                <small class="error" ng-show="editclientform.firstname.$error.pattern">alphanumeric and spaces only!</small>
                               <small class="error" ng-show="editclientform.firstname.$error.req">

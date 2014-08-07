@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    AddImportFileController: function(scope, resourceFactory,http,location,API_VERSION,$rootScope) {
+    AddImportFileController: function(scope, resourceFactory,http,location,API_VERSION,$rootScope,$upload) {
         scope.subscriptions = [];
         scope.formData={};
         scope.formData.status="-1";
@@ -24,7 +24,7 @@
               	};
           
           scope.submit = function () {
-              http.uploadFile({/*41.75.85.206:8080*/
+        	  $upload.upload({/*41.75.85.206:8080*/
                 url: $rootScope.hostUrl+ API_VERSION +'/uploadstatus/documents', 
                 data: scope.formData,
                 file: scope.file
@@ -38,7 +38,7 @@
             };
     }
   });
-  mifosX.ng.application.controller('AddImportFileController', ['$scope', 'ResourceFactory', '$http', '$location','API_VERSION','$rootScope', mifosX.controllers.AddImportFileController]).run(function($log) {
+  mifosX.ng.application.controller('AddImportFileController', ['$scope', 'ResourceFactory', '$http', '$location','API_VERSION','$rootScope','$upload', mifosX.controllers.AddImportFileController]).run(function($log) {
     $log.info("AddImportFileController initialized");
   });
 }(mifosX.controllers || {}));

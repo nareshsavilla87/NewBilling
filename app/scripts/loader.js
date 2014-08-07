@@ -8,6 +8,7 @@
             'blockUI':          '../bower_components/blockui/jquery.blockUI',
             'angular':          '../bower_components/angular/angular',
             'angular-resource': '../bower_components/angular-resource/angular-resource',
+            'angular-route': '../bower_components/angular-route/angular-route',
             'angular-translate':'../bower_components/angular-translate/angular-translate',
             'angular-translate-loader-static-files':'../bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files',
             'angular-mocks':    '../bower_components/angular-mocks/angular-mocks',
@@ -16,7 +17,6 @@
             'underscore':       '../bower_components/underscore/underscore',
             'webstorage':       '../bower_components/angular-webstorage/angular-webstorage',
             'require-css':      '../bower_components/require-css/css',
-            'require-less':     '../bower_components/require-less/less',
             'd3':               '../bower_components/d3/d3',
             'nvd3':             '../bower_components/nvd3/nv.d3',
             'nvd3ChartDirectives':'../scripts/directives/angularjs-nvd3-directives',
@@ -33,12 +33,13 @@
             'configurations':'../scripts/modules/configurations',
             'chosen.jquery.min': "../scripts/modules/chosen.jquery.min",
             'aes':'../scripts/CryptoJS/rollups/aes',
-            'multiple':'./modules/jquery.multiple.select'
-            
+            'multiple':'./modules/jquery.multiple.select',
+            'ngIdle': '../bower_components/ng-idle/angular-idle.min'
         },
         shim: {
             'angular': { exports: 'angular' },
             'angular-resource': { deps: ['angular'] },
+            'angular-route': { deps: ['angular'] },
             'angular-translate': { deps: ['angular'] },
             'angular-translate-loader-static-files': {deps: ['angular' , 'angular-translate'] },
             'angularui': { deps: ['angular'] },
@@ -61,12 +62,14 @@
             'chosen.jquery.min': {deps: ['jquery']},
             'aes':{deps: ['jquery']},
             'multiple':{deps: ['jquery']},
+            'ngIdle': {deps: ['angular']},
 
             'mifosX': {
                 deps: [
                     'angular',
                     'jquery',
                     'angular-resource',
+                    'angular-route',
                     'angular-translate',
                     'angular-translate-loader-static-files',
                     'angularui',
@@ -87,7 +90,8 @@
                     'configurations',
                     'chosen.jquery.min',
                     'aes',
-                    'multiple'
+                    'multiple',
+                    'ngIdle'
                 ],
                 exports: 'mifosX'
             }
@@ -97,11 +101,6 @@
                 name: 'css',
                 location: '../bower_components/require-css',
                 main: 'css'
-            },
-            {
-                name: 'less',
-                location: '../bower_components/require-less',
-                main: 'less'
             }
         ]
     });

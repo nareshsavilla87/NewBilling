@@ -12,60 +12,104 @@
 	    </div>
         <fieldset>
           <legend>Create Item</legend>
+			
+			<table>
+			
+				<tr>
+					<td>
+						<div class="control-group">
+            			<label class="control-label" for="itemCode">{{'label.item.itemcode' | translate }}&nbsp;<span class="required">*</span></label>
+            			<div class="controls">
+              			<input type="text" id="itemCode" ng-model="formData.itemCode">
+            			</div>
+          				</div>
+					</td>
+					<td>
+						<div class="control-group">
+            			<label class="control-label" for="itemDescription">{{'label.item.itemdescription' | translate }}&nbsp;<span class="required">*</span></label>
+            			<div class="controls">
+              			<input type="text" id="itemDescription" ng-model="formData.itemDescription">
+            			</div>
+          				</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<div class="control-group">
+           	 			<label class="control-label" for="itemClass">{{'label.item.itemclass' | translate }}&nbsp;<span class="required">*</span></label>
+            			<div class="controls">
+              			<select ng-model="formData.itemClass"  ng-options="itemClassData.value as itemClassData.value for itemClassData in itemClassDatas" value="{{itemClassData.value}}">
+              			</select>
+            			</div>
+          				</div>
+					</td>
+					<td>
+						<div class="control-group">
+            			<label class="control-label" for="units">{{'label.item.units' | translate }}&nbsp;<span class="required">*</span></label>
+            			<div class="controls">
+              			<select ng-model="formData.units"  ng-options="unitData.value as unitData.value for unitData in unitDatas" value="{{unitData.value}}">
+              			</select>
+            			</div>
+          				</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<div class="control-group">
+            			<label class="control-label" for="chargeCode">{{'label.chargecode' | translate }}&nbsp;<span class="required">*</span></label>
+            			<div class="controls">
+              			<select ng-model="formData.chargeCode"  ng-options="chargesData.chargeCode as chargesData.chargeDescription for chargesData in chargesDatas" value="{{chargesData.chargeCode}}">
+              			</select>
+            			</div>
+          				</div>
+					</td>
+					<td>
+						<div class="control-group">
+           				<label class="control-label" for="unitPrice ">{{'label.item.unitprice' | translate }}&nbsp;<span class="required">*</span></label>
+           				<div class="controls">
+             			<input type="text" id="unitPrice" ng-model="formData.unitPrice">
+           				</div>
+          				</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<div class="control-group">
+            			<label class="control-label" for="reorderLevel">{{'label.item.reorderlevel' | translate }}&nbsp;<span class="required">*</span></label>
+            			<div class="controls">
+              			<input type="text" id="reorderlevel" ng-model="formData.reorderLevel">
+            			</div>
+          				</div>
+					</td>
+					<td>
+						<div class="control-group">
+            			<label class="control-label" for="warranty">{{'label.item.warranty' | translate }}&nbsp;<span class="required">*</span></label>
+            			<div class="controls">
+              			<input type="text" id="warranty" ng-model="formData.warranty">
+            			</div>
+          				</div>
+					</td>
+				</tr>
+				
+			</table>
+          
+          
+           
+          
+           
 
-          <div class="control-group">
-            <label class="control-label" for="itemCode">{{'label.item.itemcode' | translate }}&nbsp;<span class="required">*</span></label>
-            <div class="controls">
-              <input type="text" id="itemCode" ng-model="formData.itemCode">
-            </div>
-          </div>
-          
-           <div class="control-group">
-            <label class="control-label" for="itemDescription">{{'label.item.itemdescription' | translate }}&nbsp;<span class="required">*</span></label>
-            <div class="controls">
-              <input type="text" id="itemDescription" ng-model="formData.itemDescription">
-            </div>
-          </div>
-          
-           <div class="control-group">
-            <label class="control-label" for="chargeCode">{{'label.chargecode' | translate }}&nbsp;<span class="required">*</span></label>
-            <div class="controls">
-              <select ng-model="formData.chargeCode"  ng-options="chargesData.chargeCode as chargesData.chargeDescription for chargesData in chargesDatas" value="{{chargesData.chargeCode}}">
-              </select>
-            </div>
-          </div>
 
-
-          <div class="control-group">
-            <label class="control-label" for="warranty">{{'label.item.warranty' | translate }}&nbsp;<span class="required">*</span></label>
-            <div class="controls">
-              <input type="text" id="warranty" ng-model="formData.warranty">
-            </div>
-          </div>
-          
-            <div class="control-group">
-            <label class="control-label" for="itemClass">{{'label.item.itemclass' | translate }}&nbsp;<span class="required">*</span></label>
-            <div class="controls">
-              <select ng-model="formData.itemClass"  ng-options="itemClassData.value as itemClassData.value for itemClassData in itemClassDatas" value="{{itemClassData.value}}">
-              </select>
-            </div>
-          </div>
           
           
-          <div class="control-group">
-            <label class="control-label" for="units">{{'label.item.units' | translate }}&nbsp;<span class="required">*</span></label>
-            <div class="controls">
-              <select ng-model="formData.units"  ng-options="unitData.value as unitData.value for unitData in unitDatas" value="{{unitData.value}}">
-              </select>
-            </div>
-          </div>
+            
+          
+          
+          
          
-           <div class="control-group">
-           <label class="control-label" for="unitPrice ">{{'label.item.unitprice' | translate }}&nbsp;<span class="required">*</span></label>
-           <div class="controls">
-             <input type="text" id="unitPrice" ng-model="formData.unitPrice">
-           </div>
-          </div>
+           
           
 
           <div class="offset3">

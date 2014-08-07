@@ -144,6 +144,7 @@
   "button.add":"Add",
   "button.save":"Save",
   "button.cancel":"Cancel",
+  "button.done":"Done",
   "button.delete":"Delete",
   "button.undo":"Undo",
   "button.view":"View",
@@ -1103,6 +1104,7 @@
    "table.statement.amount":"Amount",
    "link.viewstatement":"View statement",
    "error.msg.no.bills.to.generate":"No bills to generate",
+   "error.msg.no.generate.pdf.file.for.this.statement":"Please first generate pdf file for this statement",
    
     "#messageResources":"....",
   "label.managemessage":"Manage Message",
@@ -1216,6 +1218,7 @@
   "label.item.itemclass":"Item Class",
   "label.item.edit":"Edit Item",
   "label.create.new.item":"Add Item",
+  "label.item.reorderlevel":"Reorder level",
 
   
   
@@ -1235,6 +1238,7 @@
   "table.grn.status":"Status",
   "label.grn.itemCode":"Item Code",
   "label.grn.orderedQuantity":"Ordered Quantity",
+  "label.grn.purchaseNo":"Purchase No",
   "table.grn.orderdQuantity":"Ordered Quantity",
   "table.itemdetails.id":"Id",
   "table.itemdetails.officeName":"Office Name",
@@ -1263,6 +1267,7 @@
   "validation.msg.null.itemDescription.cannot.be.blank":"Item cannot be blank",
   "validation.msg.null.mrnId.cannot.be.blank":"Please select Mrn Id",
   "validation.msg.null.itemId.cannot.be.blank":"Please select Item Id",
+  "validation.msg.grn-allocation.purchaseNo.cannot.be.blank":"purchaseNo cannot be blank",
   
   
   "table.itemhistory.id":"Id",
@@ -1964,7 +1969,7 @@
 "label.iptype":"Ip Type",
 "table.ippooling.id":"id",
 "table.ippooling.ipaddress":"ipAddress",
-"table.ippooling.ippooldescription":"Description",
+"table.ippooling.ippooldescription":"Net Mask",
 "table.ippooling.clientId":"ClientId",
 "table.ippooling.status":"Status",
 "label.ippooling.createippool":"Create IpPool",
@@ -1986,6 +1991,7 @@
 "error.msg.ipaddress.not.available.to.assign":"Ip Address is not available to assign",
 "error.msg.ipaddress.already.allocated.please.select.another.iprange":"Ip addresses are already allocated.please select another ip range",
 "validation.msg.provisioning.IP_ADDRESS.cannot.be.empty":"Ip Address can not br blank",
+"validation.msg.null.statusType.cannot.be.blank":"Status Type cannot be blank",
 
 "#Redemption":".......",
 "validation.msg.redemption.clientId.cannot.be.blank":"Client id cannot be blank",

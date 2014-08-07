@@ -63,6 +63,7 @@
         };
         
         scope.selectedInvoices = function(invoiceId,amount,active,index){
+        	
         	if(active == true){
         		if(scope.paymentDatas[paymentIndex].availAmount == 0){
         			$('#'+invoiceId).prop('checked',false);

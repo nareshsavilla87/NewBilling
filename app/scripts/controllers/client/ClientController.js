@@ -5,12 +5,12 @@
       scope.clients = [];
       scope.PermissionService = PermissionService;
       scope.pageNo = 1;
+      scope.newClients = 0;
+      scope.activeClients = 0;
+      scope.InActiveClients = 0;
+      scope.PendingClients = 0;
+      scope.totalPages = 1;
       
-      scope.tooltip = {
-    		  "title": "Hello Tooltip<br />This is a multiline message!",
-    		  "checked": false
-    		};
-     
       var fetchFunction = function(offset, limit, callback) {
         resourceFactory.clientResource.getAllClients({offset: offset, limit: limit} , function(data){
         	scope.totalClients = data.totalFilteredRecords;

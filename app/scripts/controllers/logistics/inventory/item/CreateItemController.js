@@ -5,7 +5,6 @@
          scope.unitDatas = [];
          scope.chargesDatas = [];
          scope.formData = [];
-         
         resourceFactory.itemTemplateResource.get(function(data) {
         	scope.itemClassDatas = data.itemClassData;
             scope.unitDatas = data.unitData;

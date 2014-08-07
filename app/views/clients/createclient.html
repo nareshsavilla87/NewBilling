@@ -28,7 +28,7 @@
               <label ng-hide="formData.entryType == 'ORP'" class="control-label" for="firstname">{{'label.firstname' | translate}}<span class="required">*</span></label>
               <label ng-show="formData.entryType == 'ORP'" class="control-label" for="firstname">{{'label.corporate' | translate}}<span class="required">*</span></label>
               <div class="controls">
-                <input type="text" id="firstname" name="firstname" ng-model="formData.firstname" ng-pattern="/^[a-zA-Z0-9\s]+$/" required ng-minlength=3 late-Validate/>
+                <input type="text" id="firstname" name="firstname" ng-model="formData.firstname" ng-pattern="/^[a-zA-Z0-9\-\&\s]+$/" required ng-minlength=3 late-Validate/>
                 <span  ng-show="createclientform.firstname.$invalid">
                 	<small class="error" ng-show="createclientform.firstname.$error.pattern">alphanumeric and spaces only!</small>
                     <small class="error" ng-show="createclientform.firstname.$error.req">
@@ -62,18 +62,10 @@
             <div class="control-group">
               <label class="control-label" for="phone">{{'label.phone' | translate}}<span class="required">*</span></label>
               <div class="controls">
-                <input type="text" id="phone" ng-model="formData.phone" ng-pattern="/^(?!0+$)\d{1,19}$/"  ng-maxlength="10" name="phone" required  late-Validate/>
-                <span ng-show="createclientform.phone.$invalid">
-                   <small class="error" ng-show="createclientform.phone.$error.req">
-                        Required Field
-                   </small>
-                </span>
-                
-           <div ng-show="createclientform.phone.$dirty && createclientform.phone.$invalid">
-             
-               <span class="error" ng-show="createclientform.phone.$error.pattern">digits only !</span>
-               <span class="error" ng-show="createclientform.phone.$error.maxlength">Exceeded max limit!</span>
-           </div>
+                <input type="text" id="phone" ng-model="formData.phone" ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/" name="phone" required  late-Validate/>
+                <div ng-show="createclientform.phone.$dirty && createclientform.phone.$invalid">
+        			<small class="error" ng-show="createclientform.phone.$error.pattern">wrong input or accepts only digits !</small>
+    			</div>
               </div>
             </div>
             
@@ -81,8 +73,11 @@
 
             	<label class="control-label" for="homePhoneNumber">{{ 'label.homephone' | translate }}</label>
             		<div class="controls">
-              			<input type="text" name="homePhone" id="homePhoneNumber" ng-model="formData.homePhoneNumber"/>
-            		</div>
+              			<input type="text" name="homePhone" id="homePhoneNumber" ng-model="formData.homePhoneNumber" ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/" />
+              			<div ng-show="createclientform.homePhone.$dirty && createclientform.homePhone.$invalid">
+        					<small class="error" ng-show="createclientform.homePhone.$error.pattern">wrong input or accepts only digits !</small>
+    					</div>
+           		</div>
           	</div>
             
              <div class="control-group">

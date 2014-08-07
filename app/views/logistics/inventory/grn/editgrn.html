@@ -1,4 +1,4 @@
-  <div ng-controller="AddGRNController">  
+  <div ng-controller="EditGRNController">  
       <div>
         <ul class="breadcrumb">
           <li><a href="#/inventory" ng-click="selectedGRN()" select="getGRNdetails()">{{'link.admin.inventory' | translate}}</a> <span class="divider">/</span></li>
@@ -12,7 +12,7 @@
 		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
         <fieldset>
-          <legend>Add GRN Details</legend>
+          <legend>Edit GRN Details</legend>
 			
 			<table>
 				<tr>
@@ -20,7 +20,6 @@
 						<div class="control-group">
             			<label class="control-label" for="purchaseDate">{{'label.grn.purchaseDate' | translate }}&nbsp;<span class="required">*</span></label>
             			<div class="controls">
-              			<!-- <input type="text" id="purchaseDate" ng-model="formData.purchaseDate"> -->
               			<input type="text" id="purchaseDate" datepicker-pop="dd MMMM yyyy" ng-model="formData.purchaseDate" is-open="opened" 
               				date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
             			</div>	
@@ -30,7 +29,7 @@
 						<div class="control-group">
             			<label class="control-label" for="purchaseNo">{{'label.grn.purchaseNo' | translate }}&nbsp;<span class="required">*</span></label>
             			<div class="controls">
-              			<input type="text" id="purchaseNo" ng-model="formData.purchaseNo">
+              			<input type="text" id="purchaseNo" ng-model="formData.purchaseNo" readonly>
             			</div>
           				</div>
 					</td>
@@ -62,7 +61,7 @@
 						<div class="control-group">
             			<label class="control-label" for="itemMasterId">{{'label.grn.itemCode' | translate }}&nbsp;<span class="required">*</span></label>
             			<div class="controls">
-              			<select ng-model="formData.itemMasterId"  ng-options="itemData.id as itemData.itemCode for itemData in itemDatas" value="{{itemData.id}}">
+              			<select disabled="disabled" ng-model="formData.itemMasterId"  ng-options="itemData.id as itemData.itemCode for itemData in itemDatas" value="{{itemData.id}}">
               			</select>
             			</div>
           				</div>
@@ -86,9 +85,6 @@
           		</td>
 				</tr>
 			</table>
-
-         
-          
         </fieldset>
       </form>
  </div>

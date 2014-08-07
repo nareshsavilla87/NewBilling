@@ -123,8 +123,8 @@
        		</thead>
         	<tbody>
             	 <tr ng-repeat="invoiceData in invoiceDatas" >
-           
-            		<td> <input id="{{invoiceData.id}}" class="unCheck" type="checkbox" ng-model="active" ng-click="selectedInvoices(invoiceData.id,invoiceData.dueAmount,active,$index)"></td>
+           			
+            		<td> <input id="{{invoiceData.id}}" class="unCheck" type="checkbox" ng-model="active" ng-change="selectedInvoices(invoiceData.id,invoiceData.dueAmount,active,$index)"></td>
             		<td>{{invoiceData.id}}</td>
                 	<td>{{invoiceData.billDate | DateFormat}}</td>
                 	<td>{{invoiceData.amount}}</td>

@@ -608,7 +608,7 @@
       .when('/viewgrn/:id',{
     	  templateUrl: 'views/logistics/inventory/grn/viewgrn.html'
       })
-      .when('/createitemdetails/:id',{
+      .when('/createitemdetails',{
     	  templateUrl: 'views/logistics/inventory/createitemdetails.html'
       })
       .when('/createmrn',{
@@ -882,6 +882,12 @@
       })
       .when('/dalpaysuccess', {
         templateUrl : 'views/system/dalpaySuccess.html'
+      })
+      .when('/createevenvalidation', {
+        templateUrl: 'views/system/createevenvalidation.html'
+      })
+      .when('/editgrn/:id',{
+    	  templateUrl: 'views/logistics/inventory/grn/editgrn.html'
       });
       
     

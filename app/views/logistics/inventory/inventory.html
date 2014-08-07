@@ -5,7 +5,7 @@
       
       	 <tab heading="Item Details" select="getItemdetails()" ng-show="$parent.PermissionService.showMenu('READ_INVENTORY')">
         <div class="pull-right btn-group">
-          <a ng-show="PermissionService.showMenu('CREATE_INVENTORY')" href="#/createitemdetails/{{itemdetails.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
+          <a ng-show="PermissionService.showMenu('CREATE_INVENTORY')" href="#/createitemdetails" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
         </div>
        
         <div class="row-fluid">
@@ -176,6 +176,9 @@
                           <th>{{ 'label.item.units' | translate }}</th>
                           <th>{{ 'label.item.unitprice' | translate }}</th>
                           <th style="text-align:center">{{ 'label.item.warranty' | translate }}</th>
+                          <th>Used Items</th>
+                          <th>Available Items</th>
+                          <th>Total Items</th>
 						</tr>
 					</thead>
              	 <tbody>
@@ -186,6 +189,9 @@
                 		<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.units}}</td>
                 		<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.unitPrice}}</td> 
                 		<td class="pointer" data-ng-click="routeToitem(item.id)" style="text-align:center">{{item.warranty}}</td> 
+                		<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.usedItems}}</td>
+                		<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.availableItems}}</td>
+                		<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.totalItems}}</td>
              		</tr>
             	</tbody>
        			</table>

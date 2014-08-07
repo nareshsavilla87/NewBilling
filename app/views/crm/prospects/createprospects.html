@@ -33,7 +33,7 @@
 								<div class="control-group">
             					<label class="control-label" for="firstName">{{ 'label.firstname' | translate }}<span class="required">*</span></label>
             					<div class="controls">
-              					<input type="text" id="firstName" ng-model="formData.firstName" ng-pattern="/^[a-zA-Z0-9\s]+$/" name="firstname" late-Validate>
+              					<input type="text" id="firstName" ng-model="formData.firstName" ng-pattern="/^[a-zA-Z0-9\-\&\s]+$/" name="firstname" late-Validate>
               					<div ng-show="createprospectsform.firstname.$dirty && createprospectsform.firstname.$invalid">
               							<small class="error" ng-show="createprospectsform.firstname.$error.pattern">alphanumeric and spaces only!</small>
               					  		<small class="error" ng-show="createprospectsform.firstname.$error.req">
@@ -80,7 +80,10 @@
 								<div class="control-group">
             					<label class="control-label" for="homePhoneNumber">{{ 'label.homephone' | translate }}<span class="required">*</span></label>
             					<div class="controls">
-              					<input type="text" id="homePhoneNumber" ng-model="formData.homePhoneNumber" >
+              					<input type="text" id="homePhoneNumber" name="homephone" ng-model="formData.homePhoneNumber" ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/">
+              					<div ng-show="createprospectsform.homephone.$dirty && createprospectsform.homephone.$invalid">
+        							<small class="error" ng-show="createprospectsform.homephone.$error.pattern">wrong input or accepts only digits !</small>
+    							</div>
             					</div>
           						</div>
 							</td>
@@ -90,7 +93,10 @@
 								<div class="control-group">
             					<label class="control-label" for="workPhoneNumber">{{ 'label.officephone' | translate }}<span class="required">*</span></label>
             					<div class="controls">
-              					<input type="text" id="workPhoneNumber" ng-model="formData.workPhoneNumber" >
+              					<input type="text" id="workPhoneNumber" name="workphone" ng-model="formData.workPhoneNumber" ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/">
+              					<div ng-show="createprospectsform.workphone.$dirty && createprospectsform.workphone.$invalid">
+        							<small class="error" ng-show="createprospectsform.workphone.$error.pattern">wrong input or accepts only digits !</small>
+    							</div>
             					</div>
           						</div>
 							</td>

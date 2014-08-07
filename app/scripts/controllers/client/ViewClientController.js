@@ -126,7 +126,7 @@
                 
                     
                     webStorage.add("clientData", {clientId:routeParams.id,balanceAmount: data.balanceAmount, displayName: data.displayName,hwSerialNumber: data.hwSerialNumber,
-                     statusActive: data.status.value, accountNo: data.accountNo, officeName: data.officeName, officeId: data.officeId, 
+                     statusActive: data.status.value, accountNo: data.accountNo, officeName: data.officeName,officeId:data.officeId,
                      currency: data.currency, imagePresent: data.imagePresent,phone:data.phone,email:data.email,categoryType:data.categoryType });
                     
                     scope.staffData.staffId = data.staffId;
@@ -215,7 +215,7 @@
 	                                        ngShow : edit
                                         },
                                         {
-                                        	name:"Close",
+                                        	name:"Delete",
                                         	href:"#/closeclient",
                                         	icon:"icon-remove",
                                         	 ngShow : "true"
@@ -617,6 +617,12 @@
                    scope.mail = mifosX.models.mail;
                  });
                };
+               
+           scope.routeToEmail = function (statementId) {
+                   resourceFactory.statementEmailResource.update({statementId: statementId} , function(data) {	
+                         
+                        });
+                      };     
                
                scope.getClientAssociation = function () {
                    resourceFactory.associationResource.get({clientId: routeParams.id} , function(data) {	
@@ -1042,8 +1048,36 @@
         };
  
        
-        	 
-        
+        scope.approveUnallocate = function (ipAddress){
+        	scope.ipAddr = ipAddress;
+        	scope.errorStatus=[];scope.errorDetails=[];
+          	 $modal.open({
+                   templateUrl: 'ApproveUnallocate.html',
+                   controller: ApproveUnallocate,
+                   resolve:{}
+               });
+            };
+ 
+var ApproveUnallocate = function ($scope, $modalInstance) {
+        		
+                $scope.approveUnallocate = function () {
+
+                	$scope.flagapproveTerminate=true;
+                	if(this.formData == undefined || this.formData == null){
+                		this.formData = {"ipAddress":scope.ipAddr,"status":'F'};
+                	}
+                	resourceFactory.ipPoolingIpStatusResource.update({} ,this.formData, function(data) {              	
+                		location.path('/viewClient/'+routeParams.id);  
+                        $modalInstance.close('delete');
+                    },function(errData){
+    	        		$scope.flagApproveReconnect = false;
+    		          });
+                	
+                };
+                $scope.cancelReconnect = function () {
+                    $modalInstance.dismiss('cancel');
+                };
+            };
         
     }
   });

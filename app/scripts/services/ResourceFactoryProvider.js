@@ -541,6 +541,10 @@
                  grnSingleTemplateResource: defineResource(apiVer + "/itemdetails/template", {grnId: '@grnId'}, {
                        get: {method: 'GET', params: {}}	
                  }),
+                 grnUpdateResource: defineResource(apiVer + "/itemdetails/editgrn/:grnId", {grnId: '@grnId'}, {
+                     get: {method: 'GET', params: {}},
+                     update: {method: 'PUT', params: {}}
+                 }),
                  grnIdResource: defineResource(apiVer + "/itemdetails/grn/template", {}, {
                      get: {method: 'GET', params: {},isArray: true}	
                  }),
@@ -783,7 +787,7 @@
            }),
 //=======
 */        provisioningtemplateMappingResource: defineResource(apiVer + "/provisioning/template/:orderNo", {orderNo: '@orderNo'}, {
-            	  get: {method: 'GET', params: {},isArray: true}
+            	  get: {method: 'GET', params: {}}
 //>>>>>>> obsplatform-1.01
            }),
            
@@ -881,7 +885,11 @@
          	  getData: {method: 'GET', params: {id:'@id'}},
          	  update: { method: 'PUT' }
           }) ,
-          
+
+          ipPoolingIpStatusResource: defineResource(apiVer + "/ippooling/updatestatus", {}, {
+         	  update: { method: 'PUT' }
+          }) ,
+
           clientIpPoolingResource: defineResource(apiVer + "/ippooling/:clientId", {clientId: '@clientId'}, {
          	  get: {method: 'GET', params: {},isArray: true},
          	 
@@ -955,6 +963,15 @@
             }),  
             planMappingtemplateResource: defineResource(apiVer + "/planmapping/template", {}, {
              	  getAllPlanMapping: {method: 'GET', params: {}}
+            }),
+            statementEmailResource: defineResource(apiVer + "/billmaster/email/:statementId", {statementId:'@statementId'}, {
+                get: {method: 'GET', params: {}, isArray: true},
+                update: { method: 'PUT'}
+            }),
+            EventValidationResource: defineResource(apiVer + "/eventvalidation/:id", {id:'@id'}, {
+                get: {method: 'GET', params: {}, isArray: true},
+                getDetails: {method: 'GET', params: {}},
+                update: { method: 'PUT'}
             }),
 
         };

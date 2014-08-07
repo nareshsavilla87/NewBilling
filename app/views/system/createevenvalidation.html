@@ -1,0 +1,41 @@
+ <div  ng-controller="CreateEventValidationController" >
+      <div>
+        <ul class="breadcrumb">
+          <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+         <li><a href="#/mappingconfig">{{'label.serviceMapping' | translate}}</a> <span class="divider">/</span></li>
+          <li class="active">{{'label.create.new.EventMapping' | translate}}</li>
+        </ul>
+      </div>
+       <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+      <form class="form-horizontal well" ng-submit="submit()">
+        <fieldset>
+          <legend>Create Event Validation</legend>
+          
+           <div class="control-group">
+            <label class="control-label" for="event">{{'table.eventactionmapping.event' | translate }}</label>
+            <div class="controls">
+              <select ng-model="formData.event"  ng-options="ad.mCodeValue as ad.mCodeValue for ad in eventDatas" value="{{ad.mCodeValue}}">
+              <option value="">{{'label.select.one' | translate}}</option>
+              </select>
+            </div>
+          </div>
+         
+          <div class="control-group">
+            <label class="control-label" for="process">{{'table.eventactionmapping.process' | translate }}</label>
+            <div class="controls">
+              <input type="text" id="process" ng-model="formData.process" ng-init="formData.process='workflow_events'">
+            </div>
+          </div>
+          
+          <div class="offset3">
+            <a href="#/mappingconfig"><button type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+            <button type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+          </div>
+          
+        </fieldset>
+      </form>
+</div>

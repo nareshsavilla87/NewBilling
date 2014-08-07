@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  CreateProvisioningController: function(scope, webStorage,resourceFactory, routeParams,location,dateFilter) {
+	  CreateProvisioningController: function(scope, webStorage,resourceFactory, routeParams,location,dateFilter,$modal) {
         scope.orderId = routeParams.orderId;
 		scope.provisioningdata= [];
         scope.services= [];
@@ -138,6 +138,28 @@
    		
    	};
    	
+  //free ip details pop up start 
+    scope.freeIpsPopupFun = function(){
+  	  $modal.open({
+            templateUrl: 'freeIps.html',
+            controller: FreeIpsController,
+            resolve:{}
+        });	
+    }
+    
+    var FreeIpsController = function($scope,$modalInstance){
+  	  
+  	  $scope.ipAddressesData = [];
+  	 resourceFactory.runReportsResource.get({reportSource: 'FREEIPS',genericResultSet:false} , function(data) {
+  		 	$scope.ipAddressesData = data;
+  	 });
+  	  
+			$scope.cancel = function(){
+				$modalInstance.dismiss('cancel');
+			};
+  };
+   //free ip details pop up end 
+   	
         scope.submit = function() {
         	scope.formData.clientId=scope.clientId;
         	scope.formData.orderId=routeParams.orderId;
@@ -194,7 +216,7 @@
         };
     }
   });
-  mifosX.ng.application.controller('CreateProvisioningController', ['$scope','webStorage', 'ResourceFactory','$routeParams', '$location','dateFilter', mifosX.controllers.CreateProvisioningController]).run(function($log) {
+  mifosX.ng.application.controller('CreateProvisioningController', ['$scope','webStorage', 'ResourceFactory','$routeParams', '$location','dateFilter','$modal', mifosX.controllers.CreateProvisioningController]).run(function($log) {
     $log.info("CreateMediaController initialized");
   });
 }(mifosX.controllers || {}));

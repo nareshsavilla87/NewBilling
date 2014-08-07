@@ -189,10 +189,58 @@
           });	
       }
       
+      //sent message pop up start 
+      scope.sentMessagePopup = function(id){
+    	  
+    	  scope.provisioningDataId = id;
+    	  $modal.open({
+              templateUrl: 'sentMessage.html',
+              controller: SentMessageController,
+              resolve:{}
+          });	
+      }
+      
+      var SentMessageController = function($scope,$modalInstance){
+    	  
+    	  $scope.sentMessage = {};
+    	  $scope.messageData = [];
+    	  
+    	  for (var i in scope.sentMessagesData){
+    		  	
+    		 if( scope.sentMessagesData[i].id == scope.provisioningDataId){
+    			 
+    			 var obj  = JSON.parse(scope.sentMessagesData[i].sentMessage);
+    			 $scope.sentMessage = obj;
+    			 
+    	    	  for (var key in $scope.sentMessage) {
+    	    		  if(key == "IP_ADDRESS"){
+    	    			  $scope.messageData.push({
+		  											"key" : key,
+		  											"value" :$scope.sentMessage[key].toString(),
+    	    			   });	
+    	    			  
+    	    		  }
+    	    		  else{
+    	    			  $scope.messageData.push({
+    	    			  						"key" : key,
+    	    			  						"value" : $scope.sentMessage[key],
+    	    			  });	
+    	    		  }
+    	    	  };
+   	    		break;
+    		 };
+    	  }
+    	  
+			$scope.cancel = function(){
+				$modalInstance.dismiss('cancel');
+			};
+    };
+     //sent message pop up end 
+    
       var EditProvisionController = function($scope,$modalInstance){
 			$scope.parameterDatas = [];
 			resourceFactory.provisioningtemplateDataResource.get({orderId: routeParams.id}, function(data) {
-					$scope.parameterDatas = data.parameterDatas
+					$scope.parameterDatas = data.parameterDatas;
 			});
 	
 			$scope.cancel = function(){
@@ -205,6 +253,11 @@
           
           resourceFactory.provisioningtemplateMappingResource.get({orderNo:orderNo} , function(data) {
               scope.provisioningdatas = data;
+              scope.sentMessagesData = [];
+              for(var i in data){
+            	  scope.sentMessagesData.push(data[i]);
+              };
+              
             });
       };
       

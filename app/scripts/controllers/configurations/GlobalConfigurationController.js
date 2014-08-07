@@ -10,7 +10,7 @@
                 	scope.configs.push(data.globalConfiguration[i]);
                 }
                 resourceFactory.cacheResource.get(function(data) {
-                    for(var i in data ){
+                    for(var i=0;i<data.length;i++ ){
                         if(data[i].cacheType.id==2){
                             var cache = {};
                             cache.name = 'Is Cache Enabled';

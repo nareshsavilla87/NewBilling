@@ -90,7 +90,11 @@
 	        
             scope.getNumber = function(num) {
 	        	
-	             return new Array(parseInt(num));
+            	if(num){
+	              return new Array(parseInt(num));
+            	}else{  
+	              return new Array(0);
+            	}
 	        	
 	         };
 	         

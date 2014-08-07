@@ -1,6 +1,7 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
 	  CreatePlanController: function(scope, resourceFactory, location,dateFilter) {
+		  
         scope.billRuleDatas = [];
         scope.availableServices = [];
         scope.selectedServices = [];

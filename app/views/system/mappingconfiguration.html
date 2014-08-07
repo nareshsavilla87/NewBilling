@@ -213,6 +213,38 @@
          </div>
       </tab>
       
+      <tab heading="Validations" select="getEventValidationData()">
+        <div class="pull-right btn-group">
+          <a href="#/createevenvalidation" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
+        </div>
+        <div class="row-fluid">
+                   <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+                   
+        <table class="table">
+            <thead>
+              <tr class="graybg">
+                <th>{{'table.hardwaremapping.id' | translate}}</th>
+                <th>{{'table.eventactionmapping.event' | translate}}</th>
+                <th>{{'table.eventactionmapping.process' | translate}}</th>
+                <th>Pre_Post</th>
+                <th></th>
+               
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="data in eventValidationDatas  | filter:filterText">
+              	<td>{{data.id}}</td>        
+                <td>{{data.eventName}}</td>
+                <td>{{data.process}}</td>
+                <td>{{data.prePost}}</td>
+                <td ng-show="data.isDeleted=='N'"><button type="button" class="btn btn-success flag" data-ng-click="isDeletedForValidation(data.id,data.isDeleted)"><i class="icon-flag-alt"></i></button></td>
+                <td ng-show="data.isDeleted=='Y'"><button type="button" class="btn btn-danger flag" data-ng-click="isDeletedForValidation(data.id,data.isDeleted)"><i class="icon-flag-alt"></i></button></td>
+     		 </tbody>
+          </table>
+      
+         </div>
+      </tab>
+      
     </tabset>
     </div>
   </div>
