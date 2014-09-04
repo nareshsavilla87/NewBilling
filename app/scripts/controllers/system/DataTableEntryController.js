@@ -143,7 +143,9 @@
         this.formData.locale = 'en';
         this.formData.dateFormat =  'dd MMMM yyyy';
         for (var i = 0; i < scope.columnHeaders.length; i++) {
-            if (!_.contains(_.keys(this.formData), scope.columnHeaders[i].columnName)) {
+         //below logic, for the input field if data is null from DB, then columnName value send "" to server side
+         //if (!_.contains(_.keys(this.formData), scope.columnHeaders[i].columnName))
+        	if(this.formData[scope.columnHeaders[i].columnName]==null){
                 this.formData[scope.columnHeaders[i].columnName] = "";
             }
             if (scope.columnHeaders[i].columnDisplayType == 'DATE') {

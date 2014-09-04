@@ -40,14 +40,14 @@
  			  scope.TicketsTab = true;
  			  webStorage.remove('callingTab');
  		  }
- 		  else if(scope.displayTab == "hardware"){
- 			  scope.hardwareTab =  true;
+ 		  else if(scope.displayTab == "eventordertab"){
+ 			  scope.eventordertab =  true;
  			  webStorage.remove('callingTab');
  		  }
  		  else if(scope.displayTab == "Sale"){
  			  scope.SaleTab =  true;
  			  scope.eventsaleC="active";
- 			  scope.eventorderC="";
+ 			  scope.mydeviceC="";
  			  webStorage.remove('callingTab');
  		  }else if(scope.displayTab == "Statements"){
  			  scope.StatementsTab =  true;
@@ -435,23 +435,23 @@
         	 if(scope.taxExemption=='N'){
         	
         		 $('#onbtn').removeClass("btn-default");
-             	  $('#onbtn').addClass("active btn-primary");
+             	 $('#onbtn').addClass("active btn-primary");
              	 $('#offbtn').removeClass("active btn-primary");
-             	  $('#offbtn').addClass("btn-default");
+             	 $('#offbtn').addClass("btn-default");
                }
                else{
-            	   $('#offbtn').removeClass(" btn-default");
+            	  $('#offbtn').removeClass(" btn-default");
              	  $('#offbtn').addClass("active btn-primary");
-             	 $('#onbtn').removeClass("active btn-primary");
+             	  $('#onbtn').removeClass("active btn-primary");
              	  $('#onbtn').addClass("btn-default");
                }
         	 
         	 
         	 scope.onbtn = function(){
-           	  $('#onbtn').removeClass("btn-default");
-           	  $('#onbtn').addClass("active btn-primary");
-           	  $('#offbtn').removeClass("active btn-primary");
-           	  $('#offbtn').addClass("btn-default");
+           	   $('#onbtn').removeClass("btn-default");
+           	   $('#onbtn').addClass("active btn-primary");
+           	   $('#offbtn').removeClass("active btn-primary");
+           	   $('#offbtn').addClass("btn-default");
            	  var obj = {"taxExemption":false};
            	  scope.taxExemption='N';
              	resourceFactory.taxExemptionResource.update({clientId:routeParams.id},obj,function(data){
@@ -459,10 +459,10 @@
              		
              };
              scope.offbtn = function(){
-           	  $('#offbtn').removeClass("btn-default");
-           	  $('#offbtn').addClass("active btn-primary");
-           	  $('#onbtn').addClass("btn-default");
-           	  $('#onbtn').removeClass("active btn-primary");
+           	   $('#offbtn').removeClass("btn-default");
+           	   $('#offbtn').addClass("active btn-primary");
+           	   $('#onbtn').addClass("btn-default");
+           	   $('#onbtn').removeClass("active btn-primary");
            	  var obj = {"taxExemption":true};
            	  scope.taxExemption='Y';
                	resourceFactory.taxExemptionResource.update({clientId:routeParams.id},obj,function(data){
@@ -542,7 +542,12 @@
                   }
               }
             });
-          
+          //parentClient 
+           resourceFactory.clientParentResource.get({clientId:routeParams.id},function(data) {
+        	  scope.parent = [];
+        	  scope.parent=data;
+        	  
+          });
           
         };
 //leftside orderMenu function
@@ -688,24 +693,31 @@
          }
          scope.eventsaleTab = function(){
         	 scope.eventsaleC="active";
-        	 scope.eventorderC="";
+        	 scope.mydeviceC="";
          }
          scope.eventorderCTab = function(){
         	 scope.eventsaleC="";
-        	 scope.eventorderC="active";
+        	 scope.mydeviceC="active";
          }
                scope.getOneTimeSale = function () {
             	   scope.eventsaleC="active";
-            	   scope.eventorderC="";
+            	   scope.mydeviceC="";
             	   if(scope.displayTab == "eventOrders"){
             		   scope.eventsaleC="";
-                	   scope.eventorderC="active";
+                	   scope.mydeviceC="active";
             	   }
                    resourceFactory.oneTimeSaleResource.getOneTimeSale({clientId: routeParams.id} , function(data) {
                      scope.onetimesales = data.oneTimeSaleData;
                      scope.eventOrders = data.eventOrdersData;
                    });
                  };
+                 
+                 scope.getEventSale = function () {
+              	  
+                     resourceFactory.eventOrderPriceUpdateTemplateResource.get({clientId: routeParams.id} , function(data) {
+                       scope.eventOrders = data;
+                     });
+                   };       
                  
                  
         scope.dataTableChange = function(clientdatatable) {
@@ -850,6 +862,8 @@
         };
         
         scope.getAllOwnHardware = function () {
+        	scope.eventsaleC="";
+       	 scope.mydeviceC="active";
             resourceFactory.HardwareResource.getAllOwnHardware({clientId: routeParams.id} , function(data) {
               scope.ownhardwares = data;
             });
@@ -946,16 +960,60 @@
         scope.downloadClientIdentifierDocument=function (identifierId, documentId){
           console.log(identifierId,documentId);
         };
-   /*    scope.tax=function(){
-    	//console.log("hello");
-    	var obj = {"taxExemption":scope.checkboxVal};
-    	resourceFactory.taxExemptionResource.update({clientId:routeParams.id},obj,function(data){
-    		//console.log("sucess");
-    	});
-      };*/
         
-       
-
+       /* scope.getparent = function(query){
+        	if(query.length>0){
+        		resourceFactory.clientParentResource.get({query: query}, function(data) { 	        	
+     	            scope.parentClients = data;
+     	        }); 
+        	}else{
+            	
+        	}
+        };*/
+       scope.$watch('parentClient', function() {
+        	if(scope.parentClient){
+        		$('.btn-disabled').prop('disabled', false);
+        	}
+        	else{
+        		$('.btn-disabled').prop('disabled', true);
+        	}
+         });
+        scope.getparent = function(query){
+        		
+        	return http.get($rootScope.hostUrl+ '/obsplatform/api/v1/parentclient/', {
+        	      params: {
+        	    	  query: query
+        	      }
+        	    }).then(function(res){
+        	     parentClients = [];
+        	      for(var i in res.data){
+        	    	  parentClients.push(res.data[i]);
+        	    	  if(i == 7)
+        	    		  break;
+        	      }
+        	      return  parentClients;
+        	    });
+        	
+          };
+        scope.saveParent = function(displayLabel){
+        	
+        var firstSplit=displayLabel.split('[');
+        var displayName=firstSplit[0];
+        var array=firstSplit[1].split(']');
+        var accountNo=array[0];
+        var obj = {"accountNo":accountNo,"displayName":displayName};
+        resourceFactory.clientParentResource.update({clientId:routeParams.id}, obj,function(data) { 	
+        	location.path('/viewclient/' +routeParams.id);
+        	route.reload();
+        	});
+      //  webStorage.add("callingTab", {someString: "identities" });
+        };
+     scope.routeToParentClient = function(parentId){
+    	 location.path('/viewclient/'+parentId);
+     };
+        
+        
+        
 		// *********************** InVenture controller ***********************
         scope.fetchInventureScore = function(){
           // dummy data for the graph - DEBUG purpose
@@ -1067,7 +1125,7 @@ var ApproveUnallocate = function ($scope, $modalInstance) {
                 		this.formData = {"ipAddress":scope.ipAddr,"status":'F'};
                 	}
                 	resourceFactory.ipPoolingIpStatusResource.update({} ,this.formData, function(data) {              	
-                		location.path('/viewClient/'+routeParams.id);  
+                		location.path('/viewclient/'+routeParams.id);  
                         $modalInstance.close('delete');
                     },function(errData){
     	        		$scope.flagApproveReconnect = false;

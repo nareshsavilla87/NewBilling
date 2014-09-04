@@ -21,7 +21,10 @@
                         	
                         }if(data.globalConfiguration[i].name=="CPE_TYPE"){
                         	  webStorage.add("CPE_TYPE",data.globalConfiguration[i].value);
+                        }if(data.globalConfiguration[i].name=="Registration_requires_device"){
+                        	  webStorage.add("Registration_requires_device",data.globalConfiguration[i].enabled);
                         }
+                        
                     }
                 });
        

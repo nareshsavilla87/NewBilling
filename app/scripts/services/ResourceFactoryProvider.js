@@ -326,9 +326,15 @@
      	  get: {method: 'GET', params: {}},
      	  update: { method: 'PUT' }
         }),
+        
         OrderDisconnectResource: defineResource(apiVer + "/orders/disconnect", {}, {
        	  get: {method: 'GET', params: {}},
         }),
+        
+        OrderReactiveResource: defineResource(apiVer + "/orders/reactive/:orderId", {orderId:'@orderId'}, {
+         	  get: {method: 'GET', params: {}},
+         	 update: { method: 'PUT' }
+          }),
           
         OrderreconnectResource: defineResource(apiVer + "/orders/reconnect/:orderId", {orderId:'@orderId'},{
            	update: { method: 'PUT' },
@@ -337,7 +343,11 @@
         
         OrderTerminateResource: defineResource(apiVer + "/orders/terminate/:orderId", {orderId:'@orderId'},{
            	update: { method: 'PUT' },
-          
+        }),
+        
+        OrderSuspensionResource: defineResource(apiVer + "/orders/suspend/:orderId", {orderId:'@orderId'},{
+           	update: { method: 'PUT' },
+            get: {method: 'GET', params: {}},
         }),
         OrderrenewalResourceTemplate: defineResource(apiVer + "/orders/renewalorder/:orderId", {orderId:'@orderId'},{
         	 get: {method: 'GET', params: {}},
@@ -652,14 +662,15 @@
                 eventTemplateResource: defineResource(apiVer + "/eventmaster/template",{},  {
               	  get: {method: 'GET', params: {}}
                 }),
-                eventOrderTemplateResource: defineResource(apiVer + "/eventorder/:clientId",{clientId:'@clientId'},  {
+                eventOrderTemplateResource: defineResource(apiVer + "/eventorder/:clientId",{},  {
                 	  get: {method: 'GET', params: {clientId:'@clientId'}}
                 }),
                 eventOrderPriceTemplateResource: defineResource(apiVer + "/eventorder",{},{
               	  	getEventPrice: {method: 'GET', params: {clientId:'@clientId',ftype:'@ftype',otype:'@otype',eventId:'@eventId'}}
                 }),
                 eventOrderPriceUpdateTemplateResource: defineResource(apiVer + "/eventorder",{},{
-                	update: {method: 'PUT', params: {}}
+                	update: {method: 'PUT', params: {}},
+                    get: {method: 'GET', params: {clientId:'@clientId'},isArray:true }
                 }),
                 
                 eventPriceTemplateResource: defineResource(apiVer + "/eventprice/template/:resourceType",{eventId:'@eventId', resourceType:'@resourceType'},  {
@@ -762,9 +773,11 @@
            }),
            
            updateProvisioningMappingResource: defineResource(apiVer + "/provisioning/updateprovisiondetails/:provisioningId", {provisioningId: '@provisioningId'}, {
-          	  
              update: { method: 'PUT' }
-        }),
+           }),
+           confirmProvisioningDetailsResource: defineResource(apiVer + "/provisioning/confirm/:provisioningId", {provisioningId: '@provisioningId'}, {
+               update: { method: 'PUT' }
+             }),
            provisioningResource: defineResource(apiVer + "/provisioning/:clientId", {clientId: '@clientId'}, {
           	  getprovisiongData: {method: 'GET', params: {}, isArray: true},
              get: {method: 'GET', params: {}},
@@ -787,7 +800,7 @@
            }),
 //=======
 */        provisioningtemplateMappingResource: defineResource(apiVer + "/provisioning/template/:orderNo", {orderNo: '@orderNo'}, {
-            	  get: {method: 'GET', params: {}}
+            	  get: {method: 'GET', params: {},isArray: true}
 //>>>>>>> obsplatform-1.01
            }),
            
@@ -801,6 +814,10 @@
            provisioningtemplateDataResource: defineResource(apiVer + "/provisioning/serviceparmas/:orderId", {orderId:'@orderId'}, {
           	  get: {method: 'GET', params: {}}
             }),
+            provisioningIpChangeResource: defineResource(apiVer + "/provisioning/ipdetails/:orderId", {orderId:'@orderId'}, {
+            	  get: {method: 'GET', params: {}},
+            	  update: { method: 'PUT'}
+              }),
             
 	       EventActionMappingResource: defineResource(apiVer + "/eventactionmapping/:id", {id:'@id'}, {
                get: {method: 'GET', params: {}, isArray: true},
@@ -972,6 +989,14 @@
                 get: {method: 'GET', params: {}, isArray: true},
                 getDetails: {method: 'GET', params: {}},
                 update: { method: 'PUT'}
+            }),
+            
+            clientParentResource: defineResource(apiVer + "/parentclient/:clientId", {clientId:'@clientId'}, {
+                get: {method: 'GET', params: {}},
+                update: { method: 'PUT'}
+            }),
+            logoutResource: defineResource(apiVer + "/logout", {id:'@id'}, {
+                getAll: {method: 'GET', params: {}}
             }),
 
         };

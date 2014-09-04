@@ -22,7 +22,7 @@
 
       scope.submit = function () {
         $upload.upload({
-          url: $rootScope.hostUrl+ API_VERSION +'/client_identifiers/'+scope.resourceId+'/documents', 
+          url: $rootScope.hostUrl+ API_VERSION +'/client_identifiers/'+scope.clientId+'/documents', 
           data: scope.formData,
           file: scope.file
         }).then(function(data) {

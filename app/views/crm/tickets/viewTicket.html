@@ -80,8 +80,9 @@
 		
 	    <div class="pull-right">
 	      <div class="btn-group">
-	          <a href="#/editTicket/{{clientId}}/{{ticket.id}}" ng-show="(ticket.status == 'OPEN')&&(PermissionService.showMenu('UPDATE_TICKET'))" class="btn btn-primary"><i class="icon-edit icon-white"></i> Comment</a>	        
-	          <a href="#/closeTicket/{{clientId}}/{{ticket.id}}" ng-show="(ticket.status == 'OPEN')&&(PermissionService.showMenu('CLOSE_TICKET'))" class="btn btn-primary"><i class="icon-trash icon-white"></i> Close</a>
+	          <a  href="#/editTicket/{{clientId}}/{{ticket.id}}" ng-show="(ticket.status == 'OPEN')&&(PermissionService.showMenu('UPDATE_TICKET'))"  class="btn btn-primary"><i class="icon-edit icon-white"></i>Add Comment</a>
+	          <!-- <input type='image' href="#/closeTicket/{{clientId}}/{{ticket.id}}" ng-show="(ticket.status == 'OPEN')&&(PermissionService.showMenu('CLOSE_TICKET'))" src="./images/Close.ico" popover="Close" popover-trigger="mouseenter"  class="icon-large"/>	 -->        
+	          <a href="#/closeTicket/{{clientId}}/{{ticket.id}}" ng-show="(ticket.status == 'OPEN')&&(PermissionService.showMenu('CLOSE_TICKET'))" class="btn btn-primary"><i class="icon-trash icon-white"></i> Close</a> 
 	      </div>
 	    </div>
 	</div>

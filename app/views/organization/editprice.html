@@ -80,6 +80,16 @@
             </div>
           </div>
           </td>
+          <td>
+          	<div ng-show="formData.isPrepaid == 'Y'">
+            	<div class="control-group">
+              	<label class="control-label" for="duration">{{ 'label.plan.duration' | translate }}</label>
+              	<div class="controls">
+                	<select ng-model="formData.duration"  ng-options="subscriptiondata.Contractdata as subscriptiondata.Contractdata for subscriptiondata in subscriptiondata" value="{{subscriptiondata.Contractdata}}"></select>
+              	</div>
+              	 </div>
+              </div>
+              </td>
           </tr>
           </table>
       

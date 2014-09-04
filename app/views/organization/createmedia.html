@@ -27,8 +27,8 @@
           <tr>
           <td width="50%">
           <div class="control-group">
-            <label  ng-show="hideForGame" class="control-label" for="mediaTitle">{{ 'label.media.title' | translate }}</label>
-            <label  ng-show="!hideForGame" class="control-label" for="mediaTitle">{{ 'label.game.title' | translate }}</label>
+            <label  ng-show="hideForGame" class="control-label" for="mediaTitle">{{ 'label.media.title' | translate }}<span class="required">*</span></label>
+            <label  ng-show="!hideForGame" class="control-label" for="mediaTitle">{{ 'label.game.title' | translate }}<span class="required">*</span></label>
             <div class="controls">
               <input type="text" id="mediaTitle" ng-model="formData.mediaTitle">
             </div>
@@ -36,7 +36,7 @@
           
             <td width="50%" ng-show="hideForGame">
           <div class="control-group">
-            <label class="control-label" for="contentProvider">{{ 'label.media.contentprovider' | translate }}</label>
+            <label class="control-label" for="contentProvider">{{ 'label.media.contentprovider' | translate }}<span class="required">*</span></label>
             <div class="controls">
              <select  id="contentProvider" ng-model="formData.contentProvider" ng-options="contentProviderData.id as contentProviderData.mCodeValue for contentProviderData in contentProviderDatas " value="{{contentProviderData.mCodeValue}}"></select>
            <!--   <input type="text" id="contentProvider" ng-model="formData.contentProvider">  -->
@@ -55,7 +55,7 @@
            <tr>
             <td width="50%" ng-show="hideForGame">
           <div class="control-group" >
-            <label class="control-label" for="mediaType">{{ 'label.media.mediaType' | translate }}</label>
+            <label class="control-label" for="mediaType">{{ 'label.media.mediaType' | translate }}<span class="required">*</span></label>
             <div class="controls">
                <select  id="mediatype" ng-model="formData.mediatype"   ng-options="mediaTypeData.id as mediaTypeData.value for mediaTypeData in mediaTypeDatas" value="{{mediaTypeData.id}}"></select>
             </div>
@@ -64,7 +64,7 @@
           
           <td width="50%" ng-show="hideForGame">
           <div class="control-group">
-            <label class="control-label" for="rated">{{ 'label.media.rated' | translate }}</label>
+            <label class="control-label" for="rated">{{ 'label.media.rated' | translate }}<span class="required">*</span></label>
             <div class="controls">
             <input type="text" id="rated" ng-model="formData.rated">
             </div>
@@ -74,7 +74,7 @@
           <tr>
             <td width="50%" ng-show="hideForGame">
           <div class="control-group">
-            <label class="control-label" for="mediaCategoryId">{{ 'label.media.categeory' | translate }}</label>
+            <label class="control-label" for="mediaCategoryId">{{ 'label.media.categeory' | translate }}<span class="required">*</span></label>
             <div class="controls">
               <select ng-model="formData.catageoryId" id="catageoryId"  ng-options="mediaCategeorydata.id as mediaCategeorydata.mCodeValue for mediaCategeorydata in mediaCategeorydatas" value="{{mediaCategeorydata.id}}"></select>
             </div>
@@ -82,7 +82,7 @@
           </td>
           <td width="50%" ng-show="hideForGame">
           <div class="control-group">
-            <label class="control-label" for="mediaRating">{{ 'label.media.rating' | translate }}</label>
+            <label class="control-label" for="mediaRating">{{ 'label.media.rating' | translate }}<span class="required">*</span></label>
             <div class="controls">
            <input type="text" id="mediaRating" name="mediaRating" ng-model="formData.mediaRating"  ng-pattern="/^[0-9]{1,5}$/" ng-maxlength="5">
            	 <div ng-show="createmediaform.mediaRating.$dirty && createmediaform.mediaRating.$invalid">
@@ -96,7 +96,7 @@
             <tr>
              <td>
           <div class="control-group" ng-show="hideForGame">
-            <label class="control-label" for="mediaImage">{{ 'label.media.poster' | translate }}</label>
+            <label class="control-label" for="mediaImage">{{ 'label.media.poster' | translate }}<span class="required">*</span></label>
             <div class="controls">
             <input type="text" id="mediaImage" ng-model="formData.mediaImage">
             </div>
@@ -104,7 +104,7 @@
           </td>
           <td>
           <div class="control-group" ng-show="hideForGame">
-            <label class="control-label" for="status">{{ 'label.media.status' | translate }}</label>
+            <label class="control-label" for="status">{{ 'label.media.status' | translate }}<span class="required">*</span></label>
             <div class="controls">
            <select ng-model="formData.status" id="status" ng-options="mediaStatus.value as mediaStatus.value for mediaStatus in mediaStatus" value="{{mediaStatus.value}}"></select>
             </div>
@@ -114,7 +114,7 @@
           <tr>
           <td ng-show="hideForGame">
           <div class="control-group">
-            <label class="control-label" for="duration">{{ 'label.media.movieduration' | translate }}</label>
+            <label class="control-label" for="duration">{{ 'label.media.movieduration' | translate }}<span class="required">*</span></label>
             <div class="controls">
             <input type="text" id="duration" ng-model="formData.duration">
             </div>
@@ -133,7 +133,7 @@
           <tr>
              <td>
           <div class="control-group">
-            <label class="control-label" for="genre">{{ 'label.media.genre' | translate }}</label>
+            <label class="control-label" for="genre">{{ 'label.media.genre' | translate }}<span class="required">*</span></label>
             <div class="controls">
             <input type="text" id="genre" ng-model="formData.genre">
             </div>
@@ -163,7 +163,7 @@
                 </td>
              <td width="50%">
             <div class="control-group">
-			    <label class="control-label" for="cpShareValue">Share(%)</label>
+			    <label class="control-label" for="cpShareValue">Share(%)<span class="required">*</span></label>
 			  <div class="controls">
 				<input type="text" id="cpShareValue" name="cpShareValue" ng-model="formData.cpShareValue"  ng-pattern="/^[0-9]{0,2}(\.\d{0,2})?$/" ng-maxlength="5"></input>
 				<div ng-show="createmediaform.cpShareValue.$dirty && createmediaform.cpShareValue.$invalid">
@@ -180,7 +180,7 @@
          <table ng-show="hideForGame">
           <tr class="control-group">
                 <td>
-                  <label class="control-label"><h4>{{ 'label.media.mediadetails' | translate }}</h4></label>
+                  <label class="control-label"><h4>{{ 'label.media.mediadetails' | translate }}<span class="required">*</span></h4></label>
                 </td>
                 <td class="blockquoteresult">
                     <form>
@@ -217,7 +217,7 @@
               <tr class="span2"></tr>
           <tr class="control-group">
                 <td>
-                  <label class="control-label"><h4>{{ 'label.media.medialocation' | translate }}</h4></label>
+                  <label class="control-label"><h4>{{ 'label.media.medialocation' | translate }}<span class="required">*</span></h4></label>
                 </td>
                 <td class="blockquoteresult">
                     <form>

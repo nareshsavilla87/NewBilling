@@ -93,7 +93,7 @@
                  <div><label class="control-label"></label></div>
                 <div class="span3">
                     <label class="control-label">{{ 'label.availableservice' | translate }}</label>
-                    <select multiple ng-model="allowed">
+                    <select multiple ng-model="allowed" style="height:100px;">
                         <option ng-repeat="availableService in availableServices" value="{{availableService.id}}">{{availableService.serviceDescription}}</option>
                     </select>
                 </div>
@@ -103,24 +103,27 @@
                 </div>
                 <div class="span3">
                     <label class="control-label">{{ 'label.selectedservice' | translate }}</label>
-                    <select multiple ng-model="restricted">
+                    <select multiple ng-model="restricted" style="height:100px;">
                         <option ng-repeat="selectedService in selectedServices" value="{{selectedService.id}}">{{selectedService.name}}</option>
                     </select>
                 </div>
-           
-        </div>
-         
-      
+        	</div>
                 </td>
                 <td>
-                
-           
              </td>
          </tr>
          </table>
            <table>
           <tr>
            <td width="50">
+            <div class="control-group">
+            <label class="control-label" for="isHwReq">{{ 'label.plan.ishwreq' | translate }}</label>
+            <div class="controls">
+              <label class="checkbox">
+                <input type="checkbox" ng-model="formData.isHwReq">
+              </label>
+            </div>
+          </div>
               <div class="control-group">
             <label class="control-label" for="isPrepaid">{{ 'label.plan.isprepaid' | translate }}</label>
             <div class="controls">
@@ -130,13 +133,13 @@
             </div>
           </div>
           <div ng-show="formData.isPrepaid">
-            <div class="control-group">
+          <!--   <div class="control-group">
               <label class="control-label" for="duration">{{ 'label.plan.duration' | translate }}</label>
               <div class="controls">
                 <select ng-model="formData.duration"  ng-options="subscriptiondata.Contractdata as subscriptiondata.Contractdata for subscriptiondata in subscriptiondata" value="{{subscriptiondata.Contractdata}}"></select>
               </div>
               
-            </div>
+            </div> -->
             <div class="control-group">
               <label class="control-label" for="allowTopup">{{ 'label.plan.volume' | translate }}</label>
               <div class="controls">
@@ -158,8 +161,8 @@
               </div>
             </div>
           </div>
-          
-          
+          </td>
+          <td>
           </td>
           </tr>
           </table>

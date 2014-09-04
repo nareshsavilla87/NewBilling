@@ -82,6 +82,15 @@
              });
           };
           
+          scope.reactive= function (){
+          	scope.errorStatus=[];scope.errorDetails=[];
+          	 $modal.open({
+                   templateUrl: 'ApproveReactive.html',
+                   controller: ApproveReactive,
+                   resolve:{}
+               });
+            };
+          
           scope.terminate = function (){
           	scope.errorStatus=[];scope.errorDetails=[];
           	 $modal.open({
@@ -90,6 +99,26 @@
                    resolve:{}
                });
             };
+            
+            scope.confirmRequest = function (provId){
+              	scope.errorStatus=[];
+              	scope.errorDetails=[];
+              	scope.provId=provId;
+              	 $modal.open({
+                       templateUrl: 'ApproveConfirm.html',
+                       controller: ApproveConfirm,
+                       resolve:{}
+                   });
+                };
+            
+            scope.suspend = function (){
+              	scope.errorStatus=[];scope.errorDetails=[];
+              	 $modal.open({
+                       templateUrl: 'ApproveSuspend.html',
+                       controller: ApproveSuspend,
+                       resolve:{}
+                   });
+                };
           
           scope.orderDisconnect = function(orderDisUrl){
         	  scope.errorStatus=[];scope.errorDetails=[];
@@ -372,6 +401,32 @@
             };
         };
         
+	var ApproveReactive = function ($scope, $modalInstance) {
+    		
+            $scope.approveReactive= function () {
+
+            	$scope.flagApproveReactive=true;
+            	if(this.formData == undefined || this.formData == null){
+            		this.formData = {};
+            	}
+            	resourceFactory.OrderReactiveResource.update({orderId: routeParams.id} ,this.formData, function(data) {              	
+            		resourceFactory.getSingleOrderResource.get({orderId: routeParams.id} , function(data) {
+                        scope.orderPriceDatas= data.orderPriceData;
+                        scope.orderHistorydata=data.orderHistory;
+                        scope.orderData=data.orderData;
+                    });
+            		location.path('/vieworder/'+routeParams.id+"/"+scope.clientId);
+                    $modalInstance.close('delete');
+                },function(errData){
+	        		$scope.flagApproveReconnect = false;
+		          });
+            	
+            };
+            $scope.cancelReconnect = function () {
+                $modalInstance.dismiss('cancel');
+            };
+        };
+        
         
   var ApproveTerminate = function ($scope, $modalInstance) {
     		
@@ -398,6 +453,72 @@
                 $modalInstance.dismiss('cancel');
             };
         };
+        
+ var ApproveConfirm= function ($scope, $modalInstance) {
+    		
+            $scope.approveTerminate = function () {
+
+            	$scope.flagapproveTerminate=true;
+            	if(this.formData == undefined || this.formData == null){
+            		this.formData = {};
+            	}
+            	  resourceFactory.confirmProvisioningDetailsResource.update({'provisioningId':scope.provId},{},function(data){
+            		resourceFactory.getSingleOrderResource.get({orderId: routeParams.id} , function(data) {
+                        scope.orderPriceDatas= data.orderPriceData;
+                        scope.orderHistorydata=data.orderHistory;
+                        scope.orderData=data.orderData;
+                    });
+            		location.path('/vieworder/'+routeParams.id+"/"+scope.clientId);
+                    $modalInstance.close('delete');
+                },function(errData){
+	        		$scope.flagApproveReconnect = false;
+		          });
+            	
+            };
+            $scope.cancelReconnect = function () {
+                $modalInstance.dismiss('cancel');
+            };
+        };  
+        
+ var ApproveSuspend = function ($scope, $modalInstance) {
+	 
+	 $scope.reasons = [];
+	 $scope.start = {};
+	 $scope.start.date = new Date();
+	 $scope.maxDate=new Date();
+	  resourceFactory.OrderSuspensionResource.get(function(data) {
+         $scope.reasons = data.reasons;
+     });
+    		
+            $scope.approveSuspend= function () {
+
+            	$scope.flagapproveTerminate=true;
+            	if(this.formData == undefined || this.formData == null){
+            		this.formData = {};
+            	}
+            	  var reqDate = dateFilter($scope.start.date,'dd MMMM yyyy');
+      	        this.formData.dateFormat = 'dd MMMM yyyy';
+      	        this.formData.suspensionDate = reqDate;
+      	      
+      	        this.formData.locale = "en";
+            	resourceFactory.OrderSuspensionResource.update({orderId: routeParams.id} ,this.formData, function(data) {              	
+            		resourceFactory.getSingleOrderResource.get({orderId: routeParams.id} , function(data) {
+                        scope.orderPriceDatas= data.orderPriceData;
+                        scope.orderHistorydata=data.orderHistory;
+                        scope.orderData=data.orderData;
+                    });
+            		location.path('/vieworder/'+routeParams.id+"/"+scope.clientId);
+                    $modalInstance.close('delete');
+                },function(errData){
+	        		$scope.flagApproveReconnect = false;
+	        		$scope.renewError = errData.data.errors[0].userMessageGlobalisationCode;
+		          });
+            	
+            };
+            $scope.cancelReconnect = function () {
+                $modalInstance.dismiss('cancel');
+            };
+        }; 
         
 
           

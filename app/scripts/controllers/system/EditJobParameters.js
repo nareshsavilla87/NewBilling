@@ -27,6 +27,7 @@
         var exipiryDate= dateFilter(scope.jobparameters.exipiryDate,'dd MMMM yyyy');
         scope.date.exipiryDate = new Date(exipiryDate);
        
+       
         if(data.jobparameters.isDynamic=="Y"){
         	scope.formData.isDynamic=true;
         }
@@ -34,7 +35,17 @@
         if(data.jobparameters.isAutoRenewal=="Y"){
         	scope.formData.isAutoRenewal=true;
         }
-      
+        
+        if(data.jobparameters.updateStatus=="Y"){
+        	scope.formData.isUpdateStatus=true;
+        }
+        
+        if(data.jobparameters.createTicket=="Y"){
+        	scope.formData.isCreateTicket=true;
+        }else{
+        	scope.formData.isCreateTicket=false;
+        }
+       
       });
        
       scope.cancel = function() {
@@ -54,10 +65,10 @@
     	  this.formData.Username=this.formData.jobparameters.username;
     	  this.formData.Password=this.formData.jobparameters.password;
     	  
-    	  if(this.formData.name == "Invoice"){this.formData.processDate = dateFilter(scope.date.processDate,'dd MMMM yyyy');}
-    	  if(this.formData.name== "Generate Statement"){this.formData.dueDate = dateFilter(scope.date.dueDate,'dd MMMM yyyy');}
-    	  if(this.formData.name== "Auto Exipiry"){this.formData.exipiryDate = dateFilter(scope.date.exipiryDate,'dd MMMM yyyy');}
-    	  if(this.formData.name == "Generate PDF"){this.formData.processDate = dateFilter(scope.date.processDate,'dd MMMM yyyy');}
+    	  if(this.formData.name == "INVOICING"){this.formData.processDate = dateFilter(scope.date.processDate,'dd MMMM yyyy');}
+    	  if(this.formData.name== "STATEMENT"){this.formData.dueDate = dateFilter(scope.date.dueDate,'dd MMMM yyyy');}
+    	  if(this.formData.name== "AUTO_EXPIRY"){this.formData.exipiryDate = dateFilter(scope.date.exipiryDate,'dd MMMM yyyy');}
+    	  if(this.formData.name == "PDF"){this.formData.processDate = dateFilter(scope.date.processDate,'dd MMMM yyyy');}
          
       delete this.formData.jobId;
    	  delete this.formData.displayName;

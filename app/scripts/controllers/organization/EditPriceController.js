@@ -8,12 +8,14 @@
         scope.priceRegionDatas=[];
         resourceFactory.getPriceResource.get({priceId: routeParams.id, template: 'true'} , function(data) {
             scope.formData = data;
+            scope.formData.duration=data.contractPeriod;
             scope.planId = data.id;
             scope.serviceDatas = data.serviceData;
             scope.chargeDatas= data.chargeData;
             scope.priceRegionDatas=data.priceRegionData;
             scope.chargevariants=data.chargevariant;
             scope.discountdatas=data.discountdata;
+            scope.subscriptiondata = data.contractPeriods;
             
 
         });
@@ -33,6 +35,8 @@
              delete this.formData.chargeId;
              delete this.formData.chargeVariantId;
              delete this.formData.priceId;
+             delete this.formData.contractPeriods;
+             delete this.formData.contractPeriod;
             
              
              

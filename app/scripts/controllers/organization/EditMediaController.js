@@ -53,7 +53,6 @@
           //	if (scope.mediaLocationFormData.languageId && scope.mediaLocationFormData.location) {
                 scope.mediaAssetLocations.push({languageId:scope.mediaLocationFormData.languageId, location:scope.mediaLocationFormData.location, 
                 	formatType:scope.mediaLocationFormData.formatType});
-              alert(scope.mediaLocationFormData.languageId);
                 scope.mediaLocationFormData.languageId = undefined;
                 scope.mediaLocationFormData.location = undefined;
                 scope.mediaLocationFormData.formatType = undefined;

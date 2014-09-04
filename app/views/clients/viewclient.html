@@ -404,11 +404,32 @@
               </tr>
             </tbody>
           </table>
-          </div>
-   
-          
-          
-      </tab>
+          </div><br/>
+          <div class="pull-left">
+          <span class="input-append grpinputicons">
+                <input type="text" ng-model="parentClient" name="parentClient"  placeholder="Search by Parent #" 
+                       typeahead="parentClient.displayLabel as parentClient.displayLabel for parentClient  in getparent($viewValue) | limitTo:8" 
+                       typeahead-min-length="0"/>
+                <button class="btn btn-primary btn-disabled" type="submit" disabled ng-click="saveParent(parentClient)">save</button>
+        </span>
+        </div>
+          <table class="table" ng-show=parent.id>
+            <thead>
+              <tr class="graybg">
+                <th>ParentID</th>
+                <th>ParentName</th>
+                <th>AccountNo</th>
+              </tr>
+            </thead>
+            <tbody>
+             <tr class="pointer-main">
+                <td class="pointer" data-ng-click="routeToParentClient(parent.id)">{{parent.id}}</td>
+                <td class="pointer" data-ng-click="routeToParentClient(parent.id)">{{parent.displayName}}</td>
+                <td class="pointer" data-ng-click="routeToParentClient(parent.id)">{{parent.accountNo}}</td>
+            </tr>
+            </tbody>
+            </table>
+         </tab>
     <!--   <tab heading="{{'tab.templates' | translate}}" select="getClientTemplateDocuments()">
         <div class="span"></div>
         <div class="span2">
@@ -599,7 +620,7 @@
             </thead>
               <tbody>
                 <tr class="pointer-main" ng-repeat="data in datatabledetails.data">
-                <td class="pointer" ng-repeat="row in data.row"
+                <td class="pointer" ng-repeat="row in data.row track by $index"
 		                            ng-click="viewDataTable(clientdatatable.registeredTableName,data)">{{row}}</td>
                   <!--   <span ng-show="$index == 0">
                       <a class="pointer" data-ng-click="routeTotable(clientdatatable.registeredTableName,client.id,data.row[0])"  ng-show="datatabledetails.isMultirow">{{row}}</a>
@@ -617,54 +638,57 @@
 		            </table></div>
         </div>
       </tab>
-       <tab heading="My Device" select="getAllOwnHardware()" active="hardwareTab" ng-show="$parent.PermissionService.showMenu('READ_ownedhardware')">
+       <tab heading="Event Sale" select="getEventSale()" active="eventordertab" ng-show="$parent.PermissionService.showMenu('READ_ownedhardware')">
       
       <div class="pull-right">
-		
-		<a ng-show="PermissionService.showMenu('CREATE_ownedhardware')" href="#/addownedhardware/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Add Device</a>
-	</div>
-    
-    <div>
-		<input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name/Serial Number">
-		<table class="table">
-			<thead>
-				<tr class="graybg">
-				 	<th>{{'table.heading.id' | translate}}</th>
-					<th>{{'table.heading.serialnumber' | translate}}</th>
-					<th>{{'table.heading.provisioningserialnumber' | translate}}</th>
-					<th>{{'table.heading.allocationdate' | translate}}</th>
-					<th>{{'table.heading.status' | translate}}</th>
-					<th>{{'table.heading.itemtype' | translate}}</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr class="pointer-main" ng-repeat="ownhardware in ownhardwares  | filter:filterText">
-					<td class="pointer" data-ng-click="routeToOwnHardware(ownhardware.id)">{{ownhardware.id}}</td>
-					<td class="pointer" data-ng-click="routeToOwnHardware(ownhardware.id)">{{ownhardware.serialNumber}}</td>  
-					<td class="pointer" data-ng-click="routeToOwnHardware(ownhardware.id)">{{ownhardware.provisioningSerialNumber}}</td>
-					<td class="pointer" data-ng-click="routeToOwnHardware(ownhardware.id)">{{ownhardware.allocationDate | DateFormat}}</td>
-					<td>{{ownhardware.status}}</td> 
-					<td>{{ownhardware.itemType}}</td> 
-				</tr>
-			</tbody>
-		</table>
-	</div>
+
+					<a href="#/eventorder/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i> Add Event Order</a>
+
+				</div>
+			    	<div>
+					<input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name/Serial Number">
+					<table class="table">
+						<thead>
+							<tr class="graybg">
+							 	<th>{{'table.heading.id' | translate}}</th>
+								<th>{{'table.heading.eventName' | translate}}</th>
+								<th>{{'table.heading.bookedDate' | translate}}</th>
+								<th>{{'table.heading.chargecode' | translate}}</th>
+								<th>{{'table.heading.eventPrice' | translate}}</th>
+								<th>{{'table.heading.status' | translate}}</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="eventOrders in eventOrders  | filter:filterText">
+								<td>{{eventOrders.id}}</td>
+								<td>{{eventOrders.eventName}}</td>
+								<td>{{eventOrders.bookedDate | DateFormat}}</td>
+								<td>{{eventOrders.chargeCode}}</td>
+								<td>{{eventOrders.eventPrice}}</td> 
+								<td>{{eventOrders.status}}</td> 
+								
+							</tr>
+						</tbody>
+					</table>
+					</div>
       </tab>
-      <tab heading="Device Sale" select="getOneTimeSale()" active="SaleTab"
+      <tab heading="Device" select="getOneTimeSale()" active="SaleTab"
       ng-show="$parent.PermissionService.showMenu('READ_ONETIMESALE')">
       <hr>
  		<div class="tabbable">
   			<ul class="nav nav-tabs">
 				    <li class={{eventsaleC}}><a ng-click="eventsaleTab()" data-toggle="tab" >Device Sale</a></li>
-    				<li ng-show="PermissionService.showMenu('CREATE_EVENTORDER')&&PermissionService.showMenu('READ_EVENTORDER')" class={{eventorderC}}><a ng-click="eventorderCTab()" data-toggle="tab">Event Sale</a></li>
+    				<!-- <li ng-show="PermissionService.showMenu('CREATE_EVENTORDER')&&PermissionService.showMenu('READ_EVENTORDER')" class={{eventorderC}}><a ng-click="eventorderCTab()" data-toggle="tab">Event Sale</a></li> -->
+    				<li ng-show="PermissionService.showMenu('CREATE_ownedhardware')" class={{mydeviceC}}><a ng-click="getAllOwnHardware()" data-toggle="tab">My Device</a></li> 
     				<!-- <li class={{eventorderC}}><a ng-click="eventorderCTab()" data-toggle="tab">Event Sale</a></li> -->
 			    </ul>
 			<div class="tab-content">
-  
 		    <div id="pane1" class="tab-pane" ng-class="{active: eventsaleC}">
 				<div class="pull-right">
 					<a ng-show="PermissionService.showMenu('CREATE_ONETIMESALE')" href="#/addonetimesale/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i> New Sale</a>
 					<a ng-show="PermissionService.showMenu('CREATE_ONETIMESALE')" href="#/addsecondsale/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i> Second Sale</a>
+					<a ng-show="PermissionService.showMenu('CREATE_ONETIMESALE')" href="#/devicerental/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i> Device Rental</a>
 				</div>
     
 			    <div>
@@ -706,39 +730,35 @@
 			    
 			    
 			    
-			    <div id="pane2" class="tab-pane" ng-class="{active: eventorderC}" >
-			    <div class="pull-right">
-
-					<a href="#/eventorder/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i> Add Event Order</a>
-
+			    <div id="pane2" class="tab-pane" ng-class="{active: mydeviceC}" >
+      			<div class="pull-right">
+				<a ng-show="PermissionService.showMenu('CREATE_ownedhardware')" href="#/addownedhardware/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Add Device</a>
 				</div>
-			    	<div>
+     			<div>
 					<input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name/Serial Number">
-					<table class="table">
-						<thead>
-							<tr class="graybg">
+						<table class="table">
+							<thead>
+							  <tr class="graybg">
 							 	<th>{{'table.heading.id' | translate}}</th>
-								<th>{{'table.heading.eventName' | translate}}</th>
-								<th>{{'table.heading.bookedDate' | translate}}</th>
-								<th>{{'table.heading.chargecode' | translate}}</th>
-								<th>{{'table.heading.eventPrice' | translate}}</th>
+								<th>{{'table.heading.serialnumber' | translate}}</th>
+								<th>{{'table.heading.provisioningserialnumber' | translate}}</th>
+								<th>{{'table.heading.allocationdate' | translate}}</th>
 								<th>{{'table.heading.status' | translate}}</th>
-								
+								<th>{{'table.heading.itemtype' | translate}}</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="eventOrders in eventOrders  | filter:filterText">
-								<td>{{eventOrders.id}}</td>
-								<td>{{eventOrders.eventName}}</td>
-								<td>{{eventOrders.bookedDate | DateFormat}}</td>
-								<td>{{eventOrders.chargeCode}}</td>
-								<td>{{eventOrders.eventPrice}}</td> 
-								<td>{{eventOrders.status}}</td> 
-								
-							</tr>
-						</tbody>
-					</table>
-					</div>
+							<tr class="pointer-main" ng-repeat="ownhardware in ownhardwares  | filter:filterText">
+								<td class="pointer" data-ng-click="routeToOwnHardware(ownhardware.id)">{{ownhardware.id}}</td>
+								<td class="pointer" data-ng-click="routeToOwnHardware(ownhardware.id)">{{ownhardware.serialNumber}}</td>  
+								<td class="pointer" data-ng-click="routeToOwnHardware(ownhardware.id)">{{ownhardware.provisioningSerialNumber}}</td>
+								<td class="pointer" data-ng-click="routeToOwnHardware(ownhardware.id)">{{ownhardware.allocationDate | DateFormat}}</td>
+								<td>{{ownhardware.status}}</td> 
+								<td>{{ownhardware.itemType}}</td> 
+						</tr>
+				</tbody>
+			</table>
+		</div>
 			    </div>
 			    
 			  </div>

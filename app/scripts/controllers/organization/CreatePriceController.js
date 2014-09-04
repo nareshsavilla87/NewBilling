@@ -14,6 +14,7 @@
             scope.chargevariants = data.chargevariant;
             scope.discountdatas = data.discountdata;
             scope.priceRegionDatas = data.priceRegionData;
+            scope.subscriptiondata = data.contractPeriods;
             scope.serviceDatas = data.serviceData;
             scope.serviceDatas.push({"id":0,"serviceCode":"none","serviceDescription":"None"});
             
@@ -27,6 +28,7 @@
         	 delete this.formData.planId;
         	 delete this.formData.chargeVariantId;
         	 delete this.formData.priceRegionData;
+        	 delete this.formData.contractPeriods;
         	 this.formData.locale = 'en';
         	 resourceFactory.priceResource.save({'planId':routeParams.id},this.formData,function(data){
                  location.path('/viewprice/' + data.resourceId+'/'+routeParams.id);

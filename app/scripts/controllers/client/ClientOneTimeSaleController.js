@@ -26,10 +26,16 @@
 	            
 	        	scope.itemDatas = data.itemDatas;
 	            scope.discountMasterDatas = data.discountMasterDatas;
+	            scope.contractPeriods = data.contractPeriods;
 	            scope.formData.discountId = scope.discountMasterDatas[0].discountMasterId;
 	            scope.onetimesales=data;
 	            scope.date= {};
 	            scope.date.saleDate = new Date();
+	            scope.formData.saleType=scope.saleType;
+
+	            if(scope.saleType == 'RENTAL'){
+	            	scope.formData.totalPrice=0;
+	            }
 	            scope.officesDatas=data.officesData;
 	            for(var i=0;i<scope.officesDatas.length;i++){
 	            	if(scope.officesDatas[i].id==1){
@@ -39,6 +45,7 @@
 	        });
 	        
 	        scope.itemData=function(itemId,officeId){
+	        	 
 	        	resourceFactory.oneTimeSaleTemplateResourceData.get({itemId: itemId}, function(data) {
 	        		
 	        		scope.formData=data;
@@ -46,6 +53,9 @@
 	        		scope.formData.discountId = scope.discountMasterDatas[0].discountMasterId;
 	        		scope.formData.officeId=officeId;
 	        		scope.truefalse = false;
+	        		 if(scope.saleType == 'RENTAL'){
+	 	            	scope.formData.totalPrice=0;
+	 	            }
 		        });	
 	        };
 	        
@@ -60,6 +70,10 @@
 	        		scope.formData.itemId=itemId;
 	        		scope.formData.discountId = scope.discountMasterDatas[0].discountMasterId;
 	        		scope.formData.officeId=officeId;
+		            
+	        		 if(scope.saleType == 'RENTAL'){
+	 	            	scope.formData.totalPrice=0;
+	 	            }
 		        });	
 	        };
 	        
@@ -106,7 +120,7 @@
 	        	scope.flag = true;
 	        	 this.formData.locale = "en";
 	             this.formData.dateFormat = "dd MMMM yyyy";
-	             this.formData.saleType = "FirstSale";
+	             this.formData.saleType = scope.saleType;
 	             var actDate = dateFilter(scope.date.saleDate,'dd MMMM yyyy');
 	             this.formData.saleDate=actDate;
 	             delete this.formData.discountMasterDatas;   

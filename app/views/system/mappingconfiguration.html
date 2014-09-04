@@ -60,7 +60,8 @@
                 <th>{{'table.planmapping.id' | translate}}</th>
                 <th>{{'table.planmapping.planCode' | translate}}</th>
                 <th>{{'table.planmapping.planIdentification' | translate}}</th>
-                <th>{{'table.planmapping.planStatus' | translate}}</th>                    
+                <th>{{'table.planmapping.planStatus' | translate}}</th> 
+                <th style="width:125px;">{{'table.servicemapping.image' | translate}}</th>                   
               </tr>
             </thead>
             <tbody>
@@ -69,6 +70,7 @@
                 <td class="pointer" data-ng-click="routeToplanmapping(planmappingdata.id)">{{planmappingdata.planCode}}</td>
                 <td class="pointer" data-ng-click="routeToplanmapping(planmappingdata.id)">{{planmappingdata.planIdentification}}</td>
                 <td class="pointer" data-ng-click="routeToplanmapping(planmappingdata.id)">{{planmappingdata.planStatus}}</td>
+                <td class="pointer" data-ng-click="routeToplanmapping(planmappingdata.id)">{{planmappingdata.image}}</td>
                 </tr>
      		 </tbody>
           </table>

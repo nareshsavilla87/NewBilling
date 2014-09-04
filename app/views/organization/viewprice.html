@@ -36,10 +36,16 @@
 						<tr>
 							<td>{{ 'label.price.priceregion' | translate }}</td>
 						</tr>
+					     <tr ng-show="formData.isPrepaid == 'Y'">
+							<td>{{ 'label.plan.duration' | translate }}</td>
+						</tr>
 					</table>
 				</td>
 				<td>
 					<table>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
 						<tr>
 							<td>&nbsp;</td>
 						</tr>
@@ -82,6 +88,11 @@
 						<tr ng-repeat="priceRegionData in priceRegionDatas">
 							<td ng-show="priceRegionData.id == formData.priceregion">
 							{{priceRegionData.priceregionCode}}
+							</td>
+						</tr>
+						<tr ng-show="formData.isPrepaid == 'Y'">
+							<td>
+								{{formData.contractPeriod}}
 							</td>
 						</tr>
 						

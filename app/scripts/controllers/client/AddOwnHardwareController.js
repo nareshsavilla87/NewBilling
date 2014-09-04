@@ -31,7 +31,7 @@
         });
                  
         scope.reset123 = function(){
-     	   webStorage.add("callingTab", {someString: "hardware" });
+     	   webStorage.add("callingTab", {someString: "Sale" });
         };
         
         scope.submit = function() {
@@ -49,7 +49,7 @@
             	// alert(routeParams.id);
 	            location.path('/viewclient/' +routeParams.id);
 	          });
-            webStorage.add("callingTab", {someString: "hardware" });
+            webStorage.add("callingTab", {someString: "Sale" });
         }; 
             
             

@@ -110,7 +110,7 @@
 	        	 this.formData.locale = "en";
 	             this.formData.dateFormat = "dd MMMM yyyy";
 	             this.formData.chargeCode="NONE";
-	             this.formData.saleType = "SecondSale";
+	             this.formData.saleType = "SECOND_SALE";
 	             var actDate = dateFilter(scope.date.saleDate,'dd MMMM yyyy');
 	             this.formData.saleDate=actDate;
 	             delete this.formData.discountMasterDatas;   

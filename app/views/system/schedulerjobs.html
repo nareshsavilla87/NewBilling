@@ -38,7 +38,7 @@
             <tr class="pointer-main" ng-repeat="job in jobs">
                 <td><input type="checkbox" ng-model="active" ng-true-value="true" ng-false-value="false"
                      ng-change="runJobSelected(job, active)"></td>
-                <td class="pointer" data-ng-click="routeTo(job.jobId)">{{job.displayName}}</td>
+                <td class="pointer" data-ng-click="routeTo(job.jobId)">{{job.name}}</td>
                 <td class="pointer" data-ng-click="routeTo(job.jobId)">{{job.active}}</td>
                 <td><input type="checkbox" class="changeStatus" ng-model="job.active" id="changeStatus" ng-change="selectAll(job)"/></td>
                 <td class="pointer" data-ng-click="routeTo(job.jobId)">{{job.nextRunTime}}</td>

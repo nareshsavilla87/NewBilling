@@ -93,7 +93,7 @@
                         	</div>
           	</div>
 			
-			<div class="control-group">
+			<div class="control-group" ng-show="requireDevice">
 				<label class="control-label">{{ 'label.deviceid' | translate }}</label>
 				<div class="controls">
 	                <select ng-model="formData.deviceId"  ng-options="device.serialNumber as device.serialNumber for device in devices" value="{{device.serialNumber}}"></select>

@@ -30,6 +30,8 @@
             	scope.formData.isPrepaid=true;
             }if(data.allowTopup == "Y"){
             	scope.formData.allowTopup=true;
+            }if(data.isHwReq == "Y"){
+            	scope.formData.isHwReq=true;
             }
             var actDate = dateFilter(data.startDate,'dd MMMM yyyy');
             scope.date.startDate = new Date(actDate);

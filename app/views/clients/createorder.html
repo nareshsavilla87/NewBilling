@@ -178,8 +178,11 @@
                        <div class="control-group">
                          <label class="control-label" for="contractPeriod">{{ 'label.order.contractperiod' | translate }}</label>
 
-                           <div class="controls">
-                              <select   ng-disabled="formData.isPrepaid == 'Y'" ng-model="formData.contractPeriod"  ng-options="subscriptiondata.id as subscriptiondata.Contractdata for subscriptiondata in subscriptiondatas" value="{{billRuleData.id}}"></select>
+                           <div class="controls" ng-hide="formData.isPrepaid == 'Y'">
+                              <select    ng-model="formData.contractPeriod"  ng-options="subscriptiondata.id as subscriptiondata.Contractdata for subscriptiondata in subscriptiondatas" value="{{billRuleData.id}}"></select>
+                           </div>
+                           <div class="controls" ng-show="formData.isPrepaid == 'Y'">
+                              <select    ng-model="formData.contractPeriod"  ng-options="paytermdata.duration as paytermdata.paytermtype for paytermdata in paytermdatas" value="{{billRuleData.id}}"></select>
                            </div>
                         </div>
                         <div class="control-group" ng-hide="formData.isPrepaid == 'Y'">

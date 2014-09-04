@@ -161,7 +161,7 @@
              						 <input type="text" style="width:165px;" ng-model="IPAddressObj.ipAddress" name="ipAddress" ng-change="getData(IPAddressObj.ipAddress)"  typeahead="ipPoolData as ipPoolData for ipPoolData in ipPoolDatasData | filter:$viewValue" typeahead-min-length="0">  
                                  	 <input ng-show="subnetType" type="text" style="width:20px;" id="subnet" ng-model="formData.subnet" maxlength="2"/>
                                   	 <a ng-show="IPAddressType" ng-click="addIpAddresses()">&nbsp;<i class="icon-plus icon-white"></i></a>&nbsp;&nbsp;
-                                 	 <div  ng-show="IPAddressType" ng-repeat="addipAddress in addIpAddress">
+                                 	 <div  ng-show="IPAddressType" ng-repeat="addipAddress in addIpAddress track by $index">
 										<input type="text" style="width:110px" readonly ng-model="addipAddress">
 										<a ng-click="deleteAddIpAddress($index)"><i class="icon-remove icon-white"></i></a>							   					        
 						              </div>                            
@@ -215,7 +215,7 @@
 							<tr>
 								<td>Ip Address:</td>
 								<td>&nbsp;</td>
-								<td style="display: inline-block;" ng-repeat="exitIpAddres in exitIpAddress">{{exitIpAddres}}</td>
+								<td style="display: inline-block;" ng-repeat="exitIpAddres in exitIpAddress track by $index">{{exitIpAddres}}</td>
 								<td>{{exit.ipaddr}}</td>
 							</tr> 
 							<tr>

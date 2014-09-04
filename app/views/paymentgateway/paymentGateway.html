@@ -55,7 +55,8 @@
                 <td>{{paymentgatewaydata.status}}</td> 
                 <td>{{paymentgatewaydata.remarks}}</td>
                                                    
-                <td><a ng-show="PermissionService.showMenu('UPDATE_PAYMENTGATEWAY')" ng-click="edit(paymentgatewaydata.id)" popover="Edit" popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a></td>       
+                <td><a ng-show="PermissionService.showMenu('UPDATE_PAYMENTGATEWAY')" ng-click="edit(paymentgatewaydata.id)" popover="Edit" popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a></td>    
+                   <!-- <td><input type="image" src="./images/Edit.png" ng-show="PermissionService.showMenu('UPDATE_PAYMENTGATEWAY')" ng-click="edit(paymentgatewaydata.id)" popover="Edit" popover-trigger="mouseenter"/></td> -->
 
    			</tr>
      		 </tbody>

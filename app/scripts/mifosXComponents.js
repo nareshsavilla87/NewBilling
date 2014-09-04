@@ -54,6 +54,7 @@ define(['underscore', 'mifosX'], function() {
       'client/CreateProvisioningController',
       'client/CreateActivationController',
       'client/EditProvisioningController',
+      'client/IpchangeController',
       'client/EditProvisioningDetailsController',
       'user/UserController',
       'system/ViewProvisioningMappingController',

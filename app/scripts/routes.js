@@ -642,6 +642,9 @@
        .when('/addonetimesale/:id', {
         templateUrl: 'views/clients/addonetimesale.html'
       })
+      .when('/devicerental/:id', {
+          templateUrl: 'views/clients/devicerental.html'
+        })
       .when('/viewonetimesale/:id/:clientId', {
         templateUrl: 'views/clients/viewonetimesale.html'
       })
@@ -888,6 +891,9 @@
       })
       .when('/editgrn/:id',{
     	  templateUrl: 'views/logistics/inventory/grn/editgrn.html'
+      })
+      .when('/ipchange/:clientId/:orderId/:serviceId',{
+    	  templateUrl: 'views/clients/ipchange.html'
       });
       
     

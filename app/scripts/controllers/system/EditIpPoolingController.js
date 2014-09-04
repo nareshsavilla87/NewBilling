@@ -13,6 +13,7 @@
 	            scope.formData.notes=data.ipPoolManagementData[0].notes;
 	            scope.formData.type=data.ipPoolManagementData[0].type;
 	            scope.typeCodeValue.codeValue=data.ipPoolManagementData[0].typeCodeValue;
+	            scope.typeCodeValue.status=data.ipPoolManagementData[0].status;
 	            scope.formData.ipPoolDescription=data.ipPoolManagementData[0].ipPoolDescription;
 	            scope.formData.subnet=data.ipPoolManagementData[0].subNet;
 	            for(var i=0;i<scope.ippoolstatusType.length;i++){
@@ -21,7 +22,11 @@
 	            }
 	        });
 	        
-	            scope.submit = function() {        
+
+	            scope.submit = function() {   
+	            	if(scope.typeCodeValue.status=='Assigned'){
+	            		scope.formData.statusType='A';
+	            	}
 	            resourceFactory.ipPoolingResource.update({'id': routeParams.id},this.formData,function(data){
 	                location.path('/ipPooling');
 	             });

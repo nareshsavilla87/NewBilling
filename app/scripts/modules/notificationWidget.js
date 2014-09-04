@@ -8,8 +8,109 @@
 
 'use strict';
 
-// Declare module which depends on filters, and services
+//Declare module which depends on filters, and services
 angular.module('notificationWidget', [])
+// Declare an http interceptor that will signal the start and end of each request
+.config(['$httpProvider', function ($httpProvider) {
+  $httpProvider.interceptors.push('requestInterceptor');
+}])
+.factory('requestInterceptor', function ($q, $rootScope,$injector) {
+  $rootScope.pendingRequests = 0;
+  var $http;
+  return {
+         'request': function (config) {
+              $rootScope.pendingRequests++;
+              $rootScope.blockUI = true;
+              return config || $q.when(config);
+          },
+
+          'requestError': function(rejection) {
+              $rootScope.pendingRequests--;
+              return $q.reject(rejection);
+          },
+
+          'response': function(response) {
+              $rootScope.pendingRequests--;
+              // clear previous errors for a success request.
+              delete $rootScope.errorStatus;
+              delete $rootScope.errorDetails;
+              //removing errors
+              var $inputs = $(':input');
+              $inputs.each(function() {
+                  $(this).removeClass("validationerror");
+              });
+              // get $http via $injector because of circular dependency problem
+              $http = $http || $injector.get('$http');
+              // don't send notification until all requests are complete
+              if ($http.pendingRequests.length < 1) {
+                  // request ended false blockUI
+            	  $rootScope.blockUI = false;
+              }
+              return response || $q.when(response);
+          },
+
+          'responseError': function(rejection) {
+              $rootScope.pendingRequests--;
+              // get $http via $injector because of circular dependency problem
+              $http = $http || $injector.get('$http');
+              //removing errors
+              var $inputs = $(':input');
+              $inputs.each(function() {
+                  $(this).removeClass("validationerror");
+              });
+              // don't send notification until all requests are complete
+              if ($http.pendingRequests.length < 1) {
+            	// request ended false blockUI
+            	  $rootScope.blockUI = false;
+              }
+              if (rejection.status === 0) {
+                  $rootScope.errorStatus='No connection. Verify application is running.';
+              } else if (rejection.status == 401) {
+                  $rootScope.errorStatus='Unauthorized';
+              } else if (rejection.status == 404) {
+                  $rootScope.errorStatus='Requested page not found. [404]';
+              } else if (rejection.status == 405) {
+                  $rootScope.errorStatus='HTTP verb not supported [405]';
+              } else if (rejection.status == 500) {
+                  $rootScope.errorStatus='Internal Server Error [500].';
+              } else {
+                  var jsonErrors = JSON.parse(JSON.stringify(rejection.data));
+                  var valErrors = jsonErrors.errors;
+                  var errorArray = new Array();
+                  var arrayIndex = 0;
+                  for(var i in valErrors) {
+                      var temp = valErrors[i];
+                      // add error class to input in dialog
+                      var fieldId = '#' + temp.parameterName;
+                      $(fieldId).addClass("validationerror");
+
+                      var errorObj = new Object();
+                      errorObj.field = temp.parameterName;
+                      errorObj.code = temp.userMessageGlobalisationCode;
+
+                      errorArray[arrayIndex] = errorObj;
+                      arrayIndex++;
+                  };
+                  $rootScope.errorDetails = errorArray;
+              }
+              return $q.reject(rejection);
+          }
+      };
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+// Declare module which depends on filters, and services
+/*angular.module('notificationWidget', [])
 // Declare an http interceptor that will signal the start and end of each request
 .config(['$httpProvider', function ($httpProvider) {
     var $http,
@@ -160,4 +261,6 @@ angular.module('notificationWidget', [])
         }
     };
 }]);
+
+*/
 

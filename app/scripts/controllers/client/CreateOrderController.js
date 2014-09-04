@@ -89,13 +89,13 @@
         		 scope.formData.isPrepaid=data.isPrepaid;
         		 scope.formData.planCode=value;
         		 scope.formData.contractPeriod=data.contractPeriod;
-        		  for (var i in data.subscriptiondata) {
+        		/*  for (var i in data.subscriptiondata) {
                  	
                  	if(data.subscriptiondata[i].id == data.contractPeriod){
                  		 scope.formData.contractPeriod=data.subscriptiondata[i].id; 
                  	}
                    
-                  };
+                  };*/
              });
        };
         
@@ -217,17 +217,33 @@
          };
 
         scope.submit = function() {   
+        	
         	this.formData.isNewplan =false;
         	if(routeParams.planId == 0){
         		this.formData.isNewplan =true;
         	}
+        	
+        	
         	scope.flag = true;
         	this.formData.locale = 'en';
            	var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
             this.formData.dateFormat = 'dd MMMM yyyy';
             this.formData.start_date = reqDate;
+            
             if(this.formData.isPrepaid == 'Y'){
-            this.formData.paytermCode='Monthly';
+            	  for (var i in scope.paytermdatas) {
+                     	if(scope.paytermdatas[i].duration == scope.formData.contractPeriod){
+                     		 this.formData.paytermCode=scope.paytermdatas[i].paytermtype; 
+                     	}
+                  };
+                  for (var i in scope.subscriptiondatas) {
+                   	if(scope.subscriptiondatas[i].Contractdata == this.formData.contractPeriod){
+                   		 this.formData.contractPeriod=scope.subscriptiondatas[i].id;
+                   		
+                   	}
+                };    
+            //this.formData.paytermCode='Monthly';
+                this.formData.billAlign=false;
             }
             delete this.formData.planId;
             delete this.formData.id;
@@ -261,14 +277,25 @@
         	if(routeParams.planId == 0){
         		this.formData.isNewplan =true;
         	}
+        	
+        	
         	scope.flag = true;
         	this.formData.locale = 'en';
            	var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
             this.formData.dateFormat = 'dd MMMM yyyy';
             this.formData.start_date = reqDate;
             if(this.formData.isPrepaid == 'Y'){
-            this.formData.paytermCode='Monthly';
-            }
+          	  for (var i in scope.paytermdatas) {
+                   	if(scope.paytermdatas[i].duration == scope.formData.contractPeriod){
+                   		 this.formData.paytermCode=scope.paytermdatas[i].paytermtype; 
+                   	}
+                };
+                for (var i in scope.subscriptiondatas) {
+                 	if(scope.subscriptiondatas[i].Contractdata == this.formData.contractPeriod){
+                 		 this.formData.contractPeriod=scope.subscriptiondatas[i].id;
+                 		
+                 	}
+              };   
             delete this.formData.planId;
             delete this.formData.id;
             delete this.formData.isPrepaid;
@@ -295,8 +322,9 @@
             */}
             
 
-        };
-    }
+            };
+        }
+	  }
   });
   mifosX.ng.application.controller('CreateOrderController', ['$scope','webStorage','$routeParams', 'ResourceFactory', 'dateFilter','$location','$filter', mifosX.controllers.CreateOrderController]).run(function($log) {
     $log.info("CreateOrderController initialized");
