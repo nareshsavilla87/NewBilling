@@ -17,6 +17,7 @@
                 <th>{{ 'table.price.chargevaraint' | translate }}</th>
                 <th>{{ 'table.price.price' | translate }}</th>
                 <th>{{ 'table.price.region' | translate }}</th>
+                <th>{{'label.options' | translate}}</th>
             </tr>
         </thead>
         <tbody>
@@ -25,7 +26,11 @@
                 <td class="pointer" data-ng-click="routeTo(price.id,planId)">{{price.chargeCode}}</td>        
                 <td class="pointer" data-ng-click="routeTo(price.id,planId)">{{price.chargeVariant}}</td>
                 <td class="pointer" data-ng-click="routeTo(price.id,planId)">{{price.price}}</td>      
-                <td class="pointer" data-ng-click="routeTo(price.id,planId)">{{price.priceregion}}</td>               
+                <td class="pointer" data-ng-click="routeTo(price.id,planId)">{{price.priceregion}}</td> 
+                <td>
+                	<a href="#/editprice/{{price.id}}" popover="Edit Price" popover-trigger="mouseenter" class="icon-edit"></a>&nbsp;
+                	<a data-ng-click="deletePrice(price.id,planId)" popover="Delete Price" popover-trigger="mouseenter"><i class="icon-remove icon-white">
+                </td>              
             </tr>
         </tbody>
     </table>

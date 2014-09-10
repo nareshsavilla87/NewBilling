@@ -1,0 +1,71 @@
+<div ng-controller="VODEventsController">
+	<div>
+	    <ul class="breadcrumb">
+	        <li class="active">{{'link.vod'|translate}}</li>
+	    </ul>
+    </div>
+ 	<div class="row-fluid" ng-show="vodEventScreen">
+ 	<br/>
+ 		<form ng-submit="search(filterText)" style="margin:0px;">
+		    <input ng-model="filterText" type="text" ng-autofocus="true" class="span marginbottom0px" placeholder="{{'placeholder.filter.vod'|translate}}">
+		</form>
+		<table class="table">
+	        <thead>
+	            <tr class="graybg">
+	                <th>{{'table.header.vod.name'|translate}}</th>
+	                <th>{{'table.header.vod.type'|translate}}</th>
+	                <th>{{'table.header.vod.rating'|translate}}</th>
+	                <th>{{'table.header.vod.quality'|translate}}</th>
+	                <th>{{'table.header.vod.price'|translate}}</th>
+	                <th>{{'table.header.vod.select'|translate}}</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr class="pointer-main" ng-repeat="mediaDetail in mediaDetails  | filter:filterText" >
+	                <td class="pointer">{{mediaDetail.mediaTitle}}</td>
+	                <td class="pointer">{{mediaDetail.optType}}</td>
+	                <td class="pointer">{{mediaDetail.mediaRating}}</td>
+	                <td class="pointer">{{mediaDetail.quality}}</td>
+	                <td class="pointer">{{mediaDetail.price}}</td>
+	               <!--  <td><input type="checkbox" ng-model="active" ng-change="selectedEventsFun(mediaDetail.mediaId,mediaDetail.mediaTitle,mediaDetail.price,mediaDetail.quality,active)"></td> -->
+	                <td><input type="checkbox" ng-model="active" ng-change="selectedEventsFun(mediaDetail,active)"></td>
+	            </tr>
+	        </tbody>
+	    </table>
+	    <div class="pull-right">
+				<button  ng-click="checkOutFun()" class="btn btn-primary animated pulse">{{'btn.checkout'|translate}}</button>
+		</div> 
+	</div>
+	<div class="row-fluid" ng-show="eventDetailsPreview">
+		<h3>{{'label.vod.conformation'|translate}}</h3>
+		<div ng-show="vodEventRedirectToDalpay">
+			<div class="alert alert-info animated pulse" role="alert">
+				<img style="margin-left:400px;" alt="Loading.." ng-src="./selfcare_module/images/loader_circle.gif" width="20px"/>
+			         <strong> {{'title.redirecting.dalpay'|translate}}</strong>
+			</div>
+		</div>
+		<table class="table">
+	        <thead>
+	            <tr class="graybg">
+	                <th>{{'table.header.vod.eventname'|translate}}</th>
+	                <th>{{'table.header.vod.quality'|translate}}</th>
+	                <th>{{'table.header.vod.price'|translate}}</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr class="pointer-main" ng-repeat="mediaData in mediaDatas track by $index | filter:filterText" >
+	                <td class="pointer">{{mediaData.mediaTitle}}</td>
+	                <td class="pointer">{{mediaData.quality}}</td>
+	                <td class="pointer">{{mediaData.price}}</td>
+	            </tr>
+	        </tbody>
+	    </table>
+	   <br/>
+	   <span style="color:#0088cc;font-size:20px;" class="pull-left">{{'label.amount.total'|translate}}</span>
+	   <span style="font-size:20px;" class="pull-right">{{totalAmount}}</span><br/><br/>
+		<div class="pull-right" >
+				<a ng-disabled="vodEventRedirectToDalpay"  ng-click="cancelDalpayBtnFun()" class="btn" >{{'btn.cancel'|translate}}</a>
+				<a href="{{URLForDalpay}}" ng-click="dalpayBtnFun()" ng-disabled="vodEventRedirectToDalpay" class="btn btn-primary animated fadeInUp">{{'btn.dalpay'|translate}}</a>
+		</div> 
+	</div>
+</div>

@@ -22,18 +22,27 @@
         var getAll = function(){
         	
         	resourceFactory.mediaTemplateResource.get(function(data) {
+        		scope.formData = {  
+                };
                 scope.mediaAttributes = data.mediaAttributes;
                 scope.mediaCategeorydatas = data.mediaCategeorydata;
+                for(var i=0;i<scope.mediaCategeorydatas.length;i++){
+                	if(scope.mediaCategeorydatas[i].mCodeValue=='Movie'){
+                		scope.formData.catageoryId=scope.mediaCategeorydatas[i].id;
+                	}
+                }
                 scope.mediaFormats = data.mediaFormat;
                 scope.mediaLanguageDatas = data.mediaLanguageData;
                 scope.mediaStatus = data.mediaStatus;
-                scope.mediaTypeDatas = data.mediaTypeData;
+                for(var i=0;i<scope.mediaStatus.length;i++){
+                	if(scope.mediaStatus[i].value=='ACTIVE'){
+                		scope.formData.status=scope.mediaStatus[i].value;
+                	}
+                }
+                scope.eventCategeorydatas = data.eventCategeorydata;
                 scope.contentProviderDatas=data.contentProviderData;
                 scope.attributesFormData.attributeType="Cast";
-                scope.formData = {
-               
-                  
-                };
+                
             });
         	
         };
@@ -172,6 +181,9 @@
          	 var reqDate = dateFilter(scope.release.date,'dd MMMM yyyy');
              this.formData.dateFormat = 'dd MMMM yyyy';
              this.formData.releaseDate = reqDate;
+             this.formData.mediaTypeCheck="ADDMEDIA";
+             this.formData.formatType="SD";
+             this.formData.languageId="English";
              scope.formData.mediaAssetLocations =new Array();
              scope.formData.mediaassetAttributes =new Array();
              if (scope.mediaassetAttributes.length > 0) {
@@ -201,6 +213,53 @@
             		location.path('/viewmedia/' + data.resourceId);
           });
         };
+        
+        
+        /**
+         * This is for advanced media
+         * */
+        scope.submitAdvanceMedia = function() {
+        	
+        	if(scope.hideForGame == false){
+        		scope.submitForGame();
+        		return undefined;
+        	}
+        	
+        	 this.formData.locale = 'en';
+         	 var reqDate = dateFilter(scope.release.date,'dd MMMM yyyy');
+             this.formData.dateFormat = 'dd MMMM yyyy';
+             this.formData.releaseDate = reqDate;
+             this.formData.mediaTypeCheck="ADVANCEMEDIA";
+             scope.formData.mediaAssetLocations =new Array();
+             scope.formData.mediaassetAttributes =new Array();
+             if (scope.mediaassetAttributes.length > 0) {
+              
+                 for (var i in scope.mediaassetAttributes) {
+					                   scope.formData.mediaassetAttributes
+												.push({
+													attributeType : scope.mediaassetAttributes[i].attributeType,
+													attributeName : scope.mediaassetAttributes[i].attributeName,
+													attributevalue : scope.mediaassetAttributes[i].attributevalue,
+													attributeNickname : scope.mediaassetAttributes[i].attributeNickname,
+													attributeImage : scope.mediaassetAttributes[i].attributeImage
+												});
+                 };
+               }
+             
+             if (scope.mediaAssetLocations.length > 0) {
+                
+                 for (var i in scope.mediaAssetLocations) {
+                	
+                   scope.formData.mediaAssetLocations.push({languageId:scope.mediaAssetLocations[i].languageId,formatType:scope.mediaAssetLocations[i].formatType, 
+                	   location:scope.mediaAssetLocations[i].location});
+                 };
+             }
+             resourceFactory.saveMediaResource.save(this.formData,function(data){
+            		location.path('/viewmedia/' + data.resourceId);
+             });
+        };
+        
+        
     }
   });
   mifosX.ng.application.controller('CreateMediaController', ['$scope', 'ResourceFactory', '$location','dateFilter', mifosX.controllers.CreateMediaController]).run(function($log) {

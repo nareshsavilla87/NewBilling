@@ -12,14 +12,14 @@
 	    </div>
         <fieldset>
           <legend>{{'label.media.newmedia' | translate}}</legend>
-          <table width="100%">
+<!--           <table width="100%">
           <tr>
           <td>
           	<div class="control-group">
             <label class="control-label" for="mediaCategory">{{ 'label.media.type' | translate }}</label>
 	          	<div class="controls">
 			       <button type="button" class="btn btn-primary" ng-model="mediaCategory" btn-radio="'Left'" ng-click="setMovieScreen()">Movies</button>
-			       <!-- <button type="button" class="btn btn-primary" ng-model="mediaCategory" btn-radio="'Right'" ng-click="setGameScreen()">Games</button> -->
+			       <button type="button" class="btn btn-primary" ng-model="mediaCategory" btn-radio="'Right'" ng-click="setGameScreen()">Games</button>
 				</div>
             </div>
           </td>	
@@ -39,7 +39,7 @@
             <label class="control-label" for="contentProvider">{{ 'label.media.contentprovider' | translate }}<span class="required">*</span></label>
             <div class="controls">
              <select  id="contentProvider" ng-model="formData.contentProvider" ng-options="contentProviderData.id as contentProviderData.mCodeValue for contentProviderData in contentProviderDatas " value="{{contentProviderData.mCodeValue}}"></select>
-           <!--   <input type="text" id="contentProvider" ng-model="formData.contentProvider">  -->
+             <input type="text" id="contentProvider" ng-model="formData.contentProvider"> 
             </div>
           </div>
           </td>
@@ -124,7 +124,7 @@
           <div class="control-group" ng-show="hideForGame">
             <label class="control-label" for="releaseDate">{{ 'label.media.releasedate' | translate }}</label>
             <div class="controls">
-            <!-- <input type="text" id="releaseDate" ng-model="formData.releaseDate"> -->
+            <input type="text" id="releaseDate" ng-model="formData.releaseDate">
               <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="release.date" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" required late-Validate  style="background-color:#FFFFFF;" readonly/>
             </div>
           </div>
@@ -280,8 +280,91 @@
                       <td><a ng-click="removeGameMedia($index)"><i class="icon-remove icon-white"></i></a></td>
                     </tr>
                   </table>
-           </fieldset>
-
+           </fieldset> -->
+	
+	
+			<!-- 
+			
+				THIS IS ENHANCES TO MEDIA DETAILS SCREEN WHENEVER REQUIRED EXISTING FUNCTIONALITIES 
+				USE THE AVBOVE COMMENTED CODE
+				 
+			-->
+			<table>
+					<tr>
+						<td>
+							<div class="control-group">
+            					<label  ng-show="hideForGame" class="control-label" for="mediaTitle">{{ 'label.media.title' | translate }}<span class="required">*</span></label>
+            					<label  ng-show="!hideForGame" class="control-label" for="mediaTitle">{{ 'label.game.title' | translate }}<span class="required">*</span></label>
+            					<div class="controls">
+              						<input type="text" id="mediaTitle" ng-model="formData.mediaTitle">
+            					</div>
+          					</div>
+						</td>
+						
+						<td>
+							<div class="control-group">
+            				<label class="control-label" for="mediaCategoryId">{{ 'label.media.categeory' | translate }}<span class="required">*</span></label>
+            				<div class="controls">
+              					<select ng-model="formData.catageoryId" id="catageoryId"  ng-options="mediaCategeorydata.id as mediaCategeorydata.mCodeValue for mediaCategeorydata in mediaCategeorydatas" value="{{mediaCategeorydata.id}}"></select>
+            				</div>
+          					</div>
+						</td>
+					</tr>
+					<tr>
+						<!-- <td>
+							<div class="control-group" >
+            				<label class="control-label" for="eventCategory">Event Category<span class="required">*</span></label>
+            				<div class="controls">
+               					<select  id="mediatype" ng-model="formData.mediatype"   ng-options="eventCategeorydata.id as eventCategeorydata.mCodeValue for eventCategeorydata in eventCategeorydatas" value="{{mediaTypeData.id}}"></select>
+            				</div>
+          					</div>
+						</td> -->
+						<td>
+							<div class="control-group">
+            				<label class="control-label" for="contentProvider">{{ 'label.media.contentprovider' | translate }}</label>
+            				<div class="controls">
+             					<select  id="contentProvider" ng-model="formData.contentProvider" ng-options="contentProviderData.id as contentProviderData.mCodeValue for contentProviderData in contentProviderDatas " value="{{contentProviderData.mCodeValue}}"></select> 
+            				</div>
+          					</div>
+						</td>
+						
+						<td>
+							<div class="control-group">
+			    				<label class="control-label" for="cpShareValue">Share(%)</label>
+			 					 <div class="controls">
+									<input type="text" id="cpShareValue" name="cpShareValue" ng-model="formData.cpShareValue"  ng-pattern="/^[0-9]{0,2}(\.\d{0,2})?$/" ng-maxlength="5"></input>
+									<div ng-show="createmediaform.cpShareValue.$dirty && createmediaform.cpShareValue.$invalid">
+               						<span class="error" ng-show="createmediaform.cpShareValue.$error.pattern">Numbers below 100 only !</span>
+               						<span class="error" ng-show="createmediaform.cpShareValue.$error.maxlength">Exceeded max limit!</span>
+           							</div>
+								</div>
+								</div> 
+						</td>
+					</tr>
+					</table>
+					<table>
+						<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="medialocation">Media Location<span class="required">*</span></label>
+            					<div class="controls">
+              						<input type="text" style="width:610px;" ng-model="formData.location">
+            					</div>
+          						</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="control-group" ng-show="hideForGame">
+            					<label class="control-label" for="status">{{ 'label.media.status' | translate }}<span class="required">*</span></label>
+            					<div class="controls">
+           						<select ng-model="formData.status" id="status" ng-options="mediaStatus.value as mediaStatus.value for mediaStatus in mediaStatus" value="{{mediaStatus.value}}"></select>
+           	 					</div>
+          						</div>
+							</td>
+						</tr>
+					</table>
+								
           <div class="offset3">
             <a href="#/media"><button id="cancel" type="reset" class="btn">Cancel</button></a>
             <button id="submit" type="submit" class="btn btn-primary">Save</button>

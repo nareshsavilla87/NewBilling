@@ -29,7 +29,8 @@
 										}
 									}
 								}
-								scope.restricted=data.selectedMedia;		
+								scope.restricted=data.selectedMedia;
+								scope.eventCategeorydatas = data.eventCategeorydata;
 								
 								 var actDate = dateFilter(data.eventStartDate,'dd MMMM yyyy');
 						            scope.date.startDate = new Date(actDate);
@@ -94,6 +95,8 @@
 								delete this.formData.optType;
 								delete this.formData.selectedMedia;
 								delete this.formData.statusId;
+								delete this.formData.eventCategeorydata;
+								
 								var temp = [];
 								for ( var i in scope.selectedServices) {
 									temp[i] = scope.selectedServices[i].mediaId;

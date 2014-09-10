@@ -1,5 +1,6 @@
 define(['mifosX', 'angular-mocks'], {
   configure: function(scenarioName) {
+	  console.log("asfdasfsfasfgfdgsgfg");
     require(["test/testHelper", "test/scenarios/" + scenarioName + "_scenario"], function(testHelper, scenario) {
       mifosX.ng.application.config(function($provide) {
         $provide.decorator('$httpBackend', angular.mock.e2e.$httpBackendDecorator);

@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    InventoryController: function(scope,webStorage, routeParams, location,$modal, resourceFactory, paginatorService,PermissionService) {
+    InventoryController: function(scope,webStorage, routeParams, location,$modal, resourceFactory, paginatorService,PermissionService,route) {
         scope.items = [];
         scope.grn = [];
         scope.itemdetails = [];
@@ -239,13 +239,50 @@
 					              };
 					              
 					              
-					          };		
-        
+					          };
+					          
+					          /**
+					           * popup for edit supplier
+					           * */
+					          scope.editSupplier= function(id){
+						      	  scope.errorStatus=[];
+						      	  scope.errorDetails=[];
+						      	  scope.supplierId=id;
+						        	  $modal.open({
+						                templateUrl: 'editsuppliers.html',
+						                controller:editSupplierController ,
+						                resolve:{}
+						            });
+						        };
+						        var editSupplierController=function($scope,$modalInstance){
+							      	  
+						        	$scope.formData = {}; 
+						            $scope.statusData=[];
+						            resourceFactory.supplierResource.get({'id': scope.supplierId},function(data) {
+						                $scope.formData= data[0];
+						               
+						            });
+						            
+						         	$scope.accept = function(){
+						         		$scope.flag=true;
+						         		delete $scope.formData.id;
+						         		resourceFactory.supplierResource.update({'id': scope.supplierId},$scope.formData,function(data){ 
+						                  route.reload();
+						                  webStorage.add("callingTab", {someString: "supplier" });
+						                  $modalInstance.close('delete');
+						                 },function(errData){
+						                  $scope.flag = false;
+						                   });
+						         	};  
+						    		$scope.reject = function(){
+						    			$modalInstance.dismiss('cancel');
+						    		};
+						        };
         
        
     }
   });
-  mifosX.ng.application.controller('InventoryController', ['$scope','webStorage', '$routeParams', '$location','$modal', 'ResourceFactory','PaginatorService','PermissionService', mifosX.controllers.InventoryController]).run(function($log) {
+  mifosX.ng.application.controller('InventoryController', ['$scope','webStorage', '$routeParams', '$location','$modal', 'ResourceFactory','PaginatorService','PermissionService','$route', mifosX.controllers.InventoryController]).run(function($log) {
     $log.info("InventoryController initialized");
   });
 }(mifosX.controllers || {}));

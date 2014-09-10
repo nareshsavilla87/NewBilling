@@ -239,8 +239,10 @@
 				};*/
 			};
 				  		
-		// edit popup
-				  		
+		/**
+		 *  edit popup
+		 *  
+		 */
 				  		scope.edit= function(id){
 				      	  scope.errorStatus=[];
 				      	  scope.errorDetails=[];

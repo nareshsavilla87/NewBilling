@@ -1,0 +1,39 @@
+      <div>
+        <ul class="breadcrumb">
+          <li><a href="#/inventory">{{'link.admin.inventory' | translate}}</a> <span class="divider">/</span></li>
+          <li class="active">{{'label.editsupplier' | translate}}</li>
+        </ul>
+      </div>
+      <form class="form-horizontal well" ng-controller="EditSupplierController" ng-submit="submit()">
+       <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}&nbsp;<span class="required">*</span></label>
+	    </div>
+        <fieldset>
+          <legend>Edit Supplier</legend>
+
+          <div class="control-group">
+            <label class="control-label" for="supplierCode">{{ 'label.supplier.code' | translate }}&nbsp;<span class="required">*</span></label>
+            <div class="controls">
+              <input type="text" id="supplierCode" ng-model="formData.supplierCode">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="supplierDescription">{{ 'label.supplier.description' | translate }}&nbsp;<span class="required">*</span></label>
+            <div class="controls">
+              <input type="text" id="supplierDescription" ng-model="formData.supplierDescription">
+            </div>
+          </div>
+           <div class="control-group">
+			<label class="control-label" for="supplierAddress">{{'label.supplier.address' | translate}}&nbsp;<span class="required">*</span></label>
+			<div class="controls">
+				<textarea rows="2" cols="2" ng-model="formData.supplierAddress"></textarea>
+			</div>
+		</div>   
+		  <div class="offset3">
+            <a href="#/inventory"><button id="cancel"  type="reset" class="btn" ng-click="reset123()">{{'button.cancel'| translate}}</button></a>
+            <button id="submit"  type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+          </div>  
+        </fieldset>
+      </form>

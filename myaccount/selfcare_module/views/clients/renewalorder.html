@@ -1,0 +1,128 @@
+<div ng-controller="RenewalOrderController">
+<br/>
+<h2 style="color:#000000;">{{'link.renewal.order'|translate}}</h2>
+<div ng-show="isOrderPage">
+	<span class="animated wobble" style="margin-left:250px;">{{'header.package.selection'|translate}}</span>
+	<span style="margin-left:240px;">{{'header.payment'|translate}}</span><br/>
+	<img class="animated wobble" style="margin-left:280px;" alt="{{'header.package.selection'|translate}}" src="./selfcare_module/images/Subscribe.jpg" width="60px;">
+	<img style="margin-left:280px;" alt="{{'header.payment'|translate}}" src="./selfcare_module/images/Payment.jpg" width="60px;"><br/>
+	<img class="animated pulse" style="margin-left:290px;margin-top:-28px" alt="ok" src="./selfcare_module/images/checkbox.png" width="40px;">
+</div>
+<div ng-show="isPaymentPage">
+	<span style="margin-left:250px;">{{'header.package.selection'|translate}}</span>
+	<span class="animated wobble" style="margin-left:240px;">{{'header.payment'|translate}}</span><br/>
+	<img style="margin-left:280px;" alt="{{'header.package.selection'|translate}}" src="./selfcare_module/images/Subscribe.jpg" width="60px;">
+	<img class="animated wobble" style="margin-left:280px;" alt="{{'header.payment'|translate}}" src="./selfcare_module/images/Payment.jpg" width="60px;"><br/>
+	<img class="animated pulse" style="margin-left:630px;margin-top:-28px" alt="ok" src="./selfcare_module/images/checkbox.png" width="40px;">
+</div>
+<div ng-show="isRedirectToDalpay">
+<div class="alert alert-info animated pulse" role="alert">
+	<img style="margin-left:400px;" alt="Loading.." ng-src="./selfcare_module/images/loader_circle.gif" width="20px"/>
+         <strong>{{'title.redirecting.dalpay'|translate}}</strong>
+		</div>
+</div>
+      <div ng-show="isOrderPage">
+	        <div class="animated bounce">
+	       	<h3>{{'header.packages'|translate}}</h3>
+	      		<div  style="margin-left:50px;">
+		      <tabset  type="pills">
+			    <tab heading="{{plansData.planCode}}">
+			    <div ng-repeat="contractData in plansData.pricingData track by $index" >
+			    	<div class="cust-body animated fadeInUp">
+			    		<span style="color:#0088cc;font-size:2.5em;">{{contractData.duration}}</span>
+			    		<span class="pull-right">
+			    			<sup class="sup animated pulse">{{'symbol.price'|translate}}</sup>
+			    			<span class="dollars animated pulse">{{contractData.price}}</span>
+			    			<a class="btn btn-primary cust-btn animated swing" 
+			    				  ng-click="selectedPLandAm(contractData.contractId,plan.planId,contractData.billingFrequency,contractData.price,contractData.planCode,contractData.duration)">{{'label.book.order'|translate}}</a>
+			    		</span>
+			    	 </div>
+			    </div>
+			    </tab>
+			  </tabset>
+		    </div> 
+		   </div>
+		   <div class="pull-left">
+		    <a id="cancel" href='#/vieworder/{{orderId}}/{{formData.clientId}}'><button type="reset" class="btn">{{'btn.cancel' | translate}}</button></a>
+		   </div>
+	   </div>
+	<form name="paymentBtnForm" novalidate="" class="form-horizontal well" ng-show="isPaymentPage">
+		<br>
+		 <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+		<fieldset class="animated bounce">
+			<h3 style="padding-left:50px;">{{'label.payment.page'|translate}}</h3>
+			<div class="row paddedleft" style="margin-left:200px;">
+			<table width="100%">
+				<tr>
+					<td width="30%"><strong>{{'header.package.name'|translate}}</strong></td>
+					<td width="70%" class="animated pulse" style="color:#0088cc;font-size:1.5em;">:&nbsp;{{formData.planName}}</td>
+				</tr>
+				<tr>
+					<td><strong>{{'header.contract.period'|translate}}</strong></td>
+					<td class="animated pulse" style="color:#0088cc;font-size:1.5em;">:&nbsp;{{duration}}</td>
+				</tr>
+				<tr>
+					<td><strong>{{'header.price'|translate}}</strong></td>
+					<td class="animated pulse" style="color:#0088cc;font-size:1.5em;">:&nbsp;{{formData.planAmount}}</td>
+				</tr>
+				
+			</table>
+			</div><br/>
+			<table style="margin-left:50px;">
+	       		<tr>
+	       			<td>
+            			<div class="control-group">
+            				<div class="controls">
+            					<input type="radio" name="selectType" checked/>&nbsp;{{'label.dalpay'|translate}}
+            				</div>
+        				 </div>
+	         				 
+	       			</td>
+	       		</tr>
+	       	</table>
+	       
+			<div class="offset3">
+				<a ng-disabled="isRedirectToDalpay" ng-click="cancelPaymentFun()"  class="btn">{{'btn.cancel' | translate}}</a> 
+				<a href="{{paymentDalpayURL}}" ng-click="makePaymentFun()" 
+					ng-disabled="isRedirectToDalpay" class="btn btn-primary animated fadeInUp">{{'btn.make.payment' | translate}}</a>
+			</div> 
+		</fieldset>
+	</form>
+	<form name="isAmountZeroForm" novalidate="" class="form-horizontal well" ng-show="isAmountZero">
+		<br>
+		 <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+		<fieldset class="animated bounce">
+			<h3 style="padding-left:50px;">{{'label.subscription.page'|translate}}</h3>
+	 	 <div class="row paddedleft" style="margin-left:200px;">
+			<table width="100%">
+				<tr>
+					<td width="30%"><strong>{{'header.package.name'|translate}}</strong></td>
+					<td width="70%" class="animated pulse" style="color:#0088cc;font-size:1.5em;">:&nbsp;{{formData.planName}}</td>
+				</tr>
+				<tr>
+					<td><strong>{{'header.contract.period'|translate}}</strong></td>
+					<td class="animated pulse" style="color:#0088cc;font-size:1.5em;">:&nbsp;{{duration}}</td>
+				</tr>
+				<tr>
+					<td><strong>{{'header.price'|translate}}</strong></td>
+					<td class="animated pulse" style="color:#0088cc;font-size:1.5em;">:&nbsp;{{formData.planAmount}}</td>
+				</tr>
+				
+			</table>
+			</div><br/>
+	       <div class="offset3">
+				<a ng-click="cancelPaymentFun()"  class="btn">{{'btn.cancel' | translate}}</a> 
+				<a ng-click="finishBtnFun()" class="btn btn-primary animated fadeInUp">{{'btn.subscribe' | translate}}</a>
+			</div> 
+			 
+		</fieldset>
+	</form>
+</div>

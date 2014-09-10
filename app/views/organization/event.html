@@ -17,7 +17,8 @@
 			<tr class="graybg">
 			    <th>{{'label.event.id' | translate}}</th>
 				<th>{{'label.event.eventname' | translate}}</th>
-				<th>{{'label.event.eventdescription' | translate}}</th>				
+				<th>{{'label.event.eventdescription' | translate}}</th>	
+				<th>Event Category</th>			
 				<th>{{ 'label.event.status' | translate }}</th>
 			</tr>
 		</thead>
@@ -25,7 +26,8 @@
 			<tr class="pointer-main" ng-repeat="event in events | filter:filterText">
 			    <td class="pointer" data-ng-click="routeTo(event.id)">{{event.id}}</td>
 				<td class="pointer" data-ng-click="routeTo(event.id)">{{event.eventName}}</td>
-				<td class="pointer" data-ng-click="routeTo(event.id)">{{event.eventDescription}}</td>				
+				<td class="pointer" data-ng-click="routeTo(event.id)">{{event.eventDescription}}</td>	
+				<td class="pointer" data-ng-click="routeTo(event.id)">{{event.eventCategory}}</td>			
 				<td class="pointer" data-ng-click="routeTo(event.id)">{{event.status}}</td>
 			</tr>
 		</tbody>

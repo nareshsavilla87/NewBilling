@@ -9,10 +9,15 @@
    		   	};
    		   
            if(PermissionService.showMenu('READ_CODE')){
-        	   /*resourceFactory.codeResources.getAllCodes(function(data){
-        		   scope.codes = data;
-        	   });*/
-        	   scope.codes = paginatorService.paginate(scope.codesFetchFunction, 14);
+        	   resourceFactory.codeResources.getAllCodes(function(data){
+        		   scope.codes = data.pageItems;
+        		   
+        	   });
+        	   /**
+        	    * This commented line used for pagination
+        	    * If you need uncomment it
+        	    * */
+        	   /*scope.codes = paginatorService.paginate(scope.codesFetchFunction, 14);*/
            }
            
             scope.routeTo = function(id){

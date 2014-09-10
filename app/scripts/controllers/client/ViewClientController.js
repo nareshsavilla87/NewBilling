@@ -33,7 +33,7 @@
  			  webStorage.remove('callingTab');
  		  }
  		  else if(scope.displayTab == "documents"){
-  			  scope.documentsTab = true;
+  			  scope.identitiesTab = true;
  			  webStorage.remove('callingTab');
  		  }
  		  else if(scope.displayTab == "Tickets"){
@@ -57,6 +57,12 @@
  			scope.eventsaleC="";
  			scope.eventorderC="active";
  			webStorage.remove('callingTab');
+ 		  }else if(scope.displayTab == "creditCardDetails"){
+ 			  scope.identitiesTab = true;
+  			  webStorage.remove('callingTab');
+ 		  }else if(scope.displayTab == "ACHDetailsTab"){
+ 			  scope.identitiesTab = true;
+  			  webStorage.remove('callingTab');
  		  }else
  		  {
  			  webStorage.remove('callingTab');
@@ -433,6 +439,31 @@
         }
         scope.getClientIdentityDocuments = function () {
         	
+        	scope.indentitiesSubTab = "active";
+        	scope.documnetsUploadsTab = "";
+        	scope.creditCardDetailsTab = "";
+        	scope.ACHDetailsTab = "";
+        	
+        	if(scope.displayTab == "documents"){
+        		scope.indentitiesSubTab = "";
+            	scope.documnetsUploadsTab = "active";
+            	scope.creditCardDetailsTab = "";
+            	scope.ACHDetailsTab = "";
+            	scope.displayTab = "";
+        		
+        	}else if(scope.displayTab == "creditCardDetails"){
+        		scope.indentitiesSubTab = "";
+            	scope.documnetsUploadsTab = "";
+            	scope.creditCardDetailsTab = "active";
+            	scope.ACHDetailsTab = "";
+            	scope.displayTab = "";
+        	}else if(scope.displayTab == "ACHDetailsTab"){
+        		scope.indentitiesSubTab = "";
+            	scope.documnetsUploadsTab = "";
+            	scope.creditCardDetailsTab = "";
+            	scope.ACHDetailsTab = "active";
+            	scope.displayTab = "";
+        	}
          //  console.log(scope.taxExemption);
         	 if(scope.taxExemption=='N'){
         	
@@ -485,14 +516,14 @@
               }
           });
           
-          //documents details
+         /* //documents details
           if(PermissionService.showMenu('READ_DOCUMENT')){
       		resourceFactory.clientDocumentsResource.getAllClientDocuments({clientId: routeParams.id} , function(data) {
       				scope.clientdocuments = data;
       		});
-      	}    
+      	}    */
           
-          //credit card details
+          /*//credit card details
           resourceFactory.creditCardSaveResource.get({clientId: routeParams.id} , function(data1) {
 
               var key  = mifosX.models.encrptionKey;
@@ -543,7 +574,7 @@
 
                   }
               }
-            });
+            });*/
           //parentClient 
            resourceFactory.clientParentResource.get({clientId:routeParams.id},function(data) {
         	  scope.parent = [];
@@ -552,6 +583,167 @@
           });
           
         };
+        
+        //identities tab fun
+        scope.indentitiesTabFun = function(){
+        	
+        	scope.indentitiesSubTab = "active";
+        	scope.documnetsUploadsTab = "";
+        	scope.creditCardDetailsTab = "";
+        	scope.ACHDetailsTab = "";
+        	
+        	resourceFactory.clientResource.getAllClientDocuments({clientId: routeParams.id, anotherresource: 'identifiers'} , function(data) {
+                scope.identitydocuments = data;
+                for(var i = 0; i<scope.identitydocuments.length; i++) {
+                  resourceFactory.clientIdentifierResource.get({clientIdentityId: scope.identitydocuments[i].id} , function(data) {
+                    for(var j = 0; j<scope.identitydocuments.length; j++) {
+                       if(data.length > 0 && scope.identitydocuments[j].id == data[0].parentEntityId)
+                        {
+                          scope.identitydocuments[j].documents = data;
+                        }
+                    }
+                  });
+                }
+            });
+            
+           
+        }
+        
+        scope.documnetsUploadsTabFun = function(){
+        	scope.indentitiesSubTab = "";
+        	scope.documnetsUploadsTab = "active";
+        	scope.creditCardDetailsTab = "";
+        	scope.ACHDetailsTab = "";
+        	
+        	 //documents details
+            if(PermissionService.showMenu('READ_DOCUMENT')){
+        		resourceFactory.clientDocumentsResource.getAllClientDocuments({clientId: routeParams.id} , function(data) {
+        				scope.clientdocuments = data;
+        		});
+        	};  
+        }
+        
+        scope.creditCardDetailsTabFun = function(){
+        	scope.indentitiesSubTab = "";
+        	scope.documnetsUploadsTab = "";
+        	scope.creditCardDetailsTab = "active";
+        	scope.ACHDetailsTab = "";
+        	
+        	//credit card details
+            resourceFactory.creditCardSaveResource.get({clientId: routeParams.id} , function(data1) {
+
+                var key  = mifosX.models.encrptionKey;
+                scope.clientcarddetails = data1;
+                for ( var i in scope.clientcarddetails) {	
+
+                    if(scope.clientcarddetails[i].type=='CreditCard'){
+                  	  
+  				        var decrypted1 = CryptoJS.AES.decrypt(scope.clientcarddetails[i].cardNumber, key);
+  				         var cardNum = decrypted1.toString(CryptoJS.enc.Utf8);
+  				          var stars = "";
+  				         for (var j in cardNum){
+  				        	 if(j>=0&&j<(cardNum.length)-4){
+  				        		 stars += "*";
+  				        	 };
+  				         }
+  				         cardNum = stars+cardNum.substr(cardNum.length-4,cardNum.length-1);
+  				         scope.clientcarddetails[i].cardNumber = cardNum;
+  				        var decrypted2 = CryptoJS.AES.decrypt(scope.clientcarddetails[i].cardExpiryDate,  key);
+  				        scope.clientcarddetails[i].cardExpiryDate = decrypted2.toString(CryptoJS.enc.Utf8);
+  				        
+                    }else if(scope.clientcarddetails[i].type=='ACH'){
+                	        
+  				        var decrypted1 = CryptoJS.AES.decrypt(scope.clientcarddetails[i].routingNumber,  key);
+  				        var routingNumber = decrypted1.toString(CryptoJS.enc.Utf8);
+  				          var stars = "";
+  				         for (var j in routingNumber){
+  				        	 if(j>=0&&j<(routingNumber.length)-4){
+  				        		 stars += "*";
+  				        	 };
+  				         }
+  				         routingNumber = stars+routingNumber.substr(routingNumber.length-4,routingNumber.length-1);
+  				         scope.clientcarddetails[i].routingNumber = routingNumber;
+
+  				        var decrypted2 = CryptoJS.AES.decrypt(scope.clientcarddetails[i].bankAccountNumber,  key);
+  				        var bankAccountNumber = decrypted2.toString(CryptoJS.enc.Utf8);
+  				          var stars = "";
+  				         for (var j in bankAccountNumber){
+  				        	 if(j>=0&&j<(bankAccountNumber.length)-4){
+  				        		 stars += "*";
+  				        	 };
+  				         }
+  				         bankAccountNumber = stars+bankAccountNumber.substr(bankAccountNumber.length-4,bankAccountNumber.length-1);
+  				         scope.clientcarddetails[i].bankAccountNumber = bankAccountNumber;
+  				         
+  				         var decrypted3 = CryptoJS.AES.decrypt(scope.clientcarddetails[i].bankName,  key);
+  					        scope.clientcarddetails[i].bankName = decrypted3.toString(CryptoJS.enc.Utf8);
+
+                    }
+                }
+              });
+        }
+        
+        scope.ACHDetailsTabFun = function(){
+        	scope.indentitiesSubTab = "";
+        	scope.documnetsUploadsTab = "";
+        	scope.creditCardDetailsTab = "";
+        	scope.ACHDetailsTab = "active";
+        	
+        	//credit card details
+            resourceFactory.creditCardSaveResource.get({clientId: routeParams.id} , function(data1) {
+
+                var key  = mifosX.models.encrptionKey;
+                scope.clientcarddetails = data1;
+                for ( var i in scope.clientcarddetails) {	
+
+                    if(scope.clientcarddetails[i].type=='CreditCard'){
+                  	  
+  				        var decrypted1 = CryptoJS.AES.decrypt(scope.clientcarddetails[i].cardNumber, key);
+  				         var cardNum = decrypted1.toString(CryptoJS.enc.Utf8);
+  				          var stars = "";
+  				         for (var j in cardNum){
+  				        	 if(j>=0&&j<(cardNum.length)-4){
+  				        		 stars += "*";
+  				        	 };
+  				         }
+  				         cardNum = stars+cardNum.substr(cardNum.length-4,cardNum.length-1);
+  				         scope.clientcarddetails[i].cardNumber = cardNum;
+  				        var decrypted2 = CryptoJS.AES.decrypt(scope.clientcarddetails[i].cardExpiryDate,  key);
+  				        scope.clientcarddetails[i].cardExpiryDate = decrypted2.toString(CryptoJS.enc.Utf8);
+  				        
+                    }else if(scope.clientcarddetails[i].type=='ACH'){
+                	        
+  				        var decrypted1 = CryptoJS.AES.decrypt(scope.clientcarddetails[i].routingNumber,  key);
+  				        var routingNumber = decrypted1.toString(CryptoJS.enc.Utf8);
+  				          var stars = "";
+  				         for (var j in routingNumber){
+  				        	 if(j>=0&&j<(routingNumber.length)-4){
+  				        		 stars += "*";
+  				        	 };
+  				         }
+  				         routingNumber = stars+routingNumber.substr(routingNumber.length-4,routingNumber.length-1);
+  				         scope.clientcarddetails[i].routingNumber = routingNumber;
+
+  				        var decrypted2 = CryptoJS.AES.decrypt(scope.clientcarddetails[i].bankAccountNumber,  key);
+  				        var bankAccountNumber = decrypted2.toString(CryptoJS.enc.Utf8);
+  				          var stars = "";
+  				         for (var j in bankAccountNumber){
+  				        	 if(j>=0&&j<(bankAccountNumber.length)-4){
+  				        		 stars += "*";
+  				        	 };
+  				         }
+  				         bankAccountNumber = stars+bankAccountNumber.substr(bankAccountNumber.length-4,bankAccountNumber.length-1);
+  				         scope.clientcarddetails[i].bankAccountNumber = bankAccountNumber;
+  				         
+  				         var decrypted3 = CryptoJS.AES.decrypt(scope.clientcarddetails[i].bankName,  key);
+  					        scope.clientcarddetails[i].bankName = decrypted3.toString(CryptoJS.enc.Utf8);
+
+                    }
+                }
+              });
+        }
+        
+        
 //leftside orderMenu function
      /*   scope.selectedOrder = function(status){
         	if(status="ACTIVE")
@@ -1137,6 +1329,42 @@ var ApproveUnallocate = function ($scope, $modalInstance) {
                 $scope.cancelReconnect = function () {
                     $modalInstance.dismiss('cancel');
                 };
+            };
+           
+         var DownloadCSVFinancialDataController = function($scope,$modalInstance){
+				
+				var date = new Date(), y = date.getFullYear(), m = date.getMonth();
+				$scope.formData = {};
+				$scope.formData.downloadType ='csv';
+				$scope.start = {};
+				$scope.start.date = new Date(y, m, 1);
+				$scope.to = {};
+				$scope.to.date = new Date();
+				
+				$scope.accept = function(){
+					var fromDate = new Date($scope.start.date).getTime();
+					var toDate = new Date($scope.to.date).getTime();
+					var downloadType = $scope.formData.downloadType;
+					window.open($rootScope.hostUrl+ API_VERSION +'/financialTransactions/download/'+routeParams.id+'?downloadType='+downloadType+'&fromDate='+fromDate+'&toDate='+toDate+'&tenantIdentifier=default');
+					$modalInstance.close('delete');
+
+				};
+				
+				$scope.reject = function(){
+					$modalInstance.dismiss('cancel');
+				};
+				
+				
+			};
+            
+            //export financial csv 
+            scope.exportFinancialCSV = function(){
+            	
+            	$modal.open({
+                    templateUrl: 'downloadCSVFinancialData.html',
+                    controller: DownloadCSVFinancialDataController,
+                    resolve:{}
+                });
             };
         
     }

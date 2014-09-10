@@ -1,0 +1,304 @@
+<div ng-controller="ActivateUserController">
+<br/>
+<div class="row" ng-show="isRegPage">
+	<span style="margin-left:100px;" class="animated wobble">{{'header.registation'|translate}}</span>
+	<span style="margin-left:250px;">{{'header.package.selection'|translate}}</span>
+	<span style="margin-left:240px;">{{'header.payment'|translate}}</span><br/>
+	<img class="animated tada"style="margin-left:110px;" alt="{{'header.registation'|translate}}" src="./selfcare_module/images/registration.jpg" width="50px;">
+	<img style="margin-left:280px;" alt="{{'header.package.selection'|translate}}" src="./selfcare_module/images/Subscribe.jpg" width="60px;">
+	<img style="margin-left:280px;" alt="{{'header.payment'|translate}}" src="./selfcare_module/images/Payment.jpg" width="60px;"><br/>
+	<img class="animated pulse" style="margin-left:110px;margin-top:-28px" alt="ok" src="./selfcare_module/images/checkbox.png" width="40px;">
+</div>
+<div class="row" ng-show="isOrderPage">
+	<span  style="margin-left:100px;">{{'header.registation'|translate}}</span>
+	<span class="animated wobble" style="margin-left:250px;">{{'header.package.selection'|translate}}</span>
+	<span style="margin-left:240px;">{{'header.payment'|translate}}</span><br/>
+	<img style="margin-left:110px;" alt="{{'header.registation'|translate}}" src="./selfcare_module/images/registration.jpg" width="50px;">
+	<img class="animated wobble" style="margin-left:280px;" alt="{{'header.package.selection'|translate}}" src="./selfcare_module/images/Subscribe.jpg" width="60px;">
+	<img style="margin-left:280px;" alt="{{'header.payment'|translate}}" src="./selfcare_module/images/Payment.jpg" width="60px;"><br/>
+	<img class="animated pulse" style="margin-left:450px;margin-top:-28px" alt="ok" src="./selfcare_module/images/checkbox.png" width="40px;">
+</div>
+<div class="row" ng-show="isPaymentPage">
+	<span style="margin-left:100px;">{{'header.registation'|translate}}</span>
+	<span style="margin-left:250px;">{{'header.package.selection'|translate}}</span>
+	<span class="animated wobble" style="margin-left:240px;">{{'header.payment'|translate}}</span><br/>
+	<img style="margin-left:110px;" alt="{{'header.registation'|translate}}" src="./selfcare_module/images/registration.jpg" width="50px;">
+	<img style="margin-left:280px;" alt="{{'header.package.selection'|translate}}" src="./selfcare_module/images/Subscribe.jpg" width="60px;">
+	<img class="animated wobble" style="margin-left:280px;" alt="{{'header.payment'|translate}}" src="./selfcare_module/images/Payment.jpg" width="60px;"><br/>
+	<img class="animated pulse" style="margin-left:790px;margin-top:-28px" alt="ok" src="./selfcare_module/images/checkbox.png" width="40px;">
+</div>
+<div ng-show="isRedirectToDalpay">
+<div class="alert alert-info animated pulse" role="alert">
+	<img style="margin-left:400px;" alt="Loading.." ng-src="./selfcare_module/images/loader_circle.gif" width="20px"/>
+         <strong>{{'title.redirecting.dalpay'|translate}}</strong>
+		</div>
+</div>
+ 		<form name="activeForm" novalidate="" class="form-horizontal">
+ 			<div class="control-group" ng-show="isActive==true" style="margin-top:50px;">
+				 <div class="alert alert-success animated tada" role="alert" >
+		         	<strong>{{'title.account.active'|translate}}
+							 <a ng-click="registrationLinkFun()" class="alert-link" style="color:#000000;">{{'link.register'|translate}}</a></strong>
+				</div>
+			</div>
+			<div class="control-group" ng-show="isAlreadyActive==true" style="margin-top:50px;">
+				<div class="alert alert-info animated tada" role="alert" >
+		         	<strong>{{'title.account.activated.signin'|translate}} 
+							 <a ng-click="goToSignInPageFun()" class="alert-link" style="color:#000000;">{{'label.signin'|translate}}</a></strong>
+				</div>
+			</div>
+		</form>
+		<form name="regSuccessForm" novalidate="" class="form-horizontal well" ng-show="isRegPage">
+			<br>
+		 	<div class="error" ng-show="errorStatus || errorDetails">
+				<label>{{'label.contract.error' | translate}}</label>
+				<label ng-show="errorStatus">{{errorStatus}}</label>
+				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		    </div>
+		 <fieldset class="animated bounce" >
+			<h3 >{{'label.registration.page' | translate}}</h3>
+			<table >
+	       		<tr>
+	       			<td>
+            			<div class="control-group">
+            				<label class="control-label">{{'label.customer.name' | translate}}&nbsp;<span class="required">*</span></label>
+            				<div class="controls">
+            					<input ng-autofocus="true" name="fullName" type="text" data-ng-model="formData.fullName" placeholder= "{{'label.customer.name' | translate}}" ng-pattern="/^[a-zA-Z0-9\-\&\s]+$/" required ng-minlength=3 late-Validate><br/>
+            					<span  ng-show="regSuccessForm.fullName.$invalid">
+				                	<small class="error" ng-show="regSuccessForm.fullName.$error.pattern">{{'form.error.alphanumeric'|translate}}</small>
+				                    <small class="error" ng-show="regSuccessForm.fullName.$error.minlength && !regSuccessForm.fullName.$error.req">{{'form.error.name.characters.atleast'|translate}}</small>
+				                </span>
+            				</div>
+        				 </div>
+	         				 
+	       			</td>
+	       			<td>
+            			<div class="control-group">
+            				<label class="control-label">{{'label.email' | translate}}&nbsp;<span class="required">*</span></label>
+            				<div class="controls">
+            					<input name="email" type="text" data-ng-model="existedEmail" placeholder= "{{'label.email' | translate}}" ng-disabled="true" required late-Validate><br/>
+            				</div>
+        				 </div>
+	         				 
+	       			</td>
+	       		</tr>
+	       		<tr>
+	       			<td>
+            			<div class="control-group">
+            				<label class="control-label">{{'label.telephone.number' | translate}}&nbsp;<span class="required">*</span></label>
+            				<div class="controls">
+            					<input name="telePhone" type="text" data-ng-model="formData.homePhoneNumber" placeholder= "{{'label.telephone.number' | translate}}" ng-minlength="7" ng-maxlength="15"
+            							ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/" required  late-Validate/><br/>
+            					 <span ng-show="regSuccessForm.telePhone.$dirty && regSuccessForm.telePhone.$invalid">
+				        			<small class="error" ng-show="regSuccessForm.telePhone.$error.pattern">{{'form.error.number'|translate}}</small>
+				        			<small class="error" ng-show="regSuccessForm.telePhone.$error.minlength">{{'form.error.number.digits.atleast'|translate}}</small>
+				        			<small class="error" ng-show="regSuccessForm.telePhone.$error.maxlength">{{'form.error.number.digits.atleast'|translate}}</small>
+				    			</span>
+            				</div>
+        				 </div>
+	         				 
+	       			</td>
+	       			<td>
+            			<div class="control-group">
+            				<label class="control-label">{{'label.mobilephone' | translate}}&nbsp;<span class="required">*</span></label>
+            				<div class="controls">
+            					<input name="phone" type="text" data-ng-model="formData.mobileNo" placeholder= "{{'label.mobilephone' | translate}}" ng-minlength="7" ng-maxlength="15"
+            							ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/" required  late-Validate/><br/>
+            					 <span ng-show="regSuccessForm.phone.$dirty && regSuccessForm.phone.$invalid">
+				        			<small class="error" ng-show="regSuccessForm.phone.$error.pattern">{{'form.error.number'|translate}}</small>
+				        			<small class="error" ng-show="regSuccessForm.phone.$error.minlength">{{'form.error.number.digits.atleast'|translate}}</small>
+				        			<small class="error" ng-show="regSuccessForm.phone.$error.maxlength">{{'form.error.number.digits.atleast'|translate}}</small>
+				    			</span>
+            				</div>
+        				 </div>
+	       			</td>
+	       		</tr>
+	       		<tr>
+	       			<td>
+            			<div class="control-group">
+                            <label class="control-label">{{ 'label.nationalid' | translate }}&nbsp;<span class="required">*</span></label>
+                             <div class="controls">
+    	                        <!-- <input type="text" datepicker-pop="ddMMyy" ng-model="start.date" is-open="opened" min="minDate" max="maxDate" 
+                          			   date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;width:60px;"  readonly/>
+    	                        <strong>-</strong> -->
+    	                        <input type="text" ng-model="formData.nationalId" name="nationalId" placeholder= "{{ 'placeholder.enter.nationalid' | translate }}" maxlength="11"
+    	                        ng-pattern="/(^(((0[1-9]|[12][0-8])(0[1-9]|1[012]))|((29|30|31)(0[13578]|1[02]))|((29|30)(0[4,6,9]|11)))\d\d-\d\d\d\d$)|(^2902(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)-\d\d\d\d$)/" required late-Validate/><br/>
+    	                        <span ng-show="regSuccessForm.nationalId.$dirty && regSuccessForm.nationalId.$invalid">
+				        			<small class="error" ng-show="regSuccessForm.nationalId.$error.pattern">{{'form.error.number'|translate}}</small>
+				    			</span>
+                             </div>
+                        </div>	
+	         				 
+	       			</td>
+	       			<td>
+            			<div class="control-group">
+                            <label class="control-label" for="address">{{ 'label.home.address' | translate }}&nbsp;<span class="required">*</span></label>
+                             <div class="controls">
+    	                        <input type="text" ng-model="formData.address" name="address" placeholder= "{{ 'placeholder.enter.address' | translate }}" required late-Validate/>
+                             </div>
+                        </div>	
+	         				 
+	       			</td>
+	       		</tr>
+	       		<tr>
+	       			<td>
+            			<div class="control-group">
+             				 <label class="control-label" for="city">{{'label.city' | translate}}&nbsp;<span class="required">*</span></label>
+				              <div class="controls">
+				              <select ng-model="formData.city"  ng-options="city as city for city in cities" 
+				              		   ng-change="getStateAndCountry(formData.city)" required>
+				              		   <option value="">--{{'label.select'|translate}}--</option>
+				              </select>
+				              </div>
+           				 </div>
+	       			</td>
+	       			<td>
+            			<div class="control-group">
+                            <label class="control-label" for="zipcode">{{ 'label.home.postcode' | translate }}&nbsp;<span class="required">*</span></label>
+                             <div class="controls">
+    	                        <input type="text" ng-model="formData.zipcode" name="zipcode" placeholder= "{{ 'placeholder.enter.postcode' | translate }}" ng-pattern="/^[0-9]+$/" maxlength="3" required late-Validate/><br/>
+    	                        <span ng-show="regSuccessForm.zipcode.$dirty && regSuccessForm.zipcode.$invalid">
+				        			<small class="error" ng-show="regSuccessForm.zipcode.$error.pattern">{{'form.error.number'|translate}}</small>
+				    			</span>
+                             </div>
+                        </div>	
+	         				 
+	       			</td>
+	       		</tr>
+	       		<tr>
+	       			<td>
+            			<div class="control-group" ng-show="isDeviceEnabled==true">
+                            <label class="control-label" for="serialNumber">{{ 'label.device' | translate }}&nbsp;<span class="required">*</span></label>
+                             <div class="controls">
+    	                        <input type="text" ng-model="formData.deviceNo" name="serialNumber" placeholder= "{{ 'placeholder.enter.device' | translate }}"/>
+                             </div>
+                        </div>	
+	         				 
+	       			</td>
+	       		</tr>
+	       	</table>
+	       	<div class="offset3">
+	       		 <button ng-click="nextBtnFun()" class="btn btn-primary pull-right" 
+				 		ng-disabled="!regSuccessForm.$valid">{{'btn.next' | translate}}<i class="icon-circle-arrow-right icon-white"></i></button>
+	        </div>
+	       </fieldset>
+	</form>
+	         <div ng-show="isOrderPage">
+	        <div class="animated bounce">
+	       	<h3>{{'header.packages'|translate}}</h3>
+	      		<div  style="margin-left:50px;">
+		      <tabset horizontal="true" type="pills">
+			    <tab heading="{{plan.planCode}}" ng-repeat="plan in plansData">
+			      <div ng-repeat="contractData in plan.pricingData track by $index" >
+			    	<div class="cust-body animated fadeInUp">
+			    		<span style="color:#0088cc;font-size:2.5em;">{{contractData.duration}}</span>
+			    		<span class="pull-right">
+			    			<sup class="sup animated pulse">{{'symbol.price'|translate}}</sup>
+			    			<span class="dollars animated pulse">{{contractData.price}}</span>
+			    			<a class="btn btn-primary cust-btn animated swing" 
+			    				  ng-click="selectedPLandAm(contractData.contractId,plan.planId,contractData.billingFrequency,contractData.price,contractData.planCode,contractData.duration)">{{'label.book.order'|translate}}</a>
+			    		</span>
+			    	 </div>
+			       </div>
+			    	<!-- <table class="table" ng-repeat="contractData in plan.pricingData track by $index">
+			    		<tbody>
+			    		  <tr>
+			    			 <td class="animated pulse" style="border-bottom:1px solid #dddddd;border-top:0px;padding-top:30px;">
+			    				 <span style="color:#0088cc;font-size:2.5em;">{{contractData.duration}}</span>
+			    			</td>
+			    			<td style="border-bottom:1px solid #dddddd;border-top:0px;">
+			    				<a class="btn btn-primary cust-btn animated swing" 
+			    				  ng-click="selectedPLandAm(contractData.contractId,plan.planId,contractData.billingFrequency,contractData.price,contractData.planCode,contractData.duration)">Book Order</a>
+			    				<span class="dollars animated pulse">{{contractData.price}}</span>
+			    				<span class="sup animated pulse">$</span>
+			    			</td>
+			    		  </tr>
+			    		</tbody>
+			    	</table> -->
+			    </tab>
+			  </tabset>
+		    </div> 
+		   </div><br/>
+	       <button ng-click="previousBtnFun()" class="btn btn-primary pull-left"><i class="icon-circle-arrow-left icon-white"></i>{{'btn.previous' | translate}}</button>
+	   </div>
+	<form name="paymentBtnForm" novalidate="" class="form-horizontal well" ng-show="isPaymentPage">
+		<br>
+		 <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+		<fieldset class="animated bounce">
+			<h3 style="padding-left:50px;">{{'label.payment.page'|translate}}</h3>
+	 	 <div class="row paddedleft" style="margin-left:200px;">
+			<table width="100%">
+				<tr>
+					<td width="30%"><strong>{{'header.package.name'|translate}}</strong></td>
+					<td width="70%" class="animated pulse" style="color:#0088cc;font-size:1.5em;">:&nbsp;{{formData.planName}}</td>
+				</tr>
+				<tr>
+					<td><strong>{{'header.contract.period'|translate}}</strong></td>
+					<td class="animated pulse" style="color:#0088cc;font-size:1.5em;">:&nbsp;{{duration}}</td>
+				</tr>
+				<tr>
+					<td><strong>{{'header.price'|translate}}</strong></td>
+					<td class="animated pulse" style="color:#0088cc;font-size:1.5em;">:&nbsp;{{formData.planAmount}}</td>
+				</tr>
+				
+			</table>
+			</div><br/>
+			<table style="margin-left:50px;">
+	       		<tr>
+	       			<td>
+            			<div class="control-group">
+            				<div class="controls">
+            					<input type="radio" name="selectType" checked/>&nbsp;{{'label.dalpay'|translate}}
+            				</div>
+        				 </div>
+	         				 
+	       			</td>
+	       		</tr>
+	       	</table>
+	       
+	       <div class="offset3">
+				<a ng-disabled="isRedirectToDalpay" ng-click="cancelPaymentFun()"  class="btn">{{'btn.cancel' | translate}}</a> 
+				<a href="{{paymentDalpayURL}}" ng-click="makePaymentFun()" 
+					ng-disabled="isRedirectToDalpay" class="btn btn-primary animated fadeInUp">{{'btn.make.payment' | translate}}</a>
+				
+			</div> 
+			 
+		</fieldset>
+	</form>
+	<form name="isAmountZeroForm" novalidate="" class="form-horizontal well" ng-show="isAmountZero">
+		<br>
+		 <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+		<fieldset class="animated bounce">
+			<h3 style="padding-left:50px;">{{'label.subscription.page'|translate}}</h3>
+	 	 <div class="row paddedleft" style="margin-left:200px;">
+			<table width="100%">
+				<tr>
+					<td width="30%"><strong>{{'header.package.name'|translate}}</strong></td>
+					<td width="70%" class="animated pulse" style="color:#0088cc;font-size:1.5em;">:&nbsp;{{formData.planName}}</td>
+				</tr>
+				<tr>
+					<td><strong>{{'header.contract.period'|translate}}</strong></td>
+					<td class="animated pulse" style="color:#0088cc;font-size:1.5em;">:&nbsp;{{duration}}</td>
+				</tr>
+				<tr>
+					<td><strong>{{'header.price'|translate}}</strong></td>
+					<td class="animated pulse" style="color:#0088cc;font-size:1.5em;">:&nbsp;{{formData.planAmount}}</td>
+				</tr>
+				
+			</table>
+			</div><br/>
+	       <div class="offset3">
+				<a ng-click="cancelPaymentFun()"  class="btn">{{'btn.cancel' | translate}}</a> 
+				<a ng-click="finishBtnFun()" class="btn btn-primary animated fadeInUp">{{'btn.subscribe' | translate}}</a>
+			</div> 
+			 
+		</fieldset>
+	</form>
+</div>
