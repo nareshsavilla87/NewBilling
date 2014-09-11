@@ -4,7 +4,7 @@
 					module,
 					{
 						CreateEventController : function(scope,
-								resourceFactory, dateFilter,location) {
+								resourceFactory, dateFilter,location,routeParams) {
 
 							scope.eventStatus = [];
 							scope.chargeData = [];
@@ -15,26 +15,12 @@
 							scope.services = [];							
 							scope.selectedServices = [];
 							scope.date = {};
-					     
-							resourceFactory.eventTemplateResource.get(function(
-									data) {
-
-								scope.eventStatus = data.statusData;
-								scope.chargeData = data.chargeData;
-
-								scope.availableServices = data.mediaAsset;
-								scope.productmix = data;
-								scope.allowedProducts = data.mediaAsset;
-
-								scope.formData = {
-
-								};
-							});
-
+							
 							scope.restrict = function() {								
 								for ( var i in this.allowed) {																	
-									for ( var j in scope.availableServices) {																			
-										if (scope.availableServices[j].mediaId == this.allowed[i]) {											
+									for ( var j in scope.availableServices) {			
+									
+										if (scope.availableServices[j].mediaId == this.allowed) {											
 											var temp = {};
 											temp.id = this.allowed[i];
 											temp.name = scope.availableServices[j].mediaTitle;
@@ -61,7 +47,33 @@
 									}
 								}
 							};
+							
+							resourceFactory.eventTemplateResource.get(function(
+									data) {
 
+								scope.eventStatus = data.statusData;
+								scope.chargeData = data.chargeData;
+
+								scope.availableServices = data.mediaAsset;
+								scope.productmix = data;
+								scope.allowedProducts = data.mediaAsset;
+								scope.eventCategeorydatas = data.eventCategeorydata;
+								scope.formData = {
+
+								};
+								/**
+								 * This condition call when we come from Media 
+								 * */
+								if(routeParams.from=='MEDIA'){
+									scope.formData.eventDescription=routeParams.mediaTittle;
+									scope.allowed=routeParams.mediaId;
+									scope.restrict();
+									
+								}
+							});
+							
+							
+							
 							scope.submit = function() {
 								this.formData.locale = 'en';
 								this.formData.dateFormat = 'dd MMMM yyyy';
@@ -96,7 +108,7 @@
 					});
 	mifosX.ng.application.controller(
 			'CreateEventController',
-			[ '$scope', 'ResourceFactory', 'dateFilter','$location',
+			[ '$scope', 'ResourceFactory', 'dateFilter','$location','$routeParams',
 					mifosX.controllers.CreateEventController ]).run(
 			function($log) {
 				$log.info("CreateEventController initialized");

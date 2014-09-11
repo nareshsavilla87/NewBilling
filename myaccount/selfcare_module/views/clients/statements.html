@@ -1,0 +1,50 @@
+<div ng-controller="StatementsController">
+	<div class="loading-widget-div" data-ng-show="blockUI">
+        <div id="circularG">
+            <div id="circularG_1" class="circularG">
+            </div>
+            <div id="circularG_2" class="circularG">
+            </div>
+            <div id="circularG_3" class="circularG">
+            </div>
+            <div id="circularG_4" class="circularG">
+            </div>
+            <div id="circularG_5" class="circularG">
+            </div>
+            <div id="circularG_6" class="circularG">
+            </div>
+            <div id="circularG_7" class="circularG">
+            </div>
+            <div id="circularG_8" class="circularG">
+            </div>
+        </div>
+
+      </div>
+	<div>
+	    <ul class="breadcrumb">
+	        <li class="active">{{'link.statements'|translate}}</li>
+	    </ul>
+    </div><br/>
+ 	<div class="row-fluid">
+		    <input ng-model="filterText" type="text" ng-autofocus="true" class="span marginbottom0px" placeholder="{{'placeholder.filter.statement'|translate}}">
+		
+		<table class="table">
+	        <thead>
+	             <tr class="graybg">
+	                <th>{{'table.header.statement.id'|translate}}</th>
+	                <th>{{'table.header.statement.billdate'|translate}}</th>
+	                <th>{{'table.header.statement.duedate'|translate}}</th>
+	                <th>{{'table.header.statement.amount'|translate}}</th>
+            	</tr>
+	        </thead>
+	        <tbody>
+	            <tr class="pointer-main" ng-repeat="statement in statementsData  | filter:filterText" >
+	                <td class="pointer">{{statement.id}}</td>
+	                <td class="pointer">{{statement.billDate | DateFormat}}</td>
+	                <td class="pointer">{{statement.dueDate | DateFormat}}</td>
+	                <td class="pointer">{{statement.amount}}</td>
+	            </tr>
+	        </tbody>
+	    </table>
+	</div>
+</div>

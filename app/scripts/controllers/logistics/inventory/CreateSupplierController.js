@@ -3,13 +3,11 @@
     CreateSupplierController: function(scope,webStorage,resourceFactory, location) {
       
     	scope.formData = {};
-    	scope.reset123 = function(){
-            webStorage.add("callingTab", {someString: "supplier" });
-           };
-           
+    	
         scope.submit = function() {   
             resourceFactory.supplierResource.save(this.formData,function(data){
             		location.path('/inventory');
+            		webStorage.add("callingTab", {someString: "supplier" });
           });
         };
     }

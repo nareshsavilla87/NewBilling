@@ -45,11 +45,20 @@
 						</div>
 					</div>
 				</td>
-				<td width="50%">
+				<!-- <td width="50%">
 					<div class="control-group">
 						<label class="control-label" for="allowCancellation"> {{'label.active' | translate}}</label>
 						<div class="controls">
 							<input type="checkbox" id="allowCancellation" ng-model="formData.allowCancellation">
+						</div>
+					</div>
+				</td> -->
+				<td>
+					<div class="control-group">
+						<label class="control-label" for="eventEndDate">{{'label.event.enddate' | translate }}</label>
+						<div class="controls">
+							<!-- <input type="text" id="eventEndDate" ng-model="formData.eventEndDate"> -->
+							<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.eventEndDate" is-open="opened2" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
 						</div>
 					</div>
 				</td>
@@ -69,17 +78,17 @@
 				</td>
 				<td>
 					<div class="control-group">
-						<label class="control-label" for="eventEndDate">{{'label.event.enddate' | translate }}</label>
+						<label class="control-label" for="eventValidity"> {{'label.event.eventvalidity' | translate }}</label>
 						<div class="controls">
-							<!-- <input type="text" id="eventEndDate" ng-model="formData.eventEndDate"> -->
-							<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.eventEndDate" is-open="opened2" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
+							<!-- <input type="text" id="eventValidity" ng-model="formData.eventValidity"> -->
+							<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.eventValidity" is-open="opened2" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
 						</div>
 					</div>
 				</td>
 			</tr>
 
 			<tr>
-				<td width="50%">
+				<!-- <td width="50%">
 					<div class="control-group">
 						<label class="control-label" for="chargeCode"> {{'label.event.chargedata' | translate }}</label>
 						<div class="controls">
@@ -88,17 +97,15 @@
 								value="{{chargeData.chargeCode}}"></select>
 						</div>
 					</div>
-				</td>
+				</td> -->
 				<td>
-					<div class="control-group">
-						<label class="control-label" for="eventValidity"> {{'label.event.eventvalidity' | translate }}</label>
-						<div class="controls">
-							<!-- <input type="text" id="eventValidity" ng-model="formData.eventValidity"> -->
-							<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.eventValidity" is-open="opened2" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
-						</div>
-					</div>
+							<div class="control-group" >
+            				<label class="control-label" for="eventCategory">Event Category</label>
+            				<div class="controls">
+               					<select  id="eventcategory" ng-model="formData.eventCategory"   ng-options="eventCategeorydata.mCodeValue as eventCategeorydata.mCodeValue for eventCategeorydata in eventCategeorydatas" value="{{eventCategeorydata.id}}"></select>
+            				</div>
+          					</div>
 				</td>
-
 			</tr>
 		</table>
 

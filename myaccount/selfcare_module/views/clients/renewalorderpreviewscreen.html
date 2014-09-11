@@ -1,0 +1,33 @@
+<div ng-controller="RenewalOrderPreviewScreenController" >
+	<!-- div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	</div> -->
+	<div data-ng-show="blockUI">
+		<div class="alert alert-info animated pulse" role="alert">
+			<img style="margin-left:400px;" alt="Loading.." ng-src="./selfcare_module/images/loader_circle.gif" width="20px"/>
+         	<strong>{{'label.pleasewait'|translate}}</strong>
+		</div>
+        <!-- <div id="circularG">
+            <div id="circularG_1" class="circularG">
+            </div>
+            <div id="circularG_2" class="circularG">
+            </div>
+            <div id="circularG_3" class="circularG">
+            </div>
+            <div id="circularG_4" class="circularG">
+            </div>
+            <div id="circularG_5" class="circularG">
+            </div>
+            <div id="circularG_6" class="circularG">
+            </div>
+            <div id="circularG_7" class="circularG">
+            </div>
+            <div id="circularG_8" class="circularG">
+            </div>
+        </div> -->
+
+      </div>
+     
+</div>

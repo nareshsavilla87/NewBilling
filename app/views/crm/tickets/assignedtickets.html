@@ -26,22 +26,28 @@
 			<table class="table">
         	<thead>
             	<tr class="graybg">
-               		<th>Client Name</th>
-                	<th>Created on</th>
-                	<th>Category</th>
-                	<th>Priority</th>
-                	<th>Assigned To</th>
-                	<th>Status</th>
-                	<th>Time Elapsed</th>
+               		<th>{{'label.corporate'|translate}}</th>
+               		<th>{{'lable.ticket#'|translate}}</th>
+                	<th>{{'label.ticket.date'|translate}}</th>
+                	<th>{{'label.ticket.priority'|translate}}</th>
+                	<th>{{'label.ticket.category'|translate}}</th>
+                	<th>{{'label.createdBy'|translate}}</th>
+                	<th>{{'label.assignedto'|translate}}</th>
+                	<th>{{'label.closedby'|translate}}</th>
+                	<th>{{'label.ticket.status'|translate}}</th>
+                	<th>{{'label.timelapsed'|translate}}</th>
             	</tr>	
         	</thead>
         	<tbody>
             	<tr class="pointer-main" ng-repeat="ticket in openTickets.currentPageItems  | filter:filterText">      
-               		<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.clientName}}</td>  
+               		<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.clientName}}</td> 
+               		<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.id}}</td> 
                     <td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.ticketDate | DateFormat}}</td> 
-                 	<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.problemDescription}}</td>       
-                	<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.priority}}</td>
+                    <td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.priority}}</td>
+                 	<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.problemDescription}}</td>
+                 	<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.createUser}}</td>       
                     <td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.userName}}</td>
+                    <td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.closedByuser}}</td>
                 	<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.status}}</td>
                     <td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.timeElapsed}}</td>     
             	</tr>
@@ -65,22 +71,28 @@
 			<table class="table">
         	<thead>
             	<tr class="graybg">
-               		<th>Client Name</th>
-                	<th>Created on</th>
-                	<th>Category</th>
-                	<th>Priority</th>
-                	<th>Assigned To</th>
-                	<th>Status</th>
-                	<th>Time Elapsed</th>
+               		<th>{{'label.corporate'|translate}}</th>
+               		<th>{{'lable.ticket#'|translate}}</th>
+                	<th>{{'label.ticket.date'|translate}}</th>
+                	<th>{{'label.ticket.priority'|translate}}</th>
+                	<th>{{'label.ticket.category'|translate}}</th>
+                	<th>{{'label.createdBy'|translate}}</th>
+                	<th>{{'label.assignedto'|translate}}</th>
+                	<th>{{'label.closedby'|translate}}</th>
+                	<th>{{'label.ticket.status'|translate}}</th>
+                	<th>{{'label.timelapsed'|translate}}</th>
             	</tr>	
         	</thead>
         	<tbody>
             	<tr class="pointer-main" ng-repeat="ticket in openTickets.currentPageItems  | filter:filterText">      
-               		<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.clientName}}</td>  
+               		<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.clientName}}</td> 
+               		<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.id}}</td> 
                     <td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.ticketDate | DateFormat}}</td> 
-                 	<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.problemDescription}}</td>       
-                	<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.priority}}</td>
+                    <td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.priority}}</td>
+                 	<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.problemDescription}}</td>
+                 	<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.createUser}}</td>       
                     <td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.userName}}</td>
+                    <td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.closedByuser}}</td>
                 	<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.status}}</td>
                     <td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.timeElapsed}}</td>     
             	</tr>
@@ -104,22 +116,28 @@
 			<table class="table">
         	<thead>
             	<tr class="graybg">
-               		<th>Client Name</th>
-                	<th>Created on</th>
-                	<th>Category</th>
-                	<th>Priority</th>
-                	<th>Assigned To</th>
-                	<th>Status</th>
-                	<th>Time Elapsed</th>
+               		<th>{{'label.corporate'|translate}}</th>
+               		<th>{{'lable.ticket#'|translate}}</th>
+                	<th>{{'label.ticket.date'|translate}}</th>
+                	<th>{{'label.ticket.priority'|translate}}</th>
+                	<th>{{'label.ticket.category'|translate}}</th>
+                	<th>{{'label.createdBy'|translate}}</th>
+                	<th>{{'label.assignedto'|translate}}</th>
+                	<th>{{'label.closedby'|translate}}</th>
+                	<th>{{'label.ticket.status'|translate}}</th>
+                	<th>{{'label.timelapsed'|translate}}</th>
             	</tr>	
         	</thead>
         	<tbody>
             	<tr class="pointer-main" ng-repeat="ticket in openTickets.currentPageItems  | filter:filterText">      
-               		<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.clientName}}</td>  
+               		<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.clientName}}</td> 
+               		<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.id}}</td> 
                     <td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.ticketDate | DateFormat}}</td> 
-                 	<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.problemDescription}}</td>       
-                	<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.priority}}</td>
+                    <td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.priority}}</td>
+                 	<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.problemDescription}}</td>
+                 	<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.createUser}}</td>       
                     <td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.userName}}</td>
+                    <td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.closedByuser}}</td>
                 	<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.status}}</td>
                     <td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.timeElapsed}}</td>     
             	</tr>
@@ -143,22 +161,28 @@
 			<table class="table">
         	<thead>
             	<tr class="graybg">
-               		<th>Client Name</th>
-                	<th>Created on</th>
-                	<th>Category</th>
-                	<th>Priority</th>
-                	<th>Assigned To</th>
-                	<th>Status</th>
-                	<th>Time Elapsed</th>
+               		<th>{{'label.corporate'|translate}}</th>
+               		<th>{{'lable.ticket#'|translate}}</th>
+                	<th>{{'label.ticket.date'|translate}}</th>
+                	<th>{{'label.ticket.priority'|translate}}</th>
+                	<th>{{'label.ticket.category'|translate}}</th>
+                	<th>{{'label.createdBy'|translate}}</th>
+                	<th>{{'label.assignedto'|translate}}</th>
+                	<th>{{'label.closedby'|translate}}</th>
+                	<th>{{'label.ticket.status'|translate}}</th>
+                	<th>{{'label.timelapsed'|translate}}</th>
             	</tr>	
         	</thead>
         	<tbody>
             	<tr class="pointer-main" ng-repeat="ticket in openTickets.currentPageItems  | filter:filterText">      
-               		<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.clientName}}</td>  
+               		<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.clientName}}</td> 
+               		<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.id}}</td> 
                     <td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.ticketDate | DateFormat}}</td> 
-                 	<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.problemDescription}}</td>       
-                	<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.priority}}</td>
+                    <td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.priority}}</td>
+                 	<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.problemDescription}}</td>
+                 	<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.createUser}}</td>       
                     <td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.userName}}</td>
+                    <td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.closedByuser}}</td>
                 	<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.status}}</td>
                     <td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.timeElapsed}}</td>     
             	</tr>
@@ -182,22 +206,28 @@
 			<table class="table">
         	<thead>
             	<tr class="graybg">
-               		<th>Client Name</th>
-                	<th>Created on</th>
-                	<th>Category</th>
-                	<th>Priority</th>
-                	<th>Assigned To</th>
-                	<th>Status</th>
-                	<th>Time Elapsed</th>
+               		<th>{{'label.corporate'|translate}}</th>
+               		<th>{{'lable.ticket#'|translate}}</th>
+                	<th>{{'label.ticket.date'|translate}}</th>
+                	<th>{{'label.ticket.priority'|translate}}</th>
+                	<th>{{'label.ticket.category'|translate}}</th>
+                	<th>{{'label.createdBy'|translate}}</th>
+                	<th>{{'label.assignedto'|translate}}</th>
+                	<th>{{'label.closedby'|translate}}</th>
+                	<th>{{'label.ticket.status'|translate}}</th>
+                	<th>{{'label.timelapsed'|translate}}</th>
             	</tr>	
         	</thead>
         	<tbody>
             	<tr class="pointer-main" ng-repeat="ticket in openTickets.currentPageItems  | filter:filterText">      
-               		<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.clientName}}</td>  
+               		<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.clientName}}</td> 
+               		<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.id}}</td> 
                     <td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.ticketDate | DateFormat}}</td> 
-                 	<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.problemDescription}}</td>       
-                	<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.priority}}</td>
+                    <td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.priority}}</td>
+                 	<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.problemDescription}}</td>
+                 	<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.createUser}}</td>       
                     <td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.userName}}</td>
+                    <td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.closedByuser}}</td>
                 	<td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.status}}</td>
                     <td class="pointer" data-ng-click="routeToticket(ticket.clientId)">{{ticket.timeElapsed}}</td>     
             	</tr>

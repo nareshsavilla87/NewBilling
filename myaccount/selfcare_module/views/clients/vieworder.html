@@ -1,0 +1,116 @@
+<div ng-controller="ViewOrderController">
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+	        <li><a href="#/orders">{{'link.orders'|translate}}</a> <span class="divider">/</span></li>
+	        <li class="active">{{orderData.id}}&nbsp;&nbsp;</li>
+	    </ul>
+	    <div class="pull-right">
+	         <a ng-show="(orderData.status == 'DISCONNECTED')" href="#/renewalorder/{{orderId}}/{{clientId}}" class="btn btn-primary"><i class="icon-edit icon-white"></i>{{'btn.renewal' | translate}}</a>
+	         <a ng-show ="(orderData.status == 'ACTIVE')" href="#/changeorder/{{orderId}}/{{clientId}}" class="btn btn-primary"><i class="icon-cog"></i>{{'btn.change.plan' | translate}}</a>
+	         <a ng-show="(orderData.status == 'ACTIVE')||(orderData.status == 'SUSPENDED')" ng-click="orderDisconnect(orderData.id)" class="btn btn-primary"><i class="icon-remove fa-spin icon-white"></i>{{'btn.disconnect' | translate}}</a>
+	    </div>
+	</div><br/>
+	<label><h2 style="color:#0088cc" class="animated fadeInUp">{{ 'label.order.info' | translate }}</h2></label>
+ 		<div class="row-fluid">
+		<br/>
+			<div class="row-fluid span">
+				<div class="span6">
+					<table width="100%" class="table table-striped table-bordered" width="0px">
+						<tr>
+							<td width="50%">{{ 'label.order.orderId' | translate }}</td>
+							<td width="50%">{{orderData.id}}</td>
+						</tr>	
+						<tr>
+							<td width="30%">{{ 'label.order.contractperiod' | translate }}</td>
+							<td width="70%">{{orderData.contractPeriod}}</td>
+						</tr>
+						<tr>
+							<td width="30%">{{ 'label.order.startdate' | translate }}</td>
+							<td width="70%">{{orderData.startDate | DateFormat}}</td>
+						</tr>
+						<tr>
+							<td width="30%">{{ 'label.order.ordertype' | translate }}</td>
+							<td width="70%">{{orderData.isPrepaid}}</td>
+						</tr>
+						<tr>
+							<td width="30%">{{ 'label.order.billingcycle' | translate }}</td>
+							<td width="70%">{{orderPriceDatas[0].billingCycle}}</td>
+						</tr>
+				  </table>
+			   </div>	
+				<div class="span5">
+					<table width="100%" class="table table-striped table-bordered">
+						<tr>
+							<td width="30%">{{ 'label.plan.planname' | translate }}</td>
+							<td width="70%">{{orderData.planCode}}</td>
+						</tr>
+						<tr>
+							<td width="30%">{{ 'label.order.status' | translate }}</td>
+							<td width="70%">{{orderData.status}}</td>
+						</tr>
+						<tr>
+							<td width="30%">{{ 'label.order.endDate' | translate }}</td>
+							<td width="70%">{{orderData.endDate | DateFormat}}</td>
+						</tr>
+						<tr>
+							<td width="30%">{{ 'label.order.useraction' | translate }}</td>
+							<td width="70%">{{orderData.userAction}}</td>
+						</tr>
+						<tr>
+							<td width="40%">{{ 'label.order.invoicetilldate' | translate }}</td>
+							<td width="60%">{{orderPriceDatas[0].invoiceTillDate| DateFormat}}</td>
+						</tr>
+					</table>
+				</div>			
+			</div>
+		</div>
+		
+<script type="text/ng-template" id="ApproveReconnect.html">
+   <div class="modal-header silver">
+   			<h3 class="bolder">{{'dialog.reconnect.title.message' | translate}}</h3>
+   </div>
+    <div class="modal-body modal-small">
+       	<div class="error" ng-show="errorStatus || errorDetails">
+			<label>{{'label.contract.error' | translate}}</label>
+			<label ng-show="errorStatus">{{errorStatus}}</label>
+			<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+         <h4>{{'dialog.confirm.message' | translate}}</h4>
+    </div>
+    <div class="modal-footer">
+     		<button id="cancel" class="btn btn-warning" ng-click="cancelReconnect()">{{'btn.cancel' | translate}}</button>
+            <button id="submit" class="btn btn-primary" ng-click="approveReconnect()" ng-disabled="flagApproveReconnect">{{'label.confirm' | translate}}</button>
+    </div>
+ </script>
+<script type="text/ng-template" id="OrderDisconnect.html">
+		
+	<div class="modal-header silver">
+        <h3 class="bolder">{{'label.disconnectorder' | translate}}</h3>
+    </div>
+    <div class="modal-body" style="height:300px;">
+       	<fieldset>
+     		<div class="control-group">
+	            <label class="control-label" style="color:red;" ng-show="orderError.length>0">{{orderError | translate}}</label>
+            	<div class="controls"></div>
+        	</div>
+			<div class="control-group">
+           		 <label class="control-label" for="status">{{ 'label.order.disconnectionDate' | translate }}<span class="required">*</span></label>
+            	<div class="controls">
+            	  	<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.date" is-open="opened" min="minDate" max="maxDate" 
+                 	 date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
+            	</div>
+     		</div>
+     		<div class="control-group">
+            	<label class="control-label" for="status">{{ 'label.order.disconnectionreason' | translate }}<span class="required">*</span></label>
+            	<div class="controls">
+              		<select ng-model="formData.disconnectReason"  ng-options="disconnectDetail.mCodeValue as disconnectDetail.mCodeValue for disconnectDetail in disconnectDetails" value="{{disconnectDetail.mCodeValue}}"></select>
+            	</div>
+    		 </div>
+  		  </fieldset>
+     </div>
+     <div class="modal-footer">
+        <button id="cancel" class="btn btn-warning" ng-click="cancelDisconnection()">{{'btn.cancel' | translate}}</button>
+     	<button id="submit" class="btn btn-primary" ng-click="approveDisconnection()" ng-disabled="flagOrderDisconnect">{{'label.confirm' | translate}}</button>
+      </div>
+</script>
+</div>

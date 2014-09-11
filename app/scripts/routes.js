@@ -894,7 +894,16 @@
       })
       .when('/ipchange/:clientId/:orderId/:serviceId',{
     	  templateUrl: 'views/clients/ipchange.html'
-      });
+      })
+      .when('/createAdvanceMedia',{
+    	  templateUrl: 'views/organization/createadvancemedia.html'
+      })
+      .when('/editsupplier/:id',{
+    	  templateUrl: 'views/logistics/inventory/editsupplier.html'
+      })
+      .when('/createEventFromMedia/:mediaId/:mediaTittle/:from', {
+        templateUrl: 'views/organization/createEvent.html'
+      }) ;
       
     
     $locationProvider.html5Mode(false);

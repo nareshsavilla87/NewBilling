@@ -7,7 +7,7 @@
         webStorage.add("sessionData", {userId: data.userId, authenticationKey: data.base64EncodedAuthenticationKey,loginHistoryId:data.loginHistoryId});
         httpService.setAuthorization(data.base64EncodedAuthenticationKey);
         return {user: new mifosX.models.LoggedInUser(data)};
-      }
+      };
 
       this.clear = function() {
         webStorage.remove("sessionData");

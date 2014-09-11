@@ -43,11 +43,13 @@
   </div>
   
    <script type="text/ng-template" id="addGroupDetails.html">
-        <div class="modal-header silver">
-          <h3 class="bolder">Add Group</h3>
-        </div>
+	<div style="width:680px;height:300px;">
+        
 	 <form name="addGroupForm" novalidate="" class="form-horizontal well" ng-submit="submit()">
-        <div class="modal-body " style="height : 350px;">
+		<div>
+          <h3 class="bolder">{{ 'label.cug.addgroup' | translate }}</h3>
+        </div>
+        <div>
  		  <fieldset>
 			<div class="error" ng-show="errorStatus || errorDetails">
 				<label>{{'label.contract.error' | translate}}</label>
@@ -55,7 +57,7 @@
 				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	   		 </div>
            	<div class="control-group">
-				<label class="control-label" for="groupName">Group Name<span class="required">*</span> :</label>
+				<label class="control-label" for="groupName">{{'label.provisioning.group'|translate}}<span class="required">*</span> :</label>
 			 	<div class="controls">
               		<input  type="text"id="groupName" name="groupName" ng-model="formData.groupName" required late-Validate/>
                     <span  ng-show="addGroupForm.groupName.$invalid">
@@ -66,7 +68,7 @@
             	</div>
            	</div>
           	<div class="control-group">
-            	 <label class="control-label" for="groupAddress">Group Address<span class="required">*</span> :</label>
+            	 <label class="control-label" for="groupAddress">{{'label.cug.groupaddress'|translate}}<span class="required">*</span> :</label>
 			 	 <div class="controls">
               		<input type="text" id="groupAddress" name="groupAddress" ng-model="formData.groupAddress" required late-Validate/>
 					<span  ng-show="addGroupForm.groupAddress.$invalid">
@@ -80,31 +82,31 @@
 				<tr>
 					<td>
 						<div class="control-group">
-							<label>Additional Information&nbsp;:</label>
+							<label>{{ 'label.cug.additionalinfo' | translate }}&nbsp;:</label>
 						</div>
 					</td>
 				</tr>
 				<tr>
 				  <td> 
 						<div class="control-group">
-              				1.&nbsp;<input class="input-medium" id="attribute1" type="text" ng-model="formData.attribute1" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              				{{ 'label.cug.groupcir' | translate }}:&nbsp;&nbsp;&nbsp;&nbsp;<input class="input-medium" id="attribute1" type="text" ng-model="formData.attribute1" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						</div>
 				  </td>			
 				  <td> 
 						<div class="control-group">
-              				2.&nbsp;<input class="input-medium" id="attribute2" type="text" ng-model="formData.attribute2" />
+              				{{ 'label.cug.dir' | translate }}:&nbsp;<input class="input-medium" id="attribute2" type="text" ng-model="formData.attribute2" />
 						</div>
 				  </td>
 				</tr>
 				<tr>
 					<td> 
 							<div class="control-group">
-              					3.&nbsp;<input class="input-medium" id="attribute3" type="text" ng-model="formData.attribute3" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              					{{ 'label.cug.membercir' | translate }}:&nbsp;<input class="input-medium" id="attribute3" type="text" ng-model="formData.attribute3" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							</div>
 				  	</td>				
 					<td> 
 							<div class="control-group">
-              					4.&nbsp;<input class="input-medium" id="attribute4" type="text" ng-model="formData.attribute4" />
+              					{{ 'label.cug.dir' | translate }}:&nbsp;<input class="input-medium" id="attribute4" type="text" ng-model="formData.attribute4" />
 							</div>
 				  	</td>
 				</tr>
@@ -116,6 +118,7 @@
      	  <button id="submit" type="submit" class="btn btn-primary">Add</button>
         </div>
 	</form>
+	</div>
     </script>
     
 </div>

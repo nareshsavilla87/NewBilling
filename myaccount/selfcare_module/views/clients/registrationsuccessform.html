@@ -1,0 +1,162 @@
+<div ng-controller="RegistrationSuccessFormController">
+	<form name="regSuccessForm" novalidate="" class="form-horizontal well" ng-submit="submit()">
+		<br>
+		 <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+		<fieldset class="animated rollIn" ng-show="isRegPage">
+			<h3 >{{'label.registration.page' | translate}}</h3>
+			<table >
+	       		<tr>
+	       			<td>
+            			<div class="control-group">
+            				<label class="control-label">{{'label.fullname' | translate}}&nbsp;<span class="required">*</span></label>
+            				<div class="controls">
+            					<input ng-autofocus="true" name="fullName" type="text" data-ng-model="formData.fullName" placeholder= "Full Name" ng-pattern="/^[a-zA-Z0-9\-\&\s]+$/" required ng-minlength=3 late-Validate><br/>
+            					<span  ng-show="regSuccessForm.fullName.$invalid">
+				                	<small class="error" ng-show="regSuccessForm.fullName.$error.pattern">alphanumeric and spaces only!</small>
+				                    <small class="error" ng-show="regSuccessForm.fullName.$error.minlength && !regSuccessForm.fullName.$error.req">Name is required at least 3 characters</small>
+				                </span>
+            				</div>
+        				 </div>
+	         				 
+	       			</td>
+	       			<td>
+            			<div class="control-group">
+            				<label class="control-label">{{'label.mobilenumber' | translate}}&nbsp;<span class="required">*</span></label>
+            				<div class="controls">
+            					<input name="phone" type="text" data-ng-model="formData.mobileNo" placeholder= "Mobile Number"
+            							ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/" required  late-Validate/><br/>
+            					 <span ng-show="regSuccessForm.phone.$dirty && regSuccessForm.phone.$invalid">
+				        			<small class="error" ng-show="regSuccessForm.phone.$error.pattern">wrong input or accepts only digits !</small>
+				    			</span>
+            				</div>
+        				 </div>
+	         				 
+	       			</td>
+	       		</tr>
+	       		<tr>
+	       			<td>
+            			<div class="control-group">
+                            <label class="control-label" for="address">Address&nbsp;<span class="required">*</span></label>
+                             <div class="controls">
+    	                        <input type="text" ng-model="formData.address" name="address" placeholder= "Enter Address" required late-Validate/>
+                             </div>
+                        </div>	
+	         				 
+	       			</td>
+	       			<td>
+            			<div class="control-group">
+             				 <label class="control-label" for="city">{{'label.city' | translate}}&nbsp;<span class="required">*</span></label>
+				              <div class="controls">
+				              <select ng-model="formData.city"  ng-options="city as city for city in cities" 
+				              		   ng-change="getStateAndCountry(formData.city)" required>
+				              		   <option value="">--select--</option>
+				              </select>
+				               <!--  <input type="text" id="city" name="city" ng-model="formData.city" list ="citylist" placeholder= "Serach for City"
+				                										 ng-change="getStateAndCountry(formData.city)" required /> -->
+		           				 <!-- <datalist id="citylist">
+		                   				<option  data-ng-repeat="city in cities" value="{{city}}">
+		           				 </datalist> -->
+				              </div>
+           				 </div>
+	       			</td>
+	       		</tr>
+	       		<tr>
+	       			<td>
+            			<div class="control-group">
+                            <label class="control-label" for="zipcode">Zip Code&nbsp;<span class="required">*</span></label>
+                             <div class="controls">
+    	                        <input type="text" ng-model="formData.zipcode" name="zipcode" placeholder= "Enter Zipcode" required late-Validate/>
+                             </div>
+                        </div>	
+	         				 
+	       			</td>
+	       		</tr>
+	       		<tr>
+	       			<td>
+            			<div class="control-group" ng-show="isDeviceEnabled==true">
+                            <label class="control-label" for="serialNumber">{{ 'label.device' | translate }}&nbsp;<span class="required">*</span></label>
+                             <div class="controls">
+    	                        <input type="text" ng-model="formData.deviceNo" name="serialNumber" placeholder= "Enter Device"/>
+                             </div>
+                        </div>	
+	         				 
+	       			</td>
+	       		</tr>
+	       	</table>
+	       	<div class="offset3">
+	       		 <button ng-click="nextBtnFun()" class="btn btn-primary pull-right" 
+				 		ng-disabled="!regSuccessForm.$valid">Next</button>
+	        </div>
+	       </fieldset>
+	        <div ng-show="isOrderPage">
+	          <div class="animated flipInX">
+		        	<h3>Packages</h3>
+		       		<div  style="margin-left:50px;">
+				      <tabset horizontal="true" type="pills">
+					    <tab heading="{{plan.planCode}}" ng-repeat="plan in plansData">
+					    	<table class="table" >
+					    		<tbody>
+					    		  <tr>
+					    			 <td class="animated shake" style="border-bottom:1px solid #dddddd;border-top:0px;padding-top:30px;">
+					    				 <span style="color:#0088cc;font-size:3em;">{{plan.contractPeriod}}</span>
+					    			</td>
+					    			<td style="border-bottom:1px solid #dddddd;border-top:0px;">
+					    				<a href="#/paymentbuttons" class="btn btn-primary cust-btn animated swing" ng-click="savingPlanData()">Book Order</a>
+					    				<span class="dollars animated pulse">{{plan.price}}</span>
+					    				<span class="sup animated pulse">Rs.</span>
+					    			</td>
+					    		  </tr>
+					    		</tbody>
+					    	</table>
+					    </tab>
+					  </tabset>
+				    </div> 
+				   </div>
+			  </div>
+		      
+	    	<!-- <table style="margin-left:60px;width:800px;" class="table" ng-show="isRegisteredPlan==false">
+		        <thead>
+		            <tr class="graybg">
+		                <th>Plan Name</th>
+		                <th>Contract Period</th>
+		                <th>Price</th>
+		                <th>Select</th>
+		            </tr>
+		        </thead>
+		        <tbody>
+		            <tr ng-repeat="plan in plansData">
+		                <td>{{plan.planCode}}</td>
+		                <td>{{plan.contractPeriod}}</td>
+		                <td>{{plan.price}}</td>
+		                <td><input type="radio" name="selectPlan"  ng-click="selectedPLandAm(plan.contractId,plan.planId,plan.chargeCode,plan.price,plan.planCode)"/></td>
+		            </tr>
+		        </tbody>
+		    </table> -->
+	       		<!-- <tr>
+	       			<td>
+            			<div class="control-group">
+                            <label class="control-label" for="serialNumber">{{ 'label.device' | translate }}&nbsp;<span class="required">*</span></label>
+                             <div class="controls">
+    	                        <input type="text" ng-model="itemDetail" name="serialNumber" placeholder= "Search for Device"
+    	                        				   typeahead="itemDetail for itemDetail in getData($viewValue)" required />
+                             </div>
+                        </div>	
+	         				 
+	       			</td>
+	       		</tr> ng-disabled="!regSuccessForm.$valid"-->
+	       
+			<!-- <div>
+				<a id="cancel" href='#' class="btn pull-left">Cancel</a>
+				<a href="#/paymentbuttons" 
+					class="btn btn-primary pull-right" ng-click="savingPlanData()" ng-show="isAmountZero==false&&regSuccessForm.$valid&&nextBtn">Next
+				</a>
+				 <button id="submit" ng-click="sendingRequest()" class="btn btn-primary pull-right" ng-hide="isAmountZero==false"
+				 					ng-disabled="!regSuccessForm.$valid">Finish</button>
+			</div>  -->
+		
+	</form>
+</div>

@@ -231,6 +231,7 @@
             this.formData.start_date = reqDate;
             
             if(this.formData.isPrepaid == 'Y'){
+
             	  for (var i in scope.paytermdatas) {
                      	if(scope.paytermdatas[i].duration == scope.formData.contractPeriod){
                      		 this.formData.paytermCode=scope.paytermdatas[i].paytermtype; 
@@ -285,6 +286,7 @@
             this.formData.dateFormat = 'dd MMMM yyyy';
             this.formData.start_date = reqDate;
             if(this.formData.isPrepaid == 'Y'){
+
           	  for (var i in scope.paytermdatas) {
                    	if(scope.paytermdatas[i].duration == scope.formData.contractPeriod){
                    		 this.formData.paytermCode=scope.paytermdatas[i].paytermtype; 
@@ -296,6 +298,7 @@
                  		
                  	}
               };   
+              
             delete this.formData.planId;
             delete this.formData.id;
             delete this.formData.isPrepaid;
@@ -321,7 +324,6 @@
             	
             */}
             
-
             };
         }
 	  }

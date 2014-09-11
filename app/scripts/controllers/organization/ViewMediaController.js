@@ -12,6 +12,19 @@
             scope.mediaLanguageDatas=data.mediaLanguageData;
             scope.mediaTypeDatas=data.mediaTypeData;
             scope.mediaCategeorydatas=data.mediaCategeorydata;
+            for(var i=0;i<scope.mediaCategeorydatas.length;i++){
+            	if(scope.media.catageoryId==scope.mediaCategeorydatas[i].id){
+            		scope.catageoryId=scope.mediaCategeorydatas[i].mCodeValue;
+            		
+            	}
+            }
+            scope.mediaContententProviderDatas=data.contentProviderData;
+            for(var j=0;j<scope.mediaContententProviderDatas.length;j++){
+            	
+            	if(scope.mediaContententProviderDatas[j].id==scope.media.contentProvider){
+            		scope.contentProviderValue=scope.mediaContententProviderDatas[j].mCodeValue;
+            	}
+            }
            
         });
 

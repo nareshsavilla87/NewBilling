@@ -19,7 +19,7 @@
       };
 
       scope.reset123 = function(){
-      	   webStorage.add("callingTab", {someString: "identities" });
+      	   webStorage.add("callingTab", {someString: "documents" });
          };
       scope.submit = function () {
         $upload.upload({
@@ -33,7 +33,7 @@
           }
           location.path('/viewclient/'+scope.clientId);
         });
-        webStorage.add("callingTab", {someString: "identities" });
+        webStorage.add("callingTab", {someString: "documents" });
       };
     }
   });
