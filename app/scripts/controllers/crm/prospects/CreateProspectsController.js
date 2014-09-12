@@ -10,7 +10,7 @@
 	        scope.first = {};
 	        scope.first.date = new Date();
 	        scope.first.time = "10:10";
-	        
+	        scope.formData={};
 	        scope.minDate = new Date();
 	        
 	        $('#timepicker1').timepicker({
@@ -26,9 +26,14 @@
 	            scope.countryDatas = data.countryData;
 		        scope.stateDatas = data.stateData;
 		        scope.cityDatas = data.cityData;
-	            scope.formData = {
-	            		
-	            };
+		        for(var i in scope.sourceOfPublicityDatas){
+		        	if(scope.sourceOfPublicityDatas[i].mCodeValue == "Phone" ){
+		        		scope.formData.sourceOfPublicity =scope.sourceOfPublicityDatas[i].mCodeValue;
+		        	}
+		        }
+	          /*  scope.formData = {
+	            
+	            };*/
 	            scope.getStateAndCountry=function(city){
 	            	
 	            	resourceFactory.AddressTemplateResource.get({city : scope.formData.city}, function(data) {

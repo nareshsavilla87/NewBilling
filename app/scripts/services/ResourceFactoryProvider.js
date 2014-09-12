@@ -349,7 +349,7 @@
            	update: { method: 'PUT' },
             get: {method: 'GET', params: {}},
         }),
-        OrderrenewalResourceTemplate: defineResource(apiVer + "/orders/renewalorder/:orderId", {orderId:'@orderId'},{
+        OrderrenewalResourceTemplate: defineResource(apiVer + "/orders/renewalorder", {},{
         	 get: {method: 'GET', params: {}},
         	update: { method: 'PUT' }
         }),
