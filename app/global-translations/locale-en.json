@@ -300,6 +300,7 @@
   "link.messanger":"Messanger",
   "link.settings" : "Settings",
   "link.logout" : "LogOut",
+  "link.admin.provision" : "Adapter Provision",
   
 
   "#accounting coa":"....",
@@ -550,6 +551,7 @@
   "label.disable":"Disable",
   "label.enable":"Enable",
   "label.filterbyname":"Filter by Name",
+  "label.select":"Select",
 
   "#Roles Management":"....",
   "label.view.roles": "View Roles",

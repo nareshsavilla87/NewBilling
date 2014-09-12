@@ -1,7 +1,6 @@
 <div>
     <ul class="breadcrumb">
-        <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
-        <li class="active">{{'label.managepaymentgateway' | translate}}</li>
+        <li class="active">{{'link.admin.provision' | translate}}</li>
     </ul>
 </div>
 <form class="form-horizontal well" ng-controller="ProvisionController" ng-submit="submit()">
@@ -21,8 +20,10 @@
 		<table width="100%">
 		
 		    <tr>
-				<td style="padding-left:200px;">			
-						<div class="control-group">
+				<td >			
+					<div class="control-group">
+						<label class="control-label">{{ 'label.select' | translate }}</label>
+						<div class="controls">
           					<select ng-model="formData.commandsource" ng-change="selectingCommandSource(formData.commandsource)">
               					<option value="start">Start</option>
              					<option value="stop">Stop</option>
@@ -30,6 +31,7 @@
               					<option value="logfile">Log Files</option>
           					</select>
             			</div>		
+           			</div>
             			
 				</td>
 			</tr>
