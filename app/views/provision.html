@@ -1,0 +1,70 @@
+<div>
+    <ul class="breadcrumb">
+        <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.managepaymentgateway' | translate}}</li>
+    </ul>
+</div>
+<form class="form-horizontal well" ng-controller="ProvisionController" ng-submit="submit()">
+ <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	<fieldset>
+		<legend> Adapter Provision</legend>
+		<div ng-hide="logFileDate">
+			<br>
+			<div ng-show="ProcessingAdapter" class="alert alert-info animated pulse" role="alert">
+	         	<strong>{{adapterStatus}}</strong>
+			</div>
+		</div>
+		<table width="100%">
+		
+		    <tr>
+				<td style="padding-left:200px;">			
+						<div class="control-group">
+          					<select ng-model="formData.commandsource" ng-change="selectingCommandSource(formData.commandsource)">
+              					<option value="start">Start</option>
+             					<option value="stop">Stop</option>
+              					<option value="status">Status</option>
+              					<option value="logfile">Log Files</option>
+          					</select>
+            			</div>		
+            			
+				</td>
+			</tr>
+			<tr ng-show="logFileDate">
+				<td>
+					<div class="control-group">
+                          <label class="control-label" for="startDate">{{ 'label.date' | translate }}</label>
+                            <div class="controls">
+                          <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.date" is-open="opened" min="minDate" max="maxDate" 
+                          date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
+                          </div>
+                        </div>
+				</td>
+			</tr>
+		</table>	
+			 <div class="offset5">
+          			<button type="submit" class="btn btn-primary"> Go </button>
+			 </div>
+	<br/>
+	<div class="row-fluid" ng-show="provisionLogdatas">
+		<table class="table">
+	        <thead>
+	            <tr class="graybg">
+	                <th>Data Name</th>
+	                <th></th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr ng-repeat="provisionLogdata in provisionLogdatas " >
+	                <td>{{provisionLogdata.dateName}}</td>
+	                <td><a ng-click="downloadLogFile(provisionLogdata.dateValue,provisionLogdata.dateName)" popover="Download Log File" popover-trigger="mouseenter"><i class=" icon-download-alt icon-white"></i> </a></td>
+	            </tr>
+	        </tbody>
+	    </table>
+	</div>
+	</fieldset>
+</form>
+

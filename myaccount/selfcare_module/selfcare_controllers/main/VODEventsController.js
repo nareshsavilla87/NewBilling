@@ -69,6 +69,12 @@
 			  webStorage.add('eventData',scope.mediaDatas);
 		  };
 		  
+		  scope.subscribeBtnFun = function(){
+			  console.log(scope.mediaDatas);
+			  webStorage.add('eventData',scope.mediaDatas);
+			  location.path("/eventdetailspreviewscreen");
+		  };
+		  
 		  scope.cancelDalpayBtnFun = function(){
 			  scope.vodEventScreen = true;
 			  scope.eventDetailsPreview = false;

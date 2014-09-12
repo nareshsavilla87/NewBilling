@@ -186,7 +186,7 @@
                             </ul>
                         </li>
                          
-                        <li class="dropdown" id="preview-menu" ng-show="user||organization||system||upload||jobs||accounting||smartsearch||paymentGetWay||pooling">
+                        <li class="dropdown" id="preview-menu" ng-show="user||organization||system||upload||jobs||accounting||smartsearch||paymentGetWay||pooling||provision">
                             <a class="dropdown-toggle" data-toggle="dropdown" ng-class="{ activate: isActive('admin') }" href="#"><i class="icon-wrench"></i>{{ 'link.admin' | translate }}<b class="caret"></b></a>
                             <ul class="dropdown-menu">
 <!-- 
@@ -212,6 +212,7 @@
                                 <li><a href="#/redemption">Redemption</a></li> 
                                 <li><a ng-show="smartsearch=PermissionService.showMenu('READ_GLACCOUNT')&&PermissionService.showMenu('READ_OFFICE')&&PermissionService.showMenu('READ_SMARTSEARCH')" href="#/smartSearch">{{ 'link.smartsearch' | translate }}</a></li>
                                 <li><a ng-show="paymentGetWay=PermissionService.showMenu('READ_PAYMENTGATEWAY')" href="#/paymentGateway">PaymentGateway</a></li>
+                                 <li><a ng-show="provision=PermissionService.showMenu('READ_PROVISIONINGADAPTERSYSTEM')" href="#/provision">Provision</a></li>
                                 
                             </ul>
                         </li>

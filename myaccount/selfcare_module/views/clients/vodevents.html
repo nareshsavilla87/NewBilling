@@ -85,7 +85,8 @@
 	   </div>
 		<div class="pull-right" >
 				<a ng-disabled="vodEventRedirectToDalpay"  ng-click="cancelDalpayBtnFun()" class="btn" >{{'btn.cancel'|translate}}</a>
-				<a href="{{URLForDalpay}}" ng-click="dalpayBtnFun()" ng-disabled="vodEventRedirectToDalpay" class="btn btn-primary animated fadeInUp">{{'btn.dalpay'|translate}}</a>
+				<a href="{{URLForDalpay}}" ng-click="dalpayBtnFun()" ng-show="totalAmount != 0" ng-disabled="vodEventRedirectToDalpay" class="btn btn-primary animated fadeInUp">{{'btn.dalpay'|translate}}</a>
+				<a ng-click="subscribeBtnFun()" ng-show="totalAmount == 0" class="btn btn-primary animated fadeInUp">{{'btn.subscribe'|translate}}</a>
 		</div> 
 	</div>
 </div>

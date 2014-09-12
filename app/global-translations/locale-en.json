@@ -456,6 +456,7 @@
   "app erros end" :"------------------------------------------------------",
 
   "label.note":"Note:",
+  "label.date":"Date:",
 
   "#Account Transfers":".........",
   "label.heading.view.accounttransfer.details":"View Account Transfers Details",

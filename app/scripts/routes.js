@@ -903,7 +903,10 @@
       })
       .when('/createEventFromMedia/:mediaId/:mediaTittle/:from', {
         templateUrl: 'views/organization/createEvent.html'
-      }) ;
+      }) 
+      .when('/provision',{
+        templateUrl: 'views/provision.html'
+      });
       
     
     $locationProvider.html5Mode(false);

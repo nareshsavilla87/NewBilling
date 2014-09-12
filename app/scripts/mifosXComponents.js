@@ -261,7 +261,8 @@ define(['underscore', 'mifosX'], function() {
       'system/EditIpPoolingController',
       'system/DalpayDetailsFormController',
       'system/DalpayButtonController',
-      'system/CreateEventValidationController'
+      'system/CreateEventValidationController',
+      'system/ProvisionController'
 
     ],
     filters: [
