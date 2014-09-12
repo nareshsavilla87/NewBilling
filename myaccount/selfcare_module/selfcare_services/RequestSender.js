@@ -79,6 +79,11 @@
            orderRenewalResource: defineResource(apiVer + "/orders/renewal/:orderId", {orderId:'@orderId'},{
               	update: { method: 'PUT' }
             }),
+            
+            statementResource: defineResource(apiVer + "/billmaster/:clientId", {clientId:'@clientId'}, {
+                update: { method: 'PUT'}
+            }),
+            eventOrderPriceTemplateResource: defineResource(apiVer + "/eventorder",{},  {}),
 
         };
       }];

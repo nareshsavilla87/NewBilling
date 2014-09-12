@@ -58,7 +58,10 @@
       })
       .when('/renewalorderpreviewscreen/:orderId/:clientId', {
     	 templateUrl: 'selfcare_module/views/clients/renewalorderpreviewscreen.html'
-       });
+       })
+	   .when('/listofvods', {
+		  templateUrl: 'selfcare_module/views/clients/listofvods.html'
+	   });
       
     
     $locationProvider.html5Mode(false);

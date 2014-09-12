@@ -4,7 +4,10 @@
 		  scope.statementsData = [];
 		  var statementsData= webStorage.get('clientTotalData');
 		  if(statementsData){
-			  scope.statementsData = statementsData.statementsData;
+			  //scope.statementsData = statementsData.statementsData;
+			  RequestSender.statementResource.query({clientId: statementsData.clientId} , function(data) {	
+                  scope.statementsData = data;
+                });
 		  }
     }
   });

@@ -1892,7 +1892,7 @@ input.search-query {
   display: inline-block;
   *display: inline;
   margin-bottom: 0;
-  vertical-align: middle;
+  vertical-align: sub;
   *zoom: 1;
 }
 

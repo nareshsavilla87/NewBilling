@@ -72,6 +72,8 @@
  	"label.zipcode"				: "Zipcode",
  	"label.home.postcode"		: "Home Postcode",
  	"label.nationalid"			: "National ID",
+ 	"label.order.info"			: "Order Information",
+ 	"label.listofvods"			: "List Of VODs",
  	
  	"#headers " : "------------------------------------",
  	"header.forgot.password" 		 : "Forgot Password",
@@ -103,18 +105,22 @@
  	"link.vod" 			 		 :  "VOD",
  	"link.profile" 			 	 :  "Profile",
  	"link.address" 			 	 :  "Address",
+ 	"link.listofvods" 			 :  "List Of VODS",
+ 	"link.vod.add.event" 		 :  "Add Event",
  	
  	"#place holders " : "------------------------------------",
- 	"placeholder.enter.device"		: "Enter Device",
- 	"placeholder.enter.zipcode"		: "Enter Zipcode",
- 	"placeholder.enter.postcode"	: "Enter Postcode",
- 	"placeholder.enter.address"		: "Enter Address",
- 	"placeholder.filter.order"		: "Filter by Order No",
- 	"placeholder.filter.payment"	: "Filter by Filter by Transaction Id",
- 	"placeholder.filter.statement"	: "Filter by Filter by Id",
- 	"placeholder.filter.ticket"		: "Filter by Filter by Id",
- 	"placeholder.filter.vod"		: "Search Movie Name",
- 	"placeholder.enter.nationalid"	: "Enter NationalID",
+ 	"placeholder.enter.device"				: "Enter Device",
+ 	"placeholder.enter.zipcode"				: "Enter Zipcode",
+ 	"placeholder.enter.postcode"			: "Enter Postcode",
+ 	"placeholder.enter.address"				: "Enter Address",
+ 	"placeholder.filter.order"				: "Filter by Order No",
+ 	"placeholder.filter.payment"			: "Filter by Filter by Transaction Id",
+ 	"placeholder.filter.statement"			: "Filter by Filter by Id",
+ 	"placeholder.filter.ticket"				: "Filter by Filter by Id",
+ 	"placeholder.filter.vod"				: "Search Movie Name",
+ 	"placeholder.enter.nationalid"			: "Enter NationalID",
+ 	"placeholder.enter.nationalid.example"	: "ex: 090814-1234",
+ 	"placeholder.filter.listofvods"			: "Filter by Filter by Id",
  	
  	
  	"#common labels " : "------------------------------------",
@@ -129,14 +135,17 @@
  	"label.client.status"			: "Status",
  	"label.client.balance"			: "Balance",
  	"label.telephone.number"		: "Telephone Number",
+ 	"label.pattern"					: "Pattern :",
+ 	"hint.nationaid.pattern"		: "ddmmyy-any 4 digits",
  	
  	"#form validations errors " : "------------------------------------",
  	"form.error.alphanumeric"		     : "alphanumeric and spaces only!",
  	"form.error.name.characters.atleast" : "Name is required at least 3 characters",
  	"form.error.number.digits.atleast"   : "at least minimum 7 digits accepts..",
  	"form.error.number.digits.maximum"   : "maximum 15 digits accepts..",
- 	"form.error.number"		    		 : "wrong input or accepts only digits !",
- 	"form.error.password.match"		   	 : "Password didnot Match !",
+ 	"form.error.number"		    		 : "accepts only digits !",
+ 	"form.error.password.match"		   	 : "Password did not Match !",
+ 	"form.error.nationalid.pattern"		 : "Pattern did not match..!",
  	
  	
  	"#TicketResources "	 :"------------------------------------",
@@ -159,7 +168,7 @@
 	  "table.header.ticket.priority"		: "Priority",
 	  "table.header.ticket.status"			: "Status",
 	  "table.header.ticket.assignto"		: "AssignTo",
-	  "table.header.ticket.lastComment"		: "LastComment",
+	  "table.header.ticket.lastcomment"		: "LastComment",
 	  
 	  
 	 "#OrderResources "	 :"------------------------------------",
@@ -189,6 +198,18 @@
 	 "label.order.disconnectionreason"		: "Disconnection Reason",
 	 
 	 
+	  "#ListofVODSResources "	 :"------------------------------------",
+	 "table.header.listvod.id" 				: "Id",
+	 "table.header.listvod.eventname" 		: "Event Name",
+	 "table.header.listvod.bookeddate" 		: "Booked Date",
+	 "table.header.listvod.chargecode" 		: "Charge Code",
+	 "table.header.listvod.eventprice" 		: "Event Price",
+	 "table.header.listvod.status" 			: "Status",
+	 
+	 
+	 "label.vod.add.event" 					: "Add Event",
+	 
+	 
 	 "#PaymentResources "	 :"------------------------------------",
 	 "table.header.payment.transactionid" 				: "Transaction Id",
 	 "table.header.payment.transactiondate" 			: "Transaction Date",
@@ -215,7 +236,7 @@
 	 "label.amount.total" 						: "Total",
 	 
 
-	 "label.vod.conformation" 					: "VOD Conformation",
+	 "label.vod.event.conformation" 			: "Event Conformation",
 	 
 	 "#ProfileResources "	 :"------------------------------------",
 	 "table.header.profile.accountNumber" 				: "Account Number",

@@ -1,5 +1,5 @@
  <div ng-controller="ItemSaleController">
-   <div>
+   <div ng-hide="officeId == 0">
         <ul class="breadcrumb">
           <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
           <li><a href="#/offices">{{'label.manageoffices' | translate}}</a> <span class="divider">/</span></li>
@@ -7,6 +7,12 @@
           <li class="active">Item Sale</li>
         </ul>
       </div>
+        <div ng-show ="officeId == 0">
+        <ul class="breadcrumb">
+          <li><a href="#/inventory" ng-click="selectedMRN()">{{'link.inventory' | translate}}</a> <span class="divider">/</span></li>
+          <li class="active">{{'label.create.new.mrn' | translate}}</li>
+        </ul>
+     </div>
       <form name="itemSaleForm" novalidate="" class="form-horizontal well" ng-submit="submit()">
        <div class="error" ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
@@ -15,34 +21,31 @@
 	    </div>
         <fieldset>
           <legend>Create Item Sale</legend>
-
-<table width="100%">
-		  <tr>
-			<td width="50%">
-					<div class="control-group">
-						<label class="control-label"> Request By&nbsp;:</label>
-						<div class="controls">
-							<select ng-model="formData.agentId"
-							   ng-options="officeData.id as officeData.name for officeData in officeDatas">
-							</select>
-						</div>
-					</div>
-				</td>
-			</tr>	
-			<tr>
-				<td width="50%">
-					<div class="control-group">
+           <table width="100%">
+		   <tr> 
+		    <td>
+		    	<div class="control-group">
                           <label class="control-label" for="purchaseDate">Purchase Date&nbsp;:</label>
                             <div class="controls">
                           <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="purchase.date" is-open="opened" min="minDate" max="maxDate" 
                           date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
                           </div>
                      </div>
+					</td>
+					<td>
+					  <div class="control-group">
+						<label class="control-label">Purchased From &nbsp;</label>
+						<div class="controls">
+							<select ng-model="formData.purchaseFrom"
+							   ng-options="officeData.id as officeData.name for officeData in officeDatas">
+							</select>
+						</div>
+					</div>
 				</td>
 			</tr>
 			<tr>
-				<td width="50%">
-					<div class="control-group">
+			      <td>	
+			      <div class="control-group">
             			<label class="control-label" for="itemId">{{ 'label.itemCode' | translate }}</label>
             			<div class="controls">
              				<select ng-model="formData.itemId" ng-change="itemData(formData.itemId)" 
@@ -51,44 +54,67 @@
             			</div>
           			</div>
 				</td>
+				 <td>
+				  <div class="control-group">
+            	   <label class="control-label" for="chargeCode">{{ 'label.chargeCode' | translate }}</label>
+            		 <div class="controls">
+                       <select ng-model="formData.chargeCode"  ng-options="chargeDatas.chargeCode as chargeDatas.chargeDescription for chargeDatas in chargeDatas" value="{{chargeDatas.chargeDescription}}"></select>
+                       </div>
+          		</div>
+				</td>
 			</tr>
 			<tr>
-				<td width="50%">
-					<div class="control-group">
+				<td>
+				<div class="control-group">
 						<label class="control-label">Order Quantity&nbsp;:</label>
 						<div class="controls">
 							<input type="text" id="orderQuantity" ng-model="formData.orderQuantity" ng-change="itemDataQuantity(formData.orderQuantity,formData.itemId)" ng-model="formData.quantity">
 						</div>
 					</div>
+				
 				</td>
-			</tr>
-			
+				<td>
+				 <div class="control-group">
+					   <label class="control-label">Unit Price&nbsp;:</label>
+					   <div class="controls">
+							<input  type="text" id="unitPrice" ng-model="formData.unitPrice" ng-change="itemDataQuantity(formData.orderQuantity,formData.itemId,formData.officeId)">
+						</div>
+					</div>
+			    </td>
+				</tr>
 			<tr>
-				<td width="50%">
-					<div class="control-group">
-						<label class="control-label">Item Price&nbsp;:</label>
+				 <td>
+				  <div class="control-group">
+						<label class="control-label">Total Item Price&nbsp;</label>
 						<div class="controls">
 							<input type="text" id="itemPrice"  ng-model="formData.chargeAmount" disabled>
 						</div>
 					</div>
 				</td>
-			</tr>
-			<tr>
-				 <td width="50%">
-					<div class="control-group">
-					   <label class="control-label">Tax&nbsp;:</label>
-					   <div class="controls">
-							<input class="input-small" type="text" ng-model="formData.taxPercantage">%
+				<td ng-show="officeId == 0">
+				 <div class="control-group">
+						<label class="control-label">Purchase By &nbsp;</label>
+						<div class="controls">
+							<select ng-model="formData.purchaseBy"
+							   ng-options="officeData.id as officeData.name for officeData in officeDatas">
+							</select>
 						</div>
 					</div>
 				</td>
-			</tr>
-		</table>
-		<div class="offset3">
-            <a href="#/viewoffice/{{officeId}}"><button id="cancel" type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
-            <button id="save" type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
+				</tr>
+				<tr>
+				<td></td>
+			<td align="middle">
+			<div class="offset3">
+			<div class="control-group">
+        	    <a ng-hide ="officeId ==0" href="#/viewoffice/{{officeId}}"><button id="cancel" type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
+        	     <a ng-show ="officeId ==0"  href="#/inventory"><button id="cancel" type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
+            	<button id="save" type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
           </div>
-          
+          </div>
+          </td>
+          </tr>
+          </table>
         </fieldset>
       </form>
  </div>

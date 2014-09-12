@@ -20,6 +20,10 @@
         scope.file = $files[0];
       };
 
+      scope.reset123 = function(){
+	    	   webStorage.add("callingTab", {someString: "documents" });
+	       };
+	       
       scope.submit = function () {
         $upload.upload({
           url: $rootScope.hostUrl+ API_VERSION +'/client_identifiers/'+scope.clientId+'/documents', 
@@ -30,6 +34,7 @@
           if (!scope.$$phase) {
             scope.$apply();
           }
+          webStorage.add("callingTab", {someString: "documents" });
           location.path('/viewclient/'+scope.clientId);
         });
       };

@@ -43,7 +43,8 @@ define(['underscore', 'selfcare'], function() {
 						      'main/ViewOrderController',
 						      'main/ChangeOrderController',
 						      'main/RenewalOrderController',
-						      'main/RenewalOrderPreviewScreenController'
+						      'main/RenewalOrderPreviewScreenController',
+						      'main/ListOfVODSController'
 					      ],
 					      
     selfcare_filters:    [

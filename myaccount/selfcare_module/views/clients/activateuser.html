@@ -1,4 +1,25 @@
 <div ng-controller="ActivateUserController">
+	<div class="loading-widget-div" data-ng-show="blockUI">
+        <div id="circularG">
+            <div id="circularG_1" class="circularG">
+            </div>
+            <div id="circularG_2" class="circularG">
+            </div>
+            <div id="circularG_3" class="circularG">
+            </div>
+            <div id="circularG_4" class="circularG">
+            </div>
+            <div id="circularG_5" class="circularG">
+            </div>
+            <div id="circularG_6" class="circularG">
+            </div>
+            <div id="circularG_7" class="circularG">
+            </div>
+            <div id="circularG_8" class="circularG">
+            </div>
+        </div>
+
+      </div>
 <br/>
 <div class="row" ng-show="isRegPage">
 	<span style="margin-left:100px;" class="animated wobble">{{'header.registation'|translate}}</span>
@@ -59,11 +80,11 @@
 			<table >
 	       		<tr>
 	       			<td>
-            			<div class="control-group">
+            			<div class="control-group" style="margin-bottom:30px;">
             				<label class="control-label">{{'label.customer.name' | translate}}&nbsp;<span class="required">*</span></label>
             				<div class="controls">
             					<input ng-autofocus="true" name="fullName" type="text" data-ng-model="formData.fullName" placeholder= "{{'label.customer.name' | translate}}" ng-pattern="/^[a-zA-Z0-9\-\&\s]+$/" required ng-minlength=3 late-Validate><br/>
-            					<span  ng-show="regSuccessForm.fullName.$invalid">
+            					<span  ng-show="regSuccessForm.fullName.$dirty &&regSuccessForm.fullName.$invalid">
 				                	<small class="error" ng-show="regSuccessForm.fullName.$error.pattern">{{'form.error.alphanumeric'|translate}}</small>
 				                    <small class="error" ng-show="regSuccessForm.fullName.$error.minlength && !regSuccessForm.fullName.$error.req">{{'form.error.name.characters.atleast'|translate}}</small>
 				                </span>
@@ -72,7 +93,7 @@
 	         				 
 	       			</td>
 	       			<td>
-            			<div class="control-group">
+            			<div class="control-group" style="margin-bottom:30px;">
             				<label class="control-label">{{'label.email' | translate}}&nbsp;<span class="required">*</span></label>
             				<div class="controls">
             					<input name="email" type="text" data-ng-model="existedEmail" placeholder= "{{'label.email' | translate}}" ng-disabled="true" required late-Validate><br/>
@@ -83,30 +104,30 @@
 	       		</tr>
 	       		<tr>
 	       			<td>
-            			<div class="control-group">
+            			<div class="control-group" style="margin-bottom:30px;">
             				<label class="control-label">{{'label.telephone.number' | translate}}&nbsp;<span class="required">*</span></label>
             				<div class="controls">
-            					<input name="telePhone" type="text" data-ng-model="formData.homePhoneNumber" placeholder= "{{'label.telephone.number' | translate}}" ng-minlength="7" ng-maxlength="15"
-            							ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/" required  late-Validate/><br/>
+            					<input name="telePhone" type="text" data-ng-model="formData.homePhoneNumber" placeholder= "{{'label.telephone.number' | translate}}" ng-minlength="7" maxlength="15"
+            							ng-pattern="/^\d{1,15}$/" required  late-Validate/><br/>
             					 <span ng-show="regSuccessForm.telePhone.$dirty && regSuccessForm.telePhone.$invalid">
 				        			<small class="error" ng-show="regSuccessForm.telePhone.$error.pattern">{{'form.error.number'|translate}}</small>
 				        			<small class="error" ng-show="regSuccessForm.telePhone.$error.minlength">{{'form.error.number.digits.atleast'|translate}}</small>
-				        			<small class="error" ng-show="regSuccessForm.telePhone.$error.maxlength">{{'form.error.number.digits.atleast'|translate}}</small>
+				        			<small class="error" ng-show="regSuccessForm.telePhone.$error.maxlength">{{'form.error.number.digits.maximum'|translate}}</small>
 				    			</span>
             				</div>
         				 </div>
 	         				 
 	       			</td>
 	       			<td>
-            			<div class="control-group">
+            			<div class="control-group" style="margin-bottom:30px;">
             				<label class="control-label">{{'label.mobilephone' | translate}}&nbsp;<span class="required">*</span></label>
             				<div class="controls">
-            					<input name="phone" type="text" data-ng-model="formData.mobileNo" placeholder= "{{'label.mobilephone' | translate}}" ng-minlength="7" ng-maxlength="15"
-            							ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/" required  late-Validate/><br/>
+            					<input name="phone" type="text" data-ng-model="formData.mobileNo" placeholder= "{{'label.mobilephone' | translate}}" ng-minlength="7" maxlength="15"
+            							ng-pattern="/^\d{1,15}$/" required  late-Validate/><br/>
             					 <span ng-show="regSuccessForm.phone.$dirty && regSuccessForm.phone.$invalid">
 				        			<small class="error" ng-show="regSuccessForm.phone.$error.pattern">{{'form.error.number'|translate}}</small>
 				        			<small class="error" ng-show="regSuccessForm.phone.$error.minlength">{{'form.error.number.digits.atleast'|translate}}</small>
-				        			<small class="error" ng-show="regSuccessForm.phone.$error.maxlength">{{'form.error.number.digits.atleast'|translate}}</small>
+				        			<small class="error" ng-show="regSuccessForm.phone.$error.maxlength">{{'form.error.number.digits.maximum'|translate}}</small>
 				    			</span>
             				</div>
         				 </div>
@@ -114,23 +135,24 @@
 	       		</tr>
 	       		<tr>
 	       			<td>
-            			<div class="control-group">
+            			<div class="control-group" style="margin-bottom:30px;">
                             <label class="control-label">{{ 'label.nationalid' | translate }}&nbsp;<span class="required">*</span></label>
                              <div class="controls">
     	                        <!-- <input type="text" datepicker-pop="ddMMyy" ng-model="start.date" is-open="opened" min="minDate" max="maxDate" 
                           			   date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;width:60px;"  readonly/>
     	                        <strong>-</strong> -->
-    	                        <input type="text" ng-model="formData.nationalId" name="nationalId" placeholder= "{{ 'placeholder.enter.nationalid' | translate }}" maxlength="11"
+    	                        <input type="text" ng-model="formData.nationalId" name="nationalId" placeholder= "{{ 'placeholder.enter.nationalid.example' | translate }}" maxlength="11"
     	                        ng-pattern="/(^(((0[1-9]|[12][0-8])(0[1-9]|1[012]))|((29|30|31)(0[13578]|1[02]))|((29|30)(0[4,6,9]|11)))\d\d-\d\d\d\d$)|(^2902(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)-\d\d\d\d$)/" required late-Validate/><br/>
+    	                        <small>{{'label.pattern'|translate}}{{'hint.nationaid.pattern'|translate}}</small><br/>
     	                        <span ng-show="regSuccessForm.nationalId.$dirty && regSuccessForm.nationalId.$invalid">
-				        			<small class="error" ng-show="regSuccessForm.nationalId.$error.pattern">{{'form.error.number'|translate}}</small>
+				        			<small class="error" ng-show="regSuccessForm.nationalId.$error.pattern">{{'form.error.nationalid.pattern'|translate}}</small>
 				    			</span>
                              </div>
                         </div>	
 	         				 
 	       			</td>
-	       			<td>
-            			<div class="control-group">
+	       			<td valign="top">
+            			<div class="control-group" style="margin-bottom:30px;">
                             <label class="control-label" for="address">{{ 'label.home.address' | translate }}&nbsp;<span class="required">*</span></label>
                              <div class="controls">
     	                        <input type="text" ng-model="formData.address" name="address" placeholder= "{{ 'placeholder.enter.address' | translate }}" required late-Validate/>
@@ -141,7 +163,7 @@
 	       		</tr>
 	       		<tr>
 	       			<td>
-            			<div class="control-group">
+            			<div class="control-group" style="margin-bottom:30px;">
              				 <label class="control-label" for="city">{{'label.city' | translate}}&nbsp;<span class="required">*</span></label>
 				              <div class="controls">
 				              <select ng-model="formData.city"  ng-options="city as city for city in cities" 
@@ -152,7 +174,7 @@
            				 </div>
 	       			</td>
 	       			<td>
-            			<div class="control-group">
+            			<div class="control-group" style="margin-bottom:30px;">
                             <label class="control-label" for="zipcode">{{ 'label.home.postcode' | translate }}&nbsp;<span class="required">*</span></label>
                              <div class="controls">
     	                        <input type="text" ng-model="formData.zipcode" name="zipcode" placeholder= "{{ 'placeholder.enter.postcode' | translate }}" ng-pattern="/^[0-9]+$/" maxlength="3" required late-Validate/><br/>
@@ -166,7 +188,7 @@
 	       		</tr>
 	       		<tr>
 	       			<td>
-            			<div class="control-group" ng-show="isDeviceEnabled==true">
+            			<div class="control-group" ng-show="isDeviceEnabled==true" style="margin-bottom:30px;">
                             <label class="control-label" for="serialNumber">{{ 'label.device' | translate }}&nbsp;<span class="required">*</span></label>
                              <div class="controls">
     	                        <input type="text" ng-model="formData.deviceNo" name="serialNumber" placeholder= "{{ 'placeholder.enter.device' | translate }}"/>

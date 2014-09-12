@@ -25,14 +25,14 @@
 		</div>
          <table style="width:100%;">
           <tr>
-         	 <td style="padding-left:125px;">
+         	 <td style="padding-left:125px;" >
          	 	<div class="row paddedbottom">
 				    <table>
 				        <tr>
 				            <td>
 				                <img src="./selfcare_module/images/BillingX_logo.png" alt="BillingX" width="150">
 				            </td>    
-				            <td>
+				            <td style="width:238px;">
 				                <h1>{{ 'label.product.name' | translate }}</h1>
 				                <span>{{ 'label.product.version' | translate }}</span><br/>
 				                <span>{{ 'label.product.status' | translate }}</span><br/>
@@ -42,7 +42,7 @@
 				    </table>        
 	    		</div >
           	  </td>
-               <td>
+               <td  style="height:320px;width:300px;">
 	               <!-- <div  class="row paddedbottom pull-right border-box-shape" ng-show="signUpFormView">
 	        	   		 <ng-include src="template" ></ng-include>
 	        		</div> -->
@@ -137,7 +137,7 @@
 	                    <ul class="nav" id="main-menu-left" ng-show="isSignInProcess">
 	                     <li><a href="#/profile" ng-class="{ activate: isActive('/profile') }"><i class="icon-user icon-white"></i>{{'label.profile' | translate}}</a></li>
 	                     <li><a href="#/additionalorders/0/0" ng-class="{ activate: isActive('/additionalorders/0/0') }"><i class="icon-plus-sign icon-white"></i>{{'label.additionalplans' | translate}}</a></li>
-	                     <li><a href="#/vodevents" ng-class="{ activate: isActive('/vodevents') }"><i class="icon-plus-sign icon-white"></i>{{'label.vod' | translate}}</a></li>
+	                     <li><a href="#/listofvods" ng-class="{ activate: isActive('/listofvods') }"><i class="icon-list icon-white"></i>{{'label.listofvods' | translate}}</a></li>
                         <li><a href="#/orders" ng-class="{ activate: isActive('/orders') }"><i class="icon-list"></i>{{'label.contracts' | translate}}</a></li>
                         <li><a href="#/statements" ng-class="{ activate: isActive('/statements') }"><i class="icon-file icon-white"></i>{{'label.statements' | translate}}</a></li>
                          <li><a href="#/payments"  ng-class="{ activate: isActive('/payments') }"><i class="icon-usd"></i>{{'label.payments' | translate}}</a></li>
@@ -168,7 +168,7 @@
 	       </div>
 	    </div>
     </div>
- 	<script type='text/javascript' data-main="selfcare_module/selfcare_loader.js" src='selfcare_module/bower_components/requirejs/require.js'></script>
+ 	<script type='text/javascript' data-main="selfcare_module/selfcare_loader.js" src='../app/bower_components/requirejs/require.js'></script>
  	<script type="text/ng-template" id="clientactivepopup.html">
                     
                     <div class="modal-body modal-small" style="padding:25px 0px 0px 35px;">
@@ -206,7 +206,7 @@
                     </div>
 					<div class="modal-footer" ng-show="isProcessing">
 						<span class="btn" style="color:#000000;padding:5px;">{{'label.pleasewait' | translate}}
-							<img alt="Loading" ng-src="./selfcare_module/images/loader.gif" width="20px"/>
+							<img alt="Loading" ng-src="./selfcare_module/images/ajax-loader.gif" width="20px"/>
 						</span>
 					</div>
 				<form>

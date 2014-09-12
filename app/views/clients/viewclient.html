@@ -273,7 +273,7 @@
                 </div>
           </div>
       </tab>
-      <tab heading="More Info" select="getClientIdentityDocuments()" active="identitiesTab" 
+      <tab heading="More Info" select="getClientIdentityDocuments()" active="moreInfoTab" 
       			ng-show="$parent.PermissionService.showMenu('read_CLIENTIDENTIFIER')">
      
      <div class="pull-right "> 
@@ -294,26 +294,26 @@
        </div>
        <div>
 	       <div class="pull-left">
-	          <span class="input-append grpinputicons">
+	          <span class="input-append grpinputicons" ng-hide="parentCount">
 	                <input type="text" ng-model="parentClient" name="parentClient"  placeholder="Search by Parent #" 
 	                       typeahead="parentClient.displayLabel as parentClient.displayLabel for parentClient  in getparent($viewValue) | limitTo:8" 
 	                       typeahead-min-length="0"/>
 	                <button class="btn btn-primary btn-disabled" type="submit" disabled ng-click="saveParent(parentClient)">save</button>
-	        </span>
+	          </span>
 	        </div><br/><br/><br/>
-	        <table class="table" ng-show=parent.id>
+	        <table class="table" ng-show="parent.length==1&&parentCount==false">
 	            <thead>
 	              <tr class="graybg">
-	                <th>ParentID</th>
-	                <th>ParentName</th>
-	                <th>AccountNo</th>
+	                <th>{{'label.parentid'|translate}}</th>
+	                <th>{{'label.parentname'|translate}}</th>
+	                <th>{{'label.parentorchildaccount'|translate}}</th>
 	              </tr>
 	            </thead>
 	            <tbody>
 	             <tr class="pointer-main">
-	                <td class="pointer" data-ng-click="routeToParentClient(parent.id)">{{parent.id}}</td>
-	                <td class="pointer" data-ng-click="routeToParentClient(parent.id)">{{parent.displayName}}</td>
-	                <td class="pointer" data-ng-click="routeToParentClient(parent.id)">{{parent.accountNo}}</td>
+	                <td class="pointer" data-ng-click="routeToParentClientOrChildClient(parent[0].id)">{{parent[0].id}}</td>
+	                <td class="pointer" data-ng-click="routeToParentClientOrChildClient(parent[0].id)">{{parent[0].displayName}}</td>
+	                <td class="pointer" data-ng-click="routeToParentClientOrChildClient(parent[0].id)">{{parent[0].accountNo}}</td>
 	            </tr>
 	            </tbody>
 	        </table>
@@ -325,6 +325,7 @@
 				    <li class={{documnetsUploadsTab}}><a ng-click="documnetsUploadsTabFun()" data-toggle="tab">Documents Uploads</a></li>
     			 	<li class={{creditCardDetailsTab}}><a ng-click="creditCardDetailsTabFun()" data-toggle="tab">CreditCard Details</a></li>
     			 	<li class={{ACHDetailsTab}}><a ng-click="ACHDetailsTabFun()" data-toggle="tab">ACH Details</a></li>
+    			 	<li ng-show="parentCount" class={{ChildDetailsTab}}><a ng-click="childsFun()" data-toggle="tab">ChildClient Details</a></li>
 			    </ul>
 			 <div class="tab-content">
   
@@ -443,6 +444,26 @@
 			                <td class="pointer" data-ng-click="routeToCardDetails(clientcarddetails2.clientId,clientcarddetails2.id,clientcarddetails2.type)">{{clientcarddetails2.bankAccountNumber}}</td>
 			                <td class="pointer" data-ng-click="routeToCardDetails(clientcarddetails2.clientId,clientcarddetails2.id,clientcarddetails2.type)">{{clientcarddetails2.bankName}}</td>
 			                <td class="pointer" data-ng-click="routeToCardDetails(clientcarddetails2.clientId,clientcarddetails2.id,clientcarddetails2.type)">{{clientcarddetails2.accountType}}</td>               
+			              </tr>
+			            </tbody>
+			          </table>
+			    </div>
+			    
+			    <div id="pane5" class="tab-pane" ng-class="{active: ChildDetailsTab}">
+			  		
+			        <table class="table" ng-show="parentCount">
+			            <thead>
+			              <tr class="graybg">
+			                <th>{{'label.childid'|translate}}</th>
+			                <th>{{'table.ippooling.clientname'|translate}}</th>
+			                <th>{{'label.parentorchildaccount'|translate}}</th>
+			              </tr>
+			            </thead>
+			            <tbody>
+			              <tr class="pointer-main" ng-repeat="childsData in parent">
+			                <td class="pointer" data-ng-click="routeToParentClientOrChildClient(childsData.id)">{{childsData.id}}</td>
+			                <td class="pointer" data-ng-click="routeToParentClientOrChildClient(childsData.id)">{{childsData.displayName}}</td>
+			                <td class="pointer" data-ng-click="routeToParentClientOrChildClient(childsData.id)">{{childsData.accountNo}}</td>              
 			              </tr>
 			            </tbody>
 			          </table>
