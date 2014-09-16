@@ -25,25 +25,24 @@
 				</td>
 				<td width="50%">
 					<div class="control-group">
-						<label class="control-label" for="status">{{'label.event.status' | translate }}</label>
-						<div class="controls">
-							<select ng-model="formData.status"
-								ng-options="eventStatus.id as eventStatus.value for eventStatus in eventStatus"
-								value="{{eventStatus.id}}"></select>
-						</div>
-					</div>
-				</td>
-			</tr>
-
-			<tr>
-				<td width="50%">
-					<div class="control-group">
 						<label class="control-label" for="eventDescription"> {{'label.event.eventdescription' | translate }}</label>
 						<div class="controls">
 							<input type="text" id="eventDescription"
 								ng-model="formData.eventDescription">
 						</div>
 					</div>
+				</td>
+				
+			</tr>
+
+			<tr>
+				<td>
+							<div class="control-group" >
+            				<label class="control-label" for="eventCategory">Event Category</label>
+            				<div class="controls">
+               					<select  id="eventcategory" ng-model="formData.eventCategory"   ng-options="eventCategeorydata.mCodeValue as eventCategeorydata.mCodeValue for eventCategeorydata in eventCategeorydatas" value="{{eventCategeorydata.id}}"></select>
+            				</div>
+          					</div>
 				</td>
 				<!-- <td width="50%">
 					<div class="control-group">
@@ -53,15 +52,17 @@
 						</div>
 					</div>
 				</td> -->
-				<td>
+				<td width="50%">
 					<div class="control-group">
-						<label class="control-label" for="eventEndDate">{{'label.event.enddate' | translate }}</label>
+						<label class="control-label" for="chargeCode"> {{'label.event.chargedata' | translate }}</label>
 						<div class="controls">
-							<!-- <input type="text" id="eventEndDate" ng-model="formData.eventEndDate"> -->
-							<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.eventEndDate" is-open="opened2" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
+							<select ng-model="formData.chargeCode"
+								ng-options="chargeData.chargeCode as chargeData.chargeDescription for chargeData in chargeData"
+								value="{{chargeData.chargeCode}}"></select>
 						</div>
 					</div>
-				</td>
+				</td> 
+				
 			</tr>
 
 			<tr>
@@ -78,6 +79,19 @@
 				</td>
 				<td>
 					<div class="control-group">
+						<label class="control-label" for="eventEndDate">{{'label.event.enddate' | translate }}</label>
+						<div class="controls">
+							<!-- <input type="text" id="eventEndDate" ng-model="formData.eventEndDate"> -->
+							<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.eventEndDate" is-open="opened2" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
+						</div>
+					</div>
+				</td>
+				
+			</tr>
+
+			<tr>
+				 <td>
+					<div class="control-group">
 						<label class="control-label" for="eventValidity"> {{'label.event.eventvalidity' | translate }}</label>
 						<div class="controls">
 							<!-- <input type="text" id="eventValidity" ng-model="formData.eventValidity"> -->
@@ -85,26 +99,15 @@
 						</div>
 					</div>
 				</td>
-			</tr>
-
-			<tr>
-				<!-- <td width="50%">
+				<td width="50%">
 					<div class="control-group">
-						<label class="control-label" for="chargeCode"> {{'label.event.chargedata' | translate }}</label>
+						<label class="control-label" for="status">{{'label.event.status' | translate }}</label>
 						<div class="controls">
-							<select ng-model="formData.chargeCode"
-								ng-options="chargeData.chargeCode as chargeData.chargeDescription for chargeData in chargeData"
-								value="{{chargeData.chargeCode}}"></select>
+							<select ng-model="formData.status"
+								ng-options="eventStatus.id as eventStatus.value for eventStatus in eventStatus"
+								value="{{eventStatus.id}}"></select>
 						</div>
 					</div>
-				</td> -->
-				<td>
-							<div class="control-group" >
-            				<label class="control-label" for="eventCategory">Event Category</label>
-            				<div class="controls">
-               					<select  id="eventcategory" ng-model="formData.eventCategory"   ng-options="eventCategeorydata.mCodeValue as eventCategeorydata.mCodeValue for eventCategeorydata in eventCategeorydatas" value="{{eventCategeorydata.id}}"></select>
-            				</div>
-          					</div>
 				</td>
 			</tr>
 		</table>
