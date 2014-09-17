@@ -10,9 +10,14 @@
 </script> -->
 
 </head>
-<body  class="preview" id="top" data-spy="scroll" data-target=".subnav" data-offset="80" data-ng-cloak data-ng-controller="MainController">
+<body  class="preview" id="top" data-spy="scroll" data-target=".subnav"  data-offset="80"  data-ng-controller="MainController">
+ <div data-ng-hide="domReady" style="position: absolute;margin-top:230px; top:0px;left:500px;">
+    <div>
+        <img src="./images/loading.gif" >
+    </div>    
+</div> 
 <!-- Login Form  -->
-<div class="container well" data-ng-hide="currentSession.user != null" >
+<div class="container well" data-ng-cloak  data-ng-hide="currentSession.user != null" >
 
     <div class="row form-search ng-pristine ng-valid paddedbottom" data-ng-form="loginForm" data-ng-controller="LoginFormController">
         <div class="pull-right ">
@@ -100,7 +105,7 @@
 </div>
 <!-- Navbar  -->
 
-<div ng-class="{fullscreen:true,blockui:blockUI==true}" id="main"  data-ng-hide="currentSession.user == null">
+<div data-ng-cloak ng-class="{fullscreen:true,blockui:blockUI==true}" id="main"  data-ng-hide="currentSession.user == null">
 
        <div class="loading-widget-div" data-ng-show="blockUI">
         <div id="circularG">
@@ -261,7 +266,7 @@
        </div><!-- /blockui-->
     </div><!-- /container -->
 </div>
-
+<!-- </div> -->
 <!-- Le javascript -->
 <script type='text/javascript' data-main="scripts/loader.js" src='bower_components/requirejs/require.js'></script>
 </body>

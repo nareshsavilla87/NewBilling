@@ -7,9 +7,13 @@
 	<title>{{'title.obs.selfcare' | translate}}</title>
 	<style>[data-ng-cloak] { display: none !important; }</style>
 </head>
-<body  class="preview" id="top" data-spy="scroll" data-target=".subnav" data-offset="80" data-ng-cloak data-ng-controller="SelfCareMainController">
-
-   <div class="container well"  data-ng-hide="currentSession.user != null">
+<body  class="preview" id="top" data-spy="scroll" data-target=".subnav" data-offset="80" data-ng-controller="SelfCareMainController">
+<div data-ng-hide="domReady" style="position: absolute;margin-top:230px; top:0px;left:500px;">
+    <div >
+        <img src="./selfcare_module/images/loading.gif" >
+    </div>    
+</div> 
+   <div class="container well"  data-ng-cloak data-ng-hide="currentSession.user != null">
         <div class="row form-search ng-pristine ng-valid paddedbottom" data-ng-form="signInForm" data-ng-controller="SignInFormController">
          <div class="alert alert-success animated tada" role="alert" ng-show="isRegistrationSuccess">
          	<strong>{{'title.conformation.registration' | translate}}<br/>{{'title.toactive.msg' | translate}} 
@@ -23,6 +27,21 @@
 		<div class="alert alert-info animated tada" role="alert" ng-show="isChangePassword">
          	<strong>{{'title.password.changed' | translate}}</strong>
 		</div>
+		<div class="pull-right ">
+            <span class="dropdown" >
+              {{ 'label.change.language' | translate }}
+              <a class="dropdown-toggle btn btn-primary">
+                {{optlang.name}}
+                <i class="icon-sort-down"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li ng-repeat="lang in langs">
+                  <a ng-click="changeLang(lang)">{{lang.name}}</a>
+                </li>
+              </ul>
+            </span>
+        </div>
+        <br/><br/>
          <table style="width:100%;">
           <tr>
          	 <td style="padding-left:125px;" >
@@ -128,7 +147,7 @@
 	    
 		</div>
 	</div>
-	<div ng-class="{fullscreen:true,blockui:blockUI==true}" id="main" data-ng-hide="currentSession.user == null">
+	<div ng-class="{fullscreen:true,blockui:blockUI==true}" id="main" data-ng-cloak data-ng-hide="currentSession.user == null">
 		 <div class="navbar navbar-fixed-top">
 	        <div class="navbar-inner" >
 	            <div class="container">

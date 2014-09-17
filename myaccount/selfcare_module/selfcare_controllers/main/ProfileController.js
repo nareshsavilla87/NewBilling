@@ -14,7 +14,7 @@
 					  scope.clientData.selfcare.authPin = 'Not Available';
 				  }
 				  rootScope.selfcare_userName = data.selfcare.userName;
-				  webStorage.add('selfcareUserName',data.selfcare.userName);
+				  webStorage.add('selfcareUserName',data.displayName);
 			  });
 		  }
 		  

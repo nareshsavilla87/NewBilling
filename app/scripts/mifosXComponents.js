@@ -262,14 +262,17 @@ define(['underscore', 'mifosX'], function() {
       'system/DalpayDetailsFormController',
       'system/DalpayButtonController',
       'system/CreateEventValidationController',
-      'system/ProvisionController'
+      'system/ProvisionController',
+      'system/KortaController',
+      'system/KortaSuccessController'
 
     ],
     filters: [
       'StatusLookup',
       'YesOrNo',
       'DateFormat',
-      'ConfigLookup'
+      'ConfigLookup',
+      'DateTimeFormat'
     ],
     directives: [
       'DataTablesDirective',

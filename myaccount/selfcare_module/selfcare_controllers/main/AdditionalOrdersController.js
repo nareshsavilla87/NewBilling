@@ -68,8 +68,8 @@
 	    		//var portNo = window.location.port;
 	    	  var hostName = selfcare.models.selfcareAppUrl;
 	    	  scope.paymentDalpayURL = scope.dalpayURL+"&cust_name="+scope.formData.lastname+"&cust_phone="+scope.formData.phone+"&cust_email="+scope.formData.email+"&cust_state="+scope.formData.state+""+
-	    	  				"&cust_address1="+scope.formData.addressNo+"&cust_zip="+scope.formData.zip+"&cust_city="+scope.formData.city+"&num_items=1&item1_desc="+scope.formData.planName+"&item1_price="+scope.formData.planAmount+"" +
-	    	  				"&item1_qty=1&user1="+scope.formData.id+"&user2="+hostName+"&user3=additionalorderspreviewscreen/"+routeParams.orderId+"/"+routeParams.clientId;
+	    	  				"&cust_address1="+scope.formData.addressNo+"&cust_zip="+scope.formData.zip+"&cust_city="+scope.formData.city+"&item1_desc="+scope.formData.planName+"&item1_price="+scope.formData.planAmount+"" +
+	    	  				"&user1="+scope.formData.id+"&user3=additionalorderspreviewscreen/"+routeParams.orderId+"/"+routeParams.clientId;
 	    	  
 	      };
 	      
