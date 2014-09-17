@@ -1061,6 +1061,7 @@
   "validation.msg.eventorder.optType.cannot.be.blank":"Opt Type cannot be blank",
   "error.msg.movie.price.not.found":"No Price Found for This Client Type",
   "error.msg.insufficient.amount.amount":"Insufficient Amount to Book The Order",
+  "validation.msg.eventmaster.eventCategory.cannot.be.blank":"Please select Event Category",
   
   
   
