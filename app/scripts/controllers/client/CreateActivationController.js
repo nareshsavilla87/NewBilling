@@ -287,7 +287,7 @@
 	                if(config =='SALE'){  
 	 	        	 this.formData2.locale = "en";
 	 	             this.formData2.dateFormat = "dd MMMM yyyy";
-	 	             this.formData2.saleType="FirstSale";
+	 	             this.formData2.saleType="Sale";
 	 	            this.formData2.quantity=1;
 	 	            
 	        		this.formData2.totalPrice=scope.formData2.totalPrice;
@@ -299,7 +299,7 @@
 	 	             delete this.formData2.units;
 	 	             delete this.formData2.itemCode;
 	 	             delete this.formData2.id;
-	            //   delete this.formData2.itemDetail;
+	               delete this.formData2.chargesData;
 	                }else{
 	                	
 	                	  scope.formData5.locale = 'en';
