@@ -2,11 +2,18 @@
   mifosX.controllers = _.extend(module, {
 	  ViewPlanController: function(scope, routeParams , location,resourceFactory,$modal ,PermissionService) {
         scope.plan = [];
-        
+        scope.billRuleDatas = [];
         scope.PermissionService = PermissionService;
         
         resourceFactory.planResource.get({planId: routeParams.id} , function(data) {
             scope.plan = data;
+            scope.billRuleDatas = data.billRuleDatas;
+            
+            for(var i in scope.billRuleDatas){
+            	if(scope.billRuleDatas[i].id == scope.plan.billRule){
+            		scope.plan.billRule=scope.billRuleDatas[i].billruleOptions;
+            	}
+            }
            
         });
         

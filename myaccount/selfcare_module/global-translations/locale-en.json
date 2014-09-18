@@ -73,6 +73,7 @@
  	"label.home.postcode"		: "Home Postcode",
  	"label.nationalid"			: "National ID",
  	"label.order.info"			: "Order Information",
+ 	"label.listofvods"			: "List Of VODs",
  	
  	"#headers " : "------------------------------------",
  	"header.forgot.password" 		 : "Forgot Password",
@@ -104,6 +105,8 @@
  	"link.vod" 			 		 :  "VOD",
  	"link.profile" 			 	 :  "Profile",
  	"link.address" 			 	 :  "Address",
+ 	"link.listofvods" 			 :  "List Of VODS",
+ 	"link.vod.add.event" 		 :  "Add Event",
  	
  	"#place holders " : "------------------------------------",
  	"placeholder.enter.device"				: "Enter Device",
@@ -117,6 +120,7 @@
  	"placeholder.filter.vod"				: "Search Movie Name",
  	"placeholder.enter.nationalid"			: "Enter NationalID",
  	"placeholder.enter.nationalid.example"	: "ex: 090814-1234",
+ 	"placeholder.filter.listofvods"			: "Filter by Filter by Id",
  	
  	
  	"#common labels " : "------------------------------------",
@@ -194,6 +198,18 @@
 	 "label.order.disconnectionreason"		: "Disconnection Reason",
 	 
 	 
+	  "#ListofVODSResources "	 :"------------------------------------",
+	 "table.header.listvod.id" 				: "Id",
+	 "table.header.listvod.eventname" 		: "Event Name",
+	 "table.header.listvod.bookeddate" 		: "Booked Date",
+	 "table.header.listvod.chargecode" 		: "Charge Code",
+	 "table.header.listvod.eventprice" 		: "Event Price",
+	 "table.header.listvod.status" 			: "Status",
+	 
+	 
+	 "label.vod.add.event" 					: "Add Event",
+	 
+	 
 	 "#PaymentResources "	 :"------------------------------------",
 	 "table.header.payment.transactionid" 				: "Transaction Id",
 	 "table.header.payment.transactiondate" 			: "Transaction Date",
@@ -220,7 +236,7 @@
 	 "label.amount.total" 						: "Total",
 	 
 
-	 "label.vod.conformation" 					: "VOD Conformation",
+	 "label.vod.event.conformation" 			: "Event Conformation",
 	 
 	 "#ProfileResources "	 :"------------------------------------",
 	 "table.header.profile.accountNumber" 				: "Account Number",

@@ -137,7 +137,7 @@
 	                    <ul class="nav" id="main-menu-left" ng-show="isSignInProcess">
 	                     <li><a href="#/profile" ng-class="{ activate: isActive('/profile') }"><i class="icon-user icon-white"></i>{{'label.profile' | translate}}</a></li>
 	                     <li><a href="#/additionalorders/0/0" ng-class="{ activate: isActive('/additionalorders/0/0') }"><i class="icon-plus-sign icon-white"></i>{{'label.additionalplans' | translate}}</a></li>
-	                     <li><a href="#/vodevents" ng-class="{ activate: isActive('/vodevents') }"><i class="icon-plus-sign icon-white"></i>{{'label.vod' | translate}}</a></li>
+	                     <li><a href="#/listofvods" ng-class="{ activate: isActive('/listofvods') }"><i class="icon-list icon-white"></i>{{'label.listofvods' | translate}}</a></li>
                         <li><a href="#/orders" ng-class="{ activate: isActive('/orders') }"><i class="icon-list"></i>{{'label.contracts' | translate}}</a></li>
                         <li><a href="#/statements" ng-class="{ activate: isActive('/statements') }"><i class="icon-file icon-white"></i>{{'label.statements' | translate}}</a></li>
                          <li><a href="#/payments"  ng-class="{ activate: isActive('/payments') }"><i class="icon-usd"></i>{{'label.payments' | translate}}</a></li>
@@ -206,7 +206,7 @@
                     </div>
 					<div class="modal-footer" ng-show="isProcessing">
 						<span class="btn" style="color:#000000;padding:5px;">{{'label.pleasewait' | translate}}
-							<img alt="Loading" ng-src="./selfcare_module/images/loader.gif" width="20px"/>
+							<img alt="Loading" ng-src="./selfcare_module/images/ajax-loader.gif" width="20px"/>
 						</span>
 					</div>
 				<form>

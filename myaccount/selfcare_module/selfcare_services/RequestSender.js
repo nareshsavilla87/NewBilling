@@ -83,6 +83,7 @@
             statementResource: defineResource(apiVer + "/billmaster/:clientId", {clientId:'@clientId'}, {
                 update: { method: 'PUT'}
             }),
+            eventOrderPriceTemplateResource: defineResource(apiVer + "/eventorder",{},  {}),
 
         };
       }];

@@ -7,7 +7,7 @@
   "label.signin":"Sign In",
   "label.systemid": "System Id :",
   "label.product.name" : "Open Billing System",
-  "label.product.version" : "Version 1.0.0",
+  "label.product.version" : "Version 2.0.1",
   "label.product.status" : "OBS is upto date",
   "label.product.aboutus1" : "Designed by ",
   "label.product.aboutus2" : "A global community",
@@ -978,6 +978,13 @@
   "error.msg.payments.duplicate.receiptNo":"Receipt is Already exist with this number",
   "error.msg.billing.active.plans.found":"Active Plans are Paired with this device",
   "error.msg.close.active.plans.found.for.hardWare":"Active Plans are Paired with this device",
+  "validation.msg.itemsale.purchaseFrom.cannot.be.blank":"Please select office For purchase",
+  "validation.msg.itemsale.chargeCode.cannot.be.blank":"Charge Code cannot be blan",
+  "validation.msg.itemsale.unitPrice.cannot.be.blank":"Unit Price cannot be blank",
+  "validation.msg.itemsale.itemId.cannot.be.blank":"Please select Item",
+  "validation.msg.itemsale.orderQuantity.cannot.be.blank":"Order Quantity cannot be blank",
+  "validation.msg.itemsale.chargeAmount.cannot.be.blank":"Charge amount cannot be blank",
+  "validation.msg.itemsale.taxAmount.cannot.be.blank":"tax Amount cannot be blank",
   
    "#service ":"....",
   "label.manageservices":"Manage Services",
@@ -1318,7 +1325,7 @@
   "label.active":"Active",
   "label.event.startdate":"Start Date",
   "label.event.enddate":"End Date",
-  "label.event.chargedata":"ChargeData",
+  "label.event.chargedata":"Charge Code",
   "label.event.eventvalidity":"Event Validity",
   "label.availablemedia":"Available Media",
   "label.selectedmedia":"Selected Media Services",
@@ -2010,7 +2017,12 @@
 "label.cug.additionalinfo":"Additional information",
 "label.cug.addgroup":"Add Group",
 "label.cug.groupaddress":"Group Address",
-"label.options":"Options"
+"label.options":"Options",
+"#ParentsChildrelationships":"......",
+"label.childid":"ChildId",
+"label.parentid":"ParentID",
+"label.parentname":"ParentName",
+"label.parentorchildaccount":"AccountNo"
 
 
 

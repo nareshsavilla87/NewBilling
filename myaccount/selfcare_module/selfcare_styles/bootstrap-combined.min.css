@@ -3917,9 +3917,12 @@ input[type="submit"].btn.btn-mini {
 }
 
 .alert-success {
-  color: #ffffff;
+  /* color: #ffffff;
   background-color: #3fb618;
-  border-color: transparent;
+  border-color: transparent; */
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
 }
 
 .alert-success h4 {
@@ -3928,9 +3931,12 @@ input[type="submit"].btn.btn-mini {
 
 .alert-danger,
 .alert-error {
-  color: #ffffff;
+  /* color: #ffffff;
   background-color: #ff0039;
-  border-color: transparent;
+  border-color: transparent; */
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
 }
 
 .alert-danger h4,
@@ -3939,9 +3945,12 @@ input[type="submit"].btn.btn-mini {
 }
 
 .alert-info {
-  color: #ffffff;
+ /*  color: #ffffff;
   background-color: #9954bb;
-  border-color: transparent;
+  border-color: transparent; */
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
 }
 
 .alert-info h4 {

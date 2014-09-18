@@ -50,17 +50,20 @@
 							
 							resourceFactory.eventTemplateResource.get(function(
 									data) {
-
+								scope.formData = {};
 								scope.eventStatus = data.statusData;
+								for(var i=0;i<scope.eventStatus.length;i++){
+									if(scope.eventStatus[i].value=='ACTIVE'){
+										scope.formData.status=scope.eventStatus[i].id;
+									}
+								}
 								scope.chargeData = data.chargeData;
 
 								scope.availableServices = data.mediaAsset;
 								scope.productmix = data;
 								scope.allowedProducts = data.mediaAsset;
 								scope.eventCategeorydatas = data.eventCategeorydata;
-								scope.formData = {
-
-								};
+								
 								/**
 								 * This condition call when we come from Media 
 								 * */

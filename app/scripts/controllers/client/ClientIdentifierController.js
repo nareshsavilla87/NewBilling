@@ -22,13 +22,13 @@
             });
 
             scope.reset123 = function(){
-  	    	   webStorage.add("callingTab", {someString: "identities" });
+  	    	   webStorage.add("callingTab", {someString: "moreInfo" });
   	       };
             scope.submit = function () {
                 resourceFactory.clientIdenfierResource.save({clientId:scope.clientId},this.formData,function(data){
                     location.path('/viewclient/' + data.clientId);
                 });
-                webStorage.add("callingTab", {someString: "identities" });
+                webStorage.add("callingTab", {someString: "moreInfo" });
             };
 
         }

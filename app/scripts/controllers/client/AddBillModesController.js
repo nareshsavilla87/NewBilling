@@ -31,7 +31,7 @@
             });
             
             scope.reset123 = function(){
-            	webStorage.add("callingTab", {someString: "identities" });
+            	webStorage.add("callingTab", {someString: "moreInfo" });
             };
 			  scope.submit = function () {
 				  $("select").multipleSelect("getSelects");
@@ -41,7 +41,7 @@
 				  //console.log(s);
 				  var obj = {"billMode":s};
 	                resourceFactory.clientBillModeResource.update({clientId:scope.clientId},obj,function(data){
-	                	webStorage.add("callingTab", {someString: "identities" });
+	                	webStorage.add("callingTab", {someString: "moreInfo" });
 	                    location.path('/viewclient/' + data.resourceId);
 	                });
 	            };

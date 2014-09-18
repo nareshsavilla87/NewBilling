@@ -106,6 +106,7 @@
       <tab heading="MRN" select="getMRNdetails()" active="mrnTab"
       ng-show="$parent.PermissionService.showMenu('READ_MRN','MOVE_MRN')">
         <div class="pull-right btn-group">
+          <a href="#/itemsale/0" class="btn btn-primary"><i class="icon-plus icon-white"></i>Add Item Sale</a>
           <a ng-show="PermissionService.showMenu('CREATE_MRN')" href="#/createmrn" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
           <a ng-show="PermissionService.showMenu('MOVE_MRN')" href="#/movemrn" class="btn btn-primary"><i class="icon-move icon-white"></i>{{ 'button.mrn.move' | translate }}</a>
 

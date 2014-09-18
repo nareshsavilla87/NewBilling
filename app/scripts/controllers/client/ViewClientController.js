@@ -27,13 +27,13 @@
          }else{
  		  scope.displayTab=callingTab.someString;
  		 
- 		  if( scope.displayTab == "identities"){
+ 		  if( scope.displayTab == "moreInfo"){
  			 
- 			  scope.identitiesTab = true;
+ 			  scope.moreInfoTab = true;
  			  webStorage.remove('callingTab');
  		  }
  		  else if(scope.displayTab == "documents"){
-  			  scope.identitiesTab = true;
+  			  scope.moreInfoTab = true;
  			  webStorage.remove('callingTab');
  		  }
  		  else if(scope.displayTab == "Tickets"){
@@ -58,9 +58,12 @@
  			scope.eventorderC="active";
  			webStorage.remove('callingTab');
  		  }else if(scope.displayTab == "creditCardDetails"){
- 			  scope.identitiesTab = true;
+ 			  scope.moreInfoTab = true;
   			  webStorage.remove('callingTab');
  		  }else if(scope.displayTab == "ACHDetailsTab"){
+ 			  scope.moreInfoTab = true;
+  			  webStorage.remove('callingTab');
+ 		  }else if(scope.displayTab == "ChildDetailsTab"){
  			  scope.identitiesTab = true;
   			  webStorage.remove('callingTab');
  		  }else
@@ -435,32 +438,48 @@
         		});
         	}
         }
+        
         scope.getClientIdentityDocuments = function () {
-        	
+ 
         	scope.indentitiesSubTab = "active";
         	scope.documnetsUploadsTab = "";
         	scope.creditCardDetailsTab = "";
         	scope.ACHDetailsTab = "";
+        	scope.ChildDetailsTab="";
         	
         	if(scope.displayTab == "documents"){
         		scope.indentitiesSubTab = "";
             	scope.documnetsUploadsTab = "active";
             	scope.creditCardDetailsTab = "";
             	scope.ACHDetailsTab = "";
+            	scope.ChildDetailsTab="";
             	scope.displayTab = "";
+            	scope.documnetsUploadsTabFun();
         		
         	}else if(scope.displayTab == "creditCardDetails"){
         		scope.indentitiesSubTab = "";
             	scope.documnetsUploadsTab = "";
             	scope.creditCardDetailsTab = "active";
             	scope.ACHDetailsTab = "";
+            	scope.ChildDetailsTab="";
             	scope.displayTab = "";
+            	scope.creditCardDetailsTabFun();
         	}else if(scope.displayTab == "ACHDetailsTab"){
         		scope.indentitiesSubTab = "";
             	scope.documnetsUploadsTab = "";
             	scope.creditCardDetailsTab = "";
             	scope.ACHDetailsTab = "active";
+            	scope.ChildDetailsTab="";
             	scope.displayTab = "";
+            	scope.ACHDetailsTabFun();
+        	}else if(scope.displayTab == "ChildDetailsTab"){
+        		scope.indentitiesSubTab = "";
+            	scope.documnetsUploadsTab = "";
+            	scope.creditCardDetailsTab = "";
+            	scope.ACHDetailsTab = "";
+            	scope.ChildDetailsTab="active";
+            	scope.displayTab = "";
+            	scope.childsFun();
         	}
          //  console.log(scope.taxExemption);
         	 if(scope.taxExemption=='N'){
@@ -514,81 +533,24 @@
               }
           });
           
-         /* //documents details
-          if(PermissionService.showMenu('READ_DOCUMENT')){
-      		resourceFactory.clientDocumentsResource.getAllClientDocuments({clientId: routeParams.id} , function(data) {
-      				scope.clientdocuments = data;
-      		});
-      	}    */
-          
-          /*//credit card details
-          resourceFactory.creditCardSaveResource.get({clientId: routeParams.id} , function(data1) {
-
-              var key  = mifosX.models.encrptionKey;
-              scope.clientcarddetails = data1;
-              for ( var i in scope.clientcarddetails) {	
-
-                  if(scope.clientcarddetails[i].type=='CreditCard'){
-                	  
-				        var decrypted1 = CryptoJS.AES.decrypt(scope.clientcarddetails[i].cardNumber, key);
-				         var cardNum = decrypted1.toString(CryptoJS.enc.Utf8);
-				          var stars = "";
-				         for (var j in cardNum){
-				        	 if(j>=0&&j<(cardNum.length)-4){
-				        		 stars += "*";
-				        	 };
-				         }
-				         cardNum = stars+cardNum.substr(cardNum.length-4,cardNum.length-1);
-				         scope.clientcarddetails[i].cardNumber = cardNum;
-				        var decrypted2 = CryptoJS.AES.decrypt(scope.clientcarddetails[i].cardExpiryDate,  key);
-				        scope.clientcarddetails[i].cardExpiryDate = decrypted2.toString(CryptoJS.enc.Utf8);
-				        
-                  }else if(scope.clientcarddetails[i].type=='ACH'){
-              	        
-				        var decrypted1 = CryptoJS.AES.decrypt(scope.clientcarddetails[i].routingNumber,  key);
-				        var routingNumber = decrypted1.toString(CryptoJS.enc.Utf8);
-				          var stars = "";
-				         for (var j in routingNumber){
-				        	 if(j>=0&&j<(routingNumber.length)-4){
-				        		 stars += "*";
-				        	 };
-				         }
-				         routingNumber = stars+routingNumber.substr(routingNumber.length-4,routingNumber.length-1);
-				         scope.clientcarddetails[i].routingNumber = routingNumber;
-
-				        var decrypted2 = CryptoJS.AES.decrypt(scope.clientcarddetails[i].bankAccountNumber,  key);
-				        var bankAccountNumber = decrypted2.toString(CryptoJS.enc.Utf8);
-				          var stars = "";
-				         for (var j in bankAccountNumber){
-				        	 if(j>=0&&j<(bankAccountNumber.length)-4){
-				        		 stars += "*";
-				        	 };
-				         }
-				         bankAccountNumber = stars+bankAccountNumber.substr(bankAccountNumber.length-4,bankAccountNumber.length-1);
-				         scope.clientcarddetails[i].bankAccountNumber = bankAccountNumber;
-				         
-				         var decrypted3 = CryptoJS.AES.decrypt(scope.clientcarddetails[i].bankName,  key);
-					        scope.clientcarddetails[i].bankName = decrypted3.toString(CryptoJS.enc.Utf8);
-
-                  }
-              }
-            });*/
           //parentClient 
            resourceFactory.clientParentResource.get({clientId:routeParams.id},function(data) {
         	  scope.parent = [];
-        	  scope.parent=data;
+        	  scope.parent=data.parentClientData;
+        	  scope.parentCount=data.count;
         	  
           });
           
         };
         
-        //identities tab fun
+      //identities tab fun
         scope.indentitiesTabFun = function(){
         	
         	scope.indentitiesSubTab = "active";
         	scope.documnetsUploadsTab = "";
         	scope.creditCardDetailsTab = "";
         	scope.ACHDetailsTab = "";
+        	scope.ChildDetailsTab="";
         	
         	resourceFactory.clientResource.getAllClientDocuments({clientId: routeParams.id, anotherresource: 'identifiers'} , function(data) {
                 scope.identitydocuments = data;
@@ -612,6 +574,7 @@
         	scope.documnetsUploadsTab = "active";
         	scope.creditCardDetailsTab = "";
         	scope.ACHDetailsTab = "";
+        	scope.ChildDetailsTab="";
         	
         	 //documents details
             if(PermissionService.showMenu('READ_DOCUMENT')){
@@ -626,6 +589,7 @@
         	scope.documnetsUploadsTab = "";
         	scope.creditCardDetailsTab = "active";
         	scope.ACHDetailsTab = "";
+        	scope.ChildDetailsTab="";
         	
         	//credit card details
             resourceFactory.creditCardSaveResource.get({clientId: routeParams.id} , function(data1) {
@@ -686,7 +650,7 @@
         	scope.documnetsUploadsTab = "";
         	scope.creditCardDetailsTab = "";
         	scope.ACHDetailsTab = "active";
-        	
+        	scope.ChildDetailsTab="";
         	//credit card details
             resourceFactory.creditCardSaveResource.get({clientId: routeParams.id} , function(data1) {
 
@@ -740,7 +704,26 @@
                 }
               });
         }
-        
+
+        /**Child Details Function*/ 	
+        scope.childsFun = function(){
+        	
+        	scope.indentitiesSubTab = "";
+        	scope.documnetsUploadsTab = "";
+        	scope.creditCardDetailsTab = "";
+        	scope.ACHDetailsTab = "";
+        	scope.ChildDetailsTab="active";
+        	
+        	/*resourceFactory.clientChildResource.get({clientId:routeParams.id},function(data) {
+                scope.childsDatas = data;
+            });*/
+        	resourceFactory.clientParentResource.get({clientId:routeParams.id},function(data) {
+          	  scope.childsDatas=data.parentClientData;
+          	  scope.parentCount=data.count;
+          	  
+            });
+           
+        };
         
 //leftside orderMenu function
      /*   scope.selectedOrder = function(status){
@@ -1198,10 +1181,12 @@
         	location.path('/viewclient/' +routeParams.id);
         	route.reload();
         	});
-      //  webStorage.add("callingTab", {someString: "identities" });
+      //  webStorage.add("callingTab", {someString: "moreInfo" });
         };
-     scope.routeToParentClient = function(parentId){
-    	 location.path('/viewclient/'+parentId);
+     scope.routeToParentClientOrChildClient = function(id){
+    	 webStorage.add("callingTab", {someString: "identities" });
+    	 webStorage.add("callingTab", {someString: "ChildDetailsTab" });
+    	 location.path('/viewclient/'+id);
      };
         
         
