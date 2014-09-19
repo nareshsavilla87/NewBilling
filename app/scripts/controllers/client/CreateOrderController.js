@@ -274,12 +274,12 @@
 
         };
         scope.submitschedule = function() {   
+        	
         	this.formData.isNewplan =false;
         	if(routeParams.planId == 0){
         		this.formData.isNewplan =true;
         	}
-        	
-        	
+        
         	scope.flag = true;
         	this.formData.locale = 'en';
            	var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
@@ -298,15 +298,16 @@
                  		
                  	}
               };   
+            }
               
             delete this.formData.planId;
             delete this.formData.id;
             delete this.formData.isPrepaid;
 
             var orderId = webStorage.get('orderId');
-            
+         
             if(routeParams.planId == 0){
-
+            	   alert(routeParams.planId);
             	resourceFactory.OrderSchedulingResource.save({'clientId': routeParams.id},this.formData,function(data){
                     location.path('/viewclient/'+routeParams.id);
                   },function(errData){
@@ -326,7 +327,7 @@
             
             };
         }
-	  }
+	  
   });
   mifosX.ng.application.controller('CreateOrderController', ['$scope','webStorage','$routeParams', 'ResourceFactory', 'dateFilter','$location','$filter', mifosX.controllers.CreateOrderController]).run(function($log) {
     $log.info("CreateOrderController initialized");
