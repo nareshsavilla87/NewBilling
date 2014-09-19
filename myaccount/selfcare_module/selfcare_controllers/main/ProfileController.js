@@ -13,7 +13,7 @@
 				  if(!scope.clientData.selfcare.authPin){
 					  scope.clientData.selfcare.authPin = 'Not Available';
 				  }
-				  rootScope.selfcare_userName = data.selfcare.userName;
+				  rootScope.selfcare_userName = data.displayName;
 				  webStorage.add('selfcareUserName',data.displayName);
 			  });
 		  }
