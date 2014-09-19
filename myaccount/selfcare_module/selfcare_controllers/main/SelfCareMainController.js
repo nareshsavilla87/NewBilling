@@ -105,7 +105,7 @@
 			 
 			 scope.forgotPwdPopupcontrolling = function(formData){
 				 
-				 RequestSender.forgotPwdResource.save(formData,function(successData){
+				 RequestSender.forgotPwdResource.update(formData,function(successData){
 					 webStorage.remove("selfcare_sessionData");
 		        	 scope.currentSession= {user :null};
 		        	 $modalInstance.close('delete');
