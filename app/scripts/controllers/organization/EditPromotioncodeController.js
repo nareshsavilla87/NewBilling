@@ -5,12 +5,13 @@
 		  scope.durationTypes=[];
 		  scope.promotiondata = [];
 		  scope.start={};
-		  scope.start.date = new Date();
 		  
 	        resourceFactory.promotionResource.getPrmotioncodeDetails({promotioncodeId: routeParams.id} , function(data) {
 	            scope.promotiondata = data;  
 	            scope.promotiondatas = data.discounTypeData;
 	            scope.durationTypes=data.contractTypedata;
+	            var startdate = dateFilter(data.startDate,'dd MMMM yyyy');
+	            scope.start.startDate = new Date(startdate); 
 	           	scope.formData = {
 	           			promotionCode : data.promotionCode,
 	           			description  : data.promotionDescription,
@@ -18,13 +19,14 @@
 	           			duration  :  data.duration,
 	           			discountType : data.discountType,
 	           			durationType : data.durationType
+	           			
 	           	};
 	        });
 	        
 	        scope.submit = function() {
 	        	this.formData.locale = "en";
 	             this.formData.dateFormat = "dd MMMM yyyy";
-	             var startdate = dateFilter(scope.start.date,'dd MMMM yyyy');
+	             var startdate = dateFilter(scope.start.startDate,'dd MMMM yyyy');
 	        
 	             this.formData.startDate=startdate;
 	             
