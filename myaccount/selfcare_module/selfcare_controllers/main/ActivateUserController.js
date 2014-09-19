@@ -14,6 +14,7 @@
 		  	scope.plansData = [];
 			scope.clientData = {};
 			scope.contractDetails = [];
+			/*scope.isRegisteredPlanDetails = {};*/
 			webStorage.remove('selfcare_sessionData');
 			rootScope.isSignInProcess = false;
 			scope.existedEmail = routeParams.mailId;
@@ -87,10 +88,13 @@
     			  //getting data from c_configuration
     			  RequestSender.configurationResource.get(function(data){
     				  for(var i in data.globalConfiguration){
-    					  if(data.globalConfiguration[i].name=="Register_plan"){
+    					  /*if(data.globalConfiguration[i].name=="Register_plan"){
     						  scope.isRegisteredPlan = data.globalConfiguration[i].enabled;
-    					  }if(data.globalConfiguration[i].name=="Registration_requires_device"){
+    						  var jsonObj = JSON.parse(data.globalConfiguration[i].value);
+    						  scope.isRegisteredPlanDetails = jsonObj;
+    					  }*/if(data.globalConfiguration[i].name=="Registration_requires_device"){
     						  scope.isDeviceEnabled = data.globalConfiguration[i].enabled;
+    						  break;
     					  }
     				  }
     			  });
@@ -105,7 +109,12 @@
 			  if(scope.isOrderPage == true){
 				  
 				  RequestSender.orderTemplateResource.query({region : scope.formData.state},function(data){
-					  	scope.plansData = data;
+					  	//scope.plansData = data;
+					  for(var j in data){
+						  if(data[j].isPrepaid == 'Y'){
+							  scope.plansData.push(data[j]); 
+						  }
+					  }
 				  });
 			  }
 		  };
@@ -118,6 +127,7 @@
 			  scope.isOrderPage = false;
 			  scope.isPaymentPage = false;
 			  scope.isAmountZero = false;
+			  scope.plansData = [];
 			  scope.registrationLinkFun();
 		  };
 		  
@@ -168,6 +178,15 @@
     		  webStorage.add("planFormData",scope.formData);
     		  location.path("/activeclientpreviewscreen");
 	      };
+	      
+	      /*scope.registerBtnFun =function(){
+	    	  scope.formData.emailId = email;
+	    	  scope.formData.paytermCode = scope.isRegisteredPlanDetails.paytermCode; 
+	    	  scope.formData.contractperiod = scope.isRegisteredPlanDetails.contractPeriod;
+			  scope.formData.planCode = scope.isRegisteredPlanDetails.planCode;
+    		  webStorage.add("planFormData",scope.formData);
+    		  location.path("/activeclientpreviewscreen");
+	      };*/
   		
     }
   });

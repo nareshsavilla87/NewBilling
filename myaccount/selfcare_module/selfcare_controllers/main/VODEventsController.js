@@ -43,7 +43,7 @@
 			  else{
 				  scope.totalAmount -=mediaData.price;
 				  for(var media in scope.mediaDatas){
-					  if(mediaData.mediaId == scope.mediaDatas[media].mediaId && mediaData.quality ==scope.mediaDatas[media].quality){
+					  if(mediaData.mediaId == scope.mediaDatas[media].mediaId && mediaData.quality ==scope.mediaDatas[media].quality&& mediaData.optType == scope.mediaDatas[media].optType){
 						  scope.mediaDatas.splice(media,1);
 					  }
 				  }
@@ -59,7 +59,8 @@
 		    		//var portNo = window.location.port;
 		    	  var hostName = selfcare.models.selfcareAppUrl;
 				  scope.URLForDalpay = selfcare.models.dalpayURL+"&cust_name="+scope.formData.lastname+"&cust_phone="+scope.formData.phone+"&cust_email="+scope.formData.email+"&cust_state="+scope.formData.state+""+
-	    	  				"&cust_address1="+scope.formData.addressNo+"&cust_zip="+scope.formData.zip+"&cust_city="+scope.formData.city+"&num_items=1&item1_desc="+scope.planData.planCode+"&item1_price="+scope.totalAmount+"&item1_qty=1&user1="+clientDatas.clientId+"&user2="+hostName+"&user3=eventdetailspreviewscreen";
+	    	  				"&cust_address1="+scope.formData.addressNo+"&cust_zip="+scope.formData.zip+"&cust_city="+scope.formData.city+"&num_items=1&item1_desc=VOD Event&item1_price="+scope.totalAmount+"" +
+	    	  						"&item1_qty=1&user1="+clientDatas.clientId+"&user2="+hostName+"&user3=eventdetailspreviewscreen";
 			  }
 		  };
 		  
@@ -67,6 +68,12 @@
 			  scope.vodEventRedirectToDalpay = true;
 			  console.log(scope.mediaDatas);
 			  webStorage.add('eventData',scope.mediaDatas);
+		  };
+		  
+		  scope.subscribeBtnFun = function(){
+			  console.log(scope.mediaDatas);
+			  webStorage.add('eventData',scope.mediaDatas);
+			  location.path("/eventdetailspreviewscreen");
 		  };
 		  
 		  scope.cancelDalpayBtnFun = function(){
