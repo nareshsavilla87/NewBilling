@@ -39,7 +39,12 @@
 				                      return item.planCode != scope.clientOrdersData[i].planCode;
 				                  });
 							  }
-							  scope.plansData = scope.totalPlansData;
+							  for(var j in scope.totalPlansData){
+								  if(scope.totalPlansData[j].isPrepaid == 'Y'){
+									  scope.plansData.push(scope.totalPlansData[j]); 
+								  }
+							  }
+							 // scope.plansData = scope.totalPlansData;
 						  });
 					  });
 				 }

@@ -9,6 +9,7 @@
 							scope.selectedServices = [];
 							scope.formData = {};							
 							scope.date = {};
+							 scope.first={};
 							resourceFactory.eventEditResource.get({eventId: routeParams.id} , function(data) {								
                                 scope.formData=data;                            
                                 //scope.formData.allowCancellation=false;
@@ -32,18 +33,30 @@
 								scope.restricted=data.selectedMedia;
 								scope.eventCategeorydatas = data.eventCategeorydata;
 								
-								 var actDate = dateFilter(data.eventStartDate,'dd MMMM yyyy');
+								// var actDate = dateFilter(data.eventStartDate,'dd MMMM yyyy');
+								  var actDate = dateFilter(data.eventStartDate,'MM dd,yyyy HH:MM:SS');
 						            scope.date.startDate = new Date(actDate);
+						            scope.first.starttime=scope.date.startDate.getHours()+':'+scope.date.startDate.getMinutes();
+						         
 						            
-						            var endDate = dateFilter(data.eventEndDate,'dd MMMM yyyy');
-						            scope.date.endDate = new Date(endDate );
+						             var endDate = dateFilter(data.eventEndDate,'MM dd,yyyy HH:MM:SS');
+						            //var endDate = dateFilter(data.eventEndDate,'dd MMMM yyyy');
+						            scope.date.eventEndDate = new Date(endDate);
+						            scope.first.endtime=scope.date.eventEndDate.getHours()+':'+scope.date.eventEndDate.getMinutes();
 						            
 						            var eventValidity = dateFilter(data.eventValidity,'dd MMMM yyyy');
 						            scope.date.eventValidity = new Date(eventValidity );
 							});
 							
 							
-							
+							 $('#timepicker1').timepicker({
+						        	showInputs:false,
+						        	showMeridian:false
+						        });
+							 $('#timepicker2').timepicker({
+						        	showInputs:false,
+						        	showMeridian:false
+						        });
 
 							scope.restrict = function() {								
 								for ( var i in this.allowed) {		
@@ -78,15 +91,26 @@
 								}
 							};
 
+							 scope.changeCategory = function(eventCategory){
+									if(eventCategory == 'VOD'){
+	                                    $('#timepicker1').val('');
+										$('#timepicker2').val('');
+									}
+									 
+								 };
 							scope.submit = function() {
 								
 								this.formData.locale = 'en';
 								this.formData.dateFormat = 'dd MMMM yyyy';
+								scope.first.time=$('#timepicker1').val();
+								scope.first.endtime=$('#timepicker2').val();
 								
 								this.formData.status=this.formData.statusId;
-								this.formData.eventStartDate = dateFilter(scope.date.startDate,'dd MMMM yyyy');
-								this.formData.eventEndDate = dateFilter(scope.date.endDate,'dd MMMM yyyy');
+								var reqDate = dateFilter(scope.date.startDate,'dd MMMM yyyy');
+								var reqEndDate = dateFilter(scope.date.eventEndDate,'dd MMMM yyyy');
 								this.formData.eventValidity = dateFilter(scope.date.eventValidity,'dd MMMM yyyy');
+								this.formData.eventStartDate =reqDate+" "+scope.first.starttime+':00';
+								this.formData.eventEndDate = reqEndDate+" "+scope.first.endtime+':00';
 								
 								delete this.formData.id;
 								delete this.formData.statusData;
@@ -96,6 +120,14 @@
 								delete this.formData.selectedMedia;
 								delete this.formData.statusId;
 								delete this.formData.eventCategeorydata;
+								
+								if(scope.first.time ==''){
+									this.formData.eventStartDate = reqDate;
+								}
+
+								if(scope.first.endtime ==''){
+									this.formData.eventEndDate = reqEndDate;
+								}
 								
 								var temp = [];
 								for ( var i in scope.selectedServices) {

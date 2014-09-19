@@ -10,9 +10,14 @@
 </script> -->
 
 </head>
-<body  class="preview" id="top" data-spy="scroll" data-target=".subnav" data-offset="80" data-ng-cloak data-ng-controller="MainController">
+<body  class="preview" id="top" data-spy="scroll" data-target=".subnav"  data-offset="80"  data-ng-controller="MainController">
+ <div data-ng-hide="domReady" style="position: absolute;margin-top:230px; top:0px;left:500px;">
+    <div>
+        <img src="./images/loading.gif" >
+    </div>    
+</div> 
 <!-- Login Form  -->
-<div class="container well" data-ng-hide="currentSession.user != null" >
+<div class="container well" data-ng-cloak  data-ng-hide="currentSession.user != null" >
 
     <div class="row form-search ng-pristine ng-valid paddedbottom" data-ng-form="loginForm" data-ng-controller="LoginFormController">
         <div class="pull-right ">
@@ -89,7 +94,7 @@
                     <strong>{{ 'label.heading.news' | translate }}</strong>
                 </div>
                 <ul>
-                    <li><a target="http://www.openbillingsystem.com" href="http://www.openbillingsystem.com">For latest updated</a></li>
+                    <li><a target="http://www.openbillingsystem.com" href="http://www.openbillingsystem.com/press-release/">For latest updated</a></li>
                     <!-- <li><a target="http://sourceforge.net/projects/mifos/" href="http://sourceforge.net/projects/mifos/">MifosX v1.15.2 is now Available!</a></li>
                     <li><a target="http://google-opensource.blogspot.in/" href="http://google-opensource.blogspot.in/">GSoC blog</a></li> -->
                 </ul>
@@ -100,7 +105,7 @@
 </div>
 <!-- Navbar  -->
 
-<div ng-class="{fullscreen:true,blockui:blockUI==true}" id="main"  data-ng-hide="currentSession.user == null">
+<div data-ng-cloak ng-class="{fullscreen:true,blockui:blockUI==true}" id="main"  data-ng-hide="currentSession.user == null">
 
        <div class="loading-widget-div" data-ng-show="blockUI">
         <div id="circularG">
@@ -186,7 +191,7 @@
                             </ul>
                         </li>
                          
-                        <li class="dropdown" id="preview-menu" ng-show="user||organization||system||upload||jobs||accounting||smartsearch||paymentGetWay||pooling">
+                        <li class="dropdown" id="preview-menu" ng-show="user||organization||system||upload||jobs||accounting||smartsearch||paymentGetWay||pooling||provision">
                             <a class="dropdown-toggle" data-toggle="dropdown" ng-class="{ activate: isActive('admin') }" href="#"><i class="icon-wrench"></i>{{ 'link.admin' | translate }}<b class="caret"></b></a>
                             <ul class="dropdown-menu">
 <!-- 
@@ -212,6 +217,7 @@
                                 <li><a href="#/redemption">Redemption</a></li> 
                                 <li><a ng-show="smartsearch=PermissionService.showMenu('READ_GLACCOUNT')&&PermissionService.showMenu('READ_OFFICE')&&PermissionService.showMenu('READ_SMARTSEARCH')" href="#/smartSearch">{{ 'link.smartsearch' | translate }}</a></li>
                                 <li><a ng-show="paymentGetWay=PermissionService.showMenu('READ_PAYMENTGATEWAY')" href="#/paymentGateway">PaymentGateway</a></li>
+                                 <li><a ng-show="provision=PermissionService.showMenu('READ_PROVISIONINGADAPTERSYSTEM')" href="#/provision">Provision</a></li>
                                 
                             </ul>
                         </li>
@@ -260,7 +266,7 @@
        </div><!-- /blockui-->
     </div><!-- /container -->
 </div>
-
+<!-- </div> -->
 <!-- Le javascript -->
 <script type='text/javascript' data-main="scripts/loader.js" src='bower_components/requirejs/require.js'></script>
 </body>

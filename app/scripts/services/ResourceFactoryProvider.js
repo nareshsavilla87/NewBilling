@@ -801,7 +801,7 @@
            }),
 //=======
 */        provisioningtemplateMappingResource: defineResource(apiVer + "/provisioning/template/:orderNo", {orderNo: '@orderNo'}, {
-            	  get: {method: 'GET', params: {},isArray: true}
+            	  get: {method: 'GET', params: {}}
 //>>>>>>> obsplatform-1.01
            }),
            
@@ -1002,6 +1002,10 @@
             mediaLocationAttributesResource: defineResource(apiVer + "/assets/locationAttributes/:id", {id:'@id'}, {
                 get: {method: 'GET', params: {}}
             }),
+            provisionResource: defineResource(apiVer + "/adapter", {}, {
+                get: {method: 'GET', params: {}}
+            }),
+            provisionLogResource: defineResource(apiVer + "/adapter/logs", {}, {}),
            
         };
       }];

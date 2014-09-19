@@ -31,6 +31,8 @@
   "label.heading.paymenttype":"Payment Type",
   "label.accountingrules":"Accounting Rules",
   "label.advancedaccountingrules":"Advanced accounting rules",
+  "label.heading.language":"Language",
+  "label.add.kota.Info":"Korta Information",
 
   
 
@@ -50,6 +52,7 @@
   "label.disable":"Disable",
    "label.select.one":"--Select one--",
   "validation.msg.office.name.cannot.be.blank":"Office Name cannot be blank",
+  "validation.msg.office.officeType.cannot.be.blank":"Please select office Type",
   "error.msg.not.authorized":"Insufficient privileges to perform this action.",
  
  "# common label headings":"....",
@@ -259,7 +262,6 @@
   "validation.msg.client.lastname.cannot.be.blank":"Last name cannot be blank",
   "validation.msg.note.note.cannot.be.blank":"Please add a text to note",
 
-
   "#edit client":"",
   "label.individual":"Individual",
   "label.corporate":"Client Name",
@@ -301,6 +303,7 @@
   "link.messanger":"Messanger",
   "link.settings" : "Settings",
   "link.logout" : "LogOut",
+  "link.admin.provision" : "Adapter Provision",
   
 
   "#accounting coa":"....",
@@ -457,6 +460,7 @@
   "app erros end" :"------------------------------------------------------",
 
   "label.note":"Note:",
+  "label.date":"Date:",
 
   "#Account Transfers":".........",
   "label.heading.view.accounttransfer.details":"View Account Transfers Details",
@@ -550,6 +554,8 @@
   "label.disable":"Disable",
   "label.enable":"Enable",
   "label.filterbyname":"Filter by Name",
+  "label.select":"Select",
+  "label.do.action":"Do Action",
 
   "#Roles Management":"....",
   "label.view.roles": "View Roles",
@@ -711,7 +717,12 @@
   "validation.msg.item.itemClass.cannot.be.blank":"Item Class cannot be blank",
   "validation.msg.item.itemCode.cannot.be.blank":"Item Code cannot be blank",
   "validation.msg.item.units.cannot.be.blank":"Units cannot be blank",
+  "validation.msg.item.reorderLevel.cannot.be.blank":"Reorder Level cannot be blank",
   "validation.msg.invalid.decimal.format":"Invalid numeric value",
+  "form.error.number"		    		 : "accepts only digits !",
+  "validation.msg.item.itemCode.exceeds.max.length" : "Item Code exceeds max length of 10",
+  "validation.msg.item.itemDescription.exceeds.max.length" : "Item Description dexceeds max length of 50",
+  "validation.msg.item.reorderLevel.exceeds.max.length" : "Reorder Level exceeds max length of 2",
   
   "#Import":"........",
   "label.heading.uploads":"Builk Uploads",
@@ -816,6 +827,7 @@
   "label.quantity":"Quantity:",
   "label.serialNoLength":"Serial No Length:",
   "label.pinType":"PinType:",
+  "table.heading.product":"Product",
   "label.ManageVoucherpins":"Voucherpins",
   
   
@@ -986,6 +998,10 @@
   "validation.msg.itemsale.orderQuantity.cannot.be.blank":"Order Quantity cannot be blank",
   "validation.msg.itemsale.chargeAmount.cannot.be.blank":"Charge amount cannot be blank",
   "validation.msg.itemsale.taxAmount.cannot.be.blank":"tax Amount cannot be blank",
+  "validation.msg.itemsale.purchaseBy.cannot.be.blank":"Please select office for purchase By",
+  "validation.msg.note.note.cannot.be.blank":"Note cannot be blank",
+  "table.heading.isLoanOfficer":"isLoanOfficer",
+  "label.employee.isLoanOfficer":"isLoanOfficer",
   
    "#service ":"....",
   "label.manageservices":"Manage Services",
@@ -1062,6 +1078,7 @@
   "validation.msg.eventorder.optType.cannot.be.blank":"Opt Type cannot be blank",
   "error.msg.movie.price.not.found":"No Price Found for This Client Type",
   "error.msg.insufficient.amount.amount":"Insufficient Amount to Book The Order",
+  "validation.msg.eventmaster.eventCategory.cannot.be.blank":"Please select Event Category",
   
   
   
@@ -1208,6 +1225,9 @@
   "validation.msg.null.supplierDescription.cannot.be.blank":"Supplier Description cannot be blank",
   "validation.msg.null.supplierAddress.cannot.be.blank":"Supplier Address cannot be blank",
   "validation.error.msg.inventory.supplier.duplicate.entry":"Supplier Code already exist",
+  "validation.msg.null.supplierCode.exceeds.max.length":"Supplier Code exceeds max length of 10.",
+  "validation.msg.null.supplierDescription.exceeds.max.length":"Supplier Description exceeds max length of 100.",
+  "validation.msg.null.supplierAddress.exceeds.max.length":"Supplier Address exceeds max length of 100.",
   
   
   "#ItemDetails":"...",
@@ -1219,9 +1239,10 @@
   "label.itemdetail.receivedquantity":"Received Quantity",
   "label.itemdetail.serialnumber":"Serial Number",
   "label.itemdetail.quality":"Quality",
-  "label.itemdetail.provisioningserialnumber":"Provisioning Serial Number",
+  "label.itemdetail.provisioningserialnumber":"Provisioning Serial",
   "label.itemdetail.status":"Status",
   "label.itemdetail.remarks":"Remarks",
+  "label.itemdetail.itemModel":"Item Model",
   
   "#MRN":"....",
   "label.mrn.id":"Mrn Id",
@@ -1407,7 +1428,7 @@
 	"validation.msg.item.provisioningSerialNumber.cannot.be.blank":"Provisioning Serial Number cannot be blank",
 	"validation.msg.item.grnId.cannot.be.blank":"Grn Id cannot be blank",
 	"validation.msg.item.grnOrderdQuantity":"No more items left with this GRN Id",
-	"validation.msg.item.warranty.exceeds.max.length":"Warranty exceeds max length",
+	"validation.msg.item.warranty.exceeds.max.length":"Warranty do not exceeds 2 digits",
 	"error.msg.item.code.duplicate.name":"Item Code already exist",
 	"validation.msg.item.no.such.grnId":"GRN Id does not Exist !",
 	"validation.error.msg.inventory.item.duplicate.serialNumber":"Item Details with SerialNumber already exists",
@@ -1583,6 +1604,7 @@
  "validation.msg.eventmaster.services.cannot.be.empty":"Please select atleast one media",
  "validation.msg.eventmaster.status.cannot.be.blank":"Please select status",
  "validation.msg.eventmaster.chargeCode.cannot.be.blank":"Event Code cannot be blank",
+ "validation.msg.eventmaster.eventCategory.cannot.be.blank":"Event Category cannot be blank",
  
  
  "validation.msg.plan.services.cannot.be.blank":"Please select atleast one service",
@@ -1604,6 +1626,8 @@
 "error.msg.no.active.price.available.for.this.plan":"No Active Prices Are Available For This Plan",
 "validation.msg.order.renewalPeriod.cannot.be.blank":"Please Select the Renewal Period",
 "validation.msg.order.disconnectReason.cannot.be.blank":"Please Select the reason for disconnect",
+"validation.msg.order.provisioningSystem.cannot.be.blank":"Please select Provisioning System",
+"validation.msg.order.commandName.cannot.be.blank":"Please select  Command Name",
 
 
 "validation.msg.subscriptoins.subscriptionPeriod.cannot.be.blank":"Subscription Period cannot be blank",
@@ -2024,7 +2048,17 @@
 "label.childid":"ChildId",
 "label.parentid":"ParentID",
 "label.parentname":"ParentName",
-"label.parentorchildaccount":"AccountNo"
+"label.parentorchildaccount":"AccountNo",
+"#eventactionmapping":"......",
+"validation.msg.eventactionmapping.event.cannot.be.blank":"Please select Event",
+"validation.msg.eventactionmapping.action.cannot.be.blank":"Please select Action",
+"validation.msg.eventactionmapping.process.cannot.be.blank":"Process Cannot be blank",
+"label.id":"Id",
+"#hardwareplans":"......",
+"validation.msg.hardwareplan.planCode.cannot.be.blank":"Please select Plan Code",
+"validation.msg.hardwareplan.itemCode.cannot.be.blank":"Please select Item Code"
+
+
 
 
 

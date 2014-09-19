@@ -2,6 +2,7 @@
    selfcare.controllers = _.extend(selfcare_module, {
 	   SelfCareMainController: function(scope, translate,webStorage,sessionManager,RequestSender,authenticationService,location,modal) {
 		   
+		   scope.domReady = true;
 		   scope.currentSession = {};
 		   scope.isSignInProcess = false;
 		   scope.isRegistrationSuccess = false;
@@ -105,7 +106,7 @@
 			 
 			 scope.forgotPwdPopupcontrolling = function(formData){
 				 
-				 RequestSender.forgotPwdResource.save(formData,function(successData){
+				 RequestSender.forgotPwdResource.update(formData,function(successData){
 					 webStorage.remove("selfcare_sessionData");
 		        	 scope.currentSession= {user :null};
 		        	 $modalInstance.close('delete');
