@@ -1,6 +1,5 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-
 	  IpPoolingController: function(scope,route,routeParams,location, resourceFactory, paginatorService,$modal) {
 		  
 		  scope.ippoolingdatas = {};

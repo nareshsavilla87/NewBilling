@@ -11,7 +11,9 @@
 	   //returnURL : "https://"+hostName+"/Clientapp/myaccount/index.html#/active",
 	   //selfcareAppUrl : "https://"+hostName+"/Clientapp/myaccount/index.html"
 	   returnURL : locationOrigin+"/Clientapp/myaccount/index.html#/active",
-	   selfcareAppUrl : locationOrigin+"/Clientapp/myaccount/index.html"
+	   selfcareAppUrl : locationOrigin+"/Clientapp/myaccount/index.html",
+	   downloadUrl : locationOrigin+"/Clientapp/myaccount/index.html#/kortasuccess?encryptedKey=",
+	   additionalKortaUrl : locationOrigin+"/Clientapp/myaccount/index.html#/kortatokenpaymentsuccess",
 		   
   });
 }(selfcare.models || {}));

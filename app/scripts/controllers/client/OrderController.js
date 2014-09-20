@@ -9,7 +9,6 @@
         scope.provisioning={};
         scope.commandData = [];
         scope.start = {};
-        scope.status = '';
         scope.start.date = new Date();
         var orderId=routeParams.id;
         scope.isextensionEnable=false;
@@ -45,7 +44,6 @@
             scope.formData.flag=data.flag;
             scope.orderServicesData=data.orderServices;
             scope.orderDiscountDatas=data.orderDiscountDatas;
-            scope.status=data.orderData.status;
             webStorage.add("orderData", {groupName: data.orderData.groupName,orderNo:data.orderData.orderNo,planName: data.orderData.planCode });
       
 	    if(data.orderData.isPrepaid == 'Y'){
@@ -320,15 +318,6 @@
      var ProvisioningSystemPopController = function($scope,$modalInstance){
          	 resourceFactory.provisioningMappingResource.getprovisiongData(function(data) {
          		 $('#commandName').hide();
-         		 if(scope.status != 'ACTIVE' ){
-         			for(var i in data)
-                    {           
-                        if(data[i].commandName == 'Retrack')
-                        {
-                        	data.splice(i,1);
-                        }
-                    };                   
-         		 }
          		 $scope.commandData=data; 
              });
          	 

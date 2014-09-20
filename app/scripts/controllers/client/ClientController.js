@@ -34,9 +34,8 @@
     		  if(data[i].status == 'Pending')
     			  scope.PendingClients = data[i].ccounts;
     	  }
-
     	  /*scope.totalClients = scope.newClients+scope.activeClients
-						+scope.InActiveClients+scope.PendingClients;
+    	  					   +scope.InActiveClients+scope.PendingClients;
     	  if(scope.totalClients%15 == 0)
     		  scope.totalPages = scope.totalClients/15;
     	  else

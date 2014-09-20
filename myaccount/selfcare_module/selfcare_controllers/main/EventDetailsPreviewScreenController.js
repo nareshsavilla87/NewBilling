@@ -27,7 +27,7 @@
 				 RequestSender.eventsResource.save(scope.eventFormData,function(data){
 					 if(i == scope.mediaDatas.length-1){
 						 webStorage.remove('eventData');
-						 location.path('/vodevents');
+						 location.path('/listofvods');
 					 }
 				 });
 			 }

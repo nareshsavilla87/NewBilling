@@ -49,6 +49,25 @@
 				  }
 			  }
 		  };
+		  
+		  var hostName = selfcare.models.selfcareAppUrl;
+		  
+		  scope.paymentGatewayFun  = function(paymentGatewayName){
+	    	  console.log(paymentGatewayName);
+	    	  if(paymentGatewayName == 'dalpay'){
+	    		  scope.URLForDalpay = selfcare.models.dalpayURL+"&cust_name="+scope.formData.lastname+"&cust_phone="+scope.formData.phone+"&cust_email="+scope.formData.email+"&cust_state="+scope.formData.state+""+
+	  				"&cust_address1="+scope.formData.addressNo+"&cust_zip="+scope.formData.zip+"&cust_city="+scope.formData.city+"&num_items=1&item1_desc=VOD Event&item1_price="+scope.totalAmount+"&item1_qty=1&user1="+clientDatas.clientId+"&user2="+hostName+"&user3=eventdetailspreviewscreen"; 
+	    	  }else if(paymentGatewayName == 'korta'){
+	    		  var selfcareUserData = webStorage.get("selfcareUserData");
+	    		  var token = selfcareUserData.selfcare.token;
+	    		  if(token != null && token != ""){
+	    			  scope.URLForDalpay = "#/kortatokenpayment/"+0+"/"+0;
+	    		  }else{
+	    			  scope.URLForDalpay = "#/kortaIntegration";
+	    		  }
+	    	  };
+	      };
+	      
 		  scope.checkOutFun = function(){
 			  
 			  if(scope.mediaDatas.length != 0){
@@ -57,9 +76,10 @@
 				  webStorage.add('form','eventbook');
 				    //var host = window.location.hostname;
 		    		//var portNo = window.location.port;
-		    	  var hostName = selfcare.models.selfcareAppUrl;
-				  scope.URLForDalpay = selfcare.models.dalpayURL+"&cust_name="+scope.formData.lastname+"&cust_phone="+scope.formData.phone+"&cust_email="+scope.formData.email+"&cust_state="+scope.formData.state+""+
-	    	  				"&cust_address1="+scope.formData.addressNo+"&cust_zip="+scope.formData.zip+"&cust_city="+scope.formData.city+"&num_items=1&item1_desc="+scope.planData.planCode+"&item1_price="+scope.totalAmount+"&item1_qty=1&user1="+clientDatas.clientId+"&user2="+hostName+"&user3=eventdetailspreviewscreen";
+		    	  
+				  scope.paymentGatewayFun('dalpay');
+				  /*scope.URLForDalpay = selfcare.models.dalpayURL+"&cust_name="+scope.formData.lastname+"&cust_phone="+scope.formData.phone+"&cust_email="+scope.formData.email+"&cust_state="+scope.formData.state+""+
+	    	  				"&cust_address1="+scope.formData.addressNo+"&cust_zip="+scope.formData.zip+"&cust_city="+scope.formData.city+"&num_items=1&item1_desc=VOD Event&item1_price="+scope.totalAmount+"&item1_qty=1&user1="+clientDatas.clientId+"&user2="+hostName+"&user3=eventdetailspreviewscreen";*/
 			  }
 		  };
 		  
@@ -67,6 +87,13 @@
 			  scope.vodEventRedirectToDalpay = true;
 			  console.log(scope.mediaDatas);
 			  webStorage.add('eventData',scope.mediaDatas);
+			  webStorage.add('VODTotalAmount',scope.totalAmount);
+		  };
+		  
+		  scope.subscribeBtnFun = function(){
+			  console.log(scope.mediaDatas);
+			  webStorage.add('eventData',scope.mediaDatas);
+			  location.path("/eventdetailspreviewscreen");
 		  };
 		  
 		  scope.cancelDalpayBtnFun = function(){

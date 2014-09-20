@@ -25,7 +25,9 @@
 	            });
 	        scope.getData = function(query){
 	        	if(query.length>0){
+	        		
 	        		resourceFactory.allocateHardwareDetails.getSerialNumbers({oneTimeSaleId: scope.association.itemId,officeId:scope.officeId,query: query}, function(data) { 	        	
+
 	     	            scope.itemDetails = data.serials;
 	     	        }); 
 	        	}else{

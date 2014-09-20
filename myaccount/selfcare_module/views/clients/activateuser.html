@@ -273,7 +273,10 @@
 	       			<td>
             			<div class="control-group">
             				<div class="controls">
-            					<input type="radio" name="selectType" checked/>&nbsp;{{'label.dalpay'|translate}}
+            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('dalpay')" checked/>&nbsp;{{'label.dalpay'|translate}}
+            				</div>
+            				<div class="controls">
+            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('korta')"/>&nbsp;{{'label.korta'|translate}}
             				</div>
         				 </div>
 	         				 

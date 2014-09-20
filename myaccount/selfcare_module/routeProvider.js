@@ -7,63 +7,71 @@
     })
     .when('/active/:mailId/:registrationKey', {
         templateUrl: 'selfcare_module/views/clients/activateuser.html'
-      })
-/*      .when('/registrationsuccess', {
-        templateUrl: 'selfcare_module/views/clients/registrationsuccessform.html'
-      })*/
-      .when('/activeclientpreviewscreen', {
+    })
+    .when('/activeclientpreviewscreen', {
         templateUrl: 'selfcare_module/views/clients/activeclientpreviewscreen.html'
-      })
-      .when('/additionalorderspreviewscreen/:orderId/:clientId', {
-    	  templateUrl: 'selfcare_module/views/clients/additionalorderspreviewscreen.html'
-      })
-      .when('/eventdetailspreviewscreen', {
-    	  templateUrl: 'selfcare_module/views/clients/eventdetailspreviewscreen.html'
-      })
-      .when('/profile', {
+    })
+    .when('/additionalorderspreviewscreen/:orderId/:clientId', {
+    	templateUrl: 'selfcare_module/views/clients/additionalorderspreviewscreen.html'
+    })
+    .when('/eventdetailspreviewscreen', {
+    	templateUrl: 'selfcare_module/views/clients/eventdetailspreviewscreen.html'
+    })
+    .when('/profile', {
         templateUrl: 'selfcare_module/views/clients/profile.html'
-      })
-      .when('/orders', {
+    })
+    .when('/orders', {
         templateUrl: 'selfcare_module/views/clients/orders.html'
-      })
-      .when('/statements', {
+    })
+    .when('/statements', {
         templateUrl: 'selfcare_module/views/clients/statements.html'
-      })
-      .when('/payments', {
+    })
+    .when('/payments', {
         templateUrl: 'selfcare_module/views/clients/payments.html'
-      })
-      .when('/tickets', {
+    })
+    .when('/tickets', {
         templateUrl: 'selfcare_module/views/clients/tickets.html'
-      })
-      .when('/newTicket/:clientId', {
+    })
+    .when('/newTicket/:clientId', {
         templateUrl: 'selfcare_module/views/clients/newTicket.html'
-      })
-      .when('/changepwd', {
+    })
+    .when('/changepwd', {
         templateUrl: 'selfcare_module/views/clients/changepassword.html'
-      })
-      .when('/additionalorders/:orderId/:clientId', {
+    })
+    .when('/additionalorders/:orderId/:clientId', {
     	templateUrl: 'selfcare_module/views/clients/additionalorders.html'
-      })
-	  .when('/vodevents', {
-	     templateUrl: 'selfcare_module/views/clients/vodevents.html'
-	   })
-	   .when('/vieworder/:orderId/:clientId', {
-         templateUrl: 'selfcare_module/views/clients/vieworder.html'
-	   })
-	 .when('/changeorder/:orderId/:clientId', {
+    })
+    .when('/vodevents', {
+	    templateUrl: 'selfcare_module/views/clients/vodevents.html'
+	})
+	.when('/vieworder/:orderId/:clientId', {
+        templateUrl: 'selfcare_module/views/clients/vieworder.html'
+	})
+	.when('/changeorder/:orderId/:clientId', {
 	    templateUrl: 'selfcare_module/views/clients/changeorder.html'
-      })
-     .when('/renewalorder/:orderId/:clientId', {
+    })
+    .when('/renewalorder/:orderId/:clientId', {
     	templateUrl: 'selfcare_module/views/clients/renewalorder.html'
-      })
-      .when('/renewalorderpreviewscreen/:orderId/:clientId', {
-    	 templateUrl: 'selfcare_module/views/clients/renewalorderpreviewscreen.html'
-       })
-	   .when('/listofvods', {
-		  templateUrl: 'selfcare_module/views/clients/listofvods.html'
-	   });
-      
-    
+    })
+    .when('/renewalorderpreviewscreen/:orderId/:clientId', {
+    	templateUrl: 'selfcare_module/views/clients/renewalorderpreviewscreen.html'
+    })
+    .when('/listofvods', {
+    	templateUrl: 'selfcare_module/views/clients/listofvods.html'
+	})
+	.when('/kortaIntegration',{
+    	templateUrl: 'selfcare_module/views/kortaIntegration.html'
+    })
+    .when('/kortasuccess',{
+    	templateUrl: 'selfcare_module/views/kortasuccess.html'
+    })
+    .when('/kortatokenpayment/:planId/:clientId',{
+    	templateUrl: 'selfcare_module/views/KortaTokenPayment.html'
+    })
+    .when('/kortatokenpaymentsuccess/:planId/:clientId',{
+    	templateUrl: 'selfcare_module/views/KortaTokenPaymentSuccess.html'
+    });
+       
     $locationProvider.html5Mode(false);
   };
   selfcare.ng.application.config(defineRouteProvider);

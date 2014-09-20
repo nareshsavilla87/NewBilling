@@ -1002,6 +1002,10 @@
             mediaLocationAttributesResource: defineResource(apiVer + "/assets/locationAttributes/:id", {id:'@id'}, {
                 get: {method: 'GET', params: {}}
             }),
+            provisionResource: defineResource(apiVer + "/adapter", {}, {
+                get: {method: 'GET', params: {}}
+            }),
+            provisionLogResource: defineResource(apiVer + "/adapter/logs", {}, {}),
            
         };
       }];

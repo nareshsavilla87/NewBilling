@@ -12,7 +12,7 @@
  	"title.account.activated" 				 : "Now Your Account is Activated.Username and Password has sent to your mailID.Please Sign In..!",
  	"title.verify.emailid" 					 : "An email has sent to your mailID.Please verify then Sign In..",
  	"title.fill.emailid" 					 : "Please fill Email Field..",
- 	"title.redirecting.dalpay" 				 : "Redirecting To dalpay",
+ 	"title.redirecting.dalpay" 				 : "Redirecting Please Wait...",
  	
  	
  "#buttons"  : "--------------------------",
@@ -92,6 +92,7 @@
  	"error.msg.selfcare.emailid.not.found" 		: "Email Id Not Found",
  	"validation.msg.ticketmaster.description.exceeds.max.length" : "Description exceeds Max length",
  	"validation.msg.client.closureReasonId.cannot.be.blank" : "Closure Reason cannot be blank",
+ 	"error.msg.permission.code.invalid" 			: "Permission Denied",
  	
  	"#links " : "------------------------------------",
  	"link.gmail.account"		 :  "Gmail Account",
@@ -137,6 +138,12 @@
  	"label.telephone.number"		: "Telephone Number",
  	"label.pattern"					: "Pattern :",
  	"hint.nationaid.pattern"		: "ddmmyy-any 4 digits",
+ 	"label.change.language" 		: "Change language:",
+ 	"label.korta"					: "Korta",
+ 	"label.thor.token"				: "Token",
+ 	"label.heading.language"		: "Language",
+ 	"label.payment.gateway"			: "Payment Gateway",
+ 	
  	
  	"#form validations errors " : "------------------------------------",
  	"form.error.alphanumeric"		     : "alphanumeric and spaces only!",
@@ -795,8 +802,14 @@
 "#client&parent":"",
 "error.msg.client.Not parent.himself.can.not.be.parent.to his.account":"Himself can not be parent to his account",
 "error.msg.client.Not Parent.he.is. already. a parent.to.some other clients":"He is already a parent to some other clients",
-"error.msg.client.Not Parent.can.not.be.parent.to this.account":"Can not be parent to this account"
+"error.msg.client.Not Parent.can.not.be.parent.to this.account":"Can not be parent to this account",
 
+"#Korta":"",
+"label.add.kota.Info":"Korta Information",
+"label.amount":"Amount",
+"label.currency":"Currency",
+"label.description":"Description",
+"label.do.action":"Do Action"
 
 
 
