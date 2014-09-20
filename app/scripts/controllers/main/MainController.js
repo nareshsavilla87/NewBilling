@@ -54,6 +54,8 @@
       scope.langs = mifosX.models.Langs;
       scope.PermissionService=PermissionService;
       scope.optlang = scope.langs[0];
+      $rootScope.locale=scope.langs[0];
+      
 
       scope.isActive = function (route) {
           if(route == 'clients'){
@@ -152,6 +154,8 @@
       scope.changeLang = function (lang) {
           translate.uses(lang.code);
           scope.optlang = lang;
+          $rootScope.locale=lang;
+          
       };
 
       sessionManager.restore(function(session) {

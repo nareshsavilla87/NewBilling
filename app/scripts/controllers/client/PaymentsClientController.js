@@ -43,7 +43,7 @@
         scope.submit = function() {
 
         	scope.flag = true;
-          this.formData.locale = "en";
+          this.formData.locale = "is";
           this.formData.dateFormat = "dd MMMM yyyy";
       	  var paymentDate = dateFilter(scope.start.date,'dd MMMM yyyy');
           this.formData.paymentDate= paymentDate;

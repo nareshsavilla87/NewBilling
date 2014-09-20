@@ -268,7 +268,8 @@ define(['underscore', 'mifosX'], function() {
       'StatusLookup',
       'YesOrNo',
       'DateFormat',
-      'ConfigLookup'
+      'ConfigLookup',
+      'DecimalFormat'
     ],
     directives: [
       'DataTablesDirective',
