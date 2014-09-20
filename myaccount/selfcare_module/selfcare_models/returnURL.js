@@ -4,7 +4,8 @@
 	//console.log(hostName);
 	var locationOrigin = window.location.origin;
 	console.log(locationOrigin);
-	//var locationPathname = window.location.pathname;
+	var locationPathname = window.location.pathname;
+	console.log(locationPathname);
 	 
    selfcare.models = _.extend(selfcare_module, {
 	   //return URL form after clients success
