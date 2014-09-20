@@ -34,8 +34,9 @@
             'chosen.jquery.min': "../scripts/modules/chosen.jquery.min",
             'aes':'../scripts/CryptoJS/rollups/aes',
             'multiple':'./modules/jquery.multiple.select',
-            'ngIdle': '../bower_components/ng-idle/angular-idle.min'
-           // 'locale_is-js': '../bower_components/locale_is-js/index'
+            'ngIdle': '../bower_components/ng-idle/angular-idle.min',
+            'md5': './CryptoJS/md5'
+
         },
         shim: {
             'angular': { exports: 'angular' },
@@ -63,6 +64,7 @@
             'chosen.jquery.min': {deps: ['jquery']},
             'aes':{deps: ['jquery']},
             'multiple':{deps: ['jquery']},
+            'md5':{deps: ['jquery']},
             'ngIdle': {deps: ['angular']},
             'locale_is-js':{deps: ['angular']},
 
@@ -93,8 +95,9 @@
                     'chosen.jquery.min',
                     'aes',
                     'multiple',
-                    'ngIdle'
-                  //  'locale_is-js'
+                    'ngIdle',
+                    'md5'
+
                 ],
                 exports: 'mifosX'
             }

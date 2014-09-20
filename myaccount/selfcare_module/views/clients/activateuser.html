@@ -142,7 +142,7 @@
                           			   date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;width:60px;"  readonly/>
     	                        <strong>-</strong> -->
     	                        <input type="text" ng-model="formData.nationalId" name="nationalId" placeholder= "{{ 'placeholder.enter.nationalid.example' | translate }}" maxlength="11"
-    	                        ng-pattern="/(^(((0[1-9]|[12][0-8])(0[1-9]|1[012]))|((29|30|31)(0[13578]|1[02]))|((29|30)(0[4,6,9]|11)))\d\d-\d\d\d\d$)|(^2902(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)-\d\d\d\d$)/" required late-Validate/><br/>
+    	                        ng-pattern="/(^(((0[1-9]|[12][0-8]|19)(0[1-9]|1[012]))|((29|30|31)(0[13578]|1[02]))|((29|30)(0[4,6,9]|11)))\d\d-\d\d\d\d$)|(^2902(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)-\d\d\d\d$)/" required late-Validate/><br/>
     	                        <small>{{'label.pattern'|translate}}{{'hint.nationaid.pattern'|translate}}</small><br/>
     	                        <span ng-show="regSuccessForm.nationalId.$dirty && regSuccessForm.nationalId.$invalid">
 				        			<small class="error" ng-show="regSuccessForm.nationalId.$error.pattern">{{'form.error.nationalid.pattern'|translate}}</small>
@@ -202,8 +202,14 @@
 	       		 <button ng-click="nextBtnFun()" class="btn btn-primary pull-right" 
 				 		ng-disabled="!regSuccessForm.$valid">{{'btn.next' | translate}}<i class="icon-circle-arrow-right icon-white"></i></button>
 	        </div>
+	        <!-- <div class="offset3" ng-show="isRegisteredPlan">
+	       		 <button ng-click="registerBtnFun()" class="btn btn-primary pull-right" 
+				 		ng-disabled="!regSuccessForm.$valid">{{'btn.register' | translate}}</button>
+	        </div> -->
 	       </fieldset>
 	</form>
+	 <!--  start of code Not Show when in configuration screen Register_plan is Enabled true 
+	<div ng-hide="isRegisteredPlan"> -->
 	         <div ng-show="isOrderPage">
 	        <div class="animated bounce">
 	       	<h3>{{'header.packages'|translate}}</h3>
@@ -273,7 +279,10 @@
 	       			<td>
             			<div class="control-group">
             				<div class="controls">
-            					<input type="radio" name="selectType" checked/>&nbsp;{{'label.dalpay'|translate}}
+            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('dalpay')" checked/>&nbsp;{{'label.dalpay'|translate}}
+            				</div>
+            				<div class="controls">
+            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('korta')"/>&nbsp;{{'label.korta'|translate}}
             				</div>
         				 </div>
 	         				 
@@ -323,4 +332,7 @@
 			 
 		</fieldset>
 	</form>
+	<!--</div>   End of code Not Show when in configuration screen Register_plan is Enabled true -->
+	
+	
 </div>

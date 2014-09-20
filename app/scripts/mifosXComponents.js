@@ -261,7 +261,10 @@ define(['underscore', 'mifosX'], function() {
       'system/EditIpPoolingController',
       'system/DalpayDetailsFormController',
       'system/DalpayButtonController',
-      'system/CreateEventValidationController'
+      'system/CreateEventValidationController',
+      'system/ProvisionController',
+      'system/KortaController',
+      'system/KortaSuccessController'
 
     ],
     filters: [
@@ -269,7 +272,9 @@ define(['underscore', 'mifosX'], function() {
       'YesOrNo',
       'DateFormat',
       'ConfigLookup',
-      'DecimalFormat'
+      'DecimalFormat',
+      'DateTimeFormat'
+
     ],
     directives: [
       'DataTablesDirective',

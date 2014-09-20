@@ -31,6 +31,8 @@
   "label.heading.paymenttype":"Payment Type",
   "label.accountingrules":"Accounting Rules",
   "label.advancedaccountingrules":"Advanced accounting rules",
+  "label.heading.language":"Language",
+  "label.add.kota.Info":"Korta Information",
 
   
 
@@ -260,7 +262,6 @@
   "validation.msg.client.lastname.cannot.be.blank":"Last name cannot be blank",
   "validation.msg.note.note.cannot.be.blank":"Please add a text to note",
 
-
   "#edit client":"",
   "label.individual":"Individual",
   "label.corporate":"Client Name",
@@ -302,6 +303,7 @@
   "link.messanger":"Messanger",
   "link.settings" : "Settings",
   "link.logout" : "LogOut",
+  "link.admin.provision" : "Adapter Provision",
   
 
   "#accounting coa":"....",
@@ -458,6 +460,7 @@
   "app erros end" :"------------------------------------------------------",
 
   "label.note":"Note:",
+  "label.date":"Date:",
 
   "#Account Transfers":".........",
   "label.heading.view.accounttransfer.details":"View Account Transfers Details",
@@ -551,6 +554,8 @@
   "label.disable":"Disable",
   "label.enable":"Enable",
   "label.filterbyname":"Filter by Name",
+  "label.select":"Select",
+  "label.do.action":"Do Action",
 
   "#Roles Management":"....",
   "label.view.roles": "View Roles",
@@ -712,7 +717,12 @@
   "validation.msg.item.itemClass.cannot.be.blank":"Item Class cannot be blank",
   "validation.msg.item.itemCode.cannot.be.blank":"Item Code cannot be blank",
   "validation.msg.item.units.cannot.be.blank":"Units cannot be blank",
+  "validation.msg.item.reorderLevel.cannot.be.blank":"Reorder Level cannot be blank",
   "validation.msg.invalid.decimal.format":"Invalid numeric value",
+  "form.error.number"		    		 : "accepts only digits !",
+  "validation.msg.item.itemCode.exceeds.max.length" : "Item Code exceeds max length of 10",
+  "validation.msg.item.itemDescription.exceeds.max.length" : "Item Description dexceeds max length of 50",
+  "validation.msg.item.reorderLevel.exceeds.max.length" : "Reorder Level exceeds max length of 2",
   
   "#Import":"........",
   "label.heading.uploads":"Builk Uploads",
@@ -1215,6 +1225,9 @@
   "validation.msg.null.supplierDescription.cannot.be.blank":"Supplier Description cannot be blank",
   "validation.msg.null.supplierAddress.cannot.be.blank":"Supplier Address cannot be blank",
   "validation.error.msg.inventory.supplier.duplicate.entry":"Supplier Code already exist",
+  "validation.msg.null.supplierCode.exceeds.max.length":"Supplier Code exceeds max length of 10.",
+  "validation.msg.null.supplierDescription.exceeds.max.length":"Supplier Description exceeds max length of 100.",
+  "validation.msg.null.supplierAddress.exceeds.max.length":"Supplier Address exceeds max length of 100.",
   
   
   "#ItemDetails":"...",
@@ -1415,7 +1428,7 @@
 	"validation.msg.item.provisioningSerialNumber.cannot.be.blank":"Provisioning Serial Number cannot be blank",
 	"validation.msg.item.grnId.cannot.be.blank":"Grn Id cannot be blank",
 	"validation.msg.item.grnOrderdQuantity":"No more items left with this GRN Id",
-	"validation.msg.item.warranty.exceeds.max.length":"Warranty exceeds max length",
+	"validation.msg.item.warranty.exceeds.max.length":"Warranty do not exceeds 2 digits",
 	"error.msg.item.code.duplicate.name":"Item Code already exist",
 	"validation.msg.item.no.such.grnId":"GRN Id does not Exist !",
 	"validation.error.msg.inventory.item.duplicate.serialNumber":"Item Details with SerialNumber already exists",

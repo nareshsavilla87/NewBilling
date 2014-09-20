@@ -6,6 +6,7 @@
     	 * Logout the user if Idle
     	 * 
     	 * */
+    	scope.domReady = true;
         scope.started = false;
         scope.$on('$idleTimeout', function () {
             scope.logout();

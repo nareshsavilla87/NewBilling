@@ -2,12 +2,14 @@
   selfcare.controllers = _.extend(selfcare_module, {
 	  ViewOrderController: function(scope,RequestSender,location,routeParams,$modal,dateFilter,route) {
 		  scope.orderData = {};
+		  scope.orderPricingDatas = [];
 		  scope.orderId = routeParams.orderId;
 		  scope.clientId = routeParams.clientId;
 		  
 		  
 		  RequestSender.getSingleOrderResource.get({orderId: routeParams.orderId},function(data){
 			  scope.orderData=data.orderData;
+			  scope.orderPricingDatas = data.orderPriceData;
 			  if(data.orderData.isPrepaid == 'Y'){
 	            	scope.orderData.isPrepaid="Pre Paid";
 	            }else{

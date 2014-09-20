@@ -2,6 +2,7 @@
    selfcare.controllers = _.extend(selfcare_module, {
 	   SelfCareMainController: function(scope, translate,webStorage,sessionManager,RequestSender,authenticationService,location,modal) {
 		   
+		   scope.domReady = true;
 		   scope.currentSession = {};
 		   scope.isSignInProcess = false;
 		   scope.isRegistrationSuccess = false;

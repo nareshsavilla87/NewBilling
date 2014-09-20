@@ -84,6 +84,11 @@
                 update: { method: 'PUT'}
             }),
             eventOrderPriceTemplateResource: defineResource(apiVer + "/eventorder",{},  {}),
+            
+            currencyTemplateResource: defineResource(apiVer + "/countrycurrencys/template", {}, {}),
+            
+            kortaPaymentsResource: defineResource(apiVer + "/payments/korta", {}, {}),
+            
 
         };
       }];

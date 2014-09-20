@@ -4,7 +4,7 @@
           <li class="active">{{'label.create.new.item' | translate}}</li>
         </ul>
  </div>
-      <form class="form-horizontal well" ng-controller="CreateItemController" ng-submit="submit()">
+      <form  class="form-horizontal well" ng-controller="CreateItemController" ng-submit="submit()">
        <div class="error" ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label ng-show="errorStatus">{{errorStatus}}</label>
@@ -80,8 +80,11 @@
 						<div class="control-group">
             			<label class="control-label" for="reorderLevel">{{'label.item.reorderlevel' | translate }}&nbsp;<span class="required">*</span></label>
             			<div class="controls">
-              			<input type="text" id="reorderlevel" ng-model="formData.reorderLevel">
-            			</div>
+              			<input type="text" id="reorderLevel" name="reorderLevel"   ng-model="formData.reorderLevel" /><br/>
+              					<!-- <span ng-show="createitemform.reorderlevel.$dirty && createitemform.reorderlevel.$invalid">
+				        			<small class="error" ng-show="createitemform.reorderlevel.$error.pattern">{{'form.error.number'|translate}}</small>
+				    			</span>
+ -->            			</div>
           				</div>
 					</td>
 					<td>
@@ -96,25 +99,9 @@
 				
 			</table>
           
-          
-           
-          
-           
-
-
-          
-          
-            
-          
-          
-          
-         
-           
-          
-
           <div class="offset3">
             <a href="#/inventory"><button id="cancel" type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
-            <button id="submit" type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
+            <button id="submit" type="submit"  class="btn btn-primary">{{'label.save' | translate}}</button>
           </div>
           
         </fieldset>
