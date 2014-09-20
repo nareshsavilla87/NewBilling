@@ -42,11 +42,11 @@
 	        </thead>
 	        <tbody>
 	            <tr class="pointer-main"  ng-repeat="mediaDetail in mediaDetails  | filter:filterText" >
-	                <td class="pointer"><label for="{{mediaDetail.mediaId}}{{mediaDetail.quality}}">{{mediaDetail.mediaTitle}}</label></td>
-	                <td class="pointer"><label for="{{mediaDetail.mediaId}}{{mediaDetail.quality}}">{{mediaDetail.quality}}</label></td>
-	                <td class="pointer"><label for="{{mediaDetail.mediaId}}{{mediaDetail.quality}}">{{mediaDetail.price}}</label></td>
+	                <td class="pointer"><label for="{{mediaDetail.mediaId}}{{mediaDetail.quality}}{{mediaDetail.optType}}">{{mediaDetail.mediaTitle}}</label></td>
+	                <td class="pointer"><label for="{{mediaDetail.mediaId}}{{mediaDetail.quality}}{{mediaDetail.optType}}">{{mediaDetail.quality}}</label></td>
+	                <td class="pointer"><label for="{{mediaDetail.mediaId}}{{mediaDetail.quality}}{{mediaDetail.optType}}">{{mediaDetail.price}}</label></td>
 	               <!--  <td><input type="checkbox" ng-model="active" ng-change="selectedEventsFun(mediaDetail.mediaId,mediaDetail.mediaTitle,mediaDetail.price,mediaDetail.quality,active)"></td> -->
-	                <td><label for="{{mediaDetail.mediaId}}{{mediaDetail.quality}}"><input type="checkbox" id="{{mediaDetail.mediaId}}{{mediaDetail.quality}}" ng-model="active" ng-change="selectedEventsFun(mediaDetail,active)"></label></td>
+	                <td><label for="{{mediaDetail.mediaId}}{{mediaDetail.quality}}{{mediaDetail.optType}}"><input type="checkbox" id="{{mediaDetail.mediaId}}{{mediaDetail.quality}}{{mediaDetail.optType}}" ng-model="active" ng-change="selectedEventsFun(mediaDetail,active)"></label></td>
 	            </tr>
 	        </tbody>
 	    </table>

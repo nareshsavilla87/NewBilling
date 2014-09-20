@@ -144,7 +144,6 @@
  	"label.heading.language"		: "Language",
  	"label.payment.gateway"			: "Payment Gateway",
  	
- 	
  	"#form validations errors " : "------------------------------------",
  	"form.error.alphanumeric"		     : "alphanumeric and spaces only!",
  	"form.error.name.characters.atleast" : "Name is required at least 3 characters",

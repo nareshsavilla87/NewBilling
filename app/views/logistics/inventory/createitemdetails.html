@@ -18,7 +18,7 @@
 					<td>
 						<table>
 							<tr>
-								<td>
+							<td>
 								<div class="control-group">
 									<label class="control-label" for="grnId">{{'label.itemdetail.grnid'
 										| translate }}&nbsp;<span class="required">*</span></label>
@@ -30,11 +30,24 @@
 									</div>
 								</div>
 								</td>
+								</tr>
+						</table>
+						<table>
+							<tr>
+								
 								<td>
 						          	<div class="control-group">
 										<label class="control-label" for="itemDescription">{{'label.itemdetail.itemdescription' | translate }}</label>
 										<div class="controls">
 											<input type="text" name="itemDescription" ng-model="itemDetailsData.itemDescription" readonly>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="control-group">
+										<label class="control-label" for="supplierName">{{'label.itemdetail.suppliername' | translate }}</label>
+										<div class="controls">
+											<input type="text" name="supplierName" ng-model="itemDetailsData.supplierName" readonly>
 										</div>
 									</div>
 								</td>
@@ -50,33 +63,13 @@
 								</td>
 								<td>
 									<div class="control-group">
-										<label class="control-label" for="supplierName">{{'label.itemdetail.suppliername' | translate }}</label>
-										<div class="controls">
-											<input type="text" name="supplierName" ng-model="itemDetailsData.supplierName" readonly>
-										</div>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="control-group">
 										<label class="control-label" for="receivedQuantity">{{'label.itemdetail.receivedquantity' | translate }}</label>
 										<div class="controls">
 											<input type="text" name="receivedQuantity" ng-model="itemDetailsData.receivedQuantity" readonly>
 										</div>
 									</div>
 								</td>
-								<td>
-									<div class="control-group">
-										<label class="control-label" for="serialNumber">{{'label.itemdetail.serialnumber' | translate }}&nbsp;<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="serialNumber" ng-model="itemDetailsData.serialNumber">
-										</div>
-									</div>
-								</td>
 							</tr>
-						</table>
-						<table>
 							<tr>
 								<td>
 									<div class="control-group">
@@ -90,6 +83,30 @@
 								</td>
 								<td>
 									<div class="control-group">
+										<label class="control-label" for="status">{{'label.itemdetail.status' | translate }}</label>
+										<div class="controls">
+											<select ng-model="itemDetailsData.status">
+												<option value="">New</option>
+												<option value="Used">Used</option>
+											</select>
+										</div>
+									</div>
+								</td>
+								
+							</tr>
+						</table>
+						<table>
+							<tr>
+								<td>
+									<div class="control-group">
+										<label class="control-label" for="serialNumber">{{'label.itemdetail.serialnumber' | translate }}&nbsp;<span class="required">*</span></label>
+										<div class="controls">
+											<input type="text" name="serialNumber" ng-model="itemDetailsData.serialNumber">
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="control-group">
 										<label class="control-label" for="provisioningSerialNumber">{{'label.itemdetail.provisioningserialnumber' | translate }}&nbsp;<span class="required">*</span></label>
 										<div class="controls">
 											<input type="text" name="provisioningSerialNumber" ng-model="itemDetailsData.provisioningSerialNumber">
@@ -97,15 +114,14 @@
 									</div>
 								</td>
 							</tr>
+						</table>
+						<table>
 							<tr>
 								<td>
 									<div class="control-group">
-										<label class="control-label" for="status">{{'label.itemdetail.status' | translate }}</label>
+										<label class="control-label" for="itemModel">{{'label.itemdetail.itemModel' | translate }}</label>
 										<div class="controls">
-											<select ng-model="itemDetailsData.status">
-												<option value="">New</option>
-												<option value="Used">Used</option>
-											</select>
+											<input type="text" name="itemModel" ng-model="formData.itemModel">
 										</div>
 									</div>
 								</td>

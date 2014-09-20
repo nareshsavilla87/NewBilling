@@ -43,7 +43,7 @@
 			  else{
 				  scope.totalAmount -=mediaData.price;
 				  for(var media in scope.mediaDatas){
-					  if(mediaData.mediaId == scope.mediaDatas[media].mediaId && mediaData.quality ==scope.mediaDatas[media].quality){
+					  if(mediaData.mediaId == scope.mediaDatas[media].mediaId && mediaData.quality ==scope.mediaDatas[media].quality&& mediaData.optType == scope.mediaDatas[media].optType){
 						  scope.mediaDatas.splice(media,1);
 					  }
 				  }
@@ -88,6 +88,12 @@
 			  console.log(scope.mediaDatas);
 			  webStorage.add('eventData',scope.mediaDatas);
 			  webStorage.add('VODTotalAmount',scope.totalAmount);
+		  };
+		  
+		  scope.subscribeBtnFun = function(){
+			  console.log(scope.mediaDatas);
+			  webStorage.add('eventData',scope.mediaDatas);
+			  location.path("/eventdetailspreviewscreen");
 		  };
 		  
 		  scope.subscribeBtnFun = function(){

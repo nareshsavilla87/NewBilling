@@ -202,8 +202,14 @@
 	       		 <button ng-click="nextBtnFun()" class="btn btn-primary pull-right" 
 				 		ng-disabled="!regSuccessForm.$valid">{{'btn.next' | translate}}<i class="icon-circle-arrow-right icon-white"></i></button>
 	        </div>
+	        <!-- <div class="offset3" ng-show="isRegisteredPlan">
+	       		 <button ng-click="registerBtnFun()" class="btn btn-primary pull-right" 
+				 		ng-disabled="!regSuccessForm.$valid">{{'btn.register' | translate}}</button>
+	        </div> -->
 	       </fieldset>
 	</form>
+	 <!--  start of code Not Show when in configuration screen Register_plan is Enabled true 
+	<div ng-hide="isRegisteredPlan"> -->
 	         <div ng-show="isOrderPage">
 	        <div class="animated bounce">
 	       	<h3>{{'header.packages'|translate}}</h3>
@@ -326,4 +332,7 @@
 			 
 		</fieldset>
 	</form>
+	<!--</div>   End of code Not Show when in configuration screen Register_plan is Enabled true -->
+	
+	
 </div>

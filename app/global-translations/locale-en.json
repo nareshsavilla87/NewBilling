@@ -52,6 +52,7 @@
   "label.disable":"Disable",
    "label.select.one":"--Select one--",
   "validation.msg.office.name.cannot.be.blank":"Office Name cannot be blank",
+  "validation.msg.office.officeType.cannot.be.blank":"Please select office Type",
   "error.msg.not.authorized":"Insufficient privileges to perform this action.",
  
  "# common label headings":"....",
@@ -259,6 +260,7 @@
   "error.msg.clientIdentifier.type.duplicate":"Already exists with this document type",
   "validation.msg.client.firstname.cannot.be.blank":"First name cannot be blank",
   "validation.msg.client.lastname.cannot.be.blank":"Last name cannot be blank",
+  "validation.msg.note.note.cannot.be.blank":"Please add a text to note",
 
   "#edit client":"",
   "label.individual":"Individual",
@@ -825,6 +827,7 @@
   "label.quantity":"Quantity:",
   "label.serialNoLength":"Serial No Length:",
   "label.pinType":"PinType:",
+  "table.heading.product":"Product",
   "label.ManageVoucherpins":"Voucherpins",
   
   
@@ -995,6 +998,10 @@
   "validation.msg.itemsale.orderQuantity.cannot.be.blank":"Order Quantity cannot be blank",
   "validation.msg.itemsale.chargeAmount.cannot.be.blank":"Charge amount cannot be blank",
   "validation.msg.itemsale.taxAmount.cannot.be.blank":"tax Amount cannot be blank",
+  "validation.msg.itemsale.purchaseBy.cannot.be.blank":"Please select office for purchase By",
+  "validation.msg.note.note.cannot.be.blank":"Note cannot be blank",
+  "table.heading.isLoanOfficer":"isLoanOfficer",
+  "label.employee.isLoanOfficer":"isLoanOfficer",
   
    "#service ":"....",
   "label.manageservices":"Manage Services",
@@ -1071,6 +1078,7 @@
   "validation.msg.eventorder.optType.cannot.be.blank":"Opt Type cannot be blank",
   "error.msg.movie.price.not.found":"No Price Found for This Client Type",
   "error.msg.insufficient.amount.amount":"Insufficient Amount to Book The Order",
+  "validation.msg.eventmaster.eventCategory.cannot.be.blank":"Please select Event Category",
   
   
   
@@ -1231,9 +1239,10 @@
   "label.itemdetail.receivedquantity":"Received Quantity",
   "label.itemdetail.serialnumber":"Serial Number",
   "label.itemdetail.quality":"Quality",
-  "label.itemdetail.provisioningserialnumber":"Provisioning Serial Number",
+  "label.itemdetail.provisioningserialnumber":"Provisioning Serial",
   "label.itemdetail.status":"Status",
   "label.itemdetail.remarks":"Remarks",
+  "label.itemdetail.itemModel":"Item Model",
   
   "#MRN":"....",
   "label.mrn.id":"Mrn Id",
@@ -1403,6 +1412,7 @@
   "label.addresstype":"Address Type",
   "label.addressno":"Address No",
   "error.msg.billing.address.city.not.found":"City Not Found",
+  
   
   "#link.scheduler":"....",
   "link.scheduler":"Scheduler",
@@ -1594,6 +1604,7 @@
  "validation.msg.eventmaster.services.cannot.be.empty":"Please select atleast one media",
  "validation.msg.eventmaster.status.cannot.be.blank":"Please select status",
  "validation.msg.eventmaster.chargeCode.cannot.be.blank":"Event Code cannot be blank",
+ "validation.msg.eventmaster.eventCategory.cannot.be.blank":"Event Category cannot be blank",
  
  
  "validation.msg.plan.services.cannot.be.blank":"Please select atleast one service",
@@ -1615,6 +1626,8 @@
 "error.msg.no.active.price.available.for.this.plan":"No Active Prices Are Available For This Plan",
 "validation.msg.order.renewalPeriod.cannot.be.blank":"Please Select the Renewal Period",
 "validation.msg.order.disconnectReason.cannot.be.blank":"Please Select the reason for disconnect",
+"validation.msg.order.provisioningSystem.cannot.be.blank":"Please select Provisioning System",
+"validation.msg.order.commandName.cannot.be.blank":"Please select  Command Name",
 
 
 "validation.msg.subscriptoins.subscriptionPeriod.cannot.be.blank":"Subscription Period cannot be blank",
@@ -2035,7 +2048,17 @@
 "label.childid":"ChildId",
 "label.parentid":"ParentID",
 "label.parentname":"ParentName",
-"label.parentorchildaccount":"AccountNo"
+"label.parentorchildaccount":"AccountNo",
+"#eventactionmapping":"......",
+"validation.msg.eventactionmapping.event.cannot.be.blank":"Please select Event",
+"validation.msg.eventactionmapping.action.cannot.be.blank":"Please select Action",
+"validation.msg.eventactionmapping.process.cannot.be.blank":"Process Cannot be blank",
+"label.id":"Id",
+"#hardwareplans":"......",
+"validation.msg.hardwareplan.planCode.cannot.be.blank":"Please select Plan Code",
+"validation.msg.hardwareplan.itemCode.cannot.be.blank":"Please select Item Code"
+
+
 
 
 
