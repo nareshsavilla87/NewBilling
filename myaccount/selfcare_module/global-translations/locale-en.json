@@ -140,9 +140,6 @@
  	"hint.nationaid.pattern"		: "ddmmyy-any 4 digits",
  	"label.change.language" 		: "Change language:",
  	"label.korta"					: "Korta",
- 	"label.thor.token"				: "Token",
- 	"label.heading.language"		: "Language",
- 	"label.payment.gateway"			: "Payment Gateway",
  	
  	"#form validations errors " : "------------------------------------",
  	"form.error.alphanumeric"		     : "alphanumeric and spaces only!",

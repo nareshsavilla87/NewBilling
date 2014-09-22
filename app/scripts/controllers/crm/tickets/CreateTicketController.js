@@ -19,10 +19,6 @@
 		        	showInputs:false,
 		        	showMeridian:false
 		        });
-			 $('#timepicker2').timepicker({
-		        	showInputs:false,
-		        	showMeridian:false
-		        });
 			 
 			 scope.clientId=routeParams.id;
 			 var clientData = webStorage.get('clientData');

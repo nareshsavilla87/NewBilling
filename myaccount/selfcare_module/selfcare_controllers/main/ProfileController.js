@@ -15,7 +15,6 @@
 				  }
 				  rootScope.selfcare_userName = data.displayName;
 				  webStorage.add('selfcareUserName',data.displayName);
-				  webStorage.add('selfcareUserData',data);
 			  });
 		  }
 		  

@@ -64,7 +64,7 @@
               <div class="controls">
                 <input type="text" id="phone" ng-model="formData.phone" ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/" name="phone" required  late-Validate/>
                 <div ng-show="createclientform.phone.$dirty && createclientform.phone.$invalid">
-        			<small class="error" ng-show="createclientform.phone.$error.pattern">Atleast 4 digits or accepts only digits !</small>
+        			<small class="error" ng-show="createclientform.phone.$error.pattern">wrong input or accepts only digits !</small>
     			</div>
               </div>
             </div>
@@ -75,7 +75,7 @@
             		<div class="controls">
               			<input type="text" name="homePhone" id="homePhoneNumber" ng-model="formData.homePhoneNumber" ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/" />
               			<div ng-show="createclientform.homePhone.$dirty && createclientform.homePhone.$invalid">
-        					<small class="error" ng-show="createclientform.homePhone.$error.pattern">Atleast 4 digits or accepts only digits !</small>
+        					<small class="error" ng-show="createclientform.homePhone.$error.pattern">wrong input or accepts only digits !</small>
     					</div>
            		</div>
           	</div>

@@ -4,8 +4,7 @@
 	//console.log(hostName);
 	var locationOrigin = window.location.origin;
 	console.log(locationOrigin);
-	var locationPathname = window.location.pathname;
-	console.log(locationPathname);
+	//var locationPathname = window.location.pathname;
 	 
    selfcare.models = _.extend(selfcare_module, {
 	   //return URL form after clients success
@@ -13,8 +12,7 @@
 	   //selfcareAppUrl : "https://"+hostName+"/Clientapp/myaccount/index.html"
 	   returnURL : locationOrigin+"/Clientapp/myaccount/index.html#/active",
 	   selfcareAppUrl : locationOrigin+"/Clientapp/myaccount/index.html",
-	   downloadUrl : locationOrigin+"/Clientapp/myaccount/index.html#/kortasuccess?encryptedKey=",
-	   additionalKortaUrl : locationOrigin+"/Clientapp/myaccount/index.html#/kortatokenpaymentsuccess",
+	   downloadUrl : locationOrigin+"/client/WebContent/Clientapp/myaccount/index.html#/kortasuccess?encryptedKey="
 		   
   });
 }(selfcare.models || {}));

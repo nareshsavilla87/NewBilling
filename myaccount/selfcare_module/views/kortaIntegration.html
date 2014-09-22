@@ -33,44 +33,44 @@
 		<fieldset>
 			<legend>{{'label.add.kota.Info' | translate}}</legend>
 			 <div class="control-group">
-				<label class="control-label" >{{ 'label.heading.language' | translate }}<span class="required">*</span></label>
-				<div class="controls">
-					 <select ng-model="formData.optlang"  ng-options="lang.code as lang.name for lang in langs" value="{{lang.name}}" reqiured late-Validate disabled>
-					 </select>
-				</div>
-			</div> 
-			<div class="control-group">
-				<label class="control-label" >{{ 'label.currency' | translate }}<span class="required">*</span></label>
-				<div class="controls">
-					 <select ng-model="formData.currency"  ng-options="currencydata.code as currencydata.displayLabel for currencydata in currencydatas" value="{{currencydata.code}}" reqiured late-Validate disabled>
-					 </select>
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" >{{ 'label.do.action' | translate }}<span class="required">*</span></label>
-				<div class="controls">
-					 <select ng-model="formData.doAction"  ng-options="doActionType.name as doActionType.name for doActionType in doActionTypes" value="{{doActionType.name}}" reqiured late-Validate disabled>
-					 </select>
-				</div>
-			</div>
-			 <div class="control-group">
        			 <label class="control-label">{{ 'label.amount' | translate}}<span class="required">*</span></label>
         		<div class="controls">
-          			<input type="text" ng-model="formData.amount" reqiured late-Validate/>
+          			<input type="text" ng-model="formData.amount" reqiured late-Validate />
         		</div>
       		</div>
       		<div class="control-group">
-				<label class="control-label" >{{ 'label.thor.token' | translate}}<span class="required">*</span></label>
+				<label class="control-label" >token<span class="required">*</span></label>
 				<div class="controls">
 					<textarea rows="2" ng-model="formData.token" reqiured late-Validate></textarea>
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label" >{{'label.description' | translate}}<span class="required">*</span></label>
+				<label class="control-label" >{{ 'label.currency' | translate }}<span class="required">*</span></label>
 				<div class="controls">
-					<textarea rows="2" ng-model="formData.description" reqiured late-Validate disabled></textarea>
+					 <select ng-model="formData.currency"  ng-options="currencydata.code as currencydata.displayLabel for currencydata in currencydatas" value="{{currencydata.code}}" reqiured late-Validate>
+					 </select>
 				</div>
 			</div>
+			<div class="control-group">
+				<label class="control-label" >{{'label.description' | translate}}<span class="required">*</span></label>
+				<div class="controls">
+					<textarea rows="2" ng-model="formData.description" reqiured late-Validate></textarea>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" >{{ 'label.do.action' | translate }}<span class="required">*</span></label>
+				<div class="controls">
+					 <select ng-model="formData.doAction"  ng-options="doActionType.name as doActionType.name for doActionType in doActionTypes" value="{{doActionType.name}}" reqiured late-Validate>
+					 </select>
+				</div>
+			</div>
+			 <div class="control-group">
+				<label class="control-label" >{{ 'label.heading.language' | translate }}<span class="required">*</span></label>
+				<div class="controls">
+					 <select ng-model="formData.optlang"  ng-options="lang.code as lang.name for lang in langs" value="{{lang.name}}" reqiured late-Validate>
+					 </select>
+				</div>
+			</div> 
 			
 		</fieldset>
 		   <div class="offset3">

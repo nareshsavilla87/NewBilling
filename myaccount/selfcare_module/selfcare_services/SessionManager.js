@@ -49,7 +49,6 @@
         webStorage.remove("clientData");
         webStorage.remove("clientTotalData");
         webStorage.remove('selfcareUserName');
-        webStorage.remove('selfcareUserData');
         httpService.cancelAuthorization();
         return scope.currentSession= {user:null};
       };

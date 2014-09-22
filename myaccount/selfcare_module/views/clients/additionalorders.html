@@ -26,15 +26,15 @@
 		    </ul>
 	 </div><br/>
 <div ng-show="isOrderPage">
-	<span class="animated wobble" style="margin-left:280px;">{{'header.package.selection'|translate}}</span>
-	<span style="margin-left:230px;">{{'header.payment'|translate}}</span><br/>
+	<span class="animated wobble" style="margin-left:250px;">{{'header.package.selection'|translate}}</span>
+	<span style="margin-left:240px;">{{'header.payment'|translate}}</span><br/>
 	<img class="animated wobble" style="margin-left:280px;" alt="{{'header.package.selection'|translate}}" src="./selfcare_module/images/Subscribe.jpg" width="60px;">
 	<img style="margin-left:280px;" alt="{{'header.payment'|translate}}" src="./selfcare_module/images/Payment.jpg" width="60px;"><br/>
 	<img class="animated pulse" style="margin-left:290px;margin-top:-28px" alt="ok" src="./selfcare_module/images/checkbox.png" width="40px;">
 </div>
 <div ng-show="isPaymentPage">
-	<span style="margin-left:280px;">{{'header.package.selection'|translate}}</span>
-	<span class="animated wobble" style="margin-left:230px;">{{'header.payment'|translate}}</span><br/>
+	<span style="margin-left:250px;">{{'header.package.selection'|translate}}</span>
+	<span class="animated wobble" style="margin-left:240px;">{{'header.payment'|translate}}</span><br/>
 	<img style="margin-left:280px;" alt="{{'header.package.selection'|translate}}" src="./selfcare_module/images/Subscribe.jpg" width="60px;">
 	<img class="animated wobble" style="margin-left:280px;" alt="{{'header.payment'|translate}}" src="./selfcare_module/images/Payment.jpg" width="60px;"><br/>
 	<img class="animated pulse" style="margin-left:630px;margin-top:-28px" alt="ok" src="./selfcare_module/images/checkbox.png" width="40px;">
@@ -111,12 +111,9 @@
 			<table style="margin-left:50px;">
 	       		<tr>
 	       			<td>
-        				 <div class="control-group">
+            			<div class="control-group">
             				<div class="controls">
-            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('dalpay')" checked/>&nbsp;{{'label.dalpay'|translate}}
-            				</div>
-            				<div class="controls">
-            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('korta')"/>&nbsp;{{'label.korta'|translate}}
+            					<input type="radio" name="selectType" checked/>&nbsp;{{'label.dalpay'|translate}}
             				</div>
         				 </div>
 	         				 

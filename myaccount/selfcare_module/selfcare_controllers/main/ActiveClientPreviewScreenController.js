@@ -16,10 +16,8 @@
 			 if(scope.formData.deviceNo){
 				 scope.clientData.device = scope.formData.deviceNo;
 			 }
-			 if(scope.formData.kortaToken){
-				 scope.clientData.kortaToken = scope.formData.kortaToken;
-			 }
 			 console.log(scope.formData.zipcode);
+			 scope.clientData.kortaToken = "sdafkj";
 			 scope.clientData.firstname = "Mr ";
 			 scope.clientData.address = scope.formData.address;
 			 scope.clientData.homePhoneNumber = scope.formData.homePhoneNumber;

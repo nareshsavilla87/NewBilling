@@ -50,25 +50,8 @@
 				 }
 				  
 			  }
-			  var hostName = selfcare.models.selfcareAppUrl;
-			  
-			scope.paymentGatewayFun  = function(paymentGatewayName){
-		    	  console.log(paymentGatewayName);
-		    	  if(paymentGatewayName == 'dalpay'){
-		    		  scope.paymentDalpayURL = scope.dalpayURL+"&cust_name="+scope.formData.lastname+"&cust_phone="+scope.formData.phone+"&cust_email="+scope.formData.email+"&cust_state="+scope.formData.state+""+
-  	  				"&cust_address1="+scope.formData.addressNo+"&cust_zip="+scope.formData.zip+"&cust_city="+scope.formData.city+"&item1_desc="+scope.formData.planName+"&item1_price="+scope.formData.planAmount+"" +
-  	  				"&user1="+scope.formData.id+"&user3=additionalorderspreviewscreen/"+routeParams.orderId+"/"+routeParams.clientId; 
-		    	  }else if(paymentGatewayName == 'korta'){
-		    		  var selfcareUserData = webStorage.get("selfcareUserData");
-		    		  var token = selfcareUserData.selfcare.token;
-		    		  if(token != null && token != ""){
-		    			  scope.paymentDalpayURL = "#/kortatokenpayment/"+routeParams.orderId+"/"+routeParams.clientId;
-		    		  }else{
-		    			  scope.paymentDalpayURL = "#/kortaIntegration";
-		    		  }
-		    	  };
-		      };
-			  
+		  
+		  
 		  scope.selectedPLandAm = function(contractId,planId,chargeCode,price,planCode,duration){
 		    	 
 			  scope.isOrderPage = false;
@@ -86,13 +69,12 @@
 	    		  scope.isAmountZero = false;
 	    		  scope.isPaymentPage = true;
 	    	  }
-	    	  scope.paymentGatewayFun('dalpay');
 	    	  	//var host = window.location.hostname;
 	    		//var portNo = window.location.port;
-	    	 
-	    	 /* scope.paymentDalpayURL = scope.dalpayURL+"&cust_name="+scope.formData.lastname+"&cust_phone="+scope.formData.phone+"&cust_email="+scope.formData.email+"&cust_state="+scope.formData.state+""+
+	    	  var hostName = selfcare.models.selfcareAppUrl;
+	    	  scope.paymentDalpayURL = scope.dalpayURL+"&cust_name="+scope.formData.lastname+"&cust_phone="+scope.formData.phone+"&cust_email="+scope.formData.email+"&cust_state="+scope.formData.state+""+
 	    	  				"&cust_address1="+scope.formData.addressNo+"&cust_zip="+scope.formData.zip+"&cust_city="+scope.formData.city+"&item1_desc="+scope.formData.planName+"&item1_price="+scope.formData.planAmount+"" +
-	    	  				"&user1="+scope.formData.id+"&user3=additionalorderspreviewscreen/"+routeParams.orderId+"/"+routeParams.clientId;*/
+	    	  				"&user1="+scope.formData.id+"&user3=additionalorderspreviewscreen/"+routeParams.orderId+"/"+routeParams.clientId;
 	    	  
 	      };
 	      

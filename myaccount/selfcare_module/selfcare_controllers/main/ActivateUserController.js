@@ -14,7 +14,6 @@
 		  	scope.plansData = [];
 			scope.clientData = {};
 			scope.contractDetails = [];
-			/*scope.isRegisteredPlanDetails = {};*/
 			webStorage.remove('selfcare_sessionData');
 			rootScope.isSignInProcess = false;
 			scope.existedEmail = routeParams.mailId;
@@ -88,13 +87,10 @@
     			  //getting data from c_configuration
     			  RequestSender.configurationResource.get(function(data){
     				  for(var i in data.globalConfiguration){
-    					  /*if(data.globalConfiguration[i].name=="Register_plan"){
+    					  if(data.globalConfiguration[i].name=="Register_plan"){
     						  scope.isRegisteredPlan = data.globalConfiguration[i].enabled;
-    						  var jsonObj = JSON.parse(data.globalConfiguration[i].value);
-    						  scope.isRegisteredPlanDetails = jsonObj;
-    					  }*/if(data.globalConfiguration[i].name=="Registration_requires_device"){
+    					  }if(data.globalConfiguration[i].name=="Registration_requires_device"){
     						  scope.isDeviceEnabled = data.globalConfiguration[i].enabled;
-    						  break;
     					  }
     				  }
     			  });
@@ -190,15 +186,6 @@
     		  webStorage.add("planFormData",scope.formData);
     		  location.path("/activeclientpreviewscreen");
 	      };
-	      
-	      /*scope.registerBtnFun =function(){
-	    	  scope.formData.emailId = email;
-	    	  scope.formData.paytermCode = scope.isRegisteredPlanDetails.paytermCode; 
-	    	  scope.formData.contractperiod = scope.isRegisteredPlanDetails.contractPeriod;
-			  scope.formData.planCode = scope.isRegisteredPlanDetails.planCode;
-    		  webStorage.add("planFormData",scope.formData);
-    		  location.path("/activeclientpreviewscreen");
-	      };*/
   		
     }
   });

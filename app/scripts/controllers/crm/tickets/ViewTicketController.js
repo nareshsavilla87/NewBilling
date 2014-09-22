@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  ViewTicketController: function(scope,webStorage, routeParams , route, location, resourceFactory,dateFilter, http,PermissionService) {
+	  ViewTicketController: function(scope,webStorage, routeParams , route, location, resourceFactory, http,PermissionService) {
         scope.ticket = []; 
         scope.PermissionService = PermissionService;
         var clientData = webStorage.get('clientData');
@@ -18,15 +18,11 @@
         resourceFactory.ticketResource.get({id: routeParams.id,clientId: routeParams.clientId} , function(data) {      	
             scope.ticket = data; 
             scope.clientId= routeParams.clientId;
-           
         });
         resourceFactory.ticketHistoryResource.get({id: routeParams.id} , function(data) {  
             scope.historyData = data.masterData;
             scope.problemDescription=data.problemDescription;
         });
-        
-     
-        
         
         scope.reset123 = function(){
       	   webStorage.add("callingTab", {someString: "Tickets" });
@@ -44,7 +40,7 @@
           };
     }
   });
-  mifosX.ng.application.controller('ViewTicketController', ['$scope', 'webStorage','$routeParams', '$route', '$location', 'ResourceFactory','dateFilter', '$http','PermissionService', mifosX.controllers.ViewTicketController]).run(function($log) {
+  mifosX.ng.application.controller('ViewTicketController', ['$scope', 'webStorage','$routeParams', '$route', '$location', 'ResourceFactory', '$http','PermissionService', mifosX.controllers.ViewTicketController]).run(function($log) {
     $log.info("ViewTicketController initialized");
   });
 }(mifosX.controllers || {}));

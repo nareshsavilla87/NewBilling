@@ -46,8 +46,8 @@
     		    });
         		
         	}else{
-        		alert("calculate md5 String Value : "+ downloadmd5String+",downloadmd5 : "+ downloadmd5);
-        		alert("Payment Failure md5 Strings are not comparing each other");
+        		alert("downloadmd5String : "+ downloadmd5String);
+        		alert("downloadmd5 : "+ downloadmd5);
         	}
         	
         }
