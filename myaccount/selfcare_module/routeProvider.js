@@ -64,6 +64,12 @@
     })
     .when('/kortasuccess',{
     	templateUrl: 'selfcare_module/views/kortasuccess.html'
+    })
+    .when('/kortatokenpayment/:planId/:clientId',{
+    	templateUrl: 'selfcare_module/views/KortaTokenPayment.html'
+    })
+    .when('/kortatokenpaymentsuccess/:planId/:clientId',{
+    	templateUrl: 'selfcare_module/views/KortaTokenPaymentSuccess.html'
     });
        
     $locationProvider.html5Mode(false);

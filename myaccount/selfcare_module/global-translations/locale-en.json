@@ -1,8 +1,7 @@
 {
   "titles" :"----------------------------------------------------",
  	"title.obs.selfcare"		: "OBS SelfCare",
- 	"title.conformation.registration" 		 : "Thank you for registering! A conformation mail has sent to your mailId.Please click on the Activation Link ",
- 	"title.toactive.msg" 			  		 : "to activate your account.To go Click Here ",
+ 	"title.conformation.registration" 		 : "Thank you for registering! A conformation mail has been sent to your mailId.Please login to your email account and click on the Activation Link to complete the registration",
  	"title.conformation.alreadyregistration" : "Client is already Registered with this mailId.",
  	"title.signin.msg" 						 : "Please Sign In..!",
  	"title.password.changed" 				 : "Password changed successfully...",
@@ -13,7 +12,7 @@
  	"title.verify.emailid" 					 : "An email has sent to your mailID.Please verify then Sign In..",
  	"title.fill.emailid" 					 : "Please fill Email Field..",
  	"title.redirecting.dalpay" 				 : "Redirecting Please Wait...",
- 	
+ 	"title.msg.firsttimeregistration" 		 : "If you are signing in for the first time please register your email by clicking SIGN-UP button", 	
  	
  "#buttons"  : "--------------------------",
  	"btn.signin"  				: "Sign In",
@@ -35,7 +34,7 @@
  	
  "#labels"  :  "--------------------------",
  	"label.product.name" 		: "OBS",
- 	"label.product.version" 	: "Version 1.0.0",
+ 	"label.product.version" 	: "Version 2.0.1",
  	"label.product.status" 		: "OBS is upto date",
  	"label.product.aboutus1" 	: "Designed by ",
  	"label.community.name" 		: "OBS Team",
@@ -140,6 +139,14 @@
  	"hint.nationaid.pattern"		: "ddmmyy-any 4 digits",
  	"label.change.language" 		: "Change language:",
  	"label.korta"					: "Korta",
+ 	"label.thor.token"				: "Token",
+ 	"label.heading.language"		: "Language",
+ 	"label.payment.gateway"			: "Payment Gateway",
+ 	"label.add.kota.Info"			: "Korta Information",
+	"label.amount"					: "Amount",
+	"label.currency"				: "Currency",
+	"label.description"				: "Description",
+	"label.do.action"				: "Do Action",
  	
  	"#form validations errors " : "------------------------------------",
  	"form.error.alphanumeric"		     : "alphanumeric and spaces only!",
@@ -798,14 +805,9 @@
 "#client&parent":"",
 "error.msg.client.Not parent.himself.can.not.be.parent.to his.account":"Himself can not be parent to his account",
 "error.msg.client.Not Parent.he.is. already. a parent.to.some other clients":"He is already a parent to some other clients",
-"error.msg.client.Not Parent.can.not.be.parent.to this.account":"Can not be parent to this account",
+"error.msg.client.Not Parent.can.not.be.parent.to this.account":"Can not be parent to this account"
 
-"#Korta":"",
-"label.add.kota.Info":"Korta Information",
-"label.amount":"Amount",
-"label.currency":"Currency",
-"label.description":"Description",
-"label.do.action":"Do Action"
+
 
 
 

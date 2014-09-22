@@ -3,15 +3,16 @@
 	<ul class="breadcrumb">
 			<li class="active">{{'label.add.kota.Info' | translate}}</li>
  	</ul>
- <form name="kortaInfoForm" novalidate="" action="https://netgreidslur.korta.is/testing/" method="post" class="form-horizontal well" ng-controller="KortaController">
+ <form name="kortaTokenPayementInfoForm" novalidate="" action="https://netgreidslur.korta.is/testing/" method="post" class="form-horizontal well" ng-controller="KortaTokenPaymentController">
 <input name="amount" type="hidden" value="{{formData.amount}}">
 <input name="currency" type="hidden" value="{{formData.currency}}">
 <input name="merchant" type="hidden" value="{{kortaMerchantId}}">
 <input name="terminal" type="hidden" value="{{kortaTerminalId}}">
 <input name="description" type="hidden" value="{{formData.description}}">
 <input name="token" type="hidden" value={{formData.token}}>
-<input name="do" type="hidden" value="{{formData.doAction}}">
+<input name="do" type="hidden" value="">
 <input name="lang" type="hidden" value="{{formData.optlang}}"> 
+<input name="skipcardverify" type="hidden" value="1">
 
 <input type="hidden" name="name" value="{{formData.fullName}}">
 <input type="hidden" name="address" value="{{formData.address}}">
@@ -42,16 +43,9 @@
 			<div class="control-group">
 				<label class="control-label" >{{ 'label.currency' | translate }}<span class="required">*</span></label>
 				<div class="controls">
-					 <!--<select ng-model="formData.currency"  ng-options="currencydata.code as currencydata.displayLabel for currencydata in currencydatas" value="{{currencydata.code}}" reqiured late-Validate disabled>
-					 </select>-->
-                                     <input type="text" ng-model="formData.currency" reqiured late-Validate disabled/>
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" >{{ 'label.do.action' | translate }}<span class="required">*</span></label>
-				<div class="controls">
-					 <select ng-model="formData.doAction"  ng-options="doActionType.name as doActionType.name for doActionType in doActionTypes" value="{{doActionType.name}}" reqiured late-Validate disabled>
-					 </select>
+					 
+                                    <input type="text" ng-model="formData.currency" reqiured late-Validate disabled/>
+
 				</div>
 			</div>
 			 <div class="control-group">
@@ -63,7 +57,7 @@
       		<div class="control-group">
 				<label class="control-label" >{{ 'label.thor.token' | translate}}<span class="required">*</span></label>
 				<div class="controls">
-					<textarea rows="2" ng-model="formData.token" reqiured late-Validate></textarea>
+					<textarea rows="2" ng-model="formData.token" reqiured late-Validate disabled></textarea>
 				</div>
 			</div>
 			<div class="control-group">

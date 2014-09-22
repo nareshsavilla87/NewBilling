@@ -1,8 +1,7 @@
 {
-  "titles" :"----------------------------------------------------",
+  "ttles" :"----------------------------------------------------",
  	"title.obs.selfcare"		: "OBS SelfCare",
- 	"title.conformation.registration" 		 : "Þakka þér fyrir að skrá þig! A sköpulag póstur hefur sent póstur auðkenni.vinsamlegast smella á virkjunarslóð ",
- 	"title.toactive.msg" 			  		 : "að virkja reikningur.To þinn fara Smelltu hér ",
+ 	"title.conformation.registration" 		 : "Þakka þér fyrir að skrá þig! A sköpulag hefur verið sendur til póstur auðkenni.Vinsamlegast innskráningu til þinn tölvupósti reikningur og smelltu á örvun hlekkur til að ljúka skráningu ",
  	"title.conformation.alreadyregistration" : "Viðskiptavinur er þegar skráð við þennan póstur auðkenni.",
  	"title.signin.msg" 						 : "Vinsamlegast skráðu þig inn..!",
  	"title.password.changed" 				 : "Lykilorð breytt með góðum árangri...",
@@ -12,7 +11,8 @@
  	"title.account.activated" 				 : "Nú Reikningurinn þinn er virkur.notandanafn og Lykilorð hefur sendi póstur auðkenni.vinsamlegast Skrá þinn í ..!",
  	"title.verify.emailid" 					 : "Tölvupóstur hefur sendi til póstur auðkenni.vinsamlegast þinn staðfesta skráðu þig inn..",
  	"title.fill.emailid" 					 : "Vinsamlegast fyllið  Tölvupóstur reit..",
- 	"title.redirecting.dalpay" 				 : "Áframsendi dalpay",
+ 	"title.redirecting.dalpay" 				 : "Áframsendi vinsaml...",
+ 	"title.msg.firsttimeregistration" 		 : "Ef þú ert að skrá þig inn í fyrsta skipti skaltu skrá netfangið þitt með því að smella Nýskráningarforritið hnappinn",
  	
  	
  "#buttons"  : "--------------------------",
@@ -35,7 +35,7 @@
  	
  "#labels"  :  "--------------------------",
  	"label.product.name" 		: "OBS",
- 	"label.product.version" 	: "útgáfa 1.0.0",
+ 	"label.product.version" 	: "útgáf 2.0.1",
  	"label.product.status" 		: "OBS er allt að dagsetning",
  	"label.product.aboutus1" 	: "hannað af ",
  	"label.community.name" 		: "OBS lið",
@@ -139,6 +139,15 @@
  	"label.pattern"					: "mynstur :",
  	"hint.nationaid.pattern"		: "ddmmyy-allir 4 tölustafir",
  	"label.change.language" 		: "Breyta tungumáli:",
+ 	"label.korta"					: "Korta",
+ 	"label.thor.token"				: "auðkennið",
+ 	"label.heading.language"		: "tungumál",
+ 	"label.payment.gateway"			: "greiðsla Gateway",
+ 	"label.add.kota.Info"			: "Korta Upplýsingar",
+	"label.amount"					: "Magn",
+	"label.currency"				: "Gjaldmiðill",
+	"label.description"				: "Lýsing",
+	"label.do.action"				: "gera aðgerð",
  	
  	"#form validations errors " : "------------------------------------",
  	"form.error.alphanumeric"		     : "tölustafi og rými aðeins!",
