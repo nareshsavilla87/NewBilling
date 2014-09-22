@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  PayInvoiceController: function(scope,webStorage, resourceFactory, routeParams, location,dateFilter,validator,route,$modal) {
+	  PayInvoiceController: function(scope,webStorage, resourceFactory, routeParams, location,dateFilter,validator,route,$modal,$rootScope,$locale) {
 
         scope.formData = {};
         scope.clientId = routeParams.id;
@@ -25,6 +25,7 @@
          scope.showInvoiceDetails=false;
          scope.selectAccount = false;
          scope.selectInvoice = false;
+         angular.copy('is', $locale);
         resourceFactory.paymentsTemplateResource.getPayments(function(data){
         	scope.payments = data;
             scope.data = data.data;
@@ -84,7 +85,7 @@
         
         scope.submitAccount = function() {
 
-            this.formData.locale = "en";
+            this.formData.locale = $rootScope.locale.code;
             this.formData.dateFormat = "dd MMMM yyyy";
         	var paymentDate = dateFilter(scope.start.date,'dd MMMM yyyy');
             this.formData.paymentDate= paymentDate;
@@ -99,7 +100,7 @@
             
         scope.submitInvoice = function() {
 
-          this.formData.locale = "en";
+          this.formData.locale = $rootScope.locale.code;
           this.formData.dateFormat = "dd MMMM yyyy";
       	  var paymentDate = dateFilter(scope.start.date,'dd MMMM yyyy');
           this.formData.paymentDate= paymentDate;
@@ -113,7 +114,7 @@
         };
     }
   });
-  mifosX.ng.application.controller('PayInvoiceController', ['$scope','webStorage', 'ResourceFactory', '$routeParams', '$location','dateFilter','HTValidationService','$route','$modal', mifosX.controllers.PayInvoiceController]).run(function($log) {
+  mifosX.ng.application.controller('PayInvoiceController', ['$scope','webStorage', 'ResourceFactory', '$routeParams', '$location','dateFilter','HTValidationService','$route','$modal','$rootScope','$locale', mifosX.controllers.PayInvoiceController]).run(function($log) {
     $log.info("PayInvoiceController initialized");
   });
 }(mifosX.controllers || {}));

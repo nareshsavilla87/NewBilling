@@ -10,6 +10,7 @@
          
         resourceFactory.priceResource.get({planId: routeParams.id, template: 'true'} , function(data) {
             scope.prices= data.serviceData;
+            //alert(scope.prices[0].price.toLocaleString(""));
         });
         
         scope.deletePrice = function (priceid,planid){
