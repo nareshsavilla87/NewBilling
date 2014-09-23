@@ -116,5 +116,7 @@
 		  };
     }
   });
-  selfcare.ng.application.controller('VODEventsController', ['$scope','RequestSender','$rootScope','$http','AuthenticationService','webStorage','HttpService','SessionManager','$location', selfcare.controllers.VODEventsController]);
+  selfcare.ng.application.controller('VODEventsController', ['$scope','RequestSender','$rootScope','$http','AuthenticationService','webStorage','HttpService','SessionManager','$location', selfcare.controllers.VODEventsController]).run(function($log) {
+      $log.info("VODEventsController initialized");
+  });
 }(selfcare.controllers || {}));

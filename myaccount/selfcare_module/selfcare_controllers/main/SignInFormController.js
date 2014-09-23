@@ -32,5 +32,7 @@
 		  
     }
   });
-  selfcare.ng.application.controller('SignInFormController', ['$scope','webStorage','AuthenticationService','$rootScope', selfcare.controllers.SignInFormController]);
+  selfcare.ng.application.controller('SignInFormController', ['$scope','webStorage','AuthenticationService','$rootScope', selfcare.controllers.SignInFormController]).run(function($log) {
+      $log.info("SignInFormController initialized");
+  });
 }(selfcare.controllers || {}));

@@ -78,6 +78,8 @@
          };
     }
   });
-  selfcare.ng.application.controller('CreateTicketController', ['$scope', 'webStorage','RequestSender', '$location', '$translate','dateFilter', '$routeParams', selfcare.controllers.CreateTicketController]);
+  selfcare.ng.application.controller('CreateTicketController', ['$scope', 'webStorage','RequestSender', '$location', '$translate','dateFilter', '$routeParams', selfcare.controllers.CreateTicketController]).run(function($log) {
+      $log.info("CreateTicketController initialized");
+  });
 }(selfcare.controllers || {}));
 

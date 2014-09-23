@@ -37,5 +37,7 @@
   });
   selfcare.ng.application.controller('ChangePasswordController', 
  ['$scope','RequestSender','$rootScope','$routeParams','$modal','webStorage','HttpService','AuthenticationService',
-  'SessionManager','$location',selfcare.controllers.ChangePasswordController]);
+  'SessionManager','$location',selfcare.controllers.ChangePasswordController]).run(function($log) {
+      $log.info("ChangePasswordController initialized");
+  });
 }(selfcare.controllers || {}));

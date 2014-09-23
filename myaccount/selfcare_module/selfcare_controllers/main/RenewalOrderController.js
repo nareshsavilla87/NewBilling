@@ -120,5 +120,7 @@
   });
   selfcare.ng.application.controller('RenewalOrderController', 
  ['$scope','RequestSender','$rootScope','$routeParams','$modal','webStorage','HttpService','AuthenticationService',
-  'SessionManager','$location',selfcare.controllers.RenewalOrderController]);
+  'SessionManager','$location',selfcare.controllers.RenewalOrderController]).run(function($log) {
+      $log.info("RenewalOrderController initialized");
+  });
 }(selfcare.controllers || {}));

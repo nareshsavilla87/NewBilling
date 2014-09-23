@@ -94,5 +94,7 @@
 		 
     }
   });
-  selfcare.ng.application.controller('EventDetailsPreviewScreenController', ['$scope','RequestSender','$rootScope','$http','AuthenticationService','webStorage','HttpService','SessionManager','$location','dateFilter', selfcare.controllers.EventDetailsPreviewScreenController]);
+  selfcare.ng.application.controller('EventDetailsPreviewScreenController', ['$scope','RequestSender','$rootScope','$http','AuthenticationService','webStorage','HttpService','SessionManager','$location','dateFilter', selfcare.controllers.EventDetailsPreviewScreenController]).run(function($log) {
+      $log.info("EventDetailsPreviewScreenController initialized");
+  });
 }(selfcare.controllers || {}));

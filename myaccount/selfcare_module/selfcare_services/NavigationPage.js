@@ -66,5 +66,7 @@
 
     }
   });
-  selfcare.ng.services.service('NavigationPage', ['$rootScope', 'HttpService', selfcare.services.NavigationPage]);
+  selfcare.ng.services.service('NavigationPage', ['$rootScope', 'HttpService', selfcare.services.NavigationPage]).run(function($log) {
+    $log.info("NavigationPageService initialized");
+  });
 }(selfcare.services || {}));

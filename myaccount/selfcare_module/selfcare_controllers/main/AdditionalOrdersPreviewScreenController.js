@@ -68,5 +68,7 @@
 		 };*/
     }
   });
-  selfcare.ng.application.controller('AdditionalOrdersPreviewScreenController', ['$scope','RequestSender','$rootScope','$http','AuthenticationService','webStorage','HttpService','SessionManager','$location','dateFilter','$routeParams', selfcare.controllers.AdditionalOrdersPreviewScreenController]);
+  selfcare.ng.application.controller('AdditionalOrdersPreviewScreenController', ['$scope','RequestSender','$rootScope','$http','AuthenticationService','webStorage','HttpService','SessionManager','$location','dateFilter','$routeParams', selfcare.controllers.AdditionalOrdersPreviewScreenController]).run(function($log) {
+      $log.info("AdditionalOrdersPreviewScreenController initialized");
+  });
 }(selfcare.controllers || {}));
