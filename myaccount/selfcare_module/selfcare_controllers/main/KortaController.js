@@ -99,11 +99,12 @@
 		  scope.kortaAmountField = selfcare.models.kortaAmountField;
 		  scope.kortaclientId = selfcare.models.kortaclientId;
 		  
-		  RequestSender.currencyTemplateResource.get(function(data) {
+		  scope.formData.currency = 'ISK';
+		  
+		 /* RequestSender.currencyTemplateResource.get(function(data) {
 	            scope.currencydatas = data.currencydata.currencyOptions;
-	            scope.formData.currency = 'ISK';
 	            		
-	        });		
+	        });	*/	
 		  
 		  scope.submitFun = function(){
 			  if(webStorage.get('planFormData')){
