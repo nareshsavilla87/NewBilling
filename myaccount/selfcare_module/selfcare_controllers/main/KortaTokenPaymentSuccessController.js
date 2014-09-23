@@ -12,7 +12,6 @@
     		var encryptedKey = location.search().encryptedKey;	
         	var decrypted = CryptoJS.AES.decrypt(encryptedKey, kortaEncriptionKey).toString(CryptoJS.enc.Utf8);
         	var decryptedKey = decodeURIComponent(decrypted);	
-        	alert(decryptedKey);
         	var obj = JSON.parse(decryptedKey);
         	
         	var kortaAmountField = selfcare.models.kortaAmountField;
