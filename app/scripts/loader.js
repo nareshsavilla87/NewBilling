@@ -36,6 +36,7 @@
             'multiple':'./modules/jquery.multiple.select',
             'ngIdle': '../bower_components/ng-idle/angular-idle.min',
             'md5': './CryptoJS/md5'
+
         },
         shim: {
             'angular': { exports: 'angular' },
@@ -65,6 +66,7 @@
             'multiple':{deps: ['jquery']},
             'md5':{deps: ['jquery']},
             'ngIdle': {deps: ['angular']},
+            'locale_is-js':{deps: ['angular']},
 
             'mifosX': {
                 deps: [
@@ -95,6 +97,7 @@
                     'multiple',
                     'ngIdle',
                     'md5'
+
                 ],
                 exports: 'mifosX'
             }

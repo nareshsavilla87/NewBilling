@@ -19,14 +19,25 @@
 						<tr>
 							<td>
 								<div class="control-group">
-           					 	<label class="control-label" for="userName">Name</label>
+           					 	<label class="control-label" for="userName">{{'label.code.name' | translate}}<span class="required">*</span></label>
             					<div class="controls">
-             					 <input type="text" id="userName" ng-model="formData.userName">
+             					 <input type="text" id="userName" ng-model="formData.userName" readonly>
            						</div>
          						</div>
 							</td>
-							</tr>
-							<tr>
+							<td>
+								<div class="control-group">
+           					 	<label class="control-label" for="starttls">Starttls<span class="required">*</span></label>
+								<div class="controls" ng-init="formData.starttls='true'">
+               						<input type="radio" id="type" ng-model="formData.starttls" name="starttls" value="true" checked="checked">
+               						&nbsp; True &nbsp;&nbsp;
+               						<input type="radio" id="type" ng-model="formData.starttls" name="starttls" value="false">
+               						&nbsp; False
+              					</div>
+              					</div>
+							</td>
+						</tr>
+						<tr>
 							<td>
 								<div class="control-group">
             					<label class="control-label" for="mailId">{{ 'label.emailId' | translate }}<span class="required">*</span></label>
@@ -35,40 +46,35 @@
               					<div ng-show="createsmtp.mailId.$dirty && createsmtp.mailId.$invalid">
               						<small class="error" ng-show="createsmtp.mailId.$error.email">Invalid Email</small>
               					</div>
-           						 </div>
-          						</div>
-							</td>
-							</tr>
-							<tr>
 							<td>
-								<div class="control-group">
-            					<label class="control-label" for="password">{{ 'label.password' | translate }}</label>
-            					<div class="controls">
-              					<input type="password" id="password" ng-model="formData.password">
-            					</div>
-          						</div>
-								</td>
-							</tr>
-							<tr>
-								<td>
 									<div class="control-group">
-           					 		<label class="control-label" for="hostName">{{ 'label.hostName' | translate }}</label>
+           					 		<label class="control-label" for="hostName">{{ 'label.hostName' | translate }}<span class="required">*</span></label>
             						<div class="controls">
               						<input type="text" id="hostName" ng-model="formData.hostName">
             						</div>
           							</div>
 								</td>
 							</tr>
+							
 							<tr>
 								<td>
-								<div class="control-group">
-            					<label class="control-label" for="port">{{ 'label.port' | translate }}</label>
-            					<div class="controls">
-              					<input type="text" id="port" ng-model="formData.port">
-            					</div>
-          						</div>
-							</td>
+									<div class="control-group">
+            						<label class="control-label" for="password">{{ 'label.password' | translate }}<span class="required">*</span></label>
+            						<div class="controls">
+              						<input type="password" id="password" ng-model="formData.password">
+            						</div>
+          							</div>
+								</td>
+								<td>
+									<div class="control-group">
+            						<label class="control-label" for="port">{{ 'label.port' | translate }}</label>
+            						<div class="controls">
+              						<input type="text" id="port" ng-model="formData.port">
+            						</div>
+          							</div>
+								</td>
 							</tr>
+							
 					</table>
 			
 				</td>

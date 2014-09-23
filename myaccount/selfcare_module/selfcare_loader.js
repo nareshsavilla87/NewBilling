@@ -79,6 +79,7 @@
 				                    'aes',
 				                    'md5',
 				                    'ngIdle'
+				                    
 				                 ], exports: 'selfcare'}},
         packages: [
 		            {

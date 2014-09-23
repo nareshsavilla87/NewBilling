@@ -4,7 +4,6 @@
         <li class="active">{{'link.clients' | translate}}</li>
     </ul>
     <div class="pull-left">
-       <!--  <a  href="#/kortaIntegration" class="btn btn-primary"><i class="icon-plus icon-white"></i>Korta</a> -->
         <a  ng-show="PermissionService.showMenu('CREATE_CLIENT')" href="#/createclient" class="btn btn-primary"><i class="icon-plus icon-white"></i> Create Client</a>
     <span style="padding:1.5em; font-style: oblique;"><img src="./images/Icons-users.png" alt="TotalClients" width="28px" height="15px"/>{{totalClients}}&nbsp;Total</span>
     <span style="padding:1.5em; font-style: oblique;color:#FFA500;"><img src="./images/Icons-new.png" alt="NewClients" width="28px" height="15px"/>{{newClients}}&nbsp;New</span>
