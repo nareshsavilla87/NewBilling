@@ -107,10 +107,11 @@
 	      };
 	      
 	      scope.cancelPaymentFun = function(){
-	    	  scope.isOrderPage = true;
+	    	                 scope.isOrderPage = true;
 			  	scope.isPaymentPage = false;
 			  	scope.isRedirectToDalpay = false;
 			  	scope.isAmountZero = false;
+                                scope.plansData = [];
 	      };
 	      
 	      scope.finishBtnFun =function(){

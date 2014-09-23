@@ -5,9 +5,12 @@
     		scope.formData = {};
     		scope.planFormData = {};
     		var kortaEncriptionKey = selfcare.models.kortaEncriptionKey;
-        	var encryptedKey = decodeURIComponent(location.search().encryptedKey);	
-        	var decrypted = CryptoJS.AES.decrypt(encryptedKey, kortaEncriptionKey).toString(CryptoJS.enc.Utf8);
-        	var obj = JSON.parse(decrypted);
+        	
+    		var encryptedKey =location.search().encryptedKey;	
+        	var decrypted = CryptoJS.AES.decrypt(encryptedKey, kortaEncriptionKey).toString(CryptoJS.enc.Utf8);	        		
+        	var decryptedKey = decodeURIComponent(decrypted);	
+        	
+        	var obj = JSON.parse(decryptedKey);
         	
         	var kortaAmountField = selfcare.models.kortaAmountField;
         	var kortaclientId = selfcare.models.kortaclientId;
@@ -20,7 +23,6 @@
         	var checkvaluemd5 = location.search().checkvaluemd5; 
         	
         	var StringData = 2+checkvaluemd5+reference+selfcare.models.kortaSecretCode + selfcare.models.kortaTestServer;
-        	
         	
         	 webStorage.remove('selfcare_sessionData');
         	 rootScope.isSignInProcess = false;
