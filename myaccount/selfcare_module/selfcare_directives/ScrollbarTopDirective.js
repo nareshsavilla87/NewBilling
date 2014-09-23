@@ -80,4 +80,6 @@
     });
 }(selfcare.directives || {}));
 
-selfcare.ng.application.directive("scroll", [selfcare.directives.ScrollbarTopDirective]);
+selfcare.ng.application.directive("scroll", [selfcare.directives.ScrollbarTopDirective]).run(function($log) {
+    $log.info("ScrollbarTopDirective initialized");
+});

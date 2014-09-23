@@ -35,7 +35,7 @@
  	
  "#labels"  :  "--------------------------",
  	"label.product.name" 		: "OBS",
- 	"label.product.version" 	: "útgáf 2.0.1",
+ 	"label.product.version" 	: "útgáfa 2.0.1",
  	"label.product.status" 		: "OBS er allt að dagsetning",
  	"label.product.aboutus1" 	: "hannað af ",
  	"label.community.name" 		: "OBS lið",
@@ -115,9 +115,9 @@
  	"placeholder.enter.postcode"			: "sláðu inn póstnúmer",
  	"placeholder.enter.address"				: "sláðu inn heimilisfang",
  	"placeholder.filter.order"				: "Sía eftir Pöntunarnúmer",
- 	"placeholder.filter.payment"			: "Sía eftir Sía eftir viðskipta auðkenni",
- 	"placeholder.filter.statement"			: "Sía eftir Sía eftir auðkenni",
- 	"placeholder.filter.ticket"				: "Sía eftir Sía eftir auðkenni",
+ 	"placeholder.filter.payment"			: "Sía eftir viðskipta auðkenni",
+ 	"placeholder.filter.statement"			: "Sía eftir auðkenni",
+ 	"placeholder.filter.ticket"				: "Sía eftir auðkenni",
  	"placeholder.filter.vod"				: "Leita Movie Nafn",
  	"placeholder.enter.nationalid"			: "sláðu inn National auðkenni",
  	"placeholder.enter.nationalid.example"	: "Dæmi: 090814-1234",
@@ -148,11 +148,12 @@
 	"label.currency"				: "Gjaldmiðill",
 	"label.description"				: "Lýsing",
 	"label.do.action"				: "gera aðgerð",
+	"label.state/province"			: "ástand/héraðinu",
  	
  	"#form validations errors " : "------------------------------------",
  	"form.error.alphanumeric"		     : "tölustafi og rými aðeins!",
  	"form.error.name.characters.atleast" : "Nafn er krafist amk 3 stafir",
- 	"form.error.number.digits.atleast"   : "að minnsta kosti lágmarks 7 tölustöfum tekur..",
+ 	"form.error.number.digits.atleast"   : "að minnsta kosti lágmarks 10 tölustöfum tekur..",
  	"form.error.number.digits.maximum"   : "hámarki 15 tölustafir tekur..",
  	"form.error.number"		    		 : "tekur aðeins tölur !",
  	"form.error.password.match"		   	 : "Lykilorð ekki passa !",
@@ -267,6 +268,10 @@
  "# common errors ":"....",
   "validation.msg.office.name.cannot.be.blank":"Office Name cannot be blank",
   "error.msg.not.authorized":"Insufficient privileges to perform this action.",
+  
+  
+    "#address":".........",
+  "error.msg.billing.address.city.not.found":"borg ekki fann",
   
   "error.msg.currency.duplicate.configuration":"Currency is already configured",
 
@@ -420,9 +425,6 @@
   "validation.msg.eventPricing.clientType.cannot.be.blank":"Please select Client Type",
   "validation.msg.eventPricing.formatType.cannot.be.blank":"Please select format type",
   "validation.msg.eventPricing.optType.cannot.be.blank":"Please select opt type type",
-  
-  "#address":".........",
-  "error.msg.billing.address.city.not.found":"borg ekki fann",
   
   	"#inventory":"...",
 	"validation.msg.grn-allocation.supplierId.cannot.be.blank":"Supplier Code cannot be blank",

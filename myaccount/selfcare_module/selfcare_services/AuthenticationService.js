@@ -24,7 +24,9 @@
       };
     }
   });
-   selfcare.ng.services.service('AuthenticationService', ['$rootScope', 'HttpService','webStorage', selfcare.services.AuthenticationService]);
+   selfcare.ng.services.service('AuthenticationService', ['$rootScope', 'HttpService','webStorage', selfcare.services.AuthenticationService]).run(function($log) {
+	    $log.info("AuthenticationService initialized");
+   });
 }(selfcare.services || {}));
 
 

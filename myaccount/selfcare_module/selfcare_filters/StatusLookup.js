@@ -39,5 +39,7 @@
                   };
                 }
   });
-  selfcare.ng.application.filter('StatusLookup', [selfcare.filters.StatusLookup]);
+  selfcare.ng.application.filter('StatusLookup', [selfcare.filters.StatusLookup]).run(function($log) {
+    $log.info("StatusLookup filter initialized");
+  });
 }(selfcare.filters || {}));

@@ -136,5 +136,7 @@
 		  };
     }
   });
-  selfcare.ng.application.controller('RegistrationSuccessFormController', ['$scope','RequestSender','$rootScope','$http','AuthenticationService','webStorage','HttpService','SessionManager','$location', selfcare.controllers.RegistrationSuccessFormController]);
+  selfcare.ng.application.controller('RegistrationSuccessFormController', ['$scope','RequestSender','$rootScope','$http','AuthenticationService','webStorage','HttpService','SessionManager','$location', selfcare.controllers.RegistrationSuccessFormController]).run(function($log) {
+      $log.info("RegistrationSuccessFormController initialized");
+  });
 }(selfcare.controllers || {}));

@@ -14,11 +14,20 @@
 		 }
 		 
 		 RequestSender.orderRenewalResource.save({orderId :routeParams.orderId},scope.orderBookingData,function(data){
-			 webStorage.remove('renewalOrderFormData');
-			 location.path('/orders');
+			 if(scope.formData.kortaToken){
+				 RequestSender.updateKortaToken.update({clientId : routeParams.clientId},{'kortaToken':scope.formData.kortaToken},function(data){
+					 webStorage.remove('renewalOrderFormData');
+					 location.path('/orders');
+				 });
+			 }else{
+				 webStorage.remove('renewalOrderFormData');
+				 location.path('/orders');
+			 }
 		 });
 		 
     }
   });
-  selfcare.ng.application.controller('RenewalOrderPreviewScreenController', ['$scope','RequestSender','$rootScope','webStorage','$location','dateFilter','$routeParams', selfcare.controllers.RenewalOrderPreviewScreenController]);
+  selfcare.ng.application.controller('RenewalOrderPreviewScreenController', ['$scope','RequestSender','$rootScope','webStorage','$location','dateFilter','$routeParams', selfcare.controllers.RenewalOrderPreviewScreenController]).run(function($log) {
+      $log.info("RenewalOrderPreviewScreenController initialized");
+  });
 }(selfcare.controllers || {}));

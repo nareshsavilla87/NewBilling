@@ -78,7 +78,7 @@
     			  });
     			  
     			  //getting state and country
-    			   scope.getStateAndCountry=function(city){
+    			  scope.getStateAndCountry=function(city){
     				  scope.formData.zipcode = city;
     				  console.log(scope.formData.zipcode);
     				  RequestSender.addressTemplateResource.get({city :city}, function(data) {
@@ -144,7 +144,7 @@
 	  				"&cust_address1="+scope.formData.address+"&cust_zip="+scope.formData.zipcode+"&cust_city=" +
 	  				scope.formData.state+"&num_items=1&item1_desc="+scope.formData.planName+"&item1_price="+scope.formData.planAmount+"&item1_qty=1&user1=0&user2="+hostName+"&user3=activeclientpreviewscreen"; 
 	    	  }else if(paymentGatewayName == 'korta'){
-	    		  scope.paymentDalpayURL = "#/kortaIntegration";
+	    		  scope.paymentDalpayURL = "#/kortaIntegration/0/0";
 	    	  };
 	      };
 		  
@@ -187,7 +187,7 @@
 	      };
 	      
 	      scope.cancelPaymentFun =function(){
-                  scope.plansData = [];    
+	    	  scope.plansData = [];
 	    	  scope.nextBtnFun();
 	      };
 	      
@@ -210,5 +210,7 @@
   });
   selfcare.ng.application.controller('ActivateUserController', 
  ['$scope','RequestSender','$rootScope','$routeParams','$modal','webStorage','HttpService','AuthenticationService',
-  'SessionManager','$location',selfcare.controllers.ActivateUserController]);
+  'SessionManager','$location',selfcare.controllers.ActivateUserController]).run(function($log) {
+      $log.info("ActivateUserController initialized");
+  });
 }(selfcare.controllers || {}));

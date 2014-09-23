@@ -76,6 +76,7 @@
 				                    'configurations',
 				                    'aes',
 				                    'md5'
+				                    
 				                 ], exports: 'selfcare'}},
         packages: [
 		            {

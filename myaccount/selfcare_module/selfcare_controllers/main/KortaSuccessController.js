@@ -26,14 +26,17 @@
         	
         	 webStorage.remove('selfcare_sessionData');
         	 rootScope.isSignInProcess = false;
-        	 scope.planFormData = webStorage.get("planFormData");
-   		 
-        	 	console.log(webStorage.get("planFormData"));
+        	 if( webStorage.get("planFormData")){
+        		 scope.planFormData = webStorage.get("planFormData");
+        		 console.log(webStorage.get("planFormData"));
+        	 }
    		 
         	var downloadmd5String = md5(StringData);
         	
         	if(downloadmd5String == downloadmd5){
-        		scope.formData.emailId = scope.planFormData.emailId;
+        		if( webStorage.get("planFormData")){
+        			scope.formData.emailId = scope.planFormData.emailId;
+        		}
         		scope.formData.reference = reference;
         		httpService.post("/obsplatform/api/v1/authentication?username="+selfcare.models.obs_username+"&password="+selfcare.models.obs_password)
     	  		.success(function(data){
