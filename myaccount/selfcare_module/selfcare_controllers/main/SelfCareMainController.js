@@ -32,13 +32,13 @@
 	            }
 	        };
 	        
-	        // Log out the user when the window/tab is closed or refresh.
+	       /* // Log out the user when the window/tab is closed or refresh.
 		      window.onunload = function() {
 		    	  console.log("fasdfd");
 		          scope.signout();
 		          $idle.unwatch();
 		          scope.started = false;
-		      };
+		      };*/
 		   
 	 //authentication onSuccess this event called  
 	   scope.$on("UserAuthenticationSuccessEvent", function(event, data,formData) {

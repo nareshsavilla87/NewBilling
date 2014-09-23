@@ -6,13 +6,13 @@
 			 scope.formData = {};
 			 scope.eventFormData = [];
 			 var clientTotalData = webStorage.get('clientTotalData');
+			 console.log(clientTotalData);
 			 if(clientTotalData){
 				 scope.clientId = clientTotalData.clientId;
 			 }
 			 if(webStorage.get('eventData')){
 				 scope.mediaDatas = webStorage.get('eventData');
 			 }
-			 
 			 console.log(webStorage.get("eventData"));
 			 
 			 scope.eventOneByOneFun = function(val){

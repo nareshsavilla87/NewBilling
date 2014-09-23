@@ -49,12 +49,13 @@
 		  scope.kortaTestServer = selfcare.models.kortaTestServer;
 		  scope.kortaAmountField = selfcare.models.kortaAmountField;
 		  scope.kortaclientId = selfcare.models.kortaclientId;
+		 
+		  scope.formData.currency = 'ISK';
 		  
-		  RequestSender.currencyTemplateResource.get(function(data) {
+		 /* RequestSender.currencyTemplateResource.get(function(data) {
 	            scope.currencydatas = data.currencydata.currencyOptions;
-	            scope.formData.currency = 'ISK';
 	            		
-	        });		
+	        });	*/	
 		  
 		
 		  
