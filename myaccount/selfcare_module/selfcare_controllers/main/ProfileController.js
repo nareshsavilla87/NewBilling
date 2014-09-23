@@ -4,9 +4,9 @@
 		  
 		  scope.clientData =[];
 		  
-		  var selfcare_sessionData = webStorage.get("selfcare_sessionData");
-		  if(selfcare_sessionData){		  
+		 // var selfcare_sessionData = webStorage.get("selfcare_sessionData");
 			  var clientTotalData= webStorage.get('clientTotalData');
+		 if(clientTotalData){		  
 			  scope.clientId = clientTotalData.clientId;
 			  RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
 				  scope.clientData = data;
@@ -15,6 +15,7 @@
 				  }
 				  rootScope.selfcare_userName = data.displayName;
 				  webStorage.add('selfcareUserName',data.displayName);
+				  webStorage.add('selfcareUserData',data);
 			  });
 		  }
 		  

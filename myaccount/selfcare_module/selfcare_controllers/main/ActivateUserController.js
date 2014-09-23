@@ -79,9 +79,14 @@
     			  
     			  //getting state and country
     			  scope.getStateAndCountry=function(city){
+    				  scope.formData.zipcode = city;
+    				  console.log(scope.formData.zipcode);
     				  RequestSender.addressTemplateResource.get({city :city}, function(data) {
     					  scope.formData.state = data.state;
     					  scope.formData.country = data.country;
+    				  },function(errorData) {
+    					  delete scope.formData.state ;
+    					  delete scope.formData.country;
     				  });
     			  };
     			  
@@ -130,7 +135,18 @@
 			  scope.plansData = [];
 			  scope.registrationLinkFun();
 		  };
+		  var hostName = selfcare.models.selfcareAppUrl;
 		  
+		  scope.paymentGatewayFun  = function(paymentGatewayName){
+	    	  console.log(paymentGatewayName);
+	    	  if(paymentGatewayName == 'dalpay'){
+	    		  scope.paymentDalpayURL = scope.dalpayURL+"&cust_name="+scope.formData.fullName+"&cust_phone="+scope.formData.mobileNo+"&cust_email="+email+"&cust_state="+scope.formData.state+""+
+	  				"&cust_address1="+scope.formData.address+"&cust_zip="+scope.formData.zipcode+"&cust_city=" +
+	  				scope.formData.state+"&num_items=1&item1_desc="+scope.formData.planName+"&item1_price="+scope.formData.planAmount+"&item1_qty=1&user1=0&user2="+hostName+"&user3=activeclientpreviewscreen"; 
+	    	  }else if(paymentGatewayName == 'korta'){
+	    		  scope.paymentDalpayURL = "#/kortaIntegration/0/0";
+	    	  };
+	      };
 		  
 		  scope.selectedPLandAm = function(contractId,planId,chargeCode,price,planCode,duration){
 		    	 
@@ -155,10 +171,11 @@
 	    	  // var host = window.location.hostname;
 	    		//var portNo = window.location.port;
 	    	 // var hostName = "https://"+host+":"+portNo+"/Clientapp/myaccount/index.html";
-	    	  var hostName = selfcare.models.selfcareAppUrl;
-	    	  scope.paymentDalpayURL = scope.dalpayURL+"&cust_name="+scope.formData.fullName+"&cust_phone="+scope.formData.mobileNo+"&cust_email="+email+"&cust_state="+scope.formData.state+""+
+	    	  
+	    	  scope.paymentGatewayFun('dalpay');
+	    	  /*scope.paymentDalpayURL = scope.dalpayURL+"&cust_name="+scope.formData.fullName+"&cust_phone="+scope.formData.mobileNo+"&cust_email="+email+"&cust_state="+scope.formData.state+""+
 	    	  				"&cust_address1="+scope.formData.address+"&cust_zip="+scope.formData.zipcode+"&cust_city=" +
-	    	  				scope.formData.city+"&num_items=1&item1_desc="+scope.formData.planName+"&item1_price="+scope.formData.planAmount+"&item1_qty=1&user1=0&user2="+hostName+"&user3=activeclientpreviewscreen";
+	    	  				scope.formData.city+"&num_items=1&item1_desc="+scope.formData.planName+"&item1_price="+scope.formData.planAmount+"&item1_qty=1&user1=0&user2="+hostName+"&user3=activeclientpreviewscreen";*/
 	    	  
 	      };
 	      

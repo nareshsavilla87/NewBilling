@@ -12,7 +12,9 @@
 	   //returnURL : "https://"+hostName+"/Clientapp/myaccount/index.html#/active",
 	   //selfcareAppUrl : "https://"+hostName+"/Clientapp/myaccount/index.html"
 	   returnURL : locationOrigin+locationPathname+"#/active",
-	   selfcareAppUrl : locationOrigin+""+locationPathname
+	   selfcareAppUrl : locationOrigin+locationPathname,
+	   downloadUrl : locationOrigin+locationPathname+"#/kortasuccess?encryptedKey=",
+	   additionalKortaUrl : locationOrigin+locationPathname+"#/kortatokenpaymentsuccess",
 		   
   });
 }(selfcare.models || {}));

@@ -84,6 +84,15 @@
                 update: { method: 'PUT'}
             }),
             eventOrderPriceTemplateResource: defineResource(apiVer + "/eventorder",{},  {}),
+            
+            currencyTemplateResource: defineResource(apiVer + "/countrycurrencys/template", {}, {}),
+            
+            kortaPaymentsResource: defineResource(apiVer + "/payments/korta", {}, {}),
+            
+            updateKortaToken: defineResource(apiVer + "/selfcare/:clientId", {clientId:'@clientId'},  {
+        		update : {method: 'PUT', params: {}}
+        	}),
+            
 
         };
       }];

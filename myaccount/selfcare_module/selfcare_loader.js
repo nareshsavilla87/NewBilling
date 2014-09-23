@@ -23,11 +23,14 @@
             'angularFileUpload':'../../app/bower_components/angularjs-file-upload/angular-file-upload',
             'ckEditor':         '../../app/bower_components/ckeditor/ckeditor',
             'bootstraptimepicker':	'../../app/bower_components/bootstrap-timepicker/js/bootstrap-timepicker',
+            'ngIdle'			: '../../app/bower_components/ng-idle/angular-idle.min',
             'styles'			: './selfcare_styles',
             'selfcare_test'		: './selfcare_test/functional',
             'notificationWidget': './selfcare_modules/notificationWidget',
             'modified.datepicker': './selfcare_modules/datepicker',
-            'configurations'	:  './selfcare_modules/configurations'
+            'configurations'	:  './selfcare_modules/configurations',
+            'aes':'./selfcare_controllers/CryptoJS/rollups/aes',
+            'md5':'./selfcare_controllers/CryptoJS/md5'
         },
         shim: {
             'angular': { exports: 'angular' },
@@ -49,6 +52,10 @@
             'bootstraptimepicker':{deps:['jquery']},
             'ckEditor':{deps:['jquery']},
             'configurations':{deps: ['angular']},
+            'aes':{deps: ['jquery']},
+            'md5':{deps: ['jquery']},
+            'ngIdle': {deps: ['angular']},
+            
             'selfcare': {deps: [
 				                    'angular',
 				                    'jquery',
@@ -68,7 +75,10 @@
 				                    'modified.datepicker',
 				                    'bootstraptimepicker',
 				                    'ckEditor',
-				                    'configurations'
+				                    'configurations',
+				                    'aes',
+				                    'md5',
+				                    'ngIdle'
 				                 ], exports: 'selfcare'}},
         packages: [
 		            {

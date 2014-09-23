@@ -33,7 +33,12 @@
         		  scope.signInProcessLoading = false;
         		  delete scope.loginCredentials.username;
         		  delete scope.loginCredentials.password;
-        		  location.path('/profile');
+        		  var urlReloadProfile = window.location.hash;
+        		  if(urlReloadProfile == '#/profile'){
+        			  location.path('/reloadprofile');
+        		  }else {
+        			  location.path('/profile');
+        		  }
         	  },function(errorData){
         		  webStorage.remove("selfcare_sessionData");
         		  scope.currentSession= {user:null};
@@ -46,9 +51,9 @@
 
       this.clear = function() {
         webStorage.remove("selfcare_sessionData");
-        webStorage.remove("clientData");
         webStorage.remove("clientTotalData");
         webStorage.remove('selfcareUserName');
+        webStorage.remove('selfcareUserData');
         httpService.cancelAuthorization();
         return scope.currentSession= {user:null};
       };
