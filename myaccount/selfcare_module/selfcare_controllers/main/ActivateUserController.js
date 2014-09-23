@@ -187,6 +187,7 @@
 	      };
 	      
 	      scope.cancelPaymentFun =function(){
+	    	  scope.plansData = [];
 	    	  scope.nextBtnFun();
 	      };
 	      
