@@ -9,7 +9,7 @@ define(['underscore'], function() {
           'style',
           'bootstrap-timepicker',
           'jquery-ui',
-          'animate'
+         // 'animate'
           //'demo',
          // 'style1',
           //'animate-custom'

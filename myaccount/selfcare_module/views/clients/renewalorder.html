@@ -97,21 +97,22 @@
 	       			<td>
             			<div class="control-group">
             				<div class="controls">
-            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('dalpay')" checked/>&nbsp;{{'label.dalpay'|translate}}
-            				</div>
-            				<div class="controls">
-            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('korta')"/>&nbsp;{{'label.korta'|translate}}
+            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('dalpay')" checked/>
+            						&nbsp;<span  class="btn btn-primary animated pulse">{{'label.dalpay'|translate}}</span>
+
+            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('korta')" style="margin-left:20px;"/>
+            						&nbsp;<span  class="btn btn-primary animated pulse">{{'label.korta'|translate}}</span>
             				</div>
         				 </div>
 	         				 
 	       			</td>
 	       		</tr>
-	       	</table>
+	       	</table><br/>
 	       
 			<div class="offset3">
-				<a ng-disabled="isRedirectToDalpay" ng-click="cancelPaymentFun()"  class="btn">{{'btn.cancel' | translate}}</a> 
+				<a ng-disabled="isRedirectToDalpay" ng-click="cancelPaymentFun()"  class="btn" style="padding:9px 22px;margin-top:-19px;">{{'btn.cancel' | translate}}</a> 
 				<a href="{{paymentDalpayURL}}" ng-click="makePaymentFun()" 
-					ng-disabled="isRedirectToDalpay" class="btn btn-primary animated fadeInUp">{{'btn.make.payment' | translate}}</a>
+					ng-disabled="isRedirectToDalpay" class="btn btn-primary cust-btn animated fadeInUp">{{'btn.make.payment' | translate}}</a>
 			</div> 
 		</fieldset>
 	</form>

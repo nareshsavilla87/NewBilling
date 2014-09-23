@@ -1,6 +1,6 @@
 (function(selfcare_module) {
    selfcare.controllers = _.extend(selfcare_module, {
-	   SelfCareMainController: function(scope, translate,webStorage,sessionManager,RequestSender,authenticationService,location,modal) {
+	   SelfCareMainController: function(scope, translate,webStorage,sessionManager,RequestSender,authenticationService,location,modal,$templateCache,$idle) {
 		   
 		   scope.domReady = true;
 		   scope.currentSession = {};
@@ -10,15 +10,45 @@
 		   scope.emptyCredentials = false;
 		   scope.isChangePassword = false;
 		   scope.selfcare_userName = "";
+		   var x = window.location.hash;
+		   console.log(x);
+		  
+		   /**
+	    	 * Logout the user if Idle
+	    	 * 
+	    	 * */
+		   scope.started = false;
+	        scope.$on('$idleTimeout', function () {
+	            scope.signout();
+	            $idle.unwatch();
+	            scope.started = false;
+	        });
+	       
+	        scope.start = function (session) {
+	            if (session) {
+	                $idle.watch();
+	                scope.started = true;
+	            }
+	        };
+	        
+	        // Log out the user when the window/tab is closed or refresh.
+		      window.onunload = function() {
+		    	  console.log("fasdfd");
+		          scope.signout();
+		          $idle.unwatch();
+		          scope.started = false;
+		      };
 		   
 	 //authentication onSuccess this event called  
 	   scope.$on("UserAuthenticationSuccessEvent", function(event, data,formData) {
 		   scope.currentSession = sessionManager.get(data,formData);
+		   scope.start(scope.currentSession);
 	    });
 	   
 	  //calling this method every time if session is exit or not
 	   sessionManager.restore(function(session) {
 	        scope.currentSession = session;
+	        scope.start(scope.currentSession);
 	        scope.isRegistrationSuccess = false;
 	        scope.isRegistrationFailure = false;
 	        scope.signInProcessLoading = false;
@@ -29,7 +59,7 @@
 		   
        //getting languages form model Lang.js 
 	   scope.langs = selfcare.models.Langs;
-        scope.optlang = scope.langs[0];
+        scope.optlang = scope.langs[1];
         
        //set the language code when change the language 
         scope.changeLang = function (lang) {
@@ -69,6 +99,8 @@
     	  scope.currentSession = sessionManager.clear();
     	  scope.signInProcessLoading = false;
     	  location.path('/').replace;
+    	  $templateCache.removeAll();
+    	  window.location.reload(true);
       };
       
       var ClientActivePopupController = function($scope,$modalInstance){
@@ -148,7 +180,7 @@
 		 
     }
   });
-   selfcare.ng.application.controller('SelfCareMainController', ['$rootScope','$translate','webStorage','SessionManager','RequestSender','AuthenticationService','$location','$modal',selfcare.controllers.SelfCareMainController
+   selfcare.ng.application.controller('SelfCareMainController', ['$rootScope','$translate','webStorage','SessionManager','RequestSender','AuthenticationService','$location','$modal','$templateCache','$idle',selfcare.controllers.SelfCareMainController
   ]).run(function($log) {
       $log.info("SelfCareMainController initialized");
   });
