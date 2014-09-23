@@ -49,7 +49,8 @@ define(['underscore', 'selfcare'], function() {
 						      'main/KortaController',
 						      'main/KortaSuccessController',
 						      'main/KortaTokenPaymentController',
-						      'main/KortaTokenPaymentSuccessController'
+						      'main/KortaTokenPaymentSuccessController',
+						      'main/ChangeKortaTokenPaymentController'
 					      ],
 					      
     selfcare_filters:    [

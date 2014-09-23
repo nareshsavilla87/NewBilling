@@ -70,6 +70,9 @@
     })
     .when('/kortatokenpaymentsuccess/:planId/:clientId',{
     	templateUrl: 'selfcare_module/views/KortaTokenPaymentSuccess.html'
+    })
+    .when('/changekortatoken',{
+    	templateUrl: 'selfcare_module/views/ChangeKortaToken.html'
     });
        
     $locationProvider.html5Mode(false);

@@ -83,7 +83,7 @@
             			<div class="control-group" style="margin-bottom:30px;">
             				<label class="control-label">{{'label.customer.name' | translate}}&nbsp;<span class="required">*</span></label>
             				<div class="controls">
-            					<input ng-autofocus="true" name="fullName" type="text" data-ng-model="formData.fullName" placeholder= "{{'label.customer.name' | translate}}" ng-pattern="/^[a-zA-Z0-9\-\&\s]+$/" required ng-minlength=3 late-Validate><br/>
+            					<input ng-autofocus="true" name="fullName" type="text" data-ng-model="formData.fullName" placeholder= "{{'label.customer.name' | translate}}" ng-pattern="/^[a-zA-Z0-9\-\&\s]+$/" required ng-minlength=3 maxlenght="12" late-Validate><br/>
             					<span  ng-show="regSuccessForm.fullName.$dirty &&regSuccessForm.fullName.$invalid">
 				                	<small class="error" ng-show="regSuccessForm.fullName.$error.pattern">{{'form.error.alphanumeric'|translate}}</small>
 				                    <small class="error" ng-show="regSuccessForm.fullName.$error.minlength && !regSuccessForm.fullName.$error.req">{{'form.error.name.characters.atleast'|translate}}</small>
