@@ -1,7 +1,7 @@
 (function(selfcare_module) {
    selfcare.controllers = _.extend(selfcare_module, {
 
-	   SelfCareMainController: function(scope, translate,webStorage,sessionManager,RequestSender,authenticationService,location,modal,$templateCache,$idle) {
+	   SelfCareMainController: function(scope, translate,webStorage,sessionManager,RequestSender,authenticationService,location,modal) {
 		   
 		   scope.domReady = true;
 		   scope.currentSession = {};
@@ -14,34 +14,14 @@
 		   var x = window.location.hash;
 		   console.log(x);
 		  
-		   /**
-	    	 * Logout the user if Idle
-	    	 * 
-	    	 * */
-		   scope.started = false;
-	        scope.$on('$idleTimeout', function () {
-	            scope.signout();
-	            $idle.unwatch();
-	            scope.started = false;
-	        });
-	       
-	        scope.start = function (session) {
-	            if (session) {
-	                $idle.watch();
-	                scope.started = true;
-	            }
-	        };
-	        
 	 //authentication onSuccess this event called  
 	   scope.$on("UserAuthenticationSuccessEvent", function(event, data,formData) {
 		   scope.currentSession = sessionManager.get(data,formData);
-		   scope.start(scope.currentSession);
 	    });
 	   
 	  //calling this method every time if session is exit or not
 	   sessionManager.restore(function(session) {
 	        scope.currentSession = session;
-	        scope.start(scope.currentSession);
 	        scope.isRegistrationSuccess = false;
 	        scope.isRegistrationFailure = false;
 	        scope.signInProcessLoading = false;
@@ -175,7 +155,7 @@
 		 
     }
   });
-   selfcare.ng.application.controller('SelfCareMainController', ['$rootScope','$translate','webStorage','SessionManager','RequestSender','AuthenticationService','$location','$modal','$templateCache','$idle',selfcare.controllers.SelfCareMainController
+   selfcare.ng.application.controller('SelfCareMainController', ['$rootScope','$translate','webStorage','SessionManager','RequestSender','AuthenticationService','$location','$modal',selfcare.controllers.SelfCareMainController
   ]).run(function($log) {
   });
 }(selfcare.controllers || {}));
