@@ -61,7 +61,6 @@ describe("MainController", function() {
   describe("User logout", function() {
     beforeEach(function() {
       this.sessionManager.clear.andReturn("test_session");
-      
       this.scope.logout();
     });
 

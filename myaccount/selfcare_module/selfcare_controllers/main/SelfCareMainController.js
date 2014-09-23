@@ -1,6 +1,6 @@
 (function(selfcare_module) {
    selfcare.controllers = _.extend(selfcare_module, {
-	   SelfCareMainController: function(scope, translate,webStorage,sessionManager,RequestSender,authenticationService,location,modal) {
+	   SelfCareMainController: function(scope, translate,webStorage,sessionManager,RequestSender,authenticationService,location,modal,$templateCache) {
 		   
 		   scope.domReady = true;
 		   scope.currentSession = {};
@@ -67,8 +67,10 @@
       
       scope.signout = function(){
     	  scope.currentSession = sessionManager.clear();
-    	  scope.signInProcessLoading = false;
-    	  location.path('/').replace;
+          scope.signInProcessLoading = false;
+          $templateCache.removeAll(); 
+          location.path('/').replace;
+    	  
       };
       
       var ClientActivePopupController = function($scope,$modalInstance){
@@ -148,8 +150,8 @@
 		 
     }
   });
-   selfcare.ng.application.controller('SelfCareMainController', ['$rootScope','$translate','webStorage','SessionManager','RequestSender','AuthenticationService','$location','$modal',selfcare.controllers.SelfCareMainController
+   selfcare.ng.application.controller('SelfCareMainController', ['$rootScope','$translate','webStorage',
+                                                                 'SessionManager','RequestSender','AuthenticationService','$location','$modal','$templateCache',selfcare.controllers.SelfCareMainController
   ]).run(function($log) {
-      $log.info("SelfCareMainController initialized");
   });
 }(selfcare.controllers || {}));

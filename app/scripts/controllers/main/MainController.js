@@ -1,6 +1,7 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    MainController: function(scope, location, sessionManager, translate,keyboardManager,$rootScope,webStorage,PermissionService,localStorageService,$idle,resourceFactory) {
+    MainController: function(scope, location, sessionManager, translate,keyboardManager,$rootScope,webStorage,PermissionService,localStorageService,$idle,
+    		                       resourceFactory,$templateCache,route) {
       
     	/**
     	 * Logout the user if Idle
@@ -49,6 +50,8 @@
                 });
         scope.currentSession = sessionManager.clear();
         scope.clearCrendentials();
+        /*$templateCache.removeAll(); 
+        route.reload();*/
         
       };
 
@@ -177,6 +180,8 @@
     'localStorageService',
     '$idle',
     'ResourceFactory',
+    '$templateCache',
+    '$route',
     mifosX.controllers.MainController
   ]);
 }(mifosX.controllers || {}));
