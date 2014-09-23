@@ -69,12 +69,12 @@
 			</div>
 		</form>
 		<form name="regSuccessForm" novalidate="" class="form-horizontal well" ng-show="isRegPage">
-			<br>
-		 	<div class="error" ng-show="errorStatus || errorDetails">
+			 <br>
+		 	<!--<div class="error" ng-show="errorStatus || errorDetails">
 				<label>{{'label.contract.error' | translate}}</label>
 				<label ng-show="errorStatus">{{errorStatus}}</label>
 				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
-		    </div>
+		    </div> -->
 		 <fieldset class="animated bounce" >
 			<h3 >{{'label.registration.page' | translate}}</h3>
 			<table >
@@ -107,7 +107,7 @@
             			<div class="control-group" style="margin-bottom:30px;">
             				<label class="control-label">{{'label.telephone.number' | translate}}&nbsp;<span class="required">*</span></label>
             				<div class="controls">
-            					<input name="telePhone" type="text" data-ng-model="formData.homePhoneNumber" placeholder= "{{'label.telephone.number' | translate}}" ng-minlength="7" maxlength="15"
+            					<input name="telePhone" type="text" data-ng-model="formData.homePhoneNumber" placeholder= "{{'label.telephone.number' | translate}}" ng-minlength="10" maxlength="15"
             							ng-pattern="/^\d{1,15}$/" required  late-Validate/><br/>
             					 <span ng-show="regSuccessForm.telePhone.$dirty && regSuccessForm.telePhone.$invalid">
 				        			<small class="error" ng-show="regSuccessForm.telePhone.$error.pattern">{{'form.error.number'|translate}}</small>
@@ -122,7 +122,7 @@
             			<div class="control-group" style="margin-bottom:30px;">
             				<label class="control-label">{{'label.mobilephone' | translate}}&nbsp;<span class="required">*</span></label>
             				<div class="controls">
-            					<input name="phone" type="text" data-ng-model="formData.mobileNo" placeholder= "{{'label.mobilephone' | translate}}" ng-minlength="7" maxlength="15"
+            					<input name="phone" type="text" data-ng-model="formData.mobileNo" placeholder= "{{'label.mobilephone' | translate}}" ng-minlength="10" maxlength="15"
             							ng-pattern="/^\d{1,15}$/" required  late-Validate/><br/>
             					 <span ng-show="regSuccessForm.phone.$dirty && regSuccessForm.phone.$invalid">
 				        			<small class="error" ng-show="regSuccessForm.phone.$error.pattern">{{'form.error.number'|translate}}</small>
@@ -135,7 +135,7 @@
 	       		</tr>
 	       		<tr>
 	       			<td>
-            			<div class="control-group" style="margin-bottom:30px;">
+            			<div class="control-group" style="margin-bottom:10px;">
                             <label class="control-label">{{ 'label.nationalid' | translate }}&nbsp;<span class="required">*</span></label>
                              <div class="controls">
     	                        <!-- <input type="text" datepicker-pop="ddMMyy" ng-model="start.date" is-open="opened" min="minDate" max="maxDate" 
@@ -152,7 +152,7 @@
 	         				 
 	       			</td>
 	       			<td valign="top">
-            			<div class="control-group" style="margin-bottom:30px;">
+            			<div class="control-group" style="margin-bottom:10px;">
                             <label class="control-label" for="address">{{ 'label.home.address' | translate }}&nbsp;<span class="required">*</span></label>
                              <div class="controls">
     	                        <input type="text" ng-model="formData.address" name="address" placeholder= "{{ 'placeholder.enter.address' | translate }}" required late-Validate/>
@@ -164,17 +164,22 @@
 	       		<tr>
 	       			<td>
             			<div class="control-group" style="margin-bottom:30px;">
-             				 <label class="control-label" for="city">{{'label.city' | translate}}&nbsp;<span class="required">*</span></label>
+             				 <label class="control-label" for="city">{{'label.home.postcode' | translate}}&nbsp;<span class="required">*</span></label>
 				              <div class="controls">
-				              <select ng-model="formData.city"  ng-options="city as city for city in cities" 
-				              		   ng-change="getStateAndCountry(formData.city)" required>
+				              <!-- <select ng-model="formData.city"  ng-options="city as city for city in cities" 
+				              		   ng-change="getStateAndCountry(formData.city)" required late-Validate>
 				              		   <option value="">--{{'label.select'|translate}}--</option>
-				              </select>
+				              </select> -->
+				               <input type="text" id="city" name="city" ng-model="formData.city" list ="citylist" 
+				               			ng-change="getStateAndCountry(formData.city)" required late-Validate/><br/>
+				               	<span ng-show="errorDetails[0].code == 'error.msg.billing.address.city.not.found'">
+				        			<small class="error">{{'error.msg.billing.address.city.not.found'| translate}}</small>
+				    			</span>
 				              </div>
            				 </div>
 	       			</td>
 	       			<td>
-            			<div class="control-group" style="margin-bottom:30px;">
+            			<!-- <div class="control-group" style="margin-bottom:30px;">
                             <label class="control-label" for="zipcode">{{ 'label.home.postcode' | translate }}&nbsp;<span class="required">*</span></label>
                              <div class="controls">
     	                        <input type="text" ng-model="formData.zipcode" name="zipcode" placeholder= "{{ 'placeholder.enter.postcode' | translate }}" ng-pattern="/^[0-9]+$/" maxlength="3" required late-Validate/><br/>
@@ -182,7 +187,13 @@
 				        			<small class="error" ng-show="regSuccessForm.zipcode.$error.pattern">{{'form.error.number'|translate}}</small>
 				    			</span>
                              </div>
-                        </div>	
+                        </div>	 -->
+                        <div class="control-group" style="margin-bottom:30px;">
+				              <label class="control-label" for="state">{{'label.state/province' | translate}}&nbsp;<span class="required">*</span></label>
+				              <div class="controls">
+				                <input type="text" id="state" ng-model="formData.state" disabled required late-Validate/>
+				              </div>
+            			</div>
 	         				 
 	       			</td>
 	       		</tr>
@@ -198,6 +209,9 @@
 	       			</td>
 	       		</tr>
 	       	</table>
+	       	<datalist id="citylist">
+                   			<option  data-ng-repeat="city in cities" value="{{city}}">
+            </datalist>
 	       	<div class="offset3">
 	       		 <button ng-click="nextBtnFun()" class="btn btn-primary pull-right" 
 				 		ng-disabled="!regSuccessForm.$valid">{{'btn.next' | translate}}<i class="icon-circle-arrow-right icon-white"></i></button>
@@ -279,21 +293,22 @@
 	       			<td>
             			<div class="control-group">
             				<div class="controls">
-            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('dalpay')" checked/>&nbsp;{{'label.dalpay'|translate}}
-            				</div>
-            				<div class="controls">
-            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('korta')"/>&nbsp;{{'label.korta'|translate}}
+            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('dalpay')" checked/>
+            						&nbsp;<span  class="btn btn-primary animated pulse">{{'label.dalpay'|translate}}</span>
+
+            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('korta')" style="margin-left:20px;"/>
+            						&nbsp;<span  class="btn btn-primary animated pulse">{{'label.korta'|translate}}</span>
             				</div>
         				 </div>
 	         				 
 	       			</td>
 	       		</tr>
-	       	</table>
+	       	</table><br/>
 	       
 	       <div class="offset3">
-				<a ng-disabled="isRedirectToDalpay" ng-click="cancelPaymentFun()"  class="btn">{{'btn.cancel' | translate}}</a> 
+				<a ng-disabled="isRedirectToDalpay" ng-click="cancelPaymentFun()"  class="btn" style="padding:9px 22px;margin-top:-19px;">{{'btn.cancel' | translate}}</a> 
 				<a href="{{paymentDalpayURL}}" ng-click="makePaymentFun()" 
-					ng-disabled="isRedirectToDalpay" class="btn btn-primary animated fadeInUp">{{'btn.make.payment' | translate}}</a>
+					ng-disabled="isRedirectToDalpay" class="btn btn-primary cust-btn animated fadeInUp">{{'btn.make.payment' | translate}}</a>
 				
 			</div> 
 			 

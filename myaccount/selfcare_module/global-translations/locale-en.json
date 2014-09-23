@@ -1,8 +1,7 @@
 {
   "titles" :"----------------------------------------------------",
  	"title.obs.selfcare"		: "OBS SelfCare",
- 	"title.conformation.registration" 		 : "Thank you for registering! A conformation mail has sent to your mailId.Please click on the Activation Link ",
- 	"title.toactive.msg" 			  		 : "to activate your account.To go Click Here ",
+ 	"title.conformation.registration" 		 : "Thank you for registering! A conformation mail has been sent to your mailId.Please login to your email account and click on the Activation Link to complete the registration",
  	"title.conformation.alreadyregistration" : "Client is already Registered with this mailId.",
  	"title.signin.msg" 						 : "Please Sign In..!",
  	"title.password.changed" 				 : "Password changed successfully...",
@@ -13,6 +12,7 @@
  	"title.verify.emailid" 					 : "An email has sent to your mailID.Please verify then Sign In..",
  	"title.fill.emailid" 					 : "Please fill Email Field..",
  	"title.redirecting.dalpay" 				 : "Redirecting Please Wait...",
+ 	"title.msg.firsttimeregistration" 		 : "If you are signing in for the first time please register your email by clicking SIGN-UP button",
  	
  	
  "#buttons"  : "--------------------------",
@@ -35,7 +35,7 @@
  	
  "#labels"  :  "--------------------------",
  	"label.product.name" 		: "OBS",
- 	"label.product.version" 	: "Version 1.0.0",
+ 	"label.product.version" 	: "Version 2.0.1",
  	"label.product.status" 		: "OBS is upto date",
  	"label.product.aboutus1" 	: "Designed by ",
  	"label.community.name" 		: "OBS Team",
@@ -115,13 +115,13 @@
  	"placeholder.enter.postcode"			: "Enter Postcode",
  	"placeholder.enter.address"				: "Enter Address",
  	"placeholder.filter.order"				: "Filter by Order No",
- 	"placeholder.filter.payment"			: "Filter by Filter by Transaction Id",
- 	"placeholder.filter.statement"			: "Filter by Filter by Id",
- 	"placeholder.filter.ticket"				: "Filter by Filter by Id",
+ 	"placeholder.filter.payment"			: "Filter by Transaction Id",
+ 	"placeholder.filter.statement"			: "Filter by Id",
+ 	"placeholder.filter.ticket"				: "Filter by Id",
  	"placeholder.filter.vod"				: "Search Movie Name",
  	"placeholder.enter.nationalid"			: "Enter NationalID",
  	"placeholder.enter.nationalid.example"	: "ex: 090814-1234",
- 	"placeholder.filter.listofvods"			: "Filter by Filter by Id",
+ 	"placeholder.filter.listofvods"			: "Filter by Id",
  	
  	
  	"#common labels " : "------------------------------------",
@@ -143,6 +143,12 @@
  	"label.thor.token"				: "Token",
  	"label.heading.language"		: "Language",
  	"label.payment.gateway"			: "Payment Gateway",
+ 	"label.add.kota.Info"			: "Korta Information",
+	"label.amount"					: "Amount",
+	"label.currency"				: "Currency",
+	"label.description"				: "Description",
+	"label.do.action"				: "Do Action",
+	"label.state/province"			: "State/Province",
  	
  	"#form validations errors " : "------------------------------------",
  	"form.error.alphanumeric"		     : "alphanumeric and spaces only!",
@@ -262,6 +268,10 @@
  "# common errors ":"....",
   "validation.msg.office.name.cannot.be.blank":"Office Name cannot be blank",
   "error.msg.not.authorized":"Insufficient privileges to perform this action.",
+  
+  
+  "#address":".........",
+  "error.msg.billing.address.city.not.found":"City Not Found",
   
   "error.msg.currency.duplicate.configuration":"Currency is already configured",
 
@@ -415,9 +425,6 @@
   "validation.msg.eventPricing.clientType.cannot.be.blank":"Please select Client Type",
   "validation.msg.eventPricing.formatType.cannot.be.blank":"Please select format type",
   "validation.msg.eventPricing.optType.cannot.be.blank":"Please select opt type type",
-  
-  "#address":".........",
-  "error.msg.billing.address.city.not.found":"City Not Found",
   
   	"#inventory":"...",
 	"validation.msg.grn-allocation.supplierId.cannot.be.blank":"Supplier Code cannot be blank",
@@ -809,6 +816,7 @@
 "label.currency":"Currency",
 "label.description":"Description",
 "label.do.action":"Do Action"
+
 
 
 

@@ -1,5 +1,5 @@
 (function(selfcare) {
-  var defineHeaders = function($httpProvider , $translateProvider) {
+  var defineHeaders = function($httpProvider , $translateProvider,$idleProvider, $keepaliveProvider, IDLE_DURATION, WARN_DURATION, KEEPALIVE_INTERVAL) {
 
   	//Set headers
     $httpProvider.defaults.headers.common['X-Obs-Platform-TenantId'] = 'default';
@@ -15,9 +15,19 @@
           suffix: '.json'
     });
 
-  	$translateProvider.preferredLanguage('en');
-  	$translateProvider.fallbackLanguage('en');
+  	$translateProvider.preferredLanguage('is');
+  	$translateProvider.fallbackLanguage('is');
+  	
+	/**
+  	 * Timeout settings.
+  	 * */
+ 	 $idleProvider.idleDuration(IDLE_DURATION); //Idle time 
+ 	 $idleProvider.warningDuration(WARN_DURATION); //warning time(sec)
+ 	 $keepaliveProvider.interval(KEEPALIVE_INTERVAL); //keep-alive ping
 
   };
-  selfcare.ng.application.config(defineHeaders);
+  selfcare.ng.application.config(defineHeaders).run(function($log,$idle) {
+	    $log.info("Initial tasks are done!");
+	    $idle.watch();
+	  });
 }(selfcare || {}));

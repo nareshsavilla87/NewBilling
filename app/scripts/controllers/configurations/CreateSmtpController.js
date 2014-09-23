@@ -2,6 +2,8 @@
 	  mifosX.controllers = _.extend(module, {
 	    CreateSmtpController: function(scope, resourceFactory, location,dateFilter) {
 	        
+	    	scope.formData={};
+	    	scope.formData.userName="SMTP";
 	        scope.submit = function() {  
 	        	
 	            resourceFactory.configurationSMTPResource.save(this.formData,function(data){

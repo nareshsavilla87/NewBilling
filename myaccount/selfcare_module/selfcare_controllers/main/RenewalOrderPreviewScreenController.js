@@ -14,8 +14,15 @@
 		 }
 		 
 		 RequestSender.orderRenewalResource.save({orderId :routeParams.orderId},scope.orderBookingData,function(data){
-			 webStorage.remove('renewalOrderFormData');
-			 location.path('/orders');
+			 if(scope.formData.kortaToken){
+				 RequestSender.updateKortaToken.update({clientId : routeParams.clientId},{'kortaToken':scope.formData.kortaToken},function(data){
+					 webStorage.remove('renewalOrderFormData');
+					 location.path('/orders');
+				 });
+			 }else{
+				 webStorage.remove('renewalOrderFormData');
+				 location.path('/orders');
+			 }
 		 });
 		 
     }

@@ -12,37 +12,45 @@
 			scope.clientData = {};
 			scope.clientOrdersData = [];
 			scope.pricingData = [];
+			var selfcareUserData ={};
 		  	
 		  //declaration of formData
 			  scope.formData = {};
 			  
 		  //getting dalpay Url
 		  scope.dalpayURL = selfcare.models.dalpayURL;
-		  	
-		  var clientDatas = webStorage.get("clientTotalData");
-		  if(clientDatas){
-			  scope.formData = clientDatas.clientData;
-			  scope.formData.clientId = routeParams.clientId;
-		  }
+		  
 		  scope.orderId = routeParams.orderId;
+		  	
+		  
     	  
 			  if(scope.isOrderPage == true){
-				  RequestSender.getSingleOrderResource.get({orderId: routeParams.orderId},function(data){
-					  scope.orderData=data.orderData;
-				    RequestSender.clientResource.get({clientId: scope.formData.clientId} , function(data) {
-				    	
-					  RequestSender.orderTemplateResource.query({region : data.state},function(data){
+				  var clientDatas = webStorage.get("clientTotalData");
+				  if(clientDatas){
+					  RequestSender.clientResource.get({clientId: clientDatas.clientId} , function(data) {
+						  scope.formData = data;
+						  selfcareUserData = data.selfcare;
+						  console.log(scope.formData);
+						  scope.formData.clientId = data.id;
 						  
-						  for(var i in data){
-							  if(scope.orderData.planCode == data[i].planCode){
-							  scope.plansData = data[i];
-							  	console.log(scope.plansData);
-							  }
-						  }
-					
+						  RequestSender.getSingleOrderResource.get({orderId: routeParams.orderId},function(data){
+							  scope.orderData=data.orderData;
+							  RequestSender.clientResource.get({clientId: scope.formData.clientId} , function(data) {
+								  
+								  RequestSender.orderTemplateResource.query({region : data.state},function(data){
+									  
+									  for(var i in data){
+										  if(scope.orderData.planCode == data[i].planCode){
+											  scope.plansData = data[i];
+											  console.log(scope.plansData);
+										  }
+									  }
+									  
+								  });
+							  });
+						  });
 					  });
-				    });
-				  });
+				  }
 				  
 			  }
 		  
@@ -52,15 +60,14 @@
 			    	  console.log(paymentGatewayName);
 			    	  if(paymentGatewayName == 'dalpay'){
 			    		  scope.paymentDalpayURL = scope.dalpayURL+"&cust_name="+scope.formData.lastname+"&cust_phone="+scope.formData.phone+"&cust_email="+scope.formData.email+"&cust_state="+scope.formData.state+""+
-	    	  				"&cust_address1="+scope.formData.addressNo+"&cust_zip="+scope.formData.zip+"&cust_city="+scope.formData.city+"&num_items=1&item1_desc="+scope.formData.planName+"&item1_price="+scope.formData.planAmount+"" +
+	    	  				"&cust_address1="+scope.formData.addressNo+"&cust_zip="+scope.formData.zip+"&cust_city="+scope.formData.state+"&num_items=1&item1_desc="+scope.formData.planName+"&item1_price="+scope.formData.planAmount+"" +
 	    	  				"&item1_qty=1&user1="+scope.formData.id+"&user2="+hostName+"&user3=renewalorderpreviewscreen/"+routeParams.orderId+"/"+routeParams.clientId; 
 			    	  }else if(paymentGatewayName == 'korta'){
-			    		  var selfcareUserData = webStorage.get("selfcareUserData");
-			    		  var token = selfcareUserData.selfcare.token;
+			    		  var token = selfcareUserData.token;
 			    		  if(token != null && token != ""){
 			    			  scope.paymentDalpayURL = "#/kortatokenpayment/"+routeParams.orderId+"/"+routeParams.clientId;
 			    		  }else{
-			    			  scope.paymentDalpayURL = "#/kortaIntegration";
+			    			  scope.paymentDalpayURL = "#/kortaIntegration/"+routeParams.orderId+"/"+routeParams.clientId;
 			    		  }
 			    	  };
 			      };

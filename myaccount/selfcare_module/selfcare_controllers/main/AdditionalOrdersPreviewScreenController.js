@@ -22,15 +22,30 @@
 		 
 		 if(routeParams.orderId == 0 && routeParams.clientId == 0){
 				 RequestSender.bookOrderResource.save({clientId : scope.formData.clientId},scope.orderBookingData,function(data){
-					 webStorage.remove('additionalPlanFormData');
-					 location.path('/orders');
+					 if(scope.formData.kortaToken){
+						 RequestSender.updateKortaToken.update({clientId : scope.formData.clientId},{'kortaToken':scope.formData.kortaToken},function(data){
+							 webStorage.remove('additionalPlanFormData');
+							 location.path('/orders');
+						 });
+					 }else{
+						 webStorage.remove('additionalPlanFormData');
+						 location.path('/orders');
+					 }
 				 });
 			 }else{
 				 scope.orderBookingData.disconnectionDate= reqDate;
 				 scope.orderBookingData.disconnectReason= "Not Interested";
 				 RequestSender.changeOrderResource.update({'orderId':routeParams.orderId},scope.orderBookingData,function(data){
-					 webStorage.remove('additionalPlanFormData');
-					 location.path('/orders');
+					 if(scope.formData.kortaToken){
+							// scope.clientData.kortaToken = scope.formData.kortaToken;
+							 RequestSender.updateKortaToken.update({clientId : scope.formData.clientId},{'kortaToken':scope.formData.kortaToken},function(data){
+								 webStorage.remove('additionalPlanFormData');
+								 location.path('/orders');
+							 });
+						 }else{
+							 webStorage.remove('additionalPlanFormData');
+							 location.path('/orders');
+						 }
 	               });
 			 }
 		 
