@@ -7,8 +7,6 @@
         resourceFactory.eventEditResource.get({eventId: routeParams.id} , function(data) {
             scope.event = data;
             scope.status=data.statusData;
-            scope.startDate=data.eventStartDate;
-            scope.eventEndDate=data.eventEndDate;
            
         });
 

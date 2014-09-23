@@ -146,8 +146,8 @@
  	"label.add.kota.Info"			: "Korta Information",
 	"label.amount"					: "Amount",
 	"label.currency"				: "Currency",
-	"label.description"				: "Description",
-	"label.do.action"				: "Do Action",
+	"label.description"				: "Text",
+	"label.do.action"				: "Pay Method",
 	"label.state/province"			: "State/Province",
  	
  	"#form validations errors " : "------------------------------------",
@@ -809,13 +809,11 @@
 "error.msg.client.Not parent.himself.can.not.be.parent.to his.account":"Himself can not be parent to his account",
 "error.msg.client.Not Parent.he.is. already. a parent.to.some other clients":"He is already a parent to some other clients",
 "error.msg.client.Not Parent.can.not.be.parent.to this.account":"Can not be parent to this account",
+"label.agree":"I agree to",
+"label.Terms.Conditions":"Terms and Conditions",
+"label.terms.condition.url":"https://netgreidslur.korta.is/testing/?page=samples&lang=en"
 
-"#Korta":"",
-"label.add.kota.Info":"Korta Information",
-"label.amount":"Amount",
-"label.currency":"Currency",
-"label.description":"Description",
-"label.do.action":"Do Action"
+
 
 
 

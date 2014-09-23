@@ -89,7 +89,7 @@
     					  delete scope.formData.country;
     				  });
     			  };
-    			  
+		  
     			  //getting data from c_configuration
     			  RequestSender.configurationResource.get(function(data){
     				  for(var i in data.globalConfiguration){

@@ -23,7 +23,10 @@
 		  
 		  clientData = webStorage.get('selfcareUserData');
 		  
-		  scope.formData.fullName = clientData.lastname;
+		  var name = clientData.lastname;
+		  name = name.replace(" ","");	
+		  
+		  scope.formData.fullName = name;
 		  scope.formData.address = clientData.addressNo;
 		  scope.formData.emailId = clientData.email;
 		  scope.formData.zipcode = clientData.zip;
@@ -31,14 +34,18 @@
 		  scope.formData.country = clientData.country;
 		  scope.formData.mobileNo = clientData.phone;
 		  scope.formData.description = scope.formData.address+","+scope.formData.city;
-		  scope.formData.token = clientData.selfcare.token;
-		  var clientId = clientData.id;
+		 // scope.formData.description = encodeURIComponent(scope.formData.address+","+scope.formData.city);
+		  scope.formData.terms = 'N';
 		  
-		  
-		  scope.currencydatas = [];
 		  scope.langs = [];
 		  scope.langs = selfcare.models.Langs;
 		  scope.formData.optlang = scope.langs[0].code;
+		  
+		  var clientId = clientData.id;
+		  
+		  scope.TermsAndCondition = function(data) {
+				scope.formData.terms = data;
+			};
 		  
 		  
 		  //values getting form constants.js file
@@ -50,21 +57,24 @@
 		  scope.kortaAmountField = selfcare.models.kortaAmountField;
 		  scope.kortaclientId = selfcare.models.kortaclientId;
 		 
-		  scope.formData.currency = 'ISK';
+		  scope.formData.currency = 'ISK';  
+		  scope.displaycurrency = '[ISK]';
+			
+		  scope.formData.token = CryptoJS.AES.decrypt(clientData.selfcare.token, scope.kortaEncriptionKey).toString(CryptoJS.enc.Utf8);		  
 		  
-		 /* RequestSender.currencyTemplateResource.get(function(data) {
-	            scope.currencydatas = data.currencydata.currencyOptions;
-	            		
-	        });	*/	
-		  
-		
+		  scope.previousPage = function(){
+	    	  window.history.go(-1);
+	      };
+	      
 		  
 		  scope.submitFun = function(){
-			  
-			  var encryptString = '{"'+scope.kortaAmountField+'":'+scope.formData.amount+',"'+scope.kortaclientId+'":'+clientId+'}';		  
-			  scope.encryptedString = CryptoJS.AES.encrypt(encryptString, scope.kortaEncriptionKey).toString();
-			  scope.downloadurl = selfcare.models.additionalKortaUrl+"/"+routeParams.planId+"/"+routeParams.clientId+"?encryptedKey="+scope.encryptedString+"&";
 			//  110.00ISK818531826460AshokReddy//1/thor0009xxxxxxxxsecretcodexxxxxxxxxxxxx
+			  var encryptData = '{"'+scope.kortaAmountField+'":'+scope.formData.amount+',"'+scope.kortaclientId+'":'+clientId+'}';	
+			  var encryptString = encodeURIComponent(encryptData);
+			  
+			  scope.encryptedString = CryptoJS.AES.encrypt(encryptString, scope.kortaEncriptionKey).toString();
+			  scope.downloadurl = selfcare.models.additionalKortaUrl+"/"+routeParams.planId+"/"+routeParams.clientId+"?encryptedKey="+scope.encryptedString+"&";	
+			 
 			  var md5data = scope.formData.amount+scope.formData.currency+scope.kortaMerchantId+scope.kortaTerminalId+scope.formData.description+"//1"+"/"+scope.formData.token + scope.kortaSecretCode +scope.kortaTestServer;			 
 			  scope.formData.md5value=md5(md5data);
 		  };

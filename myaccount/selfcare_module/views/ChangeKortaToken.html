@@ -1,0 +1,39 @@
+<div ng-controller="ChangeKortaTokenPaymentController">
+   <div>
+	<ul class="breadcrumb">
+			<li class="active">{{'label.add.kota.Info' | translate}}</li>
+ 	</ul>
+  </div>
+ <form name="changeTokenForm" novalidate="" action="https://netgreidslur.korta.is/testing/" method="post" class="form-horizontal well" >
+<input name="amount" type="hidden" value="{{formData.amount}}">
+<input name="currency" type="hidden" value="{{formData.currency}}">
+<input name="merchant" type="hidden" value="{{scope.kortaMerchantId}}">
+<input name="terminal" type="hidden" value="{{scope.kortaTerminalId}}">
+<input name="description" type="hidden" value="{{formData.description}}">
+<input name="token" type="hidden" value={{formData.token}}>
+<input name="do" type="hidden" value="{{formData.doAction}}">
+<input name="lang" type="hidden" value="en"> 
+
+<!-- <input type="hidden" name="name" value="{{formData.fullName}}">
+<input type="hidden" name="address" value="{{formData.address}}">
+<input type="hidden" name="email" value="{{formData.emailId}}">
+<input type="hidden" name="email2" value="{{formData.emailId}}">
+<input type="hidden" name="zip" value="{{formData.zipcode}}">
+<input type="hidden" name="city" value="{{formData.city}}">
+<input type="hidden" name="country" value="{{formData.country}}">
+<input type="hidden" name="phone" value="{{formData.mobileNo}}">
+<input type="hidden" name="terms" value="Y">
+<input type="hidden" name="readonly" value="Y"> -->
+
+
+<input name="checkvaluemd5" type="hidden" value={{formData.md5value}}>
+<input type="hidden" name="downloadurl" value="{{downloadurl}}">
+<input type="hidden" name="refermethod" value="REDIRECT">
+<input type="hidden" name="refertarget" value="_top"> 
+
+   <div class="offset3">
+ 	  <a id="cancel" ng-click="previousPage()" class="btn">Cancel</a>
+  	  <button id="submit" type="submit" ng-click="submitFun()" ng-disabled="formData.terms == 'N'" class="btn btn-primary">Submit</button>
+   </div> 
+</form>
+</div>

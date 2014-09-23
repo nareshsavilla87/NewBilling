@@ -14,7 +14,10 @@
 		  if(webStorage.get('planFormData')){
 			  planFormData = webStorage.get('planFormData');
 			  console.log(planFormData);
-			  scope.formData.fullName = planFormData.fullName;
+			  var name = planFormData.fullName;
+				name = name.trim();				
+				name = name.replace(/ /g, '');
+			  scope.formData.fullName = name;
 			  scope.formData.address = planFormData.address;
 			  scope.formData.emailId = planFormData.emailId;
 			  scope.formData.zipcode = planFormData.zipcode;
@@ -28,8 +31,10 @@
 			  additionalPlanFormData = webStorage.get('additionalPlanFormData');
 			  if(webStorage.get('selfcareUserData')){
 				  clientData = webStorage.get('selfcareUserData');
-				  
-				  scope.formData.fullName = clientData.lastname;
+				  var name = clientData.lastname;
+					name = name.trim();				
+					name = name.replace(/ /g, '');
+				  scope.formData.fullName = name;
 				  scope.formData.address = clientData.addressNo;
 				  scope.formData.emailId = clientData.email;
 				  scope.formData.zipcode = clientData.zip;
@@ -45,8 +50,10 @@
 			  renewalOrderFormData = webStorage.get('renewalOrderFormData');
 			  if(webStorage.get('selfcareUserData')){
 				  clientData = webStorage.get('selfcareUserData');
-				  
-				  scope.formData.fullName = clientData.lastname;
+				  var name = clientData.lastname;
+					name = name.trim();				
+					name = name.replace(/ /g, '');
+				  scope.formData.fullName = name;
 				  scope.formData.address = clientData.addressNo;
 				  scope.formData.emailId = clientData.email;
 				  scope.formData.zipcode = clientData.zip;
@@ -63,8 +70,10 @@
 			 var  VODTotalAmount = webStorage.get('VODTotalAmount');
 			 if(webStorage.get('selfcareUserData')){
 				  clientData = webStorage.get('selfcareUserData');
-				  
-				  scope.formData.fullName = clientData.lastname;
+				  var name = clientData.lastname;
+					name = name.trim();				
+					name = name.replace(/ /g, '');
+				  scope.formData.fullName = name;
 				  scope.formData.address = clientData.addressNo;
 				  scope.formData.emailId = clientData.email;
 				  scope.formData.zipcode = clientData.zip;
@@ -76,8 +85,32 @@
 			  scope.formData.amount = VODTotalAmount;
 			  console.log(webStorage.get("eventData"));
 		  }
+		  scope.formData.terms = 'N';
 		  
+		  scope.randomFun = function() {
+				var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+				var string_length = 13;
+				
+				var randomstring = 'TT';
+				
+				for (var i=0; i<string_length; i++) {
+					var rnum = Math.floor(Math.random() * chars.length);
+					randomstring += chars.substring(rnum,rnum+1);	
+				}	
+				scope.formData.token = randomstring;
+				
+			};
+			
+		  scope.randomFun();
 		  
+		  scope.TermsAndCondition = function(data) {
+				scope.formData.terms = data;
+			};
+			
+		 scope.previousPage = function(){
+	    	  window.history.go(-1);
+	      };
+			
 		  scope.currencydatas = [];
 		  scope.doActionTypes = [
 			                         {name:"STNOCAP"},
@@ -85,10 +118,6 @@
 			                         {name:"STORAGE"}
 		                         ];
 		  scope.formData.doAction = scope.doActionTypes[2].name;
-		  scope.langs = [];
-		  scope.langs = selfcare.models.Langs;
-		  scope.formData.optlang = scope.langs[0].code;
-		  
 		  
 		  //values getting form constants.js file
 		  scope.kortaMerchantId = selfcare.models.kortaMerchantId;
@@ -100,35 +129,36 @@
 		  scope.kortaclientId = selfcare.models.kortaclientId;
 		  
 		  scope.formData.currency = 'ISK';
-		  
-		 /* RequestSender.currencyTemplateResource.get(function(data) {
-	            scope.currencydatas = data.currencydata.currencyOptions;
-	            		
-	        });	*/	
-		  
+		  scope.displaycurrency = '[ISK]';
+
+		  var token = CryptoJS.AES.encrypt(scope.formData.token, scope.kortaEncriptionKey).toString();
 		  scope.submitFun = function(){
 			  if(webStorage.get('planFormData')){
 				  webStorage.remove('planFormData');
-				  planFormData.kortaToken = scope.formData.token;
+				  planFormData.kortaToken = token;
 				  webStorage.add('planFormData',planFormData);
 				  
 			  }else if(webStorage.get('additionalPlanFormData')){
 				  webStorage.remove('additionalPlanFormData');
-				  additionalPlanFormData.kortaToken = scope.formData.token;
+				  additionalPlanFormData.kortaToken = token;
 				  webStorage.add('additionalPlanFormData',additionalPlanFormData);
 				  
 			  }else if(webStorage.get('renewalOrderFormData')){
 				  webStorage.remove('renewalOrderFormData');
-				  renewalOrderFormData.kortaToken = scope.formData.token;
+				  renewalOrderFormData.kortaToken = token;
 				  webStorage.add('renewalOrderFormData',renewalOrderFormData);
 				  
 			  }else if(webStorage.get('eventData')){
-				  webStorage.remove('eventData');
-				  eventData.push({'kortaToken': scope.formData.token});
+				  webStorage.remove('eventData');			  
+				  eventData.push({'kortaToken': token});
 				  webStorage.add('eventData',eventData);
 			  }
-			  var encryptString = '{"'+scope.kortaAmountField+'":'+scope.formData.amount+',"'+scope.kortaclientId+'":0}';	
+			  
+			  var encryptData = '{"'+scope.kortaAmountField+'":'+scope.formData.amount+',"'+scope.kortaclientId+'":0}';	
+			  var encryptString = encodeURIComponent(encryptData);
+			  
 			  scope.encryptedString = CryptoJS.AES.encrypt(encryptString, scope.kortaEncriptionKey).toString();
+			  
 			  if(webStorage.get('planFormData')){
 				  scope.downloadurl = selfcare.models.downloadUrl+""+scope.encryptedString+"&";
 				  
@@ -142,7 +172,9 @@
 				  scope.downloadurl = selfcare.models.additionalKortaUrl+"/"+routeParamsPlanId+"/"+routeParamsClientId+"?encryptedKey="+scope.encryptedString+"&";
 			  }
 			  var md5data = scope.formData.amount+scope.formData.currency+scope.kortaMerchantId+scope.kortaTerminalId+scope.formData.description+"/"+scope.formData.doAction+"//"+scope.formData.token + scope.kortaSecretCode +scope.kortaTestServer;			 
+
 			  scope.formData.md5value=md5(md5data);
+			  console.log(scope.formData.md5value);
 		  };
     }
   });
