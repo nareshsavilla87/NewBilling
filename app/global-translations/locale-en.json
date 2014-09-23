@@ -2056,7 +2056,15 @@
 "label.id":"Id",
 "#hardwareplans":"......",
 "validation.msg.hardwareplan.planCode.cannot.be.blank":"Please select Plan Code",
-"validation.msg.hardwareplan.itemCode.cannot.be.blank":"Please select Item Code"
+"validation.msg.hardwareplan.itemCode.cannot.be.blank":"Please select Item Code",
+
+
+"#SMTP":"......",
+ "error.msg.smtp.duplicate.username":"Already exists with this name",
+"validation.msg.globalConfiguration.mailId.cannot.be.blank":"Email Id cannot be blank",
+"validation.msg.globalConfiguration.password.cannot.be.blank":"Password cannot be blank",
+"validation.msg.globalConfiguration.hostName.cannot.be.blank":"Host Name cannot be blank",
+"validation.msg.globalConfiguration.userName.cannot.be.blank":"Name cannot be blank"
 
 
 
