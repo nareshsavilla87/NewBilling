@@ -115,13 +115,13 @@
  	"placeholder.enter.postcode"			: "Enter Postcode",
  	"placeholder.enter.address"				: "Enter Address",
  	"placeholder.filter.order"				: "Filter by Order No",
- 	"placeholder.filter.payment"			: "Filter by Filter by Transaction Id",
- 	"placeholder.filter.statement"			: "Filter by Filter by Id",
- 	"placeholder.filter.ticket"				: "Filter by Filter by Id",
+ 	"placeholder.filter.payment"			: "Filter by Transaction Id",
+ 	"placeholder.filter.statement"			: "Filter by Id",
+ 	"placeholder.filter.ticket"				: "Filter by Id",
  	"placeholder.filter.vod"				: "Search Movie Name",
  	"placeholder.enter.nationalid"			: "Enter NationalID",
  	"placeholder.enter.nationalid.example"	: "ex: 090814-1234",
- 	"placeholder.filter.listofvods"			: "Filter by Filter by Id",
+ 	"placeholder.filter.listofvods"			: "Filter by Id",
  	
  	
  	"#common labels " : "------------------------------------",
