@@ -131,5 +131,7 @@
   });
   selfcare.ng.application.controller('ChangeOrderController', 
  ['$scope','RequestSender','$rootScope','$routeParams','$modal','webStorage','HttpService','AuthenticationService',
-  'SessionManager','$location',selfcare.controllers.ChangeOrderController]);
+  'SessionManager','$location',selfcare.controllers.ChangeOrderController]).run(function($log) {
+      $log.info("ChangeOrderController initialized");
+  });
 }(selfcare.controllers || {}));

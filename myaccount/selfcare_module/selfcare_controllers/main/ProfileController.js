@@ -25,5 +25,7 @@
 		  });*/
     }
   });
-  selfcare.ng.application.controller('ProfileController', ['$scope','RequestSender','$rootScope','$http','AuthenticationService','webStorage','HttpService','SessionManager','$location','$routeParams', selfcare.controllers.ProfileController]);
+  selfcare.ng.application.controller('ProfileController', ['$scope','RequestSender','$rootScope','$http','AuthenticationService','webStorage','HttpService','SessionManager','$location','$routeParams', selfcare.controllers.ProfileController]).run(function($log) {
+      $log.info("ProfileController initialized");
+  });
 }(selfcare.controllers || {}));

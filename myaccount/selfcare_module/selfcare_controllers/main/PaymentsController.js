@@ -16,5 +16,7 @@
 		  });*/
     }
   });
-  selfcare.ng.application.controller('PaymentsController', ['$scope','RequestSender','webStorage','$location','$routeParams','PaginatorService', selfcare.controllers.PaymentsController]);
+  selfcare.ng.application.controller('PaymentsController', ['$scope','RequestSender','webStorage','$location','$routeParams','PaginatorService', selfcare.controllers.PaymentsController]).run(function($log) {
+      $log.info("PaymentsController initialized");
+  });
 }(selfcare.controllers || {}));

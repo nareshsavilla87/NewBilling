@@ -11,5 +11,7 @@
 		  }
     }
   });
-  selfcare.ng.application.controller('StatementsController', ['$scope','RequestSender','$rootScope','$http','AuthenticationService','webStorage','HttpService','SessionManager','$location','$routeParams', selfcare.controllers.StatementsController]);
+  selfcare.ng.application.controller('StatementsController', ['$scope','RequestSender','$rootScope','$http','AuthenticationService','webStorage','HttpService','SessionManager','$location','$routeParams', selfcare.controllers.StatementsController]).run(function($log) {
+      $log.info("StatementsController initialized");
+  });
 }(selfcare.controllers || {}));
