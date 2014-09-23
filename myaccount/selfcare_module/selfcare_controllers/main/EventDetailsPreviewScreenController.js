@@ -36,7 +36,8 @@
 			 
 			 var reqDate = dateFilter(new Date(),'dd MMMM yyyy');
 			 for(var i in scope.mediaDatas) {
-				 if(scope.mediaDatas[i] == 'kortaToken'){
+				 if(scope.mediaDatas[i].kortaToken){
+					 console.log(scope.mediaDatas[i].kortaToken);
 					 scope.formData.kortaToken = scope.mediaDatas[i].kortaToken;
 				 }else{
 						 scope.eventFormData[i] = {

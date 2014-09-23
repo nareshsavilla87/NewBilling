@@ -31,14 +31,6 @@
 	            }
 	        };
 	        
-	       /* // Log out the user when the window/tab is closed or refresh.
-		      window.onunload = function() {
-		    	  console.log("fasdfd");
-		          scope.signout();
-		          $idle.unwatch();
-		          scope.started = false;
-		      };*/
-		   
 	 //authentication onSuccess this event called  
 	   scope.$on("UserAuthenticationSuccessEvent", function(event, data,formData) {
 		   scope.currentSession = sessionManager.get(data,formData);
@@ -99,8 +91,6 @@
     	  scope.currentSession = sessionManager.clear();
     	  scope.signInProcessLoading = false;
     	  location.path('/').replace;
-    	  $templateCache.removeAll();
-    	  window.location.reload(true);
       };
       
       var ClientActivePopupController = function($scope,$modalInstance){
