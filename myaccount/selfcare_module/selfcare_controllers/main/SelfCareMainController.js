@@ -100,8 +100,8 @@
     	  scope.currentSession = sessionManager.clear();
     	  scope.signInProcessLoading = false;
     	  location.path('/').replace;
-    	  $templateCache.removeAll();
-    	  window.location.reload(true);
+    	  //$templateCache.removeAll();
+    	 // window.location.reload(true);
       };
       
       var ClientActivePopupController = function($scope,$modalInstance){
