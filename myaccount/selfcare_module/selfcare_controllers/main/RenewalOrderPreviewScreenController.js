@@ -27,5 +27,7 @@
 		 
     }
   });
-  selfcare.ng.application.controller('RenewalOrderPreviewScreenController', ['$scope','RequestSender','$rootScope','webStorage','$location','dateFilter','$routeParams', selfcare.controllers.RenewalOrderPreviewScreenController]);
+  selfcare.ng.application.controller('RenewalOrderPreviewScreenController', ['$scope','RequestSender','$rootScope','webStorage','$location','dateFilter','$routeParams', selfcare.controllers.RenewalOrderPreviewScreenController]).run(function($log) {
+      $log.info("RenewalOrderPreviewScreenController initialized");
+  });
 }(selfcare.controllers || {}));

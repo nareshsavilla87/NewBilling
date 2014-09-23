@@ -21,4 +21,6 @@
     });
 }(selfcare.directives || {}));
 
-selfcare.ng.application.directive("lateValidate", [selfcare.directives.LateValidateDirective]);
+selfcare.ng.application.directive("lateValidate", [selfcare.directives.LateValidateDirective]).run(function($log) {
+    $log.info("LateValidateDirective initialized");
+});

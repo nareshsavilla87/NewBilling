@@ -77,5 +77,7 @@
        
     $locationProvider.html5Mode(false);
   };
-  selfcare.ng.application.config(defineRouteProvider);
+  selfcare.ng.application.config(defineRouteProvider).run(function($log) {
+    $log.info("RouteProvider definition completed");
+  });
 }(selfcare || {}));

@@ -172,5 +172,7 @@
 		 
     }
   });
-  selfcare.ng.application.controller('ActiveClientPreviewScreenController', ['$scope','RequestSender','$rootScope','$http','AuthenticationService','webStorage','HttpService','SessionManager','$location','dateFilter', selfcare.controllers.ActiveClientPreviewScreenController]);
+  selfcare.ng.application.controller('ActiveClientPreviewScreenController', ['$scope','RequestSender','$rootScope','$http','AuthenticationService','webStorage','HttpService','SessionManager','$location','dateFilter', selfcare.controllers.ActiveClientPreviewScreenController]).run(function($log) {
+      $log.info("ActiveClientPreviewScreenController initialized");
+  });
 }(selfcare.controllers || {}));

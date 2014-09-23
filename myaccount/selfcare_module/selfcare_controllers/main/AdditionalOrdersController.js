@@ -123,5 +123,7 @@
   });
   selfcare.ng.application.controller('AdditionalOrdersController', 
  ['$scope','RequestSender','$rootScope','$routeParams','$modal','webStorage','HttpService','AuthenticationService',
-  'SessionManager','$location',selfcare.controllers.AdditionalOrdersController]);
+  'SessionManager','$location',selfcare.controllers.AdditionalOrdersController]).run(function($log) {
+      $log.info("AdditionalOrdersController initialized");
+  });
 }(selfcare.controllers || {}));

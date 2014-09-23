@@ -15,5 +15,7 @@
 	       };
     }
   });
-  selfcare.ng.application.controller('ListOfVODSController', ['$scope','RequestSender','$rootScope','$http','AuthenticationService','webStorage','HttpService','SessionManager','$location','$routeParams', selfcare.controllers.ListOfVODSController]);
+  selfcare.ng.application.controller('ListOfVODSController', ['$scope','RequestSender','$rootScope','$http','AuthenticationService','webStorage','HttpService','SessionManager','$location','$routeParams', selfcare.controllers.ListOfVODSController]).run(function($log) {
+      $log.info("ListOfVODSController initialized");
+  });
 }(selfcare.controllers || {}));

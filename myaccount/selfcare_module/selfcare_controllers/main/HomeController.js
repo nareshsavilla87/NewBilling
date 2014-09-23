@@ -4,5 +4,7 @@
 		  
     }
   });
-  selfcare.ng.application.controller('HomeController', ['$scope','RequestSender','$rootScope','$http','AuthenticationService','webStorage','HttpService','SessionManager','$location','$routeParams', selfcare.controllers.HomeController]);
+  selfcare.ng.application.controller('HomeController', ['$scope','RequestSender','$rootScope','$http','AuthenticationService','webStorage','HttpService','SessionManager','$location','$routeParams', selfcare.controllers.HomeController]).run(function($log) {
+      $log.info("HomeController initialized");
+  });
 }(selfcare.controllers || {}));

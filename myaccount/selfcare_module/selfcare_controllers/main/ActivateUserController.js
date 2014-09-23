@@ -210,5 +210,7 @@
   });
   selfcare.ng.application.controller('ActivateUserController', 
  ['$scope','RequestSender','$rootScope','$routeParams','$modal','webStorage','HttpService','AuthenticationService',
-  'SessionManager','$location',selfcare.controllers.ActivateUserController]);
+  'SessionManager','$location',selfcare.controllers.ActivateUserController]).run(function($log) {
+      $log.info("ActivateUserController initialized");
+  });
 }(selfcare.controllers || {}));

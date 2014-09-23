@@ -153,7 +153,7 @@
  	"#form validations errors " : "------------------------------------",
  	"form.error.alphanumeric"		     : "tölustafi og rými aðeins!",
  	"form.error.name.characters.atleast" : "Nafn er krafist amk 3 stafir",
- 	"form.error.number.digits.atleast"   : "að minnsta kosti lágmarks 7 tölustöfum tekur..",
+ 	"form.error.number.digits.atleast"   : "að minnsta kosti lágmarks 10 tölustöfum tekur..",
  	"form.error.number.digits.maximum"   : "hámarki 15 tölustafir tekur..",
  	"form.error.number"		    		 : "tekur aðeins tölur !",
  	"form.error.password.match"		   	 : "Lykilorð ekki passa !",

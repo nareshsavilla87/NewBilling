@@ -90,5 +90,7 @@
     'RequestSender',
     '$location',
     selfcare.services.SessionManager
-  ]);
+  ]).run(function($log) {
+    $log.info("SessionManager initialized");
+  });
 }(selfcare.services || {}));
