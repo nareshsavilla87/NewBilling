@@ -78,5 +78,7 @@
            });
     }
   });
-  selfcare.ng.application.controller('SignUpFormController', ['$scope','RequestSender','$modal','HttpService','webStorage','AuthenticationService','$rootScope','SessionManager', selfcare.controllers.SignUpFormController]);
+  selfcare.ng.application.controller('SignUpFormController', ['$scope','RequestSender','$modal','HttpService','webStorage','AuthenticationService','$rootScope','SessionManager', selfcare.controllers.SignUpFormController]).run(function($log) {
+      $log.info("SignUpFormController initialized");
+  });
 }(selfcare.controllers || {}));

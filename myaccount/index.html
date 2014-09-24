@@ -8,24 +8,28 @@
 	<style>[data-ng-cloak] { display: none !important; }</style>
 </head>
 <body  class="preview" id="top" data-spy="scroll" data-target=".subnav" data-offset="80" data-ng-controller="SelfCareMainController">
-<div data-ng-hide="domReady" style="position: absolute; top:30%;left:45%;">
+<div data-ng-hide="domReady" style="position: absolute;margin-top:230px; top:0px;left:500px;">
     <div >
-        <img src="./selfcare_module/images/loading.gif" align="middle">
+        <img src="./selfcare_module/images/loading.gif" >
     </div>    
 </div> 
    <div class="container well"  data-ng-cloak data-ng-hide="currentSession.user != null">
         <div class="row form-search ng-pristine ng-valid paddedbottom" data-ng-form="signInForm" data-ng-controller="SignInFormController">
-         <div class="alert alert-success animated tada" role="alert" ng-show="isRegistrationSuccess">
-         	<strong>{{'title.conformation.registration' | translate}}<br/>{{'title.toactive.msg' | translate}} 
-					 <a href="http://www.gmail.com" target="_blank" class="alert-link">{{'link.gmail.account' | translate}}</a></strong>
+        <div class="alert alert-info animated tada" role="alert" ng-hide="isRegistrationSuccess||isRegistrationFailure||isChangePassword" style="padding:25px 35px 25px 14px;">
+         	<strong style="font-size:15px;">{{'title.msg.firsttimeregistration' | translate}}
+		 	</strong>
+		</div>
+         <div class="alert alert-success animated tada" role="alert" ng-show="isRegistrationSuccess" style="padding:25px 35px 25px 14px;">
+         	<strong style="font-size:15px;">{{'title.conformation.registration' | translate}} 
+					 <!-- <a href="http://www.gmail.com" target="_blank" class="alert-link">{{'link.gmail.account' | translate}}</a> --></strong>
 					 
 		</div>
-		 <div class="alert alert-info animated tada" role="alert" ng-show="isRegistrationFailure">
-         	<strong>{{'title.conformation.alreadyregistration' | translate}}<br/>
+		 <div class="alert alert-info animated tada" role="alert" ng-show="isRegistrationFailure" style="padding:25px 35px 25px 14px;">
+         	<strong style="font-size:15px;">{{'title.conformation.alreadyregistration' | translate}}<br/>
 							   {{'title.signin.msg' | translate}}</strong>
 		</div>
-		<div class="alert alert-info animated tada" role="alert" ng-show="isChangePassword">
-         	<strong>{{'title.password.changed' | translate}}</strong>
+		<div class="alert alert-info animated tada" role="alert" ng-show="isChangePassword" style="padding:25px 35px 25px 14px;">
+         	<strong style="font-size:20px;">{{'title.password.changed' | translate}}</strong>
 		</div>
 		<div class="pull-right ">
             <span class="dropdown" >
@@ -88,13 +92,13 @@
 				           			ng-disabled="signInProcessLoading" placeholder="{{ 'label.password' | translate }}" required></td></tr>
 				           		</table>
 				           		<div class="pull-right" style="color:#428bca;"data-ng-click="forgotPwdPopup()"><a>{{'label.forgot.password' | translate}}</a></div><br/><br/>
-				           	<!-- <button class="btn btn-primary pull-right btn-xtra-styles"ng-hide="signInProcessLoading" type="submit"  data-ng-click="signUpBtnFun()">{{ 'btn.signup' | translate }}</button> -->
+				           	 <button class="btn btn-primary pull-right btn-xtra-styles"ng-hide="signInProcessLoading" type="submit"  data-ng-click="signUpBtnFun()">{{ 'btn.signup' | translate }}</button> 
 				           	<button class="btn btn-success pull-right btn-xtra-styles" ng-hide="signInProcessLoading" type="submit" style="" data-ng-click="login()">{{ 'btn.signin' | translate }}</button>
 				           	<div class="btn pull-right" style="color:#000000;padding:5px;" ng-show="signInProcessLoading">{{'label.pleasewait' | translate}}
 								<img alt="Loading.." ng-show="signInProcessLoading" ng-src="./selfcare_module/images/ajax-loader.gif" width="20px"/>
 						  </div> 
 					    </div>
-		 				<div class="pull-right" ng-hide="signInProcessLoading" data-ng-click="signUpBtnFun()">{{'label.not.auser' |translate}}<a>{{ 'btn.signup' | translate }}</a></div>
+		 				<!-- <div class="pull-right" ng-hide="signInProcessLoading" data-ng-click="signUpBtnFun()">{{'label.not.auser' |translate}}<a>{{ 'btn.signup' | translate }}</a></div> -->
 		 			</div>
 		    	</td>
 		     </tr>
@@ -168,6 +172,7 @@
 	                            </a>
 	                            <ul class="dropdown-menu">
 	                            	<li><a href="#/changepwd"><i class="icon-cog"></i>{{'label.change.password' | translate}}</a></li>
+	                            	<!-- <li><a href="#/changekortatoken"><i class="icon-cog"></i>{{'label.change.kortatoken' | translate}}</a></li> -->
 	                                <li><a id="logout" ng-click="signout()"><i class="icon-off"></i>{{'label.signout' | translate}}</a></li>
 	                            </ul>
 	                        </li>

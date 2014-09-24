@@ -83,9 +83,26 @@
 	 	  <span style="color:#0088cc;font-size:20px;margin-left:580px;" class="pull-left">{{'label.amount.total'|translate}}</span>
 	  	 <span style="font-size:20px;margin-right:210px;" class="pull-right">{{totalAmount}}</span><br/><br/>
 	   </div>
-		<div class="pull-right" >
-				<a ng-disabled="vodEventRedirectToDalpay"  ng-click="cancelDalpayBtnFun()" class="btn" >{{'btn.cancel'|translate}}</a>
-				<a href="{{URLForDalpay}}" ng-click="dalpayBtnFun()" ng-show="totalAmount != 0" ng-disabled="vodEventRedirectToDalpay" class="btn btn-primary animated fadeInUp">{{'btn.dalpay'|translate}}</a>
+		<h3 style="color:#0088cc;">{{'label.payment.gateway'|translate}}</h3><br/>
+	   <table style="margin-left:15%;">
+	       		<tr>
+	       			<td>
+        				 <div class="control-group">
+            				<div class="controls">
+            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('dalpay')" checked/>
+            						&nbsp;<span  class="btn btn-primary animated pulse">{{'label.dalpay'|translate}}</span>
+
+            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('korta')" style="margin-left:20px;"/>
+            						&nbsp;<span  class="btn btn-primary animated pulse">{{'label.korta'|translate}}</span>
+            				</div>
+        				 </div>
+	         				 
+	       			</td>
+	       		</tr>
+	       	</table><br/><br/>
+		<div class="offset2" >
+				<a ng-disabled="vodEventRedirectToDalpay"  ng-click="cancelDalpayBtnFun()" class="btn" style="padding:9px 22px;margin-top:-19px;">{{'btn.cancel'|translate}}</a>
+				<a href="{{URLForDalpay}}" ng-click="dalpayBtnFun()" ng-show="totalAmount != 0" ng-disabled="vodEventRedirectToDalpay" class="btn btn-primary cust-btn animated fadeInUp">{{'btn.make.payment'|translate}}</a>
 				<a ng-click="subscribeBtnFun()" ng-show="totalAmount == 0" class="btn btn-primary animated fadeInUp">{{'btn.subscribe'|translate}}</a>
 		</div> 
 	</div>

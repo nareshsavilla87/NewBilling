@@ -7,6 +7,7 @@
             {"name" : "中文", "code":"zh_cn"},
             {"name" : "हिंदी", "code":"hi"},
             {"name" : "macedonian", "code":"mk"},
+            {"name" : "icelandic ", "code":"is"},
            ]
   });
 }(mifosX.models || {}));

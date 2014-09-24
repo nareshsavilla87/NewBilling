@@ -3,22 +3,30 @@
 	  EventDetailsPreviewScreenController: function(scope,RequestSender,rootScope,http,authenticationService,webStorage,httpService,sessionManager,location,dateFilter) {
 	
 			 scope.mediaDatas = {};
+			 scope.formData = {};
 			 scope.eventFormData = [];
 			 var clientTotalData = webStorage.get('clientTotalData');
+			 console.log(clientTotalData);
 			 if(clientTotalData){
 				 scope.clientId = clientTotalData.clientId;
 			 }
 			 if(webStorage.get('eventData')){
 				 scope.mediaDatas = webStorage.get('eventData');
 			 }
-			 
 			 console.log(webStorage.get("eventData"));
 			 
 			 scope.eventOneByOneFun = function(val){
 				 RequestSender.eventsResource.save(scope.eventFormData[val],function(data){
 					 if(val == scope.eventFormData.length-1){
-						 webStorage.remove('eventData');
-						 location.path('/listofvods');
+						 if(scope.formData.kortaToken){
+							 RequestSender.updateKortaToken.update({clientId : scope.clientId},{'kortaToken':scope.formData.kortaToken},function(data){
+								 webStorage.remove('eventData');
+								 location.path('/listofvods');
+							 });
+						}else{
+							 webStorage.remove('eventData');
+							 location.path('/listofvods');
+						}
 					 }else{
 						 val += 1;
 					 	scope.eventOneByOneFun(val);
@@ -28,18 +36,23 @@
 			 
 			 var reqDate = dateFilter(new Date(),'dd MMMM yyyy');
 			 for(var i in scope.mediaDatas) {
-				 scope.eventFormData[i] = {
-					 							eventId : scope.mediaDatas[i].eventId,
-					 							optType : scope.mediaDatas[i].optType,
-					 							formatType : scope.mediaDatas[i].quality,
-					 							clientId : scope.clientId,
-					 							locale : 'en',
-					 							eventBookedDate : reqDate,
-					 							dateFormat : 'dd MMMM yyyy',
-				 							};					
-		         if(i==scope.mediaDatas.length-1){
-		        	 scope.eventOneByOneFun(0);
-		         }
+				 if(scope.mediaDatas[i].kortaToken){
+					 console.log(scope.mediaDatas[i].kortaToken);
+					 scope.formData.kortaToken = scope.mediaDatas[i].kortaToken;
+				 }else{
+						 scope.eventFormData[i] = {
+							 							eventId : scope.mediaDatas[i].eventId,
+							 							optType : scope.mediaDatas[i].optType,
+							 							formatType : scope.mediaDatas[i].quality,
+							 							clientId : scope.clientId,
+							 							locale : 'en',
+							 							eventBookedDate : reqDate,
+							 							dateFormat : 'dd MMMM yyyy',
+						 							};
+				 }
+				 if(i==scope.mediaDatas.length-1){
+					 scope.eventOneByOneFun(0);
+				 }
 			 }
 			 /*for(var i in scope.mediaDatas) {
 				 scope.eventFormData[i].eventId = scope.mediaDatas[i].eventId;
@@ -81,5 +94,7 @@
 		 
     }
   });
-  selfcare.ng.application.controller('EventDetailsPreviewScreenController', ['$scope','RequestSender','$rootScope','$http','AuthenticationService','webStorage','HttpService','SessionManager','$location','dateFilter', selfcare.controllers.EventDetailsPreviewScreenController]);
+  selfcare.ng.application.controller('EventDetailsPreviewScreenController', ['$scope','RequestSender','$rootScope','$http','AuthenticationService','webStorage','HttpService','SessionManager','$location','dateFilter', selfcare.controllers.EventDetailsPreviewScreenController]).run(function($log) {
+      $log.info("EventDetailsPreviewScreenController initialized");
+  });
 }(selfcare.controllers || {}));

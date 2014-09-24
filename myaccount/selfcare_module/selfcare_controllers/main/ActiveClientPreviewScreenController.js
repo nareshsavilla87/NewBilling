@@ -16,6 +16,9 @@
 			 if(scope.formData.deviceNo){
 				 scope.clientData.device = scope.formData.deviceNo;
 			 }
+			 if(scope.formData.kortaToken){
+				 scope.clientData.kortaToken = scope.formData.kortaToken;
+			 }
 			 console.log(scope.formData.zipcode);
 			 scope.clientData.firstname = "Mr ";
 			 scope.clientData.address = scope.formData.address;
@@ -169,5 +172,7 @@
 		 
     }
   });
-  selfcare.ng.application.controller('ActiveClientPreviewScreenController', ['$scope','RequestSender','$rootScope','$http','AuthenticationService','webStorage','HttpService','SessionManager','$location','dateFilter', selfcare.controllers.ActiveClientPreviewScreenController]);
+  selfcare.ng.application.controller('ActiveClientPreviewScreenController', ['$scope','RequestSender','$rootScope','$http','AuthenticationService','webStorage','HttpService','SessionManager','$location','dateFilter', selfcare.controllers.ActiveClientPreviewScreenController]).run(function($log) {
+      $log.info("ActiveClientPreviewScreenController initialized");
+  });
 }(selfcare.controllers || {}));

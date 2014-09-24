@@ -18,4 +18,6 @@
     });
 }(selfcare.directives || {}));
 
-selfcare.ng.application.directive("ngAutofocus", ['$timeout', '$parse', selfcare.directives.NgAutoFocusFunDirective]);
+selfcare.ng.application.directive("ngAutofocus", ['$timeout', '$parse', selfcare.directives.NgAutoFocusFunDirective]).run(function ($log) {
+    $log.info("NgAutoFocusFunDirective initialized");
+});

@@ -10,7 +10,9 @@
 		   scope.emptyCredentials = false;
 		   scope.isChangePassword = false;
 		   scope.selfcare_userName = "";
-		   
+		   var x = window.location.hash;
+		   console.log(x);
+		  
 	 //authentication onSuccess this event called  
 	   scope.$on("UserAuthenticationSuccessEvent", function(event, data,formData) {
 		   scope.currentSession = sessionManager.get(data,formData);
@@ -29,7 +31,7 @@
 		   
        //getting languages form model Lang.js 
 	   scope.langs = selfcare.models.Langs;
-        scope.optlang = scope.langs[0];
+        scope.optlang = scope.langs[1];
         
        //set the language code when change the language 
         scope.changeLang = function (lang) {

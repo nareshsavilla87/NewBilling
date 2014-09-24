@@ -96,5 +96,7 @@
             };*/
     }
   });
-  selfcare.ng.application.controller('ViewOrderController', ['$scope','RequestSender','$location','$routeParams','$modal','dateFilter','$route', selfcare.controllers.ViewOrderController]);
+  selfcare.ng.application.controller('ViewOrderController', ['$scope','RequestSender','$location','$routeParams','$modal','dateFilter','$route', selfcare.controllers.ViewOrderController]).run(function($log) {
+      $log.info("ViewOrderController initialized");
+  });
 }(selfcare.controllers || {}));

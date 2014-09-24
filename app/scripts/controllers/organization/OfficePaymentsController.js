@@ -29,7 +29,7 @@
           this.formData.dateFormat = "dd MMMM yyyy";
       	  var paymentDate = dateFilter(scope.start.date,'dd MMMM yyyy');
           this.formData.paymentDate= paymentDate;
-         // console.log(this.formData);
+          console.log(this.formData);
           //var res1 = validator.validateZipCode(scope.formData.receiptNo);
         	  
           resourceFactory.officePaymentsResource.postPayments({officeId : routeParams.officeId}, this.formData, function(data){

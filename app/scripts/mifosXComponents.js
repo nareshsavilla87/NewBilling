@@ -272,7 +272,9 @@ define(['underscore', 'mifosX'], function() {
       'YesOrNo',
       'DateFormat',
       'ConfigLookup',
+      'DecimalFormat',
       'DateTimeFormat'
+
     ],
     directives: [
       'DataTablesDirective',

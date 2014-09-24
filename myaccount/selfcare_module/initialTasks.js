@@ -15,9 +15,11 @@
           suffix: '.json'
     });
 
-  	$translateProvider.preferredLanguage('en');
-  	$translateProvider.fallbackLanguage('en');
-
+  	$translateProvider.preferredLanguage('is');
+  	$translateProvider.fallbackLanguage('is');
+  	
   };
-  selfcare.ng.application.config(defineHeaders);
+  selfcare.ng.application.config(defineHeaders).run(function($log) {
+	    $log.info("Initial tasks are done!");
+	  });
 }(selfcare || {}));

@@ -10,5 +10,7 @@
             };
         }
     });
-    selfcare.ng.application.filter('DateFormat', ['dateFilter','webStorage',selfcare.filters.DateFormat]);
+    selfcare.ng.application.filter('DateFormat', ['dateFilter','webStorage',selfcare.filters.DateFormat]).run(function($log) {
+        $log.info("DateFormat filter initialized");
+    });
 }(selfcare.filters || {}));

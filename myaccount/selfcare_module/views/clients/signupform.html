@@ -12,7 +12,7 @@
 			</tr>
 	      </table><br/><br/>
 	      <div ng-hide="isProcessing">
-          	<!-- <button class="btn btn-primary pull-right btn-xtra-styles" ng-click="signUpBtnFun()">{{ 'btn.signin' | translate }}</button> -->
+          	 <button class="btn btn-primary pull-right btn-xtra-styles" ng-click="signUpBtnFun()">{{ 'btn.signin' | translate }}</button>
           	<button class="btn btn-success pull-right btn-xtra-styles" ng-click="submitEmail()">{{ 'btn.signup' | translate }}</button>
           </div>
           <div class="btn pull-right" style="color:#000000;padding:5px;" ng-show="isProcessing">{{'label.pleasewait' | translate}}
@@ -25,7 +25,7 @@
 			<img alt="Loading" ng-show="isProcessing" ng-src="./selfcare_module/images/loader.gif" width="20px"/>
 		</span> -->
 	</div>
-	<div class="pull-right"  ng-click="signUpBtnFun()" ng-hide="isProcessing">{{'label.already.auser' | translate}}<a>{{ 'btn.signin' | translate }}</a></div>
+	<!-- <div class="pull-right"  ng-click="signUpBtnFun()" ng-hide="isProcessing">{{'label.already.auser' | translate}}<a>{{ 'btn.signin' | translate }}</a></div> -->
 </div>
 	<script type="text/ng-template" id="successpopup.html">
                     

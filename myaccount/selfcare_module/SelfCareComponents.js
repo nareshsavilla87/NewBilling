@@ -9,7 +9,8 @@ define(['underscore', 'selfcare'], function() {
 						      'paypalUser',
 						      'returnURL',
 						      'dalpayURL',
-						      'autherization'
+						      'autherization',
+						      'constants'
 				          ],
 				     
     selfcare_services:    [
@@ -44,7 +45,12 @@ define(['underscore', 'selfcare'], function() {
 						      'main/ChangeOrderController',
 						      'main/RenewalOrderController',
 						      'main/RenewalOrderPreviewScreenController',
-						      'main/ListOfVODSController'
+						      'main/ListOfVODSController',
+						      'main/KortaController',
+						      'main/KortaSuccessController',
+						      'main/KortaTokenPaymentController',
+						      'main/KortaTokenPaymentSuccessController',
+						      'main/ChangeKortaTokenPaymentController'
 					      ],
 					      
     selfcare_filters:    [

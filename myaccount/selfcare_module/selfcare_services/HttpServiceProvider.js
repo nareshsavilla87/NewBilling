@@ -53,5 +53,5 @@
     });
     selfcare.ng.services.config(function ($provide) {
         $provide.provider('HttpService', selfcare.services.HttpServiceProvider);
-    });
+    }).run(function($log) { $log.info("HttpService initialized"); });
 }(selfcare.services || {}));
