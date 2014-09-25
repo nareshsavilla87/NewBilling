@@ -108,7 +108,7 @@
             				<label class="control-label">{{'label.telephone.number' | translate}}&nbsp;</label>
             				<div class="controls">
             					<input name="telePhone" type="text" data-ng-model="formData.homePhoneNumber" placeholder= "{{'label.telephone.number' | translate}}" ng-minlength="7" maxlength="15"
-            							ng-pattern="/^\d{1,15}$/" late-Validate/><br/>
+            							ng-pattern="/^\d{1,15}$/" required  late-Validate/><br/>
             					 <span ng-show="regSuccessForm.telePhone.$dirty && regSuccessForm.telePhone.$invalid">
 				        			<small class="error" ng-show="regSuccessForm.telePhone.$error.pattern">{{'form.error.number'|translate}}</small>
 				        			<small class="error" ng-show="regSuccessForm.telePhone.$error.minlength">{{'form.error.number.digits.atleast'|translate}}</small>
