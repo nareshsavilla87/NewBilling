@@ -1,5 +1,5 @@
 {
-  "titles" :"----------------------------------------------------",
+  "ttles" :"----------------------------------------------------",
  	"title.obs.selfcare"		: "OBS SelfCare",
  	"title.conformation.registration" 		 : "Þakka þér fyrir að skrá þig! A sköpulag hefur verið sendur til póstur auðkenni.Vinsamlegast innskráningu til þinn tölvupósti reikningur og smelltu á örvun hlekkur til að ljúka skráningu ",
  	"title.conformation.alreadyregistration" : "Viðskiptavinur er þegar skráð við þennan póstur auðkenni.",

@@ -57,13 +57,13 @@
       		<!-- <div class="control-group">
 				<label class="control-label" >{{ 'label.thor.token' | translate}}<span class="required">*</span></label>
 				<div class="controls">
-					<textarea rows="2" ng-model="formData.token" reqiured late-Validate disabled></textarea>
+					<textarea rows="2" ng-model="formData.description" reqiured late-Validate disabled></textarea>
 				</div>
 			</div> -->
 			<div class="control-group">
-				<label class="control-label" >{{'label.description' | translate}}<span class="required">*</span></label>
 				<div class="controls">
-					<textarea rows="2" ng-model="formData.description" reqiured late-Validate disabled></textarea>
+				    <input type="checkbox" name="checkbox" ng-change = "TermsAndCondition(formData.terms)" ng-model="formData.terms" ng-true-value="Y"  ng-false-value="N" reqiured > 
+				    <span> {{'label.agree' | translate}} <a href="https://netgreidslur.korta.is/testing/?page=samples&lang=en" >{{'label.Terms.Conditions' | translate}}</a> </span>
 				</div>
 			</div>
 			<div class="control-group">

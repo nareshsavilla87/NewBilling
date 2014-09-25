@@ -70,7 +70,10 @@
 	            		
 	        });	*/	
 		  
-		
+		  scope.previousPage = function(){
+	    	  window.history.go(-1);
+	      };
+	      
 		  
 		  scope.submitFun = function(){
 			  //  110.00ISK818531826460AshokReddy//1/thor0009xxxxxxxxsecretcodexxxxxxxxxxxxx

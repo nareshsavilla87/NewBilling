@@ -79,8 +79,8 @@
 			 var  VODTotalAmount = webStorage.get('VODTotalAmount');
 			 if(webStorage.get('selfcareUserData')){
 				  clientData = webStorage.get('selfcareUserData');
-				  
 				  var name = clientData.lastname;
+				  
 					name = name.trim();				
 					name = name.replace(/ /g, '');
 				  scope.formData.fullName = name;
@@ -95,6 +95,7 @@
 			  scope.formData.amount = VODTotalAmount;
 			  console.log(webStorage.get("eventData"));
 		  }
+		  scope.formData.terms = 'N';
 		  
 		  scope.formData.terms = 'N';
 		  
@@ -121,6 +122,14 @@
 	    	  window.history.go(-1);
 	      };
 		  
+		  scope.TermsAndCondition = function(data) {
+				scope.formData.terms = data;
+			};
+			
+		 scope.previousPage = function(){
+	    	  window.history.go(-1);
+	      };
+			
 		  scope.currencydatas = [];
 		  scope.doActionTypes = [
 		                         {name:"STNOCAP"},
@@ -182,7 +191,9 @@
 				  scope.downloadurl = selfcare.models.additionalKortaUrl+"/"+routeParamsPlanId+"/"+routeParamsClientId+"?encryptedKey="+scope.encryptedString+"&";
 			  }
 			  var md5data = scope.formData.amount+scope.formData.currency+scope.kortaMerchantId+scope.kortaTerminalId+scope.formData.description+"/"+scope.formData.doAction+"//"+scope.formData.token + scope.kortaSecretCode +scope.kortaTestServer;			 
+
 			  scope.formData.md5value=md5(md5data);
+			  console.log(scope.formData.md5value);
 		  };
     }
   });

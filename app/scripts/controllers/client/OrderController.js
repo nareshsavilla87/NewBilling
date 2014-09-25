@@ -292,7 +292,7 @@
       var extensionController=function($scope,$modalInstance){
     	  
     	  resourceFactory.orderExtensionResource.get(function(data) {
-	            $scope.extensionReasonDatas = data.reasons;
+	            $scope.extensionReasonDatas = data.extensionReasonDatas;
 	            $scope.extensionPeriodDatas = data.extensionPeriodDatas;
 	        });
        	$scope.accept = function(){
