@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  CreateClientControllerwizard: function(scope,webStorage,routeParams, resourceFactory, location, http,filter, dateFilter) {
+	  CreateClientControllerwizard: function(scope,webStorage,routeParams, resourceFactory, location, http,filter, dateFilter,$rootScope) {
 		 
 		  scope.nextcount=0;
 		  scope.next=true;
@@ -236,7 +236,7 @@
 	        };
 	        scope.itemDataQuantity=function(quantity,itemId){
 	        	this.data.unitPrice=this.formData2.unitPrice;
-	        	this.data.locale="en";
+	        	this.data.locale=$rootScope.locale.code;
 	        	this.data.quantity=quantity;
 	        	
 	        	//alert(itemId);
@@ -506,7 +506,7 @@
 	        scope.submit4 = function() {   
 	        	scope.flag = true;
 
-	        	this.formData4.locale = 'en';
+	        	this.formData4.locale = $rootScope.locale.code;
 	        	this.formData4.isNewplan=true;
 	        	var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
 	            this.formData4.dateFormat = 'dd MMMM yyyy';
@@ -535,14 +535,14 @@
 	      		scope.ActivationData.owndevice=[];
 	              	//alert("submit");
 	                  var reqDate = dateFilter(scope.first.date,'dd MMMM yyyy');
-	                  this.formData1.locale = 'en';
+	                  this.formData1.locale = $rootScope.location.code;
 	                  this.formData1.active = true;
 	                  this.formData1.dateFormat = 'dd MMMM yyyy';
 	                  this.formData1.activationDate = reqDate;
 	                  this.formData1.flag=scope.configurationProperty;
 	                  
 	                if(config =='SALE'){  
-	 	        	 this.formData2.locale = "en";
+	 	        	 this.formData2.locale = $rootScope.locale.code;
 	 	             this.formData2.dateFormat = "dd MMMM yyyy";
 	 	             var actDate = dateFilter(scope.date.saleDate,'dd MMMM yyyy');
 	 	             this.formData2.saleDate=actDate;
@@ -555,7 +555,7 @@
 	               
 	                }else{
 	                	
-	                	  scope.formData5.locale = 'en';
+	                	  scope.formData5.locale = $rootScope.locale.code;
 	  		            var reqDate = dateFilter(scope.first.date,'dd MMMM yyyy');
 	  		            scope.formData5.dateFormat = 'dd MMMM yyyy';
 	  		            scope.formData5.allocationDate = reqDate;
@@ -608,7 +608,7 @@
 	
     }
   });
-  mifosX.ng.application.controller('CreateClientControllerwizard', ['$scope','webStorage', '$routeParams','ResourceFactory', '$location', '$http','$filter', 'dateFilter', mifosX.controllers.CreateClientControllerwizard]).run(function($log) {
+  mifosX.ng.application.controller('CreateClientControllerwizard', ['$scope','webStorage', '$routeParams','ResourceFactory', '$location', '$http','$filter', 'dateFilter','$rootScope', mifosX.controllers.CreateClientControllerwizard]).run(function($log) {
     $log.info("CreateClientControllerwizard initialized");
   });
 }(mifosX.controllers || {}));

@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  FollowProspectsController: function(scope, resourceFactory, location, routeParams,dateFilter) {
+	  FollowProspectsController: function(scope, resourceFactory, location, routeParams,dateFilter,$rootScope) {
         
 		  scope.assignedToDatas = [];
 		  scope.callStatusDatas = [];
@@ -31,7 +31,7 @@
         
         scope.submit = function() {
         	scope.flag = true;
-        	this.formData.locale="en";
+        	this.formData.locale=$rootScope.locale.code;
         	var reqDate = dateFilter(scope.first.date,'yyyy-MM-dd');
         	this.formData.preferredCallingTime = reqDate+" "+$('#timepicker1').val()+":00";
           resourceFactory.prospectTemplateResource.update({clientProspectId: routeParams.id}, this.formData,function(data){
@@ -42,7 +42,7 @@
         };
     }
   });
-  mifosX.ng.application.controller('FollowProspectsController', ['$scope', 'ResourceFactory', '$location', '$routeParams','dateFilter', mifosX.controllers.FollowProspectsController]).run(function($log) {
+  mifosX.ng.application.controller('FollowProspectsController', ['$scope', 'ResourceFactory', '$location', '$routeParams','dateFilter','$rootScope', mifosX.controllers.FollowProspectsController]).run(function($log) {
     $log.info("FollowProspectsController initialized");
   });
 }(mifosX.controllers || {}));

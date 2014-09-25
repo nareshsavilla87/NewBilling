@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  EditGRNController: function(scope,webStorage, resourceFactory, location,dateFilter,PermissionService,routeParams) {
+	  EditGRNController: function(scope,webStorage, resourceFactory, location,dateFilter,PermissionService,routeParams,$rootScope) {
         scope.itemDatas = [];
         scope.officeDatas = [];
         scope.supplierDatas = [];
@@ -31,7 +31,7 @@
 	       };
                 
         scope.submit = function() {
-        	this.formData.locale = 'en';
+        	this.formData.locale = $rootScope.locale.code;
         	var reqDate = dateFilter(scope.formData.purchaseDate,'dd MMMM yyyy');
             this.formData.dateFormat = 'dd MMMM yyyy';
             this.formData.purchaseDate = reqDate;
@@ -45,7 +45,7 @@
         };
     }
   });
-  mifosX.ng.application.controller('EditGRNController', ['$scope','webStorage', 'ResourceFactory', '$location','dateFilter','PermissionService','$routeParams', mifosX.controllers.EditGRNController]).run(function($log) {
+  mifosX.ng.application.controller('EditGRNController', ['$scope','webStorage', 'ResourceFactory', '$location','dateFilter','PermissionService','$routeParams','$rootScope', mifosX.controllers.EditGRNController]).run(function($log) {
     $log.info("EditGRNController initialized");
   });
 }(mifosX.controllers || {}));

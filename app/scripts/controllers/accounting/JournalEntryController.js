@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    JournalEntryController: function(scope, resourceFactory, location,dateFilter) {
+    JournalEntryController: function(scope, resourceFactory, location,dateFilter,$rootScope) {
 
             scope.formData = {};
             scope.formData.crAccounts = [];
@@ -47,7 +47,7 @@
             scope.submit = function() {
                   var jeTransaction = new Object();
                   var reqDate = dateFilter(scope.first.date,'dd MMMM yyyy');
-                  jeTransaction.locale = 'en';
+                  jeTransaction.locale = $rootScope.locale.code;
                   jeTransaction.dateFormat = 'dd MMMM yyyy';
                   jeTransaction.officeId=this.formData.officeId;
                   jeTransaction.transactionDate = reqDate;
@@ -79,7 +79,7 @@
             }
     }
   });
-  mifosX.ng.application.controller('JournalEntryController', ['$scope', 'ResourceFactory', '$location','dateFilter', mifosX.controllers.JournalEntryController]).run(function($log) {
+  mifosX.ng.application.controller('JournalEntryController', ['$scope', 'ResourceFactory', '$location','dateFilter','$rootScope', mifosX.controllers.JournalEntryController]).run(function($log) {
     $log.info("JournalEntryController initialized");
   });
 }(mifosX.controllers || {}));

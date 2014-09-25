@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    SearchTransactionController: function(scope, resourceFactory , paginatorService,dateFilter) {
+    SearchTransactionController: function(scope, resourceFactory , paginatorService,dateFilter,$rootScope) {
 
         scope.filters = [{option: "All", value: ""},{option: "Manual Entries", value: true},{option: "System Entries", value: false}];
         scope.isCollapsed = true;
@@ -25,7 +25,7 @@
           var params = {};
           params.offset = offset;
           params.limit = limit;
-          params.locale = "en";
+          params.locale = $rootScope.locale.code;
           params.dateFormat = "'yyyy-MM-dd'";
 
           if (scope.formData.transactionId) { params.transactionId = scope.formData.transactionId; };
@@ -51,7 +51,7 @@
 
     }
   });
-  mifosX.ng.application.controller('SearchTransactionController', ['$scope', 'ResourceFactory', 'PaginatorService','dateFilter', mifosX.controllers.SearchTransactionController]).run(function($log) {
+  mifosX.ng.application.controller('SearchTransactionController', ['$scope', 'ResourceFactory', 'PaginatorService','dateFilter','$rootScope', mifosX.controllers.SearchTransactionController]).run(function($log) {
     $log.info("SearchTransactionController initialized");
   });
 }(mifosX.controllers || {}));

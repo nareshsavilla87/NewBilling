@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  EditEventPriceController: function(scope, routeParams , location,resourceFactory ) {		
+	  EditEventPriceController: function(scope, routeParams , location,resourceFactory,$rootScope) {		
       
        scope.OptTypes=[];
 		scope.ClientTypes=[]; 
@@ -26,7 +26,7 @@
         	delete this.formData.discountdata;
         	delete this.formData.clientTypes;
         	delete this.formData.id;
-        	 this.formData.locale = 'en';
+        	 this.formData.locale = $rootScope.locale.code;
         	
             resourceFactory.eventPriceEditResource.update({'id': routeParams.id},this.formData,function(data){
                 location.path('/viewEventPrice/' + data.resourceId);
@@ -35,7 +35,7 @@
     
     }
   });
-  mifosX.ng.application.controller('EditEventPriceController', ['$scope', '$routeParams', '$location','ResourceFactory', mifosX.controllers.EditEventPriceController]).run(function($log) {
+  mifosX.ng.application.controller('EditEventPriceController', ['$scope', '$routeParams', '$location','ResourceFactory','$rootScope', mifosX.controllers.EditEventPriceController]).run(function($log) {
     $log.info("EditEventPriceController initialized");
   });
 }(mifosX.controllers || {}));

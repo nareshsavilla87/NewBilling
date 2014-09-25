@@ -1,6 +1,6 @@
 (function(module) {
 	  mifosX.controllers = _.extend(module, {
-		  CreatePromotionController: function(scope, resourceFactory, location,dateFilter,webStorage) {
+		  CreatePromotionController: function(scope, resourceFactory, location,dateFilter,webStorage,$rootScope) {
 	        scope.promotiondatas = [];
 	        scope.durationTypes = [];
 	        scope.start={};
@@ -15,7 +15,7 @@
 	           };
 	           
 	        scope.submit = function() {  
-	        	 this.formData.locale = "en";
+	        	 this.formData.locale = $rootScope.locale.code;
 	             this.formData.dateFormat = "dd MMMM yyyy";
 	             var startdate = dateFilter(scope.start.date,'dd MMMM yyyy');
 	         //    this.formData.paymentDate= startDate;
@@ -28,7 +28,7 @@
 	        };
 	    }
 	  });
-	  mifosX.ng.application.controller('CreatePromotionController', ['$scope', 'ResourceFactory', '$location','dateFilter','webStorage', mifosX.controllers.CreatePromotionController]).run(function($log) {
+	  mifosX.ng.application.controller('CreatePromotionController', ['$scope', 'ResourceFactory', '$location','dateFilter','webStorage','$rootScope', mifosX.controllers.CreatePromotionController]).run(function($log) {
 	    $log.info("CreatePromotionController initialized");
 	  });
 	}(mifosX.controllers || {}));

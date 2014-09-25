@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    MakeDataTableEntryController: function(scope, location, routeParams, resourceFactory) {
+    MakeDataTableEntryController: function(scope, location, routeParams, resourceFactory,$rootScope) {
       scope.tableName = routeParams.tableName;
       scope.entityId = routeParams.entityId;
       scope.columnHeaders = [];
@@ -40,7 +40,7 @@
       
       scope.submit = function () {
         var params = {datatablename:scope.tableName, entityId:scope.entityId, genericResultSet: 'true'};
-        this.formData.locale = 'en';
+        this.formData.locale = $rootScope.locale.code;
         this.formData.dateFormat =  'dd MMMM yyyy';
         
       //below logic, for the input field if data is not entered, this logic will put "", because
@@ -83,7 +83,7 @@
 
     }
   });
-  mifosX.ng.application.controller('MakeDataTableEntryController', ['$scope', '$location', '$routeParams', 'ResourceFactory', mifosX.controllers.MakeDataTableEntryController]).run(function($log) {
+  mifosX.ng.application.controller('MakeDataTableEntryController', ['$scope', '$location', '$routeParams', 'ResourceFactory','$rootScope', mifosX.controllers.MakeDataTableEntryController]).run(function($log) {
     $log.info("MakeDataTableEntryController initialized");
   });
 }(mifosX.controllers || {}));

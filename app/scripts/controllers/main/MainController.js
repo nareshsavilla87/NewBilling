@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    MainController: function(scope, location, sessionManager, translate,keyboardManager,$rootScope,webStorage,PermissionService,localStorageService,$idle,resourceFactory) {
+    MainController: function(scope, location, sessionManager, translate,keyboardManager,$rootScope,webStorage,PermissionService,localStorageService,$idle,resourceFactory,tmhDynamicLocale) {
       
     	/**
     	 * Logout the user if Idle
@@ -54,10 +54,26 @@
 
       scope.langs = mifosX.models.Langs;
       scope.PermissionService=PermissionService;
-      scope.optlang = scope.langs[0];
+      //scope.optlang = scope.langs[0];
       $rootScope.locale=scope.langs[0];
-      
+      /**
+       * Dynamic locale
+       * */
+      if (localStorageService.get('Language')) {
+          var temp = localStorageService.get('Language');
+          for (var i in mifosX.models.Langs) {
+              if (mifosX.models.Langs[i].code == temp.code) {
+                  scope.optlang = mifosX.models.Langs[i];
+                  tmhDynamicLocale.set(mifosX.models.Langs[i].code);
+              }
+          }
+      } else {
+          scope.optlang = scope.langs[0];
+          tmhDynamicLocale.set(scope.langs[0].code);
+      }
+      translate.uses(scope.optlang.code);
 
+      
       scope.isActive = function (route) {
           if(route == 'clients'){
               var temp = ['/clients','/groups','/centers'];
@@ -156,6 +172,8 @@
           translate.uses(lang.code);
           scope.optlang = lang;
           $rootScope.locale=lang;
+          localStorageService.add('Language', lang);
+          tmhDynamicLocale.set(lang.code);
           
       };
 
@@ -177,6 +195,7 @@
     'localStorageService',
     '$idle',
     'ResourceFactory',
+    'tmhDynamicLocale',
     mifosX.controllers.MainController
   ]);
 }(mifosX.controllers || {}));

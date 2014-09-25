@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    EditChargeCodeController: function(scope, routeParams, resourceFactory, location) {
+    EditChargeCodeController: function(scope, routeParams, resourceFactory, location,$rootScope) {
         scope.chargeTypes = [];
         scope.durationTypes = [];
         scope.billFrequencyCodes = [];
@@ -24,14 +24,14 @@
         	 delete this.formData.chargeTypeData;
         	 delete this.formData.durationTypeData;
         	 delete this.formData.billFrequencyCodeData;
-        	 this.formData.locale = 'en';
+        	 this.formData.locale = $rootScope.locale.code;
                resourceFactory.chargecodeResource.update({'chargeCodeId': routeParams.id},this.formData,function(data){
              location.path('/viewchargecode/' + data.resourceId);
           });
         };
     }
   });
-  mifosX.ng.application.controller('EditChargeCodeController', ['$scope', '$routeParams', 'ResourceFactory', '$location', mifosX.controllers.EditChargeCodeController]).run(function($log) {
+  mifosX.ng.application.controller('EditChargeCodeController', ['$scope', '$routeParams', 'ResourceFactory', '$location','$rootScope', mifosX.controllers.EditChargeCodeController]).run(function($log) {
     $log.info("EditChargeCodeController initialized");
   });
 }(mifosX.controllers || {}));

@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  ItemSaleController: function(scope, resourceFactory, location,dateFilter,routeParams,webStorage) {
+	  ItemSaleController: function(scope, resourceFactory, location,dateFilter,routeParams,webStorage,$rootScope) {
 		  
 		   scope.officeId = routeParams.officeId;
 		   scope.officeName = webStorage.get("officeName");
@@ -36,7 +36,7 @@
         scope.itemDataQuantity=function(quantity,itemId){
         	delete scope.formData.itemPrice;
         	scope.data.unitPrice=scope.formData.unitPrice;
-        	scope.data.locale="en";
+        	scope.data.locale=$rootScope.locale.code;
         	//if(quantity !=undefined){
         	scope.data.quantity=quantity;
         	resourceFactory.oneTimeSaleQuantityResource.get({quantity: quantity,itemId:itemId},scope.data, function(data) {
@@ -48,7 +48,7 @@
      
         scope.submit = function() {
         	
-        	scope.formData.locale = 'en';
+        	scope.formData.locale = $rootScope.locale.code;
            	var reqDate = dateFilter(scope.purchase.date,'dd MMMM yyyy');
             scope.formData.dateFormat = 'dd MMMM yyyy';
             scope.formData.purchaseDate = reqDate;
@@ -72,7 +72,7 @@
         };
     }
   });
-  mifosX.ng.application.controller('ItemSaleController', ['$scope', 'ResourceFactory', '$location','dateFilter','$routeParams','webStorage', mifosX.controllers.ItemSaleController]).run(function($log) {
+  mifosX.ng.application.controller('ItemSaleController', ['$scope', 'ResourceFactory', '$location','dateFilter','$routeParams','webStorage','$rootScope', mifosX.controllers.ItemSaleController]).run(function($log) {
     $log.info("ItemSaleController initialized");
   });
 }(mifosX.controllers || {}));

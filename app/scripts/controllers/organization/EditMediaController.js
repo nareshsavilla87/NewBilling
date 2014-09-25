@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    EditMediaController: function(scope, routeParams, resourceFactory, location,dateFilter) {
+    EditMediaController: function(scope, routeParams, resourceFactory, location,dateFilter,$rootScope) {
         scope.mediaAssetData = [];
         scope.mediaAttributes = [];
         
@@ -87,7 +87,7 @@
            this.formData.dateFormat = 'dd MMMM yyyy';
          //  this.formData.releaseDate = '05 August 2013';
         //   this.formData.dateFormat = 'dd MMMM yyyy';
-           this.formData.locale = 'en';
+           this.formData.locale = $rootScope.locale.code;
             this.formData.releaseDate = dateFilter(scope.date.releaseDate,'dd MMMM yyyy');
             this.formData.mediaTypeCheck="EDITMEDIA";
             this.formData.formatType="SD";
@@ -122,7 +122,7 @@
         };
     }
   });
-  mifosX.ng.application.controller('EditMediaController', ['$scope', '$routeParams', 'ResourceFactory', '$location','dateFilter', mifosX.controllers.EditMediaController]).run(function($log) {
+  mifosX.ng.application.controller('EditMediaController', ['$scope', '$routeParams', 'ResourceFactory', '$location','dateFilter','$rootScope', mifosX.controllers.EditMediaController]).run(function($log) {
     $log.info("EditMediaController initialized");
   });
 }(mifosX.controllers || {}));
