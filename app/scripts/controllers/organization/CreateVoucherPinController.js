@@ -1,6 +1,6 @@
 (function(module) {
 	  mifosX.controllers = _.extend(module, {
-	    CreateVoucherPinController: function(scope, resourceFactory, location,dateFilter) {
+	    CreateVoucherPinController: function(scope, resourceFactory, location,dateFilter,$rootScope) {
 	    	
 	        scope.pinCategoryDatas = [];
 	        scope.pinTypeDatas = [];
@@ -25,7 +25,7 @@
 	        
 	        scope.submit = function() {  
 
-	        	 this.formData.locale = "en";
+	        	 this.formData.locale = $rootScope.locale.code;
 	             this.formData.dateFormat = "dd MMMM yyyy";
 	             var exipiryDate = dateFilter(scope.start.date,'dd MMMM yyyy');
 	             this.formData.expiryDate=exipiryDate;
@@ -35,7 +35,7 @@
 	        };
 	    }
 	  });
-	  mifosX.ng.application.controller('CreateVoucherPinController', ['$scope', 'ResourceFactory', '$location','dateFilter', mifosX.controllers.CreateVoucherPinController]).run(function($log) {
+	  mifosX.ng.application.controller('CreateVoucherPinController', ['$scope', 'ResourceFactory', '$location','dateFilter','$rootScope', mifosX.controllers.CreateVoucherPinController]).run(function($log) {
 	    $log.info("CreateVoucherPinController initialized");
 	  });
 	}(mifosX.controllers || {}));

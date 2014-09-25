@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  SmartSearchController: function(scope, resourceFactory , paginatorService,dateFilter,location) {
+	  SmartSearchController: function(scope, resourceFactory , paginatorService,dateFilter,location,$rootScope) {
         scope.filters = [{option: "All", value: ""},{option: "Manual Entries", value: true},{option: "System Entries", value: false}];
         scope.isCollapsed = true;
         scope.displayResults = false;
@@ -28,7 +28,7 @@
           var params = {};
           params.offset = offset;
           params.limit = limit;
-          params.locale = "en";
+          params.locale = $rootScope.locale.code;
           params.dateFormat = "dd MMMM yyyy";
 
           if (scope.formData.searchText) { params.searchText = scope.formData.searchText; };
@@ -50,7 +50,7 @@
 
        }
   });
-  mifosX.ng.application.controller('SmartSearchController', ['$scope', 'ResourceFactory', 'PaginatorService','dateFilter','$location', mifosX.controllers.SmartSearchController]).run(function($log) {
+  mifosX.ng.application.controller('SmartSearchController', ['$scope', 'ResourceFactory', 'PaginatorService','dateFilter','$location','$rootScope', mifosX.controllers.SmartSearchController]).run(function($log) {
     $log.info("SmartSearchController initialized");
   });
 }(mifosX.controllers || {}));

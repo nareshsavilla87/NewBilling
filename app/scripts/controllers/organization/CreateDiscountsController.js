@@ -1,6 +1,6 @@
 (function(module) {
 	  mifosX.controllers = _.extend(module, {
-		  CreateDiscountsController: function(scope, resourceFactory, location,dateFilter) {
+		  CreateDiscountsController: function(scope, resourceFactory, location,dateFilter,$rootScope) {
 	        scope.discountTypeDatas = [];
 	        scope.statuses = [];
 	        scope.start={};
@@ -14,7 +14,7 @@
 	        });
 	     
 	        scope.submit = function() {  
-	        	 this.formData.locale = "en";
+	        	 this.formData.locale = $rootScope.locale.code;
 	             this.formData.dateFormat = "dd MMMM yyyy";
 	             var startDate = dateFilter(scope.start.date,'dd MMMM yyyy');
 	         //    this.formData.paymentDate= startDate;
@@ -26,7 +26,7 @@
 	        };
 	    }
 	  });
-	  mifosX.ng.application.controller('CreateDiscountsController', ['$scope', 'ResourceFactory', '$location','dateFilter', mifosX.controllers.CreateDiscountsController]).run(function($log) {
+	  mifosX.ng.application.controller('CreateDiscountsController', ['$scope', 'ResourceFactory', '$location','dateFilter','$rootScope', mifosX.controllers.CreateDiscountsController]).run(function($log) {
 	    $log.info("CreateDiscountsController initialized");
 	  });
 	}(mifosX.controllers || {}));

@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    CreateChargeCodeController: function(scope, resourceFactory, location) {
+    CreateChargeCodeController: function(scope, resourceFactory, location,$rootScope) {
         scope.chargeTypes = [];
         scope.durationTypes = [];
         scope.billFrequencyCodes = [];
@@ -22,14 +22,14 @@
                 this.formData.taxInclusive=false;
                }
         	
-        	this.formData.locale = 'en';
+        	this.formData.locale = $rootScope.locale.code;
             resourceFactory.chargecodeResource.save(this.formData,function(data){
             		location.path('/viewchargecode/' + data.resourceId);
           });
         };
     }
   });
-  mifosX.ng.application.controller('CreateChargeCodeController', ['$scope', 'ResourceFactory', '$location', mifosX.controllers.CreateChargeCodeController]).run(function($log) {
+  mifosX.ng.application.controller('CreateChargeCodeController', ['$scope', 'ResourceFactory', '$location','$rootScope', mifosX.controllers.CreateChargeCodeController]).run(function($log) {
     $log.info("CreateChargeCodeController initialized");
   });
 }(mifosX.controllers || {}));

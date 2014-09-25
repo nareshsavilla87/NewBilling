@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    CreatePriceController: function(scope, routeParams, resourceFactory, location) {
+    CreatePriceController: function(scope, routeParams, resourceFactory, location,$rootScope) {
         
     	scope.chargeDatas = [];
         scope.chargevariants = [];
@@ -29,14 +29,14 @@
         	 delete this.formData.chargeVariantId;
         	 delete this.formData.priceRegionData;
         	 delete this.formData.contractPeriods;
-        	 this.formData.locale = 'en';
+        	 this.formData.locale = $rootScope.locale.code;
         	 resourceFactory.priceResource.save({'planId':routeParams.id},this.formData,function(data){
                  location.path('/viewprice/' + data.resourceId+'/'+routeParams.id);
           });
         };
     }
   });
-  mifosX.ng.application.controller('CreatePriceController', ['$scope', '$routeParams', 'ResourceFactory', '$location', mifosX.controllers.CreatePriceController]).run(function($log) {
+  mifosX.ng.application.controller('CreatePriceController', ['$scope', '$routeParams', 'ResourceFactory', '$location','$rootScope', mifosX.controllers.CreatePriceController]).run(function($log) {
     $log.info("CreatePriceController initialized");
   });
 }(mifosX.controllers || {}));

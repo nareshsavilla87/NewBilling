@@ -153,7 +153,7 @@
  	"#form validations errors " : "------------------------------------",
  	"form.error.alphanumeric"		     : "alphanumeric and spaces only!",
  	"form.error.name.characters.atleast" : "Name is required at least 3 characters",
- 	"form.error.number.digits.atleast"   : "at least minimum 10 digits accepts..",
+ 	"form.error.number.digits.atleast"   : "at least minimum 7 digits accepts..",
  	"form.error.number.digits.maximum"   : "maximum 15 digits accepts..",
  	"form.error.number"		    		 : "accepts only digits !",
  	"form.error.password.match"		   	 : "Password did not Match !",
@@ -811,8 +811,12 @@
 "error.msg.client.Not Parent.can.not.be.parent.to this.account":"Can not be parent to this account",
 "label.agree":"I agree to",
 "label.Terms.Conditions":"Terms and Conditions",
-"label.terms.condition.url":"https://netgreidslur.korta.is/testing/?page=samples&lang=en"
+"label.terms.condition.url":"https://netgreidslur.korta.is/testing/?page=samples&lang=en",
 
+
+"label.agree":"I agree to",
+"label.Terms.Conditions":"Terms and Conditions",
+"label.terms.condition.url":"https://netgreidslur.korta.is/testing/?page=samples&lang=en"
 
 
 

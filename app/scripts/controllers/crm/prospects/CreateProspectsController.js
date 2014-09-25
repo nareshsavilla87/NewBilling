@@ -1,6 +1,6 @@
 (function(module) {
 	  mifosX.controllers = _.extend(module, {
-		  CreateProspectsController: function(scope, resourceFactory, location,dateFilter,validator) {
+		  CreateProspectsController: function(scope, resourceFactory, location,dateFilter,validator,$rootScope) {
 			
 	        scope.sourceOfPublicityDatas = [];
 	        scope.planDatas = [];
@@ -56,7 +56,7 @@
 	        		return undefined;
 	        	}*/
 	        	
-	        	 this.formData.locale = "en";
+	        	 this.formData.locale = $rootScope.locale.code;
 	        	 var reqDate = dateFilter(scope.first.date,'yyyy-MM-dd');
 	        	 this.formData.preferredCallingTime = reqDate+" "+$('#timepicker1').val()+':00';
 	        	 this.formData.cityDistrict=this.formData.city;
@@ -67,7 +67,7 @@
 	        };
 	    }
 	  });
-	  mifosX.ng.application.controller('CreateProspectsController', ['$scope', 'ResourceFactory', '$location','dateFilter','HTValidationService', mifosX.controllers.CreateProspectsController]).run(function($log) {
+	  mifosX.ng.application.controller('CreateProspectsController', ['$scope', 'ResourceFactory', '$location','dateFilter','HTValidationService','$rootScope', mifosX.controllers.CreateProspectsController]).run(function($log) {
 	    $log.info("CreateProspectsController initialized");
 	  });
 	}(mifosX.controllers || {}));

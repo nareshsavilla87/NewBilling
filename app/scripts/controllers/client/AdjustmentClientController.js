@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  AdjustmentClientController: function(scope,webStorage, resourceFactory, routeParams, location,dateFilter) {
+	  AdjustmentClientController: function(scope,webStorage, resourceFactory, routeParams, location,dateFilter,$rootScope) {
 
         scope.formData = {};
         scope.clientId = routeParams.id;
@@ -35,7 +35,7 @@
 
         scope.submit = function() {
         	scope.flag = true;
-          this.formData.locale = "en";
+          this.formData.locale = $rootScope.locale.code;
           this.formData.dateFormat = "dd MMMM yyyy";
       	  var adjustmentDate = dateFilter(scope.start.date,'dd MMMM yyyy');
           this.formData.adjustment_date = adjustmentDate;
@@ -49,7 +49,7 @@
 
     }
   });
-  mifosX.ng.application.controller('AdjustmentClientController', ['$scope','webStorage', 'ResourceFactory', '$routeParams', '$location','dateFilter', mifosX.controllers.AdjustmentClientController]).run(function($log) {
+  mifosX.ng.application.controller('AdjustmentClientController', ['$scope','webStorage', 'ResourceFactory', '$routeParams', '$location','dateFilter','$rootScope', mifosX.controllers.AdjustmentClientController]).run(function($log) {
     $log.info("AdjustmentClientController initialized");
   });
 }(mifosX.controllers || {}));

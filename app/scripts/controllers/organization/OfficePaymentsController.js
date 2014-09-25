@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  OfficePaymentsController: function(scope,resourceFactory, routeParams, location,dateFilter,webStorage) {
+	  OfficePaymentsController: function(scope,resourceFactory, routeParams, location,dateFilter,webStorage,$rootScope) {
 
         scope.formData = {};
         scope.officeId = routeParams.officeId;
@@ -25,7 +25,7 @@
         scope.submit = function() {
 
         	scope.flag = true;
-          this.formData.locale = "en";
+          this.formData.locale = $rootScope.locale.code;
           this.formData.dateFormat = "dd MMMM yyyy";
       	  var paymentDate = dateFilter(scope.start.date,'dd MMMM yyyy');
           this.formData.paymentDate= paymentDate;
@@ -38,7 +38,7 @@
           };
     }
   });
-  mifosX.ng.application.controller('OfficePaymentsController', ['$scope', 'ResourceFactory', '$routeParams', '$location','dateFilter','webStorage', mifosX.controllers.OfficePaymentsController]).run(function($log) {
+  mifosX.ng.application.controller('OfficePaymentsController', ['$scope', 'ResourceFactory', '$routeParams', '$location','dateFilter','webStorage','$rootScope', mifosX.controllers.OfficePaymentsController]).run(function($log) {
     $log.info("OfficePaymentsController initialized");
   });
 }(mifosX.controllers || {}));

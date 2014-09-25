@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    SchedulerJobsController: function(scope, resourceFactory, route,location,$modal,PermissionService) {
+    SchedulerJobsController: function(scope, resourceFactory, route,location,$modal,PermissionService,$rootScope) {
       var jobIdArray = [];
       var jobNameArray = [];
       scope.PermissionService = PermissionService;
@@ -124,7 +124,7 @@
 				$scope.flagapprove=true;
 			        	this.formData.jobName="Messanger";
 			        	this.formData.dateFormat="dd MMMM yyyy";
-			        	this.formData.locale="en";
+			        	this.formData.locale=$rootScope.locale.code;
 			            resourceFactory.jobsparameters.update({jobId:a}, this.formData, function(data){
 			            	$modalInstance.dismiss('delete');
 			              },function(errData){
@@ -142,7 +142,7 @@
 		};
     }
   });
-  mifosX.ng.application.controller('SchedulerJobsController', ['$scope', 'ResourceFactory', '$route', '$location','$modal','PermissionService', mifosX.controllers.SchedulerJobsController]).run(function($log) {
+  mifosX.ng.application.controller('SchedulerJobsController', ['$scope', 'ResourceFactory', '$route', '$location','$modal','PermissionService','$rootScope', mifosX.controllers.SchedulerJobsController]).run(function($log) {
     $log.info("SchedulerJobsController initialized");
   });
 }(mifosX.controllers || {}));

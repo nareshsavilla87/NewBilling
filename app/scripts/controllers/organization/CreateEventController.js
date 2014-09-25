@@ -4,7 +4,7 @@
 					module,
 					{
 						CreateEventController : function(scope,
-								resourceFactory, dateFilter,location,routeParams) {
+								resourceFactory, dateFilter,location,routeParams,$rootScope) {
 
 							scope.eventStatus = [];
 							scope.chargeData = [];
@@ -78,7 +78,7 @@
 							
 							
 							scope.submit = function() {
-								this.formData.locale = 'en';
+								this.formData.locale = $rootScope.locale.code;
 								this.formData.dateFormat = 'dd MMMM yyyy';
 								/*this.formData.eventStartDate= '07 November 2013';
 								this.formData.eventEndDate= '30 November 2013';
@@ -111,7 +111,7 @@
 					});
 	mifosX.ng.application.controller(
 			'CreateEventController',
-			[ '$scope', 'ResourceFactory', 'dateFilter','$location','$routeParams',
+			[ '$scope', 'ResourceFactory', 'dateFilter','$location','$routeParams','$rootScope',
 					mifosX.controllers.CreateEventController ]).run(
 			function($log) {
 				$log.info("CreateEventController initialized");

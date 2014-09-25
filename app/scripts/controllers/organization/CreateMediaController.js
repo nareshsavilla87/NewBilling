@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  CreateMediaController: function(scope, resourceFactory, location,dateFilter) {
+	  CreateMediaController: function(scope, resourceFactory, location,dateFilter,$rootScope) {
         scope.mediaAttributes = [];
         scope.mediaCategeorydatas = [];
         scope.mediaFormats = [];
@@ -158,13 +158,13 @@
 						service : scope.gameData[i].service,
 						sequence : scope.gameData[i].sequence,
 						amount : scope.gameData[i].amount,
-						locale : "en",
+						locale : $rootScope.locale.code,
 						dateFormat  : "dd MMMM yyyy"
         			});
         		}
         	}
         	this.formData.dateFormat = 'dd MMMM yyyy';
-            this.formData.locale = 'en';
+            this.formData.locale = $rootScope.locale.code;
         	resourceFactory.saveMediaGameTemplateResource.save(this.formData,function(data){
                 location.path('/viewmedia/' + data.resourceId);
               });
@@ -177,7 +177,7 @@
         		return undefined;
         	}
         	
-        	 this.formData.locale = 'en';
+        	 this.formData.locale = $rootScope.locale.code;
          	 var reqDate = dateFilter(scope.release.date,'dd MMMM yyyy');
              this.formData.dateFormat = 'dd MMMM yyyy';
              this.formData.releaseDate = reqDate;
@@ -225,7 +225,7 @@
         		return undefined;
         	}
         	
-        	 this.formData.locale = 'en';
+        	 this.formData.locale = $rootScope.locale.code;
          	 var reqDate = dateFilter(scope.release.date,'dd MMMM yyyy');
              this.formData.dateFormat = 'dd MMMM yyyy';
              this.formData.releaseDate = reqDate;
@@ -262,7 +262,7 @@
         
     }
   });
-  mifosX.ng.application.controller('CreateMediaController', ['$scope', 'ResourceFactory', '$location','dateFilter', mifosX.controllers.CreateMediaController]).run(function($log) {
+  mifosX.ng.application.controller('CreateMediaController', ['$scope', 'ResourceFactory', '$location','dateFilter','$rootScope', mifosX.controllers.CreateMediaController]).run(function($log) {
     $log.info("CreateMediaController initialized");
   });
 }(mifosX.controllers || {}));

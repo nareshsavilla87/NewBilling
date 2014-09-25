@@ -21,7 +21,7 @@
 
       </div>
 <br/>
-<div class="row" ng-show="isRegPage">
+<!-- <div class="row" ng-show="isRegPage">
 	<span style="margin-left:100px;" class="animated wobble">{{'header.registation'|translate}}</span>
 	<span style="margin-left:250px;">{{'header.package.selection'|translate}}</span>
 	<span style="margin-left:240px;">{{'header.payment'|translate}}</span><br/>
@@ -47,13 +47,13 @@
 	<img style="margin-left:280px;" alt="{{'header.package.selection'|translate}}" src="./selfcare_module/images/Subscribe.jpg" width="60px;">
 	<img class="animated wobble" style="margin-left:280px;" alt="{{'header.payment'|translate}}" src="./selfcare_module/images/Payment.jpg" width="60px;"><br/>
 	<img class="animated pulse" style="margin-left:790px;margin-top:-28px" alt="ok" src="./selfcare_module/images/checkbox.png" width="40px;">
-</div>
+</div> 
 <div ng-show="isRedirectToDalpay">
 <div class="alert alert-info animated pulse" role="alert">
 	<img style="margin-left:400px;" alt="Loading.." ng-src="./selfcare_module/images/loader_circle.gif" width="20px"/>
          <strong>{{'title.redirecting.dalpay'|translate}}</strong>
 		</div>
-</div>
+</div>-->
  		<form name="activeForm" novalidate="" class="form-horizontal">
  			<div class="control-group" ng-show="isActive==true" style="margin-top:50px;">
 				 <div class="alert alert-success animated tada" role="alert" >
@@ -105,10 +105,10 @@
 	       		<tr>
 	       			<td>
             			<div class="control-group" style="margin-bottom:30px;">
-            				<label class="control-label">{{'label.telephone.number' | translate}}&nbsp;<span class="required">*</span></label>
+            				<label class="control-label">{{'label.telephone.number' | translate}}&nbsp;</label>
             				<div class="controls">
-            					<input name="telePhone" type="text" data-ng-model="formData.homePhoneNumber" placeholder= "{{'label.telephone.number' | translate}}" ng-minlength="10" maxlength="15"
-            							ng-pattern="/^\d{1,15}$/" required  late-Validate/><br/>
+            					<input name="telePhone" type="text" data-ng-model="formData.homePhoneNumber" placeholder= "{{'label.telephone.number' | translate}}" ng-minlength="7" maxlength="15"
+            							ng-pattern="/^\d{1,15}$/" late-Validate/><br/>
             					 <span ng-show="regSuccessForm.telePhone.$dirty && regSuccessForm.telePhone.$invalid">
 				        			<small class="error" ng-show="regSuccessForm.telePhone.$error.pattern">{{'form.error.number'|translate}}</small>
 				        			<small class="error" ng-show="regSuccessForm.telePhone.$error.minlength">{{'form.error.number.digits.atleast'|translate}}</small>
@@ -122,7 +122,7 @@
             			<div class="control-group" style="margin-bottom:30px;">
             				<label class="control-label">{{'label.mobilephone' | translate}}&nbsp;<span class="required">*</span></label>
             				<div class="controls">
-            					<input name="phone" type="text" data-ng-model="formData.mobileNo" placeholder= "{{'label.mobilephone' | translate}}" ng-minlength="10" maxlength="15"
+            					<input name="phone" type="text" data-ng-model="formData.mobileNo" placeholder= "{{'label.mobilephone' | translate}}" ng-minlength="7" maxlength="15"
             							ng-pattern="/^\d{1,15}$/" required  late-Validate/><br/>
             					 <span ng-show="regSuccessForm.phone.$dirty && regSuccessForm.phone.$invalid">
 				        			<small class="error" ng-show="regSuccessForm.phone.$error.pattern">{{'form.error.number'|translate}}</small>
@@ -223,9 +223,51 @@
 	        </div> -->
 	       </fieldset>
 	</form>
+	<div class="row-fluid span">
+				<div class="span6">
+					<table width="100%" class="table table-striped table-bordered" width="0px">
+						<tr>
+							<td width="50%">{{'label.customer.name' | translate}}</td>
+							<td width="50%">{{formData.fullName}}</td>
+						</tr>	
+						<tr>
+							<td width="30%">{{'label.email' | translate}}</td>
+							<td width="70%">{{existedEmail}}</td>
+						</tr>
+						<tr>
+							<td width="30%">{{'label.telephone.number' | translate}}</td>
+							<td width="70%">{{formData.homePhoneNumber}}</td>
+						</tr>
+						<tr>
+							<td width="30%">{{'label.mobilephone' | translate}}</td>
+							<td width="70%">{{formData.mobileNo}}</td>
+						</tr>
+						<tr>
+							<td width="30%">{{ 'label.nationalid' | translate }}</td>
+							<td width="70%">{{formData.nationalId}}</td>
+						</tr>
+						<tr>
+							<td width="30%">{{ 'label.home.address' | translate }}</td>
+							<td width="70%">{{formData.address}}</td>
+						</tr>
+						<tr>
+							<td width="30%">{{'label.home.postcode' | translate}}</td>
+							<td width="70%">{{formData.city}}</td>
+						</tr>
+						<tr>
+							<td width="30%">{{'label.state/province' | translate}}</td>
+							<td width="70%">{{formData.state}}</td>
+						</tr>
+						<tr ng-show="isDeviceEnabled==true">
+							<td width="30%">{{ 'label.device' | translate }}</td>
+							<td width="70%">{{formData.deviceNo}}</td>
+						</tr>
+					</table>
+				</div>			
+			</div>
 	 <!--  start of code Not Show when in configuration screen Register_plan is Enabled true 
 	<div ng-hide="isRegisteredPlan"> -->
-	         <div ng-show="isOrderPage">
+	        <!--  <div ng-show="isOrderPage">
 	        <div class="animated bounce">
 	       	<h3>{{'header.packages'|translate}}</h3>
 	      		<div  style="margin-left:50px;">
@@ -242,7 +284,7 @@
 			    		</span>
 			    	 </div>
 			       </div>
-			    	<!-- <table class="table" ng-repeat="contractData in plan.pricingData track by $index">
+			    	<table class="table" ng-repeat="contractData in plan.pricingData track by $index">
 			    		<tbody>
 			    		  <tr>
 			    			 <td class="animated pulse" style="border-bottom:1px solid #dddddd;border-top:0px;padding-top:30px;">
@@ -256,7 +298,7 @@
 			    			</td>
 			    		  </tr>
 			    		</tbody>
-			    	</table> -->
+			    	</table>
 			    </tab>
 			  </tabset>
 		    </div> 
@@ -294,11 +336,11 @@
 	       			<td>
             			<div class="control-group">
             				<div class="controls">
-            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('dalpay')" checked/>
-            						&nbsp;<span  class="btn btn-primary animated pulse">{{'label.dalpay'|translate}}</span>
-
-            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('korta')" style="margin-left:20px;"/>
+            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('korta')" checked/>
             						&nbsp;<span  class="btn btn-primary animated pulse">{{'label.korta'|translate}}</span>
+            					
+            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('dalpay')" style="margin-left:20px;"/>
+            						&nbsp;<span  class="btn btn-primary animated pulse">{{'label.dalpay'|translate}}</span>
             				</div>
         				 </div>
 	         				 
@@ -347,7 +389,7 @@
 			</div> 
 			 
 		</fieldset>
-	</form>
+	</form> -->
 	<!--</div>   End of code Not Show when in configuration screen Register_plan is Enabled true -->
 	
 	

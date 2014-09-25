@@ -70,7 +70,7 @@
         scope.submit = function() {
         	 scope.flag = true;
             var reqDate = dateFilter(scope.first.date,'dd MMMM yyyy');
-            this.formData.locale = 'en';
+            this.formData.locale = $rootScope.locale.code;
             this.formData.active = true;
             this.formData.dateFormat = 'dd MMMM yyyy';
             this.formData.activationDate = reqDate;

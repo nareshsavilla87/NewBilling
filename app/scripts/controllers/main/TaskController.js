@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    TaskController: function(scope, resourceFactory, route, dateFilter) {
+    TaskController: function(scope, resourceFactory, route, dateFilter,$rootScope) {
         
         scope.clients = [];
         scope.loans = [];
@@ -50,7 +50,7 @@
         scope.bulkApproval = function (){
           scope.formData.approvedOnDate = dateFilter(new Date(),'dd MMMM yyyy');
           scope.formData.dateFormat = "dd MMMM yyyy";
-          scope.formData.locale = "en";
+          scope.formData.locale = $rootScope.locale.code;
           var selectedAccounts = 0;
           var approvedAccounts = 0;
           _.each(scope.loanTemplate,function(value,key){
@@ -73,7 +73,7 @@
 
     }
   });
-  mifosX.ng.application.controller('TaskController', ['$scope', 'ResourceFactory', '$route', 'dateFilter', mifosX.controllers.TaskController]).run(function($log) {
+  mifosX.ng.application.controller('TaskController', ['$scope', 'ResourceFactory', '$route', 'dateFilter','$rootScope', mifosX.controllers.TaskController]).run(function($log) {
     $log.info("TaskController initialized");
   });
 }(mifosX.controllers || {}));

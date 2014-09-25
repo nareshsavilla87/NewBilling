@@ -26,7 +26,7 @@
          	callingTab="";
          }else{
  		  scope.displayTab=callingTab.someString;
- 		 
+ 		  
  		  if( scope.displayTab == "moreInfo"){
  			 
  			  scope.moreInfoTab = true;
@@ -294,7 +294,7 @@
         	
 			$scope.accept = function(date){
 				$scope.flagapprove1 = true;
-			        	scope.formData.locale = 'en';
+			        	scope.formData.locale = $rootScope.locale.code;
 			        	var reqDate = dateFilter(date,'dd MMMM yyyy');
 			            scope.formData.dateFormat = 'dd MMMM yyyy';
 			            scope.formData.systemDate=reqDate;
@@ -378,7 +378,7 @@
         		if($scope.formData == undefined || $scope.formData == null){
                     $scope.formData = {"message":""};
                       }
-        		this.formData.locale = 'en';
+        		this.formData.locale = $rootScope.locale.code;
    	         	var reqDate = dateFilter($scope.start.date,'dd MMMM yyyy');
    	         	this.formData.dateFormat = 'dd MMMM yyyy';
    	         	this.formData.dueDate=reqDate;
@@ -802,9 +802,16 @@
                
            scope.routeToEmail = function (statementId) {
                    resourceFactory.statementEmailResource.update({statementId: statementId} , function(data) {	
-                         
                         });
-                      };     
+                      };  
+                      
+           scope.routeToCancelBill = function (statementId) {
+        	   resourceFactory.cancelStatementResource.delete({statementId: statementId}, function(data) {	
+        		   webStorage.add("callingTab", {someString: "Statements" });
+        		 //  location.path("/viewclient/"+routeParams.id);
+        		   route.reload();
+                 });
+               };    
                
                scope.getClientAssociation = function () {
                    resourceFactory.associationResource.get({clientId: routeParams.id} , function(data) {	
