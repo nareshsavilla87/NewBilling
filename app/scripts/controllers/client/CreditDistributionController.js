@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  CreditDistributionController: function(scope,webStorage, resourceFactory, routeParams, location,dateFilter,validator,route,$modal) {
+	  CreditDistributionController: function(scope,webStorage, resourceFactory, routeParams, location,dateFilter,validator,route,$modal,$rootScope) {
 
         scope.formData = {};
         scope.clientId = routeParams.id;
@@ -83,7 +83,7 @@
         				amount : paymentAmount,
         				paymentId : paymentId,
 						clientId  : parseInt(routeParams.id),
-						locale    : "en"
+						locale    : $rootScope.locale.code
 						
         				});
         			}
@@ -97,7 +97,7 @@
         				amount : amount,
         				paymentId : paymentId,
 						clientId  : parseInt(routeParams.id),
-						locale    : "en"
+						locale    : $rootScope.locale.code
 						
         				});
         		}
@@ -135,7 +135,7 @@
         	scope.avialableAmount = scope.paymentDatas[paymentIndex].availAmount; 
         	scope.formData.avialableAmount = scope.avialableAmount;
         	scope.formData.paymentId = paymentId;
-        	scope.formData.locale= "en",
+        	scope.formData.locale= $rootScope.locale.code,
         	scope.formData.creditdistributions = scope.creditdistributions;
         	scope.avialableAmount=null;
         	resourceFactory.creditDistributionResource.save({clientId : routeParams.id},scope.formData,function(data){
@@ -144,7 +144,7 @@
         };
 	  }
   });
-  mifosX.ng.application.controller('CreditDistributionController', ['$scope','webStorage', 'ResourceFactory', '$routeParams', '$location','dateFilter','HTValidationService','$route','$modal', mifosX.controllers.CreditDistributionController]).run(function($log) {
+  mifosX.ng.application.controller('CreditDistributionController', ['$scope','webStorage', 'ResourceFactory', '$routeParams', '$location','dateFilter','HTValidationService','$route','$modal','$rootScope', mifosX.controllers.CreditDistributionController]).run(function($log) {
     $log.info("CreditDistributionController initialized");
   });
 }(mifosX.controllers || {}));

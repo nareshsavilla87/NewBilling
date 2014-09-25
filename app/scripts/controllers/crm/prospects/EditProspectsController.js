@@ -2,7 +2,7 @@
 
 (function(module) {
 	  mifosX.controllers = _.extend(module, {
-		  EditProspectsController: function(scope, routeParams , route, location, resourceFactory, http,dateFilter) {
+		  EditProspectsController: function(scope, routeParams , route, location, resourceFactory, http,dateFilter,$rootScope) {
 			 // alert("hh");
 	        scope.editprospects = [];
 	        scope.sourceOfPublicityDatas = [];
@@ -66,7 +66,7 @@
 	        		delete scope.editprospects.sourceOther;
 	        	}
 	        	
-	        	scope.editprospects.locale = 'en';
+	        	scope.editprospects.locale = $rootScope.locale.code;
 	        	delete scope.editprospects.sourceOfPublicityData;
 	        	var reqDate = dateFilter(new Date(scope.first.date),'yyyy-MM-dd');
 
@@ -137,7 +137,7 @@
 			        	};   
 	    }
 	  });
-	  mifosX.ng.application.controller('EditProspectsController', ['$scope', '$routeParams', '$route', '$location', 'ResourceFactory', '$http','dateFilter', mifosX.controllers.EditProspectsController]).run(function($log) {
+	  mifosX.ng.application.controller('EditProspectsController', ['$scope', '$routeParams', '$route', '$location', 'ResourceFactory', '$http','dateFilter','$rootScope', mifosX.controllers.EditProspectsController]).run(function($log) {
 	    $log.info("EditProspectsController initialized");
 	  });
 	}(mifosX.controllers || {}));

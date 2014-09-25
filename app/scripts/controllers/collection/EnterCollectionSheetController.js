@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    EnterCollectionSheetController: function(scope, resourceFactory, location, routeParams) {
+    EnterCollectionSheetController: function(scope, resourceFactory, location, routeParams,$rootScope) {
         scope.offices = [];
         scope.centers = [];
         scope.groups = [];
@@ -57,7 +57,7 @@
 
         scope.previewCollectionSheet = function() {
           scope.formData.dateFormat = "dd MMMM yyyy";
-          scope.formData.locale = "en";
+          scope.formData.locale = $rootScope.locale.code;
           scope.formData.calendarId = scope.calendarId;
           scope.bulkRepaymentTransactions = [];
           scope.bulkDisbursementTransactions = [];
@@ -276,7 +276,7 @@
         scope.submit = function() {  
           scope.formData.calendarId = scope.calendarId;
           scope.formData.dateFormat = "dd MMMM yyyy";
-          scope.formData.locale = "en";
+          scope.formData.locale = $rootScope.locale.code;
           scope.formData.transactionDate = this.formData.transactionDate;
           scope.formData.actualDisbursementDate = this.formData.transactionDate;
           scope.formData.clientsAttendance = scope.clientsAttendance;
@@ -294,7 +294,7 @@
         };
     }
   });
-  mifosX.ng.application.controller('EnterCollectionSheetController', ['$scope', 'ResourceFactory', '$location', '$routeParams', mifosX.controllers.EnterCollectionSheetController]).run(function($log) {
+  mifosX.ng.application.controller('EnterCollectionSheetController', ['$scope', 'ResourceFactory', '$location', '$routeParams','$rootScope', mifosX.controllers.EnterCollectionSheetController]).run(function($log) {
     $log.info("EnterCollectionSheetController initialized");
   });
 }(mifosX.controllers || {}));

@@ -1,6 +1,6 @@
 (function(module) {
 	mifosX.controllers = _.extend(module,{
-		EditEventController : function(scope,routeParams,resourceFactory,dateFilter, location) {
+		EditEventController : function(scope,routeParams,resourceFactory,dateFilter, location,$rootScope) {
 							scope.eventStatus = [];
 							scope.chargeData = [];
 							scope.availableServices = [];
@@ -80,7 +80,7 @@
 
 							scope.submit = function() {
 								
-								this.formData.locale = 'en';
+								this.formData.locale = $rootScope.locale.code;
 								this.formData.dateFormat = 'dd MMMM yyyy';
 								
 								this.formData.status=this.formData.statusId;
@@ -110,7 +110,7 @@
 							};
 						}
 					});
-	mifosX.ng.application.controller('EditEventController', ['$scope', '$routeParams', 'ResourceFactory','dateFilter', '$location', mifosX.controllers.EditEventController]).run(function($log) {
+	mifosX.ng.application.controller('EditEventController', ['$scope', '$routeParams', 'ResourceFactory','dateFilter', '$location','$rootScope', mifosX.controllers.EditEventController]).run(function($log) {
 	    $log.info("EditEventController initialized");
 	  });
 	

@@ -50,7 +50,7 @@
 	        
 	        scope.itemDataQuantity=function(quantity,itemId,officeId){
 	        	this.data.unitPrice=this.formData.unitPrice;
-	        	this.data.locale="en";
+	        	this.data.locale=$rootScope.locale.code;
 	        	this.data.quantity=quantity;
 	        	resourceFactory.oneTimeSaleQuantityResource.get({quantity: quantity,itemId:itemId},this.data, function(data) {
 	        		
@@ -107,7 +107,7 @@
 	           };
 	        scope.submit = function() {  
 	        	scope.flag = true;
-	        	 this.formData.locale = "en";
+	        	 this.formData.locale = $rootScope.locale.code;
 	             this.formData.dateFormat = "dd MMMM yyyy";
 	             this.formData.chargeCode="NONE";
 	             this.formData.saleType = "SECOND_SALE";

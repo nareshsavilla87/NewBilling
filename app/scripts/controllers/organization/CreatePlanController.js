@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  CreatePlanController: function(scope, resourceFactory, location,dateFilter) {
+	  CreatePlanController: function(scope, resourceFactory, location,dateFilter,$rootScope) {
 		  
         scope.billRuleDatas = [];
         scope.availableServices = [];
@@ -74,7 +74,7 @@
         
         scope.submit = function() {   
         	
-        	this.formData.locale = 'en';
+        	this.formData.locale = $rootScope.locale.code;
         	var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
         	var reqEndDate = dateFilter(scope.end.date,'dd MMMM yyyy');
         	
@@ -97,7 +97,7 @@
         };
     }
   });
-  mifosX.ng.application.controller('CreatePlanController', ['$scope', 'ResourceFactory', '$location','dateFilter', mifosX.controllers.CreatePlanController]).run(function($log) {
+  mifosX.ng.application.controller('CreatePlanController', ['$scope', 'ResourceFactory', '$location','dateFilter','$rootScope', mifosX.controllers.CreatePlanController]).run(function($log) {
     $log.info("CreatePlanController initialized");
   });
 }(mifosX.controllers || {}));

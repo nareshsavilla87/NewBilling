@@ -107,7 +107,7 @@
             			<div class="control-group" style="margin-bottom:30px;">
             				<label class="control-label">{{'label.telephone.number' | translate}}&nbsp;<span class="required">*</span></label>
             				<div class="controls">
-            					<input name="telePhone" type="text" data-ng-model="formData.homePhoneNumber" placeholder= "{{'label.telephone.number' | translate}}" ng-minlength="10" maxlength="15"
+            					<input name="telePhone" type="text" data-ng-model="formData.homePhoneNumber" placeholder= "{{'label.telephone.number' | translate}}" ng-minlength="7" maxlength="15"
             							ng-pattern="/^\d{1,15}$/" required  late-Validate/><br/>
             					 <span ng-show="regSuccessForm.telePhone.$dirty && regSuccessForm.telePhone.$invalid">
 				        			<small class="error" ng-show="regSuccessForm.telePhone.$error.pattern">{{'form.error.number'|translate}}</small>
@@ -122,7 +122,7 @@
             			<div class="control-group" style="margin-bottom:30px;">
             				<label class="control-label">{{'label.mobilephone' | translate}}&nbsp;<span class="required">*</span></label>
             				<div class="controls">
-            					<input name="phone" type="text" data-ng-model="formData.mobileNo" placeholder= "{{'label.mobilephone' | translate}}" ng-minlength="10" maxlength="15"
+            					<input name="phone" type="text" data-ng-model="formData.mobileNo" placeholder= "{{'label.mobilephone' | translate}}" ng-minlength="7" maxlength="15"
             							ng-pattern="/^\d{1,15}$/" required  late-Validate/><br/>
             					 <span ng-show="regSuccessForm.phone.$dirty && regSuccessForm.phone.$invalid">
 				        			<small class="error" ng-show="regSuccessForm.phone.$error.pattern">{{'form.error.number'|translate}}</small>

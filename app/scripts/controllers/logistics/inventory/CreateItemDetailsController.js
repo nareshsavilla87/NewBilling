@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    CreateItemDetailsController: function(scope,webStorage, resourceFactory, routeParams, location) {
+    CreateItemDetailsController: function(scope,webStorage, resourceFactory, routeParams, location,$rootScope) {
     	 scope.formData = [];
     	 scope.grnIds = [];
     	 scope.itemDetailsData=[];
@@ -29,7 +29,7 @@
 	       };
 	       
         scope.submit = function() {
-        	this.formData.locale = 'en';
+        	this.formData.locale = $rootScope.locale.code;
         	this.formData.grnId = scope.itemDetailsData.id;//scope.grnIds.id;
         	this.formData.serialNumber = scope.itemDetailsData.serialNumber;
         	this.formData.quality = scope.itemDetailsData.quality==undefined?'Good':scope.itemDetailsData.quality;
@@ -44,7 +44,7 @@
         };
     }
   });
-  mifosX.ng.application.controller('CreateItemDetailsController', ['$scope','webStorage', 'ResourceFactory','$routeParams','$location', mifosX.controllers.CreateItemDetailsController]).run(function($log) {
+  mifosX.ng.application.controller('CreateItemDetailsController', ['$scope','webStorage', 'ResourceFactory','$routeParams','$location','$rootScope', mifosX.controllers.CreateItemDetailsController]).run(function($log) {
     $log.info("CreateItemDetailsController initialized");
   });
 }(mifosX.controllers || {}));

@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    MakeAccountTransferController: function(scope, resourceFactory, location, routeParams) {
+    MakeAccountTransferController: function(scope, resourceFactory, location, routeParams,$rootScope) {
 
       var params = {fromAccountId : routeParams.accountId};
       var accountType = routeParams.accountType || '';
@@ -37,7 +37,7 @@
       };
 
       scope.submit = function() {
-        this.formData.locale = "en";
+        this.formData.locale = $rootScope.locale.code;
         this.formData.dateFormat = "dd MMMM yyyy";
         if (this.formData.transferDate) this.formData.transferDate = dateFilter(this.formData.transferDate,'dd MMMM yyyy');
         this.formData.fromOfficeId = scope.transfer.fromClient.id;
@@ -48,7 +48,7 @@
       };
     }
   });
-  mifosX.ng.application.controller('MakeAccountTransferController', ['$scope', 'ResourceFactory', '$location', '$routeParams', mifosX.controllers.MakeAccountTransferController]).run(function($log) {
+  mifosX.ng.application.controller('MakeAccountTransferController', ['$scope', 'ResourceFactory', '$location', '$routeParams','$rootScope', mifosX.controllers.MakeAccountTransferController]).run(function($log) {
     $log.info("MakeAccountTransferController initialized");
   });
 }(mifosX.controllers || {}));

@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  CreateActivationController: function(scope,webStorage,routeParams, resourceFactory, location, http,filter, dateFilter) {
+	  CreateActivationController: function(scope,webStorage,routeParams, resourceFactory, location, http,filter, dateFilter,$rootScope) {
 		 
 		
 		  scope.ActivationData = {};
@@ -100,7 +100,7 @@
 	        		scope.formData2.discountId = scope.discountMasterDatas[0].discountMasterId;
 	        		
 	        		scope.data.unitPrice=scope.formData2.unitPrice;
-	        		scope.data.locale="en";
+	        		scope.data.locale=$rootScope.locale.code;
 	        		scope.data.quantity=1;
 	        		
 	        		resourceFactory.oneTimeSaleQuantityResource.get({quantity:1,itemId:itemId},scope.data, function(data) {
@@ -117,7 +117,7 @@
 	        };
 	        scope.itemDataQuantity=function(quantity,itemId){
 	        	this.data.unitPrice=this.formData2.unitPrice;
-	        	this.data.locale="en";
+	        	this.data.locale=$rootScope.locale.code;
 	        	this.data.quantity=1;
 	        	
 	        	//alert(itemId);
@@ -237,7 +237,7 @@
 	        scope.submit4 = function() {   
 	        	scope.flag = true;
 
-	        	this.formData4.locale = 'en';
+	        	this.formData4.locale = $rootScope.locale.code;
 	        	this.formData4.isNewplan=true;
 	        	var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
 	            this.formData4.dateFormat = 'dd MMMM yyyy';
@@ -258,7 +258,7 @@
 	      		scope.ActivationData.owndevice=[];
 	              	//alert("submit");
 	                  var reqDate = dateFilter(scope.first.date,'dd MMMM yyyy');
-	                  this.formData1.locale = 'en';
+	                  this.formData1.locale = $rootScope.locale.code;
 	                  this.formData1.active = true;
 	                  this.formData1.dateFormat = 'dd MMMM yyyy';
 	                  this.formData1.activationDate = reqDate;
@@ -285,7 +285,7 @@
 	                //  delete this.formData1.name;
 	                  
 	                if(config =='SALE'){  
-	 	        	 this.formData2.locale = "en";
+	 	        	 this.formData2.locale = $rootScope.locale.code;
 	 	             this.formData2.dateFormat = "dd MMMM yyyy";
 	 	             this.formData2.saleType="Sale";
 	 	            this.formData2.quantity=1;
@@ -302,7 +302,7 @@
 	               delete this.formData2.chargesData;
 	                }else{
 	                	
-	                	  scope.formData5.locale = 'en';
+	                	  scope.formData5.locale = $rootScope.locale.code;
 	  		            var reqDate = dateFilter(scope.first.date,'dd MMMM yyyy');
 	  		            scope.formData5.dateFormat = 'dd MMMM yyyy';
 	  		            scope.formData5.allocationDate = reqDate;
@@ -357,7 +357,7 @@
 	            	if(resp){
 	            	
 	            	scope.formData6.paymentCode=23;
-	            	scope.formData6.locale='en';
+	            	scope.formData6.locale=$rootScope.locale.code;
 	            	scope.formData6.dateFormat = 'dd MMMM yyyy';
 	            	scope.formData6.paymentDate=reqDate;
 	            	var num=Math.floor((Math.random()*900)+100);
@@ -381,7 +381,7 @@
 	
     }
   });
-  mifosX.ng.application.controller('CreateActivationController', ['$scope','webStorage', '$routeParams','ResourceFactory', '$location', '$http','$filter', 'dateFilter', mifosX.controllers.CreateActivationController]).run(function($log) {
+  mifosX.ng.application.controller('CreateActivationController', ['$scope','webStorage', '$routeParams','ResourceFactory', '$location', '$http','$filter', 'dateFilter','$rootScope', mifosX.controllers.CreateActivationController]).run(function($log) {
     $log.info("CreateActivationController initialized");
   });
 }(mifosX.controllers || {}));

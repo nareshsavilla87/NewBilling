@@ -1,7 +1,7 @@
 
 (function(module) {
     mifosX.controllers = _.extend(module, {
-        OrderDisconnectController: function(scope,routeParams,resourceFactory, location,dateFilter) {
+        OrderDisconnectController: function(scope,routeParams,resourceFactory, location,dateFilter,$rootScope) {
             scope.disconnectDetails = [];
             scope.start = {};
             scope.start.date = new Date();
@@ -10,7 +10,7 @@
             });
 
     scope.submit = function() {
-    	this.formData.locale = 'en';
+    	this.formData.locale = $rootScope.locale.code;
     	var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
         this.formData.dateFormat = 'dd MMMM yyyy';
         this.formData.disconnectionDate = reqDate;
@@ -20,7 +20,7 @@
     };
         }
     });
-    mifosX.ng.application.controller('OrderDisconnectController', ['$scope','$routeParams','ResourceFactory', '$location','dateFilter', mifosX.controllers.OrderDisconnectController]).run(function($log) {
+    mifosX.ng.application.controller('OrderDisconnectController', ['$scope','$routeParams','ResourceFactory', '$location','dateFilter','$rootScope', mifosX.controllers.OrderDisconnectController]).run(function($log) {
         $log.info("OrderDisconnectController initialized");
     });
 }(mifosX.controllers || {}));

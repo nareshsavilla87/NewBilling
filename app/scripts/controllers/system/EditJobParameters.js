@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  EditJobParameters: function(scope, routeParams, resourceFactory, location,dateFilter) {
+	  EditJobParameters: function(scope, routeParams, resourceFactory, location,dateFilter,$rootScope) {
 		  
 		  scope.reportDatas =[];
 		  scope.billingMessageDatas=[];
@@ -56,7 +56,7 @@
     	
     	  this.formData.jobName=this.formData.name;
     	  this.formData.dateFormat = 'dd MMMM yyyy';
-    	  this.formData.locale = 'en';
+    	  this.formData.locale = $rootScope.locale.code;
     	  this.formData.reportName=this.formData.jobparameters.batchName;
     	  this.formData.messageTemplate=this.formData.jobparameters.messageTemplate;
     	  this.formData.emailId=this.formData.jobparameters.emailId;
@@ -93,7 +93,7 @@
       };
     }
   });
-  mifosX.ng.application.controller('EditJobParameters', ['$scope', '$routeParams', 'ResourceFactory', '$location','dateFilter', mifosX.controllers.EditJobParameters]).run(function($log) {
+  mifosX.ng.application.controller('EditJobParameters', ['$scope', '$routeParams', 'ResourceFactory', '$location','dateFilter','$rootScope', mifosX.controllers.EditJobParameters]).run(function($log) {
     $log.info("EditJobParameters initialized");
   });
 }(mifosX.controllers || {}));

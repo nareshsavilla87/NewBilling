@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  OrderController: function(scope,webStorage,routeParams,route,resourceFactory,location,$modal,dateFilter,paginatorService,PermissionService) {
+	  OrderController: function(scope,webStorage,routeParams,route,resourceFactory,location,$modal,dateFilter,paginatorService,PermissionService,$rootScope) {
         scope.orderPriceDatas = [];
         scope.orderHistorydata=[];
         scope.orderData=[];
@@ -176,7 +176,7 @@
        		$scope.flagPromo=true;
        		var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
             this.formData.dateFormat = 'dd MMMM yyyy';
-            this.formData.locale='en';
+            this.formData.locale=$rootScope.locale.code;
             this.formData.startDate = reqDate;
        		resourceFactory.applyPromotionCodeResource.update({'orderId': routeParams.id},this.formData,
        				
@@ -490,7 +490,7 @@
       	        this.formData.dateFormat = 'dd MMMM yyyy';
       	        this.formData.suspensionDate = reqDate;
       	      
-      	        this.formData.locale = "en";
+      	        this.formData.locale =$rootScope.locale.code;
             	resourceFactory.OrderSuspensionResource.update({orderId: routeParams.id} ,this.formData, function(data) {              	
             		resourceFactory.getSingleOrderResource.get({orderId: routeParams.id} , function(data) {
                         scope.orderPriceDatas= data.orderPriceData;
@@ -567,7 +567,7 @@
         		  var reqDate = dateFilter($scope.start.date,'dd MMMM yyyy');
         	        this.formData.dateFormat = 'dd MMMM yyyy';
         	        this.formData.disconnectionDate = reqDate;
-        	        this.formData.locale = "en";
+        	        this.formData.locale = $rootScope.locale.code;
         		  
         		  resourceFactory.saveOrderResource.update({'clientId': routeParams.id},this.formData,function(data){
         	            /*location.path('/viewclient/'+scope.orderPriceDatas[0].clientId);
@@ -619,7 +619,7 @@
     	  
       }
           scope.updatePrice = function (id,price){
-        	  scope.orderData.locale="en";
+        	  scope.orderData.locale=$rootScope.locale.code;
         	  scope.orderData.price=price;
         	  scope.orderData.priceId=id;
         	
@@ -637,7 +637,7 @@
   
   });
   
-  mifosX.ng.application.controller('OrderController', ['$scope','webStorage','$routeParams','$route', 'ResourceFactory','$location','$modal','dateFilter','PaginatorService','PermissionService',mifosX.controllers.OrderController]).run(function($log) {
+  mifosX.ng.application.controller('OrderController', ['$scope','webStorage','$routeParams','$route', 'ResourceFactory','$location','$modal','dateFilter','PaginatorService','PermissionService','$rootScope',mifosX.controllers.OrderController]).run(function($log) {
     $log.info("OrderController initialized");
   });
 }(mifosX.controllers || {}));

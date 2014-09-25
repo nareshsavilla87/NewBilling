@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  CreateTaxMappingController: function(scope, resourceFactory, routeParams,location,dateFilter) {
+	  CreateTaxMappingController: function(scope, resourceFactory, routeParams,location,dateFilter,$rootScope) {
         scope.chargecodetaxs = [];
         scope.typetaxmapdatas = [];
         scope.priceRegionDatas = [];
@@ -16,7 +16,7 @@
         
                 
         scope.submit = function() {
-        	this.formData.locale = 'en';
+        	this.formData.locale = $rootScope.locale.code;
         	var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
         	
             this.formData.dateFormat = 'dd MMMM yyyy';
@@ -30,7 +30,7 @@
         };
     }
   });
-  mifosX.ng.application.controller('CreateTaxMappingController', ['$scope', 'ResourceFactory','$routeParams','$location','dateFilter', mifosX.controllers.CreateTaxMappingController]).run(function($log) {
+  mifosX.ng.application.controller('CreateTaxMappingController', ['$scope', 'ResourceFactory','$routeParams','$location','dateFilter','$rootScope', mifosX.controllers.CreateTaxMappingController]).run(function($log) {
     $log.info("CreateTaxMappingController initialized");
   });
 }(mifosX.controllers || {}));

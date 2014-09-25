@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  AddGRNController: function(scope,webStorage, resourceFactory, location,dateFilter,PermissionService) {
+	  AddGRNController: function(scope,webStorage, resourceFactory, location,dateFilter,PermissionService,$rootScope) {
         scope.itemDatas = [];
         scope.officeDatas = [];
         scope.supplierDatas = [];
@@ -21,7 +21,7 @@
 	       };
                 
         scope.submit = function() {
-        	this.formData.locale = 'en';
+        	this.formData.locale = $rootScope.locale.code;
         	var reqDate = dateFilter(scope.formData.purchaseDate,'dd MMMM yyyy');
             this.formData.dateFormat = 'dd MMMM yyyy';
             this.formData.purchaseDate = reqDate;
@@ -34,7 +34,7 @@
         };
     }
   });
-  mifosX.ng.application.controller('AddGRNController', ['$scope','webStorage', 'ResourceFactory', '$location','dateFilter','PermissionService', mifosX.controllers.AddGRNController]).run(function($log) {
+  mifosX.ng.application.controller('AddGRNController', ['$scope','webStorage', 'ResourceFactory', '$location','dateFilter','PermissionService','$rootScope', mifosX.controllers.AddGRNController]).run(function($log) {
     $log.info("AddGRNController initialized");
   });
 }(mifosX.controllers || {}));

@@ -1,7 +1,7 @@
 
 (function(module) {
     mifosX.controllers = _.extend(module, {
-        OrderRenewalController: function(scope,routeParams,resourceFactory, location,dateFilter) {
+        OrderRenewalController: function(scope,routeParams,resourceFactory, location,dateFilter,$rootScope) {
             scope.subscriptiondatas = [];
             scope.clientId=routeParams.clientId;
             scope.formData=[];
@@ -16,7 +16,7 @@
             });
 
     scope.submit = function() {
-    	 this.formData.locale = "en";
+    	 this.formData.locale = $rootScope.locale.code;
          this.formData.dateFormat = "dd MMMM yyyy";
          var paymentDate = dateFilter(scope.start.date,'dd MMMM yyyy');
          this.formData.paymentDate= paymentDate;
@@ -33,7 +33,7 @@
     };
         }
     });
-    mifosX.ng.application.controller('OrderRenewalController', ['$scope','$routeParams','ResourceFactory', '$location','dateFilter', mifosX.controllers.OrderRenewalController]).run(function($log) {
+    mifosX.ng.application.controller('OrderRenewalController', ['$scope','$routeParams','ResourceFactory', '$location','dateFilter','$rootScope', mifosX.controllers.OrderRenewalController]).run(function($log) {
         $log.info("OrderRenewalController initialized");
     });
 }(mifosX.controllers || {}));
