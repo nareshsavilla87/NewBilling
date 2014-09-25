@@ -19,7 +19,7 @@
 	       };
         scope.submit = function() {
         	
-        	this.formData.locale = 'en';
+        	this.formData.locale = $rootScope.locale.code;
         	/*var reqDate = dateFilter(scope.formData.requestedDate,'dd MMMM yyyy');
         	this.formData.dateFormat = 'dd MMMM yyyy';
         	this.formData.requestedDate = reqDate;

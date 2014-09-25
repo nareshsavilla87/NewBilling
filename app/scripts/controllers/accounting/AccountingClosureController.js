@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    AccountingClosureController: function(scope, resourceFactory, location, translate, routeParams,dateFilter,PermissionService) {
+    AccountingClosureController: function(scope, resourceFactory, location, translate, routeParams,dateFilter,PermissionService,$rootScope) {
             scope.first = {};
             scope.first.date = new Date();
             scope.accountClosures=[];
@@ -23,7 +23,7 @@
 
             scope.submit = function() {
                   var reqDate = dateFilter(scope.first.date,'dd MMMM yyyy');
-                  this.formData.locale = 'en';
+                  this.formData.locale = $rootScope.locale.code;
                   this.formData.dateFormat = 'dd MMMM yyyy';
                   this.formData.closingDate = reqDate;
                   resourceFactory.accountingClosureResource.save(this.formData,function(data){
@@ -47,7 +47,7 @@
             }
     }
   });
-  mifosX.ng.application.controller('AccountingClosureController', ['$scope', 'ResourceFactory', '$location', '$translate', '$routeParams','dateFilter','PermissionService', mifosX.controllers.AccountingClosureController]).run(function($log) {
+  mifosX.ng.application.controller('AccountingClosureController', ['$scope', 'ResourceFactory', '$location', '$translate', '$routeParams','dateFilter','PermissionService','$rootScope', mifosX.controllers.AccountingClosureController]).run(function($log) {
     $log.info("AccountingClosureController initialized");
   });
 }(mifosX.controllers || {}));

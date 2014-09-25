@@ -1,6 +1,6 @@
 (function(module) {
     mifosX.controllers = _.extend(module, {
-        BulkLoanReassignmentController: function(scope, resourceFactory,route,dateFilter) {
+        BulkLoanReassignmentController: function(scope, resourceFactory,route,dateFilter,$rootScope) {
             scope.offices = [];
             scope.accounts = {};
             scope.officeIdTemp = {};
@@ -33,7 +33,7 @@
                 });
                 this.formData.assignmentDate = reqDate;
                 this.formData.dateFormat = "dd MMMM yyyy";
-                this.formData.locale = "en";
+                this.formData.locale = $rootScope.locale.code;
                 this.formData.loans = loans;
                 resourceFactory.loanReassignmentResource.save(this.formData,function(data) {
                     route.reload();
@@ -42,7 +42,7 @@
             };
         }
     });
-    mifosX.ng.application.controller('BulkLoanReassignmentController', ['$scope', 'ResourceFactory', '$route','dateFilter', mifosX.controllers.BulkLoanReassignmentController]).run(function($log) {
+    mifosX.ng.application.controller('BulkLoanReassignmentController', ['$scope', 'ResourceFactory', '$route','dateFilter','$rootScope', mifosX.controllers.BulkLoanReassignmentController]).run(function($log) {
         $log.info("BulkLoanReassignmentController initialized");
     });
 }(mifosX.controllers || {}));

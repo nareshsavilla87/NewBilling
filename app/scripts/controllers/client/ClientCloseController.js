@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-ClientCloseController: function(scope,webStorage, resourceFactory, location, translate,dateFilter,routeParams) {
+ClientCloseController: function(scope,webStorage, resourceFactory, location, translate,dateFilter,routeParams,$rootScope) {
             
 
 scope.formData={};	
@@ -33,7 +33,7 @@ resourceFactory.clientTemplateResource.get({commandParam:'close'} ,function(data
             
            
 scope.submit = function() {
-this.formData.locale = 'en';
+this.formData.locale = $rootScope.locale.code;
 var reqDate = dateFilter(scope.close.date,'dd MMMM yyyy');
 this.formData.closureDate = reqDate;
 this.formData.dateFormat = 'dd MMMM yyyy';
@@ -45,7 +45,7 @@ this.formData.dateFormat = 'dd MMMM yyyy';
          };
     }
   });
-  mifosX.ng.application.controller('ClientCloseController', ['$scope', 'webStorage','ResourceFactory', '$location', '$translate','dateFilter', '$routeParams', mifosX.controllers.ClientCloseController]).run(function($log) {
+  mifosX.ng.application.controller('ClientCloseController', ['$scope', 'webStorage','ResourceFactory', '$location', '$translate','dateFilter', '$routeParams','$rootScope', mifosX.controllers.ClientCloseController]).run(function($log) {
     $log.info("ClientCloseController initialized");
   });
 }(mifosX.controllers || {}));

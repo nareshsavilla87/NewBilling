@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    CreateOfficeController: function(scope, resourceFactory, location,dateFilter) {
+    CreateOfficeController: function(scope, resourceFactory, location,dateFilter,$rootScope) {
         scope.offices = [];
         scope.officeTypes = [];
         scope.first = {};
@@ -15,7 +15,7 @@
         });
         
         scope.submit = function() {   
-          this.formData.locale = 'en';
+          this.formData.locale = $rootScope.locale.code;
           var reqDate = dateFilter(scope.first.date,'dd MMMM yyyy');
           this.formData.dateFormat = 'dd MMMM yyyy';
           this.formData.openingDate = reqDate;
@@ -25,7 +25,7 @@
         };
     }
   });
-  mifosX.ng.application.controller('CreateOfficeController', ['$scope', 'ResourceFactory', '$location','dateFilter', mifosX.controllers.CreateOfficeController]).run(function($log) {
+  mifosX.ng.application.controller('CreateOfficeController', ['$scope', 'ResourceFactory', '$location','dateFilter','$rootScope', mifosX.controllers.CreateOfficeController]).run(function($log) {
     $log.info("CreateOfficeController initialized");
   });
 }(mifosX.controllers || {}));

@@ -23,14 +23,14 @@
     "angular-translate-loader-static-files": "0.1.4",
     "d3": "3.3.9",
     "nvd3": "1.1.14-beta",
-    "angularjs-file-upload": "1.1.5",
+    "angularjs-file-upload": "1.6.2",
     "angular-sanitize": "v1.0.8",
     "bootstrap-timepicker":"0.2.6",
     "ckeditor": "",
     "ng-idle":"",
     "q":"v1.0.1",
     "crypto-js": "http://crypto-js.googlecode.com/files/CryptoJS%20v3.1.2.zip",
-    "locale_is-js":"https://code.angularjs.org/1.0.8/i18n/angular-locale_is-is.js"
+    "angular-dynamic-locale":""
   },
   "devDependencies": {
     "jasmine": "1.3.1"

@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  EditPromotioncodeController: function(scope, resourceFactory, location, routeParams,dateFilter) {
+	  EditPromotioncodeController: function(scope, resourceFactory, location, routeParams,dateFilter,$rootScope) {
 		  scope.promotiondatas=[];
 		  scope.durationTypes=[];
 		  scope.promotiondata = [];
@@ -22,7 +22,7 @@
 	        });
 	        
 	        scope.submit = function() {
-	        	this.formData.locale = "en";
+	        	this.formData.locale = $rootScope.locale.code;
 	             this.formData.dateFormat = "dd MMMM yyyy";
 	             var startdate = dateFilter(scope.start.date,'dd MMMM yyyy');
 	        
@@ -35,7 +35,7 @@
 	        
     }
   });
-  mifosX.ng.application.controller('EditPromotioncodeController', ['$scope', 'ResourceFactory', '$location', '$routeParams','dateFilter', mifosX.controllers.EditPromotioncodeController]).run(function($log) {
+  mifosX.ng.application.controller('EditPromotioncodeController', ['$scope', 'ResourceFactory', '$location', '$routeParams','dateFilter','$rootScope', mifosX.controllers.EditPromotioncodeController]).run(function($log) {
     $log.info("EditPromotioncodeController initialized");
   });
 }(mifosX.controllers || {}));

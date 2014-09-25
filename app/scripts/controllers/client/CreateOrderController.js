@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  CreateOrderController: function(scope,webStorage,routeParams, resourceFactory,dateFilter,location,filter) {
+	  CreateOrderController: function(scope,webStorage,routeParams, resourceFactory,dateFilter,location,filter,$rootScope) {
         scope.plandatas = [];
         scope.postpaidPlanDatas = [];
         scope.prepaidPlanDatas = [];
@@ -225,7 +225,7 @@
         	
         	
         	scope.flag = true;
-        	this.formData.locale = 'en';
+        	this.formData.locale = $rootScope.locale.code;
            	var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
             this.formData.dateFormat = 'dd MMMM yyyy';
             this.formData.start_date = reqDate;
@@ -281,7 +281,7 @@
         	
         	
         	scope.flag = true;
-        	this.formData.locale = 'en';
+        	this.formData.locale = $rootScope.locale.code;
            	var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
             this.formData.dateFormat = 'dd MMMM yyyy';
             this.formData.start_date = reqDate;
@@ -328,7 +328,7 @@
         }
 	  }
   });
-  mifosX.ng.application.controller('CreateOrderController', ['$scope','webStorage','$routeParams', 'ResourceFactory', 'dateFilter','$location','$filter', mifosX.controllers.CreateOrderController]).run(function($log) {
+  mifosX.ng.application.controller('CreateOrderController', ['$scope','webStorage','$routeParams', 'ResourceFactory', 'dateFilter','$location','$filter','$rootScope', mifosX.controllers.CreateOrderController]).run(function($log) {
     $log.info("CreateOrderController initialized");
   });
 }(mifosX.controllers || {}));

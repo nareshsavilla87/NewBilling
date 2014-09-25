@@ -1,6 +1,6 @@
 (function(module) {
     mifosX.controllers = _.extend(module, {
-    	MessangerController: function(scope,webStorage,route,resourceFactory,dateFilter,location,PermissionService) {
+    	MessangerController: function(scope,webStorage,route,resourceFactory,dateFilter,location,PermissionService,$rootScope) {
     		scope.userChatDatas=[];
     		 scope.first = {};
     		 scope.PermissionService = PermissionService;
@@ -50,7 +50,7 @@
 	        };
             scope.saveMessage = function() {   
             	scope.flag=false; 
-            	this.formData.locale="en";
+            	this.formData.locale=$rootScope.locale.code;
             	this.formData.dateFormat="dd MMMM yyyy";
             	this.formData.message=this.formData.note;
             	var reqDate = dateFilter(scope.first.date,'dd MMMM yyyy');
@@ -70,7 +70,7 @@
             
         }
     });
-    mifosX.ng.application.controller('MessangerController', ['$scope', 'webStorage','$route','ResourceFactory','dateFilter','$location','PermissionService', mifosX.controllers.MessangerController]).run(function($log) {
+    mifosX.ng.application.controller('MessangerController', ['$scope', 'webStorage','$route','ResourceFactory','dateFilter','$location','PermissionService','$rootScope', mifosX.controllers.MessangerController]).run(function($log) {
         $log.info("MessangerController initialized");
     });
 }(mifosX.controllers || {}));

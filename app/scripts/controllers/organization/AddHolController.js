@@ -1,6 +1,6 @@
 (function(module) {
     mifosX.controllers = _.extend(module, {
-        AddHolController: function(scope, resourceFactory, location,dateFilter) {
+        AddHolController: function(scope, resourceFactory, location,dateFilter,$rootScope) {
             scope.offices = [];
             scope.holidays = [];
             scope.date = {};
@@ -15,7 +15,7 @@
                 var reqSecondDate = dateFilter(scope.date.second,'dd MMMM yyyy');
                 var reqThirdDate = dateFilter(scope.date.third,'dd MMMM yyyy');
                 var newholiday = new Object();
-                newholiday.locale = 'en';
+                newholiday.locale = $rootScope.locale.code;
                 newholiday.dateFormat = 'dd MMMM yyyy';
                 newholiday.name = this.formData.name;
                 newholiday.fromDate = reqFirstDate;
@@ -34,7 +34,7 @@
             };
         }
     });
-    mifosX.ng.application.controller('AddHolController', ['$scope', 'ResourceFactory', '$location','dateFilter', mifosX.controllers.AddHolController]).run(function($log) {
+    mifosX.ng.application.controller('AddHolController', ['$scope', 'ResourceFactory', '$location','dateFilter','$rootScope', mifosX.controllers.AddHolController]).run(function($log) {
         $log.info("AddHolController initialized");
     });
 }(mifosX.controllers || {}));

@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  OfficeAdjustmentsController: function(scope, resourceFactory, routeParams, location,dateFilter,webStorage) {
+	  OfficeAdjustmentsController: function(scope, resourceFactory, routeParams, location,dateFilter,webStorage,$rootScope) {
 
         scope.formData = {};
         scope.officeId = routeParams.officeId;
@@ -15,7 +15,7 @@
         });
         
         scope.submit = function() {
-          this.formData.locale = "en";
+          this.formData.locale = $rootScope.locale.code;
           this.formData.dateFormat = "dd MMMM yyyy";
       	  var adjustmentDate = dateFilter(scope.start.date,'dd MMMM yyyy');
           this.formData.adjustment_date = adjustmentDate;
@@ -27,7 +27,7 @@
 
     }
   });
-  mifosX.ng.application.controller('OfficeAdjustmentsController', ['$scope', 'ResourceFactory', '$routeParams', '$location','dateFilter','webStorage', mifosX.controllers.OfficeAdjustmentsController]).run(function($log) {
+  mifosX.ng.application.controller('OfficeAdjustmentsController', ['$scope', 'ResourceFactory', '$routeParams', '$location','dateFilter','webStorage','$rootScope', mifosX.controllers.OfficeAdjustmentsController]).run(function($log) {
     $log.info("OfficeAdjustmentsController initialized");
   });
 }(mifosX.controllers || {}));

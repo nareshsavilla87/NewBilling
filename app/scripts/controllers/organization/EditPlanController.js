@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    EditPlanController: function(scope, routeParams, resourceFactory,dateFilter, location) {
+    EditPlanController: function(scope, routeParams, resourceFactory,dateFilter, location,$rootScope) {
         scope.billRuleDatas = [];
         scope.planStatus = [];
         scope.date = {};
@@ -102,7 +102,7 @@
              this.formData.startDate = reqDate;
              this.formData.endDate = reqEndDate;*/
              this.formData.dateFormat = 'dd MMMM yyyy';
-             this.formData.locale = 'en';
+             this.formData.locale = $rootScope.locale.code;
              if(scope.date.startDate){this.formData.startDate = dateFilter(scope.date.startDate,'dd MMMM yyyy');}
              if(scope.date.endDate){this.formData.endDate= dateFilter(scope.end.endDate,'dd MMMM yyyy');}
              this.formData.provisioingSystem=this.formData.provisionSystem;
@@ -128,7 +128,7 @@
         };
     }
   });
-  mifosX.ng.application.controller('EditPlanController', ['$scope', '$routeParams', 'ResourceFactory', 'dateFilter','$location', mifosX.controllers.EditPlanController]).run(function($log) {
+  mifosX.ng.application.controller('EditPlanController', ['$scope', '$routeParams', 'ResourceFactory', 'dateFilter','$location','$rootScope', mifosX.controllers.EditPlanController]).run(function($log) {
     $log.info("EditPlanController initialized");
   });
 }(mifosX.controllers || {}));

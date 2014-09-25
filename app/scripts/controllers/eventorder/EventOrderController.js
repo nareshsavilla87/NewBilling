@@ -1,7 +1,7 @@
 (function(module) {
 	mifosX.controllers = _.extend(module, {
 		EventOrderController : function(scope, webStorage, resourceFactory,
-				routeParams, location, dateFilter) {
+				routeParams, location, dateFilter,$rootScope) {
 
 			scope.formData = {};
 			scope.clientId = routeParams.id;
@@ -59,7 +59,7 @@
 			}
 
 			scope.submit = function() {
-				this.formData.locale = "en";
+				this.formData.locale = $rootScope.locale.code;
 				this.formData.clientId =routeParams.id;
 				this.formData.dateFormat = "dd MMMM yyyy";
 				var adjustmentDate = dateFilter(scope.start.date,
@@ -76,7 +76,7 @@
 	mifosX.ng.application.controller(
 			'EventOrderController',
 			[ '$scope', 'webStorage', 'ResourceFactory', '$routeParams',
-					'$location', 'dateFilter',
+					'$location', 'dateFilter','$rootScope',
 					mifosX.controllers.EventOrderController ]).run(
 			function($log) {
 				$log.info("EventOrderController initialized");

@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  CreateTicketController: function(scope,webStorage, resourceFactory, location, translate,dateFilter,routeParams) {
+	  CreateTicketController: function(scope,webStorage, resourceFactory, location, translate,dateFilter,routeParams,$rootScope) {
             
 			scope.priorityTypes = [];
 			scope.formData={};						
@@ -65,7 +65,7 @@
             };
            
 			scope.submit = function() { 
-				this.formData.locale = 'en';
+				this.formData.locale = $rootScope.locale.code;
 				scope.first.time=$('#timepicker1').val();
 				//console.log(scope.first.date);
 				//console.log(scope.first.time);
@@ -88,7 +88,7 @@
          };
     }
   });
-  mifosX.ng.application.controller('CreateTicketController', ['$scope', 'webStorage','ResourceFactory', '$location', '$translate','dateFilter', '$routeParams', mifosX.controllers.CreateTicketController]).run(function($log) {
+  mifosX.ng.application.controller('CreateTicketController', ['$scope', 'webStorage','ResourceFactory', '$location', '$translate','dateFilter', '$routeParams','$rootScope', mifosX.controllers.CreateTicketController]).run(function($log) {
     $log.info("CreateTicketController initialized");
   });
 }(mifosX.controllers || {}));

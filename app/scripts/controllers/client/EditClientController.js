@@ -74,7 +74,7 @@
 	     this.formData.officeId=scope.officeId;
              this.formData.clientCategory=scope.clientCategory;
              this.formData.groupId=scope.groupId;
-             this.formData.locale = 'en';
+             this.formData.locale = $rootScope.locale.code;
              this.formData.dateFormat = 'dd MMMM yyyy';
              if(scope.date.activationDate){this.formData.activationDate = dateFilter(scope.date.activationDate,'dd MMMM yyyy');}
              resourceFactory.clientResource.update({'clientId': routeParams.id},this.formData,function(data){

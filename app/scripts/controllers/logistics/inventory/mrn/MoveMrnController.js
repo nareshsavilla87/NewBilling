@@ -1,6 +1,6 @@
 (function(module) {
 	  mifosX.controllers = _.extend(module, {
-	    MoveMrnController: function(scope,webStorage, resourceFactory, location,dateFilter,PermissionService) {
+	    MoveMrnController: function(scope,webStorage, resourceFactory, location,dateFilter,PermissionService,$rootScope) {
 	    	 scope.mrnIds = [];
 	    	 scope.first = {};
 	    	 scope.first.date = new Date();
@@ -29,7 +29,7 @@
 		    	   webStorage.add("callingTab", {someString: "mrn" });
 		       };
 		       scope.mrnSubmit = function() {        	
-		        	scope.formData.locale = 'en';
+		        	scope.formData.locale = $rootScope.locale.code;
 		        	scope.type=this.formData.type;
 		        	var reqDate = scope.first.date.getFullYear()+"-"+(scope.first.date.getMonth()+1)+"-"+scope.first.date.getDate()+" "+scope.first.date.getHours()+":"+scope.first.date.getMinutes()+":"+scope.first.date.getSeconds();
 		        	delete scope.formData.mrnIds;
@@ -48,7 +48,7 @@
 		        };
 		        
 		    	scope.saleSubmit = function() {        	
-		        	scope.formData.locale = 'en';
+		        	scope.formData.locale = $rootScope.locale.code;
 		        	scope.type=this.formData.type;
 		        	var reqDate = scope.first.date.getFullYear()+"-"+(scope.first.date.getMonth()+1)+"-"+scope.first.date.getDate()+" "+scope.first.date.getHours()+":"+scope.first.date.getMinutes()+":"+scope.first.date.getSeconds();
 		        	delete scope.formData.mrnIds;
@@ -67,7 +67,7 @@
 		    	};
 	    }
 	  });
-	  mifosX.ng.application.controller('MoveMrnController', ['$scope','webStorage', 'ResourceFactory','$location','dateFilter','PermissionService', mifosX.controllers.MoveMrnController]).run(function($log) {
+	  mifosX.ng.application.controller('MoveMrnController', ['$scope','webStorage', 'ResourceFactory','$location','dateFilter','PermissionService','$rootScope', mifosX.controllers.MoveMrnController]).run(function($log) {
 	    $log.info("MoveMrnController initialized");
 	  });
 	}(mifosX.controllers || {}));
