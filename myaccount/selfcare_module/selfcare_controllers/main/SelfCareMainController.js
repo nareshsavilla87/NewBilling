@@ -31,7 +31,7 @@
 		   
        //getting languages form model Lang.js 
 	   scope.langs = selfcare.models.Langs;
-        scope.optlang = scope.langs[1];
+        scope.optlang = scope.langs[0];
         
        //set the language code when change the language 
         scope.changeLang = function (lang) {

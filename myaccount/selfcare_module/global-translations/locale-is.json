@@ -146,14 +146,14 @@
  	"label.add.kota.Info"			: "Korta Upplýsingar",
 	"label.amount"					: "Magn",
 	"label.currency"				: "Gjaldmiðill",
-	"label.description"				: "Lýsing",
-	"label.do.action"				: "gera aðgerð",
+	"label.description"				: "textinn",
+	"label.do.action"				: "Borga Aðferð",
 	"label.state/province"			: "ástand/héraðinu",
  	
  	"#form validations errors " : "------------------------------------",
  	"form.error.alphanumeric"		     : "tölustafi og rými aðeins!",
  	"form.error.name.characters.atleast" : "Nafn er krafist amk 3 stafir",
- 	"form.error.number.digits.atleast"   : "að minnsta kosti lágmarks 10 tölustöfum tekur..",
+ 	"form.error.number.digits.atleast"   : "að minnsta kosti lágmarks 7 tölustöfum tekur..",
  	"form.error.number.digits.maximum"   : "hámarki 15 tölustafir tekur..",
  	"form.error.number"		    		 : "tekur aðeins tölur !",
  	"form.error.password.match"		   	 : "Lykilorð ekki passa !",
@@ -808,7 +808,11 @@
 "#client&parent":"",
 "error.msg.client.Not parent.himself.can.not.be.parent.to his.account":"Himself can not be parent to his account",
 "error.msg.client.Not Parent.he.is. already. a parent.to.some other clients":"He is already a parent to some other clients",
-"error.msg.client.Not Parent.can.not.be.parent.to this.account":"Can not be parent to this account"
+"error.msg.client.Not Parent.can.not.be.parent.to this.account":"Can not be parent to this account",
+
+"label.agree":"Ég er sammála til að",
+"label.Terms.Conditions":"Skilmálar og skilyrði",
+"label.terms.condition.url":"https://netgreidslur.korta.is/testing/?page=samples&lang=en"
 
 
 
