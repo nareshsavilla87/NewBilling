@@ -15,8 +15,8 @@
           suffix: '.json'
     });
 
-  	$translateProvider.preferredLanguage('is');
-  	$translateProvider.fallbackLanguage('is');
+  	$translateProvider.preferredLanguage('en');
+  	$translateProvider.fallbackLanguage('en');
   	
   };
   selfcare.ng.application.config(defineHeaders).run(function($log) {

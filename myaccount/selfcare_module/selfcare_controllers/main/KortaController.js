@@ -11,6 +11,15 @@
 		  var routeParamsPlanId = routeParams.planId;
 		  var routeParamsClientId = routeParams.clientId;
 		  
+		//values getting form constants.js file
+		  scope.kortaMerchantId = selfcare.models.kortaMerchantId;
+		  scope.kortaTerminalId = selfcare.models.kortaTerminalId;
+		  scope.kortaEncriptionKey = selfcare.models.kortaEncriptionKey;
+		  scope.kortaSecretCode = selfcare.models.kortaSecretCode;
+		  scope.kortaTestServer = selfcare.models.kortaTestServer;
+		  scope.kortaAmountField = selfcare.models.kortaAmountField;
+		  scope.kortaclientId = selfcare.models.kortaclientId;
+		  
 		  if(webStorage.get('planFormData')){
 			  planFormData = webStorage.get('planFormData');
 			  console.log(planFormData);
@@ -71,6 +80,7 @@
 			 if(webStorage.get('selfcareUserData')){
 				  clientData = webStorage.get('selfcareUserData');
 				  var name = clientData.lastname;
+				  
 					name = name.trim();				
 					name = name.replace(/ /g, '');
 				  scope.formData.fullName = name;
@@ -87,7 +97,9 @@
 		  }
 		  scope.formData.terms = 'N';
 		  
-		  scope.randomFun = function() {
+		  scope.formData.terms = 'N';
+		  
+		  var randomFun = function() {
 				var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
 				var string_length = 13;
 				
@@ -98,10 +110,17 @@
 					randomstring += chars.substring(rnum,rnum+1);	
 				}	
 				scope.formData.token = randomstring;
+				scope.token = CryptoJS.AES.encrypt(scope.formData.token, scope.kortaEncriptionKey).toString();
 				
-			};
-			
-		  scope.randomFun();
+			};randomFun();
+		  
+		 scope.TermsAndCondition = function(data) {
+				scope.formData.terms = data;
+		 };
+		 
+		 scope.previousPage = function(){
+	    	  window.history.go(-1);
+	      };
 		  
 		  scope.TermsAndCondition = function(data) {
 				scope.formData.terms = data;
@@ -113,44 +132,44 @@
 			
 		  scope.currencydatas = [];
 		  scope.doActionTypes = [
-			                         {name:"STNOCAP"},
-			                         {name:"RECURRING"},
-			                         {name:"STORAGE"}
-		                         ];
+		                         {name:"STNOCAP"},
+		                         {name:"RECURRING"},
+		                         {name:"STORAGE"}
+	                         ];
 		  scope.formData.doAction = scope.doActionTypes[2].name;
+		  //scope.langs = [];
+		  //scope.langs = selfcare.models.Langs;
+		 // scope.formData.optlang = scope.langs[0].code;
 		  
-		  //values getting form constants.js file
-		  scope.kortaMerchantId = selfcare.models.kortaMerchantId;
-		  scope.kortaTerminalId = selfcare.models.kortaTerminalId;
-		  scope.kortaEncriptionKey = selfcare.models.kortaEncriptionKey;
-		  scope.kortaSecretCode = selfcare.models.kortaSecretCode;
-		  scope.kortaTestServer = selfcare.models.kortaTestServer;
-		  scope.kortaAmountField = selfcare.models.kortaAmountField;
-		  scope.kortaclientId = selfcare.models.kortaclientId;
+		  scope.formData.optlang = 'en';
 		  
 		  scope.formData.currency = 'ISK';
-		  scope.displaycurrency = '[ISK]';
-
-		  var token = CryptoJS.AES.encrypt(scope.formData.token, scope.kortaEncriptionKey).toString();
+		  
+		 /* RequestSender.currencyTemplateResource.get(function(data) {
+	            scope.currencydatas = data.currencydata.currencyOptions;
+	            		
+	        });	*/	
+		  
+		  
 		  scope.submitFun = function(){
 			  if(webStorage.get('planFormData')){
 				  webStorage.remove('planFormData');
-				  planFormData.kortaToken = token;
+				  planFormData.kortaToken = scope.token;
 				  webStorage.add('planFormData',planFormData);
 				  
 			  }else if(webStorage.get('additionalPlanFormData')){
 				  webStorage.remove('additionalPlanFormData');
-				  additionalPlanFormData.kortaToken = token;
+				  additionalPlanFormData.kortaToken = scope.token;
 				  webStorage.add('additionalPlanFormData',additionalPlanFormData);
 				  
 			  }else if(webStorage.get('renewalOrderFormData')){
 				  webStorage.remove('renewalOrderFormData');
-				  renewalOrderFormData.kortaToken = token;
+				  renewalOrderFormData.kortaToken = scope.token;
 				  webStorage.add('renewalOrderFormData',renewalOrderFormData);
 				  
 			  }else if(webStorage.get('eventData')){
-				  webStorage.remove('eventData');			  
-				  eventData.push({'kortaToken': token});
+				  webStorage.remove('eventData');
+				  eventData.push({'kortaToken': scope.token});
 				  webStorage.add('eventData',eventData);
 			  }
 			  

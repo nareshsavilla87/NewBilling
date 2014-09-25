@@ -26,7 +26,7 @@
          	callingTab="";
          }else{
  		  scope.displayTab=callingTab.someString;
- 		 
+ 		  
  		  if( scope.displayTab == "moreInfo"){
  			 
  			  scope.moreInfoTab = true;
@@ -802,9 +802,16 @@
                
            scope.routeToEmail = function (statementId) {
                    resourceFactory.statementEmailResource.update({statementId: statementId} , function(data) {	
-                         
                         });
-                      };     
+                      };  
+                      
+           scope.routeToCancelBill = function (statementId) {
+        	   resourceFactory.cancelStatementResource.delete({statementId: statementId}, function(data) {	
+        		   webStorage.add("callingTab", {someString: "Statements" });
+        		 //  location.path("/viewclient/"+routeParams.id);
+        		   route.reload();
+                 });
+               };    
                
                scope.getClientAssociation = function () {
                    resourceFactory.associationResource.get({clientId: routeParams.id} , function(data) {	
