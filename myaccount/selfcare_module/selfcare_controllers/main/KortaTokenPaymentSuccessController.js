@@ -8,9 +8,15 @@
     		scope.renewalOrderFormData = {};
     		scope.eventData = {};
     		var kortaEncriptionKey = selfcare.models.kortaEncriptionKey;
-        	var encryptedKey = decodeURIComponent(location.search().encryptedKey);	
+    		
+/*        	var encryptedKey = decodeURIComponent(location.search().encryptedKey);	
         	var decrypted = CryptoJS.AES.decrypt(encryptedKey, kortaEncriptionKey).toString(CryptoJS.enc.Utf8);
-        	var obj = JSON.parse(decrypted);
+        	var obj = JSON.parse(decrypted);*/
+    		
+    		var encryptedKey = location.search().encryptedKey;	
+        	var decrypted = CryptoJS.AES.decrypt(encryptedKey, kortaEncriptionKey).toString(CryptoJS.enc.Utf8);
+        	var decryptedKey = decodeURIComponent(decrypted);	
+        	var obj = JSON.parse(decryptedKey);
         	
         	var kortaAmountField = selfcare.models.kortaAmountField;
         	var kortaclientId = selfcare.models.kortaclientId;

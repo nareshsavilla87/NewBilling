@@ -146,14 +146,14 @@
  	"label.add.kota.Info"			: "Korta Information",
 	"label.amount"					: "Amount",
 	"label.currency"				: "Currency",
-	"label.description"				: "Description",
-	"label.do.action"				: "Do Action",
+	"label.description"				: "Text",
+	"label.do.action"				: "Pay Method",
 	"label.state/province"			: "State/Province",
  	
  	"#form validations errors " : "------------------------------------",
  	"form.error.alphanumeric"		     : "alphanumeric and spaces only!",
  	"form.error.name.characters.atleast" : "Name is required at least 3 characters",
- 	"form.error.number.digits.atleast"   : "at least minimum 10 digits accepts..",
+ 	"form.error.number.digits.atleast"   : "at least minimum 7 digits accepts..",
  	"form.error.number.digits.maximum"   : "maximum 15 digits accepts..",
  	"form.error.number"		    		 : "accepts only digits !",
  	"form.error.password.match"		   	 : "Password did not Match !",
@@ -810,12 +810,11 @@
 "error.msg.client.Not Parent.he.is. already. a parent.to.some other clients":"He is already a parent to some other clients",
 "error.msg.client.Not Parent.can.not.be.parent.to this.account":"Can not be parent to this account",
 
-"#Korta":"",
-"label.add.kota.Info":"Korta Information",
-"label.amount":"Amount",
-"label.currency":"Currency",
-"label.description":"Description",
-"label.do.action":"Do Action"
+"label.agree":"I agree to",
+"label.Terms.Conditions":"Terms and Conditions",
+"label.terms.condition.url":"https://netgreidslur.korta.is/testing/?page=samples&lang=en"
+
+
 
 
 

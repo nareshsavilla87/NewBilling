@@ -11,10 +11,22 @@
 		  var routeParamsPlanId = routeParams.planId;
 		  var routeParamsClientId = routeParams.clientId;
 		  
+		//values getting form constants.js file
+		  scope.kortaMerchantId = selfcare.models.kortaMerchantId;
+		  scope.kortaTerminalId = selfcare.models.kortaTerminalId;
+		  scope.kortaEncriptionKey = selfcare.models.kortaEncriptionKey;
+		  scope.kortaSecretCode = selfcare.models.kortaSecretCode;
+		  scope.kortaTestServer = selfcare.models.kortaTestServer;
+		  scope.kortaAmountField = selfcare.models.kortaAmountField;
+		  scope.kortaclientId = selfcare.models.kortaclientId;
+		  
 		  if(webStorage.get('planFormData')){
 			  planFormData = webStorage.get('planFormData');
 			  console.log(planFormData);
-			  scope.formData.fullName = planFormData.fullName;
+			  var name = planFormData.fullName;
+				name = name.trim();				
+				name = name.replace(/ /g, '');
+			  scope.formData.fullName = name;
 			  scope.formData.address = planFormData.address;
 			  scope.formData.emailId = planFormData.emailId;
 			  scope.formData.zipcode = planFormData.zipcode;
@@ -28,8 +40,10 @@
 			  additionalPlanFormData = webStorage.get('additionalPlanFormData');
 			  if(webStorage.get('selfcareUserData')){
 				  clientData = webStorage.get('selfcareUserData');
-				  
-				  scope.formData.fullName = clientData.lastname;
+				  var name = clientData.lastname;
+					name = name.trim();				
+					name = name.replace(/ /g, '');
+				  scope.formData.fullName = name;
 				  scope.formData.address = clientData.addressNo;
 				  scope.formData.emailId = clientData.email;
 				  scope.formData.zipcode = clientData.zip;
@@ -45,8 +59,10 @@
 			  renewalOrderFormData = webStorage.get('renewalOrderFormData');
 			  if(webStorage.get('selfcareUserData')){
 				  clientData = webStorage.get('selfcareUserData');
-				  
-				  scope.formData.fullName = clientData.lastname;
+				  var name = clientData.lastname;
+					name = name.trim();				
+					name = name.replace(/ /g, '');
+				  scope.formData.fullName = name;
 				  scope.formData.address = clientData.addressNo;
 				  scope.formData.emailId = clientData.email;
 				  scope.formData.zipcode = clientData.zip;
@@ -64,7 +80,10 @@
 			 if(webStorage.get('selfcareUserData')){
 				  clientData = webStorage.get('selfcareUserData');
 				  
-				  scope.formData.fullName = clientData.lastname;
+				  var name = clientData.lastname;
+					name = name.trim();				
+					name = name.replace(/ /g, '');
+				  scope.formData.fullName = name;
 				  scope.formData.address = clientData.addressNo;
 				  scope.formData.emailId = clientData.email;
 				  scope.formData.zipcode = clientData.zip;
@@ -77,27 +96,43 @@
 			  console.log(webStorage.get("eventData"));
 		  }
 		  
+		  scope.formData.terms = 'N';
+		  
+		  var randomFun = function() {
+				var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+				var string_length = 13;
+				
+				var randomstring = 'TT';
+				
+				for (var i=0; i<string_length; i++) {
+					var rnum = Math.floor(Math.random() * chars.length);
+					randomstring += chars.substring(rnum,rnum+1);	
+				}	
+				scope.formData.token = randomstring;
+				scope.token = CryptoJS.AES.encrypt(scope.formData.token, scope.kortaEncriptionKey).toString();
+				
+			};randomFun();
+		  
+		 scope.TermsAndCondition = function(data) {
+				scope.formData.terms = data;
+		 };
+		 
+		 scope.previousPage = function(){
+	    	  window.history.go(-1);
+	      };
 		  
 		  scope.currencydatas = [];
 		  scope.doActionTypes = [
-			                         {name:"STNOCAP"},
-			                         {name:"RECURRING"},
-			                         {name:"STORAGE"}
-		                         ];
+		                         {name:"STNOCAP"},
+		                         {name:"RECURRING"},
+		                         {name:"STORAGE"}
+	                         ];
 		  scope.formData.doAction = scope.doActionTypes[2].name;
-		  scope.langs = [];
-		  scope.langs = selfcare.models.Langs;
-		  scope.formData.optlang = scope.langs[0].code;
+		  //scope.langs = [];
+		  //scope.langs = selfcare.models.Langs;
+		 // scope.formData.optlang = scope.langs[0].code;
 		  
-		  
-		  //values getting form constants.js file
-		  scope.kortaMerchantId = selfcare.models.kortaMerchantId;
-		  scope.kortaTerminalId = selfcare.models.kortaTerminalId;
-		  scope.kortaEncriptionKey = selfcare.models.kortaEncriptionKey;
-		  scope.kortaSecretCode = selfcare.models.kortaSecretCode;
-		  scope.kortaTestServer = selfcare.models.kortaTestServer;
-		  scope.kortaAmountField = selfcare.models.kortaAmountField;
-		  scope.kortaclientId = selfcare.models.kortaclientId;
+		  scope.formData.optlang = 'en';
 		  
 		  scope.formData.currency = 'ISK';
 		  
@@ -106,29 +141,34 @@
 	            		
 	        });	*/	
 		  
+		  
 		  scope.submitFun = function(){
 			  if(webStorage.get('planFormData')){
 				  webStorage.remove('planFormData');
-				  planFormData.kortaToken = scope.formData.token;
+				  planFormData.kortaToken = scope.token;
 				  webStorage.add('planFormData',planFormData);
 				  
 			  }else if(webStorage.get('additionalPlanFormData')){
 				  webStorage.remove('additionalPlanFormData');
-				  additionalPlanFormData.kortaToken = scope.formData.token;
+				  additionalPlanFormData.kortaToken = scope.token;
 				  webStorage.add('additionalPlanFormData',additionalPlanFormData);
 				  
 			  }else if(webStorage.get('renewalOrderFormData')){
 				  webStorage.remove('renewalOrderFormData');
-				  renewalOrderFormData.kortaToken = scope.formData.token;
+				  renewalOrderFormData.kortaToken = scope.token;
 				  webStorage.add('renewalOrderFormData',renewalOrderFormData);
 				  
 			  }else if(webStorage.get('eventData')){
 				  webStorage.remove('eventData');
-				  eventData.push({'kortaToken': scope.formData.token});
+				  eventData.push({'kortaToken': scope.token});
 				  webStorage.add('eventData',eventData);
 			  }
-			  var encryptString = '{"'+scope.kortaAmountField+'":'+scope.formData.amount+',"'+scope.kortaclientId+'":0}';	
+			  
+			  var encryptData = '{"'+scope.kortaAmountField+'":'+scope.formData.amount+',"'+scope.kortaclientId+'":0}';	
+			  var encryptString = encodeURIComponent(encryptData);
+			  
 			  scope.encryptedString = CryptoJS.AES.encrypt(encryptString, scope.kortaEncriptionKey).toString();
+			  
 			  if(webStorage.get('planFormData')){
 				  scope.downloadurl = selfcare.models.downloadUrl+""+scope.encryptedString+"&";
 				  
