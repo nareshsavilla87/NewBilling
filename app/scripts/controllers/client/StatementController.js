@@ -34,7 +34,7 @@
 	            this.formData.dateFormat = 'dd MMMM yyyy';
 	            this.formData.dueDate=reqDate;
              resourceFactory.statementResource.save({'clientId': routeParams.id},this.formData,function(data) {
-             location.path('/billmaster/' +routeParams.id);
+             location.path('/viewclient/' +routeParams.id);
           });
              webStorage.add("callingTab", {someString: "Statements" });
         };
