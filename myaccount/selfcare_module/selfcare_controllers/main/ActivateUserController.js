@@ -120,8 +120,6 @@
 		  			 });
 					 
 			};
-		
-	      
     }
   });
   selfcare.ng.application.controller('ActivateUserController', 

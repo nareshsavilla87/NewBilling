@@ -33,42 +33,21 @@
 
 		<fieldset>
 			<legend>{{'label.add.kota.Info' | translate}}</legend>
-			 <!-- <div class="control-group">
-				<label class="control-label" >{{ 'label.heading.language' | translate }}<span class="required">*</span></label>
-				<div class="controls">
-					 <select ng-model="formData.optlang"  ng-options="lang.code as lang.name for lang in langs" value="{{lang.name}}" reqiured late-Validate disabled>
-					 </select>
-				</div>
-			</div> 
-			<div class="control-group">
-				<label class="control-label" >{{ 'label.currency' | translate }}<span class="required">*</span></label>
-				<div class="controls">
-					 <select ng-model="formData.currency"  ng-options="currencydata.code as currencydata.displayLabel for currencydata in currencydatas" value="{{currencydata.code}}" reqiured late-Validate disabled>
-					 </select>
-					 <input type="text" ng-model="formData.currency" reqiured late-Validate disabled/>
-				</div>
-			</div> -->
 			 <div class="control-group">
        			 <label class="control-label">{{ 'label.amount' | translate}}<span class="required">*</span></label>
         		<div class="controls">
           			<input type="text" ng-model="formData.amount" reqiured late-Validate disabled/>&nbsp;[{{formData.currency}}]
         		</div>
       		</div>
-      		<!-- <div class="control-group">
-				<label class="control-label" >{{ 'label.thor.token' | translate}}<span class="required">*</span></label>
-				<div class="controls">
-					<textarea rows="2" ng-model="formData.description" reqiured late-Validate disabled></textarea>
-				</div>
-			</div> -->
-			<div class="control-group">
-				<label class="control-label" >{{'label.description' | translate}}<span class="required">*</span></label>
+      		 <div class="control-group">
+				<label class="control-label" >{{ 'label.description' | translate}}<span class="required">*</span></label>
 				<div class="controls">
 					<textarea rows="2" ng-model="formData.description" reqiured late-Validate disabled></textarea>
 				</div>
 			</div>
 			<div class="control-group">
 				<div class="controls">
-				    <input type="checkbox" ng-change = "TermsAndCondition(formData.terms)" ng-model="formData.terms" ng-true-value="Y"  ng-false-value="N" /> 
+				    <input type="checkbox" name="checkbox" ng-change = "TermsAndCondition(formData.terms)" ng-model="formData.terms" ng-true-value="Y"  ng-false-value="N" reqiured > 
 				    <span> {{'label.agree' | translate}} <a href="https://netgreidslur.korta.is/testing/?page=samples&lang=en" >{{'label.Terms.Conditions' | translate}}</a> </span>
 				</div>
 			</div>

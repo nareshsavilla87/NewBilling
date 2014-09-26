@@ -7,7 +7,7 @@
 		</ul>
 	</div>
 
-	<form class="form-horizontal" ng-submit="submit()">
+	<form name="editippoolform" novalidate="" class="form-horizontal" ng-submit="submit()">
 		<div class="error" ng-show="errorStatus || errorDetails">
 			<label>{{'label.contract.error' | translate}}</label> <label
 				ng-show="errorStatus">{{errorStatus}}</label> <label
@@ -26,8 +26,13 @@
 									<div class="control-group">
 									<label class="control-label" for="ipaddress">{{'label.ippooling.ipaddress' | translate }}</label>
 									<div class="controls">
-									<input type="text" id="ipaddress" ng-model="formData.ipAddress" readonly>
-									</div>
+									<input type="text" id="ipaddress" ng-model="formData.ipAddress" readonly> 
+									<input ng-show="typeCodeValue.status=='Intermediate'" type="text" style="width:30px;" id="ipRange" 
+									  name="ipRange" ng-model="formData.ipRange"   maxlength="3" ng-pattern=/^([01]?\d\d?|2[0-4]\d|25[0-5])$/>
+									<span ng-show="editippoolform.ipRange.$invalid && editippoolform.ipRange.$dirty">
+        					        <small class="error" ng-show="editippoolform.ipRange.$error.pattern">accept digits between 0-255 only!</small>
+    					            </span>
+									 </div>
 									</div>
 								</td>
 							</tr>	
