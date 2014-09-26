@@ -89,7 +89,7 @@
 	    		  scope.isAmountZero = false;
 	    		  scope.isPaymentPage = true;
 	    	  }
-	    	  scope.paymentGatewayFun('dalpay');
+	    	  scope.paymentGatewayFun('korta');
 	    	  	//var host = window.location.hostname;
 	    		//var portNo = window.location.port;
 	    	 
