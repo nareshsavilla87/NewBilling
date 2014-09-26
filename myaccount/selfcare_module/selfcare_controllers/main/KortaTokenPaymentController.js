@@ -33,10 +33,7 @@
 		  
 		  clientData = webStorage.get('selfcareUserData');
 		  
-		  var name = clientData.lastname;
-		  name = name.replace(" ","");	
-		  
-		  scope.formData.fullName = name;
+		  scope.formData.fullName = clientData.lastname;
 		  scope.formData.address = clientData.addressNo;
 		  scope.formData.emailId = clientData.email;
 		  scope.formData.zipcode = clientData.zip;

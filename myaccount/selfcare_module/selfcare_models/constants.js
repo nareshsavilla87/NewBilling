@@ -6,7 +6,9 @@
 	   kortaSecretCode 		: "aXVspr9GY4rEwwUGKI75jDerw7iRhkw388h23fVA",
 	   kortaTestServer 		: "TEST",
 	   kortaAmountField 	: "amount",
-	   kortaclientId  		: 'clientId'
+	   kortaclientId  		: 'clientId',
+	   kortaPaymentMethod	: "PaymentMethodType",
+	   kortaTokenValue		: "kortaToken"
 		   
   });
 }(selfcare.models || {}));
