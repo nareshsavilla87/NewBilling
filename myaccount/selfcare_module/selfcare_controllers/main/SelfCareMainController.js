@@ -14,7 +14,7 @@
 		   console.log(urlAfterHash);
 		   if((urlAfterHash.match('/active') == '/active')||(urlAfterHash.match('/additionalorderspreviewscreen') == '/additionalorderspreviewscreen')
 			||(urlAfterHash.match('/renewalorderpreviewscreen') == '/renewalorderpreviewscreen')||(urlAfterHash.match('/eventdetailspreviewscreen') == '/eventdetailspreviewscreen')
-			||(urlAfterHash.match('/kortatokenpaymentsuccess') == '/kortatokenpaymentsuccess')){
+			||(urlAfterHash.match('/kortatokenpaymentsuccess') == '/kortatokenpaymentsuccess')||(urlAfterHash.match('/kortasuccess') == '/kortasuccess')){
 			   console.log('page reloading');
 			   scope.isActiveScreenPage= true;
 			   
