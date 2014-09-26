@@ -1933,6 +1933,7 @@
 "error.msg.ipaddress.already.allocated.please.select.another.iprange":"Ip addresses are already allocated.please select another ip range",
 "validation.msg.provisioning.IP_ADDRESS.cannot.be.empty":"Ip Address can not br blank",
 "validation.msg.null.statusType.cannot.be.blank":"Status Type cannot be blank",
+"error.msg.ipaddress.give.incremental.iprange":"Please give IP Address range in incremental way",
 
 "#Redemption":".......",
 "validation.msg.redemption.clientId.cannot.be.blank":"Client id cannot be blank",
