@@ -9,14 +9,19 @@
     		var encryptedKey =location.search().encryptedKey;	
         	var decrypted = CryptoJS.AES.decrypt(encryptedKey, kortaEncriptionKey).toString(CryptoJS.enc.Utf8);	        		
         	var decryptedKey = decodeURIComponent(decrypted);	
-        	
         	var obj = JSON.parse(decryptedKey);
         	
         	var kortaAmountField = selfcare.models.kortaAmountField;
         	var kortaclientId = selfcare.models.kortaclientId;
-        	
+        	var kortaPaymentMethod = selfcare.models.kortaPaymentMethod;
+        	var kortaTokenValue = selfcare.models.kortaTokenValue;
+       
         	scope.formData.amount = obj[kortaAmountField];
         	scope.formData.clientId = obj[kortaclientId];
+        	scope.PaymentMethod = obj[kortaPaymentMethod];
+        	scope.kortaTokenValue = obj[kortaTokenValue];
+        	
+        	scope.kortaToken = CryptoJS.AES.encrypt(scope.kortaTokenValue, scope.kortaEncriptionKey).toString();
         
         	var downloadmd5 = location.search().downloadmd5;         
         	var reference = location.search().reference;        	
@@ -34,17 +39,22 @@
         	var downloadmd5String = md5(StringData);
         	
         	if(downloadmd5String == downloadmd5){
+        		
         		if( webStorage.get("planFormData")){
         			scope.formData.emailId = scope.planFormData.emailId;
         		}
+
         		scope.formData.reference = reference;
         		httpService.post("/obsplatform/api/v1/authentication?username="+selfcare.models.obs_username+"&password="+selfcare.models.obs_password)
     	  		.success(function(data){
     	  			 httpService.setAuthorization(data.base64EncodedAuthenticationKey);
-    	  			rootScope.currentSession= {user :'selfcare'};
-    	  			RequestSender.kortaPaymentsResource.save({},scope.formData,function(data){
-    	  				 location.path('/activeclientpreviewscreen');
-    	  			});
+    	  			rootScope.currentSession= {user :'selfcare'};   	  					
+    	  			if(scope.PaymentMethod == "STNOCAP"){	
+           			 RequestSender.updateKortaToken.update({clientId : scope.formData.clientId},{'kortaToken': scope.kortaToken},function(data){
+   						 location.path('/profile');
+   					 });
+           			
+           		  }
     	  		})
     		    .error(function(errordata){
     		    	console.log('authentication failure');
