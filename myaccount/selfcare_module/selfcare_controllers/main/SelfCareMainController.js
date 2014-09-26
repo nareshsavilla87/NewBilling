@@ -13,13 +13,16 @@
 		   var urlAfterHash = window.location.hash;
 		   console.log(urlAfterHash);
 		   if((urlAfterHash.match('/active') == '/active')||(urlAfterHash.match('/additionalorderspreviewscreen') == '/additionalorderspreviewscreen')
-			||(urlAfterHash.match('/renewalorderpreviewscreen') == '/renewalorderpreviewscreen')||(urlAfterHash.match('/eventdetailspreviewscreen') == '/eventdetailspreviewscreen')){
-			   console.log('/active');
+			||(urlAfterHash.match('/renewalorderpreviewscreen') == '/renewalorderpreviewscreen')||(urlAfterHash.match('/eventdetailspreviewscreen') == '/eventdetailspreviewscreen')
+			||(urlAfterHash.match('/kortatokenpaymentsuccess') == '/kortatokenpaymentsuccess')){
+			   console.log('page reloading');
 			   scope.isActiveScreenPage= true;
 			   
 		   }else{
 			   scope.isActiveScreenPage= false;
 		   }
+		   
+		   scope.iskortaTokenAvailable = false;
 	 //authentication onSuccess this event called  
 	   scope.$on("UserAuthenticationSuccessEvent", function(event, data,formData) {
 		   scope.currentSession = sessionManager.get(data,formData);

@@ -10,6 +10,7 @@
 			  scope.clientId = clientTotalData.clientId;
 			  RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
 				  scope.clientData = data;
+				  rootScope.iskortaTokenAvailable = true;
 				  if(!scope.clientData.selfcare.authPin){
 					  scope.clientData.selfcare.authPin = 'Not Available';
 				  }

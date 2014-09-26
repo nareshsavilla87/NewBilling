@@ -268,6 +268,12 @@
 	 "table.header.profile.country" 					: "Country",
 	 "table.header.profile.zipcode" 					: "Zipcode",
 	 
+	 "#KortaResources "	 :"------------------------------------",
+	 "label.agree"										: "I agree to",
+	 "label.Terms.Conditions"							: "Terms and Conditions",
+	 "label.change.kortatoken"							: "Change Korta Token",
+	 "label.terms.condition.url"						: "https://netgreidslur.korta.is/testing/?page=samples&lang=en",
+	 
  "# common errors ":"....",
   "validation.msg.office.name.cannot.be.blank":"Office Name cannot be blank",
   "error.msg.not.authorized":"Insufficient privileges to perform this action.",
@@ -811,10 +817,8 @@
 "#client&parent":"",
 "error.msg.client.Not parent.himself.can.not.be.parent.to his.account":"Himself can not be parent to his account",
 "error.msg.client.Not Parent.he.is. already. a parent.to.some other clients":"He is already a parent to some other clients",
-"error.msg.client.Not Parent.can.not.be.parent.to this.account":"Can not be parent to this account",
-"label.agree":"I agree to",
-"label.Terms.Conditions":"Terms and Conditions",
-"label.terms.condition.url":"https://netgreidslur.korta.is/testing/?page=samples&lang=en"
+"error.msg.client.Not Parent.can.not.be.parent.to this.account":"Can not be parent to this account"
+
 
 
 
