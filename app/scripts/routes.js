@@ -906,13 +906,7 @@
       }) 
       .when('/provision',{
         templateUrl: 'views/provision.html'
-      })
-    .when('/kortaIntegration',{
-    	templateUrl: 'views/kortaIntegration.html'
-    })
-    .when('/kortasuccess',{
-    	templateUrl: 'views/kortasuccess.html'
-    });
+      });
       
     
     $locationProvider.html5Mode(false);

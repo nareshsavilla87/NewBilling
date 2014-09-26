@@ -30,19 +30,26 @@
 			  scope.formData.amount = VODTotalAmount;
 			  console.log(webStorage.get("eventData"));
 		  }
+		   clientData = webStorage.get('selfcareUserData');
+		   
+		   scope.clientId = clientData.id;
 		  
-		  clientData = webStorage.get('selfcareUserData');
-		  
-		  scope.formData.fullName = clientData.lastname;
-		  scope.formData.address = clientData.addressNo;
-		  scope.formData.emailId = clientData.email;
-		  scope.formData.zipcode = clientData.zip;
-		  scope.formData.city = clientData.city;
-		  scope.formData.country = clientData.country;
-		  scope.formData.mobileNo = clientData.phone;
-		  scope.formData.description = scope.formData.address+","+scope.formData.city;
-		  scope.formData.token = CryptoJS.AES.decrypt(clientData.selfcare.token, scope.kortaEncriptionKey).toString(CryptoJS.enc.Utf8);
-		  var clientId = clientData.id;
+		  RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
+			  clientData = data;
+			  var token = clientData.selfcare.token;
+			  var name = clientData.lastname;
+			  name = name.replace(" ","");	
+			  
+			  scope.formData.fullName = name;
+			  scope.formData.address = clientData.addressNo;
+			  scope.formData.emailId = clientData.email;
+			  scope.formData.zipcode = clientData.zip;
+			  scope.formData.city = clientData.city;
+			  scope.formData.country = clientData.country;
+			  scope.formData.mobileNo = clientData.phone;
+			  scope.formData.description = scope.formData.address+","+scope.formData.city;
+			  scope.formData.token = CryptoJS.AES.decrypt(token, scope.kortaEncriptionKey).toString(CryptoJS.enc.Utf8);
+		  });
 		  
 		  scope.formData.terms = 'N';
 		  
@@ -75,7 +82,7 @@
 		  scope.submitFun = function(){
 			  //  110.00ISK818531826460AshokReddy//1/thor0009xxxxxxxxsecretcodexxxxxxxxxxxxx
 			  
-			  var encryptData = '{"'+scope.kortaAmountField+'":'+scope.formData.amount+',"'+scope.kortaclientId+'":'+clientId+'}';
+			  var encryptData = '{"'+scope.kortaAmountField+'":'+scope.formData.amount+',"'+scope.kortaclientId+'":'+scope.clientId+'}';
 			  var encryptString = encodeURIComponent(encryptData);
 			  
 			  scope.encryptedString = CryptoJS.AES.encrypt(encryptString, scope.kortaEncriptionKey).toString();

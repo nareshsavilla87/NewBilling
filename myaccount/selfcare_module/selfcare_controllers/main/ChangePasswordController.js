@@ -2,6 +2,9 @@
   selfcare.controllers = _.extend(selfcare_module, {
 	  ChangePasswordController: function(scope,RequestSender,rootScope,routeParams,modal,
 			  							webStorage,HttpService,authenticationService,sessionManager,location) {
+		 
+		  //getting main page url from returnURL.js file
+		  var selfcareMainPageURL = selfcare.models.selfcareMainPageURL;
 		  
 		  scope.pwdData = {};
 		  scope.formData = {};
@@ -29,6 +32,7 @@
 					  rootScope.isChangePassword = true;
 					  rootScope.currentSession = sessionManager.clear();
 			    	 // location.path('/').replace;
+					  location.replace(selfcareMainPageURL);
 				  });
 			  }
 		  };

@@ -20,9 +20,6 @@
     .when('/profile', {
         templateUrl: 'selfcare_module/views/clients/profile.html'
     })
-    .when('/reloadprofile', {
-        templateUrl: 'selfcare_module/views/clients/profile.html'
-    })
     .when('/orders', {
         templateUrl: 'selfcare_module/views/clients/orders.html'
     })
