@@ -1,6 +1,7 @@
 {
   "titles" :"----------------------------------------------------",
- 	"title.obs.selfcare"		: "OBS SelfCare",
+ 	"title.obs.selfcare"					: "OBS SelfCare",
+ 	"title.thortelecom.selfcare"			: "Thor Telecom SelfCare",
  	"title.conformation.registration" 		 : "Thank you for registering! A conformation mail has been sent to your mailId.Please login to your email account and click on the Activation Link to complete the registration",
  	"title.conformation.alreadyregistration" : "Client is already Registered with this mailId.",
  	"title.signin.msg" 						 : "Please Sign In..!",
@@ -45,6 +46,7 @@
  	"label.form.registration"	: "Registration From",
  	"label.pleasewait"			: "Please Wait..",
  	"label.registration.page"	: "Registration Page",
+ 	"label.registration.confirmation.page"	: "Registration Confirmation Page",
  	"label.customer.name"	  	: "Customer Name",
  	"label.mobilephone"	  		: "Mobile Phone",
  	"label.email"	  			: "Email",
@@ -120,7 +122,7 @@
  	"placeholder.filter.ticket"				: "Filter by Id",
  	"placeholder.filter.vod"				: "Search Movie Name",
  	"placeholder.enter.nationalid"			: "Enter NationalID",
- 	"placeholder.enter.nationalid.example"	: "ex: 090814-1234",
+ 	"placeholder.enter.nationalid.example"	: "ex: 0908141234",
  	"placeholder.filter.listofvods"			: "Filter by Id",
  	
  	
@@ -137,7 +139,7 @@
  	"label.client.balance"			: "Balance",
  	"label.telephone.number"		: "Telephone Number",
  	"label.pattern"					: "Pattern :",
- 	"hint.nationaid.pattern"		: "ddmmyy-any 4 digits",
+ 	"hint.nationaid.pattern"		: "ddmmyyany 4 digits",
  	"label.change.language" 		: "Change language:",
  	"label.korta"					: "Korta",
  	"label.thor.token"				: "Token",
@@ -149,6 +151,7 @@
 	"label.description"				: "Text",
 	"label.do.action"				: "Pay Method",
 	"label.state/province"			: "State/Province",
+	"label.country"					: "Country",
  	
  	"#form validations errors " : "------------------------------------",
  	"form.error.alphanumeric"		     : "alphanumeric and spaces only!",
@@ -812,11 +815,6 @@
 "label.agree":"I agree to",
 "label.Terms.Conditions":"Terms and Conditions",
 "label.terms.condition.url":"https://netgreidslur.korta.is/testing/?page=samples&lang=en",
-
-
-"label.agree":"I agree to",
-"label.Terms.Conditions":"Terms and Conditions",
-"label.terms.condition.url":"https://netgreidslur.korta.is/testing/?page=samples&lang=en"
 
 
 

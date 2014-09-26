@@ -4,7 +4,7 @@
 
 	<meta charset="utf-8" />
 	<link rel="icon" type="image/png" href="./selfcare_module/images/favicon.ico" />
-	<title>{{'title.obs.selfcare' | translate}}</title>
+	<title>{{'title.thortelecom.selfcare' | translate}}</title>
 	<style>[data-ng-cloak] { display: none !important; }</style>
 </head>
 <body  class="preview" id="top" data-spy="scroll" data-target=".subnav" data-offset="80" data-ng-controller="SelfCareMainController">
@@ -13,6 +13,7 @@
         <img src="./selfcare_module/images/loading.gif" >
     </div>    
 </div> 
+	<div ng-hide="isActiveScreenPage">
    <div class="container well"  data-ng-cloak data-ng-hide="currentSession.user != null">
         <div class="row form-search ng-pristine ng-valid paddedbottom" data-ng-form="signInForm" data-ng-controller="SignInFormController">
         <div class="alert alert-info animated tada" role="alert" ng-hide="isRegistrationSuccess||isRegistrationFailure||isChangePassword" style="padding:25px 35px 25px 14px;">
@@ -55,12 +56,12 @@
 				            <td>
 				                <img src="./selfcare_module/images/BillingX_logo.png" alt="BillingX" width="150">
 				            </td>    
-				            <td style="width:238px;">
+				           <!--  <td style="width:238px;">
 				                <h1>{{ 'label.product.name' | translate }}</h1>
 				                <span>{{ 'label.product.version' | translate }}</span><br/>
 				                <span>{{ 'label.product.status' | translate }}</span><br/>
 				                <span>{{ 'label.product.aboutus1' | translate }}<a target="http://www.openbillingsystem.com/" href="http://www.openbillingsystem.com/">{{ 'label.community.name' | translate }}</a>.</span>
-				            </td>
+				            </td> -->
 				        </tr>
 				    </table>        
 	    		</div >
@@ -151,6 +152,7 @@
 	    
 		</div>
 	</div>
+	</div>
 	<div ng-class="{fullscreen:true,blockui:blockUI==true}" id="main" data-ng-cloak data-ng-hide="currentSession.user == null">
 		 <div class="navbar navbar-fixed-top">
 	        <div class="navbar-inner" >
@@ -172,7 +174,7 @@
 	                            </a>
 	                            <ul class="dropdown-menu">
 	                            	<li><a href="#/changepwd"><i class="icon-cog"></i>{{'label.change.password' | translate}}</a></li>
-	                            	<!-- <li><a href="#/changekortatoken"><i class="icon-cog"></i>{{'label.change.kortatoken' | translate}}</a></li> -->
+	                            	<li><a href="#/changekortatoken"><i class="icon-cog"></i>{{'label.change.kortatoken' | translate}}</a></li>
 	                                <li><a id="logout" ng-click="signout()"><i class="icon-off"></i>{{'label.signout' | translate}}</a></li>
 	                            </ul>
 	                        </li>

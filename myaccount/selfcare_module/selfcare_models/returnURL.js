@@ -11,6 +11,7 @@
 	   //return URL form after clients success
 	   //returnURL : "https://"+hostName+"/Clientapp/myaccount/index.html#/active",
 	   //selfcareAppUrl : "https://"+hostName+"/Clientapp/myaccount/index.html"
+	   
 	   returnURL : locationOrigin+locationPathname+"#/active",
 	   selfcareAppUrl : locationOrigin+locationPathname,
 	   downloadUrl : locationOrigin+locationPathname+"#/kortasuccess?encryptedKey=",

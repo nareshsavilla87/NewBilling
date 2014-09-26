@@ -1,18 +1,25 @@
 (function(selfcare_module) {
    selfcare.controllers = _.extend(selfcare_module, {
-	   SelfCareMainController: function(scope, translate,webStorage,sessionManager,RequestSender,authenticationService,location,modal) {
+	   SelfCareMainController: function(scope, childScope,translate,webStorage,sessionManager,RequestSender,authenticationService,location,modal) {
 		   
 		   scope.domReady = true;
-		   scope.currentSession = {};
+		   //scope.currentSession = {};
 		   scope.isSignInProcess = false;
 		   scope.isRegistrationSuccess = false;
 		   scope.isRegistrationFailure = false;
 		   scope.emptyCredentials = false;
 		   scope.isChangePassword = false;
 		   scope.selfcare_userName = "";
-		   var x = window.location.hash;
-		   console.log(x);
-		  
+		   var urlAfterHash = window.location.hash;
+		   console.log(urlAfterHash);
+		   if((urlAfterHash.match('/active') == '/active')||(urlAfterHash.match('/additionalorderspreviewscreen') == '/additionalorderspreviewscreen')
+			||(urlAfterHash.match('/renewalorderpreviewscreen') == '/renewalorderpreviewscreen')||(urlAfterHash.match('/eventdetailspreviewscreen') == '/eventdetailspreviewscreen')){
+			   console.log('/active');
+			   scope.isActiveScreenPage= true;
+			   
+		   }else{
+			   scope.isActiveScreenPage= false;
+		   }
 	 //authentication onSuccess this event called  
 	   scope.$on("UserAuthenticationSuccessEvent", function(event, data,formData) {
 		   scope.currentSession = sessionManager.get(data,formData);
@@ -150,7 +157,7 @@
 		 
     }
   });
-   selfcare.ng.application.controller('SelfCareMainController', ['$rootScope','$translate','webStorage','SessionManager','RequestSender','AuthenticationService','$location','$modal',selfcare.controllers.SelfCareMainController
+   selfcare.ng.application.controller('SelfCareMainController', ['$rootScope','$scope','$translate','webStorage','SessionManager','RequestSender','AuthenticationService','$location','$modal',selfcare.controllers.SelfCareMainController
   ]).run(function($log) {
       $log.info("SelfCareMainController initialized");
   });

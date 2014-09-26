@@ -23,10 +23,8 @@
 		  if(webStorage.get('planFormData')){
 			  planFormData = webStorage.get('planFormData');
 			  console.log(planFormData);
-			  var name = planFormData.fullName;
-				name = name.trim();				
-				name = name.replace(/ /g, '');
-			  scope.formData.fullName = name;
+			 
+			  scope.formData.fullName =  planFormData.fullName;
 			  scope.formData.address = planFormData.address;
 			  scope.formData.emailId = planFormData.emailId;
 			  scope.formData.zipcode = planFormData.zipcode;
@@ -40,10 +38,8 @@
 			  additionalPlanFormData = webStorage.get('additionalPlanFormData');
 			  if(webStorage.get('selfcareUserData')){
 				  clientData = webStorage.get('selfcareUserData');
-				  var name = clientData.lastname;
-					name = name.trim();				
-					name = name.replace(/ /g, '');
-				  scope.formData.fullName = name;
+
+				  scope.formData.fullName = clientData.lastname;
 				  scope.formData.address = clientData.addressNo;
 				  scope.formData.emailId = clientData.email;
 				  scope.formData.zipcode = clientData.zip;
@@ -59,10 +55,8 @@
 			  renewalOrderFormData = webStorage.get('renewalOrderFormData');
 			  if(webStorage.get('selfcareUserData')){
 				  clientData = webStorage.get('selfcareUserData');
-				  var name = clientData.lastname;
-					name = name.trim();				
-					name = name.replace(/ /g, '');
-				  scope.formData.fullName = name;
+				 
+				  scope.formData.fullName = clientData.lastname;
 				  scope.formData.address = clientData.addressNo;
 				  scope.formData.emailId = clientData.email;
 				  scope.formData.zipcode = clientData.zip;
@@ -79,11 +73,8 @@
 			 var  VODTotalAmount = webStorage.get('VODTotalAmount');
 			 if(webStorage.get('selfcareUserData')){
 				  clientData = webStorage.get('selfcareUserData');
-				  var name = clientData.lastname;
-				  
-					name = name.trim();				
-					name = name.replace(/ /g, '');
-				  scope.formData.fullName = name;
+				
+				  scope.formData.fullName = clientData.lastname;
 				  scope.formData.address = clientData.addressNo;
 				  scope.formData.emailId = clientData.email;
 				  scope.formData.zipcode = clientData.zip;
