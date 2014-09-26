@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  EditTaxMappingController: function(scope, routeParams, resourceFactory, location,dateFilter) {
+	  EditTaxMappingController: function(scope, routeParams, resourceFactory, location,dateFilter,$rootScope) {
     	scope.chargecodetaxs = [];
         scope.typetaxmapdatas = [];
         scope.priceRegionDatas = [];
@@ -19,7 +19,7 @@
         
         scope.submit = function() {
 //        	this.formData.taxRegion=formData.priceregion;
-        	this.formData.locale = 'en';
+        	this.formData.locale = $rootScope.locale.code;
             this.formData.dateFormat = 'dd MMMM yyyy';
             this.formData.taxRegion=this.formData.TaxRegionId;
         	if(scope.date.startDate){this.formData.startDate = dateFilter(scope.date.startDate,'dd MMMM yyyy');}
@@ -37,7 +37,7 @@
         };
     }
   });
-  mifosX.ng.application.controller('EditTaxMappingController', ['$scope', '$routeParams', 'ResourceFactory', '$location','dateFilter', mifosX.controllers.EditTaxMappingController]).run(function($log) {
+  mifosX.ng.application.controller('EditTaxMappingController', ['$scope', '$routeParams', 'ResourceFactory', '$location','dateFilter','$rootScope', mifosX.controllers.EditTaxMappingController]).run(function($log) {
     $log.info("EditTaxMappingController initialized");
   });
 }(mifosX.controllers || {}));

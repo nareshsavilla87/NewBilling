@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    ClientActionsController: function(scope, resourceFactory, location, routeParams, dateFilter) {
+    ClientActionsController: function(scope, resourceFactory, location, routeParams, dateFilter,$rootScope) {
 
         scope.action = routeParams.action || "";
         scope.clientId = routeParams.id;
@@ -61,7 +61,7 @@
         }
 
         scope.submit = function() {
-          this.formData.locale = 'en';
+          this.formData.locale = $rootScope.locale.code;
           this.formData.dateFormat = 'dd MMMM yyyy';
           if (this.formData[scope.modelName]) {
             this.formData[scope.modelName] = dateFilter(this.formData[scope.modelName],'dd MMMM yyyy');
@@ -115,7 +115,7 @@
         };
     }
   });
-  mifosX.ng.application.controller('ClientActionsController', ['$scope', 'ResourceFactory', '$location', '$routeParams', 'dateFilter', mifosX.controllers.ClientActionsController]).run(function($log) {
+  mifosX.ng.application.controller('ClientActionsController', ['$scope', 'ResourceFactory', '$location', '$routeParams', 'dateFilter','$rootScope', mifosX.controllers.ClientActionsController]).run(function($log) {
     $log.info("ClientActionsController initialized");
   });
 }(mifosX.controllers || {}));

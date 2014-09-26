@@ -3,6 +3,9 @@
 	  ActiveClientPreviewScreenController: function(scope,RequestSender,rootScope,http,authenticationService,webStorage,httpService,sessionManager,location,dateFilter) {
 	
 		  
+		  //getting main page url from returnURL.js file
+		  var selfcareMainPageURL = selfcare.models.selfcareMainPageURL;
+		  
 		  scope.formData = {};
 		  scope.clientData = {};
 		  webStorage.remove('selfcare_sessionData');
@@ -41,7 +44,8 @@
 	  			RequestSender.authenticationClientResource.save(scope.clientData,function(data){
 	  				 webStorage.remove('planFormData');
 	  				 rootScope.currentSession = sessionManager.clear();
-	  				 location.path('/').replace();
+	  				 //location.path('/').replace();
+	  				location.replace(selfcareMainPageURL);
 	  				 rootScope.activetedClientPopup();
 	  			 });
 	  		})

@@ -33,12 +33,7 @@
         		  scope.signInProcessLoading = false;
         		  delete scope.loginCredentials.username;
         		  delete scope.loginCredentials.password;
-        		  var urlReloadProfile = window.location.hash;
-        		  if(urlReloadProfile == '#/profile'){
-        			  location.path('/reloadprofile');
-        		  }else {
         			  location.path('/profile');
-        		  }
         	  },function(errorData){
         		  webStorage.remove("selfcare_sessionData");
         		  scope.currentSession= {user:null};

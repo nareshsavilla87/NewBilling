@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  AddOwnHardwareController: function(scope,webStorage,routeParams, resourceFactory, location, dateFilter) {
+	  AddOwnHardwareController: function(scope,webStorage,routeParams, resourceFactory, location, dateFilter,$rootScope) {
         scope.itemtypes = [];
         scope.serialnumber = [];
         scope.provisioningserialnumber = {};
@@ -36,7 +36,7 @@
         
         scope.submit = function() {
             
-            this.formData.locale = 'en';
+            this.formData.locale = $rootScope.locale.code;
            
             
             var reqDate = dateFilter(scope.first.date,'dd MMMM yyyy');
@@ -55,7 +55,7 @@
             
       }
  });     
-        mifosX.ng.application.controller('AddOwnHardwareController', ['$scope','webStorage','$routeParams', 'ResourceFactory', '$location','dateFilter', mifosX.controllers.AddOwnHardwareController]).run(function($log) {
+        mifosX.ng.application.controller('AddOwnHardwareController', ['$scope','webStorage','$routeParams', 'ResourceFactory', '$location','dateFilter','$rootScope', mifosX.controllers.AddOwnHardwareController]).run(function($log) {
 		    $log.info("AddOwnHardwareController initialized");
 		  });
 		}(mifosX.controllers || {}));

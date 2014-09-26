@@ -25,7 +25,6 @@
          scope.showInvoiceDetails=false;
          scope.selectAccount = false;
          scope.selectInvoice = false;
-         
         resourceFactory.paymentsTemplateResource.getPayments(function(data){
         	scope.payments = data;
             scope.data = data.data;

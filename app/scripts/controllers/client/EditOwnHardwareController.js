@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  EditOwnHardwareController: function(scope,webStorage,routeParams, resourceFactory, location, dateFilter) {
+	  EditOwnHardwareController: function(scope,webStorage,routeParams, resourceFactory, location, dateFilter,$rootScope) {
         scope.itemtypes = [];
         scope.serialnumber = [];
         scope.provisioningserialnumber = {};
@@ -40,7 +40,7 @@
         
         scope.submit = function() {
         	
-            this.formData.locale = 'en';
+            this.formData.locale = $rootScope.locale.code;
             var reqDate = dateFilter(scope.first.date,'dd MMMM yyyy');
             this.formData.dateFormat = 'dd MMMM yyyy';
             this.formData.allocationDate = reqDate;
@@ -57,7 +57,7 @@
             
       }
  });     
-        mifosX.ng.application.controller('EditOwnHardwareController', ['$scope','webStorage','$routeParams', 'ResourceFactory', '$location','dateFilter', mifosX.controllers.EditOwnHardwareController]).run(function($log) {
+        mifosX.ng.application.controller('EditOwnHardwareController', ['$scope','webStorage','$routeParams', 'ResourceFactory', '$location','dateFilter','$rootScope', mifosX.controllers.EditOwnHardwareController]).run(function($log) {
 		    $log.info("EditOwnHardwareController initialized");
 		  });
 		}(mifosX.controllers || {}));

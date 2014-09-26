@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    DataTableEntryController: function(scope, location, routeParams, route, resourceFactory,$modal) {
+    DataTableEntryController: function(scope, location, routeParams, route, resourceFactory,$modal,$rootScope) {
 
     	   if (routeParams.tableName) {
                scope.tableName = routeParams.tableName;
@@ -140,7 +140,7 @@
         };
 
       scope.submit = function () {
-        this.formData.locale = 'en';
+        this.formData.locale = $rootScope.locale.code;
         this.formData.dateFormat =  'dd MMMM yyyy';
         for (var i = 0; i < scope.columnHeaders.length; i++) {
          //below logic, for the input field if data is null from DB, then columnName value send "" to server side
@@ -175,7 +175,7 @@
 
     }
   });
-  mifosX.ng.application.controller('DataTableEntryController', ['$scope', '$location', '$routeParams', '$route', 'ResourceFactory','$modal', mifosX.controllers.DataTableEntryController]).run(function($log) {
+  mifosX.ng.application.controller('DataTableEntryController', ['$scope', '$location', '$routeParams', '$route', 'ResourceFactory','$modal','$rootScope', mifosX.controllers.DataTableEntryController]).run(function($log) {
     $log.info("DataTableEntryController initialized");
   });
 }(mifosX.controllers || {}));

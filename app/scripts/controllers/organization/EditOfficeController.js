@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    EditOfficeController: function(scope, routeParams, resourceFactory, location,dateFilter) {
+    EditOfficeController: function(scope, routeParams, resourceFactory, location,dateFilter,$rootScope) {
         scope.formData = {};
         scope.first = {};
         resourceFactory.officeResource.get({officeId: routeParams.id, template: 'true'} , function(data) {
@@ -27,7 +27,7 @@
         
         scope.submit = function() {
             var reqDate = dateFilter(scope.first.date,'dd MMMM yyyy');
-            this.formData.locale = 'en';
+            this.formData.locale = $rootScope.locale.code;
             this.formData.dateFormat = 'dd MMMM yyyy';
             this.formData.openingDate = reqDate;
             resourceFactory.officeResource.update({'officeId': routeParams.id},this.formData,function(data){
@@ -36,7 +36,7 @@
         };
     }
   });
-  mifosX.ng.application.controller('EditOfficeController', ['$scope', '$routeParams', 'ResourceFactory', '$location','dateFilter', mifosX.controllers.EditOfficeController]).run(function($log) {
+  mifosX.ng.application.controller('EditOfficeController', ['$scope', '$routeParams', 'ResourceFactory', '$location','dateFilter','$rootScope', mifosX.controllers.EditOfficeController]).run(function($log) {
     $log.info("EditOfficeController initialized");
   });
 }(mifosX.controllers || {}));

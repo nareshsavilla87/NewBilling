@@ -36,11 +36,11 @@
 			 <div class="control-group">
        			 <label class="control-label">{{ 'label.amount' | translate}}<span class="required">*</span></label>
         		<div class="controls">
-          			<input type="text" ng-model="formData.amount" reqiured late-Validate disabled/>&nbsp; {{displaycurrency}}
+          			<input type="text" ng-model="formData.amount" reqiured late-Validate disabled/>&nbsp;[{{formData.currency}}]
         		</div>
       		</div>
-			<div class="control-group">
-				<label class="control-label" >{{'label.description' | translate}}<span class="required">*</span></label>
+      		 <div class="control-group">
+				<label class="control-label" >{{ 'label.description' | translate}}<span class="required">*</span></label>
 				<div class="controls">
 					<textarea rows="2" ng-model="formData.description" reqiured late-Validate disabled></textarea>
 				</div>
@@ -54,7 +54,7 @@
 			
 		</fieldset>
 		   <div class="offset3">
-		  	 <a id="cancel" ng-click="previousPage()" class="btn">Cancel</a>
+		  	 	 <a id="cancel" ng-click="previousPage()" class="btn">Cancel</a>
      	       <button id="submit" type="submit" ng-click="submitFun()" ng-disabled="formData.terms == 'N'" class="btn btn-primary">Submit</button>
           </div>
 </form>

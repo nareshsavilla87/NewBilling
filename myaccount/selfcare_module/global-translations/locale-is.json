@@ -1,6 +1,7 @@
 {
   "ttles" :"----------------------------------------------------",
- 	"title.obs.selfcare"		: "OBS SelfCare",
+ 	"title.obs.selfcare"					 : "OBS SelfCare",
+ 	"title.thortelecom.selfcare"			 : "Thor Telecom SelfCare",
  	"title.conformation.registration" 		 : "Þakka þér fyrir að skrá þig! A sköpulag hefur verið sendur til póstur auðkenni.Vinsamlegast innskráningu til þinn tölvupósti reikningur og smelltu á örvun hlekkur til að ljúka skráningu ",
  	"title.conformation.alreadyregistration" : "Viðskiptavinur er þegar skráð við þennan póstur auðkenni.",
  	"title.signin.msg" 						 : "Vinsamlegast skráðu þig inn..!",
@@ -45,6 +46,7 @@
  	"label.form.registration"	: "Skráning Frá",
  	"label.pleasewait"			: "vinsaml..",
  	"label.registration.page"	: "Skráning síðu",
+ 	"label.registration.confirmation.page"	: "Staðfesting á skrásetningu Síða",
  	"label.customer.name"	  	: "Nafn viðskiptavinar",
  	"label.mobilephone"	  		: "Farsímanúmer",
  	"label.email"	  			: "Netfang",
@@ -120,7 +122,7 @@
  	"placeholder.filter.ticket"				: "Sía eftir auðkenni",
  	"placeholder.filter.vod"				: "Leita Movie Nafn",
  	"placeholder.enter.nationalid"			: "sláðu inn National auðkenni",
- 	"placeholder.enter.nationalid.example"	: "Dæmi: 090814-1234",
+ 	"placeholder.enter.nationalid.example"	: "Dæmi: 0908141234",
  	"placeholder.filter.listofvods"			: "Sía eftir auðkenni",
  	
  	
@@ -137,7 +139,7 @@
  	"label.client.balance"			: "jafnvægi",
  	"label.telephone.number"		: "Símanúmer",
  	"label.pattern"					: "mynstur :",
- 	"hint.nationaid.pattern"		: "ddmmyy-allir 4 tölustafir",
+ 	"hint.nationaid.pattern"		: "ddmmyyallir 4 tölustafir",
  	"label.change.language" 		: "Breyta tungumáli:",
  	"label.korta"					: "Korta",
  	"label.thor.token"				: "auðkennið",
@@ -146,14 +148,15 @@
  	"label.add.kota.Info"			: "Korta Upplýsingar",
 	"label.amount"					: "Magn",
 	"label.currency"				: "Gjaldmiðill",
-	"label.description"				: "Lýsing",
-	"label.do.action"				: "gera aðgerð",
+	"label.description"				: "textinn",
+	"label.do.action"				: "Borga Aðferð",
 	"label.state/province"			: "ástand/héraðinu",
+	"label.country"					: "landið",
  	
  	"#form validations errors " : "------------------------------------",
  	"form.error.alphanumeric"		     : "tölustafi og rými aðeins!",
  	"form.error.name.characters.atleast" : "Nafn er krafist amk 3 stafir",
- 	"form.error.number.digits.atleast"   : "að minnsta kosti lágmarks 10 tölustöfum tekur..",
+ 	"form.error.number.digits.atleast"   : "að minnsta kosti lágmarks 7 tölustöfum tekur..",
  	"form.error.number.digits.maximum"   : "hámarki 15 tölustafir tekur..",
  	"form.error.number"		    		 : "tekur aðeins tölur !",
  	"form.error.password.match"		   	 : "Lykilorð ekki passa !",
@@ -808,7 +811,11 @@
 "#client&parent":"",
 "error.msg.client.Not parent.himself.can.not.be.parent.to his.account":"Himself can not be parent to his account",
 "error.msg.client.Not Parent.he.is. already. a parent.to.some other clients":"He is already a parent to some other clients",
-"error.msg.client.Not Parent.can.not.be.parent.to this.account":"Can not be parent to this account"
+"error.msg.client.Not Parent.can.not.be.parent.to this.account":"Can not be parent to this account",
+
+"label.agree":"Ég er sammála til að",
+"label.Terms.Conditions":"Skilmálar og skilyrði",
+"label.terms.condition.url":"https://netgreidslur.korta.is/testing/?page=samples&lang=en"
 
 
 

@@ -572,9 +572,9 @@
                  itemDetailsResource: defineResource(apiVer + "/itemdetails/:itemId/:anotherresource", {itemId:'@itemId',anotherresource:'@anotherresource'}, {
                	  getAlldetails: {method: 'GET', params: {}},
                      get: {method: 'GET', params: {}},
-		  update: {method: 'PUT', params: {}}
+		             update: {method: 'PUT', params: {}}
                  }),
-		itemQualityResource: defineResource(apiVer + "/itemdetails/itemquality", {}, {
+		        itemQualityResource: defineResource(apiVer + "/itemdetails/itemquality", {}, {
                      get: {method: 'GET', params: {}}	
                  }),	
                  itemResource: defineResource(apiVer + "/items/:itemId", {itemId:'@itemId'}, {
@@ -1007,6 +1007,11 @@
                 get: {method: 'GET', params: {}}
             }),
             provisionLogResource: defineResource(apiVer + "/adapter/logs", {}, {}),
+            
+            cancelStatementResource: defineResource(apiVer + "/billmaster/:statementId", {statementId:'@statementId'}, {
+                get: {method: 'GET', params: {}, isArray: true},
+                update: { method: 'PUT'}
+            }),
            
         };
       }];
