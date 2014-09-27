@@ -11,7 +11,7 @@
  	"title.account.activated.signin" 		 : "Your Account is Already in Active.You may now ",
  	"title.account.activated" 				 : "Now Your Account is Activated.Username and Password has sent to your mailID.Please Sign In..!",
  	"title.verify.emailid" 					 : "An email has sent to your mailID.Please verify then Sign In..",
- 	"title.fill.emailid" 					 : "Please fill Email Field..",
+ 	"title.fill.emailid" 					 : "Please fill Email Field/Invalid Email..",
  	"title.redirecting.dalpay" 				 : "Redirecting Please Wait...",
  	"title.msg.firsttimeregistration" 		 : "If you are signing in for the first time please register your email by clicking SIGN-UP button",
  	
@@ -113,7 +113,7 @@
  	"link.vod.add.event" 		 :  "Add Event",
  	
  	"#place holders " : "------------------------------------",
- 	"placeholder.enter.device"				: "Enter Device",
+ 	"placeholder.enter.device"				: "ex:12:12:12:12:12:12",
  	"placeholder.enter.zipcode"				: "Enter Zipcode",
  	"placeholder.enter.postcode"			: "Enter Postcode",
  	"placeholder.enter.address"				: "Enter Address",
