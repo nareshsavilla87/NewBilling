@@ -55,12 +55,12 @@
 		</div>
 </div>-->
  		<form name="activeForm" novalidate="" class="form-horizontal">
- 			<div class="control-group" ng-show="isActive==true" style="margin-top:50px;">
+ 			<!-- <div class="control-group" ng-show="isActive==true" style="margin-top:50px;">
 				 <div class="alert alert-success animated tada" role="alert" >
 		         	<strong>{{'title.account.active'|translate}}
 							 <a ng-click="registrationLinkPageFun()" class="alert-link" style="color:#000000;">{{'link.register'|translate}}</a></strong>
 				</div>
-			</div>
+			</div> -->
 			<div class="control-group" ng-show="isAlreadyActive==true" style="margin-top:50px;">
 				<div class="alert alert-info animated tada" role="alert" >
 		         	<strong>{{'title.account.activated.signin'|translate}} 
@@ -297,7 +297,7 @@
 	       			</td>
 	       			<td>
             			<div class="control-group" style="margin-bottom:30px;">
-            				<label class="control-label">{{'label.email' | translate}}&nbsp;<span class="required">*</span></label>
+            				<label class="control-label">{{'label.email' | translate}}&nbsp;</label>
             				<div class="controls">
             					<input name="email" type="text" data-ng-model="existedEmail" placeholder= "{{'label.email' | translate}}" ng-disabled="true" required late-Validate><br/>
             				</div>
@@ -332,7 +332,7 @@
                              </div>
                         </div>	 -->
                         <div class="control-group" style="margin-bottom:30px;">
-				              <label class="control-label" for="state">{{'label.state/province' | translate}}&nbsp;<span class="required">*</span></label>
+				              <label class="control-label" for="state">{{'label.state/province' | translate}}&nbsp;</label>
 				              <div class="controls">
 				                <input type="text" id="state" ng-model="formData.state" disabled required late-Validate/>
 				              </div>
@@ -345,7 +345,10 @@
             			<div class="control-group" ng-show="isDeviceEnabled==true" style="margin-bottom:30px;">
                             <label class="control-label" for="serialNumber">{{ 'label.device' | translate }}&nbsp;<span class="required">*</span></label>
                              <div class="controls">
-    	                        <input type="text" ng-model="formData.deviceNo" name="serialNumber" placeholder= "{{ 'placeholder.enter.device' | translate }}"/>
+    	                        <input type="text" ng-model="formData.deviceNo" name="deviceNo" placeholder= "{{ 'placeholder.enter.device' | translate }}" ng-pattern="/^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$/" required late-Validate/>
+    	                        <span  ng-show="regSuccessForm.deviceNo.$dirty &&regSuccessForm.deviceNo.$invalid">
+				                	<small class="error" ng-show="regSuccessForm.fullName.$error.pattern">{{'form.error.device.invalid'|translate}}</small>
+				                </span>
                              </div>
                         </div>	
 	         				 
@@ -358,7 +361,7 @@
 	       	<div class="offset3">
 	       		 <!-- <button ng-click="nextBtnFun()" class="btn btn-primary pull-right" 
 				 		ng-disabled="!regSuccessForm.$valid">{{'btn.next' | translate}}<i class="icon-circle-arrow-right icon-white"></i></button> -->
-				 <button ng-click="registerBtnFun()" class="btn btn-primary pull-right"><i class="icon-thumbs-up icon-white"></i>{{'btn.register' | translate}}</button>
+				 <button ng-click="registerBtnFun()" class="btn btn-primary pull-right" ng-disabled="!regSuccessForm.$valid"><i class="icon-thumbs-up icon-white"></i>{{'btn.register' | translate}}</button>
 	        </div>
 	       </fieldset>
 	</form>

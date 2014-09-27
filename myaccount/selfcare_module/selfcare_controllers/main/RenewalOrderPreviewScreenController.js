@@ -17,11 +17,13 @@
 			 if(scope.formData.kortaToken){
 				 RequestSender.updateKortaToken.update({clientId : routeParams.clientId},{'kortaToken':scope.formData.kortaToken},function(data){
 					 webStorage.remove('renewalOrderFormData');
+					 rootScope.iskortaTokenAvailable = true;
 					 rootScope.isActiveScreenPage= false;
 					 location.path('/orders');
 				 });
 			 }else{
 				 webStorage.remove('renewalOrderFormData');
+				 rootScope.iskortaTokenAvailable = true;
 				 rootScope.isActiveScreenPage= false;
 				 location.path('/orders');
 			 }

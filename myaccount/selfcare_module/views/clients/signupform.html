@@ -1,14 +1,14 @@
  <div ng-controller="SignUpFormController">
   <div id="animated-example2" class="row paddedbottom pull-right border-box-shape animated bounceIn" >
    		<h2 style="color:#000000"><strong>{{'label.signup' | translate}}</strong></h2><hr>
-   		<div class="alert alert-danger animated tada" role="alert" data-ng-show="emptySignUpCredentials">
+		<div class="alert alert-danger animated tada" role="alert" data-ng-show="emptySignUpCredentials">
  		 		<strong>{{'title.fill.emailid' | translate}}</strong>
  		 	</div>
    		 <table>
    		    <tr>
 			 <td><i class="icon-user"></i></td>
 			 <td><input id="emailId" ng-autofocus="true" type="email" ng-model="signUpCredentials.userName" class="input-xtra-large" 
-						ng-disabled="isProcessing" placeholder="{{'label.email' | translate}}" required></td>
+						ng-disabled="isProcessing" placeholder="{{'label.email' | translate}}" ></td>
 			</tr>
 	      </table><br/><br/>
 	      <div ng-hide="isProcessing">

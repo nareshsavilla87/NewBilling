@@ -11,7 +11,7 @@
 		  scope.existedEmail = routeParams.mailId;
 
 		//default variables for this controller
-		  scope.isActive=false;
+		 // scope.isActive=false;
 		  scope.isAlreadyActive=false;
 		  scope.isRegPage = false;
 		  scope.cities = [];
@@ -34,8 +34,28 @@
 		  	 httpService.setAuthorization(data.base64EncodedAuthenticationKey);
 		  	 	//sending selfcare activation updation request
 		  		RequestSender.registrationResource.update(scope.registrationKey,function(successData) {
-		  			scope.isActive=true;
+		  			scope.isRegPage=true;
 		  			rootScope.currentSession= {user :'selfcare'};
+	  				  if(scope.isRegPage == true){
+	  					  
+	  					  //getting list of city data
+	  					  RequestSender.addressTemplateResource.get(function(data) {
+	  						  scope.cities=data.cityData;
+	  					  });
+	  					  
+	  					//getting data from c_configuration for isRegister_plan and isisDeviceEnabled
+	  					  RequestSender.configurationResource.get(function(data){
+	  						  for(var i in data.globalConfiguration){
+	  							 if(data.globalConfiguration[i].name=="Register_plan"){
+	  								  scope.isRegisteredPlan = data.globalConfiguration[i].enabled;
+	  						      }
+	  							  if(data.globalConfiguration[i].name=="Registration_requires_device"){
+	  								  scope.isDeviceEnabled = data.globalConfiguration[i].enabled;
+	  							  }
+	  						  }
+	  					  });
+	
+	  				  }
 		        },function(errorData){
 		      	  scope.isAlreadyActive=true;
 		      	  rootScope.currentSession= {user :'sefcare'};
@@ -51,9 +71,22 @@
 			  	rootScope.isActiveScreenPage= false;
 			  	  location.path('/').replace;
 		   };
+		   
+		   //getting state and country while changing the city
+			  scope.getStateAndCountry=function(city){
+				  scope.formData.zipcode = city;
+				//sending request for getting state and country while changing the city
+				  RequestSender.addressTemplateResource.get({city :city}, function(data) {
+					  scope.formData.state = data.state;
+					  scope.formData.country = data.country;
+				  },function(errorData) {
+					  delete scope.formData.state ;
+					  delete scope.formData.country;
+				  });
+			  };
 		  
 		  //function called when  clicking on Register link
-		  scope.registrationLinkPageFun =function(){
+		 /* scope.registrationLinkPageFun =function(){
 			  scope.isActive=false;
 			  scope.isAlreadyActive=false;
 			  scope.isRegPage = true;
@@ -91,7 +124,7 @@
 				  });
 
 			  }
-			};
+			};*/
 			
 			//function called when clicking on Register button in Registration Page
 			scope.registerBtnFun =function(){
