@@ -1233,9 +1233,10 @@
   "label.itemdetail.receivedquantity":"Received Quantity",
   "label.itemdetail.serialnumber":"Serial Number",
   "label.itemdetail.quality":"Quality",
-  "label.itemdetail.provisioningserialnumber":"Provisioning Serial Number",
+  "label.itemdetail.provisioningserialnumber":"Provisioning Serial",
   "label.itemdetail.status":"Status",
   "label.itemdetail.remarks":"Remarks",
+  "label.itemdetail.itemModel":"Item Model",
   
   "#MRN":"....",
   "label.mrn.id":"Mrn Id",
