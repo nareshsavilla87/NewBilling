@@ -313,7 +313,7 @@
 				              		   ng-change="getStateAndCountry(formData.city)" required late-Validate>
 				              		   <option value="">--{{'label.select'|translate}}--</option>
 				              </select> -->
-				               <input type="text" id="city" name="city" ng-model="formData.city" list ="citylist" 
+				               <input type="text" id="city" name="city" ng-model="formData.city" list ="citylist" placeholder= "{{'label.home.postcode' | translate}}" 
 				               			ng-change="getStateAndCountry(formData.city)" required late-Validate/><br/>
 				               	<span ng-show="errorDetails[0].code == 'error.msg.billing.address.city.not.found'">
 				        			<small class="error">{{'error.msg.billing.address.city.not.found'| translate}}</small>

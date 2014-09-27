@@ -11,7 +11,7 @@
  	"title.account.activated.signin" 		 : "Reikningurinn þinn er þegar í virk.þú getur nú ",
  	"title.account.activated" 				 : "Nú Reikningurinn þinn er virkur.notandanafn og Lykilorð hefur sendi póstur auðkenni.vinsamlegast Skrá þinn í ..!",
  	"title.verify.emailid" 					 : "Tölvupóstur hefur sendi til póstur auðkenni.vinsamlegast þinn staðfesta skráðu þig inn..",
- 	"title.fill.emailid" 					 : "Vinsamlegast fyllið  Tölvupóstur reit..",
+ 	"title.fill.emailid" 					 : "Vinsamlegast fyllið  Tölvupóstur reit/Ógilt netfang..",
  	"title.redirecting.dalpay" 				 : "Áframsendi vinsaml...",
  	"title.msg.firsttimeregistration" 		 : "Ef þú ert að skrá þig inn í fyrsta skipti skaltu skrá netfangið þitt með því að smella Nýskráningarforritið hnappinn",
  	
@@ -113,7 +113,7 @@
  	"link.vod.add.event" 		 :  "Bæta við atburði",
  	
  	"#place holders " : "------------------------------------",
- 	"placeholder.enter.device"				: "sláðu inn Tæki",
+ 	"placeholder.enter.device"				: "Dæmi:12:12:12:12:12:12",
  	"placeholder.enter.zipcode"				: "sláðu inn póstnúmer",
  	"placeholder.enter.postcode"			: "sláðu inn póstnúmer",
  	"placeholder.enter.address"				: "sláðu inn heimilisfang",
