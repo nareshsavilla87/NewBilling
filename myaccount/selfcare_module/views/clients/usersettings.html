@@ -1,0 +1,15 @@
+<div>
+	<ul class="breadcrumb">
+		  <li class="active">{{ 'label.user.settings' | translate }}</li>
+	</ul>
+</div>
+<div id="systemUsers" data-ng-controller="UserSettingController">
+<br/><br/>
+    <div class="control-group offset1">
+        <label class="control-label">{{ 'label.change.language' | translate }}</label>
+        <div class="controls">
+            <select ng-model="optlang" ng-options="lang.name for lang in langs" ng-change="changeLang(optlang)">
+    		</select>
+        </div>
+    </div>
+</div>

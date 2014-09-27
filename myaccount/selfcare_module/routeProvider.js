@@ -73,6 +73,9 @@
     })
     .when('/changekortatoken',{
     	templateUrl: 'selfcare_module/views/ChangeKortaToken.html'
+    })
+    .when('/usersetting',{
+    	templateUrl: 'selfcare_module/views/clients/usersettings.html'
     });
        
     $locationProvider.html5Mode(false);
