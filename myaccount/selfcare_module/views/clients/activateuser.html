@@ -345,9 +345,9 @@
             			<div class="control-group" ng-show="isDeviceEnabled==true" style="margin-bottom:30px;">
                             <label class="control-label" for="serialNumber">{{ 'label.device' | translate }}&nbsp;<span class="required">*</span></label>
                              <div class="controls">
-    	                        <input type="text" ng-model="formData.deviceNo" name="deviceNo" placeholder= "{{ 'placeholder.enter.device' | translate }}" ng-pattern="/^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$/" required late-Validate/>
+    	                        <input type="text" ng-model="formData.deviceNo" name="deviceNo" placeholder= "{{ 'placeholder.enter.device' | translate }}" ng-pattern="/^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$/" required late-Validate/><br/>
     	                        <span  ng-show="regSuccessForm.deviceNo.$dirty &&regSuccessForm.deviceNo.$invalid">
-				                	<small class="error" ng-show="regSuccessForm.fullName.$error.pattern">{{'form.error.device.invalid'|translate}}</small>
+				                	<small class="error" ng-show="regSuccessForm.deviceNo.$error.pattern">{{'form.error.device.invalid'|translate}}</small>
 				                </span>
                              </div>
                         </div>	
