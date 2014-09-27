@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  EditCurrencyDetailsController: function(scope, resourceFactory, location, routeParams) {
+	  EditCurrencyDetailsController: function(scope, resourceFactory, location, routeParams,$rootScope) {
         
 		  scope.countryDatas = [];
 	        scope.currencydatas = [];
@@ -18,6 +18,7 @@
         });
         
         scope.submit = function() {
+        	this.formData.locale = $rootScope.locale.code;
         	delete this.formData.countryData;
         	delete this.formData.currencydata;
         	delete this.formData.currencystatus;
@@ -28,7 +29,7 @@
         };
     }
   });
-  mifosX.ng.application.controller('EditCurrencyDetailsController', ['$scope', 'ResourceFactory', '$location', '$routeParams', mifosX.controllers.EditCurrencyDetailsController]).run(function($log) {
+  mifosX.ng.application.controller('EditCurrencyDetailsController', ['$scope', 'ResourceFactory', '$location', '$routeParams','$rootScope', mifosX.controllers.EditCurrencyDetailsController]).run(function($log) {
     $log.info("EditCurrencyDetailsController initialized");
   });
 }(mifosX.controllers || {}));
