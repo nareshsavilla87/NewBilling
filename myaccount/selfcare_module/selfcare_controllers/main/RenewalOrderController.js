@@ -7,6 +7,7 @@
 		  	scope.isPaymentPage = false;
 		  	scope.isRedirectToDalpay = false;
 		  	scope.isAmountZero = false;
+		    scope.paymentGatewayName = 'korta';
 		  	scope.orderData = [];
 		  	scope.plansData = {};
 			scope.clientData = {};
@@ -58,6 +59,8 @@
 			  
 				scope.paymentGatewayFun  = function(paymentGatewayName){
 			    	  console.log(paymentGatewayName);
+			    	  scope.paymentGatewayName = paymentGatewayName;
+			    	  
 			    	  if(paymentGatewayName == 'dalpay'){
 			    		  scope.paymentDalpayURL = scope.dalpayURL+"&cust_name="+scope.formData.lastname+"&cust_phone="+scope.formData.phone+"&cust_email="+scope.formData.email+"&cust_state="+scope.formData.state+""+
 	    	  				"&cust_address1="+scope.formData.addressNo+"&cust_zip="+scope.formData.zip+"&cust_city="+scope.formData.state+"&item1_desc="+scope.formData.planName+"&item1_price="+scope.formData.planAmount+"" +

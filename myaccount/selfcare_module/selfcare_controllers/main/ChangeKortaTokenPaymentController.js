@@ -4,21 +4,27 @@
 		  
 		  var clientData = {};
 		  scope.formData = {};
-          clientData = webStorage.get('selfcareUserData');
-		 
-		  scope.formData.fullName = clientData.lastname;
-		  scope.formData.address = clientData.addressNo;
-		  scope.formData.emailId = clientData.email;
-		  scope.formData.zipcode = clientData.zip;
-		  scope.formData.city = clientData.city;
-		  scope.formData.country = clientData.country;
-		  scope.formData.mobileNo = clientData.phone;
-		  scope.formData.description = scope.formData.address;
-		  scope.formData.doAction = "STNOCAP";
-		  scope.formData.amount = 100;
 		  
-		  var clientId = clientData.id;
+		  clientData = webStorage.get('selfcareUserData');
+		   
+		   scope.clientId = clientData.id;
+		  
+		  RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
+			  clientData = data;
+			  scope.formData.fullName = clientData.lastname;;
+			  scope.formData.address = clientData.addressNo;
+			  scope.formData.emailId = clientData.email;
+			  scope.formData.zipcode = clientData.zip;
+			  scope.formData.city = clientData.city;
+			  scope.formData.country = clientData.country;
+			  scope.formData.mobileNo = clientData.phone;
+			  scope.formData.description = scope.formData.address+","+scope.formData.city;
+			  scope.formData.doAction = "STNOCAP";
+			  scope.formData.amount = 100;
+		  });
 		  scope.formData.terms = 'N';
+		  
+		  
 
 		  //values getting form constants.js file
 		  scope.kortaMerchantId = selfcare.models.kortaMerchantId;
@@ -45,8 +51,7 @@
 				}	
 				scope.formData.token = randomstring;
 				
-			};
-			
+			};		
 		  scope.randomFun();  
 		  
 		  scope.previousPage = function(){
@@ -60,9 +65,7 @@
 	      
 	      scope.submitFun = function(){
 	    	  
-			  webStorage.remove('selfcareUserData');
-			    
-              var encryptData = '{"'+scope.kortaAmountField+'":'+scope.formData.amount+',"'+scope.kortaclientId+'":'+clientId+ ',"'
+              var encryptData = '{"'+scope.kortaAmountField+'":'+scope.formData.amount+',"'+scope.kortaclientId+'":'+scope.clientId+ ',"'
               +scope.kortaPaymentMethod+'":"'+scope.formData.doAction + '","' +scope.kortaTokenValue + '":"'+ scope.formData.token +'"}';
 			  
 			  var encryptString = encodeURIComponent(encryptData);

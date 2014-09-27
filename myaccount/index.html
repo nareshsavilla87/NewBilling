@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-	<meta charset="utf-8" />
+	<meta charset="utf-8">
 	<link rel="icon" type="image/png" href="./selfcare_module/images/favicon.ico" />
 	<title>{{'title.thortelecom.selfcare' | translate}}</title>
 	<style>[data-ng-cloak] { display: none !important; }</style>
@@ -92,9 +92,9 @@
 				   				<td><input id="pwd"  type="password" data-ng-model="loginCredentials.password"  class="input-xtra-large"
 				           			ng-disabled="signInProcessLoading" placeholder="{{ 'label.password' | translate }}" required></td></tr>
 				           		</table>
-				           		<div class="pull-right" style="color:#428bca;"data-ng-click="forgotPwdPopup()"><a>{{'label.forgot.password' | translate}}</a></div><br/><br/>
-				           	 <button class="btn btn-primary pull-right btn-xtra-styles"ng-hide="signInProcessLoading" type="submit"  data-ng-click="signUpBtnFun()">{{ 'btn.signup' | translate }}</button> 
-				           	<button class="btn btn-success pull-right btn-xtra-styles" ng-hide="signInProcessLoading" type="submit" style="" data-ng-click="login()">{{ 'btn.signin' | translate }}</button>
+				           		<div class="pull-right" style="color:#428bca;"data-ng-click="forgotPwdPopup()"><a>{{'label.forgot.password' | translate}}</a></div>
+				           	<button class="btn btn-success" style="margin-left:35px;margin-top:7px;padding:5px 27px;" ng-hide="signInProcessLoading" type="submit" style="" data-ng-click="login()">{{ 'btn.signin' | translate }}</button>
+				           	 <button class="btn btn-primary btn-xtra-styles" style="width:350px;margin-top:7px;margin-left:35px;" ng-hide="signInProcessLoading" type="submit"  data-ng-click="signUpBtnFun()">{{ 'btn.firsttime.signup' | translate }}</button><br/><br/>
 				           	<div class="btn pull-right" style="color:#000000;padding:5px;" ng-show="signInProcessLoading">{{'label.pleasewait' | translate}}
 								<img alt="Loading.." ng-show="signInProcessLoading" ng-src="./selfcare_module/images/ajax-loader.gif" width="20px"/>
 						  </div> 
@@ -174,11 +174,34 @@
 	                            </a>
 	                            <ul class="dropdown-menu">
 	                            	<li><a href="#/changepwd"><i class="icon-cog"></i>{{'label.change.password' | translate}}</a></li>
-	                            	<li><a href="#/changekortatoken"><i class="icon-cog"></i>{{'label.change.kortatoken' | translate}}</a></li>
+	                            	<li ng-show="iskortaTokenAvailable"><a href="#/changekortatoken"><i class="icon-cog"></i>{{'label.change.kortatoken' | translate}}</a></li>
+	                            	<li><a href="#/usersetting"><i class="icon-cog"></i>{{ 'label.settings' | translate }}</a></li>
 	                                <li><a id="logout" ng-click="signout()"><i class="icon-off"></i>{{'label.signout' | translate}}</a></li>
 	                            </ul>
 	                        </li>
 	                    </ul>
+	                    <ul class=" nav pull-right" id="main-menu-right" ng-hide="isSignInProcess">
+		                    <li class="dropdown" id="preview-menu">
+		                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ 'label.change.language' | translate }}<b class="caret"></b></a>
+		                            <ul class="dropdown-menu">
+		                            	 <li ng-repeat="lang in langs">
+						                 	 <a ng-click="changeLang(lang)">{{lang.name}}</a>
+						                </li>
+		                            </ul>
+		                        </li>
+				            <!-- <span class="dropdown" >
+				              {{ 'label.change.language' | translate }}
+				              <a class="dropdown-toggle btn btn-primary">
+				                {{optlang.name}}
+				                <i class="icon-sort-down"></i>
+				              </a>
+				              <ul class="dropdown-menu">
+				                <li ng-repeat="lang in langs">
+				                  <a ng-click="changeLang(lang)">{{lang.name}}</a>
+				                </li>
+				              </ul>
+				            </span> -->
+				        </ul>
 	                </div>
 	            </div>
 	        </div>
@@ -194,7 +217,7 @@
 	       </div>
 	    </div>
     </div>
- 	<script type='text/javascript' data-main="selfcare_module/selfcare_loader.js" src='../app/bower_components/requirejs/require.js'></script>
+ 	<script type='text/javascript' data-main="selfcare_module/selfcare_loader.js" src='selfcare_module/bower_components/requirejs/require.js'></script>
  	<script type="text/ng-template" id="clientactivepopup.html">
                     
                     <div class="modal-body modal-small" style="padding:25px 0px 0px 35px;">

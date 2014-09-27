@@ -25,11 +25,13 @@
 					 if(scope.formData.kortaToken){
 						 RequestSender.updateKortaToken.update({clientId : scope.formData.clientId},{'kortaToken':scope.formData.kortaToken},function(data){
 							 webStorage.remove('additionalPlanFormData');
+							 rootScope.iskortaTokenAvailable = true;
 							 rootScope.isActiveScreenPage= false;
 							 location.path('/orders');
 						 });
 					 }else{
 						 webStorage.remove('additionalPlanFormData');
+						 rootScope.iskortaTokenAvailable = true;
 						 rootScope.isActiveScreenPage= false;
 						 location.path('/orders');
 					 }
@@ -42,11 +44,13 @@
 							// scope.clientData.kortaToken = scope.formData.kortaToken;
 							 RequestSender.updateKortaToken.update({clientId : scope.formData.clientId},{'kortaToken':scope.formData.kortaToken},function(data){
 								 webStorage.remove('additionalPlanFormData');
+								 rootScope.iskortaTokenAvailable = true;
 								 rootScope.isActiveScreenPage= false;
 								 location.path('/orders');
 							 });
 						 }else{
 							 webStorage.remove('additionalPlanFormData');
+							 rootScope.iskortaTokenAvailable = true;
 							 rootScope.isActiveScreenPage= false;
 							 location.path('/orders');
 						 }

@@ -26,7 +26,6 @@ define(['underscore', 'selfcare'], function() {
                            	  'main/SelfCareMainController',
 						      'main/SignInFormController',
 						      'main/SignUpFormController',
-						      'main/RegistrationSuccessFormController',
 						      'main/ActivateUserController',
 						      'main/ActiveClientPreviewScreenController',
 						      'main/ProfileController',
@@ -50,7 +49,8 @@ define(['underscore', 'selfcare'], function() {
 						      'main/KortaSuccessController',
 						      'main/KortaTokenPaymentController',
 						      'main/KortaTokenPaymentSuccessController',
-						      'main/ChangeKortaTokenPaymentController'
+						      'main/ChangeKortaTokenPaymentController',
+						      'main/UserSettingController'
 					      ],
 					      
     selfcare_filters:    [
