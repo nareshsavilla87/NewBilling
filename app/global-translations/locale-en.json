@@ -1235,9 +1235,10 @@
   "label.itemdetail.receivedquantity":"Received Quantity",
   "label.itemdetail.serialnumber":"Serial Number",
   "label.itemdetail.quality":"Quality",
-  "label.itemdetail.provisioningserialnumber":"Provisioning Serial Number",
+  "label.itemdetail.provisioningserialnumber":"Provisioning Serial",
   "label.itemdetail.status":"Status",
   "label.itemdetail.remarks":"Remarks",
+  "label.itemdetail.itemModel":"Item Model",
   
   "#MRN":"....",
   "label.mrn.id":"Mrn Id",
@@ -2056,7 +2057,8 @@
 "validation.msg.globalConfiguration.mailId.cannot.be.blank":"Email Id cannot be blank",
 "validation.msg.globalConfiguration.password.cannot.be.blank":"Password cannot be blank",
 "validation.msg.globalConfiguration.hostName.cannot.be.blank":"Host Name cannot be blank",
-"validation.msg.globalConfiguration.userName.cannot.be.blank":"Name cannot be blank"
+"validation.msg.globalConfiguration.userName.cannot.be.blank":"Name cannot be blank",
+"validation.msg.note.note.cannot.be.blank":"Note cannot be blank"
 
 
 
