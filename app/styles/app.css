@@ -352,7 +352,7 @@ iframe {
 
 input.marginbottom0px, textarea.marginbottom0px  {
   margin-bottom: 0px;
-  border-bottom-width: 0px;
+  border-bottom-width: 1px;
 }
 
 .notewrapper {
@@ -768,7 +768,7 @@ input.marginbottom3px, textarea.marginbottom3px  {
 nav
 {
     position: fixed;
-    left: -16em;
+    left: -13em;
     top: 0;
     bottom: 0;
     background-color: #ffffff;
@@ -787,7 +787,7 @@ nav:after
     right: -20px;
     top: 50%;
     border-width: 15px 10px;
-    border-style: solid;
+    /*border-style: solid;*/
     border-color: transparent transparent transparent #765;
 
 }
@@ -1040,6 +1040,22 @@ nav:hover:after{
 .row-fluid .span3 {
   width: 23.404255319148934%;
   *width: 23.351063829787233%;
+}
+
+.top-right{
+	-webkit-transform: rotate(35deg);
+	-moz-transform: rotate(35deg);
+	display: inline-block;
+	-o-transform: rotate(35deg);
+	-ms-transform: rotate(35deg);
+}
+
+.down-left{
+	-webkit-transform: rotate(35deg);
+	-moz-transform: rotate(35deg);
+	display: inline-block;
+	-o-transform: rotate(35deg);
+	-ms-transform: rotate(35deg);
 }
 
 .hotkey{

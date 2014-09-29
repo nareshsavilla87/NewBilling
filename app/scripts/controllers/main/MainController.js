@@ -22,6 +22,20 @@
           
       scope.leftnav = false;
       
+      scope.activity = {};
+      scope.activityQueue = [];
+      if (localStorageService.get('Location')) {
+          scope.activityQueue = localStorageService.get('Location');
+      }
+      
+      scope.$watch(function () {
+          return location.path();
+      }, function () {
+          scope.activity = location.path();
+          scope.activityQueue.push(scope.activity);
+          localStorageService.add('Location', scope.activityQueue);
+      });
+      
       scope.$on("UserAuthenticationSuccessEvent", function(event, data) {
     	  
     	localStorageService.add("permissionsArray",data.permissions);
