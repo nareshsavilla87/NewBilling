@@ -1,19 +1,19 @@
  <div ng-controller="SignUpFormController">
   <div id="animated-example2" class="row paddedbottom pull-right border-box-shape animated bounceIn" >
    		<h2 style="color:#000000"><strong>{{'label.signup' | translate}}</strong></h2><hr>
-   		<div class="alert alert-danger animated tada" role="alert" data-ng-show="emptySignUpCredentials">
+		<div class="alert alert-danger animated tada" role="alert" data-ng-show="emptySignUpCredentials">
  		 		<strong>{{'title.fill.emailid' | translate}}</strong>
  		 	</div>
    		 <table>
    		    <tr>
 			 <td><i class="icon-user"></i></td>
 			 <td><input id="emailId" ng-autofocus="true" type="email" ng-model="signUpCredentials.userName" class="input-xtra-large" 
-						ng-disabled="isProcessing" placeholder="{{'label.email' | translate}}" required></td>
+						ng-disabled="isProcessing" placeholder="{{'label.email' | translate}}" ></td>
 			</tr>
 	      </table><br/><br/>
 	      <div ng-hide="isProcessing">
-          	 <button class="btn btn-primary pull-right btn-xtra-styles" ng-click="signUpBtnFun()">{{ 'btn.signin' | translate }}</button>
           	<button class="btn btn-success pull-right btn-xtra-styles" ng-click="submitEmail()">{{ 'btn.signup' | translate }}</button>
+          	 <button class="btn pull-right btn-xtra-styles" ng-click="signUpBtnFun()">{{ 'btn.cancel' | translate }}</button>
           </div>
           <div class="btn pull-right" style="color:#000000;padding:5px;" ng-show="isProcessing">{{'label.pleasewait' | translate}}
 			<img alt="Loading.." ng-show="isProcessing" ng-src="./selfcare_module/images/ajax-loader.gif" width="20px"/>

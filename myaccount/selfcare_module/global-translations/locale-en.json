@@ -1,6 +1,7 @@
 {
   "titles" :"----------------------------------------------------",
- 	"title.obs.selfcare"		: "OBS SelfCare",
+ 	"title.obs.selfcare"					: "OBS SelfCare",
+ 	"title.thortelecom.selfcare"			: "Thor Telecom SelfCare",
  	"title.conformation.registration" 		 : "Thank you for registering! A conformation mail has been sent to your mailId.Please login to your email account and click on the Activation Link to complete the registration",
  	"title.conformation.alreadyregistration" : "Client is already Registered with this mailId.",
  	"title.signin.msg" 						 : "Please Sign In..!",
@@ -10,7 +11,7 @@
  	"title.account.activated.signin" 		 : "Your Account is Already in Active.You may now ",
  	"title.account.activated" 				 : "Now Your Account is Activated.Username and Password has sent to your mailID.Please Sign In..!",
  	"title.verify.emailid" 					 : "An email has sent to your mailID.Please verify then Sign In..",
- 	"title.fill.emailid" 					 : "Please fill Email Field..",
+ 	"title.fill.emailid" 					 : "Please fill Email Field/Invalid Email..",
  	"title.redirecting.dalpay" 				 : "Redirecting Please Wait...",
  	"title.msg.firsttimeregistration" 		 : "If you are signing in for the first time please register your email by clicking SIGN-UP button",
  	
@@ -18,6 +19,7 @@
  "#buttons"  : "--------------------------",
  	"btn.signin"  				: "Sign In",
  	"btn.signup"				: "Sign Up",
+ 	"btn.firsttime.signup"		: "First time.. Sign Up",
  	"btn.login"					: "Login",
  	"btn.register"				: "Register",
  	"btn.done"					: "Done",
@@ -45,6 +47,7 @@
  	"label.form.registration"	: "Registration From",
  	"label.pleasewait"			: "Please Wait..",
  	"label.registration.page"	: "Registration Page",
+ 	"label.registration.confirmation.page"	: "Registration Confirmation Page",
  	"label.customer.name"	  	: "Customer Name",
  	"label.mobilephone"	  		: "Mobile Phone",
  	"label.email"	  			: "Email",
@@ -110,7 +113,7 @@
  	"link.vod.add.event" 		 :  "Add Event",
  	
  	"#place holders " : "------------------------------------",
- 	"placeholder.enter.device"				: "Enter Device",
+ 	"placeholder.enter.device"				: "ex:12:12:12:12:12:12",
  	"placeholder.enter.zipcode"				: "Enter Zipcode",
  	"placeholder.enter.postcode"			: "Enter Postcode",
  	"placeholder.enter.address"				: "Enter Address",
@@ -120,7 +123,7 @@
  	"placeholder.filter.ticket"				: "Filter by Id",
  	"placeholder.filter.vod"				: "Search Movie Name",
  	"placeholder.enter.nationalid"			: "Enter NationalID",
- 	"placeholder.enter.nationalid.example"	: "ex: 090814-1234",
+ 	"placeholder.enter.nationalid.example"	: "ex: 0908141234",
  	"placeholder.filter.listofvods"			: "Filter by Id",
  	
  	
@@ -137,7 +140,7 @@
  	"label.client.balance"			: "Balance",
  	"label.telephone.number"		: "Telephone Number",
  	"label.pattern"					: "Pattern :",
- 	"hint.nationaid.pattern"		: "ddmmyy-any 4 digits",
+ 	"hint.nationaid.pattern"		: "ddmmyyany 4 digits",
  	"label.change.language" 		: "Change language:",
  	"label.korta"					: "Korta",
  	"label.thor.token"				: "Token",
@@ -149,6 +152,10 @@
 	"label.description"				: "Text",
 	"label.do.action"				: "Pay Method",
 	"label.state/province"			: "State/Province",
+	"label.country"					: "Country",
+	"label.settings" 				: "Settings",
+	"label.change.dateformat"		: "Change Date Format",
+	"label.user.settings"			: "User Settings",
  	
  	"#form validations errors " : "------------------------------------",
  	"form.error.alphanumeric"		     : "alphanumeric and spaces only!",
@@ -158,6 +165,7 @@
  	"form.error.number"		    		 : "accepts only digits !",
  	"form.error.password.match"		   	 : "Password did not Match !",
  	"form.error.nationalid.pattern"		 : "Pattern did not match..!",
+ 	"form.error.device.invalid"			 : "Invalid Device ..!",
  	
  	
  	"#TicketResources "	 :"------------------------------------",
@@ -264,6 +272,12 @@
 	 "table.header.profile.state" 						: "State",
 	 "table.header.profile.country" 					: "Country",
 	 "table.header.profile.zipcode" 					: "Zipcode",
+	 
+	 "#KortaResources "	 :"------------------------------------",
+	 "label.agree"										: "I agree to",
+	 "label.Terms.Conditions"							: "Terms and Conditions",
+	 "label.change.kortatoken"							: "Change Korta Token",
+	 "label.terms.condition.url"						: "https://netgreidslur.korta.is/testing/?page=samples&lang=en",
 	 
  "# common errors ":"....",
   "validation.msg.office.name.cannot.be.blank":"Office Name cannot be blank",
@@ -808,15 +822,7 @@
 "#client&parent":"",
 "error.msg.client.Not parent.himself.can.not.be.parent.to his.account":"Himself can not be parent to his account",
 "error.msg.client.Not Parent.he.is. already. a parent.to.some other clients":"He is already a parent to some other clients",
-"error.msg.client.Not Parent.can.not.be.parent.to this.account":"Can not be parent to this account",
-"label.agree":"I agree to",
-"label.Terms.Conditions":"Terms and Conditions",
-"label.terms.condition.url":"https://netgreidslur.korta.is/testing/?page=samples&lang=en"
-
-
-"label.agree":"I agree to",
-"label.Terms.Conditions":"Terms and Conditions",
-"label.terms.condition.url":"https://netgreidslur.korta.is/testing/?page=samples&lang=en"
+"error.msg.client.Not Parent.can.not.be.parent.to this.account":"Can not be parent to this account"
 
 
 

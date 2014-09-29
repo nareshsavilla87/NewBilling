@@ -21,10 +21,14 @@
 						 if(scope.formData.kortaToken){
 							 RequestSender.updateKortaToken.update({clientId : scope.clientId},{'kortaToken':scope.formData.kortaToken},function(data){
 								 webStorage.remove('eventData');
+								 rootScope.iskortaTokenAvailable = true;
+								 rootScope.isActiveScreenPage= false;
 								 location.path('/listofvods');
 							 });
 						}else{
 							 webStorage.remove('eventData');
+							 rootScope.iskortaTokenAvailable = true;
+							 rootScope.isActiveScreenPage= false;
 							 location.path('/listofvods');
 						}
 					 }else{

@@ -97,11 +97,11 @@
 	       			<td>
             			<div class="control-group">
             				<div class="controls">
-            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('dalpay')" checked/>
-            						&nbsp;<span  class="btn btn-primary animated pulse">{{'label.dalpay'|translate}}</span>
-
-            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('korta')" style="margin-left:20px;"/>
+            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('korta')" ng-model="paymentGatewayName" value="korta"/>
             						&nbsp;<span  class="btn btn-primary animated pulse">{{'label.korta'|translate}}</span>
+            					
+            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('dalpay')" ng-model="paymentGatewayName" value="dalpay" style="margin-left:20px;"/>
+            						&nbsp;<span  class="btn btn-primary animated pulse">{{'label.dalpay'|translate}}</span>
             				</div>
         				 </div>
 	         				 

@@ -262,9 +262,7 @@ define(['underscore', 'mifosX'], function() {
       'system/DalpayDetailsFormController',
       'system/DalpayButtonController',
       'system/CreateEventValidationController',
-      'system/ProvisionController',
-      'system/KortaController',
-      'system/KortaSuccessController'
+      'system/ProvisionController'
 
     ],
     filters: [

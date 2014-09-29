@@ -20,9 +20,6 @@
     .when('/profile', {
         templateUrl: 'selfcare_module/views/clients/profile.html'
     })
-    .when('/reloadprofile', {
-        templateUrl: 'selfcare_module/views/clients/profile.html'
-    })
     .when('/orders', {
         templateUrl: 'selfcare_module/views/clients/orders.html'
     })
@@ -76,6 +73,9 @@
     })
     .when('/changekortatoken',{
     	templateUrl: 'selfcare_module/views/ChangeKortaToken.html'
+    })
+    .when('/usersetting',{
+    	templateUrl: 'selfcare_module/views/clients/usersettings.html'
     });
        
     $locationProvider.html5Mode(false);

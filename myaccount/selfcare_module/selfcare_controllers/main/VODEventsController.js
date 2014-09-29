@@ -5,6 +5,7 @@
 		  scope.vodEventScreen = true;
 		  scope.eventDetailsPreview = false;
 		  scope.vodEventRedirectToDalpay = false;
+		  scope.paymentGatewayName = 'korta';
 		  scope.formData = {};
 		  scope.planData = {};
 		  scope.addressData = {};
@@ -62,6 +63,8 @@
 		  
 		  scope.paymentGatewayFun  = function(paymentGatewayName){
 	    	  console.log(paymentGatewayName);
+	    	  scope.paymentGatewayName = paymentGatewayName;
+	    	  
 	    	  if(paymentGatewayName == 'dalpay'){
 	    		  scope.URLForDalpay = selfcare.models.dalpayURL+"&cust_name="+scope.formData.lastname+"&cust_phone="+scope.formData.phone+"&cust_email="+scope.formData.email+"&cust_state="+scope.formData.state+""+
 	  				"&cust_address1="+scope.formData.addressNo+"&cust_zip="+scope.formData.zip+"&cust_city="+scope.formData.state+"&item1_desc="+scope.mediaDatas.length+" VOD Event/s&item1_price="+scope.totalAmount+"&user1="+scope.clientId+"&user2="+hostName+"&user3=eventdetailspreviewscreen"; 
@@ -84,7 +87,7 @@
 				    //var host = window.location.hostname;
 		    		//var portNo = window.location.port;
 		    	  
-				  scope.paymentGatewayFun('dalpay');
+				  scope.paymentGatewayFun('korta');
 				  /*scope.URLForDalpay = selfcare.models.dalpayURL+"&cust_name="+scope.formData.lastname+"&cust_phone="+scope.formData.phone+"&cust_email="+scope.formData.email+"&cust_state="+scope.formData.state+""+
 	    	  				"&cust_address1="+scope.formData.addressNo+"&cust_zip="+scope.formData.zip+"&cust_city="+scope.formData.city+"&num_items=1&item1_desc=VOD Event&item1_price="+scope.totalAmount+"&item1_qty=1&user1="+scope.clientId+"&user2="+hostName+"&user3=eventdetailspreviewscreen";*/
 			  }

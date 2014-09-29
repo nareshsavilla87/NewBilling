@@ -7,6 +7,7 @@
 		  	scope.isPaymentPage = false;
 		  	scope.isRedirectToDalpay = false;
 		  	scope.isAmountZero = false;
+		  	scope.paymentGatewayName = 'korta';
 		  	scope.totalPlansData = [];
 		  	scope.plansData = [];
 			scope.clientData = {};
@@ -20,6 +21,8 @@
 		  //getting dalpay Url
 		  scope.dalpayURL = selfcare.models.dalpayURL;
 		  
+		  var ordersRetriveFun = function(){
+			  
 			  if(scope.isOrderPage == true){
 				 
 			    var clientDatas = webStorage.get("clientTotalData");
@@ -54,11 +57,15 @@
 				    });
 				  }
 			  }
+		  };ordersRetriveFun();
+		  
 			  var hostName = selfcare.models.selfcareAppUrl;
 			  
 			scope.paymentGatewayFun  = function(paymentGatewayName){
 		    	  console.log(paymentGatewayName);
-		    	  if(paymentGatewayName == 'dalpay'){
+		    	  scope.paymentGatewayName = paymentGatewayName;
+		    	  
+		     	  if(paymentGatewayName == 'dalpay'){
 		    		  scope.paymentDalpayURL = scope.dalpayURL+"&cust_name="+scope.formData.lastname+"&cust_phone="+scope.formData.phone+"&cust_email="+scope.formData.email+"&cust_state="+scope.formData.state+""+
   	  				"&cust_address1="+scope.formData.addressNo+"&cust_zip="+scope.formData.zip+"&cust_city="+scope.formData.state+"&item1_desc="+scope.formData.planName+"&item1_price="+scope.formData.planAmount+"" +
   	  				"&user1="+scope.formData.id+"&user2="+hostName+"&user3=additionalorderspreviewscreen/"+routeParams.orderId+"/"+routeParams.clientId; 
@@ -89,7 +96,7 @@
 	    		  scope.isAmountZero = false;
 	    		  scope.isPaymentPage = true;
 	    	  }
-	    	  scope.paymentGatewayFun('dalpay');
+	    	  scope.paymentGatewayFun('korta');
 	    	  	//var host = window.location.hostname;
 	    		//var portNo = window.location.port;
 	    	 
@@ -107,11 +114,12 @@
 	      };
 	      
 	      scope.cancelPaymentFun = function(){
-	    	                 scope.isOrderPage = true;
+	    	    scope.isOrderPage = true;
 			  	scope.isPaymentPage = false;
 			  	scope.isRedirectToDalpay = false;
 			  	scope.isAmountZero = false;
-                                scope.plansData = [];
+                scope.plansData = [];
+                ordersRetriveFun();
 	      };
 	      
 	      scope.finishBtnFun =function(){

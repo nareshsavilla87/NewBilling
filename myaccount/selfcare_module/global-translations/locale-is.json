@@ -1,6 +1,7 @@
 {
   "ttles" :"----------------------------------------------------",
- 	"title.obs.selfcare"		: "OBS SelfCare",
+ 	"title.obs.selfcare"					 : "OBS SelfCare",
+ 	"title.thortelecom.selfcare"			 : "Thor Telecom SelfCare",
  	"title.conformation.registration" 		 : "Þakka þér fyrir að skrá þig! A sköpulag hefur verið sendur til póstur auðkenni.Vinsamlegast innskráningu til þinn tölvupósti reikningur og smelltu á örvun hlekkur til að ljúka skráningu ",
  	"title.conformation.alreadyregistration" : "Viðskiptavinur er þegar skráð við þennan póstur auðkenni.",
  	"title.signin.msg" 						 : "Vinsamlegast skráðu þig inn..!",
@@ -10,7 +11,7 @@
  	"title.account.activated.signin" 		 : "Reikningurinn þinn er þegar í virk.þú getur nú ",
  	"title.account.activated" 				 : "Nú Reikningurinn þinn er virkur.notandanafn og Lykilorð hefur sendi póstur auðkenni.vinsamlegast Skrá þinn í ..!",
  	"title.verify.emailid" 					 : "Tölvupóstur hefur sendi til póstur auðkenni.vinsamlegast þinn staðfesta skráðu þig inn..",
- 	"title.fill.emailid" 					 : "Vinsamlegast fyllið  Tölvupóstur reit..",
+ 	"title.fill.emailid" 					 : "Vinsamlegast fyllið  Tölvupóstur reit/Ógilt netfang..",
  	"title.redirecting.dalpay" 				 : "Áframsendi vinsaml...",
  	"title.msg.firsttimeregistration" 		 : "Ef þú ert að skrá þig inn í fyrsta skipti skaltu skrá netfangið þitt með því að smella Nýskráningarforritið hnappinn",
  	
@@ -18,6 +19,7 @@
  "#buttons"  : "--------------------------",
  	"btn.signin"  				: "Skráðu inn",
  	"btn.signup"				: "Nýskráning",
+ 	"btn.firsttime.signup"		: "Fyrsta skipti..Nýskráning",
  	"btn.login"					: "Innskráning",
  	"btn.register"				: "Nýskráning",
  	"btn.done"					: "Lokið",
@@ -45,6 +47,7 @@
  	"label.form.registration"	: "Skráning Frá",
  	"label.pleasewait"			: "vinsaml..",
  	"label.registration.page"	: "Skráning síðu",
+ 	"label.registration.confirmation.page"	: "Staðfesting á skrásetningu Síða",
  	"label.customer.name"	  	: "Nafn viðskiptavinar",
  	"label.mobilephone"	  		: "Farsímanúmer",
  	"label.email"	  			: "Netfang",
@@ -70,7 +73,7 @@
  	"label.book.order"		    : "bók skyni",
  	"label.device"				: "tæki",
  	"label.zipcode"				: "póstnúmer",
- 	"label.home.postcode"		: "Forsíða Póstnúmer",
+ 	"label.home.postcode"		: "Póstnúmer",
  	"label.nationalid"			: "Kennitala",
  	"label.order.info"			: "Panta Upplýsingar",
  	"label.listofvods"			: "Listi yfir Vods",
@@ -110,7 +113,7 @@
  	"link.vod.add.event" 		 :  "Bæta við atburði",
  	
  	"#place holders " : "------------------------------------",
- 	"placeholder.enter.device"				: "sláðu inn Tæki",
+ 	"placeholder.enter.device"				: "Dæmi:12:12:12:12:12:12",
  	"placeholder.enter.zipcode"				: "sláðu inn póstnúmer",
  	"placeholder.enter.postcode"			: "sláðu inn póstnúmer",
  	"placeholder.enter.address"				: "sláðu inn heimilisfang",
@@ -120,7 +123,7 @@
  	"placeholder.filter.ticket"				: "Sía eftir auðkenni",
  	"placeholder.filter.vod"				: "Leita Movie Nafn",
  	"placeholder.enter.nationalid"			: "sláðu inn National auðkenni",
- 	"placeholder.enter.nationalid.example"	: "Dæmi: 090814-1234",
+ 	"placeholder.enter.nationalid.example"	: "Dæmi: 0908141234",
  	"placeholder.filter.listofvods"			: "Sía eftir auðkenni",
  	
  	
@@ -137,7 +140,7 @@
  	"label.client.balance"			: "jafnvægi",
  	"label.telephone.number"		: "Símanúmer",
  	"label.pattern"					: "mynstur :",
- 	"hint.nationaid.pattern"		: "ddmmyy-allir 4 tölustafir",
+ 	"hint.nationaid.pattern"		: "ddmmyyallir 4 tölustafir",
  	"label.change.language" 		: "Breyta tungumáli:",
  	"label.korta"					: "Korta",
  	"label.thor.token"				: "auðkennið",
@@ -148,7 +151,11 @@
 	"label.currency"				: "Gjaldmiðill",
 	"label.description"				: "textinn",
 	"label.do.action"				: "Borga Aðferð",
-	"label.state/province"			: "ástand/héraðinu",
+	"label.state/province"			: "Staður",
+	"label.country"					: "landið",
+	"label.settings" 				: "stillingar",
+	"label.change.dateformat"		: "Breyting Bætt Forsníða",
+	"label.user.settings"			: "notandi stillingar",
  	
  	"#form validations errors " : "------------------------------------",
  	"form.error.alphanumeric"		     : "tölustafi og rými aðeins!",
@@ -158,6 +165,7 @@
  	"form.error.number"		    		 : "tekur aðeins tölur !",
  	"form.error.password.match"		   	 : "Lykilorð ekki passa !",
  	"form.error.nationalid.pattern"		 : "Mynstur ekki passa..!",
+ 	"form.error.device.invalid"			 : "Ógilt Tæki ..!",
  	
  	
  	"#TicketResources "	 :"------------------------------------",
@@ -264,6 +272,12 @@
 	 "table.header.profile.state" 						: "ástand",
 	 "table.header.profile.country" 					: "land",
 	 "table.header.profile.zipcode" 					: "póstnúmer",
+	 
+	  "#KortaResources "	 :"------------------------------------",
+	 "label.agree"										: "Ég er sammála til að",
+	 "label.Terms.Conditions"							: "Skilmálar og skilyrði",
+	 "label.change.kortatoken"							: "Breyting Korta auðkennið",
+	 "label.terms.condition.url"						: "https://netgreidslur.korta.is/testing/?page=samples&lang=en",
 	 
  "# common errors ":"....",
   "validation.msg.office.name.cannot.be.blank":"Office Name cannot be blank",
@@ -808,11 +822,8 @@
 "#client&parent":"",
 "error.msg.client.Not parent.himself.can.not.be.parent.to his.account":"Himself can not be parent to his account",
 "error.msg.client.Not Parent.he.is. already. a parent.to.some other clients":"He is already a parent to some other clients",
-"error.msg.client.Not Parent.can.not.be.parent.to this.account":"Can not be parent to this account",
+"error.msg.client.Not Parent.can.not.be.parent.to this.account":"Can not be parent to this account"
 
-"label.agree":"Ég er sammála til að",
-"label.Terms.Conditions":"Skilmálar og skilyrði",
-"label.terms.condition.url":"https://netgreidslur.korta.is/testing/?page=samples&lang=en"
 
 
 
