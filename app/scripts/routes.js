@@ -11,6 +11,9 @@
       .when('/home', {
         templateUrl: 'views/home.html'
       })
+      .when('/dashboard', {
+    	  templateUrl: 'views/private/dashboard.html'
+      })
       .when('/templates', {
         templateUrl: 'views/templates/templates.html'
       })
@@ -468,7 +471,7 @@
       .when('/editdiscounts/:id', {
         templateUrl: 'views/organization/editdiscounts.html'
       })
-      .when('/prospects', {
+      .when('/leads', {
         templateUrl: 'views/crm/prospects/prospects.html'
       })
       .when('/viewprospects/:id', {

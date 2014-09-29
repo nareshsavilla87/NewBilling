@@ -17,7 +17,7 @@
         scope.submit = function() {
         	
           resourceFactory.prospectDeleteResource.update({deleteProspectId: routeParams.id}, this.formData,function(data){
-            location.path('/prospects');
+            location.path('/leads');
           });
         };
     }

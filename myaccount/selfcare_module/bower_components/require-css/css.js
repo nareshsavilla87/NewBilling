@@ -41,7 +41,6 @@ define(['./normalize'], function(normalize) {
 
   // set to true to enable test prompts for device testing
   var testing = false;
-  
   var head = document.getElementsByTagName('head')[0];
 
   var engine = window.navigator.userAgent.match(/Trident\/([^ ;]*)|AppleWebKit\/([^ ;]*)|Opera\/([^ ;]*)|rv\:([^ ;]*)(.*?)Gecko\/([^ ;]*)|MSIE\s([^ ;]*)/);

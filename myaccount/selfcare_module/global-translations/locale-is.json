@@ -279,6 +279,9 @@
 	 "label.change.kortatoken"							: "Breyting Korta auðkennið",
 	 "label.terms.condition.url"						: "https://netgreidslur.korta.is/testing/?page=samples&lang=en",
 	 
+	  "#Registration errors ":"-----------------------------------",
+	 "validation.msg.activationprocess.device.cannot.be.blank"		: "Tæki reit má ekki vera autt",
+	 
  "# common errors ":"....",
   "validation.msg.office.name.cannot.be.blank":"Office Name cannot be blank",
   "error.msg.not.authorized":"Insufficient privileges to perform this action.",
