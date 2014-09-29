@@ -6,16 +6,17 @@
             return function(input) {    
             	
             	var  configNameLookup = {
-
+                   //For Enabling payment details in Simple Activation
                    "payment":"true",
-                   "IPTV":"false"
-                	   //Segment
-                 };
-
-
                   
+                   //For enabling Category Details in Service Mapping For IPTV
+                   "IPTV":"false",
+                  
+                   //Represent the Default Client Type IND or Corporate in Create Client 
+                   "IsClientIndividual":"false"
+                	 
+                 };
                   return configNameLookup[input];};
-          
         }
     });
     mifosX.ng.application.filter('ConfigLookup', ['$http',mifosX.filters.ConfigLookup]).run(function($log) {
