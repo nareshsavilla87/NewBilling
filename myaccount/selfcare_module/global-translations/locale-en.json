@@ -279,6 +279,9 @@
 	 "label.change.kortatoken"							: "Change Korta Token",
 	 "label.terms.condition.url"						: "https://netgreidslur.korta.is/testing/?page=samples&lang=en",
 	 
+	 "#Registration errors ":"-----------------------------------",
+	 "validation.msg.activationprocess.device.cannot.be.blank"		: "Device field cannot be blank",
+	 
  "# common errors ":"....",
   "validation.msg.office.name.cannot.be.blank":"Office Name cannot be blank",
   "error.msg.not.authorized":"Insufficient privileges to perform this action.",
