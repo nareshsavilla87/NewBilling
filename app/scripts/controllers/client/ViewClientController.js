@@ -334,6 +334,15 @@
 				};
 			};
 			
+			scope.deleteChildsFromparent=function(id){
+				
+				resourceFactory.clientParentResource.delete({clientId:id}, {}, function(data){
+					location.path('/viewclient/'+ routeParams.id);
+					route.reload();
+                });
+				
+			};
+			
         scope.cancelPayment=function(id){
         	$modal.open({
                 templateUrl: 'cancelpayment.html',
@@ -1193,7 +1202,7 @@
       //  webStorage.add("callingTab", {someString: "moreInfo" });
         };
      scope.routeToParentClientOrChildClient = function(id){
-    	 webStorage.add("callingTab", {someString: "identities" });
+    	 webStorage.add("callingTab", {someString: "moreInfo" });
     	 webStorage.add("callingTab", {someString: "ChildDetailsTab" });
     	 location.path('/viewclient/'+id);
      };
