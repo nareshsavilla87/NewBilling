@@ -3,7 +3,7 @@ var selfcare = (function(selfcare_module) {
 	config: angular.module('config_params' , ['configurations']),
     services: angular.module('SelfCare_Services', ['ngResource']),
     application: angular.module('SelfCare_Application', ['SelfCare_Services','config_params', 'webStorageModule', 'ui.bootstrap' , 'pascalprecht.translate','notificationWidget', 'angularFileUpload','modified.datepicker',
-                                                         'ngRoute','ngSanitize'])
+                                                         'ngRoute','ngSanitize','tmh.dynamicLocale','LocalStorageModule'])
   };
   return selfcare_module;
 }(selfcare || {}));

@@ -156,6 +156,7 @@
 	"label.settings" 				: "Settings",
 	"label.change.dateformat"		: "Change Date Format",
 	"label.user.settings"			: "User Settings",
+	"label.change.dateformat"	 	: "Change Date Format",
  	
  	"#form validations errors " : "------------------------------------",
  	"form.error.alphanumeric"		     : "alphanumeric and spaces only!",

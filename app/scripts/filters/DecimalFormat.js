@@ -11,7 +11,7 @@
                 	finalDecimal=decimal;
                 }
                 return finalDecimal;
-            }
+            };
         }
     });
     mifosX.ng.application.filter('DecimalFormat',['$rootScope',mifosX.filters.DecimalFormat]).run(function($log) {

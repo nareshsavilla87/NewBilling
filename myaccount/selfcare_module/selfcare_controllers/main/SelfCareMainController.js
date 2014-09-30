@@ -1,6 +1,7 @@
 (function(selfcare_module) {
    selfcare.controllers = _.extend(selfcare_module, {
-	   SelfCareMainController: function(scope, childScope,translate,webStorage,sessionManager,RequestSender,authenticationService,location,modal) {
+	   SelfCareMainController: function(scope, childScope,translate,webStorage,sessionManager,RequestSender,
+			   						authenticationService,location,modal,localStorageService,tmhDynamicLocale) {
 		   
 		   scope.domReady = true;
 		   //scope.currentSession = {};
@@ -38,15 +39,43 @@
 	        
 	    });
 	   
+	   //setting the date format
+	   scope.setDf = function () {
+           if (localStorageService.get('dateformat')) {
+               scope.dateformat = localStorageService.get('dateformat');
+           } else {
+               localStorageService.add('dateformat', 'dd MMMM yyyy');
+               scope.dateformat = 'dd MMMM yyyy';
+           }
+           scope.df = scope.dateformat;
+       };
+       scope.setDf();
 		   
        //getting languages form model Lang.js 
 	   scope.langs = selfcare.models.Langs;
-        scope.optlang = scope.langs[1];
-        
+	   if (localStorageService.get('Language')) {
+	          var temp = localStorageService.get('Language');
+	          for (var i in selfcare.models.Langs) {
+	              if (selfcare.models.Langs[i].code == temp.code) {
+	            	  scope.optlang = selfcare.models.Langs[i];
+	            	  scope.locale=selfcare.models.Langs[i];
+	                  tmhDynamicLocale.set(selfcare.models.Langs[i].code);
+	              }
+	          }
+	      } else {	
+	    	  scope.optlang = scope.langs[0];
+	    	  scope.locale=scope.langs[0];
+	          tmhDynamicLocale.set(scope.langs[0].code);
+	      }
+	      translate.uses(scope.optlang.code);
+	   
        //set the language code when change the language 
         scope.changeLang = function (lang) {
             translate.uses(lang.code);
             scope.optlang = lang;
+            scope.locale=lang;
+            localStorageService.add('Language', lang);
+            tmhDynamicLocale.set(lang.code);
         };
        
        //set the default values for the sign in and sign up buttons  
@@ -160,7 +189,9 @@
 		 
     }
   });
-   selfcare.ng.application.controller('SelfCareMainController', ['$rootScope','$scope','$translate','webStorage','SessionManager','RequestSender','AuthenticationService','$location','$modal',selfcare.controllers.SelfCareMainController
+   selfcare.ng.application.controller('SelfCareMainController', 
+		   ['$rootScope','$scope','$translate','webStorage','SessionManager','RequestSender','AuthenticationService',
+		    '$location','$modal','localStorageService','tmhDynamicLocale',selfcare.controllers.SelfCareMainController
   ]).run(function($log) {
       $log.info("SelfCareMainController initialized");
   });

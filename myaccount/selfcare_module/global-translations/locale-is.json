@@ -156,6 +156,7 @@
 	"label.settings" 				: "stillingar",
 	"label.change.dateformat"		: "Breyting Bætt Forsníða",
 	"label.user.settings"			: "notandi stillingar",
+	"label.change.dateformat"	 	: "Breyting Dagsetning Forsníða",
  	
  	"#form validations errors " : "------------------------------------",
  	"form.error.alphanumeric"		     : "tölustafi og rými aðeins!",
