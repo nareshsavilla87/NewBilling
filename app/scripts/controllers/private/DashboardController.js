@@ -1,6 +1,6 @@
 (function(module) {
     mifosX.controllers = _.extend(module, {
-        SuperuserController: function(scope, resourceFactory) {
+    	DashboardController: function(scope, resourceFactory,location) {
             scope.client = [];
             scope.offices = [];
             scope.cOfficeName = 'Head Office';
@@ -13,6 +13,11 @@
             scope.disbursedPieData = [];
             scope.formData = {};
             scope.ClientTrendsTab="active";
+            scope.dashModel = 'dashboard';
+            
+            scope.switch1 = function() {
+	        	location.path('/home');
+			};
             
            
             scope.formatdate = function(){
@@ -845,8 +850,8 @@ return function(d, i) {
 
         }
     });
-    mifosX.ng.application.controller('SuperuserController', ['$scope', 'ResourceFactory', mifosX.controllers.SuperuserController]).run(function($log) {
-        $log.info("SuperuserController initialized");
+    mifosX.ng.application.controller('DashboardController', ['$scope', 'ResourceFactory','$location', mifosX.controllers.DashboardController]).run(function($log) {
+        $log.info("DashboardController initialized");
     });
 }(mifosX.controllers || {}));
 

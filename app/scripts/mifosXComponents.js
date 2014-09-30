@@ -122,7 +122,8 @@ define(['underscore', 'mifosX'], function() {
       'organization/AddHolController',
       'reports/ViewReportsController',
       'reports/RunReportsController',
-      'private/SuperuserController',
+      'private/DashboardController',
+      'private/ExpertSearchController',
       'configurations/GlobalConfigurationController',
       'configurations/CreateSmtpController',
       'system/AuditController',
@@ -271,7 +272,8 @@ define(['underscore', 'mifosX'], function() {
       'DateFormat',
       'ConfigLookup',
       'DecimalFormat',
-      'DateTimeFormat'
+      'DateTimeFormat',
+      'UrlToString'
 
     ],
     directives: [

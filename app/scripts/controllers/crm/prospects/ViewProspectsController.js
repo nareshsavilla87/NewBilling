@@ -15,7 +15,7 @@
 	        });
 	        /*scope.deletemessage = function (){
 	            resourceFactory.discountResource.delete({discountId: routeParams.id} , {} , function(data) {
-	                  location.path('/prospects');
+	                  location.path('/leads');
 	                  // added dummy request param because Content-Type header gets removed 
 	                  // if the request does not contain any data (a requested body)        
 	            });

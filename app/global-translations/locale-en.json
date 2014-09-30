@@ -34,6 +34,18 @@
   "label.advancedaccountingrules":"Advanced accounting rules",
   "label.heading.language":"Language",
   "label.add.kota.Info":"Korta Information",
+  "label.heading.welcome": "Welcome",
+  "label.heading.dashboard": "Dashboard",
+  "label.heading.home": "Home",
+  "label.input.searchactivities": "Search activities",
+  "label.heading.navigation.guide": "You can navigate your way through OBS using",
+  "label.heading.left.shortcuts": "the shortcuts to the left",
+  "label.heading.down.shortcuts": "the most recent used",
+  "label.heading.top.menu": "the menu at the top",
+  "label.heading.right.search": "the search tool at the top-right",
+  "label.heading.recentactivities": "Recent Activities",
+  "label.heading.frequentactivities": "Frequent Activities",
+  "label.heading.obs": "Open Billing System",
 
   
 
