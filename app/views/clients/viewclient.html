@@ -457,13 +457,15 @@
 			                <th>{{'label.childid'|translate}}</th>
 			                <th>{{'table.ippooling.clientname'|translate}}</th>
 			                <th>{{'label.parentorchildaccount'|translate}}</th>
+			                <th>Remove</th>
 			              </tr>
 			            </thead>
 			            <tbody>
 			              <tr class="pointer-main" ng-repeat="childsData in parent">
 			                <td class="pointer" data-ng-click="routeToParentClientOrChildClient(childsData.id)">{{childsData.id}}</td>
 			                <td class="pointer" data-ng-click="routeToParentClientOrChildClient(childsData.id)">{{childsData.displayName}}</td>
-			                <td class="pointer" data-ng-click="routeToParentClientOrChildClient(childsData.id)">{{childsData.accountNo}}</td>              
+			                <td class="pointer" data-ng-click="routeToParentClientOrChildClient(childsData.id)">{{childsData.accountNo}}</td>   
+			                <td class="pointer" data-ng-click="deleteChildsFromparent(childsData.id)"><i class="icon-remove-circle icon-white"></i></td>           
 			              </tr>
 			            </tbody>
 			          </table>
@@ -1400,7 +1402,7 @@
 				<tr ng-repeat="transactionhistory in transactionhistory.currentPageItems  | filter:filterText">
 					<td>{{transactionhistory.id}}</td>
 					<td>{{transactionhistory.transactionType}}</td>  
-					<td>{{transactionhistory.transactionDate}}</td>
+					<td>{{transactionhistory.transactionDate|DateFormat}}</td>
 					<td>{{transactionhistory.user}}</td>
 				
 					<td>{{transactionhistory.history}}</td> 

@@ -1,7 +1,7 @@
 (function(selfcare_module) {
   selfcare.controllers = _.extend(selfcare_module, {
-	  ActivateUserController: function(scope,RequestSender,rootScope,routeParams,
-			  							webStorage,httpService,sessionManager,location) {
+	  ActivateUserController: function(scope,RequestSender,rootScope,routeParams,http,
+			  							webStorage,httpService,sessionManager,location,API_VERSION) {
 		 
 		  //clearing selfcare_sessionData 
 		  webStorage.remove('selfcare_sessionData');
@@ -16,6 +16,7 @@
 		  scope.isRegPage = false;
 		  scope.cities = [];
 		  scope.clientData = {};
+		  var itemDetails = [];
 		  
 		//declaration of formData
 		  scope.formData = {};
@@ -52,6 +53,16 @@
 	  							  if(data.globalConfiguration[i].name=="Registration_requires_device"){
 	  								  scope.isDeviceEnabled = data.globalConfiguration[i].enabled;
 	  							  }
+	  							  if(data.globalConfiguration[i].name=="CPE_TYPE"){
+	  								  if(data.globalConfiguration[i].value == 'SALE')
+	  									  scope.isCPE_TYPESale = true;
+	  								  else if(data.globalConfiguration[i].value == 'OWN')
+	  									  scope.isCPE_TYPEOwn = true;
+	  								  else{
+	  									  scope.isCPE_TYPEOwn = false;
+	  									  scope.isCPE_TYPESale = false;
+	  								  }
+	  							  }
 	  						  }
 	  					  });
 	
@@ -65,6 +76,68 @@
 			  alert('authentication failure');
 		  });
 		 
+		 //function called when entering the device name 
+		  scope.getData = function(query){
+			  	        	return http.get(rootScope.hostUrl+ API_VERSION+'/itemdetails/searchserialnum', {
+			  	        	      params: {
+			  	        	    	  query: query
+			  	        	      }
+			  	        	    }).then(function(res){
+			  	        	    	itemDetails = [];
+			  	        	      for(var i in res.data){
+			  	        	    	  itemDetails.push(res.data[i]);
+			  	        	    	  if(i == 7)
+			  	        	    		  break;
+			  	        	      }
+			  	        	      return itemDetails;
+			  	        	    });
+			              };
+			              
+		
+		//setting the value of serial Number based on mac id 
+		 scope.$watch(function () {
+             return scope.formData.deviceNo;
+         }, function () {
+        	 if(scope.isDisabledMacId != true){
+	             if(scope.formData.deviceNo){
+	            	 scope.isDisabledSerialNumber = true;
+	            	 for(var i in itemDetails){
+	            		 if(scope.formData.deviceNo == itemDetails[i].serialNumber){
+	            			 scope.provisioningSerialNumber =  itemDetails[i].provisioningSerialNumber;
+	            			 break;
+	            		 }else{
+	            			 delete scope.provisioningSerialNumber;
+	            		 }
+	            	 }
+	             }else{
+	            	 scope.isDisabledSerialNumber = false;
+	            	 delete scope.provisioningSerialNumber;
+	             }
+        	 }
+         });
+		 
+		//setting the value of mac id based on serial Number 
+		 scope.$watch(function () {
+             return scope.provisioningSerialNumber;
+         }, function () {
+        	 if(scope.isDisabledSerialNumber != true){
+	             if(scope.provisioningSerialNumber){
+	            	 scope.isDisabledMacId = true;
+	            	 for(var i in itemDetails){
+	            		 if(scope.provisioningSerialNumber == itemDetails[i].provisioningSerialNumber){
+	            			 	scope.formData.deviceNo =  itemDetails[i].serialNumber;
+	            			 	break;
+	            		 }else{
+	            			 delete scope.formData.deviceNo;
+	            		 }
+	            	 }
+	             }else{
+	            	 scope.isDisabledMacId = false;
+	            	 delete scope.formData.deviceNo;
+	             }
+        	 }
+         });
+		  
 		  //function called when  clicking on Sinin link
 		  scope.goToSignInPageFun = function(){
 			  	rootScope.currentSession = sessionManager.clear();
@@ -156,8 +229,8 @@
     }
   });
   selfcare.ng.application.controller('ActivateUserController', 
- ['$scope','RequestSender','$rootScope','$routeParams','webStorage','HttpService',
-  'SessionManager','$location',selfcare.controllers.ActivateUserController]).run(function($log) {
+ ['$scope','RequestSender','$rootScope','$routeParams','$http','webStorage','HttpService',
+  'SessionManager','$location','API_VERSION',selfcare.controllers.ActivateUserController]).run(function($log) {
       $log.info("ActivateUserController initialized");
   });
 }(selfcare.controllers || {}));

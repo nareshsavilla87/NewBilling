@@ -334,6 +334,15 @@
 				};
 			};
 			
+			scope.deleteChildsFromparent=function(id){
+				
+				resourceFactory.clientParentResource.delete({clientId:id}, {}, function(data){
+					location.path('/viewclient/'+ routeParams.id);
+					route.reload();
+                });
+				
+			};
+			
         scope.cancelPayment=function(id){
         	$modal.open({
                 templateUrl: 'cancelpayment.html',
@@ -798,6 +807,7 @@
                    scope.url = mifosX.models.url;
                    scope.mail = mifosX.models.mail;
                  });
+           
                };
                
            scope.routeToEmail = function (statementId) {
@@ -807,10 +817,10 @@
                       
            scope.routeToCancelBill = function (statementId) {
         	   resourceFactory.cancelStatementResource.delete({statementId: statementId}, function(data) {	
-        		   webStorage.add("callingTab", {someString: "Statements" });
+        		  webStorage.add("callingTab", {someString: "Statements" });
         		 //  location.path("/viewclient/"+routeParams.id);
-        		   route.reload();
-                 });
+        		   route.reload(); 
+                });
                };    
                
                scope.getClientAssociation = function () {
@@ -1193,7 +1203,7 @@
       //  webStorage.add("callingTab", {someString: "moreInfo" });
         };
      scope.routeToParentClientOrChildClient = function(id){
-    	 webStorage.add("callingTab", {someString: "identities" });
+    	 webStorage.add("callingTab", {someString: "moreInfo" });
     	 webStorage.add("callingTab", {someString: "ChildDetailsTab" });
     	 location.path('/viewclient/'+id);
      };

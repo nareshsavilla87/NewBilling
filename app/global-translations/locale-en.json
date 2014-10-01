@@ -902,6 +902,7 @@
   "label.street/area":"Street/Area",
   "label.plan":"Plan",
   "label.city/district":"City/District",
+  "label.city/area":"City/Area",
   "label.nextcalltime":"Next Call Time",
   "label.state":"State/Province",
   "label.city":"City",
