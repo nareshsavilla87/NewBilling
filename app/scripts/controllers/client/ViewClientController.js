@@ -798,6 +798,7 @@
                    scope.url = mifosX.models.url;
                    scope.mail = mifosX.models.mail;
                  });
+           
                };
                
            scope.routeToEmail = function (statementId) {
@@ -807,10 +808,10 @@
                       
            scope.routeToCancelBill = function (statementId) {
         	   resourceFactory.cancelStatementResource.delete({statementId: statementId}, function(data) {	
-        		   webStorage.add("callingTab", {someString: "Statements" });
+        		  webStorage.add("callingTab", {someString: "Statements" });
         		 //  location.path("/viewclient/"+routeParams.id);
-        		   route.reload();
-                 });
+        		   route.reload(); 
+                });
                };    
                
                scope.getClientAssociation = function () {
