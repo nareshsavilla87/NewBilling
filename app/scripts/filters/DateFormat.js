@@ -5,7 +5,12 @@
                 if(input){
                 	var inputValue=input.toString();
                 	var splitValue=inputValue.split(",");
-                    var tDate = new Date(splitValue[0],splitValue[1]-1,splitValue[2]);
+                	if(splitValue.length==3){
+                		 var tDate = new Date(splitValue[0],splitValue[1]-1,splitValue[2]);
+                	}else{
+                		var tDate = new Date(input);
+                	}
+                   
                     return dateFilter(tDate,localStorageService.get('dateformat'));
                 }
             };
