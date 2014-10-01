@@ -368,10 +368,11 @@
                             <label class="control-label" for="serialNumber">{{ 'label.macid' | translate }}&nbsp;</label>
                              <div class="controls">
     	                        <input type="text" ng-model="formData.deviceNo" name="macid" placeholder= "{{ 'placeholder.enter.device' | translate }}" 
-    	                                typeahead="itemDetail.serialNumber for itemDetail in getData($viewValue)" ng-disabled="isDisabledMacId"/><br/>
+    	                                ng-onblur="getDataForMacId(formData.deviceNo)" ng-disabled="isDisabledMacId" maxlength="17"/><br/>
+    	                                <small class="error" ng-show="isInvalidMacId">{{'form.error.macid.invalid'|translate}}</small>
                              </div>
                         </div>	
-	         				<strong style="margin-top:50px;" class="offset6" ng-show="isDeviceEnabled==true && isCPE_TYPESale == true">OR</strong>
+	         				 <strong style="margin-top:50px;" class="offset6" ng-show="isDeviceEnabled==true && isCPE_TYPESale == true">OR</strong>
 	       			</td>
 	       		</tr>
 	       		<tr ng-show="isDeviceEnabled==true && isCPE_TYPESale == true">
@@ -379,13 +380,14 @@
             			<div class="control-group">
                             <label class="control-label" for="serialNumber">{{ 'label.serialnumber' | translate }}&nbsp;</label>
                              <div class="controls">
-    	                        <input type="text" ng-model="provisioningSerialNumber" name="serialnumber" placeholder= "{{ 'placeholder.enter.device' | translate }}" 
-    	                                typeahead="itemDetail.provisioningSerialNumber for itemDetail in getData($viewValue)" ng-disabled="isDisabledSerialNumber"/><br/>
+    	                        <input type="text" ng-model="provisioningSerialNumber" name="serialnumber" placeholder= "{{ 'placeholder.enter.serialnumber' | translate }}" 
+    	                                ng-onblur="getDataForSerialNumber(provisioningSerialNumber)" ng-disabled="isDisabledSerialNumber"/><br/>
+    	                                <small class="error" ng-show="isInvalidSerialNumber">{{'form.error.serialnumber.invalid'|translate}}</small>
                              </div>
                         </div>	
 	         				 
 	       			</td>
-	       		</tr>
+	       		</tr> 
 	       	</table>
 	       	<datalist id="citylist">
                    			<option  data-ng-repeat="city in cities" value="{{city}}">
@@ -393,7 +395,7 @@
 	       	<div class="offset3">
 	       		 <!-- <button ng-click="nextBtnFun()" class="btn btn-primary pull-right" 
 				 		ng-disabled="!regSuccessForm.$valid">{{'btn.next' | translate}}<i class="icon-circle-arrow-right icon-white"></i></button> -->
-				 <button ng-click="registerBtnFun()" class="btn btn-primary pull-right" ng-disabled="!regSuccessForm.$valid"><i class="icon-thumbs-up icon-white"></i>{{'btn.register' | translate}}</button>
+				 <button ng-click="registerBtnFun()" class="btn btn-primary pull-right" ng-disabled="!regSuccessForm.$valid||isInvalidMacId||isInvalidSerialNumber"><i class="icon-thumbs-up icon-white"></i>{{'btn.register' | translate}}</button>
 	        </div>
 	       </fieldset>
 	</form>

@@ -61,7 +61,8 @@ define(['underscore', 'selfcare'], function() {
     selfcare_directives: [
 						      'LateValidateDirective',
 						      'ScrollbarTopDirective',
-						      'NgAutoFocusFunDirective'
+						      'NgAutoFocusFunDirective',
+						      'OnBlurDirective'
 					     ]
   };
   
