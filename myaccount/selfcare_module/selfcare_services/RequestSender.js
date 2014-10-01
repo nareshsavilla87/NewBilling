@@ -92,7 +92,9 @@
             updateKortaToken: defineResource(apiVer + "/selfcare/:clientId", {clientId:'@clientId'},  {
         		update : {method: 'PUT', params: {}}
         	}),
-
+        	
+        	gettingSerialNumbers: defineResource(apiVer + "/itemdetails/searchserialnum", {},  {}),
+        	
         };
       }];
     }
