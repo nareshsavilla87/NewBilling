@@ -1,7 +1,7 @@
 (function(selfcare_module) {
   selfcare.controllers = _.extend(selfcare_module, {
 	  ActivateUserController: function(scope,RequestSender,rootScope,routeParams,
-			  							webStorage,httpService,sessionManager,location) {
+			  							webStorage,httpService,sessionManager,location,API_VERSION) {
 		 
 		  //clearing selfcare_sessionData 
 		  webStorage.remove('selfcare_sessionData');
@@ -65,6 +65,23 @@
 			  alert('authentication failure');
 		  });
 		 
+		 //function called when entering the device name 
+		  scope.getData = function(query){
+			  	        	return http.get(rootScope.hostUrl+ API_VERSION+'/itemdetails/searchserialnum', {
+			  	        	      params: {
+			  	        	    	  query: query
+			  	        	      }
+			  	        	    }).then(function(res){
+			  	        	    	itemDetails = [];
+			  	        	      for(var i in res.data.serials){
+			  	        	    	  itemDetails.push(res.data.serials[i]);
+			  	        	    	  if(i == 7)
+			  	        	    		  break;
+			  	        	      }
+			  	        	      return itemDetails;
+			  	        	    });
+			              };
+		  
 		  //function called when  clicking on Sinin link
 		  scope.goToSignInPageFun = function(){
 			  	rootScope.currentSession = sessionManager.clear();
@@ -157,7 +174,7 @@
   });
   selfcare.ng.application.controller('ActivateUserController', 
  ['$scope','RequestSender','$rootScope','$routeParams','webStorage','HttpService',
-  'SessionManager','$location',selfcare.controllers.ActivateUserController]).run(function($log) {
+  'SessionManager','$location','API_VERSION',selfcare.controllers.ActivateUserController]).run(function($log) {
       $log.info("ActivateUserController initialized");
   });
 }(selfcare.controllers || {}));

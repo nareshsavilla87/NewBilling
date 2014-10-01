@@ -218,11 +218,13 @@
 	       </fieldset>
 	</form> -->
 	<form name="regSuccessForm" novalidate="" class="form-horizontal well" ng-show="isRegPage">
-	 <div class="error" ng-show="errorStatus || errorDetails">
-			<label>{{'label.error' | translate}}</label>
-			<label ng-show="errorStatus">{{errorStatus}}</label>
-			<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
-		</div>
+		<!-- <div  ng-hide="errorDetails[0].code == 'error.msg.billing.address.city.not.found'">
+		 	<div class="error" ng-show="errorStatus || errorDetails">
+				<label>{{'label.error' | translate}}</label>
+				<label ng-show="errorStatus">{{errorStatus}}</label>
+				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+			</div>
+		</div> -->
 		 <fieldset class="animated bounce" >
 			<h3 >{{'label.registration.page' | translate}}</h3>
 			<table >
@@ -348,12 +350,13 @@
 	       		<tr>
 	       			<td>
             			<div class="control-group" ng-show="isDeviceEnabled==true" style="margin-bottom:30px;">
-                            <label class="control-label" for="serialNumber">{{ 'label.device' | translate }}&nbsp;<span class="required">*</span></label>
+                            <label class="control-label" for="serialNumber">{{ 'label.device' | translate }}&nbsp;</label>
                              <div class="controls">
-    	                        <input type="text" ng-model="formData.deviceNo" name="deviceNo" placeholder= "{{ 'placeholder.enter.device' | translate }}" ng-pattern="/^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$/"/><br/>
-    	                        <span  ng-show="regSuccessForm.deviceNo.$dirty &&regSuccessForm.deviceNo.$invalid">
+    	                        <input type="text" ng-model="formData.deviceNo" name="deviceNo" placeholder= "{{ 'placeholder.enter.device' | translate }}" 
+    	                                typeahead="itemDetail for itemDetail in getData($viewValue)"/><br/>
+    	                        <!-- <span  ng-show="regSuccessForm.deviceNo.$dirty &&regSuccessForm.deviceNo.$invalid">
 				                	<small class="error" ng-show="regSuccessForm.deviceNo.$error.pattern">{{'form.error.device.invalid'|translate}}</small>
-				                </span>
+				                </span> -->
                              </div>
                         </div>	
 	         				 

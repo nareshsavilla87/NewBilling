@@ -113,7 +113,7 @@
  	"link.vod.add.event" 		 :  "Bæta við atburði",
  	
  	"#place holders " : "------------------------------------",
- 	"placeholder.enter.device"				: "Dæmi:12:12:12:12:12:12",
+ 	"placeholder.enter.device"				: "Sláið inn tækið",
  	"placeholder.enter.zipcode"				: "sláðu inn póstnúmer",
  	"placeholder.enter.postcode"			: "sláðu inn póstnúmer",
  	"placeholder.enter.address"				: "sláðu inn heimilisfang",
