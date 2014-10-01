@@ -15,6 +15,12 @@
 			 }
 			 console.log(webStorage.get("eventData"));
 			 
+			 if(webStorage.get('hwSerialNumber')){
+				 scope.hwSerialNumber = webStorage.get('hwSerialNumber');
+			 }
+			 console.log(webStorage.get("hwSerialNumber"));
+			 
+			 
 			 scope.eventOneByOneFun = function(val){
 				 RequestSender.eventsResource.save(scope.eventFormData[val],function(data){
 					 if(val == scope.eventFormData.length-1){
@@ -52,6 +58,7 @@
 							 							locale : 'en',
 							 							eventBookedDate : reqDate,
 							 							dateFormat : 'dd MMMM yyyy',
+							 							deviceId : scope.hwSerialNumber
 						 							};
 				 }
 				 if(i==scope.mediaDatas.length-1){
