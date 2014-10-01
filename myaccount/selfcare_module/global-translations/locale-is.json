@@ -77,6 +77,8 @@
  	"label.nationalid"			: "Kennitala",
  	"label.order.info"			: "Panta Upplýsingar",
  	"label.listofvods"			: "Listi yfir Vods",
+ 	"label.serialnumber"	    : "raðnúmeri",
+ 	"label.macid"			    : "lagsi Kenni",
  	
  	"#headers " : "------------------------------------",
  	"header.forgot.password" 		 : "Gleymt lykilorð",
@@ -113,7 +115,7 @@
  	"link.vod.add.event" 		 :  "Bæta við atburði",
  	
  	"#place holders " : "------------------------------------",
- 	"placeholder.enter.device"				: "Sláið inn tækið",
+ 	"placeholder.enter.device"				: "Dæmi: 1A:1B:1C:1D:1E:1F",
  	"placeholder.enter.zipcode"				: "sláðu inn póstnúmer",
  	"placeholder.enter.postcode"			: "sláðu inn póstnúmer",
  	"placeholder.enter.address"				: "sláðu inn heimilisfang",
