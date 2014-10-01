@@ -509,7 +509,7 @@
 	"validation.msg.item.itemCode.cannot.be.blank":"Item Code cannot be blank",
 	"validation.msg.item.units.cannot.be.blank":"Units cannot be blank",
 	"validation.msg.mediaasset.mediaTitle.cannot.be.blank":"Titile cannot be blank",
-	
+	"error.msg.itemdetails.serialnumber.not.found":"Invalid Serialnumber",
  "#media details":"...", 	 
  "validation.msg.mediaasset.mediatype.cannot.be.blank":"Please select MediaType",
  "validation.msg.mediaasset.catageoryId.cannot.be.blank":"Please select Category",

@@ -166,7 +166,7 @@
           
       var applyPromoController=function($scope,$modalInstance){
     	  $scope.start = {};
-    	  $scope.start.date = new Date();
+    	  $scope.start.date =new Date();
     	  resourceFactory.promotionResource.get(function(data) {
       		
       		 $scope.promoDatas=data; 
@@ -174,7 +174,7 @@
       	 
        	$scope.accept = function(){
        		$scope.flagPromo=true;
-       		var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
+       		var reqDate = dateFilter($scope.start.date,'dd MMMM yyyy');
             this.formData.dateFormat = 'dd MMMM yyyy';
             this.formData.locale=$rootScope.locale.code;
             this.formData.startDate = reqDate;

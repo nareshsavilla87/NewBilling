@@ -4,10 +4,10 @@
 	   mail : "lingala.ashokreddy@gmail.com",
 	   
 	 //for Adapter Changes
-	   AdapterStartCommand : "sh /home/rakesh/Raghu/BeeniusLogFiles_and_adapter/BeeniusAdapter/Beeniusadapter.sh start",
-	   AdapterStopCommand : "sh /home/rakesh/Raghu/BeeniusLogFiles_and_adapter/BeeniusAdapter/Beeniusadapter.sh stop",
-	   AdapterStatusCommand : "sh /home/rakesh/Raghu/BeeniusLogFiles_and_adapter/BeeniusAdapter/Beeniusadapter.sh status",
-	   AdapterLogFileCommand : "/home/rakesh/Raghu/BeeniusLogFiles_and_adapter/BeeniusLogFiles/logs/BeeniusIntegrator.log",
+	   AdapterStartCommand : "sh /home/spicenet/obsadapter/adapter.sh start",
+	   AdapterStopCommand : "sh /home/spicenet/obsadapter/adapter.sh stop",  
+	   AdapterStatusCommand : "sh /home/spicenet/obsadapter/adapter.sh status",
+	   AdapterLogFileCommand : "/home/spicenet/NetSpanLogFiles/PacketspanIntegratorerr.log",
 	   AdapterLogFileDateFormat : "yyyy-MM-dd",
 	   AdapterLogFileIntervelDays : 7,
 	   
@@ -17,7 +17,7 @@
 	   AdapterStopedResponse : "Adapter stopped",
 	   AdapterStartingResponse   : "Adapter started",
 	   
-	   AdapterProvSystem : "Beenius",
-	   AdapterFileName : "BeeniusIntegrator"
+	   AdapterProvSystem : "PacketSpan",
+	   AdapterFileName : "adapter"
   });
 }(mifosX.models || {}));
