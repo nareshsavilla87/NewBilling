@@ -113,7 +113,7 @@
  	"link.vod.add.event" 		 :  "Add Event",
  	
  	"#place holders " : "------------------------------------",
- 	"placeholder.enter.device"				: "ex:12:12:12:12:12:12",
+ 	"placeholder.enter.device"				: "Enter Device",
  	"placeholder.enter.zipcode"				: "Enter Zipcode",
  	"placeholder.enter.postcode"			: "Enter Postcode",
  	"placeholder.enter.address"				: "Enter Address",
@@ -156,6 +156,7 @@
 	"label.settings" 				: "Settings",
 	"label.change.dateformat"		: "Change Date Format",
 	"label.user.settings"			: "User Settings",
+	"label.change.dateformat"	 	: "Change Date Format",
  	
  	"#form validations errors " : "------------------------------------",
  	"form.error.alphanumeric"		     : "alphanumeric and spaces only!",

@@ -113,7 +113,7 @@
  	"link.vod.add.event" 		 :  "Bæta við atburði",
  	
  	"#place holders " : "------------------------------------",
- 	"placeholder.enter.device"				: "Dæmi:12:12:12:12:12:12",
+ 	"placeholder.enter.device"				: "Sláið inn tækið",
  	"placeholder.enter.zipcode"				: "sláðu inn póstnúmer",
  	"placeholder.enter.postcode"			: "sláðu inn póstnúmer",
  	"placeholder.enter.address"				: "sláðu inn heimilisfang",
@@ -156,6 +156,7 @@
 	"label.settings" 				: "stillingar",
 	"label.change.dateformat"		: "Breyting Bætt Forsníða",
 	"label.user.settings"			: "notandi stillingar",
+	"label.change.dateformat"	 	: "Breyting Dagsetning Forsníða",
  	
  	"#form validations errors " : "------------------------------------",
  	"form.error.alphanumeric"		     : "tölustafi og rými aðeins!",
