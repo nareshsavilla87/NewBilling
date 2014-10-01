@@ -97,18 +97,21 @@
 			  scope.vodEventRedirectToDalpay = true;
 			  console.log(scope.mediaDatas);
 			  webStorage.add('eventData',scope.mediaDatas);
+			  webStorage.add('hwSerialNumber',scope.formData.hwSerialNumber);
 			  webStorage.add('VODTotalAmount',scope.totalAmount);
 		  };
 		  
 		  scope.subscribeBtnFun = function(){
 			  console.log(scope.mediaDatas);
 			  webStorage.add('eventData',scope.mediaDatas);
+			  webStorage.add('hwSerialNumber',scope.formData.hwSerialNumber);
 			  location.path("/eventdetailspreviewscreen");
 		  };
 		  
 		  scope.subscribeBtnFun = function(){
 			  console.log(scope.mediaDatas);
 			  webStorage.add('eventData',scope.mediaDatas);
+			  webStorage.add('hwSerialNumber',scope.formData.hwSerialNumber);
 			  location.path("/eventdetailspreviewscreen");
 		  };
 		  
