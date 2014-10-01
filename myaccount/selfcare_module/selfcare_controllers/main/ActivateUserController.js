@@ -16,7 +16,7 @@
 		  scope.isRegPage = false;
 		  scope.cities = [];
 		  scope.clientData = {};
-		  var itemDetails = [];
+		  var itemDetails = {};
 		  
 		//declaration of formData
 		  scope.formData = {};
@@ -77,8 +77,94 @@
 		  });
 		 
 		 //function called when entering the device name 
-		  scope.getData = function(query){
-			  	        	return http.get(rootScope.hostUrl+ API_VERSION+'/itemdetails/searchserialnum', {
+		  
+		  scope.getDataForMacId = function(query){
+			  if(query){
+				  var str = "";
+				  var containsColon = query.match(":");
+				  if(containsColon){
+					  str = query;
+				  }else{
+					  str += query[0]+query[1]+":";
+					  for(var val=3;val<=query.length-1;val++){
+						  if(val == query.length-1){
+							  break;
+						  }
+						  if(val%2 == 0)
+							  str += query[val]+":";
+						  else
+							  str +=query[val];
+					  }
+				  }
+				  console.log(str);
+				  RequestSender.gettingSerialNumbers.query({query:query},function(data){
+					  itemDetails = {};
+					  itemDetails = data;
+					  if(itemDetails.length == 0){
+						  scope.isInvalidMacId = true;
+					  }
+					  else if(itemDetails.length >=1){
+						  scope.isInvalidMacId = false;
+				          scope.isDisabledSerialNumber = true;
+		            		 if(query == itemDetails[0].serialNumber){
+		            			 scope.provisioningSerialNumber =  itemDetails[0].provisioningSerialNumber;
+		            		 }else{
+		            			 scope.isInvalidMacId = true;
+		            			 delete scope.provisioningSerialNumber;
+		            		 }
+					  }
+				  });
+			  }else{
+				  scope.isDisabledSerialNumber = false;
+				  scope.isInvalidMacId = false;
+				  delete scope.provisioningSerialNumber;
+			  }
+		  };
+		  
+
+		  scope.getDataForSerialNumber = function(query){
+			  if(query){
+				  var str = "";
+				  var containsColon = query.match(":");
+				  if(containsColon){
+					  str = query;
+				  }else{
+					  str += query[0]+query[1]+":";
+					  for(var val=3;val<=query.length-1;val++){
+						  if(val == query.length-1){
+							  break;
+						  }
+						  if(val%2 == 0)
+							  str += query[val]+":";
+						  else
+							  str +=query[val];
+					  }
+				  }
+				  console.log(str);
+				  RequestSender.gettingSerialNumbers.query({query:query},function(data){
+					  itemDetails = {};
+					  itemDetails = data;
+					  if(itemDetails.length == 0){
+						  scope.isInvalidSerialNumber = true;
+					  }
+					  else if(itemDetails.length >=1){
+						  scope.isInvalidSerialNumber = false;
+						  scope.isDisabledMacId = true;
+		            		 if(query == itemDetails[0].provisioningSerialNumber){
+		            			 	scope.formData.deviceNo =  itemDetails[0].serialNumber;
+		            		 }else{
+		            			 scope.isInvalidSerialNumber = true;
+		            			 delete scope.formData.deviceNo;
+		            		 }
+					  }
+				  });
+			  }else{
+				  scope.isDisabledMacId = false;
+				  scope.isInvalidSerialNumber = false;
+				  delete scope.formData.deviceNo;
+			  }
+		  };
+			  	        	/*return http.get(rootScope.hostUrl+ API_VERSION+'/itemdetails/searchserialnum', {
 			  	        	      params: {
 			  	        	    	  query: query
 			  	        	      }
@@ -90,11 +176,10 @@
 			  	        	    		  break;
 			  	        	      }
 			  	        	      return itemDetails;
-			  	        	    });
-			              };
+			  	        	    });*/
 			              
 		
-		//setting the value of serial Number based on mac id 
+		  /*//setting the value of serial Number based on mac id 
 		 scope.$watch(function () {
              return scope.formData.deviceNo;
          }, function () {
@@ -136,7 +221,7 @@
 	            	 delete scope.formData.deviceNo;
 	             }
         	 }
-         });
+         });*/
 		  
 		  //function called when  clicking on Sinin link
 		  scope.goToSignInPageFun = function(){

@@ -127,6 +127,7 @@
  	"placeholder.enter.nationalid"			: "sláðu inn National auðkenni",
  	"placeholder.enter.nationalid.example"	: "Dæmi: 0908141234",
  	"placeholder.filter.listofvods"			: "Sía eftir auðkenni",
+ 	"placeholder.enter.serialnumber"		: "Sláið inn raðnúmers",
  	
  	
  	"#common labels " : "------------------------------------",
@@ -169,6 +170,8 @@
  	"form.error.password.match"		   	 : "Lykilorð ekki passa !",
  	"form.error.nationalid.pattern"		 : "Mynstur ekki passa..!",
  	"form.error.device.invalid"			 : "Ógilt Tæki ..!",
+ 	"form.error.macid.invalid"			 : "Ógilt lagsi Kenni ..!",
+ 	"form.error.serialnumber.invalid"	 : "Ógilt Raðnúmer Fjöldi ..!",
  	
  	
  	"#TicketResources "	 :"------------------------------------",

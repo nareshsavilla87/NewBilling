@@ -127,6 +127,7 @@
  	"placeholder.enter.nationalid"			: "Enter NationalID",
  	"placeholder.enter.nationalid.example"	: "ex: 0908141234",
  	"placeholder.filter.listofvods"			: "Filter by Id",
+ 	"placeholder.enter.serialnumber"		: "Enter Serial Number",
  	
  	
  	"#common labels " : "------------------------------------",
@@ -169,6 +170,8 @@
  	"form.error.password.match"		   	 : "Password did not Match !",
  	"form.error.nationalid.pattern"		 : "Pattern did not match..!",
  	"form.error.device.invalid"			 : "Invalid Device ..!",
+ 	"form.error.macid.invalid"			 : "Invalid Mac Id ..!",
+ 	"form.error.serialnumber.invalid"	 : "Invalid Serial Number ..!",
  	
  	
  	"#TicketResources "	 :"------------------------------------",
