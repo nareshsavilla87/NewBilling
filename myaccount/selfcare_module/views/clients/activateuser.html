@@ -347,16 +347,40 @@
 	         				 
 	       			</td>
 	       		</tr>
-	       		<tr>
+	       		<tr ng-show="isDeviceEnabled==true && isCPE_TYPEOwn == true">
 	       			<td>
-            			<div class="control-group" ng-show="isDeviceEnabled==true" style="margin-bottom:30px;">
-                            <label class="control-label" for="serialNumber">{{ 'label.device' | translate }}&nbsp;</label>
+            			<div class="control-group" >
+                            <label class="control-label" for="serialNumber">{{ 'label.macid' | translate }}&nbsp;</label>
                              <div class="controls">
     	                        <input type="text" ng-model="formData.deviceNo" name="deviceNo" placeholder= "{{ 'placeholder.enter.device' | translate }}" 
-    	                                typeahead="itemDetail for itemDetail in getData($viewValue)"/><br/>
-    	                        <!-- <span  ng-show="regSuccessForm.deviceNo.$dirty &&regSuccessForm.deviceNo.$invalid">
+    	                        				ng-pattern="/^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$/"/><br/>
+    	                         <span  ng-show="regSuccessForm.deviceNo.$dirty &&regSuccessForm.deviceNo.$invalid">
 				                	<small class="error" ng-show="regSuccessForm.deviceNo.$error.pattern">{{'form.error.device.invalid'|translate}}</small>
-				                </span> -->
+				                </span>
+                             </div>
+                        </div>	
+	         				<strong style="margin-top:50px;" class="offset6" ng-show="isDeviceEnabled==true && isCPE_TYPESale == true">OR</strong>
+	       			</td>
+	       		</tr>
+	       		<tr ng-show="isDeviceEnabled==true && isCPE_TYPESale == true">
+	       			<td>
+            			<div class="control-group" style="margin-bottom:0px;">
+                            <label class="control-label" for="serialNumber">{{ 'label.macid' | translate }}&nbsp;</label>
+                             <div class="controls">
+    	                        <input type="text" ng-model="formData.deviceNo" name="macid" placeholder= "{{ 'placeholder.enter.device' | translate }}" 
+    	                                typeahead="itemDetail.serialNumber for itemDetail in getData($viewValue)" ng-disabled="isDisabledMacId"/><br/>
+                             </div>
+                        </div>	
+	         				<strong style="margin-top:50px;" class="offset6" ng-show="isDeviceEnabled==true && isCPE_TYPESale == true">OR</strong>
+	       			</td>
+	       		</tr>
+	       		<tr ng-show="isDeviceEnabled==true && isCPE_TYPESale == true">
+	       			<td>
+            			<div class="control-group">
+                            <label class="control-label" for="serialNumber">{{ 'label.serialnumber' | translate }}&nbsp;</label>
+                             <div class="controls">
+    	                        <input type="text" ng-model="provisioningSerialNumber" name="serialnumber" placeholder= "{{ 'placeholder.enter.device' | translate }}" 
+    	                                typeahead="itemDetail.provisioningSerialNumber for itemDetail in getData($viewValue)" ng-disabled="isDisabledSerialNumber"/><br/>
                              </div>
                         </div>	
 	         				 

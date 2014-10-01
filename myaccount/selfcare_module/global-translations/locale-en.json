@@ -77,6 +77,8 @@
  	"label.nationalid"			: "National ID",
  	"label.order.info"			: "Order Information",
  	"label.listofvods"			: "List Of VODs",
+ 	"label.serialnumber"	    : "Serial Number",
+ 	"label.macid"			    : "Mac Id",
  	
  	"#headers " : "------------------------------------",
  	"header.forgot.password" 		 : "Forgot Password",
@@ -113,7 +115,7 @@
  	"link.vod.add.event" 		 :  "Add Event",
  	
  	"#place holders " : "------------------------------------",
- 	"placeholder.enter.device"				: "Enter Device",
+ 	"placeholder.enter.device"				: "ex: 1A:1B:1C:1D:1E:1F",
  	"placeholder.enter.zipcode"				: "Enter Zipcode",
  	"placeholder.enter.postcode"			: "Enter Postcode",
  	"placeholder.enter.address"				: "Enter Address",
