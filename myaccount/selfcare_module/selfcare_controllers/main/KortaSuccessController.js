@@ -34,7 +34,7 @@
         	if(downloadmd5String == downloadmd5){
         		
         		scope.formData.reference = reference;
-        		
+        	
     	  			if(scope.PaymentMethod == "STNOCAP"){	
 	           			 RequestSender.updateKortaToken.update({clientId : scope.formData.clientId},{'kortaToken': scope.kortaToken},function(data){
 	           				rootScope.isActiveScreenPage= false;
