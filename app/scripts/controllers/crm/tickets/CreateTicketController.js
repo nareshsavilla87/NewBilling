@@ -1,7 +1,10 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
 	  CreateTicketController: function(scope,webStorage, resourceFactory, location, translate,dateFilter,routeParams,$rootScope) {
-            
+           
+		  var locationOrigin = window.location.origin;
+      	var locationPathname = window.location.pathname;
+        	
 			scope.priorityTypes = [];
 			scope.formData={};						
 			scope.problemsDatas = [];
@@ -81,6 +84,8 @@
 	        	var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
 	            this.formData.ticketDate = reqDate;
 				this.formData.dateFormat = 'dd MMMM yyyy';
+				this.formData.ticketURL=locationOrigin+''+locationPathname+"#/viewTicket/"+scope.clientId+"/";
+				//alert(this.formData.ticketURL);
 				this.formData.ticketTime = ' '+new Date().toLocaleTimeString().replace("IST","").trim();
                 resourceFactory.ticketResource.save({'clientId': routeParams.id},this.formData,function(data){
                  location.path('/viewTicket/'+ routeParams.id+'/'+data.resourceId);

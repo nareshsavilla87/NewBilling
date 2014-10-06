@@ -3,6 +3,8 @@
 	  CloseTicketController: function(scope,webStorage, routeParams , location,resourceFactory ) {		
             scope.statusTypes=[];
             scope.formData={};
+            var locationOrigin = window.location.origin;
+        	var locationPathname = window.location.pathname;
             var clientData = webStorage.get('clientData');
             scope.hwSerialNumber=clientData.hwSerialNumber;
 		    scope.displayName=clientData.displayName;
@@ -26,6 +28,7 @@
 	    };
 	        
         scope.submit = function() { 
+        	this.formData.ticketURL=locationOrigin+''+locationPathname+"#/viewTicket/"+scope.clientId+"/";
             resourceFactory.closeTicketResource.update({'id': routeParams.id},this.formData,function(data){
                 location.path('/viewclient/'+routeParams.clientId);
              });

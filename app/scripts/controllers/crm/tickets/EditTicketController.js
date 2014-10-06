@@ -3,6 +3,8 @@
 		EditTicketController : function(scope,webStorage,routeParams,resourceFactory, location, http,API_VERSION,$rootScope,$upload) {
 							scope.formData = {};	
 							scope.data={};
+							var locationOrigin = window.location.origin;
+				        	var locationPathname = window.location.pathname;
 							var clientData = webStorage.get('clientData');
 						    scope.displayName=clientData.displayName;
 						    scope.statusActive=clientData.statusActive;
@@ -40,6 +42,7 @@
 								this.data.assignedTo=this.formData.userId;
 								this.data.comments=this.formData.comments;
 								this.data.status=this.formData.status;
+								this.data.ticketURL=locationOrigin+''+locationPathname+"#/viewTicket/"+scope.clientId+"/";
 								$upload.upload({
 						          url: $rootScope.hostUrl+ API_VERSION +'/clients/'+routeParams.clientId+'/documents/'+routeParams.id+'/attachment', 
 						          data: scope.data,
