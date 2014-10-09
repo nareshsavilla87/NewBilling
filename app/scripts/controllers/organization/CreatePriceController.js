@@ -7,9 +7,12 @@
         scope.discountdatas = [];
         scope.priceRegionDatas = [];
         scope.serviceDatas=[];
+        scope.priceDatas=[];
+        scope.formData = {};
         
         resourceFactory.priceTemplateResource.get({planId: routeParams.id} , function(data) {
-        	 scope.formData=data;
+        	 scope.formData.planCode=data.planCode;
+        	 scope.formData.isPrepaid=data.isPrepaid;
         	scope.chargeDatas = data.chargeData;
             scope.chargevariants = data.chargevariant;
             scope.discountdatas = data.discountdata;
@@ -20,19 +23,63 @@
             
             
         });
+        
+        scope.addPriceData = function(){
+        	console.log(scope.formData);
+        	if(scope.formData.chargeCode && scope.formData.chargevariant && scope.formData.discountId && scope.formData.serviceCode &&
+        			scope.formData.isPrepaid && scope.formData.planCode && scope.formData.price && scope.formData.priceregion ){
+        		 if(scope.formData.isPrepaid == 'Y'){
+        			 if(scope.formData.duration){
+        				 scope.priceDatas.push(scope.formData);
+        				 var planCode = scope.formData.planCode;
+        		        	var isPrepaid = scope.formData.isPrepaid;
+        		        	scope.formData = {};
+        		        	scope.formData.planCode = planCode;
+        		        	scope.formData.isPrepaid = isPrepaid;
+        		        	console.log(scope.priceDatas);
+        			 }
+        		 }else{
+        			 scope.priceDatas.push(scope.formData);
+        			 var planCode = scope.formData.planCode;
+        	        	var isPrepaid = scope.formData.isPrepaid;
+        	        	scope.formData = {};
+        	        	scope.formData.planCode = planCode;
+        	        	scope.formData.isPrepaid = isPrepaid;
+        	        	console.log(scope.priceDatas);
+        		 }
+        	}
+        	
+        	
+        };
+        
+        scope.removePriceData = function (index) {
+            scope.priceDatas.splice(index, 1);
+        };
+        
+        priceDataSendingOneByOneFun = function(val){
+        	resourceFactory.priceResource.save({'planId':routeParams.id},scope.priceDatas[val],function(data){
+				 if(val == scope.priceDatas.length-1){
+					 location.path('viewplan/'+routeParams.id);
+				 }else{
+					 val += 1;
+					 priceDataSendingOneByOneFun(val);
+			 	 }
+			 });
+		 };
+        
         scope.submit = function() {
              
-        	 delete this.formData.serviceData;
-        	 delete this.formData.chargeData;
-        	 delete this.formData.discountdata;
-        	 delete this.formData.planId;
-        	 delete this.formData.chargeVariantId;
-        	 delete this.formData.priceRegionData;
-        	 delete this.formData.contractPeriods;
-        	 this.formData.locale = $rootScope.locale.code;
-        	 resourceFactory.priceResource.save({'planId':routeParams.id},this.formData,function(data){
+        	console.log(scope.priceDatas);
+        	for(var i in scope.priceDatas){
+        		scope.priceDatas[i].locale = $rootScope.locale.code;
+        		if(i==scope.priceDatas.length-1){
+        			priceDataSendingOneByOneFun(0);
+        		}
+        	}
+        	 //this.formData.locale = $rootScope.locale.code;
+        	/* resourceFactory.priceResource.save({'planId':routeParams.id},this.formData,function(data){
                  location.path('/viewprice/' + data.resourceId+'/'+routeParams.id);
-          });
+          });*/
         };
     }
   });

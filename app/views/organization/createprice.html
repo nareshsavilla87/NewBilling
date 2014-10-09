@@ -12,91 +12,116 @@
 		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
         <fieldset>
-          <legend>{{'label.creatprice' | translate}}</legend>
+          <legend>{{'label.addprices' | translate}}</legend>
           <table width="100%">
            <tr>
-                  <td width="50%">
-          <div class="control-group">
-            <label class="control-label" for="planCode">{{ 'label.plan.plancode' | translate }}</label>
-            <div class="controls">
-              <input type="text" id="planCode" ng-model="formData.planCode" value="formData.planCode" readonly>
-            </div>
-          </div>
-          
-            <td width="50%">
-          <div class="control-group">
-            <label class="control-label" for="chargevariant">{{ 'label.price.chargevariant' | translate }}</label>
-            <div class="controls">
-              <select ng-model="formData.chargevariant"  ng-options="chargevariant.id as chargevariant.value for chargevariant in chargevariants" value="{{chargevariant.id}}"></select>
+                  <td >
+          <div class="">
+            <label class="" for="planCode">{{ 'label.plan.plancode' | translate }}</label>
+            <div class="">
+              <input type="text" id="planCode" class="input-small" ng-model="formData.planCode" value="formData.planCode" readonly>
             </div>
           </div>
           </td>
-          </tr>
-           <tr>
-            <td width="50%">
-          <div class="control-group">
-            <label class="control-label" for="servicecode">{{ 'label.plan.servicecode' | translate }}</label>
-            <div class="controls">
-               <select ng-model="formData.serviceCode"  ng-options="serviceData.serviceCode as serviceData.serviceDescription for serviceData in serviceDatas" value="{{serviceData.serviceCode}}">
+            <td >
+          <div class="">
+            <label class="" for="chargevariant">{{ 'label.price.chargevariant' | translate }}</label>
+            <div class="">
+              <select ng-model="formData.chargevariant"  class="input-small" ng-options="chargevariant.id as chargevariant.value for chargevariant in chargevariants" value="{{chargevariant.id}}"></select>
+            </div>
+          </div>
+          </td>
+            <td >
+          <div class="">
+            <label class="" for="servicecode">{{ 'label.plan.servicecode' | translate }}</label>
+            <div class="">
+               <select ng-model="formData.serviceCode"  class="input-small" ng-options="serviceData.serviceCode as serviceData.serviceDescription for serviceData in serviceDatas" value="{{serviceData.serviceCode}}">
                
                </select>
             </div>
           </div>
           </td>
           
-                  <td width="50%">
-          <div class="control-group">
-            <label class="control-label" for="discountCode">{{ 'label.price.discountcode' | translate }}</label>
-            <div class="controls">
-              <select ng-model="formData.discountId"  ng-options="discountdatas.discountMasterId as discountdatas.discountDescription for discountdatas in discountdatas" value="{{discountdatas.discountMasterId}}"></select>
+                  <td>
+          <div class="">
+            <label class="" for="discountCode">{{ 'label.price.discountcode' | translate }}</label>
+            <div class="">
+              <select ng-model="formData.discountId"  class="input-small" ng-options="discountdatas.discountMasterId as discountdatas.discountDescription for discountdatas in discountdatas" value="{{discountdatas.discountMasterId}}"></select>
             </div>
           </div>
           </td>
-          </tr>
-          <tr>
-            <td width="50%">
-          <div class="control-group">
-            <label class="control-label" for="chargecode">{{ 'label.price.chargecode' | translate }}</label>
-            <div class="controls">
-               <select ng-model="formData.chargeCode"  ng-options="chargeDatas.chargeCode as chargeDatas.chargeDescription for chargeDatas in chargeDatas" value="{{chargeDatas.chargeDescription}}"></select>
+            <td >
+          <div class="">
+            <label class="" for="chargecode">{{ 'label.price.chargecode' | translate }}</label>
+            <div class="">
+               <select ng-model="formData.chargeCode" class="input-small" ng-options="chargeDatas.chargeCode as chargeDatas.chargeDescription for chargeDatas in chargeDatas" value="{{chargeDatas.chargeDescription}}"></select>
             </div>
           </div>
           </td>
             
-               <td width="50%">
-          <div class="control-group">
-            <label class="control-label" for="priceregion">{{ 'label.price.priceregion' | translate }}</label>
-            <div class="controls">
-            <select ng-model="formData.priceregion"  ng-options="priceRegionData.id as priceRegionData.priceregionCode for priceRegionData in priceRegionDatas" value="{{priceRegionData.id}}"></select>
+               <td >
+          <div class="">
+            <label class="" for="priceregion">{{ 'label.price.priceregion' | translate }}</label>
+            <div class="">
+            <select ng-model="formData.priceregion"  class="input-small" ng-options="priceRegionData.id as priceRegionData.priceregionCode for priceRegionData in priceRegionDatas" value="{{priceRegionData.id}}"></select>
             </div>
           </div>
           </td>
-            </tr>
-            <tr>
              <td>
-          <div class="control-group">
-            <label class="control-label" for="amount">{{ 'label.price.amount' | translate }}</label>
-            <div class="controls">
-            <input type="text" id="price" ng-model="formData.price">
+          <div class="">
+            <label class="" for="amount">{{ 'label.price.amount' | translate }}</label>
+            <div class="">
+            <input type="text" id="price" class="input-small" ng-model="formData.price">
             </div>
           </div>
           </td>
           <td>
           	<div ng-show="formData.isPrepaid == 'Y'">
-            	<div class="control-group">
-              	<label class="control-label" for="duration">{{ 'label.plan.duration' | translate }}</label>
-              	<div class="controls">
-                	<select ng-model="formData.duration"  ng-options="subscriptiondata.Contractdata as subscriptiondata.Contractdata for subscriptiondata in subscriptiondata" value="{{subscriptiondata.Contractdata}}"></select>
+            	<div class="">
+              	<label class="" for="duration">{{ 'label.plan.duration' | translate }}</label>
+              	<div class="">
+                	<select ng-model="formData.duration" class="input-small" ng-options="subscriptiondata.Contractdata as subscriptiondata.Contractdata for subscriptiondata in subscriptiondata" value="{{subscriptiondata.Contractdata}}"></select>
               	</div>
               	 </div>
               </div>
+              
               </td>
+              <td ><div style="margin-top:22px;"><a ng-click="addPriceData()" style="margin-left:25px;"><i class="icon-plus icon-white"></i></a></div></td>
           </tr>
           </table>
-      
-          <div class="offset3">
-            <a href="#/viewplan/{{formData.planId}}"><button id="cancel" type="reset" class="btn">Cancel</button></a>
-            <button id="submit" type="submit" class="btn btn-primary">Save</button>
+          <div ng-show="priceDatas.length>0">
+      		<br/><br/>
+      		<legend >{{'label.addedprices' | translate}}</legend>
+		      <table class="table" width="100%" >
+		                    <tr></tr>
+		                    <tr class="graybg">
+		                      <th>{{ 'label.plan.plancode' | translate }}</th>
+		                      <th>{{ 'label.price.chargevariant' | translate }}</th>
+		                      <th>{{ 'label.plan.servicecode' | translate }}</th>
+		                      <th>{{ 'label.price.discountcode' | translate }}</th>
+		                       <th>{{ 'label.price.chargecode' | translate }}</th>
+		                       <th>{{ 'label.price.priceregion' | translate }}</th>
+		                       <th>{{ 'label.price.amount' | translate }}</th>
+		                       <th ng-show="formData.isPrepaid == 'Y'">{{ 'label.plan.duration' | translate }}</th>
+		                       <th></th>
+		                    </tr>
+		                    <tr ng-repeat="priceData in priceDatas track by $index" >
+		                      <td> <input type="text" class="input-small" ng-model="priceData.planCode" readonly></td>
+		                      <td><select ng-model="priceData.chargevariant"  class="input-small" ng-options="chargevariant.id as chargevariant.value for chargevariant in chargevariants" ></select></td>
+		                      <td><select ng-model="priceData.serviceCode"  class="input-small" ng-options="serviceData.serviceCode as serviceData.serviceDescription for serviceData in serviceDatas" ></select></td>
+		                      <td><select ng-model="priceData.discountId"  class="input-small" ng-options="discountdatas.discountMasterId as discountdatas.discountDescription for discountdatas in discountdatas" ></select></td>
+		                      <td><select ng-model="priceData.chargeCode" class="input-small" ng-options="chargeDatas.chargeCode as chargeDatas.chargeDescription for chargeDatas in chargeDatas" ></select></td>
+		                      <td><select ng-model="priceData.priceregion"  class="input-small" ng-options="priceRegionData.id as priceRegionData.priceregionCode for priceRegionData in priceRegionDatas" ></select></td>
+		                      <td> <input type="text" class="input-small" ng-model="priceData.price"></td>
+		                      <td><select ng-model="priceData.duration" class="input-small" ng-options="subscriptiondata.Contractdata as subscriptiondata.Contractdata for subscriptiondata in subscriptiondata" ></select></td>
+		                      <td><a ng-click="removePriceData($index)"><i class="icon-remove icon-white"></i></a></td>
+		                    </tr>
+		       </table>
+		      <br/><br/>
+		          <div class="offset9">
+		            <a href="#/viewplan/{{formData.planId}}"><button id="cancel" type="reset" class="btn">Cancel</button></a>
+		            <button id="submit" type="submit" class="btn btn-primary">Save</button>
+		          </div>
           </div>
         </fieldset>
       </form>
