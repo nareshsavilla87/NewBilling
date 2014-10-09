@@ -382,6 +382,7 @@
   "#DataTables":"...",
   "apptable.m.client":"Client",
   "apptable.m.office":"Office",
+  "apptable.m.group":"Group",
   "label.create.datatable":"Create DataTable",
   "label.datatable.name":"Data Table Name",
   "label.datatable.apptableName":"Application Table Name",
@@ -638,6 +639,8 @@
     
   "#Price":".......",
   "label.creatprice":"Create Price",
+  "label.addprices":"Add Prices",
+  "label.addedprices":"Added Prices",
   "table.price.servcecode":"Service Code",
   "table.price.chargecode":"Charge Code",
   "table.price.chargevaraint":"Charge Varaint",

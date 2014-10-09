@@ -1349,8 +1349,8 @@
                 <td><a ng-click="routeToEmail(statement.id)" class="btn btn-primary">Email</a></td>
                 <td><a class="btn btn-primary" href="{{url}}={{mail}}&item_name=first&amount={{statement.amount}}&custom={{client.id}}" target="_blank">
                 <i class=" icon-download-alt icon-white"></i>Paypal</a></td>
-               <td><a ng-click="routeToCancelBill(statement.id)" ng-show="$last" popover="Cancel Statement" popover-trigger="mouseenter">
-               <i class="icon-remove-circle icon-white"></i></a></td>
+               <td><a  ng-click="routeToCancelBill(statement.id)" ng-show="$last" popover="Cancel Statement" popover-trigger="mouseenter">
+               <i class="icon-remove-circle icon-white" style="font-size:20px;color:#999;"></i></a></td>
             </tr>
         </tbody>
     </table>

@@ -1,6 +1,20 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    DataTableEntryController: function(scope, location, routeParams, route, resourceFactory,$modal,$rootScope) {
+	  ViewDataTableEntryController: function(scope, location, routeParams, route, resourceFactory,$modal,$rootScope,webStorage) {
+    	
+    	var clientData = webStorage.get('clientData');
+  	    scope.hwSerialNumber=clientData.hwSerialNumber;
+        scope.displayName=clientData.displayName;
+        scope.statusActive=clientData.statusActive;
+        scope.accountNo=clientData.accountNo;
+        scope.officeName=clientData.officeName;
+        scope.balanceAmount=clientData.balanceAmount;
+        scope.currency=clientData.currency;
+        scope.imagePresent=clientData.imagePresent;
+        scope.categoryType=clientData.categoryType;
+        scope.email=clientData.email;
+        scope.phone=clientData.phone;
+        scope.clientId=routeParams.entityId;
 
     	   if (routeParams.tableName) {
                scope.tableName = routeParams.tableName;
@@ -175,7 +189,7 @@
 
     }
   });
-  mifosX.ng.application.controller('DataTableEntryController', ['$scope', '$location', '$routeParams', '$route', 'ResourceFactory','$modal','$rootScope', mifosX.controllers.DataTableEntryController]).run(function($log) {
-    $log.info("DataTableEntryController initialized");
+  mifosX.ng.application.controller('ViewDataTableEntryController', ['$scope', '$location', '$routeParams', '$route', 'ResourceFactory','$modal','$rootScope','webStorage', mifosX.controllers.ViewDataTableEntryController]).run(function($log) {
+    $log.info("ViewDataTableEntryController initialized");
   });
 }(mifosX.controllers || {}));

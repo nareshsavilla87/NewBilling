@@ -817,9 +817,10 @@
                       
            scope.routeToCancelBill = function (statementId) {
         	   resourceFactory.cancelStatementResource.delete({statementId: statementId}, function(data) {	
-        		  webStorage.add("callingTab", {someString: "Statements" });
+        		//  webStorage.add("callingTab", {someString: "Statements" });
         		 //  location.path("/viewclient/"+routeParams.id);
-        		   route.reload(); 
+        		  scope.getClientStatements(); 
+        		//  route.reload(); 
                 });
                };    
                
