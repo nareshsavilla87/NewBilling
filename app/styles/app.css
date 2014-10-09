@@ -1098,6 +1098,16 @@ input#search:-ms-input-placeholder {
     color: #ffffff;
 }
 
+*:before, *:after {
+    box-sizing: border-box;
+}
+.width86 {
+    width: 86%;
+}
+.width11 {
+    width: 11%;
+}
+
 /*        .onoffswitch {
     position: relative; width: 90px;
     -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
