@@ -111,7 +111,7 @@ define(['underscore', 'mifosX'], function() {
       'system/CreateDataTableController',
       'system/EditDataTableController',
       'system/MakeDataTableEntryController',
-      'system/DataTableEntryController',
+      'system/ViewDataTableEntryController',
       'system/SchedulerJobsController',
       'system/EditJobParameters',
       'system/ViewSchedulerJobController',
