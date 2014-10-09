@@ -639,6 +639,8 @@
     
   "#Price":".......",
   "label.creatprice":"Create Price",
+  "label.addprices":"Add Prices",
+  "label.addedprices":"Added Prices",
   "table.price.servcecode":"Service Code",
   "table.price.chargecode":"Charge Code",
   "table.price.chargevaraint":"Charge Varaint",
