@@ -31,7 +31,6 @@
                   <option value="m_client">{{'apptable.m.client' | translate}}</option>
                   <option value="m_office">{{'apptable.m.office' | translate}}</option>
                   <option value="m_group">{{'apptable.m.group' | translate}}</option>
-                  <option value="m_center">{{'apptable.m.center' | translate}}</option>
                 </select>
                  <span ng-show="createdatatableform.apptableName.$invalid">
                 <small class="error" ng-show="createdatatableform.apptableName.$error.req">Required Field</small>
@@ -46,7 +45,7 @@
             <label class="control-label">{{ 'label.add.columns' | translate }}<span class="required">*</span></label>
             <div class="controls">
               <input ng-model="datatableTemplate.columnName" type="text" placeholder="{{'label.column.name' | translate}}"/>&nbsp;&nbsp;
-              <select ng-model="datatableTemplate.columnType">&nbsp;&nbsp;
+              <select ng-model="datatableTemplate.columnType">
                 <option style="display:none" value="">{{'label.select.columnType' | translate}}</option>
                 <option value="String">{{'datatable.column.type.string' | translate}}</option>
                 <option value="Number">{{'datatable.column.type.number' | translate}}</option>
@@ -57,7 +56,7 @@
               </select>&nbsp;&nbsp;
               <a ng-click="addColumn()"><i class="icon-plus icon-white"></i></a>
                <span ng-show="createdatatableform.columnname.$invalid || columnnameerror || columntypeerror">
-	                    <small class="error" ng-show="createdatatableform.columnname.$error.req || columnnameerror 
+	                 <small class="error" ng-show="createdatatableform.columnname.$error.req || columnnameerror 
 	                                                 || columntypeerror || rc.createdatatableform.attempted">{{ 'label.'+labelerror | translate }}</small>
 	                    </span>
             </div>
@@ -65,10 +64,8 @@
 
           <table ng-show="columns.length > 0" width="100%">
             <tr class="control-group">
-              <td width="11%">
-                <label class="control-label"><h4>{{ 'label.heading.columns' | translate }}</h4></label>
-              </td>
-              <td class="blockquoteresult 86%">
+              <td class="width11"> <label>{{ 'label.heading.columns' | translate }}</label></td>
+              <td class="blockquoteresult width86">
                 <table ng-show="columns.length > 0" class="table">
                   <thead>
                     <tr class="graybg">
@@ -82,9 +79,8 @@
                   </thead>
                   <tbody>
                     <tr ng-repeat="column in columns">
-                      <td><input ng-model="column.name" type="text" placeholder="{{'label.column.name' | translate}}" /></td>
-                      <td>
-                        <select ng-model="column.type" required="required" class="input-small" ng-change="updateDepenedencies($index)">
+                      <td><input  ng-model="column.name" type="text" placeholder="{{'label.column.name' | translate}}"></td>
+                      <td><select class="input-medium" ng-model="column.type" required="required"  ng-change="updateDepenedencies($index)">
                           <option style="display:none" value="">{{'label.select.columnType' | translate}}</option>
                           <option value="String">{{'datatable.column.type.string' | translate}}</option>
                           <option value="Number">{{'datatable.column.type.number' | translate}}</option>
@@ -92,17 +88,15 @@
                           <option value="Date">{{'datatable.column.type.date' | translate}}</option>
                           <option value="Text">{{'datatable.column.type.text' | translate}}</option>
                           <option value="Dropdown">{{'datatable.column.type.dropdown' | translate}}</option>
-                        </select>
-                      </td>
-                      <td align="center"><input ng-model="column.mandatory" type="checkbox" /></td>
+                        </select></td>
+                      <td><input ng-model="column.mandatory" type="checkbox" align="center"></td>
                       <td>
                         <input ng-show="column.type == 'String'" ng-model="column.length" type="text" class="input-small"/>
                       </td>
                       <td>
                         <select  ng-show="column.type == 'Dropdown'" ng-model="column.code"
 	                                        ng-options="code.name as code.name for code in codes" value="{{code.name}}"
-	                                        class="input-small control"/>
-                      </td>
+	                                        class="input-small control"></select></td>
                       <td align="center"><a ng-click="removeColumn($index)"><i class="icon-remove icon-white"></i></a></td>
                     </tr>
                   </tbody>

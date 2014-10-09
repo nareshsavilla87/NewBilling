@@ -1,44 +1,98 @@
-<form class="form-horizontal well" ng-controller="MakeDataTableEntryController" ng-submit="submit()">
-<div class="error" ng-show="errorStatus || errorDetails">
-		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">
-		{{error.code | translate:error.args}}-{{error.field}}</label>
-	    </div>
-	<fieldset>
-		<legend>{{ 'label.make.datatable.entry' | translate }}</legend>
-		<h3>{{ 'label.datatable.name' | translate }}-<strong>{{tableName}}</strong></h3>
-		<hr>
-		<div class="control-group" ng-repeat="columnHeader in columnHeaders">
-			<label class="control-label" for="colName">{{ columnHeader.columnName }}
-			<span ng-show="!columnHeader.isColumnNullable" class="required">*</span></label>  
-			  <div>
-                <input ng-show="fieldType(columnHeader.columnDisplayType) == 'TEXT'" type="text"
-                       ng-model="formData[columnHeader.columnName]" class="controls"/>
-                <input ng-show="fieldType(columnHeader.columnDisplayType) == 'DATE'" type="text"
-                       datepicker-pop="dd MMMM yyyy" ng-model="formDat[columnHeader.columnName]"
-                       is-open="opened{{$index}}" class="controls"/>
-                <span data-ng-switch on="columnHeader.columnDisplayType">
-                    <select ng-show="fieldType(columnHeader.columnDisplayType) == 'SELECT'"
-                            data-ng-switch-when="CODELOOKUP"
-                            ng-model="formData[columnHeader.columnName]"
-                            ng-options="columnValue.id as columnValue.value for columnValue in columnHeader.columnValues"
-                            value="{{columnValue.id}}" class="controls">
-                        <option value="">{{'label.select.one' | translate}}</option>
-                    </select>
-                    <select ng-show="fieldType(columnHeader.columnDisplayType) == 'SELECT'"
-                            data-ng-switch-when="CODEVALUE"
-                            ng-model="formData[columnHeader.columnName]"
-                            ng-options="columnValue.value as columnValue.value for columnValue in columnHeader.columnValues"
-                            value="{{columnValue.id}}" class="controls">
-                        <option value="">{{'label.select.one' | translate}}</option>
-                    </select>
-                </span>
-            </div>
+<div ng-controller="MakeDataTableEntryController">
+	<div>
+		<ul class="breadcrumb">
+			<table>
+				<tr>
+					<td><img ng-hide="imagePresent"
+						src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+						<img ng-show="imagePresent" src="{{image}}" alt="Avatar"
+						width="40"></td>
+					<td><small style="color: black;">{{displayName}}</small>
+						&nbsp; <i class="icon-circle {{statusActive | StatusLookup}}"></i></td>
+					<td><small style="font-size: 30px;">|</small></td>
+					<td>
+						<table>
+							<tr>
+								<td><small>Uniquely identified {{accountNo}}</small></td>
+							</tr>
+							<tr>
+								<td><i class="icon-building"></i><small>Office"{{officeName}}"</small></td>
+							</tr>
+						</table>
+					</td>
+					<td><small style="font-size: 30px;">|</small></td>
+					<td>
+						<table>
+							<tr>
+								<td><small>Cell Phone {{phone}}</small></td>
+							</tr>
+							<tr>
+								<td><small>Device # <strong>{{hwSerialNumber}}</strong></small></td>
+							</tr>
+						</table>
+					</td>
+					<td><small style="font-size: 30px;">|</small></td>
+					<td>
+						<table>
+							<tr>
+								<td><small>Client Type "{{categoryType}}"</small></td>
+							</tr>
+							<tr>
+								<td><small>Balance&nbsp;{{balanceAmount}}&nbsp;{{currency}}
+								</small></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</ul>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href='#/viewclient/{{clientId}}'>{{'link.view.client'| translate}}</a> <span class="divider">/</span></li>
+			<li class="active">Make DataTable Entry</li>
+		</ul>
+	</div>
+
+	<form class="form-horizontal well" ng-submit="submit()">
+		<div class="error" ng-show="errorStatus || errorDetails">
+			<label>{{'label.contract.error' | translate}}</label> <label
+				ng-show="errorStatus">{{errorStatus}}</label> <label
+				ng-hide="errorStatus" ng-repeat="error in errorDetails">
+				{{error.code | translate:error.args}}-{{error.field}}</label>
 		</div>
-		<div class="offset5">
-			<a  id="cancel" class="btn" ng-click="cancel()">{{ 'button.cancel' | translate }}</a>
-			<button type="submit" class="btn btn-primary">{{ 'button.save' | translate }}</button>
-		</div>
-	</fieldset>
-</form>
+		<fieldset>
+			<h4>{{ 'label.datatable.name' | translate }}--<strong>{{tableName}}</strong></h4>
+			<hr>
+			<div class="control-group" ng-repeat="columnHeader in columnHeaders">
+				<label class="control-label" for="colName">{{ columnHeader.columnName }} <span
+					ng-show="!columnHeader.isColumnNullable" class="required">*</span>
+				</label>
+				<div class="controls">
+					<input type="text" ng-show="fieldType(columnHeader.columnDisplayType) == 'TEXT'"
+						 ng-model="formData[columnHeader.columnName]" />
+				    <input type="text" ng-show="fieldType(columnHeader.columnDisplayType) == 'DATE'"
+						 datepicker-pop="dd MMMM yyyy" ng-model="formDat[columnHeader.columnName]" is-open="opened{{$index}}" /> 
+				    <span data-ng-switch on="columnHeader.columnDisplayType"> 
+				    <select ng-show="fieldType(columnHeader.columnDisplayType) == 'SELECT'"
+						data-ng-switch-when="CODELOOKUP"
+						ng-model="formData[columnHeader.columnName]"
+						ng-options="columnValue.id as columnValue.value for columnValue in columnHeader.columnValues"
+						value="{{columnValue.id}}" >
+					<option value="">{{'label.select.one' | translate}}</option></select> 
+					<select ng-show="fieldType(columnHeader.columnDisplayType) == 'SELECT'"
+						data-ng-switch-when="CODEVALUE"
+						ng-model="formData[columnHeader.columnName]"
+						ng-options="columnValue.value as columnValue.value for columnValue in columnHeader.columnValues"
+						value="{{columnValue.id}}">
+					<option value="">{{'label.select.one' | translate}}</option>
+					</select>
+					</span>
+				</div>
+			</div>
+			<div class="offset3">
+				<a id="cancel" class="btn" ng-click="cancel()">{{'button.cancel' | translate }}</a>
+				<button type="submit" class="btn btn-primary">{{'button.save' | translate }}</button>
+			</div>
+		</fieldset>
+	</form>
+</div>

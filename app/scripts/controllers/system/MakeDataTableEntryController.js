@@ -1,11 +1,25 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    MakeDataTableEntryController: function(scope, location, routeParams, resourceFactory,$rootScope) {
+    MakeDataTableEntryController: function(scope, location, routeParams, resourceFactory,$rootScope,webStorage) {
       scope.tableName = routeParams.tableName;
       scope.entityId = routeParams.entityId;
       scope.columnHeaders = [];
       scope.formData = {};
-      //console.log(scope.entityId);
+      
+      var clientData = webStorage.get('clientData');
+	  scope.hwSerialNumber=clientData.hwSerialNumber;
+      scope.displayName=clientData.displayName;
+      scope.statusActive=clientData.statusActive;
+      scope.accountNo=clientData.accountNo;
+      scope.officeName=clientData.officeName;
+      scope.balanceAmount=clientData.balanceAmount;
+      scope.currency=clientData.currency;
+      scope.imagePresent=clientData.imagePresent;
+      scope.categoryType=clientData.categoryType;
+      scope.email=clientData.email;
+      scope.phone=clientData.phone;
+      scope.clientId=routeParams.entityId;
+     // console.log( scope.clientId);
 
       resourceFactory.DataTablesResource.getTableDetails({ datatablename:scope.tableName, entityId:scope.entityId, genericResultSet:'true' },function(data) {
 
@@ -83,7 +97,7 @@
 
     }
   });
-  mifosX.ng.application.controller('MakeDataTableEntryController', ['$scope', '$location', '$routeParams', 'ResourceFactory','$rootScope', mifosX.controllers.MakeDataTableEntryController]).run(function($log) {
+  mifosX.ng.application.controller('MakeDataTableEntryController', ['$scope', '$location', '$routeParams', 'ResourceFactory','$rootScope','webStorage', mifosX.controllers.MakeDataTableEntryController]).run(function($log) {
     $log.info("MakeDataTableEntryController initialized");
   });
 }(mifosX.controllers || {}));
