@@ -113,7 +113,7 @@
 		                      <td><select ng-model="priceData.chargeCode" class="input-small" ng-options="chargeDatas.chargeCode as chargeDatas.chargeDescription for chargeDatas in chargeDatas" ></select></td>
 		                      <td><select ng-model="priceData.priceregion"  class="input-small" ng-options="priceRegionData.id as priceRegionData.priceregionCode for priceRegionData in priceRegionDatas" ></select></td>
 		                      <td> <input type="text" class="input-small" ng-model="priceData.price"></td>
-		                      <td><select ng-model="priceData.duration" class="input-small" ng-options="subscriptiondata.Contractdata as subscriptiondata.Contractdata for subscriptiondata in subscriptiondata" ></select></td>
+		                      <td ng-show="formData.isPrepaid == 'Y'"><select ng-model="priceData.duration" class="input-small" ng-options="subscriptiondata.Contractdata as subscriptiondata.Contractdata for subscriptiondata in subscriptiondata" ></select></td>
 		                      <td><a ng-click="removePriceData($index)"><i class="icon-remove icon-white"></i></a></td>
 		                    </tr>
 		       </table>
