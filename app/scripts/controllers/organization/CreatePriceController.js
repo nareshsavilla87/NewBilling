@@ -9,6 +9,7 @@
         scope.serviceDatas=[];
         scope.priceDatas=[];
         scope.formData = {};
+        scope.planId = routeParams.id;
         
         resourceFactory.priceTemplateResource.get({planId: routeParams.id} , function(data) {
         	 scope.formData.planCode=data.planCode;
