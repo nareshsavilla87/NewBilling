@@ -79,7 +79,16 @@
        
        scope.search = function(filterText) {
         scope.clients = paginatorService.paginate(scope.search123, 14);
-       }
+       };
+       
+       
+       scope.searchSource=function(sourceStatus){
+    	   scope.searchSources123 = function(offset, limit, callback) {
+ 	          resourceFactory.clientResource.getAllClients({offset: offset, limit: limit , status: sourceStatus } , callback); 
+    	   };
+    	   scope.clients = paginatorService.paginate(scope.searchSources123, 14);
+       };
+       
     }
   });
   mifosX.ng.application.controller('ClientController', ['$scope', 'ResourceFactory', 'PaginatorService','$location','PermissionService',mifosX.controllers.ClientController]).run(function($log) {
