@@ -1,7 +1,7 @@
 {
   "titles" :"----------------------------------------------------",
  	"title.obs.selfcare"					: "OBS SelfCare",
- 	"title.thortelecom.selfcare"			: "Thor Telecom SelfCare",
+ 	"title.selfcare"			: "Thor Telecom SelfCare",
  	"title.conformation.registration" 		 : "Thank you for registering! A conformation mail has been sent to your mailId.Please login to your email account and click on the Activation Link to complete the registration",
  	"title.conformation.alreadyregistration" : "Client is already Registered with this mailId.",
  	"title.signin.msg" 						 : "Please Sign In..!",
