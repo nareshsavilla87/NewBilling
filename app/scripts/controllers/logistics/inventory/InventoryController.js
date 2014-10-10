@@ -241,6 +241,15 @@
 					              
 					          };
 					          
+					          scope.searchStatusDetails = function(offset, limit, callback) {
+						    	  resourceFactory.itemDetailsResource.getAlldetails({offset: offset, limit: limit , 
+						    		  sqlSearch: scope.source } , callback); 
+						      };
+						  		
+						      scope.searchSource = function(source) {
+						  			scope.itemdetails = paginatorService.paginate(scope.searchStatusDetails, 14);
+						      };
+					          
 					          /**
 					           * popup for edit supplier
 					           * */
