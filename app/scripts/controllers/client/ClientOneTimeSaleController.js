@@ -17,6 +17,9 @@
 			    scope.categoryType=clientData.categoryType;
 		        scope.email=clientData.email;
 		        scope.phone=clientData.phone;
+		        if(scope.imagePresent){
+		        scope.image=clientData.image;
+		        }
 		        scope.itemId=null;
 	          scope.data={};
 	          scope.maxDate = new Date();

@@ -26,6 +26,7 @@
         scope.email=clientData.email;
         scope.clientId=clientData.clientId;
         scope.phone=clientData.phone;
+        scope.image=clientData.image;
         scope.device=clientData.hwSerialNumber;
         scope.displayName=clientData.displayName;
         scope.planName=orderData.planName;

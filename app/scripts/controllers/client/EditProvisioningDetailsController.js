@@ -26,6 +26,7 @@
         scope.phone=clientData.phone;
         scope.device=clientData.hwSerialNumber;
         scope.displayName=clientData.displayName;
+        scope.image=clientData.image;
         scope.planName=orderData.planName;
        // scope.formData.groupName=orderData.groupName;
         scope.orderNo=orderData.orderNo;

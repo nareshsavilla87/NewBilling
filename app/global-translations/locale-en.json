@@ -285,6 +285,7 @@
   "label.createclient":"Create Client",
   "title.client.activate":"Client Activation",
   "label.client.select.image":"Client Photo",
+  "error.msg.image.type.upload":"Only image files of type GIF,PNG and JPG are allowed",
   
   "link.home" : "Home",
   "link.tasks" : "Tasks",
