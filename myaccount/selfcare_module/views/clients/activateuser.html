@@ -218,13 +218,13 @@
 	       </fieldset>
 	</form> -->
 	<form name="regSuccessForm" novalidate="" class="form-horizontal well" ng-show="isRegPage">
-		<!-- <div  ng-hide="errorDetails[0].code == 'error.msg.billing.address.city.not.found'">
+		<div  ng-hide="errorDetails[0].code == 'error.msg.billing.address.city.not.found'">
 		 	<div class="error" ng-show="errorStatus || errorDetails">
 				<label>{{'label.error' | translate}}</label>
 				<label ng-show="errorStatus">{{errorStatus}}</label>
 				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 			</div>
-		</div> -->
+		</div>
 		 <fieldset class="animated bounce" >
 			<h3 >{{'label.registration.page' | translate}}</h3>
 			<table >
@@ -353,10 +353,12 @@
                             <label class="control-label" for="serialNumber">{{ 'label.macid' | translate }}&nbsp;</label>
                              <div class="controls">
     	                        <input type="text" ng-model="formData.deviceNo" name="deviceNo" placeholder= "{{ 'placeholder.enter.device' | translate }}" 
-    	                        				ng-pattern="/^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$/"/><br/>
-    	                         <span  ng-show="regSuccessForm.deviceNo.$dirty &&regSuccessForm.deviceNo.$invalid">
+    	                        				/><br/>
+<!--     	                        <input type="text" ng-model="formData.deviceNo" name="deviceNo" placeholder= "{{ 'placeholder.enter.device' | translate }}" 
+    	                        				ng-pattern="/^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$/"/><br/> -->
+    	                         <!-- <span  ng-show="regSuccessForm.deviceNo.$dirty &&regSuccessForm.deviceNo.$invalid">
 				                	<small class="error" ng-show="regSuccessForm.deviceNo.$error.pattern">{{'form.error.device.invalid'|translate}}</small>
-				                </span>
+				                </span> -->
                              </div>
                         </div>	
 	         				<strong style="margin-top:50px;" class="offset6" ng-show="isDeviceEnabled==true && isCPE_TYPESale == true">OR</strong>
@@ -368,7 +370,7 @@
                             <label class="control-label" for="serialNumber">{{ 'label.macid' | translate }}&nbsp;</label>
                              <div class="controls">
     	                        <input type="text" ng-model="formData.deviceNo" name="macid" placeholder= "{{ 'placeholder.enter.device' | translate }}" 
-    	                                ng-onblur="getDataForMacId(formData.deviceNo)" ng-disabled="isDisabledMacId" maxlength="17"/><br/>
+    	                                ng-onblur="getDataForMacId(formData.deviceNo)" ng-disabled="isDisabledMacId" maxlength="17" /><br/>
     	                                <small class="error" ng-show="isInvalidMacId">{{'form.error.macid.invalid'|translate}}</small>
                              </div>
                         </div>	
@@ -381,7 +383,7 @@
                             <label class="control-label" for="serialNumber">{{ 'label.serialnumber' | translate }}&nbsp;</label>
                              <div class="controls">
     	                        <input type="text" ng-model="provisioningSerialNumber" name="serialnumber" placeholder= "{{ 'placeholder.enter.serialnumber' | translate }}" 
-    	                                ng-onblur="getDataForSerialNumber(provisioningSerialNumber)" ng-disabled="isDisabledSerialNumber"/><br/>
+    	                                ng-onblur="getDataForSerialNumber(provisioningSerialNumber)" ng-disabled="isDisabledSerialNumber" /><br/>
     	                                <small class="error" ng-show="isInvalidSerialNumber">{{'form.error.serialnumber.invalid'|translate}}</small>
                              </div>
                         </div>	
