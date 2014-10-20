@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    EditClientController: function(scope,webStorage, routeParams, resourceFactory, location, http,dateFilter,API_VERSION,$rootScope,$upload) {
+    EditClientController: function(scope,webStorage, routeParams, resourceFactory, location, http,dateFilter,API_VERSION,$rootScope,$upload,$parse) {
         scope.offices = [];
         scope.date = {};
         scope.clientId = routeParams.id;
@@ -21,7 +21,7 @@
         if(scope.imagePresent){
         scope.image=clientData.image;
         }
- 
+        
         resourceFactory.clientResource.get({clientId: routeParams.id, template: 'true'} , function(data) {
             scope.offices = data.officeOptions;
             scope.staffs = data.staffOptions; 
@@ -32,11 +32,20 @@
             scope.formData.groupName=data.groupName;
             scope.groupNameDatas=data.groupNameDatas;
             scope.groupNameDatas=data.groupNameDatas;
-            if(data.imagePresent){
-            var filePath = data.imageKey;
-            $files= filePath.split("/").pop();
-            console.log($files);
-            }
+          /*  var filePath = data.imageKey;
+            scope.fileName=filePath.split("/").pop();
+            $("#file").on('trigger',function(evt) {
+    			var files = [],fileList, i;
+    			files[0]=new File([""],scope.fileName);
+    			fileList = evt.target.files;
+    			console.log(evt.target.files);
+    			if (fileList != null) {
+    				for (i = 0; i < fileList.length; i++) {	
+    					files.push(fileList.item(i));
+    				}
+    			}*/
+    			
+    		});
         	
         for(var i=0;i<scope.groupNameDatas.length;i++){
 	    	if(scope.groupNameDatas[i].groupName==data.groupName){
@@ -72,11 +81,10 @@
             }
 
         });
-        
-        
 
         scope.onFileSelect = function($files) {
           scope.file = $files[0];
+        
         };
         
         scope.submit = function() {
@@ -107,7 +115,7 @@
         };
     }
   });
-  mifosX.ng.application.controller('EditClientController', ['$scope','webStorage', '$routeParams', 'ResourceFactory', '$location', '$http','dateFilter','API_VERSION','$rootScope','$upload', mifosX.controllers.EditClientController]).run(function($log) {
+  mifosX.ng.application.controller('EditClientController', ['$scope','webStorage', '$routeParams', 'ResourceFactory', '$location', '$http','dateFilter','API_VERSION','$rootScope','$upload','$parse', mifosX.controllers.EditClientController]).run(function($log) {
     $log.info("EditClientController initialized");
   });
 }(mifosX.controllers || {}));
