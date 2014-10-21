@@ -285,6 +285,7 @@
   "label.createclient":"Create Client",
   "title.client.activate":"Client Activation",
   "label.client.select.image":"Client Photo",
+  "error.msg.image.type.upload":"Only image files of type GIF,PNG and JPG are allowed",
   
   "link.home" : "Home",
   "link.tasks" : "Tasks",
@@ -738,6 +739,8 @@
   "validation.msg.item.itemCode.exceeds.max.length" : "Item Code exceeds max length of 10",
   "validation.msg.item.itemDescription.exceeds.max.length" : "Item Description dexceeds max length of 50",
   "validation.msg.item.reorderLevel.exceeds.max.length" : "Reorder Level exceeds max length of 2",
+  "validation.msg.code.serialNumber.cannot.be.blank" : "serialNumber cannot be blank",
+  "validation.msg.code.provisioningSerialNumber.cannot.be.blank" : "provisioningSerialNumber cannot be blank",
   
   "#Import":"........",
   "label.heading.uploads":"Builk Uploads",

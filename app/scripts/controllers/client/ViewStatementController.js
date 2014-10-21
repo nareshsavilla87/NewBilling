@@ -17,6 +17,7 @@
         scope.categoryType=clientData.categoryType;
         scope.email=clientData.email;
         scope.phone=clientData.phone;
+        scope.image=clientData.image;
         resourceFactory.singleStatementResource.get({billId: routeParams.id} , function(data) {
         	
             scope.statementDatas = data;

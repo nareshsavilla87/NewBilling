@@ -45,8 +45,9 @@
                 <td class="pointer" data-ng-click="routeTo(itemdetail.clientId)" ng-show="itemdetail.clientId">{{itemdetail.accountNumber}}</td>
                 <td class="pointer" data-ng-click="routeTo(itemdetail.clientId)" ng-show="!itemdetail.clientId">Unallocated</td>
            <td ng-show="(itemdetail.clientId)&&PermissionService.showMenu('UPDATE_INVENTORY')"><a ng-click="editProvSerial(itemdetail.id,itemdetail.quality,itemdetail.provisioningSerialNumber)"><i class="icon-edit icon-white" ></i>edit Provisioning</a></td>
-		  <td ng-show="(!itemdetail.clientId)&&PermissionService.showMenu('UPDATE_INVENTORY')"><a ng-click="editQuality(itemdetail.id,itemdetail.quality,itemdetail.provisioningSerialNumber)"><i class="icon-edit icon-white" ></i>edit</a></td>
-                <!-- <td>
+		  <td ng-show="(!itemdetail.clientId)&&PermissionService.showMenu('UPDATE_INVENTORY')">
+		  <a ng-click="editQuality(itemdetail.id,itemdetail.quality,itemdetail.provisioningSerialNumber,itemdetail.serialNumber)"><i class="icon-edit icon-white" ></i>Edit</a>
+          <a ng-click="deleteItemDetail(itemdetail.id)"><i class="icon-remove-circle icon-white"></i>Delete</a></td>    <!-- <td>
                 	<span ng-if="itemdetails.clientId > '0'">
                 	Yes
 					</span>
@@ -302,7 +303,7 @@
 	<div class="modal-header silver">
         <h3 class="bolder">Edit Quality</h3>
     </div>
-    <div class="modal-body" style="height:160px;">
+    <div class="modal-body" style="height:200px;">
  <div class="error" ng-show="errorStatus || errorDetails">
 		                 <label>{{'label.contract.error' | translate}}</label>
 		                 <label ng-show="errorStatus">{{errorStatus}}</label>
@@ -317,16 +318,21 @@
             </div>
 	   </div>
  <div class="control-group">
-			<label class="control-label" for="quality">{{'label.itemdetail.provisionserialnum' | translate }}</label>
+			<label class="control-label" for="provisioningSerialNumber">{{'label.itemdetail.provisionserialnum' | translate }}&nbsp;<span class="required">*</span></label>
 			<div class="controls">
-             <input type="text" id="serialnum" ng-model="provserialnum">
+             <input type="text" id="provisioningSerialNumber" ng-model="provserialnum">
+            </div>
+ <div class="control-group">
+			<label class="control-label" for="quality">{{'label.itemdetail.serialnumber' | translate }}&nbsp;<span class="required">*</span></label>
+			<div class="controls">
+             <input type="text" id="serialNumber" ng-model="serialNumber">
             </div>
 	   </div>
     </fieldset>
     </div>
      <div class="modal-footer">
         <button id="cancel" class="btn btn-warning" ng-click="cancelQuality()">{{'button.cancel' | translate}}</button>
-     	<button id="submit" class="btn btn-primary" ng-click="approveQuality(quality,provserialnum)" ng-disabled="flagEditQuality">{{'label.confirm' | translate}}</button>
+     	<button id="submit" class="btn btn-primary" ng-click="approveQuality(quality,provserialnum,serialNumber)" ng-disabled="flagEditQuality">{{'label.confirm' | translate}}</button>
      </div>
 
 </script>
@@ -399,6 +405,20 @@
    </div>
 
 </script> 
+  <!--This is itemdetail delete  -->
+	<script type="text/ng-template" id="approve.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">Delete itemDetail</h3>
+                    </div>
+                    <div class="modal-body style="height:60px;">
+                       <h4>Are you sure?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-warning" ng-click="cancelItem()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approveToDelete()">{{'label.confirm' | translate}}</button>
+                    </div>
+      </script>
+
  	 
   </div>
 

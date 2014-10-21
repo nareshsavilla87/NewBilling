@@ -132,25 +132,25 @@
                     scope.client = data;
                     scope.statusActive=scope.client.status.code;
                     scope.taxExemption=scope.client.taxExemption;
-                
-                    
-                    webStorage.add("clientData", {clientId:routeParams.id,balanceAmount: data.balanceAmount, displayName: data.displayName,hwSerialNumber: data.hwSerialNumber,
-
-                     statusActive: data.status.value, accountNo: data.accountNo, officeName: data.officeName,officeId:data.officeId,
-
-                     currency: data.currency, imagePresent: data.imagePresent,phone:data.phone,email:data.email,categoryType:data.categoryType });
-                    
                     scope.staffData.staffId = data.staffId;
+                    
+                    $rootScope.ClientData = {clientId:routeParams.id,balanceAmount: data.balanceAmount, displayName: data.displayName,hwSerialNumber: data.hwSerialNumber,
+
+                            statusActive: data.status.value, accountNo: data.accountNo, officeName: data.officeName,officeId:data.officeId,
+
+                            currency: data.currency, imagePresent: data.imagePresent,phone:data.phone,email:data.email,categoryType:data.categoryType };
+
+                    webStorage.add("clientData",$rootScope.ClientData); 
                     if (data.imagePresent) {
                       http({
                         method:'GET',
                         url: $rootScope.hostUrl+ API_VERSION +'/clients/'+routeParams.id+'/images'
                       }).then(function(imageData) {
                         scope.image = imageData.data;
+                        $rootScope.ClientData.image=imageData.data;
+                        webStorage.add("clientData", $rootScope.ClientData);
                       });
                     }
-                  
-
                     //if (data.status.value == "Active") {
                       scope.buttons = [{
 

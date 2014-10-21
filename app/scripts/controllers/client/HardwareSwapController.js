@@ -18,6 +18,7 @@
 	            scope.email=clientData.email;
 	            scope.phone=clientData.phone;
 	            scope.officeId = clientData.officeId;
+	            scope.image=clientData.image;
 	            var config = webStorage.get('CPE_TYPE');
 	  		  scope.config=config;
 	            resourceFactory.associationResource.getAssociation({clientId: routeParams.clientId,id:routeParams.orderId} , function(data) {

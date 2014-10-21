@@ -25,7 +25,9 @@
          scope.imagePresent=clientData.imagePresent;
          scope.categoryType=clientData.categoryType;
          scope.email=clientData.email;
-         scope.phone=clientData.phone;
+         scope.phone=clientData.phone; 
+         scope.image=clientData.image;
+         
          webStorage.add("orderId",routeParams.id);
          scope.PermissionService = PermissionService;
          scope.provisioningdatas =[];
