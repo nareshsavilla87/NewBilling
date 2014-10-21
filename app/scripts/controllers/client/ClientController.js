@@ -10,7 +10,7 @@
       scope.InActiveClients = 0;
       scope.PendingClients = 0;
       scope.totalPages = 1;
-      
+      scope.status = 'ALL';
       var fetchFunction = function(offset, limit, callback) {
         resourceFactory.clientResource.getAllClients({offset: offset, limit: limit} , function(data){
         	scope.totalClients = data.totalFilteredRecords;
@@ -84,7 +84,12 @@
        
        scope.searchSource=function(sourceStatus){
     	   scope.searchSources123 = function(offset, limit, callback) {
- 	          resourceFactory.clientResource.getAllClients({offset: offset, limit: limit , status: sourceStatus } , callback); 
+    		   if(sourceStatus == 'ALL')
+    			   resourceFactory.clientResource.getAllClients({offset: offset, limit: limit} , callback);   
+    		   else
+    			   resourceFactory.clientResource.getAllClients({offset: offset, limit: limit , status: sourceStatus } , callback);
+    		   
+ 	           
     	   };
     	   scope.clients = paginatorService.paginate(scope.searchSources123, 14);
        };

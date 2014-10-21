@@ -37,10 +37,10 @@
             scope.orderData=data.orderData;
            var endDate = new Date(scope.orderData.endDate);
             var curDate = new Date(scope.orderData.currentDate);
-            if(dateFilter(endDate.setDate(endDate.getDate()))==dateFilter(curDate.setDate(curDate.getDate()))||
+            /*if(dateFilter(endDate.setDate(endDate.getDate()))==dateFilter(curDate.setDate(curDate.getDate()))||
             		dateFilter(endDate.setDate(endDate.getDate()+1))==dateFilter(curDate.setDate(curDate.getDate())))
             	console.log("true");
-            else console.log("false");
+            else console.log("false");*/
             scope.formData.flag=data.flag;
             scope.orderServicesData=data.orderServices;
             scope.orderDiscountDatas=data.orderDiscountDatas;

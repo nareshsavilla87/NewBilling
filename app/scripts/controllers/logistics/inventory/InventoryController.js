@@ -8,6 +8,7 @@
         scope.itemhistory = [];
         scope.supplier = [];
         scope.call={status:""}; 
+        scope.source = 'ALL';
         scope.PermissionService = PermissionService;
         
         var callingTab = webStorage.get('callingTab',null);
@@ -242,8 +243,11 @@
 					          };
 					          
 					          scope.searchStatusDetails = function(offset, limit, callback) {
-						    	  resourceFactory.itemDetailsResource.getAlldetails({offset: offset, limit: limit , 
-						    		  sqlSearch: scope.source } , callback); 
+					        	  if(scope.source == 'ALL')
+						    	  resourceFactory.itemDetailsResource.getAlldetails({offset: offset, limit: limit} , callback);
+					        	  else
+					        		  resourceFactory.itemDetailsResource.getAlldetails({offset: offset, limit: limit , 
+							    		  sqlSearch: scope.source } , callback);
 						      };
 						  		
 						      scope.searchSource = function(source) {

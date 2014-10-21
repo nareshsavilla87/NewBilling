@@ -265,6 +265,7 @@
 	                  this.formData1.state=scope.formData1.state;
 	                  this.formData1.country=scope.formData1.country;
 	                  this.formData1.addressNo="Addr1";
+	                  this.formData1.entryType="IND";
 	                
 
 	                
@@ -285,6 +286,7 @@
 	                //  delete this.formData1.name;
 	                  
 	                if(config =='SALE'){  
+	                	
 	 	        	 this.formData2.locale = $rootScope.locale.code;
 	 	             this.formData2.dateFormat = "dd MMMM yyyy";
 	 	             this.formData2.saleType="Sale";
