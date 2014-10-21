@@ -16,6 +16,9 @@
 	        scope.categoryType=clientData.categoryType;
 	        scope.email=clientData.email;
 	        scope.phone=clientData.phone;
+	        if(scope.imagePresent){
+	        scope.image=clientData.image;
+	        }
 	        scope.start.date = new Date();
 		  resourceFactory.clientResource.get({clientId: routeParams.id} , function(data) {
 			  scope.formData = {};

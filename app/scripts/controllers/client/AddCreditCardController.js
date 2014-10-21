@@ -14,6 +14,7 @@
             scope.categoryType=clientData.categoryType;
             scope.email=clientData.email;
             scope.phone=clientData.phone;
+            scope.image=clientData.image;
             scope.formData = {};
             scope.formEncryptedData = {};
             scope.cardTypeDatas = ['MASTERCARD','VISA','DISCOVERY','AMERICAN EXPRESS','OTHERS'];

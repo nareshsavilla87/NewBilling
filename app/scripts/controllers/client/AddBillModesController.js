@@ -14,8 +14,10 @@
             scope.categoryType=clientData.categoryType;
             scope.email=clientData.email;
             scope.phone=clientData.phone;
+            if(scope.imagePresent){
+             scope.image=clientData.image;
+             }
             scope.formData = {};
-            
             
             $('select').multipleSelect();
             resourceFactory.clientBillModeResource.get({clientId: scope.clientId} , function(data) {
