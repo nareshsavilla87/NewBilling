@@ -39,10 +39,10 @@
             scope.orderData=data.orderData;
            var endDate = new Date(scope.orderData.endDate);
             var curDate = new Date(scope.orderData.currentDate);
-            if(dateFilter(endDate.setDate(endDate.getDate()))==dateFilter(curDate.setDate(curDate.getDate()))||
+            /*if(dateFilter(endDate.setDate(endDate.getDate()))==dateFilter(curDate.setDate(curDate.getDate()))||
             		dateFilter(endDate.setDate(endDate.getDate()+1))==dateFilter(curDate.setDate(curDate.getDate())))
             	console.log("true");
-            else console.log("false");
+            else console.log("false");*/
             scope.formData.flag=data.flag;
             scope.orderServicesData=data.orderServices;
             scope.orderDiscountDatas=data.orderDiscountDatas;
@@ -168,7 +168,7 @@
           
       var applyPromoController=function($scope,$modalInstance){
     	  $scope.start = {};
-    	  $scope.start.date = new Date();
+    	  $scope.start.date =new Date();
     	  resourceFactory.promotionResource.get(function(data) {
       		
       		 $scope.promoDatas=data; 
@@ -176,7 +176,7 @@
       	 
        	$scope.accept = function(){
        		$scope.flagPromo=true;
-       		var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
+       		var reqDate = dateFilter($scope.start.date,'dd MMMM yyyy');
             this.formData.dateFormat = 'dd MMMM yyyy';
             this.formData.locale=$rootScope.locale.code;
             this.formData.startDate = reqDate;
@@ -294,7 +294,7 @@
       var extensionController=function($scope,$modalInstance){
     	  
     	  resourceFactory.orderExtensionResource.get(function(data) {
-	            $scope.extensionReasonDatas = data.extensionReasonDatas;
+	            $scope.extensionReasonDatas = data.reasons;
 	            $scope.extensionPeriodDatas = data.extensionPeriodDatas;
 	        });
        	$scope.accept = function(){

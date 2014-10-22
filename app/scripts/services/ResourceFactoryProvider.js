@@ -801,9 +801,13 @@
            }),
 //=======
 */        provisioningtemplateMappingResource: defineResource(apiVer + "/provisioning/template/:orderNo", {orderNo: '@orderNo'}, {
-            	  get: {method: 'GET', params: {}}
-//>>>>>>> obsplatform-1.01
+            	  get: {method: 'GET', params: {}, isArray: true}
+
            }),
+           
+     /*      provisioningtemplateMappingResource: defineResource(apiVer + "/provisioning/template", {}, {
+         	  get: {method: 'GET', params: {}}
+        }),*/
            
          provisioningCreatetemplateDataResource: defineResource(apiVer + "/provisioning/provisiontemplate/:orderId", {orderId:'@orderId'}, {
         	   get: {method: 'GET', params: {}}

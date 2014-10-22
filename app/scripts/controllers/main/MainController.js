@@ -42,8 +42,13 @@
         scope.currentSession = sessionManager.get(data);
 
         scope.start(scope.currentSession);
-        if(PermissionService.showMenu('REPORTING_SUPER_USER'))
-        location.path('/home').replace();
+        
+        if(PermissionService.showMenu('REPORTING_SUPER_USER')){
+            if(window.location.href.split("#")[1]=="/"){
+             
+            	location.path('/home').replace();
+            }
+        }
         scope.unreadMessage=data.unReadMessages;
       });
      

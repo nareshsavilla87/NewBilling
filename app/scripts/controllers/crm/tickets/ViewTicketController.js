@@ -3,18 +3,23 @@
 	  ViewTicketController: function(scope,webStorage, routeParams , route, location, resourceFactory, http,PermissionService) {
         scope.ticket = []; 
         scope.PermissionService = PermissionService;
-        var clientData = webStorage.get('clientData');
-        scope.hwSerialNumber=clientData.hwSerialNumber;
-        scope.displayName=clientData.displayName;
-        scope.statusActive=clientData.statusActive;
-        scope.accountNo=clientData.accountNo;
-        scope.officeName=clientData.officeName;
-        scope.balanceAmount=clientData.balanceAmount;
-        scope.currency=clientData.currency;
-        scope.imagePresent=clientData.imagePresent;
-        scope.categoryType=clientData.categoryType;
-        scope.email=clientData.email;
-        scope.phone=clientData.phone;
+      //  var clientData = webStorage.get('clientData');
+        
+        resourceFactory.clientResource.get({clientId: routeParams.clientId} , function(data) {
+            
+            var clientData = data;
+            scope.hwSerialNumber=clientData.hwSerialNumber;
+            scope.displayName=clientData.displayName;
+            scope.statusActive=clientData.statusActive;
+            scope.accountNo=clientData.accountNo;
+            scope.officeName=clientData.officeName;
+            scope.balanceAmount=clientData.balanceAmount;
+            scope.currency=clientData.currency;
+            scope.imagePresent=clientData.imagePresent;
+            scope.categoryType=clientData.categoryType;
+            scope.email=clientData.email;
+            scope.phone=clientData.phone;
+           });
         resourceFactory.ticketResource.get({id: routeParams.id,clientId: routeParams.clientId} , function(data) {      	
             scope.ticket = data; 
             scope.clientId= routeParams.clientId;

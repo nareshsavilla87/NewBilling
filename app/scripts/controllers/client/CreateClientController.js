@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    CreateClientController: function(scope, resourceFactory, location, http, dateFilter,API_VERSION,$rootScope,PermissionService,$upload) {
+    CreateClientController: function(scope, resourceFactory, location, http, dateFilter,API_VERSION,$rootScope,PermissionService,$upload,filter) {
         scope.offices = [];
         scope.staffs = [];
         scope.first = {};
@@ -9,8 +9,12 @@
        
         scope.clientCategoryDatas=[];
         scope.configurationProperty=[];
-       scope.formData.entryType ='ORP';
-        
+        var IsClientIndividual = filter('ConfigLookup')('IsClientIndividual');
+        if(IsClientIndividual == 'true'){
+        	scope.formData.entryType ='IND';
+        }else{
+        	scope.formData.entryType ='ORP';
+        }
         resourceFactory.clientTemplateResource.get(function(data) {
             scope.offices = data.officeOptions;
             scope.staffs = data.staffOptions;
@@ -104,7 +108,8 @@
           };
     }
   });
-  mifosX.ng.application.controller('CreateClientController', ['$scope', 'ResourceFactory', '$location', '$http', 'dateFilter','API_VERSION','$rootScope','PermissionService','$upload', mifosX.controllers.CreateClientController]).run(function($log) {
+  mifosX.ng.application.controller('CreateClientController', ['$scope', 'ResourceFactory', '$location', '$http', 'dateFilter','API_VERSION','$rootScope','PermissionService','$upload',
+                                                              '$filter',mifosX.controllers.CreateClientController]).run(function($log) {
     $log.info("CreateClientController initialized");
   });
 }(mifosX.controllers || {}));
