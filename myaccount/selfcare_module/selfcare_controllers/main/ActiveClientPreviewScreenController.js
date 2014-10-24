@@ -5,6 +5,7 @@
 		  
 		  //getting main page url from returnURL.js file
 		  var selfcareMainPageURL = selfcare.models.selfcareMainPageURL;
+		  var mesage_array = new Array();
 		  
 		  scope.formData = {};
 		  scope.clientData = {};
@@ -22,13 +23,19 @@
 			 if(scope.formData.kortaToken){
 				 scope.clientData.kortaToken = scope.formData.kortaToken;
 			 }
-			 console.log(scope.formData.zipcode);
-			 scope.clientData.firstname = "Mr ";
+			 
+			  mesage_array = (scope.formData.fullName.split(" "));
+	            
+	          scope.clientData.firstname = mesage_array[0];
+	          scope.clientData.fullname = mesage_array[1];
+	            if(scope.clientData.fullname == null){
+	            	scope.clientData.fullname=".";
+	            }
 			 scope.clientData.address = scope.formData.address;
 			 scope.clientData.homePhoneNumber = scope.formData.homePhoneNumber;
 			 scope.clientData.nationalId = scope.formData.nationalId;
 			 scope.clientData.zipCode = scope.formData.zipcode;
-			 scope.clientData.fullname = scope.formData.fullName;
+			 //scope.clientData.fullname = scope.formData.fullName;
 			 scope.clientData.city = scope.formData.city;
 			 scope.clientData.phone = parseInt(scope.formData.mobileNo); 
 			 scope.clientData.email = scope.formData.emailId; 
