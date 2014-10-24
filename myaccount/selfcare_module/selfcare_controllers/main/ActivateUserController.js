@@ -78,7 +78,7 @@
 		  
 		  
 		//national Id validation
-		  scope.$watch(scope.formData.nationalId,
+		  /*scope.$watch(scope.formData.nationalId,
 	              function() {
 			  			if(scope.formData.nationalId){
 			  				if(scope.formData.nationalId.length == 10){
@@ -89,7 +89,7 @@
 			  				}
 			  			}
 		  			}
-	      );
+	      );*/
 		  
 			scope.nationalIdValidationFun =function(id){
 			if(id){
@@ -103,27 +103,51 @@
 					   nationalId = id.replace(id[0], last);
 					  console.log(nationalId[0]);
 				  }
-				 var patternCheck = nationalId.match(/(^(((0[1-9]|[12][0-8]|19)(0[1-9]|1[012]))|((29|30|31)(0[13578]|1[02]))|((29|30)(0[4,6,9]|11)))\d\d\d\d\d\d$)|(^2902(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)\d\d\d\d$)/);
+				 var patternCheck = nationalId.match(/(^(((0[1-9]|[12][0-8]|19)(0[1-9]|1[012]))|((29|30|31)(0[13578]|1[02]))|((29|30)(0[4,6,9]|11)))\d\d[-]?\d\d\d\d$)|(^2902(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)[-]?\d\d\d\d$)/);
 				 if(patternCheck){
 					 var sum = 0;
 					 if(val){
-						  sum = 3*(id[0])+2*(nationalId[1])+7*(nationalId[2])+6*(nationalId[3])+5*(nationalId[4])+4*(nationalId[5])+3*(nationalId[6])+2*(nationalId[7])
+						 if(nationalId[6]=='-'){
+							 sum = 3*(id[0])+2*(nationalId[1])+7*(nationalId[2])+6*(nationalId[3])+5*(nationalId[4])+4*(nationalId[5])+3*(nationalId[7])+2*(nationalId[8])
+						 }else{
+						   sum = 3*(id[0])+2*(nationalId[1])+7*(nationalId[2])+6*(nationalId[3])+5*(nationalId[4])+4*(nationalId[5])+3*(nationalId[6])+2*(nationalId[7])
+						 }
 					 }else{
-						  sum = 3*(nationalId[0])+2*(nationalId[1])+7*(nationalId[2])+6*(nationalId[3])+5*(nationalId[4])+4*(nationalId[5])+3*(nationalId[6])+2*(nationalId[7])
+						 if(nationalId[6]=='-'){
+							 sum = 3*(nationalId[0])+2*(nationalId[1])+7*(nationalId[2])+6*(nationalId[3])+5*(nationalId[4])+4*(nationalId[5])+3*(nationalId[7])+2*(nationalId[8])
+						 }
+						 else{
+						    sum = 3*(nationalId[0])+2*(nationalId[1])+7*(nationalId[2])+6*(nationalId[3])+5*(nationalId[4])+4*(nationalId[5])+3*(nationalId[6])+2*(nationalId[7])
+						 }
 					 }
 					 var checksum = 11 - ((sum) % 11);
 					 console.log(checksum);
-					 if(checksum == nationalId[8]){
-						 console.log(checksum);
-						 if(nationalId[9] == 0 || nationalId[9] == 9){
-							 console.log(nationalId[9]);
-							 scope.regSuccessFormNationalIdErrorPattern = false;
-						 }
-						 else{
+					 if(nationalId[6]=='-'){
+						 if(checksum == nationalId[9]){
+							 console.log(checksum);
+								 if(nationalId[10] == 0 || nationalId[10] == 9){
+									 console.log(nationalId[10]);
+									 scope.regSuccessFormNationalIdErrorPattern = false;
+								 }
+								 else{
+									 scope.regSuccessFormNationalIdErrorPattern = true;
+								 }
+						 }else{
 							 scope.regSuccessFormNationalIdErrorPattern = true;
 						 }
 					 }else{
-						 scope.regSuccessFormNationalIdErrorPattern = true;
+						 if(checksum == nationalId[8]){
+							 console.log(checksum);
+								 if(nationalId[9] == 0 || nationalId[9] == 9){
+									 console.log(nationalId[9]);
+									 scope.regSuccessFormNationalIdErrorPattern = false;
+								 }
+								 else{
+									 scope.regSuccessFormNationalIdErrorPattern = true;
+								 }
+						 }else{
+							 scope.regSuccessFormNationalIdErrorPattern = true;
+						 }
 					 }
 				 }
 				 else{
@@ -344,7 +368,6 @@
 			//function called when clicking on Register button in Registration Page
 			scope.registerBtnFun =function(){
 				
-				if(scope.submitFunAllow){
 				 //deviceNo added to form data when isDeviceEnabled true
 					 if(scope.formData.deviceNo){
 						 scope.clientData.device = scope.formData.deviceNo;
@@ -367,10 +390,7 @@
 		  				 location.path('/').replace();
 		  				 rootScope.activetedClientPopup();
 		  			 });
-				}
-				else{
-					console.log(scope.submitFunAllow);
-				}
+					
 			};
     }
   });
