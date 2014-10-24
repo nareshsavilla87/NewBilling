@@ -5,7 +5,7 @@
 	        scope.formData = {};
 	        scope.typeCodeValue={};
 	        
-	        scope.ippoolstatusType= [{statusType:"I",status:"Intermediate"},{statusType:"F",status:"Free"},{statusType:"B",status:"Blocked"}];
+	        scope.ippoolstatusType= [{statusType:"I",status:"Intermediate"},{statusType:"F",status:"Free"},{statusType:"B",status:"Blocked"},{statusType:"T",status:"Terminated"}];
 	        resourceFactory.ipPoolUpdateResource.get({'id': routeParams.id},function(data) {
 	            scope.codeValueDatas = data.codeValueDatas;
 	            scope.ipPoolManagementData=data.ipPoolManagementData[0];

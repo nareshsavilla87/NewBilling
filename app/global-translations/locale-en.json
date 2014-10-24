@@ -962,6 +962,8 @@
   "label.createcurrencydetails":"Create",
   "label.country":"Country",
   "label.currency":"Currency",
+  "label.basecurrency":"Base Currency",
+  "label.conversionrate":"Conversion Rate",
   "label.status":"Status",
   "validation.msg.countrycurrency.country.cannot.be.blank":"Country cannot be blank",
  "validation.msg.countrycurrency.currency.cannot.be.blank":"Currency cannot be blank",

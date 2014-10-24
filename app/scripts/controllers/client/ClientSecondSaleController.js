@@ -122,6 +122,7 @@
 	             delete this.formData.units;
 	             delete this.formData.itemCode;
 	             delete this.formData.id;
+	             delete this.chargesData;
 	             
 	             var temp1 = new Array();
 		        	
@@ -139,6 +140,7 @@
 		        	
 		            this.formData.serialNumber=temp1;
 		            delete this.formData.serials;
+		            delete this.formData.chargesData;
 	            resourceFactory.oneTimeSaleResource.save({clientId:routeParams.id},this.formData,function(data){
 	            	 location.path('/viewclient/' + routeParams.id);
 	          },function(errData){

@@ -23,6 +23,7 @@
 <form ng-submit="search(filterText)">
     <input ng-model="filterText" type="text" style="width:772px;" placeholder="Filter by Account#/Name/Phone/email/Identity/Device#">
     <select ng-model="status" class="input-medium" ng-change="searchSource(status)">
+              <option value="ALL">ALL</option>
               <option value="NEW">NEW</option>
               <option value="ACTIVE">ACTIVE</option>
               <option value="DEACTIVE">DEACTIVE</option>

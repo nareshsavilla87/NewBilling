@@ -28,7 +28,6 @@
          scope.showInvoiceDetails=false;
          scope.selectAccount = false;
          scope.selectInvoice = false;
-         //angular.copy('is', $locale);
         resourceFactory.paymentsTemplateResource.getPayments(function(data){
         	scope.payments = data;
             scope.data = data.data;
