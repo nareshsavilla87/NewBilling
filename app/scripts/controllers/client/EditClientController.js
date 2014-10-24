@@ -80,7 +80,7 @@
                 scope.choice = 1;
             }
 
-        });
+       
 
         scope.onFileSelect = function($files) {
           scope.file = $files[0];
