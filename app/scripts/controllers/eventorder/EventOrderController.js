@@ -18,6 +18,9 @@
 			scope.categoryType = clientData.categoryType;
 			scope.email = clientData.email;
 			scope.phone = clientData.phone;
+	        if(scope.imagePresent){
+			scope.image=clientData.image;
+			}
 			scope.requireDevice = webStorage.get('Registration_requires_device');
 			// scope.datass = {};
 			scope.start = {};

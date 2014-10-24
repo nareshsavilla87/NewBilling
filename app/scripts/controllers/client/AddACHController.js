@@ -14,6 +14,7 @@
             scope.categoryType=clientData.categoryType;
             scope.email=clientData.email;
             scope.phone=clientData.phone;
+            scope.image=clientData.image;
             scope.formData = {};
             scope.formEncryptedData = {};
            // var key = CryptoJS.enc.Base64.parse( mifosX.models.encrptionKey);

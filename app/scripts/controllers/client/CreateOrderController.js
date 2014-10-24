@@ -34,6 +34,9 @@
         scope.categoryType=clientData.categoryType;
         scope.email=clientData.email;
         scope.phone=clientData.phone;
+        if(scope.imagePresent){
+         scope.image=clientData.image;
+        }
         //scope.minDate=scope.start.date;
         scope.postpaid  ={};
         scope.postpaid.open = true;
@@ -298,7 +301,7 @@
                  		
                  	}
               };   
-              
+            }
             delete this.formData.planId;
             delete this.formData.id;
             delete this.formData.isPrepaid;
@@ -326,7 +329,7 @@
             
             };
         }
-	  }
+	  
   });
   mifosX.ng.application.controller('CreateOrderController', ['$scope','webStorage','$routeParams', 'ResourceFactory', 'dateFilter','$location','$filter','$rootScope', mifosX.controllers.CreateOrderController]).run(function($log) {
     $log.info("CreateOrderController initialized");

@@ -54,7 +54,8 @@
             </div>
             <div class="control-group">
          <!--     <label ng-hide="type == 'corporate'" class="control-label" for="middlename">{{'label.middlename' | translate}}</label> -->
-              <label class="control-label" for="middlename">{{'label.corporatedetails' | translate}}</label>
+              <label  ng-hide="formData.entryType == 'ORP'" class="control-label" for="middlename">{{'label.middlename' | translate}}</label>
+               <label  ng-show="formData.entryType == 'ORP'" class="control-label" for="middlename">{{'label.corporatedetails' | translate}}</label>
               <div class="controls">
                 <input type="text" id="middlename" name=middlename ng-model="formData.middlename"/>
               </div>

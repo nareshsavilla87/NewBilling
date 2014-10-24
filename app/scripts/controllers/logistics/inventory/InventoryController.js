@@ -8,6 +8,7 @@
         scope.itemhistory = [];
         scope.supplier = [];
         scope.call={status:""}; 
+        scope.source = 'ALL';
         scope.PermissionService = PermissionService;
         
         var callingTab = webStorage.get('callingTab',null);
@@ -190,10 +191,11 @@
 					  				scope.itemhistory = paginatorService.paginate(scope.searchHistory123, 14);
 					  			}
 					  		};
-							scope.editQuality = function(itemId,valueQuality,provisionalserialNum){
+							scope.editQuality = function(itemId,valueQuality,provisionalserialNum,serialNumber){
 					            scope.itemid=itemId;
 					            scope.valueQuality=valueQuality;
 					            scope.provisionalserialNum=provisionalserialNum;
+					            scope.serialNumber=serialNumber;
 					        	  scope.errorStatus=[];scope.errorDetails=[];
 					        	  $modal.open({
 					                  templateUrl: 'EditQuality.html',
@@ -218,13 +220,14 @@
 					                  $scope.qualityData = data.quality;
 					                  $scope.quality=scope.valueQuality;
 					                  $scope.provserialnum=scope.provisionalserialNum;
+					                  $scope.serialNumber= scope.serialNumber;
 					              });
-					        	  $scope.approveQuality = function (value,provserialnum) {
+					        	  $scope.approveQuality = function (value,provserialnum,serialNumber) {
 					        		//  alert(value);
 					        		  $scope.flagEditQuality=true;
 					        		  //if(this.formData == undefined || this.formData == null){
 					        			  this.formData = {"quality":value};
-					        			  this.formData = {"quality":value,"provisioningSerialNumber":provserialnum};
+					        			  this.formData = {"quality":value,"provisioningSerialNumber":provserialnum,"serialNumber":serialNumber};
 					        		  //}
 					        		  resourceFactory.itemDetailsResource.update({'itemId': scope.itemid},this.formData,function(data){
 					        	      
@@ -242,8 +245,11 @@
 					          };
 					          
 					          scope.searchStatusDetails = function(offset, limit, callback) {
-						    	  resourceFactory.itemDetailsResource.getAlldetails({offset: offset, limit: limit , 
-						    		  sqlSearch: scope.source } , callback); 
+					        	  if(scope.source == 'ALL')
+						    	  resourceFactory.itemDetailsResource.getAlldetails({offset: offset, limit: limit} , callback);
+					        	  else
+					        		  resourceFactory.itemDetailsResource.getAlldetails({offset: offset, limit: limit , 
+							    		  sqlSearch: scope.source } , callback);
 						      };
 						  		
 						      scope.searchSource = function(source) {
@@ -287,9 +293,36 @@
 						    			$modalInstance.dismiss('cancel');
 						    		};
 						        };
-        
-       
-    }
+						        
+						        /**
+						           * popup for delete itemDetail
+						           * */
+						        
+						        scope.deleteItemDetail = function(id){
+						        	scope.itemDetailId=id;
+						            $modal.open({
+						                templateUrl: 'approve.html',
+						                controller: approveToDelete,
+						                resolve:{}
+						            });
+						    	};
+						        
+						     	var approveToDelete = function ($scope, $modalInstance) {
+						            $scope.approveToDelete = function () {
+						               resourceFactory.itemDetailsResource.delete({'itemId': scope.itemDetailId},{},function(data){ 
+						            	  route.reload();
+						            	 //location.path('/inventory');
+						            	 webStorage.add("callingTab", {someString: "itemDetails"});
+
+						            });
+						                $modalInstance.close('delete');
+						            };
+						            $scope.cancelItem = function () {
+						                $modalInstance.dismiss('cancel');
+						            };
+						        };
+						        
+       }
   });
   mifosX.ng.application.controller('InventoryController', ['$scope','webStorage', '$routeParams', '$location','$modal', 'ResourceFactory','PaginatorService','PermissionService','$route', mifosX.controllers.InventoryController]).run(function($log) {
     $log.info("InventoryController initialized");

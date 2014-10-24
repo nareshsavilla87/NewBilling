@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    EditClientController: function(scope,webStorage, routeParams, resourceFactory, location, http,dateFilter,API_VERSION,$rootScope) {
+    EditClientController: function(scope,webStorage, routeParams, resourceFactory, location, http,dateFilter,API_VERSION,$rootScope,$upload,$parse) {
         scope.offices = [];
         scope.date = {};
         scope.clientId = routeParams.id;
@@ -18,6 +18,10 @@
         scope.phone=clientData.phone;
         scope.formData=[];
         scope.entryType;
+        if(scope.imagePresent){
+        scope.image=clientData.image;
+        }
+        
         resourceFactory.clientResource.get({clientId: routeParams.id, template: 'true'} , function(data) {
             scope.offices = data.officeOptions;
             scope.staffs = data.staffOptions; 
@@ -27,7 +31,21 @@
             scope.entryType=data.entryType;
             scope.formData.groupName=data.groupName;
             scope.groupNameDatas=data.groupNameDatas;
-        scope.groupNameDatas=data.groupNameDatas;
+            scope.groupNameDatas=data.groupNameDatas;
+          /*  var filePath = data.imageKey;
+            scope.fileName=filePath.split("/").pop();
+            $("#file").on('trigger',function(evt) {
+    			var files = [],fileList, i;
+    			files[0]=new File([""],scope.fileName);
+    			fileList = evt.target.files;
+    			console.log(evt.target.files);
+    			if (fileList != null) {
+    				for (i = 0; i < fileList.length; i++) {	
+    					files.push(fileList.item(i));
+    				}
+    			}*/
+    			
+    		});
         	
         for(var i=0;i<scope.groupNameDatas.length;i++){
 	    	if(scope.groupNameDatas[i].groupName==data.groupName){
@@ -63,11 +81,10 @@
             }
 
         });
-        
-        
 
         scope.onFileSelect = function($files) {
           scope.file = $files[0];
+        
         };
         
         scope.submit = function() {
@@ -78,8 +95,9 @@
              this.formData.dateFormat = 'dd MMMM yyyy';
              if(scope.date.activationDate){this.formData.activationDate = dateFilter(scope.date.activationDate,'dd MMMM yyyy');}
              resourceFactory.clientResource.update({'clientId': routeParams.id},this.formData,function(data){
+            	
               if (scope.file) {
-                http.uploadFile({
+            	  $upload.upload({
                   url: $rootScope.hostUrl+ API_VERSION +'/clients/'+data.clientId+'/images', 
                   data: {},
                   file: scope.file
@@ -97,7 +115,7 @@
         };
     }
   });
-  mifosX.ng.application.controller('EditClientController', ['$scope','webStorage', '$routeParams', 'ResourceFactory', '$location', '$http','dateFilter','API_VERSION','$rootScope', mifosX.controllers.EditClientController]).run(function($log) {
+  mifosX.ng.application.controller('EditClientController', ['$scope','webStorage', '$routeParams', 'ResourceFactory', '$location', '$http','dateFilter','API_VERSION','$rootScope','$upload','$parse', mifosX.controllers.EditClientController]).run(function($log) {
     $log.info("EditClientController initialized");
   });
 }(mifosX.controllers || {}));

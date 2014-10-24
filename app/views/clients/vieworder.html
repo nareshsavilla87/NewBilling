@@ -333,6 +333,12 @@
               		<select ng-model="formData.disconnectReason"  ng-options="disconnectDetail.mCodeValue as disconnectDetail.mCodeValue for disconnectDetail in disconnectDetails" value="{{disconnectDetail.mCodeValue}}"></select>
             	</div>
      </div>
+   <div class="control-group">
+        <label class="control-label" for="status">{{ 'label.order.description' | translate }}</label>
+         <div class="controls">
+             <textarea rows="2" cols="2" ng-model="formData.description" style="width: 333px; height:60px;"></textarea>
+         </div>
+     </div>
    </fieldset>
 </div>
 <div class="modal-footer">
@@ -470,7 +476,7 @@
             </div>
         </div>
      <div class="control-group">
-        <label class="control-label" for="status">{{ 'label.order.suspensiondescription' | translate }}<span class="required">*</span></label>
+        <label class="control-label" for="status">{{ 'label.order.suspensiondescription' | translate }}</label>
          <div class="controls">
              <textarea rows="2" cols="2" ng-model="formData.suspensionDescription" style="width: 333px; height:60px;"></textarea>
          </div>

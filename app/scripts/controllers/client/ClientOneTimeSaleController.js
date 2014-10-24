@@ -17,6 +17,9 @@
 			    scope.categoryType=clientData.categoryType;
 		        scope.email=clientData.email;
 		        scope.phone=clientData.phone;
+		        if(scope.imagePresent){
+		        scope.image=clientData.image;
+		        }
 		        scope.itemId=null;
 	          scope.data={};
 	          scope.maxDate = new Date();
@@ -116,7 +119,8 @@
 	        scope.reset123 = function(){
 	        	   webStorage.add("callingTab", {someString: "Sale" });
 	           };
-	        scope.submit = function() {  
+	        scope.submit = function() { 
+	        	
 	        	scope.flag = true;
 	        	 this.formData.locale = $rootScope.locale.code;
 	             this.formData.dateFormat = "dd MMMM yyyy";
@@ -129,7 +133,7 @@
 	             delete this.formData.units;
 	             delete this.formData.itemCode;
 	             delete this.formData.id;
-	             delete this.formData.chargesData;
+	         
 	             
 	             var temp1 = new Array();
 		        	
@@ -147,6 +151,7 @@
 		        	
 		            this.formData.serialNumber=temp1;
 		            delete this.formData.serials;
+		            delete this.formData.chargesData;
 	            resourceFactory.oneTimeSaleResource.save({clientId:routeParams.id},this.formData,function(data){
 	            	 location.path('/viewclient/' + routeParams.id);
 	          },function(errData){

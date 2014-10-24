@@ -16,6 +16,7 @@
 					            scope.categoryType=clientData.categoryType;
 						        scope.email=clientData.email;
 						        scope.phone=clientData.phone;
+						        scope.image=clientData.image;
 							resourceFactory.addressEditResource.getAll({clientId: routeParams.id} , function(data) {	
                                 scope.formData=data; 
                                 scope.addressTypeData=data.addressOptionsData;

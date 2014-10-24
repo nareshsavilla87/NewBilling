@@ -1,7 +1,7 @@
 {
   "titles" :"----------------------------------------------------",
  	"title.obs.selfcare"					: "OBS SelfCare",
- 	"title.thortelecom.selfcare"			: "Thor Telecom SelfCare",
+ 	"title.selfcare"			: "Thor Telecom SelfCare",
  	"title.conformation.registration" 		 : "Thank you for registering! A conformation mail has been sent to your mailId.Please login to your email account and click on the Activation Link to complete the registration",
  	"title.conformation.alreadyregistration" : "Client is already Registered with this mailId.",
  	"title.signin.msg" 						 : "Please Sign In..!",
@@ -286,7 +286,7 @@
 	 "label.terms.condition.url"						: "https://netgreidslur.korta.is/testing/?page=samples&lang=en",
 	 
 	 "#Registration errors ":"-----------------------------------",
-	 "validation.msg.activationprocess.device.cannot.be.blank"		: "Device field cannot be blank",
+	 "validation.msg.activationprocess.device.cannot.be.blank"		: "Mac Id field cannot be blank",
 	 
  "# common errors ":"....",
   "validation.msg.office.name.cannot.be.blank":"Office Name cannot be blank",
@@ -515,7 +515,7 @@
 	"validation.msg.item.itemCode.cannot.be.blank":"Item Code cannot be blank",
 	"validation.msg.item.units.cannot.be.blank":"Units cannot be blank",
 	"validation.msg.mediaasset.mediaTitle.cannot.be.blank":"Titile cannot be blank",
-	
+	"error.msg.itemdetails.serialnumber.not.found":"Invalid Serialnumber",
  "#media details":"...", 	 
  "validation.msg.mediaasset.mediatype.cannot.be.blank":"Please select MediaType",
  "validation.msg.mediaasset.catageoryId.cannot.be.blank":"Please select Category",

@@ -18,6 +18,9 @@
             scope.categoryType=clientData.categoryType;
             scope.email=clientData.email;
             scope.phone=clientData.phone;
+            if(scope.imagePresent){
+		     scope.image=clientData.image;
+		    }
             resourceFactory.financialResource.getAllDetails({'transactionId': routeParams.transactionId},function(data){
                 scope.invoicedetails = data.transactionsDatas;
             }); 

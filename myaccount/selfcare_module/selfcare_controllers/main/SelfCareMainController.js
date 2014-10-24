@@ -110,6 +110,10 @@
     	  scope.currentSession = sessionManager.clear();
     	  scope.signInProcessLoading = false;
     	  location.path('/').replace;
+
+    	  //$templateCache.removeAll();
+    	 // window.location.reload(true);
+
       };
       
       var ClientActivePopupController = function($scope,$modalInstance){
@@ -193,6 +197,5 @@
 		   ['$rootScope','$scope','$translate','webStorage','SessionManager','RequestSender','AuthenticationService',
 		    '$location','$modal','localStorageService','tmhDynamicLocale',selfcare.controllers.SelfCareMainController
   ]).run(function($log) {
-      $log.info("SelfCareMainController initialized");
   });
 }(selfcare.controllers || {}));
