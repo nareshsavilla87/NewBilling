@@ -17,6 +17,10 @@
               if(data.isOptional=="Y"){
     				scope.formData.isOptional=true;
     			}
+              
+              if(data.isAutoProvision =="Y"){
+  				scope.formData.isAutoProvision=true;
+  			}
         });
         
         scope.submit = function() {
