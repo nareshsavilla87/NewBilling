@@ -427,7 +427,7 @@
        paymentsResource: defineResource(apiVer + "/payments/:clientId", {clientId:'@clientId'}, {
           get: {method: 'GET', params: {}}
           }),
-       transactionHistoryResource: defineResource(apiVer + "/transactionhistory/template/:clientId", {clientId:'@clientId'}, {
+       transactionHistoryResource: defineResource(apiVer + "/transactionhistory/:clientId", {clientId:'@clientId'}, {
        	getTransactionHistory: {method: 'GET', params: {clientId:'@clientId'}, }
           }),
      
