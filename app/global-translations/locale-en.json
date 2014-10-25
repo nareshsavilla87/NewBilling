@@ -1027,6 +1027,7 @@
   "label.service.Service Code":"service Code:",
   "label.service.Status":"status:",
   "label.service.IsOptional":"isOptional:",
+  "label.service.isautoprovision":"Is Auto Provision",
   "label.service.Service Type":"service Type:",
   "validation.msg.service.status.cannot.be.blank":"Status cannot be blank ",
   
