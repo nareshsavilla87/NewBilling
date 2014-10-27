@@ -3,24 +3,31 @@
 	  EventTypeCategory: function () {
                     return function(history,val) {
                     		
-                    	var jsonStringData = history;
-                    	var jsonArray = JSON.parse(jsonStringData);
-                      var  eventTypeCategoryMsg = {
+                    	var historyData = history;
+                    	var jsonStringData = historyData.replace("{","");
+                    	jsonStringData = jsonStringData.replace("}","");
+                    	jsonStringData = jsonStringData.replace(/"/g,"");
+                    	var jsonArray = JSON.parse(historyData);
+                    	var  eventTypeCategoryMsg = {
                     	
                         //client related data
-                        "CREATE CLIENT" : "Client Created Succesfully" ,
-                        "UPDATE CLIENT" : "Client Updated",
+                        "CREATE CLIENT" : "Client Created Succesfully with Name:"+jsonArray.firstname+jsonArray.lastname,
+                        "UPDATE CLIENT" : "{"+jsonStringData+"}",
+                        "UPDATE ADDRESS" : "Client Address Updated Succesfully with "+jsonStringData,
+                        "DELETE CLIENT" : "Client Closed Succesfully with reason id "+jsonArray.closureReasonId,
                         
                         
                        //order related data 
-                        "CREATE ORDER" : "Order Created successfully for "+jsonArray.paytermCode+" with plan Code "+jsonArray.planCode,
+                        "CREATE ORDER" : "PlanCode :"+jsonArray.planCode+" Contract Period :"+jsonArray.contractPeriod,
+                        "CHANGEPLAN ORDER" : "PlanCode :"+jsonArray.planCode+" Contract Period :"+jsonArray.contractPeriod,
                         "DELETE ORDER" : "Order Deleted successfully",
+                        "EXTENSION ORDER" : "Order Extended to "+jsonArray.extensionPeriod+" Due To "+jsonArray.extensionReason,
                         "RECONNECT ORDER" : "Order Re-Connected successfully",
                         "REACTIVE ORDER" : "Order Re-Actived successfully",
                         "SUSPEND ORDER" : "Order Suspended with reason "+jsonArray.suspensionReason+" and Description "+jsonArray.suspensionDescription,
                         "RETRACKOSDMESSAGE ORDER" : "Order Re-Track OSD Message Added with commandName "+jsonArray.commandName,
                         "APPLYPROMO ORDER" : "Apply Promo Added for Order With Promo Id "+jsonArray.promoId,
-                        "EXTENSION ORDER" : "Order Extended to "+jsonArray.extensionPeriod+" Due To "+jsonArray.extensionReason,
+                        "TERMINATE ORDER" : "Order Terminated",
                         
                         //payments related Data
                         "CREATE PAYMENT" : "Payment Created successfully",
@@ -30,29 +37,49 @@
                         "CREATE ONETIMESALE" : "Item Sale Created Succesfully with Charge Code "+jsonArray.chargeCode+" ,UnitPrice "+jsonArray.unitPrice+"" +
                         						" ,Total Price "+jsonArray.totalPrice+" ,Quantity "+jsonArray.quantity+" and SaleType "+jsonArray.saleType,
                         "DEALLOCATE INVENTORY" : "Deallocated item",
+                        "DELETE ONETIMESALE"   : "Item sale deleted Succesfully",
                         
+                        
+                        //more info related data
+                        "CREATE PARENTCLIENT" : "Parent Added to Client Succesfully",
+                        "CREATE CLIENTCARDDETAILS" : "Client Credit Card Details Added Succesfully",
+                        
+                        //notes related data
+                        "CREATE CLIENTNOTE" : "Client Notes Created successfully",
+                        
+                        
+                        //statement related data
+                        "DELETE BILLMASTER" : "Bill Statement Deleted successfully",
+                        
+                        //client identifier related data
+                        "CREATE CLIENTIDENTIFIER" : "Client Identifier Added Succesfully",
+                        "DELETE CLIENTIDENTIFIER" : "Client Identifier Deleted Succesfully",
+                        
+                        
+                        //ticket related data
+                        "CREATE TICKET" : "Ticket Created Succesfully",
+                        "CLOSE TICKET" : "Ticket Closed Succesfully",
+                        
+                        //client contact information related data
+                        "CREATE Client_Contact_Info" : "Client Contact Information Added Succesfully",
+                        "UPDATE Client_Contact_Info" : "Client Contact Information Updated Succesfully",
+                        "DELETE Client_Contact_Info" : "Client Contact Information Deleted Succesfully",
+                        
+                        
+                        //credit distribution related data
+                        "CREATE CREDITDISTRIBUTION" : "Credit Distribution ",
                         
                         
                         
                         "CREATE ADJUSTMENT" : "Adjustmented successfully",
-                        "CREATE TICKET" : "Ticket Created Succesfully",
-                        "CREATE CLIENTIDENTIFIER" : "Client Identifier Added Succesfully",
-                        "CREATE CLIENTCARDDETAILS" : "Client Credit Card Details Added Succesfully",
-                        "CREATE PARENTCLIENT" : "Parent Added to Client Succesfully",
-                        "CREATE CLIENTNOTE" : "Client Notes Created successfully",
-                        "CREATE Client_Contact_Info" : "Client Contact Information Added Succesfully",
-                        "UPDATE Client_Contact_Info" : "Client Contact Information Updated Succesfully",
-                        "DELETE Client_Contact_Info" : "Client Contact Information Deleted Succesfully",
-                        "CLOSE TICKET" : "Ticket Closed Succesfully",
                         "CREATE OWNEDHARDWARE" : "Owned Hardware Created",
                         "CREATE ALLOCATION" : "Allocation Added Succesfully",
-                        "TERMINATE ORDER" : "Order Terminated",
                         
                         
                         
-                        
+                       //self care related data 
                         "SELFREGISTRATION ACTIVATE" : "Selfcare Registration Activated",
-                        "CREATE SELFCARE" : "Selfcare Account Created Succesfully",
+                        "CREATE SELFCARE" : "Selfcare Account Created Succesfully with UserName:"+jsonArray.userName,
                         
                      };
 
