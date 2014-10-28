@@ -1,7 +1,7 @@
 (function(module) {
   mifosX.filters = _.extend(module, {
 	  EventTypeCategory: function () {
-                    return function(history,val) {
+                    return function(history,val,resourceId) {
                     		
                     	var historyData = history;
                     	var jsonStringData = historyData.replace("{","");
@@ -22,15 +22,15 @@
                         "CHANGEPLAN ORDER" : "PlanCode :"+jsonArray.planCode+" Contract Period :"+jsonArray.contractPeriod,
                         "DELETE ORDER" : "Order Deleted successfully",
                         "EXTENSION ORDER" : "Order Extended to "+jsonArray.extensionPeriod+" Due To "+jsonArray.extensionReason,
-                        "RECONNECT ORDER" : "Order Re-Connected successfully",
-                        "REACTIVE ORDER" : "Order Re-Actived successfully",
+                        "RECONNECT ORDER" : "Order Re-Connected successfully with OrderId:"+resourceId,
+                        "REACTIVE ORDER" : "Order Re-Actived successfully with OrderId:"+resourceId,
                         "SUSPEND ORDER" : "Order Suspended with reason "+jsonArray.suspensionReason+" and Description "+jsonArray.suspensionDescription,
                         "RETRACKOSDMESSAGE ORDER" : "Order Re-Track OSD Message Added with commandName "+jsonArray.commandName,
                         "APPLYPROMO ORDER" : "Apply Promo Added for Order With Promo Id "+jsonArray.promoId,
-                        "TERMINATE ORDER" : "Order Terminated",
+                        "TERMINATE ORDER" : "Order Terminated successfully with OrderId:"+resourceId,
                         
                         //payments related Data
-                        "CREATE PAYMENT" : "Payment Created successfully",
+                        "CREATE PAYMENT" : "Payment Created successfully successfully with paymentId:"+resourceId,
                         "CANCEL PAYMENT" : "Payment Canceled Succesfully with remarks "+jsonArray.cancelRemark,
                         
                         //itemsale related data
@@ -70,8 +70,10 @@
                         "CREATE CREDITDISTRIBUTION" : "Credit Distribution ",
                         
                         
+                        //adjustment related data
+                        "CREATE ADJUSTMENT" : "AmountPaid:"+jsonArray.amount_paid+" AdjustmentType:"+jsonArray.adjustment_type+" AdjustmentCode:"+jsonArray.adjustment_code+" Remarks:"+jsonArray.Remarks,
                         
-                        "CREATE ADJUSTMENT" : "Adjustmented successfully",
+                        
                         "CREATE OWNEDHARDWARE" : "Owned Hardware Created",
                         "CREATE ALLOCATION" : "Allocation Added Succesfully",
                         

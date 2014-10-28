@@ -1405,7 +1405,7 @@
 					<td>{{transactionhistory.transactionDate  | DateTimeFormat}}</td>
 					<td>{{transactionhistory.user}}</td>
 				
-					<td>{{transactionhistory.history | EventTypeCategory:transactionhistory.transactionType}}</td> 
+					<td>{{transactionhistory.history | EventTypeCategory:transactionhistory.transactionType:transactionhistory.resourceId}}</td> 
 				</tr>
 			</tbody>
 		</table>
