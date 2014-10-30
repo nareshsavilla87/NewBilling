@@ -489,9 +489,12 @@
                 eventpriceResource: defineResource(apiVer + "/eventprice/:eventId/:resourceType",{eventId:'@eventId', resourceType:'@resourceType'},  {
               	  getprice: {method: 'GET', params: {eventId:'@eventId'}, isArray:true}
                 }),
-                eventPriceEditResource: defineResource(apiVer + "/eventprice/:id/update",{id:'@id'},  {
+                eventPriceEditResource: defineResource(apiVer + "/eventprice/singleeventprice/:id",{id:'@id'},  {
               	  geteventpricedetail: {method: 'GET', params: {id:'@id'}},
               	  update: {method: 'PUT', params: {}}
+                }),
+                eventPriceUpdateResource: defineResource(apiVer + "/eventprice/:id",{id:'@id'},  {
+                	  update: {method: 'PUT', params: {}}
                 }),
                 regionResource: defineResource(apiVer + "/regions/:regionId/:resourceType", {regionId:'@regionId', resourceType:'@resourceType'}, {
                     get: {method: 'GET', params: {regionId:'@regionId'}},
@@ -680,10 +683,6 @@
                 }),
                 eventpriceResource: defineResource(apiVer + "/eventprice/:eventId/:resourceType",{eventId:'@eventId', resourceType:'@resourceType'},  {
               	  getprice: {method: 'GET', params: {eventId:'@eventId'}, isArray:true}
-                }),
-                eventPriceEditResource: defineResource(apiVer + "/eventprice/:id/update",{id:'@id'},  {
-              	  geteventpricedetail: {method: 'GET', params: {id:'@id'}},
-              	  update: {method: 'PUT', params: {}}
                 }),
                 ticketResourceTemplate: defineResource(apiVer + "/tickets/template",{},  {
               	  get: {method: 'GET', params: {}}     	 
@@ -950,7 +949,7 @@
             officeAdjustmentsResource: defineResource(apiVer + "/officeadjustments/:officeId", {officeId:'@officeId'}, {
                 postAdjustments: {method: 'POST', params: {officeId:'@officeId'}}
             }),
-            officeFinancialTransactionResource: defineResource(apiVer + "/officefinancialtransactions/:officeId", {officeId:'@officeId'}, {
+            officeFinancialTransactionResource: defineResource(apiVer + "/offices/financialtransactions/:officeId", {officeId:'@officeId'}, {
                 get: {method: 'GET', params: {officeId:'@officeId'},isArray: true}
             }),
             agentsResource: defineResource(apiVer + "/agents", {}, {
