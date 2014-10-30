@@ -12,7 +12,7 @@
       scope.totalPages = 1;
       scope.status = 'ALL';
       var fetchFunction = function(offset, limit, callback) {
-        resourceFactory.clientResource.getAllClients({offset: offset, limit: limit,status: scope.status} , function(data){
+        resourceFactory.clientResource.getAllClients({offset: offset, limit: limit} , function(data){
         	scope.totalClients = data.totalFilteredRecords;
         	if(scope.totalClients%15 == 0)	
         		scope.totalPages = scope.totalClients/15;

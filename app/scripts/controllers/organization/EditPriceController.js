@@ -37,11 +37,8 @@
              delete this.formData.priceId;
              delete this.formData.contractPeriods;
              delete this.formData.contractPeriod;
-            
              
-             
-             
-             resourceFactory.getPriceResource.update({'priceId':routeParams.id},this.formData,function(data){
+             resourceFactory.updatePriceResource.update({'priceId':routeParams.id},this.formData,function(data){
              location.path('/viewprice/' + data.resourceId+'/'+routeParams.id);
           });
         };

@@ -247,8 +247,12 @@
                getAllPrices: {method: 'GET', params: {}, isArray: true},
                update: { method: 'PUT' }
            }),
-           getPriceResource: defineResource(apiVer + "/prices/:priceId/update", {priceId:'@priceId'}, {
+           getPriceResource: defineResource(apiVer + "/prices/pricedetails/:priceId", {priceId:'@priceId'}, {
                get: {method: 'GET', params: {}},
+               update: { method: 'PUT' }
+           }),
+           
+           updatePriceResource: defineResource(apiVer + "/prices/update/:priceId", {priceId:'@priceId'}, {
                update: { method: 'PUT' }
            }),
            
@@ -280,16 +284,16 @@
                get: {method: 'GET', params: {}}
            }),
            
-           importResource: defineResource(apiVer + "/uploadstatus/getData", {}, {
+           importResource: defineResource(apiVer + "/datauploads", {}, {
                getAllimportfiles: {method: 'GET', params: {}, isArray: true},
                getdata: {method: 'GET', params: {}},
                update: { method: 'PUT' }
            }),
-         importProcessResource: defineResource(apiVer + "/uploadstatus/:uploadfileId", {}, {
+         importProcessResource: defineResource(apiVer + "/datauploads/:uploadfileId", {}, {
              update: { method: 'PUT' }
           }),
          
-         importviewResource: defineResource(apiVer + "/uploadstatus/:uploadfileId/getdetails", {}, {
+         importviewResource: defineResource(apiVer + "/datauploads/:uploadfileId/", {}, {
         	 get: {method: 'GET', params: {}},
              update: { method: 'PUT' }
           }),

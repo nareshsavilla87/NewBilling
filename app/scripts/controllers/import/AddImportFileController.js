@@ -25,7 +25,7 @@
           
           scope.submit = function () {
         	  $upload.upload({/*41.75.85.206:8080*/
-                url: $rootScope.hostUrl+ API_VERSION +'/uploadstatus/documents', 
+                url: $rootScope.hostUrl+ API_VERSION +'/datauploads/documents', 
                 data: scope.formData,
                 file: scope.file
               }).then(function(data) {
