@@ -8,7 +8,7 @@
         });
         
          scope.downloadFile = function (id){
-        	window.open(rootScope.hostUrl+ API_VERSION +'/randomgenerators/'+id+'?tenantIdentifier=default');
+        	window.open(rootScope.hostUrl+ API_VERSION +'/vouchers/'+id+'?tenantIdentifier=default');
         };
         
         scope.processFile = function(id){

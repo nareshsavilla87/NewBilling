@@ -356,10 +356,10 @@
         OrderrenewalResource: defineResource(apiVer + "/orders/renewal/:orderId", {orderId:'@orderId'},{
        	update: { method: 'PUT' }
        }),
-       voucherpinResource: defineResource(apiVer + "/randomgenerators/:voucherId", {voucherId:'@voucherId'}, {
+       voucherpinResource: defineResource(apiVer + "/vouchers/:voucherId", {voucherId:'@voucherId'}, {
            getAllEmployees: {method: 'GET', params: {}, isArray: true}
          }),
-         voucherpinTemplateResource: defineResource(apiVer + "/randomgenerators/template", {}, {
+         voucherpinTemplateResource: defineResource(apiVer + "/vouchers/template", {}, {
              get: {method: 'GET', params: {}}
             }),
          discountResource: defineResource(apiVer + "/discounts/:discountId", {discountId:'@discountId'}, {
@@ -467,11 +467,12 @@
                 }),
                 messageSaveResource: defineResource(apiVer + "/messages/:messageId",{messageId:'@messageId'},  {
               	  get: {method: 'GET', params: {}},
+              	  getAllMessages: {method: 'GET', params: {}, isArray:true},
               	  update: {method: 'PUT'}
                 }),
-                messageResource: defineResource(apiVer + "/messages/data",{},  {
+               /* messageResource: defineResource(apiVer + "/messages/data",{},  {
               	  getAllMessages: {method: 'GET', params: {}, isArray:true}
-                }),
+                }),*/
                 eventResource: defineResource(apiVer + "/eventmaster",{},  {
               	  get: {method: 'GET', params: {}, isArray:true }
                 }),
