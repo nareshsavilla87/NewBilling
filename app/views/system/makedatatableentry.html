@@ -71,7 +71,8 @@
 					<input type="text" ng-show="fieldType(columnHeader.columnDisplayType) == 'TEXT'"
 						 ng-model="formData[columnHeader.columnName]" />
 				    <input type="text" ng-show="fieldType(columnHeader.columnDisplayType) == 'DATE'"
-						 datepicker-pop="dd MMMM yyyy" ng-model="formDat[columnHeader.columnName]" is-open="opened{{$index}}" /> 
+						 datepicker-pop="dd MMMM yyyy" ng-model="formDat[columnHeader.columnName]" is-open="opened{{$index}}"
+						  style="background-color:#FFFFFF;"  readonly /> 
 				    <span data-ng-switch on="columnHeader.columnDisplayType"> 
 				    <select ng-show="fieldType(columnHeader.columnDisplayType) == 'SELECT'"
 						data-ng-switch-when="CODELOOKUP"

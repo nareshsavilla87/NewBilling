@@ -1133,6 +1133,7 @@
   "validation.msg.chargecode.chargeType.cannot.be.blank":"Please select Charge Type",
   "validation.msg.chargecode.durationType.cannot.be.blank":"Please Select Duration Type",
   "error.msg.chargecode.duplicate.name":"Charge Code already exist with this name",
+  "error.msg.chargecode.can not.delete or update already use":"Charge code used by other can not delete or update",
   
   
   "#taxmapping":"....",

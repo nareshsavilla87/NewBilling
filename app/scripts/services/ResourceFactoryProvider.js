@@ -362,14 +362,14 @@
          voucherpinTemplateResource: defineResource(apiVer + "/randomgenerators/template", {}, {
              get: {method: 'GET', params: {}}
             }),
-         discountResource: defineResource(apiVer + "/discounts/:discountId", {discountId:'@discountId'}, {
+         discountResource: defineResource(apiVer + "/discount/:discountId", {discountId:'@discountId'}, {
              get: {method: 'GET', params: {}, isArray: true},
          	  update: { method: 'PUT' }
             }),
-         discountTemplateResource: defineResource(apiVer + "/discounts/template", {}, {
+         discountTemplateResource: defineResource(apiVer + "/discount/template", {}, {
              get: {method: 'GET', params: {}}
             }),
-         discountsResource: defineResource(apiVer + "/discounts/:discountId/:resourceType", {discountId:'@discountId', resourceType:'@resourceType'}, {
+         discountsResource: defineResource(apiVer + "/discount/:discountId/:resourceType", {discountId:'@discountId', resourceType:'@resourceType'}, {
                 get: {method: 'GET', params: {discountId:'@discountId'}},
                 getDiscount: {method: 'GET', params: {discountId:'@discountId'}, isArray:true},
                 getDiscountDetails: {method: 'GET', params: {discountId:'@discountId'}},
@@ -404,13 +404,13 @@
             getProspects: {method: 'GET', params: {}},
            }),
       
-       currencyResource: defineResource(apiVer + "/countrycurrencys/:id/:resourceType", {id:'@id', resourceType:'@resourceType'}, {
+       currencyResource: defineResource(apiVer + "/countrycurrency/:id/:resourceType", {id:'@id', resourceType:'@resourceType'}, {
             get: {method: 'GET', params: {id:'@id'}},
             getCurrency: {method: 'GET', params: {id:'@id'}, isArray:true},
             getCurrencyDetails: {method: 'GET', params: {id:'@id'}},
             update: {method: 'PUT', params: {}}
            }),
-       currencyTemplateResource: defineResource(apiVer + "/countrycurrencys/template", {}, {
+       currencyTemplateResource: defineResource(apiVer + "/countrycurrency/template", {}, {
            get: {method: 'GET', params: {}}
            }),
            

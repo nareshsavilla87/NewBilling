@@ -1,18 +1,18 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
 	  ViewDiscountsController: function(scope, routeParams , route, location, resourceFactory, http,PermissionService) {
-		 // alert("hh");
+	
         scope.discounting = [];   
         scope.PermissionService =  PermissionService; 
-        resourceFactory.discountsResource.getDiscountDetails({discountId: routeParams.id,template: 'true'} , function(data) {
-        	//alert('discountController,' +data);
+        resourceFactory.discountsResource.getDiscountDetails({discountId: routeParams.id} , function(data) {
             scope.discounting = data;                                                
         });
         scope.deletemessage = function (){
             resourceFactory.discountResource.delete({discountId: routeParams.id} , {} , function(data) {
                   location.path('/discounts');
-                  // added dummy request param because Content-Type header gets removed 
-                  // if the request does not contain any data (a request body)        
+                  // added dummy request param because Content-Type header
+					// gets removed
+                  // if the request does not contain any data (a request body)
             });
           };
     }

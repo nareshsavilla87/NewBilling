@@ -1,23 +1,30 @@
-<div ng-controller="ViewCurrencyDetailsController"> 
+<div ng-controller="ViewCurrencyDetailsController">
 
-    <div class="paddedbottom10">
+	<div class="paddedbottom10">
 		<ul class="breadcrumb">
-	        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
-	        <li><a href="#/currencydetails">{{'label.currencydetails' | translate}}</a> <span class="divider">/</span></li>
-	        <li class="active">{{viewcurrencydetails.id}}</li>
-	    </ul>
-	    <div class="pull-right">
-	      <div class="btn-group">
-	          <a ng-show="PermissionService.showMenu('UPDATE_COUNTRYCURRENCY')" href="#/editcurrencydetails/{{viewcurrencydetails.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>	        
-	          <a ng-show="PermissionService.showMenu('DELETE_COUNTRYCURRENCY')" ng-click="deletemessage()" class="btn btn-primary"><i class="icon-trash icon-white"></i> Delete</a>
-	      </div>
-	    </div>
+			<li><a href="#/organization">{{'link.admin.organisation' |
+					translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/currencydetails">{{'label.currencydetails' |
+					translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{viewcurrencydetails.id}}</li>
+		</ul>
+		<div class="pull-right">
+			<div class="btn-group">
+				<a ng-show="PermissionService.showMenu('UPDATE_COUNTRYCURRENCY')"
+					href="#/editcurrencydetails/{{viewcurrencydetails.id}}"
+					class="btn btn-primary"><i class="icon-edit icon-white"></i>
+					Edit</a> <a
+					ng-show="PermissionService.showMenu('DELETE_COUNTRYCURRENCY')"
+					ng-click="deletemessage()" class="btn btn-primary"><i
+					class="icon-trash icon-white"></i> Delete</a>
+			</div>
+		</div>
 	</div>
 
 	<div class="row paddedleft">
-					<h3>{{viewcurrencydetails.id}}</h3>	
-       <table  width="100%" >                     
-             <tr>
+		<h3>{{viewcurrencydetails.id}}</h3>
+		<table width="100%">
+			<tr>
 				<td width="20%">{{ 'label.country' | translate }}</td>
 				<td width="80%">{{viewcurrencydetails.country}}</td>
 			</tr>
@@ -28,8 +35,8 @@
 			<tr>
 				<td>{{ 'label.status' | translate }}</td>
 				<td>{{viewcurrencydetails.status}}</td>
-			</tr>                                                                                                 
-      </table>
-    </div>                    
-                                     
- </div>
+			</tr>
+		</table>
+	</div>
+
+</div>

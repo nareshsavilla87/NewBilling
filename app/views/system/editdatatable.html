@@ -7,7 +7,7 @@
             <li class="active">{{'label.edit.datatable' | translate}}</li>
           </ul>
         </div>
-         <form name="editdatatableform" novalidate="" class="form-horizontal well" ng-controller="EditDataTableController" ng-submit="submit()">
+         <form name="editdatatableform" novalidate="" class="form-horizontal well"  ng-submit="submit()">
         <div class="error" ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label ng-show="errorStatus">{{errorStatus}}</label>
