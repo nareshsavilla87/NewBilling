@@ -712,7 +712,7 @@
               singleStatementResource: defineResource(apiVer + "/billmaster/:billId/billdetails", {billId:'@billId'}, {
                   get: {method: 'GET', params: {},isArray:true}
                 }),
-            addressEditResource: defineResource(apiVer + "/address/details/:clientId",{clientId:'@clientId'},  {
+            addressEditResource: defineResource(apiVer + "/address/addressdetails/:clientId",{clientId:'@clientId'},  {
             	  get: {method: 'GET', params: {}},
             	  getAll: {method: 'GET', params: {clientId:'@clientId'}}
               }),
