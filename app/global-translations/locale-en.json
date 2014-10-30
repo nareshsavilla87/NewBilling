@@ -1027,6 +1027,7 @@
   "label.service.Service Code":"service Code:",
   "label.service.Status":"status:",
   "label.service.IsOptional":"isOptional:",
+  "label.service.isautoprovision":"Is Auto Provision",
   "label.service.Service Type":"service Type:",
   "validation.msg.service.status.cannot.be.blank":"Status cannot be blank ",
   
@@ -2078,7 +2079,14 @@
 "validation.msg.globalConfiguration.password.cannot.be.blank":"Password cannot be blank",
 "validation.msg.globalConfiguration.hostName.cannot.be.blank":"Host Name cannot be blank",
 "validation.msg.globalConfiguration.userName.cannot.be.blank":"Name cannot be blank",
-"validation.msg.note.note.cannot.be.blank":"Note cannot be blank"
+"validation.msg.note.note.cannot.be.blank":"Note cannot be blank",
+
+"#Ippool Changes":".......",
+"label.pattern":"Pattern : ",
+"hint.ipaddress.pattern":"xxx.xxx.xxx.xxx",
+"form.error.ipaddress.pattern":"Invalid IpAddress",
+"validation.msg.ippool.subnet.is.not.within.expected.range":"subnet value must be between 0 and 32.",
+"validation.msg.ippool.ipAddress.cannot.be.blank":"ipAddress cannot be blank"
 
 
 

@@ -55,7 +55,15 @@
                 </label>
             </div>
           </div>
-
+        
+            <div class="control-group">
+            <label class="control-label" for="isOptional">{{ 'label.service.isautoprovision' | translate }}</label>
+            <div class="controls">
+              <label class="checkbox">
+                <input type="checkbox" id="isOptional" ng-model="formData.isAutoProvision">
+              </label>
+            </div>
+          </div>
           <div class="offset3">
             <a href="#/viewservice/{{serviceId}}"><button id="cancel" type="reset" class="btn">{{'label.cancel' | translate}}</button></a>
             <button id="submit" type="submit" class="btn btn-primary" >{{'label.save' | translate}}</button>

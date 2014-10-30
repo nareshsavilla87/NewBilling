@@ -273,7 +273,8 @@ define(['underscore', 'mifosX'], function() {
       'ConfigLookup',
       'DecimalFormat',
       'DateTimeFormat',
-      'UrlToString'
+      'UrlToString',
+      'EventTypeCategory'
 
     ],
     directives: [

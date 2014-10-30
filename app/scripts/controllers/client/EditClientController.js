@@ -45,7 +45,7 @@
     				}
     			}*/
     			
-    		});
+    		//});
         	
         for(var i=0;i<scope.groupNameDatas.length;i++){
 	    	if(scope.groupNameDatas[i].groupName==data.groupName){

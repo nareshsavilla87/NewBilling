@@ -3,7 +3,7 @@
 	  MessageController: function(scope, resourceFactory,location,PermissionService) {
 	        scope.message = [];
 	        scope.PermissionService = PermissionService;
-	        resourceFactory.messageResource.getAllMessages(function(data) {
+	        resourceFactory.messageSaveResource.getAllMessages(function(data) {
 	            scope.message = data;
 	        });
 	        scope.routeTo = function(id){

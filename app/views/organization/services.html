@@ -19,6 +19,7 @@
                 <th>Service type</th>
                 <th>Status</th>
                 <th>IsOptional</th>
+                <th>Is Auto Provision</th>
             </tr>
         </thead>
         <tbody>
@@ -27,8 +28,9 @@
                  <td class="pointer" data-ng-click="routeTo(service.id)">{{service.serviceCode}}</td>            
                 <td class="pointer" data-ng-click="routeTo(service.id)">{{service.serviceDescription}}</td>
                 <td class="pointer" data-ng-click="routeTo(service.id)">{{service.serviceType}}</td>
-                   <td class="pointer" data-ng-click="routeTo(service.id)">{{service.serviceStatus}}</td>
-                      <td class="pointer" data-ng-click="routeTo(service.id)">{{service.isOptional}}</td>
+                <td class="pointer" data-ng-click="routeTo(service.id)">{{service.serviceStatus}}</td>
+                <td class="pointer" data-ng-click="routeTo(service.id)">{{service.isOptional}}</td>
+                <td class="pointer" data-ng-click="routeTo(service.id)">{{service.isAutoProvision}}</td>
             </tr>
         </tbody>
     </table>

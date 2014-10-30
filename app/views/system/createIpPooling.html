@@ -4,7 +4,7 @@
               <li class="active">{{'label.ippooling.createippool' | translate}}</li>
           </ul>
       </div>
-      <form class="form-horizontal well" ng-controller="CreateIpPoolingController" ng-submit="submit()">
+      <form name="createIpPooling" novalidate="" class="form-horizontal well" ng-controller="CreateIpPoolingController" ng-submit="submit()">
        <div class="error" ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label ng-show="errorStatus">{{errorStatus}}</label>
@@ -42,7 +42,9 @@
 					<div class="control-group">
 						<label class="control-label" for="ipaddress">{{'label.ippooling.ipaddress' | translate }}</label>
 						<div class="controls">
-							<input type="text" id="ipaddress" ng-model="formData.ipAddress">
+							<input type="text" id="ipaddress" ng-onblur="ipValidate(formData.ipAddress)" ng-model="formData.ipAddress"/><br/>
+							<small>{{'label.pattern'|translate}}{{'hint.ipaddress.pattern'|translate}}</small><br/>
+							<small class="error" ng-show="ipAddressValidationErrorPattern">{{'form.error.ipaddress.pattern'|translate}}</small>
 						</div>
 					</div>
 				</td>
@@ -53,7 +55,10 @@
 					<div class="control-group">
 						<label class="control-label" for="subnet">{{'label.ippooling.subnet' | translate }}</label>
 						<div class="controls">
-							<input type="text" id="subnet" ng-model="formData.subnet">
+							<input type="number" name="subnetIP" id="subnet" ng-model="formData.subnet" min="0" max="32" late-Validate><br/>
+							<span ng-show="createIpPooling.subnetIP.$dirty && createIpPooling.subnetIP.$invalid">
+									<small class="error">{{'validation.msg.ippool.subnet.is.not.within.expected.range'|translate}}</small>
+    					   </span>
 						</div>
 					</div>
 				</td>
@@ -63,7 +68,7 @@
 
 		<div class="offset3">
             <a href="#/ipPooling"><button id="cancel" type="reset" class="btn">Cancel</button></a>
-            <button id="submit" type="submit" class="btn btn-primary">Save</button>
+            <button id="submit" type="submit" class="btn btn-primary" ng-disabled="!createIpPooling.$valid">Save</button>
           </div>
         </fieldset>
       </form>
