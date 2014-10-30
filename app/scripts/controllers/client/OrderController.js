@@ -41,8 +41,7 @@
             var curDate = new Date(scope.orderData.currentDate);
             /*if(dateFilter(endDate.setDate(endDate.getDate()))==dateFilter(curDate.setDate(curDate.getDate()))||
             		dateFilter(endDate.setDate(endDate.getDate()+1))==dateFilter(curDate.setDate(curDate.getDate())))
-            	console.log("true");
-            else console.log("false");*/
+            */
             scope.formData.flag=data.flag;
             scope.orderServicesData=data.orderServices;
             scope.orderDiscountDatas=data.orderDiscountDatas;
@@ -544,7 +543,6 @@
         	        });
         	  };
         	  $scope.cancelRenewal = function(){
-        		  console.log('cancel renewal');
         		  $modalInstance.dismiss('cancel');
         	  };
           };
@@ -558,7 +556,6 @@
               resourceFactory.OrderDisconnectResource.get(function(data) {
                   $scope.disconnectDetails = data.disconnectDetails;
               });
-        	  console.log($scope.disconnectDetails);
         	  
         	  $scope.approveDisconnection = function () {
         		  $scope.flagOrderDisconnect=true;
@@ -580,7 +577,6 @@
         		            scope.orderHistorydata=data.orderHistory;
         		            scope.orderData=data.orderData;
         		        });
-        			    console.log(data.resourceId);
         	            $modalInstance.close('delete');
         	        },function(orderErrorData){
         	        	 $scope.flagOrderDisconnect=false;
@@ -604,7 +600,6 @@
         scope.deAssociation=function (){
         	
         	resourceFactory.deAssociationResource.update({id:scope.association.id} , function(data) {
-        		 console.log('/vieworder/'+routeParams.id+'/'+scope.orderPriceDatas[0].clientId);
              
         		 route.reload();
             });
