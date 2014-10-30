@@ -1,91 +1,115 @@
-    <div ng-controller="EditDiscountsController">
-      <div>
-        <ul class="breadcrumb">
-          <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
-          <li><a href="#/discounts">{{'label.managediscounts' | translate}}</a> <span class="divider">/</span></li>
-          <li><a href="#/viewdiscounts/{{discountdetail.discountMasterId}}">{{discountdetail.discountMasterId}}</a> <span class="divider">/</span></li>
-          <li class="active">{{'label.editdiscounts' | translate}}</li>
-        </ul>
-      </div>
-      <form class="form-horizontal well" ng-submit="submit()">
-       <div class="error" ng-show="errorStatus || errorDetails">
-		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
-	    </div>
-        <fieldset>
-          <legend>Edit Discounts</legend>
- <table>
-			<tr>
-				<td>
-					<table>
-						<tr>
-							<td>
-								<div class="control-group">
-           					 	<label class="control-label" for="discountCode">{{ 'label.discountCode' | translate }}</label>
-            					<div class="controls">
-             					 <input type="text" id="discountCode" ng-model="discountdetail.discountCode">
-           						</div>
-         						</div>	
-							</td>
-							<td>
-								<div class="control-group">
-            					<label class="control-label" for="discounType">{{ 'label.discountType' | translate }}</label>
-            					<div class="controls">
-             					 <select ng-model="discountdetail.discounType"  ng-options="discounTypeData.mCodeValue as discounTypeData.mCodeValue for discounTypeData in discountTypeDatas" value="{{discounTypeData.mCodeValue}}">
-             					 </select>
-            					</div>
-          						</div>
-							</td>
-							</tr>
+
+<div ng-controller="EditDiscountsController">
+	<div>
+		<ul class="breadcrumb">
+			<li><a href="#/organization">{{'link.admin.organisation' |
+					translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/discounts">{{'label.managediscounts' |
+					translate}}</a> <span class="divider">/</span></li>
+			<li><a
+				href="#/viewdiscounts/{{discountdetail.id}}">{{discountdetail.id}}</a>
+				<span class="divider">/</span></li>
+			<li class="active">{{'label.editdiscounts' | translate}}</li>
+		</ul>
+	</div>
+	<form class="form-horizontal well" ng-submit="submit()">
+		<div class="error" ng-show="errorStatus || errorDetails">
+			<label>{{'label.contract.error' | translate}}</label> <label
+				ng-show="errorStatus">{{errorStatus}}</label> <label
+				ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code
+				| translate}}</label>
+		</div>
+		<fieldset>
+			<legend>Edit Discounts</legend>
+			<table>
+				<tr>
+					<td>
+						<table>
 							<tr>
-							<td>
-								<div class="control-group">
-            					<label class="control-label" for="discountDescription">{{ 'label.discountDescription' | translate }}</label>
-            					<div class="controls">
-              					<input type="text" id="discountDescription" ng-model="discountdetail.discountDescription">
-           						 </div>
-          						</div>
-							</td>
-							<td>
-								<div class="control-group">
-            					<label class="control-label" for="discountRate">{{ 'label.discountRate' | translate }}</label>
-            					<div class="controls">
-              					<input type="text" id="discountRate" ng-model="discountdetail.discountRate">
-            					</div>
-          						</div>
-							</td>
-							</tr>
-							<tr>
-							<td>
-								<div class="control-group">
-                        		<label class="control-label" for="discountStartDate">{{ 'label.startDate' | translate }}</label>
-                        		<div class="controls">
-                            	<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.startDate" is-open="opened2" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"  />
-                        		</div>
-          						</div>
-							</td>
-							<td>
-								<div class="control-group">
-            					<label class="control-label" for="status">{{ 'label.status' | translate }}</label>
-            					<div class="controls">
-             					 <select ng-model="discountdetail.discountstatus"  ng-options="status.value as status.value for status in statuses" value="{{status.value}}">
-             					 </select>
-            					</div>
-          						</div>
+								<td>
+									<div class="control-group">
+										<label class="control-label" for="discountCode">{{
+											'label.discountCode' | translate }}</label>
+										<div class="controls">
+											<input type="text" id="discountCode"
+												ng-model="discountdetail.discountCode">
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="control-group">
+										<label class="control-label" for="discountType">{{
+											'label.discountType' | translate }}</label>
+										<div class="controls">
+											<select ng-model="discountdetail.discountType"
+												ng-options="discountTypeData.mCodeValue as discountTypeData.mCodeValue for discountTypeData in discountTypeDatas"
+												value="{{discountTypeData.mCodeValue}}">
+											</select>
+										</div>
+									</div>
 								</td>
 							</tr>
-							
-					</table>
-			
-				</td>
-			</tr>
+							<tr>
+								<td>
+									<div class="control-group">
+										<label class="control-label" for="discountDescription">{{
+											'label.discountDescription' | translate }}</label>
+										<div class="controls">
+											<input type="text" id="discountDescription"
+												ng-model="discountdetail.discountDescription">
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="control-group">
+										<label class="control-label" for="discountRate">{{
+											'label.discountRate' | translate }}</label>
+										<div class="controls">
+											<input type="text" id="discountRate"
+												ng-model="discountdetail.discountRate">
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="control-group">
+										<label class="control-label" for="discountStartDate">{{
+											'label.startDate' | translate }}</label>
+										<div class="controls">
+											<input type="text" datepicker-pop="dd MMMM yyyy"
+												ng-model="start.startDate" is-open="opened2" min="minDate"
+												max="'2020-06-22'" date-disabled="disabled(date, mode)" />
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="control-group">
+										<label class="control-label" for="status">{{
+											'label.status' | translate }}</label>
+										<div class="controls">
+											<select ng-model="discountdetail.discountStatus"
+												ng-options="status.value as status.value for status in statuses"
+												value="{{status.value}}">
+											</select>
+										</div>
+									</div>
+								</td>
+							</tr>
+
+						</table>
+
+					</td>
+				</tr>
 			</table>
- 
-          <div class="offset3">
-            <a href="#/viewdiscounts/{{discountdetail.discountMasterId}}"><button id="cancel" type="reset" class="btn">{{'label.cancel' | translate}}</button></a>
-            <button id="submit" type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
-          </div>
-        </fieldset>
-      </form>
-    </div>
+
+			<div class="offset3">
+				<a href="#/viewdiscounts/{{discountdetail.discountMasterId}}"><button
+						id="cancel" type="reset" class="btn">{{'label.cancel' |
+						translate}}</button></a>
+				<button id="submit" type="submit" class="btn btn-primary">{{'label.save'
+					| translate}}</button>
+			</div>
+		</fieldset>
+	</form>
+</div>

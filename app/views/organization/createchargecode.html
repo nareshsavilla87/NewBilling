@@ -48,9 +48,11 @@
            <div class="control-group">
             <label class="control-label" for="durationType">{{'label.durationType' | translate }}</label>
             <div class="controls">
-              <select ng-model="formData.durationType"  ng-options="durationType.durationType as durationType.durationType for durationType in durationTypes" value="{{durationType.id}}">
-              </select>
-            </div>
+					<select ng-model="formData.durationType"
+						ng-options="durationTypeCode.durationTypeCode as durationTypeCode.durationTypeCode for durationTypeCode in durationTypes"
+						value="{{durationTypeCode.id}}">
+					</select>
+				</div>
           </div>
           
           <div class="control-group">

@@ -43,7 +43,7 @@
 								<div class="control-group">
             					<label class="control-label" for="promotiondesc">{{ 'label.promotionDescription' | translate }}</label>
             					<div class="controls">
-             					 <input type="text" id="promotiondesc" ng-model="formData.description"/>
+             					 <input type="text" id="promotiondesc" ng-model="formData.promotionDescription"/>
            						</div>
           						</div>
 							</td>
@@ -82,7 +82,7 @@
 								<div class="control-group">
                         		<label class="control-label">{{ 'label.startDate' | translate }}</label>
                         		<div class="controls">
-                            	<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.date" is-open="opened2" min="minDate" 
+                            	<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.startDate" is-open="opened2" min="minDate" 
                             	max="'2020-06-22'" date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
                         		</div>
           						</div>

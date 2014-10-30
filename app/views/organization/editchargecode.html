@@ -1,82 +1,104 @@
-    <div ng-controller="EditChargeCodeController">
-      <div>
-        <ul class="breadcrumb">
-          <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
-          <li><a href="#/chargecode">{{'label.managechargecode' | translate}}</a> <span class="divider">/</span></li>
-          <li><a href="#/viewchargecode/{{chargeCodeId}}">&nbsp;{{formData.chargeCode}} &nbsp;</a><span class="divider">/</span></li>
-          <li class="active">{{'label.editchargecode' | translate}}</li>
-        </ul>
-      </div>
-      <form class="form-horizontal well" ng-submit="submit()">
-       <div class="error" ng-show="errorStatus || errorDetails">
-		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
-	    </div>
-        <fieldset>
-          <legend>Edit Charge Code</legend>   
-          
-           <div class="control-group">
-            <label class="control-label" for="chargeCode">{{'label.chargecode' | translate }}</label>
-            <div class="controls">
-              <input type="text" id="chargeCode" ng-model="formData.chargeCode">
-            </div>
-          </div>
 
-		  <div class="control-group">
-            <label class="control-label" for="chargeDescription">{{'label.chargedes' | translate }}</label>
-            <div class="controls">
-              <input type="text" id="chargeDescription" ng-model="formData.chargeDescription">
-            </div>
-          </div>
-          
-          <div class="control-group">
-            <label class="control-label" for="chargeType">{{'label.chargetype' | translate }}</label>
-            <div class="controls">
-              <select ng-model="formData.chargeType"  ng-options="chargeType.chargeType as chargeType.chargeType for chargeType in chargeTypes" value="{{chargeType.id}}">
-              </select>
-            </div>
-          </div>
+<div ng-controller="EditChargeCodeController">
+	<div>
+		<ul class="breadcrumb">
+			<li><a href="#/organization">{{'link.admin.organisation' |
+					translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/chargecode">{{'label.managechargecode' |
+					translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/viewchargecode/{{chargeCodeId}}">&nbsp;{{formData.chargeCode}}
+					&nbsp;</a><span class="divider">/</span></li>
+			<li class="active">{{'label.editchargecode' | translate}}</li>
+		</ul>
+	</div>
+	<form class="form-horizontal well" ng-submit="submit()">
+		<div class="error" ng-show="errorStatus || errorDetails">
+			<label>{{'label.contract.error' | translate}}</label> <label
+				ng-show="errorStatus">{{errorStatus}}</label> <label
+				ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code
+				| translate}}</label>
+		</div>
+		<fieldset>
+			<legend>Edit Charge Code</legend>
+
+			<div class="control-group">
+				<label class="control-label" for="chargeCode">{{'label.chargecode'
+					| translate }}</label>
+				<div class="controls">
+					<input type="text" id="chargeCode" ng-model="formData.chargeCode">
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="chargeDescription">{{'label.chargedes'
+					| translate }}</label>
+				<div class="controls">
+					<input type="text" id="chargeDescription"
+						ng-model="formData.chargeDescription">
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="chargeType">{{'label.chargetype'
+					| translate }}</label>
+				<div class="controls">
+					<select ng-model="formData.chargeType"
+						ng-options="chargeType.chargeType as chargeType.chargeType for chargeType in chargeTypes"
+						value="{{chargeType.id}}">
+					</select>
+				</div>
+			</div>
 
 
-          <div class="control-group">
-            <label class="control-label" for="chargeDuration">{{'label.chargeDuration' | translate }}</label>
-            <div class="controls">
-              <input type="text" id="chargeDuration" ng-model="formData.chargeDuration">
-            </div>
-          </div>
-          
-           <div class="control-group">
-            <label class="control-label" for="durationType">{{'label.durationType' | translate }}</label>
-            <div class="controls">
-              <select ng-model="formData.durationType"  ng-options="durationType.durationType as durationType.durationType for durationType in durationTypes" value="{{durationType.id}}">
-              </select>
-            </div>
-          </div>
-          
-          
-          <div class="control-group">
-                  <label class="control-label" for="taxInclusive">{{'label.taxInclusive' | translate}}</label>
-                    <div class="controls">
-                      <label class="checkbox">
-                        <input type="checkbox" id="taxInclusive" ng-model="formData.taxInclusive">
-                      </label>
-                    </div>
-                </div>
-          
-         
-           <div class="control-group">
-            <label class="control-label" for="billFrequencyCode ">{{'label.billFrequencyCode' | translate }}</label>
-            <div class="controls">
-              <select ng-model="formData.billFrequencyCode"  ng-options="billFrequencyCode.billFrequencyCode as billFrequencyCode.billFrequencyCode for billFrequencyCode in billFrequencyCodes" value="{{billFrequencyCode.id}}">
-              </select>
-            </div>
-          </div>
-          
-          <div class="offset3">
-            <a href="#/viewchargecode/{{chargeCodeId}}"><button id="cancel" type="reset" class="btn">{{'label.cancel' | translate}}</button></a>
-            <button  id="submit" type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
-          </div>
-        </fieldset>
-      </form>
-    </div>
+			<div class="control-group">
+				<label class="control-label" for="chargeDuration">{{'label.chargeDuration'
+					| translate }}</label>
+				<div class="controls">
+					<input type="text" id="chargeDuration"
+						ng-model="formData.chargeDuration">
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="durationType">{{'label.durationType'
+					| translate }}</label>
+				<div class="controls">
+					<select ng-model="formData.durationType"
+						ng-options="durationTypeCode.durationTypeCode as durationTypeCode.durationTypeCode for durationTypeCode in durationTypes"
+						value="{{durationTypeCode.id}}">
+					</select>
+				</div>
+			</div>
+
+
+			<div class="control-group">
+				<label class="control-label" for="taxInclusive">{{'label.taxInclusive'
+					| translate}}</label>
+				<div class="controls">
+					<label class="checkbox"> <input type="checkbox"
+						id="taxInclusive" ng-model="formData.taxInclusive">
+					</label>
+				</div>
+			</div>
+
+
+			<div class="control-group">
+				<label class="control-label" for="billFrequencyCode ">{{'label.billFrequencyCode'
+					| translate }}</label>
+				<div class="controls">
+					<select ng-model="formData.billFrequencyCode"
+						ng-options="billFrequencyCode.billFrequencyCode as billFrequencyCode.billFrequencyCode for billFrequencyCode in billFrequencyCodes"
+						value="{{billFrequencyCode.id}}">
+					</select>
+				</div>
+			</div>
+
+			<div class="offset3">
+				<a href="#/viewchargecode/{{chargeCodeId}}"><button id="cancel"
+						type="reset" class="btn">{{'label.cancel' | translate}}</button></a>
+				<button id="submit" type="submit" class="btn btn-primary">{{'label.save'
+					| translate}}</button>
+			</div>
+		</fieldset>
+	</form>
+</div>

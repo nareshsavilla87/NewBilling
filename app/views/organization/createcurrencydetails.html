@@ -1,86 +1,107 @@
-      <div>
-        <ul class="breadcrumb">
-          <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
-          <li><a href="#/currencydetails">{{'label.currencydetails' | translate}}</a> <span class="divider">/</span></li>
-          <li class="active">{{'label.createcurrencydetails' | translate}}</li>
-        </ul>
-      </div>
-      <form class="form-horizontal well" ng-controller="CreateCurrencyDetailsController" ng-submit="submit()">
-       <div class="error" ng-show="errorStatus || errorDetails">
-		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
-	    </div>
-        <fieldset>
-			<table>
+
+<div>
+	<ul class="breadcrumb">
+		<li><a href="#/organization">{{'link.admin.organisation' |
+				translate}}</a> <span class="divider">/</span></li>
+		<li><a href="#/currencydetails">{{'label.currencydetails' |
+				translate}}</a> <span class="divider">/</span></li>
+		<li class="active">{{'label.createcurrencydetails' | translate}}</li>
+	</ul>
+</div>
+<form class="form-horizontal well"
+	ng-controller="CreateCurrencyDetailsController" ng-submit="submit()">
+	<div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label> <label
+			ng-show="errorStatus">{{errorStatus}}</label> <label
+			ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code
+			| translate}}</label>
+	</div>
+	<fieldset>
+		<table>
 			<tr>
 				<td>
 					<table>
 						<tr>
 							<td>
 								<div class="control-group">
-            					<label class="control-label" for="country">{{ 'label.country' | translate }}</label>
-            					<div class="controls">
-             					 <select ng-model="formData.country"  ng-options="countryData as countryData for countryData in countryDatas" value="{{countryData}}">
-             					 </select>
-            					</div>
-          						</div>
+									<label class="control-label" for="country">{{
+										'label.country' | translate }}</label>
+									<div class="controls">
+										<select ng-model="formData.country"
+											ng-options="countryData as countryData for countryData in countryDatas"
+											value="{{countryData}}">
+										</select>
+									</div>
+								</div>
 							</td>
 							<td>
 								<div class="control-group">
-            					<label class="control-label" for="currency">{{ 'label.currency' | translate }}</label>
-            					<div class="controls">
-             					 <select ng-model="formData.currency"  ng-options="currencydata.code as currencydata.displayLabel for currencydata in currencydatas" value="{{currencydata.code}}">
-             					 </select>
-            					</div>
-          						</div>
-							</td>
-							</tr>
-							<tr>
-							<td>
-								<div class="control-group">
-            					<label class="control-label" for="baseCurrency">{{ 'label.basecurrency' | translate }}</label>
-            					<div class="controls">
-             					 <select ng-model="formData.baseCurrency"  ng-options="currencydata.code as currencydata.displayLabel for currencydata in currencydatas" value="{{currencydata.code}}">
-             					 </select>
-            					</div>
-          						</div>
-							</td>
-							<td>
-								<div class="control-group">
-            					<label class="control-label" for="conversionRate">{{ 'label.conversionrate' | translate }}</label>
-            					<div class="controls">
-             					 <input type="text" ng-model="formData.conversionRate">
-             					 </select>
-            					</div>
-          						</div>
-							</td>
-							</tr>
-							<tr>
-							<td>
-								<div class="control-group">
-            					<label class="control-label" for="status">{{ 'label.status' | translate }}</label>
-            					<div class="controls">
-             					 <select ng-model="formData.status"  ng-options="currencystatus.value as currencystatus.value for currencystatus in currencystatus" value="{{currencystatus.value}}">
-             					 </select>
-            					</div>
-          						</div>
-							</td>
-							<td>
-							<div class="controls">
-                             <a href="#/currencydetails"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
-                             <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
-                           </div>
+									<label class="control-label" for="currency">{{
+										'label.currency' | translate }}</label>
+									<div class="controls">
+										<select ng-model="formData.currency"
+											ng-options="currencydata.code as currencydata.displayLabel for currencydata in currencydatas"
+											value="{{currencydata.code}}">
+										</select>
+									</div>
+								</div>
 							</td>
 						</tr>
-											
+						<tr>
+							<td>
+								<div class="control-group">
+									<label class="control-label" for="baseCurrency">{{
+										'label.basecurrency' | translate }}</label>
+									<div class="controls">
+										<select ng-model="formData.baseCurrency"
+											ng-options="currencydata.code as currencydata.displayLabel for currencydata in currencydatas"
+											value="{{currencydata.code}}">
+										</select>
+									</div>
+								</div>
+							</td>
+							<td>
+								<div class="control-group">
+									<label class="control-label" for="conversionRate">{{
+										'label.conversionrate' | translate }}</label>
+									<div class="controls">
+										<input type="text" ng-model="formData.conversionRate">
+										</select>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="control-group">
+									<label class="control-label" for="status">{{
+										'label.status' | translate }}</label>
+									<div class="controls">
+										<select ng-model="formData.status"
+											ng-options="currencystatus.value as currencystatus.value for currencystatus in currencystatus"
+											value="{{currencystatus.value}}">
+										</select>
+									</div>
+								</div>
+							</td>
+							<td>
+								<div class="controls">
+									<a href="#/currencydetails"><button id="cancel"
+											type="reset" class="btn">{{'button.cancel'|
+											translate}}</button></a>
+									<button id="submit" type="submit" class="btn btn-primary">{{'button.save'|
+										translate}}</button>
+								</div>
+							</td>
+						</tr>
+
 					</table>
-			
+
 				</td>
 			</tr>
-			</table>
-  			
-          
-          
-        </fieldset>
-      </form>
+		</table>
+
+
+
+	</fieldset>
+</form>

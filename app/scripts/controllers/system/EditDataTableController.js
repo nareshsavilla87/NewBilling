@@ -15,7 +15,6 @@
 
       resourceFactory.DataTablesResource.getTableDetails({datatablename: routeParams.tableName} , function(data) {
         scope.datatable = data;
-
         scope.formData.apptableName = data.applicationTableName;
 
         var temp=[];
@@ -24,7 +23,7 @@
           data.columnHeaderData.splice(0,1);
         }
         colName = data.columnHeaderData[0].columnName;
-        if(colName == 'client_id' || colName == 'office_id' || colName == 'group_id' || colName == 'center_id' || colName == 'loan_id' || colName == 'savings_account_id') {
+        if(colName == 'client_id' || colName == 'office_id' || colName == 'group_id' || colName == 'center_id' ) {
           data.columnHeaderData.splice(0,1);
         }
 
