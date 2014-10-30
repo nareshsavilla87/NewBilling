@@ -11,8 +11,13 @@
       scope.PendingClients = 0;
       scope.totalPages = 1;
       scope.status = 'ALL';
+      /**
+       * @default
+       * we call this function from below
+       * scope.clients = paginatorService.paginate(fetchFunction, 14);
+       * */
       var fetchFunction = function(offset, limit, callback) {
-        resourceFactory.clientResource.getAllClients({offset: offset, limit: limit,status: scope.status} , function(data){
+        resourceFactory.clientResource.getAllClients({offset: offset, limit: limit} , function(data){
         	scope.totalClients = data.totalFilteredRecords;
         	if(scope.totalClients%15 == 0)	
         		scope.totalPages = scope.totalClients/15;
@@ -72,7 +77,6 @@
     	  scope.clients = paginatorService.paginate(fetchFunction, 14);
       
       
-      
       scope.search123 = function(offset, limit, callback) {
           resourceFactory.clientResource.getAllClients({offset: offset, limit: limit , sqlSearch: scope.filterText } , callback); 
          };
@@ -80,20 +84,33 @@
        scope.search = function(filterText) {
         scope.clients = paginatorService.paginate(scope.search123, 14);
        };
+       
        /**
         * @ Changing status
-        * 
         * */
        scope.searchSource=function(sourceStatus){
+    	   /**
+    	    * This function used for specific status
+    	    * like New,Active... etc
+    	    * */
     	   scope.searchSources123 = function(offset, limit, callback) {
-    		   if(sourceStatus == 'ALL')
-    			   resourceFactory.clientResource.getAllClients({offset: offset, limit: limit} , callback);   
-    		   else
-    			   resourceFactory.clientResource.getAllClients({offset: offset, limit: limit , status: sourceStatus } , callback);
-    		   
- 	           
+    			   resourceFactory.clientResource.getAllClients({offset: offset, limit: limit,status: sourceStatus} , function(data){
+       	        	scope.totalClients = data.totalFilteredRecords;
+       	        	if(scope.totalClients%15 == 0)	
+       	        		scope.totalPages = scope.totalClients/15;
+       	        	else
+       	        		scope.totalPages = Math.floor(scope.totalClients/15)+1;
+       	        	
+       	        	callback(data);
+       	        });
     	   };
-    	   scope.clients = paginatorService.paginate(scope.searchSources123, 14);
+    	   
+    	   if(sourceStatus == 'ALL'){
+			   scope.clients = paginatorService.paginate(fetchFunction, 14);
+		   }else{
+			   scope.clients = paginatorService.paginate(scope.searchSources123, 14);
+		   }
+    	   
        };
     }
   });
