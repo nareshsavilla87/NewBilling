@@ -28,7 +28,7 @@
         	delete this.formData.id;
         	 this.formData.locale = $rootScope.locale.code;
         	
-            resourceFactory.eventPriceEditResource.update({'id': routeParams.id},this.formData,function(data){
+            resourceFactory.eventPriceUpdateResource.update({'id': routeParams.id},this.formData,function(data){
                 location.path('/viewEventPrice/' + data.resourceId);
              });
         };
