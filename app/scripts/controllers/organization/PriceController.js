@@ -9,7 +9,7 @@
          };
          
         resourceFactory.priceResource.get({planId: routeParams.id, template: 'true'} , function(data) {
-            scope.prices= data.serviceData;
+            scope.prices= data.pricingData;
             //alert(scope.prices[0].price.toLocaleString(""));
         });
         
