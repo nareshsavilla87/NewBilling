@@ -15,7 +15,7 @@
 	</div>
   	<form class="form-horizontal" ng-submit="submit()">
 	    <fieldset>
-	       <div class="control-group" ng-show="formData.displayName !='Middleware' && formData.displayName !='SIMULATOR'" >
+	       <div class="control-group" ng-show="formData.displayName !='MIDDLEWARE' && formData.displayName !='SIMULATOR'" >
                 <label class="control-label">{{'label.job.reportname' | translate }}<span class="required">*</span></label>
                 <div class="controls">
                   <select ng-model="jobparameters.batchName"  ng-options="reportData.batchName as reportData.batchName for reportData in reportDatas" value="{{office.id}}" >
@@ -30,21 +30,21 @@
             </div>
            </div>
            
-              <div class="control-group" ng-show="formData.displayName =='STATEMENT'">
+              <div class="control-group" ng-show="formData.displayName =='PDF'">
             <label class="control-label" for="startDate">{{ 'label.job.duedate' | translate }}</label>
             <div class="controls">
                  <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.dueDate" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"/>
             </div>
            </div>
            
-            <div class="control-group" ng-show="formData.displayName =='STATEMENT'">
+            <div class="control-group" ng-show="formData.displayName =='PDF'">
 			<label class="control-label" for="promotionalMessage">{{'label.job.promotionalmessage' | translate}}</label>
 			<div class="controls">
 				<textarea rows="2" cols="2" ng-model="formData.promotionalMessage"></textarea>
 			</div>
 	     	</div>  
 
-                 <div class="control-group" ng-show="formData.displayName =='Messanger'">
+                 <div class="control-group" ng-show="formData.displayName =='MESSAGING'">
                 <label class="control-label">{{ 'label.job.messagetemplate' | translate }}<span class="required">*</span></label>
                 <div class="controls">
                   <select ng-model="jobparameters.messageTemplate"  ng-options="billingMessageData.templateDescription as billingMessageData.templateDescription for billingMessageData in billingMessageDatas" value="{{office.id}}">
@@ -58,13 +58,13 @@
                  <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.exipiryDate" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"/>
             </div>
            </div>
-           <div class="control-group" ng-show="formData.displayName =='Report Email'">
+           <div class="control-group" ng-show="formData.displayName =='REPORTER'">
                <label class="control-label">{{ 'label.job.emailid' | translate }}<span class="required">*</span></label>
                 <div class="controls">
                 <input type="text" ng-model="jobparameters.emailId">
                 </div>
            </div>
-           <div class="control-group" ng-show="formData.displayName =='Middleware'">             
+           <div class="control-group" ng-show="formData.displayName =='MIDDLEWARE'">             
                <label class="control-label">{{ 'label.job.ProvSystem' | translate }}<span class="required">*</span></label>
                 <!-- <div class="controls">
                 <input type="text" ng-model="jobparameters.provSystem">
@@ -74,19 +74,19 @@
                 </select>
                 </div>    
            </div>
-           <div class="control-group" ng-show="formData.displayName =='Middleware'">              
+           <div class="control-group" ng-show="formData.displayName =='MIDDLEWARE'">              
                <label class="control-label">{{ 'label.job.url' | translate }}<span class="required">*</span></label>
                 <div class="controls">
                 <input type="text" ng-model="jobparameters.url">
                 </div>               
            </div>
-           <div class="control-group" ng-show="formData.displayName =='Middleware'">              
+           <div class="control-group" ng-show="formData.displayName =='MIDDLEWARE'">              
                 <label class="control-label">{{ 'label.job.username' | translate }}<span class="required">*</span></label>
                 <div class="controls">
                 <input type="text" ng-model="jobparameters.username">
                 </div>          
            </div>
-           <div class="control-group" ng-show="formData.displayName =='Middleware'">              
+           <div class="control-group" ng-show="formData.displayName =='MIDDLEWARE'">              
                 <label class="control-label">{{ 'label.job.password' | translate }}<span class="required">*</span></label>
                 <div class="controls">
                 <input type="text" ng-model="jobparameters.password">

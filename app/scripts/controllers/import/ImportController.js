@@ -44,11 +44,11 @@
         
         
         scope.downloadFile = function (id){ 
-            	 window.open($rootScope.hostUrl+ API_VERSION +'/uploadstatus/'+id+'/print?tenantIdentifier=default');
+            	 window.open($rootScope.hostUrl+ API_VERSION +'/datauploads/print/'+id+'?tenantIdentifier=default');
         };
              
         scope.logFile = function (id){ 
-        		window.open($rootScope.hostUrl+ API_VERSION +'/uploadstatus/'+id+'/printlog?tenantIdentifier=default');
+        		window.open($rootScope.hostUrl+ API_VERSION +'/datauploads/printlog/'+id+'?tenantIdentifier=default');
         };
     }
   });
