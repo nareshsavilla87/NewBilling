@@ -1429,6 +1429,7 @@
   "label.addresstype":"Address Type",
   "label.addressno":"Address No",
   "error.msg.billing.address.city.not.found":"City Not Found",
+  "label.addaddress":"Add Address",
   
   "#link.scheduler":"....",
   "link.scheduler":"Scheduler",
@@ -2086,7 +2087,8 @@
 "hint.ipaddress.pattern":"xxx.xxx.xxx.xxx",
 "form.error.ipaddress.pattern":"Invalid IpAddress",
 "validation.msg.ippool.subnet.is.not.within.expected.range":"subnet value must be between 0 and 32.",
-"validation.msg.ippool.ipAddress.cannot.be.blank":"ipAddress cannot be blank"
+"validation.msg.ippool.ipAddress.cannot.be.blank":"ipAddress cannot be blank",
+"validation.msg.client.closureReasonId.cannot.be.blank":"Closure reason cannot be blank",
 
 
 

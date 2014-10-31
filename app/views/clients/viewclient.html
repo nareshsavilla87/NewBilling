@@ -162,8 +162,8 @@
                             </tr>
                              <tr>
 
-                            <td colspan="2"><a ng-show="PermissionService.showMenu('UPDATE_ADDRESS')&&PermissionService.showMenu('READ_ADDRESS')" href="#/editAddress/{{client.id}}" class="btn btn-primary"><i class="icon-edit icon-white" ></i>Edit Address</button></a>
-                             <a ng-show="PermissionService.showMenu('UPDATE_ADDRESS')&&PermissionService.showMenu('READ_ADDRESS')" href="#/editAddress/{{client.id}}" class="btn btn-primary"><i class="icon-plus-sign icon-white" ></i>Add Other Address</button></a></td>
+                            <td colspan="2"><a ng-show="PermissionService.showMenu('UPDATE_ADDRESS')&&PermissionService.showMenu('READ_ADDRESS')" href="#/editaddress/{{client.id}}" class="btn btn-primary"><i class="icon-edit icon-white" ></i>Edit Address</button></a>
+                             <a ng-show="PermissionService.showMenu('UPDATE_ADDRESS')&&PermissionService.showMenu('READ_ADDRESS')" href="#/addaddress/{{client.id}}" class="btn btn-primary"><i class="icon-plus-sign icon-white" ></i>Add Other Address</button></a></td>
                             </tr>
                           </table>
                       </div>
@@ -199,7 +199,7 @@
                      <!--  <div>              
                          <b><h4>Address Details:</h4></b>
                          {{client.addressNo}}<strong>,</strong>{{client.street}}<strong>,</strong><br>{{client.city}}<strong>,</strong>{{client.state}}<strong>,</strong><br>{{client.country}}<strong>,</strong>{{client.zip}}<strong>.</strong>
-			            <strong> </strong><a href="#/editAddress/{{client.id}}">Edit Address</a><strong> </strong>
+			            <strong> </strong><a href="#/editaddress/{{client.id}}">Edit Address</a><strong> </strong>
 			         </div>	 -->
                   </div>
                   <div class="row-fluid" ng-show="PermissionService.showMenu('READ_ORDER')">
