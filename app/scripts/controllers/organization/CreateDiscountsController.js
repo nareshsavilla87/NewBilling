@@ -2,12 +2,12 @@
 	  mifosX.controllers = _.extend(module, {
 		  CreateDiscountsController: function(scope, resourceFactory, location,dateFilter,$rootScope) {
 	        scope.discountTypeDatas = [];
-	        scope.statuses = [];
+	        scope.statusDatas = [];
 	        scope.start={};
 	        scope.start.date = new Date();
 	        resourceFactory.discountTemplateResource.get(function(data) {
 	            scope.discountTypeDatas = data.discounTypeData;
-	            scope.statuses = data.status;
+	            scope.statusDatas = data.statusData;
 	            scope.formData = {
 	            		
 	            };

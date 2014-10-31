@@ -27,7 +27,7 @@
         if(colName == 'id') { data.columnHeaders.splice(0,1); }
 
         colName = data.columnHeaders[0].columnName;
-        if(colName == 'client_id' || colName == 'office_id' || colName == 'group_id' || colName == 'center_id' || colName == 'loan_id' || colName == 'savings_account_id') {
+        if(colName == 'client_id' || colName == 'office_id' || colName == 'group_id') {
           data.columnHeaders.splice(0,1);
           scope.isCenter = colName ==  'center_id' ? true : false;
         }
@@ -65,17 +65,15 @@
                 this.formData[scope.columnHeaders[i].columnName] = "";
             }
             if (scope.columnHeaders[i].columnDisplayType == 'DATE') {
-                this.formData[scope.columnHeaders[i].columnName] = dateFilter(this.formDat[scope.columnHeaders[i].columnName], scope.df);
+                this.formData[scope.columnHeaders[i].columnName] = dateFilter(this.formDat[scope.columnHeaders[i].columnName], 'dd MMMM YYYY');
             }
+           //console.log(scope.columnHeaders[i].columnDisplayType);
+            
         }
         
         resourceFactory.DataTablesResource.save(params, this.formData, function(data){
           var destination = "";
-          if ( data.loanId) {
-            destination = '/viewloanaccount/'+data.loanId;
-          } else if ( data.savingsId) {
-            destination = '/viewsavingaccount/' + data.savingsId;
-          } else if ( data.clientId) {
+          if ( data.clientId) {
             destination = '/viewclient/'+data.clientId;
           } else if ( data.groupId) {
               if (scope.isCenter) {

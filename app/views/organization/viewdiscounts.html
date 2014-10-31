@@ -1,29 +1,35 @@
-<div ng-controller="ViewDiscountsController"> 
+<div ng-controller="ViewDiscountsController">
 
-    <div class="paddedbottom10">
+	<div class="paddedbottom10">
 		<ul class="breadcrumb">
-	        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
-	        <li><a href="#/discounts">{{'label.managediscounts' | translate}}</a> <span class="divider">/</span></li>
-	        <li class="active">{{'label.viewdiscount' | translate}}</li>
-	    </ul>
-	    <div class="pull-right">
-	      <div class="btn-group">
-	          <a ng-show="PermissionService.showMenu('UPDATE_DISCOUNT')" href="#/editdiscounts/{{discounting.discountMasterId}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>	        
-	          <a ng-show="PermissionService.showMenu('DELETE_DISCOUNT')" ng-click="deletemessage()" class="btn btn-primary"><i class="icon-trash icon-white"></i> Delete</a>
-	      </div>
-	    </div>
+			<li><a href="#/organization">{{'link.admin.organisation' |
+					translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/discounts">{{'label.managediscounts' |
+					translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'label.viewdiscount' | translate}}</li>
+		</ul>
+		<div class="pull-right">
+			<div class="btn-group">
+				<a ng-show="PermissionService.showMenu('UPDATE_DISCOUNT')"
+					href="#/editdiscounts/{{discounting.id}}"
+					class="btn btn-primary"><i class="icon-edit icon-white"></i>
+					Edit</a> <a ng-show="PermissionService.showMenu('DELETE_DISCOUNT')"
+					ng-click="deletemessage()" class="btn btn-primary"><i
+					class="icon-trash icon-white"></i> Delete</a>
+			</div>
+		</div>
 	</div>
 
 	<div class="row paddedleft">
-					<h3>{{discounting.discountMasterId}}</h3>	
-                        <table  width="100%" >                     
-                             <tr>
+		<h3>{{discounting.id}}</h3>
+		<table width="100%">
+			<tr>
 				<td width="20%">{{ 'label.discountCode' | translate }}</td>
 				<td width="80%">{{discounting.discountCode}}</td>
 			</tr>
 			<tr>
 				<td>{{ 'label.discountType' | translate }}</td>
-				<td>{{discounting.discounType}}</td>
+				<td>{{discounting.discountType}}</td>
 			</tr>
 			<tr>
 				<td>{{ 'label.discountDescription' | translate }}</td>
@@ -39,9 +45,9 @@
 			</tr>
 			<tr>
 				<td>{{ 'label.status' | translate }}</td>
-				<td>{{discounting.discountstatus}}</td>
-			</tr>                                                                                                 
-                          </table>
-                      </div>                    
-                                     
-    </div>
+				<td>{{discounting.discountStatus}}</td>
+			</tr>
+		</table>
+	</div>
+
+</div>

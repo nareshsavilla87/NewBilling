@@ -1,107 +1,103 @@
 <div>
-    <ul class="breadcrumb">
-        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
-        <li class="active">{{'label.managediscounts' | translate}}&nbsp;&nbsp;{{employee.lastname}}</li>
-    </ul>
-    <!-- <div class="pull-right">
-        <a href="#/creatediscounts" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{ 'link.create.new.discount' | translate }}</a>
-    </div> -->
+	<ul class="breadcrumb">
+		<li><a href="#/organization">{{'link.admin.organisation' |
+				translate}}</a> <span class="divider">/</span></li>
+		<li class="active">{{'label.managediscounts' |
+			translate}}&nbsp;&nbsp;{{employee.lastname}}</li>
+	</ul>
+
 </div>
-<div  ng-controller="DiscountsController">
-<tabset  style="margin-bottom: 0px;">
-     <tab heading="{{'tab.discount' | translate}}" select="getDicounts()" ng-show="$parent.PermissionService.showMenu('READ_DISCOUNT')">
-        <div class="pull-right">
-          <a ng-show="PermissionService.showMenu('CREATE_DISCOUNT')" href="#/creatediscounts" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{ 'link.create.new.discount' | translate }}</a>
-       </div> 
-       <div>
-           <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
-           <br>
-        <table class="table">
-          <thead>
-            <tr class="graybg">
-                <th>{{ 'table.heading.id' | translate }}</th>
-                <th>{{ 'table.heading.discountCode' | translate }}</th>
-                <th>{{ 'table.heading.discountDescription' | translate }}</th>
-                <th>{{ 'table.heading.discountType' | translate }}</th>
-                <th>{{ 'table.heading.discountRate' | translate }}</th>
-                <th>{{ 'table.heading.startDate' | translate }}</th>
-                <th>{{ 'table.heading.status' | translate }}</th>
-            </tr>
-          </thead>
-          <tbody>
-             <tr class="pointer-main" ng-repeat="discount in discounts | filter:filterText">
-                <td class="pointer" data-ng-click="routeToDiscounts(discount.discountMasterId)">{{discount.discountMasterId}}</td>
-                <td class="pointer" data-ng-click="routeToDiscounts(discount.discountMasterId)">{{discount.discountCode}}</td>
-                <td class="pointer" data-ng-click="routeToDiscounts(discount.discountMasterId)">{{discount.discountDescription}}</td>       
-                <td class="pointer" data-ng-click="routeToDiscounts(discount.discountMasterId)">{{discount.discounType}}</td>         
-                <td class="pointer" data-ng-click="routeToDiscounts(discount.discountMasterId)">{{discount.discountRate}}</td>        
-                <td class="pointer" data-ng-click="routeToDiscounts(discount.discountMasterId)">{{discount.discountStartDate|DateFormat}}</td>         
-                <td class="pointer" data-ng-click="routeToDiscounts(discount.discountMasterId)">{{discount.discountstatus}}</td>               
-             </tr>
-          </tbody>
-         </table>
-        </div>
-      </tab>
-      <tab heading="{{'tab.PromotionCode' | translate}}" select="getPromotionCodes()" active="PromotionCodeTab" ng-show="$parent.PermissionService.showMenu('READ_PROMOTIONCODE')">
-        <div class="pull-right">
-           <a ng-show="PermissionService.showMenu('CREATE_PROMOTIONCODE')" href="#/createpromotion" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'link.create.new.PromotionCode' | translate }}</a>
-        </div> 
-        <div>
-            <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
-             <br>
-          <table class="table">
-            <thead>
-              <tr class="graybg">
-                <th>{{ 'table.heading.id' | translate }}</th>
-                <th>{{ 'table.heading.PromotionCode' | translate }}</th>
-                <th>{{ 'table.heading.promotionDescription' | translate }}</th>
-                <th>{{ 'table.heading.DurationType' | translate }}</th>
-                <th>{{ 'table.heading.Duration' | translate }}</th>
-               <th>{{ 'table.heading.discountType' | translate }}</th>
-                <th>{{ 'table.heading.discountRate' | translate }}</th>
-              </tr>
-            </thead>
-            <tbody>
-               <tr class="pointer-main" ng-repeat="promotiondadata in promotiondatas | filter:filterText">
-                <td class="pointer" data-ng-click="routeToPromotion(promotiondadata.id)">{{promotiondadata.id}}</td>
-                <td class="pointer" data-ng-click="routeToPromotion(promotiondadata.id)">{{promotiondadata.promotionCode}}</td>
-                <td class="pointer" data-ng-click="routeToPromotion(promotiondadata.id)">{{promotiondadata.promotionDescription}}</td>       
-                <td class="pointer" data-ng-click="routeToPromotion(promotiondadata.id)">{{promotiondadata.durationType}}</td>         
-                <td class="pointer" data-ng-click="routeToPromotion(promotiondadata.id)">{{promotiondadata.duration}}</td>  
-                <td class="pointer" data-ng-click="routeToPromotion(promotiondadata.id)">{{promotiondadata.discountType}}</td> 
-                <td class="pointer" data-ng-click="routeToPromotion(promotiondadata.id)">{{promotiondadata.discountRate}}</td>         
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </tab>
-    </tabset>
+<div ng-controller="DiscountsController">
+	<tabset style="margin-bottom: 0px;"> <tab
+		heading="{{'tab.discount' | translate}}" select="getDicounts()"
+		ng-show="$parent.PermissionService.showMenu('READ_DISCOUNT')">
+	<div class="pull-right">
+		<a ng-show="PermissionService.showMenu('CREATE_DISCOUNT')"
+			href="#/creatediscounts" class="btn btn-primary"><i
+			class="icon-plus icon-white"></i> {{ 'link.create.new.discount' |
+			translate }}</a>
+	</div>
+	<div>
+		<input ng-model="filterText" type="text" class="span marginbottom0px"
+			placeholder="Filter by name"> <br>
+		<table class="table">
+			<thead>
+				<tr class="graybg">
+					<th>{{ 'table.heading.id' | translate }}</th>
+					<th>{{ 'table.heading.discountCode' | translate }}</th>
+					<th>{{ 'table.heading.discountDescription' | translate }}</th>
+					<th>{{ 'table.heading.discountType' | translate }}</th>
+					<th>{{ 'table.heading.discountRate' | translate }}</th>
+					<th>{{ 'table.heading.startDate' | translate }}</th>
+					<th>{{ 'table.heading.status' | translate }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="pointer-main"
+					ng-repeat="discount in discounts | filter:filterText">
+					<td class="pointer"
+						data-ng-click="routeToDiscounts(discount.id)">{{discount.id}}</td>
+					<td class="pointer"
+						data-ng-click="routeToDiscounts(discount.id)">{{discount.discountCode}}</td>
+					<td class="pointer"
+						data-ng-click="routeToDiscounts(discount.id)">{{discount.discountDescription}}</td>
+					<td class="pointer"
+						data-ng-click="routeToDiscounts(discount.id)">{{discount.discounType}}</td>
+					<td class="pointer"
+						data-ng-click="routeToDiscounts(discount.id)">{{discount.discountRate}}</td>
+					<td class="pointer"
+						data-ng-click="routeToDiscounts(discount.id)">{{discount.discountStartDate|DateFormat}}</td>
+					<td class="pointer"
+						data-ng-click="routeToDiscounts(discount.id)">{{discount.discountstatus}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	</tab> <tab heading="{{'tab.PromotionCode' | translate}}"
+		select="getPromotionCodes()" active="PromotionCodeTab"
+		ng-show="$parent.PermissionService.showMenu('READ_PROMOTIONCODE')">
+	<div class="pull-right">
+		<a ng-show="PermissionService.showMenu('CREATE_PROMOTIONCODE')"
+			href="#/createpromotion" class="btn btn-primary"><i
+			class="icon-plus icon-white"></i>{{ 'link.create.new.PromotionCode' |
+			translate }}</a>
+	</div>
+	<div>
+		<input ng-model="filterText" type="text" class="span marginbottom0px"
+			placeholder="Filter by name"> <br>
+		<table class="table">
+			<thead>
+				<tr class="graybg">
+					<th>{{ 'table.heading.id' | translate }}</th>
+					<th>{{ 'table.heading.PromotionCode' | translate }}</th>
+					<th>{{ 'table.heading.promotionDescription' | translate }}</th>
+					<th>{{ 'table.heading.DurationType' | translate }}</th>
+					<th>{{ 'table.heading.Duration' | translate }}</th>
+					<th>{{ 'table.heading.discountType' | translate }}</th>
+					<th>{{ 'table.heading.discountRate' | translate }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="pointer-main"
+					ng-repeat="promotiondadata in promotiondatas | filter:filterText">
+					<td class="pointer"
+						data-ng-click="routeToPromotion(promotiondadata.id)">{{promotiondadata.id}}</td>
+					<td class="pointer"
+						data-ng-click="routeToPromotion(promotiondadata.id)">{{promotiondadata.promotionCode}}</td>
+					<td class="pointer"
+						data-ng-click="routeToPromotion(promotiondadata.id)">{{promotiondadata.promotionDescription}}</td>
+					<td class="pointer"
+						data-ng-click="routeToPromotion(promotiondadata.id)">{{promotiondadata.durationType}}</td>
+					<td class="pointer"
+						data-ng-click="routeToPromotion(promotiondadata.id)">{{promotiondadata.duration}}</td>
+					<td class="pointer"
+						data-ng-click="routeToPromotion(promotiondadata.id)">{{promotiondadata.discountType}}</td>
+					<td class="pointer"
+						data-ng-click="routeToPromotion(promotiondadata.id)">{{promotiondadata.discountRate}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	</tab> </tabset>
 </div>
 
-<!-- <div class="row-fluid" ng-controller="DiscountsController">
-    <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
-	<table class="table">
-        <thead>
-            <tr class="graybg">
-                <th>{{ 'table.heading.id' | translate }}</th>
-                <th>{{ 'table.heading.discountCode' | translate }}</th>
-                <th>{{ 'table.heading.discountDescription' | translate }}</th>
-                <th>{{ 'table.heading.discountType' | translate }}</th>
-                <th>{{ 'table.heading.discountRate' | translate }}</th>
-                <th>{{ 'table.heading.startDate' | translate }}</th>
-                <th>{{ 'table.heading.status' | translate }}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="pointer-main" ng-repeat="discount in discounts | filter:filterText">
-                <td class="pointer" data-ng-click="routeTo(discount.discountMasterId)">{{discount.discountMasterId}}</td>
-                <td class="pointer" data-ng-click="routeTo(discount.discountMasterId)">{{discount.discountCode}}</td>
-                <td class="pointer" data-ng-click="routeTo(discount.discountMasterId)">{{discount.discountDescription}}</td>       
-                <td class="pointer" data-ng-click="routeTo(discount.discountMasterId)">{{discount.discounType}}</td>         
-                <td class="pointer" data-ng-click="routeTo(discount.discountMasterId)">{{discount.discountRate}}</td>        
-                <td class="pointer" data-ng-click="routeTo(discount.discountMasterId)">{{discount.discountStartDate|DateFormat}}</td>         
-                <td class="pointer" data-ng-click="routeTo(discount.discountMasterId)">{{discount.discountstatus}}</td>               
-            </tr>
-        </tbody>
-    </table>
-</div> -->
