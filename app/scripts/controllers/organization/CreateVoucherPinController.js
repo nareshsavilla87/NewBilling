@@ -26,7 +26,7 @@
 	        };
 	        
 	        scope.submit = function() {  
-	        	alert(123);
+	        	
 	        	 if(this.formData.beginWith.length < this.formData.length){	
 	        		 scope.lengthValidationError = false;
 	        		 this.formData.locale = $rootScope.locale.code;
@@ -38,7 +38,6 @@
 		          });
 	        	 
 	        	 }else{
-	        		 alert(1234);
 	        		 scope.lengthValidationError = true;
 	        	 }
 	        		 
