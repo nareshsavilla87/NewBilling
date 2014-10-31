@@ -1,7 +1,8 @@
 (function(module) {
 	mifosX.controllers = _.extend(module,{
-		EditAddressController : function(scope,webStorage,routeParams,resourceFactory,dateFilter, location) {
+		AddAddressController : function(scope,webStorage,routeParams,resourceFactory,dateFilter, location) {
 							
+							scope.clientId = routeParams.id;
 							scope.formData = {};
 							scope.addressTypeData=[];
 							 var clientData = webStorage.get('clientData');
@@ -18,8 +19,7 @@
 						        scope.phone=clientData.phone;
 						        scope.image=clientData.image;
 							resourceFactory.addressEditResource.getAll({clientId: routeParams.id} , function(data) {	
-                                scope.formData=data.datas[0]; 
-                                scope.addressTypeData=data.addressOptionsData;
+								scope.addressTypeData = data.addressOptionsData;
                                 scope.cityDatas=data.cityData;
                                 /*$("#city").change(function(){               
                                 	scope.formData.state = '';
@@ -65,7 +65,7 @@
 								delete this.formData.addressKey;
 								delete this.formData.addressTypeId;
 								
-								resourceFactory.addressResource.update({clientId: routeParams.id},
+								resourceFactory.addressResource.save({clientId: routeParams.id},
 										this.formData, function(data) {
 											location.path('/viewclient/'
 													+ routeParams.id);
@@ -73,8 +73,8 @@
 							};
 						}
 					});
-	mifosX.ng.application.controller('EditAddressController', ['$scope','webStorage', '$routeParams', 'ResourceFactory','dateFilter', '$location', mifosX.controllers.EditAddressController]).run(function($log) {
-	    $log.info("EditAddressController initialized");
+	mifosX.ng.application.controller('AddAddressController', ['$scope','webStorage', '$routeParams', 'ResourceFactory','dateFilter', '$location', mifosX.controllers.AddAddressController]).run(function($log) {
+	    $log.info("AddAddressController initialized");
 	  });
 	
 }(mifosX.controllers || {}));

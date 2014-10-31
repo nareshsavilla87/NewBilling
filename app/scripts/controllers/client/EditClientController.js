@@ -22,7 +22,7 @@
         scope.image=clientData.image;
         }
         
-        resourceFactory.clientResource.get({clientId: routeParams.id, template: 'true'} , function(data) {
+        resourceFactory.clientResource.get({clientId: routeParams.id} , function(data) {
             scope.offices = data.officeOptions;
             scope.staffs = data.staffOptions; 
             scope.officeId = data.officeId;
@@ -79,7 +79,8 @@
             if(data.active){
                 scope.choice = 1;
             }
-
+           
+        });
        
 
         scope.onFileSelect = function($files) {

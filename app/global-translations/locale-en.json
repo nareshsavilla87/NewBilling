@@ -604,7 +604,7 @@
   "label.contract.contractype":"Contract Type",
   "label.contract.units":"Units",
   "label.contract.error":"Errors:",
-  "validation.msg.subscriptoins.subscriptionPeriod.cannot.be.blank":"Subscription Period cannot be blank",
+  "validation.msg.subscriptoins.subscriptionPeriod.cannot.be.blank":"Contract Period cannot be blank",
   "validation.msg.subscriptoins.units.cannot.be.blank":"Units cannot be blank",
   
   "#Plan":"......",
@@ -1429,6 +1429,7 @@
   "label.addresstype":"Address Type",
   "label.addressno":"Address No",
   "error.msg.billing.address.city.not.found":"City Not Found",
+  "label.addaddress":"Add Address",
   
   "#link.scheduler":"....",
   "link.scheduler":"Scheduler",
@@ -1641,10 +1642,6 @@
 "error.msg.no.active.price.available.for.this.plan":"No Active Prices Are Available For This Plan",
 "validation.msg.order.renewalPeriod.cannot.be.blank":"Please Select the Renewal Period",
 "validation.msg.order.disconnectReason.cannot.be.blank":"Please Select the reason for disconnect",
-
-
-"validation.msg.subscriptoins.subscriptionPeriod.cannot.be.blank":"Subscription Period cannot be blank",
-"validation.msg.subscriptoins.units.cannot.be.blank":"Units cannot be blank",
 
 "validation.msg.subscriptoins.subscriptionType.cannot.be.blank":"Please select Subscription type",
 "validation.msg.staff.firstname.cannot.be.blank":"First name cannot be blank",
@@ -2086,7 +2083,8 @@
 "hint.ipaddress.pattern":"xxx.xxx.xxx.xxx",
 "form.error.ipaddress.pattern":"Invalid IpAddress",
 "validation.msg.ippool.subnet.is.not.within.expected.range":"subnet value must be between 0 and 32.",
-"validation.msg.ippool.ipAddress.cannot.be.blank":"ipAddress cannot be blank"
+"validation.msg.ippool.ipAddress.cannot.be.blank":"ipAddress cannot be blank",
+"validation.msg.client.closureReasonId.cannot.be.blank":"Closure reason cannot be blank"
 
 
 

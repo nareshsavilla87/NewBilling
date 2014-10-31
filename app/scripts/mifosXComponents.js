@@ -213,6 +213,7 @@ define(['underscore', 'mifosX'], function() {
       'crm/tickets/ViewTicketController',
       'crm/tickets/AssignedTicketController',
       'client/EditAddressController',
+      'client/AddAddressController',
       'client/ViewStatementController',
       'client/OSDMessageController',
       'system/CreateHardwarePlanMappingController',
