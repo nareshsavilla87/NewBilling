@@ -81,43 +81,7 @@
         };
         
         scope.submit = function() {
-             delete this.formData.billRuleDatas; // removing allowed office list
-             delete this.formData.planStatus; // removing allowed roles list 
-             delete this.formData.datas; 
-             delete this.formData.volumeTypes;     //
-             delete this.formData.subscriptiondata;  // removing elected roles to re-format
-             delete this.formData.volumeTypes;
-             delete this.formData.provisionSysData;
-             
-             delete this.formData.isActive;
-             delete this.formData.planCount;
-             //delete this.formData.provisioingSystem;
-             delete this.formData.statusname;
-             delete this.formData.id;
-            
-             delete this.formData.selectedServices;  
-             delete this.formData.service;
-             delete this.formData.startDate;
-             delete this.formData.endDate;
-            /* this.formData.locale = 'en';
-         	var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
-         	var reqEndDate = dateFilter(scope.end.date,'dd MMMM yyyy');
-         	
-             this.formData.dateFormat = 'dd MMMM yyyy';
-             this.formData.startDate = reqDate;
-             this.formData.endDate = reqEndDate;*/
-             this.formData.dateFormat = 'dd MMMM yyyy';
-             this.formData.locale = $rootScope.locale.code;
-             if(scope.date.startDate){this.formData.startDate = dateFilter(scope.date.startDate,'dd MMMM yyyy');}
-             if(scope.date.endDate){this.formData.endDate= dateFilter(scope.end.endDate,'dd MMMM yyyy');}
-             this.formData.provisioingSystem=this.formData.provisionSystem;
-             this.formData.duration=this.formData.contractPeriod;
-             
-             delete this.formData.provisionSystem;
-             delete this.formData.contractPeriod;
-             delete this.formData.unitType;
-
-
+          
           // reformatting selected services
              scope.formData.services = [];
              
