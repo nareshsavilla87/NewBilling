@@ -210,7 +210,6 @@
 	        		 scope.formData4.planCode=value;
 	        		 
 	        		  for (var i in data.subscriptiondata) {
-	                 	
 	                 	if(data.subscriptiondata[i].Contractdata == data.contractPeriod){
 	                 		 scope.formData4.contractPeriod=data.subscriptiondata[i].id; 
 	                 	}
@@ -370,11 +369,6 @@
 	            	});
 	            	}
 	            	location.path('/viewclient/'+ resourceId);
-
-
-	 	         /*   resourceFactory.activationProcessResource.save(scope.ActivationData,function(data){
-	            	 location.path('/viewclient/' + data.resourceId);
->>>>>>> obsplatform-1.01*/
 	            });
 	           
 	        };

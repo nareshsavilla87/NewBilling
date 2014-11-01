@@ -22,7 +22,7 @@
         scope.image=clientData.image;
         }
         
-        resourceFactory.clientResource.get({clientId: routeParams.id, template: 'true'} , function(data) {
+        resourceFactory.clientResource.get({clientId: routeParams.id,template:'true'} , function(data) {
             scope.offices = data.officeOptions;
             scope.staffs = data.staffOptions; 
             scope.officeId = data.officeId;
@@ -31,21 +31,8 @@
             scope.entryType=data.entryType;
             scope.formData.groupName=data.groupName;
             scope.groupNameDatas=data.groupNameDatas;
-            scope.groupNameDatas=data.groupNameDatas;
-          /*  var filePath = data.imageKey;
-            scope.fileName=filePath.split("/").pop();
-            $("#file").on('trigger',function(evt) {
-    			var files = [],fileList, i;
-    			files[0]=new File([""],scope.fileName);
-    			fileList = evt.target.files;
-    			console.log(evt.target.files);
-    			if (fileList != null) {
-    				for (i = 0; i < fileList.length; i++) {	
-    					files.push(fileList.item(i));
-    				}
-    			}*/
     			
-    		//});
+    		});
         	
         for(var i=0;i<scope.groupNameDatas.length;i++){
 	    	if(scope.groupNameDatas[i].groupName==data.groupName){
@@ -79,7 +66,8 @@
             if(data.active){
                 scope.choice = 1;
             }
-
+           
+        });
        
 
         scope.onFileSelect = function($files) {
@@ -113,7 +101,7 @@
               }
           });
         };
-    }
+     }
   });
   mifosX.ng.application.controller('EditClientController', ['$scope','webStorage', '$routeParams', 'ResourceFactory', '$location', '$http','dateFilter','API_VERSION','$rootScope','$upload','$parse', mifosX.controllers.EditClientController]).run(function($log) {
     $log.info("EditClientController initialized");

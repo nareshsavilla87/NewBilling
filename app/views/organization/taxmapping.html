@@ -20,12 +20,12 @@
         </thead>
         <tbody>
             <tr ng-repeat="taxmapping in taxmappings | filter:filterText">
-                <td><a href="#/viewtaxmapping/{{taxmapping.id}}">{{taxmapping.chargeCode}}</td>        
+                <td><a href="#/viewtaxmapping/{{taxmapping.id}}">{{taxmapping.chargeCode}}</a></td>        
                 <td>{{taxmapping.taxCode}}</td>        
                 <td>{{taxmapping.startDate | DateFormat}}</td>
-                <td>{{taxmapping.type}}</td> 
+                <td>{{taxmapping.taxType}}</td> 
                 <td>{{taxmapping.rate}}</td> 
-                <td>{{taxmapping.TaxRegion}}</td> 
+                <td>{{taxmapping.taxRegion}}</td> 
             </tr>
         </tbody>
     </table>

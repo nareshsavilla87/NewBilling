@@ -72,7 +72,7 @@
 						<label class="control-label" for="status"> {{'label.ticket.status' | translate }} </label>
 						<div class="controls">
 							<select ng-model="formData.status"
-								ng-options="statusData.statusCode as statusData.statusDescription for statusData in statusTypes"
+								ng-options="statusData.id as statusData.mCodeValue for statusData in statusTypes"
 								value="{{statusData.statusCode}}"></select>
 						</div>
 					</div>

@@ -696,8 +696,11 @@
       .when('/closeTicket/:clientId/:id', {
           templateUrl : 'views/crm/tickets/closeTicket.html'
         })  
-      .when('/editAddress/:id', {
-          templateUrl : 'views/clients/editAddress.html'
+      .when('/editaddress/:id', {
+          templateUrl : 'views/clients/editaddress.html'
+        })
+        .when('/addaddress/:id', {
+        	templateUrl : 'views/clients/addaddress.html'
         })
         .when('/viewstatement/:id', {
           templateUrl : 'views/clients/viewstatement.html'

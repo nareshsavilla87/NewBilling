@@ -1,7 +1,6 @@
 (function(module) {
 	mifosX.controllers = _.extend(module, {
-		DiscountsController : function(scope, resourceFactory, location,
-				webStorage, PermissionService) {
+		DiscountsController : function(scope, resourceFactory, location,webStorage, PermissionService) {
 
 			scope.discounts = [];
 			scope.promotiondatas = [];
@@ -12,9 +11,7 @@
 				callingTab = "";
 			} else {
 				scope.displayTab = callingTab.someString;
-
 				if (scope.displayTab == "Promotioncode") {
-
 					scope.PromotionCodeTab = true;
 					webStorage.remove('callingTab');
 				}
@@ -41,13 +38,7 @@
 			};
 		}
 	});
-	mifosX.ng.application
-			.controller(
-					'DiscountsController',
-					[ '$scope', 'ResourceFactory', '$location', 'webStorage',
-							'PermissionService',
-							mifosX.controllers.DiscountsController ]).run(
-					function($log) {
-						$log.info("DiscountsController initialized");
-					});
+	mifosX.ng.application.controller('DiscountsController',[ '$scope', 'ResourceFactory', '$location', 'webStorage','PermissionService',mifosX.controllers.DiscountsController ]).run(function($log) {
+		$log.info("DiscountsController initialized");
+  });
 }(mifosX.controllers || {}));

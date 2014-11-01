@@ -3,9 +3,14 @@
     <ul class="breadcrumb">
         <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
         <li class="active">{{'label.ManageVoucherpins' | translate}}&nbsp;&nbsp;{{employee.lastname}}</li>
-    </ul>
+    </ul><br/>
+    <div class="error" ng-show="errorStatus || errorDetails">
+			<label>{{'label.error' | translate}}</label>
+			<label ng-show="errorStatus">{{errorStatus}}</label>
+			<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	</div>
     <div class="pull-right">
-        <a ng-show="PermissionService.showMenu('CREATE_RANDAMGENERATOR')" href="#/createvoucherpin" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{ 'link.create.new.voucherpin' | translate }}</a>
+        <a ng-show="PermissionService.showMenu('CREATE_VOUCHER')" href="#/createvoucherpin" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{ 'link.create.new.voucherpin' | translate }}</a>
     </div>
 </div>
 

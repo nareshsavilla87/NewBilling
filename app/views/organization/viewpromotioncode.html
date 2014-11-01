@@ -1,26 +1,31 @@
-<div ng-controller="ViewPromotioncodeController"> 
+<div ng-controller="ViewPromotioncodeController">
 
-    <div class="paddedbottom10">
+	<div class="paddedbottom10">
 		<ul class="breadcrumb">
-	        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/organization">{{'link.admin.organisation' |
+					translate}}</a> <span class="divider">/</span></li>
 
-	        <li><a href="#/discounts" ng-click="promotionTab()">{{'label.managediscounts' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/discounts" ng-click="promotionTab()">{{'label.managediscounts'
+					| translate}}</a> <span class="divider">/</span></li>
 
-	        <li class="active">{{'label.viewPromotioncode' | translate}}</li>
-	    </ul>
-	    <div class="pull-right">
-	      <div class="btn-group">
+			<li class="active">{{'label.viewPromotioncode' | translate}}</li>
+		</ul>
+		<div class="pull-right">
+			<div class="btn-group">
 				<a ng-show="PermissionService.showMenu('UPDATE_PROMOTIONCODE')"
 					href="#/editpromotioncode/{{promotiondata.id}}"
 					class="btn btn-primary"><i class="icon-edit icon-white"></i>
-					{{'button.edit' | translate}}</a> <a ng-show="PermissionService.showMenu('DELETE_PROMOTIONCODE')" ng-click="deletePromotion()" class="btn btn-primary"><i class="icon-trash icon-white"></i> {{'button.delete' | translate}}</a>
-	      </div>
-	    </div>
+					{{'button.edit' | translate}}</a> <a
+					ng-show="PermissionService.showMenu('DELETE_PROMOTIONCODE')"
+					ng-click="deletePromotion()" class="btn btn-primary"><i
+					class="icon-trash icon-white"></i> {{'button.delete' | translate}}</a>
+			</div>
+		</div>
 	</div>
-	
+
 	<script type="text/ng-template" id="approve.html">
                     <div class="modal-header silver">
-                        <h3 class="bolder">{{'dialog.item.title.message' | translate}}</h3>
+                        <h3 class="bolder">{{'dialog.promotion.code.title.message' | translate}}</h3>
                     </div>
                     <div class="modal-body" style="height:60px;">
                        <h4>Are you sure?</h4>
@@ -32,9 +37,9 @@
       </script>
 
 	<div class="row paddedleft">
-					<h3>{{promotiondata.id}}</h3>	
-                        <table  width="100%" >                     
-                             <tr>
+		<h3>{{promotiondata.id}}</h3>
+		<table width="100%">
+			<tr>
 				<td width="20%">{{ 'label.promotionCode' | translate }}</td>
 				<td width="80%">{{promotiondata.promotionCode}}</td>
 			</tr>
@@ -57,8 +62,8 @@
 			<tr>
 				<td>{{ 'label.discountRate' | translate }}</td>
 				<td>{{promotiondata.discountRate}}</td>
-			</tr>                                                                                                 
-                          </table>
-                      </div>                    
-                                     
-  </div>
+			</tr>
+		</table>
+	</div>
+
+</div>

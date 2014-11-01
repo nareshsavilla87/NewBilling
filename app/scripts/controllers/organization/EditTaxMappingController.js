@@ -6,8 +6,8 @@
         scope.priceRegionDatas = [];
         scope.date = {};
          resourceFactory.getTaxmappingResource.get({taxId: routeParams.id, template: 'true'} , function(data) {
-             scope.chargecodetaxs = data.chargeCodeForTax;
-             scope.typetaxmapdatas = data.taxMapData;
+             scope.chargecodetaxs = data.chargeCodesForTax;
+             scope.taxTypeDatas = data.taxTypeData;
              scope.priceRegionDatas = data.priceRegionData;
             scope.taxMapId = data.id;
             scope.formData=data;
@@ -18,18 +18,16 @@
         });
         
         scope.submit = function() {
-//        	this.formData.taxRegion=formData.priceregion;
+        	
         	this.formData.locale = $rootScope.locale.code;
             this.formData.dateFormat = 'dd MMMM yyyy';
-            this.formData.taxRegion=this.formData.TaxRegionId;
+            this.formData.taxRegion=this.formData.taxRegionId;
         	if(scope.date.startDate){this.formData.startDate = dateFilter(scope.date.startDate,'dd MMMM yyyy');}
         	delete this.formData.id;
-            delete this.formData.priceregion;
             delete this.formData.priceRegionData;
-            delete this.formData.TaxRegionId;
-            delete this.formData.TaxRegion;
-            delete this.formData.taxMapData;
-            delete this.formData.chargeCodeForTax;
+            delete this.formData.taxRegionId;
+            delete this.formData.taxTypeData;
+            delete this.formData.chargeCodesForTax;
             
                resourceFactory.getTaxmappingResource.update({'taxId': routeParams.id},this.formData,function(data){
              location.path('/viewtaxmapping/' + data.resourceId);
