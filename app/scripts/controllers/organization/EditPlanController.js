@@ -78,7 +78,7 @@
         scope.submit = function() {
              delete this.formData.billRuleDatas; // removing allowed office list
              delete this.formData.planStatus; // removing allowed roles list 
-                //
+             delete this.formData.datas; 
              delete this.formData.volumeTypes;     //
              delete this.formData.subscriptiondata;  // removing elected roles to re-format
              delete this.formData.volumeTypes;

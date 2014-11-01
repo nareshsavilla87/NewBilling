@@ -545,19 +545,24 @@
               	  getAlldetails: {method: 'GET', params: {}},
                     get: {method: 'GET', params: {},isArray: true},
                     update: {method: 'PUT', params: {}}
-                }),	
-                grnResource: defineResource(apiVer + "/itemdetails/grn:itemId/:anotherresource", {itemId:'@itemId',anotherresource:'@anotherresource'},{
-             	   getAlldetails: {method: 'GET', params: {}},
-                   get: {method: 'GET', params: {}}
+                }),
+                
+                grnTemplateResource: defineResource(apiVer + "/grn/template", {},{
+                    get: {method: 'GET', params: {}}
+                }),
+                
+                grnResource: defineResource(apiVer + "/grn/:grnId", {grnId: '@grnId'},{
+                   get: {method: 'GET', params: {}},
+                  update: {method: 'PUT', params: {}}
                }),
                singleItemDetailResource: defineResource(apiVer + "/itemdetails/singleitem/:itemId", {}, {
                    get: {method: 'GET', params: {}}	
                }),
-                 grntemplateResource: defineResource(apiVer + "/itemdetails/addgrn", {}, {
+                /* grnapiResource: defineResource(apiVer + "/itemdetails/addgrn", {}, {
               	   getAlldetails: {method: 'GET', params: {}, isArray: true},
                     get: {method: 'GET', params: {}}
-                 }),
-                 grnSingleTemplateResource: defineResource(apiVer + "/itemdetails/template", {grnId: '@grnId'}, {
+                 }),*/
+                 itemDetailTemplateResource: defineResource(apiVer + "/itemdetails/template", {grnId: '@grnId'}, {
                        get: {method: 'GET', params: {}}	
                  }),
                  grnUpdateResource: defineResource(apiVer + "/itemdetails/editgrn/:grnId", {grnId: '@grnId'}, {

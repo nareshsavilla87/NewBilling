@@ -36,7 +36,7 @@
             this.formData.dateFormat = 'dd MMMM yyyy';
             this.formData.purchaseDate = reqDate;
             
-            resourceFactory.grnUpdateResource.update({grnId:routeParams.id},this.formData,function(data){
+            resourceFactory.grnResource.update({grnId:routeParams.id},this.formData,function(data){
             if(PermissionService.showMenu('READ_GRN'))
             	location.path('/viewgrn/' + data.resourceId);
             else

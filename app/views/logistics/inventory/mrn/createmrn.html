@@ -34,7 +34,7 @@
 	            						<label class="control-label" for="itemDescription">{{'label.mrn.item' | translate }}&nbsp;<span class="required">*</span></label>
 									<div class="controls">
 										<select ng-model="formData.itemDescription"
-											ng-options="itemMasterData.itemId as itemMasterData.itemDescription for itemMasterData in itemMasterDatas"
+											ng-options="itemMasterData.id as itemMasterData.itemCode for itemMasterData in itemMasterDatas"
 											value="{{itemMasterData.itemId}}">
 										</select>
 									</div>

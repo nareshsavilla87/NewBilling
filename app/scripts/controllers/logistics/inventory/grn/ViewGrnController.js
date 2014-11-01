@@ -6,7 +6,7 @@
 			  scope.selectedGRN=function(){
 		        	webStorage.add("callingTab", {someString: "grn" });
 		        }
-	        resourceFactory.grnSingleTemplateResource.get({grnId: routeParams.id} , function(data) {
+	        resourceFactory.grnResource.get({grnId: routeParams.id} , function(data) {
 	        	scope.grn = data;
 	        });
 	        
