@@ -32,8 +32,6 @@
             scope.formData.groupName=data.groupName;
             scope.groupNameDatas=data.groupNameDatas;
     			
-    		});
-        	
         for(var i=0;i<scope.groupNameDatas.length;i++){
 	    	if(scope.groupNameDatas[i].groupName==data.groupName){
 	    		scope.groupName=scope.groupNameDatas[i].groupName;
