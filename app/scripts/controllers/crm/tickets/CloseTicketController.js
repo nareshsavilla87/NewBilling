@@ -17,8 +17,8 @@
 		    scope.categoryType=clientData.categoryType;
 	        scope.email=clientData.email;
 	        scope.phone=clientData.phone;
-        resourceFactory.ticketResourceTemplate.get(function(data) {       	 	
-        	scope.statusTypes = data.statusType;				
+        resourceFactory.ticketResourceTemplate.getForCloseTicket({templateFor: 'closeticket'}, function(data) {       	 	
+        	scope.statusTypes = data;				
         	scope.clientId=routeParams.clientId;
 			scope.ticketId=routeParams.id;               
         });

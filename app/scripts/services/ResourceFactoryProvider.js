@@ -379,28 +379,28 @@
                 getDiscountDetails: {method: 'GET', params: {discountId:'@discountId'}},
                 update: {method: 'PUT', params: {}}
               }),
-         prospectResource: defineResource(apiVer + "/prospects/:clientProspectId", {clientProspectId:'@clientProspectId'}, {
+              
+         getAllProspectResource: defineResource(apiVer + "/prospects/allprospects",{},  {
+              	getAllDetails: {method: 'GET', params: {}},
+              	get: {method: 'GET', params: {}}
+              }),
+         prospectResource: defineResource(apiVer + "/prospects/:prospectId", {prospectId:'@prospectId'}, {
                getAllProspects: {method: 'GET', params: {}, isArray: true},
-               getDetails: {method: 'GET', params: {clientProspectId:'@clientProspectId'}}
-                }),
-         prospectEditResource: defineResource(apiVer + "/prospects/edit/:id",{id: '@id'}, {
-                    get: {method: 'GET', params: {}},
-                    update: {method: 'PUT', params: {}}
-                }),
-         prospectDeleteResource: defineResource(apiVer + "/prospects/:deleteProspectId", {deleteProspectId:'@deleteProspectId'}, {
-               getProspects: {method: 'GET', params: {}, isArray: true},
+               getDetails: {method: 'GET', params: {clientProspectId:'@clientProspectId'}},
+               getViewProspects: {method: 'GET', params: {}},
                update: {method: 'PUT', params: {}}
-                }),
-         prospectViewResource: defineResource(apiVer + "/prospects/edit/:id", {id:'@id'}, {
-              getViewProspects: {method: 'GET', params: {}}
-                }),
+                }),            
+         prospectTemplateResource: defineResource(apiVer + "/prospects/template", {}, {
+             	getTemplate: {method: 'GET', params: {}},
+             	update: {method: 'PUT', params: {}}
+             	}),
+         prospectFollowUpResource: defineResource(apiVer + "/prospects/followup/:prospectId",{prospectId: '@prospectId'}, {
+             	get: {method: 'GET', params: {}},
+             	update: {method: 'PUT', params: {}}
+         		}),       	
          prospectHistoryResource: defineResource(apiVer + "/prospects/:prospectdetailid/history", {prospectdetailid:'@prospectdetailid'}, {
               getHistoryProspects: {method: 'GET', params: {}}
-                }),       
-         prospectTemplateResource: defineResource(apiVer + "/prospects/:clientProspectId/template", {}, {
-            getTemplate: {method: 'GET', params: {}},
-            update: {method: 'PUT', params: {}}
-            }),
+                }),         
          prospectConvertResource: defineResource(apiVer + "/prospects/converttoclient/:deleteProspectId", {deleteProspectId:'@deleteProspectId'}, {
             getViewProspects: {method: 'GET', params: {}}
             }),
@@ -450,10 +450,7 @@
                 	getAllDetails: {method: 'GET', params: {}},
                 	get: {method: 'GET', params: {}}
                 }),
-                getAllProspectResource: defineResource(apiVer + "/prospects/allprospects",{},  {
-                	getAllDetails: {method: 'GET', params: {}},
-                	get: {method: 'GET', params: {}}
-                }),
+                
                 statementResource: defineResource(apiVer + "/billmaster/:clientId", {clientId:'@clientId'}, {
                     get: {method: 'GET', params: {}, isArray: true},
                     update: { method: 'PUT'}
@@ -512,10 +509,7 @@
                   }),
                 regionResourceGetStates: defineResource(apiVer + "/regions/getstates/:countryId",{countryId:'@countryId'},  {
                   	  get: {method: 'POST', params: {}}     	 
-                  }),   
-                  ticketResourceTemplate: defineResource(apiVer + "/tickets/template",{},  {
-                  	  get: {method: 'GET', params: {}}     	 
-                  }),  
+                  }),    
                   ticketResource: defineResource(apiVer + "/tickets/:clientId/:id",{clientId:'@clientId', id:'@id'},  {
                 	  get: {method: 'GET', params: {}},
                 	  getAll: {method: 'GET', params: {}, isArray:true}
@@ -690,7 +684,8 @@
               	  getprice: {method: 'GET', params: {eventId:'@eventId'}, isArray:true}
                 }),
                 ticketResourceTemplate: defineResource(apiVer + "/tickets/template",{},  {
-              	  get: {method: 'GET', params: {}}     	 
+              	  get: {method: 'GET', params: {}},
+              	  getForCloseTicket: {method: 'GET', params: {}, isArray:true}
               }),  
             ticketResource: defineResource(apiVer + "/tickets/:clientId/:id",{clientId:'@clientId', id:'@id'},  {
             	  get: {method: 'GET', params: {}},

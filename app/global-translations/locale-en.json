@@ -2087,14 +2087,9 @@
 "form.error.ipaddress.pattern":"Invalid IpAddress",
 "validation.msg.ippool.subnet.is.not.within.expected.range":"subnet value must be between 0 and 32.",
 "validation.msg.ippool.ipAddress.cannot.be.blank":"ipAddress cannot be blank",
-"validation.msg.client.closureReasonId.cannot.be.blank":"Closure reason cannot be blank"
-
-
-
-
-
-
-
+"validation.msg.client.closureReasonId.cannot.be.blank":"Closure reason cannot be blank",
+"error.msg.voucher.no.length.match.exception":"length of 'Begin With' should be less than 'Length' value",
+"form.error.voucher.no.length.match.exception":"length of 'Begin With' should be less than 'Length Of Pin'."
 
 
 

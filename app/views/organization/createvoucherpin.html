@@ -5,7 +5,7 @@
           <li class="active">{{'label.createvoucherpin' | translate}}</li>
         </ul>
       </div>
-      <form class="form-horizontal well" ng-controller="CreateVoucherPinController" ng-submit="submit()">
+      <form name = "createVoucherForm" class="form-horizontal well" ng-controller="CreateVoucherPinController" ng-submit="submit()">
        <div class="error" ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label ng-show="errorStatus">{{errorStatus}}</label>
@@ -49,6 +49,7 @@
             					<label class="control-label" for="beginWith">{{ 'label.beginWith' | translate }}</label>
             					<div class="controls">
               					<input type="text" id="beginWith" ng-model="formData.beginWith">
+              					<small class="error" ng-show="lengthValidationError">{{'form.error.voucher.no.length.match.exception'|translate}}</small>
             					</div>
           						</div>
 							</td>
@@ -112,7 +113,7 @@
 			</table>
           <div class="offset3">
             <a href="#/voucherpins"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
-            <button  id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button> 
+            <button  id="submit" type="submit" class="btn btn-primary" ng-disabled="!createVoucherForm.$valid">{{'button.save'| translate}}</button> 
           </div>
           
         </fieldset>

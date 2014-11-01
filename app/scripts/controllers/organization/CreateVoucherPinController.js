@@ -7,6 +7,8 @@
 	        scope.plandatas = [];
 	        scope.start={};
 	        scope.start.date = new Date();
+	        scope.lengthValidationError = false;
+	        
 	        resourceFactory.voucherpinTemplateResource.get(function(data) {
 	            scope.pinCategoryDatas = data.pinCategoryData;
 	            //scope.pinTypeDatas = data.pinTypeData;
@@ -24,14 +26,22 @@
 	        };
 	        
 	        scope.submit = function() {  
-
-	        	 this.formData.locale = $rootScope.locale.code;
-	             this.formData.dateFormat = "dd MMMM yyyy";
-	             var exipiryDate = dateFilter(scope.start.date,'dd MMMM yyyy');
-	             this.formData.expiryDate=exipiryDate;
-	            resourceFactory.voucherpinResource.save(this.formData,function(data){
-	            	location.path('/voucherpins');
-	          });
+	        	
+	        	 if(this.formData.beginWith.length < this.formData.length){	
+	        		 scope.lengthValidationError = false;
+	        		 this.formData.locale = $rootScope.locale.code;
+		             this.formData.dateFormat = "dd MMMM yyyy";
+		             var exipiryDate = dateFilter(scope.start.date,'dd MMMM yyyy');
+		             this.formData.expiryDate=exipiryDate;
+		            resourceFactory.voucherpinResource.save(this.formData,function(data){
+		            	location.path('/voucherpins');
+		          });
+	        	 
+	        	 }else{
+	        		 scope.lengthValidationError = true;
+	        	 }
+	        		 
+	        	
 	        };
 	    }
 	  });

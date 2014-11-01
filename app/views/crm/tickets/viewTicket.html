@@ -154,9 +154,11 @@
             <tr ng-repeat="history in historyData  | filter:filterText">    
                 <td>{{history.createdDate | DateFormat}}</td>  
                 <td>{{history.assignedTo}}</td>
-                <td>{{history.attachedFile}}</td>
+                <td>{{history.attachedFile}}&nbsp;
+                	<a ng-show="history.attachedFile" ng-click="downloadDocument(history.id)"><i class="icon-cloud-download"></i></a>
+                </td>
                 <td>{{history.statusDescription}}</td>
-                <td>{{history.problemDescription}}</td>             
+                <td>{{problemDescription}}</td>             
             </tr>
         </tbody>
         </table>
