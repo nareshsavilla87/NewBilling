@@ -26,7 +26,7 @@
           <div class="control-group">
             <label class="control-label" for="subscriptionType">{{ 'label.contract.contractype' | translate }}</label>
             <div class="controls">
-              <select ng-model="formData.subscriptionType"  ng-options="subscriptions.durationType as subscriptions.durationType for subscriptions in subscriptions" value="{{subscriptions.durationType}}">
+              <select ng-model="formData.subscriptionType"  ng-options="subscriptions.durationTypeCode as subscriptions.durationTypeCode for subscriptions in subscriptions" >
               </select>
             </div>
           </div>
@@ -34,7 +34,7 @@
           <div class="control-group">
             <label class="control-label" for="units">{{ 'label.contract.units' | translate }}</label>
             <div class="controls">
-              <input type="text" id="units" ng-model="formData.units">
+              <input type="number" id="units" ng-model="formData.units">
             </div>
           </div>
           
