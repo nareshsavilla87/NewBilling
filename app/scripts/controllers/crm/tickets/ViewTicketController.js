@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  ViewTicketController: function(scope,webStorage, routeParams , route, location, resourceFactory, http,PermissionService) {
+	  ViewTicketController: function(scope,webStorage, routeParams , route, location, resourceFactory, http,PermissionService,$rootScope,API_VERSION) {
         scope.ticket = []; 
         scope.PermissionService = PermissionService;
       //  var clientData = webStorage.get('clientData');
@@ -36,6 +36,10 @@
         	
         };
         
+        scope.downloadDocument = function(id) {
+        	window.open($rootScope.hostUrl + API_VERSION + '/tickets/' + id + '/print' + '?tenantIdentifier=default');
+        };
+        
         scope.deletemessage = function (){
             resourceFactory.messageSaveResource.delete({messageId: routeParams.id} , {} , function(data) {
                   location.path('/tickets/'+routeParams.clientId);
@@ -45,7 +49,7 @@
           };
     }
   });
-  mifosX.ng.application.controller('ViewTicketController', ['$scope', 'webStorage','$routeParams', '$route', '$location', 'ResourceFactory', '$http','PermissionService', mifosX.controllers.ViewTicketController]).run(function($log) {
+  mifosX.ng.application.controller('ViewTicketController', ['$scope', 'webStorage','$routeParams', '$route', '$location', 'ResourceFactory', '$http','PermissionService','$rootScope','API_VERSION', mifosX.controllers.ViewTicketController]).run(function($log) {
     $log.info("ViewTicketController initialized");
   });
 }(mifosX.controllers || {}));
