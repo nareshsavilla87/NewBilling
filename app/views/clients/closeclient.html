@@ -52,7 +52,7 @@
             <li><a href='#/viewclient/{{clientId}}'>{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
               <li class="active">{{'label.closeclient' | translate}}</li>
           </ul>
-        </div>
+        </div><br/>
          <div class="error" ng-show="errorStatus || errorDetails">
 <label>{{'label.contract.error' | translate}}</label>
 <label ng-show="errorStatus">{{errorStatus}}</label>
@@ -64,7 +64,7 @@
           
           
            <div class="control-group">
-<label class="control-label" for="Date"> Closure date* </label>
+<label class="control-label" for="Date"> Closure date<span class="required">*</span> </label>
 <div class="controls">
 <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="close.date" is-open="opened" min="minDate" max="maxDate"
 date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;" readonly/>
@@ -73,7 +73,7 @@ date-disabled="disabled(date, mode)" required late-Validate style="background-co
           
           
            <div class="control-group">
-                <label class="control-label"> Closure reason*<span class="required">*</span></label>
+                <label class="control-label"> Closure reason<span class="required">*</span></label>
                 <div class="controls">
                   <select ng-model="formData.closureReasonId" ng-options="closureReason.id as closureReason.name for closureReason in closureReasons" value="{{closureReason.id}}">
                 </select>

@@ -22,7 +22,7 @@
         	
 	        
 	        
-	        resourceFactory.prospectViewResource.getViewProspects({id: routeParams.id} , function(data) {
+	        resourceFactory.prospectResource.getViewProspects({prospectId: routeParams.id} , function(data) {
 	        	
 	            scope.editprospects = data;
 	            scope.sourceOfPublicityDatas = data.sourceOfPublicityData;
@@ -77,7 +77,7 @@
 	        	
 	        	
 	        	
-	        	resourceFactory.prospectEditResource.update({id: routeParams.id} , scope.editprospects ,function(data){
+	        	resourceFactory.prospectResource.update({prospectId: routeParams.id} , scope.editprospects ,function(data){
 	            	location.path('/viewprospects/'+data.resourceId);
 	          });
 	        }

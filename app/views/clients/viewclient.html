@@ -162,12 +162,12 @@
                             </tr>
                              <tr>
 
-                            <td colspan="2"><a ng-show="PermissionService.showMenu('UPDATE_ADDRESS')&&PermissionService.showMenu('READ_ADDRESS')" href="#/editAddress/{{client.id}}" class="btn btn-primary"><i class="icon-edit icon-white" ></i>Edit Address</button></a>
-                             <a ng-show="PermissionService.showMenu('UPDATE_ADDRESS')&&PermissionService.showMenu('READ_ADDRESS')" href="#/editAddress/{{client.id}}" class="btn btn-primary"><i class="icon-plus-sign icon-white" ></i>Add Other Address</button></a></td>
+                            <td colspan="2"><a ng-show="PermissionService.showMenu('UPDATE_ADDRESS')&&PermissionService.showMenu('READ_ADDRESS')" href="#/editaddress/{{client.id}}" class="btn btn-primary"><i class="icon-edit icon-white" ></i>Edit Address</button></a>
+                             <a ng-show="PermissionService.showMenu('UPDATE_ADDRESS')&&PermissionService.showMenu('READ_ADDRESS')" href="#/addaddress/{{client.id}}" class="btn btn-primary"><i class="icon-plus-sign icon-white" ></i>Add Other Address</button></a></td>
                             </tr>
                           </table>
                       </div>
-                  
+
                   </div>
                   <div class="row-fluid" ng-show="PermissionService.showMenu('READ_ORDER')">
                   <p>
