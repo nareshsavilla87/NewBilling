@@ -40,9 +40,9 @@
           </div>
           
            <div class="control-group">
-            <label class="control-label" for="type">{{'label.type' | translate }}</label>
+            <label class="control-label" for="taxType">{{'label.type' | translate }}</label>
             <div class="controls">
-              <select ng-model="formData.type"  ng-options="typetaxmapdata.type as typetaxmapdata.type for typetaxmapdata in typetaxmapdatas" value="{{type.id}}">
+              <select ng-model="formData.taxType"  ng-options="taxTypeData.mCodeValue as taxTypeData.mCodeValue for taxTypeData in taxTypeDatas" value="{{taxTypeData.id}}">
               </select>
             </div>
           </div>
@@ -59,7 +59,7 @@
            <div class="control-group">
             <label class="control-label" for="taxregion">{{'label.taxRegion' | translate }}</label>
             <div class="controls">
-              <select ng-model="formData.TaxRegionId"  ng-options="priceRegionData.id as priceRegionData.priceregion for priceRegionData in priceRegionDatas" value="{{priceregion.id}}">
+              <select ng-model="formData.taxRegionId"  ng-options="priceRegionData.id as priceRegionData.priceregion for priceRegionData in priceRegionDatas" value="{{priceregion.id}}">
               </select>
             </div>
           </div>

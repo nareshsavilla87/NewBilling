@@ -8,8 +8,7 @@
         scope.formData = {};
         scope.start.date = new Date();
         resourceFactory.taxmappingtemplateResource.getAlltaxmapping({'chargeCode':routeParams.chargeCode},function(data) {
-          //  scope.chargecodetaxs = data.chargeCodeForTax;
-            scope.typetaxmapdatas = data.taxMapData;
+            scope.taxTypeDatas = data.taxTypeData;
             scope.priceRegionDatas = data.priceRegionData;
             scope.formData=data;
         });
@@ -18,12 +17,11 @@
         scope.submit = function() {
         	this.formData.locale = $rootScope.locale.code;
         	var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
-        	
             this.formData.dateFormat = 'dd MMMM yyyy';
             this.formData.startDate = reqDate;
-            delete this.formData.typetaxmapdata;
+         
             delete this.formData.priceRegionData;
-            delete this.formData.taxMapData;
+            delete this.formData.taxTypeData;
             resourceFactory.getTaxmappingResource.save({'taxId':routeParams.chargeCode},this.formData,function(data){
             		location.path('/viewtaxmapping/' + data.resourceId);
           });

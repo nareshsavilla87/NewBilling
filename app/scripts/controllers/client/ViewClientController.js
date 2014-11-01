@@ -334,9 +334,9 @@
 				};
 			};
 			
-			scope.deleteChildsFromparent=function(id){
+			scope.deleteChildsFromparent=function(childId){
 				
-				resourceFactory.clientParentResource.delete({clientId:id}, {}, function(data){
+				resourceFactory.clientParentResource.delete({clientId:routeParams.id,anotherresource:childId}, {}, function(data){
 					location.path('/viewclient/'+ routeParams.id);
 					route.reload();
                 });
@@ -533,17 +533,18 @@
           resourceFactory.clientResource.getAllClientDocuments({clientId: routeParams.id, anotherresource: 'identifiers'} , function(data) {
               scope.identitydocuments = data;
               for(var i = 0; i<scope.identitydocuments.length; i++) {
-                resourceFactory.clientIdentifierResource.get({clientIdentityId: scope.identitydocuments[i].id} , function(data) {
+                resourceFactory.clientIdentifierResource.get({clientIdentityId: scope.identitydocuments[i].clientId} , function(data) {
                   for(var j = 0; j<scope.identitydocuments.length; j++) {
-                     if(data.length > 0 && scope.identitydocuments[j].id == data[0].parentEntityId)
+                     if(data.length > 0 && scope.identitydocuments[j].clientId == data[0].parentEntityId)
                       {
                         scope.identitydocuments[j].documents = data;
                       }
                   }
                 });
-              }
+              };
+           
           });
-          
+         
           //parentClient 
            resourceFactory.clientParentResource.get({clientId:routeParams.id},function(data) {
         	  scope.parent = [];
@@ -566,9 +567,9 @@
         	resourceFactory.clientResource.getAllClientDocuments({clientId: routeParams.id, anotherresource: 'identifiers'} , function(data) {
                 scope.identitydocuments = data;
                 for(var i = 0; i<scope.identitydocuments.length; i++) {
-                  resourceFactory.clientIdentifierResource.get({clientIdentityId: scope.identitydocuments[i].id} , function(data) {
+                  resourceFactory.clientIdentifierResource.get({clientIdentityId: scope.identitydocuments[i].clientId} , function(data) {
                     for(var j = 0; j<scope.identitydocuments.length; j++) {
-                       if(data.length > 0 && scope.identitydocuments[j].id == data[0].parentEntityId)
+                       if(data.length > 0 && scope.identitydocuments[j].clientId == data[0].parentEntityId)
                         {
                           scope.identitydocuments[j].documents = data;
                         }

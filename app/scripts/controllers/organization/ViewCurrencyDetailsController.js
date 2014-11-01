@@ -4,8 +4,8 @@
 		
         scope.viewcurrencydetails=[];
         scope.PermissionService = PermissionService;
-        resourceFactory.currencyResource.getCurrencyDetails({id: routeParams.id} , function(data) {
         
+        resourceFactory.currencyResource.getCurrencyDetails({id: routeParams.id} , function(data) {
             scope.viewcurrencydetails = data; 
             
         });

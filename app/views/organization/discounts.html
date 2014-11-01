@@ -33,8 +33,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="pointer-main"
-					ng-repeat="discount in discounts | filter:filterText">
+				<tr class="pointer-main" ng-repeat="discount in discounts | filter:filterText">
 					<td class="pointer"
 						data-ng-click="routeToDiscounts(discount.id)">{{discount.id}}</td>
 					<td class="pointer"
@@ -42,13 +41,13 @@
 					<td class="pointer"
 						data-ng-click="routeToDiscounts(discount.id)">{{discount.discountDescription}}</td>
 					<td class="pointer"
-						data-ng-click="routeToDiscounts(discount.id)">{{discount.discounType}}</td>
+						data-ng-click="routeToDiscounts(discount.id)">{{discount.discountType}}</td>
 					<td class="pointer"
 						data-ng-click="routeToDiscounts(discount.id)">{{discount.discountRate}}</td>
 					<td class="pointer"
 						data-ng-click="routeToDiscounts(discount.id)">{{discount.discountStartDate|DateFormat}}</td>
 					<td class="pointer"
-						data-ng-click="routeToDiscounts(discount.id)">{{discount.discountstatus}}</td>
+						data-ng-click="routeToDiscounts(discount.id)">{{discount.discountStatus}}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -78,8 +77,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="pointer-main"
-					ng-repeat="promotiondadata in promotiondatas | filter:filterText">
+				<tr class="pointer-main" ng-repeat="promotiondadata in promotiondatas | filter:filterText">
 					<td class="pointer"
 						data-ng-click="routeToPromotion(promotiondadata.id)">{{promotiondadata.id}}</td>
 					<td class="pointer"

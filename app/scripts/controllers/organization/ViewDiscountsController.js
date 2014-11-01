@@ -4,6 +4,7 @@
 	
         scope.discounting = [];   
         scope.PermissionService =  PermissionService; 
+        
         resourceFactory.discountsResource.getDiscountDetails({discountId: routeParams.id} , function(data) {
             scope.discounting = data;                                                
         });
@@ -14,8 +15,8 @@
 					// gets removed
                   // if the request does not contain any data (a request body)
             });
-          };
-    }
+         };
+      }
   });
   mifosX.ng.application.controller('ViewDiscountsController', ['$scope', '$routeParams', '$route', '$location', 'ResourceFactory', '$http','PermissionService', mifosX.controllers.ViewDiscountsController]).run(function($log) {
     $log.info("ViewDiscountsController initialized");

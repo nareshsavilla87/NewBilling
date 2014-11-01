@@ -30,7 +30,7 @@
 								<div class="control-group">
             					<label class="control-label" for="discountType">{{ 'label.discountType' | translate }}</label>
             					<div class="controls">
-             					 <select ng-model="formData.discountType"  ng-options="discounTypeData.mCodeValue as discounTypeData.mCodeValue for discounTypeData in discountTypeDatas" value="{{discounTypeData.mCodeValue}}">
+             					 <select id="discountType" ng-model="formData.discountType"  ng-options="discounTypeData.mCodeValue as discounTypeData.mCodeValue for discounTypeData in discountTypeDatas" value="{{discounTypeData.mCodeValue}}">
              					 </select>
             					</div>
           						</div>
@@ -68,7 +68,7 @@
 								<div class="control-group">
             					<label class="control-label" for="discountStatus">{{ 'label.status' | translate }}</label>
             					<div class="controls">
-             					 <select ng-model="formData.discountStatus"  ng-options="discountStatus.value as discountStatus.value for discountStatus in statusDatas" value="{{discountStatus.value}}">
+             					 <select  id="discountStatus" ng-model="formData.discountStatus"  ng-options="discountStatus.value as discountStatus.value for discountStatus in statusDatas" value="{{discountStatus.value}}">
              					 </select>
             					</div>
           						</div>
