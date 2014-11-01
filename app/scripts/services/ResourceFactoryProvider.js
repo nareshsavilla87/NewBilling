@@ -521,7 +521,7 @@
                 chargecodetemplateResource: defineResource(apiVer + "/chargecode/template", {}, {
               	  getAllchargecode: {method: 'GET', params: {}}
                 }),
-                taxmappingResource: defineResource(apiVer + "/taxmap/:chargeCode/chargeTax", {chargeCode:'@chargeCode'}, {
+                taxmappingResource: defineResource(apiVer + "/taxmap/:chargeCode/chargetax", {chargeCode:'@chargeCode'}, {
               	  getAllTaxMapping: {method: 'GET', params: {}, isArray: true},
                     update: { method: 'PUT' }
                 }),
@@ -995,10 +995,11 @@
                 update: { method: 'PUT'}
             }),
             
-            clientParentResource: defineResource(apiVer + "/parentclient/:clientId", {clientId:'@clientId'}, {
+            clientParentResource: defineResource(apiVer + "/parentclient/:clientId/:anotherresource", {clientId:'@clientId',anotherresource:'@anotherresource'}, {
                 get: {method: 'GET', params: {}},
                 update: { method: 'PUT'}
             }),
+      
             logoutResource: defineResource(apiVer + "/logout", {id:'@id'}, {
                 getAll: {method: 'GET', params: {}}
             }),

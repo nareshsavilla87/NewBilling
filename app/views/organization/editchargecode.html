@@ -64,8 +64,7 @@
 					| translate }}</label>
 				<div class="controls">
 					<select ng-model="formData.durationType"
-						ng-options="durationTypeCode.durationTypeCode as durationTypeCode.durationTypeCode for durationTypeCode in durationTypes"
-						value="{{durationTypeCode.id}}">
+						ng-options="durationTypeCode.durationTypeCode as durationTypeCode.durationTypeCode for durationTypeCode in durationTypes" value="{{durationTypeCode.id}}">
 					</select>
 				</div>
 			</div>
@@ -86,9 +85,8 @@
 				<label class="control-label" for="billFrequencyCode ">{{'label.billFrequencyCode'
 					| translate }}</label>
 				<div class="controls">
-					<select ng-model="formData.billFrequencyCode"
-						ng-options="billFrequencyCode.billFrequencyCode as billFrequencyCode.billFrequencyCode for billFrequencyCode in billFrequencyCodes"
-						value="{{billFrequencyCode.id}}">
+					<select ng-model="formData.billFrequencyCode" id="billFrequencyCode"
+					ng-options="billFrequencyCode.billFrequencyCode as billFrequencyCode.billFrequencyCode for billFrequencyCode in billFrequencyCodes" value="{{billFrequencyCode.id}}">
 					</select>
 				</div>
 			</div>

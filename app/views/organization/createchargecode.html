@@ -32,7 +32,7 @@
           <div class="control-group">
             <label class="control-label" for="chargeType">{{'label.chargetype' | translate }}</label>
             <div class="controls">
-              <select ng-model="formData.chargeType"  ng-options="chargeType.chargeType as chargeType.chargeType for chargeType in chargeTypes" value="{{chargeType.id}}">
+              <select id="chargeType" ng-model="formData.chargeType"  ng-options="chargeType.chargeType as chargeType.chargeType for chargeType in chargeTypes" value="{{chargeType.id}}">
               </select>
             </div>
           </div>
@@ -48,7 +48,7 @@
            <div class="control-group">
             <label class="control-label" for="durationType">{{'label.durationType' | translate }}</label>
             <div class="controls">
-					<select ng-model="formData.durationType"
+					<select id="durationType" ng-model="formData.durationType"
 						ng-options="durationTypeCode.durationTypeCode as durationTypeCode.durationTypeCode for durationTypeCode in durationTypes"
 						value="{{durationTypeCode.id}}">
 					</select>
@@ -67,7 +67,7 @@
            <div class="control-group">
             <label class="control-label" for="billFrequencyCode ">{{'label.billFrequencyCode' | translate }}</label>
             <div class="controls">
-              <select ng-model="formData.billFrequencyCode"  ng-options="billFrequencyCode.billFrequencyCode as billFrequencyCode.billFrequencyCode for billFrequencyCode in billFrequencyCodes" value="{{billFrequencyCode.id}}">
+              <select id="billFrequencyCode" ng-model="formData.billFrequencyCode"  ng-options="billFrequencyCode.billFrequencyCode as billFrequencyCode.billFrequencyCode for billFrequencyCode in billFrequencyCodes" value="{{billFrequencyCode.id}}">
               </select>
             </div>
           </div>
