@@ -22,7 +22,7 @@
         scope.image=clientData.image;
         }
         
-        resourceFactory.clientResource.get({clientId: routeParams.id} , function(data) {
+        resourceFactory.clientResource.get({clientId: routeParams.id,template:'true'} , function(data) {
             scope.offices = data.officeOptions;
             scope.staffs = data.staffOptions; 
             scope.officeId = data.officeId;
@@ -30,7 +30,6 @@
             scope.formData.entryType = data.entryType;
             scope.entryType=data.entryType;
             scope.formData.groupName=data.groupName;
-            scope.groupNameDatas=data.groupNameDatas;
             scope.groupNameDatas=data.groupNameDatas;
           /*  var filePath = data.imageKey;
             scope.fileName=filePath.split("/").pop();

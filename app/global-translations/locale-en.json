@@ -235,6 +235,9 @@
   "label.office.openedon":"Opened on:",
   "label.office.namedecorated":"Name Decorated:",
   "label.office.externalid":"External Id:",
+  "label.employee.isLoanOfficer":"Is Loan Officer:",
+  "table.heading.isLoanOfficer":"Is Loan Officer",
+  
   
   "#view client":"",
   "button.neworder":"Book Order",
