@@ -509,10 +509,7 @@
                   }),
                 regionResourceGetStates: defineResource(apiVer + "/regions/getstates/:countryId",{countryId:'@countryId'},  {
                   	  get: {method: 'POST', params: {}}     	 
-                  }),   
-                  ticketResourceTemplate: defineResource(apiVer + "/tickets/template",{},  {
-                  	  get: {method: 'GET', params: {}}     	 
-                  }),  
+                  }),    
                   ticketResource: defineResource(apiVer + "/tickets/:clientId/:id",{clientId:'@clientId', id:'@id'},  {
                 	  get: {method: 'GET', params: {}},
                 	  getAll: {method: 'GET', params: {}, isArray:true}
@@ -687,7 +684,8 @@
               	  getprice: {method: 'GET', params: {eventId:'@eventId'}, isArray:true}
                 }),
                 ticketResourceTemplate: defineResource(apiVer + "/tickets/template",{},  {
-              	  get: {method: 'GET', params: {}}     	 
+              	  get: {method: 'GET', params: {}},
+              	  getForCloseTicket: {method: 'GET', params: {}, isArray:true}
               }),  
             ticketResource: defineResource(apiVer + "/tickets/:clientId/:id",{clientId:'@clientId', id:'@id'},  {
             	  get: {method: 'GET', params: {}},

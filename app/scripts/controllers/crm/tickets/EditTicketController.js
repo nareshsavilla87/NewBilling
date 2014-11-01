@@ -20,9 +20,9 @@
 							resourceFactory.editTicketResource.get({clientId: routeParams.clientId, id: routeParams.id} , function(data) {	
                                 scope.formData=data;                            
 								scope.statusTypes = data.statusType;
-								 for(var i=0;i<scope.statusTypes.length;i++){
-					                	if(scope.statusTypes[i].statusDescription=='Working'){
-					                		scope.formData.status=scope.statusTypes[i].statusCode;
+								 for(var i = 0; i < scope.statusTypes.length; i++){
+					                	if(scope.statusTypes[i].mCodeValue == 'Working'){
+					                		scope.formData.status = scope.statusTypes[i].id;
 					                	}
 					              }
 								scope.usersData = data.usersData;
