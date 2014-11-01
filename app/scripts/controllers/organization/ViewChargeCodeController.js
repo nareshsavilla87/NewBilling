@@ -1,7 +1,7 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
 	  ViewChargeCodeController: function(scope, routeParams , resourceFactory ,PermissionService) {
-        scope.chargecode = [];
+        scope.chargecode = {};
         scope.PermissionService = PermissionService;
         
         resourceFactory.chargecodeResource.get({chargeCodeId: routeParams.id} , function(data) {
