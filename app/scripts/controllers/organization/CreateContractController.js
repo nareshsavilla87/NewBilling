@@ -5,9 +5,8 @@
        resourceFactory.contractTemplateResource.get(function(data) {
             scope.subscriptions = data.allowedperiods;
             scope.formData = {
-             
            
-              subscriptionType : scope.subscriptions[0].subscriptionType,
+              subscriptionType : scope.subscriptions[0].durationTypeCode,
             }
         });
         

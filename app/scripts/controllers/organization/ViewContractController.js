@@ -9,10 +9,8 @@
         });
 
         scope.deletecontract = function (){
-            resourceFactory.contractResource.delete({subscriptionId: routeParams.id} , {} , function(data) {
+            resourceFactory.contractResource.remove({subscriptionId: routeParams.id} , {} , function(data) {
                   location.path('/contract');
-                  // added dummy request param because Content-Type header gets removed 
-                  // if the request does not contain any data (a request body)        
             });
           };
     

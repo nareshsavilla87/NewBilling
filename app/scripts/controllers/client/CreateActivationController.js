@@ -210,8 +210,7 @@
 	        		 scope.formData4.planCode=value;
 	        		 
 	        		  for (var i in data.subscriptiondata) {
-	                 	
-	                 	if(data.subscriptiondata[i].id == data.contractPeriod){
+	                 	if(data.subscriptiondata[i].Contractdata == data.contractPeriod){
 	                 		 scope.formData4.contractPeriod=data.subscriptiondata[i].id; 
 	                 	}
 	                   

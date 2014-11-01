@@ -5,7 +5,7 @@
 	        scope.prospects = [];   
 	        scope.prospectDetailData=[];
 	        scope.PermissionService = PermissionService;
-	        resourceFactory.prospectViewResource.getViewProspects({id: routeParams.id} , function(data) {
+	        resourceFactory.prospectResource.get({prospectId: routeParams.id} , function(data) {
 	        	//alert('discountController,' +data);
 	            scope.prospects = data;                                                
 	        });
