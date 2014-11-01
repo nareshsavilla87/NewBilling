@@ -26,7 +26,7 @@
         });
         
         scope.addPriceData = function(){
-        	//console.log(scope.formData);
+        	console.log(scope.formData);
         	if(scope.formData.chargeCode && scope.formData.chargevariant && scope.formData.discountId && scope.formData.serviceCode &&
         			scope.formData.isPrepaid && scope.formData.planCode && scope.formData.price && scope.formData.priceregion ){
         		 if(scope.formData.isPrepaid == 'Y'){
@@ -37,7 +37,7 @@
         		        	scope.formData = {};
         		        	scope.formData.planCode = planCode;
         		        	scope.formData.isPrepaid = isPrepaid;
-        		        //	console.log(scope.priceDatas);
+        		        	console.log(scope.priceDatas);
         			 }
         		 }else{
         			 scope.priceDatas.push(scope.formData);

@@ -22,7 +22,7 @@
         scope.image=clientData.image;
         }
         
-        resourceFactory.clientResource.get({clientId: routeParams.id} , function(data) {
+        resourceFactory.clientResource.get({clientId: routeParams.id,template:'true'} , function(data) {
             scope.offices = data.officeOptions;
             scope.staffs = data.staffOptions; 
             scope.officeId = data.officeId;
