@@ -71,7 +71,7 @@
 			</tr>
 
 			<tr>
-				<td width="50%">
+				<!-- <td width="50%">
 					<div class="control-group">
 						<label class="control-label" for="eventStartDate"> {{'label.event.startdate' | translate }}</label>
 						<div class="controls">
@@ -79,13 +79,39 @@
 
 						</div>
 					</div>
+				</td> -->
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="eventStartDate"> {{'label.event.startdate' | translate }}</label>
+						<div class="controls">
+							<!-- <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.startDate" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"/> -->
+								<!-- <input type="text" id="eventStartDate" ng-model="formData.eventStartDate"> -->
+							<input type="text" ng-hide="formData.eventCategory == 'Live Event'"  datepicker-pop="dd MMMM yyyy" ng-model="date.startDate" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" required late-Validate  style="background-color:#FFFFFF;"  readonly/>
+							<input type="text" ng-show="formData.eventCategory == 'Live Event'"  datepicker-pop="dd MMMM yyyy" ng-model="date.startDate" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" required late-Validate  style="width:130px;background-color:#FFFFFF;"  readonly/>
+							<input id="timepicker1" ng-show="formData.eventCategory == 'Live Event'" type="text" readonly ng-model="first.starttime" style="width:60px;background-color:#FFFFFF;">
+
+						</div>
+					</div>
 				</td>
-				<td>
+				
+				<!-- <td>
 					<div class="control-group">
 						<label class="control-label" for="eventEndDate"> {{'label.event.enddate' | translate }}</label>
 						<div class="controls">
 
 							<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.endDate" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"/>
+						</div>
+					</div>
+				</td> -->
+				<td>
+					<div class="control-group">
+						<label class="control-label" for="eventEndDate"> {{'label.event.enddate' | translate }}</label>
+						<div class="controls">
+
+							<!-- <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.endDate" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"/> -->
+							<input type="text" ng-hide="formData.eventCategory == 'Live Event'"  datepicker-pop="dd MMMM yyyy" ng-model="date.eventEndDate" is-open="opened2" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
+							<input type="text" ng-show="formData.eventCategory == 'Live Event'" datepicker-pop="dd MMMM yyyy" ng-model="date.eventEndDate" is-open="opened2" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"  style="width:130px;background-color:#FFFFFF;"  readonly/>
+							 <input id="timepicker2" ng-show="formData.eventCategory == 'Live Event'" type="text" readonly ng-model="first.endtime" style="width:60px;background-color:#FFFFFF;">
 						</div>
 					</div>
 				</td>

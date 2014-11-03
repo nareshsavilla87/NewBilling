@@ -1615,12 +1615,15 @@
 
   "validation.msg.price.price.cannot.be.blank":"price cannot be blank",
   "event.is.already.exists.with.format":"Event Price is already exist with format type {0}",
- "validation.msg.eventmaster.eventName.cannot.be.blank":"Event Name cannot be blank",
- "validation.msg.eventmaster.eventStartDate.cannot.be.blank":"Event Description cannot be blank",
+ "validation.msg.eventmaster.eventName.cannot.be.blank":"Event Code cannot be blank",
+ "validation.msg.eventmaster.eventStartDate.cannot.be.blank":"Start Date cannot be blank",
  "validation.msg.eventmaster.eventValidity.cannot.be.blank":"Event Validity cannot be blank",
  "validation.msg.eventmaster.services.cannot.be.empty":"Please select atleast one media",
  "validation.msg.eventmaster.status.cannot.be.blank":"Please select status",
- "validation.msg.eventmaster.chargeCode.cannot.be.blank":"Event Code cannot be blank",
+ "validation.msg.eventmaster.chargeCode.cannot.be.blank":"Charge Code cannot be blank",
+ "validation.msg.eventmaster.eventCategory.cannot.be.blank":"Please select Event Category",
+ "validation.msg.eventmaster.eventEndDate.cannot.be.blank":"End Date Cannot be blank",
+ "validation.msg.invalid.date.format":"Invalid Date Format",
  
  
  "validation.msg.plan.services.cannot.be.blank":"Please select atleast one service",
