@@ -46,7 +46,7 @@
           <div class="">
             <label class="" for="discountCode">{{ 'label.price.discountcode' | translate }}</label>
             <div class="">
-              <select ng-model="formData.discountId"  class="input-small" ng-options="discountdatas.discountMasterId as discountdatas.discountDescription for discountdatas in discountdatas" value="{{discountdatas.discountMasterId}}"></select>
+              <select ng-model="formData.discountId"  class="input-small" ng-options="discountdatas.id as discountdatas.discountDescription for discountdatas in discountdatas" value="{{discountdatas.id}}"></select>
             </div>
           </div>
           </td>
@@ -109,7 +109,7 @@
 		                      <td> <input type="text" class="input-small" ng-model="priceData.planCode" readonly></td>
 		                      <td><select ng-model="priceData.chargevariant"  class="input-small" ng-options="chargevariant.id as chargevariant.value for chargevariant in chargevariants" ></select></td>
 		                      <td><select ng-model="priceData.serviceCode"  class="input-small" ng-options="serviceData.serviceCode as serviceData.serviceDescription for serviceData in serviceDatas" ></select></td>
-		                      <td><select ng-model="priceData.discountId"  class="input-small" ng-options="discountdatas.discountMasterId as discountdatas.discountDescription for discountdatas in discountdatas" ></select></td>
+		                      <td><select ng-model="priceData.discountId"  class="input-small" ng-options="discountdatas.id as discountdatas.discountDescription for discountdatas in discountdatas" ></select></td>
 		                      <td><select ng-model="priceData.chargeCode" class="input-small" ng-options="chargeDatas.chargeCode as chargeDatas.chargeDescription for chargeDatas in chargeDatas" ></select></td>
 		                      <td><select ng-model="priceData.priceregion"  class="input-small" ng-options="priceRegionData.id as priceRegionData.priceregionCode for priceRegionData in priceRegionDatas" ></select></td>
 		                      <td> <input type="text" class="input-small" ng-model="priceData.price"></td>

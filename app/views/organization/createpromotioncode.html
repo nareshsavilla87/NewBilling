@@ -30,7 +30,7 @@
 								<div class="control-group">
             					<label class="control-label" for="discountType">{{ 'label.discountType' | translate }}</label>
             					<div class="controls">
-             					 <select ng-model="formData.discountType"  ng-options="promotiondata.mCodeValue as promotiondata.mCodeValue for promotiondata in promotiondatas" value="{{promotiondata.mCodeValue}}">
+             					 <select id="discountType" ng-model="formData.discountType"  ng-options="promotiondata.mCodeValue as promotiondata.mCodeValue for promotiondata in promotiondatas" value="{{promotiondata.mCodeValue}}">
              					 </select>
             					</div>
           						</div>
@@ -39,9 +39,9 @@
 							<tr>
 							<td>
 								<div class="control-group">
-            					<label class="control-label" for="promotiondesc">{{ 'label.promotionDescription' | translate }}</label>
+            					<label class="control-label" for="promotionDescription">{{ 'label.promotionDescription' | translate }}</label>
             					<div class="controls">
-             					 <input type="text" id="promotiondesc" ng-model="formData.promotionDescription"/>
+             					 <input type="text" id="promotionDescription" ng-model="formData.promotionDescription"/>
            						</div>
           						</div>
 							</td>
@@ -58,9 +58,9 @@
 							<tr>
 							<td>
 								<div class="control-group">
-            					<label class="control-label" for="promotionduration">{{ 'label.durationType' | translate }}</label>
+            					<label class="control-label" for="durationType">{{ 'label.durationType' | translate }}</label>
             					<div class="controls">
-              					 <select ng-model="formData.durationType"  ng-options="durationType.subscriptionType as durationType.subscriptionType for durationType in durationTypes" value="{{durationType.subscriptionType}}">
+              					 <select id="durationType" ng-model="formData.durationType"  ng-options="durationType.subscriptionType as durationType.subscriptionType for durationType in durationTypes" value="{{durationType.subscriptionType}}">
              					 </select>
             					</div>
           						</div>
@@ -69,7 +69,7 @@
 								<div class="control-group">
             					<label class="control-label" for="promotionduration">{{ 'label.duration' | translate }}</label>
             					<div class="controls">
-              					<input type="text" id="promotionduration" ng-model="formData.duration">
+              					<input type="text" id="duration" ng-model="formData.duration">
            						 </div>
           						</div>
 							</td>

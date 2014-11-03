@@ -20,26 +20,31 @@
 							<tr>
 							<td>
 								<div class="control-group">
-									<label class="control-label" for="grnId">{{'label.itemdetail.grnid'
-										| translate }}&nbsp;<span class="required">*</span></label>
+									<label class="control-label" for="grnId">{{'label.itemdetail.grnid'| translate }}&nbsp;<span class="required">*</span></label>
 									<div class="controls">
 										<select ng-model="formData.grnId"
-											ng-options="grnIdData.testId as getBoth(grnIdData.testId,grnIdData.itemDescription) for grnIdData in grnIds"
+											ng-options="grnIdData.testId as getBoth(grnIdData.testId,grnIdData.itemDescription) for grnIdData in inventoryGrnDatas"
 											value="{{grnIdData.testId}}" ng-change="changeGrn(formData.grnId)">
 										</select>
 									</div>
 								</div>
 								</td>
-								</tr>
-						</table>
-						<table>
-							<tr>
-								
 								<td>
 						          	<div class="control-group">
 										<label class="control-label" for="itemDescription">{{'label.itemdetail.itemdescription' | translate }}</label>
 										<div class="controls">
 											<input type="text" name="itemDescription" ng-model="itemDetailsData.itemDescription" readonly>
+										</div>
+									</div>
+								</td>
+								</tr>
+								<tr>
+								
+								<td>
+									<div class="control-group">
+										<label class="control-label" for="supplierName">{{'label.itemdetail.suppliername' | translate }}</label>
+										<div class="controls">
+											<input type="text" name="supplierName" ng-model="itemDetailsData.supplierName" readonly>
 										</div>
 									</div>
 								</td>
@@ -71,32 +76,16 @@
 								</td>
 							</tr>
 							<tr>
-								<td>
+							<td>
 									<div class="control-group">
 										<label class="control-label" for="quality">{{'label.itemdetail.quality' | translate }}</label>
 										<div class="controls">
-											<select ng-model="itemDetailsData.quality"  ng-options="q.mCodeValue as q.mCodeValue for q in quality" value="{{q.mCodeValue}}">
+											<select ng-model="itemDetailsData.quality"  ng-options="q.mCodeValue as q.mCodeValue for q in qualityDatas" value="{{q.mCodeValue}}">
 												<option value="">{{'label.select.one' | translate}}</option>
 											</select>
 										</div>
 									</div>
 								</td>
-								<td>
-									<div class="control-group">
-										<label class="control-label" for="status">{{'label.itemdetail.status' | translate }}</label>
-										<div class="controls">
-											<select ng-model="itemDetailsData.status">
-												<option value="">New</option>
-												<option value="Used">Used</option>
-											</select>
-										</div>
-									</div>
-								</td>
-								
-							</tr>
-						</table>
-						<table>
-							<tr>
 								<td>
 									<div class="control-group">
 										<label class="control-label" for="serialNumber">{{'label.itemdetail.serialnumber' | translate }}&nbsp;<span class="required">*</span></label>
@@ -105,19 +94,17 @@
 										</div>
 									</div>
 								</td>
-								<td>
-									<div class="control-group">
-										<label class="control-label" for="provisioningSerialNumber">{{'label.itemdetail.provisioningserialnumber' | translate }}&nbsp;<span class="required">*</span></label>
+							</tr>
+							<tr>
+							<td>
+							   <div class="control-group">
+								 <label class="control-label" for="provisioningSerialNumber">{{'label.itemdetail.provisioningserialnumber' | translate }}&nbsp;<span class="required">*</span></label>
 										<div class="controls">
 											<input type="text" name="provisioningSerialNumber" ng-model="itemDetailsData.provisioningSerialNumber">
 										</div>
 									</div>
 								</td>
-							</tr>
-						</table>
-						<table>
-							<tr>
-								<td>
+							    <td>
 									<div class="control-group">
 										<label class="control-label" for="itemModel">{{'label.itemdetail.itemModel' | translate }}</label>
 										<div class="controls">
@@ -125,6 +112,12 @@
 										</div>
 									</div>
 								</td>
+							</tr>
+							<tr>
+							</tr>
+						</table>
+						<table>
+							<tr>
 								<td>
 									<div class="control-group">
 										<label class="control-label" for="remarks">{{'label.itemdetail.remarks' | translate }}</label>
@@ -133,16 +126,28 @@
 										</div>
 									</div>
 								</td>
+								<td>
+								<div class="control-group">
+								</div>
+								<div class="controls">
+            						<a href="#/inventory"><button type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
+            						<button type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
+          						</div>
+          						
+								</td>
+							</tr>
+						</table>
+						<table>
+							<tr>
+								
+								
 							</tr>
 						</table>
 					</td>
 				</tr>
 			</table>
 			
-          <div class="offset3">
-            <a href="#/inventory"><button type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
-            <button type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
-          </div>
+          
           
         </fieldset>
     </form>

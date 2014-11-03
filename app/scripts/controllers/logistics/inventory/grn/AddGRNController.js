@@ -7,7 +7,7 @@
         scope.formData = {};
         scope.formData.purchaseDate = new Date();
         
-        resourceFactory.grntemplateResource.get(function(data) {
+        resourceFactory.grnTemplateResource.get(function(data) {
         	scope.itemDatas = data.itemData;
             scope.officeDatas = data.officeData;
             scope.supplierDatas = data.supplierData;
@@ -25,7 +25,7 @@
         	var reqDate = dateFilter(scope.formData.purchaseDate,'dd MMMM yyyy');
             this.formData.dateFormat = 'dd MMMM yyyy';
             this.formData.purchaseDate = reqDate;
-            resourceFactory.grntemplateResource.save(this.formData,function(data){
+            resourceFactory.grnResource.save(this.formData,function(data){
             if(PermissionService.showMenu('READ_GRN'))
             	location.path('/viewgrn/' + data.resourceId);
             else

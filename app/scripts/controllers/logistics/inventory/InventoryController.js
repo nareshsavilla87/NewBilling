@@ -90,7 +90,7 @@
 		//scope.items = paginatorService.paginate(scope.itemFetchFunction, 14);
 
         scope.grnDetailsFetchFunction = function(offset, limit, callback) {
-			resourceFactory.grnResource.getAlldetails({offset: offset, limit: limit} , callback);
+			resourceFactory.grnResource.get({offset: offset, limit: limit} , callback);
 		};
 		
 		scope.getItems = function(){
@@ -216,8 +216,8 @@
 						          };
 					          var EditQualityController = function ($scope, $modalInstance) {
 
-					          	resourceFactory.itemQualityResource.get(function(data) {
-					                  $scope.qualityData = data.quality;
+					          	resourceFactory.itemDetailTemplateResource.get(function(data) {
+					                  $scope.qualityDatas = data.qualityDatas;
 					                  $scope.quality=scope.valueQuality;
 					                  $scope.provserialnum=scope.provisionalserialNum;
 					                  $scope.serialNumber= scope.serialNumber;

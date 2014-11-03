@@ -369,11 +369,6 @@
 	            	});
 	            	}
 	            	location.path('/viewclient/'+ resourceId);
-
-
-	 	         /*   resourceFactory.activationProcessResource.save(scope.ActivationData,function(data){
-	            	 location.path('/viewclient/' + data.resourceId);
->>>>>>> obsplatform-1.01*/
 	            });
 	           
 	        };

@@ -4,18 +4,20 @@
     	 scope.formData = [];
     	 scope.grnIds = [];
     	 scope.itemDetailsData=[];
-        resourceFactory.grnSingleTemplateResource.get({grnId: routeParams.id == undefined ? "":routeParams.id} ,function(data) {
+    	 scope.inventoryGrnDatas=[];
+    	 scope.qualityDatas=[];
+    	 scope.statusDatas=[];
+        resourceFactory.itemDetailTemplateResource.get({grnId: routeParams.id == undefined ? "":routeParams.id} ,function(data) {
         	scope.formData = data;
+            scope.inventoryGrnDatas = data.inventoryGrnDatas;
+            scope.qualityDatas=data.qualityDatas;
+            scope.statusDatas=data.statusDatas;
+
         });
-        resourceFactory.grnIdResource.get(function(data) {
-        	scope.grnIds = data;      	
-        });
-        resourceFactory.itemQualityResource.get(function(data) {
-            scope.quality = data.quality;
-        });
+       
         scope.changeGrn = function(testId) {
         	
-            resourceFactory.grnSingleTemplateResource.get({grnId: testId}, function(data) {
+            resourceFactory.grnResource.get({grnId: testId}, function(data) {
               scope.itemDetailsData = data;
             });
           };
@@ -38,6 +40,9 @@
         	this.formData.remarks = scope.itemDetailsData.remarks;
         	this.formData.itemMasterId = scope.itemDetailsData.itemMasterId;
             delete this.formData.purchaseDate;
+            delete this.formData.inventoryGrnDatas;
+            delete this.formData.qualityDatas;
+            delete this.formData.statusDatas;
         	resourceFactory.itemDetailsResource.save(this.formData,function(data){
         		location.path("/inventory");
           });
