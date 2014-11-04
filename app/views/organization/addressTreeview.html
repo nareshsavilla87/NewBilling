@@ -41,7 +41,7 @@
         <div class="modal-header silver">
           <h3 class="bolder">Add Country</h3>
         </div>
-	 <form name="createcountryform" novalidate="" class="form-horizontal well" ng-submit="submit(formData.entityCode,formData.entityName)">
+	 <form name="createcountryform" novalidate="" class="form-horizontal well" ng-submit="submit()">
 		<div class="error" ng-show="errorStatus || errorDetails">
 				<label>{{'label.contract.error' | translate}}</label>
 				<label ng-show="errorStatus">{{errorStatus}}</label>
@@ -50,32 +50,22 @@
         <div class="modal-body">
  		  <fieldset>
            	<div class="control-group">
-				<label class="control-label" for="entityCode">Enter Country Code<span class="required">*</span> :</label>
+				<label class="control-label" for="entityCode">Country Code<span class="required">*</span>:</label>
 			 	<div class="controls">
-              		<input  type="text" name="countryCode" ng-model="formData.entityCode" placeholder="enter code here" required late-Validate/><br>
-                    <span  ng-show="createcountryform.countryCode.$invalid">
-                    	<small class="error" ng-show="createcountryform.countryCode.$error.req">
-                        	Required Field
-                    	</small>
-                   </span>
+              		<input  type="text" name="countryCode" id="countryCode" ng-model="formData.entityCode" placeholder="enter code here" /><br>
             	</div>
            	</div>
           	<div class="control-group">
-            	 <label class="control-label" for="entityName">Enter Country Name<span class="required">*</span> :</label>
+            	 <label class="control-label" for="entityName">Country Name<span class="required">*</span>:</label>
 			 	 <div class="controls">
-              		<input type="text" name="countryName" ng-model="formData.entityName" placeholder="enter name here" required late-Validate/><br>
-					<span  ng-show="createcountryform.countryName.$invalid">
-                    	<small class="error" ng-show="createcountryform.countryName.$error.req">
-                        	Required Field
-                    	</small>
-                   </span>
+              		<input type="text" name="countryName" id="countryName" ng-model="formData.entityName" placeholder="enter name here" /><br>
             	 </div>
 	      	</div>
 		  </fieldset>
         </div>
         <div class="modal-footer">
           <button id="cancel" class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
-     	  <button id="submit" type="submit" class="btn btn-primary" ng-disabled="!createcountryform.$valid" >{{'label.confirm' | translate}}</button>
+     	  <button id="submit" type="submit" class="btn btn-primary" >{{'label.confirm' | translate}}</button>
         </div>
 	</form>
     </script>
@@ -83,7 +73,7 @@
         <div class="modal-header silver">
           <h3 class="bolder">Edit Country</h3>
         </div>
-	<form name="editcountryform" novalidate="" class="form-horizontal well" ng-submit="submit(entity.code,entity.name)">
+	<form name="editcountryform" novalidate="" class="form-horizontal well" ng-submit="submit()">
 		<div class="error" ng-show="errorStatus || errorDetails">
 				<label>{{'label.contract.error' | translate}}</label>
 				<label ng-show="errorStatus">{{errorStatus}}</label>
@@ -92,32 +82,22 @@
         <div class="modal-body" >
  		  <fieldset>
            	<div class="control-group">
-				<label class="control-label" for="entityCode">New Country Code<span class="required">*</span> :</label>
+				<label class="control-label" for="entityCode">Country Code<span class="required">*</span>:</label>
 			 	<div class="controls">
-              		<input  type="text" name="countryCode" ng-model="entity.code" placeholder="enter code here" required late-Validate/><br>
-					<span  ng-show="editcountryform.countryCode.$invalid">
-                    	<small class="error" ng-show="editcountryform.countryCode.$error.req">
-                        	Required Field
-                    	</small>
-                   </span>
+              		<input  type="text" name="countryCode" id="countryCode" ng-model="formData.entityCode" placeholder="enter code here" /><br>
             	</div>
            	</div>
           	<div class="control-group">
-            	 <label class="control-label" for="entityName">New Country Name<span class="required">*</span> :</label>
+            	 <label class="control-label" for="entityName">Country Name<span class="required">*</span>:</label>
 			 	 <div class="controls">
-              		<input  type="text" name="countryName" ng-model="entity.name" placeholder="enter name here" required late-Validate/><br>
-					<span  ng-show="editcountryform.countryName.$invalid">
-                    	<small class="error" ng-show="editcountryform.countryName.$error.req">
-                        	Required Field
-                    	</small>
-                   </span>
+              		<input  type="text" name="countryName" id="countryName" ng-model="formData.entityName" placeholder="enter name here" /><br>
             	 </div>
 	      	</div>
 		  </fieldset>
         </div>
         <div class="modal-footer">
           <button id="cancel" class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
-     	  <button id="submit" class="btn btn-primary" ng-disabled="!editcountryform.$valid">{{'label.confirm' | translate}}</button>
+     	  <button id="submit" class="btn btn-primary">{{'label.confirm' | translate}}</button>
         </div>
 	</form>
     </script>
@@ -138,7 +118,7 @@
         <div class="modal-header silver">
           <h3 class="bolder">Add State</h3>
         </div>
-	 <form name="createstateform" novalidate="" class="form-horizontal well" ng-submit="submit(formData.entityCode,formData.entityName)">
+	 <form name="createstateform" novalidate="" class="form-horizontal well" ng-submit="submit()">
 		<div class="error" ng-show="errorStatus || errorDetails">
 				<label>{{'label.contract.error' | translate}}</label>
 				<label ng-show="errorStatus">{{errorStatus}}</label>
@@ -147,25 +127,15 @@
         <div class="modal-body">
  		  <fieldset>
            	<div class="control-group">
-				<label class="control-label" for="entityCode">Enter State Code<span class="required">*</span> :</label>
+				<label class="control-label" for="entityCode">State Code<span class="required">*</span>:</label>
 			 	<div class="controls">
-              		<input  type="text" name="stateCode" ng-model="formData.entityCode" placeholder="enter code here" required late-Validate/><br>
-					<span  ng-show="createstateform.stateCode.$invalid">
-                    	<small class="error" ng-show="createstateform.stateCode.$error.req">
-                        	Required Field
-                    	</small>
-                   </span>
+              		<input  type="text" name="stateCode" id="stateCode" ng-model="formData.entityCode" placeholder="enter code here" /><br>
             	</div>
            	</div>
           	<div class="control-group">
-            	 <label class="control-label" for="entityName">Enter State Name<span class="required">*</span> :</label>
+            	 <label class="control-label" for="entityName">State Name<span class="required">*</span>:</label>
 			 	 <div class="controls">
-              		<input  type="text" name="stateName" ng-model="formData.entityName" placeholder="enter name here" required late-Validate/><br>
-					<span  ng-show="createstateform.stateName.$invalid">
-                    	<small class="error" ng-show="createstateform.stateName.$error.req">
-                        	Required Field
-                    	</small>
-                   </span>
+              		<input  type="text" name="stateName" id="stateName" ng-model="formData.entityName" placeholder="enter name here" /><br>
             	 </div>
 	      	</div>
 			<div class="control-group">
@@ -179,7 +149,7 @@
         </div>
         <div class="modal-footer">
           <button id="cancel" class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
-     	  <button id="submit" class="btn btn-primary" ng-disabled="!createstateform.$valid">{{'label.confirm' | translate}}</button>
+     	  <button id="submit" class="btn btn-primary" >{{'label.confirm' | translate}}</button>
         </div>
 	</form>
     </script>
@@ -187,7 +157,7 @@
         <div class="modal-header silver">
           <h3 class="bolder">Edit State</h3>
         </div>
-	<form name="editstateform" novalidate="" class="form-horizontal well" ng-submit="submit(entity.code,entity.name)">
+	<form name="editstateform" novalidate="" class="form-horizontal well" ng-submit="submit()">
 		<div class="error" ng-show="errorStatus || errorDetails">
 				<label>{{'label.contract.error' | translate}}</label>
 				<label ng-show="errorStatus">{{errorStatus}}</label>
@@ -196,25 +166,15 @@
         <div class="modal-body">
  		  <fieldset>
            	<div class="control-group">
-				<label class="control-label" for="entityCode">Enter New State Code<span class="required">*</span> :</label>
+				<label class="control-label" for="entityCode">State Code<span class="required">*</span>:</label>
 			 	<div class="controls">
-              		<input  type="text" name="stateCode" ng-model="entity.code" placeholder="enter code here" required late-Validate/><br>
-					<span  ng-show="editstateform.stateCode.$invalid">
-                    	<small class="error" ng-show="editstateform.stateCode.$error.req">
-                        	Required Field
-                    	</small>
-                   </span>
+              		<input  type="text" name="stateCode" id="stateCode" ng-model="formData.entityCode" placeholder="enter code here" /><br>
             	</div>
            	</div>
           	<div class="control-group">
-            	 <label class="control-label" for="entityName">Enter New State Name<span class="required">*</span> :</label>
+            	 <label class="control-label" for="entityName">State Name<span class="required">*</span>:</label>
 			 	 <div class="controls">
-              		<input  type="text" name="stateName" ng-model="entity.name" placeholder="enter name here" required late-Validate/><br>
-					<span  ng-show="editstateform.stateName.$invalid">
-                    	<small class="error" ng-show="editstateform.stateName.$error.req">
-                        	Required Field
-                    	</small>
-                   </span>
+              		<input  type="text" name="stateName" id="stateName" ng-model="formData.entityName" placeholder="enter name here" /><br>
             	 </div>
 	      	</div>
 		  </fieldset>
@@ -242,7 +202,7 @@
         <div class="modal-header silver">
           <h3 class="bolder">Add City</h3>
         </div>
-	<form name="createcityform" novalidate="" class="form-horizontal well" ng-submit="submit(formData.entityCode,formData.entityName)">
+	<form name="createcityform" novalidate="" class="form-horizontal well" ng-submit="submit()">
 		<div class="error" ng-show="errorStatus || errorDetails">
 				<label>{{'label.contract.error' | translate}}</label>
 				<label ng-show="errorStatus">{{errorStatus}}</label>
@@ -251,25 +211,15 @@
         <div class="modal-body">
  		  <fieldset>
            	<div class="control-group">
-				<label class="control-label" for="entityCode">Enter City Code<span class="required">*</span> :</label>
+				<label class="control-label" for="entityCode">City Code<span class="required">*</span>:</label>
 			 	<div class="controls">
-              		<input  type="text" name="cityCode" ng-model="formData.entityCode" placeholder="enter code here" required late-Validate/><br>
-					<span  ng-show="createcityform.cityCode.$invalid">
-                    	<small class="error" ng-show="createcityform.cityCode.$error.req">
-                        	Required Field
-                    	</small>
-                   </span>
+              		<input  type="text" name="cityCode" id="cityCode" ng-model="formData.entityCode" placeholder="enter code here" /><br>
             	</div>
            	</div>
           	<div class="control-group">
-            	 <label class="control-label" for="entityName">Enter City Name<span class="required">*</span> :</label>
+            	 <label class="control-label" for="entityName">City Name<span class="required">*</span>:</label>
 			 	 <div class="controls">
-              		<input  type="text" name="cityName" ng-model="formData.entityName" placeholder="enter name here" required late-Validate/><br>
-					<span  ng-show="createcityform.cityName.$invalid">
-                    	<small class="error" ng-show="createcityform.cityName.$error.req">
-                        	Required Field
-                    	</small>
-                   </span>
+              		<input  type="text" name="cityName" id="cityName" ng-model="formData.entityName" placeholder="enter name here" /><br>
             	 </div>
 	      	</div>
 			<div class="control-group">
@@ -282,7 +232,7 @@
         </div>
         <div class="modal-footer">
           <button id="cancel" class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
-     	  <button id="submit" class="btn btn-primary" ng-disabled="!createcityform.$valid">{{'label.confirm' | translate}}</button>
+     	  <button id="submit" class="btn btn-primary" >{{'label.confirm' | translate}}</button>
         </div>
 	</form>
     </script>
@@ -290,7 +240,7 @@
         <div class="modal-header silver">
           <h3 class="bolder">Edit City</h3>
         </div>
-	<form name="editcityform" novalidate="" class="form-horizontal well" ng-submit="submit(entity.code,entity.name)">
+	<form name="editcityform" novalidate="" class="form-horizontal well" ng-submit="submit()">
 		<div class="error" ng-show="errorStatus || errorDetails">
 				<label>{{'label.contract.error' | translate}}</label>
 				<label ng-show="errorStatus">{{errorStatus}}</label>
@@ -299,25 +249,15 @@
         <div class="modal-body">
  		  <fieldset>
            	<div class="control-group">
-				<label class="control-label">Enter New City Code<span class="required">*</span> :</label>
+				<label class="control-label">City Code<span class="required">*</span>:</label>
 			 	<div class="controls">
-              		<input  type="text" name="cityCode" ng-model="entity.code" placeholder="enter code here" required late-Validate/><br>
-					<span  ng-show="editcityform.cityCode.$invalid">
-                    	<small class="error" ng-show="editcityform.cityCode.$error.req">
-                        	Required Field
-                    	</small>
-                   </span>
+              		<input  type="text" name="cityCode" id="cityCode" ng-model="formData.entityCode" placeholder="enter code here" /><br>
             	</div>
            	</div>
           	<div class="control-group">
-            	 <label class="control-label" >Enter New City Name<span class="required">*</span> :</label>
+            	 <label class="control-label" >City Name<span class="required">*</span>:</label>
 			 	 <div class="controls">
-              		<input  type="text" name="cityName" ng-model="entity.name" placeholder="enter name here" required late-Validate/><br>
-					<span  ng-show="editcityform.cityName.$invalid">
-                    	<small class="error" ng-show="editcityform.cityName.$error.req">
-                        	Required Field
-                    	</small>
-                   </span>
+              		<input  type="text" name="cityName" id="cityName" ng-model="formData.entityName" placeholder="enter name here" /><br>
             	 </div>
 	      	</div>
 		  </fieldset>

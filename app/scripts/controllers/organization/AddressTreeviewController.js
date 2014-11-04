@@ -115,11 +115,10 @@
           
           
           var addCountryController = function ($scope, $modalInstance) {
-        	  	
-        	  $scope.submit = function (newCode,newName) {
-        		  this.formData.entityCode = newCode;
-        		  this.formData.entityName=newName;
-        		  resourceFactory.addCountryResource.get(this.formData,function(data){
+        	  	$scope.formData = {};
+        	  $scope.submit = function () {
+        		  
+        		  resourceFactory.addCountryResource.get($scope.formData,function(data){
         			  $modalInstance.close('delete');
         			  route.reload();
         	        },function(errData){
@@ -130,13 +129,12 @@
               };
           };
           var editCountryController = function ($scope, $modalInstance) {
-        	  		$scope.entity= {};
+        	  		
         	  		$scope.formData={};
-        	  		$scope.entity.code = scope.nodeCode;
-	 				$scope.entity.name = scope.nodeName;
-        	  $scope.submit = function (newCode,newName) {
-        		  	$scope.formData.entityCode = newCode;
-        		  	$scope.formData.entityName=newName;
+        	  		$scope.formData.entityCode = scope.nodeCode;
+	 				$scope.formData.entityName = scope.nodeName;
+        	  $scope.submit = function () {
+        		  	
         		  var countryId=scope.elementId[1];
         		  resourceFactory.editCountryResource.update({id:countryId},$scope.formData,function(data){
         			  $modalInstance.close('delete');
@@ -171,12 +169,12 @@
           };
           
           var addStateController = function ($scope, $modalInstance) {
+        	  $scope.formData = {};
         	  $scope.nodeName=scope.nodeName;
-	        	  $scope.submit = function (newCode,newName) {
-	        		  this.formData.entityCode = newCode;
-	        		  this.formData.entityName=newName;
-	        		  this.formData.parentEntityId = scope.elementId[1];
-	        		  resourceFactory.addStateResource.get(this.formData,function(data){
+	        	  $scope.submit = function () {
+	        		  
+	        		  $scope.formData.parentEntityId = scope.elementId[1];
+	        		  resourceFactory.addStateResource.get($scope.formData,function(data){
 	        			  $modalInstance.close('delete');
 	        			  route.reload();
 	        	        },function(errData){
@@ -187,13 +185,12 @@
 	              };
 	          };
 	       var editStateController = function ($scope, $modalInstance) {
-	    	   		$scope.entity= {};
+	    	   		
 	    	   		$scope.formData={};
-    	 			$scope.entity.code = scope.nodeCode;
-    	 			$scope.entity.name = scope.nodeName;
-	        	  $scope.submit = function (newCode,newName) {
-	        		  $scope.formData.entityCode = newCode;
-	        		  $scope.formData.entityName=newName;
+    	 			$scope.formData.entityCode = scope.nodeCode;
+    	 			$scope.formData.entityName = scope.nodeName;
+	        	  $scope.submit = function () {
+	        		  
 	        		  var stateId=scope.elementId[1];
 	        		  resourceFactory.editStateResource.update({id:stateId},$scope.formData,function(data){
 	        			  $modalInstance.close('delete');
@@ -226,12 +223,12 @@
 	          };
 
 	        var addCityController = function ($scope, $modalInstance) {
+	        	 $scope.formData = {};
 	        	  $scope.nodeName=scope.nodeName;
 		        	  $scope.submit = function (newCode,newName) {
-		        		  this.formData.entityCode = newCode;
-		        		  this.formData.entityName=newName;
-		        		  this.formData.parentEntityId = scope.elementId[1];
-		        		  resourceFactory.addCityResource.get(this.formData,function(data){
+		        		  
+		        		  $scope.formData.parentEntityId = scope.elementId[1];
+		        		  resourceFactory.addCityResource.get($scope.formData,function(data){
 		        			  $modalInstance.close('delete');
 		        			  route.reload();
 		        	        },function(errData){
@@ -242,13 +239,12 @@
 		              };
 		      };
 		     var editCityController = function ($scope, $modalInstance) {
-		    	   		$scope.entity= {};
+		    	   		
 		    	   		$scope.formData={};
- 		    	 			$scope.entity.code = scope.nodeCode;
-		    	 			$scope.entity.name = scope.nodeName;
-			        	  $scope.submit = function (newCode,newName) {
-			        		  $scope.formData.entityCode = newCode;
-			        		  $scope.formData.entityName=newName;
+ 		    	 			$scope.formData.entityCode = scope.nodeCode;
+		    	 			$scope.formData.entityName = scope.nodeName;
+			        	  $scope.submit = function () {
+			        		  
 			        		  var cityId=scope.elementId[1];
 			        		  resourceFactory.editCityResource.update({id:cityId},$scope.formData,function(data){
 			        			  $modalInstance.close('delete');
