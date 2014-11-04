@@ -21,11 +21,11 @@
 		        scope.image=clientData.image;
 		        }
 		        scope.itemId=null;
-	          scope.data={};
-	          scope.maxDate = new Date();
-	          scope.truefalse = true;
+	            scope.data={};
+	            scope.maxDate = new Date();
+	            scope.truefalse = true;
 	          
-	        resourceFactory.oneTimeSaleTemplateResource.getOnetimes({clientId: routeParams.id}, function(data) {
+	        resourceFactory.oneTimeSaleTemplateResource.getOnetimes(function(data) {
 	            
 	        	scope.itemDatas = data.itemDatas;
 	            scope.discountMasterDatas = data.discountMasterDatas;
@@ -82,14 +82,6 @@
 	        
 	       
 	        scope.getData = function(query){
-/*	        	if(query.length>0){
-	        		
-	        		resourceFactory.allocateHardwareDetails.getSerialNumbers({oneTimeSaleId:scope.formData.itemId,query: query}, function(data) { 	        	
-	     	            scope.itemDetails = data.serials;
-	     	        }); 
-	        	}else{
-	            	
-	        	}*/
 	        	return http.get($rootScope.hostUrl+ API_VERSION+'/itemdetails/'+scope.formData.itemId+'/'+scope.formData.officeId, {
 	        	      params: {
 	        	    	  query: query
@@ -160,15 +152,6 @@
 	            webStorage.add("callingTab", {someString: "Sale" });
 	            
 	        	
-	           
-	         /*   resourceFactory.allocateHardwareResource.save(this.formData,function(data){
-	            	//temp1 = undefined; 
-	            	location.path('/viewclient/' + routeParams.clientId);
-	            });
-	           // temp1 = undefined;
-	            console.log("asjhj");*/
-	            
-	        
 	        };
 	    }
 	  });

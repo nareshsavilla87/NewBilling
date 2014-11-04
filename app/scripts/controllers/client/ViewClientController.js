@@ -1067,8 +1067,7 @@
         };
         
         scope.cancelSale = function(otsId,index){
-        	resourceFactory.deleteOneTimeSaleResource.update({saleId: otsId} , function(data) {
-        		console.log(index)
+        	resourceFactory.deleteOneTimeSaleResource.delete({saleId: otsId} , function(data) {
         		scope.onetimesales.splice(index, 1);
         		getDetails();
             },function(errorData){
