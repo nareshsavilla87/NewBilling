@@ -2,7 +2,7 @@
   mifosX.controllers = _.extend(module, {
 	  ViewPromotioncodeController: function(scope, routeParams , location, resourceFactory,webStorage,$modal,PermissionService) {
 		 
-        scope.promotiondata = [];   
+        scope.promotiondata = {};   
         scope.PermissionService =  PermissionService;
         resourceFactory.promotionResource.getPrmotioncodeDetails({promotioncodeId: routeParams.id} , function(data) {
             scope.promotiondata = data;                                                

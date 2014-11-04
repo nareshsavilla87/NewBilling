@@ -34,7 +34,11 @@
             if(endDate){
             	 scope.date.endDate = dateFilter(new Date(endDate),'dd MMMM yyyy');
             }
+
             
+            if(endDate){
+            	scope.date.endDate = dateFilter(new Date(endDate),'dd MMMM yyyy');
+            }
             scope.services = data.services;
             scope.selectedServices = data.selectedServices;
             
@@ -44,17 +48,13 @@
             	scope.formData.allowTopup = true;
             	scope.formData.volume = data.volume;
             	scope.formData.units = data.units;
-            }
-            if(data.isPrepaid =='Y'){
-            	
-            	scope.formData.isPrepaid=true;
             }else{
-            	scope.formData.isPrepaid=false;
+            	scope.formData.allowTopup = false;
             }
-            if(data.isHwReq == 'Y'){
-            	
-            	scope.formData.isHwReq=true;
-            }
+
+            
+            scope.formData.isPrepaid = data.isPrepaid =='Y'?true:false;
+            scope.formData.isHwReq = data.isHwReq =='Y'?true:false;
         });
         
     	

@@ -1656,12 +1656,15 @@
 
   "validation.msg.price.price.cannot.be.blank":"price cannot be blank",
   "event.is.already.exists.with.format":"Event Price is already exist with format type {0}",
- "validation.msg.eventmaster.eventName.cannot.be.blank":"Event Name cannot be blank",
- "validation.msg.eventmaster.eventStartDate.cannot.be.blank":"Event Description cannot be blank",
+ "validation.msg.eventmaster.eventName.cannot.be.blank":"Event Code cannot be blank",
+ "validation.msg.eventmaster.eventStartDate.cannot.be.blank":"Start Date cannot be blank",
  "validation.msg.eventmaster.eventValidity.cannot.be.blank":"Event Validity cannot be blank",
  "validation.msg.eventmaster.services.cannot.be.empty":"Please select atleast one media",
  "validation.msg.eventmaster.status.cannot.be.blank":"Please select status",
- "validation.msg.eventmaster.chargeCode.cannot.be.blank":"Event Code cannot be blank",
+ "validation.msg.eventmaster.chargeCode.cannot.be.blank":"Charge Code cannot be blank",
+ "validation.msg.eventmaster.eventCategory.cannot.be.blank":"Please select Event Category",
+ "validation.msg.eventmaster.eventEndDate.cannot.be.blank":"End Date Cannot be blank",
+ "validation.msg.invalid.date.format":"Invalid Date Format",
  
  
  "validation.msg.plan.services.cannot.be.blank":"Please select atleast one service",
@@ -2097,7 +2100,25 @@
 "validation.msg.ippool.ipAddress.cannot.be.blank":"ipAddress cannot be blank",
 "validation.msg.client.closureReasonId.cannot.be.blank":"Closure reason cannot be blank",
 "error.msg.voucher.no.length.match.exception":"length of 'Begin With' should be less than 'Length' value",
-"form.error.voucher.no.length.match.exception":"length of 'Begin With' should be less than 'Length Of Pin'."
+"form.error.voucher.no.length.match.exception":"length of 'Begin With' should be less than 'Length Of Pin'.",
+
+"#Address Master Errors":".......",
+"validation.msg.addressMaster.city.entityCode.cannot.be.blank":"City Code cannot be blank",
+"validation.msg.addressMaster.state.entityCode.cannot.be.blank":"State Code cannot be blank",
+"validation.msg.addressMaster.country.entityCode.cannot.be.blank":"Country Code cannot be blank",
+"validation.msg.addressMaster.city.entityName.cannot.be.blank":"City Name cannot be blank",
+"validation.msg.addressMaster.state.entityName.cannot.be.blank":"State Name cannot be blank",
+"validation.msg.addressMaster.country.entityName.cannot.be.blank":"Country Name cannot be blank",
+
+"validation.msg.addressMaster.city.entityCode.exceeds.max.length":"City Code Exceeds Max(10) Length",
+"validation.msg.addressMaster.state.entityCode.exceeds.max.length":"State Code Exceeds Max(10) Length",
+"validation.msg.addressMaster.country.entityCode.exceeds.max.length":"Country Code Exceeds Max(4) Length",
+"validation.msg.addressMaster.city.entityName.exceeds.max.length":"City Name Exceeds Max(100) Length",
+"validation.msg.addressMaster.state.entityName.exceeds.max.length":"State Name Exceeds Max(100) Length",
+"validation.msg.addressMaster.country.entityName.exceeds.max.length":"Country Name Exceeds Max(100) Length"
+
+
+
 
 
 
