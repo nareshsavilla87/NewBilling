@@ -42,7 +42,7 @@
                 scope.eventCategeorydatas = data.eventCategeorydata;
                 scope.contentProviderDatas=data.contentProviderData;
                 scope.attributesFormData.attributeType="Cast";
-                
+                scope.mediaTypeDatas = data.mediaTypeData;
             });
         	
         };
