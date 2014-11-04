@@ -501,7 +501,7 @@
             <div class="control-group">
             		<label class="control-label" for="status">{{ 'label.provisioning.commandname' | translate }}</label>
                     	<div class="controls">
-                             <select ng-model="formData.commandname" ng-change="commandName(formData.commandname)" ng-options="commanddata.commandName for commanddata in commandData" value="{{commanddata.commandName}}"></select>
+                             <select ng-model="formData.commandName" ng-change="commandName(formData.commandName)" ng-options="commanddata.commandName as commanddata.commandName for commanddata in commandData" ></select>
                         </div>
 			</div>
 			<div class="control-group" id="commandName">
@@ -513,7 +513,7 @@
      </div>
      <div class="modal-footer">
                         <button id="cancel" class="btn btn-warning" ng-click="rejectProvisioning()">{{'button.cancel' | translate}}</button>
-                        <button id="submit" class="btn btn-primary" ng-click="acceptProvisioning()" ng-disabled="flagProvisioningSystemPop">{{'label.confirm' | translate}}</button>
+                        <button id="submit" class="btn btn-primary" ng-click="acceptProvisioning()" >{{'label.confirm' | translate}}</button>
      </div>
       </script>
       

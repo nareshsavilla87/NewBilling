@@ -841,6 +841,7 @@
   "validation.msg.order.contractPeriod.cannot.be.blank":"Please Select Contract Period",
   "error.msg.request.sent.for.activation":"Order is already sent for Activation ",
   "error.msg.billing.order.startdate.greater.than.exist.orderendate ":"Start Date must be greater than exist Order EndDate",
+  "validation.msg.order.commandName.cannot.be.blank":"Command can not be blank",
   
     "#Voucher pins":"....",
   "link.create.new.voucherpin":"Create Voucherpin",
@@ -2107,19 +2108,19 @@
 "form.error.voucher.no.length.match.exception":"length of 'Begin With' should be less than 'Length Of Pin'.",
 
 "#Address Master Errors":".......",
-"validation.msg.addressMaster.city.entityCode.cannot.be.blank":"City Code cannot be blank",
-"validation.msg.addressMaster.state.entityCode.cannot.be.blank":"State Code cannot be blank",
-"validation.msg.addressMaster.country.entityCode.cannot.be.blank":"Country Code cannot be blank",
-"validation.msg.addressMaster.city.entityName.cannot.be.blank":"City Name cannot be blank",
-"validation.msg.addressMaster.state.entityName.cannot.be.blank":"State Name cannot be blank",
-"validation.msg.addressMaster.country.entityName.cannot.be.blank":"Country Name cannot be blank",
+"validation.msg.addressMaster.city.cityCode.cannot.be.blank":"City Code cannot be blank",
+"validation.msg.addressMaster.state.stateCode.cannot.be.blank":"State Code cannot be blank",
+"validation.msg.addressMaster.country.countryCode.cannot.be.blank":"Country Code cannot be blank",
+"validation.msg.addressMaster.city.cityName.cannot.be.blank":"City Name cannot be blank",
+"validation.msg.addressMaster.state.stateName.cannot.be.blank":"State Name cannot be blank",
+"validation.msg.addressMaster.country.countryName.cannot.be.blank":"Country Name cannot be blank",
 
-"validation.msg.addressMaster.city.entityCode.exceeds.max.length":"City Code Exceeds Max(10) Length",
-"validation.msg.addressMaster.state.entityCode.exceeds.max.length":"State Code Exceeds Max(10) Length",
-"validation.msg.addressMaster.country.entityCode.exceeds.max.length":"Country Code Exceeds Max(4) Length",
-"validation.msg.addressMaster.city.entityName.exceeds.max.length":"City Name Exceeds Max(100) Length",
-"validation.msg.addressMaster.state.entityName.exceeds.max.length":"State Name Exceeds Max(100) Length",
-"validation.msg.addressMaster.country.entityName.exceeds.max.length":"Country Name Exceeds Max(100) Length"
+"validation.msg.addressMaster.city.cityCode.exceeds.max.length":"City Code Exceeds Max(10) Length",
+"validation.msg.addressMaster.state.stateCode.exceeds.max.length":"State Code Exceeds Max(10) Length",
+"validation.msg.addressMaster.country.countryCode.exceeds.max.length":"Country Code Exceeds Max(4) Length",
+"validation.msg.addressMaster.city.cityName.exceeds.max.length":"City Name Exceeds Max(100) Length",
+"validation.msg.addressMaster.state.stateName.exceeds.max.length":"State Name Exceeds Max(100) Length",
+"validation.msg.addressMaster.country.countryName.exceeds.max.length":"Country Name Exceeds Max(100) Length"
 
 
 

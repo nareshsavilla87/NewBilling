@@ -317,48 +317,37 @@
       };
        		
      var ProvisioningSystemPopController = function($scope,$modalInstance){
+    	 	$scope.formData = {};
+    	 	$scope.commandData =  [];
+    	 	
          	 resourceFactory.provisioningMappingResource.getprovisiongData(function(data) {
          		 $('#commandName').hide();
          		 $scope.commandData=data; 
              });
          	 
-          	$scope.acceptProvisioning = function(){
-          		$scope.flagProvisioningSystemPop=true;
-          		if(this.provisioning == undefined || this.provisioning == null){
-              		this.provisioning = {};
-              	} 		
-          		if(this.formData.commandname.commandName=='OSM'){
-          			  this.provisioning.commandName=this.formData.commandname.commandName;
-          			  this.provisioning.message=this.formData.message;
-        				resourceFactory.osdResource.save({'orderId': routeParams.id},this.provisioning,
-        						function(data) {
-        					 location.path('/vieworder/'+routeParams.id+"/"+scope.clientId);
-        					 $modalInstance.close('delete');
-        				     },function(renewalErrorData){
-        				    	 $scope.flagProvisioningSystemPop=false;
-            	         	$scope.renewError = renewalErrorData.data.errors[0].userMessageGlobalisationCode;
-            						});
-          		}
-          		else{
-          		    this.provisioning.commandName=this.formData.commandname.commandName;
-          			resourceFactory.osdResource.getPost({'orderId': routeParams.id} ,this.provisioning, function(data) {
-                        location.path('/vieworder/'+routeParams.id+"/"+scope.clientId);
-                        $modalInstance.close('delete');           
-          			 },function(renewalErrorData){
-          				$scope.flagProvisioningSystemPop=false;
-         	        	$scope.renewError = renewalErrorData.data.errors[0].userMessageGlobalisationCode;
-         						});
-          		}
-          		  
-          	};
-          	
-          	$scope.commandName=function(name){
-          		if(this.formData.commandname.commandName=='OSM'){
-          			$('#commandName').show();
-          		}else{
-          			$('#commandName').hide();
-          		}
+         	$scope.commandName=function(name){
+          		$scope.formData.commandName=='OSM' ? $('#commandName').show() : $('#commandName').hide();
+         	}
           		
+          	$scope.acceptProvisioning = function(){
+          				
+          		if($scope.formData.commandName=='OSM'){
+          				
+        				resourceFactory.osdResource.save({'orderId': routeParams.id},$scope.formData, function(data) {
+        					  $modalInstance.close('delete');
+        					 location.path('/vieworder/'+routeParams.id+"/"+scope.clientId);
+        				 },function(renewalErrorData){
+            	         	$scope.renewError = renewalErrorData.data.errors[0].userMessageGlobalisationCode;
+            			});
+          		}else{
+          			resourceFactory.osdResource.getPost({'orderId': routeParams.id} ,$scope.formData, function(data) {
+          					$modalInstance.close('delete');           
+          					location.path('/vieworder/'+routeParams.id+"/"+scope.clientId);
+          			 },function(renewalErrorData){
+          				 	$scope.renewError = renewalErrorData.data.errors[0].userMessageGlobalisationCode;
+         		    });
+          		};
+          		  
           	};
           	
           	$scope.rejectProvisioning = function(){
