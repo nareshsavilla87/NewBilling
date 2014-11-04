@@ -2104,7 +2104,25 @@
 "validation.msg.ippool.ipAddress.cannot.be.blank":"ipAddress cannot be blank",
 "validation.msg.client.closureReasonId.cannot.be.blank":"Closure reason cannot be blank",
 "error.msg.voucher.no.length.match.exception":"length of 'Begin With' should be less than 'Length' value",
-"form.error.voucher.no.length.match.exception":"length of 'Begin With' should be less than 'Length Of Pin'."
+"form.error.voucher.no.length.match.exception":"length of 'Begin With' should be less than 'Length Of Pin'.",
+
+"#Address Master Errors":".......",
+"validation.msg.addressMaster.city.entityCode.cannot.be.blank":"City Code cannot be blank",
+"validation.msg.addressMaster.state.entityCode.cannot.be.blank":"State Code cannot be blank",
+"validation.msg.addressMaster.country.entityCode.cannot.be.blank":"Country Code cannot be blank",
+"validation.msg.addressMaster.city.entityName.cannot.be.blank":"City Name cannot be blank",
+"validation.msg.addressMaster.state.entityName.cannot.be.blank":"State Name cannot be blank",
+"validation.msg.addressMaster.country.entityName.cannot.be.blank":"Country Name cannot be blank",
+
+"validation.msg.addressMaster.city.entityCode.exceeds.max.length":"City Code Exceeds Max(10) Length",
+"validation.msg.addressMaster.state.entityCode.exceeds.max.length":"State Code Exceeds Max(10) Length",
+"validation.msg.addressMaster.country.entityCode.exceeds.max.length":"Country Code Exceeds Max(4) Length",
+"validation.msg.addressMaster.city.entityName.exceeds.max.length":"City Name Exceeds Max(100) Length",
+"validation.msg.addressMaster.state.entityName.exceeds.max.length":"State Name Exceeds Max(100) Length",
+"validation.msg.addressMaster.country.entityName.exceeds.max.length":"Country Name Exceeds Max(100) Length"
+
+
+
 
 
 
