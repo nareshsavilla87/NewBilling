@@ -721,6 +721,10 @@
   "table.game.sequence":"Sequence",
   "table.game.type":"Type",
   "table.game.amount":"Amount",
+  "validation.msg.mediaasset.attributevalue.exceeds.max.length":"Caption value length does not exceeds 60 characters",
+  "validation.msg.mediaasset.attributeNickname.exceeds.max.length":"Nick Name length does not exceeds 60 characters",
+  "validation.msg.mediaasset.attributeImage.exceeds.max.length":"Image length does not exceeds 150 characters",
+  "validation.msg.mediaasset.location.exceeds.max.length":"Location length does not exceeds 255 characters",
   
   "#Inventory":"......",
   "link.inventory":"Inventory",
