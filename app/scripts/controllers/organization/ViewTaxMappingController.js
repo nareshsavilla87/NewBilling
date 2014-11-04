@@ -1,7 +1,7 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
 	  ViewTaxMappingController: function(scope, routeParams , resourceFactory,PermissionService ) {
-        scope.taxmapping = [];
+        scope.taxmapping = {};
         scope.PermissionService = PermissionService;
         resourceFactory.getTaxmappingResource.get({taxId: routeParams.id}, function(data) {
             scope.taxmapping = data;
