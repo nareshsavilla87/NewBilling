@@ -16,7 +16,7 @@
         	
         	 scope.officeDatas = data.officeDatas;
         	 scope.itemDatas = data.itemDatas;
-        	 scope.chargeDatas = data.chargesDatas;
+        	 scope.chargeDatas = data.chargeDatas;
         	 for(var i in scope.officeDatas){
         		 if(scope.officeDatas[i].id == scope.officeId){
         			 scope.officeDatas.splice(i,1); 
@@ -63,10 +63,7 @@
             	}else{
             		location.path('/viewoffice/'+routeParams.officeId);		
             	}
-        	
-
-            /*resourceFactory.agentsResource.postAgent(scope.formData,function(data){
-        		location.path('/viewoffice/'+routeParams.officeId);*/
+           
 
           });
         };

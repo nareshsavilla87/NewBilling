@@ -105,7 +105,7 @@
 										<label class="control-label" for="itemId">{{
 											'label.itemCode' | translate }}</label>
 										<div class="controls">
-											<select ng-model="formData.itemId"
+											<select id="itemId" ng-model="formData.itemId" 
 												ng-change="itemData(formData.itemId,formData.officeId)"
 												ng-options="itemData.id as itemData.itemCode for itemData in itemDatas"
 												value="{{itemData.id}}">

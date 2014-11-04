@@ -83,7 +83,8 @@
 	        	    	  
 
 	        	      return itemDetails;
-	        	    });
+	        	      }
+	            });
             };
 	        
             scope.getNumber = function(num) {
@@ -141,13 +142,7 @@
 	            webStorage.add("callingTab", {someString: "Sale" });
 	            
 	        	
-	           
-	         /*   resourceFactory.allocateHardwareResource.save(this.formData,function(data){
-	            	//temp1 = undefined; 
-	            	location.path('/viewclient/' + routeParams.clientId);
-	            });
-	           // temp1 = undefined;
-	            console.log("asjhj");*/
+	   
 	            
 	        
 	        };
