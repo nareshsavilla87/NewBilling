@@ -15,6 +15,7 @@
 							scope.services = [];							
 							scope.selectedServices = [];
 							scope.date = {};
+							scope.first={};
 							
 							scope.restrict = function() {								
 								for ( var i in this.allowed) {																	
@@ -75,15 +76,21 @@
 								}
 							});
 							
+							$('#timepicker1').timepicker({
+					        	showInputs:false,
+					        	showMeridian:false
+					        });
+						 
+							$('#timepicker2').timepicker({
+					        	showInputs:false,
+					        	showMeridian:false
+					        });
 							
 							
 							scope.submit = function() {
 								this.formData.locale = $rootScope.locale.code;
 								this.formData.dateFormat = 'dd MMMM yyyy';
-								/*this.formData.eventStartDate= '07 November 2013';
-								this.formData.eventEndDate= '30 November 2013';
-								this.formData.eventValidity= '30 November 2013';
-								this.formData.locale = 'en';*/
+								
 					        	var reqDate = dateFilter(scope.date.startDate,'dd MMMM yyyy');
 					        	var reqEndDate = dateFilter(scope.date.eventEndDate,'dd MMMM yyyy');
 					        	var reqEventValididty= dateFilter(scope.date.eventValidity,'dd MMMM yyyy');
@@ -91,6 +98,18 @@
 					            this.formData.eventStartDate = reqDate;
 					            this.formData.eventEndDate = reqEndDate;
 					            this.formData.eventValidity = reqEventValididty;
+					            
+					            if(this.formData.eventCategory == 'Live Event' &&
+					            		$('#timepicker1').val() !=''){
+					            	
+					            	this.formData.eventStartDate = reqDate+" "+$('#timepicker1').val()+':00';
+								}
+					            if(this.formData.eventCategory == 'Live Event' && 
+					            		$('#timepicker2').val() !=''){
+					           
+					            	this.formData.eventEndDate = reqEndDate+" "+$('#timepicker2').val()+':00';
+								}
+								
 								var temp = [];
 								var final = {};
 								for ( var i in scope.selectedServices) {
