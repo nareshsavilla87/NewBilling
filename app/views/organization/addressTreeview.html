@@ -42,6 +42,11 @@
           <h3 class="bolder">Add Country</h3>
         </div>
 	 <form name="createcountryform" novalidate="" class="form-horizontal well" ng-submit="submit(formData.entityCode,formData.entityName)">
+		<div class="error" ng-show="errorStatus || errorDetails">
+				<label>{{'label.contract.error' | translate}}</label>
+				<label ng-show="errorStatus">{{errorStatus}}</label>
+				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
         <div class="modal-body">
  		  <fieldset>
            	<div class="control-group">
@@ -79,6 +84,11 @@
           <h3 class="bolder">Edit Country</h3>
         </div>
 	<form name="editcountryform" novalidate="" class="form-horizontal well" ng-submit="submit(entity.code,entity.name)">
+		<div class="error" ng-show="errorStatus || errorDetails">
+				<label>{{'label.contract.error' | translate}}</label>
+				<label ng-show="errorStatus">{{errorStatus}}</label>
+				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
         <div class="modal-body" >
  		  <fieldset>
            	<div class="control-group">
@@ -129,6 +139,11 @@
           <h3 class="bolder">Add State</h3>
         </div>
 	 <form name="createstateform" novalidate="" class="form-horizontal well" ng-submit="submit(formData.entityCode,formData.entityName)">
+		<div class="error" ng-show="errorStatus || errorDetails">
+				<label>{{'label.contract.error' | translate}}</label>
+				<label ng-show="errorStatus">{{errorStatus}}</label>
+				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
         <div class="modal-body">
  		  <fieldset>
            	<div class="control-group">
@@ -173,6 +188,11 @@
           <h3 class="bolder">Edit State</h3>
         </div>
 	<form name="editstateform" novalidate="" class="form-horizontal well" ng-submit="submit(entity.code,entity.name)">
+		<div class="error" ng-show="errorStatus || errorDetails">
+				<label>{{'label.contract.error' | translate}}</label>
+				<label ng-show="errorStatus">{{errorStatus}}</label>
+				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
         <div class="modal-body">
  		  <fieldset>
            	<div class="control-group">
@@ -223,6 +243,11 @@
           <h3 class="bolder">Add City</h3>
         </div>
 	<form name="createcityform" novalidate="" class="form-horizontal well" ng-submit="submit(formData.entityCode,formData.entityName)">
+		<div class="error" ng-show="errorStatus || errorDetails">
+				<label>{{'label.contract.error' | translate}}</label>
+				<label ng-show="errorStatus">{{errorStatus}}</label>
+				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
         <div class="modal-body">
  		  <fieldset>
            	<div class="control-group">
@@ -266,6 +291,11 @@
           <h3 class="bolder">Edit City</h3>
         </div>
 	<form name="editcityform" novalidate="" class="form-horizontal well" ng-submit="submit(entity.code,entity.name)">
+		<div class="error" ng-show="errorStatus || errorDetails">
+				<label>{{'label.contract.error' | translate}}</label>
+				<label ng-show="errorStatus">{{errorStatus}}</label>
+				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
         <div class="modal-body">
  		  <fieldset>
            	<div class="control-group">

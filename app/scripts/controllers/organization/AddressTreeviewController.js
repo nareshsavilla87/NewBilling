@@ -120,10 +120,10 @@
         		  this.formData.entityCode = newCode;
         		  this.formData.entityName=newName;
         		  resourceFactory.addCountryResource.get(this.formData,function(data){
+        			  $modalInstance.close('delete');
         			  route.reload();
         	        },function(errData){
 		          });
-        		  $modalInstance.close('delete');
               };
               $scope.cancel = function () {
                   $modalInstance.dismiss('cancel');
@@ -139,10 +139,10 @@
         		  	$scope.formData.entityName=newName;
         		  var countryId=scope.elementId[1];
         		  resourceFactory.editCountryResource.update({id:countryId},$scope.formData,function(data){
+        			  $modalInstance.close('delete');
         			  route.reload();
         	        },function(errData){
 		          });
-        		  $modalInstance.close('delete');
               };
               $scope.cancel = function () {
                   $modalInstance.dismiss('cancel');
@@ -152,11 +152,11 @@
         	  	
         	  $scope.approveDeleteCountry = function () {
         		  $scope.countryId=scope.elementId[1];
-        		  resourceFactory.editCountryResource.delete({id:$scope.countryId},{},function(data){
+        		  resourceFactory.editCountryResource.remove({id:$scope.countryId},{},function(data){
+        			  $modalInstance.close('delete');
         			  route.reload();
         	        },function(errData){
 		          });
-        		  $modalInstance.close('delete');
               };
               $scope.cancel = function () {
                   $modalInstance.dismiss('cancel');
@@ -177,10 +177,10 @@
 	        		  this.formData.entityName=newName;
 	        		  this.formData.parentEntityId = scope.elementId[1];
 	        		  resourceFactory.addStateResource.get(this.formData,function(data){
+	        			  $modalInstance.close('delete');
 	        			  route.reload();
 	        	        },function(errData){
 			          });
-	        		  $modalInstance.close('delete');
 	              };
 	              $scope.cancel = function () {
 	                  $modalInstance.dismiss('cancel');
@@ -196,10 +196,10 @@
 	        		  $scope.formData.entityName=newName;
 	        		  var stateId=scope.elementId[1];
 	        		  resourceFactory.editStateResource.update({id:stateId},$scope.formData,function(data){
+	        			  $modalInstance.close('delete');
 	        			  route.reload();
 	        	        },function(errData){
 			          });
-	        		  $modalInstance.close('delete');
 	              };
 	              $scope.cancel = function () {
 	                  $modalInstance.dismiss('cancel');
@@ -208,11 +208,11 @@
 	        var deleteStateController = function ($scope, $modalInstance) {
 	        	  $scope.approveDeleteState = function () {
 	        		  $scope.stateId=scope.elementId[1];
-	        		  resourceFactory.editStateResource.delete({id:$scope.stateId},{},function(data){
+	        		  resourceFactory.editStateResource.remove({id:$scope.stateId},{},function(data){
+	        			  $modalInstance.close('delete');
 	        			  route.reload();
 	        	        },function(errData){
 			          });
-	        		  $modalInstance.close('delete');
 	              };
 	              $scope.cancel = function () {
 	                  $modalInstance.dismiss('cancel');
@@ -232,10 +232,10 @@
 		        		  this.formData.entityName=newName;
 		        		  this.formData.parentEntityId = scope.elementId[1];
 		        		  resourceFactory.addCityResource.get(this.formData,function(data){
+		        			  $modalInstance.close('delete');
 		        			  route.reload();
 		        	        },function(errData){
 				          });
-		        		  $modalInstance.close('delete');
 		              };
 		              $scope.cancel = function () {
 		                  $modalInstance.dismiss('cancel');
@@ -251,10 +251,10 @@
 			        		  $scope.formData.entityName=newName;
 			        		  var cityId=scope.elementId[1];
 			        		  resourceFactory.editCityResource.update({id:cityId},$scope.formData,function(data){
+			        			  $modalInstance.close('delete');
 			        			  route.reload();
 			        	        },function(errData){
 					          });
-			        		  $modalInstance.close('delete');
 			              };
 			              $scope.cancel = function () {
 			                  $modalInstance.dismiss('cancel');
@@ -263,11 +263,11 @@
 			   var deleteCityController = function ($scope, $modalInstance) {
 			        	  $scope.approveDeleteCity = function () {
 			        		  $scope.cityId=scope.elementId[1];
-			        		  resourceFactory.editCityResource.delete({id:$scope.cityId},{},function(data){
+			        		  resourceFactory.editCityResource.remove({id:$scope.cityId},{},function(data){
+			        			  $modalInstance.close('delete');
 			        			  route.reload();
 			        	        },function(errData){
 					          });
-			        		  $modalInstance.close('delete');
 			              };
 			              $scope.cancel = function () {
 			                  $modalInstance.dismiss('cancel');
