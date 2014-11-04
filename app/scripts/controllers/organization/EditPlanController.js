@@ -28,8 +28,13 @@
             scope.provisionSysDatas=data.provisionSysData;
             
             var startDate =data.startDate; 
-            var endDate =data.endDate; 
+            var endDate =data.endDate;
+            
             scope.date.startDate = dateFilter(new Date(startDate),'dd MMMM yyyy');
+            if(endDate){
+            	 scope.date.endDate = dateFilter(new Date(endDate),'dd MMMM yyyy');
+            }
+
             
             if(endDate){
             	scope.date.endDate = dateFilter(new Date(endDate),'dd MMMM yyyy');
@@ -46,10 +51,10 @@
             }else{
             	scope.formData.allowTopup = false;
             }
+
             
             scope.formData.isPrepaid = data.isPrepaid =='Y'?true:false;
             scope.formData.isHwReq = data.isHwReq =='Y'?true:false;
-        	
         });
         
     	
