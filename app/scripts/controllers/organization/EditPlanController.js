@@ -28,11 +28,12 @@
             scope.provisionSysDatas=data.provisionSysData;
             
             var startDate =data.startDate; 
-            var endDate =data.endDate; 
-            scope.date = {
-            				startDate : dateFilter(new Date(startDate),'dd MMMM yyyy'),
-            				endDate   : dateFilter(new Date(endDate),'dd MMMM yyyy')
-            			  };
+            var endDate =data.endDate;
+            
+            scope.date.startDate = dateFilter(new Date(startDate),'dd MMMM yyyy');
+            if(endDate){
+            	 scope.date.endDate = dateFilter(new Date(endDate),'dd MMMM yyyy');
+            }
             
             scope.services = data.services;
             scope.selectedServices = data.selectedServices;
@@ -47,8 +48,10 @@
             if(data.isPrepaid =='Y'){
             	
             	scope.formData.isPrepaid=true;
-            	
-            }if(data.isHwReq == 'Y'){
+            }else{
+            	scope.formData.isPrepaid=false;
+            }
+            if(data.isHwReq == 'Y'){
             	
             	scope.formData.isHwReq=true;
             }
