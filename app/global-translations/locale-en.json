@@ -2123,7 +2123,12 @@
 "validation.msg.addressMaster.country.countryCode.exceeds.max.length":"Country Code Exceeds Max(4) Length",
 "validation.msg.addressMaster.city.cityName.exceeds.max.length":"City Name Exceeds Max(100) Length",
 "validation.msg.addressMaster.state.stateName.exceeds.max.length":"State Name Exceeds Max(100) Length",
-"validation.msg.addressMaster.country.countryName.exceeds.max.length":"Country Name Exceeds Max(100) Length"
+"validation.msg.addressMaster.country.countryName.exceeds.max.length":"Country Name Exceeds Max(100) Length",
+
+"error.msg.addressmaster.country.duplicate.countrycode":"Country Code with this '{{params[0].value}}' already exists",
+"error.msg.addressmaster.state.duplicate.statecode":"State Code with this '{{params[0].value}}' already exists",
+"error.msg.addressmaster.city.duplicate.citycode":"City Code with this '{{params[0].value}}' already exists"
+
 
 
 
