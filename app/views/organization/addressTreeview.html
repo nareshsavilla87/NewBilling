@@ -45,7 +45,7 @@
 		<div class="error" ng-show="errorStatus || errorDetails">
 				<label>{{'label.contract.error' | translate}}</label>
 				<label ng-show="errorStatus">{{errorStatus}}</label>
-				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate : error.args}}</label>
 	    </div>
         <div class="modal-body">
  		  <fieldset>
