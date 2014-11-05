@@ -432,8 +432,9 @@
 			              <tr class="pointer-main" ng-repeat="childsData in parent">
 			                <td class="pointer" data-ng-click="routeToParentClientOrChildClient(childsData.id)">{{childsData.id}}</td>
 			                <td class="pointer" data-ng-click="routeToParentClientOrChildClient(childsData.id)">{{childsData.displayName}}</td>
-			                <td class="pointer" data-ng-click="routeToParentClientOrChildClient(childsData.id)">{{childsData.accountNo}}</td>   
-			                <td class="pointer" data-ng-click="deleteChildsFromparent(childsData.id)"><i class="icon-remove-circle icon-white"></i></td>           
+			                <td class="pointer" data-ng-click="routeToParentClientOrChildClient(childsData.id)">{{childsData.accountNo}}</td> 
+			                <td><a  data-ng-click="deleteChildsFromparent(childsData.id)" popover="Delete Child" popover-trigger="mouseenter">  
+			                <i class="icon-remove-circle icon-white"></i></a></td>           
 			              </tr>
 			            </tbody>
 			          </table>
