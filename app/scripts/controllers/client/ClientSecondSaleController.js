@@ -28,7 +28,7 @@
 	            
 	        	scope.itemDatas = data.itemDatas;
 	            scope.discountMasterDatas = data.discountMasterDatas;
-	            scope.formData.discountId = scope.discountMasterDatas[0].discountMasterId;
+	            scope.formData.discountId = scope.discountMasterDatas[0].id;
 	            scope.onetimesales=data;
 	            scope.date= {};
 	            scope.date.saleDate = new Date();
@@ -45,7 +45,7 @@
 	        		
 	        		scope.formData=data;
 	        		scope.formData.itemId=itemId;
-	        		scope.formData.discountId = scope.discountMasterDatas[0].discountMasterId;
+	        		scope.formData.discountId = scope.discountMasterDatas[0].id;
 	        		scope.formData.officeId=officeId;
 	        		scope.formData.chargeCode="NONE";
 		        });	
@@ -60,7 +60,7 @@
 	        		scope.formData=data;
 	        		scope.formData.quantity=quantity;
 	        		scope.formData.itemId=itemId;
-	        		scope.formData.discountId = scope.discountMasterDatas[0].discountMasterId;
+	        		scope.formData.discountId = scope.discountMasterDatas[0].id;
 	        		scope.formData.officeId=officeId;
 	        		//scope.formData.chargeCode="NONE";
 		        });	
@@ -69,22 +69,21 @@
 	        	var amount=totalPrice/quantity;
 	        	scope.formData.unitPrice=amount;
 	        };
-	       
+
 	        scope.getData = function(query){
-	        	
 	        	return http.get($rootScope.hostUrl+ API_VERSION+'/itemdetails/'+scope.formData.itemId+'/'+scope.formData.officeId, {
 	        	      params: {
 	        	    	  query: query
 	        	      }
 	        	    }).then(function(res){
 	        	    	itemDetails = [];
-	        	      for(var i in res.data.serials){
-	        	    	  itemDetails.push(res.data.serials[i]);
-	        	    	  
-
-	        	      return itemDetails;
+	        	      for(var i in res.data.serialNumbers){
+	        	    	  itemDetails.push(res.data.serialNumbers[i]);
+	        	    	  if(i == 7)
+	        	    		  break;
 	        	      }
-	            });
+	        	      return itemDetails;
+	        	    });
             };
 	        
             scope.getNumber = function(num) {
@@ -106,7 +105,7 @@
 	        	 this.formData.locale = $rootScope.locale.code;
 	             this.formData.dateFormat = "dd MMMM yyyy";
 	             this.formData.chargeCode="NONE";
-	             this.formData.saleType = "SECOND_SALE";
+	             this.formData.saleType = "SECONDSALE";
 	             var actDate = dateFilter(scope.date.saleDate,'dd MMMM yyyy');
 	             this.formData.saleDate=actDate;
 	             delete this.formData.discountMasterDatas;   
@@ -134,7 +133,7 @@
 		            this.formData.serialNumber=temp1;
 		            delete this.formData.serials;
 		            delete this.formData.chargesData;
-	            resourceFactory.oneTimeSaleResource.save({clientId:routeParams.id},this.formData,function(data){
+	            resourceFactory.oneTimeSaleResource.save({clientId:routeParams.id,devicesaleTpye:'SECONDSALE'},this.formData,function(data){
 	            	 location.path('/viewclient/' + routeParams.id);
 	          },function(errData){
 	        	  scope.flag = false;
