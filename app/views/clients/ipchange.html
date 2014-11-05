@@ -118,7 +118,7 @@
     			<div class="control-group">
             		<label class="control-label" for="ipAddress">{{'label.provisioning.ipaddress' | translate}}</label>
                         <div class="controls">                                  	       
-             			  <input type="text" ng-model="IPAddressObj.ipAddress" name="ipAddress" typeahead="ipPoolData as ipPoolData for ipPoolData in getData($viewValue) | limitTo:8" typeahead-min-length="0">  
+             			  <input type="text" ng-model="IPAddressObj.ipAddress" name="ipAddress" typeahead="ipPoolData as ipPoolData for ipPoolData in getData($viewValue)" typeahead-min-length="0">  
                              <a ng-show="IPAddressType" ng-click="addIpAddresses()">&nbsp;<i class="icon-plus icon-white"></i></a>&nbsp;&nbsp;
                               	<div  ng-show="IPAddressType" ng-repeat="addipAddress in addIpAddress track by $index">
 									 <input type="text" style="width:110px" readonly ng-model="addipAddress"> 
