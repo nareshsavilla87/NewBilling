@@ -7,12 +7,12 @@
         scope.formData = {};
         scope.grn={};
         
-        resourceFactory.grntemplateResource.get(function(data) {
+        resourceFactory.grnTemplateResource.get(function(data) {
         	scope.itemDatas = data.itemData;
             scope.officeDatas = data.officeData;
             scope.supplierDatas = data.supplierData;
         });
-        resourceFactory.grnSingleTemplateResource.get({grnId: routeParams.id} , function(data) {
+        resourceFactory.grnResource.get({grnId: routeParams.id} , function(data) {
         	var purchaseDate = dateFilter(data.purchaseDate,'dd MMMM yyyy');
         	scope.formData.purchaseDate = new Date(purchaseDate );
         	scope.formData.purchaseNo=data.purchaseNo;
