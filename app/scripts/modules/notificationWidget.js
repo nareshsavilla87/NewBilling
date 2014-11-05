@@ -87,6 +87,11 @@ angular.module('notificationWidget', [])
                       var errorObj = new Object();
                       errorObj.field = temp.parameterName;
                       errorObj.code = temp.userMessageGlobalisationCode;
+                      errorObj.args = {params:[]};
+                      
+                      for(var argVal in temp.args){
+                    	  errorObj.args.params.push({value : temp.args[argVal].value});
+                      }
 
                       errorArray[arrayIndex] = errorObj;
                       arrayIndex++;
