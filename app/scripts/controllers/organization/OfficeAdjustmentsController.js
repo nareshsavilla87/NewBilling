@@ -11,7 +11,6 @@
         resourceFactory.officeAdjustmentsTemplateResource.getAdjustments(function(data){
           scope.discountOptions = data.discountOptions;
           scope.data = data.data;
-         
         });
         
         scope.submit = function() {

@@ -1,6 +1,6 @@
 (function(module) {
 	  mifosX.controllers = _.extend(module, {
-		  HardwareSwapController: function(scope, webStorage,routeParams , location, resourceFactory) {
+		  HardwareSwapController: function(scope, webStorage,routeParams , location, resourceFactory,http,$rootScope,API_VERSION) {
 			 scope.formData={};
 			  scope.association=[];
 			  scope.clientId=routeParams.clientId;
@@ -25,15 +25,20 @@
 	                scope.association = data;                                                
 	            });
 	        scope.getData = function(query){
-	        	if(query.length>0){
-	        		
-	        		resourceFactory.allocateHardwareDetails.getSerialNumbers({oneTimeSaleId: scope.association.itemId,officeId:scope.officeId,query: query}, function(data) { 	        	
-
-	     	            scope.itemDetails = data.serials;
-	     	        }); 
-	        	}else{
-	            	
-	        	}
+	        	 return http.get($rootScope.hostUrl+ API_VERSION+'/itemdetails/'+scope.association.itemId+'/'+scope.officeId+'/', {
+	          	      params: {
+	          	    	  query: query
+	          	      }
+	          	    }).then(function(res){
+	          	    	itemDetails = [];
+	          	    	for(var i in res.data.serialNumbers){
+	          	    		itemDetails.push(res.data.serialNumbers[i]);
+	          	    		if(i==7){
+	          	    			break;
+	          	    		}
+	          	    	}
+	          	      return  itemDetails;
+	          	    });
             };
 	        	
 	        scope.getNumber = function(num) {
@@ -57,7 +62,7 @@
 	        };
 	    }
 	  });
-	  mifosX.ng.application.controller('HardwareSwapController', ['$scope', 'webStorage','$routeParams', '$location', 'ResourceFactory', mifosX.controllers.HardwareSwapController]).run(function($log) {
+	  mifosX.ng.application.controller('HardwareSwapController', ['$scope', 'webStorage','$routeParams', '$location', 'ResourceFactory','$http','$rootScope','API_VERSION', mifosX.controllers.HardwareSwapController]).run(function($log) {
         $log.info("HardwareSwapController initialized");
     });
 }(mifosX.controllers || {}));

@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  IpchangeController: function(scope, webStorage,resourceFactory, routeParams,location,dateFilter,modal,http,$rootScope) {
+	  IpchangeController: function(scope, webStorage,resourceFactory, routeParams,location,dateFilter,modal,http,$rootScope,API_VERSION) {
 		  
 		scope.orderId = routeParams.orderId;
         scope.provisioningdata= [];
@@ -89,12 +89,18 @@
        
        /**Ip datas start*/
        scope.getData = function(query){
-       	   return http.get($rootScope.hostUrl+ '/obsplatform/api/v1/ippooling/search/', {
+       	   return http.get($rootScope.hostUrl+API_VERSION+'/ippooling/search/', {
        	      params: {
        	    	  query: query
        	      }
        	    }).then(function(res){
-       	    	ipPoolData = res.data.ipAddressData;
+       	    	ipPoolData = [];
+       	    	for(var i in res.data.ipAddressData){
+       	    		ipPoolData.push(res.data.ipAddressData[i]);
+       	    		if(i==7){
+       	    			break;
+       	    		}
+       	    	}
        	      return  ipPoolData;
        	    });
        
@@ -163,7 +169,7 @@
         
     }
   });
-  mifosX.ng.application.controller('IpchangeController', ['$scope','webStorage', 'ResourceFactory','$routeParams', '$location','dateFilter','$modal','$http','$rootScope', mifosX.controllers.IpchangeController]).run(function($log) {
+  mifosX.ng.application.controller('IpchangeController', ['$scope','webStorage', 'ResourceFactory','$routeParams', '$location','dateFilter','$modal','$http','$rootScope','API_VERSION', mifosX.controllers.IpchangeController]).run(function($log) {
     $log.info("IpchangeController initialized");
   });
 }(mifosX.controllers || {}));
