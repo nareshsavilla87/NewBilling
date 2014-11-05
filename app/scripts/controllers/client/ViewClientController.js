@@ -132,6 +132,19 @@
                     scope.client = data;
                     scope.statusActive=scope.client.status.code;
                     scope.taxExemption=scope.client.taxExemption;
+                    if(scope.taxExemption=='N'){
+               		 $('#offbtn').removeClass("btn-default");
+                    	 $('#offbtn').addClass("active btn-primary");
+                    	 $('#onbtn').removeClass("active btn-primary");
+                    	 $('#onbtn').addClass("btn-default");
+                      }
+                      else{
+                   	  $('#onbtn').removeClass(" btn-default");
+                    	  $('#onbtn').addClass("active btn-primary");
+                    	  $('#offbtn').removeClass("active btn-primary");
+                    	  $('#offbtn').addClass("btn-default");
+                      }
+               	 
                     scope.staffData.staffId = data.staffId;
                     
                     $rootScope.ClientData = {clientId:routeParams.id,balanceAmount: data.balanceAmount, displayName: data.displayName,hwSerialNumber: data.hwSerialNumber,
@@ -492,42 +505,30 @@
             	scope.displayTab = "";
             	scope.childsFun();
         	}
-         //  console.log(scope.taxExemption);
-        	 if(scope.taxExemption=='N'){
-        	
-        		 $('#onbtn').removeClass("btn-default");
-             	 $('#onbtn').addClass("active btn-primary");
-             	 $('#offbtn').removeClass("active btn-primary");
-             	 $('#offbtn').addClass("btn-default");
-               }
-               else{
-            	  $('#offbtn').removeClass(" btn-default");
-             	  $('#offbtn').addClass("active btn-primary");
-             	  $('#onbtn').removeClass("active btn-primary");
-             	  $('#onbtn').addClass("btn-default");
-               }
-        	 
-        	 
-        	 scope.onbtn = function(){
-           	   $('#onbtn').removeClass("btn-default");
-           	   $('#onbtn').addClass("active btn-primary");
-           	   $('#offbtn').removeClass("active btn-primary");
-           	   $('#offbtn').addClass("btn-default");
-           	  var obj = {"taxExemption":false};
-           	  scope.taxExemption='N';
-             	resourceFactory.taxExemptionResource.update({clientId:routeParams.id},obj,function(data){
-             	});
-             		
-             };
-             scope.offbtn = function(){
+        	 scope.offbtn = function(){
            	   $('#offbtn').removeClass("btn-default");
            	   $('#offbtn').addClass("active btn-primary");
-           	   $('#onbtn').addClass("btn-default");
            	   $('#onbtn').removeClass("active btn-primary");
+           	   $('#onbtn').addClass("btn-default");
+           	  var obj = {"taxExemption":false};
+           	   if(scope.taxExemption!='N'){
+           		   scope.taxExemption='N';
+           		   resourceFactory.taxExemptionResource.update({clientId:routeParams.id},obj,function(data){
+           		   });
+           	   };
+             		
+             };
+             scope.onbtn = function(){
+           	   $('#onbtn').removeClass("btn-default");
+           	   $('#onbtn').addClass("active btn-primary");
+           	   $('#offbtn').addClass("btn-default");
+           	   $('#offbtn').removeClass("active btn-primary");
            	  var obj = {"taxExemption":true};
-           	  scope.taxExemption='Y';
-               	resourceFactory.taxExemptionResource.update({clientId:routeParams.id},obj,function(data){
-               	});
+           	  if(scope.taxExemption!='Y'){
+           	  		scope.taxExemption='Y';
+           	  		resourceFactory.taxExemptionResource.update({clientId:routeParams.id},obj,function(data){
+           	  		});
+           	  	}
              };
         	
           resourceFactory.clientResource.getAllClientDocuments({clientId: routeParams.id, anotherresource: 'identifiers'} , function(data) {
