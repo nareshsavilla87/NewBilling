@@ -24,12 +24,12 @@
 				
 				
 			});						
-			scope.submit = function() {alert(this.formData.discountId);
+			scope.submit = function() {
 				delete this.formData.optTypes;
 				delete this.formData.discountdata;
 				delete this.formData.format;
 				delete this.formData.clientTypes;
-				delete this.formData.categoryId;alert(this.formData.discountId);
+				delete this.formData.categoryId;
 				 this.formData.locale = $rootScope.locale.code;
 				resourceFactory.eventpriceResource.save({'eventId': routeParams.id}, this.formData,
 						function(data) {
