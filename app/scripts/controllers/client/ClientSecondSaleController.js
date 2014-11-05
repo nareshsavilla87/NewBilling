@@ -71,8 +71,7 @@
 	        };
 	       
 	        scope.getData = function(query){
-	        	
-	        	return http.get($rootScope.hostUrl+ API_VERSION+'/itemdetails/'+scope.formData.itemId+'/'+scope.formData.officeId, {
+	        	return http.get($rootScope.hostUrl+API_VERSION+'/itemdetails/'+scope.formData.itemId+'/'+scope.formData.officeId, {
 	        	      params: {
 	        	    	  query: query
 	        	      }
@@ -80,10 +79,12 @@
 	        	    	itemDetails = [];
 	        	      for(var i in res.data.serials){
 	        	    	  itemDetails.push(res.data.serials[i]);
-	        	    	  
+	        	    	  if(i==7){
+	        	    		  break;
+	        	    	  }
 
-	        	      return itemDetails;
 	        	      }
+	        	      return itemDetails;
 	            });
             };
 	        
