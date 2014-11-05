@@ -98,12 +98,12 @@
 
           if (scope.columns[i].originalName) {
             //This value should be updated based on the configuration
-            /*if (scope.columns[i].newName) {
+            if (scope.columns[i].newName) {
               if (scope.columns[i].type == "dropdown") {
                 scope.columns[i].columnName = scope.columns[i].originalName;
                 scope.columns[i].newName = scope.columns[i].columnCode + "_cd_" + scope.columns[i].newName;
               }
-            }*/
+            }
             
             delete scope.columns[i].originalName;
             delete scope.columns[i].type;
@@ -124,10 +124,21 @@
 
         if (scope.formData.addColumns.length == 0) delete scope.formData.addColumns;
         if (scope.formData.changeColumns.length == 0) delete scope.formData.changeColumns;
-
+        if(scope.columns.length==0){
+        	if (!scope.datatableTemplate.columnName) {
+                scope.columnnameerror = true;
+                scope.labelerror = "columnnameerr";
+            } else if (scope.datatableTemplate.columnName) {
+                scope.columntypeerror = true;
+                scope.labelerror = "columntypeerr";
+            }
+            
+        }else{
+        	
         resourceFactory.DataTablesResource.update({datatablename: routeParams.tableName}, this.formData, function(data){
           location.path('/viewdatatable/' + data.resourceIdentifier);
         });
+        }
       };
     }
   });

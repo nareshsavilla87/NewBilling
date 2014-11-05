@@ -11,7 +11,8 @@
         resourceFactory.officePaymentsTemplateResource.getPayments(function(data){
         	scope.payments = data;
             scope.data = data.data;
-          scope.paymentTypeData=function(value){
+            
+            scope.paymentTypeData=function(value){
             	
             	for(var i=0;i<scope.data.length;i++){
             		
@@ -24,12 +25,16 @@
         
         scope.submit = function() {
 
-        	scope.flag = true;
+          scope.flag = true;
           this.formData.locale = $rootScope.locale.code;
           this.formData.dateFormat = "dd MMMM yyyy";
       	  var paymentDate = dateFilter(scope.start.date,'dd MMMM yyyy');
           this.formData.paymentDate= paymentDate;
-          console.log(this.formData);
+          if(scope.paymentType=='Cheque'){
+        	this.formData.isChequeSelected = true;
+          }else{
+        	  delete this.formData.isChequeSelected;
+          }
           //var res1 = validator.validateZipCode(scope.formData.receiptNo);
         	  
           resourceFactory.officePaymentsResource.postPayments({officeId : routeParams.officeId}, this.formData, function(data){

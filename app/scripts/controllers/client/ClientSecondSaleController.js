@@ -71,14 +71,7 @@
 	        };
 	       
 	        scope.getData = function(query){
-/*	        	if(query.length>0){
-	        		
-	        		resourceFactory.allocateHardwareDetails.getSerialNumbers({oneTimeSaleId:scope.formData.itemId,query: query}, function(data) { 	        	
-	     	            scope.itemDetails = data.serials;
-	     	        }); 
-	        	}else{
-	            	
-	        	}*/
+	        	
 	        	return http.get($rootScope.hostUrl+ API_VERSION+'/itemdetails/'+scope.formData.itemId+'/'+scope.formData.officeId, {
 	        	      params: {
 	        	    	  query: query
@@ -87,11 +80,11 @@
 	        	    	itemDetails = [];
 	        	      for(var i in res.data.serials){
 	        	    	  itemDetails.push(res.data.serials[i]);
-	        	    	  if(i == 7)
-	        	    		  break;
-	        	      }
+	        	    	  
+
 	        	      return itemDetails;
-	        	    });
+	        	      }
+	            });
             };
 	        
             scope.getNumber = function(num) {
@@ -149,13 +142,7 @@
 	            webStorage.add("callingTab", {someString: "Sale" });
 	            
 	        	
-	           
-	         /*   resourceFactory.allocateHardwareResource.save(this.formData,function(data){
-	            	//temp1 = undefined; 
-	            	location.path('/viewclient/' + routeParams.clientId);
-	            });
-	           // temp1 = undefined;
-	            console.log("asjhj");*/
+	   
 	            
 	        
 	        };

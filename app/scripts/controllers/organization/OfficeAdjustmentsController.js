@@ -17,9 +17,9 @@
         scope.submit = function() {
           this.formData.locale = $rootScope.locale.code;
           this.formData.dateFormat = "dd MMMM yyyy";
-      	  var adjustmentDate = dateFilter(scope.start.date,'dd MMMM yyyy');
-          this.formData.adjustment_date = adjustmentDate;
-         // this.formData.adjustment_type = "CREDIT";
+      	  var adjustDate = dateFilter(scope.start.date,'dd MMMM yyyy');
+          this.formData.adjustmentDate = adjustDate;
+       
           resourceFactory.officeAdjustmentsResource.postAdjustments({officeId : routeParams.officeId}, this.formData, function(data){
             location.path('/viewoffice/'+routeParams.officeId);
           });

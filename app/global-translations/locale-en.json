@@ -167,8 +167,9 @@
   "table.heading.associatedwith":"Associated With",
   "button.createdatatable":"Create Datatable",
   "label.edit.datatable":"Edit Datatable",
-  "validation.msg.datatable.lengthnot.greater.than.zero":"Please provide string length value",
-  "validation.msg.datatable.lengthmust.be.provided.when.type.is.String":"please give string length value",
+  "validation.msg.datatable.length.not.greater.than.zero":"Please provide string length value",
+  "validation.msg.datatable.length.must.be.provided.when.type.is.String":"please give string length value",
+  "error.msg.parameter.unsupported":"Unsupported parameter",
 
   "#view datatable":"",
   "table.heading.fieldname":"Field Name",

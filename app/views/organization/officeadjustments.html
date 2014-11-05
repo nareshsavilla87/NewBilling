@@ -33,7 +33,7 @@
 			<div class="control-group">
 				<label class="control-label">{{ 'label.adjustmentcode' | translate }}</label>
 				<div class="controls">
-	                <select id="adjustment_code" ng-model="formData.adjustment_code" ng-options="data.id as data.adjustment_code for data in data">
+	                <select id="adjustmentCode" ng-model="formData.adjustmentCode" ng-options="data.id as data.adjustmentCode for data in data">
 	                </select>
 	             </div>
 			</div>
@@ -44,8 +44,8 @@
 			  <div class="control-group">
                  <label class="control-label">{{ 'label.adjustmentamount' | translate }}</label>
             	 <div class="controls">
-              		<input id="amount_paid" style="width:112px;" type="text" ng-model="formData.amount_paid">
-              		<select class="input-small" ng-model="formData.adjustment_type" 
+              		<input id="amountPaid" style="width:112px;" type="text" ng-model="formData.amountPaid">
+              		<select class="input-small" ng-model="formData.adjustmentType" 
               			ng-options="discountOpt.discountType as discountOpt.discountType for discountOpt in discountOptions">
 	               	 </select>
             	 </div>
@@ -57,7 +57,7 @@
 			   <div class="control-group">
 	          	 <label class="control-label">{{'label.notes' | translate}}</label>
 		         <div class="controls">
-		           <textarea ng-model="formData.Remarks"></textarea>
+		           <textarea ng-model="formData.remarks"></textarea>
 		         </div>
 	            </div>
 	          </td>
