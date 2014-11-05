@@ -110,7 +110,7 @@
              	<div class="control-group">
             		<label class="control-label" for="discountId">{{ 'label.discountCode' | translate }}</label>
             		   <div class="controls">
-             			  <select ng-model="formData2.discountId"  ng-options="discountMasterData.discountMasterId as discountMasterData.discountDescription for discountMasterData in discountMasterDatas" value="{{discountMasterData.id}}">
+             			  <select ng-model="formData2.discountId"  ng-options="discountMasterData.id as discountMasterData.discountDescription for discountMasterData in discountMasterDatas" value="{{discountMasterData.id}}">
              				  </select>
             			</div>
           		</div>

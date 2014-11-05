@@ -143,7 +143,7 @@
 	        scope.getData = function(query,officeId){
 	        	if(query.length>0){
 	        		resourceFactory.allocateHardwareDetails.getSerialNumbers({oneTimeSaleId:scope.formData2.itemId,officeId:officeId,query: query}, function(data) { 	        	
-	     	            scope.itemDetails = data.serials;
+	     	            scope.itemDetails = data.serialNumbers;
 	     	          
 	     	        }); 
 	        	}else{
@@ -340,7 +340,7 @@
 	 	            scope.ActivationData.sale.push(this.formData2);
 	 	            scope.ActivationData.client.push(this.formData1);
 	 	            
-	 	            delete this.formData3.serials;
+	 	            delete this.formData3.serialNumbers;
 	 	            delete this.formData2.pageItems;
 	 	            delete this.formData2.totalFilteredRecords;
 
