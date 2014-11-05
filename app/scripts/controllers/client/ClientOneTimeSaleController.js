@@ -82,7 +82,7 @@
 	        
 	       
 	        scope.getData = function(query){
-	        	return http.get($rootScope.hostUrl+ API_VERSION+'/itemdetails/'+scope.formData.itemId+'/'+scope.formData.officeId, {
+	        	return http.get($rootScope.hostUrl+API_VERSION+'/itemdetails/'+scope.formData.itemId+'/'+scope.formData.officeId, {
 	        	      params: {
 	        	    	  query: query
 	        	      }

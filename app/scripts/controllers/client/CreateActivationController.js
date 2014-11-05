@@ -97,7 +97,7 @@
 	        		scope.formData2=data;
 	        		scope.formData2.itemId=itemId;
 	        		scope.formData2.officeId=officeId;
-	        		scope.formData2.discountId = scope.discountMasterDatas[0].discountMasterId;
+	        		scope.formData2.discountId = scope.discountMasterDatas[0].id;
 	        		
 	        		scope.data.unitPrice=scope.formData2.unitPrice;
 	        		scope.data.locale=$rootScope.locale.code;
@@ -108,7 +108,7 @@
 		        		scope.formData2.quantity=1;
 		        		scope.formData2.totalPrice=data.totalPrice;
 		        		scope.formData2.itemId=itemId;
-		        		scope.formData2.discountId = scope.discountMasterDatas[0].discountMasterId;
+		        		scope.formData2.discountId = scope.discountMasterDatas[0].id;
 		        		
 			        });	
 	        		
@@ -125,7 +125,7 @@
 	        		scope.formData2=data;
 	        		scope.formData2.quantity=quantity;
 	        		scope.formData2.itemId=itemId;
-	        		scope.formData2.discountId = scope.discountMasterDatas[0].discountMasterId;
+	        		scope.formData2.discountId = scope.discountMasterDatas[0].id;
 	        		
 		        });	
 	        	 

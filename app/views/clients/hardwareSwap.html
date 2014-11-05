@@ -92,7 +92,7 @@
             <div class="controls">
              	<!-- <select ng-model="itemDetail"  name="serialNumber" ng-options="itemDetail as itemDetail for itemDetail in itemDetails" value="{{itemDetail}}" >
              	</select> -->
-             	<input type="text" ng-show ="config == 'SALE'" ng-model="itemDetail" name="serialNumber" ng-change="getData(itemDetail)" typeahead="itemDetail as itemDetail for itemDetail in itemDetails | limitTo:8" typeahead-min-length="0">
+             	<input type="text" ng-show ="config == 'SALE'" ng-model="itemDetail" name="serialNumber" ng-change="getData(itemDetail)" typeahead="itemDetail as itemDetail for itemDetail in getData($viewValue)" typeahead-min-length="0">
              	<input type="text" ng-show ="config == 'OWN'" ng-model="itemDetail" name="serialNumber">
             </div>
         </div>	
