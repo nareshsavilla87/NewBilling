@@ -2098,6 +2098,7 @@
 "validation.msg.globalConfiguration.hostName.cannot.be.blank":"Host Name cannot be blank",
 "validation.msg.globalConfiguration.userName.cannot.be.blank":"Name cannot be blank",
 "validation.msg.note.note.cannot.be.blank":"Note cannot be blank",
+"error.msg.smtp.duplicate.name":"Already exists with this SMTP name",
 
 "#Ippool Changes":".......",
 "label.pattern":"Pattern : ",
