@@ -898,6 +898,8 @@
   "validation.msg.discount.discountRate.cannot.be.blank":"DiscountRate cannot be blank",
   "validation.msg.discount.discountStatus.cannot.be.blank":"Status cannot be blank",
   "validation.msg.discount.startDate.cannot.be.blank":"StartDate cannot be blank",
+  "validation.msg.discount.discountCode.exceeds.max.length":"Please give discountcode length below max limit!",
+  "error.msg.could.unknown.data.integrity.issue":"please give valid data",
   
  "#Promotion Code":"....",
  "tab.discount" : "Discounts",

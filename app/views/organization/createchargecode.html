@@ -33,7 +33,7 @@
             <label class="control-label" for="chargeType">{{'label.chargetype' | translate }}</label>
             <div class="controls">
               <select id="chargeType" ng-model="formData.chargeType"  ng-options="chargeType.chargeType as chargeType.chargeType for chargeType in chargeTypes" value="{{chargeType.id}}">
-              </select>
+              <option value="">{{'label.select.one' | translate}}</option></select>
             </div>
           </div>
 
@@ -50,8 +50,7 @@
             <div class="controls">
 					<select id="durationType" ng-model="formData.durationType"
 						ng-options="durationTypeCode.durationTypeCode as durationTypeCode.durationTypeCode for durationTypeCode in durationTypes"
-						value="{{durationTypeCode.id}}">
-					</select>
+						value="{{durationTypeCode.id}}"><option value="">{{'label.select.one' | translate}}</option></select>
 				</div>
           </div>
           
@@ -68,7 +67,7 @@
             <label class="control-label" for="billFrequencyCode ">{{'label.billFrequencyCode' | translate }}</label>
             <div class="controls">
               <select id="billFrequencyCode" ng-model="formData.billFrequencyCode"  ng-options="billFrequencyCode.billFrequencyCode as billFrequencyCode.billFrequencyCode for billFrequencyCode in billFrequencyCodes" value="{{billFrequencyCode.id}}">
-              </select>
+             <option value="">{{'label.select.one' | translate}}</option></select>
             </div>
           </div>
 

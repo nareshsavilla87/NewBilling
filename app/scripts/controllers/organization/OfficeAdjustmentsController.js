@@ -11,7 +11,7 @@
         resourceFactory.officeAdjustmentsTemplateResource.getAdjustments(function(data){
           scope.discountOptions = data.discountOptions;
           scope.data = data.data;
-          scope.formData.adjustment_type = scope.discountOptions[0].discountType;
+         
         });
         
         scope.submit = function() {

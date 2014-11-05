@@ -41,7 +41,7 @@
             <label class="control-label" for="taxType">{{'label.type' | translate }}</label>
             <div class="controls">
               <select id="taxType" ng-model="formData.taxType"  ng-options="taxTypeData.mCodeValue as taxTypeData.mCodeValue for taxTypeData in taxTypeDatas" value="{{taxTypeData.id}}">
-              </select>
+              <option value="">{{'label.select.one' | translate}}</option></select>
             </div>
           </div>
           
@@ -58,7 +58,7 @@
             <label class="control-label" for="taxRegion">{{'label.taxRegion' | translate }}</label>
             <div class="controls">
               <select id="taxRegion" ng-model="formData.taxRegion"  ng-options="priceRegionData.id as priceRegionData.priceregion for priceRegionData in priceRegionDatas"	 value="{{priceregion.id}}">
-              </select>
+              <option value="">{{'label.select.one' | translate}}</option></select>
             </div>
           </div>
 
