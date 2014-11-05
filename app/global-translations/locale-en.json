@@ -726,6 +726,7 @@
   "validation.msg.mediaasset.attributeNickname.exceeds.max.length":"Nick Name length does not exceeds 60 characters",
   "validation.msg.mediaasset.attributeImage.exceeds.max.length":"Image length does not exceeds 150 characters",
   "validation.msg.mediaasset.location.exceeds.max.length":"Location length does not exceeds 255 characters",
+  "validation.msg.mediaasset.mediaTitle.exceeds.max.length":"Media Title length does not exceeds 250 characters",
   
   "#Inventory":"......",
   "link.inventory":"Inventory",
