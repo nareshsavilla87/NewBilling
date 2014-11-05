@@ -54,8 +54,8 @@
 						<label class="control-label" for="discountId">{{'label.eventprice.discountcode' | translate }}</label>
 						<div class="controls">
 							<select ng-model="formData.discountId"
-								ng-options="discountdata.discountMasterId as discountdata.discountDescription for discountdata in Discountdatas"
-								value="{{discountdata.discountMasterId}}"></select>
+								ng-options="discountdata.id as discountdata.discountDescription for discountdata in Discountdatas"
+								value="{{discountdata.id}}"></select>
 						</div>
 					</div>
 				</td>
