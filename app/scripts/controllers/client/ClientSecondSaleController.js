@@ -77,8 +77,8 @@
 	        	      }
 	        	    }).then(function(res){
 	        	    	itemDetails = [];
-	        	      for(var i in res.data.serials){
-	        	    	  itemDetails.push(res.data.serials[i]);
+	        	      for(var i in res.data.serialNumbers){
+	        	    	  itemDetails.push(res.data.serialNumbers[i]);
 	        	    	  if(i==7){
 	        	    		  break;
 	        	    	  }
