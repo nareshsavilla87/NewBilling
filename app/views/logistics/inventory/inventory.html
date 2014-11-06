@@ -8,8 +8,8 @@
           <a ng-show="PermissionService.showMenu('CREATE_INVENTORY')" href="#/createitemdetails" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
           <select ng-model="source" class="input-medium" style="margin-top:10px;margin-left:2px;" ng-change="searchSource(source)">
               <option value="ALL">ALL</option>
-              <option value="NEW">NEW</option>
-              <option value="USED">USED</option>
+              <option value="NEW">Available</option>
+              <option value="USED">UnAvailable</option>
     	  </select>
         </div>
        
@@ -260,8 +260,6 @@
         <table class="table">
             <thead>
               <tr class="graybg">
-                <th>{{'table.itemhistory.id' | translate}}</th>
-                <th>{{'table.itemhistory.mrnId' | translate}}</th>
                 <th>{{'table.itemhistory.refType' | translate}}</th>
                 <th>{{'table.itemhistory.itemDescription' | translate}}</th>
                 <th>{{'table.itemhistory.serialNumber' | translate}}</th>
@@ -273,8 +271,6 @@
             </thead>
             <tbody>
               <tr ng-repeat="ih in itemhistory.currentPageItems  | filter:filterText">
-                <td>{{ih.id}}</td>
-                <td>{{ih.mrnId}}</td>
                 <td>{{ih.refType}}</td>
                 <td>{{ih.itemDescription}}</td>
                 <td>{{ih.serialNumber}}</td>
