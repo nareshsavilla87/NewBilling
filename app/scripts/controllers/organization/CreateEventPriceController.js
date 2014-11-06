@@ -30,7 +30,7 @@
 				delete this.formData.format;
 				delete this.formData.clientTypes;
 				delete this.formData.categoryId;
-				 this.formData.locale = $rootScope.locale.code;
+				this.formData.locale = $rootScope.locale.code;
 				resourceFactory.eventpriceResource.save({'eventId': routeParams.id}, this.formData,
 						function(data) {
 						if(PermissionService.showMenu('READ_EVENTPRICE'))
