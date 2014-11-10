@@ -10,9 +10,6 @@ app/bower_components
 *.pid
 *.gz
 *.swp
-.settings/*
-.pmd
-.jshintrc
 pids
 logs
 results
@@ -23,3 +20,6 @@ npm-debug.log
 node_modules
 *~
 dist
+.settings/*
+.pmd
+.jshintrc
