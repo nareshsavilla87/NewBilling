@@ -1,30 +1,27 @@
-<div  ng-controller="EditMessageController">
+<div  data-ng-controller="EditMessageController">
 <div>
 	<ul class="breadcrumb">
-		<li><a href="#/organization">{{'link.admin.organisation' |
-				translate}}</a> <span class="divider">/</span></li>
+		<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
 		<li><a href="#/message">{{'label.managemessage' | translate}}</a>
-			<span class="divider">/</span></li>
+	    <span class="divider">/</span></li>
 		<li class="active">{{'label.editmessage' | translate}}</li>
 	</ul>
 </div>
-<form class="form-horizontal well" ng-submit="submit()">
-	 <div class="error" ng-show="errorStatus || errorDetails">
+<form class="form-horizontal well" data-ng-submit="submit()">
+	 <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
 	<fieldset>
 		<legend>{{'label.editmessage' | translate}}</legend>
-		<table width="100%">
-		
+		<table style="width:100%;">
 		    <tr>
 				<td width="50%">
 					<div class="control-group">
 						<label class="control-label" for="messageType"> {{ 'label.message.messageType' | translate }} </label>
 						<div class="controls">
-							<select ng-model="formData.messageType" ng-options="message.id as message.value for message in messageTypes"
-							value="{{message.id}}">
+							<select data-ng-model="formData.messageType" data-ng-options="message.id as message.value for message in messageTypes">
 							</select>
 						</div>
 					</div>
@@ -36,7 +33,7 @@
 						<label class="control-label" for="templateDescription"> {{'label.message.templateDescription' | translate}} </label>
 						<div class="controls">
 							<input type="text" id="templateDescription"
-								ng-model="formData.templateDescription">
+								data-ng-model="formData.templateDescription">
 						</div>
 					</div>
 				</td>
@@ -46,17 +43,17 @@
 					<div class="control-group">
 						<label class="control-label" for="subject"> {{ 'label.message.subject' | translate }} </label>
 						<div class="controls">
-							<input type="text" id="subject" ng-model="formData.subject">
+							<input type="text" id="subject" data-ng-model="formData.subject">
 						</div>
 					</div>
 				</td>
 			</tr>
 			<tr>
 				<td width="50%">
-						<div class="control-group" ng-hide="formData.messageType !='E'">
+						<div class="control-group" data-ng-hide="formData.messageType !='E'">
 						<label class="control-label" for="header"> {{'label.message.header' | translate}} </label>
 						<div class="controls">
-							<input type="text" id="header" ng-model="formData.header">
+							<input type="text" id="header" data-ng-model="formData.header">
 						</div>
 					</div>
 				</td>
@@ -67,7 +64,7 @@
 					<div class="control-group">
 						<label class="control-label" for="body">{{ 'label.message.body' | translate }}</label>
 						<div class="controls">
-							 <textarea ng-model="formData.body"></textarea>
+							 <textarea data-ng-model="formData.body"></textarea>
 						</div>
 					</div>
 				</td>
@@ -75,10 +72,10 @@
 			
 			<tr>
 				<td width="50%">
-						<div class="control-group" ng-hide="formData.messageType !='E'">
+						<div class="control-group" data-ng-hide="formData.messageType !='E'">
 						<label class="control-label" for="footer"> {{ 'label.message.footer' | translate }} </label>
 						<div class="controls">
-							<input type="text" id="footer" ng-model="formData.footer">
+							<input type="text" id="footer" data-ng-model="formData.footer">
 						</div>
 					</div>
 				</td>
@@ -90,25 +87,16 @@
 				<td><label class="control-label"><h4> {{ 'label.message.addMessageParams' | translate }} </h4></label></td>
 				<td class="blockquoteresult">
 					<form>
-						<input class="input-small" type="text"
-							ng-model="messageFormData.parameter"> &nbsp;&nbsp; <a
-							ng-click="addMessage()">&nbsp;<i class="icon-plus icon-white"></i></a>&nbsp;&nbsp;
-					</form> <br> <br>
-					<table class="table" width="100%"
-						ng-show="formData.messageParams.length>0">
+						<input class="input-small" type="text" data-ng-model="messageFormData.parameter"> &nbsp;&nbsp; 
+						<a data-ng-click="addMessage()">&nbsp;<i class="icon-plus icon-white"></i></a>&nbsp;&nbsp;
+					   </form> <br> <br>
+					<table class="table" style="width:100%;"data-ng-show="formData.messageParams.length>0">
 						<tr></tr>
-						<!-- <tr class="graybg">
-							<th>{{'label.message.parametervalue' | translate}}</th>
-						</tr> -->
-						<tr ng-repeat="messageFormDatas in formData.messageParams">
-							<td><input type="text" class="input-small"
-								ng-model="messageFormDatas.parameter"></td>
-							<td><a ng-click="deleteMessageParam($index)"><i
-									class="icon-remove icon-white"></i></a></td>
+						<tr data-ng-repeat="messageFormDatas in formData.messageParams">
+							<td><input type="text" class="input-small" data-ng-model="messageFormDatas.parameter"></td>
+							<td><a data-ng-click="deleteMessageParam($index)"><i class="icon-remove icon-white"></i></a></td>
 						</tr>
 					</table>
-				</td>
-			</tr>
 		</table>
 		<div class="offset3">
 			<a href="#/viewmessage/{{formData.id}}"><button id="cancel" type="reset" class="btn">Cancel</button></a>

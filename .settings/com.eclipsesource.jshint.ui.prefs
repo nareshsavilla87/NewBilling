@@ -1,3 +1,3 @@
 eclipse.preferences.version=1
-included=//ContractController.js\://CreateContractController.js
+included=//CreateMessageController.js\://EditMessageController.js\://MessageController.js\://ViewContractController.js
 projectSpecificOptions=true

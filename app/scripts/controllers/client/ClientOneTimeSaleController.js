@@ -36,7 +36,7 @@
 	            scope.date.saleDate = new Date();
 	            scope.formData.saleType=scope.saleType;
 
-	            if(scope.saleType == 'RENTAL'){
+	            if(scope.saleType == 'DEVICERENTAL'){
 	            	scope.formData.totalPrice=0;
 	            }
 	            scope.officesDatas=data.officesData;
@@ -56,7 +56,7 @@
 	        		scope.formData.discountId = scope.discountMasterDatas[0].discountMasterId;
 	        		scope.formData.officeId=officeId;
 	        		scope.truefalse = false;
-	        		 if(scope.saleType == 'RENTAL'){
+	        		 if(scope.saleType == 'DEVICERENTAL'){
 	 	            	scope.formData.totalPrice=0;
 	 	            }
 		        });	
@@ -74,7 +74,7 @@
 	        		scope.formData.discountId = scope.discountMasterDatas[0].discountMasterId;
 	        		scope.formData.officeId=officeId;
 		            
-	        		 if(scope.saleType == 'RENTAL'){
+	        		 if(scope.saleType == 'DEVICERENTAL'){
 	 	            	scope.formData.totalPrice=0;
 	 	            }
 		        });	
@@ -142,9 +142,10 @@
 		        
 		        	
 		            this.formData.serialNumber=temp1;
-		            delete this.formData.serials;
+		            delete this.formData.serialNumbers;
+		            
 		            delete this.formData.chargesData;
-	            resourceFactory.oneTimeSaleResource.save({clientId:routeParams.id},this.formData,function(data){
+	            resourceFactory.oneTimeSaleResource.save({clientId:routeParams.id,devicesaleTpye:scope.saleType},this.formData,function(data){
 	            	 location.path('/viewclient/' + routeParams.id);
 	          },function(errData){
 	        	  scope.flag = false;

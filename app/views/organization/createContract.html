@@ -5,28 +5,27 @@
           <li class="active">{{'label.createcontract' | translate}}</li>
         </ul>
       </div>
-      <form class="form-horizontal well" ng-controller="CreateContractController" ng-submit="submit()">
-         <div class="error" ng-show="errorStatus || errorDetails">
+      <form class="form-horizontal well"  data-ng-controller="CreateContractController" data-ng-submit="submit()">
+         <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	</div>
        
-       
         <fieldset>
-          <legend>Create New Contract</legend>
+          <legend>Create Contract</legend>
              
              <div class="control-group">
             <label class="control-label" for="subscriptionPeriod">{{ 'label.contract.contractperiod' | translate }}</label>
             <div class="controls">
-              <input type="text" id="subscriptionPeriod" ng-model="formData.subscriptionPeriod">
+              <input type="text" id="subscriptionPeriod" data-ng-model="formData.subscriptionPeriod">
             </div>
           </div>
 
           <div class="control-group">
             <label class="control-label" for="subscriptionType">{{ 'label.contract.contractype' | translate }}</label>
             <div class="controls">
-              <select ng-model="formData.subscriptionType"  ng-options="subscriptions.durationTypeCode as subscriptions.durationTypeCode for subscriptions in subscriptions" >
+              <select data-ng-model="formData.subscriptionType"  data-ng-options="subscriptions.durationTypeCode as subscriptions.durationTypeCode for subscriptions in subscriptions" >
               </select>
             </div>
           </div>
@@ -34,12 +33,10 @@
           <div class="control-group">
             <label class="control-label" for="units">{{ 'label.contract.units' | translate }}</label>
             <div class="controls">
-              <input type="number" id="units" ng-model="formData.units">
+              <input type="number" id="units" data-ng-model="formData.units">
             </div>
           </div>
           
-          
-
           <div class="offset3">
             <a href="#/contract"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
             <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>

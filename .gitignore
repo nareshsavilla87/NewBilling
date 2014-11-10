@@ -10,6 +10,7 @@ app/bower_components
 *.pid
 *.gz
 *.swp
+*..settings/*
 pids
 logs
 results

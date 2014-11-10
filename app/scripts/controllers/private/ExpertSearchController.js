@@ -86,7 +86,7 @@
                                   'Create Clients','Clients','New Activation','Tickets','System','Users','Create User','Configurations','Create SMTP',
                                   'View Roles','Add Role','Mapping Configurations','Create Service Mapping','Create Plan Mapping','Create Hardware Plan Mapping','Create Provisioning','Create EventAction Mapping',
                                   'Create Currency Configuration','Create Event Validation','Maker Checker Configurations','Data Table','Create DataTable','Audit Trails','Manage Reports','Create Report',
-                                  'About OBS','Manage Codes','Add Code','Organization','Offices','Create Office','Contracts','Create New Contract','Employees','Create Employee','Charge Code','Create Charge Code',
+                                  'About OBS','Manage Codes','Add Code','Organization','Offices','Create Office','Contracts','Create Contract','Employees','Create Employee','Charge Code','Create Charge Code',
                                   'Currency Details','Create Currency Details','Discounts','Create Discount','Create Promotion Code','Address Master','Regions','Create Regions','Voucher Pins','Create Voucherpin',
                                   'Manage Media Details','Add Media Details','Add Advanced Media Details','Messages','Create Message','Event Master','Create Event','IP Pool Management','Create IP Pool','Services',
                                   'Create Service','Groups','Plans','Create Plan','Accounting','Frequent Postings','Chart Of Accounts','Add Journal Entry','Account Closure','Close Accounting','Search Transaction',
@@ -223,7 +223,7 @@
 		          case 'Contracts':
 		        	  location.path('/contract');
 		        	  break;
-		          case 'Create New Contract':
+		          case 'Create Contract':
 		        	  location.path('/createContract');
 		        	  break;
 		          case 'Employees':

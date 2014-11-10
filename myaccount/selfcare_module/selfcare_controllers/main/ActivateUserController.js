@@ -78,6 +78,10 @@
 		  
 		  
 		//national Id validation
+		      scope.nationalIdvalue = true;
+			 scope.nationalIdValidationFun = function(id){
+				 scope.value = Kennitala.validate(id);
+			 };
 		  /*scope.$watch(scope.formData.nationalId,
 	              function() {
 			  			if(scope.formData.nationalId){
@@ -89,7 +93,7 @@
 			  				}
 			  			}
 		  			}
-	      );*/
+	      );
 		  
 			scope.nationalIdValidationFun =function(id){
 			if(id){
@@ -155,7 +159,7 @@
 					 scope.regSuccessFormNationalIdErrorPattern = true;
 				 }
 				}
-			 };
+			 };*/
 		  
 		 //function called when entering the device name 
 		  

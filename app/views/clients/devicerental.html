@@ -61,7 +61,7 @@
 	    </div>
 	<fieldset>
 		<legend>Device Renatal</legend>
-          <input ng-hide="true" name="saleType" ng-model="saleType"  ng-init="saleType='RENTAL'">
+          <input ng-hide="true" name="saleType" ng-model="saleType"  ng-init="saleType='DEVICERENTAL'">
             
              <!-- <input name="card[description]" ng-model="card.description" value="Visa-4242"> -->
             
@@ -135,7 +135,7 @@
 									<div class="control-group">
             					<label class="control-label" for="discountId">{{ 'label.discountCode' | translate }}</label>
             					<div class="controls">
-             					 <select ng-model="formData.discountId"  ng-options="discountMasterData.discountMasterId as discountMasterData.discountDescription for discountMasterData in discountMasterDatas" value="{{discountMasterData.id}}">
+             					 <select ng-model="formData.discountId"  ng-options="discountMasterData.id as discountMasterData.discountDescription for discountMasterData in discountMasterDatas" value="{{discountMasterData.id}}">
              					 </select>
             					</div>
           						</div>

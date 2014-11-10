@@ -597,7 +597,7 @@
    "#Contract":"....",
   "label.contracts":"Contracts",
   "label.createcontract":"Add New Contract",
-  "link.create.new.contract":"Add New Contract",
+  "link.create.new.contract":"Add Contract",
   "table.contract.period":"Contract Period",
   "table.contract.type":"Contract Type",
   "table.contract.unit":"Units",
