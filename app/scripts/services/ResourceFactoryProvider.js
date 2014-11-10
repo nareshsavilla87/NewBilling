@@ -210,7 +210,6 @@
             }),
             
           contractResource: defineResource(apiVer + "/subscriptions/:subscriptionId", {subscriptionId:'@SubscriptionId'}, {
-              getAllContracts: {method: 'GET', params: {}, isArray: true},
               update: { method: 'PUT' }
           }),
           planResource: defineResource(apiVer + "/plans/:planId", {planId:'@planId'}, {
@@ -464,16 +463,12 @@
                     update: { method: 'PUT'}
                 }),  
                 messageTemplateResource: defineResource(apiVer + "/messages/template",{},  {
-              	  getTemplate: {method: 'GET', params: {}}
+              	  get: {method: 'GET', params: {}}
                 }),
                 messageSaveResource: defineResource(apiVer + "/messages/:messageId",{messageId:'@messageId'},  {
               	  get: {method: 'GET', params: {}},
-              	  getAllMessages: {method: 'GET', params: {}, isArray:true},
               	  update: {method: 'PUT'}
                 }),
-               /* messageResource: defineResource(apiVer + "/messages/data",{},  {
-              	  getAllMessages: {method: 'GET', params: {}, isArray:true}
-                }),*/
                 eventResource: defineResource(apiVer + "/eventmaster",{},  {
               	  get: {method: 'GET', params: {}, isArray:true }
                 }),

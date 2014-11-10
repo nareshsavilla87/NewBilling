@@ -31,7 +31,8 @@
             'configurations'	:  './selfcare_modules/configurations',
             'LocalStorageModule': './selfcare_modules/localstorage',
             'aes'				: './selfcare_controllers/CryptoJS/rollups/aes',
-            'md5'				: './selfcare_controllers/CryptoJS/md5'
+            'md5'				: './selfcare_controllers/CryptoJS/md5',
+            'kennitala':  './selfcare_modules/kennitala'
         },
         shim: {
             'angular': { exports: 'angular' },
@@ -57,6 +58,7 @@
             'configurations':{deps: ['angular']},
             'aes':{deps: ['jquery']},
             'md5':{deps: ['jquery']},
+            'kennitala':{deps: ['jquery']},
             
             'selfcare': {deps: [
 				                    'angular',
@@ -81,7 +83,8 @@
 				                    'ckEditor',
 				                    'configurations',
 				                    'aes',
-				                    'md5'
+				                    'md5',
+				                    'kennitala'
 				                    
 				                 ], exports: 'selfcare'}},
         packages: [

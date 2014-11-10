@@ -31,7 +31,7 @@
             					<label class="control-label" for="discountType">{{ 'label.discountType' | translate }}</label>
             					<div class="controls">
              					 <select id="discountType" ng-model="formData.discountType"  ng-options="promotiondata.mCodeValue as promotiondata.mCodeValue for promotiondata in promotiondatas" value="{{promotiondata.mCodeValue}}">
-             					 </select>
+             					 <option value="">{{'label.select.one' | translate}}</option></select>
             					</div>
           						</div>
 							</td>
@@ -61,7 +61,7 @@
             					<label class="control-label" for="durationType">{{ 'label.durationType' | translate }}</label>
             					<div class="controls">
               					 <select id="durationType" ng-model="formData.durationType"  ng-options="durationType.subscriptionType as durationType.subscriptionType for durationType in durationTypes" value="{{durationType.subscriptionType}}">
-             					 </select>
+             					 <option value="">{{'label.select.one' | translate}}</option></select>
             					</div>
           						</div>
 							</td>
