@@ -738,7 +738,6 @@
               update: { method: 'PUT'}
           }),
           hardwareMappingResource: defineResource(apiVer + "/hardwaremapping/:hardwaremapId", {hardwaremapId:'@hardwaremapId'}, {
-              get: {method: 'GET', params: {}, isArray: true},
               getDetails: {method: 'GET', params: {}},
               update: { method: 'PUT'}
           }) ,   
@@ -754,8 +753,6 @@
          	  get: {method: 'GET', params: {clientId:'@clientId'}}
            }),
          serviceMappingResource: defineResource(apiVer + "/servicemapping/:serviceMappingId", {serviceMappingId: '@serviceMappingId'}, {
-       	  getAllServiceMapping: {method: 'GET', params: {}, isArray: true},
-       	//  get: {method: 'GET', params: {}},
                update: { method: 'PUT' }
            }),
            serviceMappingtemplateResource: defineResource(apiVer + "/servicemapping/template", {}, {
@@ -820,7 +817,6 @@
               }),
             
 	       EventActionMappingResource: defineResource(apiVer + "/eventactionmapping/:id", {id:'@id'}, {
-               get: {method: 'GET', params: {}, isArray: true},
                getDetails: {method: 'GET', params: {}},
                update: { method: 'PUT'}
            }),

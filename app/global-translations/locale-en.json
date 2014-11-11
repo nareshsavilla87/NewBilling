@@ -1776,6 +1776,7 @@
   "label.serviceIdentification":"Service Identification",
   "label.serviceCode":"Service Code",
   "label.image":"Image",
+  "label.editservicemapping":"Edit Service Mapping",
   "validation.msg.ServiceMapping.serviceId.cannot.be.blank":"Service Code cannot be blank",
   "validation.msg.ServiceMapping.serviceIdentification.cannot.be.blank":"Service Identification cannot be blank",
   "validation.msg.ServiceMapping.status.cannot.be.blank":"Status cannot be blank",

@@ -1,70 +1,68 @@
-    <div ng-controller="EditServiceMappingController">
+    <div data-ng-controller="EditServiceMappingController">
       <div>
         <ul class="breadcrumb">
           <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
           <li><a href="#/mappingconfig">{{'label.serviceMapping' | translate}}</a> <span class="divider">/</span></li>
-          <li class="active">{{'label.edithardwareplanmapping' | translate}}</li>
+          <li class="active">{{'label.editservicemapping' | translate}}</li>
         </ul>
       </div>
-      <div class="error" ng-show="errorStatus || errorDetails">
+      <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
    
-      <form class="form-horizontal well" ng-submit="submit()">
+      <form class="form-horizontal well" data-ng-submit="submit()">
         <fieldset>
           <legend>Edit Service Mapping</legend>   
           
           <div class="control-group">
-            <label class="control-label" for="serviceCode">{{'label.serviceCode' | translate }}</label>
+            <label class="control-label" for="serviceCode">{{'label.serviceCode' | translate }}&nbsp;<span class="required">*</span></label>
             <div class="controls">
-              <select ng-model="formData.id"  ng-options="sc.id as sc.serviceCode for sc in serviceCodes" value="{{serviceCode.id}}">
+              <select data-ng-model="formData.id"  data-ng-options="sc.id as sc.serviceCode for sc in serviceCodes">
               <option value="">{{'label.select.one' | translate}}</option>
               </select>
             </div>
           </div>
           
           <div class="control-group">
-            <label class="control-label" for="serviceIdentification">{{'label.serviceIdentification' | translate }}</label>
+            <label class="control-label" for="serviceIdentification">{{'label.serviceIdentification' | translate }}&nbsp;<span class="required">*</span></label>
             <div class="controls">
-              <input type="text" id="serviceIdentification" ng-model="formData.serviceIdentification">
+              <input type="text" id="serviceIdentification" data-ng-model="formData.serviceIdentification">
             </div>
           </div>
          
          <div class="control-group">
-            <label class="control-label" for="status">{{'label.status' | translate }}</label>
+            <label class="control-label" for="status">{{'label.status' | translate }}&nbsp;<span class="required">*</span></label>
             <div class="controls">
-                <select ng-model="formData.status"  ng-options="sc.value as sc.value for sc in statusDatas" value="{{serviceCode.id}}">
+                <select data-ng-model="formData.status"  data-ng-options="sc.value as sc.value for sc in statusDatas">
               <option value="">{{'label.select.one' | translate}}</option>
               </select>
             </div>
           </div>
 
           <div class="control-group">
-            <label class="control-label" for="image">{{'label.image' | translate }}</label>
+            <label class="control-label" for="image">{{'label.image' | translate }}&nbsp;<span class="required">*</span></label>
             <div class="controls">
-              <input type="text" id="image" ng-model="formData.image">
+              <input type="text" id="image" data-ng-model="formData.image">
             </div>
           </div>
           
-          <div class="control-group" ng-show="'IPTV'| ConfigLookup">
+          <div class="control-group" data-ng-show="'IPTV'| ConfigLookup">
             	<label class="control-label" for="category">{{'label.category' | translate }}</label>
             	<div class="controls">
-                <select ng-model="formData.category"  ng-options="c.mCodeValue as c.mCodeValue for c in categories" value="{{c.id}}">
+                <select data-ng-model="formData.category"  data-ng-options="c.mCodeValue as c.mCodeValue for c in categories">
               	<option value="">{{'label.select.one' | translate}}</option>
               	</select>
             	</div>
            </div>
             	
-           <div class="control-group" ng-show="'IPTV'| ConfigLookup">
+           <div class="control-group" data-ng-show="'IPTV'| ConfigLookup">
             	<label class="control-label" for="subcategory">{{'label.subcategory' | translate }}</label>
             	<div class="controls">
-                <select ng-model="formData.subCategory"  ng-options="sc.mCodeValue as sc.mCodeValue for sc in subCategories" value="{{sc.id}}">
-              	<option value="">{{'label.select.one' | translate}}</option>
-              	</select>
+                <select data-ng-model="formData.subCategory"  data-ng-options="sc.mCodeValue as sc.mCodeValue for sc in subCategories">
+              	<option value="">{{'label.select.one' | translate}}</option></select>
             	</div>
-          
           </div>
          
           <div class="offset3">
