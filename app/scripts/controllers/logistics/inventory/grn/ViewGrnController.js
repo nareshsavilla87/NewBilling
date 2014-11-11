@@ -5,7 +5,7 @@
 			  
 			  scope.selectedGRN=function(){
 		        	webStorage.add("callingTab", {someString: "grn" });
-		        }
+		        };
 	        resourceFactory.grnResource.get({grnId: routeParams.id} , function(data) {
 	        	scope.grn = data;
 	        });
@@ -15,7 +15,7 @@
 	                location.path('/inventory');
 
 	        });
-	        }
+	        };
 	    }
 	  });
 	  mifosX.ng.application.controller('ViewGrnController', ['$scope', '$routeParams','ResourceFactory', '$location','webStorage',mifosX.controllers.ViewGrnController]).run(function($log) {

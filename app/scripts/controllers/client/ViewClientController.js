@@ -213,12 +213,12 @@
                                               icon :"icon-usd"
                                            },*/
                                           
-                                         {
+                                        /* {
                                              name:"button.adjustments",
                                              href:"#/adjustments",
                                              icon :"icon-adjust",
                                              ngShow : postAdjustment
-                                         },
+                                         },*/
                                          {
                                              name:"button.invoice",
                                              href:"#/clientinvoice",

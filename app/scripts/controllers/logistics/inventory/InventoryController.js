@@ -12,7 +12,7 @@
         scope.PermissionService = PermissionService;
         
         var callingTab = webStorage.get('callingTab',null);
-        if(callingTab == null){
+        if(callingTab === null){
         	callingTab="";
         }else{
 		  scope.displayTab=callingTab.someString;
@@ -41,12 +41,12 @@
 		  }else
 		  {
 			  webStorage.remove('callingTab');
-		  };
+		  }
 		 
         }
         
         scope.routeTo = function(id){
-        	if(id != 0){
+        	if(id !== 0){
         		if(PermissionService.showMenu('READ_CLIENT'))
         			location.path('/viewclient/'+ parseInt(id));
         	}else{
@@ -184,7 +184,7 @@
 					  		
 					  		scope.searchHistory = function(filterText) {
 					  			
-					  			if(filterText=undefined || filterText==""){
+					  			if(filterText === undefined || filterText ===""){
 					  				
 					  			}else{
 					  				
@@ -300,16 +300,43 @@
 						        
 						        scope.deleteItemDetail = function(id){
 						        	scope.itemDetailId=id;
+						        	alert(scope.itemDetailId);
 						            $modal.open({
 						                templateUrl: 'approve.html',
 						                controller: approveToDelete,
 						                resolve:{}
 						            });
 						    	};
+						    	
+						    	   scope.deleteItem = function(id){
+						    		   scope.itemdetaiId=id;
+						               $modal.open({
+						                   templateUrl: 'approve.html',
+						                   controller: Approve,
+						                   resolve:{}
+						               });
+						           
+						       		
+						       	};
+						       	
+						       	var Approve = function ($scope, $modalInstance) {
+						       		
+						            $scope.approve = function (act) {
+						                
+						            resourceFactory.itemResource.delete({'itemId': scope.itemdetaiId},{},function(data){
+						                    location.path('/inventory');
+
+						            });
+						                $modalInstance.close('delete');
+						            };
+						            $scope.cancel = function () {
+						                $modalInstance.dismiss('cancel');
+						            };
+						        };
 						        
 						     	var approveToDelete = function ($scope, $modalInstance) {
 						            $scope.approveToDelete = function () {
-						               resourceFactory.itemDetailsResource.delete({'itemId': scope.itemDetailId},{},function(data){ 
+						               resourceFactory.itemDetailsResource.delete({'itemId':scope.itemDetailId},{},function(data){ 
 						            	  route.reload();
 						            	 //location.path('/inventory');
 						            	 webStorage.add("callingTab", {someString: "itemDetails"});

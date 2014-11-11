@@ -155,7 +155,7 @@ define(['underscore', 'mifosX'], function() {
       'organization/ViewCurrencyDetailsController',
       'organization/EditCurrencyDetailsController',
       'logistics/inventory/InventoryController',
-      'import/ImportController',
+      'import/DataUploadController',
       'import/AddImportFileController',
       'import/ViewImportController',
       'organization/ServicesController',

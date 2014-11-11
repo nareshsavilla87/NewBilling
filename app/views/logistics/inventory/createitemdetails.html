@@ -11,7 +11,7 @@
 		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
         <fieldset>
-          <legend>Grn & Item Details</legend>
+          <legend>Item Details</legend>
 
 			<table>
 				<tr>
@@ -114,9 +114,6 @@
 								</td>
 							</tr>
 							<tr>
-							</tr>
-						</table>
-						<table>
 							<tr>
 								<td>
 									<div class="control-group">
@@ -128,19 +125,12 @@
 								</td>
 								<td>
 								<div class="control-group">
-								</div>
-								<div class="controls">
+								 <div class="pull-right">
             						<a href="#/inventory"><button type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
             						<button type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
           						</div>
-          						
+          						</div>
 								</td>
-							</tr>
-						</table>
-						<table>
-							<tr>
-								
-								
 							</tr>
 						</table>
 					</td>

@@ -433,7 +433,7 @@
           templateUrl: 'views/logistics/inventory/item/createitem.html'
       })
         .when('/importing', {
-        templateUrl: 'views/import/import.html'
+        templateUrl: 'views/import/datauploads.html'
       })
       .when('/uploadFile', {
         templateUrl: 'views/import/uploadfile.html'

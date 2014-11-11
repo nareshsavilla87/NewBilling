@@ -932,12 +932,15 @@
 <tab heading="Financial Summary" select="getAllFineTransactions()" ng-show="$parent.PermissionService.showMenu('READ_FINANCIALTRANSACTIONS')">
       <hr>
  		<div class="tabbable" >
+ 		  
   				<ul class="nav nav-tabs">
 				    <li class={{financialsummaryC}}><a ng-click="financialsummeryTab()" data-toggle="tab" >Financial summary</a></li>
 				    <li class={{paymentsC}}><a ng-click="paymentsTab()" data-toggle="tab">Payments</a></li>
     			 	<li class={{invoicesC}}><a ng-click="invoicesTab()" data-toggle="tab">Invoices</a></li>
     			 	<li class={{adjustmentsC}}><a ng-click="adjustmentsTab()" data-toggle="tab">Adjustments</a></li>
 			     <button id="download" class="btn btn-min btn-default pull-right" ng-click="exportFinancialCSV()" style = "margin-bottom : 10px;">{{'button.exportfinancialcsv/pdf' | translate}}</button>
+			     <!-- <button id="adjustment" ng-show="PermissionService.showMenu('CREATE_ADJUSTMENT')&&PermissionService.showMenu('READ_ADJUSTMENT')" style = "margin-left: 336px;" href="#/adjustments/{{client.id}}" class="btn-primary">{{'button.adjustments' | translate}}</button> -->
+			      <a ng-show="PermissionService.showMenu('CREATE_ADJUSTMENT')" href="#/adjustments/{{client.id}}" style = "margin-left: 354px;"  class="btn btn-primary"><i class="icon-adjust icon-white"></i>Adjustment</a>
 			    </ul>
 			<div class="tab-content">
   
