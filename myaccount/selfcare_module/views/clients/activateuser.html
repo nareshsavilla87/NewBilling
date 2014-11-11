@@ -268,9 +268,9 @@
     	                        <strong>-</strong> -->
     	                        <input type="text" ng-model="formData.nationalId" name="nationalId" placeholder= "{{ 'placeholder.enter.nationalid.example' | translate }}" maxlength="11"
 
-    	                        ng-onblur="nationalIdValidationFun(formData.nationalId)" required late-Validate/><br/>
+    	                        data-ng-change="nationalIdValidationFun(formData.nationalId)" required late-Validate/><br/>
     	                        <small>{{'label.pattern'|translate}}{{'hint.nationaid.pattern'|translate}}</small><br/>
-    	                        <small class="error" ng-show="regSuccessFormNationalIdErrorPattern">{{'form.error.nationalid.pattern'|translate}}</small>
+    	                        <small class="error" data-ng-show="!nationalIdvalue">{{'form.error.nationalid.pattern'|translate}}</small>
     	                        <!-- <span ng-show="regSuccessForm.nationalId.$dirty && regSuccessForm.nationalId.$invalid">
 				        			<small class="error" ng-show="regSuccessForm.nationalId.$error.pattern">{{'form.error.nationalid.pattern'|translate}}</small>
 				    			</span> -->

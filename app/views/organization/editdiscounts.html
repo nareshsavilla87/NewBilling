@@ -17,7 +17,7 @@
 			<label>{{'label.contract.error' | translate}}</label> <label
 				ng-show="errorStatus">{{errorStatus}}</label> <label
 				ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code
-				| translate}}</label>
+				| translate : error.args}}</label>
 		</div>
 		<fieldset>
 			<legend>Edit Discounts</legend>

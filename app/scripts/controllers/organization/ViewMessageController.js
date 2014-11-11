@@ -7,7 +7,7 @@
             scope.messaging = data;                                                
         });
         scope.deletemessage = function (){
-            resourceFactory.messageSaveResource.delete({messageId: routeParams.id} , {} , function(data) {
+            resourceFactory.messageSaveResource.remove({messageId: routeParams.id} , {} , function(data) {
                   location.path('/message');      
             });
           };
