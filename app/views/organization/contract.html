@@ -10,7 +10,7 @@
     </div>
 
 <div class="row-fluid">
-    <input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by ContractPeriod/ContractType/Units">
+    <input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.searchbar' | translate}}">
 	<table class="table">
         <thead>
             <tr class="graybg">
@@ -34,11 +34,11 @@
         </tbody>
     </table>
 </div>
-<script type="text/ng-template" id="approve.html">
+<script type="text/ng-template" id="contract.html">
                     <div class="modal-header silver">
                         <h3 class="bolder">Delete Contract</h3>
                     </div>
-                    <div class="modal-body style="height:60px;">
+                    <div class="modal-body modal-small">
                        <h4>Are you sure?</h4>
                     </div>
                     <div class="modal-footer">

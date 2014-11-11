@@ -1,53 +1,56 @@
-<div  ng-controller="PlanController" >
+<div  data-ng-controller="PlanController" >
 <div>
-
     <ul class="breadcrumb">
         <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
         <li class="active">{{'label.plans' | translate}}&nbsp;&nbsp;</li>
     </ul>
     <div class="pull-right">
-        <a ng-show="PermissionService.showMenu('CREATE_PLAN')" href="#/createPlan" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{ 'link.create.new.plan' | translate }}</a>
+        <a data-ng-show="PermissionService.showMenu('CREATE_PLAN')" href="#/createPlan" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{ 'link.create.new.plan' | translate }}</a>
     </div>
 </div>
 <div class="row-fluid">
-   <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by plan Code/plan Description/status">
+   <input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.searchbar' | translate}}">
 	<table class="table">
         <thead>
             <tr class="graybg">
                 <th>{{ 'table.plan.code' | translate }}</th>
                 <th>{{ 'table.plan.description' | translate }}</th>
                 <th>{{ 'table.plan.status' | translate }}</th>
-                <th>Provision System</th>
+                <th>{{ 'table.plan.provision system' | translate}}</th>
                 <th>{{'label.plan.startdate' | translate }}</th>
-                <th>{{'label.options' | translate}}</th>
-                
+                <th>{{ 'table.heading.actions' | translate }}</th>
             </tr>
         </thead>
         <tbody>
-            <tr class="pointer-main" ng-repeat="plan in plans | filter:filterText">
+           <tr class="pointer-main" data-ng-repeat="plan in plans | filter:filterText">
                 <td class="pointer" data-ng-click="routeTo(plan.id)">{{plan.planCode}}</td>            
                 <td class="pointer" data-ng-click="routeTo(plan.id)">{{plan.planDescription}}</td>        
                 <td class="pointer" data-ng-click="routeTo(plan.id)">{{plan.planstatus.value}}</td>
                 <td class="pointer" data-ng-click="routeTo(plan.id)">{{plan.provisionSystem}}</td>
                 <td class="pointer" data-ng-click="routeTo(plan.id)">{{plan.startDate|DateFormat}}</td>
-                <td><a href="#/editplan/{{plan.id}}" popover="Edit Plan" popover-trigger="mouseenter" class="icon-edit"></a>&nbsp;
-                <a href="#/prices/{{plan.id}}" popover="View Price" popover-trigger="mouseenter" class="icon-eye-open"></a> &nbsp;  
-                <a href="#/createprice/{{plan.id}}" popover="Add Price" popover-trigger="mouseenter" class="icon-plus-sign"></a>&nbsp; 
-                <a data-ng-click="deleteplan(plan.id)" popover="Delete Plan" popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a></td>
+                <td><a data-ng-show="PermissionService.showMenu('UPDATE_PLAN')" href="#/editplan/{{plan.id}}" data-popover="Edit Plan" 
+                       data-popover-trigger="mouseenter" class="icon-edit"></a>&nbsp;
+                <a data-ng-show="PermissionService.showMenu('READ_PRICE')" href="#/prices/{{plan.id}}" data-popover="View Price" 
+                       data-popover-trigger="mouseenter" class="icon-eye-open"></a> &nbsp;  
+                <a data-ng-show="PermissionService.showMenu('CREATE_PRICE')&&PermissionService.showMenu('READ_PRICE')" href="#/createprice/{{plan.id}}" data-popover="Add Price" 
+                       data-popover-trigger="mouseenter" class="icon-plus-sign"></a>&nbsp; 
+                <a data-ng-show="PermissionService.showMenu('DELETE_PLAN')" data-ng-click="deleteplan(plan.id)" data-popover="Delete Plan" 
+                       data-popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a>
+            </td>
             </tr>
         </tbody>
     </table>
 </div>
-<script type="text/ng-template" id="approve.html">
+<script type="text/ng-template" id="deleteplan.html">
                     <div class="modal-header silver">
-                        <h3 class="bolder">{{'dialog.item.title.message' | translate}}</h3>
+                        <h3 class="bolder">{{'dialog.plan.title.message' | translate}}</h3>
                     </div>
                     <div class="modal-body modal-small">
                        <h4>Are you sure?</h4>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
-                        <button class="btn btn-primary" ng-click="approve(date.actDate)">{{'label.confirm' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
                     </div>
 </script>
 </div>

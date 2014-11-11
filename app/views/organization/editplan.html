@@ -5,21 +5,21 @@
               <li class="active">{{'label.editplan' | translate}}</li>
           </ul>
       </div>
- <form class="form-horizontal well" ng-controller="EditPlanController" ng-submit="submit()">
-       <div class="error" ng-show="errorStatus || errorDetails">
+ <form class="form-horizontal well" data-ng-controller="EditPlanController" data-ng-submit="submit()">
+       <div class="error" data-ng-show="errorStatus || errorDetails">
 		 <label>{{'label.contract.error' | translate}}</label>
-		 <label ng-show="errorStatus">{{errorStatus}}</label>
-		 <label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		 <label data-ng-show="errorStatus">{{errorStatus}}</label>
+		 <label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
        </div>
      <fieldset>
        <legend>{{'label.editplan' | translate}}</legend>
-         <table width="100%">
+         <table style="width:100%;">
             <tr>
                  <td width="50%">
 		          <div class="control-group">
 		            <label class="control-label" for="planCode">{{ 'label.plan.plancode' | translate }}</label>
 		            <div class="controls">
-		              <input type="text" id="planCode" ng-model="formData.planCode">
+		              <input type="text" id="planCode" data-ng-model="formData.planCode">
 		            </div>
 		          </div>
 		      </td>
@@ -27,7 +27,7 @@
 	           <div class="control-group">
 	            <label class="control-label" for="status">{{ 'label.plan.status' | translate }}</label>
 	            <div class="controls">
-	              <select ng-model="formData.status"  ng-options="planStatus.id as planStatus.value for planStatus in planStatus" value="{{planStatus.id}}"></select>
+	              <select id="status" data-ng-model="formData.status"  data-ng-options="planStatus.id as planStatus.value for planStatus in planStatus"></select>
 	            </div>
 	          </div>
          		</td>
@@ -37,7 +37,7 @@
 	          <div class="control-group">
 	            <label class="control-label" for="planDescription">{{ 'label.plan.plandescription' | translate }}</label>
 	            <div class="controls">
-	              <input type="text" id="planDescription" ng-model="formData.planDescription">
+	              <input type="text" id="planDescription" data-ng-model="formData.planDescription">
 	            </div>
 	          </div>
               </td>
@@ -45,7 +45,7 @@
 	           <div class="control-group">
 		            <label class="control-label" for="billRule">{{ 'label.plan.billingrule' | translate }}</label>
 		            <div class="controls">
-		              <select ng-model="formData.billRule"  ng-options="billRuleData.id as billRuleData.billruleOptions for billRuleData in billRuleDatas" value="{{billRuleData.id}}"></select>
+		              <select id="billRule" data-ng-model="formData.billRule"  data-ng-options="billRuleData.id as billRuleData.billruleOptions for billRuleData in billRuleDatas"></select>
 		            </div>
 	          </div>
          	   </td>
@@ -55,7 +55,7 @@
 	          <div class="control-group">
 	            <label class="control-label" for="startDate">{{ 'label.plan.startdate' | translate }}</label>
 	            <div class="controls">
-	                 <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.startDate" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"/>
+	                 <input type="text" datepicker-pop="dd MMMM yyyy" data-ng-model="date.startDate" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"/>
 	            </div>
 	          </div>
              </td>
@@ -63,7 +63,7 @@
 	          <div class="control-group">
 	            <label class="control-label" for="provisioingSystem">{{ 'label.plan.provisioningsystem' | translate }}</label>
 	            <div class="controls">
-	            <select ng-model="formData.provisioingSystem" ng-options="provisionSysData.mCodeValue as provisionSysData.mCodeValue for provisionSysData in provisionSysDatas" value="{{provisionSysData.provisioingSystem}}"></select>
+	            <select id="provisioingSystem" data-ng-model="formData.provisioingSystem" data-ng-options="provisionSysData.mCodeValue as provisionSysData.mCodeValue for provisionSysData in provisionSysDatas"></select>
 	            </div>
 	          </div>
          	  </td>
@@ -73,7 +73,7 @@
 	          <div class="control-group">
 	            <label class="control-label" for="endDate">{{ 'label.plan.enddate' | translate }}</label>
 	            <div class="controls">
-	            <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.endDate" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" />
+	            <input type="text" datepicker-pop="dd MMMM yyyy" data-ng-model="date.endDate" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" />
 	            </div>
 	          </div>
          	 </td>
@@ -86,8 +86,8 @@
                	 <div><label class="control-label"></label></div>
               		 <div class="span3">
                    	<label class="control-label">{{ 'label.availableservice' | translate }}</label>
-                   	<select multiple ng-model="allowed" style="height:100px;">
-                       	<option ng-repeat="service in services" value="{{service.id}}">{{service.serviceDescription}}</option>
+                   	<select multiple data-ng-model="allowed" style="height:100px;">
+                       	<option data-ng-repeat="service in services" value="{{service.id}}">{{service.serviceDescription}}</option>
                   	</select>
                	 </div>
                  <div class="paddedtop10 span1 paddedleft0">
@@ -96,8 +96,8 @@
                  </div>
                  <div class="span3">
                     <label class="control-label">{{ 'label.selectedservice' | translate }}</label>
-                    <select multiple ng-model="restricted" style="height:100px;">
-                        <option ng-repeat="selectedService in selectedServices" value="{{selectedService.id}}">{{selectedService.serviceDescription}}</option>
+                    <select multiple data-ng-model="restricted" style="height:100px;">
+                        <option data-ng-repeat="selectedService in selectedServices" value="{{selectedService.id}}">{{selectedService.serviceDescription}}</option>
                     </select>
                 </div>
           
@@ -111,20 +111,20 @@
             <div class="control-group">
             	<label class="control-label" for="isPrepaid">{{ 'label.plan.ishwreq' | translate }}</label>
 	            <div class="controls">
-	              <label class="checkbox"><input type="checkbox" ng-model="formData.isHwReq"></label>
+	              <label class="checkbox"><input type="checkbox" data-ng-model="formData.isHwReq"></label>
 	            </div>
             </div>
              	<div class="control-group">
           		    <label class="control-label" for="isPrepaid">{{ 'label.plan.isprepaid' | translate }}</label>
 	            <div class="controls">
-	              <label class="checkbox"><input type="checkbox" ng-model="formData.isPrepaid"></label>
+	              <label class="checkbox"><input type="checkbox" data-ng-model="formData.isPrepaid"></label>
 	            </div>
          		</div>
-         	<div ng-show="formData.isPrepaid">
+         	<div data-ng-show="formData.isPrepaid">
 	            <div class="control-group">
 	               <label class="control-label" for="allowTopup">{{ 'label.plan.volume' | translate }}</label>
 	               <div class="controls"> 
-	                  <input type="checkbox" ng-model="formData.allowTopup">
+	                  <input type="checkbox" data-ng-model="formData.allowTopup">
 	               </div>
 	            </div>
 	            <div class="control-group">
@@ -133,10 +133,10 @@
 	                   <table>
 	                       <tr>
 	                          <td>
-	                 			 <select ng-model="formData.volume"  ng-options="volumeType.value as volumeType.value for volumeType in volumeTypes" value="{{volumeType.value}}"></select>
+	                 			 <select data-ng-model="formData.volume"  data-ng-options="volumeType.value as volumeType.value for volumeType in volumeTypes" ></select>
 	                 		 </td>
 	                		 <td>
-	                			<input type="text" class="input-small ng-pristine ng-valid" id="units" ng-model="formData.units">
+	                			<input type="text" class="input-small ng-pristine ng-valid" id="units" data-ng-model="formData.units">
 	                		 </td>
 	                	   </tr>
 	                    </table>
@@ -148,8 +148,8 @@
         </tr>
       </table>
       <div class="offset3">
-        <a href="#/viewplan/{{planId}}"><button id="cancel" type="reset" class="btn">Cancel</button></a>
-        <button id="submit" type="submit" class="btn btn-primary">Save</button>
+        <a href="#/viewplan/{{planId}}"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+        <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
       </div>
   </fieldset>
 </form>
