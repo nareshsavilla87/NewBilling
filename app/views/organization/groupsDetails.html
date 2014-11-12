@@ -1,53 +1,49 @@
-<div ng-controller="GroupsDetailsController">
-  <div>
-
+<div data-ng-controller="GroupsDetailsController">
+   <div>
     <ul class="breadcrumb">
          <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
-        <li class="active">Groups&nbsp;&nbsp;</li>
+        <li class="active">{{'label.groups.details' | translate}}</li>
     </ul>
     <div class="pull-right">
-        <a ng-click="addGroup()" class="btn btn-primary"><i class="icon-plus icon-white"></i> Add Group</a>
+        <a data-ng-click="addGroup()" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'label.group.add' | translate}}</a>
     </div>
   </div>
   <div class="row-fluid" >
-     	<form ng-submit="searchDetails(filterText)">
-           <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Search by Group Name"/>
+     	<form data-ng-submit="searchDetails(filterText)" class="marginNone">
+           <input data-ng-model="filterText" type="text" data-ng-autofocus="true" class="span marginbottom0px" placeholder="{{'placehoder.searchbar' | translate}}"/>
         </form>
 	<table class="table">
         <thead>
             <tr class="graybg">
-                <th style="width:25%">Id</th>
-                <th style="width:25%">Group Name</th>
-                <th style="width:25%">Group Address</th>
-                <th style="width:25%">Count No's</th>
-                <th></th>
+                <th style="width:25%">{{'label.groupsdetails.groupname' | translate}}</th>
+                <th style="width:25%">{{'label.groupsdetails.groupaddress' | translate}}</th>
+                <th style="width:25%">{{'label.groupsdetails.countnumber' | translate}}</th>
+                <th style="width:25%">{{'table.heading.actions' | translate}}</th>
             </tr>
         </thead>
         <tbody>
-            <tr class="pointer-main" ng-repeat="groups in groupDetails.currentPageItems | filter:filterText">
-            	<td class="pointer" data-ng-click="routeTo(groups.groupName)">{{groups.id}}</td>       
-                <td class="pointer" data-ng-click="routeTo(groups.groupName)">{{groups.groupName}}</td>        
-                <td class="pointer" data-ng-click="routeTo(groups.groupName)">{{groups.groupAddress}}</td> 
-                <td class="pointer" data-ng-click="routeTo(groups.groupName)">{{groups.countNo}}</td>   
-                <td><a ng-click="addProvision(groups.id,groups.groupName,groups.attribute1,groups.attribute2,groups.attribute3,groups.attribute4)" 
-                  ng-show="groups.isProvision == 'N'" class="btn " popover="Provisioning" popover-trigger="mouseenter"><i class="icon-play icon-white"></i></a>
-                 <a ng-show="groups.isProvision == 'Y'" ng-disabled="groups.isProvision == 'Y'"class="btn "><i class="icon-play icon-white"></i></a>
+            <tr class="pointer-main" data-ng-repeat="group in groupsDetails.currentPageItems | filter:filterText">
+                <td class="pointer" data-ng-click="routeTo(group.groupName)">{{group.groupName}}</td>        
+                <td class="pointer" data-ng-click="routeTo(group.groupName)">{{group.groupAddress}}</td> 
+                <td class="pointer" data-ng-click="routeTo(group.groupName)">{{group.countNo}}</td>   
+                <td><a data-ng-click="addProvision(group.id,group.groupName,group.attribute1,group.attribute2,group.attribute3,group.attribute4)" 
+                  data-ng-show="group.isProvision == 'N'" class="btn " data-popover="Provisioning" data-popover-trigger="mouseenter"><i class="icon-play icon-white"></i></a>
+                 <a data-ng-show="group.isProvision == 'Y'" data-ng-disabled="group.isProvision == 'Y'"class="btn "><i class="icon-play icon-white"></i></a>
                 </td>
-                 <!-- <a ng-show="voucherpin.isProcessed == 'N'" ng-click="processFile(voucherpin.id)" popover="Process File" popover-trigger="mouseenter"><i class="icon-play icon-white"></i></a>   -->
         </tbody>
     </table>
     		<ul class="pager">
-        		<li class="previous"><a ng-click="groupDetails.previous()" href="" ng-disabled="!groupDetails.hasPrevious()">&larr; Prev</a></li>
-        		<li class="next" ><a ng-click="groupDetails.next()" href="" ng-disabled="!groupDetails.hasNext()">Next &rarr;</a></li>
+        		<li class="previous"><a data-ng-click="groupsDetails.previous()" href="" data-ng-disabled="!groupsDetails.hasPrevious()">&larr; Prev</a></li>
+        		<li class="next" ><a data-ng-click="groupsDetails.next()" href="" data-ng-disabled="!groupsDetails.hasNext()">Next &rarr;</a></li>
     		</ul>
   </div>
   
    <script type="text/ng-template" id="addGroupDetails.html">
-	<div style="width:680px;height:300px;">
+	<div style="width:700px;height:300px;">
         
 	 <form name="addGroupForm" novalidate="" class="form-horizontal well" ng-submit="submit()">
 		<div>
-          <h3 class="bolder">{{ 'label.cug.addgroup' | translate }}</h3>
+          <h3 class="bolder">{{ 'label.group.add' | translate }}</h3>
         </div>
         <div>
  		  <fieldset>
@@ -57,65 +53,55 @@
 				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	   		 </div>
            	<div class="control-group">
-				<label class="control-label" for="groupName">{{'label.provisioning.group'|translate}}<span class="required">*</span> :</label>
+				<label class="control-label" for="groupName">{{'label.groupsdetails.groupname'|translate}}<span class="required">*</span> :</label>
 			 	<div class="controls">
-              		<input  type="text"id="groupName" name="groupName" ng-model="formData.groupName" required late-Validate/>
-                    <span  ng-show="addGroupForm.groupName.$invalid">
-                    	<small class="error" ng-show="addGroupForm.groupName.$error.req">
-                        	Required Field !
-                    	</small>
-                   </span>
+              		<input  type="text"id="groupName" name="groupName" ng-model="formData.groupName" />
             	</div>
            	</div>
           	<div class="control-group">
-            	 <label class="control-label" for="groupAddress">{{'label.cug.groupaddress'|translate}}<span class="required">*</span> :</label>
+            	 <label class="control-label" for="groupAddress">{{'label.groupsdetails.groupaddress'|translate}}<span class="required">*</span> :</label>
 			 	 <div class="controls">
-              		<input type="text" id="groupAddress" name="groupAddress" ng-model="formData.groupAddress" required late-Validate/>
-					<span  ng-show="addGroupForm.groupAddress.$invalid">
-                    	<small class="error" ng-show="addGroupForm.groupAddress.$error.req">
-                        	Required Field !
-                    	</small>
-                   </span>
+              		<input type="text" id="groupAddress" name="groupAddress" ng-model="formData.groupAddress"/>
             	 </div>
 	      	</div>
-			<table>
-				<tr>
-					<td>
-						<div class="control-group">
-							<label>{{ 'label.cug.additionalinfo' | translate }}&nbsp;:</label>
-						</div>
-					</td>
-				</tr>
+		    <div class="control-group">
+					<label class="control-label">{{ 'label.groupsdetails.additionalinfo' | translate }}:</label>
+			</div>
+			<table >
 				<tr>
 				  <td> 
 						<div class="control-group">
-              				{{ 'label.cug.groupcir' | translate }}:&nbsp;&nbsp;&nbsp;&nbsp;<input class="input-medium" id="attribute1" type="text" ng-model="formData.attribute1" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              				<label class="control-label">{{ 'label.groupsdetails.groupcir' | translate }}<span class="required">*</span>:</label>
+							<input class="input-medium" id="attribute1" type="text" ng-model="formData.attribute1" />
 						</div>
 				  </td>			
-				  <td> 
+				  <td align="left"> 
 						<div class="control-group">
-              				{{ 'label.cug.dir' | translate }}:&nbsp;<input class="input-medium" id="attribute2" type="text" ng-model="formData.attribute2" />
+              				<label class="control-label">{{ 'label.groupsdetails.dir' | translate }}<span class="required">*</span>:</label>
+							<input class="input-medium" id="attribute2" type="text" ng-model="formData.attribute2" />
 						</div>
 				  </td>
 				</tr>
 				<tr>
 					<td> 
 							<div class="control-group">
-              					{{ 'label.cug.membercir' | translate }}:&nbsp;<input class="input-medium" id="attribute3" type="text" ng-model="formData.attribute3" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              					<label class="control-label">{{ 'label.groupsdetails.membercir' | translate }}<span class="required">*</span>:</label>
+								<input class="input-medium" id="attribute3" type="text" ng-model="formData.attribute3" />
 							</div>
 				  	</td>				
 					<td> 
 							<div class="control-group">
-              					{{ 'label.cug.dir' | translate }}:&nbsp;<input class="input-medium" id="attribute4" type="text" ng-model="formData.attribute4" />
+              					<label class="control-label">{{ 'label.groupsdetails.dir' | translate }}<span class="required">*</span>:</label>
+								<input class="input-medium" id="attribute4" type="text" ng-model="formData.attribute4" />
 							</div>
 				  	</td>
 				</tr>
 			</table>
-		  </fieldset>
+        <div class="pull-right" style="margin-right:8px;">
+          <button id="cancel" class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+     	  <button id="submit" type="submit" class="btn btn-primary">{{'button.save' | translate}}</button>
         </div>
-        <div class="modal-footer">
-          <button id="cancel" class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
-     	  <button id="submit" type="submit" class="btn btn-primary">Add</button>
+		  </fieldset>
         </div>
 	</form>
 	</div>

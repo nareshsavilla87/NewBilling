@@ -25,7 +25,16 @@
 		  
 	  }
   });
-  mifosX.ng.application.controller('ViewGroupsDetailsController', ['$scope', 'ResourceFactory','$modal','$route','PaginatorService','$location','$routeParams', mifosX.controllers.ViewGroupsDetailsController]).run(function($log) {
+  mifosX.ng.application.controller('ViewGroupsDetailsController', [
+                                                                   '$scope', 
+                                                                   'ResourceFactory',
+                                                                   '$modal',
+                                                                   '$route',
+                                                                   'PaginatorService',
+                                                                   '$location',
+                                                                   '$routeParams',
+                                                                   mifosX.controllers.ViewGroupsDetailsController]).run(function($log) {
+                                                                	   
     $log.info("ViewGroupsDetailsController initialized");
   });
 }(mifosX.controllers || {}));

@@ -1,28 +1,28 @@
-<div ng-controller="ViewGroupsDetailsController">
+<div data-ng-controller="ViewGroupsDetailsController">
   <div>
 
     <ul class="breadcrumb">
        <li class="active">{{'link.clients' | translate}}</li>
     </ul>
    
-  </div>
+  </div><br/>
   <div class="row-fluid" >
-     	<form ng-submit="search(filterText)">
-            <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by Account#/Name/Phone/email/Identity/Device#">
+     	<form data-ng-submit="search(filterText)" class="marginNone">
+            <input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placehoder.searchbar' | translate}}">
         </form>
 		<table class="table">
         <thead>
             <tr class="graybg">
-                <th>Name</th>
-                <th>Status</th>
-                <th>Account #</th>
-                <th>Office</th>
-                <th>Serial No</th>
-                <th>Balance</th>
+                <th>{{'label.groupdetails.clientname' | translate}}</th>
+                <th>{{'label.groupdetails.status' | translate}}</th>
+                <th>{{'label.groupdetails.account' | translate}}</th>
+                <th>{{'label.groupdetails.office' | translate}}</th>
+                <th>{{'label.groupdetails.serialnumber' | translate}}</th>
+                <th>{{'label.groupdetails.balance' | translate}}</th>
             </tr>
         </thead>
         <tbody>
-            <tr class="pointer-main" ng-repeat="groups in groupDetails.currentPageItems  | filter:filterText" >
+            <tr class="pointer-main" data-ng-repeat="groups in groupDetails.currentPageItems  | filter:filterText" >
                 <td class="pointer" data-ng-click="routeTo(groups.id)" >{{groups.displayName}}</td>
                 <td class="pointer" data-ng-click="routeTo(groups.id)" ><i class="icon-stop {{groups.status.value | StatusLookup}}"></i>&nbsp;{{groups.status.value}}</td>
                 <td class="pointer" data-ng-click="routeTo(groups.id)" >{{groups.accountNo}}</td>
@@ -33,8 +33,8 @@
         </tbody>
     	</table>
     		<ul class="pager">
-        		<li class="previous"><a ng-click="groupDetails.previous()" href="" ng-disabled="!groupDetails.hasPrevious()">&larr; Prev</a></li>
-        		<li class="next" ><a ng-click="groupDetails.next()" href="" ng-disabled="!groupDetails.hasNext()">Next &rarr;</a></li>
+        		<li class="previous"><a data-ng-click="groupDetails.previous()" href="" data-ng-disabled="!groupDetails.hasPrevious()">&larr; Prev</a></li>
+        		<li class="next" ><a data-ng-click="groupDetails.next()" href="" data-ng-disabled="!groupDetails.hasNext()">Next &rarr;</a></li>
     		</ul>
   </div>
  

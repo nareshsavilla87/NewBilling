@@ -424,6 +424,10 @@ tr.pointer-main:hover {
 
 /* Dashboard Inputs */
 
+.marginNone {
+	margin : 0px;
+}
+
 .input-mini-small {
   width: 25px;
 }
@@ -929,6 +933,14 @@ nav:hover:after{
 .text-pointer{
     cursor: text;
 }
+
+/*external code*/
+.radioBtnlabel {
+	font-size: 20px;
+	display:inline;
+}
+
+/*external code*/
 
 #orderMenu {
     position: fixed;
