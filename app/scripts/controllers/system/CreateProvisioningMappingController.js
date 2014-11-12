@@ -3,8 +3,8 @@
 		  CreateProvisioningMappingController: function(scope, resourceFactory, location) {
 	        scope.commands = [];
 	        scope.provisioning = [];
-	        scope.parameterFormData={};
-	        scope.commandParameters=[];
+	        scope.parameterFormData = {};
+	        scope.commandParameters = [];
 	        
 	        resourceFactory.provisioningtemplateMappingResource.get(function(data) {
 	            scope.commands = data.commands;
@@ -20,34 +20,35 @@
 	            	  paramType:scope.parameterFormData.paramType}); 
 	                 scope.parameterFormData.commandParam = undefined;
 	                  scope.parameterFormData.paramType = undefined;
-	        	 }
-	        	 
-	        	 
-	          };
+	        	 } 
+	        };
 	          
-	          scope.deleteParameter = function (index) {
-	        	  scope.commandParameters.splice(index,1);
-	            };
+	        scope.deleteParameter = function (index) {
+	        	  scope.commandParameters.splice(index, 1);
+	        };
 	          
 	        scope.submit = function() {  
 	        	scope.formData.commandParameters =new Array();
-	             if (scope.commandParameters.length > 0) {
+	            if (scope.commandParameters.length > 0) {
 	              
-	                 for (var i in scope.commandParameters) {
+	            	for (var i in scope.commandParameters) {
 	                   scope.formData.commandParameters.push({commandParam:scope.commandParameters[i].commandParam,
 	 	               paramType:scope.commandParameters[i].paramType});
-	                 };
-	               }
+	                };
+	            }
 	             
-	            resourceFactory.provisioningMappingResource.save(this.formData,function(data){
+	            resourceFactory.provisioningMappingResource.save(this.formData, function(data){
 	            	location.path('/mappingconfig');
-	            	
-	          });
+	            });
 	        };
 	    }
 	  });
-	  mifosX.ng.application.controller('CreateProvisioningMappingController', ['$scope', 'ResourceFactory', '$location', mifosX.controllers.CreateProvisioningMappingController]).run(function($log) {
-	    $log.info("CreateProvisioningMappingController initialized");
+	  mifosX.ng.application.controller('CreateProvisioningMappingController', [
+	     '$scope', 
+	     'ResourceFactory',
+	     '$location',
+	     mifosX.controllers.CreateProvisioningMappingController
+	     ]).run(function($log) {
+	    	 $log.info("CreateProvisioningMappingController initialized");
 	  });
 	}(mifosX.controllers || {}));
-

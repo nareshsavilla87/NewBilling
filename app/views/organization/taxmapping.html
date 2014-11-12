@@ -1,33 +1,41 @@
-<div ng-controller="TaxMappingController">
+<div data-ng-controller="TaxMappingController">
+
     <ul class="breadcrumb">
         <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
           <li><a href="#/viewchargecode/{{chargeId}}">{{taxmappings[0].chargeCode}}</a> <span class="divider">/</span></li>
         <li class="active">{{'label.taxmapping' | translate}}</li>
     </ul>
 
-<div class="row-fluid">
-    <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
-	<table class="table">
-        <thead>
-            <tr class="graybg">
-                <th>{{ 'table.heading.chargecode' | translate }}</th>
-                <th>{{ 'table.heading.taxCode' | translate }}</th>
-                <th>{{ 'table.heading.startDate' | translate }}</th>
-                <th>{{ 'table.heading.type' | translate }}</th>
-                <th>{{ 'table.heading.rate' | translate }}</th>
-                <th>{{ 'table.heading.TaxRegion' | translate }}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="taxmapping in taxmappings | filter:filterText">
-                <td><a href="#/viewtaxmapping/{{taxmapping.id}}">{{taxmapping.chargeCode}}</a></td>        
-                <td>{{taxmapping.taxCode}}</td>        
-                <td>{{taxmapping.startDate | DateFormat}}</td>
-                <td>{{taxmapping.taxType}}</td> 
-                <td>{{taxmapping.rate}}</td> 
-                <td>{{taxmapping.taxRegion}}</td> 
-            </tr>
-        </tbody>
-    </table>
-</div>
+	<div class="row-fluid">
+    	<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+		<table class="table">
+        	<thead>
+            	<tr class="graybg">
+                	<th>{{ 'table.heading.chargecode' | translate }}</th>
+                	<th>{{ 'table.heading.taxCode' | translate }}</th>
+                	<th>{{ 'table.heading.startDate' | translate }}</th>
+                	<th>{{ 'table.heading.type' | translate }}</th>
+                	<th>{{ 'table.heading.rate' | translate }}</th>
+                	<th>{{ 'table.heading.TaxRegion' | translate }}</th>
+                	<th>Actions</th>
+            	</tr>
+        	</thead>
+       		<tbody>
+            	<tr data-ng-repeat="taxmapping in taxmappings | filter:filterText">
+                	<td><a href="#/viewtaxmapping/{{taxmapping.id}}">{{taxmapping.chargeCode}}</a></td>        
+                	<td><a href="#/viewtaxmapping/{{taxmapping.id}}">{{taxmapping.taxCode}}</a></td>        
+                	<td><a href="#/viewtaxmapping/{{taxmapping.id}}">{{taxmapping.startDate | DateFormat}}</a></td>
+                	<td><a href="#/viewtaxmapping/{{taxmapping.id}}">{{taxmapping.taxType}}</a></td> 
+                	<td><a href="#/viewtaxmapping/{{taxmapping.id}}">{{taxmapping.rate}}</a></td> 
+                	<td><a href="#/viewtaxmapping/{{taxmapping.id}}">{{taxmapping.taxRegion}}</a></td> 
+                	<td>
+                		<a href="#/edittaxmapping/{{taxmapping.id}}" popover="Edit Tax" popover-trigger="mouseenter">
+                    		<i class="icon-edit icon-white"></i>
+                    	</a>
+                    </td>
+            	</tr>
+        	</tbody>
+    	</table>
+	</div>
+	
 </div>

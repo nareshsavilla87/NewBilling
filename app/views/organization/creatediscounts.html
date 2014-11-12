@@ -1,15 +1,16 @@
-      <div>
-        <ul class="breadcrumb">
-          <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
-          <li><a href="#/discounts">{{'label.managediscounts' | translate}}</a> <span class="divider">/</span></li>
-          <li class="active">{{'label.creatediscount' | translate}}</li>
-        </ul>
-      </div>
-      <form class="form-horizontal well" ng-controller="CreateDiscountsController" ng-submit="submit()">
-       <div class="error" ng-show="errorStatus || errorDetails">
+<div>
+	<ul class="breadcrumb">
+    	<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+        <li><a href="#/discounts">{{'label.managediscounts' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.creatediscount' | translate}}</li>
+    </ul>
+</div>
+
+<form class="form-horizontal well" data-ng-controller="CreateDiscountsController" data-ng-submit="submit()">
+	<div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
         <fieldset>
           <legend>Create Discount</legend>
@@ -22,7 +23,7 @@
 								<div class="control-group">
            					 	<label class="control-label" for="discountCode">{{ 'label.discountCode' | translate }}</label>
             					<div class="controls">
-             					 <input type="text" id="discountCode" ng-model="formData.discountCode">
+             					 <input type="text" id="discountCode" data-ng-model="formData.discountCode">
            						</div>
          						</div>	
 							</td>
@@ -30,7 +31,7 @@
 								<div class="control-group">
             					<label class="control-label" for="discountType">{{ 'label.discountType' | translate }}</label>
             					<div class="controls">
-             					 <select id="discountType" ng-model="formData.discountType"  ng-options="discounTypeData.mCodeValue as discounTypeData.mCodeValue for discounTypeData in discountTypeDatas" value="{{discounTypeData.mCodeValue}}">
+             					 <select id="discountType" data-ng-model="formData.discountType" data-ng-options="discounTypeData.mCodeValue as discounTypeData.mCodeValue for discounTypeData in discountTypeDatas">
              					 <option value="">{{'label.select.one' | translate}}</option></select>
             					</div>
           						</div>
@@ -41,7 +42,7 @@
 								<div class="control-group">
             					<label class="control-label" for="discountDescription">{{ 'label.discountDescription' | translate }}</label>
             					<div class="controls">
-              					<input type="text" id="discountDescription" ng-model="formData.discountDescription">
+              					<input type="text" id="discountDescription" data-ng-model="formData.discountDescription">
            						 </div>
           						</div>
 							</td>
@@ -49,7 +50,7 @@
 								<div class="control-group">
             					<label class="control-label" for="discountRate">{{ 'label.discountRate' | translate }}</label>
             					<div class="controls">
-              					<input type="text" id="discountRate" ng-model="formData.discountRate">
+              					<input type="text" id="discountRate" data-ng-model="formData.discountRate">
             					</div>
           						</div>
 							</td>
@@ -59,8 +60,8 @@
 								<div class="control-group">
                         		<label class="control-label">{{ 'label.startDate' | translate }}</label>
                         		<div class="controls">
-                            	<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.date" is-open="opened2" min="minDate" 
-                            	max="'2020-06-22'" date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
+                            	<input type="text" data-datepicker-pop="dd MMMM yyyy" data-ng-model="start.date" data-is-open="opened2" min="minDate" 
+                            	max="'2020-06-22'" data-date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
                         		</div>
           						</div>
 							</td>
@@ -68,15 +69,13 @@
 								<div class="control-group">
             					<label class="control-label" for="discountStatus">{{ 'label.status' | translate }}</label>
             					<div class="controls">
-             					 <select  id="discountStatus" ng-model="formData.discountStatus"  ng-options="discountStatus.value as discountStatus.value for discountStatus in statusDatas" value="{{discountStatus.value}}">
+             					 <select  id="discountStatus" data-ng-model="formData.discountStatus"  data-ng-options="discountStatus.value as discountStatus.value for discountStatus in statusDatas">
              					 <option value="">{{'label.select.one' | translate}}</option></select>
             					</div>
           						</div>
 								</td>
-							</tr>
-							
+							</tr>	
 					</table>
-			
 				</td>
 			</tr>
 			</table>
@@ -87,4 +86,4 @@
           </div>
           
         </fieldset>
-      </form>
+</form>

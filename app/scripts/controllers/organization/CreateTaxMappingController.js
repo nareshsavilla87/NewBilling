@@ -1,34 +1,43 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  CreateTaxMappingController: function(scope, resourceFactory, routeParams,location,dateFilter,$rootScope) {
+	  CreateTaxMappingController: function(scope, resourceFactory, routeParams, location, dateFilter, $rootScope) {
         scope.chargecodetaxs = [];
         scope.typetaxmapdatas = [];
         scope.priceRegionDatas = [];
         scope.start = {};
         scope.formData = {};
         scope.start.date = new Date();
-        resourceFactory.taxmappingtemplateResource.getAlltaxmapping({'chargeCode':routeParams.chargeCode},function(data) {
+        
+        resourceFactory.taxmappingtemplateResource.getAlltaxmapping({'chargeCode':routeParams.chargeCode}, function(data) {
             scope.taxTypeDatas = data.taxTypeData;
             scope.priceRegionDatas = data.priceRegionData;
-            scope.formData=data;
+            scope.formData = data;
         });
         
                 
         scope.submit = function() {
         	this.formData.locale = $rootScope.locale.code;
-        	var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
+        	var reqDate = dateFilter(scope.start.date, 'dd MMMM yyyy');
             this.formData.dateFormat = 'dd MMMM yyyy';
             this.formData.startDate = reqDate;
          
             delete this.formData.priceRegionData;
             delete this.formData.taxTypeData;
-            resourceFactory.getTaxmappingResource.save({'taxId':routeParams.chargeCode},this.formData,function(data){
+            resourceFactory.getTaxmappingResource.save({'taxId':routeParams.chargeCode}, this.formData, function(data){
             		location.path('/viewtaxmapping/' + data.resourceId);
-          });
+            });
         };
     }
   });
-  mifosX.ng.application.controller('CreateTaxMappingController', ['$scope', 'ResourceFactory','$routeParams','$location','dateFilter','$rootScope', mifosX.controllers.CreateTaxMappingController]).run(function($log) {
-    $log.info("CreateTaxMappingController initialized");
-  });
+  mifosX.ng.application.controller('CreateTaxMappingController', [
+       '$scope', 
+       'ResourceFactory',
+       '$routeParams',
+       '$location',
+       'dateFilter',
+       '$rootScope',
+       mifosX.controllers.CreateTaxMappingController
+       ]).run(function($log) {
+    	   $log.info("CreateTaxMappingController initialized");
+       });
 }(mifosX.controllers || {}));
