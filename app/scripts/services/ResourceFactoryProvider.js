@@ -106,7 +106,6 @@
             get: {method: 'GET', params: {}}
           }),
           employeeResource: defineResource(apiVer + "/staff/:staffId", {staffId:'@staffId'}, {
-            getAllEmployees: {method: 'GET', params: {}, isArray: true},
             update: { method: 'PUT' }
           }),
           globalSearch: defineResource(apiVer + "/search", {query:'@query'}, {
@@ -213,7 +212,6 @@
               update: { method: 'PUT' }
           }),
           planResource: defineResource(apiVer + "/plans/:planId", {planId:'@planId'}, {
-                getAllPlans: {method: 'GET', params: {}, isArray: true},
                 update: { method: 'PUT' }
           }),
           planTemplateResource: defineResource(apiVer + "/plans/template", {}, {
@@ -243,14 +241,12 @@
                getAll: {method: 'GET', params: {}}
               }),
            deletePriceResource: defineResource(apiVer + "/prices/:priceId", {priceId:'@priceId'}, {
-               getAllPrices: {method: 'GET', params: {}, isArray: true},
                update: { method: 'PUT' }
            }),
            getPriceResource: defineResource(apiVer + "/prices/pricedetails/:priceId", {priceId:'@priceId'}, {
                get: {method: 'GET', params: {}},
                update: { method: 'PUT' }
            }),
-           
            updatePriceResource: defineResource(apiVer + "/prices/update/:priceId", {priceId:'@priceId'}, {
                update: { method: 'PUT' }
            }),
@@ -746,7 +742,6 @@
               update: { method: 'PUT'}
           }),
           hardwareMappingResource: defineResource(apiVer + "/hardwaremapping/:hardwaremapId", {hardwaremapId:'@hardwaremapId'}, {
-              get: {method: 'GET', params: {}, isArray: true},
               getDetails: {method: 'GET', params: {}},
               update: { method: 'PUT'}
           }) ,   
@@ -762,8 +757,6 @@
          	  get: {method: 'GET', params: {clientId:'@clientId'}}
            }),
          serviceMappingResource: defineResource(apiVer + "/servicemapping/:serviceMappingId", {serviceMappingId: '@serviceMappingId'}, {
-       	  getAllServiceMapping: {method: 'GET', params: {}, isArray: true},
-       	//  get: {method: 'GET', params: {}},
                update: { method: 'PUT' }
            }),
            serviceMappingtemplateResource: defineResource(apiVer + "/servicemapping/template", {}, {
@@ -828,7 +821,6 @@
               }),
             
 	       EventActionMappingResource: defineResource(apiVer + "/eventactionmapping/:id", {id:'@id'}, {
-               get: {method: 'GET', params: {}, isArray: true},
                getDetails: {method: 'GET', params: {}},
                update: { method: 'PUT'}
            }),

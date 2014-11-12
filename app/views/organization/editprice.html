@@ -1,4 +1,4 @@
-      <div ng-controller="EditPriceController" >
+      <div data-ng-controller="EditPriceController" >
        <div>
         <ul class="breadcrumb">
               <li><a href="#/plans">{{'link.admin.plans' | translate}}</a> <span class="divider">/</span></li>
@@ -6,21 +6,21 @@
               <li class="active">{{formData.priceId}}</li>
           </ul>
       </div>
-      <form class="form-horizontal well" ng-submit="submit()">
-       <div class="error" ng-show="errorStatus || errorDetails">
+      <form class="form-horizontal well" data-ng-submit="submit()">
+       <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
         <fieldset>
           <legend>{{'label.editprice' | translate}}</legend>
-          <table width="100%">
+          <table style="width:100%;">
            <tr>
-                  <td width="50%">
+           <td width="50%">
           <div class="control-group">
             <label class="control-label" for="planCode">{{ 'label.plan.plancode' | translate }}</label>
             <div class="controls">
-              <input type="text" id="planCode" ng-model="formData.planCode" value="formData.planCode" readonly>
+              <input type="text" id="planCode" data-ng-model="formData.planCode" value="formData.planCode" readonly>
             </div>
           </div>
           
@@ -28,7 +28,7 @@
           <div class="control-group">
             <label class="control-label" for="chargevariant">{{ 'label.price.chargevariant' | translate }}</label>
             <div class="controls">
-              <select ng-model="formData.chargeVariantId"  ng-options="chargevariant.id as chargevariant.value for chargevariant in chargevariants" value="{{chargevariant.id}}"></select>
+              <select id="chargevariant" data-ng-model="formData.chargeVariantId"  data-ng-options="chargevariant.id as chargevariant.value for chargevariant in chargevariants"></select>
             </div>
           </div>
           </td>
@@ -38,7 +38,7 @@
           <div class="control-group">
             <label class="control-label" for="servicecode">{{ 'label.plan.servicecode' | translate }}</label>
             <div class="controls">
-               <select ng-model="formData.serviceCode"  ng-options="serviceData.serviceCode as serviceData.serviceDescription for serviceData in serviceDatas" value="{{serviceData.serviceCode}}"></select>
+               <select id="servicecode" data-ng-model="formData.serviceCode"  data-ng-options="serviceData.serviceCode as serviceData.serviceDescription for serviceData in serviceDatas"></select>
             </div>
           </div>
           </td>
@@ -47,7 +47,7 @@
           <div class="control-group">
             <label class="control-label" for="discountCode">{{ 'label.price.discountcode' | translate }}</label>
             <div class="controls">
-              <select ng-model="formData.discountId"  ng-options="discountdata.id as discountdata.discountDescription for discountdata in discountdatas" value="{{discountdata.id}}"></select>
+              <select data-ng-model="formData.discountId"  data-ng-options="discountdata.id as discountdata.discountDescription for discountdata in discountdatas"></select>
             </div>
           </div>
           </td>
@@ -57,7 +57,7 @@
           <div class="control-group">
             <label class="control-label" for="chargecode">{{ 'label.price.chargecode' | translate }}</label>
             <div class="controls">
-               <select ng-model="formData.chargeCode"  ng-options="chargeData.chargeCode as chargeData.chargeDescription for chargeData in chargeDatas" value="{{chargeData.chargeDescription}}"></select>
+               <select id="chargecode" data-ng-model="formData.chargeCode"  data-ng-options="chargeData.chargeCode as chargeData.chargeDescription for chargeData in chargeDatas"></select>
             </div>
           </div>
           </td>
@@ -66,7 +66,7 @@
           <div class="control-group">
             <label class="control-label" for="priceregion">{{ 'label.price.priceregion' | translate }}</label>
             <div class="controls">
-            <select ng-model="formData.priceregion"  ng-options="priceRegionData.id as priceRegionData.priceregionCode for priceRegionData in priceRegionDatas" value="{{priceRegionData.id}}"></select>
+            <select data-ng-model="formData.priceregion"  data-ng-options="priceRegionData.id as priceRegionData.priceregionCode for priceRegionData in priceRegionDatas"></select>
             </div>
           </div>
           </td>
@@ -76,16 +76,16 @@
           <div class="control-group">
             <label class="control-label" for="amount">{{ 'label.price.amount' | translate }}</label>
             <div class="controls">
-            <input type="text" id="price" ng-model="formData.price">
+            <input type="text" id="price" data-ng-model="formData.price">
             </div>
           </div>
           </td>
           <td>
-          	<div ng-show="formData.isPrepaid == 'Y'">
+          	<div data-ng-show="formData.isPrepaid == 'Y'">
             	<div class="control-group">
               	<label class="control-label" for="duration">{{ 'label.plan.duration' | translate }}</label>
               	<div class="controls">
-                	<select ng-model="formData.duration"  ng-options="subscriptiondata.Contractdata as subscriptiondata.Contractdata for subscriptiondata in subscriptiondata" value="{{subscriptiondata.Contractdata}}"></select>
+                	<select data-ng-model="formData.duration"  data-ng-options="subscriptiondata.Contractdata as subscriptiondata.Contractdata for subscriptiondata in subscriptiondata"></select>
               	</div>
               	 </div>
               </div>
@@ -94,8 +94,8 @@
           </table>
       
           <div class="offset3">
-            <a href="#/viewprice/{{formData.priceId}}/{{formData.planId}}"><button id="cancel" type="reset" class="btn">Cancel</button></a>
-            <button id="submit" type="submit" class="btn btn-primary">Save</button>
+            <a href="#/viewprice/{{formData.priceId}}/{{formData.planId}}"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+            <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
           </div>
         </fieldset>
       </form>

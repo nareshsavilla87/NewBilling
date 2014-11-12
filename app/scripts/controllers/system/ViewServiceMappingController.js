@@ -10,7 +10,12 @@
         });
     }
   });
-  mifosX.ng.application.controller('ViewServiceMappingController', ['$scope', '$routeParams','ResourceFactory','PermissionService', mifosX.controllers.ViewServiceMappingController]).run(function($log) {
+  mifosX.ng.application.controller('ViewServiceMappingController', [
+     '$scope', 
+     '$routeParams',
+     'ResourceFactory',
+     'PermissionService', 
+     mifosX.controllers.ViewServiceMappingController]).run(function($log) {
     $log.info("ViewServiceMappingController initialized");
   });
 }(mifosX.controllers || {}));

@@ -9,7 +9,12 @@
         });
     }
   });
-  mifosX.ng.application.controller('ViewEmployeeController', ['$scope', '$routeParams','ResourceFactory','PermissionService', mifosX.controllers.ViewEmployeeController]).run(function($log) {
+  mifosX.ng.application.controller('ViewEmployeeController', [
+  '$scope', 
+  '$routeParams',
+  'ResourceFactory',
+  'PermissionService', 
+   mifosX.controllers.ViewEmployeeController]).run(function($log) {
     $log.info("ViewEmployeeController initialized");
   });
 }(mifosX.controllers || {}));
