@@ -1798,8 +1798,8 @@
   
   "#HardWareMapping":"...........",
   "table.hardwaremapping.id":"Id",
-  "table.hardwaremapping.plancode":"Plan Code",
-  "table.hardwaremapping.itemcode":"Item Code",
+  "table.hardwaremapping.plancode":"Device Plan",
+  "table.hardwaremapping.itemcode":"Device Code",
   "label.createhardwareplanmapping":"Create HardwareMapping",
   "label.plancode":"Plan code",  
   "label.edithardwareplanmapping":"Edit Hardware Mapping",

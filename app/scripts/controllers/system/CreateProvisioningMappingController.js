@@ -1,6 +1,6 @@
 (function(module) {
 	  mifosX.controllers = _.extend(module, {
-		  CreateProvisioningMappingController: function(scope, resourceFactory, location) {
+		  CreateProvisioningMappingController: function(scope, resourceFactory, location,webStorage) {
 	        scope.commands = [];
 	        scope.provisioning = [];
 	        scope.parameterFormData = {};
@@ -13,6 +13,10 @@
 	            		
 	            };
 	        });
+	        
+	        scope.reset123 = function(){
+	        	webStorage.add("callingTab", {someString: "provisioningCommandTab" }); 
+	        };
 	        
 	        scope.addParameters = function () {
 	        	if (scope.parameterFormData.commandParam && scope.parameterFormData.paramType) {
@@ -47,6 +51,7 @@
 	     '$scope', 
 	     'ResourceFactory',
 	     '$location',
+	     'webStorage',
 	     mifosX.controllers.CreateProvisioningMappingController
 	     ]).run(function($log) {
 	    	 $log.info("CreateProvisioningMappingController initialized");
