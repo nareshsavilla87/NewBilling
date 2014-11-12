@@ -6,6 +6,7 @@
 	        scope.parameterFormData = {};
 	        scope.commandParameters = []; 
 	        scope.formData = {};
+	        scope.provisionId=routeParams.id;
 	      
 	        resourceFactory.provisioningMappingResource.get({provisioningId: routeParams.id} , function(data) {
 	        	
@@ -43,7 +44,7 @@
 	             delete this.formData.status;
 	             delete this.formData.id;
 	             resourceFactory.provisioningMappingResource.update({provisioningId: routeParams.id}, this.formData, function(data){
-	            	location.path('/mappingconfig');
+	            	 location.path('/viewprovisioningmapping/' +data.resourceId);
 	             });
 	        };
 	    }

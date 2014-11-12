@@ -16,7 +16,7 @@
     <fieldset>
     	<legend>{{'label.createProvisioningmapping' | translate}}</legend>
 									
-        	<table width="100%">
+        	<table style="width:100%">
 		
 		    	<tr>
 					<td width="50%">
@@ -50,7 +50,7 @@
                     	<form>
                     		<input class="input-small" type="text" data-ng-model="parameterFormData.commandParam" placeholder="{{'table.provisioningsystem.commandParam' | translate}}" >&nbsp;&nbsp;
                     		<input class="input-small" type="text" data-ng-model="parameterFormData.paramType"  placeholder="{{'table.provisioningsystem.paramType' | translate}}">&nbsp;&nbsp;                    
-                    		<a ng-click="addParameters()">&nbsp;<i class="icon-plus icon-white"></i></a>&nbsp;&nbsp;
+                    		<a data-ng-click="addParameters()">&nbsp;<i class="icon-plus icon-white"></i></a>&nbsp;&nbsp;
                     	</form>
                     	<br><br>
                   		<table class="table" width="100%" data-ng-show="commandParameters.length>0">
@@ -70,7 +70,7 @@
           	</table>
 		
           <div class="offset3">
-            <a href="#/mappingconfig"><button type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+            <a href="#/mappingconfig"><button type="reset" class="btn" data-ng-click="reset123()">{{'button.cancel'| translate}}</button></a>
             <button type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
           </div>
           

@@ -197,7 +197,8 @@
     'PermissionService', 
     '$modal',
     '$route',
-    mifosX.controllers.MappingController]).run(function($log) {
+    mifosX.controllers.MappingController
+    ]).run(function($log) {
     $log.info("MappingController initialized");
   });
 }(mifosX.controllers || {}));
