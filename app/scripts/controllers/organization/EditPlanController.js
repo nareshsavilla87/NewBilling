@@ -7,9 +7,7 @@
     	scope.planStatus = [];
         scope.billRuleDatas = [];
         scope.provisionSysDatas = [];
-        
         scope.date = {};
-        
         scope.services=[];
         scope.selectedServices = [];
         scope.volumeTypes=[];
@@ -34,14 +32,8 @@
             if(endDate){
             	 scope.date.endDate = dateFilter(new Date(endDate),'dd MMMM yyyy');
             }
-
-            
-            if(endDate){
-            	scope.date.endDate = dateFilter(new Date(endDate),'dd MMMM yyyy');
-            }
             scope.services = data.services;
             scope.selectedServices = data.selectedServices;
-            
             scope.volumeTypes=data.volumeTypes;
             
             if(data.allowTopup == 'Y'){
@@ -51,8 +43,6 @@
             }else{
             	scope.formData.allowTopup = false;
             }
-
-            
             scope.formData.isPrepaid = data.isPrepaid =='Y'?true:false;
             scope.formData.isHwReq = data.isHwReq =='Y'?true:false;
         });
@@ -87,23 +77,27 @@
           
           // reformatting selected services
              scope.formData.services = [];
-             
              for(var i in scope.selectedServices){
             	 scope.formData.services[i] = scope.selectedServices[i].id;
              }
-             
              scope.formData.locale = $rootScope.locale.code;
              scope.formData.dateFormat = 'dd MMMM yyyy';
              scope.formData.startDate = dateFilter(scope.date.startDate,scope.formData.dateFormat);
              scope.formData.endDate = dateFilter(scope.date.endDate,scope.formData.dateFormat);
-             
              resourceFactory.planResource.update({'planId':scope.planId},scope.formData,function(data){
             	 location.path('/viewplan/' + data.resourceId);
              });
         };
     }
   });
-  mifosX.ng.application.controller('EditPlanController', ['$scope', '$routeParams', 'ResourceFactory', 'dateFilter','$location','$rootScope', mifosX.controllers.EditPlanController]).run(function($log) {
+  mifosX.ng.application.controller('EditPlanController', [
+   '$scope', 
+   '$routeParams', 
+   'ResourceFactory', 
+   'dateFilter',
+   '$location',
+   '$rootScope', 
+   mifosX.controllers.EditPlanController]).run(function($log) {
     $log.info("EditPlanController initialized");
   });
 }(mifosX.controllers || {}));

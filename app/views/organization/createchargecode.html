@@ -30,14 +30,14 @@
               		<input type="text" id="chargeDescription" data-ng-model="formData.chargeDescription">
             	</div>
           	</div>
-          
-          	<div class="control-group">
-            	<label class="control-label" for="chargeType">{{'label.chargetype' | translate }}</label>
-            	<div class="controls">
-              		<select id="chargeType" data-ng-model="formData.chargeType"  data-ng-options="chargeType.chargeType as chargeType.chargeType for chargeType in chargeTypes">
-              		</select>
-            	</div>
-          	</div>
+
+          <div class="control-group">
+            <label class="control-label" for="chargeType">{{'label.chargetype' | translate }}</label>
+            <div class="controls">
+              <select id="chargeType" data-ng-model="formData.chargeType" data-ng-options="chargeType.chargeType as chargeType.chargeType for chargeType in chargeTypes">
+              <option value="">{{'label.select.one' | translate}}</option></select>
+            </div>
+          </div>
 
           	<div class="control-group">
             	<label class="control-label" for="chargeDuration">{{'label.chargeDuration' | translate }}</label>
@@ -45,12 +45,13 @@
               		<input type="text" id="chargeDuration" data-ng-model="formData.chargeDuration">
             	</div>
           	</div>
-          
-           	<div class="control-group">
-            	<label class="control-label" for="durationType">{{'label.durationType' | translate }}</label>
-            	<div class="controls">
+
+           <div class="control-group">
+            <label class="control-label" for="durationType">{{'label.durationType' | translate }}</label>
+            <div class="controls">
 					<select id="durationType" data-ng-model="formData.durationType"
 						data-ng-options="durationTypeCode.durationTypeCode as durationTypeCode.durationTypeCode for durationTypeCode in durationTypes">
+						<option value="">{{'label.select.one' | translate}}</option>
 					</select>
 				</div>
           	</div>
@@ -62,16 +63,16 @@
                     	<input type="checkbox" data-ng-model="formData.taxInclusive">
                     </label>
                 </div>
+             </div>
+         
+           <div class="control-group">
+            <label class="control-label" for="billFrequencyCode ">{{'label.billFrequencyCode' | translate }}</label>
+            <div class="controls">
+              <select id="billFrequencyCode" data-ng-model="formData.billFrequencyCode" data-ng-options="billFrequencyCode.billFrequencyCode as billFrequencyCode.billFrequencyCode for billFrequencyCode in billFrequencyCodes">
+             <option value="">{{'label.select.one' | translate}}</option></select>
+            </div>
             </div>
          
-           	<div class="control-group">
-            	<label class="control-label" for="billFrequencyCode ">{{'label.billFrequencyCode' | translate }}</label>
-            	<div class="controls">
-              		<select id="billFrequencyCode" data-ng-model="formData.billFrequencyCode"  data-ng-options="billFrequencyCode.billFrequencyCode as billFrequencyCode.billFrequencyCode for billFrequencyCode in billFrequencyCodes">
-              		</select>
-            	</div>
-          	</div>
-
           	<div class="offset3">
             	<a href="#/chargecode"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
             	<button  id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>

@@ -36,14 +36,14 @@
               		<input type="text" data-datepicker-pop="dd MMMM yyyy" data-ng-model="start.date" data-is-open="opened" min="minDate" max="maxDate" data-date-disabled="disabled(date, mode)" required data-late-Validate style="background-color:#FFFFFF;"  readonly/>
             	</div>
           	</div>
-          
-           	<div class="control-group">
-            	<label class="control-label" for="taxType">{{'label.type' | translate }}</label>
-            	<div class="controls">
-              		<select id="taxType" data-ng-model="formData.taxType"  data-ng-options="taxTypeData.mCodeValue as taxTypeData.mCodeValue for taxTypeData in taxTypeDatas">
-              		</select>
-            	</div>
-          	</div>
+
+           <div class="control-group">
+            <label class="control-label" for="taxType">{{'label.type' | translate }}</label>
+            <div class="controls">
+              <select id="taxType" data-ng-model="formData.taxType"  data-ng-options="taxTypeData.mCodeValue as taxTypeData.mCodeValue for taxTypeData in taxTypeDatas">
+              <option value="">{{'label.select.one' | translate}}</option></select>
+            </div>
+          </div>
           
           	<div class="control-group">
           		<label class="control-label" for="rate">{{'label.rate' | translate }}</label>
@@ -51,14 +51,14 @@
             		<input type="text" id="rate" data-ng-model="formData.rate">
             	</div>
           	</div>
-          
-          	<div class="control-group">
-          		<label class="control-label" for="taxRegion">{{'label.taxRegion' | translate }}</label>
-            	<div class="controls">
-            		<select id="taxRegion" data-ng-model="formData.taxRegion"  data-ng-options="priceRegionData.id as priceRegionData.priceregion for priceRegionData in priceRegionDatas">
-              		</select>
-            	</div>
-          	</div>
+
+           <div class="control-group">
+            <label class="control-label" for="taxRegion">{{'label.taxRegion' | translate }}</label>
+            <div class="controls">
+              <select id="taxRegion" data-ng-model="formData.taxRegion"  data-ng-options="priceRegionData.id as priceRegionData.priceregion for priceRegionData in priceRegionDatas">
+              <option value="">{{'label.select.one' | translate}}</option></select>
+            </div>
+          </div>
 
           	<div class="offset3">
           		<a href="#/chargecode"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>

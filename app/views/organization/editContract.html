@@ -1,15 +1,16 @@
-      <div>
+ <div data-ng-controller="EditContractController">
+       <div>
         <ul class="breadcrumb">
           <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
           <li><a href="#/contract">{{'label.manage.contracts' | translate}}</a> <span class="divider">/</span></li>
           <li class="active">{{'label.editcontract' | translate}}</li>
         </ul>
       </div>
-      <form class="form-horizontal well" ng-controller="EditContractController" ng-submit="submit()">
-       <div class="error" ng-show="errorStatus || errorDetails">
+      <form class="form-horizontal well" data-ng-submit="submit()">
+       <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
         <fieldset>
          <legend>Edit Contract</legend>
@@ -19,7 +20,7 @@
                 <div class="control-group">
                   <label class="control-label" for="name">{{ 'label.contract.contractperiod' | translate }}</label>
                   <div class="controls">
-                    <input type="text" ng-model="formData.subscriptionPeriod">
+                    <input type="text" data-ng-model="formData.subscriptionPeriod">
                   </div>
                 </div>
               </td>
@@ -29,10 +30,8 @@
                 <div class="control-group">
                   <label class="control-label" for="name">{{ 'label.contract.contractype' | translate }}</label>
                   <div class="controls">
-                   
-                 <!--     <select ng-model="formData.subscriptionType"  ng-options="allowedperiods.subscriptionType as allowedperiods.subscriptionType for allowedperiods in allowedperiods" value="{{allowedperiods.subscriptionType}}"> -->
-                     <select ng-model="formData.subscriptionType"  ng-options="allowedperiods.durationTypeCode as allowedperiods.durationTypeCode for allowedperiods in allowedperiods" value="{{allowedperiods.subscriptionType}}">
-      		    </select>
+                  <select data-ng-model="formData.subscriptionType"  data-ng-options="allowedperiods.durationTypeCode as allowedperiods.durationTypeCode for allowedperiods in allowedperiods">
+      		      </select>
                   </div>
                 </div>
               </td>
@@ -42,15 +41,16 @@
                 <div class="control-group">
                   <label class="control-label" for="units">{{ 'label.contract.units' | translate }}</label>
                   <div class="controls">
-                    <input type="text" name="units" ng-model="formData.units">
+                    <input type="text" name="units" data-ng-model="formData.units">
                   </div>
                 </div>
               </td>
             </tr>
           </table>
           <div class="offset3">
-            <a href="#/contract"><button id="cancel" type="reset" class="btn">Cancel</button></a>
-            <button id="submit" type="submit" class="btn btn-primary">Save</button>
+            <a href="#/viewContract/{{contractId}}"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+            <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
           </div>
         </fieldset>
       </form>
+</div>

@@ -1,9 +1,11 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  ViewPriceController: function(scope, routeParams , location,resourceFactory,PermissionService) {
+	  ViewPriceController: function(scope, routeParams , location,resourceFactory,PermissionService,$modal) {
+		  
         scope.chargevariants = [];
         scope.planId=routeParams.planId;
         scope.PermissionService = PermissionService;
+        
         resourceFactory.getPriceResource.get({priceId: routeParams.id} , function(data) {
             scope.chargevariants = data.chargevariant;
             scope.serviceDatas =data.serviceData;
@@ -12,18 +14,35 @@
             scope.formData=data;
            
         });
-
-        scope.deleteuser = function (){
-            resourceFactory.deletePriceResource.delete({priceId: routeParams.id} , {} , function(data) {
-                  location.path('/prices/'+routeParams.planId);
-                  // added dummy request param because Content-Type header gets removed 
-                  // if the request does not contain any data (a request body)        
-            });
-          };
-    
+        scope.deletePrice = function (){
+        	 $modal.open({
+                 templateUrl: 'delete.html',
+                 controller: Approve,
+                 resolve:{}
+             });
+         };
+         function Approve($scope, $modalInstance) {
+       	  
+             $scope.approve = function () {
+                 resourceFactory.deletePriceResource.remove({priceId: routeParams.id} , {} , function() {
+                	  location.path('/prices/'+routeParams.planId);
+                 });
+                 $modalInstance.close('delete');
+             };
+             $scope.cancel = function () {
+                 $modalInstance.dismiss('cancel');
+             };
+         }
     }
   });
-  mifosX.ng.application.controller('ViewPriceController', ['$scope', '$routeParams', '$location','ResourceFactory','PermissionService', mifosX.controllers.ViewPriceController]).run(function($log) {
+  mifosX.ng.application.controller('ViewPriceController', [
+   '$scope', 
+   '$routeParams', 
+   '$location',
+   'ResourceFactory',
+   'PermissionService',
+   '$modal',
+   mifosX.controllers.ViewPriceController]).run(function($log) {
     $log.info("ViewPriceController initialized");
   });
 }(mifosX.controllers || {}));
