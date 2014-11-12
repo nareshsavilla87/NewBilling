@@ -576,6 +576,11 @@
                      get: {method: 'GET', params: {}},
 		             update: {method: 'PUT', params: {}}
                  }),
+                 itemDetailsforDeleteResource: defineResource(apiVer + "/itemdetails/:itemId", {itemId:'@itemId'}, {
+                  	  getAlldetails: {method: 'GET', params: {}},
+                        get: {method: 'GET', params: {}},
+   		             update: {method: 'PUT', params: {}}
+                    }),
 		        itemQualityResource: defineResource(apiVer + "/itemdetails/itemquality", {}, {
                      get: {method: 'GET', params: {}}	
                  }),	

@@ -300,9 +300,8 @@
 						        
 						        scope.deleteItemDetail = function(id){
 						        	scope.itemDetailId=id;
-						        	alert(scope.itemDetailId);
 						            $modal.open({
-						                templateUrl: 'approve.html',
+						                templateUrl: 'approvedelete.html',
 						                controller: approveToDelete,
 						                resolve:{}
 						            });
@@ -336,7 +335,7 @@
 						        
 						     	var approveToDelete = function ($scope, $modalInstance) {
 						            $scope.approveToDelete = function () {
-						               resourceFactory.itemDetailsResource.delete({'itemId':scope.itemDetailId},{},function(data){ 
+						               resourceFactory.itemDetailsforDeleteResource.delete({'itemId':scope.itemDetailId},{},function(data){ 
 						            	  route.reload();
 						            	 //location.path('/inventory');
 						            	 webStorage.add("callingTab", {someString: "itemDetails"});
