@@ -18,18 +18,17 @@
         });
         
         scope.deleteplan=function(){
-        
             $modal.open({
                 templateUrl: 'approve.html',
                 controller: Approve,
                 resolve:{}
             });
-        }
+        };
         
-        var Approve = function ($scope, $modalInstance) {
-            $scope.approve = function (act) {
+         function Approve($scope, $modalInstance) {
+            $scope.approve = function () {
                 scope.approveData = {};
-                resourceFactory.planResource.delete({'planId':routeParams.id},{},function(data){
+                resourceFactory.planResource.remove({planId:routeParams.id},{},function(){
                     location.path('/plans');
                 });
                 $modalInstance.close('delete');
@@ -41,7 +40,14 @@
         
     }
   });
-  mifosX.ng.application.controller('ViewPlanController', ['$scope', '$routeParams', '$location','ResourceFactory','$modal','PermissionService', mifosX.controllers.ViewPlanController]).run(function($log) {
+  mifosX.ng.application.controller('ViewPlanController', [
+    '$scope', 
+    '$routeParams', 
+    '$location',
+    'ResourceFactory',
+    '$modal',
+    'PermissionService', 
+    mifosX.controllers.ViewPlanController]).run(function($log) {
     $log.info("ViewPlanController initialized");
   });
 }(mifosX.controllers || {}));

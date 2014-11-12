@@ -3,7 +3,7 @@
               <li><a href="#/message">{{'label.managemessage' | translate}}</a> <span class="divider">/</span></li>
               <li class="active">{{'label.createmessage' | translate}}</li>
           </ul>
-      </div>
+      
 <form class="form-horizontal well" data-ng-submit="submit()">
  <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
@@ -19,7 +19,7 @@
 						<label class="control-label" for="messageType">{{ 'label.message.messageType' | translate }}</label>
 						<div class="controls">
 							<select id="messageType" data-ng-model="formData.messageType" 
-							data-ng-options="message.id as message.value for message in messageTypee" data-ng-click="clickmessage()"></select>
+							data-ng-options="message.id as message.value for message in messageTypee"></select>
 						</div>
 					</div>
 				</td>
@@ -109,3 +109,4 @@
           </div>
 	</fieldset>
 </form>
+</div>

@@ -15,7 +15,7 @@
         scope.deleteContract = function (id){
         	scope.contractId=id;
          	 $modal.open({
- 	                templateUrl: 'approve.html',
+ 	                templateUrl: 'contract.html',
  	                controller: approve,
  	                resolve:{}
  	        });

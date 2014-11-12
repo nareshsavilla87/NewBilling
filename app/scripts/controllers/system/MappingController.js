@@ -17,27 +17,40 @@
         }else{
 		  scope.displayTab=callingTab.someString;
 		 
-		  if( scope.displayTab == "hardwarePlanMapping"){
-			 
+         if( scope.displayTab == "planMappingTab"){
+			  
+			  scope.planMappingTab =  true;
+			  webStorage.remove('callingTab');
+			  
+		  }else if( scope.displayTab == "hardwarePlanMapping"){
+			  
 			  scope.hardwarePlanMappingTab =  true;
 			  webStorage.remove('callingTab');
-		  }else
-		  {
+			  
+		  }else{
 			  webStorage.remove('callingTab');
-		  };
-		 
+		   }
         }
         
+        /*service mapping data*/
+        scope.getServiceMappingDetails = function(){
         resourceFactory.mappingResource.get(function(data) {
         	 scope.servicemappingdatas=data; 
         });
-     
-        scope.getHardwareMappingData=function(data){
+        };
+        /*plan mapping data*/
+        scope.getplanMappingdetails = function(){
         	
-        	resourceFactory.hardwareMappingResource.get(function(data) {
+        	resourceFactory.planMappingResource.get(function(data) {
+           	 scope.planmappingdatas=data; 
+           });
+        };
+     
+        scope.getHardwareMappingData=function(){
+        	
+        	resourceFactory.hardwareMappingResource.query(function(data) {
            	 scope.hardwaremappingdatas=data; 
            });
-        	
         };
         
         scope.submit = function () {
@@ -46,8 +59,8 @@
             for(var i=0; i < scope.selectedCurrOptions.length; i++){
                 currencies.push(scope.selectedCurrOptions[i].code);
             }
-            curr["currencies"] = currencies;
-            resourceFactory.currencyConfigResource.upd(curr , function(data){
+            curr['currencies'] = currencies;
+            resourceFactory.currencyConfigResource.upd(curr , function(){
                 route.reload();
             });
 
@@ -55,10 +68,10 @@
 
     scope.cancel = function() {
       route.reload();
-    }
+    };
         scope.deleteCur =  function (code){
             for(var i=0; i<scope.selectedCurrOptions.length; i++){
-                if(scope.selectedCurrOptions[i].code == code){
+                if(scope.selectedCurrOptions[i].code === code){
                   scope.selectedCurrOptions.splice(i, 1);  //removes 1 element at position i 
                   break;
                 }
@@ -69,7 +82,7 @@
           if(scope.selected != undefined && scope.selected.hasOwnProperty('code')) {
             scope.selectedCurrOptions.push(scope.selected);
               for(var i=0; i<scope.allCurrOptions.length; i++){
-                  if(scope.allCurrOptions[i].code == scope.selected.code){
+                  if(scope.allCurrOptions[i].code === scope.selected.code){
                     scope.allCurrOptions.splice(i, 1);  //removes 1 element at position i 
                     break;
                   }
@@ -78,50 +91,41 @@
           scope.selected = undefined;
         };
         
-	scope.getEventActionMappingData=function(data){
+	   scope.getEventActionMappingData=function(){
         	
-        	resourceFactory.EventActionMappingResource.get(function(data) {
+        	resourceFactory.EventActionMappingResource.query(function(data) {
            	 scope.datas=data; 
            });
         	
         };
         
-        scope.getEventValidationData=function(data){
+        scope.getEventValidationData=function(){
         	
         	resourceFactory.EventValidationResource.get(function(data) {
            	 scope.eventValidationDatas=data; 
            });
-        	
         };
         
-            scope.getCurrencyConfig=function(data){
+        scope.getCurrencyConfig=function(){
             	
             	 resourceFactory.currencyConfigResource.get(function(data){
                      scope.selectedCurrOptions = data.selectedCurrencyOptions;
                      scope.allCurrOptions = data.currencyOptions;
-
                  });
-        	
         };
         
-        scope.getProvisiongCommandData=function(data){
+        scope.getProvisiongCommandData=function(){
           	 
           	 resourceFactory.provisioningMappingResource.getprovisiongData(function(data) {
               	 scope.provisiongsystemData=data; 
               });
           };
           
-          scope.getplanMappingdetails = function(data){
-            	
-            	resourceFactory.planMappingResource.get(function(data) {
-               	 scope.planmappingdatas=data; 
-               });
-            	
-            };
+        
             
           scope.isDeleted=function(id,value){
         	  
-        	  resourceFactory.EventActionMappingResource.delete({id: id} , {} , function(data) {
+        	  resourceFactory.EventActionMappingResource.remove({id: id} , {} , function() {
                   location.path('/mappingconfig');
                   scope.getEventActionMappingData();
             });
@@ -129,7 +133,7 @@
           
           scope.isDeletedForValidation=function(id,value){
         	  
-        	  resourceFactory.EventValidationResource.delete({id: id} , {} , function(data) {
+        	  resourceFactory.EventValidationResource.remove({id: id} , {} , function(data) {
                   location.path('/mappingconfig');
                   scope.getEventValidationData();
             });

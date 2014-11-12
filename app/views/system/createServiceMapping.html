@@ -1,4 +1,4 @@
- <div  ng-controller="CreateServiceMappingController" >
+ <div  data-ng-controller="CreateServiceMappingController" >
       <div>
         <ul class="breadcrumb">
           <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
@@ -6,76 +6,64 @@
           <li class="active">{{'label.create.new.serviceMapping' | translate}}</li>
         </ul>
       </div>
-       <div class="error" ng-show="errorStatus || errorDetails">
+       <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
-      <form class="form-horizontal well" ng-submit="submit()">
+      <form class="form-horizontal well" data-ng-submit="submit()">
         <fieldset>
           <legend>Create Service Mapping</legend>
           
            <div class="control-group">
-            <label class="control-label" for="serviceCode">{{'label.serviceCode' | translate }}</label>
+            <label class="control-label" for="serviceCode">{{'label.serviceCode' | translate }}&nbsp;<span class="required">*</span></label>
             <div class="controls">
-
-              <select ng-model="formData.serviceId"  ng-options="sc.id as sc.serviceCode for sc in serviceCodes"  value="{{serviceCode.id}}">
-
-              <option value="">{{'label.select.one' | translate}}</option>
-              </select>
+              <select id="serviceId" data-ng-model="formData.serviceId"  data-ng-options="sc.id as sc.serviceCode for sc in serviceCodes">
+              <option value="">{{'label.select.one' | translate}}</option></select>
             </div>
           </div>
           
           <div class="control-group">
-            <label class="control-label" for="serviceIdentification">{{'label.serviceIdentification' | translate }}</label>
+            <label class="control-label" for="serviceIdentification">{{'label.serviceIdentification' | translate }}&nbsp;<span class="required">*</span></label>
             <div class="controls">
-
-              <input type="text" id="serviceIdentification"   ng-model="formData.serviceIdentification">
-
-              
-                <select ng-model="formData.serviceIdentification"  ng-show ="serviceType =='BB'" ng-options="sp.parameterName as sp.parameterName for sp in serviceParameters"  value="{{serviceParameter.id}}">
-              <option value="">{{'label.select.one' | translate}}</option>
+              <input type="text" id="serviceIdentification"   data-ng-model="formData.serviceIdentification">
+                <select data-ng-model="formData.serviceIdentification"  data-ng-show ="serviceType =='BB'" data-ng-options="sp.parameterName as sp.parameterName for sp in serviceParameters">
+                <option value="">{{'label.select.one' | translate}}</option>
               </select>
             </div>
           </div>
 
           <div class="control-group">
-            <label class="control-label" for="status">{{'label.status' | translate }}</label>
+            <label class="control-label" for="status">{{'label.status' | translate }}&nbsp;<span class="required">*</span></label>
             <div class="controls">
-                <select ng-model="formData.status"  ng-options="sc.value as sc.value for sc in statusDatas" value="{{serviceCode.id}}">
-              <option value="">{{'label.select.one' | translate}}</option>
-              </select>
-            </div>
-          </div>
-   
-
-          <div class="control-group">
-            <label class="control-label" for="image">{{'label.image' | translate }}</label>
-            <div class="controls">
-              <input type="text" id="image" ng-model="formData.image">
+              <select id="status" data-ng-model="formData.status"  data-ng-options="sc.value as sc.value for sc in statusDatas">
+              <option value="">{{'label.select.one' | translate}}</option> </select>
             </div>
           </div>
           
-          <div class="control-group" ng-show="'IPTV'| ConfigLookup">
+          <div class="control-group">
+            <label class="control-label" for="image">{{'label.image' | translate }}&nbsp;<span class="required">*</span></label>
+            <div class="controls">
+              <input type="text" id="image" data-ng-model="formData.image">
+            </div>
+          </div>
+          
+          <div class="control-group" data-ng-show="'IPTV'| ConfigLookup">
             	<label class="control-label" for="category">{{'label.category' | translate }}</label>
             	<div class="controls">
-                <select ng-model="formData.category"  ng-options="c.mCodeValue as c.mCodeValue for c in categories" value="{{c.id}}">
-              	<option value="">{{'label.select.one' | translate}}</option>
-              	</select>
+                <select data-ng-model="formData.category"  data-ng-options="c.mCodeValue as c.mCodeValue for c in categories">
+              	<option value="">{{'label.select.one' | translate}}</option></select>
             	</div>
            </div>
             	
-           <div class="control-group" ng-show="'IPTV'| ConfigLookup">
+           <div class="control-group" data-ng-show="'IPTV'| ConfigLookup">
             	<label class="control-label" for="subcategory">{{'label.subcategory' | translate }}</label>
             	<div class="controls">
-                <select ng-model="formData.subCategory"  ng-options="sc.mCodeValue as sc.mCodeValue for sc in subCategories" value="{{sc.id}}">
-              	<option value="">{{'label.select.one' | translate}}</option>
-              	</select>
+                <select data-ng-model="formData.subCategory"  data-ng-options="sc.mCodeValue as sc.mCodeValue for sc in subCategories">
+              	<option value="">{{'label.select.one' | translate}}</option></select>
             	</div>
-          
           </div>
      
-         
           <div class="offset3">
             <a href="#/mappingconfig"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
             <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>

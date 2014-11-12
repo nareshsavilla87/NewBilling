@@ -1,4 +1,4 @@
-<div  ng-controller="ViewEmployeeController">
+<div  data-ng-controller="ViewEmployeeController">
 	<div class="paddedbottom10">
 		<ul class="breadcrumb">
 	        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
@@ -7,15 +7,15 @@
 	    </ul>
 	    <div class="pull-right">
 	      <div class="btn-group">
-	          <a ng-show="PermissionService.showMenu('UPDATE_STAFF')" href="#/editemployee/{{employee.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
-	    <!--      <a class="btn btn-primary"><i class="icon-trash icon-white"></i> Delete</a>     -->
+	          <a data-ng-show="PermissionService.showMenu('UPDATE_STAFF')" href="#/editemployee/{{employee.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
+	
 	      </div>
 	    </div>
 	</div>
 
 	<div class="row paddedleft">
 		<h3>{{employee.displayName}}</h3>
-		<table width="100%">
+		<table style="width:100%;">
 			<tr>
 				<td width="20%">{{ 'label.firstname' | translate }}</td>
 				<td width="80%">{{employee.firstname}}</td>
@@ -25,12 +25,8 @@
 				<td>{{employee.lastname}}</td>
 			</tr>
 			<tr>
-				<td>{{ 'label.office' | translate }}</td>
+				<td>{{ 'label.office.name' | translate }}</td>
 				<td>{{employee.officeName}}</td>
-			</tr>
-			<tr>
-				<td>{{ 'label.employee.isLoanOfficer' | translate }}</td>
-				<td>{{employee.isLoanOfficer}}</td>
 			</tr>
 		</table>
 	</div>

@@ -14,19 +14,27 @@
         });
         
         scope.submit = function() {
-          this.formData.locale = $rootScope.locale.code;
-          this.formData.dateFormat = "dd MMMM yyyy";
+          scope.formData.locale = $rootScope.locale.code;
+          scope.formData.dateFormat = "dd MMMM yyyy";
       	  var adjustDate = dateFilter(scope.start.date,'dd MMMM yyyy');
-          this.formData.adjustmentDate = adjustDate;
+          scope.formData.adjustmentDate = adjustDate;
        
-          resourceFactory.officeAdjustmentsResource.postAdjustments({officeId : routeParams.officeId}, this.formData, function(data){
+          resourceFactory.officeAdjustmentsResource.postAdjustments({officeId : routeParams.officeId}, scope.formData, function(){
             location.path('/viewoffice/'+routeParams.officeId);
           });
         };
 
     }
   });
-  mifosX.ng.application.controller('OfficeAdjustmentsController', ['$scope', 'ResourceFactory', '$routeParams', '$location','dateFilter','webStorage','$rootScope', mifosX.controllers.OfficeAdjustmentsController]).run(function($log) {
+  mifosX.ng.application.controller('OfficeAdjustmentsController', [
+    '$scope', 
+    'ResourceFactory', 
+    '$routeParams', 
+    '$location',
+    'dateFilter',
+    'webStorage',
+    '$rootScope', 
+    mifosX.controllers.OfficeAdjustmentsController]).run(function($log) {
     $log.info("OfficeAdjustmentsController initialized");
   });
 }(mifosX.controllers || {}));

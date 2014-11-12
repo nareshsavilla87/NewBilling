@@ -80,7 +80,9 @@
 		//national Id validation
 		      scope.nationalIdvalue = true;
 			 scope.nationalIdValidationFun = function(id){
-				 scope.value = Kennitala.validate(id);
+				 if(id){
+				 scope.nationalIdvalue = Kennitala.validate(id);
+				 }
 			 };
 		  /*scope.$watch(scope.formData.nationalId,
 	              function() {

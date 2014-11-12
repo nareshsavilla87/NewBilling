@@ -16,16 +16,13 @@
             scope.chargevariants=data.chargevariant;
             scope.discountdatas=data.discountdata;
             scope.subscriptiondata = data.contractPeriods;
-            
-
         });
-       
         
         scope.submit = function() {
         	
-        	this.formData.chargevariant= scope.formData.chargeVariantId;
+        	scope.formData.chargevariant= scope.formData.chargeVariantId;
+        	scope.formData.locale = $rootScope.locale.code;
         	
-        	this.formData.locale = $rootScope.locale.code;
              delete this.formData.chargeData; 
              delete this.formData.serviceData;
              delete this.formData.discountdata; 
@@ -38,13 +35,19 @@
              delete this.formData.contractPeriods;
              delete this.formData.contractPeriod;
              
-             resourceFactory.updatePriceResource.update({'priceId':routeParams.id},this.formData,function(data){
+             resourceFactory.updatePriceResource.update({'priceId':routeParams.id},scope.formData,function(data){
              location.path('/viewprice/' + data.resourceId+'/'+routeParams.id);
           });
         };
     }
   });
-  mifosX.ng.application.controller('EditPriceController', ['$scope', '$routeParams', 'ResourceFactory', '$location','$rootScope', mifosX.controllers.EditPriceController]).run(function($log) {
+  mifosX.ng.application.controller('EditPriceController', [
+    '$scope', 
+    '$routeParams', 
+    'ResourceFactory', 
+    '$location',
+    '$rootScope', 
+    mifosX.controllers.EditPriceController]).run(function($log) {
     $log.info("EditPriceController initialized");
   });
 }(mifosX.controllers || {}));
