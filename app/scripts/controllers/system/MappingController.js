@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  MappingController: function(scope,webStorage, routeParams,location, resourceFactory, paginatorService,PermissionService) {
+	  MappingController: function(scope,webStorage, routeParams,location, resourceFactory, paginatorService,PermissionService,$modal,route) {
         scope.servicemappingdatas = [];
         scope.hardwaremappingdatas= [];
         scope.provisiongsystemData= [];
@@ -17,24 +17,34 @@
         }else{
 		  scope.displayTab=callingTab.someString;
 		 
-         if( scope.displayTab == "planMappingTab"){
+         if( scope.displayTab === "planMappingTab"){
 			  
 			  scope.planMappingTab =  true;
 			  webStorage.remove('callingTab');
 			  
-		  }else if( scope.displayTab == "hardwarePlanMapping"){
+		}else if( scope.displayTab === "hardwarePlanMapping"){
 			  
 			  scope.hardwarePlanMappingTab =  true;
 			  webStorage.remove('callingTab');
 			  
-		  }else{
+	    }else if( scope.displayTab === "provisioningCommandTab"){
+			  
+			  scope.provisioningCommandTab =  true;
+			  webStorage.remove('callingTab');
+			  
+	   }else if( scope.displayTab === "eventActionTab"){
+			  
+			  scope.eventActionTab =  true;
+			  webStorage.remove('callingTab');
+       }else{
 			  webStorage.remove('callingTab');
 		   }
         }
         
         /*service mapping data*/
         scope.getServiceMappingDetails = function(){
-        resourceFactory.mappingResource.get(function(data) {
+        	
+             resourceFactory.mappingResource.get(function(data) {
         	 scope.servicemappingdatas=data; 
         });
         };
@@ -46,12 +56,44 @@
            });
         };
      
+       /* hardware planmapping  data*/
         scope.getHardwareMappingData=function(){
         	
         	resourceFactory.hardwareMappingResource.query(function(data) {
            	 scope.hardwaremappingdatas=data; 
            });
         };
+        
+        /* provisionCommand  data*/
+        scope.getProvisiongCommandData=function(){
+         	 
+         	 resourceFactory.provisioningMappingResource.getprovisiongData(function(data) {
+             	 scope.provisiongsystemData=data; 
+             });
+         };
+         
+         scope.deleteProvisioning = function (id){
+         	scope.provisionId=id;
+          	 $modal.open({
+  	                templateUrl: 'provision.html',
+  	                controller: approve,
+  	                resolve:{}
+  	        });
+          };
+          
+      	function  approve($scope, $modalInstance) {
+      		$scope.approve = function () {
+      			 resourceFactory.provisioningMappingResource.remove({provisioningId: scope.provisionId} , {} , function() {
+      				webStorage.add("callingTab", {someString: "provisioningCommandTab" }); 
+      				route.reload();
+              });
+              	 $modalInstance.dismiss('delete');
+           };
+              $scope.cancel = function () {
+                  $modalInstance.dismiss('cancel');
+            };
+          }   
+         
         
         scope.submit = function () {
             var currencies = [];
@@ -114,14 +156,6 @@
                  });
         };
         
-        scope.getProvisiongCommandData=function(){
-          	 
-          	 resourceFactory.provisioningMappingResource.getprovisiongData(function(data) {
-              	 scope.provisiongsystemData=data; 
-              });
-          };
-          
-        
             
           scope.isDeleted=function(id,value){
         	  
@@ -153,7 +187,17 @@
           };
     }
   });
-  mifosX.ng.application.controller('MappingController', ['$scope','webStorage', '$routeParams', '$location', 'ResourceFactory','PaginatorService','PermissionService', mifosX.controllers.MappingController]).run(function($log) {
+  mifosX.ng.application.controller('MappingController', [
+    '$scope',
+    'webStorage', 
+    '$routeParams', 
+    '$location', 
+    'ResourceFactory',
+    'PaginatorService',
+    'PermissionService', 
+    '$modal',
+    '$route',
+    mifosX.controllers.MappingController]).run(function($log) {
     $log.info("MappingController initialized");
   });
 }(mifosX.controllers || {}));
