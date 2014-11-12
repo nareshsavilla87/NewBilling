@@ -1,105 +1,109 @@
-    <div ng-controller="EditPromotioncodeController">
-      <div>
-        <ul class="breadcrumb">
+<div data-ng-controller="EditPromotioncodeController">
+	<div>
+    	<ul class="breadcrumb">
           <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
           <li><a href="#/discounts">{{'label.managediscounts' | translate}}</a> <span class="divider">/</span></li>
-          <li><a href="#/viewpromotioncode/{{promotiondata.id}}">{{promotiondata.id}}</a> <span class="divider">/</span></li>
+          <li><a href="#/viewpromotioncode/{{promotiondata.id}}">{{promotiondata.promotionCode}}</a> <span class="divider">/</span></li>
           <li class="active">{{'label.editpromotioncode' | translate}}</li>
         </ul>
-      </div>
-      <form class="form-horizontal well" ng-submit="submit()">
-          <div class="error" ng-show="errorStatus || errorDetails">
-			<label>{{'label.contract.error' | translate}}</label>
-			<label ng-show="errorStatus">{{errorStatus}}</label>
-			<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
-	      </div>
-        <fieldset>
-          <legend>{{'label.editpromotioncode' | translate}}</legend>
- 		<table>
-			<tr>
-				<td>
-					<table>
-						<tr>
-							<td>
-								<div class="control-group">
-           					 	<label class="control-label" for="promotionCode">{{ 'label.promotionCode' | translate }}</label>
-            					<div class="controls">
-             					 <input type="text" id="promotionCode" ng-model="formData.promotionCode"/>
-           						</div>
-         						</div>	
-							 </td>
-							<td>
-								<div class="control-group">
-            					<label class="control-label" for="discountType">{{ 'label.discountType' | translate }}</label>
-            					<div class="controls">
-             					 <select ng-model="formData.discountType"  ng-options="promotiondata.mCodeValue as promotiondata.mCodeValue for promotiondata in promotiondatas" value="{{promotiondata.mCodeValue}}">
-             					 </select>
-            					</div>
-          						</div>
-							</td>
-							</tr>
-							<tr>
-							<td>
-								<div class="control-group">
-            					<label class="control-label" for="promotiondesc">{{ 'label.promotionDescription' | translate }}</label>
-            					<div class="controls">
-             					 <input type="text" id="promotiondesc" ng-model="formData.promotionDescription"/>
-           						</div>
-          						</div>
-							</td>
-								<td>
-								<div class="control-group">
-            					<label class="control-label" for="discountRate">{{ 'label.discountRate' | translate }}</label>
-            					<div class="controls">
-              					<input type="text" id="discountRate" ng-model="formData.discountRate">
-            					</div>
-          						</div>
-							</td>
-							
-							</tr>
-							<tr>
-							<td>
-								<div class="control-group">
-            					<label class="control-label" for="promotionduration">{{ 'label.durationType' | translate }}</label>
-            					<div class="controls">
-              					 <select ng-model="formData.durationType"  ng-options="durationType.subscriptionType as durationType.subscriptionType for durationType in durationTypes" value="{{durationType.subscriptionType}}">
-             					 </select>
-            					</div>
-          						</div>
-							</td>
-							<td>
-								<div class="control-group">
-            					<label class="control-label" for="promotionduration">{{ 'label.duration' | translate }}</label>
-            					<div class="controls">
-              					<input type="text" id="promotionduration" ng-model="formData.duration">
-           						 </div>
-          						</div>
-							</td>
-							
-							</tr>
-							<tr>
-							<td>
-								<div class="control-group">
-                        		<label class="control-label">{{ 'label.startDate' | translate }}</label>
-                        		<div class="controls">
-                            	<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.startDate" is-open="opened2" min="minDate" 
-                            	max="'2020-06-22'" date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
-                        		</div>
-          						</div>
-							</td>
-							
-							</tr>
-							
-					</table>
-			
-				</td>
-			</tr>
-			</table>
- 
-          <div class="offset3">
-            <a href="#/viewpromotioncode/{{promotiondata.id}}"><button type="reset" class="btn">{{'label.cancel' | translate}}</button></a>
-            <button type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
-          </div>
-        </fieldset>
-      </form>
     </div>
+    <form class="form-horizontal well" data-ng-submit="submit()">
+    	<div class="error" data-ng-show="errorStatus || errorDetails">
+			<label>{{'label.contract.error' | translate}}</label>
+			<label data-ng-show="errorStatus">{{errorStatus}}</label>
+			<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	    
+        <fieldset>
+          	<legend>{{'label.editpromotioncode' | translate}}</legend>
+ 			<table>
+				<tr>
+					<td>
+						<table>
+							<tr>
+								<td>
+									<div class="control-group">
+           					 		<label class="control-label" for="promotionCode">{{ 'label.promotionCode' | translate }}</label>
+            						<div class="controls">
+             					 		<input type="text" id="promotionCode" data-ng-model="formData.promotionCode"/>
+           							</div>
+         							</div>	
+							 	</td>
+							 	
+								<td>
+									<div class="control-group">
+            						<label class="control-label" for="discountType">{{ 'label.discountType' | translate }}</label>
+            						<div class="controls">
+             					 		<select data-ng-model="formData.discountType"  data-ng-options="promotiondata.mCodeValue as promotiondata.mCodeValue for promotiondata in promotiondatas">
+             					 		</select>
+            						</div>
+          							</div>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									<div class="control-group">
+            						<label class="control-label" for="promotiondesc">{{ 'label.promotionDescription' | translate }}</label>
+            						<div class="controls">
+             					 		<input type="text" id="promotiondesc" data-ng-model="formData.promotionDescription"/>
+           							</div>
+          							</div>
+								</td>
+								
+								<td>
+									<div class="control-group">
+            						<label class="control-label" for="discountRate">{{ 'label.discountRate' | translate }}</label>
+            						<div class="controls">
+              							<input type="text" id="discountRate" data-ng-model="formData.discountRate">
+            						</div>
+          							</div>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									<div class="control-group">
+            						<label class="control-label" for="promotionduration">{{ 'label.durationType' | translate }}</label>
+            						<div class="controls">
+              					 		<select data-ng-model="formData.durationType"  data-ng-options="durationType.subscriptionType as durationType.subscriptionType for durationType in durationTypes">
+             					 		</select>
+            						</div>
+          							</div>
+								</td>
+								
+								<td>
+									<div class="control-group">
+            						<label class="control-label" for="promotionduration">{{ 'label.duration' | translate }}</label>
+            						<div class="controls">
+              							<input type="text" id="promotionduration" data-ng-model="formData.duration">
+           						 	</div>
+          							</div>
+								</td>
+							
+							</tr>
+							
+							<tr>
+								<td>
+									<div class="control-group">
+                        			<label class="control-label">{{ 'label.startDate' | translate }}</label>
+                        			<div class="controls">
+                            			<input type="text" data-datepicker-pop="dd MMMM yyyy" data-ng-model="start.startDate" data-is-open="opened2" min="minDate" 
+                            			max="'2020-06-22'" data-date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
+                        			</div>
+          							</div>
+								</td>
+							
+							</tr>	
+						</table>
+					</td>
+				</tr>
+		</table>
+ 
+        <div class="offset3">
+        	<a href="#/viewpromotioncode/{{promotiondata.id}}"><button type="reset" class="btn">{{'label.cancel' | translate}}</button></a>
+            <button type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
+        </div>
+        </fieldset>
+    </form>
+</div>

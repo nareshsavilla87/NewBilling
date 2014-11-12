@@ -12,7 +12,7 @@
 				scope.formData = data;
 				scope.chargeCodeId = routeParams.id;
 
-				if (data.taxInclusive == "1") {
+				if (data.taxInclusive === 1) {
 					scope.formData.taxInclusive = true;
 				}
 
@@ -24,14 +24,20 @@
 				delete this.formData.durationTypeData;
 				delete this.formData.billFrequencyCodeData;
 				this.formData.locale = $rootScope.locale.code;
-				resourceFactory.chargecodeResource.update({'chargeCodeId' : routeParams.id
-				}, this.formData, function(data) {
+				resourceFactory.chargecodeResource.update({'chargeCodeId' : routeParams.id}, this.formData, function(data) {
 					location.path('/viewchargecode/' + data.resourceId);
 				});
 			};
 		}
 	});
-	mifosX.ng.application.controller('EditChargeCodeController',[ '$scope', '$routeParams', 'ResourceFactory', '$location',	'$rootScope',mifosX.controllers.EditChargeCodeController ]).run(function($log) {
-	$log.info("EditChargeCodeController initialized");
- });
+	mifosX.ng.application.controller('EditChargeCodeController',[
+	     '$scope',
+	     '$routeParams', 
+	     'ResourceFactory',
+	     '$location',	
+	     '$rootScope',
+	     mifosX.controllers.EditChargeCodeController 
+	     ]).run(function($log) {
+	    	 $log.info("EditChargeCodeController initialized");
+	     });
 }(mifosX.controllers || {}));

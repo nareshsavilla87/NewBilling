@@ -1,72 +1,71 @@
-      <div ng-controller="CreateTaxMappingController">
-        <ul class="breadcrumb">
-          <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
-          <li><a href="#/chargecode">{{formData.chargeCode}}</a> <span class="divider">/</span></li>
-          <li class="active">{{'label.create.new.taxmapping' | translate}}</li>
-        </ul>
+<div data-ng-controller="CreateTaxMappingController">
+
+	<ul class="breadcrumb">
+    	<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+        <li><a href="#/chargecode">{{formData.chargeCode}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.create.new.taxmapping' | translate}}</li>
+    </ul>
   
-      <form class="form-horizontal well"  ng-submit="submit()">
-       <div class="error" ng-show="errorStatus || errorDetails">
-		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+    <form class="form-horizontal well"  data-ng-submit="submit()">
+    	<div class="error" data-ng-show="errorStatus || errorDetails">
+			<label>{{'label.contract.error' | translate}}</label>
+			<label data-ng-show="errorStatus">{{errorStatus}}</label>
+			<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
+	    
         <fieldset>
-          <legend>Create Tax Mapping</legend>
+        	<legend>{{'label.create.new.taxmapping' | translate}}</legend>
           
-          
-          <div class="control-group">
-            <label class="control-label" for="chargeCode">{{'label.chargeCode' | translate }}</label>
-             <div class="controls">
-              <input type="text"  ng-model="formData.chargeCode" readonly>
-            </div>
-          </div>
+          	<div class="control-group">
+            	<label class="control-label" for="chargeCode">{{'label.chargeCode' | translate }}</label>
+             	<div class="controls">
+              		<input type="text"  data-ng-model="formData.chargeCode" readonly>
+            	</div>
+          	</div>
 
+          	<div class="control-group">
+            	<label class="control-label" for="taxCode">{{'label.taxCode' | translate }}</label>
+            	<div class="controls">
+              		<input type="text" id="taxCode" data-ng-model="formData.taxCode">
+            	</div>
+          	</div>
+          
+           	<div class="control-group">
+           		<label class="control-label" for="startDate">{{'label.startDate' | translate }}</label>
+            	<div class="controls">
+              		<input type="text" data-datepicker-pop="dd MMMM yyyy" data-ng-model="start.date" data-is-open="opened" min="minDate" max="maxDate" data-date-disabled="disabled(date, mode)" required data-late-Validate style="background-color:#FFFFFF;"  readonly/>
+            	</div>
+          	</div>
+          
+           	<div class="control-group">
+            	<label class="control-label" for="taxType">{{'label.type' | translate }}</label>
+            	<div class="controls">
+              		<select id="taxType" data-ng-model="formData.taxType"  data-ng-options="taxTypeData.mCodeValue as taxTypeData.mCodeValue for taxTypeData in taxTypeDatas">
+              		</select>
+            	</div>
+          	</div>
+          
+          	<div class="control-group">
+          		<label class="control-label" for="rate">{{'label.rate' | translate }}</label>
+            	<div class="controls">
+            		<input type="text" id="rate" data-ng-model="formData.rate">
+            	</div>
+          	</div>
+          
+          	<div class="control-group">
+          		<label class="control-label" for="taxRegion">{{'label.taxRegion' | translate }}</label>
+            	<div class="controls">
+            		<select id="taxRegion" data-ng-model="formData.taxRegion"  data-ng-options="priceRegionData.id as priceRegionData.priceregion for priceRegionData in priceRegionDatas">
+              		</select>
+            	</div>
+          	</div>
 
-          <div class="control-group">
-            <label class="control-label" for="taxCode">{{'label.taxCode' | translate }}</label>
-            <div class="controls">
-              <input type="text" id="taxCode" ng-model="formData.taxCode">
-            </div>
-          </div>
-          
-           <div class="control-group">
-            <label class="control-label" for="startDate">{{'label.startDate' | translate }}</label>
-            <div class="controls">
-              <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.date" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
-            </div>
-          </div>
-          
-           <div class="control-group">
-            <label class="control-label" for="taxType">{{'label.type' | translate }}</label>
-            <div class="controls">
-              <select id="taxType" ng-model="formData.taxType"  ng-options="taxTypeData.mCodeValue as taxTypeData.mCodeValue for taxTypeData in taxTypeDatas" value="{{taxTypeData.id}}">
-              </select>
-            </div>
-          </div>
-          
-          
-           <div class="control-group">
-            <label class="control-label" for="rate">{{'label.rate' | translate }}</label>
-            <div class="controls">
-              <input type="text" id="rate" ng-model="formData.rate">
-            </div>
-          </div>
-          
-         
-           <div class="control-group">
-            <label class="control-label" for="taxRegion">{{'label.taxRegion' | translate }}</label>
-            <div class="controls">
-              <select id="taxRegion" ng-model="formData.taxRegion"  ng-options="priceRegionData.id as priceRegionData.priceregion for priceRegionData in priceRegionDatas"	 value="{{priceregion.id}}">
-              </select>
-            </div>
-          </div>
-
-          <div class="offset3">
-            <a href="#/chargecode"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
-            <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
-          </div>
+          	<div class="offset3">
+          		<a href="#/chargecode"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+            	<button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+          	</div>
           
         </fieldset>
       </form>
-    </div>
+      
+</div>

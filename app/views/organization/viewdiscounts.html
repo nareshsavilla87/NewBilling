@@ -1,4 +1,4 @@
-<div ng-controller="ViewDiscountsController">
+<div data-ng-controller="ViewDiscountsController">
 
 	<div class="paddedbottom10">
 		<ul class="breadcrumb">
@@ -10,22 +10,23 @@
 		</ul>
 		<div class="pull-right">
 			<div class="btn-group">
-				<a ng-show="PermissionService.showMenu('UPDATE_DISCOUNT')"
+				<a data-ng-show="PermissionService.showMenu('UPDATE_DISCOUNT')"
 					href="#/editdiscounts/{{discounting.id}}"
 					class="btn btn-primary"><i class="icon-edit icon-white"></i>
-					Edit</a> <a ng-show="PermissionService.showMenu('DELETE_DISCOUNT')"
-					ng-click="deletemessage()" class="btn btn-primary"><i
-					class="icon-trash icon-white"></i> Delete</a>
+					{{'button.edit' | translate}}</a>
+				<a data-ng-show="PermissionService.showMenu('DELETE_DISCOUNT')"
+					data-ng-click="deleteDiscount()" class="btn btn-primary"><i
+					class="icon-trash icon-white"></i> {{'button.delete' | translate}}</a>
 			</div>
 		</div>
 	</div>
 
 	<div class="row paddedleft">
-		<h3>{{discounting.id}}</h3>
-		<table width="100%">
+		<h3>{{discounting.discountCode}}</h3>
+		<table style="width:100%;">
 			<tr>
-				<td width="20%">{{ 'label.discountCode' | translate }}</td>
-				<td width="80%">{{discounting.discountCode}}</td>
+				<td>{{ 'label.discountCode' | translate }}</td>
+				<td>{{discounting.discountCode}}</td>
 			</tr>
 			<tr>
 				<td>{{ 'label.discountType' | translate }}</td>
@@ -49,5 +50,19 @@
 			</tr>
 		</table>
 	</div>
+	
+	<script type="text/ng-template" id="deletePopupForDiscount.html">
+    	<div class="modal-header silver">
+        	<h3 class="bolder">Delete Discount</h3>
+        </div>
 
+        <div class="modal-body style="height:60px;">
+            <h4>Are you sure?</h4>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+            <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+        </div>
+   </script>
 </div>
