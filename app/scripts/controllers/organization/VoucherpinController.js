@@ -29,7 +29,14 @@
     }
   
   });
-  mifosX.ng.application.controller('VoucherpinController', ['$scope', 'ResourceFactory','PermissionService','$rootScope','API_VERSION','$route', mifosX.controllers.VoucherpinController]).run(function($log) {
+  mifosX.ng.application.controller('VoucherpinController', [
+                                                            '$scope', 
+                                                            'ResourceFactory',
+                                                            'PermissionService',
+                                                            '$rootScope',
+                                                            'API_VERSION',
+                                                            '$route',
+                                                            mifosX.controllers.VoucherpinController]).run(function($log) {
 	  
     $log.info("VoucherpinController initialized");
   });

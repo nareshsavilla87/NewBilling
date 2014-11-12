@@ -20,7 +20,11 @@ angular.module('notificationWidget', [])
   return {
          'request': function (config) {
               $rootScope.pendingRequests++;
-              $rootScope.blockUI = true;
+              if($rootScope.voucherPinProcess)
+              	$rootScope.blockUI = false;
+              else
+              	$rootScope.blockUI = true;
+              
               return config || $q.when(config);
           },
 

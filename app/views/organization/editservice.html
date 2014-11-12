@@ -1,57 +1,56 @@
-<div ng-controller="EditServiceController">
+<div data-ng-controller="EditServiceController">
       <div>
         <ul class="breadcrumb">
           <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+          <li><a href="#/services">{{'label.services' | translate}}</a> <span class="divider">/</span></li>
           <li><a href="#/viewservice/{{serviceId}}">{{formData.serviceCode}}</a> <span class="divider">/</span></li>
           <li class="active">{{'label.editservice' | translate}}</li>
         </ul>
       </div>
-      <form name="EditServiceForm" novalidate="" class="form-horizontal well" rc-submit="submit()">
-       <div class="error" ng-show="errorStatus || errorDetails">
+      <form name="editServiceForm" novalidate="" class="form-horizontal well" data-rc-submit="submit()">
+       <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
         <fieldset>
           <legend>{{'label.editservice' | translate}}</legend>
           
           <div class="control-group">
-            <label class="control-label" for="serviceCode">Service Code</label>
+            <label class="control-label" for="serviceCode">{{ 'label.service.servicecode' | translate }}<span class="required" >*</span></label>
             <div class="controls">
-              <input type="text" name="serviceCode" id="serviceCode"ng-model="formData.serviceCode" ng-maxlength="10"/>
-              <form-validate formName="EditServiceForm"  fieldName="serviceCode" maxLenMsg="10 characters"/>
+              <input type="text" name="serviceCode" id="serviceCode" data-ng-model="formData.serviceCode" data-ng-maxlength="10"/>
+              <form-validate formName="editServiceForm"  fieldName="serviceCode" maxLenMsg="10 characters"/>
             </div>
           </div>
           
           <div class="control-group">
-            <label class="control-label" for="serviceDescription">Service Description</label>
+            <label class="control-label" for="serviceDescription">{{ 'label.service.servicedescription' | translate }}<span class="required" >*</span></label>
             <div class="controls">
-              <input type="text" id="serviceDescription"ng-model="formData.serviceDescription">
+              <input type="text" id="serviceDescription" data-ng-model="formData.serviceDescription">
             </div>
           </div>
 
           <div class="control-group">
-            <label class="control-label" for="serviceType">Service Type</label>
+            <label class="control-label" for="serviceType">{{ 'label.service.servicetype' | translate }}<span class="required" >*</span></label>
             <div class="controls">
-               <select ng-model="formData.serviceType"ng-options="serviceTypes.type as serviceTypes.type for serviceTypes in services" value="{{serviceTypes.value}}"></select>
-      		    </select>
+               <select data-ng-model="formData.serviceType" data-ng-options="serviceTypes.type as serviceTypes.type for serviceTypes in services"></select>
             </div>
           </div>
 
           <div class="control-group">
-            <label class="control-label" for="serviceStatus">Status</label>
+            <label class="control-label" for="serviceStatus">{{ 'label.service.status' | translate }}<span class="required" >*</span></label>
             <div class="controls">
-              <select ng-model="formData.status"ng-options="status.value as status.value for status in statuses" value="{{status.value}}"></select>
-      		    </select>
+              <select data-ng-model="formData.status" data-ng-options="status.value as status.value for status in statuses" ></select>
             </div>
           </div>
           
           
           <div class="control-group">
-            <label class="control-label" for="isOptional">isOptional</label>
+            <label class="control-label" for="isOptional">{{ 'label.service.isoptional' | translate }}</label>
             <div class="controls">
              <label class="checkbox">
-              <input type="checkbox" id="isOptional" ng-model="formData.isOptional">
+              <input type="checkbox" id="isOptional" data-ng-model="formData.isOptional">
                 </label>
             </div>
           </div>
@@ -60,11 +59,11 @@
             <label class="control-label" for="isOptional">{{ 'label.service.isautoprovision' | translate }}</label>
             <div class="controls">
               <label class="checkbox">
-                <input type="checkbox" id="isOptional" ng-model="formData.isAutoProvision">
+                <input type="checkbox" id="isOptional" data-ng-model="formData.isAutoProvision">
               </label>
             </div>
           </div>
-          <div class="offset3">
+          <div class="offset3" style="margin-left:31%;">
             <a href="#/viewservice/{{serviceId}}"><button id="cancel" type="reset" class="btn">{{'label.cancel' | translate}}</button></a>
             <button id="submit" type="submit" class="btn btn-primary" >{{'label.save' | translate}}</button>
           </div>

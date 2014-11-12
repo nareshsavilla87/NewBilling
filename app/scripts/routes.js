@@ -414,8 +414,8 @@
       .when('/editprice/:id', {
           templateUrl: 'views/organization/editprice.html'
       })
-      .when('/media', {
-          templateUrl: 'views/organization/media.html'
+      .when('/mediadetails', {
+          templateUrl: 'views/organization/mediadetails.html'
       })
       .when('/createMedia', {
           templateUrl: 'views/organization/createmedia.html'
@@ -912,6 +912,9 @@
       }) 
       .when('/provision',{
         templateUrl: 'views/provision.html'
+      })
+      .when('/adddevice/:clientId', {
+        templateUrl: 'views/clients/adddevice.html'
       });
       
     

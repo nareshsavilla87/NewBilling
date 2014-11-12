@@ -187,7 +187,7 @@
 					  else if(itemDetails.length >=1){
 						  scope.isInvalidMacId = false;
 				          scope.isDisabledSerialNumber = true;
-		            		 if(query == itemDetails[0].serialNumber){
+		            		 if(query.toLowerCase() == itemDetails[0].serialNumber.toLowerCase()){
 		            			 scope.provisioningSerialNumber =  itemDetails[0].provisioningSerialNumber;
 		            		 }else{
 		            			 scope.isInvalidMacId = true;
@@ -231,7 +231,7 @@
 					  else if(itemDetails.length >=1){
 						  scope.isInvalidSerialNumber = false;
 						  scope.isDisabledMacId = true;
-		            		 if(query == itemDetails[0].provisioningSerialNumber){
+		            		 if(query.toLowerCase() == itemDetails[0].provisioningSerialNumber.toLowerCase()){
 		            			 	scope.formData.deviceNo =  itemDetails[0].serialNumber;
 		            		 }else{
 		            			 scope.isInvalidSerialNumber = true;

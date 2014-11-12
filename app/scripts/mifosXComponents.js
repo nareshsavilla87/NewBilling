@@ -136,7 +136,7 @@ define(['underscore', 'mifosX'], function() {
       'organization/CreatePriceController',
       'organization/ViewPriceController',
       'organization/EditPriceController',
-      'organization/MediaController',
+      'organization/MediaDetailsController',
       'organization/CreateMediaController',
       'organization/ViewMediaController',
       'organization/EditMediaController',
@@ -264,7 +264,8 @@ define(['underscore', 'mifosX'], function() {
       'system/DalpayDetailsFormController',
       'system/DalpayButtonController',
       'system/CreateEventValidationController',
-      'system/ProvisionController'
+      'system/ProvisionController',
+      'client/AddDeviceController',
 
     ],
     filters: [
