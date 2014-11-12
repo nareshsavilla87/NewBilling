@@ -510,20 +510,17 @@
                 	  getAll: {method: 'GET', params: {}, isArray:true}
                 }),
                 chargecodeResource: defineResource(apiVer + "/chargecode/:chargeCodeId", {chargeCodeId:'@chargeCodeId'}, {
-              	  getAllChargeCode: {method: 'GET', params: {}, isArray: true},
                     update: { method: 'PUT' }
                 }),
                 chargecodetemplateResource: defineResource(apiVer + "/chargecode/template", {}, {
-              	  getAllchargecode: {method: 'GET', params: {}}
+              	  
                 }),
                 taxmappingResource: defineResource(apiVer + "/taxmap/:chargeCode/chargetax", {chargeCode:'@chargeCode'}, {
-              	  getAllTaxMapping: {method: 'GET', params: {}, isArray: true},
-                    update: { method: 'PUT' }
+              	  	update: { method: 'PUT' }
                 }),
                 
                 getTaxmappingResource: defineResource(apiVer + "/taxmap/:taxId", {taxId:'@taxId'}, {
-                	  get: {method: 'GET', params: {}},
-                      update: { method: 'PUT' }
+                	  update: { method: 'PUT' }
                   }),
                 
                 taxmappingtemplateResource: defineResource(apiVer + "/taxmap/template", {}, {
@@ -802,8 +799,7 @@
            }),
 //=======
 */        provisioningtemplateMappingResource: defineResource(apiVer + "/provisioning/template/:orderNo", {orderNo: '@orderNo'}, {
-            	  get: {method: 'GET', params: {}, isArray: true}
-
+            	
            }),
            
      /*      provisioningtemplateMappingResource: defineResource(apiVer + "/provisioning/template", {}, {

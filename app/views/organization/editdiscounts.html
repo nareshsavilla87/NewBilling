@@ -1,5 +1,4 @@
-
-<div ng-controller="EditDiscountsController">
+<div data-ng-controller="EditDiscountsController">
 	<div>
 		<ul class="breadcrumb">
 			<li><a href="#/organization">{{'link.admin.organisation' |
@@ -7,20 +6,20 @@
 			<li><a href="#/discounts">{{'label.managediscounts' |
 					translate}}</a> <span class="divider">/</span></li>
 			<li><a
-				href="#/viewdiscounts/{{discountdetail.id}}">{{discountdetail.id}}</a>
+				href="#/viewdiscounts/{{discountdetail.id}}">{{discountdetail.discountCode}}</a>
 				<span class="divider">/</span></li>
 			<li class="active">{{'label.editdiscounts' | translate}}</li>
 		</ul>
 	</div>
-	<form class="form-horizontal well" ng-submit="submit()">
-		<div class="error" ng-show="errorStatus || errorDetails">
+	<form class="form-horizontal well" data-ng-submit="submit()">
+		<div class="error" data-ng-show="errorStatus || errorDetails">
 			<label>{{'label.contract.error' | translate}}</label> <label
-				ng-show="errorStatus">{{errorStatus}}</label> <label
-				ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code
+				data-ng-show="errorStatus">{{errorStatus}}</label> <label
+				data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code
 				| translate : error.args}}</label>
 		</div>
 		<fieldset>
-			<legend>Edit Discounts</legend>
+			<legend>{{'label.editdiscounts' | translate}}</legend>
 			<table>
 				<tr>
 					<td>
@@ -32,7 +31,7 @@
 											'label.discountCode' | translate }}</label>
 										<div class="controls">
 											<input type="text" id="discountCode"
-												ng-model="discountdetail.discountCode">
+												data-ng-model="discountdetail.discountCode">
 										</div>
 									</div>
 								</td>
@@ -41,9 +40,8 @@
 										<label class="control-label" for="discountType">{{
 											'label.discountType' | translate }}</label>
 										<div class="controls">
-											<select ng-model="discountdetail.discountType"
-												ng-options="discountTypeData.mCodeValue as discountTypeData.mCodeValue for discountTypeData in discountTypeDatas"
-												value="{{discountTypeData.mCodeValue}}">
+											<select data-ng-model="discountdetail.discountType"
+												data-ng-options="discountTypeData.mCodeValue as discountTypeData.mCodeValue for discountTypeData in discountTypeDatas">
 											</select>
 										</div>
 									</div>
@@ -56,7 +54,7 @@
 											'label.discountDescription' | translate }}</label>
 										<div class="controls">
 											<input type="text" id="discountDescription"
-												ng-model="discountdetail.discountDescription">
+												data-ng-model="discountdetail.discountDescription">
 										</div>
 									</div>
 								</td>
@@ -66,7 +64,7 @@
 											'label.discountRate' | translate }}</label>
 										<div class="controls">
 											<input type="text" id="discountRate"
-												ng-model="discountdetail.discountRate">
+												data-ng-model="discountdetail.discountRate">
 										</div>
 									</div>
 								</td>
@@ -77,9 +75,9 @@
 										<label class="control-label" for="discountStartDate">{{
 											'label.startDate' | translate }}</label>
 										<div class="controls">
-											<input type="text" datepicker-pop="dd MMMM yyyy"
-												ng-model="start.startDate" is-open="opened2" min="minDate"
-												max="'2020-06-22'" date-disabled="disabled(date, mode)" />
+											<input type="text" data-datepicker-pop="dd MMMM yyyy"
+												data-ng-model="start.startDate" data-is-open="opened2" min="minDate"
+												max="'2020-06-22'" data-date-disabled="disabled(date, mode)" />
 										</div>
 									</div>
 								</td>
@@ -88,9 +86,8 @@
 										<label class="control-label" for="status">{{
 											'label.status' | translate }}</label>
 										<div class="controls">
-											<select ng-model="discountdetail.discountStatus"
-												ng-options="status.value as status.value for status in statuses"
-												value="{{status.value}}">
+											<select data-ng-model="discountdetail.discountStatus"
+												data-ng-options="status.value as status.value for status in statuses">
 											</select>
 										</div>
 									</div>

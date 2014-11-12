@@ -1,4 +1,4 @@
- <div  ng-controller="CreateEventActionMappingController" >
+ <div data-ng-controller="CreateEventActionMappingController" >
       <div>
         <ul class="breadcrumb">
           <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
@@ -6,19 +6,20 @@
           <li class="active">{{'label.create.new.EventMapping' | translate}}</li>
         </ul>
       </div>
-       <div class="error" ng-show="errorStatus || errorDetails">
+      
+       <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
-      <form class="form-horizontal well" ng-submit="submit()">
+      <form class="form-horizontal well" data-ng-submit="submit()">
         <fieldset>
-          <legend>Create EventAction Mapping</legend>
+          <legend>{{'label.create.new.EventMapping' | translate}}</legend>
           
            <div class="control-group">
             <label class="control-label" for="event">{{'table.eventactionmapping.event' | translate }}</label>
             <div class="controls">
-              <select ng-model="formData.event"  ng-options="ad.mCodeValue as ad.mCodeValue for ad in eventDatas" value="{{ad.mCodeValue}}">
+              <select data-ng-model="formData.event"  data-ng-options="ad.mCodeValue as ad.mCodeValue for ad in eventDatas">
               <option value="">{{'label.select.one' | translate}}</option>
               </select>
             </div>
@@ -27,7 +28,7 @@
           <div class="control-group">
             <label class="control-label" for="action">{{'table.eventactionmapping.action' | translate }}</label>
             <div class="controls">
-                <select ng-model="formData.action"  ng-options="ed.mCodeValue as ed.mCodeValue for ed in actionDatas" value="{{ed.mCodeValue}}">
+                <select data-ng-model="formData.action"  data-ng-options="ed.mCodeValue as ed.mCodeValue for ed in actionDatas">
               <option value="">{{'label.select.one' | translate}}</option>
               </select>
             </div>
@@ -37,7 +38,7 @@
           <div class="control-group">
             <label class="control-label" for="process">{{'table.eventactionmapping.process' | translate }}</label>
             <div class="controls">
-              <input type="text" id="process" ng-model="formData.process" ng-init="formData.process='workflow_events'">
+              <input type="text" id="process" data-ng-model="formData.process" data-ng-init="formData.process='workflow_events'">
             </div>
           </div>
           

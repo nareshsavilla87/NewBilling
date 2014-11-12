@@ -1,6 +1,6 @@
 (function(module) {
 	mifosX.controllers = _.extend(module, {
-		EditPromotioncodeController : function(scope, resourceFactory,location, routeParams, dateFilter, $rootScope) {
+		EditPromotioncodeController : function(scope, resourceFactory, location, routeParams, dateFilter, $rootScope) {
 			
 			scope.promotiondatas = [];
 			scope.durationTypes = [];
@@ -8,7 +8,7 @@
 			scope.start = {};
 			scope.date = {};
 
-			resourceFactory.promotionResource.getPrmotioncodeDetails({promotioncodeId : routeParams.id,template : 'true'}, function(data) {
+			resourceFactory.promotionResource.getPrmotioncodeDetails({promotioncodeId : routeParams.id, template : 'true'}, function(data) {
 				scope.promotiondata = data;
 				scope.promotiondatas = data.discountTypeData;
 				scope.durationTypes = data.contractTypedata;
@@ -39,7 +39,15 @@
 
 		}
 	});
-	mifosX.ng.application.controller('EditPromotioncodeController',	[ '$scope', 'ResourceFactory', '$location', '$routeParams','dateFilter', '$rootScope',mifosX.controllers.EditPromotioncodeController ]).run(function($log) {
-				$log.info("EditPromotioncodeController initialized");
-			});
+	mifosX.ng.application.controller('EditPromotioncodeController',	[
+	   '$scope', 
+	   'ResourceFactory', 
+	   '$location', 
+	   '$routeParams',
+	   'dateFilter',
+	   '$rootScope',
+	   mifosX.controllers.EditPromotioncodeController
+	   ]).run(function($log) {
+		   $log.info("EditPromotioncodeController initialized");
+	});
 }(mifosX.controllers || {}));

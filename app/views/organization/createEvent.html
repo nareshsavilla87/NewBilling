@@ -1,25 +1,25 @@
 <div>
 		<ul class="breadcrumb">
-			<li><a href="#/event">{{'label.event' | translate}}</a> <spanclass="divider">/</span></li>
+			<li><a href="#/event">{{'label.event' | translate}}</a> <span class="divider">/</span></li>
 			<li class="active">{{'label.createevent' | translate}}</li>
 		</ul>
-	</div>
-<form class="form-horizontal well" ng-controller="CreateEventController" ng-submit="submit()">
+</div>
+<form class="form-horizontal well" data-ng-controller="CreateEventController" data-ng-submit="submit()">
 	
-	 <div class="error" ng-show="errorStatus || errorDetails">
+	 <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
 	<fieldset>
 		<legend> {{'label.createevent' | translate}}</legend>
-		<table width="100%">
+		<table style="width:100%;">
 			<tr>
 				<td width="50%">
 					<div class="control-group">
 						<label class="control-label" for="eventName">{{'label.event.eventcode' | translate }} </label>
 						<div class="controls">
-							<input type="text" id="eventName" ng-model="formData.eventName">
+							<input type="text" id="eventName" data-ng-model="formData.eventName">
 						</div>
 					</div>
 				</td>
@@ -28,7 +28,7 @@
 						<label class="control-label" for="eventDescription"> {{'label.event.eventdescription' | translate }}</label>
 						<div class="controls">
 							<input type="text" id="eventDescription"
-								ng-model="formData.eventDescription">
+								data-ng-model="formData.eventDescription">
 						</div>
 					</div>
 				</td>
@@ -37,28 +37,20 @@
 
 			<tr>
 				<td>
-							<div class="control-group" >
-            				<label class="control-label" for="eventCategory">Event Category</label>
-            				<div class="controls">
-               					<select  id="eventcategory" ng-model="formData.eventCategory"   ng-options="eventCategeorydata.mCodeValue as eventCategeorydata.mCodeValue for eventCategeorydata in eventCategeorydatas" value="{{eventCategeorydata.id}}"></select>
-            				</div>
-          					</div>
+					<div class="control-group" >
+            		<label class="control-label" for="eventCategory">Event Category</label>
+            		<div class="controls">
+               			<select  id="eventcategory" data-ng-model="formData.eventCategory" data-ng-options="eventCategeorydata.mCodeValue as eventCategeorydata.mCodeValue for eventCategeorydata in eventCategeorydatas"></select>
+            		</div>
+          			</div>
 				</td>
-				<!-- <td width="50%">
-					<div class="control-group">
-						<label class="control-label" for="allowCancellation"> {{'label.active' | translate}}</label>
-						<div class="controls">
-							<input type="checkbox" id="allowCancellation" ng-model="formData.allowCancellation">
-						</div>
-					</div>
-				</td> -->
+			
 				<td width="50%">
 					<div class="control-group">
 						<label class="control-label" for="chargeCode"> {{'label.event.chargedata' | translate }}</label>
 						<div class="controls">
-							<select ng-model="formData.chargeCode"
-								ng-options="chargeData.chargeCode as chargeData.chargeDescription for chargeData in chargeData"
-								value="{{chargeData.chargeCode}}"></select>
+							<select data-ng-model="formData.chargeCode"
+								data-ng-options="chargeData.chargeCode as chargeData.chargeDescription for chargeData in chargeData"></select>
 						</div>
 					</div>
 				</td> 
@@ -66,46 +58,28 @@
 			</tr>
 
 			<tr>
-				<!-- <td width="50%">
-					<div class="control-group">
-						<label class="control-label" for="eventStartDate"> {{'label.event.startdate' | translate }}</label>
-						<div class="controls">
-
-							<input type="text" id="eventStartDate" ng-model="formData.eventStartDate">
-							 <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.startDate" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" required late-Validate  style="background-color:#FFFFFF;"  readonly/>
-
-						</div>
-					</div>
-				</td> -->
+			
 				<td width="50%">
 					<div class="control-group">
 						<label class="control-label" for="eventStartDate"> {{'label.event.startdate' | translate }}</label>
 						<div class="controls">
 
 							<!-- <input type="text" id="eventStartDate" ng-model="formData.eventStartDate"> -->
-							<input type="text" ng-hide="formData.eventCategory == 'Live Event'"  datepicker-pop="dd MMMM yyyy" ng-model="date.startDate" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" required late-Validate  style="background-color:#FFFFFF;"  readonly/>
-							<input type="text" ng-show="formData.eventCategory == 'Live Event'"  datepicker-pop="dd MMMM yyyy" ng-model="date.startDate" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" required late-Validate  style="width:130px;background-color:#FFFFFF;"  readonly/>
-							<input id="timepicker1" ng-show="formData.eventCategory == 'Live Event'" type="text" readonly ng-model="first.starttime" style="width:60px;background-color:#FFFFFF;">
+							<input type="text" data-ng-hide="formData.eventCategory == 'Live Event'"  data-datepicker-pop="dd MMMM yyyy" data-ng-model="date.startDate" data-is-open="opened" min="minDate" max="maxDate" data-date-disabled="disabled(date, mode)" required data-late-Validate  style="background-color:#FFFFFF;"  readonly/>
+							<input type="text" data-ng-show="formData.eventCategory == 'Live Event'"  data-datepicker-pop="dd MMMM yyyy" data-ng-model="date.startDate" data-is-open="opened" min="minDate" max="maxDate" data-date-disabled="disabled(date, mode)" required data-late-Validate  style="width:130px;background-color:#FFFFFF;"  readonly/>
+							<input id="timepicker1" data-ng-show="formData.eventCategory == 'Live Event'" type="text" readonly data-ng-model="first.starttime" style="width:60px;background-color:#FFFFFF;">
 						</div>
 					</div>
 				</td>
-				<!-- <td>
-					<div class="control-group">
-						<label class="control-label" for="eventEndDate">{{'label.event.enddate' | translate }}</label>
-						<div class="controls">
-							<input type="text" id="eventEndDate" ng-model="formData.eventEndDate">
-							<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.eventEndDate" is-open="opened2" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
-						</div>
-					</div>
-				</td> -->
+				
 				<td>
 					<div class="control-group">
 						<label class="control-label" for="eventEndDate">{{'label.event.enddate' | translate }}</label>
 						<div class="controls">
 							<!-- <input type="text" id="eventEndDate" ng-model="formData.eventEndDate"> -->
-							<input type="text" ng-hide="formData.eventCategory == 'Live Event'"  datepicker-pop="dd MMMM yyyy" ng-model="date.eventEndDate" is-open="opened2" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
-							<input type="text" ng-show="formData.eventCategory == 'Live Event'" datepicker-pop="dd MMMM yyyy" ng-model="date.eventEndDate" is-open="opened2" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"  style="width:130px;background-color:#FFFFFF;"  readonly/>
-							 <input id="timepicker2" ng-show="formData.eventCategory == 'Live Event'" type="text" readonly ng-model="first.endtime" style="width:60px;background-color:#FFFFFF;">
+							<input type="text" data-ng-hide="formData.eventCategory == 'Live Event'"  data-datepicker-pop="dd MMMM yyyy" data-ng-model="date.eventEndDate" data-is-open="opened2" min="minDate" max="'2020-06-22'" data-date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
+							<input type="text" data-ng-show="formData.eventCategory == 'Live Event'" data-datepicker-pop="dd MMMM yyyy" data-ng-model="date.eventEndDate" data-is-open="opened2" min="minDate" max="'2020-06-22'" data-date-disabled="disabled(date, mode)"  style="width:130px;background-color:#FFFFFF;"  readonly/>
+							 <input id="timepicker2" data-ng-show="formData.eventCategory == 'Live Event'" type="text" readonly data-ng-model="first.endtime" style="width:60px;background-color:#FFFFFF;">
 						</div>
 					</div>
 				</td>
@@ -118,7 +92,7 @@
 						<label class="control-label" for="eventValidity"> {{'label.event.eventvalidity' | translate }}</label>
 						<div class="controls">
 							<!-- <input type="text" id="eventValidity" ng-model="formData.eventValidity"> -->
-							<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.eventValidity" is-open="opened2" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
+							<input type="text" data-datepicker-pop="dd MMMM yyyy" data-ng-model="date.eventValidity" data-is-open="opened2" min="minDate" max="'2020-06-22'" data-date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
 						</div>
 					</div>
 				</td>
@@ -126,9 +100,8 @@
 					<div class="control-group">
 						<label class="control-label" for="status">{{'label.event.status' | translate }}</label>
 						<div class="controls">
-							<select ng-model="formData.status"
-								ng-options="eventStatus.id as eventStatus.value for eventStatus in eventStatus"
-								value="{{eventStatus.id}}"></select>
+							<select data-ng-model="formData.status"
+								data-ng-options="eventStatus.id as eventStatus.value for eventStatus in eventStatus"></select>
 						</div>
 					</div>
 				</td>
@@ -143,8 +116,8 @@
                        <div><label class="control-label"></label></div>
 						<div class="span3">
 							<label class="control-label"> {{ 'label.availablemedia'| translate }}</label>
-								 <select multiple ng-model="allowed">
-								<option ng-repeat="availableService in availableServices"
+								 <select multiple data-ng-model="allowed">
+								<option data-ng-repeat="availableService in availableServices"
 									value="{{availableService.mediaId}}">{{availableService.mediaTitle}}</option>
 							</select>
 						</div>
@@ -161,9 +134,8 @@
 						</div>
 						<div class="span3">
 							<label class="control-label"> {{ 'label.selectedmedia' |translate }}</label>
-							 <select multiple ng-model="restricted">
-								<option ng-repeat="selectedService in selectedServices"
-									value="{{selectedService.id}}">{{selectedService.name}}</option>
+							 <select multiple data-ng-model="restricted">
+								<option data-ng-repeat="selectedService in selectedServices">{{selectedService.name}}</option>
 							</select>
 						</div>
 
