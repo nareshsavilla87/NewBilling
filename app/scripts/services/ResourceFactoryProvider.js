@@ -433,6 +433,10 @@
        transactionHistoryResource: defineResource(apiVer + "/transactionhistory/:clientId", {clientId:'@clientId'}, {
        	getTransactionHistory: {method: 'GET', params: {clientId:'@clientId'}, }
           }),
+          
+          transactionOldHistoryResource: defineResource(apiVer + "/transactionhistory/template/:clientId", {clientId:'@clientId'}, {
+             	getTransactionHistory: {method: 'GET', params: {clientId:'@clientId'}, }
+          }),
      
           serviceResource: defineResource(apiVer + "/servicemasters/:serviceId", {serviceId:"@serviceId"}, {
         	  getAllServices: {method: 'GET', params: {}, isArray: true},

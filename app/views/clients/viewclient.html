@@ -855,9 +855,6 @@
 					</table>
 				</div>
 			  </div>
-			    
-			    
-			    
 			    <div id="pane2" class="tab-pane" ng-class="{active: mydeviceC}" >
       			<div class="pull-right">
 				<a ng-show="PermissionService.showMenu('CREATE_ownedhardware')" href="#/addownedhardware/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Add Device</a>
@@ -891,42 +888,6 @@
 			    
 			  </div>
 			</div>
-      <!-- <div class="pull-right">
-		
-		<a href="#/addonetimesale/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i> Add Sale</a>
-	</div>
-    
-    <div>
-		<input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name/Serial Number">
-		<table class="table">
-			<thead>
-				<tr class="graybg">
-				 	<th>{{'table.heading.id' | translate}}</th>
-					<th>{{'table.heading.saledate' | translate}}</th>
-					<th>{{'table.heading.itemcode' | translate}}</th>
-					<th>{{'table.heading.chargecode' | translate}}</th>
-					<th>{{'table.heading.quantity' | translate}}</th>
-					<th>{{'table.heading.totalprice' | translate}}</th>
-					<th>{{'table.heading.allocate' | translate}}</th>
-					<th></th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr class="pointer-main" ng-repeat="onetimesale in onetimesales  | filter:filterText">
-					<td class="pointer" data-ng-click="routeTosale(onetimesale.id,client.id)">{{onetimesale.id}}</td>
-					<td class="pointer" data-ng-click="routeTosale(onetimesale.id,client.id)">{{onetimesale.saleDate | DateFormat}}</td>
-					<td class="pointer" data-ng-click="routeTosale(onetimesale.id,client.id)">{{onetimesale.itemCode}}</td>
-					<td class="pointer" data-ng-click="routeTosale(onetimesale.id,client.id)">{{onetimesale.chargeCode}}</td>
-					<td class="pointer" data-ng-click="routeTosale(onetimesale.id,client.id)">{{onetimesale.quantity}}</td> 
-					<td class="pointer" data-ng-click="routeTosale(onetimesale.id,client.id)">{{onetimesale.totalPrice}}</td> 
-					<td class="pointer" data-ng-click="routeTosale(onetimesale.id,client.id)">{{onetimesale.hardwareAllocated}}</td>
-				    <td><a href="#/allocatehardwareonetimesale/{{onetimesale.id}}/{{client.id}}" ng-show="onetimesale.hardwareAllocated == 'UNALLOCATED'" class="btn btn-primary"><i class="icon-move"></i></a></td>
-				    <td><a href="" ng-click="cancelSale(onetimesale.id,$index)" ng-show="onetimesale.hardwareAllocated == 'UNALLOCATED'" class="btn btn-primary" title="Cancel Sale"><i class="icon-remove"></i></a></td> 
-				</tr>
-			</tbody>
-		</table>
-	</div> -->
 </tab>
 
 <tab heading="Financial Summary" select="getAllFineTransactions()" ng-show="$parent.PermissionService.showMenu('READ_FINANCIALTRANSACTIONS')">
@@ -1355,39 +1316,80 @@
 </div>
 </tab> -->
 
-<tab heading="History" select="getTransactionHistory()" ng-show="$parent.PermissionService.showMenu('READ_TRANSACTIONHISTORY')">
-    <div>
-     <form ng-submit="searchTransactionHistory()">
-		<input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name/Serial Number">
-	 </form>
-		<table class="table">
-			<thead>
-				<tr class="graybg">
-				 	<th>{{'table.heading.id' | translate}}</th>
-					<th>{{'table.heading.transactiontype' | translate}}</th>
-					<th style="width:125px;">{{'table.heading.transactiondate' | translate}}</th>
-					<th>{{'table.heading.user' | translate}}</th>
-					<th>{{'table.heading.history' | translate}}</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="transactionhistory in transactionhistory.currentPageItems  | filter:filterText">
-					<td>{{transactionhistory.id}}</td>
-					<td>{{transactionhistory.transactionType}}</td>  
-					<td>{{transactionhistory.transactionDate  | DateTimeFormat}}</td>
-					<td>{{transactionhistory.user}}</td>
-				
-					<td>{{transactionhistory.history | EventTypeCategory:transactionhistory.transactionType:transactionhistory.resourceId}}</td> 
-				</tr>
-			</tbody>
-		</table>
-		<ul class="pager">
+ <tab heading="Activity Log" select="getTransactionHistory()" active="activitylogTab">
+      <hr>
+ 		<div class="tabbable">
+  			<ul class="nav nav-tabs">
+				    <li class={{activitylogC}}><a ng-click="getTransactionHistory()" data-toggle="tab" >Activity Log</a></li>
+    				<li class={{oldActivitylogC}}><a ng-click="getOldTransactionHistory()" data-toggle="tab">Old Activity Log</a></li> 
+			    </ul>
+			<div class="tab-content">
+		    <div id="pane1" class="tab-pane" ng-class="{active: activitylogC}">
+			    <div>
+					 <form ng-submit="searchTransactionHistory()">
+						<input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Enter text to Search">
+	 				</form>
+					<table class="table">
+						<thead>
+							<tr class="graybg">
+				 				<th>{{'table.heading.id' | translate}}</th>
+								<th>{{'table.heading.transactiontype' | translate}}</th>
+								<th style="width:125px;">{{'table.heading.transactiondate' | translate}}</th>
+								<th>{{'table.heading.user' | translate}}</th>
+								<th>{{'table.heading.history' | translate}}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="transactionhistory in transactionhistory.currentPageItems  | filter:filterText">
+								<td>{{transactionhistory.id}}</td>
+								<td>{{transactionhistory.transactionType}}</td>  
+								<td>{{transactionhistory.transactionDate  | DateTimeFormat}}</td>
+								<td>{{transactionhistory.user}}</td>
+								<td>{{transactionhistory.history | EventTypeCategory:transactionhistory.transactionType:transactionhistory.resourceId}}</td> 
+							</tr>
+						</tbody>
+					</table>
+					<ul class="pager">
         			<li class="previous"><a ng-click="transactionhistory.previous()" href="" ng-disabled="!transactionhistory.hasPrevious()">&larr; Prev</a></li>
         			<li class="next" ><a ng-click="transactionhistory.next()" href="" ng-disabled="!transactionhistory.hasNext()">Next &rarr;</a></li>
     			</ul>
-	</div>
+				</div>
+			  </div>
+			    <div id="pane2" class="tab-pane" ng-class="{active:oldActivitylogC}" >
+     			<div>
+					<form ng-submit="searchTransactionHistory()">
+						<input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Enter text to search">
+	 				</form>
+						<table class="table">
+							<thead>
+							  <tr class="graybg">
+				 				<th>{{'table.heading.id' | translate}}</th>
+								<th>{{'table.heading.transactiontype' | translate}}</th>
+								<th style="width:125px;">{{'table.heading.transactiondate' | translate}}</th>
+								<th>{{'table.heading.user' | translate}}</th>
+								<th>{{'table.heading.history' | translate}}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="transactionhistory in transactionhistory.currentPageItems  | filter:filterText">
+								<td>{{transactionhistory.id}}</td>
+								<td>{{transactionhistory.transactionType}}</td>  
+								<td>{{transactionhistory.transactionDate  | DateTimeFormat}}</td>
+								<td>{{transactionhistory.user}}</td>
+								<td>{{transactionhistory.history}}</td> 
+							</tr>
+				</tbody>
+			</table>
+			<ul class="pager">
+        			<li class="previous"><a ng-click="transactionhistory.previous()" href="" ng-disabled="!transactionhistory.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="transactionhistory.next()" href="" ng-disabled="!transactionhistory.hasNext()">Next &rarr;</a></li>
+    			</ul>
+		</div>
+			    </div>
+			    
+			  </div>
+			</div>
 </tab>
-
 <tab heading="CRD" select="getClientDistribution()" ng-show="$parent.PermissionService.showMenu('READ_CREDITDISTRIBUTION')">
      <div class="pull-right">
 		         <a ng-show="PermissionService.showMenu('CREATE_CREDITDISTRIBUTION')" href="#/creditDistribution/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Distribute</a>
