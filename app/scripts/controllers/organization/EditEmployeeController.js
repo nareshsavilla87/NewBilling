@@ -22,7 +22,12 @@
         };
     }
   });
-  mifosX.ng.application.controller('EditEmployeeController', ['$scope', '$routeParams', 'ResourceFactory', '$location', mifosX.controllers.EditEmployeeController]).run(function($log) {
+  mifosX.ng.application.controller('EditEmployeeController', [
+    '$scope', 
+    '$routeParams', 
+    'ResourceFactory', 
+    '$location', 
+    mifosX.controllers.EditEmployeeController]).run(function($log) {
     $log.info("EditEmployeeController initialized");
   });
 }(mifosX.controllers || {}));

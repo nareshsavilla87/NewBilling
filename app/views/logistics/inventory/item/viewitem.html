@@ -2,7 +2,7 @@
 	<div class="paddedbottom10">
 		<ul class="breadcrumb">
 	        <li><a href="#/inventory">{{'link.inventory' | translate}}</a> <span class="divider">/</span></li>
-	        <li class="active">{{item.id}}&nbsp;&nbsp;</li>
+	        <li class="active">{{item.itemCode}}&nbsp;&nbsp;</li>
 	    </ul>
 	    <div class="pull-right">
 	      <div class="btn-group">
@@ -28,7 +28,7 @@
       </script>
 
 	<div ng-hide="showType=='1'"class="row paddedleft">
-		<h3>{{item.id}}</h3>
+		<h3>{{item.itemCode}}</h3>
 		<table width="100%">
 			<tr>
 				<td width="20%">{{'label.item.itemcode' | translate }}</td>

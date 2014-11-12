@@ -5,72 +5,69 @@
     </ul>
 </div>
 
-<div ng-controller="MappingController">
+<div data-ng-controller="MappingController">
  
     <div>
       <tabset  style="margin-bottom: 0px;">
       
-      <tab heading="Service Provcode" select="getsupplierdetails()" ng-show="$parent.PermissionService.showMenu('READ_SERVICEMAPPING')">
+      <tab heading="Service Provcode"  ng-show="$parent.PermissionService.showMenu('READ_SERVICEMAPPING')" select="getServiceMappingDetails()">
        <div class="pull-right btn-group">
-          <a ng-show="PermissionService.showMenu('CREATE_SERVICEMAPPING')" href="#/createServiceMapping" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
+          <a data-ng-show="PermissionService.showMenu('CREATE_SERVICEMAPPING')" href="#/createServiceMapping" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
         </div>
         <div class="row-fluid">
-                   <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+                   <input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.searchbar' | translate}}">
         <table class="table">
             <thead>
               <tr class="graybg">
-                <th>{{'table.servicemapping.id' | translate}}</th>
                 <th>{{'table.servicemapping.servicecode' | translate}}</th>
                 <th>{{'table.servicemapping.serviceidentification' | translate}}</th>
                 <th>{{'table.servicemapping.status' | translate}}</th>
                 <th style="width:125px;">{{'table.servicemapping.image' | translate}}</th>
-                <th  ng-show="'IPTV'| ConfigLookup">Category</th>
-                <th  ng-show="'IPTV'| ConfigLookup">Sub Category</th>
-                
+                <th  data-ng-show="'IPTV'| ConfigLookup">Category</th>
+                <th  data-ng-show="'IPTV'| ConfigLookup">Sub Category</th>
+                <th>{{ 'table.heading.actions' | translate }}</th>
               </tr>
             </thead>
             <tbody>
-             <tr class="pointer-main" ng-repeat="servicemappingdata in servicemappingdatas  | filter:filterText">
-                <td class="pointer" data-ng-click="routeToservice(servicemappingdata.id)">{{servicemappingdata.id}}</td>
+            <tr class="pointer-main" data-ng-repeat="servicemappingdata in servicemappingdatas  | filter:filterText">
                 <td class="pointer" data-ng-click="routeToservice(servicemappingdata.id)">{{servicemappingdata.serviceCode}}</td>
                 <td class="pointer" data-ng-click="routeToservice(servicemappingdata.id)">{{servicemappingdata.serviceIdentification}}</td>
                 <td class="pointer" data-ng-click="routeToservice(servicemappingdata.id)">{{servicemappingdata.status}}</td>
                 <td class="pointer" data-ng-click="routeToservice(servicemappingdata.id)">{{servicemappingdata.image}}</td>
-                <td  ng-show="'IPTV'| ConfigLookup" class="pointer" data-ng-click="routeToservice(servicemappingdata.id)">{{servicemappingdata.category}}</td>
-                <td   ng-show="'IPTV'| ConfigLookup" class="pointer" data-ng-click="routeToservice(servicemappingdata.id)">{{servicemappingdata.subCategory}}</td>
+                <td class="pointer" data-ng-show="'IPTV'| ConfigLookup" data-ng-click="routeToservice(servicemappingdata.id)">{{servicemappingdata.category}}</td>
+                <td class="pointer" data-ng-show="'IPTV'| ConfigLookup" data-ng-click="routeToservice(servicemappingdata.id)">{{servicemappingdata.subCategory}}</td>
+                <td class="pointer"><a data-ng-show="PermissionService.showMenu('UPDATE_SERVICEMAPPING')" href="#/editServiceMapping/{{servicemappingdata.id}}"
+                    data-popover="Edit Service Provcode" data-popover-trigger="mouseenter" class="icon-edit"></a></td>
    			</tr>
      		 </tbody>
           </table>
-        <!--   <ul class="pager">
-        			<li class="previous"><a ng-click="supplier.previous()" href="" ng-disabled="!supplier.hasPrevious()">&larr; Prev</a></li>
-        			<li class="next" ><a ng-click="supplier.next()" href="" ng-disabled="!supplier.hasNext()">Next &rarr;</a></li>
-    			</ul> -->
          </div>
       </tab>	
       
-      <tab heading=" Plan Provcode" select="getplanMappingdetails()" ng-show="$parent.PermissionService.showMenu('READ_PLANMAPPING')">
+      <tab heading=" Plan Provcode" select="getplanMappingdetails()" ng-show="$parent.PermissionService.showMenu('READ_PLANMAPPING')" active="planMappingTab">
        <div class="pull-right btn-group">
-          <a ng-show="PermissionService.showMenu('CREATE_PLANMAPPING')" href="#/createPlanMapping" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
+          <a data-ng-show="PermissionService.showMenu('CREATE_PLANMAPPING')" href="#/createPlanMapping" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
         </div>
         <div class="row-fluid">
-                   <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+            <input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.searchbar' | translate}}">
         <table class="table">
             <thead>
               <tr class="graybg">
-                <th>{{'table.planmapping.id' | translate}}</th>
                 <th>{{'table.planmapping.planCode' | translate}}</th>
                 <th>{{'table.planmapping.planIdentification' | translate}}</th>
                 <th>{{'table.planmapping.planStatus' | translate}}</th> 
-                <th style="width:125px;">{{'table.servicemapping.image' | translate}}</th>                   
+                <th style="width:125px;">{{'table.servicemapping.image' | translate}}</th>
+                <th>{{ 'table.heading.actions' | translate }}</th>                   
               </tr>
             </thead>
             <tbody>
-             <tr class="pointer-main" ng-repeat="planmappingdata in planmappingdatas  | filter:filterText">
-                <td class="pointer" data-ng-click="routeToplanmapping(planmappingdata.id)">{{planmappingdata.id}}</td>
+             <tr class="pointer-main" data-ng-repeat="planmappingdata in planmappingdatas  | filter:filterText">
                 <td class="pointer" data-ng-click="routeToplanmapping(planmappingdata.id)">{{planmappingdata.planCode}}</td>
                 <td class="pointer" data-ng-click="routeToplanmapping(planmappingdata.id)">{{planmappingdata.planIdentification}}</td>
                 <td class="pointer" data-ng-click="routeToplanmapping(planmappingdata.id)">{{planmappingdata.planStatus}}</td>
                 <td class="pointer" data-ng-click="routeToplanmapping(planmappingdata.id)">{{planmappingdata.image}}</td>
+                <td class="pointer"><a data-ng-show="PermissionService.showMenu('UPDATE_BPLANMAPPING')" href="#/editPlanMapping/{{planmappingdata.id}}"
+                    data-popover="Edit Plan Provcode" data-popover-trigger="mouseenter" class="icon-edit"></a></td>
                 </tr>
      		 </tbody>
           </table>
@@ -81,89 +78,81 @@
          </div>
       </tab>
       
-  <tab heading="Hardware Plan" select="getHardwareMappingData()" active="hardwarePlanMappingTab"
-  ng-show="$parent.PermissionService.showMenu('READ_PLANMAPPING')">
+  <tab heading="Hardware Plan" select="getHardwareMappingData()"  ng-show="$parent.PermissionService.showMenu('READ_PLANMAPPING')" active="hardwarePlanMappingTab">
         <div class="pull-right btn-group">
-          <a ng-show="PermissionService.showMenu('CREATE_PLANMAPPING')" href="#/createhardwareplanmapping" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
+          <a data-ng-show="PermissionService.showMenu('CREATE_PLANMAPPING')" href="#/createhardwareplanmapping" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
         </div>
         <div class="row-fluid">
-                   <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+           <input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.searchbar' | translate}}">
         <table class="table">
             <thead>
               <tr class="graybg">
-                <th>{{'table.hardwaremapping.id' | translate}}</th>
                 <th>{{'table.hardwaremapping.plancode' | translate}}</th>
                 <th>{{'table.hardwaremapping.itemcode' | translate}}</th>
-               
+                <th>{{ 'table.heading.actions' | translate }}</th> 
               </tr>
             </thead>
             <tbody>
-              <tr class="pointer-main" ng-repeat="hardwaremappingdata in hardwaremappingdatas  | filter:filterText">
-              <td class="pointer" data-ng-click="routeTohardware(hardwaremappingdata.id)">{{hardwaremappingdata.id}}</td>        
+              <tr class="pointer-main"data-ng-repeat="hardwaremappingdata in hardwaremappingdatas  | filter:filterText">
                 <td class="pointer" data-ng-click="routeTohardware(hardwaremappingdata.id)">{{hardwaremappingdata.planCode}}</td>
                 <td class="pointer" data-ng-click="routeTohardware(hardwaremappingdata.id)">{{hardwaremappingdata.itemCode}}</td>
+                <td class="pointer"><a data-ng-show="PermissionService.showMenu('UPDATE_PLANMAPPING')" href="#/edithardwareplanmapping/{{hardwaremappingdata.id}}"
+                    data-popover="Edit Hardware Plan" data-popover-trigger="mouseenter" class="icon-edit"></a></td>
      		 </tbody>
           </table>
-       		<!-- 	<ul class="pager">
-        			<li class="previous"><a ng-click="itemhistory.previous()" href="" ng-disabled="!itemhistory.hasPrevious()">&larr; Prev</a></li>
-        			<li class="next" ><a ng-click="itemhistory.next()" href="" ng-disabled="!itemhistory.hasNext()">Next &rarr;</a></li>
-    			</ul> -->
          </div>
       </tab>
       			
       				
-      	<tab heading="Provision Command" select="getProvisiongCommandData()"
-      		ng-show="$parent.PermissionService.showMenu('READ_PROVISIONINGSYSTEM')">
+      	<tab heading="Provision Command" select="getProvisiongCommandData()" ng-show="$parent.PermissionService.showMenu('READ_PROVISIONINGSYSTEM')" active="provisioningCommandTab">
         <div class="pull-right btn-group">
-          <a ng-show="PermissionService.showMenu('CREATE_PROVISIONINGSYSTEM')" href="#/createProvisioningmapping" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
+          <a data-ng-show="PermissionService.showMenu('CREATE_PROVISIONINGSYSTEM')" href="#/createProvisioningmapping" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
         </div>
         <div class="row-fluid">
-                   <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+            <input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.searchbar' | translate}}">
         <table class="table">
             <thead>
               <tr class="graybg">
-                <th>{{'table.provisioningcommands.id' | translate}}</th>
                 <th>{{'table.provisioningcommands.provisioningsystem' | translate}}</th>
                 <th>{{'table.provisioningcommands.commandname' | translate}}</th>
                 <th>{{'table.provisioningcommands.status' | translate}}</th>
-               
+                <th>{{ 'table.heading.actions' | translate }}</th> 
               </tr>
             </thead>
             <tbody>
-              <tr class="pointer-main" ng-repeat="provisiongdata in provisiongsystemData  | filter:filterText">
-                <td class="pointer" data-ng-click="routeToprovisioning(provisiongdata.id)">{{provisiongdata.id}}</td>        
+              <tr class="pointer-main" data-ng-repeat="provisiongdata in provisiongsystemData  | filter:filterText">
                 <td class="pointer" data-ng-click="routeToprovisioning(provisiongdata.id)">{{provisiongdata.provisioningSystem}}</td>
                 <td class="pointer" data-ng-click="routeToprovisioning(provisiongdata.id)">{{provisiongdata.commandName}}</td>
                 <td class="pointer" data-ng-click="routeToprovisioning(provisiongdata.id)">{{provisiongdata.status}}</td>
+                <td class="pointer"><a data-ng-show="PermissionService.showMenu('UPDATE_PROVISIONINGSYSTEM')" href="#/editProvisioningMapping/{{provisiongdata.id}}"
+                    data-popover="Edit Provision" data-popover-trigger="mouseenter" class="icon-edit"></a>
+                <a data-ng-show="PermissionService.showMenu('DELETE_PROVISIONINGSYSTEM')" data-ng-click="deleteProvisioning(provisiongdata.id)"
+                    data-popover="Delete Provision" data-popover-trigger="mouseenter" class="icon-remove icon-white"></a></td> 
      		 </tbody>
           </table>
          </div>
       </tab>	
       	
 
-<tab heading="Event Action" select="getEventActionMappingData()"
-	ng-show="$parent.PermissionService.showMenu('READ_EVENTACTIONMAP')">
+<tab heading="Event Action" select="getEventActionMappingData()" ng-show="$parent.PermissionService.showMenu('READ_EVENTACTIONMAP')" active="eventActionTab">
         <div class="pull-right btn-group">
-          <a ng-show="PermissionService.showMenu('CREATE_EVENTACTIONMAP')" href="#/createeventactionmapping" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
+          <a data-ng-show="PermissionService.showMenu('CREATE_EVENTACTIONMAP')" href="#/createeventactionmapping" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
         </div>
         <div class="row-fluid">
-                   <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
-                   
+            <input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.searchbar' | translate}}">
         <table class="table">
             <thead>
               <tr class="graybg">
-                <th>{{'table.hardwaremapping.id' | translate}}</th>
                 <th>{{'table.eventactionmapping.event' | translate}}</th>
                 <th>{{'table.eventactionmapping.action' | translate}}</th>
                 <th>{{'table.eventactionmapping.process' | translate}}</th>
-                <!-- <th>Mapping</th> -->
+                
                 <th></th>
                
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="data in datas  | filter:filterText">
-              <td><a href="#/vieweventactionmapping/{{data.id}}">{{data.id}}</a></td>        
+              <tr data-ng-repeat="data in datas  | filter:filterText">
                 <td><a href="#/vieweventactionmapping/{{data.id}}">{{data.eventName}}</a></td>
                 <td>{{data.actionName}}</td>
                 <td>{{data.process}}</td>
@@ -249,4 +238,16 @@
       
     </tabset>
     </div>
+    <script type="text/ng-template" id="provision.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">Delete Provision Command</h3>
+                    </div>
+                    <div class="modal-body modal-small">
+                       <h4>Are you sure?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+                    </div>
+      </script>
   </div>

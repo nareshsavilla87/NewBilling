@@ -7,7 +7,7 @@
     	 scope.inventoryGrnDatas=[];
     	 scope.qualityDatas=[];
     	 scope.statusDatas=[];
-        resourceFactory.itemDetailTemplateResource.get({grnId: routeParams.id == undefined ? "":routeParams.id} ,function(data) {
+        resourceFactory.itemDetailTemplateResource.get({grnId: routeParams.id === undefined ? "":routeParams.id} ,function(data) {
         	scope.formData = data;
             scope.inventoryGrnDatas = data.inventoryGrnDatas;
             scope.qualityDatas=data.qualityDatas;
@@ -34,9 +34,9 @@
         	this.formData.locale = $rootScope.locale.code;
         	this.formData.grnId = scope.itemDetailsData.id;//scope.grnIds.id;
         	this.formData.serialNumber = scope.itemDetailsData.serialNumber;
-        	this.formData.quality = scope.itemDetailsData.quality==undefined?'Good':scope.itemDetailsData.quality;
+        	this.formData.quality = scope.itemDetailsData.quality === undefined?'Good':scope.itemDetailsData.quality;
         	this.formData.provisioningSerialNumber = scope.itemDetailsData.provisioningSerialNumber;
-        	this.formData.status = scope.itemDetailsData.status==undefined?'New':scope.itemDetailsData.status;
+        	this.formData.status = scope.itemDetailsData.status === undefined?'New':scope.itemDetailsData.status;
         	this.formData.remarks = scope.itemDetailsData.remarks;
         	this.formData.itemMasterId = scope.itemDetailsData.itemMasterId;
             delete this.formData.purchaseDate;

@@ -37,13 +37,13 @@
         	delete scope.formData.itemPrice;
         	scope.data.unitPrice=scope.formData.unitPrice;
         	scope.data.locale=$rootScope.locale.code;
-        	//if(quantity !=undefined){
+        	
         	scope.data.quantity=quantity;
         	resourceFactory.oneTimeSaleQuantityResource.get({quantity: quantity,itemId:itemId},scope.data, function(data) {
         		scope.formData.itemId=itemId;
         		scope.formData.chargeAmount = data.totalPrice;
 	        });
-        	//}
+        
         };
      
         scope.submit = function() {
@@ -57,19 +57,26 @@
             }
 
             resourceFactory.itemSaleResource.save(scope.formData,function(data){
-//        	location.path('/viewmrn/'+data.resourceId);
+
             	if(scope.officeId == 0){
             		location.path('/inventory');
             	}else{
             		location.path('/viewoffice/'+routeParams.officeId);		
             	}
-           
 
           });
         };
     }
   });
-  mifosX.ng.application.controller('ItemSaleController', ['$scope', 'ResourceFactory', '$location','dateFilter','$routeParams','webStorage','$rootScope', mifosX.controllers.ItemSaleController]).run(function($log) {
+  mifosX.ng.application.controller('ItemSaleController', [
+    '$scope', 
+    'ResourceFactory', 
+    '$location',
+    'dateFilter',
+    '$routeParams',
+    'webStorage',
+    '$rootScope', 
+    mifosX.controllers.ItemSaleController]).run(function($log) {
     $log.info("ItemSaleController initialized");
   });
 }(mifosX.controllers || {}));

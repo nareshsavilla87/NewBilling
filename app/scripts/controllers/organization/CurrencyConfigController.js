@@ -1,12 +1,12 @@
 (function(module) {
     mifosX.controllers = _.extend(module, {
-    CurrencyConfigController: function(scope, resourceFactory, route,PermissionService,location) {
+    CurrencyConfigController: function(scope, resourceFactory, route, PermissionService, location) {
         
         scope.selectedCurrOptions = [];
         scope.allCurrOptions = [];
         scope.hideview = false;
         scope.selected = undefined;
-        scope.PermissionService=PermissionService;
+        scope.PermissionService = PermissionService;
 
         resourceFactory.currencyConfigResource.get(function(data){
             scope.selectedCurrOptions = data.selectedCurrencyOptions;
@@ -15,7 +15,7 @@
         });
 
         scope.deleteCur =  function (code){
-              for(var i=0; i<scope.selectedCurrOptions.length; i++){
+              for(var i = 0; i < scope.selectedCurrOptions.length; i++){
                   if(scope.selectedCurrOptions[i].code == code){
                     scope.selectedCurrOptions.splice(i, 1);  //removes 1 element at position i 
                     break;
@@ -26,7 +26,7 @@
         scope.addCur = function (){
           if(scope.selected != undefined && scope.selected.hasOwnProperty('code')) {
             scope.selectedCurrOptions.push(scope.selected);
-              for(var i=0; i<scope.allCurrOptions.length; i++){
+              for(var i = 0; i < scope.allCurrOptions.length; i++){
                   if(scope.allCurrOptions[i].code == scope.selected.code){
                     scope.allCurrOptions.splice(i, 1);  //removes 1 element at position i 
                     break;
@@ -39,7 +39,7 @@
         scope.submit = function () {
                 var currencies = [];
                 var curr = {};
-                for(var i=0; i < scope.selectedCurrOptions.length; i++){
+                for(var i = 0; i < scope.selectedCurrOptions.length; i++){
                     currencies.push(scope.selectedCurrOptions[i].code);
                 }
                 curr["currencies"] = currencies;
@@ -51,11 +51,18 @@
 
         scope.cancel = function() {
         	 location.path('/mappingconfig/');
-        }
+        };
 
      }
   });
-  mifosX.ng.application.controller('CurrencyConfigController', ['$scope', 'ResourceFactory', '$route','PermissionService', '$location', mifosX.controllers.CurrencyConfigController]).run(function($log) {
-    $log.info("CurrencyConfigController initialized");
+  mifosX.ng.application.controller('CurrencyConfigController', [
+      '$scope',
+      'ResourceFactory',
+      '$route',
+      'PermissionService',
+      '$location',
+      mifosX.controllers.CurrencyConfigController
+      ]).run(function($log) {
+    	  $log.info("CurrencyConfigController initialized");
   });
 }(mifosX.controllers || {}));

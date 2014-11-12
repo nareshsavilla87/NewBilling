@@ -37,6 +37,7 @@
             'ngIdle': '../bower_components/ng-idle/angular-idle.min',
             'md5': './CryptoJS/md5',
             'tmh.dynamicLocale': '../bower_components/angular-dynamic-locale/tmhDynamicLocale.min'
+           
 
         },
         shim: {
@@ -68,6 +69,7 @@
             'md5':{deps: ['jquery']},
             'ngIdle': {deps: ['angular']},
             'tmh.dynamicLocale': {deps: ['angular']},
+           
 
             'mifosX': {
                 deps: [

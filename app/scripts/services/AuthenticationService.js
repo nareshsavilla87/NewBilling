@@ -15,11 +15,11 @@
 
             	resourceFactory.configurationResource.get(function(data) {
                 	for(var i in data.globalConfiguration){
-                        if(data.globalConfiguration[i].name=="DateFormat"){
+                        if(data.globalConfiguration[i].name=="date-format"){
                         	localStorageService.add('dateformat',data.globalConfiguration[i].value);
                         	scope.dateformat = data.globalConfiguration[i].value;
                         	
-                        }if(data.globalConfiguration[i].name=="CPE_TYPE"){
+                        }if(data.globalConfiguration[i].name=="device-agrement-type"){
                         	  webStorage.add("CPE_TYPE",data.globalConfiguration[i].value);
                         }if(data.globalConfiguration[i].name=="Registration_requires_device"){
                         	  webStorage.add("Registration_requires_device",data.globalConfiguration[i].enabled);

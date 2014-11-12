@@ -106,7 +106,6 @@
             get: {method: 'GET', params: {}}
           }),
           employeeResource: defineResource(apiVer + "/staff/:staffId", {staffId:'@staffId'}, {
-            getAllEmployees: {method: 'GET', params: {}, isArray: true},
             update: { method: 'PUT' }
           }),
           globalSearch: defineResource(apiVer + "/search", {query:'@query'}, {
@@ -210,11 +209,9 @@
             }),
             
           contractResource: defineResource(apiVer + "/subscriptions/:subscriptionId", {subscriptionId:'@SubscriptionId'}, {
-              getAllContracts: {method: 'GET', params: {}, isArray: true},
               update: { method: 'PUT' }
           }),
           planResource: defineResource(apiVer + "/plans/:planId", {planId:'@planId'}, {
-                getAllPlans: {method: 'GET', params: {}, isArray: true},
                 update: { method: 'PUT' }
           }),
           planTemplateResource: defineResource(apiVer + "/plans/template", {}, {
@@ -244,14 +241,12 @@
                getAll: {method: 'GET', params: {}}
               }),
            deletePriceResource: defineResource(apiVer + "/prices/:priceId", {priceId:'@priceId'}, {
-               getAllPrices: {method: 'GET', params: {}, isArray: true},
                update: { method: 'PUT' }
            }),
            getPriceResource: defineResource(apiVer + "/prices/pricedetails/:priceId", {priceId:'@priceId'}, {
                get: {method: 'GET', params: {}},
                update: { method: 'PUT' }
            }),
-           
            updatePriceResource: defineResource(apiVer + "/prices/update/:priceId", {priceId:'@priceId'}, {
                update: { method: 'PUT' }
            }),
@@ -431,6 +426,10 @@
        transactionHistoryResource: defineResource(apiVer + "/transactionhistory/:clientId", {clientId:'@clientId'}, {
        	getTransactionHistory: {method: 'GET', params: {clientId:'@clientId'}, }
           }),
+          
+          transactionOldHistoryResource: defineResource(apiVer + "/transactionhistory/template/:clientId", {clientId:'@clientId'}, {
+             	getTransactionHistory: {method: 'GET', params: {clientId:'@clientId'}, }
+          }),
      
           serviceResource: defineResource(apiVer + "/servicemasters/:serviceId", {serviceId:"@serviceId"}, {
         	  update: {method: 'PUT'}
@@ -459,16 +458,12 @@
                     update: { method: 'PUT'}
                 }),  
                 messageTemplateResource: defineResource(apiVer + "/messages/template",{},  {
-              	  getTemplate: {method: 'GET', params: {}}
+              	  get: {method: 'GET', params: {}}
                 }),
                 messageSaveResource: defineResource(apiVer + "/messages/:messageId",{messageId:'@messageId'},  {
               	  get: {method: 'GET', params: {}},
-              	  getAllMessages: {method: 'GET', params: {}, isArray:true},
               	  update: {method: 'PUT'}
                 }),
-               /* messageResource: defineResource(apiVer + "/messages/data",{},  {
-              	  getAllMessages: {method: 'GET', params: {}, isArray:true}
-                }),*/
                 eventResource: defineResource(apiVer + "/eventmaster",{},  {
               	  get: {method: 'GET', params: {}, isArray:true }
                 }),
@@ -510,20 +505,17 @@
                 	  getAll: {method: 'GET', params: {}, isArray:true}
                 }),
                 chargecodeResource: defineResource(apiVer + "/chargecode/:chargeCodeId", {chargeCodeId:'@chargeCodeId'}, {
-              	  getAllChargeCode: {method: 'GET', params: {}, isArray: true},
                     update: { method: 'PUT' }
                 }),
                 chargecodetemplateResource: defineResource(apiVer + "/chargecode/template", {}, {
-              	  getAllchargecode: {method: 'GET', params: {}}
+              	  
                 }),
                 taxmappingResource: defineResource(apiVer + "/taxmap/:chargeCode/chargetax", {chargeCode:'@chargeCode'}, {
-              	  getAllTaxMapping: {method: 'GET', params: {}, isArray: true},
-                    update: { method: 'PUT' }
+              	  	update: { method: 'PUT' }
                 }),
                 
                 getTaxmappingResource: defineResource(apiVer + "/taxmap/:taxId", {taxId:'@taxId'}, {
-                	  get: {method: 'GET', params: {}},
-                      update: { method: 'PUT' }
+                	  update: { method: 'PUT' }
                   }),
                 
                 taxmappingtemplateResource: defineResource(apiVer + "/taxmap/template", {}, {
@@ -576,6 +568,11 @@
                      get: {method: 'GET', params: {}},
 		             update: {method: 'PUT', params: {}}
                  }),
+                 itemDetailsforDeleteResource: defineResource(apiVer + "/itemdetails/:itemId", {itemId:'@itemId'}, {
+                  	  getAlldetails: {method: 'GET', params: {}},
+                        get: {method: 'GET', params: {}},
+   		             update: {method: 'PUT', params: {}}
+                    }),
 		        itemQualityResource: defineResource(apiVer + "/itemdetails/itemquality", {}, {
                      get: {method: 'GET', params: {}}	
                  }),	
@@ -742,7 +739,6 @@
               update: { method: 'PUT'}
           }),
           hardwareMappingResource: defineResource(apiVer + "/hardwaremapping/:hardwaremapId", {hardwaremapId:'@hardwaremapId'}, {
-              get: {method: 'GET', params: {}, isArray: true},
               getDetails: {method: 'GET', params: {}},
               update: { method: 'PUT'}
           }) ,   
@@ -758,8 +754,6 @@
          	  get: {method: 'GET', params: {clientId:'@clientId'}}
            }),
          serviceMappingResource: defineResource(apiVer + "/servicemapping/:serviceMappingId", {serviceMappingId: '@serviceMappingId'}, {
-       	  getAllServiceMapping: {method: 'GET', params: {}, isArray: true},
-       	//  get: {method: 'GET', params: {}},
                update: { method: 'PUT' }
            }),
            serviceMappingtemplateResource: defineResource(apiVer + "/servicemapping/template", {}, {
@@ -800,8 +794,7 @@
            }),
 //=======
 */        provisioningtemplateMappingResource: defineResource(apiVer + "/provisioning/template/:orderNo", {orderNo: '@orderNo'}, {
-            	  get: {method: 'GET', params: {}, isArray: true}
-
+            	
            }),
            
      /*      provisioningtemplateMappingResource: defineResource(apiVer + "/provisioning/template", {}, {
@@ -824,7 +817,6 @@
               }),
             
 	       EventActionMappingResource: defineResource(apiVer + "/eventactionmapping/:id", {id:'@id'}, {
-               get: {method: 'GET', params: {}, isArray: true},
                getDetails: {method: 'GET', params: {}},
                update: { method: 'PUT'}
            }),

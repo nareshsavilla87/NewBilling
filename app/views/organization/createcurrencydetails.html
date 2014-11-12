@@ -26,8 +26,8 @@
 									<div class="controls">
 										<select id="country" ng-model="formData.country"
 											ng-options="countryData as countryData for countryData in countryDatas"
-											value="{{countryData}}">
-										</select>
+											value="{{countryData}}"><option value="">{{'label.select.one' | translate}}</option></select>
+										
 									</div>
 								</div>
 							</td>
@@ -37,8 +37,7 @@
 										'label.currency' | translate }}</label>
 									<div class="controls">
 										<select id="currency" ng-model="formData.currency" ng-options="currencydata.code as currencydata.displayLabel for currencydata in currencydatas"
-											value="{{currencydata.code}}">
-										</select>
+											value="{{currencydata.code}}"><option value="">{{'label.select.one' | translate}}</option></select>
 									</div>
 								</div>
 							</td>
@@ -51,8 +50,7 @@
 									<div class="controls">
 										<select id="baseCurrency" ng-model="formData.baseCurrency"
 											ng-options="currencydata.code as currencydata.displayLabel for currencydata in currencydatas"
-											value="{{currencydata.code}}">
-										</select>
+											value="{{currencydata.code}}"><option value="">{{'label.select.one' | translate}}</option></select>
 									</div>
 								</div>
 							</td>
@@ -75,8 +73,7 @@
 									<div class="controls">
 										<select id="status" ng-model="formData.status"
 											ng-options="currencystatus.value as currencystatus.value for currencystatus in currencystatus"
-											value="{{currencystatus.value}}">
-										</select>
+											value="{{currencystatus.value}}"><option value="">{{'label.select.one' | translate}}</option></select>
 									</div>
 								</div>
 							</td>

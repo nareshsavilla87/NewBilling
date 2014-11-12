@@ -1,6 +1,6 @@
 (function(module) {
 	mifosX.controllers = _.extend(module, {
-		EditDiscountsController : function(scope, resourceFactory, location,routeParams, dateFilter, $rootScope) {
+		EditDiscountsController : function(scope, resourceFactory, location, routeParams, dateFilter, $rootScope) {
 
 			scope.reportParameters = [];
 			scope.discountTypeDatas = [];
@@ -36,7 +36,15 @@
 			};
 		}
 	});
-	mifosX.ng.application.controller('EditDiscountsController',	[ '$scope', 'ResourceFactory', '$location', '$routeParams',	'dateFilter', '$rootScope',mifosX.controllers.EditDiscountsController ]).run(function($log) {
-				$log.info("EditDiscountsController initialized");
-			});
+	mifosX.ng.application.controller('EditDiscountsController',	[
+	    '$scope', 
+	    'ResourceFactory',
+	    '$location', 
+	    '$routeParams',	
+	    'dateFilter', 
+	    '$rootScope',
+	    mifosX.controllers.EditDiscountsController 
+	    ]).run(function($log) {
+	    	$log.info("EditDiscountsController initialized");
+	});
 }(mifosX.controllers || {}));

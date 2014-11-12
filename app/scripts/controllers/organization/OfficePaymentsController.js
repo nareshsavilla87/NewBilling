@@ -15,35 +15,40 @@
             scope.paymentTypeData=function(value){
             	
             	for(var i=0;i<scope.data.length;i++){
-            		
-            		if(scope.data[i].id==value){
-            			scope.paymentType=scope.data[i].mCodeValue;
-            		}
-            	}
-            };
+            		  if(scope.data[i].id === value){
+            			  scope.paymentType=scope.data[i].mCodeValue;
+            		    }
+            	      }
+                  };
         });
         
         scope.submit = function() {
 
           scope.flag = true;
-          this.formData.locale = $rootScope.locale.code;
-          this.formData.dateFormat = "dd MMMM yyyy";
+          scope.formData.locale = $rootScope.locale.code;
+          scope.formData.dateFormat = "dd MMMM yyyy";
       	  var paymentDate = dateFilter(scope.start.date,'dd MMMM yyyy');
-          this.formData.paymentDate= paymentDate;
-          if(scope.paymentType=='Cheque'){
-        	this.formData.isChequeSelected = true;
+      	  scope.formData.paymentDate= paymentDate;
+          if(scope.paymentType==='Cheque'){
+        	    scope.formData.isChequeSelected = true;
           }else{
-        	  delete this.formData.isChequeSelected;
+        	  delete scope.formData.isChequeSelected;
           }
-          //var res1 = validator.validateZipCode(scope.formData.receiptNo);
-        	  
-          resourceFactory.officePaymentsResource.postPayments({officeId : routeParams.officeId}, this.formData, function(data){
+          resourceFactory.officePaymentsResource.postPayments({officeId : routeParams.officeId}, scope.formData, function(){
             location.path('/viewoffice/'+routeParams.officeId);
           });
           };
     }
   });
-  mifosX.ng.application.controller('OfficePaymentsController', ['$scope', 'ResourceFactory', '$routeParams', '$location','dateFilter','webStorage','$rootScope', mifosX.controllers.OfficePaymentsController]).run(function($log) {
+  mifosX.ng.application.controller('OfficePaymentsController', [
+    '$scope', 
+    'ResourceFactory', 
+    '$routeParams', 
+    '$location',
+    'dateFilter',
+    'webStorage',
+    '$rootScope',
+    mifosX.controllers.OfficePaymentsController]).run(function($log) {
     $log.info("OfficePaymentsController initialized");
   });
 }(mifosX.controllers || {}));

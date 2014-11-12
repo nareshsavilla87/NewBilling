@@ -213,12 +213,12 @@
                                               icon :"icon-usd"
                                            },*/
                                           
-                                         {
+                                        /* {
                                              name:"button.adjustments",
                                              href:"#/adjustments",
                                              icon :"icon-adjust",
                                              ngShow : postAdjustment
-                                         },
+                                         },*/
                                          {
                                              name:"button.invoice",
                                              href:"#/clientinvoice",
@@ -761,6 +761,10 @@
   			resourceFactory.transactionHistoryResource.getTransactionHistory({clientId: routeParams.id ,offset: offset, limit: limit} , callback);
   			};
   			
+  		scope.getOldTransactionHistoryFetchFunction = function(offset, limit, callback) {
+  	  			resourceFactory.transactionOldHistoryResource.getTransactionHistory({clientId: routeParams.id ,offset: offset, limit: limit} , callback);
+  	  	   };
+  			
   		  scope.getClientDistributionFetchFunction = function(offset, limit, callback) {
     			resourceFactory.creditDistributionResource.get({clientId: routeParams.id ,offset: offset, limit: limit} , callback);
     			};
@@ -771,8 +775,16 @@
            });
     	  };
           scope.getTransactionHistory = function () {
+        	  scope.activitylogC = "active";
+       	   	  scope.oldActivitylogC = "";
           	scope.transactionhistory = paginatorService.paginate(scope.getTransactionHistoryFetchFunction, 14);
           };
+          
+          scope.getOldTransactionHistory = function () {
+        	  scope.activitylogC = "";
+        	  scope.oldActivitylogC = "active";
+            	scope.transactionhistory = paginatorService.paginate(scope.getOldTransactionHistoryFetchFunction, 14);
+            };
       
           scope.getClientDistribution =function(){
         		scope.clientDistribution = paginatorService.paginate(scope.getClientDistributionFetchFunction, 14);
@@ -784,9 +796,16 @@
 	  		
 	  		scope.searchTransactionHistory = function(filterText) {
 	  			scope.transactionhistory = paginatorService.paginate(scope.searchTransactionHistory123, 14);
-	  		}; 
+	  		};
+	  		
+	  		scope.searchOldTransactionHistory = function(filterText) {
+	  			scope.transactionhistory = paginatorService.paginate(scope.searchOldTransactionHistory, 14);
+	  		};
         
-        
+	  		 scope.searchOldTransactionHistory = function(offset, limit, callback) {
+		    	  resourceFactory.transactionHistoryResource.transactionOldHistoryResource({ clientId: routeParams.id ,
+		    		  offset: offset, limit: limit ,sqlSearch: scope.filterText } , callback); 
+		          };
         
         scope.getClientTemplate = function(templateId) {
           scope.selectedTemplate = templateId;

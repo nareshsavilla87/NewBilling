@@ -18,6 +18,7 @@
                 <th>{{ 'table.heading.country' | translate }}</th>
                 <th>{{ 'table.heading.currency' | translate }}</th>
                 <th>{{ 'table.heading.status' | translate }}</th>
+                <th>{{'table.actions' | translate}}</th>
             </tr>
         </thead>
         <tbody>
@@ -26,7 +27,11 @@
                 <td class="pointer" data-ng-click="routeTo(currencydetail.id)">{{currencydetail.id}}</td>  
                 <td class="pointer" data-ng-click="routeTo(currencydetail.id)">{{currencydetail.country}}</td>            
                 <td class="pointer" data-ng-click="routeTo(currencydetail.id)">{{currencydetail.currency}}</td> 
-                <td class="pointer" data-ng-click="routeTo(currencydetail.id)">{{currencydetail.status}}</td>                   
+                <td class="pointer" data-ng-click="routeTo(currencydetail.id)">{{currencydetail.status}}</td>
+                <td><a ng-show="PermissionService.showMenu('UPDATE_COUNTRYCURRENCY')"
+					href="#/editcurrencydetails/{{currencydetail.id}}" popover="Edit" popover-trigger="mouseenter" class="icon-edit"></a>&nbsp;
+                <a ng-show="PermissionService.showMenu('DELETE_COUNTRYCURRENCY')"
+					data-ng-click="deletemessage()" popover="Delete" popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a></td>                   
             </tr>
         </tbody>
     </table>

@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  CreateActivationController: function(scope,webStorage,routeParams, resourceFactory, location, http,filter, dateFilter,$rootScope) {
+	  CreateActivationController: function(scope,webStorage,routeParams, resourceFactory, location, http,filter,PermissionService, dateFilter,$rootScope) {
 		 
 		
 		  scope.ActivationData = {};
@@ -12,8 +12,8 @@
 		  scope.data=[];
 		  var config = webStorage.get('CPE_TYPE');
 		  scope.config=config;
-		
-          
+		  scope.PermissionService = PermissionService;
+		 
 		  
 //create client controller
           scope.offices = [];
@@ -45,7 +45,6 @@
              
             });
           };
-        
          
           scope.getStateAndCountry=function(city){
         	 
@@ -64,11 +63,17 @@
 	         
 	          
 	          if(config == "SALE"){
+	        	  if(PermissionService.showMenu('CREATE_NEWSALE')){ 
+	        		  scope.formData2.saleType='NEWSALE';
+	    		  }else if(PermissionService.showMenu('CREATE_SECONDSALE')){
+	    			  scope.formData2.saleType='SECONDSALE';
+	           }
 	        	  
 	        resourceFactory.oneTimeSaleTemplateResource.getOnetimes({clientId: routeParams.id}, function(data) {
 	        	scope.itemDatas = data.itemDatas;
 	            scope.discountMasterDatas = data.discountMasterDatas;
 	            scope.officesDatas=data.officesData;
+	            
 	            for(var i=0;i<scope.officesDatas.length;i++){
 	            	if(scope.officesDatas[i].id==1){
 	            		scope.formData2.officeId=scope.officesDatas[i].id;
@@ -91,14 +96,14 @@
 	          }
 	       
 	        scope.itemData=function(itemId,officeId){
-	        	//alert(itemId);
+	        	  scope.saleType=scope.formData2.saleType;
 	        	resourceFactory.oneTimeSaleTemplateResourceData.get({itemId: itemId}, function(data) {
-	        		
+	        	
 	        		scope.formData2=data;
 	        		scope.formData2.itemId=itemId;
 	        		scope.formData2.officeId=officeId;
 	        		scope.formData2.discountId = scope.discountMasterDatas[0].id;
-	        		
+	        		scope.formData2.saleType=scope.saleType;
 	        		scope.data.unitPrice=scope.formData2.unitPrice;
 	        		scope.data.locale=$rootScope.locale.code;
 	        		scope.data.quantity=1;
@@ -154,13 +159,10 @@
             scope.getNumber= function(num) {
             	
             	if(num == undefined){
-            		
             		  return new Array(1);   
             	}
-            
 	             return new Array(parseInt(num));   
 	         };
-	        
 	        scope.submit3 = function() {
 	        	
 	        };
@@ -288,7 +290,7 @@
 	                	
 	 	        	 this.formData2.locale = $rootScope.locale.code;
 	 	             this.formData2.dateFormat = "dd MMMM yyyy";
-	 	             this.formData2.saleType="Sale";
+	 	             //this.formData2.saleType="Sale";
 	 	            this.formData2.quantity=1;
 	 	            
 	        		this.formData2.totalPrice=scope.formData2.totalPrice;
@@ -377,7 +379,7 @@
 	
     }
   });
-  mifosX.ng.application.controller('CreateActivationController', ['$scope','webStorage', '$routeParams','ResourceFactory', '$location', '$http','$filter', 'dateFilter','$rootScope', mifosX.controllers.CreateActivationController]).run(function($log) {
+  mifosX.ng.application.controller('CreateActivationController', ['$scope','webStorage', '$routeParams','ResourceFactory', '$location', '$http','$filter','PermissionService', 'dateFilter','$rootScope', mifosX.controllers.CreateActivationController]).run(function($log) {
     $log.info("CreateActivationController initialized");
   });
 }(mifosX.controllers || {}));
