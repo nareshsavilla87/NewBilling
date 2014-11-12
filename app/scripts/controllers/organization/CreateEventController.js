@@ -4,7 +4,7 @@
 					module,
 					{
 						CreateEventController : function(scope,
-								resourceFactory, dateFilter,location,routeParams,$rootScope) {
+								resourceFactory, dateFilter, location, routeParams, $rootScope) {
 
 							scope.eventStatus = [];
 							scope.chargeData = [];
@@ -15,9 +15,9 @@
 							scope.services = [];							
 							scope.selectedServices = [];
 							scope.date = {};
-							scope.first={};
+							scope.first = {};
 							
-							scope.restrict = function() {								
+							scope.restrict = function() {						
 								for ( var i in this.allowed) {																	
 									for ( var j in scope.availableServices) {			
 									
@@ -36,7 +36,8 @@
 							scope.allow = function() {
 								for ( var i in this.restricted) {
 									for ( var j in scope.selectedServices) {
-										if (scope.selectedServices[j].id == this.restricted[i]) {
+									
+										if (scope.selectedServices[j].name == this.restricted[i]) {
 											var temp = {};
 											temp.mediaId = this.restricted[i];
 											temp.mediaTitle = scope.selectedServices[j].name;

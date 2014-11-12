@@ -1,24 +1,31 @@
-<div  ng-controller="ViewTaxMappingController">
+<div data-ng-controller="ViewTaxMappingController">
+
 	<div class="paddedbottom10">
 		<ul class="breadcrumb">
-	        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
-	        <li><a href="#/taxmapping/{{taxmapping.chargeCode}}/{{taxmapping.id}}">{{'label.managetaxmapping' | translate}}</a> <span class="divider">/</span></li>
-	        <li class="active">{{taxmapping.id}}&nbsp;&nbsp;</li>
+	    	<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+	        <li><a href="#/taxmapping/{{taxmapping.chargeCode}}/{{taxmapping.id}}">{{'label.managetaxmapping' | translate}}</a>
+	         	<span class="divider">/</span>
+	        </li>
+	        <li class="active">{{taxmapping.taxCode}}&nbsp;&nbsp;</li>
 	    </ul>
+	    
 	    <div class="pull-right">
-	      <div class="btn-group">
-	          <a ng-show="PermissionService.showMenu('UPDATE_TAXMAPPING')" href="#/edittaxmapping/{{taxmapping.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
-	    <!--      <a class="btn btn-primary"><i class="icon-trash icon-white"></i> Delete</a>     -->
-	      </div>
+	    	<div class="btn-group">
+	          <a data-ng-show="PermissionService.showMenu('UPDATE_TAXMAPPING')" href="#/edittaxmapping/{{taxmapping.id}}" class="btn btn-primary">
+	          	<i class="icon-edit icon-white"></i> {{'button.edit' | translate}}
+	         </a>
+	    	 <!-- <a class="btn btn-primary"><i class="icon-trash icon-white"></i> Delete</a>     -->
+	      	</div>
 	    </div>
 	</div>
 
 	<div class="row paddedleft">
-		<h3>{{taxmapping.id}}</h3>
-		<table width="100%">
+		<h3>{{taxmapping.taxCode}}</h3>
+		
+		<table style="width:100%;">
 			<tr>
-				<td width="20%">{{'label.chargeCode' | translate }}</td>
-				<td width="80%">{{taxmapping.chargeCode}}</td>
+				<td>{{'label.chargeCode' | translate }}</td>
+				<td>{{taxmapping.chargeCode}}</td>
 			</tr>
 			<tr>
 				<td>{{'label.taxCode' | translate }}</td>
@@ -40,8 +47,7 @@
 				<td>{{'label.taxRegion' | translate }}</td>
 				<td>{{taxmapping.taxRegion}}</td>
 			</tr>
-			
 		</table>
 	</div>
+	
 </div>
-          
