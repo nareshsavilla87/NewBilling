@@ -16,7 +16,6 @@
 			  scope.newSaleType = false;
 			  scope.secondSaleType = false;
 			  scope.deviceRentalType = false;
-			  scope.price = 0;
 			  scope.formData.dateFormat = "dd MMMM yyyy";
 			  scope.formData.locale = "en";
 			  
@@ -66,6 +65,7 @@
 	        scope.selectedSecondSale = function(){
 	        	
 	        	delete scope.formData.totalPrice;
+	        	scope.formData.totalPrice = scope.formData.unitPrice;
 	        	scope.secondSaleType = !(scope.newSaleType = scope.deviceRentalType = false);
 	        };
 	        
@@ -113,7 +113,6 @@
 	        scope.newSaleSaveBtnFun = function() { 
 	        	
 	        	scope.formData.saleType = "NEWSALE";
-	         	console.log(scope.formData.saleType); 
 	        	scope.formData.saleDate = scope.date.saleDate;
 	        	
 	        	scope.formData.serialNumber = [{
@@ -137,7 +136,6 @@
 	        	var unitPrice = scope.formData.unitPrice;
 	        	var chargeCode = scope.formData.chargeCode;
 	        	scope.formData.saleType = "SECONDSALE";
-	        	console.log(scope.formData.saleType);        	
 	        	scope.formData.saleDate = scope.date.saleDate;
 	        	scope.formData.unitPrice = parseInt(scope.formData.totalPrice);
 	        	scope.formData.chargeCode = "NONE";
@@ -164,7 +162,6 @@
 	        scope.deviceRentalSaveBtnFun = function() { 
 	        	
 	        	scope.formData.saleType = "DEVICERENTAL";
-	        	console.log(scope.formData.saleType);        	
 	        	scope.formData.saleDate = scope.date.saleDate;
 	        	
 	        	scope.formData.serialNumber = [{
