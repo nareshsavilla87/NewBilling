@@ -133,8 +133,7 @@
          </div>
       </tab>	
       	
-
-<tab heading="Event Action" select="getEventActionMappingData()" ng-show="$parent.PermissionService.showMenu('READ_EVENTACTIONMAP')" active="eventActionTab">
+ <tab heading="Event Action" select="getEventActionMappingData()" ng-show="$parent.PermissionService.showMenu('READ_EVENTACTIONMAP')" active="eventActionTab">
         <div class="pull-right btn-group">
           <a data-ng-show="PermissionService.showMenu('CREATE_EVENTACTIONMAP')" href="#/createeventactionmapping" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
         </div>
@@ -146,9 +145,7 @@
                 <th>{{'table.eventactionmapping.event' | translate}}</th>
                 <th>{{'table.eventactionmapping.action' | translate}}</th>
                 <th>{{'table.eventactionmapping.process' | translate}}</th>
-                
                 <th></th>
-               
               </tr>
             </thead>
             <tbody>
@@ -157,21 +154,19 @@
                 <td>{{data.actionName}}</td>
                 <td>{{data.process}}</td>
                 <!-- <td>{{data.isDeleted}}</td> -->
-                <td ng-show="data.isDeleted=='N'"><button type="button" class="btn btn-success flag" data-ng-click="isDeleted(data.id,data.isDeleted)"><i class="icon-flag-alt"></i></button></td>
-                <td ng-show="data.isDeleted=='Y'"><button type="button" class="btn btn-danger flag" data-ng-click="isDeleted(data.id,data.isDeleted)"><i class="icon-flag-alt"></i></button></td>
+                <td data-ng-show="data.isDeleted=='N'"><button type="button" class="btn btn-success flag" data-ng-click="isDeletedEventAction(data.id,data.isDeleted)"><i class="icon-flag-alt"></i></button></td>
+                <td data-ng-show="data.isDeleted=='Y'"><button type="button" class="btn btn-danger flag" data-ng-click="isDeletedEventAction(data.id,data.isDeleted)"><i class="icon-flag-alt"></i></button></td>
      		 </tbody>
           </table>
-      
          </div>
       </tab>
-	<tab heading="Currency Config" select="getCurrencyConfig()"
-	ng-show="$parent.PermissionService.showMenu('READ_CURRENCY')">
+      
+	<tab heading="Currency Config" select="getCurrencyConfig()" ng-show="$parent.PermissionService.showMenu('READ_CURRENCY')"  active="currencyConfigTab">
         <div class="pull-right btn-group">
-         <a ng-show="PermissionService.showMenu('UPDATE_CURRENCY')" href="#/createCurrencyMapping" class="btn btn-primary"><i class="icon-plus icon-white"></i> Edit</a>
+         <a data-ng-show="PermissionService.showMenu('UPDATE_CURRENCY')" href="#/createCurrencyMapping" class="btn btn-primary"><i class="icon-plus icon-white"></i> Edit</a>
         </div>
         <div class="row-fluid">
-                   <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
-                   
+           <input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.searchbar' | translate}}">
         <table class="table">
             <thead>
               <tr class="graybg">
@@ -180,36 +175,35 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="currency in selectedCurrOptions  | filter:filterText">
+              <tr data-ng-repeat="currency in selectedCurrOptions  | filter:filterText">
               <td>{{currency.name}}</td>
 	           <td>{{currency.code}}</td>
      		 </tbody>
           </table>
-       <div ng-show="hideview">
+       <div data-ng-show="hideview">
             <br>
-        	<input class="form-control input-xxlarge" 
-             ng-model="selected" 
-             placeholder="New Currency"
-             type="text"
-             typeahead="item as item.displayLabel for item in allCurrOptions | filter:$viewValue | limitTo:8" />&nbsp;&nbsp;<a ng-click='addCur()'><i class="icon-plus"></i></a>
+        	<input  type="text" class="form-control input-xxlarge" data-ng-model="selected" placeholder="New Currency"
+             typeahead="item as item.displayLabel for item in allCurrOptions | filter:$viewValue | limitTo:8" />&nbsp;&nbsp;
+             <a data-ng-click='addCur()'><i class="icon-plus"></i></a>
 
-         	<div ng-repeat="currency in selectedCurrOptions">
-    			<input disabled="" class="form-control input-xxlarge" placeholder={{currency.displayLabel}}} type="text"/>&nbsp;&nbsp;<a ng-click='deleteCur(currency.code)'><i class="icon-remove"></i></a>
+         	<div data-ng-repeat="currency in selectedCurrOptions">
+    			<input type="text" disabled="" class="form-control input-xxlarge" placeholder={{currency.displayLabel}}} />&nbsp;&nbsp;
+    			<a data-ng-click='deleteCur(currency.code)'><i class="icon-remove"></i></a>
             </div>
             <div class="offset5">
-                <button id="cancel" type="reset" ng-click="cancel()" class="btn">Cancel</button>
-                <button id="submit" type="submit" ng-click="submit()" class="btn btn-primary">Save</button>
+                <button id="cancel" type="reset" data-ng-click="cancel()" class="btn">Cancel</button>
+                <button id="submit" type="submit" data-ng-click="submit()" class="btn btn-primary">Save</button>
             </div>
         </div>  
          </div>
       </tab>
       
-      <tab heading="Validations" select="getEventValidationData()">
+      <tab heading="Validations" select="getEventValidationData()"  active="eventValidationTab">
         <div class="pull-right btn-group">
           <a href="#/createevenvalidation" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
         </div>
         <div class="row-fluid">
-                   <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+                   <input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.searchbar' | translate}}">
                    
         <table class="table">
             <thead>
@@ -219,17 +213,16 @@
                 <th>{{'table.eventactionmapping.process' | translate}}</th>
                 <th>Pre_Post</th>
                 <th></th>
-               
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="data in eventValidationDatas  | filter:filterText">
+              <tr data-ng-repeat="data in eventValidationDatas  | filter:filterText">
               	<td>{{data.id}}</td>        
                 <td>{{data.eventName}}</td>
                 <td>{{data.process}}</td>
                 <td>{{data.prePost}}</td>
-                <td ng-show="data.isDeleted=='N'"><button type="button" class="btn btn-success flag" data-ng-click="isDeletedForValidation(data.id,data.isDeleted)"><i class="icon-flag-alt"></i></button></td>
-                <td ng-show="data.isDeleted=='Y'"><button type="button" class="btn btn-danger flag" data-ng-click="isDeletedForValidation(data.id,data.isDeleted)"><i class="icon-flag-alt"></i></button></td>
+                <td data-ng-show="data.isDeleted=='N'"><button type="button" class="btn btn-success flag" data-ng-click="isDeletedForValidation(data.id,data.isDeleted)"><i class="icon-flag-alt"></i></button></td>
+                <td data-ng-show="data.isDeleted=='Y'"><button type="button" class="btn btn-danger flag" data-ng-click="isDeletedForValidation(data.id,data.isDeleted)"><i class="icon-flag-alt"></i></button></td>
      		 </tbody>
           </table>
       

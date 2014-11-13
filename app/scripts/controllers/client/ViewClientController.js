@@ -295,7 +295,7 @@
                       scope.scheduleorders = data;
                       
                   });
-                  resourceFactory.DataTablesResource.getAllDataTables({apptable: 'm_client'}, function (data) {
+                  resourceFactory.DataTablesResource.query({apptable: 'm_client'}, function (data) {
                       scope.clientdatatables = data;
                      
                   });
