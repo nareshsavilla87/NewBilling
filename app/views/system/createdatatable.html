@@ -17,7 +17,7 @@
           <div class="control-group">
             <label class="control-label" for="datatableName">{{ 'label.datatable.name' | translate }}<span class="required">*</span></label>
             <div class="controls">
-              <input type="text" data-ng-model="formData.datatableName" name="datatableName" required late-Validate>
+              <input type="text" data-ng-model="formData.datatableName" name="datatableName" required data-late-Validate>
                <span data-ng-show="createdatatableform.datatableName.$invalid">
                 <small class="error" data-ng-show="createdatatableform.datatableName.$error.req">Required Field</small>
                </span>
@@ -26,7 +26,7 @@
           <div class="control-group">
             <label class="control-label" for="apptableName">{{ 'label.datatable.apptableName' | translate }}<span class="required">*</span></label>
             <div class="controls">
-               <select id="apptableName" data-ng-model="formData.apptableName" name="apptableName" required>
+               <select id="apptableName" data-ng-model="formData.apptableName" name="apptableName" data-required>
                   <option style="display:none" value="">{{'label.select.apptableName' | translate}}</option>
                   <option value="m_client">{{'apptable.m.client' | translate}}</option>
                   <option value="m_office">{{'apptable.m.office' | translate}}</option>
@@ -57,8 +57,8 @@
               <a data-ng-click="addColumn()"><i class="icon-plus icon-white"></i></a>
                <span data-ng-show="createdatatableform.columnname.$invalid || columnnameerror || columntypeerror">
 	                 <small class="error" data-ng-show="createdatatableform.columnname.$error.req || columnnameerror 
-	                                                 || columntypeerror || rc.createdatatableform.attempted">{{ 'label.'+labelerror | translate }}</small>
-	                    </span>
+	                        || columntypeerror || rc.createdatatableform.attempted">{{ 'label.'+labelerror | translate }}</small>
+	           </span>
             </div>
           </div>
 
@@ -79,8 +79,8 @@
                   </thead>
                   <tbody>
                     <tr data-ng-repeat="column in columns">
-                      <td><input  data-ng-model="column.name" type="text" placeholder="{{'label.column.name' | translate}}"></td>
-                      <td><select class="input-medium" data-ng-model="column.type" required="required"  data-ng-change="updateDepenedencies($index)">
+                      <td class="paddedleftNone"><input  data-ng-model="column.name" type="text" placeholder="{{'label.column.name' | translate}}"></td>
+                      <td><select class="input-medium" data-ng-model="column.type"  data-ng-change="updateDepenedencies($index)" data-required>
                           <option style="display:none" value="">{{'label.select.columnType' | translate}}</option>
                           <option value="String">{{'datatable.column.type.string' | translate}}</option>
                           <option value="Number">{{'datatable.column.type.number' | translate}}</option>
@@ -89,24 +89,24 @@
                           <option value="Text">{{'datatable.column.type.text' | translate}}</option>
                           <option value="Dropdown">{{'datatable.column.type.dropdown' | translate}}</option>
                         </select></td>
-                      <td><input data-ng-model="column.mandatory" type="checkbox" align="center"></td>
-                      <td>
-                        <input data-ng-show="column.type == 'String'" data-ng-model="column.length" type="text" class="input-small"/>
-                      </td>
-                      <td>
-                        <select  data-ng-show="column.type == 'Dropdown'" data-ng-model="column.code"
-	                                        data-ng-options="code.name as code.name for code in codes" value="{{code.name}}"
-	                                        class="input-small control"></select></td>
-                      <td align="center"><a data-ng-click="removeColumn($index)"><i class="icon-remove icon-white"></i></a></td>
+                      <td class="center"><input data-ng-model="column.mandatory" type="checkbox"></td>
+                      <td><input type="text" class="input-small" data-ng-show="column.type == 'String'" data-ng-model="column.length"/></td>
+                      <td><select class="input-small control" data-ng-show="column.type == 'Dropdown'" data-ng-model="column.code"
+	                                        data-ng-options="code.name as code.name for code in codes"></select></td>
+                      <td class="center"><a data-ng-click="removeColumn($index)"><i class="icon-remove icon-white"></i></a></td>
                     </tr>
                   </tbody>
                 </table>
               </td>
             </tr>
+            <tr>
+            	 <td colspan="6" align="right">
+		          <div class="offset3">
+		            <a href="#/datatables"><button id="cancel" type="reset" class="btn">{{ 'label.cancel' | translate }}</button></a>
+		            <button id="submit" type="submit"  data-ng-disabled="!createdatatableform.$valid"  class="btn btn-primary">{{ 'label.save' | translate }}</button>
+		          </div>
+           		</td>
+            </tr>
           </table>
-          <div class="offset3">
-            <a href="#/datatables"><button id="cancel" type="reset" class="btn">{{ 'label.cancel' | translate }}</button></a>
-            <button id="submit" type="submit"  data-ng-disabled="!createdatatableform.$valid"  class="btn btn-primary">{{ 'label.save' | translate }}</button>
-          </div>
         </fieldset>
       </form></div>

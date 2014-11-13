@@ -52,7 +52,7 @@
               delete scope.errorDetails;
               scope.formData.multiRow = scope.formData.multiRow || false;
               scope.formData.columns = scope.columns;
-              resourceFactory.DataTablesResource.save(this.formData, function (data) {
+              resourceFactory.DataTablesResource.save(scope.formData, function (data) {
                   location.path('/viewdatatable/' + data.resourceIdentifier);
               });
           }
