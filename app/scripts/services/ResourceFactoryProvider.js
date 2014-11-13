@@ -253,16 +253,15 @@
           priceTemplateResource: defineResource(apiVer + "/prices/template", {}, {
                       get: {method: 'GET', params: {planId:'@planId'}}
            }),
-           mediaResource: defineResource(apiVer + "/assets/mediadata", {}, {
-               getAllMedia: {method: 'GET', params: {}, isArray: true},
-            
-           }),
+           mediaDetailsResource: defineResource(apiVer + "/assets/mediadata", {}, {}),
+           
+           mediaTemplateResource: defineResource(apiVer + "/assets/template", {}, {}),
+           
+           mediaLocationAttributesResource: defineResource(apiVer + "/assets/locationAttributes/:mediaId", {mediaId:'@mediaId'}, {}),
+           
            saveMediaResource: defineResource(apiVer + "/assets/:mediaId", {mediaId:'@mediaId'}, {
                getAllMedia: {method: 'GET', params: {}, isArray: true},
                        update: { method: 'PUT' }
-           }),
-           mediaTemplateResource: defineResource(apiVer + "/assets/template", {}, {
-               get: {method: 'GET', params: {}}
            }),
            mediaGameTemplateResource: defineResource(apiVer + "/assets/gamedata/template", {}, {
                get: {method: 'GET', params: {}}
@@ -291,9 +290,8 @@
         	 get: {method: 'GET', params: {}},
              update: { method: 'PUT' }
           }),
-         orderTemplateResource: defineResource(apiVer + "/orders/template", {planId:'@orderId'}, {
-           get: {method: 'GET', params: {}}
-         }),
+         orderTemplateResource: defineResource(apiVer + "/orders/template", {planId:'@orderId'}, {}),
+         
          orderResource: defineResource(apiVer + "/orders/:planId/template", {planId:'@planId'}, {
          get: {method: 'GET', params: {}},
         }),
@@ -357,9 +355,8 @@
        voucherpinResource: defineResource(apiVer + "/vouchers/:voucherId", {voucherId:'@voucherId'}, {
            getAllEmployees: {method: 'GET', params: {}, isArray: true}
          }),
-         voucherpinTemplateResource: defineResource(apiVer + "/vouchers/template", {}, {
-             get: {method: 'GET', params: {}}
-            }),
+         voucherpinTemplateResource: defineResource(apiVer + "/vouchers/template", {}, {}),
+         
          discountResource: defineResource(apiVer + "/discount/:discountId", {discountId:'@discountId'}, {
              get: {method: 'GET', params: {}, isArray: true},
          	  update: { method: 'PUT' }
@@ -434,12 +431,10 @@
           }),
      
           serviceResource: defineResource(apiVer + "/servicemasters/:serviceId", {serviceId:"@serviceId"}, {
-        	  getAllServices: {method: 'GET', params: {}, isArray: true},
         	  update: {method: 'PUT'}
             }),
-            serviceTemplateResource: defineResource(apiVer + "/servicemasters/template", {}, {
-               get: {method: 'GET', params: {}}
-              }),
+            serviceTemplateResource: defineResource(apiVer + "/servicemasters/template", {}, {}),
+            
               assignedTicketsResource: defineResource(apiVer + "/tickets/assignedTickets", {}, {
             	  get: {method: 'GET', params: {}, isArray: true},
             	  update: {method: 'PUT'}
@@ -890,12 +885,9 @@
              get: {method: 'GET', params: {}},
              update: { method: 'PUT' }
           }),
-          groupsDetailsResource: defineResource(apiVer + "/groupsdetails", {}, {
-        	  getDetails: {method: 'GET', params: {}}
-           }),
-           groupsDetailsProvisionResource: defineResource(apiVer + "/groupsdetails/provision/:groupId", {groupId:"@groupId"}, {
-         	  
-            }),
+          groupsDetailsResource: defineResource(apiVer + "/groupsdetails", {}, {}),
+          
+          groupsDetailsProvisionResource: defineResource(apiVer + "/groupsdetails/provision/:groupId", {groupId:"@groupId"}, {}),
 
           ipPoolingResource: defineResource(apiVer + "/ippooling/:id", {id: '@id'}, {
          	  get: {method: 'GET', params: {}},
@@ -999,9 +991,6 @@
             logoutResource: defineResource(apiVer + "/logout", {id:'@id'}, {
                 getAll: {method: 'GET', params: {}}
             }),
-            mediaLocationAttributesResource: defineResource(apiVer + "/assets/locationAttributes/:id", {id:'@id'}, {
-                get: {method: 'GET', params: {}}
-            }),
             provisionResource: defineResource(apiVer + "/adapter", {}, {
                 get: {method: 'GET', params: {}}
             }),
@@ -1011,6 +1000,8 @@
                 get: {method: 'GET', params: {}, isArray: true},
                 update: { method: 'PUT'}
             }),
+            
+            itemMasterDetailTemplateResource: defineResource(apiVer + "/itemdetails/serialnum", {}, {}),
            
         };
       }];

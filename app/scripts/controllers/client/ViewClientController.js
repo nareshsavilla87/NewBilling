@@ -5,7 +5,7 @@
          scope.error = {};
          scope.identitydocuments = [];
          scope.buttons = [];
-         scope.clientdocuments = [];
+         scope.clientdocuments = []
          scope.clientcarddetails = [];
          scope.staffData = {};
          scope.orders = [];
