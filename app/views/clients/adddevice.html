@@ -69,7 +69,8 @@
 					    <label class="control-label" for="serialNumber">{{'label.serialNumber' | translate }}&nbsp;<span class="required">*</span></label>
 						<div class="controls">
 							<input type="text" data-ng-model="itemDetail" name="serialNumber" data-typeahead="itemDetail as itemDetail for itemDetail in getData($viewValue)" 
-									typeahead-on-select="getItemData(itemDetail)" data-typeahead-min-length="0">
+							data-typehead-on-select="getItemData(itemDetail)" data-typeahead-min-length="0">
+
 						</div>
 					</div>	
 			      </td>

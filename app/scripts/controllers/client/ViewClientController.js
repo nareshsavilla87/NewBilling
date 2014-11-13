@@ -167,8 +167,8 @@
                     //if (data.status.value == "Active") {
                       scope.buttons = [{
 
-                      	                  name:"button.sale",
-                      	                  href:"#/addonetimesale",
+                      	                  name:"label.add.device",
+                      	                  href:"#/adddevice",
                       	                  icon:"icon-tag",
                       	                  ngShow : bookOrder
                          	            },
