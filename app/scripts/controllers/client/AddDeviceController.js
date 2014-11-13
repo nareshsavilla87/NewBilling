@@ -89,13 +89,19 @@
 						        	    	  if(i == 7)
 						        	    		  break;
 						        	      }
+						        	      if(itemDetails.length == 0){
+						        	    	  delete scope.formData.itemId;
+						        	    	  delete scope.formData.chargeCode;
+						        	    	  delete scope.formData.unitPrice;
+						        	    	  delete scope.formData.quantity;
+						        	      }
 	        	      return itemDetails;
 	        	    });
             };
 	        
-	        scope.getItemData = function(serialNum){
-	        	if(serialNum){
-		        	resourceFactory.itemMasterDetailTemplateResource.get({query : serialNum},function(data) {
+	        scope.getItemData = function(item,model,label){
+	        	if(item){
+		        	resourceFactory.itemMasterDetailTemplateResource.get({query : item},function(data) {
 		        	   if(data){
 		        		   scope.formData.itemId = data.id;
 		        		   scope.formData.chargeCode = data.chargeCode;

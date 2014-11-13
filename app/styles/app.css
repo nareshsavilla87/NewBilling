@@ -940,6 +940,10 @@ nav:hover:after{
 	display:inline;
 }
 
+.fullwidth {
+	width: 100%;
+}
+
 /*external code*/
 
 #orderMenu {
