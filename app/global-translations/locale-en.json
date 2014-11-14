@@ -179,7 +179,8 @@
   "label.edit.datatable":"Edit Datatable",
   "dialog.dataTable.title.message":"Delete Datatable",
   "validation.msg.datatable.length.not.greater.than.zero":"Please provide string length value",
-  "validation.msg.datatable.length.must.be.provided.when.type.is.String":"please give string length value",
+  "validation.msg.datatable.length.must.be.provided.when.type.is.String":"please add string length value",
+  "validation.msg.datatable.code.must.be.provided.when.type.is.Dropdown":"please select code value",
   "error.msg.parameter.unsupported":"Unsupported parameter",
 
   "#view datatable":"",
