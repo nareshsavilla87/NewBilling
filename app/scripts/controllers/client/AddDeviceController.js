@@ -64,6 +64,7 @@
 	        	
 	        	delete scope.formData.totalPrice;
 	        	delete scope.formData.discountId;
+	        	scope.formData.discountId = scope.discountId;
 	        	scope.formData.totalPrice = scope.formData.unitPrice;
 	        	scope.newSaleType = !(scope.secondSaleType = scope.deviceRentalType = false);
 	        	
@@ -81,6 +82,7 @@
 	        	scope.formData.totalPrice = 0;
 	        	delete scope.formData.discountId;
 	        	delete scope.formData.contractPeriod;
+	        	scope.formData.discountId = scope.discountId;
 	        	scope.deviceRentalType = !(scope.newSaleType = scope.secondSaleType = false);
 	        };
 	        
