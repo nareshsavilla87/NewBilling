@@ -83,7 +83,7 @@
 			};
             
             scope.searchParams = ['Leads','Create Prospect','Inventory','Create Itemdetail','Create GRN','Create MRN','Move MRN','Create Item Sale','Create Item','Create Supplier',
-                                  'Create Clients','Clients','New Activation','Tickets','System','Users','Create User','Configurations','Create SMTP',
+                                  'Create Client','Clients','New Activation','Tickets','System','Users','Create User','Configurations','Create SMTP',
                                   'View Roles','Add Role','Mapping Configurations','Create Service Mapping','Create Plan Mapping','Create Hardware Plan Mapping','Create Provisioning','Create EventAction Mapping',
                                   'Create Currency Configuration','Create Event Validation','Maker Checker Configurations','Data Table','Create DataTable','Audit Trails','Manage Reports','Create Report',
                                   'About OBS','Manage Codes','Add Code','Organization','Offices','Create Office','Contracts','Create Contract','Employees','Create Employee','Charge Code','Create Charge Code',

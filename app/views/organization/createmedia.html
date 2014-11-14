@@ -1,18 +1,105 @@
       <div>
         <ul class="breadcrumb">
-              <li><a href="#/media">{{'label.media' | translate}}</a> <span class="divider">/</span></li>
-              <li class="active">{{'label.media.createmedia' | translate}}</li>
+              <li><a href="#/mediadetails">{{'label.media.details' | translate}}</a> <span class="divider">/</span></li>
+              <li class="active">{{'label.media.addmediadetails' | translate}}</li>
           </ul>
       </div>
-      <form class="form-horizontal well" name="createmediaform" novalidate="" ng-controller="CreateMediaController" ng-submit="submit()">
-       <div class="error" ng-show="errorStatus || errorDetails">
-		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+    <form class="form-horizontal well" name="createmediaform" novalidate data-ng-controller="CreateMediaController" data-ng-submit="submit()">
+        <div class="error" data-ng-show="errorStatus || errorDetails">
+			<label>{{'label.contract.error' | translate}}</label>
+			<label data-ng-show="errorStatus">{{errorStatus}}</label>
+			<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
         <fieldset>
-          <legend>{{'label.media.newmedia' | translate}}</legend>
-<!--           <table width="100%">
+          <legend>{{'label.media.addmediadetails' | translate}}</legend>
+			<table>
+				<tr>
+					<td>
+						<div class="control-group">
+           					<label  data-ng-show="hideForGame" class="control-label" for="mediaTitle">{{ 'label.media.title' | translate }}<span class="required">*</span></label>
+           					<label  data-ng-show="!hideForGame" class="control-label" for="mediaTitle">{{ 'label.game.title' | translate }}<span class="required">*</span></label>
+           					<div class="controls">
+             						<input type="text" id="mediaTitle" data-ng-model="formData.mediaTitle">
+           					</div>
+         					</div>
+					</td>
+					
+					<td>
+						<div class="control-group">
+           					<label class="control-label" for="mediaCategoryId">{{ 'table.mediadetails.categeory' | translate }}<span class="required">*</span></label>
+	           				<div class="controls">
+	             					<select data-ng-model="formData.catageoryId" id="catageoryId"  data-ng-options="mediaCategeorydata.id as mediaCategeorydata.mCodeValue for mediaCategeorydata in mediaCategeorydatas"></select>
+	           				</div>
+         				</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="control-group">
+	          				<label class="control-label" for="contentProvider">{{ 'table.mediadetails.contentprovider' | translate }}</label>
+	          				<div class="controls">
+	           					<select  id="contentProvider" data-ng-model="formData.contentProvider" data-ng-options="contentProviderData.id as contentProviderData.mCodeValue for contentProviderData in contentProviderDatas " ></select> 
+	          				</div>
+         				</div>
+					</td>
+					
+					<td>
+						<div class="control-group">
+		    				<label class="control-label" for="cpShareValue">{{'table.mediadetails.share' | translate}}</label>
+		 					 <div class="controls">
+								<input type="text" id="cpShareValue" name="cpShareValue" data-ng-model="formData.cpShareValue"  data-ng-pattern="/^[0-9]{0,2}(\.\d{0,2})?$/" data-ng-maxlength="5"/>
+								<div data-ng-show="createmediaform.cpShareValue.$dirty && createmediaform.cpShareValue.$invalid">
+              						<span class="error" data-ng-show="createmediaform.cpShareValue.$error.pattern">Numbers below 100 only !</span>
+              						<span class="error" data-ng-show="createmediaform.cpShareValue.$error.maxlength">Exceeded max limit!</span>
+          							</div>
+							</div>
+						</div> 
+					</td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td>
+						<div class="control-group">
+          					<label class="control-label" for="medialocation">{{ 'label.media.location' | translate }}<span class="required">*</span></label>
+          					<div class="controls">
+            						<input id="location" type="text" style="width:610px;" data-ng-model="formData.location">
+          					</div>
+        				</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div data-ng-show="hideForGame">
+          					<label class="control-label" for="status">{{ 'label.media.status' | translate }}<span class="required">*</span></label>
+          					<div class="controls">
+         						<select data-ng-model="formData.status" id="status" data-ng-options="mediaStatus.value as mediaStatus.value for mediaStatus in mediaStatus"></select>
+         	 				</div>
+        				</div>
+					</td>
+				</tr>
+				<tr>
+				  <td>				
+			          <div class="offset3" align="right">
+			            <a href="#/mediadetails"><button id="cancel" type="reset" class="btn">{{ 'button.cancel' | translate }}</button></a>
+			            <button id="submit" type="submit" class="btn btn-primary">{{ 'button.save' | translate }}</button>
+			          </div>
+			       </td>
+			    </tr>
+			</table>
+        </fieldset>
+      </form>
+      
+      
+      <!-- 
+			
+				THIS IS ENHANCES TO MEDIA DETAILS SCREEN WHENEVER REQUIRED EXISTING FUNCTIONALITIES 
+				USE THE BELOW COMMENTED CODE
+				 
+			-->
+      
+      
+ <!--           <table width="100%">
           <tr>
           <td>
           	<div class="control-group">
@@ -283,91 +370,4 @@
            </fieldset> -->
 	
 	
-			<!-- 
 			
-				THIS IS ENHANCES TO MEDIA DETAILS SCREEN WHENEVER REQUIRED EXISTING FUNCTIONALITIES 
-				USE THE AVBOVE COMMENTED CODE
-				 
-			-->
-			<table>
-					<tr>
-						<td>
-							<div class="control-group">
-            					<label  ng-show="hideForGame" class="control-label" for="mediaTitle">{{ 'label.media.title' | translate }}<span class="required">*</span></label>
-            					<label  ng-show="!hideForGame" class="control-label" for="mediaTitle">{{ 'label.game.title' | translate }}<span class="required">*</span></label>
-            					<div class="controls">
-              						<input type="text" id="mediaTitle" ng-model="formData.mediaTitle">
-            					</div>
-          					</div>
-						</td>
-						
-						<td>
-							<div class="control-group">
-            				<label class="control-label" for="mediaCategoryId">{{ 'label.media.categeory' | translate }}<span class="required">*</span></label>
-            				<div class="controls">
-              					<select ng-model="formData.catageoryId" id="catageoryId"  ng-options="mediaCategeorydata.id as mediaCategeorydata.mCodeValue for mediaCategeorydata in mediaCategeorydatas" value="{{mediaCategeorydata.id}}"></select>
-            				</div>
-          					</div>
-						</td>
-					</tr>
-					<tr>
-						<!-- <td>
-							<div class="control-group" >
-            				<label class="control-label" for="eventCategory">Event Category<span class="required">*</span></label>
-            				<div class="controls">
-               					<select  id="mediatype" ng-model="formData.mediatype"   ng-options="eventCategeorydata.id as eventCategeorydata.mCodeValue for eventCategeorydata in eventCategeorydatas" value="{{mediaTypeData.id}}"></select>
-            				</div>
-          					</div>
-						</td> -->
-						<td>
-							<div class="control-group">
-            				<label class="control-label" for="contentProvider">{{ 'label.media.contentprovider' | translate }}</label>
-            				<div class="controls">
-             					<select  id="contentProvider" ng-model="formData.contentProvider" ng-options="contentProviderData.id as contentProviderData.mCodeValue for contentProviderData in contentProviderDatas " value="{{contentProviderData.mCodeValue}}"></select> 
-            				</div>
-          					</div>
-						</td>
-						
-						<td>
-							<div class="control-group">
-			    				<label class="control-label" for="cpShareValue">Share(%)</label>
-			 					 <div class="controls">
-									<input type="text" id="cpShareValue" name="cpShareValue" ng-model="formData.cpShareValue"  ng-pattern="/^[0-9]{0,2}(\.\d{0,2})?$/" ng-maxlength="5"></input>
-									<div ng-show="createmediaform.cpShareValue.$dirty && createmediaform.cpShareValue.$invalid">
-               						<span class="error" ng-show="createmediaform.cpShareValue.$error.pattern">Numbers below 100 only !</span>
-               						<span class="error" ng-show="createmediaform.cpShareValue.$error.maxlength">Exceeded max limit!</span>
-           							</div>
-								</div>
-								</div> 
-						</td>
-					</tr>
-					</table>
-					<table>
-						<tr>
-							<td>
-								<div class="control-group">
-            					<label class="control-label" for="medialocation">Media Location<span class="required">*</span></label>
-            					<div class="controls">
-              						<input type="text" style="width:610px;" ng-model="formData.location">
-            					</div>
-          						</div>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="control-group" ng-show="hideForGame">
-            					<label class="control-label" for="status">{{ 'label.media.status' | translate }}<span class="required">*</span></label>
-            					<div class="controls">
-           						<select ng-model="formData.status" id="status" ng-options="mediaStatus.value as mediaStatus.value for mediaStatus in mediaStatus" value="{{mediaStatus.value}}"></select>
-           	 					</div>
-          						</div>
-							</td>
-						</tr>
-					</table>
-								
-          <div class="offset3">
-            <a href="#/media"><button id="cancel" type="reset" class="btn">Cancel</button></a>
-            <button id="submit" type="submit" class="btn btn-primary">Save</button>
-          </div>
-        </fieldset>
-      </form>
