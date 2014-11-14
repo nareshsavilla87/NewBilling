@@ -940,6 +940,10 @@ nav:hover:after{
 	display:inline;
 }
 
+.container td .paddedleftNone {
+	padding-left: 0;
+}
+
 /*external code*/
 
 #orderMenu {
@@ -1016,6 +1020,8 @@ nav:hover:after{
 .padded-td{
     margin-left: 15px !important;
 }
+
+
 
 .view-table{
     font-weight:bold;
@@ -1187,5 +1193,6 @@ color:green;
 	background: #ffffff/*{bgColorContent}*/ ;
 	color: #222222/*{fcContent}*/;
 }
+
 
 
