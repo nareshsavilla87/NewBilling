@@ -24,15 +24,16 @@
           }
             scope.datatable = data;
         });
+        
         scope.deleteTable = function (){
             $modal.open({
                 templateUrl: 'deletetable.html',
-                controller: TableDeleteCtrl
+                controller: tableDeleteCtrl
             });
         };
-        var TableDeleteCtrl = function ($scope, $modalInstance) {
-            $scope.delete = function () {
-                resourceFactory.DataTablesResource.delete({datatablename: routeParams.tableName}, {}, function(data){
+        function tableDeleteCtrl ($scope, $modalInstance) {
+            $scope.approve = function () {
+                resourceFactory.DataTablesResource.remove({datatablename: routeParams.tableName}, {}, function(data){
                     location.path('/datatables');
                 });
                 $modalInstance.close('delete');
@@ -40,10 +41,18 @@
             $scope.cancel = function () {
                 $modalInstance.dismiss('cancel');
             };
-        };
+        }
     }
   });
-  mifosX.ng.application.controller('ViewDataTableController', ['$scope', '$routeParams','ResourceFactory', '$location','$modal','PermissionService', mifosX.controllers.ViewDataTableController]).run(function($log) {
+  mifosX.ng.application.controller('ViewDataTableController', [
+    '$scope', 
+    '$routeParams',
+    'ResourceFactory', 
+    '$location',
+    '$modal',
+    'PermissionService',
+    mifosX.controllers.ViewDataTableController
+    ]).run(function($log) {
     $log.info("ViewDataTableController initialized");
   });
 }(mifosX.controllers || {}));

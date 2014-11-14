@@ -79,7 +79,6 @@
             update: {method: 'PUT', params: {}}
           }),
           DataTablesResource: defineResource(apiVer + "/datatables/:datatablename/:entityId/:resourceId", {datatablename:'@datatablename',entityId:'@entityId', resourceId:'@resourceId'}, {
-            getAllDataTables: {method: 'GET', params: {}, isArray:true},
             getTableDetails: {method: 'GET', params: {}},
             update: {method: 'PUT'}
           }),
