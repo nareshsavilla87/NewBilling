@@ -47,13 +47,13 @@
 	  					//getting data from c_configuration for isRegister_plan and isisDeviceEnabled
 	  					  RequestSender.configurationResource.get(function(data){
 	  						  for(var i in data.globalConfiguration){
-	  							 if(data.globalConfiguration[i].name=="Register_plan"){
+	  							 if(data.globalConfiguration[i].name=="register-plan"){
 	  								  scope.isRegisteredPlan = data.globalConfiguration[i].enabled;
 	  						      }
-	  							  if(data.globalConfiguration[i].name=="Registration_requires_device"){
+	  							  if(data.globalConfiguration[i].name=="registration-requires-device"){
 	  								  scope.isDeviceEnabled = data.globalConfiguration[i].enabled;
 	  							  }
-	  							  if(data.globalConfiguration[i].name=="CPE_TYPE"){
+	  							  if(data.globalConfiguration[i].name=="device-agrement-type"){
 	  								  if(data.globalConfiguration[i].value == 'SALE')
 	  									  scope.isCPE_TYPESale = true;
 	  								  else if(data.globalConfiguration[i].value == 'OWN')

@@ -36,7 +36,18 @@
 			  
 			  scope.eventActionTab =  true;
 			  webStorage.remove('callingTab');
-       }else{
+			  
+       }else if( scope.displayTab === "currencyConfigTab"){
+			  
+			  scope.currencyConfigTab =  true;
+			  webStorage.remove('callingTab');
+			  
+        }else if( scope.displayTab === "eventValidationTab"){
+			  
+			  scope.eventValidationTab =  true;
+			  webStorage.remove('callingTab');
+      }
+       else{
 			  webStorage.remove('callingTab');
 		   }
         }
@@ -84,8 +95,8 @@
       	function  approve($scope, $modalInstance) {
       		$scope.approve = function () {
       			 resourceFactory.provisioningMappingResource.remove({provisioningId: scope.provisionId} , {} , function() {
-      				webStorage.add("callingTab", {someString: "provisioningCommandTab" }); 
-      				route.reload();
+      			    location.path('/mappingconfig');
+      			  scope.getProvisiongCommandData();
               });
               	 $modalInstance.dismiss('delete');
            };
@@ -94,6 +105,32 @@
             };
           }   
          
+      	/* eventAction  data*/
+       scope.getEventActionMappingData=function(){
+        	
+        	resourceFactory.EventActionMappingResource.query(function(data) {
+           	 scope.datas=data; 
+           });
+         };
+         
+         scope.isDeletedEventAction=function(id,value){
+       	  
+       	     resourceFactory.EventActionMappingResource.remove({id: id} , {} , function() {
+                    location.path('/mappingconfig');
+                    scope.getEventActionMappingData();
+           });
+         };
+      	
+      	
+         /* currencyconfig  data*/
+         scope.getCurrencyConfig=function(){
+         	
+        	 resourceFactory.currencyConfigResource.get(function(data){
+                 scope.selectedCurrOptions = data.selectedCurrencyOptions;
+                 scope.allCurrOptions = data.currencyOptions;
+             });
+          };	
+      	
         
         scope.submit = function () {
             var currencies = [];
@@ -133,37 +170,14 @@
           scope.selected = undefined;
         };
         
-	   scope.getEventActionMappingData=function(){
-        	
-        	resourceFactory.EventActionMappingResource.query(function(data) {
-           	 scope.datas=data; 
-           });
-        	
-        };
-        
+	 
+        /*event validation*/
         scope.getEventValidationData=function(){
         	
         	resourceFactory.EventValidationResource.get(function(data) {
            	 scope.eventValidationDatas=data; 
            });
         };
-        
-        scope.getCurrencyConfig=function(){
-            	
-            	 resourceFactory.currencyConfigResource.get(function(data){
-                     scope.selectedCurrOptions = data.selectedCurrencyOptions;
-                     scope.allCurrOptions = data.currencyOptions;
-                 });
-        };
-        
-            
-          scope.isDeleted=function(id,value){
-        	  
-        	  resourceFactory.EventActionMappingResource.remove({id: id} , {} , function() {
-                  location.path('/mappingconfig');
-                  scope.getEventActionMappingData();
-            });
-          };
           
           scope.isDeletedForValidation=function(id,value){
         	  
@@ -173,18 +187,20 @@
             });
           };
           
+          /*route to different view locations */         
           scope.routeToservice = function(id){
         		location.path('/viewServiceMapping/'+ id);
             };
+          scope.routeToplanmapping = function(id){
+                location.path('/viewplanmapping/'+ id);
+           };
           scope.routeTohardware = function(id){
              location.path('/viewhardwareplanmapping/'+ id);
           };
           scope.routeToprovisioning = function(id){
               location.path('/viewprovisioningmapping/'+ id);
           };
-          scope.routeToplanmapping = function(id){
-               location.path('/viewplanmapping/'+ id);
-          };
+          
     }
   });
   mifosX.ng.application.controller('MappingController', [

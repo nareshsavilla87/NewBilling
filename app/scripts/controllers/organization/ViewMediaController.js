@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  ViewMediaDetailsController: function(scope, routeParams , location,resourceFactory,PermissionService ) {
+	  ViewMediaDetailsController: function(scope, routeParams , location,resourceFactory,PermissionService,$modal ) {
         scope.media = [];
         scope.mediaDetails = [];
         scope.PermissionService = PermissionService;
@@ -29,9 +29,26 @@
         });
 
         scope.deletemedia = function (){
-            resourceFactory.saveMediaResource.remove({mediaId: routeParams.id} , {} , function() {
-                  location.path('/mediadetails');
-            });
+        	
+        	$modal.open({
+				 templateUrl: 'deletemedia.html',
+				 controller: deleteMediaController,
+				 resolve:{}
+			 });
+          };
+          
+          function deleteMediaController($scope, $modalInstance) {
+        	  	
+        	  $scope.approveDeleteMedia = function () {
+        		  
+        		  resourceFactory.saveMediaResource.remove({mediaId: routeParams.id} , {} , function() {
+        			  $modalInstance.close('delete');
+                      location.path('/mediadetails');
+                });
+              };
+              $scope.cancel = function () {
+                  $modalInstance.dismiss('cancel');
+              };
           };
     
     }
@@ -42,6 +59,7 @@
   	      '$location',
   	      'ResourceFactory',
   	      'PermissionService', 
+  	      '$modal', 
   	      mifosX.controllers.ViewMediaDetailsController]).run(function($log) {
     $log.info("ViewMediaDetailsController initialized");
   });

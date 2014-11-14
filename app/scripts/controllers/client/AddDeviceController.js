@@ -49,11 +49,13 @@
 		            }
 		            
 		            scope.discountMasterDatas = data.discountMasterDatas;
+
 		            for(var i in scope.discountMasterDatas){
 		                if(scope.discountMasterDatas[i].discountCode.toLowerCase() == "none"){
 		                 scope.discountId = scope.discountMasterDatas[i].id; 
 		                }
 		               }
+
 		            scope.itemDatas = data.itemDatas;
 		            scope.contractPeriods = data.contractPeriods;
 		        }); 
@@ -97,6 +99,7 @@
 						        	    	  if(i == 7)
 						        	    		  break;
 						        	      }
+
 						        	    if(itemDetails.length == 0){
 						        	    	delete scope.formData.itemId;
 						        	    	delete scope.formData.chargeCode;
@@ -112,6 +115,7 @@
 	        		var serialNum = item || model || label;
 	        		
 		        	resourceFactory.itemMasterDetailTemplateResource.get({query : serialNum},function(data) {
+
 		        	   if(data){
 		        		   scope.formData.itemId = data.id;
 		        		   scope.formData.chargeCode = data.chargeCode;

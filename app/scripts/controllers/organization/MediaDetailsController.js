@@ -159,6 +159,30 @@
   	  				    $modalInstance.dismiss('cancel');
   	  				};
   	  			};
+  	  			
+  	  		scope.deletemedia = function (mediaId){
+  	        	
+  	  			scope.mediaId = mediaId;
+  	        	$modal.open({
+  					 templateUrl: 'deletemedia.html',
+  					 controller: deleteMediaController,
+  					 resolve:{}
+  				 });
+  	          };
+  	          
+  	          function deleteMediaController($scope, $modalInstance) {
+  	        	  	
+  	        	  $scope.approveDeleteMedia = function () {
+  	        		  
+  	        		  resourceFactory.saveMediaResource.remove({mediaId: scope.mediaId} , {} , function() {
+  	        			  $modalInstance.close('delete');
+  	        			  route.reload();
+  	                });
+  	              };
+  	              $scope.cancel = function () {
+  	                  $modalInstance.dismiss('cancel');
+  	              };
+  	          };
 
   				        
     }

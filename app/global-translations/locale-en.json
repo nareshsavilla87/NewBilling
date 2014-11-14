@@ -103,7 +103,7 @@
   "label.maximum":"Maximum",
   "label.multiplesof":"Currency in multiples of:",
   "label.dueon":"Due on",
-  "placeholder.searchbar":"Enter text to search",
+  "placeholder.searchbar":"Enter text to Search#",
   
   "label.fromdate":"From date",
   "label.todate":"To date",
@@ -177,6 +177,7 @@
   "table.heading.associatedwith":"Associated With",
   "button.createdatatable":"Create Datatable",
   "label.edit.datatable":"Edit Datatable",
+  "dialog.dataTable.title.message":"Delete Datatable",
   "validation.msg.datatable.length.not.greater.than.zero":"Please provide string length value",
   "validation.msg.datatable.length.must.be.provided.when.type.is.String":"please give string length value",
   "error.msg.parameter.unsupported":"Unsupported parameter",
@@ -710,12 +711,14 @@
   "label.media.nickname"				: "Nick Name",
   "label.media.image"					: "Image",
   
-  "label.media.createmedia"				: "Add Media",
+  "label.media.addmediadetails"			: "Add Media Details",
   "label.media.edimedia"				: "Edit Media Details",
   "label.media.newmedia"				: "New Media Details",
   "label.media.captionvalue"			: "Caption value",
   "label.media.nickname"				: "Nick Name",
   "label.media.image"					: "image",
+  "label.media.location"				: "Media Location",
+  "label.delete.mediadetails"			: "Delete Media Details",
 
   "placehoder.mediadetails.searchbar" 	:  "Enter text to search",
   

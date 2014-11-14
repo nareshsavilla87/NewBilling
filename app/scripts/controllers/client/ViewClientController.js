@@ -5,7 +5,7 @@
          scope.error = {};
          scope.identitydocuments = [];
          scope.buttons = [];
-         scope.clientdocuments = []
+         scope.clientdocuments = [];
          scope.clientcarddetails = [];
          scope.staffData = {};
          scope.orders = [];
@@ -295,7 +295,7 @@
                       scope.scheduleorders = data;
                       
                   });
-                  resourceFactory.DataTablesResource.getAllDataTables({apptable: 'm_client'}, function (data) {
+                  resourceFactory.DataTablesResource.query({apptable: 'm_client'}, function (data) {
                       scope.clientdatatables = data;
                      
                   });
@@ -783,7 +783,7 @@
           scope.getOldTransactionHistory = function () {
         	  scope.activitylogC = "";
         	  scope.oldActivitylogC = "active";
-            	scope.transactionhistory = paginatorService.paginate(scope.getOldTransactionHistoryFetchFunction, 14);
+            	scope.transactionhistoryOld = paginatorService.paginate(scope.getOldTransactionHistoryFetchFunction, 14);
             };
       
           scope.getClientDistribution =function(){
