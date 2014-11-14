@@ -48,6 +48,13 @@
 		            }
 		            
 		            scope.discountMasterDatas = data.discountMasterDatas;
+		            
+		            for(var i in scope.discountMasterDatas){
+		            	if(scope.discountMasterDatas[i].discountCode.toLowerCase() == "none"){
+		            		scope.discountId = scope.discountMasterDatas[i].id; 
+		            	}
+		            }
+		            
 		            scope.itemDatas = data.itemDatas;
 		            scope.contractPeriods = data.contractPeriods;
 		        }); 
@@ -57,6 +64,7 @@
 	        	
 	        	delete scope.formData.totalPrice;
 	        	delete scope.formData.discountId;
+	        	scope.formData.discountId = scope.discountId;
 	        	scope.formData.totalPrice = scope.formData.unitPrice;
 	        	scope.newSaleType = !(scope.secondSaleType = scope.deviceRentalType = false);
 	        	
@@ -74,6 +82,7 @@
 	        	scope.formData.totalPrice = 0;
 	        	delete scope.formData.discountId;
 	        	delete scope.formData.contractPeriod;
+	        	scope.formData.discountId = scope.discountId;
 	        	scope.deviceRentalType = !(scope.newSaleType = scope.secondSaleType = false);
 	        };
 	        
@@ -89,13 +98,23 @@
 						        	    	  if(i == 7)
 						        	    		  break;
 						        	      }
+
+						        	    if(itemDetails.length == 0){
+						        	    	delete scope.formData.itemId;
+						        	    	delete scope.formData.chargeCode;
+						        	    	delete scope.formData.unitPrice;
+						        	    	delete scope.formData.quantity;
+						        	    }
 	        	      return itemDetails;
 	        	    });
             };
 	        
-	        scope.getItemData = function(serialNum){
-	        	if(serialNum){
+	        scope.getItemData = function(item,model,label){
+	        	if(item || model || label){
+	        		var serialNum = item || model || label;
+	        		
 		        	resourceFactory.itemMasterDetailTemplateResource.get({query : serialNum},function(data) {
+
 		        	   if(data){
 		        		   scope.formData.itemId = data.id;
 		        		   scope.formData.chargeCode = data.chargeCode;
@@ -126,7 +145,7 @@
 	        	
 	          resourceFactory.oneTimeSaleResource.save({clientId:scope.clientId,devicesaleTpye:scope.formData.saleType},scope.formData,function(data){
 	        	  webStorage.add("callingTab", {someString: "Sale" });
-	            	 location.path('/viewclient/' + routeParams.id);
+	            	 location.path('/viewclient/' + routeParams.clientId);
 	          });
 	        	
 	        };
@@ -139,6 +158,7 @@
 	        	scope.formData.saleDate = scope.date.saleDate;
 	        	scope.formData.unitPrice = parseInt(scope.formData.totalPrice);
 	        	scope.formData.chargeCode = "NONE";
+	        	scope.formData.discountId = scope.discountId;
 	        	
 	        	scope.formData.serialNumber = [{
 									        		serialNumber 	: scope.itemDetail,
@@ -151,7 +171,7 @@
 	        	
 	        	 resourceFactory.oneTimeSaleResource.save({clientId:scope.clientId,devicesaleTpye:scope.formData.saleType},scope.formData,function(data){
 	        		 webStorage.add("callingTab", {someString: "Sale" });
-	            	 location.path('/viewclient/' + routeParams.id);
+	            	 location.path('/viewclient/' + routeParams.clientId);
 	          	},function(errorData){
 	          		scope.formData.unitPrice = unitPrice;
 	          		scope.formData.chargeCode = chargeCode;
@@ -175,7 +195,7 @@
 	        	
 	        	resourceFactory.oneTimeSaleResource.save({clientId:scope.clientId,devicesaleTpye:scope.formData.saleType},scope.formData,function(data){
 	        		webStorage.add("callingTab", {someString: "Sale" });
-	        		location.path('/viewclient/' + routeParams.id);
+	        		location.path('/viewclient/' + routeParams.clientId);
 	        	});
 	        	
 	        };

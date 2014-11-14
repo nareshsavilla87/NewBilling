@@ -712,12 +712,14 @@
   "label.media.nickname"				: "Nick Name",
   "label.media.image"					: "Image",
   
-  "label.media.createmedia"				: "Add Media",
+  "label.media.addmediadetails"			: "Add Media Details",
   "label.media.edimedia"				: "Edit Media Details",
   "label.media.newmedia"				: "New Media Details",
   "label.media.captionvalue"			: "Caption value",
   "label.media.nickname"				: "Nick Name",
   "label.media.image"					: "image",
+  "label.media.location"				: "Media Location",
+  "label.delete.mediadetails"			: "Delete Media Details",
 
   "placehoder.mediadetails.searchbar" 	:  "Enter text to search",
   

@@ -60,7 +60,7 @@
 			  scope.formData2 = {};
 	          scope.data={};
 	          scope.maxDate = new Date();
-	         
+	          
 	          
 	          if(config == "SALE"){
 	        	  if(PermissionService.showMenu('CREATE_NEWSALE')){ 
