@@ -5,7 +5,7 @@
          scope.error = {};
          scope.identitydocuments = [];
          scope.buttons = [];
-         scope.clientdocuments = []
+         scope.clientdocuments = [];
          scope.clientcarddetails = [];
          scope.staffData = {};
          scope.orders = [];
@@ -783,7 +783,7 @@
           scope.getOldTransactionHistory = function () {
         	  scope.activitylogC = "";
         	  scope.oldActivitylogC = "active";
-            	scope.transactionhistory = paginatorService.paginate(scope.getOldTransactionHistoryFetchFunction, 14);
+            	scope.transactionhistoryOld = paginatorService.paginate(scope.getOldTransactionHistoryFetchFunction, 14);
             };
       
           scope.getClientDistribution =function(){
