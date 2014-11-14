@@ -48,6 +48,13 @@
 		            }
 		            
 		            scope.discountMasterDatas = data.discountMasterDatas;
+		            
+		            for(var i in scope.discountMasterDatas){
+		            	if(scope.discountMasterDatas[i].discountCode.toLowerCase() == "none"){
+		            		scope.discountId = scope.discountMasterDatas[i].id; 
+		            	}
+		            }
+		            
 		            scope.itemDatas = data.itemDatas;
 		            scope.contractPeriods = data.contractPeriods;
 		        }); 
@@ -149,6 +156,7 @@
 	        	scope.formData.saleDate = scope.date.saleDate;
 	        	scope.formData.unitPrice = parseInt(scope.formData.totalPrice);
 	        	scope.formData.chargeCode = "NONE";
+	        	scope.formData.discountId = scope.discountId;
 	        	
 	        	scope.formData.serialNumber = [{
 									        		serialNumber 	: scope.itemDetail,
