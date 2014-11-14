@@ -38,6 +38,7 @@
 			        }
 		  		}
 		        
+			  
 			resourceFactory.oneTimeSaleTemplateResource.get(function(data) {
 		            scope.offices = data.officesData;
 		            
@@ -48,6 +49,11 @@
 		            }
 		            
 		            scope.discountMasterDatas = data.discountMasterDatas;
+		            for(var i in scope.discountMasterDatas){
+		                if(scope.discountMasterDatas[i].discountCode.toLowerCase() == "none"){
+		                 scope.discountId = scope.discountMasterDatas[i].id; 
+		                }
+		               }
 		            scope.itemDatas = data.itemDatas;
 		            scope.contractPeriods = data.contractPeriods;
 		        }); 
@@ -57,6 +63,7 @@
 	        	
 	        	delete scope.formData.totalPrice;
 	        	delete scope.formData.discountId;
+	        	scope.formData.discountId = scope.discountId;
 	        	scope.formData.totalPrice = scope.formData.unitPrice;
 	        	scope.newSaleType = !(scope.secondSaleType = scope.deviceRentalType = false);
 	        	
@@ -74,6 +81,7 @@
 	        	scope.formData.totalPrice = 0;
 	        	delete scope.formData.discountId;
 	        	delete scope.formData.contractPeriod;
+	        	scope.formData.discountId = scope.discountId;
 	        	scope.deviceRentalType = !(scope.newSaleType = scope.secondSaleType = false);
 	        };
 	        
@@ -147,6 +155,7 @@
 	        	scope.formData.saleDate = scope.date.saleDate;
 	        	scope.formData.unitPrice = parseInt(scope.formData.totalPrice);
 	        	scope.formData.chargeCode = "NONE";
+	        	scope.formData.discountId = scope.discountId;
 	        	
 	        	scope.formData.serialNumber = [{
 									        		serialNumber 	: scope.itemDetail,
