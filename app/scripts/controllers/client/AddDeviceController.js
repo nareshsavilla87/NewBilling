@@ -89,12 +89,20 @@
 						        	    	  if(i == 7)
 						        	    		  break;
 						        	      }
+						        	    if(itemDetails.length == 0){
+						        	    	delete scope.formData.itemId;
+						        	    	delete scope.formData.chargeCode;
+						        	    	delete scope.formData.unitPrice;
+						        	    	delete scope.formData.quantity;
+						        	    }
 	        	      return itemDetails;
 	        	    });
             };
 	        
-	        scope.getItemData = function(serialNum){
-	        	if(serialNum){
+	        scope.getItemData = function(item,model,label){
+	        	if(item || model || label){
+	        		var serialNum = item || model || label;
+	        		
 		        	resourceFactory.itemMasterDetailTemplateResource.get({query : serialNum},function(data) {
 		        	   if(data){
 		        		   scope.formData.itemId = data.id;
@@ -126,7 +134,7 @@
 	        	
 	          resourceFactory.oneTimeSaleResource.save({clientId:scope.clientId,devicesaleTpye:scope.formData.saleType},scope.formData,function(data){
 	        	  webStorage.add("callingTab", {someString: "Sale" });
-	            	 location.path('/viewclient/' + routeParams.id);
+	            	 location.path('/viewclient/' + routeParams.clientId);
 	          });
 	        	
 	        };
@@ -151,7 +159,7 @@
 	        	
 	        	 resourceFactory.oneTimeSaleResource.save({clientId:scope.clientId,devicesaleTpye:scope.formData.saleType},scope.formData,function(data){
 	        		 webStorage.add("callingTab", {someString: "Sale" });
-	            	 location.path('/viewclient/' + routeParams.id);
+	            	 location.path('/viewclient/' + routeParams.clientId);
 	          	},function(errorData){
 	          		scope.formData.unitPrice = unitPrice;
 	          		scope.formData.chargeCode = chargeCode;
@@ -175,7 +183,7 @@
 	        	
 	        	resourceFactory.oneTimeSaleResource.save({clientId:scope.clientId,devicesaleTpye:scope.formData.saleType},scope.formData,function(data){
 	        		webStorage.add("callingTab", {someString: "Sale" });
-	        		location.path('/viewclient/' + routeParams.id);
+	        		location.path('/viewclient/' + routeParams.clientId);
 	        	});
 	        	
 	        };

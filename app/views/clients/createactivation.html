@@ -1,9 +1,11 @@
      <form name="createclientform" novalidate="" class="form-horizontal well" ng-controller="CreateActivationController" ng-submit="submit4()">
        
-        <div class="error" ng-show="errorStatus || errorDetails">
-		<label>{{'label.error' | translate}}</label>
+         <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
 		<label ng-show="errorStatus">{{errorStatus}}</label>
 		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+
 	</div>
      
         <fieldset>
