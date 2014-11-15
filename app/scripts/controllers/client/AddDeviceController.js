@@ -38,6 +38,7 @@
 			        }
 		  		}
 		        
+			  
 			resourceFactory.oneTimeSaleTemplateResource.get(function(data) {
 		            scope.offices = data.officesData;
 		            
@@ -48,13 +49,13 @@
 		            }
 		            
 		            scope.discountMasterDatas = data.discountMasterDatas;
-		            
+
 		            for(var i in scope.discountMasterDatas){
-		            	if(scope.discountMasterDatas[i].discountCode.toLowerCase() == "none"){
-		            		scope.discountId = scope.discountMasterDatas[i].id; 
-		            	}
-		            }
-		            
+		                if(scope.discountMasterDatas[i].discountCode.toLowerCase() == "none"){
+		                 scope.discountId = scope.discountMasterDatas[i].id; 
+		                }
+		               }
+
 		            scope.itemDatas = data.itemDatas;
 		            scope.contractPeriods = data.contractPeriods;
 		        }); 
