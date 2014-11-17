@@ -280,7 +280,7 @@
       scope.getAllProvisioningDetails = function (orderNo) {
           
           
-          resourceFactory.provisioningtemplateMappingResource.get({orderNo:orderNo} , function(data) {
+          resourceFactory.provisioningtemplateMappingResource.query({orderNo:orderNo} , function(data) {
               scope.provisioningdatas = data;
               scope.sentMessagesData = [];
               for(var i in data){
