@@ -1,4 +1,4 @@
-    <div data-ng-controller="EditPlanMappingController">
+<div  data-ng-controller="EditPlanMappingController">
       <div>
         <ul class="breadcrumb">
           <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
@@ -15,24 +15,28 @@
       <form class="form-horizontal well" data-ng-submit="submit()">
         <fieldset>
           <legend>Edit Plan Mapping</legend>   
-          
+         <table>
+         <tr><td>
           <div class="control-group">
             <label class="control-label" for="planCode">{{'label.planCode' | translate }}&nbsp;<span class="required">*</span></label>
             <div class="controls">
               <select id="planId" data-ng-model="formData.planId"  data-ng-options="pc.id as pc.planCode for pc in planCodes">
-              <option value="">{{'label.select.one' | translate}}</option>
-              </select>
+              <option value="">{{'label.select.one' | translate}}</option></select>
             </div>
           </div>
+          </td></tr>
           
-          <div class="control-group">
+           <tr><td>
+           <div class="control-group">
             <label class="control-label" for="planIdentification">{{'label.planIdentification' | translate }}&nbsp;<span class="required">*</span></label>
             <div class="controls">
               <input type="text" id="planIdentification" data-ng-model="formData.planIdentification">
             </div>
           </div>
+          </td></tr>
          
-         <div class="control-group">
+         <tr><td>
+          <div class="control-group">
             <label class="control-label" for="status">{{'label.status' | translate }}&nbsp;<span class="required">*</span></label>
             <div class="controls">
                  <select id="status" data-ng-model="formData.planStatus"  data-ng-options="statusData.value as statusData.value for statusData in statusDatas">        
@@ -40,18 +44,20 @@
               </select>
             </div>
           </div>
+          </td></tr>
           
-          <div class="control-group">
+          <tr><td>
+           <div class="control-group">
             <label class="control-label" for="image">{{'label.image' | translate }}</label>
             <div class="controls">
               <input type="text" id="image" data-ng-model="formData.image">
             </div>
           </div>
+          </td></tr>
          
-          <div class="offset3">
+           <tr align="right"><td>
             <a href="#/viewplanmapping/{{planMappingId}}"><button id="cancel" type="reset" class="btn">{{'label.cancel' | translate}}</button></a>
             <button id="submit" type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
-          </div>
-        </fieldset>
-      </form>
-    </div>
+          </td></tr>
+          </table>
+       </fieldset></form></div>

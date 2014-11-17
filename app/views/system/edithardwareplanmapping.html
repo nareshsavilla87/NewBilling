@@ -16,29 +16,28 @@
 	    
         <fieldset>
         	<legend>{{'label.edithardwareplan' | translate}}</legend>
-			
+			<table>
+		   <tr><td>
 			<div class="control-group">
             	<label class="control-label" for="planCode">{{ 'label.plancode' | translate }}</label>
             	<div class="controls">
              		<select data-ng-model="formData.planCode"  data-ng-options="planData.planCode as planData.planDescription for planData in planDatas">
              		</select>
             	</div>
-          	</div>
-          						
-          	<div class="control-group">
+          	</div></td></tr>
+          	 
+          <tr><td>	<div class="control-group">
             	<label class="control-label" for="itemCode">{{ 'label.itemCode' | translate }}</label>
             	<div class="controls">
              		<select data-ng-model="formData.itemCode" data-ng-options="itemData.itemCode as itemData.itemDescription for itemData in itemDatas">
              		</select>
             	</div>
-          	</div>
-							
+          	</div></td></tr>
   			
-            <div class="offset3">
+            <tr align="right"><td>
             	<a href="#/viewhardwareplanmapping/{{hardwareId}}"><button id="cancel" type="reset" class="btn">{{'label.cancel' | translate}}</button></a>
             	<button type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
-          	</div>
-          
+         </td></tr></table>
         </fieldset>
       </form>
 </div>

@@ -14,7 +14,8 @@
       <form class="form-horizontal well" data-ng-submit="submit()">
         <fieldset>
           <legend>Create Plan Mapping</legend>
-          
+          <table>
+         <tr><td>
            <div class="control-group">
             <label class="control-label" for="planCodes">{{'label.planCode' | translate }}&nbsp;<span class="required">*</span></label>
             <div class="controls">
@@ -22,15 +23,19 @@
               <option value="">{{'label.select.one' | translate}}</option>
               </select>
             </div>
-          </div>
-          
+           </div>
+          </td></tr>
+           
+          <tr><td>
           <div class="control-group">
             <label class="control-label" for="planIdentification">{{'label.planIdentification' | translate }}&nbsp;<span class="required">*</span></label>
             <div class="controls">
               <input type="text" id="planIdentification" data-ng-model="formData.planIdentification">           
             </div>
           </div>
-
+        </td></tr>
+        
+      <tr><td>
           <div class="control-group">
             <label class="control-label" for="status">{{'label.status' | translate }}&nbsp;<span class="required">*</span></label>
             <div class="controls">
@@ -39,18 +44,21 @@
               </select>
             </div>
           </div>
+          </td></tr>
+          
+     <tr><td>
           <div class="control-group">
             <label class="control-label" for="image">{{'label.image' | translate }}</label>
             <div class="controls">
               <input type="text" id="image" data-ng-model="formData.image">
             </div>
           </div>
-         
-          <div class="offset3">
+          </td></tr>
+          
+      <tr align="right"><td>
             <a href="#/mappingconfig"><button id="cancel" type="reset" class="btn" data-ng-click="reset123()">{{'button.cancel'| translate}}</button></a>
             <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
-          </div>
-          
+         </td></tr> </table>
         </fieldset>
       </form>
 </div>
