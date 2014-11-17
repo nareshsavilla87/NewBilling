@@ -912,6 +912,9 @@
       }) 
       .when('/provision',{
         templateUrl: 'views/provision.html'
+      })
+      .when('/paymentgatewayconfig', {
+        templateUrl: 'views/administration/paymentgatewayconfig.html'
       });
       
     
