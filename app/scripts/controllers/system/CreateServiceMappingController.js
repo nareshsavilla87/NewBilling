@@ -13,7 +13,6 @@
             scope.serviceParameters=data.serviceParameters;
             scope.categories=data.categories;
             scope.subCategories=data.subCategories;
-          
         
         });
         
@@ -28,20 +27,24 @@
 
            };  
         scope.submit = function() {
+        	
         	delete this.formData.serviceCodeData;
         	delete this.formData.statusData;
         	delete this.formData.serviceParameters;
         	delete this.formData.categories;
         	delete this.formData.subCategories;
-        	//scope.formData.serviceId=scope.formData.id;
-  	
-            resourceFactory.serviceMappingResource.save(this.formData,function(data){
+        	
+            resourceFactory.serviceMappingResource.save(scope.formData,function(data){
             		location.path('/viewServiceMapping/' + data.resourceId);
           });
         };
     }
   });
-  mifosX.ng.application.controller('CreateServiceMappingController', ['$scope', 'ResourceFactory', '$location', mifosX.controllers.CreateServiceMappingController]).run(function($log) {
+  mifosX.ng.application.controller('CreateServiceMappingController', [
+    '$scope', 
+    'ResourceFactory', 
+    '$location', 
+    mifosX.controllers.CreateServiceMappingController]).run(function($log) {
     $log.info("CreateServiceMappingController initialized");
   });
 }(mifosX.controllers || {}));

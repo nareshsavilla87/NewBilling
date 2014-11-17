@@ -414,8 +414,8 @@
       .when('/editprice/:id', {
           templateUrl: 'views/organization/editprice.html'
       })
-      .when('/media', {
-          templateUrl: 'views/organization/media.html'
+      .when('/mediadetails', {
+          templateUrl: 'views/organization/mediadetails.html'
       })
       .when('/createMedia', {
           templateUrl: 'views/organization/createmedia.html'
@@ -433,7 +433,7 @@
           templateUrl: 'views/logistics/inventory/item/createitem.html'
       })
         .when('/importing', {
-        templateUrl: 'views/import/import.html'
+        templateUrl: 'views/import/datauploads.html'
       })
       .when('/uploadFile', {
         templateUrl: 'views/import/uploadfile.html'
@@ -913,10 +913,21 @@
       .when('/provision',{
         templateUrl: 'views/provision.html'
       })
+      .when('/adddevice/:clientId', {
+        templateUrl: 'views/clients/adddevice.html'
+      })
+      .when('/viewcheckerinbox/:id', {
+                templateUrl: 'views/system/viewcheckerinbox.html'
+      })
+       .when('/viewMakerCheckerTask/:commandId', {
+                templateUrl: 'views/system/viewMakerCheckerTask.html'
+      })
+      .when('/checkeractionperformed', {
+                templateUrl: 'views/system/checkerActionPerformed.html'
+      })
       .when('/paymentgatewayconfig', {
         templateUrl: 'views/administration/paymentgatewayconfig.html'
       });
-      
     
     $locationProvider.html5Mode(false);
   };

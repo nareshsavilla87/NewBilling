@@ -5,39 +5,40 @@
 	</ul>
 </div>
 
-<div class="row-fluid" ng-controller="OfficesController">
+<div class="row-fluid" data-ng-controller="OfficesController">
 	<div class="pull-right">
-		<a ng-show="isTreeView" ng-click="isTreeView=!isTreeView" class="btn btn-primary"><i class="icon-list icon-white"></i>List View</a>
-		<a ng-hide="isTreeView" ng-click="isTreeView=!isTreeView" class="btn btn-primary"><i class="icon-sitemap icon-white"></i>Tree View</a>
-		<a ng-show="PermissionService.showMenu('CREATE_OFFICE')" href="#/createoffice" class="btn btn-primary"><i class="icon-plus icon-white"></i> Create Office</a>
+		<a data-ng-show="isTreeView" data-ng-click="isTreeView=!isTreeView" class="btn btn-primary"><i class="icon-list icon-white"></i>List View</a>
+		<a data-ng-hide="isTreeView" data-ng-click="isTreeView=!isTreeView" class="btn btn-primary"><i class="icon-sitemap icon-white"></i>Tree View</a>
+		<a data-ng-show="PermissionService.showMenu('CREATE_OFFICE')" href="#/createoffice" class="btn btn-primary"><i class="icon-plus icon-white"></i> Create Office</a>
 	</div>
-	<div ng-hide="isTreeView">
-		<input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name/externalId">
+	<div data-ng-hide="isTreeView">
+		<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.searchbar' | translate}}">
 		<table class="table">
 			<thead>
 				<tr class="graybg">
-					<th>Name</th>
-					<th>External Id</th>
-					<th>Parent Office</th>
-				    <th>Office Type</th>
-					<th>Opened On</th>
-					<th>Edit</th>
+					<th>{{ 'table.heading.name' | translate }}</th>
+					<th>{{ 'table.heading.office type' | translate }}</th>
+					<th>{{ 'table.heading.external id' | translate }}</th>
+					<th>{{ 'table.heading.parent office' | translate }}</th>
+					<th>{{ 'table.heading.opened on' | translate }}</th>
+					<th>{{ 'table.heading.actions' | translate }}</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="pointer-main" ng-repeat="office in offices  | filter:filterText">
+				<tr class="pointer-main" data-ng-repeat="office in offices  | filter:filterText">
 					<td class="pointer" data-ng-click="routeTo(office.id)">{{office.name}}</td>
+					<td class="pointer" data-ng-click="routeTo(office.id)">{{office.officeType}}</td>
 					<td class="pointer" data-ng-click="routeTo(office.id)">{{office.externalId}}</td>  
 					<td class="pointer" data-ng-click="routeTo(office.id)">{{office.parentName}}</td>
-					<td class="pointer" data-ng-click="routeTo(office.id)">{{office.officeType}}</td>
 					<td class="pointer" data-ng-click="routeTo(office.id)">{{office.openingDate | DateFormat}}</td>
-					<td><a href="#/editoffice/{{office.id}}" popover="Edit" popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a></td>
+					<td><a data-ng-show="PermissionService.showMenu('UPDATE_OFFICE')"
+					href="#/editoffice/{{office.id}}" data-popover="Edit Office" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-	<div ng-show="isTreeView">
-		<div
+	<div data-ng-show="isTreeView">
+	<div
 		data-angular-treeview="true"
 		data-tree-id="treeview"
 		data-tree-model="treedata"

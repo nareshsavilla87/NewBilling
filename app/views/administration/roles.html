@@ -14,12 +14,14 @@
       <tr class="graybg">
         <th>{{'table.heading.name' | translate}}</th>
         <th>{{'table.heading.description' | translate}}</th>
+        <th>{{'table.actions' | translate}}</th>
       </tr>
     </thead>
     <tbody>
       <tr class="pointer-main" data-ng-repeat="role in roles">
         <td class="pointer" data-ng-click="routeTo(role.id)">{{role.name}}</td>
         <td class="pointer" data-ng-click="routeTo(role.id)">{{role.description}}</td>
+        <td><a ng-show="PermissionService.showMenu('permissions_role')" href="#/admin/role/{{role.id}}/edit" popover="Edit" popover-trigger="mouseenter" class="icon-edit"></a>&nbsp;</td>
       </tr>
     </tbody>
   </table>

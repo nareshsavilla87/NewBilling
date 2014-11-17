@@ -53,7 +53,7 @@
 	  							  if(data.globalConfiguration[i].name=="registration-requires-device"){
 	  								  scope.isDeviceEnabled = data.globalConfiguration[i].enabled;
 	  							  }
-	  							  if(data.globalConfiguration[i].name=="CPE_TYPE"){
+	  							  if(data.globalConfiguration[i].name=="device-agrement-type"){
 	  								  if(data.globalConfiguration[i].value == 'SALE')
 	  									  scope.isCPE_TYPESale = true;
 	  								  else if(data.globalConfiguration[i].value == 'OWN')
@@ -78,6 +78,12 @@
 		  
 		  
 		//national Id validation
+		      scope.nationalIdvalue = true;
+			 scope.nationalIdValidationFun = function(id){
+				 if(id){
+				 scope.nationalIdvalue = Kennitala.validate(id);
+				 }
+			 };
 		  /*scope.$watch(scope.formData.nationalId,
 	              function() {
 			  			if(scope.formData.nationalId){
@@ -89,7 +95,7 @@
 			  				}
 			  			}
 		  			}
-	      );*/
+	      );
 		  
 			scope.nationalIdValidationFun =function(id){
 			if(id){
@@ -155,7 +161,7 @@
 					 scope.regSuccessFormNationalIdErrorPattern = true;
 				 }
 				}
-			 };
+			 };*/
 		  
 		 //function called when entering the device name 
 		  
@@ -187,7 +193,7 @@
 					  else if(itemDetails.length >=1){
 						  scope.isInvalidMacId = false;
 				          scope.isDisabledSerialNumber = true;
-		            		 if(query == itemDetails[0].serialNumber){
+		            		 if(query.toLowerCase() == itemDetails[0].serialNumber.toLowerCase()){
 		            			 scope.provisioningSerialNumber =  itemDetails[0].provisioningSerialNumber;
 		            		 }else{
 		            			 scope.isInvalidMacId = true;
@@ -231,7 +237,7 @@
 					  else if(itemDetails.length >=1){
 						  scope.isInvalidSerialNumber = false;
 						  scope.isDisabledMacId = true;
-		            		 if(query == itemDetails[0].provisioningSerialNumber){
+		            		 if(query.toLowerCase() == itemDetails[0].provisioningSerialNumber.toLowerCase()){
 		            			 	scope.formData.deviceNo =  itemDetails[0].serialNumber;
 		            		 }else{
 		            			 scope.isInvalidSerialNumber = true;

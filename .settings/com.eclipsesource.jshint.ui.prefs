@@ -1,2 +1,8 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
 included=//EditPaymentGatewayController.js\://PaymentGatewayController.js
+=======
+included=//MediaController.js\://mediadetails.html
+projectSpecificOptions=true
+
+>>>>>>> upstream/master

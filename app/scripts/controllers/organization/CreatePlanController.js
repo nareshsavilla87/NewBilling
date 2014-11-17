@@ -20,9 +20,10 @@
         scope.restricted = [];
         scope.products = [];
         scope.restrictedProducts =[];
-       scope.start.date = new Date();
-     //   scope.end.date = new Date();
+        scope.start.date = new Date();
+     
         resourceFactory.planTemplateResource.get(function(data) {
+        	
             scope.billRuleDatas = data.billRuleDatas;
             scope.availableServices = data.services;
             scope.planStatus = data.planStatus;
@@ -31,10 +32,10 @@
             scope.volumeTypes = data.volumeTypes;
             scope.productmix = data;
             scope.allowedProducts = data.services;
-           // scope.restrictedProducts = data.services;
+           
             scope.formData = {
               isPrepaid:false,
-              
+              status :scope.planStatus[0].id
             };
         });
         
@@ -48,7 +49,6 @@
                         var temp = {};
                         temp.id = this.allowed[i];
                         temp.name = scope.availableServices[j].serviceDescription;
-                       // temp.includeInBorrowerCycle = scope.allowedProducts[j].includeInBorrowerCycle;
                         scope.selectedServices.push(temp);
                         scope.allowedProducts.splice(j,1);
                     }
@@ -74,30 +74,31 @@
         
         scope.submit = function() {   
         	
-        	this.formData.locale = $rootScope.locale.code;
+        	scope.formData.locale = $rootScope.locale.code;
         	var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
         	var reqEndDate = dateFilter(scope.end.date,'dd MMMM yyyy');
         	
-            this.formData.dateFormat = 'dd MMMM yyyy';
-            this.formData.startDate = reqDate;
-            this.formData.endDate = reqEndDate;
+        	scope.formData.dateFormat = 'dd MMMM yyyy';
+        	scope.formData.startDate = reqDate;
+        	scope.formData.endDate = reqEndDate;
              var temp = [];
              for(var i in scope.selectedServices){
                  temp[i] = scope.selectedServices[i].id;
-               
              }
-             this.formData.services = temp;
-             
-            // var services=[];
-             
-             
+             scope.formData.services = temp;
             resourceFactory.planResource.save(this.formData,function(data){
             		location.path('/viewplan/' + data.resourceId);
           });
         };
     }
   });
-  mifosX.ng.application.controller('CreatePlanController', ['$scope', 'ResourceFactory', '$location','dateFilter','$rootScope', mifosX.controllers.CreatePlanController]).run(function($log) {
+  mifosX.ng.application.controller('CreatePlanController', [
+   '$scope', 
+   'ResourceFactory', 
+   '$location',
+   'dateFilter',
+   '$rootScope', 
+    mifosX.controllers.CreatePlanController]).run(function($log) {
     $log.info("CreatePlanController initialized");
   });
 }(mifosX.controllers || {}));

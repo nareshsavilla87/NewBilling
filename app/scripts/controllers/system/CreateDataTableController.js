@@ -11,9 +11,6 @@
 
       resourceFactory.codeResources.getAllCodes({}, function (data) {
           scope.codes = data.pageItems;
-         // scope.codes=scope.codesdata.pageItems;
-          //console.log(scope.codesdata.pageItems);
-        
       });
 
       scope.addColumn = function () {
@@ -55,14 +52,20 @@
               delete scope.errorDetails;
               scope.formData.multiRow = scope.formData.multiRow || false;
               scope.formData.columns = scope.columns;
-              resourceFactory.DataTablesResource.save(this.formData, function (data) {
+              resourceFactory.DataTablesResource.save(scope.formData, function (data) {
                   location.path('/viewdatatable/' + data.resourceIdentifier);
               });
           }
       };
   }
   });
-  mifosX.ng.application.controller('CreateDataTableController', ['$scope', '$routeParams','ResourceFactory', '$location', mifosX.controllers.CreateDataTableController]).run(function($log) {
+  mifosX.ng.application.controller('CreateDataTableController', [
+     '$scope', 
+     '$routeParams',
+     'ResourceFactory', 
+     '$location',
+     mifosX.controllers.CreateDataTableController
+     ]).run(function($log) {
     $log.info("CreateDataTableController initialized");
   });
 }(mifosX.controllers || {}));

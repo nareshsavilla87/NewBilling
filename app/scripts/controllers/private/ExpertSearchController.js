@@ -83,13 +83,13 @@
 			};
             
             scope.searchParams = ['Leads','Create Prospect','Inventory','Create Itemdetail','Create GRN','Create MRN','Move MRN','Create Item Sale','Create Item','Create Supplier',
-                                  'Create Clients','Clients','New Activation','Tickets','System','Users','Create User','Configurations','Create SMTP',
+                                  'Create Client','Clients','New Activation','Tickets','System','Users','Create User','Configurations','Create SMTP',
                                   'View Roles','Add Role','Mapping Configurations','Create Service Mapping','Create Plan Mapping','Create Hardware Plan Mapping','Create Provisioning','Create EventAction Mapping',
                                   'Create Currency Configuration','Create Event Validation','Maker Checker Configurations','Data Table','Create DataTable','Audit Trails','Manage Reports','Create Report',
-                                  'About OBS','Manage Codes','Add Code','Organization','Offices','Create Office','Contracts','Create New Contract','Employees','Create Employee','Charge Code','Create Charge Code',
+                                  'About OBS','Manage Codes','Add Code','Organization','Offices','Create Office','Contracts','Create Contract','Employees','Create Employee','Charge Code','Create Charge Code',
                                   'Currency Details','Create Currency Details','Discounts','Create Discount','Create Promotion Code','Address Master','Regions','Create Regions','Voucher Pins','Create Voucherpin',
-                                  'Manage Media Details','Add Media Details','Add Advanced Media Details','Messages','Create Message','Event Master','Create Event','IP Pool Management','Create IP Pool','Services',
-                                  'Create Service','Groups','Plans','Create Plan','Accounting','Frequent Postings','Chart Of Accounts','Add Journal Entry','Account Closure','Close Accounting','Search Transaction',
+                                  'Media Details','Add Media Details','Add Advanced Media Details','Messages','Create Message','Event Master','Create Event','IP Pool Management','Create IP Pool','Services',
+                                  'Create Service','Closed User Group','Plans','Create Plan','Accounting','Frequent Postings','Chart Of Accounts','Add Journal Entry','Account Closure','Close Accounting','Search Transaction',
                                   'Accounting Rules','Create Accounting Rule','Data Uploads','Upload File','Scheduler Jobs','Create Redemption','Smart Search','Payment Gateway','Adapter Provision','Navigation','Shortcuts',
                                   'User Profile','View Permissions','Messanger','User Notification','User Settings'];
             scope.search = function () {
@@ -223,7 +223,7 @@
 		          case 'Contracts':
 		        	  location.path('/contract');
 		        	  break;
-		          case 'Create New Contract':
+		          case 'Create Contract':
 		        	  location.path('/createContract');
 		        	  break;
 		          case 'Employees':
@@ -268,8 +268,8 @@
 		          case 'Create Voucherpin':
 		              location.path('/createvoucherpin');
 		              break;
-		          case 'Manage Media Details':
-		              location.path('/media');
+		          case 'Media Details':
+		              location.path('/mediadetails');
 		              break;
 		          case 'Add Media Details':
 		              location.path('/createMedia');
@@ -301,7 +301,7 @@
 		          case 'Create Service':
 		              location.path('/createservice');
 		              break;
-		          case 'Groups':
+		          case 'Closed User Group':
 		              location.path('/groupsDetails');
 		              break;
 		          case 'Plans':

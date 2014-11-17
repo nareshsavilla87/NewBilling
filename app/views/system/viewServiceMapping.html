@@ -1,4 +1,4 @@
-<div  ng-controller="ViewServiceMappingController">
+<div  data-ng-controller="ViewServiceMappingController">
 	<div class="paddedbottom10">
 		<ul class="breadcrumb">
 	        <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
@@ -7,14 +7,14 @@
 	    </ul>
 	    <div class="pull-right">
 	      <div class="btn-group">
-	          <a ng-show="PermissionService.showMenu('UPDATE_SERVICEMAPPING')" href="#/editServiceMapping/{{id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
+	          <a data-ng-show="PermissionService.showMenu('UPDATE_SERVICEMAPPING')" href="#/editServiceMapping/{{id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
 	   	  </div>
 	    </div>
 	</div>
 
 	<div class="row paddedleft">
 		<h3>{{chargecode.id}}</h3>
-		<table width="100%">
+		<table style="width:100%;">
 			<tr>
 				<td width="20%">{{'label.serviceCode' | translate }}</td>
 				<td width="80%">{{sm.serviceCode}}</td>
@@ -31,11 +31,11 @@
 				<td>{{'label.image' | translate }}</td>
 				<td>{{sm.image}}</td>
 			</tr>
-			<tr  ng-show="'IPTV'| ConfigLookup">
+			<tr  data-ng-show="'IPTV'| ConfigLookup">
 				<td>{{'label.category' | translate }}</td>
 				<td>{{sm.category}}</td>
 			</tr>
-			<tr  ng-show="'IPTV'| ConfigLookup">
+			<tr  data-ng-show="'IPTV'| ConfigLookup">
 				<td>{{'label.subcategory' | translate }}</td>
 				<td>{{sm.subCategory}}</td>
 			</tr>

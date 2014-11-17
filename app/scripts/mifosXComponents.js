@@ -136,7 +136,7 @@ define(['underscore', 'mifosX'], function() {
       'organization/CreatePriceController',
       'organization/ViewPriceController',
       'organization/EditPriceController',
-      'organization/MediaController',
+      'organization/MediaDetailsController',
       'organization/CreateMediaController',
       'organization/ViewMediaController',
       'organization/EditMediaController',
@@ -155,7 +155,7 @@ define(['underscore', 'mifosX'], function() {
       'organization/ViewCurrencyDetailsController',
       'organization/EditCurrencyDetailsController',
       'logistics/inventory/InventoryController',
-      'import/ImportController',
+      'import/DataUploadController',
       'import/AddImportFileController',
       'import/ViewImportController',
       'organization/ServicesController',
@@ -265,6 +265,9 @@ define(['underscore', 'mifosX'], function() {
       'system/DalpayButtonController',
       'system/CreateEventValidationController',
       'system/ProvisionController',
+      'client/AddDeviceController',
+      'main/ViewCheckerinboxController',
+      'main/ViewMakerCheckerTaskController',
       'configurations/PaymentGatewayConfigurationController'
 
     ],

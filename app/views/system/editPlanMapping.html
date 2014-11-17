@@ -1,4 +1,4 @@
-    <div ng-controller="EditPlanMappingController">
+<div  data-ng-controller="EditPlanMappingController">
       <div>
         <ul class="breadcrumb">
           <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
@@ -6,52 +6,58 @@
           <li class="active">{{'label.editplanmapping' | translate}}</li>
         </ul>
       </div>
-      <div class="error" ng-show="errorStatus || errorDetails">
+      <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
    
-      <form class="form-horizontal well" ng-submit="submit()">
+      <form class="form-horizontal well" data-ng-submit="submit()">
         <fieldset>
           <legend>Edit Plan Mapping</legend>   
-          
+         <table>
+         <tr><td>
           <div class="control-group">
-            <label class="control-label" for="planCode">{{'label.planCode' | translate }}</label>
+            <label class="control-label" for="planCode">{{'label.planCode' | translate }}&nbsp;<span class="required">*</span></label>
             <div class="controls">
-              <select ng-model="formData.planId"  ng-options="pc.id as pc.planCode for pc in planCodes"  value="{{pc.id}}">
-              <option value="">{{'label.select.one' | translate}}</option>
-              </select>
+              <select id="planId" data-ng-model="formData.planId"  data-ng-options="pc.id as pc.planCode for pc in planCodes">
+              <option value="">{{'label.select.one' | translate}}</option></select>
             </div>
           </div>
+          </td></tr>
           
-          <div class="control-group">
-            <label class="control-label" for="planIdentification">{{'label.planIdentification' | translate }}</label>
+           <tr><td>
+           <div class="control-group">
+            <label class="control-label" for="planIdentification">{{'label.planIdentification' | translate }}&nbsp;<span class="required">*</span></label>
             <div class="controls">
-              <input type="text" id="planIdentification" ng-model="formData.planIdentification">
+              <input type="text" id="planIdentification" data-ng-model="formData.planIdentification">
             </div>
           </div>
+          </td></tr>
          
-         <div class="control-group">
-            <label class="control-label" for="status">{{'label.status' | translate }}</label>
+         <tr><td>
+          <div class="control-group">
+            <label class="control-label" for="status">{{'label.status' | translate }}&nbsp;<span class="required">*</span></label>
             <div class="controls">
-                 <select ng-model="formData.planStatus"  ng-options="statusData.value as statusData.value for statusData in statusDatas" value="{{statusData.value}}">        
+                 <select id="status" data-ng-model="formData.planStatus"  data-ng-options="statusData.value as statusData.value for statusData in statusDatas">        
               <option value="">{{'label.select.one' | translate}}</option>
               </select>
             </div>
           </div>
+          </td></tr>
           
-          <div class="control-group">
+          <tr><td>
+           <div class="control-group">
             <label class="control-label" for="image">{{'label.image' | translate }}</label>
             <div class="controls">
-              <input type="text" id="image" ng-model="formData.image">
+              <input type="text" id="image" data-ng-model="formData.image">
             </div>
           </div>
+          </td></tr>
          
-          <div class="offset3">
+           <tr align="right"><td>
             <a href="#/viewplanmapping/{{planMappingId}}"><button id="cancel" type="reset" class="btn">{{'label.cancel' | translate}}</button></a>
             <button id="submit" type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
-          </div>
-        </fieldset>
-      </form>
-    </div>
+          </td></tr>
+          </table>
+       </fieldset></form></div>

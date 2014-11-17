@@ -1,4 +1,4 @@
-<div ng-controller="OfficePaymentsController">
+<div data-ng-controller="OfficePaymentsController">
      <div>
         <ul class="breadcrumb">
           <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
@@ -7,19 +7,18 @@
           <li class="active">Make Payment</li>
         </ul>
       </div>
-      <form class="form-horizontal well" ng-submit="submit()">
+      <form class="form-horizontal well" data-ng-submit="submit()">
 	  
-	     <div class="error" ng-show="errorStatus || errorDetails">
+	     <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div> 
 	    
         <fieldset>
           <legend>Make Payment</legend>
-          
-  <table>
-	<tr>
+    <table>
+	  <tr>
 	   <td>
 		 <table>
 			<tr>
@@ -27,7 +26,7 @@
 					<div class="control-group">
            			    <label class="control-label" for="paymentDate">{{ 'label.paymentdate' | translate }}</label>
             			<div class="controls">
-             			   <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.date" is-open="opened2" min="minDate" max="maxDate" 
+             			   <input type="text" datepicker-pop="dd MMMM yyyy" data-ng-model="start.date" is-open="opened2" min="minDate" max="maxDate" 
              				  date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly />
            				</div>
          		 	</div>	
@@ -38,8 +37,8 @@
 					<div class="control-group">
             			<label class="control-label">{{ 'label.paymentType' | translate }}</label>
             			<div class="controls">
-             				<select id="paymentCode" ng-model="formData.paymentCode" 
-             				    ng-options="data.id as data.mCodeValue for data in data" ng-change="paymentTypeData(formData.paymentCode)">
+             				<select id="paymentCode" data-ng-model="formData.paymentCode" 
+             				    data-ng-options="data.id as data.mCodeValue for data in data" data-ng-change="paymentTypeData(formData.paymentCode)">
              				</select>
             			</div>
           		 	</div>		
@@ -50,7 +49,7 @@
 					<div class="control-group">
            				<label class="control-label" for="amountPaid">{{ 'label.amount' | translate }}</label>
             			<div class="controls">
-             				<input type="text" id="amountPaid" ng-model="formData.amountPaid">
+             				<input type="text" id="amountPaid" data-ng-model="formData.amountPaid">
            				</div>
          			</div>
 				 </td>
@@ -60,7 +59,7 @@
 					<div class="control-group">
            				<label class="control-label" for="receiptNo">{{ 'label.receiptno' | translate }}<span class="required">*</span></label>
             			<div class="controls">
-             				<input type="text" id="receiptNo" name="receiptno" ng-model="formData.receiptNo">
+             				<input type="text" id="receiptNo" name="receiptno" data-ng-model="formData.receiptNo">
              			</div>
          		    </div>
 				  </td>
@@ -70,22 +69,27 @@
 					  <div class="control-group">
 						<label class="control-label">{{'label.notes' | translate}}</label>
 						<div class="controls">
-							<textarea ng-model="formData.remarks"></textarea>
+							<textarea data-ng-model="formData.remarks"></textarea>
 						</div>
 					  </div>
 				   </td>
 			  </tr>
+			  <tr align="right" data-ng-hide="paymentType == 'Cheque'"><td>
+               <a href='#/viewoffice/{{officeId}}'><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+               <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+               </td>
+               </tr>
 			</table>
 	</td>
 	 <td>
-		 <div ng-show="paymentType == 'Cheque'">
+		 <div data-ng-show="paymentType == 'Cheque'">
 		  <table>
 			 <tr>
 				 <td>
 					 <div class="control-group">
            				 <label class="control-label" for="chequeNo">{{ 'label.chequeno' | translate }}</label>
             			 <div class="controls">
-             				 <input type="text" id="chequeNo" ng-model="formData.chequeNo">
+             				 <input type="text" id="chequeNo" data-ng-model="formData.chequeNo">
            				  </div>
          			  </div>
 				  </td>
@@ -95,7 +99,7 @@
 						 <div class="control-group">
             				 <label class="control-label" for="chequeDate">{{ 'label.chequedate' | translate }}</label>
             				 <div class="controls">
-              					<input type="text" id="chequeDate" ng-model="formData.chequeDate">
+              					<input type="text" id="chequeDate" data-ng-model="formData.chequeDate">
             				 </div>
           				  </div>
 					  </td>
@@ -105,7 +109,7 @@
 						 <div class="control-group">
            					 <label class="control-label" for="bankName">{{ 'label.bankname' | translate }}</label>
             				 <div class="controls">
-             					<input type="text" id="bankName" ng-model="formData.bankName">
+             					<input type="text" id="bankName" data-ng-model="formData.bankName">
            					 </div>
          				  </div>
 					  </td>
@@ -115,20 +119,22 @@
 						 <div class="control-group">
            					<label class="control-label" for="branchName">{{ 'label.branchname' | translate }}</label>
             				 <div class="controls">
-             				     <input type="text" id="branchName" ng-model="formData.branchName">
+             				     <input type="text" id="branchName" data-ng-model="formData.branchName">
            					 </div>
          				 </div>
 					  </td>
 				</tr>
+			 <tr align="right">
+			  <td>
+               <a href='#/viewoffice/{{officeId}}'><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+               <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+               </td>
+               </tr>
 			</table>
 	       </div>
 		 </td>
-	  </tr>
-  </table>
-          <div class="offset3">
-            <a href='#/viewoffice/{{officeId}}' class="btn">Cancel</a>
-          <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
-       </div>
+	    </tr>
+        </table>
      </fieldset>
     </form>
 </div>

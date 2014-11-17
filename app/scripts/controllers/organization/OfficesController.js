@@ -22,14 +22,14 @@
           return out;
         }
         if (typeof obj === 'object') {
-          var out = {}, i;
+          var out = {}, i = 0;
           for ( i in obj ) {
             out[i] = arguments.callee(obj[i]);
           }
           return out;
         }
         return obj;
-      }
+      };
 
       resourceFactory.officeResource.getAllOffices(function(data){
         scope.offices = scope.deepCopy(data);

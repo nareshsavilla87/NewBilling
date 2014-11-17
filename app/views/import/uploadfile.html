@@ -14,9 +14,6 @@
         <fieldset>
           <legend>Upload File</legend>
 
-         <table>
-          <tr>
-            <td>
 
           <div class="control-group">
             <label class="control-label" for="status">{{ 'label.import.name' | translate }}</label>
@@ -50,15 +47,15 @@
                 <input type="file" ng-file-select="onFileSelect($files)">
               </div>
             </div>
-          </td>
-         
-         </tr>
-         </table>
+            <div class="control-group">
+              <div class="controls pull-middle">
+              <a href="#/importing"><button id="cancel" style="margin-left:100px;" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+            <button id="submit" type="submit"  class="btn btn-primary">{{'button.save'| translate}}</button>
+              </div>
+            </div>
+        
 
-          <div class="offset3">
-            <a href="#/importing"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
-            <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
-          </div>
+       
           
         </fieldset>
       </form>

@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  ViewMediaController: function(scope, routeParams , location,resourceFactory,PermissionService ) {
+	  ViewMediaDetailsController: function(scope, routeParams , location,resourceFactory,PermissionService,$modal ) {
         scope.media = [];
         scope.mediaDetails = [];
         scope.PermissionService = PermissionService;
@@ -29,16 +29,38 @@
         });
 
         scope.deletemedia = function (){
-            resourceFactory.saveMediaResource.delete({mediaId: routeParams.id} , {} , function(data) {
-                  location.path('/media');
-                  // added dummy request param because Content-Type header gets removed 
-                  // if the request does not contain any data (a request body)        
-            });
+        	
+        	$modal.open({
+				 templateUrl: 'deletemedia.html',
+				 controller: deleteMediaController,
+				 resolve:{}
+			 });
+          };
+          
+          function deleteMediaController($scope, $modalInstance) {
+        	  	
+        	  $scope.approveDeleteMedia = function () {
+        		  
+        		  resourceFactory.saveMediaResource.remove({mediaId: routeParams.id} , {} , function() {
+        			  $modalInstance.close('delete');
+                      location.path('/mediadetails');
+                });
+              };
+              $scope.cancel = function () {
+                  $modalInstance.dismiss('cancel');
+              };
           };
     
     }
   });
-  mifosX.ng.application.controller('ViewMediaController', ['$scope', '$routeParams', '$location','ResourceFactory','PermissionService', mifosX.controllers.ViewMediaController]).run(function($log) {
-    $log.info("ViewMediaController initialized");
+  mifosX.ng.application.controller('ViewMediaDetailsController', [
+  	      '$scope',
+  	      '$routeParams',
+  	      '$location',
+  	      'ResourceFactory',
+  	      'PermissionService', 
+  	      '$modal', 
+  	      mifosX.controllers.ViewMediaDetailsController]).run(function($log) {
+    $log.info("ViewMediaDetailsController initialized");
   });
 }(mifosX.controllers || {}));

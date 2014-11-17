@@ -60,7 +60,7 @@
 		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
 	<fieldset>
-		<legend>Device Renatal</legend>
+		<legend>Device Rental</legend>
           <input ng-hide="true" name="saleType" ng-model="saleType"  ng-init="saleType='DEVICERENTAL'">
             
              <!-- <input name="card[description]" ng-model="card.description" value="Visa-4242"> -->
@@ -162,7 +162,7 @@
 									<div class="control-group" ng-show="formData.quantity" ng-repeat="item in getNumber(formData.quantity) track by $index" name="serialNumberDiv">
                                      <label class="control-label" for="serialNumber">{{ 'label.serialNumber' | translate }}&nbsp;<span class="required">*</span></label>
                                       <div class="controls">
-             	                        <input type="text" ng-model="itemDetail" name="serialNumber" typeahead="itemDetail for itemDetail in getData($viewValue)">
+             	                        <input type="text" ng-model="itemDetail" name="serialNumber" autocomplete="off" typeahead="itemDetail for itemDetail in getData($viewValue)">
                                       </div>
                                     </div>	
 								</td>

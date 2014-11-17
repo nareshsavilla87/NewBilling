@@ -134,7 +134,7 @@
   		      <div class="control-group">
               <label class="control-label" for="city">{{'label.city/area' | translate}}<span class="required">*</span></label>
               <div class="controls">
-                <input type="text" id="city" name="city" ng-model="formData.city" list ="citylist" ng-change="getStateAndCountry(formData.city)" required />
+                <input type="text" id="city" name="city" ng-model="formData.city" autocomplete="off" list ="citylist" ng-change="getStateAndCountry(formData.city)" required />
                
               </div>
             </div>

@@ -14,13 +14,17 @@ angular.module('notificationWidget', [])
 .config(['$httpProvider', function ($httpProvider) {
   $httpProvider.interceptors.push('requestInterceptor');
 }])
-.factory('requestInterceptor', function ($q, $rootScope,$injector) {
+.factory('requestInterceptor', function ($q, $rootScope,$injector,$location) {
   $rootScope.pendingRequests = 0;
   var $http;
   return {
          'request': function (config) {
               $rootScope.pendingRequests++;
-              $rootScope.blockUI = true;
+              if($rootScope.voucherPinProcess)
+              	$rootScope.blockUI = false;
+              else
+              	$rootScope.blockUI = true;
+              
               return config || $q.when(config);
           },
 
@@ -30,6 +34,7 @@ angular.module('notificationWidget', [])
           },
 
           'response': function(response) {
+        	 
               $rootScope.pendingRequests--;
               // clear previous errors for a success request.
               delete $rootScope.errorStatus;
@@ -46,7 +51,25 @@ angular.module('notificationWidget', [])
                   // request ended false blockUI
             	  $rootScope.blockUI = false;
               }
-              return response || $q.when(response);
+              //return response || $q.when(response);
+              if (response.config && response.config.method == "GET") {
+                  return response || $q.when(response);
+              } else {
+                  if (response.data && response.data.commandId) {
+                      //Maker checker is enabled or performing actions of maker checker
+                      if (response.config.url.indexOf('makercheckers/') > 0) {
+                          //return response for maker checker actions(approve or delete)
+                          return response || $q.when(response);
+                      } else {
+                          //redirect if maker checker is enabled
+                          $location.path('/viewMakerCheckerTask/' + response.data.commandId);
+                      }
+                  } else {
+                      //when no maker checker enabled
+                      return response || $q.when(response);
+                  }
+                  ;
+              }
           },
 
           'responseError': function(rejection) {

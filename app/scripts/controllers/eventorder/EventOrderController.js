@@ -59,7 +59,7 @@
 				webStorage.add("callingTab", {
 					someString : "eventordertab"
 				});
-			}
+			};
 
 			scope.submit = function() {
 				this.formData.locale = $rootScope.locale.code;

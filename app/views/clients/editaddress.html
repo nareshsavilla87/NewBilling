@@ -122,7 +122,7 @@
 					<div class="control-group">
 						<label class="control-label" for="city">{{'label.city' | translate}}</label>
 						<div class="controls">
-							<input type="text" id="city" ng-model="formData.city" list="citylist" ng-change="getStateAndCountry(formData.city)">
+							<input type="text" id="city" ng-model="formData.city" autocomplete="off" list="citylist" ng-change="getStateAndCountry(formData.city)">
 						</div>
 					</div>
 					<datalist id="citylist">

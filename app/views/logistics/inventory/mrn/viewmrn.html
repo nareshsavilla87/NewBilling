@@ -2,7 +2,7 @@
 	<div class="paddedbottom10">
 		<ul class="breadcrumb">
 	        <li><a href="#/inventory" ng-click="selectedMRN()">{{'link.inventory' | translate}}</a> <span class="divider">/</span></li>
-	        <li class="active">{{mrn.id}}&nbsp;&nbsp;</li>
+	        <li class="active">{{mrn.itemDescription}}&nbsp;&nbsp;</li>
 	    </ul>
 	    <div class="pull-right">
 	      <div class="btn-group">
@@ -13,7 +13,7 @@
 	</div>
   
 	<div class="row paddedleft">
-		<h3>{{mrn.id}}</h3>
+		<h3>{{mrn.itemDescription}}</h3>
 		<table width="100%">
 			<tr>
 				<td width="20%">{{'label.mrn.id' | translate }}</td>

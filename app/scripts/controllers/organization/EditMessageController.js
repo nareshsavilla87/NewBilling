@@ -1,8 +1,7 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
 	  EditMessageController: function(scope, routeParams, resourceFactory, location) {
-        scope.messageData = {};
-        scope.messageType={};
+        
         scope.formData = {};
 		scope.formData.messageParams=[];
         scope.messageFormData={};
@@ -22,14 +21,19 @@
             scope.formData.messageParams.splice(index,1);
           };
           
-            scope.submit = function() {        
-            resourceFactory.messageSaveResource.update({'messageId': routeParams.id},this.formData,function(data){
+        scope.submit = function() {        
+                resourceFactory.messageSaveResource.update({'messageId': routeParams.id},this.formData,function(data){
                 location.path('/viewmessage/' + data.resourceId);
              });
         };
     }
   });
-  mifosX.ng.application.controller('EditMessageController', ['$scope', '$routeParams', 'ResourceFactory', '$location', mifosX.controllers.EditMessageController]).run(function($log) {
-    $log.info("EditMessageController initialized");
+  mifosX.ng.application.controller('EditMessageController', 
+['$scope', 
+ '$routeParams', 
+ 'ResourceFactory', 
+ '$location', 
+  mifosX.controllers.EditMessageController]).run(function($log) {
+  $log.info("EditMessageController initialized");
   });
 }(mifosX.controllers || {}));

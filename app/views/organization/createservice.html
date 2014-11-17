@@ -1,27 +1,26 @@
-     
      <div>
         <ul class="breadcrumb">
           <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
-          <li><a href="#/services">{{'label.manageservices' | translate}}</a> <span class="divider">/</span></li>
+          <li><a href="#/services">{{'label.services' | translate}}</a> <span class="divider">/</span></li>
           <li class="active">{{'label.createservice' | translate}}</li>
          </ul>
       </div>
-      <form name="CreateServiceForm" novalidate="" class="form-horizontal well" ng-controller="CreateServiceController" rc-submit="submit()">
-       <div class="error" ng-show="errorStatus || errorDetails">
+      <form name="createServiceForm" novalidate="" class="form-horizontal well" data-ng-controller="CreateServiceController" data-rc-submit="submit()">
+       <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
         <fieldset>
-          <legend>Create Service</legend>
+          <legend>{{'label.createservice' | translate}}</legend>
           <table>
             <tr>
               <td>
                 <div class="control-group">
-                  <label class="control-label" for="serviceCode">{{ 'label.service.Service Code' | translate }}</label>
+                  <label class="control-label" for="serviceCode">{{ 'label.service.servicecode' | translate }}<span class="required" >*</span></label>
                   <div class="controls">
-                    <input type="text" name="serviceCode" ng-model="formData.serviceCode"  ng-maxlength="10" />
-                    <form-validate formName="CreateServiceForm"  fieldName="serviceCode" maxLenMsg="10 characters"/> 
+                    <input type="text" name="serviceCode" data-ng-model="formData.serviceCode"  data-ng-maxlength="10" />
+                    <form-validate formName="createServiceForm"  fieldName="serviceCode" maxLenMsg="10 characters"/> 
                   </div>
                 </div>
               </td>
@@ -29,9 +28,9 @@
              <tr>
               <td>
                 <div class="control-group">
-                  <label class="control-label" for="serviceDescription">{{ 'label.service.Service Description' | translate }}</label>
+                  <label class="control-label" for="serviceDescription">{{ 'label.service.servicedescription' | translate }}<span class="required" >*</span></label>
                   <div class="controls">
-                    <input type="text" ng-model="formData.serviceDescription">
+                    <input type="text" data-ng-model="formData.serviceDescription">
                   </div>
                 </div>
               </td>
@@ -39,9 +38,9 @@
             <tr>
             <td>
              <div class="control-group">
-                  <label class="control-label" for="serviceType">{{ 'label.service.Service Type' | translate }}</label>
+                  <label class="control-label" for="serviceType">{{ 'label.service.servicetype' | translate }}<span class="required" >*</span></label>
                   <div class="controls">
-                    <select ng-model="formData.serviceType"  ng-options="serviceTypes.type as serviceTypes.type for serviceTypes in services" value="{{serviceTypes.value}}" ></select>
+                    <select data-ng-model="formData.serviceType"  data-ng-options="serviceTypes.type as serviceTypes.type for serviceTypes in services" ></select>
                   </div>
                 </div>
                 </td>
@@ -49,9 +48,9 @@
             <tr>
             <td>
              <div class="control-group">
-                  <label class="control-label" for="status">{{ 'label.service.Status' | translate }}</label>
+                  <label class="control-label" for="status">{{ 'label.service.status' | translate }}<span class="required" >*</span></label>
                   <div class="controls">
-                    <select ng-model="formData.status"  ng-options="status.value as status.value for status in statuses" value="{{status.value}}" ></select>
+                    <select data-ng-model="formData.status"  data-ng-options="status.value as status.value for status in statuses" ></select>
                   </div>
                 </div>
                 </td>
@@ -59,10 +58,10 @@
             <tr>
             <td>
             <div class="control-group">
-            <label class="control-label" for="isOptional">{{ 'label.service.IsOptional' | translate }}</label>
+            <label class="control-label" for="isOptional">{{ 'label.service.isoptional' | translate }}</label>
             <div class="controls">
               <label class="checkbox">
-                <input type="checkbox" id="isOptional" ng-model="formData.isOptional">
+                <input type="checkbox" id="isOptional" data-ng-model="formData.isOptional">
               </label>
             </div>
           </div>
@@ -74,16 +73,16 @@
             <label class="control-label" for="isOptional">{{ 'label.service.isautoprovision' | translate }}</label>
             <div class="controls">
               <label class="checkbox">
-                <input type="checkbox" id="isOptional" ng-model="formData.isAutoProvision">
+                <input type="checkbox" id="isOptional" data-ng-model="formData.isAutoProvision">
               </label>
             </div>
           </div>
           </td>
             </tr>
           </table>
-          <div class="offset3">
-            <a href="#/services"><button id="cancel" type="reset" class="btn">Cancel</button></a>
-            <button id="submit" type="submit" class="btn btn-primary">Save</button>
+          <div class="offset3" style="margin-left:33%;">
+            <a href="#/services"><button id="cancel" type="reset" class="btn">{{'button.cancel' | translate}}</button></a>
+            <button id="submit" type="submit" class="btn btn-primary">{{'button.save' | translate}}</button>
           </div>
         </fieldset>
       </form>

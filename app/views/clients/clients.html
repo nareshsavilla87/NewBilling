@@ -5,24 +5,19 @@
     </ul>
     <div class="pull-left">
         <a  ng-show="PermissionService.showMenu('CREATE_CLIENT')" href="#/createclient" class="btn btn-primary"><i class="icon-plus icon-white"></i> Create Client</a>
-    <span style="padding:1.5em; font-style: oblique;"><img src="./images/Icons-users.png" alt="TotalClients" width="28px" height="15px"/>{{totalClients}}&nbsp;Total</span>
-    <span style="padding:1.5em; font-style: oblique;color:#FFA500;"><img src="./images/Icons-new.png" alt="NewClients" width="28px" height="15px"/>{{newClients}}&nbsp;New</span>
+    <span ng-show="PermissionService.showMenu('ALL_FUNCTIONS')" style="padding:1.5em; font-style: oblique;"><img src="./images/Icons-users.png" alt="TotalClients" width="28px" height="15px"/>{{totalClients}}&nbsp;Total</span>
+    <span ng-show="PermissionService.showMenu('ALL_FUNCTIONS')" style="padding:1.5em; font-style: oblique;color:#FFA500;"><img src="./images/Icons-new.png" alt="NewClients" width="28px" height="15px"/>{{newClients}}&nbsp;New</span>
     </div>
-    <!-- <span style="padding:1.5em; font-style: oblique;color:#228b22;"><img src="./images/Icons-active.png" alt="ActiveClients" width="28px" height="15px"/>&nbsp;{{activeClients}}&nbsp;Active</span>
-    <span style="padding:1.5em; font-style: oblique;color:#FF0000;"><img src="./images/Icons-inactive.png" alt="InActiveClients" width="28px" height="15px"/>&nbsp;{{InActiveClients}}&nbsp;InActive</span>
-     --><div class="pull-right">
-     <span style="padding:1.5em; font-style: oblique;color:#228b22;"><img src="./images/Icons-active.png" alt="ActiveClients" width="28px" height="15px"/>&nbsp;{{activeClients}}&nbsp;Active</span>
-    <span style="padding:1.5em; font-style: oblique;color:#FF0000;"><img src="./images/Icons-inactive.png" alt="InActiveClients" width="28px" height="15px"/>&nbsp;{{InActiveClients}}&nbsp;InActive</span>
-    
-          <!-- <a href="#/createclientnewwizard" class="btn btn-primary"
-          		ng-show="PermissionService.showMenu('ACTIVATIONPROCESS_ACTIVATE')"><i class="icon-plus icon-white"></i> New Activation</a> -->
-        <a ng-show="PermissionService.showMenu('ACTIVATIONPROCESS_ACTIVATE')" href="#/createsimpleActivation" class="btn btn-primary"><i class="icon-plus icon-white"></i>Simple Activation</a>
+   <div class="pull-right">
+     <span ng-show="PermissionService.showMenu('ALL_FUNCTIONS')"  style="padding:1.5em; font-style: oblique;color:#228b22;"><img src="./images/Icons-active.png" alt="ActiveClients" width="28px" height="15px"/>&nbsp;{{activeClients}}&nbsp;Active</span>
+    <span  ng-show="PermissionService.showMenu('ALL_FUNCTIONS')" style="padding:1.5em; font-style: oblique;color:#FF0000;"><img src="./images/Icons-inactive.png" alt="InActiveClients" width="28px" height="15px"/>&nbsp;{{InActiveClients}}&nbsp;InActive</span>
+    <a ng-show="PermissionService.showMenu('ACTIVATIONPROCESS_ACTIVATE')" href="#/createsimpleActivation" class="btn btn-primary"><i class="icon-plus icon-white"></i>Simple Activation</a>
     </div>
 </div>
 <div class="row-fluid" ng-show="PermissionService.showMenu('READ_CLIENT')">
 <form ng-submit="search(filterText)">
-    <input ng-model="filterText" type="text" style="width:772px;" placeholder="Filter by Account#/Name/Phone/email/Identity/Device#">
-    <select ng-model="status" class="input-medium" ng-change="searchSource(status)">
+    <input ng-model="filterText" type="text" style="width:83.8%;" class="span marginbottom0px" placeholder="Filter by Account#/Name/Phone/email/Identity/Device#">
+    <select ng-model="status" style="width:15.75%;margin-top :1.2%;" ng-change="searchSource(status)">
               <option value="ALL">ALL</option>
               <option value="NEW">NEW</option>
               <option value="ACTIVE">ACTIVE</option>
