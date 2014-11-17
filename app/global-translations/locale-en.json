@@ -118,6 +118,12 @@
 
   "#tasks":"",
   "tab.checkerinbox":"Checker inbox",
+  "label.anchor.tasks":"Checker Inbox & Tasks",
+  "label.anchor.viewcheckerinbox":"View Checker Inbox",
+  "label.heading.makercheckertask.waiting.for.approval":"Waiting For Checker Approval",
+  "label.makerchecker.task.created.description":"The action is created and waiting for checker approval",
+  "label.makerchecker.task.created.description.view.details":"Click on details to view the details of created action.",
+  "label.button.details":"Details",
   
   "#templates":"",
   "link.create.new.template":"Create Template",

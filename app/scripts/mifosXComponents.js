@@ -266,6 +266,8 @@ define(['underscore', 'mifosX'], function() {
       'system/CreateEventValidationController',
       'system/ProvisionController',
       'client/AddDeviceController',
+      'main/ViewCheckerinboxController',
+      'main/ViewMakerCheckerTaskController',
 
     ],
     filters: [
