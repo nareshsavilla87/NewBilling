@@ -118,6 +118,12 @@
 
   "#tasks":"",
   "tab.checkerinbox":"Checker inbox",
+  "label.anchor.tasks":"Checker Inbox & Tasks",
+  "label.anchor.viewcheckerinbox":"View Checker Inbox",
+  "label.heading.makercheckertask.waiting.for.approval":"Waiting For Checker Approval",
+  "label.makerchecker.task.created.description":"The action is created and waiting for checker approval",
+  "label.makerchecker.task.created.description.view.details":"Click on details to view the details of created action.",
+  "label.button.details":"Details",
   
   "#templates":"",
   "link.create.new.template":"Create Template",
@@ -179,7 +185,8 @@
   "label.edit.datatable":"Edit Datatable",
   "dialog.dataTable.title.message":"Delete Datatable",
   "validation.msg.datatable.length.not.greater.than.zero":"Please provide string length value",
-  "validation.msg.datatable.length.must.be.provided.when.type.is.String":"please give string length value",
+  "validation.msg.datatable.length.must.be.provided.when.type.is.String":"please add string length value",
+  "validation.msg.datatable.code.must.be.provided.when.type.is.Dropdown":"please select code value",
   "error.msg.parameter.unsupported":"Unsupported parameter",
 
   "#view datatable":"",

@@ -74,6 +74,11 @@
 					  </div>
 				   </td>
 			  </tr>
+			  <tr align="right" data-ng-hide="paymentType == 'Cheque'"><td>
+               <a href='#/viewoffice/{{officeId}}'><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+               <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+               </td>
+               </tr>
 			</table>
 	</td>
 	 <td>
@@ -119,15 +124,17 @@
          				 </div>
 					  </td>
 				</tr>
+			 <tr align="right">
+			  <td>
+               <a href='#/viewoffice/{{officeId}}'><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+               <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+               </td>
+               </tr>
 			</table>
 	       </div>
 		 </td>
-	  </tr>
-  </table>
-          <div class="offset3">
-          <a href='#/viewoffice/{{officeId}}'><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
-          <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
-       </div>
+	    </tr>
+        </table>
      </fieldset>
     </form>
 </div>

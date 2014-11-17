@@ -15,28 +15,31 @@
 	
     <fieldset>
     	<legend>{{'label.createhardwareplan' | translate}}</legend>
-			
+		<table>
+		<tr><td>
 		<div class="control-group">
             <label class="control-label" for="planCode">{{ 'table.plan.code' | translate }}</label>
             <div class="controls">
              	<select data-ng-model="formData.planCode"  data-ng-options="planData.planCode as planData.planCode for planData in planDatas">
              	</select>
             </div>
-        </div>
+        </div></td></tr>
           						
-        <div class="control-group">
+       <tr><td> <div class="control-group">
            <label class="control-label" for="itemCode">{{ 'label.itemCode' | translate }}</label>
            <div class="controls">
            		<select data-ng-model="formData.itemCode"  data-ng-options="itemData.itemCode as itemData.itemDescription for itemData in itemDatas">
              	</select>
            </div>
-        </div>
+        </div></td></tr>
 							
   			
-        <div class="offset3">
-        	<a href="#/mappingconfig"><button type="reset" class="btn" data-ng-click="reset123()">{{'button.cancel'| translate}}</button></a>
+        
+        <tr align="right"><td>
+        <a href="#/mappingconfig"><button type="reset" class="btn" data-ng-click="reset123()">{{'button.cancel'| translate}}</button></a>
             <button type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
-        </div>
+      </td></tr>
+      </table>
           
     </fieldset>
 </form>
