@@ -27,7 +27,6 @@
         scope.displayName=clientData.displayName;
         scope.planName=orderData.planName;
         scope.image=clientData.image;
-        //scope.formData.groupName=orderData.groupName;
         scope.orderNo=orderData.orderNo;
         scope.parameterDatas=[];
         scope.ipTypeDatas = ["Single","Multiple"];
@@ -217,7 +216,15 @@
         };
     }
   });
-  mifosX.ng.application.controller('CreateProvisioningController', ['$scope','webStorage', 'ResourceFactory','$routeParams', '$location','dateFilter','$modal', mifosX.controllers.CreateProvisioningController]).run(function($log) {
+  mifosX.ng.application.controller('CreateProvisioningController', [
+                                                                    '$scope',
+                                                                    'webStorage', 
+                                                                    'ResourceFactory',
+                                                                    '$routeParams', 
+                                                                    '$location',
+                                                                    'dateFilter',
+                                                                    '$modal', 
+                                                                    mifosX.controllers.CreateProvisioningController]).run(function($log) {
     $log.info("CreateMediaController initialized");
   });
 }(mifosX.controllers || {}));

@@ -26,7 +26,6 @@
             scope.offices = data.officeOptions;
             scope.staffs = data.staffOptions; 
             scope.officeId = data.officeId;
-	   // scope.clientCategory=data.categoryType;
             scope.formData.entryType = data.entryType;
             scope.entryType=data.entryType;
             scope.formData.groupName=data.groupName;
