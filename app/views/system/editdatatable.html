@@ -1,4 +1,4 @@
-        <div ng-controller="EditDataTableController">
+  <div data-ng-controller="EditDataTableController">
         <div>
           <ul class="breadcrumb">
             <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
@@ -7,11 +7,11 @@
             <li class="active">{{'label.edit.datatable' | translate}}</li>
           </ul>
         </div>
-         <form name="editdatatableform" novalidate="" class="form-horizontal well"  ng-submit="submit()">
-        <div class="error" ng-show="errorStatus || errorDetails">
+         <form name="editdatatableform" novalidate="" class="form-horizontal well" data-ng-submit="submit()">
+        <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
         <fieldset>
           <legend>{{ 'label.edit.datatable' | translate }}</legend>
@@ -24,42 +24,43 @@
           <div class="control-group">
             <label class="control-label">{{ 'label.datatable.apptableName' | translate }}</label>
             <div class="controls">
-               <select ng-model="formData.apptableName"  name="apptableName" required="required">
+               <select data-ng-model="formData.apptableName"  name="apptableName" data-required="required">
                   <option style="display:none" value="">{{'label.select.apptableName' | translate}}</option>
                   <option value="m_client">{{'apptable.m.client' | translate}}</option>
                   <option value="m_office">{{'apptable.m.office' | translate}}</option>
                   <option value="m_group">{{'apptable.m.group' | translate}}</option>
                 </select>
-                 <span ng-show="editdatatableform.apptableName.$invalid">
-                <small class="error" ng-show="editdatatableform.apptableName.$error.req">Required Field</small>
+                 <span data-ng-show="editdatatableform.apptableName.$invalid">
+                <small class="error" data-ng-show="editdatatableform.apptableName.$error.req">Required Field</small>
                </span>
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">{{ 'label.add.columns' | translate }}</label>
             <div class="controls">
-              <input ng-model="datatableTemplate.columnName" type="text" placeholder="{{'label.column.name' | translate}}"/>&nbsp;&nbsp;
-              <select ng-model="datatableTemplate.columnType">
-                <option style="display:none" value="">{{'label.select.columnType' | translate}}</option>
-                <option value="string">{{'datatable.column.type.string' | translate}}</option>
-                <option value="number">{{'datatable.column.type.number' | translate}}</option>
-                <option value="decimal">{{'datatable.column.type.decimal' | translate}}</option>
-                <option value="date">{{'datatable.column.type.date' | translate}}</option>
-                <option value="text">{{'datatable.column.type.text' | translate}}</option>
-                <option value="dropdown">{{'datatable.column.type.dropdown' | translate}}</option>
+                <input type="text" data-ng-model="datatableTemplate.columnName" placeholder="{{'label.column.name' | translate}}"/>&nbsp;&nbsp;
+                <select data-ng-model="datatableTemplate.columnType">
+                  <option style="display:none" value="">{{'label.select.columnType' | translate}}</option>
+                  <option value="string">{{'datatable.column.type.string' | translate}}</option>
+                  <option value="number">{{'datatable.column.type.number' | translate}}</option>
+                  <option value="decimal">{{'datatable.column.type.decimal' | translate}}</option>
+                  <option value="date">{{'datatable.column.type.date' | translate}}</option>
+                  <option value="text">{{'datatable.column.type.text' | translate}}</option>
+                  <option value="dropdown">{{'datatable.column.type.dropdown' | translate}}</option>
               </select>&nbsp;&nbsp;
-              <a ng-click="addColumn()"><i class="icon-plus icon-white"></i></a>
-              <span ng-show="editdatatableform.columnname.$invalid || columnnameerror || columntypeerror">
-						<small class="error" ng-show="editdatatableform.columnname.$error.req || columnnameerror || columntypeerror">
+              <a data-ng-click="addColumn()"><i class="icon-plus icon-white"></i></a>
+              <span data-ng-show="editdatatableform.columnname.$invalid || columnnameerror || columntypeerror">
+				  <small class="error" data-ng-show="editdatatableform.columnname.$error.req || columnnameerror || columntypeerror">
 							                                   {{ 'label.'+labelerror | translate }}</small>
-					</span>
+			 </span>
             </div>
           </div>
-          <table ng-show="columns.length > 0" width="100%">
+          
+          <table style="width:100%;" data-ng-show="columns.length > 0" >
             <tr class="control-group">
-            <td class="width11"><label>{{ 'label.heading.columns' | translate }}</label></td>
+             <td class="width11"><label>{{ 'label.heading.columns' | translate }}</label></td>
               <td class="blockquoteresult width86">
-                <table ng-show="columns.length > 0" class="table">
+                <table data-ng-show="columns.length > 0" class="table">
                   <thead>
                     <tr class="graybg">
                       <th>{{'table.heading.name' | translate}}</th>
@@ -73,15 +74,11 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr ng-repeat="column in columns">
+                    <tr data-ng-repeat="column in columns">
+                      <td class="paddedleftNone"><input class="input-small" type="text" data-ng-model="column.name" data-ng-readonly="column.originalName"  placeholder="{{'label.column.name' | translate}}"/></td>
+                      <td class="paddedleftNone"><input class="input-small" type="text" data-ng-model="column.newName"  data-ng-show="column.originalName"  placeholder="{{'label.column.name' | translate}}" /></td>
                       <td>
-                        <input ng-model="column.name" class="input-small" type="text" placeholder="{{'label.column.name' | translate}}" ng-readonly="column.originalName"/>
-                      </td>
-                      <td>
-                        <input ng-model="column.newName" class="input-small" type="text" placeholder="{{'label.column.name' | translate}}" ng-show="column.originalName"/>
-                      </td>
-                      <td>
-                        <select ng-model="column.type" required="required" class="input-small" ng-disabled="column.originalName" ng-change="updateDepenedencies($index)">
+                        <select data-ng-model="column.type" class="input-small" data-ng-disabled="column.originalName" data-ng-change="updateDepenedencies($index)" data-required>
                           <option style="display:none" value="">{{'label.select.columnType' | translate}}</option>
                           <option value="string">{{'datatable.column.type.string' | translate}}</option>
                           <option value="number">{{'datatable.column.type.number' | translate}}</option>
@@ -91,27 +88,25 @@
                           <option value="dropdown">{{'datatable.column.type.dropdown' | translate}}</option>
                         </select>
                       </td>
-                      <td align="center" class="paddedleft0"><input ng-model="column.mandatory" type="checkbox" /></td>
-                      <td class="paddedleft0">
-                        <input ng-show="column.type == 'string'" ng-model="column.length" type="text" class="input-small"/>
-                      </td>
-                      <td class="paddedleft0">
-                        <select ng-show="column.type == 'dropdown'" ng-model="column.code" ng-options="code.name as code.name for code in codes" value="{{code.name}}" class="input-small" ng-disabled="column.originalName"></select>
-                      </td>
-                      <td class="paddedleft0">
-                        <select ng-show="column.type == 'dropdown'" ng-disabled="!column.originalName" ng-model="column.newCode" ng-options="code.name as code.name for code in codes" value="{{code.name}}" class="input-small"></select>
-                      </td>
-                      <td align="center" class="paddedleft0"><a ng-click="removeColumn($index)"><i class="icon-remove icon-white"></i></a></td>
+                      <td class="center"><input data-ng-model="column.mandatory" type="checkbox"/></td>
+                      <td><input data-ng-show="column.type == 'string'" data-ng-model="column.length" type="text" class="input-small"/></td>
+                      <td class="paddedleft0"><select class="input-small" data-ng-show="column.type == 'dropdown'" data-ng-model="column.code" 
+                                                    data-ng-options="code.name as code.name for code in codes" data-ng-disabled="column.originalName"></select></td>
+                      <td class="paddedleft0"><select class="input-small" data-ng-show="column.type == 'dropdown'" data-ng-model="column.newCode" 
+                                                    data-ng-options="code.name as code.name for code in codes" data-ng-disabled="!column.originalName"></select></td>
+                      <td class="center"><a data-ng-click="removeColumn($index)"><i class="icon-remove icon-white"></i></a></td>
                     </tr>
                   </tbody>
                 </table>
               </td>
             </tr>
+             <tr>
+               <td colspan="7" align="right">
+                <div class="offset3">
+                    <a href="#/datatables"><button id="cancel" type="reset" class="btn">{{ 'label.cancel' | translate }}</button></a>
+                    <button id="submit" type="submit" class="btn btn-primary" >{{ 'label.save' | translate }}</button>
+                    </div>
           </table>
-          <div class="offset3">
-            <a href="#/datatables"><button id="cancel" type="reset" class="btn">{{ 'label.cancel' | translate }}</button></a>
-            <button id="submit" type="submit" class="btn btn-primary" >{{ 'label.save' | translate }}</button>
-          </div>
         </fieldset>
       </form>
       </div>

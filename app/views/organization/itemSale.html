@@ -21,7 +21,7 @@
 	    </div>
         <fieldset>
           <legend>Create Item Sale</legend>
-           <table style="width:100%;">
+           <table>
 		   <tr> 
 		    <td>
 		    	<div class="control-group">
@@ -102,15 +102,12 @@
 					</div>
 				</td>
 				</tr>
-				<tr>
-				<td></td>
-			<td style="align:middle;">
-			<div class="offset3">
-			<div class="control-group">
+			  <tr>
+		 	  <td align="right" colspan="2">
+			    <div class="control-group">
         	    <a data-ng-hide ="officeId ==0" href="#/viewoffice/{{officeId}}"><button id="cancel" type="reset" class="btn" data-ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
         	     <a data-ng-show ="officeId ==0"  href="#/inventory"><button id="cancel" type="reset" class="btn" data-ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
             	<button id="save" type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
-          </div>
           </div>
           </td>
           </tr>

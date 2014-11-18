@@ -651,7 +651,7 @@
       .when('/viewonetimesale/:id/:clientId', {
         templateUrl: 'views/clients/viewonetimesale.html'
       })
-      .when('/allocatehardwareonetimesale/:id/:clientId', {
+      .when('/allocatehardwareonetimesale/:itemcode/:quantity/:clientId', {
         templateUrl: 'views/clients/allocatehardwareonetimesale.html'
       })
       .when('/event', {
@@ -915,6 +915,15 @@
       })
       .when('/adddevice/:clientId', {
         templateUrl: 'views/clients/adddevice.html'
+      })
+      .when('/viewcheckerinbox/:id', {
+                templateUrl: 'views/system/viewcheckerinbox.html'
+      })
+       .when('/viewMakerCheckerTask/:commandId', {
+                templateUrl: 'views/system/viewMakerCheckerTask.html'
+      })
+      .when('/checkeractionperformed', {
+                templateUrl: 'views/system/checkerActionPerformed.html'
       });
       
     

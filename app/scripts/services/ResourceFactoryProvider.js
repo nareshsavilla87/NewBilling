@@ -1006,6 +1006,11 @@
                 get: {method: 'GET', params: {}, isArray: true},
                 update: { method: 'PUT'}
             }),
+           
+            checkerInboxResource: defineResource(apiVer + "/makercheckers/:templateResource", {templateResource: '@templateResource'}, {
+                get: {method: 'GET', params: {}},
+                search: {method: 'GET', params: {}, isArray: true}
+            }),
             
             itemMasterDetailTemplateResource: defineResource(apiVer + "/itemdetails/serialnum", {}, {}),
            
