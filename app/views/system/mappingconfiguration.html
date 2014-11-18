@@ -198,31 +198,27 @@
          </div>
       </tab>
       
-      <tab heading="Validations" select="getEventValidationData()"  active="eventValidationTab">
-        <div class="pull-right btn-group">
-          <a href="#/createevenvalidation" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
-        </div>
+      <tab heading="Provisioning Actions" select="getProvisioningActionData()"  active="eventValidationTab">
         <div class="row-fluid">
                    <input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.searchbar' | translate}}">
-                   
         <table class="table">
             <thead>
               <tr class="graybg">
-                <th>{{'table.hardwaremapping.id' | translate}}</th>
-                <th>{{'table.eventactionmapping.event' | translate}}</th>
-                <th>{{'table.eventactionmapping.process' | translate}}</th>
-                <th>Pre_Post</th>
+                <th>{{'table.provision.provisiontype' | translate}}</th>
+                <th>{{'table.provision.action' | translate}}</th>
+                <th>{{'table.provision.provisioningSystem' | translate}}</th>
+                <th>{{'table.provision.isenable' | translate}}</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-              <tr data-ng-repeat="data in eventValidationDatas  | filter:filterText">
-              	<td>{{data.id}}</td>        
-                <td>{{data.eventName}}</td>
-                <td>{{data.process}}</td>
-                <td>{{data.prePost}}</td>
-                <td data-ng-show="data.isDeleted=='N'"><button type="button" class="btn btn-success flag" data-ng-click="isDeletedForValidation(data.id,data.isDeleted)"><i class="icon-flag-alt"></i></button></td>
-                <td data-ng-show="data.isDeleted=='Y'"><button type="button" class="btn btn-danger flag" data-ng-click="isDeletedForValidation(data.id,data.isDeleted)"><i class="icon-flag-alt"></i></button></td>
+              <tr data-ng-repeat="data in provisionactionDatas  | filter:filterText">
+              	<td>{{data.provisionType}}</td>        
+                <td>{{data.action}}</td>
+                <td>{{data.provisioningSystem}}</td>
+                <td>{{data.isEnable}}</td>
+                <td data-ng-show="data.isEnable =='N'"><button type="button" class="btn btn-success flag" data-ng-click="isDeletedForValidation(data.id,data.isEnable)"><i class="icon-flag-alt"></i></button></td>
+                <td data-ng-show="data.isEnable =='Y'"><button type="button" class="btn btn-danger flag" data-ng-click="isDeletedForValidation(data.id,data.isEnable)"><i class="icon-flag-alt"></i></button></td>
      		 </tbody>
           </table>
       

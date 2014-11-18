@@ -1,11 +1,11 @@
-<div ng-controller="CreditDistributionController">
+<div data-ng-controller="CreditDistributionController">
  <div>
  <ul class="breadcrumb">
         <table>
         <tr>
         <td>
-        	 <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
-          <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+        	 <img data-ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img data-ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
         </td>
         <td>
             <small style="color:black;">{{displayName}}</small>
@@ -54,42 +54,40 @@
 			<li class="active">Credit Distribution</li>
 		</ul>
 	</div>
-	 <form name="creditDistributionForm" class="form-horizontal well" ng-submit = "submit()">
+	 <form name="creditDistributionForm" class="form-horizontal well" data-ng-submit = "submit()">
 	  
-	    <div class="error" ng-show="errorStatus || errorDetails">
+	    <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>  
 	    
         <fieldset>
-          <legend>Credit Distribution</legend>
+          <legend>{{'label.creditdistribution' | translate}}</legend>
           <br>
           <div class="control-group">
-          		<label class="control-label">Show Payments Details</label>
+          		<label class="control-label">{{'label.show.payment.details' | translate}}</label>
          		 <div class="controls">
-            		<a class="btn btn-primary" ng-click="showPayments()">
-              			<i ng-show="showPaymentsDetails" class="icon-minus icon-white"></i>
-             			 <i ng-show="!showPaymentsDetails" class="icon-plus icon-white"></i>
+            		<a class="btn btn-primary" data-ng-click="showPayments()">
+              			<i data-ng-show="showPaymentsDetails" class="icon-minus icon-white"></i>
+             			 <i data-ng-show="!showPaymentsDetails" class="icon-plus icon-white"></i>
             		</a>
           		</div>
         	</div>
-       <div collapse = "!showPaymentsDetails"> 
+       <div data-collapse = "!showPaymentsDetails"> 
 		 <table class="table">
 			  <thead>
             	<tr class="graybg">
-            		<th>select</th>
-               		<th>Payment Id</th>
-              	    <th>Payment Date</th>
-                    <th>Receipt No</th>
-                	<th>Payment Amount</th>
-                	<th>Available Amount</th>
+            		<th>{{'label.select' | translate}}</th>
+              	    <th>{{'label.payment.date' | translate}}</th>
+                    <th>{{'label.receiptnumber' | translate}}</th>
+                	<th>{{'label.payment.amount' | translate}}</th>
+                	<th>{{'label.available.amount' | translate}}</th>
             	</tr>
        		</thead>
         	<tbody>
-            	 <tr ng-repeat="paymentData in paymentDatas">
-            		<td> <input  type="radio" name ="select" ng-click = "seletedPayment(paymentData.id,paymentData.amountPaid,paymentData.availAmount,$index)"/></td>
-            		<td>{{paymentData.id}}</td>
+            	 <tr data-ng-repeat="paymentData in paymentDatas">
+            		<td> <input  type="radio" name ="select" data-ng-click = "seletedPayment(paymentData.id,paymentData.amountPaid,paymentData.availAmount,$index)"/></td>
                 	<td>{{paymentData.paymentDate | DateFormat}}</td>
                 	<td>{{paymentData.receiptNo}}</td>
                 	<td>{{paymentData.amountPaid}}</td>
@@ -100,32 +98,30 @@
 			
 	</div>
 	 <br>
-          <div class="control-group" ng-show = "showInvoices && showPaymentsDetails">
-          		<label class="control-label">Show Invoice Details</label>
+          <div class="control-group" data-ng-show = "showInvoices && showPaymentsDetails">
+          		<label class="control-label">{{'label.show.payment.details' | translate}}</label>
          		 <div class="controls">
-            		<a class="btn btn-primary" ng-click="showInvoiceDetails=!showInvoiceDetails">
-              			<i ng-show="showInvoiceDetails" class="icon-minus icon-white"></i>
-             			 <i ng-show="!showInvoiceDetails" class="icon-plus icon-white"></i>
+            		<a class="btn btn-primary" data-ng-click="showInvoiceDetails=!showInvoiceDetails">
+              			<i data-ng-show="showInvoiceDetails" class="icon-minus icon-white"></i>
+             			 <i data-ng-show="!showInvoiceDetails" class="icon-plus icon-white"></i>
             		</a>
           		</div>
         	</div>
-       <div collapse = "!showInvoiceDetails"> 
+       <div data-collapse = "!showInvoiceDetails"> 
 		 <table class="table">
 			  <thead>
             	<tr class="graybg">
-            		<th>select</th>
-               		<th>InvoiceId</th>
-              	    <th>Invoice Date</th>
-                    <th>Invoice Amount</th>
-                	<th>Due Amount</th>
+            		<th>{{'label.select' | translate}}</th>
+              	    <th>{{'label.invoice.date' | translate}}</th>
+                    <th>{{'label.invoice.amount' | translate}}</th>
+                	<th>{{'label.invoice.dueamount' | translate}}</th>
                 	<th></th>
             	</tr>
        		</thead>
         	<tbody>
-            	 <tr ng-repeat="invoiceData in invoiceDatas" >
+            	 <tr data-ng-repeat="invoiceData in invoiceDatas" >
            			
-            		<td> <input id="{{invoiceData.id}}" class="unCheck" type="checkbox" ng-model="active" ng-change="selectedInvoices(invoiceData.id,invoiceData.dueAmount,active,$index)"></td>
-            		<td>{{invoiceData.id}}</td>
+            		<td> <input id="{{invoiceData.id}}" class="unCheck" type="checkbox" data-ng-model="active" data-ng-change="selectedInvoices(invoiceData.id,invoiceData.dueAmount,active,$index)"></td>
                 	<td>{{invoiceData.billDate | DateFormat}}</td>
                 	<td>{{invoiceData.amount}}</td>
                 	<td>{{invoiceData.dueAmount}}</td>
@@ -134,9 +130,9 @@
         	</tbody>
 		</table>
 		<br>
-		<div class="offset3">
-            <a href='#/viewclient/{{clientId}}' class="btn">Cancel</a>
-          <button id="submit" type="submit" class="btn btn-primary">Distribute</button>
+		<div class="pull-right">
+            <a href='#/viewclient/{{clientId}}' class="btn">{{'button.cancel'  | translate}}</a>
+          <button id="submit" type="submit" class="btn btn-primary">{{'button.distribute'  | translate}}</button>
           </div>	
 	</div>
 		</fieldset>

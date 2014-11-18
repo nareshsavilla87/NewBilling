@@ -1,13 +1,11 @@
-     <form name="createclientform" novalidate="" class="form-horizontal well" ng-controller="CreateActivationController" ng-submit="submit4()">
+     <form name="createclientform" novalidate class="form-horizontal well" data-ng-controller="CreateActivationController" data-ng-submit="submit4()">
        
-         <div class="error" ng-show="errorStatus || errorDetails">
+         <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
 
-	</div>
-     
         <fieldset>
           <legend>New Activation</legend>
         <table>
@@ -22,7 +20,7 @@
             	<div class="control-group">
              		 <label class="control-label">{{'label.office' | translate}}<span class="required">*</span></label>
               		<div class="controls">
-                		<select ng-model="formData1.officeId"  ng-options="office.id as office.name for office in offices" value="{{office.id}}" ng-change="changeOffice(formData.officeId)"></select>
+                		<select data-ng-model="formData1.officeId"  data-ng-options="office.id as office.name for office in offices" data-ng-change="changeOffice(formData.officeId)"></select>
               		</div>
            		 </div>
             </td>
@@ -30,7 +28,7 @@
             	<div class="control-group">
              	 	<label class="control-label">{{'label.clientcategeory' | translate}}<span class="required">*</span></label>
               		<div class="controls">
-               		 <select ng-model="formData1.clientCategory"  ng-options="clientCategoryData.id as clientCategoryData.categoryType for clientCategoryData in clientCategoryDatas" value="{{clientCategoryDatas.id}}"></select>
+               		 <select data-ng-model="formData1.clientCategory"  data-ng-options="clientCategoryData.id as clientCategoryData.categoryType for clientCategoryData in clientCategoryDatas" ></select>
               		</div>
            		 </div>
            	</td>
@@ -42,13 +40,13 @@
               		<label class="control-label" for="firstname">{{'lable.fullname' | translate}}<span class="required">*</span></label>
 
               		<div class="controls">
-                		<input type="text" id="firstname" name="firstname" ng-model="fullname" ng-change="formName(fullname)" ng-pattern="/^[a-zA-Z0-9\s]+$/" required ng-minlength=3 late-Validate/>
-                		<span  ng-show="createclientform.firstname.$invalid">
-                			<small class="error" ng-show="createclientform.firstname.$error.pattern">alphanumeric and spaces only!</small>
-                   			 <small class="error" ng-show="createclientform.firstname.$error.req">
+                		<input type="text" id="firstname" name="firstname" data-ng-model="fullname" data-ng-change="formName(fullname)" data-ng-pattern="/^[a-zA-Z0-9\s]+$/" required data-ng-minlength=3 data-late-Validate/>
+                		<span  data-ng-show="createclientform.firstname.$invalid">
+                			<small class="error" data-ng-show="createclientform.firstname.$error.pattern">alphanumeric and spaces only!</small>
+                   			 <small class="error" data-ng-show="createclientform.firstname.$error.req">
                        			 Required Field
                     		</small>
-                    		<small class="error" ng-show="createclientform.firstname.$error.minlength && !createclientform.firstname.$error.req">Name is required at least 3 characters</small>
+                    		<small class="error" data-ng-show="createclientform.firstname.$error.minlength && !createclientform.firstname.$error.req">Name is required at least 3 characters</small>
                 		</span>
               		</div>
            		 </div>
@@ -57,8 +55,7 @@
            		 <div class="control-group">
               		<label class="control-label" for="city">{{'label.city/area' | translate}}<span class="required">*</span></label>
               		<div class="controls">
-             			 <!--   <input type="text" id="city" name="city" ng-model="formData.city" list ="citylist" ng-change="getStateAndCountry(formData.city)" required /> -->
-               			 <select ng-model="formData1.city"  ng-options="citi for citi in  cities" ng-change="getStateAndCountry(formData1.city)" value="{{billRuleData.id}}"></select>
+               			 <select data-ng-model="formData1.city"  data-ng-options="citi for citi in  cities" data-ng-change="getStateAndCountry(formData1.city)" ></select>
                
               		</div>
             	</div>
@@ -69,17 +66,17 @@
            		 <div class="control-group">
              		 <label class="control-label" for="phone">{{'label.activation.phone' | translate}}<span class="required">*</span></label>
               		<div class="controls">
-               			 <input type="text" id="phone" ng-model="formData1.phone" ng-pattern="/^(?!0+$)\d{1,19}$/"  ng-maxlength="10" name="phone" required  late-Validate/>
-               			 <span ng-show="createclientform.phone.$invalid">
-                		   <small class="error" ng-show="createclientform.phone.$error.req">
+               			 <input type="text" id="phone" data-ng-model="formData1.phone" data-ng-pattern="/^(?!0+$)\d{1,19}$/"  data-ng-maxlength="10" name="phone" required  data-late-Validate/>
+               			 <span data-ng-show="createclientform.phone.$invalid">
+                		   <small class="error" data-ng-show="createclientform.phone.$error.req">
                       		  Required Field
                   		 </small>
                 		</span>
                 
-           				<div ng-show="createclientform.phone.$dirty && createclientform.phone.$invalid">
+           				<div data-ng-show="createclientform.phone.$dirty && createclientform.phone.$invalid">
              
-               			<span class="error" ng-show="createclientform.phone.$error.pattern">digits only !</span>
-              			 <span class="error" ng-show="createclientform.phone.$error.maxlength">Exceeded max limit!</span>
+               			<span class="error" data-ng-show="createclientform.phone.$error.pattern">digits only !</span>
+              			 <span class="error" data-ng-show="createclientform.phone.$error.maxlength">Exceeded max limit!</span>
            				</div>
               		</div>
             	</div>
@@ -88,7 +85,7 @@
             	<div class="control-group">
              		 <label class="control-label" for="email">{{'label.email' | translate}}</label>
              		<div class="controls">
-               		 <input type="text" id="email" ng-model="formData1.email"/>
+               		 <input type="text" id="email" data-ng-model="formData1.email"/>
               		</div>
            		 </div>
            	</td>
@@ -98,41 +95,41 @@
          <strong>Device Info({{config}})</strong>
          </td><td></td>
          </tr>
-         <tr ng-show="PermissionService.showMenu('CREATE_NEWSALE') || PermissionService.showMenu('CREATE_SECONDSALE') && config == 'SALE'"><td>
+         <tr data-ng-show="PermissionService.showMenu('CREATE_NEWSALE') || PermissionService.showMenu('CREATE_SECONDSALE') && config == 'SALE'"><td>
          <div class="control-group">
            
               <div class="controls">
-               <input type="radio" ng-show="PermissionService.showMenu('CREATE_NEWSALE')" id="type" ng-model="formData2.saleType" name="saleType" value="NEWSALE">
+               <input type="radio" data-ng-show="PermissionService.showMenu('CREATE_NEWSALE')" id="type" data-ng-model="formData2.saleType" name="saleType" value="NEWSALE">
                <any ng-show="PermissionService.showMenu('CREATE_NEWSALE')">&nbsp; New Sale &nbsp;&nbsp;</any>
-               <input type="radio" id="type" ng-show="PermissionService.showMenu('CREATE_SECONDSALE')" ng-model="formData2.saleType" name="saleType" value="SECONDSALE">
+               <input type="radio" id="type" data-ng-show="PermissionService.showMenu('CREATE_SECONDSALE')" data-ng-model="formData2.saleType" name="saleType" value="SECONDSALE">
                <any ng-show="PermissionService.showMenu('CREATE_SECONDSALE')">&nbsp; Second Sale &nbsp;&nbsp;</any>
             </div>
           		</div>
          </td></tr>
-           	<tr ng-show="config == 'SALE'">
+           	<tr data-ng-show="config == 'SALE'">
           	<td>
 				<div class="control-group">
             	<label class="control-label" for="officeId">officeId</label>
             	<div class="controls">
-             	<select ng-model="formData2.officeId" ng-options="officesData.id as officesData.name for officesData in officesDatas" value="{{itemData.id}}">
+             	<select data-ng-model="formData2.officeId" data-ng-options="officesData.id as officesData.name for officesData in officesDatas">
              	</select>
             	</div>
           		</div>
 			</td>
-          	 <td ng-show="formData2.saleType == 'NEWSALE'">
+          	 <td data-ng-show="formData2.saleType == 'NEWSALE'">
              	<div class="control-group">
             		<label class="control-label" for="discountId">{{ 'label.discountCode' | translate }}</label>
             		   <div class="controls">
-             			  <select ng-model="formData2.discountId"  ng-options="discountMasterData.id as discountMasterData.discountDescription for discountMasterData in discountMasterDatas" value="{{discountMasterData.id}}">
+             			  <select data-ng-model="formData2.discountId"  data-ng-options="discountMasterData.id as discountMasterData.discountDescription for discountMasterData in discountMasterDatas" >
              				  </select>
             			</div>
           		</div>
           	</td>
-          	  <td ng-show="formData2.saleType == 'SECONDSALE'">
+          	  <td data-ng-show="formData2.saleType == 'SECONDSALE'">
 				<div class="control-group">
             	<label class="control-label" for="totalPrice">{{ 'label.totalPrice' | translate }}</label>
             	   <div class="controls">
-              		 <input type="text" id="totalPrice" ng-model="formData2.totalPrice" " style="background-color:#FFFFFF;">
+              		 <input type="text" id="totalPrice" data-ng-model="formData2.totalPrice" style="background-color:#FFFFFF;">
             		</div>
           		</div>
 			</td>
@@ -142,18 +139,18 @@
           		  <div class="control-group">
            	<label class="control-label" for="itemId">{{ 'label.itemCode' | translate }}<span class="required">*</span></label>
             	<div class="controls">
-             	<select ng-show="config =='SALE'" ng-model="formData2.itemId" name="itemcode" ng-change="itemData(formData2.itemId,formData2.officeId)" ng-options="itemData.id as itemData.itemCode for itemData in itemDatas" value="{{itemData.id}}">
+             	<select data-ng-show="config =='SALE'" data-ng-model="formData2.itemId" name="itemcode" data-ng-change="itemData(formData2.itemId,formData2.officeId)" data-ng-options="itemData.id as itemData.itemCode for itemData in itemDatas">
              	</select>
-             	<select ng-show="config =='OWN'" ng-model="formData5.itemType"  ng-options="itemtypes.id as itemtypes.itemDescription for itemtypes in itemtypes" value="{{itemtypes.id}}" required late-Validate></select>
+             	<select data-ng-show="config =='OWN'" data-ng-model="formData5.itemType"  data-ng-options="itemtypes.id as itemtypes.itemDescription for itemtypes in itemtypes" required data-late-Validate></select>
               </div>
            </div>
           	</td>
           	<td>
-          		<div class="control-group"  ng-repeat="item in getNumber(formData2.quantity)" name="serialNumberDiv">
+          		<div class="control-group"  data-ng-repeat="item in getNumber(formData2.quantity)">
                     <label class="control-label" for="serialNumber">{{ 'label.serialNumber' | translate }}&nbsp;<span class="required">*</span></label>
                     <div class="controls">
-             	    <input type="text" ng-show="config == 'SALE'" ng-model="serial" name="serial" ng-change="getData(serial,formData2.officeId)" typeahead="itemDetail as itemDetail for itemDetail in itemDetails | limitTo:8" typeahead-min-length="0">
-             	     <input type="text" ng-show="config == 'OWN'" name="provisioningserialnumber" ng-model="formData5.provisioningSerialNumber" required late-Validate>
+             	    <input type="text" data-ng-show="config == 'SALE'" data-ng-model="serial" name="serial" data-ng-change="getData(serial,formData2.officeId)" data-typeahead="itemDetail as itemDetail for itemDetail in itemDetails | limitTo:8" data-typeahead-min-length="0">
+             	     <input type="text" data-ng-show="config == 'OWN'" name="provisioningserialnumber" data-ng-model="formData5.provisioningSerialNumber" required data-late-Validate>
                     </div>
                </div>
              </td>
@@ -168,8 +165,8 @@
              	<div class="control-group">
              		 <label class="control-label" for="startDate">{{ 'label.order.startdate' | translate }}</label>
               		 <div class="controls">
-                		<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.date" is-open="opened" min="minDate" max="maxDate" 
-                 		   date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
+                		<input type="text" data-datepicker-pop="dd MMMM yyyy" data-ng-model="start.date" data-is-open="opened" min="minDate" max="maxDate" 
+                 		   data-date-disabled="disabled(date, mode)" required data-late-Validate style="background-color:#FFFFFF;"  readonly/>
              		</div>
            		</div>
            	</td>
@@ -177,7 +174,7 @@
            		<div class="control-group" >
                    <label class="control-label" for="paytermCode">{{ 'label.activation.plan' | translate }}</label>
                      <div class="controls">
-                        <select ng-model="formData4.planCode"  ng-options="plandata.id as plandata.planCode for plandata in plandatas" ng-change='setBillingFrequency(formData4.planCode)' value="{{plandata.id}}"></select>
+                        <select data-ng-model="formData4.planCode"  data-ng-options="plandata.id as plandata.planCode for plandata in plandatas" data-ng-change='setBillingFrequency(formData4.planCode)'></select>
                     </div>
                  </div>	
              </td>
@@ -187,31 +184,31 @@
            		<div class="control-group">
                		<label class="control-label" for="contractPeriod">{{ 'label.order.contractperiod' | translate }}</label>
                 	 <div class="controls">
-                    	<select   ng-disabled="formData4.isPrepaid == 'Y'" ng-model="formData4.contractPeriod"  ng-options="subscriptiondata.id as subscriptiondata.Contractdata for subscriptiondata in subscriptiondatas" value="{{billRuleData.id}}"></select>
+                    	<select   data-ng-disabled="formData4.isPrepaid == 'Y'" data-ng-model="formData4.contractPeriod"  data-ng-options="subscriptiondata.id as subscriptiondata.Contractdata for subscriptiondata in subscriptiondatas" ></select>
                  	</div>
              	</div>
              </td>
              <td>
-             	<div class="control-group" ng-hide="formData4.isPrepaid == 'Y'">
+             	<div class="control-group" data-ng-hide="formData4.isPrepaid == 'Y'">
                    <label class="control-label" for="paytermCode">{{ 'label.order.billingfrequency' | translate }}</label>
                      <div class="controls">
-                        <select ng-model="formData4.paytermCode"  ng-options="paytermdata.paytermtype as paytermdata.paytermtype for paytermdata in paytermdatas" value="{{billRuleData.id}}"></select>
+                        <select data-ng-model="formData4.paytermCode"  data-ng-options="paytermdata.paytermtype as paytermdata.paytermtype for paytermdata in paytermdatas" ></select>
                     </div>
                  </div>
               </td>
               </tr>
-              <tr ng-show="'payment' | ConfigLookup">
+              <tr data-ng-show="'payment' | ConfigLookup">
             <td>
          <strong>Payment Info</strong>
          </td><td></td>
          </tr>
          
-           	<tr ng-show="'payment' | ConfigLookup">
+           	<tr data-ng-show="'payment' | ConfigLookup">
            	<td>
           		  <div class="control-group">
              		 <label class="control-label" for="amountPaid">{{'label.activation.amount' | translate}}<span class="required">*</span></label>
              		<div class="controls">
-               		 <input type="text" id="amountPaid" ng-model="formData6.amountPaid"/>
+               		 <input type="text" id="amountPaid" data-ng-model="formData6.amountPaid"/>
               		</div>
               		</div>
           	</td>
@@ -219,25 +216,25 @@
           		<div class="control-group">
              		 <label class="control-label" for="receiptNo">{{'label.activation.recieptno' | translate}}<span class="required">*</span></label>
              		<div class="controls">
-               		 <input type="text" id="receiptNo" ng-model="formData6.receiptNo"/>
+               		 <input type="text" id="receiptNo" data-ng-model="formData6.receiptNo"/>
               		</div>
               		</div>
              </td>
              </tr>
               <tr>
               <td>
-             	  <div class="control-group" ng-hide="configurationProperty==false">
+             	  <div class="control-group" data-ng-hide="configurationProperty==false">
              		 <label class="control-label">Login<span class="required">*</span></label>
               		<div class="controls">
-               			 <input type="text" id="login" name="login" ng-model="formData1.login"/>
+               			 <input type="text" id="login" name="login" data-ng-model="formData1.login"/>
               		</div>
             	</div>
             </td>
            <td>
-            	<div class="control-group" ng-hide="configurationProperty==false">
+            	<div class="control-group" data-ng-hide="configurationProperty==false">
               		<label class="control-label">Password<span class="required">*</span></label>
              		 <div class="controls">
-               			 <input type="password"  ng-model="formData1.password"/>
+               			 <input type="password"  data-ng-model="formData1.password"/>
               		</div>
             	</div>
            	</td>
@@ -247,7 +244,7 @@
             	 <div class="control-group">
               		<label class="control-label" for="file">{{'label.client.select.image' | translate}}</label>
               		<div class="controls">
-               			 <input type="file" ng-file-select="onFileSelect($files)">
+               			 <input type="file" data-ng-file-select="onFileSelect($files)">
               		</div>
             	</div>
            	</td>
@@ -261,7 +258,6 @@
            </table> 
             <div class="pull-right">
               <a href="#/clients"><button id="cancel" type="reset" class="btn">Cancel</button></a>
-              <!-- <button id="submit" type="submit"  ng-dblclick="dbClick()" ng-disabled="(!createclientform.$valid)||(flag)" class="btn btn-primary">Save</button> -->
               <button id="submit" type="submit"  class="btn btn-primary">Save</button>
             </div>
         </fieldset>

@@ -34,14 +34,15 @@
             </thead>
             <tbody>
               <tr class="pointer-main" ng-repeat="itemdetail in itemdetails.currentPageItems  | filter:filterText">
-              	<td class="pointer" data-ng-click="routeTo(itemdetail.clientId)" style="text-align:left">{{itemdetail.officeName}}</td>
-              	<td class="pointer" data-ng-click="routeTo(itemdetail.clientId)" style="text-align:left">{{itemdetail.supplier}}</td>
-                <td class="pointer" data-ng-click="routeTo(itemdetail.clientId)" style="text-align:left">{{itemdetail.itemDescription}}</td>
-                <td class="pointer" data-ng-click="routeTo(itemdetail.clientId)" style="text-align:left">{{itemdetail.serialNumber}}</td>
-                <td class="pointer" data-ng-click="routeTo(itemdetail.clientId)" style="text-align:left">{{itemdetail.provisioningSerialNumber}}</td>
-                <td class="pointer" data-ng-click="routeTo(itemdetail.clientId)" style="text-align:left">{{itemdetail.quality}}</td>
-                <td class="pointer" data-ng-click="routeTo(itemdetail.clientId)" style="text-align:left">{{itemdetail.status}}</td>
-                <td class="pointer" data-ng-click="routeTo(itemdetail.clientId)" style="text-align:left">{{itemdetail.accountNumber}}</td>
+              	<td class="pointer" style="text-align:left">{{itemdetail.officeName}}</td>
+              	<td class="pointer" style="text-align:left">{{itemdetail.supplier}}</td>
+                <td class="pointer" style="text-align:left">{{itemdetail.itemDescription}}</td>
+                <td class="pointer" style="text-align:left">{{itemdetail.serialNumber}}</td>
+                <td class="pointer" style="text-align:left">{{itemdetail.provisioningSerialNumber}}</td>
+                <td class="pointer" style="text-align:left">{{itemdetail.quality}}</td>
+                <td class="pointer" style="text-align:left">{{itemdetail.status}}</td>
+                <td ng-show="itemdetail.accountNumber" class="pointer" style="text-align:left">{{itemdetail.accountNumber}}</td>
+                <td ng-hide="itemdetail.accountNumber" class="pointer" style="text-align:left">In Stock</td>
                 <td style="text-align:center"><a ng-show="(itemdetail.clientId)&&PermissionService.showMenu('UPDATE_INVENTORY')" ng-click="editProvSerial(itemdetail.id,itemdetail.quality,itemdetail.provisioningSerialNumber)"
                                  popover="Edit Provisioning" popover-trigger="mouseenter" class="icon-edit"></a>&nbsp;
                 <a ng-show="(!itemdetail.clientId)&&PermissionService.showMenu('UPDATE_INVENTORY')" ng-click="editQuality(itemdetail.id,itemdetail.quality,itemdetail.provisioningSerialNumber,itemdetail.serialNumber)"
@@ -103,7 +104,7 @@
     			</ul>
          </div>
       </tab>
-      <tab heading="MRN" select="getMRNdetails()" active="mrnTab"
+      <tab heading="Items Transfer" select="getMRNdetails()" active="mrnTab"
       ng-show="$parent.PermissionService.showMenu('READ_MRN','MOVE_MRN')">
         <div class="pull-right btn-group">
           <a href="#/itemsale/0" class="btn btn-primary"><i class="icon-plus icon-white"></i>Add Item Sale</a>
@@ -243,7 +244,7 @@
          </div>
       </tab>
       
-       <tab heading="Item History" select="getitemhistorydetails()" ng-show="$parent.PermissionService.showMenu('READ_MRNDETAILS')">
+       <tab heading="Item Tracking" select="getitemhistorydetails()" ng-show="$parent.PermissionService.showMenu('READ_MRNDETAILS')">
         <div class="pull-right btn-group">
          
         </div>
@@ -323,7 +324,7 @@
     </div>
      <div class="modal-footer">
         <button id="cancel" class="btn btn-warning" ng-click="cancelQuality()">{{'button.cancel' | translate}}</button>
-     	<button id="submit" class="btn btn-primary" ng-click="approveQuality(quality,provserialnum,serialNumber)" ng-disabled="flagEditQuality">{{'label.confirm' | translate}}</button>
+     	<button id="submit" class="btn btn-primary" ng-click="approveQuality(quality,provserialnum,serialNumber)" ng-disabled="flagEditQuality">{{'button.save' | translate}}</button>
      </div>
 
 </script>
@@ -332,12 +333,12 @@
                     <div class="modal-header silver">
                         <h3 class="bolder">{{'dialog.item.title.message' | translate}}</h3>
                     </div>
-                    <div class="modal-body modal-big">
+                    <div class="modal-body">
                        <h4>Are you sure?</h4>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
-                        <button class="btn btn-primary" ng-click="approve(date.actDate)">{{'label.confirm' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approve(date.actDate)">{{'button.save' | translate}}</button>
                     </div>
       </script>
 <script type="text/ng-template" id="EditProvSerial.html">
@@ -363,7 +364,7 @@
     </div>
      <div class="modal-footer">
         <button id="cancel" class="btn btn-warning" ng-click="cancelQuality()">{{'button.cancel' | translate}}</button>
-     	<button id="submit" class="btn btn-primary" ng-click="approveQuality(quality,provserialnum)" ng-disabled="flagEditQuality">{{'label.confirm' | translate}}</button>
+     	<button id="submit" class="btn btn-primary" ng-click="approveQuality(quality,provserialnum)" ng-disabled="flagEditQuality">{{'button.save' | translate}}</button>
      </div>
 
 </script>
@@ -419,10 +420,8 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-warning" ng-click="cancelItem()">{{'button.cancel' | translate}}</button>
-                        <button class="btn btn-primary" ng-click="approveToDelete()">{{'label.confirm' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approveToDelete()">{{'button.save' | translate}}</button>
                     </div>
       </script>
-
- 	 
+ 
   </div>
-

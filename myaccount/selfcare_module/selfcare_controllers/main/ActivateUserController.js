@@ -17,6 +17,7 @@
 		  scope.cities = [];
 		  scope.clientData = {};
 		  var itemDetails = {};
+		  var mesage_array = new Array();
 		  
 		//declaration of formData
 		  scope.formData = {};
@@ -381,11 +382,17 @@
 					 if(scope.formData.homePhoneNumber){
 						 scope.clientData.homePhoneNumber = scope.formData.homePhoneNumber;
 					 }
-					 scope.clientData.firstname = "Mr ";
+					 mesage_array = (scope.formData.fullName.split(" "));
+			            
+			          scope.clientData.firstname = mesage_array[0];
+			          scope.clientData.fullname = mesage_array[1];
+			            if(scope.clientData.fullname == null){
+			            	scope.clientData.fullname=".";
+			            }
 					 scope.clientData.address = scope.formData.address;
 					 scope.clientData.nationalId = scope.formData.nationalId;
 					 scope.clientData.zipCode = scope.formData.zipcode;
-					 scope.clientData.fullname = scope.formData.fullName;
+					 //scope.clientData.fullname = scope.formData.fullName;
 					 scope.clientData.city = scope.formData.city;
 					 scope.clientData.phone = parseInt(scope.formData.mobileNo); 
 					 scope.clientData.email = scope.existedEmail; 

@@ -64,7 +64,7 @@
   "label.email":"Email",
   "label.enable":"Enable",
   "label.disable":"Disable",
-   "label.select.one":"--Select one--",
+  "label.select.one":"--Select one--",
   "validation.msg.office.name.cannot.be.blank":"Office Name cannot be blank",
   "error.msg.not.authorized":"Insufficient privileges to perform this action.",
   "table.actions":"Actions",
@@ -191,7 +191,9 @@
   "button.refresh":"Refresh",
   "table.heading.orderid":"Order No",
   "label.eventprice":"Event Price",
-   "table.actions":"Actions",
+  "table.actions":"Actions",
+  "button.no":"NO",
+  "button.yes":"YES",
 
   "#datatable":"",
   "table.heading.datatablename":"Data Table Name",
@@ -314,6 +316,25 @@
   "error.msg.clientIdentifier.type.duplicate":"Already exists with this document type",
   "validation.msg.client.firstname.cannot.be.blank":"First name cannot be blank",
   "validation.msg.client.lastname.cannot.be.blank":"Last name cannot be blank",
+  "label.applybillmodes":"Apply BillModes",
+  "tab.documentsuploads":"Documents Uploads",
+  "tab.creditCarddetails":"CreditCard Details",
+  "tab.childclientdetails":"ChildClient Details",
+  "button.documentuploads":"Document Uploads",
+  "label.createdby":"Created by",
+  "label.createdon":"Created on",
+  "tab.devicesale":"Device Sale",
+  "tab.mydevice":"My Device",
+  "button.devicerental":"Device Rental",
+  "tab.financialsummary":"Financial summary",
+  "tab.invoices":"Invoices",
+  "button.adjustment":"Adjustment",
+  "label.username":"Username",
+  "label.transaction.category":"Transaction Category",
+  "label.creditamount":"Credit Amount",
+  "label.denitamount":"Debit Amount",
+  "tab.activitylog":"Activity Log",
+  "tab.old.activitylog":"Old Activity Log",
 
   "#edit client":"",
   "label.individual":"Individual",
@@ -907,6 +928,15 @@
   "error.msg.request.sent.for.activation":"Order is already sent for Activation ",
   "error.msg.billing.order.startdate.greater.than.exist.orderendate ":"Start Date must be greater than exist Order EndDate",
   "validation.msg.order.commandName.cannot.be.blank":"Command can not be blank",
+  "label.ordersoverview":"Orders Overview",
+  "label.startrenwaldate":"Start/Renwal Date",
+  "label.disconnect":"Disconnect",
+  "label.topup":"Topup",
+  "label.paring":"Paring",
+  "label.deviceswap":"Device Swap",
+  "label.changeplan":"Change Plan",
+  "label.commandcenter":"Command Center",
+  "label.scheduleorders":"Schedule Orders",
   
     "#Voucher pins":"....",
   "link.create.new.voucherpin":"Create Voucherpin",
@@ -1175,6 +1205,8 @@
    "error.msg.no.bills.to.generate":"No bills to generate",
    "error.msg.no.generate.pdf.file.for.this.statement":"Please first generate pdf file for this statement",
    "error.msg.no.emailId.is.available":"EmailId is not available for this client",
+   "button.genereate":"Generate",
+   "label.billdate":"Bill Date",
    
     "#messageResources":"....",
   "label.managemessage":"Manage Message",
@@ -1213,6 +1245,7 @@
   "validation.msg.eventorder.optType.cannot.be.blank":"Opt Type cannot be blank",
   "error.msg.movie.price.not.found":"No Price Found for This Client Type",
   "error.msg.insufficient.amount.amount":"Insufficient Amount to Book The Order",
+  "button.addeventorder":"Add Event Order",
   
   
   
@@ -1566,6 +1599,7 @@
   "label.addressno":"Address No",
   "error.msg.billing.address.city.not.found":"City Not Found",
   "label.addaddress":"Add Address",
+  "label.addotheraddress":"Add Other Address",
   
   "#link.scheduler":"....",
   "link.scheduler":"Scheduler",
@@ -1906,6 +1940,10 @@
 "label.viewProvisioningmapping":"View Provisioning",
 "label.editprovisioningmapping":"Edit Provisioning",
 "label.viewprovisioningmapping":"View Provisioning",
+"table.provision.provisiontype":"Provision Type",
+"table.provision.action":"Action",
+"table.provision.provisioningSystem":"Provisioning System",
+"table.provision.isenable":"Is Enable", 	
 "validation.msg.order.message.exceeds.max.length":"message length not exceeds 160 characters",
 "dialog.provisioning.title.message":"Provisioning Commands",
 "validation.msg.onetimesale.unitPrice.not.greater.than.zero":"Quantity must be greater than zero",
@@ -2228,7 +2266,20 @@
 "label.device.secondsale"					: "Second Sale",
 "label.device.rental"						: "Rental",
 
-"error.msg.itemdetails.serialnumber.not.found":"SerialNumber not Exist with this '{{params[0].value}}'."
+"error.msg.itemdetails.serialnumber.not.found":"SerialNumber not Exist with this '{{params[0].value}}'.",
+
+"#Credit Distribution Related":"...................",
+"label.creditdistribution"							: "Credit Distribution",
+"label.show.payment.details"						: "Show Payments Details",
+"label.show.invoice.details"						: "Show Invoice Details",
+"label.payment.date"								: "Payment Date",
+"label.invoice.date"								: "Invoice Date",
+"label.receiptnumber"								: "Receipt No",
+"label.payment.amount"								: "Payment Amount",
+"label.invoice.amount"								: "Invoice Amount",
+"label.available.amount"							: "Available Amount",
+"label.invoice.dueamount"							: "Due Amount",
+"button.distribute"									: "Distribute"
 
 
 
