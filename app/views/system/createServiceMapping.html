@@ -14,7 +14,8 @@
       <form class="form-horizontal well" data-ng-submit="submit()">
         <fieldset>
           <legend>Create Service Mapping</legend>
-          
+          <table>
+          <tr><td>
            <div class="control-group">
             <label class="control-label" for="serviceCode">{{'label.serviceCode' | translate }}&nbsp;<span class="required">*</span></label>
             <div class="controls">
@@ -22,7 +23,8 @@
               <option value="">{{'label.select.one' | translate}}</option></select>
             </div>
           </div>
-          
+          </td></tr>
+          <tr><td>
           <div class="control-group">
             <label class="control-label" for="serviceIdentification">{{'label.serviceIdentification' | translate }}&nbsp;<span class="required">*</span></label>
             <div class="controls">
@@ -32,7 +34,8 @@
               </select>
             </div>
           </div>
-
+        </td></tr>
+        <tr><td>
           <div class="control-group">
             <label class="control-label" for="status">{{'label.status' | translate }}&nbsp;<span class="required">*</span></label>
             <div class="controls">
@@ -40,14 +43,16 @@
               <option value="">{{'label.select.one' | translate}}</option> </select>
             </div>
           </div>
-          
+         </td></tr>
+          <tr><td>
           <div class="control-group">
             <label class="control-label" for="image">{{'label.image' | translate }}&nbsp;<span class="required">*</span></label>
             <div class="controls">
               <input type="text" id="image" data-ng-model="formData.image">
             </div>
           </div>
-          
+          </td></tr>
+           <tr><td>
           <div class="control-group" data-ng-show="'IPTV'| ConfigLookup">
             	<label class="control-label" for="category">{{'label.category' | translate }}</label>
             	<div class="controls">
@@ -55,7 +60,8 @@
               	<option value="">{{'label.select.one' | translate}}</option></select>
             	</div>
            </div>
-            	
+           </td></tr>
+             <tr><td>	
            <div class="control-group" data-ng-show="'IPTV'| ConfigLookup">
             	<label class="control-label" for="subcategory">{{'label.subcategory' | translate }}</label>
             	<div class="controls">
@@ -63,12 +69,12 @@
               	<option value="">{{'label.select.one' | translate}}</option></select>
             	</div>
           </div>
-     
-          <div class="offset3">
+          </td></tr>
+          <tr align="right"><td>
             <a href="#/mappingconfig"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
             <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
-          </div>
-          
+          </td></tr>
+          </table>
         </fieldset>
       </form>
 </div>

@@ -5,11 +5,11 @@
           <li class="active">{{'label.createoffice' | translate}}</li>
         </ul>
       </div>
-      <form class="form-horizontal well" ng-controller="CreateOfficeController" ng-submit="submit()">
-          <div class="error" ng-show="errorStatus || errorDetails">
+      <form class="form-horizontal well" data-ng-controller="CreateOfficeController" data-ng-submit="submit()">
+          <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
         <fieldset>
           <legend>{{'label.createoffice' | translate}}</legend>
@@ -19,7 +19,7 @@
                 <div class="control-group">
                   <label class="control-label">{{ 'label.officename' | translate }}</label>
                   <div class="controls">
-                    <input type="text" ng-model="formData.name">
+                    <input type="text" data-ng-model="formData.name">
                   </div>
                 </div>
               </td>
@@ -29,8 +29,7 @@
                 <div class="control-group">
                   <label class="control-label">{{ 'label.officetype' | translate }}</label>
                   <div class="controls">
-                     <select ng-model="formData.officeType"  ng-options="officeType.id as officeType.name for officeType in officeTypes" value="{{office.officeType}}">
-                     </select>
+                     <select data-ng-model="formData.officeType"  data-ng-options="officeType.id as officeType.name for officeType in officeTypes"></select>
                   </div>
                 </div>
               </td>
@@ -40,7 +39,7 @@
                 <div class="control-group">
                   <label class="control-label">{{ 'label.parentoffice' | translate }}</label>
                   <div class="controls">
-                    <select ng-model="formData.parentId"  ng-options="office.id as office.name for office in offices" value="{{office.id}}"></select>
+                    <select data-ng-model="formData.parentId"  data-ng-options="office.id as office.name for office in offices"></select>
                   </div>
                 </div>
               </td>
@@ -50,7 +49,7 @@
                   <div class="control-group">
                       <label class="control-label">{{ 'label.openedon' | translate }}</label>
                       <div class="controls">
-                          <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="first.date" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)" required late-Validate />
+                          <input type="text" datepicker-pop="dd MMMM yyyy" data-ng-model="first.date" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)" required late-Validate />
                       </div>
                   </div>
               </td>
@@ -60,15 +59,18 @@
                 <div class="control-group">
                   <label class="control-label">{{ 'label.externalId' | translate }}</label>
                   <div class="controls">
-                    <input type="text" name="externalId" ng-model="formData.externalId">
+                    <input type="text" name="externalId" data-ng-model="formData.externalId">
                   </div>
                 </div>
               </td>
             </tr>
-          </table>
-          <div class="offset3">
-            <a href="#/offices"><button id="cancel" type="reset" class="btn">Cancel</button></a>
-            <button id="submit" type="submit" class="btn btn-primary">Save</button>
+        <tr>
+          <td align="right">
+            <div class="offset3">
+            <a href="#/offices"><button id="cancel" type="reset" class="btn">{{ 'label.cancel' | translate }}</button></a>
+            <button id="submit" type="submit" class="btn btn-primary">{{ 'label.save' | translate }}</button>
           </div>
+           </td></tr>
+            </table>
         </fieldset>
       </form>

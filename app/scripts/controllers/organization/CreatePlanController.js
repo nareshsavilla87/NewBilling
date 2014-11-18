@@ -44,7 +44,7 @@
             for(var i in this.allowed)
             {
                 for(var j in scope.availableServices){
-                    if(scope.availableServices[j].id === this.allowed[i])
+                    if(scope.availableServices[j].id == this.allowed[i])
                     {
                         var temp = {};
                         temp.id = this.allowed[i];
@@ -59,7 +59,7 @@
             for(var i in this.restricted)
             {
                 for(var j in scope.selectedServices){
-                    if(scope.selectedServices[j].id === this.restricted[i])
+                    if(scope.selectedServices[j].id == this.restricted[i])
                     {
                         var temp = {};
                         temp.id = this.restricted[i];
