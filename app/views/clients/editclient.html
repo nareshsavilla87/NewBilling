@@ -1,11 +1,11 @@
-      <form name="editclientform" novalidate="" class="form-horizontal" ng-controller="EditClientController" ng-submit="submit()">
+      <form name="editclientform" novalidate class="form-horizontal" data-ng-controller="EditClientController" data-ng-submit="submit()">
         <div>
            <ul class="breadcrumb">
               <table>
                  <tr>
                    <td>
-        	          <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
-                      <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+        	          <img data-ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+                      <img data-ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
                   </td>
                   <td>
                     <small style="color:black;">{{displayName}}</small>
@@ -56,20 +56,20 @@
               <li class="active">{{'label.editclient' | translate}}</li>
           </ul>
         </div>
-	 <div class="error" ng-show="errorStatus || errorDetails">
+	 <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
         <fieldset>
           <legend>{{'label.editclient' | translate}}</legend>
-		<table width="100%">
+		<table>
 			<tr>
 				<td>
 				  <div class="control-group">
                      <label class="control-label">{{ 'label.office' | translate }}<span class="required">*</span></label>
                   <div class="controls">
-                     <select ng-model="officeId"  ng-options="office.id as office.name for office in offices" value="{{office.id}}">
+                     <select data-ng-model="officeId"  data-ng-options="office.id as office.name for office in offices">
                   </select>
                 </div>
               </div>
@@ -78,7 +78,7 @@
 			    <div class="control-group">
                     <label class="control-label">{{'label.clientcategeory' | translate}}<span class="required">*</span></label>
                 <div class="controls">
-                   <select ng-model="clientCategory"  ng-options="clientCategoryData.id as clientCategoryData.categoryType for clientCategoryData in clientCategoryDatas" value="{{clientCategoryData.id}}">
+                   <select data-ng-model="clientCategory"  data-ng-options="clientCategoryData.id as clientCategoryData.categoryType for clientCategoryData in clientCategoryDatas">
                    </select>
                 </div>
               </div>
@@ -88,16 +88,16 @@
 				<td>
 				   <div class="control-group">
 				 
-            <label ng-hide="entryType =='ORP'" class="control-label" for="firstname">{{'label.firstname' | translate}}<span class="required">*</span></label> 
-             <label ng-show="entryType =='ORP'" class="control-label" for="firstname">{{'label.corporate' | translate}}<span class="required">*</span></label>
+            <label data-ng-hide="entryType =='ORP'" class="control-label" for="firstname">{{'label.firstname' | translate}}<span class="required">*</span></label> 
+             <label data-ng-show="entryType =='ORP'" class="control-label" for="firstname">{{'label.corporate' | translate}}<span class="required">*</span></label>
                         <div class="controls">
-                           <input type="text" name="firstname" ng-model="formData.firstname" ng-pattern="/^[a-zA-Z0-9\-\&\s]+$/" required ng-minlength=3 late-Validate/>
-                               <span  ng-show="editclientform.firstname.$invalid">
-                               <small class="error" ng-show="editclientform.firstname.$error.pattern">alphanumeric and spaces only!</small>
-                              <small class="error" ng-show="editclientform.firstname.$error.req">
+                           <input type="text" name="firstname" data-ng-model="formData.firstname" data-ng-pattern="/^[a-zA-Z0-9\-\&\s]+$/" required data-ng-minlength=3 data-late-Validate/>
+                               <span  data-ng-show="editclientform.firstname.$invalid">
+                               <small class="error" data-ng-show="editclientform.firstname.$error.pattern">alphanumeric and spaces only!</small>
+                              <small class="error" data-ng-show="editclientform.firstname.$error.req">
                                Required Field
                              </small>
-                            <small class="error" ng-show="editclientform.firstname.$error.minlength && !editclientform.firstname.$error.req">Your name is required to be at least 3 characters</small>
+                            <small class="error" data-ng-show="editclientform.firstname.$error.minlength && !editclientform.firstname.$error.req">Your name is required to be at least 3 characters</small>
                           </span>
                       </div>
                    </div>
@@ -106,7 +106,7 @@
 					<div class="control-group">
               		<label class="control-label">CUG</label>
               		<div class="controls">
-                	<select ng-model="groupId"  ng-options="groupNameData.id as groupNameData.groupName for groupNameData in groupNameDatas" value="{{groupNameDatas.groupName}}">
+                	<select data-ng-model="groupId"  data-ng-options="groupNameData.id as groupNameData.groupName for groupNameData in groupNameDatas" >
                      <option  value="">None</option> 
                 	</select>
                 	
@@ -119,16 +119,16 @@
 					<div class="control-group">
                   <label class="control-label" for="middlename">{{'label.corporatedetails' | translate}}</label>
                   <div class="controls">
-                    <input type="text" ng-model="formData.middlename">
+                    <input type="text" data-ng-model="formData.middlename">
                   </div>
                 </div>
 				</td>
 				<td>
 				 <div class="control-group">
-               <label ng-hide="entryType =='ORP'" class="control-label" for="lastname">{{'label.lastname' | translate}}<span class="required">*</span></label>
-              <label ng-show="entryType =='ORP'" class="control-label" for="firstname">{{'label.contactperson' | translate}}</label>
+               <label data-ng-hide="entryType =='ORP'" class="control-label" for="lastname">{{'label.lastname' | translate}}<span class="required">*</span></label>
+              <label data-ng-show="entryType =='ORP'" class="control-label" for="firstname">{{'label.contactperson' | translate}}</label>
                   <div class="controls">
-                    <input type="text" name="lastname" ng-model="formData.lastname"/>
+                    <input type="text" name="lastname" data-ng-model="formData.lastname"/>
                    
                   </div>
                 </div>
@@ -139,7 +139,7 @@
 				 <div class="control-group">
                   <label class="control-label">{{ 'label.phone' | translate }}</label>
                   <div class="controls">
-                    <input type="text" ng-model="formData.phone">
+                    <input type="text" data-ng-model="formData.phone">
                   </div>
                 </div>
 				</td>
@@ -148,7 +148,7 @@
 				  <div class="control-group">
                   <label class="control-label">{{ 'label.externalid' | translate }}</label>
                   <div class="controls">
-                    <input type="text" ng-model="formData.externalId">
+                    <input type="text" data-ng-model="formData.externalId">
                   </div>
                 </div>
 				</td>
@@ -158,7 +158,7 @@
 					<div class="control-group">
                   <label class="control-label">{{'label.email' | translate }}</label>
                   <div class="controls">
-                    <input type="text"  ng-model="formData.email">
+                    <input type="text"  data-ng-model="formData.email">
                   </div>
                 </div>
 				</td>
@@ -167,7 +167,7 @@
 				  <div class="control-group">
                   <label class="control-label">{{ 'label.homephone' | translate }}</label>
                   <div class="controls">
-                    <input type="text" ng-model="formData.homePhoneNumber">
+                    <input type="text" data-ng-model="formData.homePhoneNumber">
                   </div>
                 </div>
 				</td>
@@ -177,19 +177,18 @@
 				<div class="offset3">
                 <label class="control-label">{{'label.client.select.image' | translate}}</label>
                 <div class="controls">
-                  <input type="file" id="file" ng-file-select="onFileSelect($files)">
+                  <input type="file" id="file" data-ng-file-select="onFileSelect($files)">
                 </div>
               </div>
 			 </td>
 				
-            <td>
-		<div class="offset3">
-			<a id="cancel" href="#/viewclient/{{clientId}}"><button type="reset" class="btn" ng-click="reset123()">Cancel</button></a>
-			<button id="submit" type="submit" class="btn btn-primary">Save</button>
-		</div>
+            <td align="right">
+				<div >
+					<a id="cancel" href="#/viewclient/{{clientId}}"><button type="reset" class="btn" data-ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
+					<button id="submit" type="submit" class="btn btn-primary">{{'button.save' | translate}}</button>
+				</div>
 		</td>
 		</tr>
 		</table>
 	</fieldset>
 </form>
-</div>

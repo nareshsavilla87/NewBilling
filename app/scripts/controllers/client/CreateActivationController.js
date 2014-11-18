@@ -79,7 +79,6 @@
 	            		scope.formData2.officeId=scope.officesDatas[i].id;
 	            	}
 	            }
-	            //scope.formData2.discountId = scope.discountMasterDatas[0].discountMasterId;
                     scope.onetimesales=data;
 	            scope.date= {};
 	            scope.date.saleDate = new Date();
@@ -109,7 +108,6 @@
 	        		scope.data.quantity=1;
 	        		
 	        		resourceFactory.oneTimeSaleQuantityResource.get({quantity:1,itemId:itemId},scope.data, function(data) {
-		        		//scope.formData2=data;
 		        		scope.formData2.quantity=1;
 		        		scope.formData2.totalPrice=data.totalPrice;
 		        		scope.formData2.itemId=itemId;
@@ -125,7 +123,6 @@
 	        	this.data.locale=$rootScope.locale.code;
 	        	this.data.quantity=1;
 	        	
-	        	//alert(itemId);
 	        	resourceFactory.oneTimeSaleQuantityResource.get({quantity: quantity,itemId:itemId},this.data, function(data) {
 	        		scope.formData2=data;
 	        		scope.formData2.quantity=quantity;
@@ -144,7 +141,6 @@
 //allocation  controller
 	          scope.formData3 = {};
 			  scope.clientId=routeParams.clientId;
-			 //scope.allocation.date = new Date();
 	        scope.getData = function(query,officeId){
 	        	if(query.length>0){
 	        		resourceFactory.allocateHardwareDetails.getSerialNumbers({oneTimeSaleId:scope.formData2.itemId,officeId:officeId,query: query}, function(data) { 	        	
@@ -222,7 +218,6 @@
 	        
 	       scope.formName=function(name){
 	    	  
-	    	 // var name= this.middlename;
                
                var mesage_array = new Array();
                mesage_array = (name.split(" "));
@@ -243,7 +238,6 @@
 	        	var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
 	            this.formData4.dateFormat = 'dd MMMM yyyy';
 	            this.formData4.start_date = reqDate;
-	         //   alert(this.formData4.contractPeriod);
 	            if(this.formData4.isPrepaid == 'Y'){
 	            this.formData4.paytermCode='Monthly';
 	            }
@@ -257,7 +251,6 @@
 	      		  scope.ActivationData.allocate = [];
 	      		  scope.ActivationData.bookorder = [];
 	      		scope.ActivationData.owndevice=[];
-	              	//alert("submit");
 	                  var reqDate = dateFilter(scope.first.date,'dd MMMM yyyy');
 	                  this.formData1.locale = $rootScope.locale.code;
 	                  this.formData1.active = true;
@@ -268,29 +261,13 @@
 	                  this.formData1.addressNo="Addr1";
 	                  this.formData1.entryType="IND";
 	                
-
-	                
-	                  /* var name= this.middlename;
-	                  
-	                      var mesage_array = new Array();
-	                      mesage_array = (name.split(" "));
-	                   
-	                   this.formData1.firstname=mesage_array[0];
-	                   this.formData1.lastname=mesage_array[1];
-	                   if(this.formData1.lastname == null){
-	                	   this.formData1.lastname="Mr.";
-	                   }*/
-	                   
-
 	                  this.formData1.flag=scope.configurationProperty;
 	                  delete this.formData1.middlename;
-	                //  delete this.formData1.name;
 	                  
 	                if(config =='SALE'){  
 	                	
 	 	        	 this.formData2.locale = $rootScope.locale.code;
 	 	             this.formData2.dateFormat = "dd MMMM yyyy";
-	 	             //this.formData2.saleType="Sale";
 	 	            this.formData2.quantity=1;
 	 	            
 	        		this.formData2.totalPrice=scope.formData2.totalPrice;
@@ -334,7 +311,6 @@
 	 	            this.formData2.serialNumber=temp1;
 
 	 	            var clientId=null;
-	 	            // temp1 = undefined;
 	 	            
 		            scope.ActivationData.owndevice.push(this.formData5);
 		            scope.ActivationData.bookorder.push(this.formData4);
@@ -353,7 +329,6 @@
 	           	paymentData=scope.formData6;
 	            
 	            resourceFactory.activationProcessResource.save(scope.ActivationData,function(data){
-	            	 // location.path('/viewclient/' + data.resourceId);
 	            	resourceId=data.resourceId;
 	            	var resp = filter('ConfigLookup')('payment');
 	          
@@ -379,7 +354,18 @@
 	
     }
   });
-  mifosX.ng.application.controller('CreateActivationController', ['$scope','webStorage', '$routeParams','ResourceFactory', '$location', '$http','$filter','PermissionService', 'dateFilter','$rootScope', mifosX.controllers.CreateActivationController]).run(function($log) {
+  mifosX.ng.application.controller('CreateActivationController', [
+                                                                  '$scope',
+                                                                  'webStorage',
+                                                                  '$routeParams',
+                                                                  'ResourceFactory', 
+                                                                  '$location', 
+                                                                  '$http',
+                                                                  '$filter',
+                                                                  'PermissionService', 
+                                                                  'dateFilter',
+                                                                  '$rootScope', 
+                                                                  mifosX.controllers.CreateActivationController]).run(function($log) {
     $log.info("CreateActivationController initialized");
   });
 }(mifosX.controllers || {}));

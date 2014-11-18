@@ -3,7 +3,6 @@
 	  EditProvisioningController: function(scope, webStorage,resourceFactory, routeParams,location,dateFilter) {
         scope.provisioningdata= [];
         scope.services= [];
-        //scope.ipPoolDatas=[];
         scope.vlanDatas=[];
         scope.formData={};
         scope.formData.addIpAddress = [];
@@ -31,7 +30,6 @@
     	   scope.parameterDatas=data.parameterDatas;
     	   scope.provisioningdata=data;
     	   scope.services=data.services;
-    	  // scope.ipPoolDatas=data.ipPoolDatas;
     	   scope.vlanDatas=data.vlanDatas;
     	   
     	   for(var param in scope.parameterDatas){
@@ -47,7 +45,6 @@
      		}else if(temp.paramName == "GROUP_NAME"){
                    
      			scope.formData.groupName=temp.paramValue;
-                 //delete this.formData.groupName;
                  
      		}else if(temp.paramName == "IP_ADDRESS"){
      		
@@ -79,7 +76,6 @@
                        var temp = {};
                        temp.id = this.allowed[i];
                        temp.serviceCode = scope.services[j].serviceDescription;
-                      // temp.includeInBorrowerCycle = scope.allowedProducts[j].includeInBorrowerCycle;
                        scope.selectedServices.push(temp);
                        scope.services.splice(j,1);
                    }
@@ -107,7 +103,7 @@
        	}else{
            	
        	}
-       }
+       };
        
        scope.addIpAddresses = function() {	
 		    scope.formData.addIpAddress.push({
@@ -178,7 +174,14 @@
         };
     }
   });
-  mifosX.ng.application.controller('EditProvisioningController', ['$scope','webStorage', 'ResourceFactory','$routeParams', '$location','dateFilter', mifosX.controllers.EditProvisioningController]).run(function($log) {
+  mifosX.ng.application.controller('EditProvisioningController', [
+                                                                  '$scope',
+                                                                  'webStorage',
+                                                                  'ResourceFactory',
+                                                                  '$routeParams', 
+                                                                  '$location',
+                                                                  'dateFilter', 
+                                                                  mifosX.controllers.EditProvisioningController]).run(function($log) {
     $log.info("CreateMediaController initialized");
   });
 }(mifosX.controllers || {}));

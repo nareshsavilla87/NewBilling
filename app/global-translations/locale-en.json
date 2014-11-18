@@ -2204,7 +2204,20 @@
 "label.device.secondsale"					: "Second Sale",
 "label.device.rental"						: "Rental",
 
-"error.msg.itemdetails.serialnumber.not.found":"SerialNumber not Exist with this '{{params[0].value}}'."
+"error.msg.itemdetails.serialnumber.not.found":"SerialNumber not Exist with this '{{params[0].value}}'.",
+
+"#Credit Distribution Related":"...................",
+"label.creditdistribution"							: "Credit Distribution",
+"label.show.payment.details"						: "Show Payments Details",
+"label.show.invoice.details"						: "Show Invoice Details",
+"label.payment.date"								: "Payment Date",
+"label.invoice.date"								: "Invoice Date",
+"label.receiptnumber"								: "Receipt No",
+"label.payment.amount"								: "Payment Amount",
+"label.invoice.amount"								: "Invoice Amount",
+"label.available.amount"							: "Available Amount",
+"label.invoice.dueamount"							: "Due Amount",
+"button.distribute"									: "Distribute"
 
 
 
