@@ -26,7 +26,7 @@
         });
         
         scope.addPriceData = function(){
-        	console.log(scope.formData);
+       
         	if(scope.formData.chargeCode && scope.formData.chargevariant && scope.formData.discountId && scope.formData.serviceCode &&
         			scope.formData.isPrepaid && scope.formData.planCode && scope.formData.price && scope.formData.priceregion ){
         		 if(scope.formData.isPrepaid == 'Y'){
@@ -37,7 +37,7 @@
         		        	scope.formData = {};
         		        	scope.formData.planCode = planCode;
         		        	scope.formData.isPrepaid = isPrepaid;
-        		        	console.log(scope.priceDatas);
+        		        	
         			 }
         		 }else{
         			 scope.priceDatas.push(scope.formData);
@@ -46,7 +46,7 @@
         	        	scope.formData = {};
         	        	scope.formData.planCode = planCode;
         	        	scope.formData.isPrepaid = isPrepaid;
-        	        	console.log(scope.priceDatas);
+        	        	
         		 }
         	}
         	
@@ -70,7 +70,7 @@
         
         scope.submit = function() {
              
-        	//console.log(scope.priceDatas);
+        	
         	for(var i in scope.priceDatas){
         		scope.priceDatas[i].locale = $rootScope.locale.code;
         		if(i==scope.priceDatas.length-1){
