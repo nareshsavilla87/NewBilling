@@ -2189,7 +2189,7 @@
 "validation.msg.globalConfiguration.hostName.cannot.be.blank":"Host Name cannot be blank",
 "validation.msg.globalConfiguration.userName.cannot.be.blank":"Name cannot be blank",
 "validation.msg.note.note.cannot.be.blank":"Note cannot be blank",
-"error.msg.smtp.duplicate.name":"Already exists with this SMTP name",
+"error.msg.smtp.duplicate.name":"Already exists with this 'smtp' name",
 
 "#Ippool Changes":".......",
 "label.pattern":"Pattern : ",
@@ -2262,7 +2262,15 @@
 "label.invoice.amount"								: "Invoice Amount",
 "label.available.amount"							: "Available Amount",
 "label.invoice.dueamount"							: "Due Amount",
-"button.distribute"									: "Distribute"
+"button.distribute"									: "Distribute",
+
+"#Audit trails":".....",
+"label.searchoptions":"Search Options",
+"label.resourceid":"Resource Id",
+"label.checkedfrom":"Checked From",
+"label.checkedto":"Checked To",
+"label.audit":"Audit",
+"label.viewauditentry":"View Audit"
 
 
 
