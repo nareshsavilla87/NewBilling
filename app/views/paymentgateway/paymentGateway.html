@@ -8,19 +8,19 @@
 <div ng-controller="PaymentGatewayController">
  
     <div>
-      <tabset  style="margin-bottom: 0px;">
-       <div class="pull-right" style = "margin-top : 10px;">
-       <div class="control-group">
+      <tabset>
+       <div class="pull-right" style = "margin-top : 1%;">
+       <div>
             <!-- <label class="control-label" for="status">{{ 'label.paymentgateway.source' | translate }}</label> -->
-          <button id="download" class="btn btn-min btn-default" ng-click="download()" style = "margin-bottom : 10px;">{{'button.downloadtocsv' | translate}}</button>
+          <button id="download" class="btn btn-min btn-default" ng-click="download()" >{{'button.downloadtocsv' | translate}}</button>
             </div>
           </div>
  
       <tab heading="All" select="getPaymentGateway()">
         <div class="row-fluid">                
-           <form ng-submit="searchPaymentId(filterText)">
+           <form ng-submit="searchPaymentId(filterText)" style="margin: 0 0 1%;">
                <input ng-model="filterText" type="text" style="width:82.4%;" placeholder="Enter text to search# Or Filter by SerialNo, ReceiptNo">
-               <select ng-model="formData.source" style="width:15.6%;" ng-change="changeSource(formData.source)">
+               <select ng-model="formData.source" style="width:15.65%;" ng-change="changeSource(formData.source)">
                	<option value="all">All</option>
               	<option value="mpesa">Mpesa</option>
               	<option value="tigo">Tigo</option>
