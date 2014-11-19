@@ -2264,7 +2264,6 @@
 "label.invoice.dueamount"							: "Due Amount",
 "button.distribute"									: "Distribute",
 
-<<<<<<< HEAD
 "#PaymentGateway Code Changes":"..........",
 "label.paymentgateway.all":"All",
 "label.paymentgateway.mpesa":"Mpesa",
