@@ -1,14 +1,13 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
     CreateClientController: function(scope, resourceFactory, location, http, dateFilter,API_VERSION,$rootScope,PermissionService,$upload,filter) {
-        scope.offices = [];
-        scope.staffs = [];
-        scope.first = {};
-        scope.first.date = new Date();
-        scope.formData = {};
+
+    	scope.formData = {};
        
+        scope.offices = [];
         scope.clientCategoryDatas=[];
-        scope.configurationProperty=[];
+        scope.groupNameDatas=[];
+        
         var IsClientIndividual = filter('ConfigLookup')('IsClientIndividual');
         if(IsClientIndividual == 'true'){
         	scope.formData.entryType ='IND';
@@ -17,37 +16,13 @@
         }
         resourceFactory.clientTemplateResource.get(function(data) {
             scope.offices = data.officeOptions;
-            scope.staffs = data.staffOptions;
-            scope.formData.officeId = scope.offices[0].id;
+            scope.formData.officeId = data.officeId;
             scope.clientCategoryDatas=data.clientCategoryDatas;
             scope.groupNameDatas = data.groupNameDatas;
-            scope.cities=data.addressTemplateData.cityData;
             scope.configurationProperty=data.configurationProperty.enabled;
             scope.formData.clientCategory=scope.clientCategoryDatas[0].id;
-            scope.groupNameDatas = data.groupNameDatas;
             
         });
-        
-       
-        scope.changeOffice =function(officeId) {
-          resourceFactory.clientTemplateResource.get({staffInSelectedOfficeOnly : false, officeId : officeId
-              }, function(data) {
-            scope.staffs = data.staffOptions;
-           
-          });
-        };
-
-       /* $("#city").change(function(){
-        	
-        	resourceFactory.AddressTemplateResource.get({city : scope.formData.city}, function(data) {
-        		scope.formData.state = data.state;
-        		scope.formData.country = data.country;
-         
-        });
-        });*/
-        /*scope.getStateAndCountry=function(city){
-        	alert(1);
-        };*/
       scope.getStateAndCountry=function(city){
     	  
       	  resourceFactory.AddressTemplateResource.get({city :city}, function(data) {
@@ -73,7 +48,7 @@
 
         scope.submit = function() {
         	 scope.flag = true;
-            var reqDate = dateFilter(scope.first.date,'dd MMMM yyyy');
+            var reqDate = dateFilter(new Date(),'dd MMMM yyyy');
             this.formData.locale = $rootScope.locale.code;
             this.formData.active = true;
             this.formData.dateFormat = 'dd MMMM yyyy';
@@ -108,8 +83,18 @@
           };
     }
   });
-  mifosX.ng.application.controller('CreateClientController', ['$scope', 'ResourceFactory', '$location', '$http', 'dateFilter','API_VERSION','$rootScope','PermissionService','$upload',
-                                                              '$filter',mifosX.controllers.CreateClientController]).run(function($log) {
+  mifosX.ng.application.controller('CreateClientController', [
+                                                              '$scope',
+                                                              'ResourceFactory', 
+                                                              '$location', 
+                                                              '$http', 
+                                                              'dateFilter',
+                                                              'API_VERSION',
+                                                              '$rootScope',
+                                                              'PermissionService',
+                                                              '$upload',
+                                                              '$filter',
+                                                              mifosX.controllers.CreateClientController]).run(function($log) {
     $log.info("CreateClientController initialized");
   });
 }(mifosX.controllers || {}));

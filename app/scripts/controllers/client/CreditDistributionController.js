@@ -78,7 +78,6 @@
               		 });
         		}else if(amount >= payAvailAmount){
         			prevAvailAmountArray.push({id : invoiceId,amount : scope.paymentDatas[paymentIndex].availAmount});
-            		console.log(prevAvailAmountArray);
         			paymentAmount = scope.paymentDatas[paymentIndex].availAmount;
         			scope.paymentDatas[paymentIndex].availAmount =0;
         		    scope.creditdistributions.push({
@@ -92,7 +91,6 @@
         			}
         		else{
         			prevAvailAmountArray.push({id : invoiceId,amount : amount});
-            		console.log(prevAvailAmountArray);
             		scope.paymentDatas[paymentIndex].availAmount -=amount;
         			
         			scope.creditdistributions.push({
@@ -123,7 +121,6 @@
         		  prevAvailAmountArray = _.filter(prevAvailAmountArray, function(item) {
                       return item.id != invoiceId;
                   });
-        		  console.log(prevAvailAmountArray);
         		scope.creditdistributions = _.filter(scope.creditdistributions, function(item) {
                     return item.invoiceId != invoiceId;
                });
@@ -147,7 +144,18 @@
         };
 	  }
   });
-  mifosX.ng.application.controller('CreditDistributionController', ['$scope','webStorage', 'ResourceFactory', '$routeParams', '$location','dateFilter','HTValidationService','$route','$modal','$rootScope', mifosX.controllers.CreditDistributionController]).run(function($log) {
+  mifosX.ng.application.controller('CreditDistributionController', [
+                                                                    '$scope',
+                                                                    'webStorage',
+                                                                    'ResourceFactory', 
+                                                                    '$routeParams', 
+                                                                    '$location',
+                                                                    'dateFilter',
+                                                                    'HTValidationService',
+                                                                    '$route',
+                                                                    '$modal',
+                                                                    '$rootScope', 
+                                                                    mifosX.controllers.CreditDistributionController]).run(function($log) {
     $log.info("CreditDistributionController initialized");
   });
 }(mifosX.controllers || {}));

@@ -6,6 +6,7 @@
         scope.provisiongsystemData= [];
         scope.selectedCurrOptions = [];
         scope.allCurrOptions = [];
+        scope.formData = {};
         scope.hideview = false;
         scope.selected = undefined;
         scope.PermissionService = PermissionService;
@@ -178,13 +179,24 @@
            	 scope.eventValidationDatas=data; 
            });
         };
+        
+        scope.getProvisioningActionData =function(){
+        	resourceFactory.provisionactionsResource.get(function(data) {
+              	 scope.provisionactionDatas=data; 
+              });
+        }
           
           scope.isDeletedForValidation=function(id,value){
-        	  
-        	  resourceFactory.EventValidationResource.remove({id: id} , {} , function(data) {
-                  location.path('/mappingconfig');
-                  scope.getEventValidationData();
-            });
+        	  if(value == 'N'){
+        		  scope.formData.status='true';  
+        	  }else{
+        		  scope.formData.status='false';
+        	  }
+        	   resourceFactory.provisionactionsResource.update({'id':id},scope.formData,function(data){
+        		   location.path('/mappingconfig');
+              	 scope.getProvisioningActionData();
+               });
+        	 
           };
           
           /*route to different view locations */         

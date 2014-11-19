@@ -983,6 +983,12 @@
                 update: { method: 'PUT'}
             }),
             
+            
+            provisionactionsResource: defineResource(apiVer + "/provisioningactions/:id", {id:'@id'}, {
+                get: {method: 'GET', params: {}, isArray: true},
+                update: { method: 'PUT'}
+            }),
+            
             clientParentResource: defineResource(apiVer + "/parentclient/:clientId/:anotherresource", {clientId:'@clientId',anotherresource:'@anotherresource'}, {
                 get: {method: 'GET', params: {}},
                 update: { method: 'PUT'}
