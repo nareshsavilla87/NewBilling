@@ -34,14 +34,15 @@
             </thead>
             <tbody>
               <tr class="pointer-main" ng-repeat="itemdetail in itemdetails.currentPageItems  | filter:filterText">
-              	<td class="pointer" data-ng-click="routeTo(itemdetail.clientId)" style="text-align:left">{{itemdetail.officeName}}</td>
-              	<td class="pointer" data-ng-click="routeTo(itemdetail.clientId)" style="text-align:left">{{itemdetail.supplier}}</td>
-                <td class="pointer" data-ng-click="routeTo(itemdetail.clientId)" style="text-align:left">{{itemdetail.itemDescription}}</td>
-                <td class="pointer" data-ng-click="routeTo(itemdetail.clientId)" style="text-align:left">{{itemdetail.serialNumber}}</td>
-                <td class="pointer" data-ng-click="routeTo(itemdetail.clientId)" style="text-align:left">{{itemdetail.provisioningSerialNumber}}</td>
-                <td class="pointer" data-ng-click="routeTo(itemdetail.clientId)" style="text-align:left">{{itemdetail.quality}}</td>
-                <td class="pointer" data-ng-click="routeTo(itemdetail.clientId)" style="text-align:left">{{itemdetail.status}}</td>
-                <td class="pointer" data-ng-click="routeTo(itemdetail.clientId)" style="text-align:left">{{itemdetail.accountNumber}}</td>
+              	<td class="pointer" style="text-align:left">{{itemdetail.officeName}}</td>
+              	<td class="pointer" style="text-align:left">{{itemdetail.supplier}}</td>
+                <td class="pointer" style="text-align:left">{{itemdetail.itemDescription}}</td>
+                <td class="pointer" style="text-align:left">{{itemdetail.serialNumber}}</td>
+                <td class="pointer" style="text-align:left">{{itemdetail.provisioningSerialNumber}}</td>
+                <td class="pointer" style="text-align:left">{{itemdetail.quality}}</td>
+                <td class="pointer" style="text-align:left">{{itemdetail.status}}</td>
+                <td ng-show="itemdetail.accountNumber" class="pointer" style="text-align:left">{{itemdetail.accountNumber}}</td>
+                <td ng-hide="itemdetail.accountNumber" class="pointer" style="text-align:left">In Stock</td>
                 <td style="text-align:center"><a ng-show="(itemdetail.clientId)&&PermissionService.showMenu('UPDATE_INVENTORY')" ng-click="editProvSerial(itemdetail.id,itemdetail.quality,itemdetail.provisioningSerialNumber)"
                                  popover="Edit Provisioning" popover-trigger="mouseenter" class="icon-edit"></a>&nbsp;
                 <a ng-show="(!itemdetail.clientId)&&PermissionService.showMenu('UPDATE_INVENTORY')" ng-click="editQuality(itemdetail.id,itemdetail.quality,itemdetail.provisioningSerialNumber,itemdetail.serialNumber)"
@@ -103,7 +104,7 @@
     			</ul>
          </div>
       </tab>
-      <tab heading="MRN" select="getMRNdetails()" active="mrnTab"
+      <tab heading="Items Transfer" select="getMRNdetails()" active="mrnTab"
       ng-show="$parent.PermissionService.showMenu('READ_MRN','MOVE_MRN')">
         <div class="pull-right btn-group">
           <a href="#/itemsale/0" class="btn btn-primary"><i class="icon-plus icon-white"></i>Add Item Sale</a>
@@ -243,7 +244,7 @@
          </div>
       </tab>
       
-       <tab heading="Item History" select="getitemhistorydetails()" ng-show="$parent.PermissionService.showMenu('READ_MRNDETAILS')">
+       <tab heading="Item Tracking" select="getitemhistorydetails()" ng-show="$parent.PermissionService.showMenu('READ_MRNDETAILS')">
         <div class="pull-right btn-group">
          
         </div>

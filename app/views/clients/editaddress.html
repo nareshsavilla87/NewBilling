@@ -1,33 +1,10 @@
-<div ng-controller="EditAddressController">
+<div data-ng-controller="EditAddressController">
 <div><ul class="breadcrumb">
-  <!-- <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
-     <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
-     <li>
-          <h3>
-            &nbsp;
-            {{displayName}}
-            &nbsp;
-            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
-            &nbsp;
-          </h3>
-        </li>
-        <li><span class="divider">|</span>
-          <i class="icon-barcode"></i>
-          <small>Uniquely identified with {{accountNo}}&nbsp;</small>
-        </li>
-        <li><span class="divider">|</span>
-          <i class="icon-building"></i>
-          <small>Belongs to "{{officeName}}" office</small>
-        </li>
-         <li><span class="divider">|</span>
-          <i></i>
-          <small>Balance:{{balanceAmount}} &nbsp;{{currency}}</small>
-        </li> -->
         <table>
         <tr>
         <td>
-        	 <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
-          <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+        	 <img data-ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img data-ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
         </td>
         <td>
             <small style="color:black;">{{displayName}}</small>
@@ -76,15 +53,15 @@
 		<li class="active">{{'label.editaddress' | translate}}</li>
 	</ul>
 </div>
-<form class="form-horizontal well" ng-submit="submit()">
- <div class="error" ng-show="errorStatus || errorDetails">
+<form class="form-horizontal well" data-ng-submit="submit()">
+ <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
 	<fieldset>
 		<legend>{{'label.editaddress' | translate}}</legend>
-		<table width="100%">
+		<table class="fullwidth">
 		  <tr>
 			<td width="50%">
 					<div class="control-group">

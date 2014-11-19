@@ -651,7 +651,7 @@
       .when('/viewonetimesale/:id/:clientId', {
         templateUrl: 'views/clients/viewonetimesale.html'
       })
-      .when('/allocatehardwareonetimesale/:id/:clientId', {
+      .when('/allocatehardwareonetimesale/:itemcode/:quantity/:clientId', {
         templateUrl: 'views/clients/allocatehardwareonetimesale.html'
       })
       .when('/event', {
