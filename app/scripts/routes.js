@@ -924,8 +924,10 @@
       })
       .when('/checkeractionperformed', {
                 templateUrl: 'views/system/checkerActionPerformed.html'
+      })
+      .when('/paymentgatewayconfig', {
+        templateUrl: 'views/administration/paymentgatewayconfig.html'
       });
-      
     
     $locationProvider.html5Mode(false);
   };

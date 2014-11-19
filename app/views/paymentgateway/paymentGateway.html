@@ -1,304 +1,336 @@
 <div>
-    <ul class="breadcrumb">
-        <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
-        <li class="active">{{'label.managepaymentgateway' | translate}}</li>
-    </ul>
+	<ul class="breadcrumb">
+		<li><a href="#/system">{{'link.admin.system' | translate}}</a> <span
+			class="divider">/</span></li>
+		<li class="active">{{'label.managepaymentgateway' | translate}}</li>
+	</ul>
 </div>
 
-<div ng-controller="PaymentGatewayController">
- 
-    <div>
-      <tabset  style="margin-bottom: 0px;">
-       <div class="pull-right" style = "margin-top : 10px;">
-       <div class="control-group">
-            <!-- <label class="control-label" for="status">{{ 'label.paymentgateway.source' | translate }}</label> -->
-          <button id="download" class="btn btn-min btn-default" ng-click="download()" style = "margin-bottom : 10px;">{{'button.downloadtocsv' | translate}}</button>
-            </div>
-          </div>
- 
-      <tab heading="All" select="getPaymentGateway()">
-        <div class="row-fluid">                
-           <form ng-submit="searchPaymentId(filterText)">
-               <input ng-model="filterText" type="text" style="width:82.4%;" placeholder="Enter text to search# Or Filter by SerialNo, ReceiptNo">
-               <select ng-model="formData.source" style="width:15.6%;" ng-change="changeSource(formData.source)">
-               	<option value="all">All</option>
-              	<option value="mpesa">Mpesa</option>
-              	<option value="tigo">Tigo</option>
-          	   </select>
-           </form>
-         <table class="table">
-            <thead>
-              <tr class="graybg">
-                <th>{{'table.paymentgateway.id' | translate}}</th>  
-                <th>{{'table.paymentgateway.paymentId' | translate}}</th>
-                <th>{{'table.paymentgateway.paymentdate' | translate}}</th>  
-                <th>{{'table.paymentgateway.phoneno' | translate}}</th>
-                <th>{{'table.paymentgateway.serialNo' | translate}}</th>
-                <th>{{'table.paymentgateway.receiptNo' | translate}}</th>  
-                <th>{{'table.paymentgateway.amountPaid' | translate}}</th>
-                <th>{{'table.paymentgateway.status' | translate}}</th>
-                <th>{{'table.paymentgateway.remarks' | translate}}</th>
-                <th>&nbsp;</th>          
-              </tr>
-            </thead>
-            <tbody>
-            <!--  -->
-             <tr ng-repeat="paymentgatewaydata in paymentgatewaydatas.currentPageItems  | filter:filterText">
-                
-                <td>{{paymentgatewaydata.id}}</td>
-                <td>{{paymentgatewaydata.paymentId}}</td>
-                <td>{{paymentgatewaydata.paymentDate | DateTimeFormat}}</td>
-                <td>{{paymentgatewaydata.phoneNo}}</td>
-                <td>{{paymentgatewaydata.serialNo}}</td>
-                <td>{{paymentgatewaydata.receiptNo}}</td> 
-                <td>{{paymentgatewaydata.amountPaid}}</td>
-                <td>{{paymentgatewaydata.status}}</td> 
-                <td>{{paymentgatewaydata.remarks}}</td>
-                                                   
-                <td><a ng-show="PermissionService.showMenu('UPDATE_PAYMENTGATEWAY')" ng-click="edit(paymentgatewaydata.id)" popover="Edit" popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a></td>    
-                   <!-- <td><input type="image" src="./images/Edit.png" ng-show="PermissionService.showMenu('UPDATE_PAYMENTGATEWAY')" ng-click="edit(paymentgatewaydata.id)" popover="Edit" popover-trigger="mouseenter"/></td> -->
+<div data-ng-controller="PaymentGatewayController">
+	<div>
+		<tabset style="margin-bottom: 0px;">
+		<div class="pull-right" style="margin-top: 10px;">
+			<div class="control-group">
+				<button id="download" class="btn btn-min btn-default" data-ng-click="download()" >{{'button.downloadtocsv' | translate}}</button>
+				<!-- <select data-ng-model="formData.source" data-ng-change="changeSource(formData.source)">
+					<option value="all">{{'label.paymentgateway.all' | translate}}</option>
+					<option value="mpesa">{{'label.paymentgateway.mpesa' | translate}}</option>
+					<option value="tigo">{{'label.paymentgateway.tigo' | translate}}</option>
+				</select> -->
+			</div>
+		</div>
 
-   			</tr>
-     		 </tbody>
-          </table>
-          <ul class="pager">
-              <li class="previous"><a  id="prev" ng-click="paymentgatewaydatas.previous()" href="" ng-disabled="!paymentgatewaydatas.hasPrevious()">&larr; Prev</a></li>
-              <li class="next" ><a  id="next"   ng-click="paymentgatewaydatas.next()" href="" ng-disabled="!paymentgatewaydatas.hasNext()">Next &rarr;</a></li>
-         </ul>
-         </div>
-      </tab>	
-      
-      <tab heading="Failed" select="getPaymentGatewayFailure()">
-        <div class="row-fluid">                
-           <form ng-submit="searchFailedPaymentId(filterText)">
-               <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
-           </form>
-         <table class="table">
-            <thead>
-              <tr class="graybg">
-                <th>{{'table.paymentgateway.id' | translate}}</th>  
-                <th>{{'table.paymentgateway.paymentId' | translate}}</th>
-                <th>{{'table.paymentgateway.paymentdate' | translate}}</th>  
-                <th>{{'table.paymentgateway.phoneno' | translate}}</th>
-                <th>{{'table.paymentgateway.serialNo' | translate}}</th>
-                <th>{{'table.paymentgateway.receiptNo' | translate}}</th>  
-                <th>{{'table.paymentgateway.amountPaid' | translate}}</th>
-                <th>{{'table.paymentgateway.status' | translate}}</th>
-                <th>{{'table.paymentgateway.remarks' | translate}}</th>
-                <th>&nbsp;</th>          
-              </tr>
-            </thead>
-            <tbody>
-            <!--  -->
-             <tr ng-repeat="paymentgatewaydata in paymentgatewaydatas.currentPageItems  | filter:filterText" ng-show="paymentgatewaydata.status=='Failure'">
-                
-                <td>{{paymentgatewaydata.id}}</td>
-                <td>{{paymentgatewaydata.paymentId}}</td>
-                <td>{{paymentgatewaydata.paymentDate | DateTimeFormat}}</td>
-                <td>{{paymentgatewaydata.phoneNo}}</td>
-                <td>{{paymentgatewaydata.serialNo}}</td>
-                <td>{{paymentgatewaydata.receiptNo}}</td> 
-                <td>{{paymentgatewaydata.amountPaid}}</td>
-                <td>{{paymentgatewaydata.status}}</td> 
-                <td>{{paymentgatewaydata.remarks}}</td>                                    
-                <td><a ng-show="PermissionService.showMenu('UPDATE_PAYMENTGATEWAY')" ng-click="edit(paymentgatewaydata.id)" popover="Edit" popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a></td>       
-   			</tr>
-     		 </tbody>
-          </table>
-          <ul class="pager">
-              <li class="previous"><a  id="prev" ng-click="paymentgatewaydatas.previous()" href="" ng-disabled="!paymentgatewaydatas.hasPrevious()">&larr; Prev</a></li>
-              <li class="next" ><a  id="next"   ng-click="paymentgatewaydatas.next()" href="" ng-disabled="!paymentgatewaydatas.hasNext()">Next &rarr;</a></li>
-         </ul>
-         </div>
-      </tab>	
-      
-<tab heading="Success" select="getPaymentGatewaySuccess()">
-       <div class="row-fluid">
-           <form ng-submit="searchSuccessPaymentId(filterText)">
-               <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
-           </form>
-       <table class="table">
-            <thead>
-              <tr class="graybg">
-                <th>{{'table.paymentgateway.id' | translate}}</th> 
-                <th>{{'table.paymentgateway.paymentId' | translate}}</th>
-                <th>{{'table.paymentgateway.paymentId' | translate}}</th>
-                <th>{{'table.paymentgateway.paymentDate' | translate}}</th> 
-                <th>{{'table.paymentgateway.phoneno' | translate}}</th>
-                <th>{{'table.paymentgateway.serialNo' | translate}}</th>
-                <th>{{'table.paymentgateway.receiptNo' | translate}}</th>     
-                <th>{{'table.paymentgateway.amountPaid' | translate}}</th>
-                <th>{{'table.paymentgateway.status' | translate}}</th>
-                <th>{{'table.paymentgateway.remarks' | translate}}</th>      
-                              
-                <th> &nbsp;</th>
-              </tr>
-            </thead>
-            <tbody>
-             <tr ng-repeat="paymentgatewaydata in paymentgatewaydatas.currentPageItems  | filter:filterText" ng-show="paymentgatewaydata.status=='Success'">
-                
-                <td>{{paymentgatewaydata.id}}</td>
-                <td>{{paymentgatewaydata.paymentId}}</td>
-                <td>{{paymentgatewaydata.paymentId}}</td>
-                <td>{{paymentgatewaydata.paymentDate | DateTimeFormat}}</td>
-                <td>{{paymentgatewaydata.phoneNo}}</td>
-                <td>{{paymentgatewaydata.serialNo}}</td>
-                <td>{{paymentgatewaydata.receiptNo}}</td>       
-                <td>{{paymentgatewaydata.amountPaid}}</td>
-                <td>{{paymentgatewaydata.status}}</td>
-                <td>{{paymentgatewaydata.remarks}}</td>
-                <td><a ng-show="PermissionService.showMenu('UPDATE_PAYMENTGATEWAY')" ng-click="edit(paymentgatewaydata.id)" popover="Edit" popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a></td>       
-   			</tr>
-     		 </tbody>
-          </table>
-           <ul class="pager">
-              <li class="previous"><a  id="prev" ng-click="paymentgatewaydatas.previous()" href="" ng-disabled="!paymentgatewaydatas.hasPrevious()">&larr; Prev</a></li>
-              <li class="next" ><a  id="next"   ng-click="paymentgatewaydatas.next()" href="" ng-disabled="!paymentgatewaydatas.hasNext()">Next &rarr;</a></li>
-           </ul>
-         </div>
-      </tab>
-      
-      
-      <tab heading="Finished" select="getFinishedPaymentGateway()">
-        <div class="row-fluid">                
-           <form ng-submit="searchFinishedPaymentId(filterText)">
-               <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
-           </form>
-         <table class="table">
-            <thead>
-              <tr class="graybg">
-                <th>{{'table.paymentgateway.id' | translate}}</th>  
-                <th>{{'table.paymentgateway.paymentId' | translate}}</th>
-                <th>{{'table.paymentgateway.paymentdate' | translate}}</th>  
-                <th>{{'table.paymentgateway.phoneno' | translate}}</th>
-                <th>{{'table.paymentgateway.serialNo' | translate}}</th>
-                <th>{{'table.paymentgateway.receiptNo' | translate}}</th>  
-                <th>{{'table.paymentgateway.amountPaid' | translate}}</th>
-                <th>{{'table.paymentgateway.status' | translate}}</th>
-                <th>{{'table.paymentgateway.remarks' | translate}}</th>                        
-              </tr>
-            </thead>
-            <tbody>
-            <!--  -->
-             <tr ng-repeat="paymentgatewaydata in paymentgatewaydatas.currentPageItems  | filter:filterText" ng-show="paymentgatewaydata.status=='Finished'">
-                
-                <td>{{paymentgatewaydata.id}}</td>
-                <td>{{paymentgatewaydata.paymentId}}</td>
-                <td>{{paymentgatewaydata.paymentDate | DateTimeFormat}}</td>
-                <td>{{paymentgatewaydata.phoneNo}}</td>
-                <td>{{paymentgatewaydata.serialNo}}</td>
-                <td>{{paymentgatewaydata.receiptNo}}</td> 
-                <td>{{paymentgatewaydata.amountPaid}}</td>
-                <td>{{paymentgatewaydata.status}}</td> 
-                <td>{{paymentgatewaydata.remarks}}</td>                                                   
-   			</tr>
-     		 </tbody>
-          </table>
-          <ul class="pager">
-              <li class="previous"><a  id="prev" ng-click="paymentgatewaydatas.previous()" href="" ng-disabled="!paymentgatewaydatas.hasPrevious()">&larr; Prev</a></li>
-              <li class="next" ><a  id="next"   ng-click="paymentgatewaydatas.next()" href="" ng-disabled="!paymentgatewaydatas.hasNext()">Next &rarr;</a></li>
-         </ul>
-         </div>
-      </tab>	
-      
-     <tab heading="Invalid" select="getInvalidPaymentGateway()">
-       <div class="row-fluid">
-           <form ng-submit="searchInvalidPaymentId(filterText)">
-               <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
-           </form>
-       <table class="table">
-            <thead>
-              <tr class="graybg">
-                <th>{{'table.paymentgateway.id' | translate}}</th>  
-                <th>{{'table.paymentgateway.paymentId' | translate}}</th>
-                <th>{{'table.paymentgateway.paymentdate' | translate}}</th>  
-                <th>{{'table.paymentgateway.phoneno' | translate}}</th>
-                <th>{{'table.paymentgateway.serialNo' | translate}}</th>
-                <th>{{'table.paymentgateway.receiptNo' | translate}}</th>  
-                <th>{{'table.paymentgateway.amountPaid' | translate}}</th>
-                <th>{{'table.paymentgateway.status' | translate}}</th>
-                <th>{{'table.paymentgateway.remarks' | translate}}</th>  
-                                           
-              </tr>
-            </thead>
-            <tbody>
-             <tr ng-repeat="paymentgatewaydata in paymentgatewaydatas.currentPageItems  | filter:filterText" ng-show="paymentgatewaydata.status=='Invalid'">
-                
-                <td>{{paymentgatewaydata.id}}</td>
-                <td>{{paymentgatewaydata.paymentId}}</td>
-                <td>{{paymentgatewaydata.paymentDate | DateTimeFormat}}</td>
-                <td>{{paymentgatewaydata.phoneNo}}</td>
-                <td>{{paymentgatewaydata.serialNo}}</td>
-                <td>{{paymentgatewaydata.receiptNo}}</td> 
-                <td>{{paymentgatewaydata.amountPaid}}</td>
-                <td>{{paymentgatewaydata.status}}</td> 
-                <td>{{paymentgatewaydata.remarks}}</td> 
-                             
-   			</tr>
-     		 </tbody>
-          </table>
-           <ul class="pager">
-              <li class="previous"><a  id="prev" ng-click="paymentgatewaydatas.previous()" href="" ng-disabled="!paymentgatewaydatas.hasPrevious()">&larr; Prev</a></li>
-              <li class="next" ><a  id="next"   ng-click="paymentgatewaydatas.next()" href="" ng-disabled="!paymentgatewaydatas.hasNext()">Next &rarr;</a></li>
-           </ul>
-         </div>
-      </tab>
-	  <tab heading="Processed" select="getProcessedPaymentGateway()">
-       <div class="row-fluid">
-           <form ng-submit="searchProcessedPaymentId(filterText)">
-               <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
-           </form>
-       <table class="table">
-            <thead>
-              <tr class="graybg">
-                <th>{{'table.paymentgateway.id' | translate}}</th>  
-                <th>{{'table.paymentgateway.paymentId' | translate}}</th>
-                <th>{{'table.paymentgateway.paymentdate' | translate}}</th>  
-                <th>{{'table.paymentgateway.phoneno' | translate}}</th>
-                <th>{{'table.paymentgateway.serialNo' | translate}}</th>
-                <th>{{'table.paymentgateway.receiptNo' | translate}}</th>  
-                <th>{{'table.paymentgateway.amountPaid' | translate}}</th>
-                <th>{{'table.paymentgateway.status' | translate}}</th>
-                <th>{{'table.paymentgateway.remarks' | translate}}</th>  
-                                           
-              </tr>
-            </thead>
-            <tbody>
-             <tr ng-repeat="paymentgatewaydata in paymentgatewaydatas.currentPageItems  | filter:filterText" ng-show="paymentgatewaydata.status=='Processed'">
-                
-                <td>{{paymentgatewaydata.id}}</td>
-                <td>{{paymentgatewaydata.paymentId}}</td>
-                <td>{{paymentgatewaydata.paymentDate | DateTimeFormat}}</td>
-                <td>{{paymentgatewaydata.phoneNo}}</td>
-                <td>{{paymentgatewaydata.serialNo}}</td>
-                <td>{{paymentgatewaydata.receiptNo}}</td> 
-                <td>{{paymentgatewaydata.amountPaid}}</td>
-                <td>{{paymentgatewaydata.status}}</td> 
-                <td>{{paymentgatewaydata.remarks}}</td>
-                             
-   			</tr>
-     		 </tbody>
-          </table>
-           <ul class="pager">
-              <li class="previous"><a  id="prev" ng-click="paymentgatewaydatas.previous()" href="" ng-disabled="!paymentgatewaydatas.hasPrevious()">&larr; Prev</a></li>
-              <li class="next" ><a  id="next"   ng-click="paymentgatewaydatas.next()" href="" ng-disabled="!paymentgatewaydatas.hasNext()">Next &rarr;</a></li>
-           </ul>
-         </div>
-      </tab>
-      
-   
-    </tabset>
-    </div>
-   
- <script type="text/ng-template" id="editpaymentgateway.html">
+		<tab heading="All" select="getPaymentGateway()">
+		<div class="row-fluid">
+			<form data-ng-submit="searchPaymentId(filterText)">
+				<input data-ng-model="filterText" type="text" style="width:700px;" placeholder="Filter by name">
+				<select data-ng-model="formData.source" data-ng-change="changeSource(formData.source)">
+					<option value="all">{{'label.paymentgateway.all' | translate}}</option>
+					<option value="mpesa">{{'label.paymentgateway.mpesa' | translate}}</option>
+					<option value="tigo">{{'label.paymentgateway.tigo' | translate}}</option>
+				</select>
+			</form>
+			
+			<table class="table">
+				<thead>
+					<tr class="graybg">
+						<th>{{'table.paymentgateway.paymentId' | translate}}</th>
+						<th>{{'table.paymentgateway.paymentdate' | translate}}</th>
+						<th>{{'table.paymentgateway.phoneno' | translate}}</th>
+						<th>{{'table.paymentgateway.serialNo' | translate}}</th>
+						<th>{{'table.paymentgateway.receiptNo' | translate}}</th>
+						<th>{{'table.paymentgateway.amountPaid' | translate}}</th>
+						<th>{{'table.paymentgateway.status' | translate}}</th>
+						<th>{{'table.paymentgateway.remarks' | translate}}</th>
+						<th>{{'table.action' | translate}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-ng-repeat="paymentgatewaydata in paymentgatewaydatas.currentPageItems  | filter:filterText">
+
+						<td>{{paymentgatewaydata.paymentId}}</td>
+						<td>{{paymentgatewaydata.paymentDate | DateTimeFormat}}</td>
+						<td>{{paymentgatewaydata.phoneNo}}</td>
+						<td>{{paymentgatewaydata.serialNo}}</td>
+						<td>{{paymentgatewaydata.receiptNo}}</td>
+						<td>{{paymentgatewaydata.amountPaid}}</td>
+						<td>{{paymentgatewaydata.status}}</td>
+						<td>{{paymentgatewaydata.remarks}}</td>
+						<td><a data-ng-show="PermissionService.showMenu('UPDATE_PAYMENTGATEWAY') && paymentgatewaydata.status !='Finished' && paymentgatewaydata.status !='Invalid'" data-ng-click="edit(paymentgatewaydata.id)" 
+							data-popover="Edit" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a></td>
+					</tr>
+				</tbody>
+			</table>
+			<ul class="pager">
+				<li class="previous"><a id="prev" data-ng-click="paymentgatewaydatas.previous()" href=""
+					data-ng-disabled="!paymentgatewaydatas.hasPrevious()">&larr; {{'label.prev' | translate}} </a>
+				</li>
+				<li class="next"><a id="next" data-ng-click="paymentgatewaydatas.next()" href=""
+					data-ng-disabled="!paymentgatewaydatas.hasNext()"> {{'label.next' | translate}} &rarr;</a>
+				</li>
+			</ul>
+		</div>
+		</tab> 
+		
+		<tab heading="Failed" select="getPaymentGatewayFailure()">
+		<div class="row-fluid">
+			<form data-ng-submit="searchFailedPaymentId(filterText)">		
+				<input data-ng-model="filterText" type="text" style="width:700px;" placeholder="Filter by name">
+				<select data-ng-model="formData.source" data-ng-change="changeSource(formData.source)">
+					<option value="all">{{'label.paymentgateway.all' | translate}}</option>
+					<option value="mpesa">{{'label.paymentgateway.mpesa' | translate}}</option>
+					<option value="tigo">{{'label.paymentgateway.tigo' | translate}}</option>
+				</select>
+			</form>
+			<table class="table">
+				<thead>
+					<tr class="graybg">
+						<th>{{'table.paymentgateway.paymentId' | translate}}</th>
+						<th>{{'table.paymentgateway.paymentdate' | translate}}</th>
+						<th>{{'table.paymentgateway.phoneno' | translate}}</th>
+						<th>{{'table.paymentgateway.serialNo' | translate}}</th>
+						<th>{{'table.paymentgateway.receiptNo' | translate}}</th>
+						<th>{{'table.paymentgateway.amountPaid' | translate}}</th>
+						<th>{{'table.paymentgateway.status' | translate}}</th>
+						<th>{{'table.paymentgateway.remarks' | translate}}</th>
+						<th>{{'table.action' | translate}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+					<tr data-ng-repeat="paymentgatewaydata in paymentgatewaydatas.currentPageItems  | filter:filterText"
+						data-ng-show="paymentgatewaydata.status=='Failure'">
+
+						<td>{{paymentgatewaydata.paymentId}}</td>
+						<td>{{paymentgatewaydata.paymentDate | DateTimeFormat}}</td>
+						<td>{{paymentgatewaydata.phoneNo}}</td>
+						<td>{{paymentgatewaydata.serialNo}}</td>
+						<td>{{paymentgatewaydata.receiptNo}}</td>
+						<td>{{paymentgatewaydata.amountPaid}}</td>
+						<td>{{paymentgatewaydata.status}}</td>
+						<td>{{paymentgatewaydata.remarks}}</td>
+						<td><a data-ng-show="PermissionService.showMenu('UPDATE_PAYMENTGATEWAY') && paymentgatewaydata.status !='Finished' && paymentgatewaydata.status !='Invalid'" data-ng-click="edit(paymentgatewaydata.id)" 
+							data-popover="Edit" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<ul class="pager">
+				<li class="previous"><a id="prev" data-ng-click="paymentgatewaydatas.previous()" href=""
+					data-ng-disabled="!paymentgatewaydatas.hasPrevious()">&larr; {{'label.prev' | translate}}</a></li>
+				<li class="next"><a id="next" data-ng-click="paymentgatewaydatas.next()" href=""
+					data-ng-disabled="!paymentgatewaydatas.hasNext()"> {{'label.next' | translate}} &rarr;</a></li>
+			</ul>
+		</div>
+		</tab> 
+		
+		<tab heading="Success" select="getPaymentGatewaySuccess()">
+		<div class="row-fluid">
+			<form data-ng-submit="searchSuccessPaymentId(filterText)">
+				<input data-ng-model="filterText" type="text" style="width:700px;" placeholder="Filter by name">
+				<select data-ng-model="formData.source" data-ng-change="changeSource(formData.source)">
+					<option value="all">{{'label.paymentgateway.all' | translate}}</option>
+					<option value="mpesa">{{'label.paymentgateway.mpesa' | translate}}</option>
+					<option value="tigo">{{'label.paymentgateway.tigo' | translate}}</option>
+				</select>
+			</form>
+			<table class="table">
+				<thead>
+					<tr class="graybg">
+						<th>{{'table.paymentgateway.paymentId' | translate}}</th>
+						<th>{{'table.paymentgateway.paymentDate' | translate}}</th>
+						<th>{{'table.paymentgateway.phoneno' | translate}}</th>
+						<th>{{'table.paymentgateway.serialNo' | translate}}</th>
+						<th>{{'table.paymentgateway.receiptNo' | translate}}</th>
+						<th>{{'table.paymentgateway.amountPaid' | translate}}</th>
+						<th>{{'table.paymentgateway.status' | translate}}</th>
+						<th>{{'table.paymentgateway.remarks' | translate}}</th>
+						<th>{{'table.action' | translate}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-ng-repeat="paymentgatewaydata in paymentgatewaydatas.currentPageItems  | filter:filterText" ng-show="paymentgatewaydata.status=='Success'">
+
+						<td>{{paymentgatewaydata.paymentId}}</td>
+						<td>{{paymentgatewaydata.paymentDate | DateTimeFormat}}</td>
+						<td>{{paymentgatewaydata.phoneNo}}</td>
+						<td>{{paymentgatewaydata.serialNo}}</td>
+						<td>{{paymentgatewaydata.receiptNo}}</td>
+						<td>{{paymentgatewaydata.amountPaid}}</td>
+						<td>{{paymentgatewaydata.status}}</td>
+						<td>{{paymentgatewaydata.remarks}}</td>
+						<td><a data-ng-show="PermissionService.showMenu('UPDATE_PAYMENTGATEWAY') && paymentgatewaydata.status !='Finished' && paymentgatewaydata.status !='Invalid'" data-ng-click="edit(paymentgatewaydata.id)" 
+							data-popover="Edit" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a></td>
+					</tr>
+				</tbody>
+			</table>
+			<ul class="pager">
+				<li class="previous"><a id="prev" data-ng-click="paymentgatewaydatas.previous()" href=""
+					data-ng-disabled="!paymentgatewaydatas.hasPrevious()">&larr; {{'label.prev' | translate}} </a></li>
+				<li class="next"><a id="next" data-ng-click="paymentgatewaydatas.next()" href=""
+					data-ng-disabled="!paymentgatewaydatas.hasNext()"> {{'label.next' | translate}} &rarr;</a></li>
+			</ul>
+		</div>
+		</tab> 
+		
+		<tab heading="Finished" select="getFinishedPaymentGateway()">
+		<div class="row-fluid">
+			<form data-ng-submit="searchFinishedPaymentId(filterText)">
+				<input data-ng-model="filterText" type="text" style="width:700px;" placeholder="Filter by name">
+				<select data-ng-model="formData.source" data-ng-change="changeSource(formData.source)">
+					<option value="all">{{'label.paymentgateway.all' | translate}}</option>
+					<option value="mpesa">{{'label.paymentgateway.mpesa' | translate}}</option>
+					<option value="tigo">{{'label.paymentgateway.tigo' | translate}}</option>
+				</select>
+			</form>
+			<table class="table">
+				<thead>
+					<tr class="graybg">
+						<th>{{'table.paymentgateway.paymentId' | translate}}</th>
+						<th>{{'table.paymentgateway.paymentdate' | translate}}</th>
+						<th>{{'table.paymentgateway.phoneno' | translate}}</th>
+						<th>{{'table.paymentgateway.serialNo' | translate}}</th>
+						<th>{{'table.paymentgateway.receiptNo' | translate}}</th>
+						<th>{{'table.paymentgateway.amountPaid' | translate}}</th>
+						<th>{{'table.paymentgateway.status' | translate}}</th>
+						<th>{{'table.paymentgateway.remarks' | translate}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-ng-repeat="paymentgatewaydata in paymentgatewaydatas.currentPageItems  | filter:filterText"
+						data-ng-show="paymentgatewaydata.status=='Finished'">
+
+						<td>{{paymentgatewaydata.paymentId}}</td>
+						<td>{{paymentgatewaydata.paymentDate | DateTimeFormat}}</td>
+						<td>{{paymentgatewaydata.phoneNo}}</td>
+						<td>{{paymentgatewaydata.serialNo}}</td>
+						<td>{{paymentgatewaydata.receiptNo}}</td>
+						<td>{{paymentgatewaydata.amountPaid}}</td>
+						<td>{{paymentgatewaydata.status}}</td>
+						<td>{{paymentgatewaydata.remarks}}</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<ul class="pager">
+				<li class="previous"><a id="prev" data-ng-click="paymentgatewaydatas.previous()" href=""
+					data-ng-disabled="!paymentgatewaydatas.hasPrevious()">&larr; {{'label.prev' | translate}} </a></li>
+				<li class="next"><a id="next" data-ng-click="paymentgatewaydatas.next()" href=""
+					data-ng-disabled="!paymentgatewaydatas.hasNext()"> {{'label.next' | translate}} &rarr;</a></li>
+			</ul>
+		</div>
+		</tab> 
+		
+		<tab heading="Invalid" select="getInvalidPaymentGateway()">
+		<div class="row-fluid">
+			<form data-ng-submit="searchInvalidPaymentId(filterText)">
+				<input data-ng-model="filterText" type="text" style="width:700px;" placeholder="Filter by name">
+				<select data-ng-model="formData.source" data-ng-change="changeSource(formData.source)">
+					<option value="all">{{'label.paymentgateway.all' | translate}}</option>
+					<option value="mpesa">{{'label.paymentgateway.mpesa' | translate}}</option>
+					<option value="tigo">{{'label.paymentgateway.tigo' | translate}}</option>
+				</select>
+			</form>
+			<table class="table">
+				<thead>
+					<tr class="graybg">
+						<th>{{'table.paymentgateway.paymentId' | translate}}</th>
+						<th>{{'table.paymentgateway.paymentdate' | translate}}</th>
+						<th>{{'table.paymentgateway.phoneno' | translate}}</th>
+						<th>{{'table.paymentgateway.serialNo' | translate}}</th>
+						<th>{{'table.paymentgateway.receiptNo' | translate}}</th>
+						<th>{{'table.paymentgateway.amountPaid' | translate}}</th>
+						<th>{{'table.paymentgateway.status' | translate}}</th>
+						<th>{{'table.paymentgateway.remarks' | translate}}</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-ng-repeat="paymentgatewaydata in paymentgatewaydatas.currentPageItems  | filter:filterText"
+						data-ng-show="paymentgatewaydata.status=='Invalid'">
+						
+						<td>{{paymentgatewaydata.paymentId}}</td>
+						<td>{{paymentgatewaydata.paymentDate | DateTimeFormat}}</td>
+						<td>{{paymentgatewaydata.phoneNo}}</td>
+						<td>{{paymentgatewaydata.serialNo}}</td>
+						<td>{{paymentgatewaydata.receiptNo}}</td>
+						<td>{{paymentgatewaydata.amountPaid}}</td>
+						<td>{{paymentgatewaydata.status}}</td>
+						<td>{{paymentgatewaydata.remarks}}</td>
+
+					</tr>
+				</tbody>
+			</table>
+			<ul class="pager">
+				<li class="previous"><a id="prev" data-ng-click="paymentgatewaydatas.previous()" href=""
+					data-ng-disabled="!paymentgatewaydatas.hasPrevious()">&larr; {{'label.prev' | translate}} </a></li>
+				<li class="next"><a id="next" data-ng-click="paymentgatewaydatas.next()" href=""
+					data-ng-disabled="!paymentgatewaydatas.hasNext()"> {{'label.next' | translate}} &rarr;</a></li>
+			</ul>
+		</div>
+		</tab> 
+		
+		<tab heading="Processed" select="getProcessedPaymentGateway()">
+		<div class="row-fluid">
+			<form data-ng-submit="searchProcessedPaymentId(filterText)"> 
+				<input data-ng-model="filterText" type="text" style="width:700px;" placeholder="Filter by name">
+				<select data-ng-model="formData.source" data-ng-change="changeSource(formData.source)">
+					<option value="all">{{'label.paymentgateway.all' | translate}}</option>
+					<option value="mpesa">{{'label.paymentgateway.mpesa' | translate}}</option>
+					<option value="tigo">{{'label.paymentgateway.tigo' | translate}}</option>
+				</select>
+			</form>
+			<table class="table">
+				<thead>
+					<tr class="graybg">
+						<th>{{'table.paymentgateway.paymentId' | translate}}</th>
+						<th>{{'table.paymentgateway.paymentdate' | translate}}</th>
+						<th>{{'table.paymentgateway.phoneno' | translate}}</th>
+						<th>{{'table.paymentgateway.serialNo' | translate}}</th>
+						<th>{{'table.paymentgateway.receiptNo' | translate}}</th>
+						<th>{{'table.paymentgateway.amountPaid' | translate}}</th>
+						<th>{{'table.paymentgateway.status' | translate}}</th>
+						<th>{{'table.paymentgateway.remarks' | translate}}</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-ng-repeat="paymentgatewaydata in paymentgatewaydatas.currentPageItems  | filter:filterText"
+						data-ng-show="paymentgatewaydata.status=='Processed'">
+
+						<td>{{paymentgatewaydata.paymentId}}</td>
+						<td>{{paymentgatewaydata.paymentDate | DateTimeFormat}}</td>
+						<td>{{paymentgatewaydata.phoneNo}}</td>
+						<td>{{paymentgatewaydata.serialNo}}</td>
+						<td>{{paymentgatewaydata.receiptNo}}</td>
+						<td>{{paymentgatewaydata.amountPaid}}</td>
+						<td>{{paymentgatewaydata.status}}</td>
+						<td>{{paymentgatewaydata.remarks}}</td>
+
+					</tr>
+				</tbody>
+			</table>
+			
+			<ul class="pager">
+				<li class="previous"><a id="prev" data-ng-click="paymentgatewaydatas.previous()" href=""
+					data-ng-disabled="!paymentgatewaydatas.hasPrevious()">&larr; {{'label.prev' | translate}} </a></li>
+				<li class="next"><a id="next" data-ng-click="paymentgatewaydatas.next()" href=""
+					data-ng-disabled="!paymentgatewaydatas.hasNext()"> {{'label.next' | translate}} &rarr;</a></li>
+			</ul>
+		</div>
+		</tab> 
+		</tabset>
+	</div>
+
+	<script type="text/ng-template" id="editpaymentgateway.html">
 
 	<form class="form-horizontal well" ng-submit="submit()">
 	 <div class="error" ng-show="errorStatus || errorDetails">
-		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
-	    </div>
-	<fieldset>
+	 	<label>{{'label.contract.error' | translate}}</label>
+	 	<label ng-show="errorStatus">{{errorStatus}}</label>
+	 	<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	 </div>
+	 <fieldset>
 		<legend>{{'label.editpaymentgateway' | translate}}</legend>
 		<table width="100%">
 		 
@@ -321,8 +353,8 @@
 						<label class="control-label" for="remarks"> {{ 'label.paymentgateway.remarks' | translate }} </label>
 						<div class="controls">
 							<select ng-model="formData.remarks">
-								<option>Active</option>
-								<option>Done</option>
+								<option value="all">{{'label.paymentgateway.active' | translate}}</option>				
+								<option value="mpesa">{{'label.paymentgateway.done' | translate}}</option>		
 							</select>
 						</div>
 					</div>
@@ -336,8 +368,8 @@
          <button id="submit" class="btn btn-primary" ng-click="accept()" ng-disabled="flag">{{'label.confirm' | translate}}</button>
    </div>
 
-</script> 
-<script type="text/ng-template" id="downloadpaymentgatewaydata.html">
+</script>
+	<script type="text/ng-template" id="downloadpaymentgatewaydata.html">
 
 	<form class="form-horizontal well" ng-submit="download()">
 	 <div class="error" ng-show="errorStatus || errorDetails">
@@ -354,10 +386,10 @@
 					<div class="control-group">
 						<label class="control-label" for="status">{{ 'label.paymentgateway.category' | translate }}</label>
 						<div class="controls">
-							<select ng-model="formData.source">
-              					<option value="all">All</option>
-              					<option value="mpesa">Mpesa</option>
-              					<option value="tigo">Tigo</option>
+							<select ng-model="formData.source">		
+								<option value="all">{{'label.paymentgateway.all' | translate}}</option>
+								<option value="mpesa">{{'label.paymentgateway.mpesa' | translate}}</option>
+								<option value="tigo">{{'label.paymentgateway.tigo' | translate}}</option>
           					</select>
 						</div>
 					</div>
@@ -365,12 +397,12 @@
 						<label class="control-label" for="status">{{ 'label.paymentgateway.status' | translate }}</label>
 						<div class="controls">
 							<select ng-model="formData.status">
-              					<option value="all">All</option>
-              					<option value="Failure">Failed</option>
-              					<option value="Success">Success</option>
-								<option value="Finished">Finished</option>
-								<option value="Invalid">Invalid</option>
-								<option value="Processed">Processed</option>
+              					<option value="all">{{'label.paymentgateway.all' | translate}}</option>
+              					<option value="Failure">{{'label.paymentgateway.failed' | translate}}</option>
+              					<option value="Success">{{'label.paymentgateway.success' | translate}}</option>
+								<option value="Finished">{{'label.paymentgateway.finished' | translate}}</option>
+								<option value="Invalid">{{'label.paymentgateway.invalid' | translate}}</option>
+								<option value="Processed">{{'label.paymentgateway.processed' | translate}}</option>
           					</select>
 						</div>
 					</div>
@@ -396,6 +428,6 @@
          <button id="submit" class="btn btn-primary" ng-click="accept()" ng-disabled="flag">{{'label.confirm' | translate}}</button>
    </div>
 
-</script> 
-    
+</script>
+
 </div>
