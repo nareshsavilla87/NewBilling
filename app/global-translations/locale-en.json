@@ -2289,6 +2289,8 @@
 "label.prospect.personaldetails":"Personal Details",
 "label.prospect.addressdetails":"Address Details",
 "label.prospect.error.email":"Invalid Email",
+"label.prospects.followup":"Follow Up",
+"error.msg.user.duplicate.username":" User Name is already exist",
 
 "#PaymentGatewayConfiguration":"......",
 "link.admin.paymentgatewayconfiguration":"PaymentGateway Configuration",
@@ -2301,6 +2303,9 @@
 "label.pgconfig.editkorta":"Edit Korta",
 "label.pgconfig.korta.merchantid":"merchantId",
 "label.pgconfig.korta.terminalid":"terminalId",
-"label.pgconfig.korta.secretcode":"secretCode"
+"label.pgconfig.korta.secretcode":"secretCode",
+"validation.error.msg.selfcare.duplicate.email":"Email Id is already exist"
+
+
 
 }

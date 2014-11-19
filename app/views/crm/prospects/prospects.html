@@ -13,6 +13,11 @@
 <form data-ng-submit="search(filterText)">
     <input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
 </form>	
+		<div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
 	<table class="table">
         <thead>
             <tr class="graybg">
