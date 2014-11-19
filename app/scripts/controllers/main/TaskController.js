@@ -47,7 +47,6 @@
                     });
                     _.each(scope.checkData, function (value, key) {
                         if (value == true) {
-
                             resourceFactory.checkerInboxResource.save({templateResource: key, command: action}, {}, function (data) {
                                 approveCount++;
                                 if (approveCount == totalApprove) {
@@ -63,12 +62,11 @@
                     });
                     scope.checkData = {};
                     $modalInstance.close('approve');
-
                 };
                 $scope.cancel = function () {
                     $modalInstance.dismiss('cancel');
                 };
-            };
+            }
 
             scope.deleteChecker = function () {
                 if (scope.checkData) {
@@ -79,9 +77,9 @@
                 }
             };
             function CheckerDeleteCtrl ($scope, $modalInstance) {
-                $scope.delete = function () {
+                $scope.remove = function () {
                     var totalDelete = 0;
-                    var deleteCount = 0
+                    var deleteCount = 0;
                     _.each(scope.checkData, function (value, key) {
                         if (value == true) {
                             totalDelete++;
@@ -89,8 +87,7 @@
                     });
                     _.each(scope.checkData, function (value, key) {
                         if (value == true) {
-
-                            resourceFactory.checkerInboxResource.delete({templateResource: key}, {}, function (data) {
+                            resourceFactory.checkerInboxResource.remove({templateResource: key}, {}, function (data) {
                                 deleteCount++;
                                 if (deleteCount == totalDelete) {
                                     scope.search();
@@ -109,7 +106,7 @@
                 $scope.cancel = function () {
                     $modalInstance.dismiss('cancel');
                 };
-            };
+            }
 
             scope.approveClient = function () {
                 if (scope.approveData) {
@@ -139,17 +136,17 @@
                 }
             });
 
-            var ApproveClientCtrl = function ($scope, $modalInstance, items) {
+        function ApproveClientCtrl ($scope, $modalInstance, items) {
                 $scope.restrictDate = new Date();
                 $scope.date = {};
                 $scope.date.actDate = new Date();
                 $scope.approve = function (act) {
-                    var activate = {}
+                    var activate = {};
                     activate.activationDate = dateFilter(act, scope.df);
                     activate.dateFormat = scope.df;
                     activate.locale = scope.optlang.code;
                     var totalClient = 0;
-                    var clientCount = 0
+                    var clientCount = 0;
                     _.each(items, function (value, key) {
                         if (value == true) {
                             totalClient++;
@@ -177,7 +174,7 @@
                 $scope.cancel = function () {
                     $modalInstance.dismiss('cancel');
                 };
-            };
+            }
 
             scope.routeTo = function (id) {
                 location.path('viewcheckerinbox/' + id);
@@ -187,12 +184,13 @@
                 location.path('viewclient/' + id);
             };
 
-            resourceFactory.officeResource.getAllOffices(function (data) {
+            /* resourceFactory.officeResource.getAllOffices(function (data) {
                 scope.offices = data;
                 for (var i in data) {
                     data[i].loans = [];
                     idToNodeMap[data[i].id] = data[i];
                 }
+            });
                 scope.loanResource = function () {
                     resourceFactory.loanResource.getAllLoans(function (loanData) {
                         scope.loans = loanData.pageItems;
@@ -226,7 +224,7 @@
 
             resourceFactory.clientResource.getAllClients(function (data) {
                 scope.groupedClients = _.groupBy(data.pageItems, "officeName");
-            });
+            });*/
 
             scope.search = function () {
                 scope.isCollapsed = true;
@@ -237,7 +235,6 @@
                     params.actionName = scope.formData.action;
                 }
                 ;
-
                 if (scope.formData.entity) {
                     params.entityName = scope.formData.entity;
                 }
@@ -272,7 +269,7 @@
                 });
             };
 
-            scope.approveLoan = function () {
+   /*         scope.approveLoan = function () {
                 if (scope.loanTemplate) {
                     $modal.open({
                         templateUrl: 'approveloan.html',
@@ -321,10 +318,17 @@
                     }
                 });
             };
-
+*/
         }
     });
-    mifosX.ng.application.controller('TaskController', ['$scope', 'ResourceFactory', '$route', 'dateFilter', '$modal', '$location', mifosX.controllers.TaskController]).run(function ($log) {
+    mifosX.ng.application.controller('TaskController', [
+        '$scope', 
+        'ResourceFactory', 
+        '$route', 
+        'dateFilter', 
+        '$modal', 
+        '$location', 
+        mifosX.controllers.TaskController]).run(function ($log) {
         $log.info("TaskController initialized");
     });
 }(mifosX.controllers || {}));

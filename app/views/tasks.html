@@ -1,99 +1,97 @@
-<div class="col-md-12" ng-controller="TaskController">
+<div  data-ng-controller="TaskController">
 	<ul class="breadcrumb">
         <li class="active">{{'label.anchor.tasks' | translate}}</li>
     </ul>
-    <div class="well">
+    <div>
 		<fieldset>
 			<legend>{{'label.heading.pendingtasks' | translate}}</legend>
 			<api-validate></api-validate>
 			<tabset>
 				<tab heading="{{'label.heading.checkerinbox' | translate}}" has-permission='ALL_FUNCTIONS_READ' >
 				    <div class="head-affix">
-				        <table class="table condensed-table">
-				            <div class="form-inline">
-				                <div class="form-group">
+				                  <div class="control-group">
 				                    <span class="input-append grpinputicons">
-				                        <input ng-autofocus="true" autocomplete="off" typeahead-on-select="viewUser($item)" placeholder="{{'label.input.searchbyuser' | translate}}" type="text" ng-model="user" typeahead="users.username as users.username for users in checkerTemplate.appUsers | filter:$viewValue | limitTo:8" class="form-control">
-				                        <button type="button" ng-click="isCollapsed = !isCollapsed" class="btn control btn-default"><i class="icon-chevron-down"></i></button>
-				                        <button type="button" ng-click="search()" class="btn btn-primary control"><i class="icon-search icon-white"></i></button>
+				                        <input data-ng-autofocus="true" autocomplete="off" typeahead-on-select="viewUser($item)" placeholder="{{'label.input.searchbyuser' | translate}}" type="text" data-ng-model="user" 
+				                        typeahead="users.username as users.username for users in checkerTemplate.appUsers | filter:$viewValue | limitTo:8">
+				                        <button type="button" data-ng-click="isCollapsed = !isCollapsed" class="btn control"><i class="icon-chevron-down"></i></button>
+				                        <button type="button" data-ng-click="search()" class="btn btn-primary control"><i class="icon-search icon-white"></i></button>
+				                    </span>
+				              
+				                    <span style="float:right;">
+				                        <button type="button" class="btn btn-success" data-ng-click="approveOrRejectChecker('approve')"><i class="icon-ok"></i>{{'button.approve' | translate}}</button>
+				                        <button type="button" class="btn btn-danger" data-ng-click="deleteChecker()"><i class="icon-trash"></i>{{'button.delete' | translate}}</button>
+				                        <button type="button" class="btn btn-primary" data-ng-click="approveOrRejectChecker('reject')"><i class="icon-remove"></i>{{'button.reject' | translate}}</button>
 				                    </span>
 				                </div>
-				                <div class="form-group">
-				                    <span>
-				                        <button type="button" class="btn btn-success" data-ng-click="approveOrRejectChecker('approve')"><i class="icon-ok"></i>{{'label.button.approve' | translate}}</button>
-				                        <button type="button" class="btn btn-danger" data-ng-click="deleteChecker()"><i class="icon-trash"></i>{{'label.button.delete' | translate}}</button>
-				                        <button type="button" class="btn btn-warning" data-ng-click="approveOrRejectChecker('reject')"><i class="icon-remove"></i>{{'label.button.reject' | translate}}</button>
-				                    </span>
-				                </div>
-				            </div>
-				        </table>
 				    </div>
-				    <div collapse="isCollapsed" class="blockoverlay" style="overflow-y: scroll">
-				        <div class="form-group">
+				    <div data-collapse="isCollapsed" class="blockoverlay"  style="overflow-y: scroll"><br/>
+				        <div class="control-group">
+				        <div class="controls">
 				            <input type="text" placeholder="{{'label.input.fromdate' | translate}}" datepicker-pop="dd MMMM yyyy"
-				                   ng-model="date.from" is-open="opened" min="minDate" max="'2020-06-22'"
-				                   date-disabled="disabled(date, mode)" class="form-control"/>
-				        </div>
-				        <div class="form-group">
-				            <div>
+				                   data-ng-model="date.from" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"/>
+				         </div>
+				      </div>
+				        <div class="control-group">
+				            <div class="controls">
 				                <input type="text" placeholder="{{'label.input.todate' | translate}}" datepicker-pop="dd MMMM yyyy"
-				                       ng-model="date.to" is-open="opened1" min="minDate" max="'2020-06-22'"
-				                       date-disabled="disabled(date, mode)" class="form-control"/>
+				                       data-ng-model="date.to" is-open="opened1" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"/>
 				            </div>
 				        </div>
-				        <div class="form-group">
-				            <div>
-				                <select ng-model="formData.action" class="form-control">
-				                    <option value="">{{'label.all' | translate}}</option>
+				        <div class="control-group">
+				            <div class="controls">
+				                <select data-ng-model="formData.action">
 				                    <option value="">--{{'label.selectaction' | translate}}--</option>
-				                    <option ng-repeat="action in checkerTemplate.actionNames" value="{{action}}">{{action}}</option>
+				                    <option value="">{{'label.all' | translate}}</option>
+				                    <option data-ng-repeat="action in checkerTemplate.actionNames" value="{{action}}">{{action}}</option>
 				                </select>
 				            </div>
 				        </div>
-				        <div class="form-group">
-				            <div>
-				                <select ng-model="formData.entity" class="form-control">
+				        <div class="control-group">
+				            <div class="controls">
+				                <select data-ng-model="formData.entity">
+				                    <option value="">--{{'label.selectentity' | translate}}--</option>
 				                    <option value="">{{'label.all' | translate}}</option>
-				                    <option value="">--{{'label.selectaction' | translate}}--</option>
-				                    <option ng-repeat="entity in checkerTemplate.entityNames" value="{{entity}}">{{entity}}</option>
+				                    <option data-ng-repeat="entity in checkerTemplate.entityNames" value="{{entity}}">{{entity}}</option>
 				                </select>
 				            </div>
 				        </div>
-				        <div class="form-group">
-				            <div>
-				                <input type="text" placeholder="{{'label.input.resourceid' | translate}}"
-				                       ng-model="formData.resourceId" class="form-control">
+				        <div class="control-group">
+				            <div class="controls">
+				                <input type="text" placeholder="{{'label.input.resourceid' | translate}}" data-ng-model="formData.resourceId">
 				            </div>
 				        </div>
-				        <span><a ng-click="search()" class="btn btn-primary"><i class="icon-search icon-white"></i>{{'label.button.advancesearch'
-				            | translate}}</a>
+				        <span><a data-ng-click="search()" class="btn btn-primary"><i class="icon-search icon-white"></i>{{'label.button.advancesearch' | translate}}</a>
 				            <br/><br/>
 				        </span>
 				    </div>
-				    <script type="text/ng-template" id="deletechecker.html">
-        <div class="modal-header silver">
-            <h3 class="bolder">{{'label.heading.delete' | translate}}</h3>
+	 <script type="text/ng-template" id="deletechecker.html">
+         <div class="modal-header silver">
+            <h3 class="bolder">Delete Maker Action</h3>
         </div>
-        <div class="modal-body">
+        <div class="modal-body modal-small">
+          <h4>Are you sure?</h4>
             <api-validate></api-validate>
-            <br>
-            <button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-            <button class="btn btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
+            </div>
+        <div class="modal-footer">
+            <button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+            <button class="btn btn-primary" ng-click="remove()">{{'label.confirm' | translate}}</button>
         </div>
     </script>
-				    <script type="text/ng-template" id="approvechecker.html">
+	 <script type="text/ng-template" id="approvechecker.html">
         <div class="modal-header silver">
             <h3 class="bolder">{{'label.heading.approve' | translate}}</h3>
         </div>
-        <div class="modal-body">
+        <div class="modal-body modal-small">
+            <h4>Are you sure?</h4>
             <api-validate></api-validate>
-            <br>
-            <button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-            <button class="btn btn-primary" ng-click="approve()">{{'label.button.confirm' | translate}}</button>
+      </div>
+       <div class="modal-footer">
+            <button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+            <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
         </div>
     </script>
-				    <div ng-show="searchData">
-				        <table class="table" style="margin-top: -20px;">
+				    <div data-ng-show="searchData">
+				        <table class="table" style="margin-top: 20px;">
 				            <thead>
 				            <tr class="graybg">
 				                <th></th>
@@ -106,7 +104,7 @@
 				            </tr>
 				            </thead>
 				            <tbody>
-				            <tr class="pointer-main" ng-repeat="data in searchData">
+				            <tr class="pointer-main" data-ng-repeat="data in searchData">
 				                <td><input type="checkbox" data-ng-model="checkData[data.id]"/></td>
 				                <td class="pointer" data-ng-click="routeTo(data.id)">{{data.id}}</td>
 				                <td class="pointer" data-ng-click="routeTo(data.id)">{{data.madeOnDate | DateFormat}}</td>
@@ -119,7 +117,7 @@
 				        </table>
 				    </div>
 				</tab>
-				<tab heading="{{'label.heading.clientapproval' | translate}}" has-permission='READ_CLIENT'>
+			<!--	<tab heading="{{'label.heading.clientapproval' | translate}}" has-permission='READ_CLIENT'>
 				    <div class="head-affix">
 				        <table class="table condensed-table">
 				            <thead>
@@ -185,7 +183,7 @@
 				        </tr>
 				    </table>
 				</tab>
-				<tab heading="{{'label.heading.loanapproval' | translate}}" has-permission='READ_LOAN'>
+			 	<tab heading="{{'label.heading.loanapproval' | translate}}" has-permission='READ_LOAN'>
 				    <div class="head-affix">
 				        <table class="table condensed-table">
 				            <thead>
@@ -278,7 +276,7 @@
 				            </tbody>
 				        </table>
 				    </div>
-				</tab>
+				</tab> -->
 			</tabset>
 		</fieldset>
 	</div>
