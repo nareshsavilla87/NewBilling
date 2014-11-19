@@ -41,11 +41,16 @@
                 });
 
             };
+            scope.search();
         }
     });
-    mifosX.ng.application.controller('AuditController', ['$scope', 'ResourceFactory','dateFilter','$location', mifosX.controllers.AuditController]).run(function($log) {
-        $log.info("AuditController initialized");
+    mifosX.ng.application.controller('AuditController', [
+       '$scope',
+       'ResourceFactory',
+       'dateFilter',
+       '$location', 
+       mifosX.controllers.AuditController
+       ]).run(function($log) {
+    	   $log.info("AuditController initialized");
     });
 }(mifosX.controllers || {}));
-
-
