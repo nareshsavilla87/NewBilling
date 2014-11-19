@@ -268,6 +268,7 @@ define(['underscore', 'mifosX'], function() {
       'client/AddDeviceController',
       'main/ViewCheckerinboxController',
       'main/ViewMakerCheckerTaskController',
+      'configurations/PaymentGatewayConfigurationController'
 
     ],
     filters: [
