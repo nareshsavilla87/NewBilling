@@ -161,8 +161,11 @@
              <li><a class="black" ng-show="smartsearch=PermissionService.showMenu('READ_GLACCOUNT')&&PermissionService.showMenu('READ_OFFICE')&&PermissionService.showMenu('READ_SMARTSEARCH')" href="#/smartSearch"> + {{ 'link.smartsearch' | translate }}<i class="icon-search icon-large pull-right"></i></a></li>
              <li ng-show="PermissionService.showMenu('CREATE_CLIENT')" class="divider"></li>
              <li><a class="black" ng-show="paymentGetWay=PermissionService.showMenu('READ_PAYMENTGATEWAY')" href="#/paymentGateway"> + PaymentGateway<i class="icon-money icon-large pull-right"></i></a></li>
+             <li  data-ng-show="PermissionService.showMenu('CHECKER_SUPER_USER')" class="divider"></li> 
+             <li><a class="black" data-ng-show="PermissionService.showMenu('CHECKER_SUPER_USER')" href="#/tasks">+ Checker Inbox & Tasks<i class="icon-check icon-large pull-right"></i></a></li>
              <li ng-show="PermissionService.showMenu('ACTIVATIONPROCESS_ACTIVATE')" class="divider"></li>
-          	<li><a class="black" ng-show="PermissionService.showMenu('ALL_FUNCTIONS')" class="bolder black" href="#/help">&nbsp; + {{ 'label.anchor.shortcuts' | translate }}<i class="icon-hand-left icon-large pull-right "></i></a></li>
+          	 <li><a class="black" ng-show="PermissionService.showMenu('ALL_FUNCTIONS')" class="bolder black" href="#/help">&nbsp; + {{ 'label.anchor.shortcuts' | translate }}<i class="icon-hand-left icon-large pull-right "></i></a></li>
+          	
         </ul>
     </nav>
     <div class="navbar navbar-fixed-top">

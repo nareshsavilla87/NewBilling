@@ -13,9 +13,6 @@
 	    </div>
         <fieldset>
           <legend>{{'label.createpromotioncode' | translate}}</legend>
-			<table>
-			<tr>
-				<td>
 					<table>
 						<tr>
 							<td>
@@ -85,19 +82,11 @@
                         		</div>
           						</div>
 							</td>
-							
+							<td align="right">
+							<a href="#/discounts"><button id="cancel" type="reset" data-ng-click="reset123()" class="btn">{{'button.cancel'| translate}}</button></a>
+                           <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+							</td>
 							</tr>
-							
 					</table>
-			
-				</td>
-			</tr>
-			</table>
-  			
-          <div class="offset3">
-            <a href="#/discounts"><button id="cancel" type="reset" data-ng-click="reset123()" class="btn">{{'button.cancel'| translate}}</button></a>
-            <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
-          </div>
-          
         </fieldset>
 </form>
