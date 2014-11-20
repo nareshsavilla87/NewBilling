@@ -52,6 +52,7 @@
 	        	resourceFactory.oneTimeSaleTemplateResourceData.get({itemId: itemId}, function(data) {
 	        		
 	        		scope.formData=data;
+	        		scope.formData.totalPrice=data.unitPrice;
 	        		scope.formData.itemId=itemId;
 	        		scope.formData.discountId = scope.discountMasterDatas[0].discountMasterId;
 	        		scope.formData.officeId=officeId;
@@ -119,6 +120,7 @@
 	             this.formData.saleType = scope.saleType;
 	             var actDate = dateFilter(scope.date.saleDate,'dd MMMM yyyy');
 	             this.formData.saleDate=actDate;
+	             this.formData.quantity=1;
 	             delete this.formData.discountMasterDatas;   
 	             delete this.formData.warranty;
 	             delete this.formData.itemDatas;

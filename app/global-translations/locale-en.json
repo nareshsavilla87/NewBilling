@@ -1116,6 +1116,7 @@
   "label.bankname":"Bank Name",
   "label.receiptno":"Receipt No",
   "label.branchname":"Branch Name",
+  "label.iswalletpayment":"Is Wallet Payment",
   "table.heading.user":"User",
   "table.heading.transactiondate":"Transaction Date",
   "table.heading.transactiontype":"Transaction Type",
