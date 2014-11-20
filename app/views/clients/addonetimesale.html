@@ -129,12 +129,12 @@
 							<tr>
 								<td>
 									<div class="control-group">
-										<label class="control-label" for="quantity">{{
-											'label.quantity' | translate }}</label>
+										<label class="control-label" for="unitPrice">{{
+											'label.unitPrice' | translate }}</label>
 										<div class="controls">
-											<input type="text" id="quantity" ng-model="formData.quantity"
-												ng-change="itemDataQuantity(formData.quantity,formData.itemId,formData.officeId)"
-												ng-readonly="truefalse">
+											<input type="text" id="unitPrice"
+												ng-model="formData.unitPrice"
+												style="background-color: #FFFFFF;" readonly>
 										</div>
 									</div>
 								</td>
@@ -165,19 +165,19 @@
 									</div>
 								</td>
 								<td>
-									<div class="control-group">
-										<label class="control-label" for="unitPrice">{{
-											'label.unitPrice' | translate }}</label>
+									<div class="control-group" >
+										<label class="control-label" for="serialNumber">{{'label.serialNumber' | translate }}&nbsp;<span class="required">*</span>
+										</label>
 										<div class="controls">
-											<input type="text" id="unitPrice"
-												ng-model="formData.unitPrice"
-												style="background-color: #FFFFFF;" readonly>
+											<input type="text" ng-model="itemDetail" name="serialNumber"
+												autocomplete="off" typeahead="itemDetail as itemDetail for itemDetail in getData($viewValue)" typeahead-min-length="0">
 										</div>
 									</div>
 								</td>
 							</tr>
 							<tr>
-								<td>
+							<td></td>
+								<td align="right">
 									<div class="offset3">
 										<a id="cancel" href="#/viewclient/{{clientId}}"><button
 												type="reset" class="btn" ng-click="reset123()">{{'button.cancel'
@@ -186,18 +186,6 @@
 										<!-- <button id="submit" type="submit" class="btn btn-primary" ng-disabled="flag">{{'button.save' | translate}}</button> -->
 										<button id="submit" type="submit" class="btn btn-primary">{{'button.save'
 											| translate}}</button>
-									</div>
-								</td>
-								<td>
-									<div class="control-group" ng-show="formData.quantity"
-										ng-repeat="item in getNumber(formData.quantity) track by $index"
-										name="serialNumberDiv">
-										<label class="control-label" for="serialNumber">{{'label.serialNumber' | translate }}&nbsp;<span class="required">*</span>
-										</label>
-										<div class="controls">
-											<input type="text" ng-model="itemDetail" name="serialNumber"
-												autocomplete="off" typeahead="itemDetail as itemDetail for itemDetail in getData($viewValue)" typeahead-min-length="0">
-										</div>
 									</div>
 								</td>
 							</tr>

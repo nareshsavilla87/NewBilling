@@ -21,8 +21,12 @@
                         	
                         }if(data.globalConfiguration[i].name=="device-agrement-type"){
                         	  webStorage.add("CPE_TYPE",data.globalConfiguration[i].value);
+                        	  
                         }if(data.globalConfiguration[i].name=="Registration_requires_device"){
                         	  webStorage.add("Registration_requires_device",data.globalConfiguration[i].enabled);
+                        	  
+                        }if(data.globalConfiguration[i].name=="is-wallet-enable"){
+                        	  webStorage.add("is-wallet-enable",data.globalConfiguration[i].enabled);
                         }
                         
                     }

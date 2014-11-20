@@ -136,6 +136,18 @@
 	        				</div>
 	        				</td>
 						</tr>
+						<tr ng-show ="walletconfig">
+						<td>
+						 <div class="control-group">
+            				<label class="control-label" for="iswalletpayment">{{ 'label.iswalletpayment' | translate }}</label>
+            					<div class="controls">
+              							<label class="checkbox">
+                							<input type="checkbox" ng-model="formData.isWalletPayment">
+              							</label>
+            					</div>
+          					</div>
+					</td>
+					</tr>
 					</table>
 			
 				</td>
@@ -165,28 +177,27 @@
 				
 				</tr>
 				<tr>
-							<td>
-								<div class="control-group">
-           					 	<label class="control-label" for="bankName">{{ 'label.bankname' | translate }}</label>
-            					<div class="controls">
-             					 <input type="text" id="bankName" ng-model="formData.bankName">
-           						</div>
-         						</div>
-							</td>
+					<td>
+					<div class="control-group">
+           			<label class="control-label" for="bankName">{{ 'label.bankname' | translate }}</label>
+            		    <div class="controls">
+             				<input type="text" id="bankName" ng-model="formData.bankName">
+           				</div>
+         			</div>
+				  </td>
 				</tr>
+				 <tr>
+					<td>
+						<div class="control-group">
+           				<label class="control-label" for="branchName">{{ 'label.branchname' | translate }}</label>
+            			  <div class="controls">
+             				<input type="text" id="branchName" ng-model="formData.branchName">
+           					</div>
+         				</div>
+					</td>
+               </tr>
 				<tr>
-							<td>
-							
-								<div class="control-group">
-           					 	<label class="control-label" for="branchName">{{ 'label.branchname' | translate }}</label>
-            					<div class="controls">
-             					 <input type="text" id="branchName" ng-model="formData.branchName">
-           						</div>
-         						</div>
-							</td>
-							
-						</tr>
-				
+			    </tr>		
 					</table>
 				  </div>
 				</td>
