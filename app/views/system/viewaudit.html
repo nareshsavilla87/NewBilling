@@ -16,15 +16,15 @@
                 <td>{{details.processingResult}}</td>
             </tr>
             <tr>
-                <td><strong>{{ 'label.user' | translate }}:</strong></td>
+                <td><strong>{{ 'table.heading.user' | translate }}:</strong></td>
                 <td>{{details.maker}}</td>
             </tr>
             <tr>
-                <td><strong>{{ 'label.action' | translate }}:</strong></td>
+                <td><strong>{{ 'table.eventactionmapping.action' | translate }}:</strong></td>
                 <td>{{details.actionName}}</td>
             </tr>
             <tr>
-                <td><strong>{{ 'label.entity' | translate }}:</strong></td>
+                <td><strong>{{ 'table.heading.entity' | translate }}:</strong></td>
                 <td>{{details.entityName}}</td>
             </tr>
             <tr data-ng-show="details.resourceId">
@@ -32,7 +32,7 @@
                 <td>{{details.resourceId}}</td>
             </tr>
             <tr>
-                <td><strong>{{ 'label.date' | translate }}:</strong></td>
+                <td><strong>{{ 'label.date' | translate }}</strong></td>
                 <td>{{details.madeOnDate | DateFormat}}</td>
             </tr>
             <tr data-ng-show="details.officeName">
@@ -53,7 +53,7 @@
     <table class="table" data-ng-show="details.commandAsJson">
         <thead>
         <tr class="graybg">
-            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ 'label.command' | translate }}</th>
+            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ 'label.provisioning.commandname' | translate }}</th>
             <th></th>
         </tr>
         </thead>

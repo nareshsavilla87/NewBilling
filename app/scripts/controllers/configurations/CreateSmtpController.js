@@ -3,7 +3,7 @@
 	    CreateSmtpController: function(scope, resourceFactory, location,dateFilter) {
 	        
 	    	scope.formData={};
-	    	scope.formData.userName="SMTP";
+	    	scope.formData.userName="smtp";
 	        scope.submit = function() {  
 	        	
 	            resourceFactory.configurationSMTPResource.save(this.formData,function(data){

@@ -39,6 +39,11 @@
                 <p class="list-group-item-text">Global configurations and Cache settings</p>
             </a>
             
+            <a class="list-group-item" href="#/paymentgatewayconfig" ng-show="PermissionService.showMenu('READ_PAYMENTGATEWAYCONFIG')">
+                <h4 class="list-group-item-heading"><i class="icon-large icon-gears"></i>&nbsp;&nbsp;{{'link.admin.paymentgatewayconfiguration' | translate}}</h4>
+                <p class="list-group-item-text">PaymentGateway configurations</p>
+            </a>
+            
              <a class="list-group-item" href="#/mappingconfig" ng-show="PermissionService.showMenu('READ_SERVICEMAPPING','READ_PLANMAPPING','READ_PROVISIONINGSYSTEM','READ_EVENTACTIONMAP')">
                 <h4 class="list-group-item-heading"><i class="icon-large icon-gears"></i>&nbsp;&nbsp;{{'link.admin.mappingconfiguration' | translate}}</h4>
                 <p class="list-group-item-text">Service and Hardware mapping configurations</p>

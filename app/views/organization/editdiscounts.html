@@ -20,9 +20,6 @@
 		</div>
 		<fieldset>
 			<legend>{{'label.editdiscounts' | translate}}</legend>
-			<table>
-				<tr>
-					<td>
 						<table>
 							<tr>
 								<td>
@@ -93,20 +90,11 @@
 									</div>
 								</td>
 							</tr>
-
-						</table>
-
-					</td>
-				</tr>
-			</table>
-
-			<div class="offset3">
-				<a href="#/viewdiscounts/{{discountdetail.id}}"><button
-						id="cancel" type="reset" class="btn">{{'label.cancel' |
-						translate}}</button></a>
-				<button id="submit" type="submit" class="btn btn-primary">{{'label.save'
-					| translate}}</button>
-			</div>
+							<tr>
+							<td align="right" colspan="2">
+				       <a href="#/viewdiscounts/{{discountdetail.id}}"><button id="cancel" type="reset" class="btn">{{'label.cancel' |translate}}</button></a>
+				      <button id="submit" type="submit" class="btn btn-primary">{{'label.save'| translate}}</button>
+	           </td></tr></table>
 		</fieldset>
 	</form>
 </div>

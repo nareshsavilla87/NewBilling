@@ -1006,6 +1006,10 @@
                 get: {method: 'GET', params: {}, isArray: true},
                 update: { method: 'PUT'}
             }),
+            paymentGatewayConfigurationResource:defineResource(apiVer + "/paymentgatewayconfigs/:configId",{configId : '@configId'}, {
+                get: {method: 'GET', params: {}},
+                update: {method: 'PUT', params: {}}
+              }),
            
             checkerInboxResource: defineResource(apiVer + "/makercheckers/:templateResource", {templateResource: '@templateResource'}, {
                 get: {method: 'GET', params: {}},
