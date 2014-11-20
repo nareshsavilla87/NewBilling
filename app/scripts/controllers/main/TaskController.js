@@ -22,6 +22,7 @@
             scope.viewUser = function (item) {
                 scope.userTypeahead = true;
                 scope.formData.user = item.id;
+                scope.search();
             };
             scope.approveOrRejectChecker = function (action) {
                 if (scope.checkData) {
