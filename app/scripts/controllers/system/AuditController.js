@@ -14,10 +14,10 @@
             scope.search = function(){
                 scope.isCollapsed = true;
                 scope.displayResults = true;
-                var reqFirstDate = dateFilter(scope.date.first,'dd MMMM yyyy');
-                var reqSecondDate = dateFilter(scope.date.second,'dd MMMM yyyy');
-                var reqThirdDate = dateFilter(scope.date.third,'dd MMMM yyyy');
-                var reqFourthDate = dateFilter(scope.date.fourth,'dd MMMM yyyy');
+                var reqFirstDate = dateFilter(scope.date.first,'yyyy-MM-dd');
+                var reqSecondDate = dateFilter(scope.date.second,'yyyy-MM-dd');
+                var reqThirdDate = dateFilter(scope.date.third,'yyyy-MM-dd');
+                var reqFourthDate = dateFilter(scope.date.fourth,'yyyy-MM-dd');
                 var params = {};
                 if (scope.formData.action) { params.actionName = scope.formData.action; };
 
@@ -29,7 +29,7 @@
 
                 if (scope.date.first) { params.makerDateTimeFrom = reqFirstDate; };
 
-                if (scope.date.second) { params.makerDateTimeto = reqSecondDate; };
+                if (scope.date.second) { params.makerDateTimeTo = reqSecondDate; };
 
                 if (scope.formData.checkedBy) { params.checkerId = scope.formData.checkedBy; };
 
