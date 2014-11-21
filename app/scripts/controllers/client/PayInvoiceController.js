@@ -5,6 +5,8 @@
         scope.formData = {};
         scope.clientId = routeParams.id;
         var clientData = webStorage.get('clientData');
+        scope.walletconfig = webStorage.get('is-wallet-enable');
+        
 	    scope.displayName=clientData.displayName;
 	    scope.statusActive=clientData.statusActive;
 	    scope.hwSerialNumber=clientData.hwSerialNumber;
