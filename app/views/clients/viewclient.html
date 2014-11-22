@@ -501,7 +501,7 @@
           				<table class="table" data-ng-show="datatabledetails.isMultirow">
             				<thead> 
             					<tr class="graybg">
-              						<th data-ng-repeat="column in datatabledetails.columnHeaders">{{column.columnName}}</th>
+              						<th data-ng-repeat="column in datatabledetails.columnHeaders">{{column.columnName | prettifyDataTableColumn}}</th>
               					</tr>
             				</thead>
               				<tbody>
@@ -518,7 +518,7 @@
           				</table>
            				<table class="table table-bordered width450px" data-ng-hide="datatabledetails.isMultirow">
 		                	<tr data-ng-repeat="value in singleRow">
-		               			<td class="graybg table-font-nav">{{value.key}}</td>
+		               			<td class="graybg table-font-nav">{{value.key | prettifyDataTableColumn}}</td>
 		               			<td><span class="padded-td">{{value.value}}</span></td>
 		                	</tr>
 		            	</table>

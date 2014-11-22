@@ -257,7 +257,7 @@
                 ;
 
                 if (scope.date.to) {
-                    params.makerDateTimeto = reqToDate;
+                    params.makerDateTimeTo = reqToDate;
                 }
                 ;
                 resourceFactory.checkerInboxResource.search(params, function (data) {
