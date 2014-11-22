@@ -4,6 +4,7 @@
 		  
 			  scope.clientId=routeParams.id;
 			  scope.formData = {};
+			  scope.unitsValue = "";
 			  var clientData = webStorage.get('clientData');
 			  scope.hwSerialNumber=clientData.hwSerialNumber;
 			    scope.displayName=clientData.displayName;
@@ -52,7 +53,7 @@
 	        	resourceFactory.oneTimeSaleTemplateResourceData.get({itemId: itemId}, function(data) {
 	        		
 	        		scope.formData=data;
-	        		scope.formData.totalPrice=data.unitPrice;
+	        		scope.unitsValue = data.units;
 	        		scope.formData.itemId=itemId;
 	        		scope.formData.discountId = scope.discountMasterDatas[0].discountMasterId;
 	        		scope.formData.officeId=officeId;
@@ -63,11 +64,12 @@
 		        });	
 	        };
 	        
-	        scope.itemDataQuantity=function(quantity,itemId,officeId){
+	        scope.itemDataQuantity=function(quantity,itemId,officeId,units){
 	        	this.data.unitPrice=this.formData.unitPrice;
 	        	this.data.locale=$rootScope.locale.code;
 	        	this.data.quantity=quantity;
-	        	resourceFactory.oneTimeSaleQuantityResource.get({quantity: quantity,itemId:itemId},this.data, function(data) {
+	        	this.data.units = units;
+	        	resourceFactory.oneTimeSaleQuantityResource.get({itemId:itemId},this.data, function(data) {
 	        		
 	        		scope.formData=data;
 	        		scope.formData.quantity=quantity;
@@ -120,7 +122,6 @@
 	             this.formData.saleType = scope.saleType;
 	             var actDate = dateFilter(scope.date.saleDate,'dd MMMM yyyy');
 	             this.formData.saleDate=actDate;
-	             this.formData.quantity=1;
 	             delete this.formData.discountMasterDatas;   
 	             delete this.formData.warranty;
 	             delete this.formData.itemDatas;
@@ -128,24 +129,23 @@
 	             delete this.formData.itemCode;
 	             delete this.formData.id;
 	         
+	             if(scope.unitsValue == 'NUMBERS'){
+	            	 var temp1 = new Array();
+			        	
+			        	$("input[name='serialNumber']").each(function(){
+			        		var temp = {};
+			    			temp["serialNumber"] = $(this).val();
+			    			temp["orderId"] = routeParams.id;
+			    			temp["clientId"] = routeParams.id;
+			    			temp["status"] = "allocated";
+			    			temp["itemMasterId"] = scope.formData.itemId;
+			    			temp["isNewHw"]="Y";
+			    			temp1.push(temp);
+			        	});
+			        	this.formData.serialNumber=temp1;
+	             }
 	             
-	             var temp1 = new Array();
-		        	
-		        	$("input[name='serialNumber']").each(function(){
-		        		var temp = {};
-		    			temp["serialNumber"] = $(this).val();
-		    			temp["orderId"] = routeParams.id;
-		    			temp["clientId"] = routeParams.id;
-		    			temp["status"] = "allocated";
-		    			temp["itemMasterId"] = scope.formData.itemId;
-		    			temp["isNewHw"]="Y";
-		    			temp1.push(temp);
-		        	});
-		        
-		        	
-		            this.formData.serialNumber=temp1;
 		            delete this.formData.serialNumbers;
-		            
 		            delete this.formData.chargesData;
 	            resourceFactory.oneTimeSaleResource.save({clientId:routeParams.id,devicesaleTpye:scope.saleType},this.formData,function(data){
 	            	 location.path('/viewclient/' + routeParams.id);
