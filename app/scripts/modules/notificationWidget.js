@@ -62,7 +62,6 @@ angular.module('notificationWidget', [])
                           //return response for maker checker actions(approve or delete)
                           return response || $q.when(response);
                       } else {
-                    	  console.log(response.data.commandId);
                           //redirect if maker checker is enabled
                           $location.path('/viewMakerCheckerTask/' + response.data.commandId);
                       }
