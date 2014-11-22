@@ -5,36 +5,41 @@
           <li class="active">{{'label.createemployee' | translate}}</li>
         </ul>
       </div>
-      <form class="form-horizontal well" ng-controller="CreateEmployeeController" ng-submit="submit()">
-          <div class="error" ng-show="errorStatus || errorDetails">
+      <form class="form-horizontal well" data-ng-controller="CreateEmployeeController"  data-ng-submit="submit()">
+          <div class="error"  data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		<label  data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label  data-ng-hide="errorStatus"  data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
         <fieldset>
           <legend>Create Employee</legend>
-
+         <table>
+         <tr>
+         <td>
           <div class="control-group">
             <label class="control-label" for="office">{{ 'label.office' | translate }}</label>
             <div class="controls">
-              <select ng-model="formData.officeId"  ng-options="office.id as office.name for office in offices" value="{{office.id}}">
+              <select  data-ng-model="formData.officeId"   data-ng-options="office.id as office.name for office in offices">
               </select>
             </div>
           </div>
-
+          </td></tr>
+         <tr><td>
           <div class="control-group">
             <label class="control-label" for="firstname">{{ 'label.firstname' | translate }}</label>
             <div class="controls">
-              <input type="text" id="firstname" ng-model="formData.firstname">
+              <input type="text" id="firstname"  data-ng-model="formData.firstname">
             </div>
           </div>
-
+          </td></tr>
+         <tr><td>
           <div class="control-group">
             <label class="control-label" for="lastname">{{ 'label.lastname' | translate }}</label>
             <div class="controls">
-              <input type="text" id="lastname" ng-model="formData.lastname">
+              <input type="text" id="lastname"  data-ng-model="formData.lastname">
             </div>
           </div>
+          </td></tr>
           
           <!-- <div class="control-group">
             <label class="control-label" for="isLoanOfficer">{{ 'label.employee.isLoanOfficer' | translate }}</label>
@@ -44,11 +49,9 @@
               </label>
             </div>
           </div> -->
-
-          <div class="offset3">
+           <tr><td align="right">
             <a href="#/employees"><button  id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
             <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
-          </div>
-          
+        </td></tr></table>
         </fieldset>
       </form>
