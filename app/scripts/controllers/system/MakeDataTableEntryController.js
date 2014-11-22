@@ -48,9 +48,6 @@
           }
           return fieldType;
       };
-
-     
-      
       
       scope.submit = function () {
         var params = {datatablename:scope.tableName, entityId:scope.entityId, genericResultSet: 'true'};
@@ -95,7 +92,14 @@
 
     }
   });
-  mifosX.ng.application.controller('MakeDataTableEntryController', ['$scope', '$location', '$routeParams', 'ResourceFactory','$rootScope','webStorage', mifosX.controllers.MakeDataTableEntryController]).run(function($log) {
+  mifosX.ng.application.controller('MakeDataTableEntryController', [
+    '$scope', 
+    '$location', 
+    '$routeParams', 
+    'ResourceFactory',
+    '$rootScope',
+    'webStorage', mifosX.controllers.MakeDataTableEntryController
+    ]).run(function($log) {
     $log.info("MakeDataTableEntryController initialized");
   });
 }(mifosX.controllers || {}));
