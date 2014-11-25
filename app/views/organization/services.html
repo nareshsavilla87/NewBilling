@@ -13,7 +13,7 @@
 	<table class="table">
         <thead>
             <tr class="graybg">
-               
+               	<th>{{'label.sortby' | translate}}</th>
                 <th>{{'label.service.servicecode' | translate}}</th>
                 <th>{{'label.service.servicedescription' | translate}}</th>
                 <th>{{'label.service.servicetype' | translate}}Service type</th>
@@ -25,14 +25,15 @@
         </thead>
         <tbody>
             <tr class="pointer-main" data-ng-repeat="service in services  | filter:filterText">      
-              
-                 <td class="pointer" data-ng-click="routeTo(service.id)">{{service.serviceCode}}</td>            
+              	<td class="pointer" data-ng-click="routeTo(service.id)">{{service.sortBy}}</td> 
+                <td class="pointer" data-ng-click="routeTo(service.id)">{{service.serviceCode}}</td>            
                 <td class="pointer" data-ng-click="routeTo(service.id)">{{service.serviceDescription}}</td>
                 <td class="pointer" data-ng-click="routeTo(service.id)">{{service.serviceType}}</td>
                 <td class="pointer" data-ng-click="routeTo(service.id)">{{service.serviceStatus}}</td>
                 <td class="pointer" data-ng-click="routeTo(service.id)">{{service.isOptional}}</td>
                 <td class="pointer" data-ng-click="routeTo(service.id)">{{service.isAutoProvision}}</td>
-                <td><a href="#/editservice/{{service.id}}" data-popover="Edit Service" data-popover-trigger="mouseenter" class="icon-edit"></a>&nbsp;
+                <td><a data-ng-click="editSortservice(service.id)" data-popover="{{'label.edit.sortby' | translate}}" data-popover-trigger="mouseenter" class="icon-edit"></a>&nbsp;
+                	<a href="#/editservice/{{service.id}}" data-popover="Edit Service" data-popover-trigger="mouseenter" class="icon-edit"></a>&nbsp;
                  <a data-ng-click="deleteservice(service.id)" data-popover="Delete Service" data-popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a></td>
             </tr>
         </tbody>
@@ -49,5 +50,23 @@
                         <button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
                         <button class="btn btn-primary" ng-click="approveDeleteService()">{{'label.confirm' | translate}}</button>
                     </div>
-      </script>
+</script>
+<script type="text/ng-template" id="sortby.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">{{'label.edit.sortby' | translate}}</h3>
+                    </div>
+                    <div class="modal-body" style="height:80px;">
+                       
+            		   	<h3><label class="control-label" for="sortBy">{{'label.sort.by' | translate}}&nbsp;</label></h3>
+            			<div class="controls">
+              				<input type="text" id="sortBy" ng-model="formData.sortBy">
+            			</div>
+          			  
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approveDeleteService()">{{'label.confirm' | translate}}</button>
+                    </div>
+</script>
+      
 </div>
