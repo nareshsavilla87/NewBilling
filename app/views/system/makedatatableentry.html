@@ -1,6 +1,7 @@
 <div data-ng-controller="MakeDataTableEntryController">
 	<div>
 		<ul class="breadcrumb">
+		<li>
 			<table>
 				<tr>
 					<td><img data-ng-hide="imagePresent"
@@ -45,6 +46,7 @@
 					</td>
 				</tr>
 			</table>
+			</li>
 		</ul>
 		<ul class="breadcrumb">
 			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
@@ -63,6 +65,8 @@
 		<fieldset>
 			<h4>{{ 'label.datatable.name' | translate }}--<strong>{{tableName}}</strong></h4>
 			<hr>
+			<table>
+			<tr><td>
 			<div class="control-group" data-ng-repeat="columnHeader in columnHeaders">
 				<label class="control-label" for="colName">{{ columnHeader.columnName | prettifyDataTableColumn}} <span
 					data-ng-show="!columnHeader.isColumnNullable" class="required">*</span>
@@ -88,10 +92,11 @@
 					</span>
 				</div>
 			</div>
-			<div class="offset3">
+			</td></tr>
+			<tr><td align="right" data-ng-show="columnHeaders">
 				<a id="cancel" class="btn" data-ng-click="cancel()">{{'button.cancel' | translate }}</a>
 				<button type="submit" class="btn btn-primary">{{'button.save' | translate }}</button>
-			</div>
+				</td></tr></table>
 		</fieldset>
 	</form>
 </div>

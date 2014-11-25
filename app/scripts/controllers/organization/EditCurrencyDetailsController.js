@@ -6,7 +6,7 @@
 			scope.currencydatas = [];
 			scope.currencystatus = [];
 
-			resourceFactory.currencyResource.getCurrencyDetails({id : routeParams.id,template : 'true'}, function(data) {
+			resourceFactory.currencyResource.get({id : routeParams.id,template : 'true'}, function(data) {
 				scope.countryDatas = data.countryData;
 				scope.currencydatas = data.currencydata.currencyOptions;
 				scope.currencystatus = data.statusData;
