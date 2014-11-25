@@ -400,9 +400,6 @@
            }),
       
        currencyResource: defineResource(apiVer + "/countrycurrency/:id/:resourceType", {id:'@id', resourceType:'@resourceType'}, {
-            get: {method: 'GET', params: {id:'@id'}},
-            getCurrency: {method: 'GET', params: {id:'@id'}, isArray:true},
-            getCurrencyDetails: {method: 'GET', params: {id:'@id'}},
             update: {method: 'PUT', params: {}}
            }),
        currencyTemplateResource: defineResource(apiVer + "/countrycurrency/template", {}, {
