@@ -129,7 +129,7 @@
 	             delete this.formData.itemCode;
 	             delete this.formData.id;
 	         
-	             if(scope.unitsValue == 'NUMBERS'){
+	             if(scope.unitsValue == 'PIECES'){
 	            	 var temp1 = new Array();
 			        	
 			        	$("input[name='serialNumber']").each(function(){
