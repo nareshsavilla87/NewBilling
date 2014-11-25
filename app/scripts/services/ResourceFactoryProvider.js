@@ -144,6 +144,10 @@
               search:{method: 'GET', params: {}}
             }),
             
+            advanceSearchResource: defineResource(apiVer + "/advancesearch", {}, {
+                search:{method: 'GET', params: {}}
+              }),
+            
           accountingClosureResource: defineResource(apiVer + "/glclosures/:accId", {accId:"@accId"}, {
             get: {method: 'GET', params: {}, isArray:true},
             getView: {method: 'GET', params: {}}

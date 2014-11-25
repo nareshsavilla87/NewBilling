@@ -895,8 +895,6 @@
                 				<td><a data-ng-click="routeTostatement(statement.id)" class="btn btn-primary">HTML</a>&nbsp;
                 					<a data-ng-click="downloadFile(statement.id)" class="btn btn-primary"><i class=" icon-download-alt icon-white"></i>PDF</a>&nbsp;
                 					<a data-ng-click="routeToEmail(statement.id)" class="btn btn-primary">Email</a>&nbsp;
-                					<a class="btn btn-primary" href="{{url}}={{mail}}&item_name=first&amount={{statement.amount}}&custom={{client.id}}" target="_blank">
-                					<i class=" icon-download-alt icon-white"></i>Paypal</a>&nbsp;
                						<a data-ng-click="deletePopUp(statement.id,'','','Cancel Statement')" data-ng-show="$last" data-popover="Cancel Statement" data-popover-trigger="mouseenter">
                						<i class="icon-remove-circle icon-white" style="font-size:20px;color:#999;"></i></a>&nbsp;
                					</td>
