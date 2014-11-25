@@ -638,7 +638,7 @@
                    get: {method: 'GET', params: {}}
                  }),
                oneTimeSaleQuantityResource: defineResource(apiVer + "/onetimesales/:itemId/totalprice", {itemId:'@itemId'}, {
-                get: {method: 'POST', params: {quantity:'@quantity'}}
+                get: {method: 'POST', params: {}}
                  }),
                oneTimeSaleAllocation: defineResource(apiVer + "/onetimesales/:orderId/allocation", {orderId:'@orderId'}, {
                 get: {method: 'GET', params: {}}
