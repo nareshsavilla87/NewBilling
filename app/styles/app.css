@@ -948,6 +948,10 @@ nav:hover:after{
 	padding-left: 0;
 }
 
+.bodywidth{
+	width: 1030px;
+}
+
 /*external code*/
 
 #orderMenu {

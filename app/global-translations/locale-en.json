@@ -1188,6 +1188,9 @@
   "label.service.servicetype":"Service Type",
   "label.delete.service":"Delete Service",
   "validation.msg.service.status.cannot.be.blank":"Status cannot be blank ",
+  "label.edit.sortby":"Edit SortBy",
+  "label.sort.by":"Sort By",
+  "label.sortby":"SortBy",
   
   "#tickets ":"....",
   "link.tickets":"Tickets",
