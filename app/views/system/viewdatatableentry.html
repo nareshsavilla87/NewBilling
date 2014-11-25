@@ -1,6 +1,7 @@
 <div data-ng-controller="ViewDataTableEntryController">
 	<div>
 		<ul class="breadcrumb">
+		<li>
 			<table>
 				<tr>
 					<td><img data-ng-hide="imagePresent"
@@ -45,6 +46,7 @@
 					</td>
 				</tr>
 			</table>
+			</li>
 		</ul>
 		<ul class="breadcrumb">
 			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span
@@ -67,10 +69,8 @@
 			<div class="row pull-right btn-group">
 				<a data-ng-click="editDatatableEntry()" class="btn btn-primary"><i
 					class="icon-edit icon-white"></i>{{ 'button.edit' | translate }}</a>
-				<button type="button" data-ng-click="deleteDatatableEntry()"
-					class="btn btn-danger">
-					<i class="icon-trash icon-white"></i> {{ 'button.delete' |
-					translate }}
+				<button type="button" data-ng-click="deleteDatatableEntry()" class="btn btn-primary">
+					<i class="icon-trash icon-white"></i> {{ 'button.delete' | translate }}
 				</button>
 			</div>
 			<script type="text/ng-template" id="deletedatatable.html">
@@ -84,9 +84,9 @@
         </script>
 			<h3>{{ 'label.datatable.name' | translate }}-<strong>{{tableName}}</strong></h3>
 			<hr>
-			<table width="100%">
+			<table class="fullwidth">
 				<tr data-ng-repeat="column in columnHeaders">
-					<td width="30%">{{column.columnName}}:</td>
+					<td width="30%">{{column.columnName | prettifyDataTableColumn}}:</td>
 					<td width="70%" valign="top">{{column.value}}</td>
 				</tr>
 			</table>
@@ -97,38 +97,37 @@
 					{{ 'label.datatable.name' | translate }}-<strong>{{tableName}}</strong>
 				</legend>
 			</fieldset>
+			<table>
+			<tr><td>
 			<div class="control-group" data-ng-repeat="columnHeader in columnHeaders">
 				<label class="control-label" for="colName">{{columnHeader.columnName | prettifyDataTableColumn}} <span
 					data-ng-show="!columnHeader.isColumnNullable" class="required">*</span></label>
 				<div class="controls">
 					<input data-ng-show="fieldType(columnHeader.columnDisplayType) == 'TEXT'"
 						  type="text" data-ng-model="formData[columnHeader.columnName]"/> 
-					<input data-ng-show="fieldType(columnHeader.columnDisplayType) == 'DATE'"
-						type="text" datepicker-pop="dd MMMM yyyy"
-						data-ng-model="formDat[columnHeader.columnName]"
-						is-open="opened{{$index}}" /> <span
-						data-ng-switch-on="columnHeader.columnDisplayType"> <select
-						data-ng-show="fieldType(columnHeader.columnDisplayType) == 'SELECT'"
+					<input data-ng-show="fieldType(columnHeader.columnDisplayType) == 'DATE'"type="text" datepicker-pop="dd MMMM yyyy"
+						data-ng-model="formDat[columnHeader.columnName]"is-open="opened{{$index}}" />
+				   <span data-ng-switch on="columnHeader.columnDisplayType"> 
+					<select data-ng-show="fieldType(columnHeader.columnDisplayType) == 'SELECT'"
 						data-ng-switch-when="CODELOOKUP"
 						data-ng-model="formData[columnHeader.columnName]"
-						data-ng-options="columnValue.id as columnValue.value for columnValue in columnHeader.columnValues"
-						value="{{columnValue.id}}">
-							<option value="">{{'label.select.one' | translate}}</option>
-					</select> <select
-						data-ng-show="fieldType(columnHeader.columnDisplayType) == 'SELECT'"
+						data-ng-options="columnValue.id as columnValue.value for columnValue in columnHeader.columnValues">
+					   <option value="">{{'label.select.one' | translate}}</option>
+					   </select> 
+					<select	data-ng-show="fieldType(columnHeader.columnDisplayType) == 'SELECT'"
 						data-ng-switch-when="CODEVALUE"
 						data-ng-model="formData[columnHeader.columnName]"
-						data-ng-options="columnValue.value as columnValue.value for columnValue in columnHeader.columnValues"
-						value="{{columnValue.id}}" >
+						data-ng-options="columnValue.value as columnValue.value for columnValue in columnHeader.columnValues">
 							<option value="">{{'label.select.one' | translate}}</option>
 					</select>
 					</span>
 				</div>
 			</div>
-			<div class="offset3">
+			</td></tr>
+			<tr><td align="right">
 				<a class="btn" data-ng-click="cancel()">{{ 'button.cancel' | translate }}</a>
 				<button type="submit" class="btn btn-primary">{{ 'button.save' | translate }}</button>
-			</div>
+			</td></tr></table>
 		</div>
 	</form>
 </div>
