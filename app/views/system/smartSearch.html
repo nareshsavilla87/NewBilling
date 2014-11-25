@@ -1,17 +1,37 @@
-<div ng-controller="SmartSearchController">
+<div ng-controller="SmartSearchController" novalidate class="form-horizontal" >
    <br>
     <div class="row-fluid" >
-        <span class="input-append grpinputicons" >
-        <form ng-submit="searchTransaction()">
+        <span class="input-append grpinputicons " >
+         <table width="100%">
+           <tr>
+             <td>
+		       <div class="control-group">
+				  <label class="control-label" for="status"  style="text-align: left; width:0px;">Payments:</label>
+					 <div class="controls" style="margin-left:44%">
+				     <input type="radio" id="type" data-ng-click="" ng-model="formData.searchType" name="searchType" value="payments" style="text-align: left; width: 0;">
+					 </div>
+				</div>
+			</td>
+			 <td>
+		       <div class="control-group">
+				  <label class="control-label" for="category" style="text-align: left; width:10px;">Tickets:</label>
+					 <div class="controls" style="margin-left:36%">
+					   <input type="radio" id="type" data-ng-click="getTicketValues()" ng-model="formData.searchType" value="tickets" name="searchType" style="text-align: left; width: 0;">
+					 </div>
+				</div>
+			</td>
+           	</tr>
+          </table>
+        <form ng-submit="searchTransaction()" >
                 <input ng-model="formData.searchText" type="text" placeholder="Search Receipt#" />
                 <span><a ng-click="isCollapsed = !isCollapsed" class="btn  control"><i class="icon-chevron-down"></i></a></span>
                 <span><a ng-click="searchTransaction()" class="btn btn-primary control"><i class="icon-search icon-white"></i></a></span>
               </form>  
         </span>
     </div>
-    <div collapse="isCollapsed" class="blockoverlay" width="100%" style="overflow-y: scroll">
+    <div ng-show="formData.searchType == 'payments'" collapse="isCollapsed" class="blockoverlay" width="100%" style="overflow-y: scroll">
         <br/><!-- The span is displaying the first line of the hiding div, making the first line of div as blank solved my problem -->
-        <div>       
+        <div >       
             <label>{{ 'label.fromdate' | translate }}</label>
             <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.first" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)" required late-Validate />
             <label>{{ 'label.todate' | translate }}</label>
@@ -19,8 +39,81 @@
             <span><a ng-click="searchTransaction()" class="btn btn-primary control"><i class="icon-search icon-white"></i>Advance Search</a></span>
         </div>
     </div>
+    
+    <div ng-show="formData.searchType == 'tickets'" collapse="isCollapsed" class="blockoverlay  form-horizontal""  style="overflow: scroll;width:700px">
+        <br/><!-- The span is displaying the first line of the hiding div, making the first line of div as blank solved my problem -->
+        <div>
+          <table width="100%">
+           <tr>
+             <td>
+		       <div class="control-group">
+				  <label class="control-label" for="status" style="text-align: left; width: 0;">Status:</label>
+					 <div class="controls" style="margin-left:23%">
+					    <select ng-model="formData.status" value="{{status}}">
+					    <option>-select -</option>
+					    <option value="OPEN">OPEN</option>
+					    <option value="WORKING">WORKING</option>
+					    <option value="CLOSED">CLOSED</option>
+					    </select>
+					 </div>
+				</div>
+			</td>
+			 <td>
+		       <div class="control-group">
+				  <label class="control-label" for="category" style="text-align: left; width: 0;">Category:</label>
+					 <div class="controls" style="margin-left:21%">
+					    <select ng-model="formData.category"ng-options="problemsData.id as problemsData.mCodeValue for problemsData in problemsDatas">
+					    <option value="">None</option></select>
+					 </div>
+				</div>
+			</td>
+           	</tr>
+           	 <tr>
+             <td>
+		       <div class="control-group">
+				  <label class="control-label" for="assignedTo" style="text-align: left; width: 0;">AssignedTo:</label>
+					 <div class="controls" style="margin-left:23%">
+					    <select ng-model="formData.assignedTo" ng-options="usersData.id as usersData.userName for usersData in usersDatas">
+									 <option value="">None</option></select>
+					 </div>
+				</div>
+			</td>
+			 <td>
+		       <div class="control-group">
+				  <label class="control-label" for="closedBy" style="text-align: left; width: 0;">ClosedBy:</label>
+					 <div class="controls" style="margin-left:21%">
+					    <select ng-model="formData.closedBy" ng-options="usersData.id as usersData.userName for usersData in usersDatas">
+								 <option value="">None</option></select>
+					 </div>
+				</div>
+			</td>
+           	</tr>
+           	 <tr>
+             <td>
+		       <div class="control-group">
+				  <label class="control-label" for="officeId" style="text-align: left; width: 0;">Date Range:</label>
+					 <div class="controls" style="margin-left:23%">
+					  <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.first" 
+					     is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)" required late-Validate />
+					 </div>
+				</div>
+			</td>
+			 <td>
+		       <div class="control-group">
+				  <label class="control-label" for="officeId" style="text-align: left; width: 0;">To:</label>
+					 <div class="controls" style="margin-left:20%">
+					  <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.second" is-open="opened1" min="minDate" max="'2020-06-22'" 
+					  date-disabled="disabled(date, mode)" required late-Validate /><br>
+					 </div>
+				</div>
+			</td>
+           	</tr>
+          </table>
+          <span><a ng-click="searchTransaction()" class="btn btn-primary control"><i class="icon-search icon-white"></i>Advance Search</a></span>       
+        </div>
+    </div>
 
-     <div ng-show="displayResults" class="row-fluid">
+     <div ng-show="displayResults && formData.searchType == 'payments'" class="row-fluid">
     	<table class="table">
             <thead>
                 <tr class="graybg">
@@ -40,6 +133,34 @@
                     <td class="pointer" data-ng-click="routeTo(transaction.clientId)">{{transaction.paymenttype}}</td>
                     <td class="pointer" data-ng-click="routeTo(transaction.clientId)">{{transaction.receiptNo}}</td>
                     <td class="pointer" data-ng-click="routeTo(transaction.clientId)">{{transaction.amount}}</td>
+                   
+                </tr>
+            </tbody>
+        </table>
+        <ul class="pager">
+            <li class="previous"><a ng-click="transactions.previous()" href="" ng-disabled="!transactions.hasPrevious()">&larr; Prev</a></li>
+            <li class="next" ><a ng-click="transactions.next()" href="" ng-disabled="!transactions.hasNext()">Next &rarr;</a></li>
+        </ul>
+    </div>
+     <div ng-show="displaySearchResults  && formData.searchType == 'tickets'" class="row-fluid">
+    	<table class="table">
+            <thead>
+                <tr class="graybg">
+                
+                    <th>Date</th>
+                    <th>Client Name</th>
+                    <th>Account Numbet</th>
+                    <th>status</th>
+                    <th>User</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="pointer-main" ng-repeat="transaction in searchDatas.currentPageItems">
+                    <td class="pointer" data-ng-click="routeTo(transaction.clientId)">{{transaction.transactionDate | DateFormat}}</td>
+                    <td class="pointer" data-ng-click="routeTo(transaction.clientId)">{{transaction.clientName}}</td>
+                    <td class="pointer" data-ng-click="routeTo(transaction.clientId)">{{transaction.accountNo}}</td>
+                    <td class="pointer" data-ng-click="routeTo(transaction.clientId)">{{transaction.status}}</td>
+                    <td class="pointer" data-ng-click="routeTo(transaction.clientId)">{{transaction.userName}}</td>
                    
                 </tr>
             </tbody>

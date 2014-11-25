@@ -363,7 +363,6 @@
   "link.tasks" : "Tasks",
   "link.clients" : "Clients",
   "link.accounting": "Accounting",
-  "link.smartsearch":"Smart Search",
   "link.reports" : "Reports",
   "link.admin" : "Admin",
   "link.clients.clients" : "Clients",
@@ -1982,6 +1981,12 @@
 "label.edit.new.EventMapping":"Edit EventAction Mapping",
 "error.msg.event.name.already.configured":"Event Name Already configured with this Action",
 "label.searchorpress":"Click to focus or press alt+x",
+
+"#Advance Search":".........",
+"link.smartsearch":"Smart Search",
+"label.search.payments":"Payments",
+"label.search.tickets":"Tickets",
+
 
 "#PaymentGatewayCommands":"...",
 "label.paymentgateway.source":"Source",
