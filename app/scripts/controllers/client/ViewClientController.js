@@ -48,10 +48,12 @@
         		 scope.eventsaleC="active";
         		 scope.mydeviceC="";
         		 webStorage.remove('callingTab');
-        	 }else if(scope.displayTab == "Statements"){
+        	 }
+        	 else if(scope.displayTab == "StatementsTab"){
         		 scope.StatementsTab =  true;
         		 webStorage.remove('callingTab');
-        	 }else if(scope.displayTab == "eventOrders"){
+        	 }
+        	 else if(scope.displayTab == "eventOrders"){
         		 scope.SaleTab = true;
         		 scope.eventsaleC = "";
         		 scope.eventorderC = "active";
