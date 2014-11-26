@@ -831,7 +831,16 @@
 "#client&parent":"",
 "error.msg.client.Not parent.himself.can.not.be.parent.to his.account":"Himself can not be parent to his account",
 "error.msg.client.Not Parent.he.is. already. a parent.to.some other clients":"He is already a parent to some other clients",
-"error.msg.client.Not Parent.can.not.be.parent.to this.account":"Can not be parent to this account"
+"error.msg.client.Not Parent.can.not.be.parent.to this.account":"Can not be parent to this account",
+
+"#paymentGatewayConfig":"",
+"label.paypal":"Paypal",
+"label.globalpay":"GlobalPay",
+"label.globalpay.name":"Names",
+"label.globalpay.amount":"Amount",
+"label.globalpay.email":"Email Address",
+"label.globalpay.phone":"Phone Number",
+"label.add.globalpay.Info":"GlobalPay Information"
 
 
 

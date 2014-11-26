@@ -1,0 +1,46 @@
+<!-- <div  action="https://netgreidslur.korta.is/testing/"> -->
+<div>
+	<ul class="breadcrumb">
+			<li class="active">{{'label.add.globalpay.Info' | translate}}</li>
+ 	</ul>
+ 	
+ <form name="globalpayInfoForm" novalidate="" action="https://demo.globalpay.com.ng/globalpay_demo/Paymentgatewaycapture.aspx" method="post" class="form-horizontal well" ng-controller="GlobalPayController">
+ 
+	<input type="hidden" id="currency" name="currency" value="NGN"> 
+	<input type="hidden" id="merch_txnref" name="merch_txnref" value="{{formData.txnref}}">
+	<input type="hidden" id="merchantid" name="merchantid" value="5578"> 
+
+		<fieldset>
+			<legend>{{'label.add.globalpay.Info' | translate}}</legend>
+			<div class="control-group">
+       			 <label class="control-label">{{ 'label.globalpay.name' | translate}}<span class="required">*</span></label>
+        		<div class="controls">
+          			<input type="text" ng-model="formData.names" name="names" value ="{{formData.names}}" reqiured late-Validate/>
+        		</div>
+      		 </div>
+			<div class="control-group">
+       			 <label class="control-label">{{ 'label.globalpay.amount' | translate}}<span class="required">*</span></label>
+        		<div class="controls">
+          			<input type="text" ng-model="formData.amount" name="amount" value="{{formData.amount}}" reqiured readonly late-Validate/>
+        		</div>
+      		 </div>
+      		 <div class="control-group">
+       			 <label class="control-label">{{ 'label.globalpay.email' | translate}}<span class="required">*</span></label>
+        		<div class="controls">
+          			<input type="text" ng-model="formData.email" id="email_address" name="email_address" value="{{formData.email}}" reqiured late-Validate/>
+        		</div>
+      		 </div>
+      		 <div class="control-group">
+       			 <label class="control-label">{{ 'label.globalpay.phone' | translate}}<span class="required">*</span></label>
+        		<div class="controls">
+          			<input type="text" ng-model="formData.phoneno" id="phone_number" name="phone_number" value="{{formData.phoneno}}" reqiured late-Validate/>
+        		</div>
+      		 </div>
+      		 
+		</fieldset>
+		   <div class="offset3">
+		  	 	<a id="cancel" ng-click="previousPage()" class="btn">Cancel</a>
+     	       <button id="submit" type="submit" ng-click="submitFun()" class="btn btn-primary">Submit</button>
+          </div>
+</form>
+</div>
