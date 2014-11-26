@@ -8,23 +8,19 @@
 
 <div data-ng-controller="PaymentGatewayController">
 	<div>
-		<tabset style="margin-bottom: 0px;">
-		<div class="pull-right" style="margin-top: 10px;">
-			<div class="control-group">
+		<tabset>
+		<div class="pull-right" style = "margin-top : 1%;">
+			<div>
 				<button id="download" class="btn btn-min btn-default" data-ng-click="download()" >{{'button.downloadtocsv' | translate}}</button>
-				<!-- <select data-ng-model="formData.source" data-ng-change="changeSource(formData.source)">
-					<option value="all">{{'label.paymentgateway.all' | translate}}</option>
-					<option value="mpesa">{{'label.paymentgateway.mpesa' | translate}}</option>
-					<option value="tigo">{{'label.paymentgateway.tigo' | translate}}</option>
-				</select> -->
 			</div>
 		</div>
-
+		
 		<tab heading="All" select="getPaymentGateway()">
+		
 		<div class="row-fluid">
-			<form data-ng-submit="searchPaymentId(filterText)">
-				<input data-ng-model="filterText" type="text" style="width:700px;" placeholder="Filter by name">
-				<select data-ng-model="formData.source" data-ng-change="changeSource(formData.source)">
+			<form data-ng-submit="searchPaymentId(filterText)"  style="margin: 0 0 1%;">
+				<input data-ng-model="filterText" type="text" style="width:82.4%;" placeholder="Filter by name">
+				<select data-ng-model="formData.source" style="width:15.65%;" data-ng-change="changeSource(formData.source)">
 					<option value="all">{{'label.paymentgateway.all' | translate}}</option>
 					<option value="mpesa">{{'label.paymentgateway.mpesa' | translate}}</option>
 					<option value="tigo">{{'label.paymentgateway.tigo' | translate}}</option>
@@ -74,9 +70,9 @@
 		
 		<tab heading="Failed" select="getPaymentGatewayFailure()">
 		<div class="row-fluid">
-			<form data-ng-submit="searchFailedPaymentId(filterText)">		
-				<input data-ng-model="filterText" type="text" style="width:700px;" placeholder="Filter by name">
-				<select data-ng-model="formData.source" data-ng-change="changeSource(formData.source)">
+			<form data-ng-submit="searchFailedPaymentId(filterText)"  style="margin: 0 0 1%;">		
+				<input data-ng-model="filterText" type="text" style="width:82.4%;" placeholder="Filter by name">
+				<select data-ng-model="formData.source" style="width:15.65%;" data-ng-change="changeSource(formData.source)">
 					<option value="all">{{'label.paymentgateway.all' | translate}}</option>
 					<option value="mpesa">{{'label.paymentgateway.mpesa' | translate}}</option>
 					<option value="tigo">{{'label.paymentgateway.tigo' | translate}}</option>
@@ -126,9 +122,9 @@
 		
 		<tab heading="Success" select="getPaymentGatewaySuccess()">
 		<div class="row-fluid">
-			<form data-ng-submit="searchSuccessPaymentId(filterText)">
-				<input data-ng-model="filterText" type="text" style="width:700px;" placeholder="Filter by name">
-				<select data-ng-model="formData.source" data-ng-change="changeSource(formData.source)">
+			<form data-ng-submit="searchSuccessPaymentId(filterText)" style="margin: 0 0 1%;">
+				<input data-ng-model="filterText" type="text" style="width:82.4%;" placeholder="Filter by name">
+				<select data-ng-model="formData.source" style="width:15.65%;" data-ng-change="changeSource(formData.source)">
 					<option value="all">{{'label.paymentgateway.all' | translate}}</option>
 					<option value="mpesa">{{'label.paymentgateway.mpesa' | translate}}</option>
 					<option value="tigo">{{'label.paymentgateway.tigo' | translate}}</option>
@@ -175,9 +171,9 @@
 		
 		<tab heading="Finished" select="getFinishedPaymentGateway()">
 		<div class="row-fluid">
-			<form data-ng-submit="searchFinishedPaymentId(filterText)">
-				<input data-ng-model="filterText" type="text" style="width:700px;" placeholder="Filter by name">
-				<select data-ng-model="formData.source" data-ng-change="changeSource(formData.source)">
+			<form data-ng-submit="searchFinishedPaymentId(filterText)"  style="margin: 0 0 1%;">
+				<input data-ng-model="filterText" type="text" style="width:82.4%;" placeholder="Filter by name">
+				<select data-ng-model="formData.source" style="width:15.65%;" data-ng-change="changeSource(formData.source)">
 					<option value="all">{{'label.paymentgateway.all' | translate}}</option>
 					<option value="mpesa">{{'label.paymentgateway.mpesa' | translate}}</option>
 					<option value="tigo">{{'label.paymentgateway.tigo' | translate}}</option>
@@ -223,9 +219,9 @@
 		
 		<tab heading="Invalid" select="getInvalidPaymentGateway()">
 		<div class="row-fluid">
-			<form data-ng-submit="searchInvalidPaymentId(filterText)">
-				<input data-ng-model="filterText" type="text" style="width:700px;" placeholder="Filter by name">
-				<select data-ng-model="formData.source" data-ng-change="changeSource(formData.source)">
+			<form data-ng-submit="searchInvalidPaymentId(filterText)"  style="margin: 0 0 1%;">
+				<input data-ng-model="filterText" type="text" style="width:82.4%;" placeholder="Filter by name">
+				<select data-ng-model="formData.source" style="width:15.65%;" data-ng-change="changeSource(formData.source)">
 					<option value="all">{{'label.paymentgateway.all' | translate}}</option>
 					<option value="mpesa">{{'label.paymentgateway.mpesa' | translate}}</option>
 					<option value="tigo">{{'label.paymentgateway.tigo' | translate}}</option>
@@ -272,9 +268,9 @@
 		
 		<tab heading="Processed" select="getProcessedPaymentGateway()">
 		<div class="row-fluid">
-			<form data-ng-submit="searchProcessedPaymentId(filterText)"> 
-				<input data-ng-model="filterText" type="text" style="width:700px;" placeholder="Filter by name">
-				<select data-ng-model="formData.source" data-ng-change="changeSource(formData.source)">
+			<form data-ng-submit="searchProcessedPaymentId(filterText)" style="margin: 0 0 1%;"> 
+				<input data-ng-model="filterText" type="text" style="width:82.4%;" placeholder="Filter by name">
+				<select data-ng-model="formData.source" style="width:15.65%;" data-ng-change="changeSource(formData.source)">
 					<option value="all">{{'label.paymentgateway.all' | translate}}</option>
 					<option value="mpesa">{{'label.paymentgateway.mpesa' | translate}}</option>
 					<option value="tigo">{{'label.paymentgateway.tigo' | translate}}</option>
@@ -365,7 +361,7 @@
 	</form>
    <div class="modal-footer">
          <button id="cancel" class="btn btn-warning" ng-click="reject()">{{'button.cancel' | translate}}</button>
-         <button id="submit" class="btn btn-primary" ng-click="accept()" ng-disabled="flag">{{'label.confirm' | translate}}</button>
+         <button id="submit" class="btn btn-primary" ng-click="accept()" ng-disabled="flag">{{'label.save' | translate}}</button>
    </div>
 
 </script>

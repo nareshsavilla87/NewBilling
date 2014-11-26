@@ -15,10 +15,7 @@
         <fieldset>
           <legend>Create Discount</legend>
 			<table>
-			<tr>
-				<td>
-					<table>
-						<tr>
+					<tr>
 							<td>
 								<div class="control-group">
            					 	<label class="control-label" for="discountCode">{{ 'label.discountCode' | translate }}</label>
@@ -75,15 +72,10 @@
           						</div>
 								</td>
 							</tr>	
-					</table>
-				</td>
-			</tr>
-			</table>
-  			
-          <div class="offset3">
-            <a href="#/discounts"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
-            <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
-          </div>
-          
+  			             <tr>
+  			            <td align="right" colspan="2">
+                        <a href="#/discounts"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+                         <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+                 </td></tr></table>
         </fieldset>
 </form>

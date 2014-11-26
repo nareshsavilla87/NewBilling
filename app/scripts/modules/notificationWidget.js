@@ -55,6 +55,7 @@ angular.module('notificationWidget', [])
               if (response.config && response.config.method == "GET") {
                   return response || $q.when(response);
               } else {
+            
                   if (response.data && response.data.commandId) {
                       //Maker checker is enabled or performing actions of maker checker
                       if (response.config.url.indexOf('makercheckers/') > 0) {
@@ -67,8 +68,7 @@ angular.module('notificationWidget', [])
                   } else {
                       //when no maker checker enabled
                       return response || $q.when(response);
-                  }
-                  ;
+                  };
               }
           },
 

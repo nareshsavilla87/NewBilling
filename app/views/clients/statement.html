@@ -1,11 +1,12 @@
-<div ng-controller="StatementController"> 
+<div data-ng-controller="StatementController"> 
  <div>
- 		<ul class="breadcrumb">
- 			<table>
+  <ul class="breadcrumb">
+ 	<li>
+ 	   <table>
         <tr>
         <td>
-        	 <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
-          <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+         <img data-ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img data-ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
         </td>
         <td>
             <small style="color:black;">{{displayName}}</small>
@@ -47,38 +48,43 @@
         </td>
         </tr>
         </table>
- 		</ul>
-		<ul class="breadcrumb">
+        </li>
+ 	</ul>
+	<ul class="breadcrumb">
 			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
 			<li><a href='#/viewclient/{{clientId}}'>{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
 			<li class="active">{{'label.statement' | translate}}</li>
 		</ul>
 	</div>
- <form class="form-horizontal well" ng-submit="submit()">
+ <form class="form-horizontal well" data-ng-submit="submit()">
 
-    <div class="error" ng-show="errorStatus || errorDetails">
+    <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
 	<fieldset>
-  <div class="control-group">
+	<table>
+	<tr><td>
+     <div class="control-group">
        <label class="control-label">{{ 'label.duedate' | translate }}</label>
        <div class="controls">
-             <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.date" is-open="opened" min="minDate" max="maxDate" 
+             <input type="text" datepicker-pop="dd MMMM yyyy" data-ng-model="start.date" is-open="opened" min="minDate" max="maxDate" 
              date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
-                    </div>
-          		</div> 
-                <div class="control-group">
+               </div>
+          </div> 
+          </td></tr>
+            <tr><td> <div class="control-group">
                   <label class="control-label">{{ 'label.Promotionalmessage' | translate }}</label>
                   <div class="controls">
-                  <textarea  ng-model="formData.message"></textarea>
+                  <textarea  data-ng-model="formData.message"></textarea>
                   </div>
                   </div>
-             <div class="offset3">
-             <button ng-click="cancel()" class="btn">Cancel</button>
-            <button type="submit" class="btn btn-primary">Save</button>
-          </div>
+              </td></tr>
+          <tr><td align="right">
+            <a href="#/viewclient/{{clientId}}"><button id="cancel" type="reset" class="btn" data-ng-click="cancel()">{{'button.cancel'| translate}}</button></a>
+            <button type="submit" class="btn btn-primary">{{'button.save' | translate }}</button>
+          </td></tr></table>
           	</fieldset>
           </form>
           </div>

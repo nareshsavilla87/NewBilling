@@ -279,7 +279,8 @@ define(['underscore', 'mifosX'], function() {
       'DecimalFormat',
       'DateTimeFormat',
       'UrlToString',
-      'EventTypeCategory'
+      'EventTypeCategory',
+      'TranslateDataTableColumn'
 
     ],
     directives: [

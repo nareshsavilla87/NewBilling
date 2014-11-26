@@ -18,28 +18,36 @@
         <fieldset>
         	<legend>{{'label.edittaxmapping' | translate}}</legend>   
           
+          <table>
+          <tr><td>
             <div class="control-group">
             	<label class="control-label" for="chargeCode">{{'label.chargeCode' | translate }}</label>
             	<div class="controls">
-              		<select data-ng-model="formData.chargeCode"  data-ng-options="chargecodetax.chargeCode as chargecodetax.chargeCode for chargecodetax in chargecodetaxs">
+              		<select data-ng-model="formData.chargeCode"  data-ng-options="chargecodetax.chargeCode as chargecodetax.chargeCode for chargecodetax in chargecodetaxs" >
               		</select>
             	</div>
           	</div>
-
+          	</td></tr>
+          	
+          <tr><td>
           	<div class="control-group">
             	<label class="control-label" for="taxCode">{{'label.taxCode' | translate }}</label>
             	<div class="controls">
               		<input type="text" id="taxCode" data-ng-model="formData.taxCode">
             	</div>
           	</div>
+          	</td></tr>
           
+           	<tr><td>
            	<div class="control-group">
             	<label class="control-label" for="startDate">{{'label.startDate' | translate }}</label>
             	<div class="controls">
               		<input type="text" data-datepicker-pop="dd MMMM yyyy" data-ng-model="date.startDate" data-is-open="opened" min="minDate" max="maxDate" data-date-disabled="disabled(date, mode)" required data-late-Validate />
             	</div>
           	</div>
-          
+          	</td></tr>
+          	
+          <tr><td>
            	<div class="control-group">
             	<label class="control-label" for="taxType">{{'label.type' | translate }}</label>
             	<div class="controls">
@@ -47,14 +55,18 @@
               		</select>
             	</div>
           	</div>
+          	</td></tr>
           
+           	<tr><td>
            	<div class="control-group">
             	<label class="control-label" for="rate">{{'label.rate' | translate }}</label>
             	<div class="controls">
               		<input type="text" id="rate" data-ng-model="formData.rate">
             	</div>
           	</div>
-          
+          	</td></tr>
+           	
+           	<tr><td>
            	<div class="control-group">
             	<label class="control-label" for="taxregion">{{'label.taxRegion' | translate }}</label>
             	<div class="controls">
@@ -62,11 +74,13 @@
               		</select>
             	</div>
           	</div>
+          	</td></tr>
           
-          	<div class="offset3">
+          	<tr><td align="right">
             	<a href="#/viewtaxmapping/{{taxMapId}}"><button id="cancel" type="reset" class="btn">{{'label.cancel' | translate}}</button></a>
             	<button id="submit" type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
-          	</div>
+          </td></tr>
+          </table>
         </fieldset>
       </form>
       

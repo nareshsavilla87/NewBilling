@@ -133,7 +133,7 @@
 											'label.quantity' | translate }}</label>
 										<div class="controls">
 											<input type="text" id="quantity" ng-model="formData.quantity"
-												ng-change="itemDataQuantity(formData.quantity,formData.itemId,formData.officeId)"
+												ng-change="itemDataQuantity(formData.quantity,formData.itemId,formData.officeId,formData.units)"
 												ng-readonly="truefalse">
 										</div>
 									</div>
@@ -189,14 +189,14 @@
 									</div>
 								</td>
 								<td>
-									<div class="control-group" ng-show="formData.quantity"
+									<div class="control-group" ng-show="formData.quantity && unitsValue == 'NUMBERS' "
 										ng-repeat="item in getNumber(formData.quantity) track by $index"
 										name="serialNumberDiv">
 										<label class="control-label" for="serialNumber">{{'label.serialNumber' | translate }}&nbsp;<span class="required">*</span>
 										</label>
 										<div class="controls">
 											<input type="text" ng-model="itemDetail" name="serialNumber"
-												autocomplete="off" typeahead="itemDetail as itemDetail for itemDetail in getData($viewValue)" typeahead-min-length="0">
+												typeahead="itemDetail as itemDetail for itemDetail in getData($viewValue)" typeahead-min-length="0">
 										</div>
 									</div>
 								</td>

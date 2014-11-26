@@ -42,7 +42,9 @@
         				</tr>
         				<tr>
         					<td><small>Balance&nbsp;{{client.balanceAmount}}&nbsp;{{client.currency}} </small></td>
+        					<td><small>[Wallet&nbsp;{{client.walletAmount}}&nbsp;{{client.currency}}]</small></td>
         				</tr>
+        				
         			</table>
         		</td>
         	</tr>
@@ -483,7 +485,7 @@
       		<tab heading="{{clientdatatable.registeredTableName}}" ng-repeat="clientdatatable in clientdatatables" select="dataTableChange(clientdatatable)">
         		<div>
          			<div data-ng-hide="isClosedClient" class="btn-group pull-right">
-          				<a data-ng-show="datatabledetails.isData" class="btn btn-danger pull-right" 
+          				<a data-ng-show="datatabledetails.isData" class="btn btn-primary pull-right" 
              				data-ng-click="deleteAll(clientdatatable.registeredTableName, client.id)">
              			<i class="icon-trash icon-white"></i>{{'button.deleteall' | translate}}</a>
          				<!--  <span ng-show="!datatabledetails.isData || datatabledetails.isMultirow" class="pull-right "> -->
@@ -499,7 +501,7 @@
           				<table class="table" data-ng-show="datatabledetails.isMultirow">
             				<thead> 
             					<tr class="graybg">
-              						<th data-ng-repeat="column in datatabledetails.columnHeaders">{{column.columnName}}</th>
+              						<th data-ng-repeat="column in datatabledetails.columnHeaders">{{column.columnName | prettifyDataTableColumn}}</th>
               					</tr>
             				</thead>
               				<tbody>
@@ -516,7 +518,7 @@
           				</table>
            				<table class="table table-bordered width450px" data-ng-hide="datatabledetails.isMultirow">
 		                	<tr data-ng-repeat="value in singleRow">
-		               			<td class="graybg table-font-nav">{{value.key}}</td>
+		               			<td class="graybg table-font-nav">{{value.key | prettifyDataTableColumn}}</td>
 		               			<td><span class="padded-td">{{value.value}}</span></td>
 		                	</tr>
 		            	</table>
@@ -893,8 +895,6 @@
                 				<td><a data-ng-click="routeTostatement(statement.id)" class="btn btn-primary">HTML</a>&nbsp;
                 					<a data-ng-click="downloadFile(statement.id)" class="btn btn-primary"><i class=" icon-download-alt icon-white"></i>PDF</a>&nbsp;
                 					<a data-ng-click="routeToEmail(statement.id)" class="btn btn-primary">Email</a>&nbsp;
-                					<a class="btn btn-primary" href="{{url}}={{mail}}&item_name=first&amount={{statement.amount}}&custom={{client.id}}" target="_blank">
-                					<i class=" icon-download-alt icon-white"></i>Paypal</a>&nbsp;
                						<a data-ng-click="deletePopUp(statement.id,'','','Cancel Statement')" data-ng-show="$last" data-popover="Cancel Statement" data-popover-trigger="mouseenter">
                						<i class="icon-remove-circle icon-white" style="font-size:20px;color:#999;"></i></a>&nbsp;
                					</td>
@@ -1311,7 +1311,7 @@
         	</div>
 
         	<div class="modal-footer">
-            	<button class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+            	<button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
             	<button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
         	</div>
    		</script>

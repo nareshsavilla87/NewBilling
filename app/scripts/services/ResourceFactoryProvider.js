@@ -144,6 +144,10 @@
               search:{method: 'GET', params: {}}
             }),
             
+            advanceSearchResource: defineResource(apiVer + "/advancesearch", {}, {
+                search:{method: 'GET', params: {}}
+              }),
+            
           accountingClosureResource: defineResource(apiVer + "/glclosures/:accId", {accId:"@accId"}, {
             get: {method: 'GET', params: {}, isArray:true},
             getView: {method: 'GET', params: {}}
@@ -400,9 +404,6 @@
            }),
       
        currencyResource: defineResource(apiVer + "/countrycurrency/:id/:resourceType", {id:'@id', resourceType:'@resourceType'}, {
-            get: {method: 'GET', params: {id:'@id'}},
-            getCurrency: {method: 'GET', params: {id:'@id'}, isArray:true},
-            getCurrencyDetails: {method: 'GET', params: {id:'@id'}},
             update: {method: 'PUT', params: {}}
            }),
        currencyTemplateResource: defineResource(apiVer + "/countrycurrency/template", {}, {
@@ -638,7 +639,7 @@
                    get: {method: 'GET', params: {}}
                  }),
                oneTimeSaleQuantityResource: defineResource(apiVer + "/onetimesales/:itemId/totalprice", {itemId:'@itemId'}, {
-                get: {method: 'POST', params: {quantity:'@quantity'}}
+                get: {method: 'POST', params: {}}
                  }),
                oneTimeSaleAllocation: defineResource(apiVer + "/onetimesales/:orderId/allocation", {orderId:'@orderId'}, {
                 get: {method: 'GET', params: {}}
