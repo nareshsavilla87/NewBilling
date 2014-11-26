@@ -95,6 +95,10 @@
         	
         	gettingSerialNumbers: defineResource(apiVer + "/itemdetails/searchserialnum", {},  {}),
         	
+        	globalPayResource: defineResource(apiVer + "/paymentgateways/onlinepayment", {},  {
+        		update : {method: 'PUT', params: {}}
+        	}),
+        	paymentGatewayConfigResource: defineResource(apiVer + "/paymentgatewayconfigs",{},  {}),
         };
       }];
     }
