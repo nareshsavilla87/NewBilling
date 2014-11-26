@@ -54,6 +54,8 @@
 	        		
 	        		scope.formData=data;
 	        		scope.unitsValue = data.units;
+	        		var splitValue=data.units.split("S");
+	        		scope.unit=splitValue[0];
 	        		scope.formData.itemId=itemId;
 	        		scope.formData.discountId = scope.discountMasterDatas[0].discountMasterId;
 	        		scope.formData.officeId=officeId;

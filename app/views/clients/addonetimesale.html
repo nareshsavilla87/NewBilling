@@ -166,7 +166,7 @@
 										<label class="control-label" for="unitPrice">{{
 											'label.unitPrice' | translate }}</label>
 										<div class="controls">
-											<input type="text" class="input-medium" id="unitPrice"  data-ng-model="formData.unitPrice" style="background-color: #FFFFFF;" readonly ><small class="input-small" style="font-size:15px;">/{{unitsValue}}</small>
+											<input type="text" class="input-medium" id="unitPrice"  data-ng-model="formData.unitPrice" style="background-color: #FFFFFF;" readonly ><span data-ng-show="unitsValue" style="font-size:15px;"><img src="../app/images/slash.jpg" width="20">{{unit}}</span>
 										</div>
 									</div>
 								</td>
