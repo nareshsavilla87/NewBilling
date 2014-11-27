@@ -8,6 +8,8 @@
             {"name" : "हिंदी", "code":"hi"},
             {"name" : "macedonian", "code":"mk"},
             {"name" : "icelandic ", "code":"is"},
+            {"name" : "espa�ol", "code":"es"},
+            {"name" : "fran�ais", "code":"fr"},
            ]
   });
 }(mifosX.models || {}));
