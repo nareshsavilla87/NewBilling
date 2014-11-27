@@ -53,7 +53,7 @@ define(['underscore', 'selfcare'], function() {
 						      'main/UserSettingController',
 						      'main/GlobalPaySuccessController',
 						      'main/GlobalPayController'
-						      
+
 					      ],
 					      
     selfcare_filters:    [

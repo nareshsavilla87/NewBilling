@@ -46,7 +46,8 @@
 						controller : editGlobalpayController,
 						resolve : {}
 					});
-				} 
+
+				}
 
 			};
 
