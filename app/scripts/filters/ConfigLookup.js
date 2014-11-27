@@ -6,6 +6,7 @@
             return function(input) {    
             	
             	var  configNameLookup = {
+            			
                    //For Enabling payment details in Simple Activation
                    "payment":"true",
                   

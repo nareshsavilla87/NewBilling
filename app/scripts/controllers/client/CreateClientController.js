@@ -5,6 +5,7 @@
     	scope.formData = {};
        
         scope.offices = [];
+        scope.cities = [];
         scope.clientCategoryDatas=[];
         scope.groupNameDatas=[];
         
@@ -17,6 +18,7 @@
         resourceFactory.clientTemplateResource.get(function(data) {
             scope.offices = data.officeOptions;
             scope.formData.officeId = data.officeId;
+            scope.cities=data.addressTemplateData.cityData;
             scope.clientCategoryDatas=data.clientCategoryDatas;
             scope.groupNameDatas = data.groupNameDatas;
             scope.configurationProperty=data.configurationProperty.enabled;

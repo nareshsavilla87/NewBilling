@@ -911,7 +911,7 @@
         templateUrl: 'views/organization/createEvent.html'
       }) 
       .when('/provision',{
-        templateUrl: 'views/provision.html'
+        templateUrl: 'views/system/provision.html'
       })
       .when('/adddevice/:clientId', {
         templateUrl: 'views/clients/adddevice.html'
