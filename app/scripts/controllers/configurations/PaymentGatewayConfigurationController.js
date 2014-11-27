@@ -39,6 +39,14 @@
 						resolve : {}
 					});
 				}
+				
+				if(name == 'globalpay'){
+					$modal.open({
+						templateUrl : 'editGlobalpay.html',
+						controller : editGlobalpayController,
+						resolve : {}
+					});
+				} 
 
 			};
 
@@ -53,6 +61,47 @@
 				});
 
 			};*/
+			
+			var editGlobalpayController = function($scope, $modalInstance) {
+
+				$scope.formData = {};
+				$scope.statusData = [];
+				$scope.updateData = {};
+
+				// DATA GET
+				resourceFactory.paymentGatewayConfigurationResource.get({ configId : scope.editId }, function(data) {
+					var value = data.value;
+					var arr = value.split(",");
+					var merchantId = arr[0].split('"');
+					var userName = arr[1].split('"');
+					var password = arr[2].split('"');
+
+					$scope.formData.merchantId = merchantId[3];
+					$scope.formData.userName = userName[3];
+					$scope.formData.password = password[3];
+				});
+
+				$scope.submit = function() {
+					
+					$scope.kortaData = {
+						"value" : '{"merchantId" : "' + $scope.formData.merchantId
+								+ '","userName" : "' + $scope.formData.userName
+								+ '","password" : "' + $scope.formData.password
+								+ '"}'
+					};
+					$scope.updateData.value = $scope.kortaData.value;
+					//console.log(this.updateData);
+					resourceFactory.paymentGatewayConfigurationResource.update({configId : scope.editId}, $scope.updateData, function(data) {
+						$modalInstance.close('delete');
+						route.reload();
+					}, function(errData) {
+						$scope.paypalFlag = false;
+					});
+				};
+				$scope.cancel = function() {
+					$modalInstance.dismiss('cancel');
+				};
+			};
 			
 			var editKortaController = function($scope, $modalInstance) {
 

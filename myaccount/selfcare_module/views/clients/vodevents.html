@@ -100,10 +100,16 @@
 	       			</td>
 	       		</tr>
 	       	</table><br/><br/>
+	       	
 		<div class="offset2" >
+				<a ng-disabled="vodEventRedirectToGateway"  ng-click="cancelDalpayBtnFun()" class="btn" style="padding:9px 22px;margin-top:-19px;">{{'btn.cancel'|translate}}</a>
+				<a href="{{paymentURL}}" ng-click="dalpayBtnFun()" ng-show="totalAmount != 0" ng-disabled="vodEventRedirectToGateway" class="btn btn-primary cust-btn animated fadeInUp">{{'btn.make.payment'|translate}}</a>
+				<a ng-click="subscribeBtnFun()" ng-show="totalAmount == 0" class="btn btn-primary animated fadeInUp">{{'btn.subscribe'|translate}}</a>
+		</div>
+		<!-- <div class="offset2" >
 				<a ng-disabled="vodEventRedirectToDalpay"  ng-click="cancelDalpayBtnFun()" class="btn" style="padding:9px 22px;margin-top:-19px;">{{'btn.cancel'|translate}}</a>
 				<a href="{{URLForDalpay}}" ng-click="dalpayBtnFun()" ng-show="totalAmount != 0" ng-disabled="vodEventRedirectToDalpay" class="btn btn-primary cust-btn animated fadeInUp">{{'btn.make.payment'|translate}}</a>
 				<a ng-click="subscribeBtnFun()" ng-show="totalAmount == 0" class="btn btn-primary animated fadeInUp">{{'btn.subscribe'|translate}}</a>
-		</div> 
+		</div> --> 
 	</div>
 </div>
