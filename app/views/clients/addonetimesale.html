@@ -137,16 +137,13 @@
 								</td>
 								<td>
 									<div class="control-group">
-										<label class="control-label" for="totalPrice">{{
-											'label.totalPrice' | translate }}</label>
+										<label class="control-label" for="unitPrice">{{
+											'label.unitPrice' | translate }}</label>
 										<div class="controls">
-											<input type="text" id="totalPrice"
-												data-ng-model="formData.totalPrice"
-												style="background-color: #FFFFFF;" readonly>
+											<input type="text" class="input-medium" id="unitPrice"  data-ng-model="formData.unitPrice" style="background-color: #FFFFFF;" readonly ><span data-ng-show="unitsValue" style="font-size:15px;"><img src="../app/images/slash.jpg" width="20">{{unit}}</span>
 										</div>
 									</div>
 								</td>
-
 							</tr>
 							<tr>
 								<td>
@@ -163,10 +160,12 @@
 								</td>
 								<td>
 									<div class="control-group">
-										<label class="control-label" for="unitPrice">{{
-											'label.unitPrice' | translate }}</label>
+										<label class="control-label" for="totalPrice">{{
+											'label.totalPrice' | translate }}</label>
 										<div class="controls">
-											<input type="text" class="input-medium" id="unitPrice"  data-ng-model="formData.unitPrice" style="background-color: #FFFFFF;" readonly ><span data-ng-show="unitsValue" style="font-size:15px;"><img src="../app/images/slash.jpg" width="20">{{unit}}</span>
+											<input type="text" id="totalPrice"
+												data-ng-model="formData.totalPrice"
+												style="background-color: #FFFFFF;" readonly>
 										</div>
 									</div>
 								</td>
