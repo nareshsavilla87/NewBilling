@@ -1,7 +1,8 @@
 <div>
 	<ul class="breadcrumb">
-		<li class="active">{{'link.admin.provision' | translate}}</li>
-	</ul>
+        <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'link.admin.provision' | translate}}</li>
+    </ul>
 </div>
 <form class="form-horizontal well" ng-controller="ProvisionController" ng-submit="submit()">
 	<div class="error" ng-show="errorStatus || errorDetails">

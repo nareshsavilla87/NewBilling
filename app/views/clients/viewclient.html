@@ -1,6 +1,7 @@
 <div ng-controller="ViewClientController">
 
   <ul class="breadcrumb">
+  <li>
         <table>
         	<tr>
         		<td>
@@ -49,6 +50,7 @@
         		</td>
         	</tr>
         </table>
+        </li>
   	</ul>
   
     <div>
@@ -601,12 +603,12 @@
 											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.itemCode}}</td>
 											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.serialNo}}</td>
 											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.chargeCode}}</td>
-											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.quantity}}</td> 
+											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.quantity}}/{{onetimesale.units}}</td> 
 											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.totalPrice}}</td> 
 											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.hardwareAllocated}}</td>
-							    			<td><a href="#/allocatehardwareonetimesale/{{onetimesale.itemCode}}/{{onetimesale.quantity}}/{{client.id}}" data-ng-show="(onetimesale.hardwareAllocated == 'UNALLOCATED')&&(PermissionService.showMenu('READ_ALLOCATION') && PermissionService.showMenu('CREATE_ALLOCATION'))" class="btn btn-primary"><i class="icon-move"></i>Assign Device</a></td>
-							    			<td><a href="" data-ng-click="deletePopUp(onetimesale.id,'',$index,'Cancel Sale')" data-ng-show="(onetimesale.hardwareAllocated == 'UNALLOCATED')&&(PermissionService.showMenu('DELETE_ONETIMESALE'))" class="btn btn-primary" title="Cancel Sale"><i class="icon-remove"></i></a></td> 
-							    			<td><a href="" data-ng-click="deletePopUp(onetimesale.id,onetimesale.serialNo,'','Unallocate Device')" data-ng-show="(onetimesale.hardwareAllocated == 'ALLOCATED')&&(PermissionService.showMenu('DEALLOCATE_INVENTORY'))" class="btn btn-primary" title="Unallocate Device"><i class="icon-remove"></i>UnAssign Device</a></td>
+							    			<td><a href="#/allocatehardwareonetimesale/{{onetimesale.itemCode}}/{{onetimesale.quantity}}/{{client.id}}" data-ng-show="onetimesale.units=='PIECES'" data-ng-show="(onetimesale.hardwareAllocated == 'UNALLOCATED')&&(PermissionService.showMenu('READ_ALLOCATION') && PermissionService.showMenu('CREATE_ALLOCATION'))" class="btn btn-primary"><i class="icon-move"></i>Assign Device</a></td>
+							    			<td><a href="" data-ng-click="deletePopUp(onetimesale.id,'',$index,'Cancel Sale')" data-ng-show="onetimesale.units=='PIECES'" data-ng-show="(onetimesale.hardwareAllocated == 'UNALLOCATED')&&(PermissionService.showMenu('DELETE_ONETIMESALE'))" class="btn btn-primary" title="Cancel Sale"><i class="icon-remove"></i></a></td> 
+							    			<td><a href="" data-ng-click="deletePopUp(onetimesale.id,onetimesale.serialNo,'','Unallocate Device')" data-ng-show="onetimesale.units=='PIECES'" data-ng-show="(onetimesale.hardwareAllocated == 'ALLOCATED')&&(PermissionService.showMenu('DEALLOCATE_INVENTORY'))" class="btn btn-primary" title="Unallocate Device"><i class="icon-remove"></i>UnAssign Device</a></td>
 										</tr>
 									</tbody>
 								</table>
@@ -895,8 +897,6 @@
                 				<td><a data-ng-click="routeTostatement(statement.id)" class="btn btn-primary">HTML</a>&nbsp;
                 					<a data-ng-click="downloadFile(statement.id)" class="btn btn-primary"><i class=" icon-download-alt icon-white"></i>PDF</a>&nbsp;
                 					<a data-ng-click="routeToEmail(statement.id)" class="btn btn-primary">Email</a>&nbsp;
-                					<a class="btn btn-primary" href="{{url}}={{mail}}&item_name=first&amount={{statement.amount}}&custom={{client.id}}" target="_blank">
-                					<i class=" icon-download-alt icon-white"></i>Paypal</a>&nbsp;
                						<a data-ng-click="deletePopUp(statement.id,'','','Cancel Statement')" data-ng-show="$last" data-popover="Cancel Statement" data-popover-trigger="mouseenter">
                						<i class="icon-remove-circle icon-white" style="font-size:20px;color:#999;"></i></a>&nbsp;
                					</td>
