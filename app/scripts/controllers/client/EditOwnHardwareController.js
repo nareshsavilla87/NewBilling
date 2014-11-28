@@ -9,6 +9,7 @@
         
         scope.serialnumber={};
         scope.formData = {};
+        scope.ownHrdId=routeParams.id;
         
         var clientData = webStorage.get('clientData');
         scope.hwSerialNumber=clientData.hwSerialNumber;

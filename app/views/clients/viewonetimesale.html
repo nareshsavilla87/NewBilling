@@ -1,48 +1,22 @@
-<div ng-controller="ViewClientOneTimeSaleController"> 
-
-    <div class="paddedbottom10"><ul class="breadcrumb">
-  <!-- <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
-     <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
-     <li>
-          <h3>
-            &nbsp;
-            {{displayName}}
-            &nbsp;
-            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
-            &nbsp;
-          </h3>
-        </li>
-        <li><span class="divider">|</span>
-          <i class="icon-barcode"></i>
-          <small>Uniquely identified with {{accountNo}}&nbsp;</small>
-        </li>
-        <li><span class="divider">|</span>
-          <i class="icon-building"></i>
-          <small>Belongs to "{{officeName}}" office</small>
-        </li>
-         <li><span class="divider">|</span>
-          <i></i>
-          <small>Balance:{{balanceAmount}} &nbsp;{{currency}}</small>
-        </li> -->
-        <table>
+<div data-ng-controller="ViewClientOneTimeSaleController"> 
+  <div class="paddedbottom10"><ul class="breadcrumb">
+   <li><table>
         <tr>
         <td>
-        	 <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
-          <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+          <img data-ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img data-ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
         </td>
         <td>
-            <small style="color:black;">{{displayName}}</small>
-            &nbsp;
-            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+            <small style="color:black;">{{displayName}}</small>&nbsp;<i class="icon-circle {{statusActive | StatusLookup}}"></i>
         </td>
         <td><small style="font-size:30px;">|</small></td>
         <td>
         <table>
         	<tr>
-        		<td><small>Uniquely identified  {{accountNo}}</small></td>
+        		<td><small>Uniquely identified&nbsp;<strong>{{accountNo}}</strong></small></td>
         	</tr>
         	<tr>
-        		<td><i class="icon-building"></i><small>Office "{{officeName}}"</small></td>
+        		<td><small>Cell Phone&nbsp;<strong>{{phone}}</strong></small></td>
         	</tr>
         </table>
         </td>
@@ -50,7 +24,7 @@
         <td>
         <table>
         	<tr>
-        		<td><small>Cell Phone {{phone}}</small></td>
+        		<td><i class="icon-building"></i><small>Office "{{officeName}}"</small></td>
         	</tr>
         	<tr>
         		<td><small>Device # <strong>{{hwSerialNumber}}</strong></small></td>
@@ -61,15 +35,15 @@
         <td>
         <table>
         	<tr>
-        		<td><small>Client Type "{{categoryType}}"</small></td>
+        		<td><small>Client Type&nbsp;"{{categoryType}}"</small></td>
         	</tr>
         	<tr>
-        		<td><small>Balance&nbsp;{{balanceAmount}}&nbsp;{{currency}} </small></td>
+        		<td><small>Balance&nbsp;<strong>{{balanceAmount}}</strong>&nbsp;{{currency}}</small></td>
         	</tr>
         </table>
         </td>
         </tr>
-        </table>
+        </table></li>
  </ul>
 		<ul class="breadcrumb">
 			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
