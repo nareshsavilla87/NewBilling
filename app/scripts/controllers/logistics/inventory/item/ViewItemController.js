@@ -5,6 +5,7 @@
         scope.audit = [];
         scope.showType="";
         scope.PermissionService = PermissionService;
+        var showtype = routeParams.showtype;
         resourceFactory.itemResource.get({itemId: routeParams.id} , function(data) {
         	scope.item = data;
         	scope.audit = data.auditDetails;
@@ -19,12 +20,16 @@
         
     		
     	};
+    	
     	scope.showAudit = function(){
     		scope.showType="1";
     	};
     	scope.showItems =function(){
     		scope.showType="";
     	};
+    	if(showtype == 1){
+    		scope.showAudit();
+    	}
     	var Approve = function ($scope, $modalInstance) {
             $scope.approve = function (act) {
                 scope.approveData = {};
