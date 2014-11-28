@@ -29,6 +29,7 @@
          scope.invoiceDatas = [];
          scope.showInvoiceDetails=false;
          scope.selectAccount = false;
+         scope.formData.isSubscriptionPayment= false;
          scope.selectInvoice = false;
         resourceFactory.paymentsTemplateResource.getPayments(function(data){
         	scope.payments = data;

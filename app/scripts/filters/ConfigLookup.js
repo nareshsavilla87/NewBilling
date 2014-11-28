@@ -14,8 +14,10 @@
                    "IPTV":"false",
                   
                    //Represent the Default Client Type IND or Corporate in Create Client 
-                   "IsClientIndividual":"false"
+                   "IsClientIndividual":"false",
                 	 
+                	//For enable Subscription Payment in Create Payment 
+                    "SubscriptionPayment":"true"
                  };
                   return configNameLookup[input];};
         }

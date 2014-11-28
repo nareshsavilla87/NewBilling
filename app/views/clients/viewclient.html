@@ -445,6 +445,93 @@
         		</div>
       		</tab>
       		
+      			<!-- ********** Device Tab here ********** -->
+      		
+      		<tab heading="Device" select="getOneTimeSale()" active="SaleTab"
+      			data-ng-show="$parent.PermissionService.showMenu('READ_ONETIMESALE')">
+      			<hr>
+ 				<div class="tabbable">
+  					<ul class="nav nav-tabs">
+						<li class={{eventsaleC}}><a data-ng-click="eventsaleTab()" data-toggle="tab" >{{'tab.devicesale' | translate}}</a></li>
+    					<!-- <li ng-show="PermissionService.showMenu('CREATE_EVENTORDER')&&PermissionService.showMenu('READ_EVENTORDER')" class={{eventorderC}}><a ng-click="eventorderCTab()" data-toggle="tab">Event Sale</a></li> -->
+    					<li data-ng-show="PermissionService.showMenu('CREATE_ownedhardware')" class={{mydeviceC}}><a data-ng-click="getAllOwnHardware()" data-toggle="tab">{{'tab.mydevice' | translate}}</a></li> 
+    					<!-- <li class={{eventorderC}}><a ng-click="eventorderCTab()" data-toggle="tab">Event Sale</a></li> -->
+			    	</ul>
+					<div class="tab-content">
+		    			<div id="pane1" class="tab-pane" data-ng-class="{active: eventsaleC}">
+							<div class="pull-right">
+								<a href="#/adddevice/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'label.add.device' | translate}}</a>
+								<a data-ng-show="PermissionService.showMenu('CREATE_NEWSALE')" href="#/addonetimesale/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{'button.sale' | translate}}</a>
+								<a data-ng-show="PermissionService.showMenu('CREATE_SECONDSALE')" href="#/addsecondsale/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{'label.device.secondsale' | translate}}</a>
+								<a data-ng-show="PermissionService.showMenu('CREATE_DEVICERENTAL')" href="#/devicerental/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{'button.devicerental' | translate}}</a>
+							</div>
+			    			<div>
+								<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name/Serial Number">
+								<table class="table">
+									<thead>
+										<tr class="graybg">
+											<th>{{'table.heading.saledate' | translate}}</th>
+											<th>{{'table.heading.itemcode' | translate}}</th>
+											<th>{{'table.heading.serialNo' | translate}}</th>
+											<th>{{'table.heading.chargecode' | translate}}</th>
+											<th>{{'table.heading.quantity' | translate}}</th>
+											<th>{{'table.heading.totalprice' | translate}}</th>
+											<th>{{'table.heading.allocate' | translate}}</th>
+											<th>&nbsp;</th>
+											<th>&nbsp;</th>
+											<th>&nbsp;</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="pointer-main" data-ng-repeat="onetimesale in onetimesales  | filter:filterText">
+											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.saleDate | DateFormat}}</td>
+											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.itemCode}}</td>
+											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.serialNo}}</td>
+											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.chargeCode}}</td>
+											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.quantity}}/{{onetimesale.units}}</td> 
+											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.totalPrice}}</td> 
+											<td class="pointer" ng-show="onetimesale.units=='PIECES'" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.hardwareAllocated}}</td>
+							    			<td><a href="#/allocatehardwareonetimesale/{{onetimesale.itemCode}}/{{onetimesale.quantity}}/{{client.id}}/{{onetimesale.id}}" data-ng-show="(onetimesale.hardwareAllocated == 'UNALLOCATED')&&(PermissionService.showMenu('READ_ALLOCATION') && PermissionService.showMenu('CREATE_ALLOCATION')) && (onetimesale.units=='PIECES')" class="btn btn-primary"><i class="icon-move"></i>Assign Device</a></td>
+							    			<td><a href="" data-ng-click="deletePopUp(onetimesale.id,'',$index,'Cancel Sale')" data-ng-show="(onetimesale.hardwareAllocated == 'UNALLOCATED')&&(PermissionService.showMenu('DELETE_ONETIMESALE')) && (onetimesale.units=='PIECES')" class="btn btn-primary" title="Cancel Sale"><i class="icon-remove"></i></a></td> 
+							    			<td><a href="" data-ng-click="deletePopUp(onetimesale.id,onetimesale.serialNo,'','Unallocate Device')"  data-ng-show="(onetimesale.hardwareAllocated == 'ALLOCATED')&&(PermissionService.showMenu('DEALLOCATE_INVENTORY')) " class="btn btn-primary" title="Unallocate Device"><i class="icon-remove"></i>UnAssign Device</a></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+			  			</div>
+			  			
+			    		<div id="pane2" class="tab-pane" data-ng-class="{active: mydeviceC}" >
+      						<div class="pull-right">
+								<a data-ng-show="PermissionService.showMenu('CREATE_ownedhardware')" href="#/addownedhardware/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'label.add.device' | translate}}</a>
+							</div>
+     						<div>
+								<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name/Serial Number">
+								<table class="table">
+									<thead>
+							  			<tr class="graybg">
+											<th>{{'table.heading.serialnumber' | translate}}</th>
+											<th>{{'table.heading.provisioningserialnumber' | translate}}</th>
+											<th>{{'table.heading.allocationdate' | translate}}</th>
+											<th>{{'table.heading.status' | translate}}</th>
+											<th>{{'table.heading.itemtype' | translate}}</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="pointer-main" data-ng-repeat="ownhardware in ownhardwares  | filter:filterText">
+											<td class="pointer" data-ng-click="routeToOwnHardware(ownhardware.id)">{{ownhardware.serialNumber}}</td>  
+											<td class="pointer" data-ng-click="routeToOwnHardware(ownhardware.id)">{{ownhardware.provisioningSerialNumber}}</td>
+											<td class="pointer" data-ng-click="routeToOwnHardware(ownhardware.id)">{{ownhardware.allocationDate | DateFormat}}</td>
+											<td>{{ownhardware.status}}</td> 
+											<td>{{ownhardware.itemType}}</td> 
+										</tr>
+									</tbody>
+								</table>
+							</div>
+			    		</div>  
+			  		</div>
+				</div>
+			</tab>
+      		
       		<!-- ********** Tickets Tab here ********** -->
       		
        		<tab  heading="Tickets" select="getAllTickets()" active="TicketsTab" data-ng-show="$parent.PermissionService.showMenu('READ_TICKET')">
@@ -559,92 +646,6 @@
 				</div>
       		</tab>
       		
-      		<!-- ********** Device Tab here ********** -->
-      		
-      		<tab heading="Device" select="getOneTimeSale()" active="SaleTab"
-      			data-ng-show="$parent.PermissionService.showMenu('READ_ONETIMESALE')">
-      			<hr>
- 				<div class="tabbable">
-  					<ul class="nav nav-tabs">
-						<li class={{eventsaleC}}><a data-ng-click="eventsaleTab()" data-toggle="tab" >{{'tab.devicesale' | translate}}</a></li>
-    					<!-- <li ng-show="PermissionService.showMenu('CREATE_EVENTORDER')&&PermissionService.showMenu('READ_EVENTORDER')" class={{eventorderC}}><a ng-click="eventorderCTab()" data-toggle="tab">Event Sale</a></li> -->
-    					<li data-ng-show="PermissionService.showMenu('CREATE_ownedhardware')" class={{mydeviceC}}><a data-ng-click="getAllOwnHardware()" data-toggle="tab">{{'tab.mydevice' | translate}}</a></li> 
-    					<!-- <li class={{eventorderC}}><a ng-click="eventorderCTab()" data-toggle="tab">Event Sale</a></li> -->
-			    	</ul>
-					<div class="tab-content">
-		    			<div id="pane1" class="tab-pane" data-ng-class="{active: eventsaleC}">
-							<div class="pull-right">
-								<a href="#/adddevice/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'label.add.device' | translate}}</a>
-								<a data-ng-show="PermissionService.showMenu('CREATE_NEWSALE')" href="#/addonetimesale/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{'button.sale' | translate}}</a>
-								<a data-ng-show="PermissionService.showMenu('CREATE_SECONDSALE')" href="#/addsecondsale/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{'label.device.secondsale' | translate}}</a>
-								<a data-ng-show="PermissionService.showMenu('CREATE_DEVICERENTAL')" href="#/devicerental/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{'button.devicerental' | translate}}</a>
-							</div>
-			    			<div>
-								<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name/Serial Number">
-								<table class="table">
-									<thead>
-										<tr class="graybg">
-											<th>{{'table.heading.saledate' | translate}}</th>
-											<th>{{'table.heading.itemcode' | translate}}</th>
-											<th>{{'table.heading.serialNo' | translate}}</th>
-											<th>{{'table.heading.chargecode' | translate}}</th>
-											<th>{{'table.heading.quantity' | translate}}</th>
-											<th>{{'table.heading.totalprice' | translate}}</th>
-											<th>{{'table.heading.allocate' | translate}}</th>
-											<th>&nbsp;</th>
-											<th>&nbsp;</th>
-											<th>&nbsp;</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr class="pointer-main" data-ng-repeat="onetimesale in onetimesales  | filter:filterText">
-											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.saleDate | DateFormat}}</td>
-											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.itemCode}}</td>
-											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.serialNo}}</td>
-											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.chargeCode}}</td>
-											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.quantity}}/{{onetimesale.units}}</td> 
-											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.totalPrice}}</td> 
-											<td class="pointer" ng-show="onetimesale.units=='PIECES'" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.hardwareAllocated}}</td>
-							    			<td><a href="#/allocatehardwareonetimesale/{{onetimesale.itemCode}}/{{onetimesale.quantity}}/{{client.id}}/{{onetimesale.id}}" data-ng-show="(onetimesale.hardwareAllocated == 'UNALLOCATED')&&(PermissionService.showMenu('READ_ALLOCATION') && PermissionService.showMenu('CREATE_ALLOCATION')) && (onetimesale.units=='PIECES')" class="btn btn-primary"><i class="icon-move"></i>Assign Device</a></td>
-							    			<td><a href="" data-ng-click="deletePopUp(onetimesale.id,'',$index,'Cancel Sale')" data-ng-show="(onetimesale.hardwareAllocated == 'UNALLOCATED')&&(PermissionService.showMenu('DELETE_ONETIMESALE')) && (onetimesale.units=='PIECES')" class="btn btn-primary" title="Cancel Sale"><i class="icon-remove"></i></a></td> 
-							    			<td><a href="" data-ng-click="deletePopUp(onetimesale.id,onetimesale.serialNo,'','Unallocate Device')"  data-ng-show="(onetimesale.hardwareAllocated == 'ALLOCATED')&&(PermissionService.showMenu('DEALLOCATE_INVENTORY')) " class="btn btn-primary" title="Unallocate Device"><i class="icon-remove"></i>UnAssign Device</a></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-			  			</div>
-			  			
-			    		<div id="pane2" class="tab-pane" data-ng-class="{active: mydeviceC}" >
-      						<div class="pull-right">
-								<a data-ng-show="PermissionService.showMenu('CREATE_ownedhardware')" href="#/addownedhardware/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'label.add.device' | translate}}</a>
-							</div>
-     						<div>
-								<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name/Serial Number">
-								<table class="table">
-									<thead>
-							  			<tr class="graybg">
-											<th>{{'table.heading.serialnumber' | translate}}</th>
-											<th>{{'table.heading.provisioningserialnumber' | translate}}</th>
-											<th>{{'table.heading.allocationdate' | translate}}</th>
-											<th>{{'table.heading.status' | translate}}</th>
-											<th>{{'table.heading.itemtype' | translate}}</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr class="pointer-main" data-ng-repeat="ownhardware in ownhardwares  | filter:filterText">
-											<td class="pointer" data-ng-click="routeToOwnHardware(ownhardware.id)">{{ownhardware.serialNumber}}</td>  
-											<td class="pointer" data-ng-click="routeToOwnHardware(ownhardware.id)">{{ownhardware.provisioningSerialNumber}}</td>
-											<td class="pointer" data-ng-click="routeToOwnHardware(ownhardware.id)">{{ownhardware.allocationDate | DateFormat}}</td>
-											<td>{{ownhardware.status}}</td> 
-											<td>{{ownhardware.itemType}}</td> 
-										</tr>
-									</tbody>
-								</table>
-							</div>
-			    		</div>  
-			  		</div>
-				</div>
-			</tab>
 			
 			<!-- ********** Financial Summary Tab here ********** -->
 			
