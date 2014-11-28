@@ -1,5 +1,4 @@
 <div ng-controller="ViewClientController">
-
   <ul class="breadcrumb">
   <li>
         <table>
@@ -17,10 +16,10 @@
         		<td>
         			<table>
         				<tr>
-        					<td><small>Uniquely identified  {{client.accountNo}}</small></td>
+        					<td><small>Uniquely identified <strong>{{client.accountNo}}</strong> </small></td>
         				</tr>
         				<tr>
-        					<td><i class="icon-building"></i><small>Office "{{client.officeName}}"</small></td>
+        				   <td><small>Cell Phone <strong>{{client.phone}}</strong> </small></td>
         				</tr>
         			</table>
         		</td>
@@ -28,7 +27,7 @@
         		<td>
         			<table>
         				<tr>
-        					<td><small>Cell Phone {{client.phone}}</small></td>
+        					<td><i class="icon-building"></i><small>Office "{{client.officeName}}"</small></td>
         				</tr>
         				<tr>
         					<td><small>Device # <strong>{{client.hwSerialNumber}}</strong></small></td>
@@ -42,8 +41,8 @@
         					<td><small>Client Type "{{client.categoryType}}"</small></td>
         				</tr>
         				<tr>
-        					<td><small>Balance&nbsp;{{client.balanceAmount}}&nbsp;{{client.currency}} </small></td>
-        					<td><small>[Wallet&nbsp;{{client.walletAmount}}&nbsp;{{client.currency}}]</small></td>
+        					<td><small>Balance&nbsp;<strong>{{client.balanceAmount}}</strong>&nbsp;{{client.currency}} </small></td>
+        					<td><small>[Wallet&nbsp;<strong>{{client.walletAmount}}</strong>&nbsp;{{client.currency}}]</small></td>
         				</tr>
         				
         			</table>
@@ -530,7 +529,7 @@
       		
       		<!-- ********** Event Sale Tab here ********** -->
       		
-       		<tab heading="Event Sale" select="getEventSale()" active="eventordertab" ng-show="$parent.PermissionService.showMenu('READ_ownedhardware')">
+       		<tab heading="On Demand" select="getEventSale()" active="eventordertab" ng-show="$parent.PermissionService.showMenu('READ_ownedhardware')">
       
       			<div class="pull-right">
 					<a href="#/eventorder/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{'button.addeventorder' | translate}}</a>
@@ -652,14 +651,13 @@
 			<tab heading="Financial Summary" select="getAllFineTransactions()" data-ng-show="$parent.PermissionService.showMenu('READ_FINANCIALTRANSACTIONS')">
       			<hr>
  				<div class="tabbable" >
-  					<ul class="nav nav-tabs">
-				    	<li class={{financialsummaryC}}><a data-ng-click="financialsummeryTab()" data-toggle="tab" >{{'tab.financialsummary' | translate}}</a></li>
+  					<ul class="nav nav-tabs"><li>
+				    	<li class={{financialsummaryC}}><a data-ng-click="financialsummeryTab()" data-toggle="tab" >All</a></li>
+				    	<li class={{invoicesC}}><a data-ng-click="invoicesTab()" data-toggle="tab">{{'tab.invoices' | translate}}</a></li>
 				    	<li class={{paymentsC}}><a data-ng-click="paymentsTab()" data-toggle="tab">{{'label.payments' | translate}}</a></li>
-    			 		<li class={{invoicesC}}><a data-ng-click="invoicesTab()" data-toggle="tab">{{'tab.invoices' | translate}}</a></li>
     			 		<li class={{adjustmentsC}}><a data-ng-click="adjustmentsTab()" data-toggle="tab">{{'label.adjustments' | translate}}</a></li>
-			     		<button id="download" class="btn btn-min btn-default pull-right" data-ng-click="exportFinancialCSV()" style = "margin-bottom : 10px;">{{'button.exportfinancialcsv/pdf' | translate}}</button>
-			     		<!-- <button id="adjustment" ng-show="PermissionService.showMenu('CREATE_ADJUSTMENT')&&PermissionService.showMenu('READ_ADJUSTMENT')" style = "margin-left: 336px;" href="#/adjustments/{{client.id}}" class="btn-primary">{{'button.adjustments' | translate}}</button> -->
-			      		<a data-ng-show="PermissionService.showMenu('CREATE_ADJUSTMENT')" href="#/adjustments/{{client.id}}" style = "margin-left: 354px;"  class="btn btn-primary"><i class="icon-adjust icon-white"></i>{{'button.adjustment' | translate}}</a>
+    			 		<div class="pull-right btn-group"><button id="download" class="btn btn-min btn-default " data-ng-click="exportFinancialCSV()">{{'button.exportfinancialcsv/pdf' | translate}}</button>
+			      		<a data-ng-show="PermissionService.showMenu('CREATE_ADJUSTMENT')" href="#/adjustments/{{client.id}}"  class="btn btn-primary"><i class="icon-adjust icon-white"></i>{{'button.adjustment' | translate}}</a></div>
 			    	</ul>
 					<div class="tab-content">
 		    			<div id="pane1" class="tab-pane" data-ng-class="{active: financialsummaryC}">
