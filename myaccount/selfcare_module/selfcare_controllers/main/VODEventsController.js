@@ -17,7 +17,7 @@
 		  scope.dalpayDisplay = false;
 		  scope.globalpayDisplay = false;
 		  scope.paypalDisplay = false;
-		  
+
 		  RequestSender.paymentGatewayConfigResource.get(function(data) {  
 			  scope.paymentgatewayData = data.globalConfiguration;
 				  		  
