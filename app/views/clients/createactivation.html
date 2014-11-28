@@ -162,6 +162,14 @@
          </tr>
              <tr>
              <td>
+           		<div class="control-group" >
+                   <label class="control-label" for="paytermCode">{{ 'label.activation.plan' | translate }}</label>
+                     <div class="controls">
+                        <select data-ng-model="formData4.planCode"  data-ng-options="plandata.id as plandata.planCode for plandata in plandatas" data-ng-change='setBillingFrequency(formData4.planCode)'></select>
+                    </div>
+                 </div>	
+             </td>
+             <td>
              	<div class="control-group">
              		 <label class="control-label" for="startDate">{{ 'label.order.startdate' | translate }}</label>
               		 <div class="controls">
@@ -170,14 +178,6 @@
              		</div>
            		</div>
            	</td>
-           	<td>
-           		<div class="control-group" >
-                   <label class="control-label" for="paytermCode">{{ 'label.activation.plan' | translate }}</label>
-                     <div class="controls">
-                        <select data-ng-model="formData4.planCode"  data-ng-options="plandata.id as plandata.planCode for plandata in plandatas" data-ng-change='setBillingFrequency(formData4.planCode)'></select>
-                    </div>
-                 </div>	
-             </td>
              </tr>
              <tr>
              <td>
@@ -248,17 +248,19 @@
               		</div>
             	</div>
            	</td>
-           	
-           	  <td>
-            	<datalist id="citylist">
-                   <option  data-ng-repeat="city in cities" value="{{city}}">
-             	</datalist>
-             </td>
+           	<td>
+           	  <div class="pull-right">
+              <a href="#/clients"><button id="cancel" type="reset" class="btn">Cancel</button></a>
+              <button id="submit" type="submit"  class="btn btn-primary">Save</button>
+            </div>
+           	</td>
            </tr>
            </table> 
             <div class="pull-right">
-              <a href="#/clients"><button id="cancel" type="reset" class="btn">Cancel</button></a>
-              <button id="submit" type="submit"  class="btn btn-primary">Save</button>
+            
+            	<datalist id="citylist">
+                   <option  data-ng-repeat="city in cities" value="{{city}}">
+             	</datalist>
             </div>
         </fieldset>
       </form>
