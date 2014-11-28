@@ -6,6 +6,7 @@
         	var ipTvValue = "false";
         	var isClientIndividualValue = "false";
         	var deviceAgrementTypeValue = "SALE";
+        	var subscriptionPayment="true";
         	
             return function(input) {    
             	
@@ -22,15 +23,15 @@
                    
                    "deviceAgrementType":deviceAgrementTypeValue,
 
-                	 
-                	//For enable Subscription Payment in Create Payment 
-                    "SubscriptionPayment":"true"
+                   //For enable Subscription Payment in Create Payment 
+                    "SubscriptionPayment":subscriptionPayment
                  };
             	if(input == 'jsonData'){
             		return [{"name":"payment","value":paymentValue},
             		        {"name":"IPTV","value":ipTvValue},
             		        {"name":"IsClientIndividual","value":isClientIndividualValue},
-            		        {"name":"deviceAgrementType","value":deviceAgrementTypeValue}
+            		        {"name":"deviceAgrementType","value":deviceAgrementTypeValue},
+            		        {"name":"SubscriptionPayment","value":subscriptionPayment}
             		       ];
             	}else{
             		return configNameLookup[input];
