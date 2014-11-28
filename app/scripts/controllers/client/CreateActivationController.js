@@ -10,7 +10,7 @@
 		  scope.ActivationData.bookorder = [];
 		  scope.ActivationData.owndevice = [];
 		  scope.data=[];
-		  var config = webStorage.get('CPE_TYPE');
+		  var config = filter('ConfigLookup')('deviceAgrementType');
 		  scope.config=config;
 		  scope.PermissionService = PermissionService;
 		 
