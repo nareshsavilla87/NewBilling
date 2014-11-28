@@ -1,6 +1,6 @@
 (function(module) {
     mifosX.controllers = _.extend(module, {
-        GlobalConfigurationController: function(scope,$modal,routeParams,resourceFactory , location,route) {
+        GlobalConfigurationController: function(scope,$modal,routeParams,resourceFactory , location,route,filter) {
             scope.configs = [];
             resourceFactory.configurationResource.get(function(data) {
                 for(var i in data.globalConfiguration){
@@ -145,13 +145,20 @@
 	                    });
 	                }
 	            };
-
+	            
+	            //configLookUp
+	            
+	            scope.getConfigLookUp = function(){
+	            	scope.configLookupsdata = filter('ConfigLookup')('jsonData');
+	            	
+	            };
+	            
 	        }
 	    });
 
        
    
-    mifosX.ng.application.controller('GlobalConfigurationController', ['$scope','$modal', '$routeParams', 'ResourceFactory', '$location','$route', mifosX.controllers.GlobalConfigurationController]).run(function($log) {
+    mifosX.ng.application.controller('GlobalConfigurationController', ['$scope','$modal', '$routeParams', 'ResourceFactory', '$location','$route','$filter', mifosX.controllers.GlobalConfigurationController]).run(function($log) {
         $log.info("GlobalConfigurationController initialized");
     });
 }(mifosX.controllers || {}));
