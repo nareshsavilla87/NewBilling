@@ -1,9 +1,11 @@
 <div>
     <ul class="breadcrumb">
-        <li class="active">{{'label.globalconfigurations' | translate}}</li>
+        <li class="active">Configurations</li>
     </ul>
 </div>
 <div class="row-fluid" ng-controller="GlobalConfigurationController">
+	 <tabset  style="margin-bottom: 0px;">
+	 	<tab heading="Global Configuration">
     <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'label.filterbyname' | translate}}">
     <div class="pull-right">
         <a href="#/createsmtp" class="btn btn-primary"><i class="icon-plus icon-white"></i>Create SMTP</a>
@@ -33,7 +35,30 @@
         </tr>
         </tbody>
     </table>
+    </tab>
     
+    <tab heading="Client Configuration" select="getConfigLookUp()">
+    	
+    	<table class="table">
+        <thead>
+        <tr class="graybg">
+            <th>{{'label.form.name' | translate}}</th>
+            <th>{{'label.enabled' | translate}}</th>	
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="lookup in configLookupsdata">
+            <td>{{lookup.name}}</a></td>
+            <td>{{lookup.value}}</td> 
+        </tr>
+        </tbody>
+    </table>
+    	
+    </tab>
+    
+    </tabset> 
+</div>
+
     <script type="text/ng-template" id="editglobal.html">
 
 	<form class="form-horizontal well" ng-submit="submit()">
@@ -104,6 +129,3 @@
         </div>
 	</form>
 </script> 
-    
-    
-</div>
