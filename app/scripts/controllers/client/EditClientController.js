@@ -4,6 +4,7 @@
         scope.offices = [];
         scope.date = {};
         scope.clientId = routeParams.id;
+        scope.walletConfig = webStorage.get('is-wallet-enable');
         var clientData = webStorage.get('clientData');
         scope.displayName=clientData.displayName;
         scope.statusActive=clientData.statusActive;

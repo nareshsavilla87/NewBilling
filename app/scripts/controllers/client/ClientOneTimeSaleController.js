@@ -25,6 +25,7 @@
 	            scope.data={};
 	            scope.maxDate = new Date();
 	            scope.truefalse = true;
+	            scope.walletConfig = webStorage.get('is-wallet-enable');
 	          
 	        resourceFactory.oneTimeSaleTemplateResource.getOnetimes(function(data) {
 	            

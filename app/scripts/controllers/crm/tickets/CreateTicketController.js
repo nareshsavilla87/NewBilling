@@ -24,6 +24,7 @@
 		        });
 			 
 			 scope.clientId=routeParams.id;
+			 scope.walletConfig = webStorage.get('is-wallet-enable');
 			 var clientData = webStorage.get('clientData');
 			    scope.displayName=clientData.displayName;
 			    scope.hwSerialNumber=clientData.hwSerialNumber;
