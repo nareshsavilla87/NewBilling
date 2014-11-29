@@ -16,20 +16,17 @@
 					if (scope.planData[j].planId == planid ) {											
 						this.formData.orderId= scope.planData[j].orderId;
 					}
-				
-			}
-
-        	
-        	
-           /* resourceFactory.regionResourceGetStates.get({countryId:countryId}, function(data){
-              scope.availableServices = data.statesData;
-              scope.nonselectedservice =data.statesData;
-            });*/
-          }
+				}
+          };
 
 
         scope.submit = function() { 
            this.formData.orderId=routeParams.orderId;
+           for ( var j in scope.hardwareDatas) {																			
+				if (scope.hardwareDatas[j].serialNum == this.formData.provisionNum ) {											
+					this.formData.allocationType= scope.hardwareDatas[j].allocationType;
+				}
+			}
             resourceFactory.associationSaveResource.save({clientId: routeParams.id},this.formData,function(data){
            	 location.path('/viewclient/' +scope.clientId);
               

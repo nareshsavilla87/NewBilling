@@ -2,21 +2,41 @@
     mifosX.filters = _.extend(module, {
         ConfigLookup: function ($http) {
         	
+        	var paymentValue = "true";
+        	var ipTvValue = "false";
+        	var isClientIndividualValue = "false";
+        	var deviceAgrementTypeValue = "SALE";
+        	var subscriptionPayment="true";
         	
             return function(input) {    
             	
             	var  configNameLookup = {
+            			
                    //For Enabling payment details in Simple Activation
-                   "payment":"true",
+                   "payment":paymentValue,
                   
                    //For enabling Category Details in Service Mapping For IPTV
-                   "IPTV":"false",
+                   "IPTV":ipTvValue,
                   
                    //Represent the Default Client Type IND or Corporate in Create Client 
-                   "IsClientIndividual":"false"
-                	 
+                   "IsClientIndividual":isClientIndividualValue,
+                   
+                   "deviceAgrementType":deviceAgrementTypeValue,
+
+                   //For enable Subscription Payment in Create Payment 
+                    "SubscriptionPayment":subscriptionPayment
                  };
-                  return configNameLookup[input];};
+            	if(input == 'jsonData'){
+            		return [{"name":"payment","value":paymentValue},
+            		        {"name":"IPTV","value":ipTvValue},
+            		        {"name":"IsClientIndividual","value":isClientIndividualValue},
+            		        {"name":"deviceAgrementType","value":deviceAgrementTypeValue},
+            		        {"name":"SubscriptionPayment","value":subscriptionPayment}
+            		       ];
+            	}else{
+            		return configNameLookup[input];
+            	}
+            };
         }
     });
     mifosX.ng.application.filter('ConfigLookup', ['$http',mifosX.filters.ConfigLookup]).run(function($log) {

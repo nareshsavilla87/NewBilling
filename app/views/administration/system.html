@@ -15,6 +15,12 @@
 				<h4 class="list-group-item-heading"><i class="icon-sitemap icon-large"></i>&nbsp;&nbsp;Configure Maker Checker Task</h4>
 				<p class="list-group-item-text">Define or modify maker checker tasks</p>
 			</a>
+			
+			<a class="list-group-item" href="#/provision" ng-show="PermissionService.showMenu('READ_PROVISIONINGADAPTERSYSTEM')">
+				<h4 class="list-group-item-heading"><i class="icon-tags icon-large"></i>&nbsp;&nbsp;Provision Interface</h4>
+				<p class="list-group-item-text">Manage the Adapter and Integration logs</p>
+			</a>
+			
 				<a class="list-group-item" href="#/audit" ng-show="PermissionService.showMenu('read_Audit')">
 				<h4 class="list-group-item-heading"><i class="icon-large icon-list-alt"></i>&nbsp;&nbsp;Audit Trails</h4>
 				<p class="list-group-item-text">Audit logs of all activities such as Client, Orders etc</p>

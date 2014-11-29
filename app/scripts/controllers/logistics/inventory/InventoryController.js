@@ -348,6 +348,10 @@
 						            };
 						        };
 						        
+						    	scope.showAudit = function(id){
+						    	   location.path('/viewitem/'+id+'/1');
+						    	};		        
+						        
        }
   });
   mifosX.ng.application.controller('InventoryController', ['$scope','webStorage', '$routeParams', '$location','$modal', 'ResourceFactory','PaginatorService','PermissionService','$route', mifosX.controllers.InventoryController]).run(function($log) {

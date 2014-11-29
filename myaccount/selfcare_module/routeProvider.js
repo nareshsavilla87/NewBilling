@@ -76,8 +76,14 @@
     })
     .when('/usersetting',{
     	templateUrl: 'selfcare_module/views/clients/usersettings.html'
+    })
+    .when('/obsglobalpay',{
+    	templateUrl: 'selfcare_module/views/globalpay.html'
+    })
+    .when('/globalpayIntegration/:clientId/:amount',{
+    	templateUrl: 'selfcare_module/views/globalpayIntegration.html'
     });
-       
+    
     $locationProvider.html5Mode(false);
   };
   selfcare.ng.application.config(defineRouteProvider).run(function($log) {

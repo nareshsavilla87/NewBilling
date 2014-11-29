@@ -64,7 +64,7 @@
 	        	$("input[name='serialNumber']").each(function(){
 	        								scope.formData.serialNumber.push({
 	        															 serialNumber 	: $(this).val(),
-	        															 orderId 		: scope.clientId,
+	        															 orderId 		: routeParams.saleId,
 	        															 clientId 		: scope.clientId,
 	        															 status 		: "allocated",
 	        															 itemMasterId 	: scope.formData.itemMasterId, 

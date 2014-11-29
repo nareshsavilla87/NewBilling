@@ -16,7 +16,7 @@
                	<th>{{'label.sortby' | translate}}</th>
                 <th>{{'label.service.servicecode' | translate}}</th>
                 <th>{{'label.service.servicedescription' | translate}}</th>
-                <th>{{'label.service.servicetype' | translate}}Service type</th>
+                <th>{{'label.service.servicetype' | translate}}</th>
                 <th>{{'label.service.status' | translate}}</th>
                 <th>{{'label.service.isoptional' | translate}}</th>
                 <th>{{'label.service.isautoprovision' | translate}}</th>
@@ -32,8 +32,8 @@
                 <td class="pointer" data-ng-click="routeTo(service.id)">{{service.serviceStatus}}</td>
                 <td class="pointer" data-ng-click="routeTo(service.id)">{{service.isOptional}}</td>
                 <td class="pointer" data-ng-click="routeTo(service.id)">{{service.isAutoProvision}}</td>
-                <td><a data-ng-click="editSortservice(service.id)" data-popover="{{'label.edit.sortby' | translate}}" data-popover-trigger="mouseenter" class="icon-edit"></a>&nbsp;
-                	<a href="#/editservice/{{service.id}}" data-popover="Edit Service" data-popover-trigger="mouseenter" class="icon-edit"></a>&nbsp;
+                <td><a href="#/editservice/{{service.id}}" data-popover="Edit Service" data-popover-trigger="mouseenter" class="icon-edit"></a>&nbsp;
+                	<a data-ng-click="editSortservice(service.id)" data-popover="{{'label.sort.by' | translate}}" data-popover-trigger="mouseenter" class="icon-sort"></a>&nbsp;
                  <a data-ng-click="deleteservice(service.id)" data-popover="Delete Service" data-popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a></td>
             </tr>
         </tbody>
@@ -55,8 +55,8 @@
                     <div class="modal-header silver">
                         <h3 class="bolder">{{'label.edit.sortby' | translate}}</h3>
                     </div>
-                    <div class="modal-body" style="height:80px;">
-                       
+                    <div class="modal-body modal-small" style="height:130px;">
+                       <api-validate></api-validate>
             		   	<h3><label class="control-label" for="sortBy">{{'label.sort.by' | translate}}&nbsp;</label></h3>
             			<div class="controls">
               				<input type="text" id="sortBy" ng-model="formData.sortBy">
@@ -65,7 +65,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
-                        <button class="btn btn-primary" ng-click="approveDeleteService()">{{'label.confirm' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approveDeleteService()">{{'button.save' | translate}}</button>
                     </div>
 </script>
       
