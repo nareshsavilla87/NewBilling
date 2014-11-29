@@ -1,4 +1,4 @@
-<div ng-controller="ViewClientController">
+<div data-ng-controller="ViewClientController">
   <ul class="breadcrumb">
   <li>
         <table>
@@ -27,7 +27,7 @@
         		<td>
         			<table>
         				<tr>
-        					<td><i class="icon-building"></i><small>Office "{{client.officeName}}"</small></td>
+        					<td><i class="icon-building"></i><small>Office&nbsp;"<strong>{{client.officeName}}</strong>"</small></td>
         				</tr>
         				<tr>
         					<td><small>Device # <strong>{{client.hwSerialNumber}}</strong></small></td>
@@ -38,11 +38,11 @@
         		<td>
         			<table>
         				<tr>
-        					<td><small>Client Type&nbsp;"{{client.categoryType}}"</small></td>
+        					<td><small>Client Type&nbsp;"<strong>{{client.categoryType}}</strong>"</small></td>
         				</tr>
         				<tr>
         					<td><small>Balance&nbsp;<strong>{{client.balanceAmount}}</strong>&nbsp;{{client.currency}} </small></td>
-        					<td><small>[Wallet&nbsp;<strong>{{client.walletAmount}}</strong>&nbsp;{{client.currency}}]</small></td>
+        					<td class="paddedleft0" data-ng-show="walletconfig"><small>[Wallet&nbsp;<strong>{{client.walletAmount}}</strong>&nbsp;{{client.currency}}]</small></td>
         				</tr>
         				
         			</table>

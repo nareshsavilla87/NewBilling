@@ -22,7 +22,8 @@
         scope.categoryType=clientData.categoryType;
         scope.email=clientData.email;
         scope.phone=clientData.phone;
-       // alert(routeParams.id);
+        scope.walletConfig = webStorage.get('is-wallet-enable');
+    
         resourceFactory.itemResourceTemplate.getAll(function(data){
 		 
         	  scope.itemtypes=data.itemDatas;

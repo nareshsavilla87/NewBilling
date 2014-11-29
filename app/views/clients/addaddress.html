@@ -1,33 +1,10 @@
-<div ng-controller="AddAddressController">
+<div data-ng-controller="AddAddressController">
 <div><ul class="breadcrumb">
-  <!-- <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
-     <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
-     <li>
-          <h3>
-            &nbsp;
-            {{displayName}}
-            &nbsp;
-            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
-            &nbsp;
-          </h3>
-        </li>
-        <li><span class="divider">|</span>
-          <i class="icon-barcode"></i>
-          <small>Uniquely identified with {{accountNo}}&nbsp;</small>
-        </li>
-        <li><span class="divider">|</span>
-          <i class="icon-building"></i>
-          <small>Belongs to "{{officeName}}" office</small>
-        </li>
-         <li><span class="divider">|</span>
-          <i></i>
-          <small>Balance:{{balanceAmount}} &nbsp;{{currency}}</small>
-        </li> -->
-        <table>
+ <li><table>
         <tr>
         <td>
-        	 <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
-          <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+         <img data-ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img data-ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
         </td>
         <td>
             <small style="color:black;">{{displayName}}</small>
@@ -38,21 +15,10 @@
         <td>
         <table>
         	<tr>
-        		<td><small>Uniquely identified  {{accountNo}}</small></td>
+        		<td><small>Uniquely identified&nbsp;<strong>{{accountNo}}</strong></small></td>
         	</tr>
         	<tr>
-        		<td><i class="icon-building"></i><small>Office "{{officeName}}"</small></td>
-        	</tr>
-        </table>
-        </td>
-        <td><small style="font-size:30px;">|</small></td>
-        <td>
-        <table>
-        	<tr>
-        		<td><small>Cell Phone {{phone}}</small></td>
-        	</tr>
-        	<tr>
-        		<td><small>Device # <strong>{{hwSerialNumber}}</strong></small></td>
+        	    <td><small>Cell Phone&nbsp;<strong>{{phone}}</strong></small></td>
         	</tr>
         </table>
         </td>
@@ -60,15 +26,27 @@
         <td>
         <table>
         	<tr>
-        		<td><small>Client Type "{{categoryType}}"</small></td>
+        	   <td><i class="icon-building"></i><small>Office&nbsp;"<strong>{{officeName}}</strong>"</small></td>
         	</tr>
         	<tr>
-        		<td><small>Balance&nbsp;{{balanceAmount}}&nbsp;{{currency}} </small></td>
+        	<td><small>Device # <strong>{{hwSerialNumber}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Client Type&nbsp;"<strong>{{categoryType}}</strong>"</small></td>
+        	</tr>
+        	<tr>
+        		<td><small>Balance&nbsp;<strong>{{balanceAmount}}</strong>&nbsp;{{currency}} </small></td>
+        		<td class="paddedleft0" data-ng-show="walletConfig"><small>[Wallet&nbsp;<strong>{{walletAmount}}</strong>&nbsp;{{currency}}]</small></td>
         	</tr>
         </table>
         </td>
         </tr>
-        </table>
+        </table></li>
  </ul>
 	<ul class="breadcrumb">
 		<li><a href="#/viewclient/{{formData.clientId}}">{{'label.viewclient' |
@@ -76,7 +54,7 @@
 		<li class="active">{{'label.editaddress' | translate}}</li>
 	</ul>
 </div>
-<form class="form-horizontal well" ng-submit="submit()">
+<form class="form-horizontal well" data-ng-submit="submit()">
  <div class="error" ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label ng-show="errorStatus">{{errorStatus}}</label>
@@ -84,9 +62,9 @@
 	    </div>
 	<fieldset>
 		<legend>{{'label.addaddress' | translate}}</legend>
-		<table width="100%">
+		<table>
 		  <tr>
-			<td width="50%">
+			<td>
 					<div class="control-group">
 						<label class="control-label" for="addressKey"> {{'label.addresstype' | translate }} </label>
 						<div class="controls">
@@ -98,7 +76,7 @@
 				</td>
 			</tr>	
 			<tr>
-				<td width="50%">
+				<td>
 					<div class="control-group">
 						<label class="control-label" for="addressNo">{{'label.addressno' | translate}}</label>
 						<div class="controls">
@@ -108,7 +86,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td width="50%">
+				<td>
 					<div class="control-group">
 						<label class="control-label" for="street">{{'label.street' | translate}}</label>
 						<div class="controls">
@@ -118,7 +96,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td width="50%">
+				<td>
 					<div class="control-group">
 						<label class="control-label" for="city">{{'label.city' | translate}}</label>
 						<div class="controls">
@@ -133,7 +111,7 @@
 			</tr>
 			
 			<tr>
-				<td width="50%">
+				<td>
 					<div class="control-group">
 						<label class="control-label" for="state">{{'label.state' | translate}}</label>
 						<div class="controls">
@@ -143,7 +121,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td width="50%">
+				<td>
 					<div class="control-group">
 						<label class="control-label" for="country">{{'label.country' | translate}}</label>
 						<div class="controls">
@@ -153,7 +131,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td width="50%">
+				<td>
 					<div class="control-group">
 						<label class="control-label" for="zip">{{'label.zipcode' | translate}}</label>
 						<div class="controls">
@@ -162,12 +140,11 @@
 					</div>
 				</td>
 			</tr>
-
-		</table>
-		<div class="offset3">
+         <tr>
+         <td align="right">
 			<a id="cancel" href="#/viewclient/{{clientId}}"><button type="reset" class="btn">Cancel</button></a>
 			<button id="submit" type="submit" class="btn btn-primary">Save</button>
-		</div>
+		</td></tr></table>
 	</fieldset>
 </form>
 </div>

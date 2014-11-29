@@ -23,6 +23,7 @@
         scope.categoryType=clientData.categoryType;
         scope.email=clientData.email;
         scope.phone=clientData.phone;
+        scope.walletConfig = webStorage.get('is-wallet-enable');
        // alert(routeParams.id);
         scope.ownhardwaredatas = []; 
         scope.itemtypes=[];

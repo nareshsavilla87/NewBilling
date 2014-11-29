@@ -1,14 +1,15 @@
 <div  data-ng-controller="ClientOneTimeSaleController">
 	<div><ul class="breadcrumb">
-	  <li>
-      <table>
+	 	<li><table>
         <tr>
         <td>
-          <img data-ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+         <img data-ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
           <img data-ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
         </td>
         <td>
-            <small style="color:black;">{{displayName}}</small>&nbsp;<i class="icon-circle {{statusActive | StatusLookup}}"></i>
+            <small style="color:black;">{{displayName}}</small>
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
         </td>
         <td><small style="font-size:30px;">|</small></td>
         <td>
@@ -17,7 +18,7 @@
         		<td><small>Uniquely identified&nbsp;<strong>{{accountNo}}</strong></small></td>
         	</tr>
         	<tr>
-        		<td><small>Cell Phone&nbsp;<strong>{{phone}}</strong></small></td>
+        	    <td><small>Cell Phone&nbsp;<strong>{{phone}}</strong></small></td>
         	</tr>
         </table>
         </td>
@@ -25,10 +26,10 @@
         <td>
         <table>
         	<tr>
-        		<td><i class="icon-building"></i><small>Office "{{officeName}}"</small></td>
+        	   <td><i class="icon-building"></i><small>Office&nbsp;"<strong>{{officeName}}</strong>"</small></td>
         	</tr>
         	<tr>
-        		<td><small>Device # <strong>{{hwSerialNumber}}</strong></small></td>
+        	<td><small>Device # <strong>{{hwSerialNumber}}</strong></small></td>
         	</tr>
         </table>
         </td>
@@ -36,16 +37,17 @@
         <td>
         <table>
         	<tr>
-        		<td><small>Client Type&nbsp;"{{categoryType}}"</small></td>
+        		<td><small>Client Type&nbsp;"<strong>{{categoryType}}</strong>"</small></td>
         	</tr>
         	<tr>
-        		<td><small>Balance&nbsp;<strong>{{balanceAmount}}</strong>&nbsp;{{currency}}</small></td>
+        		<td><small>Balance&nbsp;<strong>{{balanceAmount}}</strong>&nbsp;{{currency}} </small></td>
+        		<td class="paddedleft0" data-ng-show="walletConfig"><small>[Wallet&nbsp;<strong>{{walletAmount}}</strong>&nbsp;{{currency}}]</small></td>
         	</tr>
         </table>
         </td>
         </tr>
-        </table></li>
-	</ul>
+        </table></li>	
+        </ul>
 		<ul class="breadcrumb">
 			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
 			<li><a href="#/viewclient/{{clientId}}">{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
