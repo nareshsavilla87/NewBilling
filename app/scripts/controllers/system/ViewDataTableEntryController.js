@@ -15,6 +15,7 @@
         scope.email=clientData.email;
         scope.phone=clientData.phone;
         scope.clientId=routeParams.entityId;
+        scope.walletConfig = webStorage.get('is-wallet-enable');
 
     	   if (routeParams.tableName) {
                scope.tableName = routeParams.tableName;

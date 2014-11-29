@@ -12,7 +12,9 @@
         scope.start.date = new Date();
         var orderId=routeParams.id;
         scope.isextensionEnable=false;
-         scope.clientId=routeParams.clientId;
+        scope.clientId=routeParams.clientId;
+        scope.walletConfig = webStorage.get('is-wallet-enable');
+        
          var clientData = webStorage.get('clientData');
          webStorage.add("orderId",routeParams.id);
          scope.hwSerialNumber=clientData.hwSerialNumber;

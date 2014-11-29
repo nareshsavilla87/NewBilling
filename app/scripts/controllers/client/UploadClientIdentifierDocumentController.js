@@ -2,6 +2,7 @@
   mifosX.controllers = _.extend(module, {
     UploadClientIdentifierDocumentController: function(scope,webStorage, location, http, routeParams,API_VERSION,$rootScope,$upload) {
       scope.clientId = routeParams.clientId;
+      scope.walletConfig = webStorage.get('is-wallet-enable');
       var clientData = webStorage.get('clientData');
 	  scope.hwSerialNumber=clientData.hwSerialNumber;
 	    scope.displayName=clientData.displayName;
