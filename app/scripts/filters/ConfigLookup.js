@@ -6,6 +6,7 @@
         	var ipTvValue = "false";
         	var isClientIndividualValue = "false";
         	var deviceAgrementTypeValue = "SALE";
+        	var subscriptionPayment="true";
         	
             return function(input) {    
             	
@@ -20,14 +21,17 @@
                    //Represent the Default Client Type IND or Corporate in Create Client 
                    "IsClientIndividual":isClientIndividualValue,
                    
-                   "deviceAgrementType":deviceAgrementTypeValue
-                	 
+                   "deviceAgrementType":deviceAgrementTypeValue,
+
+                   //For enable Subscription Payment in Create Payment 
+                    "SubscriptionPayment":subscriptionPayment
                  };
             	if(input == 'jsonData'){
             		return [{"name":"payment","value":paymentValue},
             		        {"name":"IPTV","value":ipTvValue},
             		        {"name":"IsClientIndividual","value":isClientIndividualValue},
-            		        {"name":"deviceAgrementType","value":deviceAgrementTypeValue}
+            		        {"name":"deviceAgrementType","value":deviceAgrementTypeValue},
+            		        {"name":"SubscriptionPayment","value":subscriptionPayment}
             		       ];
             	}else{
             		return configNameLookup[input];
