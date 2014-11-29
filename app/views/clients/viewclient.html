@@ -922,16 +922,16 @@
 									<thead>
 										<tr class="graybg">
 											<th>{{'table.heading.user' | translate}}</th>
-											<th>{{'table.heading.transactiontype' | translate}}</th>
 											<th style="width:125px;">{{'table.heading.transactiondate' | translate}}</th>
+											<th>{{'table.heading.transactiontype' | translate}}</th>
 											<th>{{'table.heading.history' | translate}}</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr data-ng-repeat="transactionhistory in transactionhistory.currentPageItems  | filter:filterText">
 											<td>{{transactionhistory.user}}</td>
-											<td>{{transactionhistory.transactionType}}</td>  
 											<td>{{transactionhistory.transactionDate  | DateTimeFormat}}</td>
+											<td>{{transactionhistory.transactionType}}</td>  
 											<td>{{transactionhistory.history | EventTypeCategory:transactionhistory.transactionType:transactionhistory.resourceId}}</td> 
 										</tr>
 									</tbody>
@@ -952,16 +952,16 @@
 									<thead>
 							  			<tr class="graybg">
 				 							<th>{{'table.heading.user' | translate}}</th>
+				 							<th style="width:125px;">{{'table.heading.transactiondate' | translate}}</th>
 											<th>{{'table.heading.transactiontype' | translate}}</th>
-											<th style="width:125px;">{{'table.heading.transactiondate' | translate}}</th>
 											<th>{{'table.heading.history' | translate}}</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr data-ng-repeat="transactionhistory in transactionhistoryOld.currentPageItems  | filter:filterText">
 											<td>{{transactionhistory.user}}</td>
-											<td>{{transactionhistory.transactionType}}</td>  
 											<td>{{transactionhistory.transactionDate  | DateTimeFormat}}</td>
+											<td>{{transactionhistory.transactionType}}</td>  
 											<td>{{transactionhistory.history}}</td> 
 										</tr>
 									</tbody>
