@@ -5,6 +5,7 @@
         scope.onetimesales = [];    
         scope.readAllocation = PermissionService.showMenu("READ_ALLOCATION");
         scope.createAllocation = PermissionService.showMenu("CREATE_ALLOCATION");
+        scope.walletConfig = webStorage.get('is-wallet-enable');
         scope.id=routeParams.id;
         scope.clientId=routeParams.clientId;
         var clientData = webStorage.get('clientData');
@@ -19,6 +20,7 @@
         scope.categoryType=clientData.categoryType;
         scope.email=clientData.email;
         scope.phone=clientData.phone;
+        
         resourceFactory.oneTimeSaleAllocation.get({orderId: routeParams.id} , function(data) {
         	//alert('discountController,' +data);
         	scope.isDefault='false';

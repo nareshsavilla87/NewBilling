@@ -17,10 +17,10 @@
         <td>
         <table>
         	<tr>
-        		<td><small>Uniquely identified  {{accountNo}}</small></td>
+        		<td><small>Uniquely identified&nbsp;<strong>{{accountNo}}</strong></small></td>
         	</tr>
         	<tr>
-        		<td><i class="icon-building"></i><small>Office "{{officeName}}"</small></td>
+        	    <td><small>Cell Phone&nbsp;<strong>{{phone}}</strong></small></td>
         	</tr>
         </table>
         </td>
@@ -28,7 +28,7 @@
         <td>
         <table>
         	<tr>
-        		<td><small>Cell Phone {{phone}}</small></td>
+        	   <td><i class="icon-building"></i><small>Office&nbsp;"<strong>{{officeName}}</strong>"</small></td>
         	</tr>
         	<tr>
         	<td><small>Device # <strong>{{hwSerialNumber}}</strong></small></td>
@@ -39,10 +39,11 @@
         <td>
         <table>
         	<tr>
-        		<td><small>Client Type "{{categoryType}}"</small></td>
+        		<td><small>Client Type&nbsp;"<strong>{{categoryType}}</strong>"</small></td>
         	</tr>
         	<tr>
-        		<td><small>Balance&nbsp;{{balanceAmount}}&nbsp;{{currency}} </small></td>
+        		<td><small>Balance&nbsp;<strong>{{balanceAmount}}</strong>&nbsp;{{currency}} </small></td>
+        		<td class="paddedleft0" data-ng-show="walletConfig"><small>[Wallet&nbsp;<strong>{{walletAmount}}</strong>&nbsp;{{currency}}]</small></td>
         	</tr>
         </table>
         </td>

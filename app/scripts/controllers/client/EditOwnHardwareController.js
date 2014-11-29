@@ -9,6 +9,7 @@
         
         scope.serialnumber={};
         scope.formData = {};
+        scope.ownHrdId=routeParams.id;
         
         var clientData = webStorage.get('clientData');
         scope.hwSerialNumber=clientData.hwSerialNumber;
@@ -22,6 +23,7 @@
         scope.categoryType=clientData.categoryType;
         scope.email=clientData.email;
         scope.phone=clientData.phone;
+        scope.walletConfig = webStorage.get('is-wallet-enable');
        // alert(routeParams.id);
         scope.ownhardwaredatas = []; 
         scope.itemtypes=[];
