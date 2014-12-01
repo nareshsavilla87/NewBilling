@@ -6,9 +6,9 @@
 		<fieldset>
 			<legend>{{'label.heading.pendingtasks' | translate}}</legend>
 			
-			<tabset>
-				<tab heading="{{'label.heading.checkerinbox' | translate}}" has-permission='ALL_FUNCTIONS_READ' >
-				    <div class="head-affix">
+			   <tabset>
+				<tab heading="{{'label.heading.checkerinbox' | translate}}" data-ng-show="PermissionService.showMenu('ALL_FUNCTIONS_READ')"> 
+				    <div style="background-color: #dfdfdf;">
 				                  <div class="control-group">
 				                    <span class="input-append grpinputicons">
 				                        <input data-ng-autofocus="true" autocomplete="off" typeahead-on-select="viewUser($item)" placeholder="{{'label.input.searchbyuser' | translate}}" type="text" data-ng-model="user" 
@@ -17,15 +17,15 @@
 				                        <button type="button" data-ng-click="search()" class="btn btn-primary control"><i class="icon-search icon-white"></i></button>
 				                    </span>
 				              
-				                    <span style="float:right;">
+				                    <span  style="float:right;">
 				                        <button type="button" class="btn btn-success" data-ng-click="approveOrRejectChecker('approve')"><i class="icon-ok"></i>{{'button.approve' | translate}}</button>
 				                        <button type="button" class="btn btn-danger" data-ng-click="deleteChecker()"><i class="icon-trash"></i>{{'button.delete' | translate}}</button>
 				                        <button type="button" class="btn btn-primary" data-ng-click="approveOrRejectChecker('reject')"><i class="icon-remove"></i>{{'button.reject' | translate}}</button>
 				                    </span>
 				                </div>
-				    </div>
-				    <div data-collapse="isCollapsed" class="blockoverlay"  style="overflow-y: scroll">
-				   <br><br/>
+				   </div>              
+				    <div data-collapse="isCollapsed" class="blockoverlay controls"  style="overflow-y: scroll">
+				   <br>
 				    <table>
 				    <tr>
 				    <td>
@@ -129,7 +129,8 @@
 				            </tbody>
 				        </table>
 				    </div>
-				</tab>
+				 </tab>   
+				
 			<!--	<tab heading="{{'label.heading.clientapproval' | translate}}" has-permission='READ_CLIENT'>
 				    <div class="head-affix">
 				        <table class="table condensed-table">

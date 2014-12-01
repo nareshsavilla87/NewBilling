@@ -2,9 +2,10 @@
   mifosX.controllers = _.extend(module, {
     UploadClientIdentifierDocumentController: function(scope,webStorage, location, http, routeParams,API_VERSION,$rootScope,$upload) {
       scope.clientId = routeParams.clientId;
+      scope.identityId = routeParams.resourceId;
       scope.walletConfig = webStorage.get('is-wallet-enable');
       var clientData = webStorage.get('clientData');
-	  scope.hwSerialNumber=clientData.hwSerialNumber;
+	    scope.hwSerialNumber=clientData.hwSerialNumber;
 	    scope.displayName=clientData.displayName;
 	    scope.statusActive=clientData.statusActive;
 	    scope.accountNo=clientData.accountNo;
@@ -25,12 +26,12 @@
       };
 
       scope.reset123 = function(){
-	    	   webStorage.add("callingTab", {someString: "documents" });
+	    	   webStorage.add("callingTab", {someString: "moreInfo" });
 	       };
 	       
       scope.submit = function () {
         $upload.upload({
-          url: $rootScope.hostUrl+ API_VERSION +'/client_identifiers/'+scope.clientId+'/documents', 
+          url: $rootScope.hostUrl+ API_VERSION +'/client_identifiers/'+scope.identityId+'/documents', 
           data: scope.formData,
           file: scope.file
         }).then(function(data) {
@@ -38,7 +39,7 @@
           if (!scope.$$phase) {
             scope.$apply();
           }
-          webStorage.add("callingTab", {someString: "documents" });
+          webStorage.add("callingTab", {someString: "moreInfo" });
           location.path('/viewclient/'+scope.clientId);
         });
       };
