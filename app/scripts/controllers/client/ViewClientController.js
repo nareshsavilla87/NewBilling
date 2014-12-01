@@ -20,6 +20,7 @@
          scope.PermissionService = PermissionService;
          scope.ipstatus;
          scope.ipId;
+         scope.walletconfig = webStorage.get('is-wallet-enable');
          
          var callingTab = webStorage.get('callingTab', null);
          if(callingTab == null){
@@ -545,9 +546,9 @@
             	scope.identitydocuments = data;
             	
             	for(var i = 0; i < scope.identitydocuments.length; i++) {
-            		resourceFactory.clientIdentifierResource.get({clientIdentityId: scope.identitydocuments[i].clientId}, function(data) {
+            		resourceFactory.clientIdentifierResource.get({clientIdentityId: scope.identitydocuments[i].id}, function(data) {
             			for(var j = 0; j < scope.identitydocuments.length; j++) {
-            				if(data.length > 0 && scope.identitydocuments[j].clientId == data[0].parentEntityId){
+            				if(data.length > 0 && scope.identitydocuments[j].id == data[0].parentEntityId){
             					scope.identitydocuments[j].documents = data;
             				}
             			}
@@ -577,9 +578,9 @@
         	resourceFactory.clientResource.getAllClientDocuments({clientId: routeParams.id, anotherresource: 'identifiers'} , function(data) {
                 scope.identitydocuments = data;
                 for(var i = 0; i < scope.identitydocuments.length; i++) {
-                	resourceFactory.clientIdentifierResource.get({clientIdentityId: scope.identitydocuments[i].clientId} , function(data) {
+                	resourceFactory.clientIdentifierResource.get({clientIdentityId: scope.identitydocuments[i].id} , function(data) {
                 		for(var j = 0; j < scope.identitydocuments.length; j++) {
-                			if(data.length > 0 && scope.identitydocuments[j].clientId == data[0].parentEntityId){
+                			if(data.length > 0 && scope.identitydocuments[j].id == data[0].parentEntityId){
                 				scope.identitydocuments[j].documents = data;
                 			}
                 		}
@@ -733,10 +734,10 @@
         	scope.ACHDetailsTab = "";
         	scope.ChildDetailsTab = "active";
         	
-        	resourceFactory.clientParentResource.get({clientId:routeParams.id}, function(data) {
+        	/*resourceFactory.clientParentResource.get({clientId:routeParams.id}, function(data) {
           	  scope.childsDatas = data.parentClientData;
           	  scope.parentCount = data.count;
-            }); 
+            }); */
         };
         
         //leftside orderMenu function
@@ -1053,7 +1054,7 @@
         };
 
         scope.downloadDocument = function(documentId,index) {
-        	window.open($rootScope.hostUrl+ API_VERSION +'/clients/'+ routeParams.id +'/documents/'+ documentId +'?tenantIdentifier=default');
+        	window.open($rootScope.hostUrl+ API_VERSION +'/clients/'+ routeParams.id +'/documents/'+ documentId +'/attachment?tenantIdentifier=default');
             /*resourceFactory.clientDocumentsResource.get({clientId: routeParams.id, documentId: documentId}, '', function(data) {
                 scope.clientdocuments.splice(index,1);
             });*/
