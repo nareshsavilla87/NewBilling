@@ -11,10 +11,10 @@
                     	var  eventTypeCategoryMsg = {
                     	
                         //client related data
-                        "CREATE CLIENT" : "Client Created Succesfully with Name:"+jsonArray.firstname+jsonArray.lastname,
+                        "CREATE CLIENT" : "Client Created successfully with Name:"+jsonArray.firstname+jsonArray.lastname,
                         "UPDATE CLIENT" : "{"+jsonStringData+"}",
-                        "UPDATE ADDRESS" : "Client Address Updated Succesfully with "+jsonStringData,
-                        "DELETE CLIENT" : "Client Closed Succesfully with reason id "+jsonArray.closureReasonId,
+                        "UPDATE ADDRESS" : "Client Address Updated successfully with "+jsonStringData,
+                        "DELETE CLIENT" : "Client Closed successfully with reason id "+jsonArray.closureReasonId,
                         
                         
                        //order related data 
@@ -30,19 +30,26 @@
                         "TERMINATE ORDER" : "Order Terminated successfully with OrderId:"+resourceId,
                         
                         //payments related Data
-                        "CREATE PAYMENT" : "Payment Created successfully successfully with paymentId:"+resourceId,
-                        "CANCEL PAYMENT" : "Payment Canceled Succesfully with remarks "+jsonArray.cancelRemark,
+                        "CREATE PAYMENT" : "Payment done successfully Amount:"+jsonArray.amountPaid+"Reciept NO"+jsonArray.receiptNo,
+                        "CANCEL PAYMENT" : "Payment Canceled successfully with remarks "+jsonArray.cancelRemark,
                         
                         //itemsale related data
-                        "CREATE ONETIMESALE" : "Item Sale Created Succesfully with Charge Code "+jsonArray.chargeCode+" ,UnitPrice "+jsonArray.unitPrice+"" +
+                        "CREATE ONETIMESALE" : "Item Sale Created Successfully with Charge Code "+jsonArray.chargeCode+" ,UnitPrice "+jsonArray.unitPrice+"" +
                         						" ,Total Price "+jsonArray.totalPrice+" ,Quantity "+jsonArray.quantity+" and SaleType "+jsonArray.saleType,
+                        						
+                         "CREATE NEWSALE" : "NEWSALE Created Successfully with with Price "+jsonArray.totalPrice+" ," +
+                         		"Quantity "+jsonArray.quantity+" and SaleType "+jsonArray.saleType,
+                         		
                         "DEALLOCATE INVENTORY" : "Deallocated item",
-                        "DELETE ONETIMESALE"   : "Item sale deleted Succesfully",
+                        "DELETE ONETIMESALE"   : "Item sale deleted Successfully",
+                        "RENEWAL ORDER"   : "Order Renewaled Sucessfully",
+                        
+                        "CREATE EVENTORDER" : "Event Order Done Successfully Event Id"+jsonArray.eventId+", Format "+jsonArray.formatType,
                         
                         
                         //more info related data
-                        "CREATE PARENTCLIENT" : "Parent Added to Client Succesfully",
-                        "CREATE CLIENTCARDDETAILS" : "Client Credit Card Details Added Succesfully",
+                        "CREATE PARENTCLIENT" : "Parent Added to Client successfully",
+                        "CREATE CLIENTCARDDETAILS" : "Client Credit Card Details Added successfully",
                         
                         //notes related data
                         "CREATE CLIENTNOTE" : "Client Notes Created successfully",
@@ -52,18 +59,18 @@
                         "DELETE BILLMASTER" : "Bill Statement Deleted successfully",
                         
                         //client identifier related data
-                        "CREATE CLIENTIDENTIFIER" : "Client Identifier Added Succesfully",
-                        "DELETE CLIENTIDENTIFIER" : "Client Identifier Deleted Succesfully",
+                        "CREATE CLIENTIDENTIFIER" : "Client Identifier Added successfully",
+                        "DELETE CLIENTIDENTIFIER" : "Client Identifier Deleted successfully",
                         
                         
                         //ticket related data
-                        "CREATE TICKET" : "Ticket Created Succesfully",
-                        "CLOSE TICKET" : "Ticket Closed Succesfully",
+                        "CREATE TICKET" : "Ticket Created successfully",
+                        "CLOSE TICKET" : "Ticket Closed successfully",
                         
                         //client contact information related data
-                        "CREATE Client_Contact_Info" : "Client Contact Information Added Succesfully",
-                        "UPDATE Client_Contact_Info" : "Client Contact Information Updated Succesfully",
-                        "DELETE Client_Contact_Info" : "Client Contact Information Deleted Succesfully",
+                        "CREATE Client_Contact_Info" : "Client Contact Information Added successfully",
+                        "UPDATE Client_Contact_Info" : "Client Contact Information Updated successfully",
+                        "DELETE Client_Contact_Info" : "Client Contact Information Deleted successfully",
                         
                         
                         //credit distribution related data
@@ -75,13 +82,13 @@
                         
                         
                         "CREATE OWNEDHARDWARE" : "Owned Hardware Created",
-                        "CREATE ALLOCATION" : "Allocation Added Succesfully",
+                        "CREATE ALLOCATION" : "Allocation Added successfully",
                         
                         
                         
                        //self care related data 
                         "SELFREGISTRATION ACTIVATE" : "Selfcare Registration Activated",
-                        "CREATE SELFCARE" : "Selfcare Account Created Succesfully with UserName:"+jsonArray.userName,
+                        "CREATE SELFCARE" : "Selfcare Account Created successfully with UserName:"+jsonArray.userName,
                         
                      };
 

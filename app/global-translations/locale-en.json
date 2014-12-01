@@ -1572,7 +1572,7 @@
   "validation.msg.eventPricing.optType.cannot.be.blank":"Please select opt type type",
   
    "#TicketResources":"....",
-   "button.newTicket":"Raise Ticket",
+   "button.newTicket":"Record Ticket",
     "label.ticket.id":"Id",
   "label.tickets":"Ticket",
   "label.viewticket":"View Ticket",
