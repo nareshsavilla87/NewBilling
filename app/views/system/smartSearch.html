@@ -1,35 +1,20 @@
 <div ng-controller="SmartSearchController" novalidate class="form-horizontal" >
    <br>
-    <div class="row-fluid" >
-        <span class="input-append grpinputicons " >
-         <table width="100%">
-           <tr>
-             <td>
-		       <div class="control-group">
-				  <label class="control-label" for="status"  style="text-align: left; width:0px;">Payments:</label>
-					 <div class="controls" style="margin-left:50%;margin-top:3%">
-				     <input type="radio" id="type" data-ng-click="" ng-model="formData.searchType" name="searchType" value="payments" style="text-align: left; width: 0;">
-					 </div>
-				</div>
-			</td>
-			 <td>
-		       <div class="control-group">
-				  <label class="control-label" for="category" style="text-align: left; width:10px;">Tickets:</label>
-					 <div class="controls" style="margin-left:40%;margin-top:3%">
-					   <input type="radio" id="type" data-ng-click="getTicketValues()" ng-model="formData.searchType" value="tickets" name="searchType" style="text-align: left; width: 0;">
-					 </div>
-				</div>
-			</td>
-           	</tr>
-          </table>
-        <form ng-submit="searchTransaction()" >
+    <div class="control-group">
+    	<input type="radio" id="type" data-ng-click="" ng-model="formData.searchType" name="searchType" value="payments" style="text-align: left;">Payments &nbsp;&nbsp;&nbsp;
+    	<input type="radio" id="type" data-ng-click="getTicketValues()" ng-model="formData.searchType" value="tickets" name="searchType" style="text-align: left;">Tickets
+   	</div>
+   	<div class="row-fluid">
+   		<form ng-submit="searchTransaction()" >
+        <span class="input-append grpinputicons" >
                 <input ng-model="formData.searchText" type="text" placeholder="Search Receipt#" />
                 <span><a ng-click="isCollapsed = !isCollapsed" class="btn  control"><i class="icon-chevron-down"></i></a></span>
                 <span><a ng-click="searchTransaction()" class="btn btn-primary control"><i class="icon-search icon-white"></i></a></span>
-              </form>  
         </span>
+        </form>
     </div>
-    <div ng-show="formData.searchType == 'payments'" collapse="isCollapsed" class="blockoverlay" width="100%" style="overflow-y: scroll">
+   	
+    <div ng-show="formData.searchType == 'payments'" collapse="isCollapsed" class="blockoverlay" style="overflow-y: scroll;width:500px;">
         <br/><!-- The span is displaying the first line of the hiding div, making the first line of div as blank solved my problem -->
         <div >       
             <label>{{ 'label.fromdate' | translate }}</label>
@@ -40,7 +25,7 @@
         </div>
     </div>
     
-    <div ng-show="formData.searchType == 'tickets'" collapse="isCollapsed" class="blockoverlay  form-horizontal""  style="overflow: scroll;width:700px">
+    <div ng-show="formData.searchType == 'tickets'" collapse="isCollapsed" class="blockoverlay  form-horizontal" style="overflow-y: scroll;width:700px;">
         <br/><!-- The span is displaying the first line of the hiding div, making the first line of div as blank solved my problem -->
         <div>
           <table width="100%">
