@@ -21,6 +21,7 @@
             if(scope.imagePresent){
 		     scope.image=clientData.image;
 		    }
+            scope.walletConfig = webStorage.get('is-wallet-enable');
             resourceFactory.financialResource.getAllDetails({'transactionId': routeParams.transactionId},function(data){
                 scope.invoicedetails = data.transactionsDatas;
             }); 

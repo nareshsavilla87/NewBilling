@@ -1,4 +1,4 @@
-<div ng-controller="ViewClientController">
+<div data-ng-controller="ViewClientController">
   <ul class="breadcrumb">
   <li>
         <table>
@@ -16,10 +16,10 @@
         		<td>
         			<table>
         				<tr>
-        					<td><small>Uniquely identified <strong>{{client.accountNo}}</strong> </small></td>
+        					<td><small>Uniquely identified&nbsp;<strong>{{client.accountNo}}</strong> </small></td>
         				</tr>
         				<tr>
-        				   <td><small>Cell Phone <strong>{{client.phone}}</strong> </small></td>
+        				   <td><small>Cell Phone&nbsp;<strong>{{client.phone}}</strong> </small></td>
         				</tr>
         			</table>
         		</td>
@@ -27,7 +27,7 @@
         		<td>
         			<table>
         				<tr>
-        					<td><i class="icon-building"></i><small>Office "{{client.officeName}}"</small></td>
+        					<td><i class="icon-building"></i><small>Office&nbsp;"<strong>{{client.officeName}}</strong>"</small></td>
         				</tr>
         				<tr>
         					<td><small>Device # <strong>{{client.hwSerialNumber}}</strong></small></td>
@@ -38,11 +38,11 @@
         		<td>
         			<table>
         				<tr>
-        					<td><small>Client Type "{{client.categoryType}}"</small></td>
+        					<td><small>Client Type&nbsp;"<strong>{{client.categoryType}}</strong>"</small></td>
         				</tr>
         				<tr>
         					<td><small>Balance&nbsp;<strong>{{client.balanceAmount}}</strong>&nbsp;{{client.currency}} </small></td>
-        					<td><small>[Wallet&nbsp;<strong>{{client.walletAmount}}</strong>&nbsp;{{client.currency}}]</small></td>
+        					<td class="paddedleft0" data-ng-show="walletconfig"><small>[Wallet&nbsp;<strong>{{client.walletAmount}}</strong>&nbsp;{{client.currency}}]</small></td>
         				</tr>
         				
         			</table>
@@ -269,7 +269,7 @@
 				    	<li class={{documnetsUploadsTab}}><a data-ng-click="documnetsUploadsTabFun()" data-toggle="tab">{{'tab.documentsuploads' | translate}}</a></li>
     			 		<li class={{creditCardDetailsTab}}><a data-ng-click="creditCardDetailsTabFun()" data-toggle="tab">{{'tab.creditCarddetails' | translate}}</a></li>
     			 		<li class={{ACHDetailsTab}}><a data-ng-click="ACHDetailsTabFun()" data-toggle="tab">{{'label.client.achcard' | translate}}</a></li>
-    			 		<li ng-show="parentCount" class={{ChildDetailsTab}}><a data-ng-click="childsFun()" data-toggle="tab">{{'tab.childclientdetails' | translate}}</a></li>
+    			 		<li data-ng-show="parentCount" class={{ChildDetailsTab}}><a data-ng-click="childsFun()" data-toggle="tab">{{'tab.childclientdetails' | translate}}</a></li>
 			    	</ul>
 			 		<div class="tab-content">
   
@@ -922,16 +922,16 @@
 									<thead>
 										<tr class="graybg">
 											<th>{{'table.heading.user' | translate}}</th>
-											<th>{{'table.heading.transactiontype' | translate}}</th>
 											<th style="width:125px;">{{'table.heading.transactiondate' | translate}}</th>
+											<th>{{'table.heading.transactiontype' | translate}}</th>
 											<th>{{'table.heading.history' | translate}}</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr data-ng-repeat="transactionhistory in transactionhistory.currentPageItems  | filter:filterText">
 											<td>{{transactionhistory.user}}</td>
-											<td>{{transactionhistory.transactionType}}</td>  
 											<td>{{transactionhistory.transactionDate  | DateTimeFormat}}</td>
+											<td>{{transactionhistory.transactionType}}</td>  
 											<td>{{transactionhistory.history | EventTypeCategory:transactionhistory.transactionType:transactionhistory.resourceId}}</td> 
 										</tr>
 									</tbody>
@@ -952,16 +952,16 @@
 									<thead>
 							  			<tr class="graybg">
 				 							<th>{{'table.heading.user' | translate}}</th>
+				 							<th style="width:125px;">{{'table.heading.transactiondate' | translate}}</th>
 											<th>{{'table.heading.transactiontype' | translate}}</th>
-											<th style="width:125px;">{{'table.heading.transactiondate' | translate}}</th>
 											<th>{{'table.heading.history' | translate}}</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr data-ng-repeat="transactionhistory in transactionhistoryOld.currentPageItems  | filter:filterText">
 											<td>{{transactionhistory.user}}</td>
-											<td>{{transactionhistory.transactionType}}</td>  
 											<td>{{transactionhistory.transactionDate  | DateTimeFormat}}</td>
+											<td>{{transactionhistory.transactionType}}</td>  
 											<td>{{transactionhistory.history}}</td> 
 										</tr>
 									</tbody>

@@ -1,48 +1,22 @@
-
-<div ng-controller="ViewFinancialTranController">
+<div data-ng-controller="ViewFinancialTranController">
 <div><ul class="breadcrumb">
-  <!-- <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
-     <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
-     <li>
-          <h3>
-            &nbsp;
-            {{displayName}}
-            &nbsp;
-            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
-            &nbsp;
-          </h3>
-        </li>
-        <li><span class="divider">|</span>
-          <i class="icon-barcode"></i>
-          <small>Uniquely identified {{accountNo}}&nbsp;</small>
-        </li>
-        <li><span class="divider">|</span>
-          <i class="icon-building"></i>
-          <small>Office "{{officeName}}" </small>
-        </li>
-         <li><span class="divider">|</span>
-          <i></i>
-          <small>Balance {{balanceAmount}} &nbsp;{{currency}}</small>
-        </li> -->
-        <table>
+ <li><table>
         <tr>
         <td>
-        	 <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
-          <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+          <img data-ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img data-ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
         </td>
         <td>
-            <small style="color:black;">{{displayName}}</small>
-            &nbsp;
-            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+            <small style="color:black;">{{displayName}}</small>&nbsp;<i class="icon-circle {{statusActive | StatusLookup}}"></i>
         </td>
         <td><small style="font-size:30px;">|</small></td>
         <td>
         <table>
         	<tr>
-        		<td><small>Uniquely identified  {{accountNo}}</small></td>
+        		<td><small>Uniquely identified&nbsp;<strong>{{accountNo}}</strong></small></td>
         	</tr>
         	<tr>
-        		<td><i class="icon-building"></i><small>Office "{{officeName}}"</small></td>
+        		<td><small>Cell Phone&nbsp;<strong>{{phone}}</strong></small></td>
         	</tr>
         </table>
         </td>
@@ -50,10 +24,10 @@
         <td>
         <table>
         	<tr>
-        		<td><small>Cell Phone {{phone}}</small></td>
+        		 <td><i class="icon-building"></i><small>Office&nbsp;"<strong>{{officeName}}</strong>"</small></td>
         	</tr>
         	<tr>
-        		<td><small>Device # {{hwSerialNumber}}</small></td>
+        		<td><small>Device # <strong>{{hwSerialNumber}}</strong></small></td>
         	</tr>
         </table>
         </td>
@@ -61,15 +35,16 @@
         <td>
         <table>
         	<tr>
-        		<td><small>Client Type "{{categoryType}}"</small></td>
+        		<td><small>Client Type&nbsp;"<strong>{{categoryType}}</strong>"</small></td>
         	</tr>
         	<tr>
-        		<td><small>Balance&nbsp;{{balanceAmount}}&nbsp;{{currency}} </small></td>
+        		<td><small>Balance&nbsp;<strong>{{balanceAmount}}</strong>&nbsp;{{currency}}</small></td>
+        		<td data-ng-show="walletConfig"><small>[Wallet&nbsp;<strong>{{walletAmount}}</strong>&nbsp;{{currency}}]</small></td>
         	</tr>
         </table>
         </td>
         </tr>
-        </table>
+        </table></li>
  </ul>
 		<ul class="breadcrumb">
 			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
@@ -78,7 +53,6 @@
 		</ul>
 	</div>
 <div class="row-fluid">
-   
 	<h3>Invoice Details </h3>
 	<table class="table">
         <thead>
@@ -93,9 +67,9 @@
             </tr>
         </thead>
         <tbody>
-                    <tr ng-repeat="invoicedetail in invoicedetails" ng-show="invoicedetail.chargeType == 'RC' || invoicedetail.chargeType == 'NRC' || invoicedetail.chargeType == 'DC'">
+                   <tr data-ng-repeat="invoicedetail in invoicedetails" data-ng-show="invoicedetail.chargeType == 'RC' || invoicedetail.chargeType == 'NRC' || invoicedetail.chargeType == 'DC'">
                     <td>{{invoicedetail.chargeId}}</td>
-                     <td>{{invoicedetail.orderId}}</td> 
+                    <td>{{invoicedetail.orderId}}</td> 
 					<td>{{invoicedetail.chargeType}}</td>  
 					<td>{{invoicedetail.chargeDescription}}</td>
 					<td>{{invoicedetail.chargeStartDate | DateFormat}}</td>
@@ -114,7 +88,7 @@
             </tr>
         </thead>
         <tbody>
-         			<tr ng-repeat="invoicedetail in invoicedetails" ng-show="invoicedetail.chargeType == 'Tax'">
+         			<tr data-ng-repeat="invoicedetail in invoicedetails" data-ng-show="invoicedetail.chargeType == 'Tax'">
 					<td>{{invoicedetail.chargeId}}</td>
 					<td>{{invoicedetail.chargeDescription}}</td>  
 					<td>{{invoicedetail.taxAmount}}</td>			       
@@ -126,17 +100,17 @@
         <thead>
             <tr class="graybg">
                       <th>{{'table.heading.chargeid' | translate}}</th>
-                       <th>{{'table.heading.chargedescription' | translate}}</th>
+                      <th>{{'table.heading.chargedescription' | translate}}</th>
                       <th>{{'table.heading.discountamount' | translate}}</th>
-                       <th>{{'table.heading.netchargeamount' | translate}}</th>
+                      <th>{{'table.heading.netchargeamount' | translate}}</th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="invoicedetail in invoicedetails" ng-show="invoicedetail.chargeType == 'Discount'">
+            <tr data-ng-repeat="invoicedetail in invoicedetails" data-ng-show="invoicedetail.chargeType == 'Discount'">
                 <td>{{invoicedetail.chargeId}}</td>
                 <td>{{invoicedetail.chargeDescription}}</td>  
-                 <td>{{invoicedetail.discountAmount}}</td>
-                 <td>{{invoicedetail.netChargeAmount}}</td>          
+                <td>{{invoicedetail.discountAmount}}</td>
+                <td>{{invoicedetail.netChargeAmount}}</td>          
             </tr>
         </tbody>
     </table>

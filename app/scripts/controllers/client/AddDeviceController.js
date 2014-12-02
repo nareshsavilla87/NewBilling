@@ -18,6 +18,7 @@
 			  scope.deviceRentalType = false;
 			  scope.formData.dateFormat = "dd MMMM yyyy";
 			  scope.formData.locale = "en";
+			  scope.walletConfig = webStorage.get('is-wallet-enable');
 			  
 			  var clientData = webStorage.get('clientData');
 			  if(webStorage.get('clientData')){

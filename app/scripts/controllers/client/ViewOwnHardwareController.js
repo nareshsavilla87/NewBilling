@@ -14,6 +14,7 @@
 	        scope.categoryType=clientData.categoryType;
 	        scope.email=clientData.email;
 	        scope.phone=clientData.phone;
+	        scope.walletConfig = webStorage.get('is-wallet-enable');
 
         scope.ownhardwaredatas = []; 
         scope.itemdatas=[];
@@ -26,7 +27,7 @@
             scope.clientId=scope.ownhardwaredatas.clientId;
         });
         scope.deletemessage = function (){
-            resourceFactory.ownHardwareResource.delete({id: routeParams.id} , {} , function(data) {
+            resourceFactory.ownHardwareResource.remove({id: routeParams.id} , {} , function(data) {
             	 location.path('/viewclient/' +scope.clientId);
             	 webStorage.add("callingTab", {someString: "hardware" });
                   // added dummy request param because Content-Type header gets removed 
