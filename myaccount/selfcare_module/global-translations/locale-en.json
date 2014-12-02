@@ -34,6 +34,7 @@
  	"btn.disconnect"		   	: "Disconnect",
  	"btn.checkout"		   		: "Check Out",
  	"btn.dalpay"		   		: "Dalpay",
+ 	"btn.ok"			   		: "OK",
  	
  "#labels"  :  "--------------------------",
  	"label.product.name" 		: "OBS",
@@ -840,7 +841,9 @@
 "label.globalpay.amount":"Amount",
 "label.globalpay.email":"Email Address",
 "label.globalpay.phone":"Phone Number",
-"label.add.globalpay.Info":"GlobalPay Information"
+"label.add.globalpay.Info":"GlobalPay Information",
+"dialog.korta.title.message":"Alert Information",
+"dialog.korta.alert.message":"Dear Customer, You should Register your Card Details In Korta Payment Gateway System before Using this Service."
 
 
 

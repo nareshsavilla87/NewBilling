@@ -22,11 +22,12 @@
 			
 			RequestSender.paymentGatewayConfigResource.get(function(data) {
 				  scope.paymentgatewayData = data.globalConfiguration;
-				  
+				  alert('length :'+scope.paymentgatewayData.length);
 				  for(var i=0;i<scope.paymentgatewayData.length;i++){	
-					  
+					  alert(scope.paymentgatewayData[i].name);
 	                	if(scope.paymentgatewayData[i].name == 'korta'){
 	                		scope.kortaDisplay = scope.paymentgatewayData[i].enabled;
+	                		alert('korta : '+scope.kortaDisplay);
 	                	}else if(scope.paymentgatewayData[i].name == 'dalpay'){
 	                		scope.dalpayDisplay = scope.paymentgatewayData[i].enabled;
 	                		scope.dalpayURL = scope.paymentgatewayData[i].value;

@@ -19,6 +19,16 @@
 		  scope.kortaTestServer = selfcare.models.kortaTestServer;
 		  scope.kortaAmountField = selfcare.models.kortaAmountField;
 		  scope.kortaclientId = selfcare.models.kortaclientId;
+		  scope.kortaPaymentMethod = selfcare.models.kortaPaymentMethod;
+		  scope.kortaTokenValue = selfcare.models.kortaTokenValue;
+		  
+		  scope.doActionTypes = [
+		                         {name:"STNOCAP"},
+		                         {name:"RECURRING"},
+		                         {name:"STORAGE"}
+	                         ];
+		  
+		  scope.formData.doAction = scope.doActionTypes[2].name;
 		  
 		  if(webStorage.get('planFormData')){
 			  planFormData = webStorage.get('planFormData');
@@ -33,6 +43,7 @@
 			  scope.formData.mobileNo = planFormData.mobileNo;
 			  scope.formData.amount = planFormData.planAmount;
 			  scope.formData.description = scope.formData.address+","+scope.formData.city;
+			  scope.clientId = 0;
 			  
 		  }else if(webStorage.get('additionalPlanFormData')){
 			  additionalPlanFormData = webStorage.get('additionalPlanFormData');
@@ -47,6 +58,7 @@
 				  scope.formData.country = clientData.country;
 				  scope.formData.mobileNo = clientData.phone;
 				  scope.formData.description = scope.formData.address+","+scope.formData.city;
+				  scope.clientId = clientData.id;
 			  }
 			  scope.formData.amount = additionalPlanFormData.planAmount;
 			  console.log(additionalPlanFormData);
@@ -64,6 +76,7 @@
 				  scope.formData.country = clientData.country;
 				  scope.formData.mobileNo = clientData.phone;
 				  scope.formData.description = scope.formData.address+","+scope.formData.city;
+				  scope.clientId = clientData.id;
 			  }
 			  scope.formData.amount = renewalOrderFormData.planAmount;
 			  console.log(renewalOrderFormData);
@@ -82,11 +95,11 @@
 				  scope.formData.country = clientData.country;
 				  scope.formData.mobileNo = clientData.phone;
 				  scope.formData.description = scope.formData.address+","+scope.formData.city;
+				  scope.clientId = clientData.id;
 			  }
 			  scope.formData.amount = VODTotalAmount;
 			  console.log(webStorage.get("eventData"));
 		  }
-		  scope.formData.terms = 'N';
 		  
 		  scope.formData.terms = 'N';
 		  
@@ -122,12 +135,8 @@
 	      };
 			
 		  scope.currencydatas = [];
-		  scope.doActionTypes = [
-		                         {name:"STNOCAP"},
-		                         {name:"RECURRING"},
-		                         {name:"STORAGE"}
-	                         ];
-		  scope.formData.doAction = scope.doActionTypes[2].name;
+		  
+		  
 		  //scope.langs = [];
 		  //scope.langs = selfcare.models.Langs;
 		 // scope.formData.optlang = scope.langs[0].code;
@@ -164,31 +173,37 @@
 				  webStorage.add('eventData',eventData);
 			  }
 			  
-			  var encryptData = '{"'+scope.kortaAmountField+'":'+scope.formData.amount+',"'+scope.kortaclientId+'":0}';	
+			  var encryptData = '{"'+scope.kortaAmountField+'":'+scope.formData.amount+
+			  ',"'+scope.kortaPaymentMethod+'":"'+scope.formData.doAction+'","'+scope.kortaTokenValue+'":"'+scope.token+
+			  '","'+scope.kortaclientId+'":'+scope.clientId+'}';
+	
 			  var encryptString = encodeURIComponent(encryptData);
 			  
 			  scope.encryptedString = CryptoJS.AES.encrypt(encryptString, scope.kortaEncriptionKey).toString();
 			  
-			  if(webStorage.get('planFormData')){
+			  /*if(webStorage.get('planFormData')){
 				  scope.downloadurl = selfcare.models.downloadUrl+""+scope.encryptedString+"&";
 				  
-			  }else if(webStorage.get('additionalPlanFormData')){
+			  }else*/ 
+			  if(webStorage.get('additionalPlanFormData')){
 				  scope.downloadurl = selfcare.models.additionalKortaUrl+"/"+routeParamsPlanId+"/"+routeParamsClientId+"?encryptedKey="+scope.encryptedString+"&";
-				  
 			  }else if(webStorage.get('renewalOrderFormData')){
 				  scope.downloadurl = selfcare.models.additionalKortaUrl+"/"+routeParamsPlanId+"/"+routeParamsClientId+"?encryptedKey="+scope.encryptedString+"&";
 				  
 			  }else if(webStorage.get('eventData')){
 				  scope.downloadurl = selfcare.models.additionalKortaUrl+"/"+routeParamsPlanId+"/"+routeParamsClientId+"?encryptedKey="+scope.encryptedString+"&";
 			  }
+			 
+			  scope.formData.description = encodeURIComponent(scope.formData.description);
+			  
 			  var md5data = scope.formData.amount+scope.formData.currency+scope.kortaMerchantId+scope.kortaTerminalId+scope.formData.description+"/"+scope.formData.doAction+"//"+scope.formData.token + scope.kortaSecretCode +scope.kortaTestServer;			 
-
+			   
 			  scope.formData.md5value=md5(md5data);
 			  console.log(scope.formData.md5value);
 		  };
     }
   });
-selfcare.ng.application.controller('KortaController', ['$scope', 'RequestSender','$routeParams', '$location', '$http', 'dateFilter','webStorage', selfcare.controllers.KortaController]).run(function($log) {
-    $log.info("KortaController initialized");
-  });
+selfcare.ng.application.controller('KortaController', ['$scope', 'RequestSender','$routeParams', '$location', '$http', 'dateFilter','webStorage', selfcare.controllers.KortaController]).run(function($log){
+	$log.info("KortaController initialized");
+});
 }(selfcare.controllers || {}));
