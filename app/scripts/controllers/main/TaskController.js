@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        TaskController: function (scope, resourceFactory, route, dateFilter, $modal, location) {
+        TaskController: function (scope, resourceFactory, route, dateFilter, $modal, location,PermissionService) {
             scope.clients = [];
             scope.loans = [];
             scope.offices = [];
@@ -12,6 +12,7 @@
             scope.isCollapsed = true;
             scope.approveData = {};
             scope.restrictDate = new Date();
+            scope.PermissionService = PermissionService;
 
             resourceFactory.checkerInboxResource.get({templateResource: 'searchtemplate'}, function (data) {
                 scope.checkerTemplate = data;
@@ -328,7 +329,8 @@
         '$route', 
         'dateFilter', 
         '$modal', 
-        '$location', 
+        '$location',
+        'PermissionService', 
         mifosX.controllers.TaskController]).run(function ($log) {
         $log.info("TaskController initialized");
     });
