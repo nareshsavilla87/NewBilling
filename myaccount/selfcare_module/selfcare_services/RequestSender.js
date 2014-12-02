@@ -99,7 +99,7 @@
         		update : {method: 'PUT', params: {}}
         	}),
         	paymentGatewayConfigResource: defineResource(apiVer + "/paymentgatewayconfigs",{},  {}),
-        	
+
         };
       }];
     }

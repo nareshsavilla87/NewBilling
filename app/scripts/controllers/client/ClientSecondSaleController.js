@@ -5,6 +5,7 @@
 			  scope.clientId=routeParams.id;
 			  scope.formData = {};
 			  scope.unitsValue = "";
+			  scope.walletConfig = webStorage.get('is-wallet-enable');
 			  var clientData = webStorage.get('clientData');
 			  scope.hwSerialNumber=clientData.hwSerialNumber;
 			    scope.displayName=clientData.displayName;
@@ -124,7 +125,7 @@
 	             delete this.formData.id;
 	             delete this.chargesData;
 	             
-	             if(scope.unitsValue == 'NUMBERS'){
+	             if(scope.unitsValue == 'PIECES'){
 	            	 var temp1 = new Array();
 			        	
 			        	$("input[name='serialNumber']").each(function(){

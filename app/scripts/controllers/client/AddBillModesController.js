@@ -2,6 +2,7 @@
 	mifosX.controllers = _.extend(module, {
 		AddBillModesController : function(scope,webStorage, routeParams , location, resourceFactory) {
 			scope.clientId = routeParams.clientId;
+			scope.walletConfig = webStorage.get('is-wallet-enable');
             var clientData = webStorage.get('clientData');
             scope.hwSerialNumber=clientData.hwSerialNumber;
             scope.displayName=clientData.displayName;
@@ -50,7 +51,13 @@
 			
 		}
 	});
-	 mifosX.ng.application.controller('AddBillModesController', ['$scope','webStorage', '$routeParams', '$location', 'ResourceFactory', mifosX.controllers.AddBillModesController]).run(function($log) {
-	        $log.info("AddBillModesController initialized");
+	 mifosX.ng.application.controller('AddBillModesController', [
+	 '$scope',
+	 'webStorage', 
+	 '$routeParams', 
+	 '$location', 
+	 'ResourceFactory', 
+	 mifosX.controllers.AddBillModesController]).run(function($log) {
+	 $log.info("AddBillModesController initialized");
 	    });
 }(mifosX.controllers || {}));

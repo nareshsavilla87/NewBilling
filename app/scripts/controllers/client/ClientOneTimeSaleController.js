@@ -25,6 +25,7 @@
 	            scope.data={};
 	            scope.maxDate = new Date();
 	            scope.truefalse = true;
+	            scope.walletConfig = webStorage.get('is-wallet-enable');
 	          
 	        resourceFactory.oneTimeSaleTemplateResource.getOnetimes(function(data) {
 	            
@@ -54,6 +55,8 @@
 	        		
 	        		scope.formData=data;
 	        		scope.unitsValue = data.units;
+	        		var splitValue=data.units.split("S");
+	        		scope.unit=splitValue[0];
 	        		scope.formData.itemId=itemId;
 	        		scope.formData.discountId = scope.discountMasterDatas[0].discountMasterId;
 	        		scope.formData.officeId=officeId;
@@ -129,7 +132,7 @@
 	             delete this.formData.itemCode;
 	             delete this.formData.id;
 	         
-	             if(scope.unitsValue == 'NUMBERS'){
+	             if(scope.unitsValue == 'PIECES'){
 	            	 var temp1 = new Array();
 			        	
 			        	$("input[name='serialNumber']").each(function(){

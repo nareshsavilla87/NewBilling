@@ -19,6 +19,7 @@
       scope.email=clientData.email;
       scope.phone=clientData.phone;
       scope.clientId=routeParams.entityId;
+      scope.walletConfig = webStorage.get('is-wallet-enable');
      // console.log( scope.clientId);
 
       resourceFactory.DataTablesResource.getTableDetails({ datatablename:scope.tableName, entityId:scope.entityId, genericResultSet:'true' },function(data) {

@@ -602,7 +602,7 @@
      .when('/viewgrndetails', {
         templateUrl: 'views/logistics/inventory/grn/viewgrndetails.html'
       })
-      .when('/viewitem/:id',{
+      .when('/viewitem/:id/:showtype',{
     	  templateUrl: 'views/logistics/inventory/item/viewitem.html'
       })
       .when('/edititem/:id',{
@@ -651,7 +651,7 @@
       .when('/viewonetimesale/:id/:clientId', {
         templateUrl: 'views/clients/viewonetimesale.html'
       })
-      .when('/allocatehardwareonetimesale/:itemcode/:quantity/:clientId', {
+      .when('/allocatehardwareonetimesale/:itemcode/:quantity/:clientId/:saleId', {
         templateUrl: 'views/clients/allocatehardwareonetimesale.html'
       })
       .when('/event', {
@@ -911,7 +911,7 @@
         templateUrl: 'views/organization/createEvent.html'
       }) 
       .when('/provision',{
-        templateUrl: 'views/provision.html'
+        templateUrl: 'views/system/provision.html'
       })
       .when('/adddevice/:clientId', {
         templateUrl: 'views/clients/adddevice.html'

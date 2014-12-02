@@ -46,6 +46,7 @@
 	               }
 				 
 			 });
+
 		  	
 		  //declaration of formData
 			  scope.formData = {};
@@ -88,34 +89,53 @@
 			  }
 		  
 			  var hostName = selfcare.models.selfcareAppUrl;
- 
-			  scope.paymentGatewayFun  = function(paymentGatewayName){ 
-				  console.log(paymentGatewayName);  
+			  
+			  scope.paymentGatewayFun  = function(paymentGatewayName){
+				  	
+				  console.log(paymentGatewayName);	
 				  scope.paymentGatewayName = paymentGatewayName;
-
-				  if(paymentGatewayName == 'dalpay'){		  
+			    	  		 	
+				  if(paymentGatewayName == 'dalpay'){	    		  
 					  scope.paymentURL = scope.dalpayURL+"&cust_name="+scope.formData.lastname+"&cust_phone="+scope.formData.phone+"&cust_email="+scope.formData.email+"&cust_state="+scope.formData.state+""+
   	  				  "&cust_address1="+scope.formData.addressNo+"&cust_zip="+scope.formData.zip+"&cust_city="+scope.formData.state+"&item1_desc="+scope.formData.planName+"&item1_price="+scope.formData.planAmount+"" +
 	  				  "&user1="+scope.formData.id+"&user2="+hostName+"&user3=renewalorderpreviewscreen/"+routeParams.orderId+"/"+routeParams.clientId; 
-			    	  			     	  
-				  }else if(paymentGatewayName == 'korta'){		    		 
-					  var token = selfcareUserData.token;			    		 
-					  if(token != null && token != ""){	 
-						  scope.paymentURL = "#/kortatokenpayment/"+routeParams.orderId+"/"+routeParams.clientId;		    		  
-					  }else{			    			
-						  scope.paymentURL = "#/kortaIntegration/"+routeParams.orderId+"/"+routeParams.clientId;
-					  }
-			    	  
-				  }else if(paymentGatewayName == 'paypal'){ 	  			    		  			    		 
-					  scope.paymentURL = scope.paypalUrl+"&item_name="+scope.formData.planName+"&amount="+scope.formData.planAmount+"" +			    		  
-					  "&custom="+scope.formData.clientId;  		    		  
-			    	 
-				  }else if(paymentGatewayName == 'globalpay'){	    		 	  			    		
-					  scope.paymentURL = "#/globalpayIntegration/" + scope.formData.clientId+"/" + scope.formData.planAmount;		  
-			    	 	    	  
-				  };   
-			  };
+			    	  		     	 
+				  }else if(paymentGatewayName == 'korta'){
+		    		  var token = selfcareUserData.token;
+		    		  if(token != null && token != ""){
+		    			  scope.paymentDalpayURL = "#/kortatokenpayment/"+routeParams.orderId+"/"+routeParams.clientId;
+		    		  }else{
+		    			  scope.paymentDalpayURL = "#/kortaIntegration/"+routeParams.orderId+"/"+routeParams.clientId;
+		    		  }
+		    	  }else if(paymentGatewayName == 'paypal'){ 	  	    		  
+					  scope.paymentURL = scope.paypalUrl+"&item_name="+scope.formData.planName+"&amount="+scope.formData.planAmount+"" +	  	  				
+					  "&custom="+scope.formData.clientId;  
+					  
+				  }else if(paymentGatewayName == 'globalpay'){	    		 		    			
+					  scope.paymentURL = "#/globalpayIntegration/" + scope.formData.clientId+"/" + scope.formData.planAmount;		    
+				  };
 			      
+			  };
+			  
+				/*scope.paymentGatewayFun  = function(paymentGatewayName){
+			    	  console.log(paymentGatewayName);
+			    	  scope.paymentGatewayName = paymentGatewayName;
+			    	  
+			    	  if(paymentGatewayName == 'dalpay'){
+			    		  scope.paymentDalpayURL = scope.dalpayURL+"&cust_name="+scope.formData.lastname+"&cust_phone="+scope.formData.phone+"&cust_email="+scope.formData.email+"&cust_state="+scope.formData.state+""+
+	    	  				"&cust_address1="+scope.formData.addressNo+"&cust_zip="+scope.formData.zip+"&cust_city="+scope.formData.state+"&item1_desc="+scope.formData.planName+"&item1_price="+scope.formData.planAmount+"" +
+	    	  				"&user1="+scope.formData.id+"&user2="+hostName+"&user3=renewalorderpreviewscreen/"+routeParams.orderId+"/"+routeParams.clientId; 
+			    	  }else if(paymentGatewayName == 'korta'){
+			    		  var token = selfcareUserData.token;
+			    		  if(token != null && token != ""){
+			    			  scope.paymentDalpayURL = "#/kortatokenpayment/"+routeParams.orderId+"/"+routeParams.clientId;
+			    		  }else{
+			    			  scope.paymentDalpayURL = "#/kortaIntegration/"+routeParams.orderId+"/"+routeParams.clientId;
+			    		  }
+			    	  };
+			      };*/
+		  
+
 		  scope.selectedPLandAm = function(contractId,planId,chargeCode,price,planCode,duration){
 		    	 
 			  scope.isOrderPage = false;
