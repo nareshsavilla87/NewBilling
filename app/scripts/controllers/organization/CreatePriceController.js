@@ -9,11 +9,14 @@
         scope.serviceDatas=[];
         scope.priceDatas=[];
         scope.formData = {};
+        scope.prices = [];
         scope.planId = routeParams.id;
+       // scope.columnnameerror = false;
+        
         
         resourceFactory.priceTemplateResource.get({planId: routeParams.id} , function(data) {
-        	 scope.formData.planCode=data.planCode;
-        	 scope.formData.isPrepaid=data.isPrepaid;
+            scope.formData.planCode=data.planCode;
+            scope.formData.isPrepaid=data.isPrepaid;
         	scope.chargeDatas = data.chargeData;
             scope.chargevariants = data.chargevariant;
             scope.discountdatas = data.discountdata;
@@ -22,8 +25,36 @@
             scope.serviceDatas = data.serviceData;
             scope.serviceDatas.push({"id":0,"serviceCode":"none","serviceDescription":"None"});
             
-            
+            resourceFactory.priceResource.get({planId: routeParams.id} , function(data) {
+            	
+            	scope.priceDatas = data.pricingData;
+            	
+            	for ( var i in scope.priceDatas) {
+            		/*Charge Varaint*/
+            		for (var j in scope.chargevariants){
+            			if(scope.priceDatas[i].chargeVariant == scope.chargevariants[j].value){
+            				scope.priceDatas[i].chargevariant = scope.chargevariants[j].id;
+            				
+            			}
+            		}/*Charge Code*/
+            		for ( var k in scope.chargeDatas) {
+            			if(scope.priceDatas[i].chargeCode == scope.chargeDatas[k].chargeDescription){
+            				scope.priceDatas[i].chargeCode = scope.chargeDatas[k].chargeCode;
+            			}
+            		}/*Price Region*/
+            		for ( var l in scope.priceRegionDatas) {
+            			if(scope.priceDatas[i].priceregion == scope.priceRegionDatas[l].priceregion){
+            				scope.priceDatas[i].priceregion = scope.priceRegionDatas[l].id;
+            			}
+            		}
+            	}
+            });
         });
+        
+        scope.readFormatOnly = true;
+        scope.editPrice=function(){
+		    scope.readFormatOnly = false;
+		  };
         
         scope.addPriceData = function(){
         	if(scope.formData.chargeCode && scope.formData.chargevariant && scope.formData.discountId && scope.formData.serviceCode &&
@@ -46,16 +77,40 @@
         	        	scope.formData.planCode = planCode;
         	        	scope.formData.isPrepaid = isPrepaid;
         		 }
-        	}
-        	
-        	
+        	}/*else{
+        	scope.errorDetails = [];
+        	 scope.columnnameerror = true;
+             scope.labelerror = "columnnameerr";
+        	}*/
         };
         
-        scope.removePriceData = function (index) {
-            scope.priceDatas.splice(index, 1);
+        scope.removePriceData = function (index,priceId) {
+            if(priceId !=undefined){/*Delete particular Price of plan */
+            	 resourceFactory.deletePriceResource.remove({priceId: priceId} , {} , function() {
+            		 scope.priceDatas.splice(index, 1);
+            		 //console.log(priceId);
+                });
+            }else{/*Remove Price Data which was newly added */
+            	scope.priceDatas.splice(index, 1);
+            }
         };
-        
+			 
         priceDataSendingOneByOneFun = function(val){
+        	if(scope.priceDatas[val].id){/*update plan price*/
+        		scope.planPriceId = scope.priceDatas[val].id;
+        		delete scope.priceDatas[val].chargeVariant;
+        		delete scope.priceDatas[val].billingFrequency;
+        		delete scope.priceDatas[val].contractId;
+        		resourceFactory.updatePriceResource.update({priceId:scope.planPriceId},scope.priceDatas[val],function(data){
+   				 if(val == scope.priceDatas.length-1){
+   					 location.path('viewplan/'+routeParams.id);
+   				 }else{
+   					 val += 1;
+   					 priceDataSendingOneByOneFun(val);
+   			 	 }
+   			 });
+        		
+        }else{/*create new  plan price*/
         	resourceFactory.priceResource.save({'planId':routeParams.id},scope.priceDatas[val],function(data){
 				 if(val == scope.priceDatas.length-1){
 					 location.path('viewplan/'+routeParams.id);
@@ -64,6 +119,7 @@
 					 priceDataSendingOneByOneFun(val);
 			 	 }
 			 });
+           }
 		 };
         
         scope.submit = function() {
@@ -80,7 +136,13 @@
         };
     }
   });
-  mifosX.ng.application.controller('CreatePriceController', ['$scope', '$routeParams', 'ResourceFactory', '$location','$rootScope', mifosX.controllers.CreatePriceController]).run(function($log) {
+  mifosX.ng.application.controller('CreatePriceController', [
+    '$scope', 
+    '$routeParams', 
+    'ResourceFactory', 
+    '$location',
+    '$rootScope', 
+    mifosX.controllers.CreatePriceController]).run(function($log) {
     $log.info("CreatePriceController initialized");
   });
 }(mifosX.controllers || {}));
