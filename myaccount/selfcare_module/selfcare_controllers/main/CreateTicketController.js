@@ -57,8 +57,6 @@
 			scope.submit = function() { 
 				this.formData.locale = 'en';
 				scope.first.time=$('#timepicker1').val();
-				//console.log(scope.first.date);
-				//console.log(scope.first.time);
 				var reqDueDate = dateFilter(scope.first.date,'yyyy-MM-dd');
 				//alert(scope.first.time);
 				if(scope.first.date==null||scope.first.time==''){

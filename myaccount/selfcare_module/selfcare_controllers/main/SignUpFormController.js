@@ -1,74 +1,47 @@
 (function(selfcare_module) {
   selfcare.controllers = _.extend(selfcare_module, {
-	  SignUpFormController: function(scope,RequestSender,modal,HttpService,webStorage,authenticationService,rootScope,sessionManager) {
+	  SignUpFormController: function(scope,RequestSender,HttpService,rootScope,authenticationService) {
 
-		  scope.signUpCredentials = {};
+		  rootScope.signUpCredentials = {};
 		  
 		  //set the default values
 		  scope.isProcessing  = false;
-		  rootScope.emptySignUpCredentials  = false;
 		  
-		  //adding returnUrl to signUpCredentials form model returnURL.js
-     	 scope.returnUrl = selfcare.models.returnURL; 
-		  
-		 //Success pop-up Controller definition
-		  var SuccessPopupController = function($scope,$modalInstance){
-  			
-  			$scope.mailId = scope.signUpCredentials.userName;
-  			
-  			
-  			$scope.reject = function(){
-  				$modalInstance.close('delete');
-  			};
-  		};
-  		
-		var AlreadyExistPopupController = function($scope,$modalInstance){
-		  			
-		  			$scope.mailId = scope.signUpCredentials.userName;
-		  			
-		  			
-		  			$scope.reject = function(){
-		  				$modalInstance.close('delete');
-		  			};
-		  };
+		 //adding returnUrl to signUpCredentials form model returnURL.js
+     	 scope.returnURL = selfcare.models.returnURL; 
 		  
 		  //submit functionality
           scope.submitEmail = function(){
-        	  webStorage.remove("clientTotalData");
-        	  if(scope.signUpCredentials.userName){
-        		  rootScope.emptySignUpCredentials  = false;
-	        	  scope.isProcessing  = true;
-	        	  rootScope.isRegistrationSuccess = false;
-	        	  rootScope.isRegistrationFailure = false;
-	        	  scope.signUpCredentials.returnUrl = scope.returnUrl+"/"+scope.signUpCredentials.userName+"/";
-	        	  
-	        	  authenticationService.authenticateWithUsernamePassword(scope.signUpCredentials);
-	        	  
-	        	  rootScope.registrationPopUp = function(registationData){
-	        		  
-	        		  if(registationData == "success"){
-			        		  scope.isProcessing  = false;
-			        		  rootScope.isRegistrationSuccess = true;
-				        		 /*modal.open({
-						        			 templateUrl: 'successpopup.html',
-						        			 controller: SuccessPopupController,
-						        			 resolve:{}
-				        		 			});*/
-	        		  }
-	        		  else{
-	        			  scope.isProcessing  = false;
-	        			  rootScope.isRegistrationFailure = true;
-	        			  /*modal.open({
-			        			 templateUrl: 'alredyexistpopup.html',
-			        			 controller: AlreadyExistPopupController,
-			        			 resolve:{}
-	     		 			});*/
-	        		  }
-	        	  };
-        	  }else{
-        		  rootScope.emptySignUpCredentials  = true;
-        	  }
         	  
+        	  rootScope.signupErrorMsgs = [];rootScope.loginErrorMsgs = [];rootScope.infoMsgs = [];
+        	  
+        	  if(rootScope.signUpCredentials.userName){
+        		  rootScope.signUpCredentials.returnUrl = scope.returnURL+"/"+rootScope.signUpCredentials.userName+"/";
+	        	  
+	        	  authenticationService.authenticateWithUsernamePassword(function(data){
+	        		  
+	        		  scope.isProcessing  = true;
+	    		  	 RequestSender.registrationResource.save(rootScope.signUpCredentials,function(successData){
+	        			  scope.isProcessing  = false;
+	        			  rootScope.signUpCredentials = {};
+	        			  rootScope.infoMsgs.push({
+							  						'image' : 'info-icon.png',
+							  						'names' : [{'name' : 'title.thankyou'},
+							  						           {'name' : 'title.conformation.registration'},
+	        		  										   {'name' : 'title.conformation.activation.link'}]
+						  });
+			          },function(errorData){
+			        	  scope.isProcessing  = false;
+			        	  rootScope.infoMsgs.push({
+			        		  						'image' : 'warning-icon.png',
+			        		  						'names' : [{'name' : 'title.conformation.alreadyregistration'},
+			        		  						           {'name' : 'title.login.msg'}]
+			        	  });
+			          });
+	    		  });
+        	  }else{
+				  rootScope.signupErrorMsgs.push({"name":'title.fill.emailid'});
+        	  }
           };
           
           $('#emailId').keypress(function(e) {
@@ -78,7 +51,13 @@
            });
     }
   });
-  selfcare.ng.application.controller('SignUpFormController', ['$scope','RequestSender','$modal','HttpService','webStorage','AuthenticationService','$rootScope','SessionManager', selfcare.controllers.SignUpFormController]).run(function($log) {
+  selfcare.ng.application.controller('SignUpFormController', [
+                                                              '$scope',
+                                                              'RequestSender',
+                                                              'HttpService',
+                                                              '$rootScope',
+                                                              'AuthenticationService',
+                                                              selfcare.controllers.SignUpFormController]).run(function($log) {
       $log.info("SignUpFormController initialized");
   });
 }(selfcare.controllers || {}));
