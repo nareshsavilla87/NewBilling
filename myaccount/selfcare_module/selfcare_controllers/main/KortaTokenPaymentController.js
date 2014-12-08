@@ -1,37 +1,32 @@
 (function(selfcare_module) {
 	selfcare.controllers = _.extend(selfcare_module, {
-		KortaTokenPaymentController: function(scope, RequestSender,routeParams, location, http, dateFilter,webStorage) {
+		KortaTokenPaymentController: function(scope, RequestSender,routeParams, location, http, dateFilter,webStorage,localStorageService) {
 		  
 		  scope.formData = {}; 
 		  var additionalPlanFormData = {};
+		  var additionalFormData = {};
 		  var renewalOrderFormData = {};
 		  var clientData = {};
-		  
+
 		  //values getting form constants.js file
-		  scope.kortaMerchantId = selfcare.models.kortaMerchantId;
-		  scope.kortaTerminalId = selfcare.models.kortaTerminalId;
 		  scope.kortaEncriptionKey = selfcare.models.kortaEncriptionKey;
-		  scope.kortaSecretCode = selfcare.models.kortaSecretCode;
 		  scope.kortaTestServer = selfcare.models.kortaTestServer;
 		  scope.kortaAmountField = selfcare.models.kortaAmountField;
 		  scope.kortaclientId = selfcare.models.kortaclientId;
-		 
+		  scope.kortaPaymentMethod = selfcare.models.kortaPaymentMethod;
+		  scope.kortaTokenValue = selfcare.models.kortaTokenValue;
 		  
-		  if(webStorage.get('additionalPlanFormData')){
-			  additionalPlanFormData = webStorage.get('additionalPlanFormData');
-			  scope.formData.amount = additionalPlanFormData.planAmount;
-			  console.log(additionalPlanFormData);
-		  }else if(webStorage.get("renewalOrderFormData")){
-			  renewalOrderFormData = webStorage.get('renewalOrderFormData');
-			  scope.formData.amount = renewalOrderFormData.planAmount;
-			  console.log(renewalOrderFormData);
-		  }else if(webStorage.get("eventData")){
+		  additionalFormData = webStorage.get('additionalPlanFormData') || webStorage.get("renewalOrderFormData") || "";
+		  scope.formData.amount = additionalFormData.planAmount;
+		  scope.formData.description = additionalFormData.planName;
+		  scope.kortaMerchantId = additionalFormData.value.merchantId;
+		  scope.kortaTerminalId = additionalFormData.value.terminalId;
+		 
+		  if(webStorage.get("eventData")){
 			 var  VODTotalAmount = webStorage.get('VODTotalAmount');
 			  scope.formData.amount = VODTotalAmount;
-			  console.log(webStorage.get("eventData"));
 		  }
-		   clientData = webStorage.get('selfcareUserData');
-		   
+		  clientData = webStorage.get('selfcareUserData') || "";
 		   scope.clientId = clientData.id;
 		  
 		  RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
@@ -47,54 +42,67 @@
 			  scope.formData.city = clientData.city;
 			  scope.formData.country = clientData.country;
 			  scope.formData.mobileNo = clientData.phone;
-			  scope.formData.description = scope.formData.address+","+scope.formData.city;
 			  scope.formData.token = CryptoJS.AES.decrypt(token, scope.kortaEncriptionKey).toString(CryptoJS.enc.Utf8);
 		  });
 		  
-		  scope.formData.terms = 'N';
+		  scope.formData.terms = 'N'; 
+		  scope.doAction = 'RECCURING'; 
 		  
 		  scope.TermsAndCondition = function(data) {
 				scope.formData.terms = data;
 		   };
-		   
-		   scope.previousPage = function(){
-		    	  window.history.go(-1);
-		    };
 		  
-		  //scope.langs = [];
-		 // scope.langs = selfcare.models.Langs;
-		 // scope.formData.optlang = scope.langs[0].code;
-		  scope.formData.optlang = 'en';
+		    var temp = localStorageService.get('Language')||"";
+			   
+			scope.formData.optlang = temp.code || selfcare.models.locale;
 		  
-		  scope.formData.currency = 'ISK';
-		  
-		  //scope.currencydatas = [];
-		 /* RequestSender.currencyTemplateResource.get(function(data) {
-	            scope.currencydatas = data.currencydata.currencyOptions;
-	            		
-	        });	*/	
-		  
-		  scope.previousPage = function(){
-	    	  window.history.go(-1);
-	      };
-	      
+			scope.formData.currency = selfcare.models.kortaCurrencyType;
 		  
 		  scope.submitFun = function(){
-			  //  110.00ISK818531826460AshokReddy//1/thor0009xxxxxxxxsecretcodexxxxxxxxxxxxx
 			  
-			  var encryptData = '{"'+scope.kortaAmountField+'":'+scope.formData.amount+',"'+scope.kortaclientId+'":'+scope.clientId+'}';
+			  
+			  var encryptData = '{"'+scope.kortaAmountField+'":'+scope.formData.amount+
+				',"'+scope.kortaPaymentMethod+'":"'+scope.doAction+'","'+scope.kortaTokenValue+'":"'+scope.formData.token+
+						'","'+scope.kortaclientId+'":'+scope.clientId+'}';
 			  var encryptString = encodeURIComponent(encryptData);
 			  
 			  scope.encryptedString = CryptoJS.AES.encrypt(encryptString, scope.kortaEncriptionKey).toString();
+			  
 			  scope.downloadurl = selfcare.models.additionalKortaUrl+"/"+routeParams.planId+"/"+routeParams.clientId+"?encryptedKey="+scope.encryptedString+"&";
 			  
+<<<<<<< HEAD
 			  scope.formData.description = encodeURIComponent(scope.formData.description);
 			  var md5data = scope.formData.amount+scope.formData.currency+scope.kortaMerchantId+scope.kortaTerminalId+scope.formData.description+"//1"+"/"+scope.formData.token + scope.kortaSecretCode +scope.kortaTestServer;			 
 			  scope.formData.md5value=md5(md5data);
+=======
+			  if(scope.kortaTestServer == 'TEST'){
+				  scope.md5data = scope.formData.amount + scope.formData.currency + scope.kortaMerchantId
+				  + scope.kortaTerminalId + scope.formData.description + "//1/" 
+				  +scope.formData.token + additionalFormData.value.secretCode +scope.kortaTestServer;
+			  }else if(scope.kortaTestServer == 'LIVE'){
+				  scope.md5data = scope.formData.amount + scope.formData.currency + scope.kortaMerchantId
+				  + scope.kortaTerminalId + scope.formData.description + "//1/" 
+				  +scope.formData.token + additionalFormData.value.secretCode;
+			  }else{
+				  alert("Please Configure the Server Type Properly. Either 'TEST' or 'LIVE'");
+				  location.path('/profile');
+			  }
+			  scope.formData.md5value=md5(scope.md5data);
+			  
+>>>>>>> upstream/master
 		  };
     }
   });
-selfcare.ng.application.controller('KortaTokenPaymentController', ['$scope', 'RequestSender','$routeParams', '$location', '$http', 'dateFilter','webStorage', selfcare.controllers.KortaTokenPaymentController]).run(function($log) {
+selfcare.ng.application.controller('KortaTokenPaymentController', [
+                                                                   '$scope', 
+                                                                   'RequestSender',
+                                                                   '$routeParams', 
+                                                                   '$location', 
+                                                                   '$http', 
+                                                                   'dateFilter',
+                                                                   'webStorage', 
+                                                                   'localStorageService', 
+                                                                   selfcare.controllers.KortaTokenPaymentController]).run(function($log) {
     $log.info("KortaTokenPaymentController initialized");
   });
 }(selfcare.controllers || {}));

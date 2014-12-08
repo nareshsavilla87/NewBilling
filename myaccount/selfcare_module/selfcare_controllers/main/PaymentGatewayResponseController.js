@@ -1,5 +1,6 @@
 (function(selfcare_module) {
 	selfcare.controllers = _.extend(selfcare_module, {
+<<<<<<< HEAD
 		PaymentGatewayResponseController: function(scope, rootScope,RequestSender, location, http, dateFilter,webStorage,httpService) {
  
     		scope.formData = {};
@@ -99,3 +100,24 @@
     });
 }(selfcare.controllers || {}));
 
+=======
+		PaymentGatewayResponseController: function(scope, webStorage) {
+ 
+    		scope.formData = {};
+    		
+    		var responseData = webStorage.get("paymentgatewayresponse");
+		     if(responseData){
+		    	 scope.formData = responseData;
+		     }
+        	
+        }
+    });
+	selfcare.ng.application.controller('PaymentGatewayResponseController', [
+	                                                                        '$scope', 
+	                                                                        'webStorage',
+	                                                                        selfcare.controllers.PaymentGatewayResponseController])
+.run(function($log) {
+		$log.info("PaymentGatewayResponseController initialized");
+    });
+}(selfcare.controllers || {}));
+>>>>>>> upstream/master

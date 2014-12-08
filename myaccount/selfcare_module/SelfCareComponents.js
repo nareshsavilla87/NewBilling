@@ -5,10 +5,7 @@ define(['underscore', 'selfcare'], function() {
 							  'LoggedInUser',
 							  'roleMap',
 							  'Langs',
-							  'paypalUser',
-						      'paypalUser',
 						      'returnURL',
-						      'dalpayURL',
 						      'autherization',
 						      'constants'
 				          ],
@@ -27,18 +24,14 @@ define(['underscore', 'selfcare'], function() {
 						      'main/SignInFormController',
 						      'main/SignUpFormController',
 						      'main/ActivateUserController',
-						      'main/ActiveClientPreviewScreenController',
 						      'main/ProfileController',
-						      'main/OrdersController',
 						      'main/StatementsController',
-						      'main/PaymentsController',
 						      'main/TicketsController',
 						      'main/CreateTicketController',
 						      'main/ChangePasswordController',
 						      'main/AdditionalOrdersController',
 						      'main/AdditionalOrdersPreviewScreenController',
 						      'main/EventDetailsPreviewScreenController',
-						      'main/HomeController',
 						      'main/VODEventsController',
 						      'main/ViewOrderController',
 						      'main/ChangeOrderController',
@@ -51,20 +44,20 @@ define(['underscore', 'selfcare'], function() {
 						      'main/KortaTokenPaymentSuccessController',
 						      'main/ChangeKortaTokenPaymentController',
 						      'main/UserSettingController',
+						      'main/ViewStatementController',
 						      'main/GlobalPaySuccessController',
 						      'main/GlobalPayController',
 						      'main/PaymentGatewayResponseController'
-						      
 					      ],
 					      
     selfcare_filters:    [
                        	      'DateFormat',
-                       	      'StatusLookup'
+                       	      'StatusLookup',
+                       	      'ConfigLookup'
                          ],
                        
     selfcare_directives: [
 						      'LateValidateDirective',
-						      'ScrollbarTopDirective',
 						      'NgAutoFocusFunDirective',
 						      'OnBlurDirective'
 					     ]

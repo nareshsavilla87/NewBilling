@@ -5,10 +5,6 @@
     		scope.formData = {};
     		scope.paymentFormData = {};
     		scope.planFormData = {};
-    		scope.PaymentMethod = {};
-    		scope.additionalPlanFormData = {};
-    		scope.renewalOrderFormData = {};
-    		scope.eventData = {};
     		var kortaEncriptionKey = selfcare.models.kortaEncriptionKey;
         	
     		var encryptedKey =location.search().encryptedKey;	
@@ -36,14 +32,9 @@
         	
         	var downloadmd5String = md5(StringData);
         	
-        	/*if(webStorage.get("planFormData")){
-        		scope.planFormData = webStorage.get("planFormData");
-        	 	console.log(webStorage.get("planFormData"));
-        	 	scope.pathUrl = "/additionalorderspreviewscreen/"++"/"+scope.formData.clientId;
-    		}*/
-        	
         	if(downloadmd5String == downloadmd5){
         		
+<<<<<<< HEAD
         		//scope.formData.reference = reference;
         		scope.paymentFormData.transactionId = reference;
         		scope.paymentFormData.source = 'korta';
@@ -86,6 +77,16 @@
 	        		    });
     	  			}
     	  			
+=======
+        		scope.formData.reference = reference;
+        	
+    	  			if(scope.PaymentMethod == "STNOCAP"){	
+	           			 RequestSender.updateKortaToken.update({clientId : scope.formData.clientId},{'kortaToken': scope.kortaToken},function(data){
+	           				rootScope.isActiveScreenPage= false;
+	   						 location.path('/profile');
+	   					 });
+    	  	        }
+>>>>>>> upstream/master
            			
         	}else{
         		alert("calculate md5 String Value : "+ downloadmd5String+",downloadmd5 : "+ downloadmd5);

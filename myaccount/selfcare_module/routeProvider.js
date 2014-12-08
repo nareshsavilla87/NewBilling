@@ -2,14 +2,8 @@
   var defineRouteProvider = function($routeProvider, $locationProvider) {
     $routeProvider
     
-    .when('/home', {
-    	templateUrl: 'selfcare_module/views/clients/home.html'
-    })
     .when('/active/:mailId/:registrationKey', {
         templateUrl: 'selfcare_module/views/clients/activateuser.html'
-    })
-    .when('/activeclientpreviewscreen', {
-        templateUrl: 'selfcare_module/views/clients/activeclientpreviewscreen.html'
     })
     .when('/additionalorderspreviewscreen/:orderId/:clientId', {
     	templateUrl: 'selfcare_module/views/clients/additionalorderspreviewscreen.html'
@@ -20,14 +14,8 @@
     .when('/profile', {
         templateUrl: 'selfcare_module/views/clients/profile.html'
     })
-    .when('/orders', {
-        templateUrl: 'selfcare_module/views/clients/orders.html'
-    })
     .when('/statements', {
         templateUrl: 'selfcare_module/views/clients/statements.html'
-    })
-    .when('/payments', {
-        templateUrl: 'selfcare_module/views/clients/payments.html'
     })
     .when('/tickets', {
         templateUrl: 'selfcare_module/views/clients/tickets.html'
@@ -77,7 +65,10 @@
     .when('/usersetting',{
     	templateUrl: 'selfcare_module/views/clients/usersettings.html'
     })
-    .when('/obsglobalpay',{
+    .when('/viewstatement/:billId',{
+    	templateUrl: 'selfcare_module/views/clients/viewstatement.html'
+    })
+    .when('/obsglobalpay/:planId/:clientId',{
     	templateUrl: 'selfcare_module/views/globalpay.html'
     })
     .when('/globalpayIntegration/:clientId/:amount',{
@@ -85,8 +76,14 @@
     })
     .when('/paymentgatewayresponse',{
     	templateUrl: 'selfcare_module/views/paymentgatewayresponse.html'
+<<<<<<< HEAD
+=======
+    })
+    .when('/termsandconditionsonlinepayment',{
+    	templateUrl: 'selfcare_module/views/termsandConditionsforOnlinePayment.html'
+>>>>>>> upstream/master
     });
-    
+       
     $locationProvider.html5Mode(false);
   };
   selfcare.ng.application.config(defineRouteProvider).run(function($log) {
