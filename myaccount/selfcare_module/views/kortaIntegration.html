@@ -1,9 +1,9 @@
 <!-- <div  action="https://netgreidslur.korta.is/testing/"> -->
 <div>
-	<ul class="breadcrumb">
+	<!-- <ul class="breadcrumb">
 			<li class="active">{{'label.add.kota.Info' | translate}}</li>
- 	</ul>
- <form name="kortaInfoForm" novalidate="" action="https://netgreidslur.korta.is/testing/" method="post" class="form-horizontal well" ng-controller="KortaController">
+ 	</ul> -->
+ <form name="kortaInfoForm" novalidate data-ng-hide="true" action="https://netgreidslur.korta.is/testing/" method="post" class="form-horizontal well" data-ng-controller="KortaController">
 <input name="amount" type="hidden" value="{{formData.amount}}">
 <input name="currency" type="hidden" value="{{formData.currency}}">
 <input name="merchant" type="hidden" value="{{kortaMerchantId}}">
@@ -30,7 +30,7 @@
 <input type="hidden" name="refermethod" value="REDIRECT">
 <input type="hidden" name="refertarget" value="_top"> 
 
-		<fieldset>
+		<!-- <fieldset>
 			<legend>{{'label.add.kota.Info' | translate}}</legend>
 			<div class="control-group">
        			 <label class="control-label">{{ 'label.amount' | translate}}<span class="required">*</span></label>
@@ -62,6 +62,6 @@
 		   <div class="offset3">
 		  	 	<a id="cancel" ng-click="previousPage()" class="btn">Cancel</a>
      	       <button id="submit" type="submit" ng-click="submitFun()" ng-disabled="formData.terms == 'N'" class="btn btn-primary">Submit</button>
-          </div>
+          </div> -->
 </form>
 </div>

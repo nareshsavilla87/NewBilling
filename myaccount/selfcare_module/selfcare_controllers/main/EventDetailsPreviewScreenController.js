@@ -6,20 +6,16 @@
 			 scope.formData = {};
 			 scope.eventFormData = [];
 			 var clientTotalData = webStorage.get('clientTotalData');
-			 console.log(clientTotalData);
 			 if(clientTotalData){
 				 scope.clientId = clientTotalData.clientId;
 			 }
 			 if(webStorage.get('eventData')){
 				 scope.mediaDatas = webStorage.get('eventData');
 			 }
-			 console.log(webStorage.get("eventData"));
 			 
 			 if(webStorage.get('hwSerialNumber')){
 				 scope.hwSerialNumber = webStorage.get('hwSerialNumber');
 			 }
-			 console.log(webStorage.get("hwSerialNumber"));
-			 
 			 
 			 scope.eventOneByOneFun = function(val){
 				 RequestSender.eventsResource.save(scope.eventFormData[val],function(data){
@@ -47,7 +43,6 @@
 			 var reqDate = dateFilter(new Date(),'dd MMMM yyyy');
 			 for(var i in scope.mediaDatas) {
 				 if(scope.mediaDatas[i].kortaToken){
-					 console.log(scope.mediaDatas[i].kortaToken);
 					 scope.formData.kortaToken = scope.mediaDatas[i].kortaToken;
 				 }else{
 						 scope.eventFormData[i] = {

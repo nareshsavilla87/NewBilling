@@ -26,12 +26,16 @@
 		  };
 		  scope.submit = function(){
 			  if(scope.retype_pwd_valid == false){
+				  rootScope.infoMsgs  =[];
 				  scope.formData.password = scope.pwdData.newPassword;
 				  scope.formData.uniqueReference = scope.email;
 				  RequestSender.changePwdResource.update(scope.formData,function(data){
 					  rootScope.isChangePassword = true;
 					  rootScope.currentSession = sessionManager.clear();
-			    	 // location.path('/').replace;
+					  rootScope.infoMsgs.push({
+						  						'image' : 'info-icon.png',
+						  						'names' : [{'name' : 'title.password.changed'}]
+					   });
 					  location.replace(selfcareMainPageURL);
 				  });
 			  }

@@ -5,9 +5,11 @@
       this.paginate = function(fetchFunction, pageSize) {
               var paginator = {
               hasNextVar: false,
+              count : 0,
               next: function() {
                 if (this.hasNextVar) {
                   this.currentOffset += pageSize+1;
+                  this.count += pageSize + 1;
                   this._load();
                 }
               },
@@ -31,8 +33,10 @@
                   fetchFunction(this.currentOffset, pageSize + 1, function(items) {
                   self.totalFilteredRecords = items.totalFilteredRecords;
                   self.currentPageItems = items.pageItems;
+                  self.count = self.count == 0 ? pageSize + 1 : self.count;
                   self.hasNextVar = (items.pageItems.length === pageSize + 1)&&
-                  					(!(self.totalCount == self.totalFilteredRecords));
+                  					(!(self.totalCount == self.totalFilteredRecords))&&
+                  					(!(self.count == self.totalFilteredRecords));
                   self.totalCount = 0;
               });
               },
@@ -48,6 +52,7 @@
               previous: function() {
               if(this.hasPrevious()) {
               this.currentOffset -= pageSize+1;
+              this.count -= pageSize + 1;
               this._load();
               }
               },
