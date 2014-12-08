@@ -1,17 +1,12 @@
 (function(selfcare_module) {
   selfcare.controllers = _.extend(selfcare_module, {
 	  ActivateUserController: function(scope,RequestSender,rootScope,routeParams,http,
-			  							webStorage,httpService,sessionManager,location,API_VERSION) {
-		 
-		  //clearing selfcare_sessionData 
-		  webStorage.remove('selfcare_sessionData');
-		  rootScope.isSignInProcess = false;
+			  							webStorage,httpService,sessionManager,location,API_VERSION,filter) {
 		  
 		//getting the mailId value form routeParams
 		  scope.existedEmail = routeParams.mailId;
 
 		//default variables for this controller
-		 // scope.isActive=false;
 		  scope.isAlreadyActive=false;
 		  scope.isRegPage = false;
 		  scope.cities = [];
@@ -23,60 +18,53 @@
 		  scope.formData = {};
 		  
 		//getting the key value form routeParams
-		  var actualKey = routeParams.registrationKey;
+		  var actualKey = routeParams.registrationKey || "";
 		  var afterSliceKey = actualKey.slice(0, 27);
 		  
 		  //adding jsondata for selfcare activation updation request
 		  scope.registrationKey = {'verificationKey' : afterSliceKey,
 		  	  						'uniqueReference' : scope.existedEmail};
 		  
-		  //sending obs authentication request through like username='billing' and passoword='password'  
-		  httpService.post("/obsplatform/api/v1/authentication?username="+selfcare.models.obs_username+"&password="+selfcare.models.obs_password)
-		  .success(function(data){
-		  	 httpService.setAuthorization(data.base64EncodedAuthenticationKey);
+		  authenticationService.authenticateWithUsernamePassword(function(data){
 		  	 	//sending selfcare activation updation request
 		  		RequestSender.registrationResource.update(scope.registrationKey,function(successData) {
 		  			scope.isRegPage=true;
 		  			rootScope.currentSession= {user :'selfcare'};
-	  				  if(scope.isRegPage == true){
 	  					  
 	  					  //getting list of city data
 	  					  RequestSender.addressTemplateResource.get(function(data) {
 	  						  scope.cities=data.cityData;
-	  					  });
 	  					  
 	  					//getting data from c_configuration for isRegister_plan and isisDeviceEnabled
 	  					  RequestSender.configurationResource.get(function(data){
+	  						scope.isConfigNationalId = filter('ConfigLookup')('nationalId');
 	  						  for(var i in data.globalConfiguration){
-	  							 if(data.globalConfiguration[i].name=="register-plan"){
+	  							 if(data.globalConfiguration[i].name==selfcare.models.registerPlan){
+	  								 
 	  								  scope.isRegisteredPlan = data.globalConfiguration[i].enabled;
-	  						      }
-	  							  if(data.globalConfiguration[i].name=="registration-requires-device"){
+	  								  
+	  						      }else if(data.globalConfiguration[i].name==selfcare.models.registrationRequiresDevice){
+	  						    	  
 	  								  scope.isDeviceEnabled = data.globalConfiguration[i].enabled;
-	  							  }
-	  							  if(data.globalConfiguration[i].name=="device-agrement-type"){
-	  								  if(data.globalConfiguration[i].value == 'SALE')
-	  									  scope.isCPE_TYPESale = true;
-	  								  else if(data.globalConfiguration[i].value == 'OWN')
-	  									  scope.isCPE_TYPEOwn = true;
-	  								  else{
-	  									  scope.isCPE_TYPEOwn = false;
-	  									  scope.isCPE_TYPESale = false;
-	  								  }
+	  								  
+	  							  }else if(data.globalConfiguration[i].name==selfcare.models.deviceAgrementType){
+	  								  
+	  								 (data.globalConfiguration[i].value == 'SALE') ?
+	  									  scope.isCPE_TYPESale = true:
+	  								  (data.globalConfiguration[i].value == 'OWN') ?
+	  									  scope.isCPE_TYPEOwn = true :
+	  									  (scope.isCPE_TYPEOwn = false,
+	  									  scope.isCPE_TYPESale = false);
 	  							  }
 	  						  }
 	  					  });
+	  					});
 	
-	  				  }
 		        },function(errorData){
 		      	  scope.isAlreadyActive=true;
 		      	  rootScope.currentSession= {user :'sefcare'};
 		        });
-		  })
-		  .error(function(errordata){
-			  alert('authentication failure');
 		  });
-		  
 		  
 		//national Id validation
 		      scope.nationalIdvalue = true;
@@ -85,85 +73,7 @@
 				 scope.nationalIdvalue = Kennitala.validate(id);
 				 }
 			 };
-		  /*scope.$watch(scope.formData.nationalId,
-	              function() {
-			  			if(scope.formData.nationalId){
-			  				if(scope.formData.nationalId.length == 10){
-			  					scope.submitFunAllow = true;
-			  				}
-			  				else{
-			  					scope.submitFunAllow = false;
-			  				}
-			  			}
-		  			}
-	      );
-		  
-			scope.nationalIdValidationFun =function(id){
-			if(id){
-				var nationalId = id;
-				var val = false;
-				  if(id[0] == 5 || id[0] == 6|| id[0] == 7){
-					  val = true;
-					  var fist = id[0];
-					  var last	= fist-4;
-					  console.log(last);
-					   nationalId = id.replace(id[0], last);
-					  console.log(nationalId[0]);
-				  }
-				 var patternCheck = nationalId.match(/(^(((0[1-9]|[12][0-8]|19)(0[1-9]|1[012]))|((29|30|31)(0[13578]|1[02]))|((29|30)(0[4,6,9]|11)))\d\d[-]?\d\d\d\d$)|(^2902(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)[-]?\d\d\d\d$)/);
-				 if(patternCheck){
-					 var sum = 0;
-					 if(val){
-						 if(nationalId[6]=='-'){
-							 sum = 3*(id[0])+2*(nationalId[1])+7*(nationalId[2])+6*(nationalId[3])+5*(nationalId[4])+4*(nationalId[5])+3*(nationalId[7])+2*(nationalId[8])
-						 }else{
-						   sum = 3*(id[0])+2*(nationalId[1])+7*(nationalId[2])+6*(nationalId[3])+5*(nationalId[4])+4*(nationalId[5])+3*(nationalId[6])+2*(nationalId[7])
-						 }
-					 }else{
-						 if(nationalId[6]=='-'){
-							 sum = 3*(nationalId[0])+2*(nationalId[1])+7*(nationalId[2])+6*(nationalId[3])+5*(nationalId[4])+4*(nationalId[5])+3*(nationalId[7])+2*(nationalId[8])
-						 }
-						 else{
-						    sum = 3*(nationalId[0])+2*(nationalId[1])+7*(nationalId[2])+6*(nationalId[3])+5*(nationalId[4])+4*(nationalId[5])+3*(nationalId[6])+2*(nationalId[7])
-						 }
-					 }
-					 var checksum = 11 - ((sum) % 11);
-					 console.log(checksum);
-					 if(nationalId[6]=='-'){
-						 if(checksum == nationalId[9]){
-							 console.log(checksum);
-								 if(nationalId[10] == 0 || nationalId[10] == 9){
-									 console.log(nationalId[10]);
-									 scope.regSuccessFormNationalIdErrorPattern = false;
-								 }
-								 else{
-									 scope.regSuccessFormNationalIdErrorPattern = true;
-								 }
-						 }else{
-							 scope.regSuccessFormNationalIdErrorPattern = true;
-						 }
-					 }else{
-						 if(checksum == nationalId[8]){
-							 console.log(checksum);
-								 if(nationalId[9] == 0 || nationalId[9] == 9){
-									 console.log(nationalId[9]);
-									 scope.regSuccessFormNationalIdErrorPattern = false;
-								 }
-								 else{
-									 scope.regSuccessFormNationalIdErrorPattern = true;
-								 }
-						 }else{
-							 scope.regSuccessFormNationalIdErrorPattern = true;
-						 }
-					 }
-				 }
-				 else{
-					 console.log(patternCheck);
-					 scope.regSuccessFormNationalIdErrorPattern = true;
-				 }
-				}
-			 };*/
-		  
+		  		  
 		 //function called when entering the device name 
 		  
 		  scope.getDataForMacId = function(query){
@@ -184,7 +94,6 @@
 							  str +=query[val];
 					  }
 				  }
-				  console.log(str);
 				  RequestSender.gettingSerialNumbers.query({query:query},function(data){
 					  itemDetails = {};
 					  itemDetails = data;
@@ -228,7 +137,6 @@
 							  str +=query[val];
 					  }
 				  }
-				  console.log(str);
 				  RequestSender.gettingSerialNumbers.query({query:query},function(data){
 					  itemDetails = {};
 					  itemDetails = data;
@@ -252,65 +160,8 @@
 				  delete scope.formData.deviceNo;
 			  }
 		  };
-			  	        	/*return http.get(rootScope.hostUrl+ API_VERSION+'/itemdetails/searchserialnum', {
-			  	        	      params: {
-			  	        	    	  query: query
-			  	        	      }
-			  	        	    }).then(function(res){
-			  	        	    	itemDetails = [];
-			  	        	      for(var i in res.data){
-			  	        	    	  itemDetails.push(res.data[i]);
-			  	        	    	  if(i == 7)
-			  	        	    		  break;
-			  	        	      }
-			  	        	      return itemDetails;
-			  	        	    });*/
 			              
 		
-		  /*//setting the value of serial Number based on mac id 
-		 scope.$watch(function () {
-             return scope.formData.deviceNo;
-         }, function () {
-        	 if(scope.isDisabledMacId != true){
-	             if(scope.formData.deviceNo){
-	            	 scope.isDisabledSerialNumber = true;
-	            	 for(var i in itemDetails){
-	            		 if(scope.formData.deviceNo == itemDetails[i].serialNumber){
-	            			 scope.provisioningSerialNumber =  itemDetails[i].provisioningSerialNumber;
-	            			 break;
-	            		 }else{
-	            			 delete scope.provisioningSerialNumber;
-	            		 }
-	            	 }
-	             }else{
-	            	 scope.isDisabledSerialNumber = false;
-	            	 delete scope.provisioningSerialNumber;
-	             }
-        	 }
-         });
-		 
-		//setting the value of mac id based on serial Number 
-		 scope.$watch(function () {
-             return scope.provisioningSerialNumber;
-         }, function () {
-        	 if(scope.isDisabledSerialNumber != true){
-	             if(scope.provisioningSerialNumber){
-	            	 scope.isDisabledMacId = true;
-	            	 for(var i in itemDetails){
-	            		 if(scope.provisioningSerialNumber == itemDetails[i].provisioningSerialNumber){
-	            			 	scope.formData.deviceNo =  itemDetails[i].serialNumber;
-	            			 	break;
-	            		 }else{
-	            			 delete scope.formData.deviceNo;
-	            		 }
-	            	 }
-	             }else{
-	            	 scope.isDisabledMacId = false;
-	            	 delete scope.formData.deviceNo;
-	             }
-        	 }
-         });*/
-		  
 		  //function called when  clicking on Sinin link
 		  scope.goToSignInPageFun = function(){
 			  	rootScope.currentSession = sessionManager.clear();
@@ -331,47 +182,7 @@
 				  });
 			  };
 		  
-		  //function called when  clicking on Register link
-		 /* scope.registrationLinkPageFun =function(){
-			  scope.isActive=false;
-			  scope.isAlreadyActive=false;
-			  scope.isRegPage = true;
-			  
-			  if(scope.isRegPage == true){
-				  
-				  //getting list of city data
-				  RequestSender.addressTemplateResource.get(function(data) {
-					  scope.cities=data.cityData;
-				  });
-				  
-				  //getting state and country while changing the city
-				  scope.getStateAndCountry=function(city){
-					  scope.formData.zipcode = city;
-					//sending request for getting state and country while changing the city
-					  RequestSender.addressTemplateResource.get({city :city}, function(data) {
-						  scope.formData.state = data.state;
-						  scope.formData.country = data.country;
-					  },function(errorData) {
-						  delete scope.formData.state ;
-						  delete scope.formData.country;
-					  });
-				  };
-				  
-				//getting data from c_configuration for isRegister_plan and isisDeviceEnabled
-				  RequestSender.configurationResource.get(function(data){
-					  for(var i in data.globalConfiguration){
-						 if(data.globalConfiguration[i].name=="Register_plan"){
-							  scope.isRegisteredPlan = data.globalConfiguration[i].enabled;
-					      }
-						  if(data.globalConfiguration[i].name=="Registration_requires_device"){
-							  scope.isDeviceEnabled = data.globalConfiguration[i].enabled;
-						  }
-					  }
-				  });
-
-			  }
-			};*/
-			
+		  		
 			//function called when clicking on Register button in Registration Page
 			scope.registerBtnFun =function(){
 				
@@ -395,13 +206,19 @@
 					 //scope.clientData.fullname = scope.formData.fullName;
 					 scope.clientData.city = scope.formData.city;
 					 scope.clientData.phone = parseInt(scope.formData.mobileNo); 
-					 scope.clientData.email = scope.existedEmail; 
+					 scope.clientData.email = scope.existedEmail;
 					 
+					 rootScope.infoMsgs = [];
 					 RequestSender.authenticationClientResource.save(scope.clientData,function(data){
 		  				 rootScope.currentSession = sessionManager.clear();
 		  				rootScope.isActiveScreenPage= false;
 		  				 location.path('/').replace();
-		  				 rootScope.activetedClientPopup();
+		  				 rootScope.infoMsgs.push({
+							  						'image' : 'info-icon.png',
+							  						'names' : [{'name' : 'title.account.activated'},
+							  						           {'name' : 'title.account.activated.userpwd'},
+															   {'name' : 'title.login.msg'}]
+						 });
 		  			 });
 					
 			};
@@ -409,7 +226,7 @@
   });
   selfcare.ng.application.controller('ActivateUserController', 
  ['$scope','RequestSender','$rootScope','$routeParams','$http','webStorage','HttpService',
-  'SessionManager','$location','API_VERSION',selfcare.controllers.ActivateUserController]).run(function($log) {
+  'SessionManager','$location','API_VERSION','$filter',selfcare.controllers.ActivateUserController]).run(function($log) {
       $log.info("ActivateUserController initialized");
   });
 }(selfcare.controllers || {}));

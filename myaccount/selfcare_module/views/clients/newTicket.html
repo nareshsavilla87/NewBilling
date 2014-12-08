@@ -64,7 +64,7 @@
 						<label class="control-label" for="Category">{{'label.ticket.category' | translate }}<span class="required">*</span></label>
 						<div class="controls">
 							<select name="category" ng-model="formData.problemCode"
-								ng-options="problemsData.problemCode as problemsData.problemDescription for problemsData in problemsDatas"
+								ng-options="problemsData.id as problemsData.mCodeValue for problemsData in problemsDatas"
 								value="{{problemsData.problemCode}}" required late-Validate></select>
 						</div>
 					</div>

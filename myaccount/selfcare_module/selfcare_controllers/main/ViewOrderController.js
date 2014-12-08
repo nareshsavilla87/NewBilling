@@ -42,7 +42,6 @@
         	        RequestSender.bookOrderResource.update({'orderId': scope.orderDataId},$scope.formData,function(data){
         	        	$modalInstance.close('delete');
         	        	route.reload();
-        			    console.log(data.resourceId);
         	        },function(orderErrorData){
         	        	 $scope.flagOrderDisconnect=false;
         	        	$scope.orderError = orderErrorData.data.errors[0].userMessageGlobalisationCode;
