@@ -1,30 +1,24 @@
 (function(selfcare_module) {
    selfcare.services = _.extend(selfcare_module, {
-    AuthenticationService: function(scope, httpService,webStorage) {
+    AuthenticationService: function(httpService,API_VERSION) {
     	
-    	scope.singUpFormData= {};
-    //authentication success function
-    	var onSuccess = function(data){
-    			scope.$broadcast("UserAuthenticationSuccessEvent", data,scope.singUpFormData);
-    			webStorage.add("userData",data);
-    			console.log("success");
-    	};
-    	var onFailure = function(data){
-    	
-    		console.log("failure");
-    	};
-    	
-      var apiVer = '/obsplatform/api/v1';
-    
-      this.authenticateWithUsernamePassword = function(formData) {
-    	  scope.singUpFormData = formData;
-	        httpService.post(apiVer + "/authentication?username="+selfcare.models.obs_username+"&password="+selfcare.models.obs_password)
-	          .success(onSuccess)
-	          .error(onFailure);
+      this.authenticateWithUsernamePassword = function(handler) {
+	        httpService.post(API_VERSION + "/authentication?username="+selfcare.models.obs_username+"&password="+selfcare.models.obs_password)
+	          .success(function(data){
+	        	  httpService.setAuthorization(data.base64EncodedAuthenticationKey);
+	        	  handler(data);
+	          })
+	          .error(function(data){
+	        	  
+	      		alert("Main Role Authentication Failure");
+	      	});
       };
     }
   });
-   selfcare.ng.services.service('AuthenticationService', ['$rootScope', 'HttpService','webStorage', selfcare.services.AuthenticationService]).run(function($log) {
+   selfcare.ng.services.service('AuthenticationService', [
+                                                          'HttpService',
+                                                          'API_VERSION', 
+                                                          selfcare.services.AuthenticationService]).run(function($log) {
 	    $log.info("AuthenticationService initialized");
    });
 }(selfcare.services || {}));
