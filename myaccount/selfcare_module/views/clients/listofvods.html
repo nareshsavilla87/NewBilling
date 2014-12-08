@@ -1,41 +1,21 @@
-<div ng-controller="ListOfVODSController">
+<div data-ng-controller="ListOfVODSController">
 	 <div class="loading-widget-div" data-ng-show="blockUI">
         <div id="circularG">
-            <div id="circularG_1" class="circularG">
-            </div>
-            <div id="circularG_2" class="circularG">
-            </div>
-            <div id="circularG_3" class="circularG">
-            </div>
-            <div id="circularG_4" class="circularG">
-            </div>
-            <div id="circularG_5" class="circularG">
-            </div>
-            <div id="circularG_6" class="circularG">
-            </div>
-            <div id="circularG_7" class="circularG">
-            </div>
-            <div id="circularG_8" class="circularG">
-            </div>
+        	<div id="circularG_1" class="circularG"></div><div id="circularG_2" class="circularG"></div>
+            <div id="circularG_3" class="circularG"></div><div id="circularG_4" class="circularG"></div>
+            <div id="circularG_5" class="circularG"></div><div id="circularG_6" class="circularG"></div>
+            <div id="circularG_7" class="circularG"></div><div id="circularG_8" class="circularG"></div>
         </div>
-
-      </div>      
-	
-	<div>
-	    <ul class="breadcrumb">
-	        <li class="active">{{'link.listofvods'|translate}}</li>
-	    </ul>
-    </div>
- 	<div class="row-fluid">
+     </div>     
+ 	<div class="row-fluid margintop5px">
  		<div class="pull-right">
 			<a href="#/vodevents" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'label.vod.add.event'|translate}}</a>
 		</div><br/>
-		    <input ng-model="filterText" type="text" ng-autofocus="true" class="span marginbottom0px" placeholder="{{'placeholder.filter.listofvods'|translate}}">
+		    <input data-ng-model="filterText" type="text" data-ng-autofocus="true" class="span marginbottom0px" placeholder="{{'placeholder.enter.text.search'|translate}}">
 		<br/>
 		<table class="table">
 	        <thead>
 	            <tr class="graybg">
-	                <th>{{'table.header.listvod.id'|translate}}</th>
 	                <th>{{'table.header.listvod.eventname'|translate}}</th>
 	                <th>{{'table.header.listvod.bookeddate'|translate}}</th>
 	                <th>{{'table.header.listvod.eventprice'|translate}}</th>
@@ -43,8 +23,7 @@
 	            </tr>
 	        </thead>
 	        <tbody>
-	            <tr class="pointer-main" ng-repeat="vodData in listOfVODSData  | filter:filterText" >
-	                <td class="pointer">{{vodData.id}}</td>
+	            <tr class="pointer-main" data-ng-repeat="vodData in listOfVODSData  | filter:filterText" >
 	                <td class="pointer">{{vodData.eventName}}</td>
 	                <td class="pointer">{{vodData.bookedDate | DateFormat}}</td>
 	                <td class="pointer">{{vodData.eventPrice}}</td>

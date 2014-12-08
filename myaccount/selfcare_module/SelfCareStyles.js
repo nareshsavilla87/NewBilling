@@ -5,14 +5,9 @@ define(['underscore'], function() {
           'bootswatch',
           'font-awesome.min',
           'app',
-          'nv.d3',
           'style',
           'bootstrap-timepicker',
           'jquery-ui',
-         // 'animate'
-          //'demo',
-         // 'style1',
-          //'animate-custom'
     ]
   };
 

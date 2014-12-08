@@ -1,8 +1,9 @@
 <div ng-controller="SmartSearchController" novalidate class="form-horizontal" >
    <br>
     <div class="control-group">
-    	<input type="radio" id="type" data-ng-click="" ng-model="formData.searchType" name="searchType" value="payments" style="text-align: left;">Payments &nbsp;&nbsp;&nbsp;
-    	<input type="radio" id="type" data-ng-click="getTicketValues()" ng-model="formData.searchType" value="tickets" name="searchType" style="text-align: left;">Tickets
+    	<input type="radio" id="type" data-ng-click="" ng-model="searchData.searchType" name="searchType" value="payments" style="text-align: left;">Payments &nbsp;&nbsp;&nbsp;
+    	<input type="radio" id="type" data-ng-click="getTicketValues()" ng-model="searchData.searchType" value="tickets" name="searchType" style="text-align: left;">Tickets &nbsp;&nbsp;&nbsp;
+    	<input type="radio" id="type" data-ng-click="getLeadValues()" ng-model="searchData.searchType" value="leads" name="searchType" style="text-align: left;">Leads
    	</div>
    	<div class="row-fluid">
    		<form ng-submit="searchTransaction()" >
@@ -14,7 +15,9 @@
         </form>
     </div>
    	
-    <div ng-show="formData.searchType == 'payments'" collapse="isCollapsed" class="blockoverlay" style="overflow-y: scroll;width:500px;">
+   	<!-- ****** This is for Payments ***** -->
+   	
+    <div ng-show="searchData.searchType == 'payments'" collapse="isCollapsed" class="blockoverlay" style="overflow-y: scroll;width:500px;">
         <br/><!-- The span is displaying the first line of the hiding div, making the first line of div as blank solved my problem -->
         <div >       
             <label>{{ 'label.fromdate' | translate }}</label>
@@ -25,7 +28,9 @@
         </div>
     </div>
     
-    <div ng-show="formData.searchType == 'tickets'" collapse="isCollapsed" class="blockoverlay  form-horizontal" style="overflow-y: scroll;width:700px;">
+    <!-- ****** This is for Tickets ***** -->
+    
+    <div ng-show="searchData.searchType == 'tickets'" collapse="isCollapsed" class="blockoverlay  form-horizontal" style="overflow-y: scroll;width:700px;">
         <br/><!-- The span is displaying the first line of the hiding div, making the first line of div as blank solved my problem -->
         <div>
           <table width="100%">
@@ -97,8 +102,72 @@
           <span><a ng-click="searchTransaction()" class="btn btn-primary control"><i class="icon-search icon-white"></i>Advance Search</a></span>       
         </div>
     </div>
-
-     <div ng-show="displayResults && formData.searchType == 'payments'" class="row-fluid">
+	
+	<!-- ******* This is for Payments ******** -->
+	
+	<div ng-show="searchData.searchType == 'leads'" collapse="isCollapsed" class="blockoverlay  form-horizontal" style="overflow-y: scroll;width:700px;">
+        <br/><!-- The span is displaying the first line of the hiding div, making the first line of div as blank solved my problem -->
+        <div>
+          <table width="100%">
+           <tr>
+             <td>
+		       <div class="control-group">
+				  <label class="control-label" for="emailId" style="text-align: left; width: 0;">EmailId:</label>
+					 <div class="controls" style="margin-left:23%">
+					     <input type="text" ng-model="formData.emailId">
+					 </div>
+				</div>
+			</td>
+			 <td>
+		       <div class="control-group">
+				  <label class="control-label" for="phone" style="text-align: left; width: 0;">Phone:</label>
+					 <div class="controls" style="margin-left:21%">
+					    <input type="text" ng-model="formData.phone">
+					 </div>
+				</div>
+			</td>
+           	</tr>
+           	 <tr>
+             <td>
+             	<div class="control-group">
+				  <label class="control-label" for="assignedTo" style="text-align: left; width: 0;">AssignedTo:</label>
+					 <div class="controls" style="margin-left:23%">
+					  <select ng-model="formData.assignedToForLeads" ng-options="usersData.id as usersData.userName for usersData in usersDatas">
+								 <option value="">None</option></select>
+					 </div>
+				</div>
+			</td>
+			 <td>
+		       <div class="control-group">
+				  <label class="control-label" for="user" style="text-align: left; width: 0;">User:</label>
+					 <div class="controls" style="margin-left:21%">
+					    <select ng-model="formData.user" ng-options="usersData.id as usersData.userName for usersData in usersDatas">
+								 <option value="">None</option></select>
+					 </div>
+				</div>
+			</td>
+           	</tr>
+           	 <tr>
+             <td>
+		       <div class="control-group">
+				  <label class="control-label" for="source" style="text-align: left; width: 0;">Source:</label>
+					 <div class="controls" style="margin-left:23%">
+					  <select ng-model="formData.source" ng-options="sourceOfPublicityData.mCodeValue as sourceOfPublicityData.mCodeValue for sourceOfPublicityData in sourceOfPublicityDatas">
+								 <option value="">None</option></select>
+					 </div>
+				</div>
+			</td>
+			 <td></td>
+           	</tr>
+          </table>
+          <span><a ng-click="searchTransaction()" class="btn btn-primary control"><i class="icon-search icon-white"></i>Advance Search</a></span>       
+        </div>
+    </div>
+	
+	
+	<!-- ******** Displaying results for PAYMENTS ******** -->
+	
+     <div ng-show="displayResults && searchData.searchType == 'payments'" class="row-fluid">
     	<table class="table">
             <thead>
                 <tr class="graybg">
@@ -127,7 +196,10 @@
             <li class="next" ><a ng-click="transactions.next()" href="" ng-disabled="!transactions.hasNext()">Next &rarr;</a></li>
         </ul>
     </div>
-     <div ng-show="displaySearchResults  && formData.searchType == 'tickets'" class="row-fluid">
+    
+    <!-- ********* Displaying Results for TICKETS ********* -->
+    
+     <div ng-show="displaySearchResults  && searchData.searchType == 'tickets'" class="row-fluid">
     	<table class="table">
             <thead>
                 <tr class="graybg">
@@ -155,4 +227,36 @@
             <li class="next" ><a ng-click="transactions.next()" href="" ng-disabled="!transactions.hasNext()">Next &rarr;</a></li>
         </ul>
     </div>
+    
+    <!-- ******** Displaying Results for LEADS ********* -->
+    
+    <div ng-show="displaySearchResultsForLeads  && searchData.searchType == 'leads'" class="row-fluid">
+    	<table class="table">
+            <thead>
+                <tr class="graybg">
+                
+                    <th>Date</th>
+                    <th>Client Name</th>
+                    <th>Account Number</th>
+                    <th>Status</th>
+                    <th>User</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="pointer-main" ng-repeat="transaction in searchDatas.currentPageItems">
+                    <td class="pointer" >{{transaction.transactionDate | DateFormat}}</td>
+                    <td class="pointer" >{{transaction.clientName}}</td>
+                    <td class="pointer" >{{transaction.accountNo}}</td>
+                    <td class="pointer" >{{transaction.status}}</td>
+                    <td class="pointer" >{{transaction.userName}}</td>
+                   
+                </tr>
+            </tbody>
+        </table>
+        <ul class="pager">
+            <li class="previous"><a ng-click="transactions.previous()" href="" ng-disabled="!transactions.hasPrevious()">&larr; Prev</a></li>
+            <li class="next" ><a ng-click="transactions.next()" href="" ng-disabled="!transactions.hasNext()">Next &rarr;</a></li>
+        </ul>
+    </div>
+    
 </div>
