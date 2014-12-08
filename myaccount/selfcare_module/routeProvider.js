@@ -82,6 +82,9 @@
     })
     .when('/globalpayIntegration/:clientId/:amount',{
     	templateUrl: 'selfcare_module/views/globalpayIntegration.html'
+    })
+    .when('/paymentgatewayresponse',{
+    	templateUrl: 'selfcare_module/views/paymentgatewayresponse.html'
     });
     
     $locationProvider.html5Mode(false);

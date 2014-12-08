@@ -1,6 +1,6 @@
 (function(selfcare_module) {
 	selfcare.controllers = _.extend(selfcare_module, {
-    	KortaSuccessController: function(scope, rootScope,RequestSender, location, http, dateFilter,webStorage,httpService) {
+		PaymentGatewayResponseController: function(scope, rootScope,RequestSender, location, http, dateFilter,webStorage,httpService) {
  
     		scope.formData = {};
     		scope.paymentFormData = {};
@@ -94,8 +94,8 @@
         	
         }
     });
-	selfcare.ng.application.controller('KortaSuccessController', ['$scope', '$rootScope','RequestSender', '$location', '$http', 'dateFilter','webStorage','HttpService', selfcare.controllers.KortaSuccessController]).run(function($log) {
-		$log.info("KortaSuccessController initialized");
+	selfcare.ng.application.controller('PaymentGatewayResponseController', ['$scope', '$rootScope','RequestSender', '$location', '$http', 'dateFilter','webStorage','HttpService', selfcare.controllers.PaymentGatewayResponseController]).run(function($log) {
+		$log.info("PaymentGatewayResponseController initialized");
     });
 }(selfcare.controllers || {}));
 

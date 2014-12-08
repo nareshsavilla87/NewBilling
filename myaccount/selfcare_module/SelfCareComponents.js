@@ -52,8 +52,9 @@ define(['underscore', 'selfcare'], function() {
 						      'main/ChangeKortaTokenPaymentController',
 						      'main/UserSettingController',
 						      'main/GlobalPaySuccessController',
-						      'main/GlobalPayController'
-
+						      'main/GlobalPayController',
+						      'main/PaymentGatewayResponseController'
+						      
 					      ],
 					      
     selfcare_filters:    [
