@@ -747,6 +747,7 @@
   "label.editprice":"Edit Price",
   "label.viewprice":"View Price",
   "label.existsprices":"Exists Prices",
+  "label.fieldserror":"Please add all fields",
   "dialog.price.title.message":"Delete Price",
   "validation.msg.price.chargeCode.cannot.be.blank":"Charge Code cannot be blank",
   "validation.msg.price.discountId.cannot.be.blank":"Please select discount",
