@@ -14,7 +14,7 @@
     		console.log("failure");
     	};
     	
-      var apiVer = '/obsplatform/api/v1';
+      var apiVer = 'https://saas.openbillingsystem.com/obsplatform/api/v1';
     
       this.authenticateWithUsernamePassword = function(formData) {
     	  scope.singUpFormData = formData;

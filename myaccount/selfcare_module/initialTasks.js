@@ -2,7 +2,7 @@
   var defineHeaders = function($httpProvider , $translateProvider) {
 
   	//Set headers
-    $httpProvider.defaults.headers.common['X-Obs-Platform-TenantId'] = 'default';
+    $httpProvider.defaults.headers.common['X-Obs-Platform-TenantId'] = 'gdh';
     $httpProvider.defaults.headers.common['Content-Type'] = 'application/json; charset=utf-8';
 
 

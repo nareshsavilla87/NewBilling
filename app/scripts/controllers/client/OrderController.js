@@ -31,6 +31,7 @@
          scope.image=clientData.image;
          
          webStorage.add("orderId",routeParams.id);
+         webStorage.add("chargeCode",routeParams.id);
          scope.PermissionService = PermissionService;
          scope.provisioningdatas =[];
       
@@ -47,7 +48,7 @@
             scope.formData.flag=data.flag;
             scope.orderServicesData=data.orderServices;
             scope.orderDiscountDatas=data.orderDiscountDatas;
-            webStorage.add("orderData", {groupName: data.orderData.groupName,orderNo:data.orderData.orderNo,planName: data.orderData.planCode });
+          
       
 	    if(data.orderData.isPrepaid == 'Y'){
             	scope.formData.isPrepaid="Pre Paid";
@@ -63,7 +64,13 @@
         	scope.isextensionEnable=true;
         else scope.isextensionEnable=false;
         
+        webStorage.add("orderData", {groupName: data.orderData.groupName,orderNo:data.orderData.orderNo,planName: data.orderData.planCode,
+        	chargeCode:scope.orderPriceDatas[0].billingFrequency,planId : data.orderData.pdid,startDate : data.orderData.startDate,
+        	endDate : data.orderData.endDate,billingCycle :scope.orderPriceDatas[0].billingCycle,contractPeriod :data.orderData.contractPeriod });
+        
         });
+        
+    
         
        if(PermissionService.showMenu('READ_ASSOCIATION')){ 
     	   resourceFactory.associationResource.getAssociation({clientId: routeParams.clientId,id:routeParams.id} , function(data) {
