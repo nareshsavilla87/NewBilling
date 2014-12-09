@@ -84,39 +84,26 @@
 	  	 <span style="font-size:20px;margin-right:210px;" class="pull-right">{{totalAmount}}</span><br/><br/>
 	   </div>
 		<h3 style="color:#0088cc;">{{'label.payment.gateway'|translate}}</h3><br/>
-	   <table style="margin-left:50px;">
+	   <table style="margin-left:15%;">
 	       		<tr>
 	       			<td>
         				 <div class="control-group">
             				<div class="controls">
-            					<input type="radio" name="selectType" ng-show="kortaDisplay" ng-click="paymentGatewayFun('korta')" ng-model="paymentGatewayName" value="korta"/>
-            						&nbsp;<span  ng-show="kortaDisplay" class="btn btn-primary animated pulse">{{'label.korta'|translate}}</span>
+            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('korta')" ng-model="paymentGatewayName" value="korta"/>
+            						&nbsp;<span  class="btn btn-primary animated pulse">{{'label.korta'|translate}}</span>
 
-            					<input type="radio" name="selectType" ng-show="dalpayDisplay" ng-click="paymentGatewayFun('dalpay')" ng-model="paymentGatewayName" value="dalpay" style="margin-left:20px;"/>
-            						&nbsp;<span  ng-show="dalpayDisplay" class="btn btn-primary animated pulse">{{'label.dalpay'|translate}}</span>
-            					
-            					<input type="radio" name="selectType" ng-show="globalpayDisplay" ng-click="paymentGatewayFun('globalpay')" ng-model="paymentGatewayName" value="globalpay" style="margin-left:20px;"/>
-            						&nbsp;<span  ng-show="globalpayDisplay" class="btn btn-primary animated pulse">{{'label.globalpay'|translate}}</span>
-            					
-            					<input type="radio" name="selectType" ng-show="paypalDisplay" ng-click="paymentGatewayFun('paypal')" ng-model="paymentGatewayName" value="paypal" style="margin-left:20px;"/>
-            						&nbsp;<span  ng-show="paypalDisplay" class="btn btn-primary animated pulse">{{'label.paypal'|translate}}y</span>	
+            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('dalpay')" ng-model="paymentGatewayName" value="dalpay" style="margin-left:20px;"/>
+            						&nbsp;<span  class="btn btn-primary animated pulse">{{'label.dalpay'|translate}}</span>
             				</div>
         				 </div>
 	         				 
 	       			</td>
 	       		</tr>
-	       	</table><br/>
-		
+	       	</table><br/><br/>
 		<div class="offset2" >
-				<a ng-disabled="vodEventRedirectToGateway"  ng-click="cancelDalpayBtnFun()" class="btn" style="padding:9px 22px;margin-top:-19px;">{{'btn.cancel'|translate}}</a>
-				<a href="{{paymentURL}}" ng-click="dalpayBtnFun()" ng-show="totalAmount != 0" ng-disabled="vodEventRedirectToGateway" class="btn btn-primary cust-btn animated fadeInUp">{{'btn.make.payment'|translate}}</a>
-				<a ng-click="subscribeBtnFun()" ng-show="totalAmount == 0" class="btn btn-primary animated fadeInUp">{{'btn.subscribe'|translate}}</a>
-		</div>
-		<!-- <div class="offset2" >
 				<a ng-disabled="vodEventRedirectToDalpay"  ng-click="cancelDalpayBtnFun()" class="btn" style="padding:9px 22px;margin-top:-19px;">{{'btn.cancel'|translate}}</a>
 				<a href="{{URLForDalpay}}" ng-click="dalpayBtnFun()" ng-show="totalAmount != 0" ng-disabled="vodEventRedirectToDalpay" class="btn btn-primary cust-btn animated fadeInUp">{{'btn.make.payment'|translate}}</a>
 				<a ng-click="subscribeBtnFun()" ng-show="totalAmount == 0" class="btn btn-primary animated fadeInUp">{{'btn.subscribe'|translate}}</a>
-
-		</div>  -->
+		</div> 
 	</div>
 </div>

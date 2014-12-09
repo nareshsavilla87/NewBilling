@@ -7,7 +7,7 @@
         var defineResource = function(url, paramDefaults, actions) {
         	var tempUrl = baseUrl;
         	$rootScope.hostUrl = tempUrl;
-          return resource(baseUrl + url, paramDefaults, actions);
+          return resource(baseUrl+url, paramDefaults, actions);
         };
         return {
         	userResource: defineResource(apiVer + "/users/:userId", {userId : '@id'}, {}),
@@ -87,19 +87,27 @@
             
             currencyTemplateResource: defineResource(apiVer + "/countrycurrencys/template", {}, {}),
             
-            kortaPaymentsResource: defineResource(apiVer + "/payments/korta", {}, {}),
-
             updateKortaToken: defineResource(apiVer + "/selfcare/:clientId", {clientId:'@clientId'},  {
         		update : {method: 'PUT', params: {}}
         	}),
         	
         	gettingSerialNumbers: defineResource(apiVer + "/itemdetails/searchserialnum", {},  {}),
         	
-        	globalPayResource: defineResource(apiVer + "/paymentgateways/onlinepayment", {},  {
+        	paymentGatewayConfigResource: defineResource(apiVer + "/paymentgatewayconfigs",{},  {}),
+        	
+        	singleStatementResource: defineResource(apiVer + "/billmaster/:billId/billdetails", {billId:'@billId'}, {}),
+        	
+        	
+        	statementEmailResource: defineResource(apiVer + "/billmaster/email/:statementId", {statementId:'@statementId'}, {
+                update: { method: 'PUT'}
+            }),
+            
+            cancelStatementResource: defineResource(apiVer + "/billmaster/:billId", {billId:'@billId'}, {}),
+            
+            paymentGatewayResource: defineResource(apiVer + "/paymentgateways/onlinepayment", {},  {
         		update : {method: 'PUT', params: {}}
         	}),
-        	paymentGatewayConfigResource: defineResource(apiVer + "/paymentgatewayconfigs",{},  {}),
-
+        	
         };
       }];
     }

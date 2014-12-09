@@ -746,6 +746,7 @@
   "label.price.price":"Price",
   "label.editprice":"Edit Price",
   "label.viewprice":"View Price",
+  "label.existsprices":"Exists Prices",
   "dialog.price.title.message":"Delete Price",
   "validation.msg.price.chargeCode.cannot.be.blank":"Charge Code cannot be blank",
   "validation.msg.price.discountId.cannot.be.blank":"Please select discount",
@@ -1573,7 +1574,7 @@
   "validation.msg.eventPricing.optType.cannot.be.blank":"Please select opt type type",
   
    "#TicketResources":"....",
-   "button.newTicket":"Raise Ticket",
+   "button.newTicket":"Record Ticket",
     "label.ticket.id":"Id",
   "label.tickets":"Ticket",
   "label.viewticket":"View Ticket",
