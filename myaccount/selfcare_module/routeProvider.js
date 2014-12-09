@@ -20,7 +20,7 @@
     .when('/tickets', {
         templateUrl: 'selfcare_module/views/clients/tickets.html'
     })
-    .when('/newTicket/:clientId', {
+    .when('/newTicket', {
         templateUrl: 'selfcare_module/views/clients/newTicket.html'
     })
     .when('/changepwd', {

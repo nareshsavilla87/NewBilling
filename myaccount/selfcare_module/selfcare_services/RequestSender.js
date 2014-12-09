@@ -1,7 +1,7 @@
 (function(selfcare_module) {
   selfcare.services = _.extend(selfcare_module, {
 	  RequestSender: function() {
-      var baseUrl = "https://saas.openbillingsystem.com" , apiVer = "/obsplatform/api/v1";
+      var baseUrl = "" , apiVer = "/obsplatform/api/v1";
       this.setBaseUrl = function(url) {baseUrl = url;};
       this.$get = ['$resource','$rootScope', function(resource,$rootScope) {
         var defineResource = function(url, paramDefaults, actions) {
