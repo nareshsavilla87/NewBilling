@@ -100,6 +100,7 @@
 					</tr>
 				</table>
 			</div>			
+<<<<<<< HEAD
 		</div>
 	</div><br/>
 	 <h3 style="margin: 0;"><b class="marginleft10">{{'link.statements'|translate}}</b></h3>
@@ -160,5 +161,43 @@
 	            </tr>
 	        </tbody>
 	    </table>
+=======
+		</div>
+	</div><br/>
+	<div class="paddedbottom10">
+	<b class="marginleft10" style="font-size: 20px;color: #080808;">{{'link.orders'|translate}}</b>
+		<div class="pull-right">
+			<a href="#/additionalorders/0/0" class="btn btn-primary"><i class="icon-plus-sign icon-white"></i>{{'label.additionalplans' | translate}}</a>
+		</div>
+		 <input data-ng-model="filterText" type="text" data-ng-autofocus="true" class="span marginbottom0px" placeholder="{{'placeholder.enter.text.search'|translate}}">
+		<table class="table">
+	        <thead>
+	            <tr class="graybg">
+	                <th>{{'table.header.plan'|translate}}</th>
+	                <th>{{'table.header.contractperoid'|translate}}</th>
+	                <th>{{'table.header.activationdate'|translate}}</th>
+	                <th>{{'table.header.start/renewaldate'|translate}}</th>
+	                <th>{{'table.header.enddate'|translate}}</th>
+	                <th>{{'table.header.price'|translate}}</th>
+	                <th>{{'table.header.status'|translate}}</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr class="pointer-main" data-ng-repeat="order in ordersData.currentPageItems  | filter:filterText" >
+	                <td class="pointer" data-ng-click="routeToOrderView(order.id)">{{order.planCode}}</td>
+	                <td class="pointer" data-ng-click="routeToOrderView(order.id)">{{order.contractPeriod}}</td>
+	                <td class="pointer" data-ng-click="routeToOrderView(order.id)">{{order.activeDate | DateFormat}}</td>
+	                <td class="pointer" data-ng-click="routeToOrderView(order.id)">{{order.startDate | DateFormat}}</td>
+	                <td class="pointer" data-ng-click="routeToOrderView(order.id)">{{order.endDate | DateFormat}}</td>
+	                <td class="pointer" data-ng-click="routeToOrderView(order.id)">{{order.price }}</td>
+	                <td class="pointer" data-ng-click="routeToOrderView(order.id)"><i class="icon-stop {{order.status | StatusLookup}}"></i>&nbsp;{{order.status}}</td>
+	            </tr>
+	        </tbody>
+	    </table>
+	    <ul class="pager">
+			<li class="previous"><a data-ng-click="ordersData.previous()" href="" data-ng-disabled="!ordersData.hasPrevious()">&larr;{{'btn.previous'|translate}}</a></li>
+			<li class="next" ><a data-ng-click="ordersData.next()" href="" data-ng-disabled="!ordersData.hasNext()">{{'btn.next'|translate}} &rarr;</a></li>
+    	</ul>
+>>>>>>> upstream/obsplatform-2.03
 	</div>
 </div>

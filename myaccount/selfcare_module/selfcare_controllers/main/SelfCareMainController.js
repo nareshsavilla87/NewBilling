@@ -7,6 +7,10 @@
 		   scope.isSignInProcess = false;
 		   scope.selfcare_userName = "";
 		   scope.iskortaTokenAvailable = false;
+<<<<<<< HEAD
+=======
+		   
+>>>>>>> upstream/obsplatform-2.03
 		   var urlAfterHash = window.location.hash;
 		   if((urlAfterHash.match('/active') == '/active')||(urlAfterHash.match('/additionalorderspreviewscreen') == '/additionalorderspreviewscreen')
 			||(urlAfterHash.match('/renewalorderpreviewscreen') == '/renewalorderpreviewscreen')||(urlAfterHash.match('/eventdetailspreviewscreen') == '/eventdetailspreviewscreen')

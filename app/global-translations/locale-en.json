@@ -746,6 +746,7 @@
   "label.price.price":"Price",
   "label.editprice":"Edit Price",
   "label.viewprice":"View Price",
+  "label.existsprices":"Exists Prices",
   "dialog.price.title.message":"Delete Price",
   "validation.msg.price.chargeCode.cannot.be.blank":"Charge Code cannot be blank",
   "validation.msg.price.discountId.cannot.be.blank":"Please select discount",
@@ -2361,6 +2362,10 @@
 "validation.error.msg.selfcare.duplicate.email":"Email Id is already exist",
 "label.pgconfig.globalpay.password":"Password",
 "label.pgconfig.globalpay.username":"userName",
+"label.pgconfig.dalpay.merchantid":"MerchantId",
+"label.pgconfig.dalpay.pageid":"PageId",
+"label.pgconfig.editdalpay":"Edit Dalpay",
+"label.pgconfig.editglobalpay":"Edit Globalpay",
 
 "#Audit trails":".....",
 "label.searchoptions":"Search Options",
