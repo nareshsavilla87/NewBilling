@@ -1,134 +1,55 @@
 (function(selfcare_module) {
    selfcare.controllers = _.extend(selfcare_module, {
-	   SelfCareMainController: function(scope, childScope,translate,webStorage,sessionManager,RequestSender,
+	   SelfCareMainController: function(scope, translate,sessionManager,RequestSender,
 			   						authenticationService,location,modal,localStorageService,tmhDynamicLocale) {
 		   
 		   scope.domReady = true;
-		   //scope.currentSession = {};
 		   scope.isSignInProcess = false;
-		   scope.isRegistrationSuccess = false;
-		   scope.isRegistrationFailure = false;
-		   scope.emptyCredentials = false;
-		   scope.isChangePassword = false;
 		   scope.selfcare_userName = "";
+		   scope.iskortaTokenAvailable = false;
 		   var urlAfterHash = window.location.hash;
-		   console.log(urlAfterHash);
 		   if((urlAfterHash.match('/active') == '/active')||(urlAfterHash.match('/additionalorderspreviewscreen') == '/additionalorderspreviewscreen')
 			||(urlAfterHash.match('/renewalorderpreviewscreen') == '/renewalorderpreviewscreen')||(urlAfterHash.match('/eventdetailspreviewscreen') == '/eventdetailspreviewscreen')
 			||(urlAfterHash.match('/kortatokenpaymentsuccess') == '/kortatokenpaymentsuccess')||(urlAfterHash.match('/kortasuccess') == '/kortasuccess')){
-			   console.log('page reloading');
 			   scope.isActiveScreenPage= true;
 			   
 		   }else{
 			   scope.isActiveScreenPage= false;
 		   }
 		   
-		   scope.iskortaTokenAvailable = false;
-	 //authentication onSuccess this event called  
-	   scope.$on("UserAuthenticationSuccessEvent", function(event, data,formData) {
-		   scope.currentSession = sessionManager.get(data,formData);
-	    });
-	   
-	  //calling this method every time if session is exit or not
-	   sessionManager.restore(function(session) {
-	        scope.currentSession = session;
-	        scope.isRegistrationSuccess = false;
-	        scope.isRegistrationFailure = false;
-	        scope.signInProcessLoading = false;
-	        scope.isChangePassword = false;
-	        
-	    });
-	   
+		   
 	   //setting the date format
 	   scope.setDf = function () {
-           if (localStorageService.get('dateformat')) {
-               scope.dateformat = localStorageService.get('dateformat');
-           } else {
-               localStorageService.add('dateformat', 'dd MMMM yyyy');
-               scope.dateformat = 'dd MMMM yyyy';
-           }
-           scope.df = scope.dateformat;
-       };
-       scope.setDf();
+		   localStorageService.get('dateformat') ? scope.df = scope.dateformat = localStorageService.get('dateformat') 
+				   								 : (localStorageService.add('dateformat', 'dd MMMM yyyy'),
+				   									scope.df = scope.dateformat = 'dd MMMM yyyy');
+       };scope.setDf();
 		   
        //getting languages form model Lang.js 
 	   scope.langs = selfcare.models.Langs;
-	   if (localStorageService.get('Language')) {
-	          var temp = localStorageService.get('Language');
-	          for (var i in selfcare.models.Langs) {
-	              if (selfcare.models.Langs[i].code == temp.code) {
-	            	  scope.optlang = selfcare.models.Langs[i];
-	            	  scope.locale=selfcare.models.Langs[i];
-	                  tmhDynamicLocale.set(selfcare.models.Langs[i].code);
-	              }
-	          }
-	      } else {	
-	    	  scope.optlang = scope.langs[0];
-	    	  scope.locale=scope.langs[0];
-	          tmhDynamicLocale.set(scope.langs[0].code);
-	      }
-	      translate.uses(scope.optlang.code);
+	   
+	   if(localStorageService.get('Language')){
+		   
+		   for ( var i in scope.langs) {
+			   if(scope.langs[i].code == localStorageService.get('Language')){
+				   scope.optlang = scope.langs[i];
+				   tmhDynamicLocale.set(scope.optlang.code);
+				   translate.uses(scope.optlang.code);
+				   break;
+			   };
+		   };
+		   
+	   }else{
+		   scope.optlang = scope.langs[0];
+	   }
 	   
        //set the language code when change the language 
         scope.changeLang = function (lang) {
-            translate.uses(lang.code);
+            localStorageService.add('Language', lang.code);
             scope.optlang = lang;
-            scope.locale=lang;
-            localStorageService.add('Language', lang);
             tmhDynamicLocale.set(lang.code);
+            translate.uses(lang.code);
         };
-       
-       //set the default values for the sign in and sign up buttons  
-        scope.signUpFormView = false;
-        scope.signInFormView = true;
-       
-      //sign up button fun start 
-      scope.signUpBtnFun = function(){
-    	  
-    	  scope.isChangePassword = false;
-    	  scope.emptySignUpCredentials = false;
-    	  scope.signUpFormView=scope.signInFormView;
-    	  scope.signInFormView=!scope.signUpFormView;
-    	  scope.template="selfcare_module/views/clients/signupform.html"; 
-    	  scope.authenticationFailed = false;
-    	  scope.emptyCredentials = false;
-    	  scope.isRegistrationSuccess = false;
-		   scope.isRegistrationFailure = false;
-      };
-      //sign up button fun end
-      
-      //sign In button fun start
-      scope.signInBtnFun = function(){
-    	  scope.signInFormView=scope.signUpFormView;
-    	  scope.signUpFormView=!scope.signInFormView;
-    	  scope.isRegistrationSuccess = false;
-		   scope.isRegistrationFailure = false;
-      };
-      //sign up button fun end
-      
-      scope.signout = function(){
-    	  scope.currentSession = sessionManager.clear();
-    	  scope.signInProcessLoading = false;
-    	  location.path('/').replace;
-
-    	  //$templateCache.removeAll();
-    	 // window.location.reload(true);
-
-      };
-      
-      var ClientActivePopupController = function($scope,$modalInstance){
-			
-			$scope.reject = function(){
-				$modalInstance.close('delete');
-			};
-		};
-		 scope.activetedClientPopup = function(){
-			 modal.open({
-				 templateUrl: 'clientactivepopup.html',
-				 controller: ClientActivePopupController,
-				 resolve:{}
-	 			});
-		 };
 		 
 		 var ForgotPwdPopupSuccessController = function($scope,$modalInstance){
 				
@@ -146,44 +67,42 @@
 
 	//forgot password popup controller
 		 var ForgotPwdPopupController = function($scope,$modalInstance){
+			 
 			 $scope.isProcessing = false;
 			 $scope.emailData = {};
 			 
-			 scope.forgotPwdPopupcontrolling = function(formData){
-				 
-				 RequestSender.forgotPwdResource.update(formData,function(successData){
-					 webStorage.remove("selfcare_sessionData");
-		        	 scope.currentSession= {user :null};
-		        	 $modalInstance.close('delete');
-		        	 modal.open({
-						 templateUrl: 'forgotpwdpopupsuccess.html',
-						 controller: ForgotPwdPopupSuccessController,
-						 resolve:{}
-			 			});
-					 
-				 },function(errorData){
-					 $scope.stmError = errorData.data.errors[0].userMessageGlobalisationCode;
-					 $scope.isProcessing = false;
-					 webStorage.remove("selfcare_sessionData");
-		        	 scope.currentSession= {user :null};
-				 });
-			 };
-			 
 			 $scope.accept = function(email){
-				 $scope.isProcessing = true;
-				 $scope.stmError = null;
-				 authenticationService.authenticateWithUsernamePassword({'uniqueReference':$scope.emailData.email});
-			 };
-			 
-			 $scope.reject = function(){
-					$modalInstance.dismiss('cancel');
-			 };
-			 
+				 
+				 $scope.formData = {'uniqueReference':$scope.emailData.email};
+				 authenticationService.authenticateWithUsernamePassword(function(data){
+				 
+					 $scope.isProcessing = true;
+					 $scope.stmError = null;
+					 RequestSender.forgotPwdResource.update($scope.formData,function(successData){
+						 
+						 $scope.isProcessing = false;
+						 $modalInstance.close('delete');
+						 modal.open({
+							 templateUrl: 'forgotpwdpopupsuccess.html',
+							 controller: ForgotPwdPopupSuccessController,
+							 resolve:{}
+						 });
+						 
+					 },function(errorData){
+						 $scope.stmError = errorData.data.errors[0].userMessageGlobalisationCode;
+						 $scope.isProcessing = false;
+					 });
+					 
+				 });
 			};
+			
+			$scope.reject = function(){
+				$modalInstance.dismiss('cancel');
+			};
+		 };
 		 
 		 //for forgot password popup
 		 scope.forgotPwdPopup = function(){
-			 scope.isChangePassword = false;
 			 modal.open({
 				 templateUrl: 'forgotpwdpopup.html',
 				 controller: ForgotPwdPopupController,
@@ -191,11 +110,29 @@
 	 			});
 		 };
 		 
+		//calling this method every time if session is exit or not
+		   sessionManager.restore(function(session) {
+		        scope.currentSession = session;
+		    });
+		   
+		   scope.signout = function(){
+		    	  scope.currentSession = sessionManager.clear();
+		    	  location.path('/').replace;
+		      };
+		 
     }
   });
-   selfcare.ng.application.controller('SelfCareMainController', 
-		   ['$rootScope','$scope','$translate','webStorage','SessionManager','RequestSender','AuthenticationService',
-		    '$location','$modal','localStorageService','tmhDynamicLocale',selfcare.controllers.SelfCareMainController
+   selfcare.ng.application.controller('SelfCareMainController', [
+                                                                 '$rootScope',
+                                                                 '$translate',
+                                                                 'SessionManager',
+                                                                 'RequestSender',
+                                                                 'AuthenticationService',
+                                                                 '$location',
+                                                                 '$modal',
+                                                                 'localStorageService',
+                                                                 'tmhDynamicLocale',
+                                                                 selfcare.controllers.SelfCareMainController
   ]).run(function($log) {
   });
 }(selfcare.controllers || {}));
