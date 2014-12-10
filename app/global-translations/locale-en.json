@@ -876,6 +876,7 @@
   "#Order":".....",
   "label.createorder":"Create New Order",
   "label.postpaidplans":"Postpaid Plans",
+  "link.view.order":"View Order",
   "label.prepaidplans":"Prepaid Plans",
   "label.order.startdate":"Start Date",
   "label.order.contractperiod":"Contract Period",
@@ -2369,10 +2370,24 @@
 "label.checkedfrom":"Checked From",
 "label.checkedto":"Checked To",
 "label.audit":"Audit",
-"label.viewauditentry":"View Audit"
+"label.viewauditentry":"View Audit",
 
 
-
+"#Addons":".........",
+"label.addons":"Add Ons",
+"label.createaddons":"Create Addons", 
+"label.createaddons":"Create AddOn",
+"label.addons.plan":"Plan",
+"label.addons.chargrcode":"Charge Code",
+"label.addons.priceregion":"Price Region",
+"placeholder.filter.category":"Filter by category",
+"table.addon.chargecode":"Charge Code",
+"table.addon.priceregion":"Price Region",
+"label.addon.prices":"Prices",
+"label.addons.service":"Service",
+"label.editaddons":"Edit Addons",
+"link.create.new.addon":"New Addon",
+"table.addons.price":"Price"
 
 
 }
