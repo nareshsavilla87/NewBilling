@@ -1,6 +1,6 @@
 (function(selfcare_module) {
    selfcare.controllers = _.extend(selfcare_module, {
-	  CreateTicketController: function(scope,webStorage, RequestSender, location, translate,dateFilter,routeParams) {
+	  CreateTicketController: function(scope,webStorage, RequestSender, location, dateFilter) {
             
 			scope.priorityTypes = [];
 			scope.formData={};						
@@ -12,8 +12,6 @@
 			 scope.minDate= scope.start.date;
 			 
 			 scope.first = {};
-			 //scope.first.date = new Date();
-		     //scope.first.time = "10:10";
 		     
 			 $('#timepicker1').timepicker({
 		        	showInputs:false,
@@ -58,7 +56,6 @@
 				this.formData.locale = 'en';
 				scope.first.time=$('#timepicker1').val();
 				var reqDueDate = dateFilter(scope.first.date,'yyyy-MM-dd');
-				//alert(scope.first.time);
 				if(scope.first.date==null||scope.first.time==''){
 					delete this.formData.dueTime;
 				}else{
@@ -71,13 +68,18 @@
 				this.formData.dateFormat = 'dd MMMM yyyy';
 				this.formData.ticketTime = ' '+new Date().toLocaleTimeString().replace("IST","").trim();
 				RequestSender.ticketResource.save({'clientId': scope.clientId},this.formData,function(data){
-                // location.path('/tickets');
 					location.path('/profile');
                });
          };
     }
   });
-  selfcare.ng.application.controller('CreateTicketController', ['$scope', 'webStorage','RequestSender', '$location', '$translate','dateFilter', '$routeParams', selfcare.controllers.CreateTicketController]).run(function($log) {
+  selfcare.ng.application.controller('CreateTicketController', [
+                                                                '$scope', 
+                                                                'webStorage',
+                                                                'RequestSender',
+                                                                '$location',
+                                                                'dateFilter', 
+                                                                selfcare.controllers.CreateTicketController]).run(function($log) {
       $log.info("CreateTicketController initialized");
   });
 }(selfcare.controllers || {}));
