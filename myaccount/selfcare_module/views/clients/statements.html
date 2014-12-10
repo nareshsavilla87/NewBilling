@@ -1,50 +1,68 @@
-<div ng-controller="StatementsController">
+<div data-ng-controller="StatementsController">
 	<div class="loading-widget-div" data-ng-show="blockUI">
         <div id="circularG">
-            <div id="circularG_1" class="circularG">
-            </div>
-            <div id="circularG_2" class="circularG">
-            </div>
-            <div id="circularG_3" class="circularG">
-            </div>
-            <div id="circularG_4" class="circularG">
-            </div>
-            <div id="circularG_5" class="circularG">
-            </div>
-            <div id="circularG_6" class="circularG">
-            </div>
-            <div id="circularG_7" class="circularG">
-            </div>
-            <div id="circularG_8" class="circularG">
-            </div>
+        	<div id="circularG_1" class="circularG"></div><div id="circularG_2" class="circularG"></div>
+            <div id="circularG_3" class="circularG"></div><div id="circularG_4" class="circularG"></div>
+            <div id="circularG_5" class="circularG"></div><div id="circularG_6" class="circularG"></div>
+            <div id="circularG_7" class="circularG"></div><div id="circularG_8" class="circularG"></div>
         </div>
-
-      </div>
-	<div>
-	    <ul class="breadcrumb">
-	        <li class="active">{{'link.statements'|translate}}</li>
-	    </ul>
-    </div><br/>
- 	<div class="row-fluid">
-		    <input ng-model="filterText" type="text" ng-autofocus="true" class="span marginbottom0px" placeholder="{{'placeholder.filter.statement'|translate}}">
-		
+     </div>
+     <h3 style="margin: 0;"><b class="marginleft10">{{'link.statements'|translate}}</b></h3>
+	<div class="paddedbottom10">
+ 			<input data-ng-model="filterText" type="text" data-ng-autofocus="true" class="span marginbottom0px" placeholder="{{'placeholder.enter.text.search'|translate}}">
+		<table class="table">
+		 <thead>
+  		   <tr class="graybg">
+             <th>{{'table.header.statement.billdate'|translate}}</th>
+             <th>{{'table.header.statement.duedate'|translate}}</th>
+             <th>{{'table.header.statement.amount'|translate}}</th>
+             <th>{{'header.actions'|translate}}</th>
+        	</tr>
+		 </thead>
+		 <tbody>
+			<tr data-ng-repeat="statement in statementsData.currentPageItems  | filter:filterText" >                 
+   				<td>{{statement.billDate | DateFormat}}</td>
+   				<td>{{statement.dueDate | DateFormat}}</td>
+   				<td>{{statement.amount}}</td>
+   				<td>
+   					<a data-ng-click="routeTostatement(statement.id)" class="btn btn-primary">{{'label.html' | translate}}</a>&nbsp;
+   					<a data-ng-click="downloadFile(statement.id)" class="btn btn-primary"><i class=" icon-download-alt icon-white"></i>{{'label.pdf' | translate}}</a>&nbsp;
+  				</td>
+			</tr>
+		</tbody>
+ 	   </table>
+ 	   <ul class="pager">
+			<li class="previous"><a data-ng-click="statementsData.previous()" href="" data-ng-disabled="!statementsData.hasPrevious()">&larr;{{'btn.previous'|translate}}</a></li>
+			<li class="next" ><a data-ng-click="statementsData.next()" href="" data-ng-disabled="!statementsData.hasNext()">{{'btn.next'|translate}} &rarr;</a></li>
+    	</ul>
+	</div>
+	<br/><br/><br/>
+	<h3 style="margin: 0;"><b class="marginleft10">{{'link.payments'|translate}}</b></h3>
+	<div class="paddedbottom10">
+		 <input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.enter.text.search'|translate}}">
 		<table class="table">
 	        <thead>
 	             <tr class="graybg">
-	                <th>{{'table.header.statement.id'|translate}}</th>
-	                <th>{{'table.header.statement.billdate'|translate}}</th>
-	                <th>{{'table.header.statement.duedate'|translate}}</th>
-	                <th>{{'table.header.statement.amount'|translate}}</th>
+	                <th>{{'table.header.payment.transactiondate'|translate}}</th>
+	                <th>{{'table.header.payment.transactiontype'|translate}}</th>
+	                <th>{{'table.header.payment.transactioncategory'|translate}}</th>
+	                <th>{{'table.header.payment.creditamount'|translate}}</th>
+	                <th>{{'table.header.payment.debitamount'|translate}}</th>
             	</tr>
 	        </thead>
 	        <tbody>
-	            <tr class="pointer-main" ng-repeat="statement in statementsData  | filter:filterText" >
-	                <td class="pointer">{{statement.id}}</td>
-	                <td class="pointer">{{statement.billDate | DateFormat}}</td>
-	                <td class="pointer">{{statement.dueDate | DateFormat}}</td>
-	                <td class="pointer">{{statement.amount}}</td>
+	            <tr data-ng-repeat="payment in paymentsData.currentPageItems  | filter:filterText" >
+	                <td>{{payment.transDate | DateFormat}}</td>
+	                <td>{{payment.transactionType}}</td>
+	                <td>{{payment.transactionCategory}}</td>
+	                <td>{{payment.creditAmount}}</td>
+	                <td>{{payment.amount}}</td>
 	            </tr>
 	        </tbody>
 	    </table>
+	    <ul class="pager">
+			<li class="previous"><a data-ng-click="paymentsData.previous()" href="" data-ng-disabled="!paymentsData.hasPrevious()">&larr;{{'btn.previous'|translate}}</a></li>
+			<li class="next" ><a data-ng-click="paymentsData.next()" href="" data-ng-disabled="!paymentsData.hasNext()">{{'btn.next'|translate}} &rarr;</a></li>
+    	</ul>
 	</div>
 </div>

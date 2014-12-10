@@ -27,7 +27,6 @@
 	      };
 		    
 		  scope.submitFun = function(){
-			  console.log("Submit Function calling for globalpay");
 		  };
 		  
     }
