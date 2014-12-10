@@ -64,11 +64,7 @@
  	"label.vod" 			    : "VOD",
  	"label.contracts" 			: "Contracts",
  	"label.statements"	 		: "Statements",
-<<<<<<< HEAD
  	"label.bill.statements"	 	: "Pay Bills",
-=======
- 	"label.bill.statements"	 	: "Bills & Payments",
->>>>>>> upstream/obsplatform-2.03
  	"label.cancel.statement"	: "Cancel Statement",
  	"label.confirm.msg"			: "Are You Sure?",
  	"label.payments"	 		: "Payments",
@@ -89,10 +85,7 @@
  	"label.order.info"			: "Order Information",
  	"label.listofvods"			: "List Of VODs",
  	"label.ondemands"			: "On Demands",
-<<<<<<< HEAD
  	"label.services"			: "Services",
-=======
->>>>>>> upstream/obsplatform-2.03
  	"label.serialnumber"	    : "Serial Number",
  	"label.macid"			    : "Mac Id",
  	"label.msg.noprice"		    : "Price Not Defined...",
