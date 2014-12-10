@@ -19,9 +19,9 @@
 		        	showInputs:false,
 		        	showMeridian:false
 		        });
-			 
-			 scope.clientId=routeParams.clientId;
-		        
+			 var clientData= webStorage.get('clientTotalData');
+			   scope.clientId=clientData.clientId;
+					        
 		        var selfcare_sessionData=webStorage.get('selfcare_sessionData');
 		        if(selfcare_sessionData){
 		        	scope.formData.assignedTo=selfcare_sessionData.userId;
@@ -70,8 +70,9 @@
 	            this.formData.ticketDate = reqDate;
 				this.formData.dateFormat = 'dd MMMM yyyy';
 				this.formData.ticketTime = ' '+new Date().toLocaleTimeString().replace("IST","").trim();
-				RequestSender.ticketResource.save({'clientId': routeParams.clientId},this.formData,function(data){
-                 location.path('/tickets');
+				RequestSender.ticketResource.save({'clientId': scope.clientId},this.formData,function(data){
+                // location.path('/tickets');
+					location.path('/profile');
                });
          };
     }

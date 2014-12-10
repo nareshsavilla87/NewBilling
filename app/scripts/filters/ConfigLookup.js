@@ -5,7 +5,7 @@
         	var paymentValue = "true";
         	var ipTvValue = "false";
         	var isClientIndividualValue = "false";
-        	var deviceAgrementTypeValue = "SALE";
+        	var deviceAgrementTypeValue = "OWN";
         	var subscriptionPayment="true";
         	
             return function(input) {    
