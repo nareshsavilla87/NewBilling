@@ -20,7 +20,7 @@
     .when('/tickets', {
         templateUrl: 'selfcare_module/views/clients/tickets.html'
     })
-    .when('/newTicket/:clientId', {
+    .when('/newTicket', {
         templateUrl: 'selfcare_module/views/clients/newTicket.html'
     })
     .when('/changepwd', {
@@ -44,8 +44,8 @@
     .when('/renewalorderpreviewscreen/:orderId/:clientId', {
     	templateUrl: 'selfcare_module/views/clients/renewalorderpreviewscreen.html'
     })
-    .when('/listofvods', {
-    	templateUrl: 'selfcare_module/views/clients/listofvods.html'
+    .when('/services', {
+    	templateUrl: 'selfcare_module/views/clients/services.html'
 	})
 	.when('/kortaIntegration/:planId/:clientId',{
     	templateUrl: 'selfcare_module/views/kortaIntegration.html'
