@@ -6,7 +6,6 @@
 		  scope.orderBookingData = {};
 		 scope.formData = webStorage.get("renewalOrderFormData");
 		 
-		 console.log(webStorage.get("renewalOrderFormData"));
 		 
 		 if(webStorage.get("renewalOrderFormData")){
 			 scope.orderBookingData.renewalPeriod = scope.formData.contractperiod; 

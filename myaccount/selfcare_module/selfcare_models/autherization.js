@@ -1,7 +1,7 @@
 (function(selfcare_module) {
    selfcare.models = _.extend(selfcare_module, {
 	   
-	   obs_username : "billing",
-	   obs_password : "password"
+	   obs_username : "selfcare",
+	   obs_password : "selfcare"
   });
 }(selfcare.models || {}));
