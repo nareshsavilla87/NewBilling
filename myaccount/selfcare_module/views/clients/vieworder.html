@@ -13,7 +13,7 @@
 	        <li class="active">{{orderData.id}}&nbsp;&nbsp;</li>
 	    </ul>
 	    <div class="pull-right">
-	        <!-- <a data-ng-show="(orderData.status == 'DISCONNECTED')" href="#/renewalorder/{{orderId}}/{{clientId}}" class="btn btn-primary"><i class="icon-edit icon-white"></i>{{'btn.renewal' | translate}}</a>
+	         <!--<a data-ng-show="(orderData.status == 'DISCONNECTED')" href="#/renewalorder/{{orderId}}/{{clientId}}" class="btn btn-primary"><i class="icon-edit icon-white"></i>{{'btn.renewal' | translate}}</a>
 	         <a data-ng-show ="(orderData.status == 'ACTIVE')" href="#/changeorder/{{orderId}}/{{clientId}}" class="btn btn-primary"><i class="icon-cog"></i>{{'btn.change.plan' | translate}}</a>-->
 	         <a data-ng-show="(orderData.status == 'ACTIVE')||(orderData.status == 'SUSPENDED')" data-ng-click="orderDisconnect(orderData.id)" class="btn btn-primary"><i class="icon-remove fa-spin icon-white"></i>{{'btn.disconnect' | translate}}</a>
 	    </div>
