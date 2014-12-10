@@ -1,7 +1,7 @@
 <div ng-controller="SmartSearchController" novalidate class="form-horizontal" >
    <br>
     <div class="control-group">
-    	<input type="radio" id="type" data-ng-click="" ng-model="searchData.searchType" name="searchType" value="payments" style="text-align: left;">Payments &nbsp;&nbsp;&nbsp;
+    	<input type="radio" id="type" data-ng-click="" ng-model="searchData.searchType" name="searchType" value="payments"  ng-checked="true" style="text-align: left;">Payments &nbsp;&nbsp;&nbsp;
     	<input type="radio" id="type" data-ng-click="getTicketValues()" ng-model="searchData.searchType" value="tickets" name="searchType" style="text-align: left;">Tickets &nbsp;&nbsp;&nbsp;
     	<input type="radio" id="type" data-ng-click="getLeadValues()" ng-model="searchData.searchType" value="leads" name="searchType" style="text-align: left;">Leads
    	</div>

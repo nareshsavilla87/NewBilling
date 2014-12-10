@@ -244,7 +244,34 @@
         </tbody>
     </table>
     </div>
-        </tab>
+       </tab>
+       <tab heading="Order Addons">
+	<div class="row-fluid ">
+    
+	<table class="table">
+        <thead>
+            <tr class="graybg">
+                 <th>{{ 'table.order.service' | translate }}</th>
+                 <th>{{ 'label.order.startdate' | DateFormat }}</th>
+                 <th>{{ 'table.order.endDate' | DateFormat }}</th>
+                 <th>{{ 'table.order.status' | translate }}</th>
+                 <th>{{ 'table.order.price' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="orderAddonsData in orderAddonsDatas">
+                <td>{{orderAddonsData.serviceCode}}</td>
+                <td>{{orderAddonsData.startDate | DateFormat}}</td>
+                <td>{{orderAddonsData.endDate | DateFormat}}</td>            
+                <td>{{orderHistory.status}}</td>        
+                <td>{{orderAddonsData.price}}</td>
+                
+                
+            </tr>
+        </tbody>
+    </table>
+</div>
+	</tab>
 
 	<tab heading="Order Transaction">
 	<div class="row-fluid ">

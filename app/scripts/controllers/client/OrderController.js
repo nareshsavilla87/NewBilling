@@ -34,12 +34,14 @@
          webStorage.add("chargeCode",routeParams.id);
          scope.PermissionService = PermissionService;
          scope.provisioningdatas =[];
+         scope.orderAddonsDatas =[];
       
         resourceFactory.getSingleOrderResource.get({orderId: routeParams.id} , function(data) {
            
         	scope.orderPriceDatas= data.orderPriceData;
             scope.orderHistorydata=data.orderHistory;
             scope.orderData=data.orderData;
+            scope.orderAddonsDatas=data.orderAddonsDatas;
            var endDate = new Date(scope.orderData.endDate);
             var curDate = new Date(scope.orderData.currentDate);
             /*if(dateFilter(endDate.setDate(endDate.getDate()))==dateFilter(curDate.setDate(curDate.getDate()))||
