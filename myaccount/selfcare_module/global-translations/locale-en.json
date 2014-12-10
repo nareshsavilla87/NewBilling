@@ -92,7 +92,9 @@
  	"label.select.payment.gateway"		   : "Select your Payment Gateway ",
  	"label.notselect.payment.gateway"	   : "Sorry..Not available any Payment Gateway",
  	"label.atleast.one.payment.gateway"	   : "Please Configure at least one Payment Gateway",
- 	"table.header.statement.dueamount"		: "Due Amount",
+ 	"table.header.statement.dueamount"		: "Due Amount", 
+ 	"label.services"			: "Services", 
+ 	"label.heading.or"			: "OR", 
  	
  	"label.signup.newuser"			   			: "Signup new user ",
  	"label.or"			   						: " - or - ",
