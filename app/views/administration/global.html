@@ -15,7 +15,7 @@
         <tr class="graybg">
             <th>{{'label.form.name' | translate}}</th>
             <th>{{'label.enabled' | translate}}</th>
-            <th>Value</th>
+            <th>{{'table.heading.value' | translate}}</th>
             <th></th>
             <th></th>	
         </tr>
@@ -37,19 +37,25 @@
     </table>
     </tab>
     
-    <tab heading="Client Configuration" select="getConfigLookUp()">
+    <tab heading="Client Configuration"> <!--  select="getConfigLookUp()" -->
     	
     	<table class="table">
         <thead>
         <tr class="graybg">
             <th>{{'label.form.name' | translate}}</th>
-            <th>{{'label.enabled' | translate}}</th>	
+            <th>{{'table.heading.value' | translate}}</th>	
+            <th>{{ 'table.heading.actions' | translate }}</th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="lookup in configLookupsdata">
+        <tr ng-repeat="lookup in myData">
             <td>{{lookup.name}}</a></td>
             <td>{{lookup.value}}</td> 
+            <td><button type="button" class="btn btn-success flag" data-ng-show="lookup.value == 'false' " data-ng-click="clientConfigChange(lookup.name,lookup.value)"><i class="icon-flag-alt"></i></button>
+                <button type="button" class="btn btn-danger flag" data-ng-show="lookup.value == 'true'" data-ng-click="clientConfigChange(lookup.name,lookup.value)"><i class="icon-remove"></i></button>
+                <a data-ng-show="(lookup.value != 'true')&&(lookup.value != 'false')" data-ng-click="editClientConfigs(lookup.name,lookup.value)" data-popover="Edit {{lookup.name}}" 
+                       data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a>
+            </td>
         </tr>
         </tbody>
     </table>
@@ -129,3 +135,18 @@
         </div>
 	</form>
 </script> 
+
+<script type="text/ng-template" id="editClientConfig.html">
+	<div class="modal-header silver">
+    	<h3 class="bolder">Edit {{data.name}}</h3>
+    </div>
+    <div class="modal-body modal-small">
+    	<input type="radio" id="type" ng-model="data.value" name="oldValue" value="SALE" style="text-align: left;margin:0;">SALE &nbsp;&nbsp;&nbsp;
+    	<input type="radio" id="type" ng-model="data.value" name="oldValue" value="OWN"  style="text-align: left;margin:0;">OWN &nbsp;&nbsp;&nbsp;
+    	<input type="radio" id="type" ng-model="data.value" name="oldValue" value="NONE"  style="text-align: left;margin:0;">NONE
+    </div>
+    <div class="modal-footer">
+    	<button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+        <button class="btn btn-primary" ng-click="approve(data.value)">{{'label.save' | translate}}</button>
+    </div>
+</script>

@@ -1036,6 +1036,9 @@
             }),
 
             itemMasterDetailTemplateResource: defineResource(apiVer + "/itemdetails/serialnum", {}, {}),
+            clientConfigurationResource:defineResource(apiVer + "/configurations/config",{}, {
+                update: {method: 'PUT', params: {}}
+            })
            
         };
       }];
