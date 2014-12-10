@@ -6,10 +6,10 @@
             <div id="circularG_5" class="circularG"></div><div id="circularG_6" class="circularG"></div>
             <div id="circularG_7" class="circularG"></div><div id="circularG_8" class="circularG"></div>
         </div>
-     </div>
-     <h3 style="margin: 0;"><b class="marginleft10">{{'link.statements'|translate}}</b></h3>
+    </div>
+    <h3 style="margin: 0;"><b class="marginleft10">{{'link.statements'|translate}}</b></h3>
 	<div class="paddedbottom10">
- 			<input data-ng-model="filterText" type="text" data-ng-autofocus="true" class="span marginbottom0px" placeholder="{{'placeholder.enter.text.search'|translate}}">
+ 		<input data-ng-model="filterText" type="text" data-ng-autofocus="true" class="span marginbottom0px" placeholder="{{'placeholder.enter.text.search'|translate}}">
 		<table class="table">
 		 <thead>
   		   <tr class="graybg">
@@ -32,14 +32,13 @@
 		</tbody>
  	   </table>
  	   <ul class="pager">
-			<li class="previous"><a data-ng-click="statementsData.previous()" href="" data-ng-disabled="!statementsData.hasPrevious()">&larr;{{'btn.previous'|translate}}</a></li>
-			<li class="next" ><a data-ng-click="statementsData.next()" href="" data-ng-disabled="!statementsData.hasNext()">{{'btn.next'|translate}} &rarr;</a></li>
-    	</ul>
-	</div>
-	<br/><br/><br/>
+			<li class="previous"><a data-ng-click="statementsData.previous()" data-ng-disabled="!statementsData.hasPrevious()">&larr;{{'btn.previous'|translate}}</a></li>
+			<li class="next" ><a data-ng-click="statementsData.next()" data-ng-disabled="!statementsData.hasNext()">{{'btn.next'|translate}} &rarr;</a></li>
+       </ul>
+	</div><br/>
 	<h3 style="margin: 0;"><b class="marginleft10">{{'link.payments'|translate}}</b></h3>
 	<div class="paddedbottom10">
-		 <input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.enter.text.search'|translate}}">
+		<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.enter.text.search'|translate}}">
 		<table class="table">
 	        <thead>
 	             <tr class="graybg">
@@ -61,8 +60,8 @@
 	        </tbody>
 	    </table>
 	    <ul class="pager">
-			<li class="previous"><a data-ng-click="paymentsData.previous()" href="" data-ng-disabled="!paymentsData.hasPrevious()">&larr;{{'btn.previous'|translate}}</a></li>
-			<li class="next" ><a data-ng-click="paymentsData.next()" href="" data-ng-disabled="!paymentsData.hasNext()">{{'btn.next'|translate}} &rarr;</a></li>
+			<li class="previous"><a data-ng-click="paymentsData.previous()" data-ng-disabled="!paymentsData.hasPrevious()">&larr;{{'btn.previous'|translate}}</a></li>
+			<li class="next" ><a data-ng-click="paymentsData.next()" data-ng-disabled="!paymentsData.hasNext()">{{'btn.next'|translate}} &rarr;</a></li>
     	</ul>
 	</div>
 </div>

@@ -2,7 +2,7 @@
 	selfcare.filters = _.extend(selfcare_module, {
         ConfigLookup: function ($http) {
         	
-        	var nationalId =false;
+        	var nationalId =true;
         	
             return function(input) {    
             	

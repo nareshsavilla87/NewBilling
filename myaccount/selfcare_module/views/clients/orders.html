@@ -1,0 +1,59 @@
+<div ng-controller="OrdersController">
+	 <div class="loading-widget-div" data-ng-show="blockUI">
+        <div id="circularG">
+            <div id="circularG_1" class="circularG">
+            </div>
+            <div id="circularG_2" class="circularG">
+            </div>
+            <div id="circularG_3" class="circularG">
+            </div>
+            <div id="circularG_4" class="circularG">
+            </div>
+            <div id="circularG_5" class="circularG">
+            </div>
+            <div id="circularG_6" class="circularG">
+            </div>
+            <div id="circularG_7" class="circularG">
+            </div>
+            <div id="circularG_8" class="circularG">
+            </div>
+        </div>
+
+      </div>      
+	
+	<div>
+	    <ul class="breadcrumb">
+	        <li class="active">{{'link.orders'|translate}}</li>
+	    </ul>
+    </div><br/>
+ 	<div class="row-fluid">
+		    <input ng-model="filterText" type="text" ng-autofocus="true" class="span marginbottom0px" placeholder="{{'placeholder.filter.order'|translate}}">
+		<br/>
+		<table class="table">
+	        <thead>
+	            <tr class="graybg">
+	                <th>{{'table.header.orderno'|translate}}</th>
+	                <th>{{'table.header.plan'|translate}}</th>
+	                <th>{{'table.header.contractperoid'|translate}}</th>
+	                <th>{{'table.header.activationdate'|translate}}</th>
+	                <th>{{'table.header.start/renewaldate'|translate}}</th>
+	                <th>{{'table.header.enddate'|translate}}</th>
+	                <th>{{'table.header.price'|translate}}</th>
+	                <th>{{'table.header.status'|translate}}</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr class="pointer-main" ng-repeat="order in ordersData  | filter:filterText" >
+	                <td class="pointer" data-ng-click="routeToOrderView(order.id)">{{order.id}}</td>
+	                <td class="pointer" data-ng-click="routeToOrderView(order.id)">{{order.planCode}}</td>
+	                <td class="pointer" data-ng-click="routeToOrderView(order.id)">{{order.contractPeriod}}</td>
+	                <td class="pointer" data-ng-click="routeToOrderView(order.id)">{{order.activeDate | DateFormat}}</td>
+	                <td class="pointer" data-ng-click="routeToOrderView(order.id)">{{order.startDate | DateFormat}}</td>
+	                <td class="pointer" data-ng-click="routeToOrderView(order.id)">{{order.endDate | DateFormat}}</td>
+	                <td class="pointer" data-ng-click="routeToOrderView(order.id)">{{order.price }}</td>
+	                <td class="pointer" data-ng-click="routeToOrderView(order.id)"><i class="icon-stop {{order.status | StatusLookup}}"></i>&nbsp;{{order.status}}</td>
+	            </tr>
+	        </tbody>
+	    </table>
+	</div>
+</div>
