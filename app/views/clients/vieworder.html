@@ -207,8 +207,8 @@
         </thead>
         <tbody>
             <tr ng-repeat="orderPriceData in orderPriceDatas">
-                <td>{{orderPriceData.chargeCode}}</td>            
-                <td>{{orderPriceData.chargeType}}</td>        
+                <td>{{orderPriceData.serviceDescrption}}</td>            
+                <td>{{orderPriceData.chargedesc}}</td>        
                 <td>{{orderPriceData.billStartDate | DateFormat}}</td>         
                 <td>{{orderPriceData.billEndDate| DateFormat}}</td>
                 <td>{{orderPriceData.invoiceTillDate| DateFormat}}</td>
@@ -252,8 +252,8 @@
         <thead>
             <tr class="graybg">
                  <th>{{ 'table.order.service' | translate }}</th>
-                 <th>{{ 'label.order.startdate' | DateFormat }}</th>
-                 <th>{{ 'table.order.endDate' | DateFormat }}</th>
+                 <th>{{ 'label.order.startdate' | translate }}</th>
+                 <th>{{ 'table.order.endDate' | translate }}</th>
                  <th>{{ 'table.order.status' | translate }}</th>
                  <th>{{ 'table.order.price' | translate }}</th>
             </tr>
@@ -263,7 +263,7 @@
                 <td>{{orderAddonsData.serviceCode}}</td>
                 <td>{{orderAddonsData.startDate | DateFormat}}</td>
                 <td>{{orderAddonsData.endDate | DateFormat}}</td>            
-                <td>{{orderHistory.status}}</td>        
+                <td>{{orderAddonsData.status}}</td>        
                 <td>{{orderAddonsData.price}}</td>
                 
                 
