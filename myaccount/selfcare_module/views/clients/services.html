@@ -1,19 +1,18 @@
-<div data-ng-controller="ListOfVODSController">
-	 <div class="loading-widget-div" data-ng-show="blockUI">
+<div data-ng-controller="ServicesController">
+	<div class="loading-widget-div" data-ng-show="blockUI">
         <div id="circularG">
         	<div id="circularG_1" class="circularG"></div><div id="circularG_2" class="circularG"></div>
             <div id="circularG_3" class="circularG"></div><div id="circularG_4" class="circularG"></div>
             <div id="circularG_5" class="circularG"></div><div id="circularG_6" class="circularG"></div>
             <div id="circularG_7" class="circularG"></div><div id="circularG_8" class="circularG"></div>
         </div>
-     </div> 
-    <div class="row-fluid margintop5px">
-    <br/>
-	<b class="marginleft10" style="font-size: 20px;color: #080808;">{{'link.orders'|translate}}</b>
+    </div><br/>
+    <div>
+		<b class="marginleft10" style="font-size: 20px;color: #080808;">{{'link.orders'|translate}}</b>
 		<div class="pull-right">
 			<a href="#/additionalorders/0/0" class="btn btn-primary"><i class="icon-plus-sign icon-white"></i>{{'label.additionalplans' | translate}}</a>
 		</div>
-		 <input data-ng-model="filterText" type="text" data-ng-autofocus="true" class="span marginbottom0px" placeholder="{{'placeholder.enter.text.search'|translate}}">
+		<input data-ng-model="filterText" type="text" data-ng-autofocus="true" class="span marginbottom0px" placeholder="{{'placeholder.enter.text.search'|translate}}">
 		<table class="table">
 	        <thead>
 	            <tr class="graybg">
@@ -39,17 +38,16 @@
 	        </tbody>
 	    </table>
 	    <ul class="pager">
-			<li class="previous"><a data-ng-click="ordersData.previous()" href="" data-ng-disabled="!ordersData.hasPrevious()">&larr;{{'btn.previous'|translate}}</a></li>
-			<li class="next" ><a data-ng-click="ordersData.next()" href="" data-ng-disabled="!ordersData.hasNext()">{{'btn.next'|translate}} &rarr;</a></li>
+			<li class="previous"><a data-ng-click="ordersData.previous()" data-ng-disabled="!ordersData.hasPrevious()">&larr;{{'btn.previous'|translate}}</a></li>
+			<li class="next" ><a data-ng-click="ordersData.next()"  data-ng-disabled="!ordersData.hasNext()">{{'btn.next'|translate}} &rarr;</a></li>
     	</ul>
-	</div>    
- 	<div class="row-fluid margintop5px">
- 	<b class="marginleft10" style="font-size: 20px;color: #080808;">{{'label.ondemands'|translate}}</b>
+	</div><br/>    
+ 	<div>
+ 		<b class="marginleft10" style="font-size: 20px;color: #080808;">{{'label.ondemands'|translate}}</b>
  		<div class="pull-right">
 			<a href="#/vodevents" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'label.vod.add.event'|translate}}</a>
-		</div><br/>
-		    <input data-ng-model="filterText" type="text" data-ng-autofocus="true" class="span marginbottom0px" placeholder="{{'placeholder.enter.text.search'|translate}}">
-		<br/>
+		</div>
+		<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.enter.text.search'|translate}}">
 		<table class="table">
 	        <thead>
 	            <tr class="graybg">
@@ -60,7 +58,7 @@
 	            </tr>
 	        </thead>
 	        <tbody>
-	            <tr class="pointer-main" data-ng-repeat="vodData in listOfVODSData  | filter:filterText" >
+	            <tr class="pointer-main" data-ng-repeat="vodData in VODSDatas.currentPageItems  | filter:filterText" >
 	                <td class="pointer">{{vodData.eventName}}</td>
 	                <td class="pointer">{{vodData.bookedDate | DateFormat}}</td>
 	                <td class="pointer">{{vodData.eventPrice}}</td>
@@ -68,5 +66,9 @@
 	            </tr>
 	        </tbody>
 	    </table>
+	    <ul class="pager">
+			<li class="previous"><a data-ng-click="VODSDatas.previous()" data-ng-disabled="!VODSDatas.hasPrevious()">&larr;{{'btn.previous'|translate}}</a></li>
+			<li class="next" ><a data-ng-click="VODSDatas.next()" data-ng-disabled="!VODSDatas.hasNext()">{{'btn.next'|translate}} &rarr;</a></li>
+    	</ul>
 	</div>
 </div>
