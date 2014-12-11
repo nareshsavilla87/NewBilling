@@ -21,6 +21,7 @@
                    //Represent the Default Client Type IND or Corporate in Create Client 
                    "IsClientIndividual":isClientIndividualValue,
                    
+                   // For Changing Device agreement type SALE,OWN,NONE in Simple activation
                    "deviceAgrementType":deviceAgrementTypeValue,
 
                    //For enable Subscription Payment in Create Payment 

@@ -44,8 +44,8 @@
     .when('/renewalorderpreviewscreen/:orderId/:clientId', {
     	templateUrl: 'selfcare_module/views/clients/renewalorderpreviewscreen.html'
     })
-    .when('/listofvods', {
-    	templateUrl: 'selfcare_module/views/clients/listofvods.html'
+    .when('/services', {
+    	templateUrl: 'selfcare_module/views/clients/services.html'
 	})
 	.when('/kortaIntegration/:planId/:clientId',{
     	templateUrl: 'selfcare_module/views/kortaIntegration.html'
