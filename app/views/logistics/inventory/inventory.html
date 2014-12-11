@@ -34,15 +34,15 @@
             </thead>
             <tbody>
               <tr class="pointer-main" ng-repeat="itemdetail in itemdetails.currentPageItems  | filter:filterText">
-              	<td class="pointer" style="text-align:left">{{itemdetail.officeName}}</td>
-              	<td class="pointer" style="text-align:left">{{itemdetail.supplier}}</td>
-                <td class="pointer" style="text-align:left">{{itemdetail.itemDescription}}</td>
-                <td class="pointer" style="text-align:left">{{itemdetail.serialNumber}}</td>
-                <td class="pointer" style="text-align:left">{{itemdetail.provisioningSerialNumber}}</td>
-                <td class="pointer" style="text-align:left">{{itemdetail.quality}}</td>
-                <td class="pointer" style="text-align:left">{{itemdetail.status}}</td>
-                <td ng-show="itemdetail.accountNumber" class="pointer" style="text-align:left">{{itemdetail.accountNumber}}</td>
-                <td ng-hide="itemdetail.accountNumber" class="pointer" style="text-align:left">In Stock</td>
+              	<td class="pointer" data-ng-click="routeTo(itemdetail.accountNumber)" style="text-align:left">{{itemdetail.officeName}}</td>
+              	<td class="pointer" data-ng-click="routeTo(itemdetail.accountNumber)" style="text-align:left">{{itemdetail.supplier}}</td>
+                <td class="pointer" data-ng-click="routeTo(itemdetail.accountNumber)" style="text-align:left">{{itemdetail.itemDescription}}</td>
+                <td class="pointer" data-ng-click="routeTo(itemdetail.accountNumber)" style="text-align:left">{{itemdetail.serialNumber}}</td>
+                <td class="pointer" data-ng-click="routeTo(itemdetail.accountNumber)" style="text-align:left">{{itemdetail.provisioningSerialNumber}}</td>
+                <td class="pointer" data-ng-click="routeTo(itemdetail.accountNumber)" style="text-align:left">{{itemdetail.quality}}</td>
+                <td class="pointer" data-ng-click="routeTo(itemdetail.accountNumber)" style="text-align:left">{{itemdetail.status}}</td>
+                <td ng-show="itemdetail.accountNumber" class="pointer" data-ng-click="routeTo(itemdetail.accountNumber)" style="text-align:left">{{itemdetail.accountNumber}}</td>
+                <td ng-hide="itemdetail.accountNumber" class="pointer" data-ng-click="routeTo(itemdetail.accountNumber)" style="text-align:left">In Stock</td>
                 <td style="text-align:center"><a ng-show="(itemdetail.clientId)&&PermissionService.showMenu('UPDATE_INVENTORY')" ng-click="editProvSerial(itemdetail.id,itemdetail.quality,itemdetail.provisioningSerialNumber)"
                                  popover="Edit Provisioning" popover-trigger="mouseenter" class="icon-edit"></a>&nbsp;
                 <a ng-show="(!itemdetail.clientId)&&PermissionService.showMenu('UPDATE_INVENTORY')" ng-click="editQuality(itemdetail.id,itemdetail.quality,itemdetail.provisioningSerialNumber,itemdetail.serialNumber)"
