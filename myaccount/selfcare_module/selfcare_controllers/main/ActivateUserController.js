@@ -1,7 +1,7 @@
 (function(selfcare_module) {
   selfcare.controllers = _.extend(selfcare_module, {
 	  ActivateUserController: function(scope,RequestSender,rootScope,routeParams,http,
-			  							webStorage,httpService,sessionManager,location,API_VERSION,filter) {
+			  							webStorage,httpService,sessionManager,location,API_VERSION,filter,authenticationService) {
 		  
 		//getting the mailId value form routeParams
 		  scope.existedEmail = routeParams.mailId;
@@ -226,7 +226,7 @@
   });
   selfcare.ng.application.controller('ActivateUserController', 
  ['$scope','RequestSender','$rootScope','$routeParams','$http','webStorage','HttpService',
-  'SessionManager','$location','API_VERSION','$filter',selfcare.controllers.ActivateUserController]).run(function($log) {
+  'SessionManager','$location','API_VERSION','$filter','AuthenticationService',selfcare.controllers.ActivateUserController]).run(function($log) {
       $log.info("ActivateUserController initialized");
   });
 }(selfcare.controllers || {}));

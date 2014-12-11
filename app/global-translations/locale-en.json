@@ -2363,6 +2363,10 @@
 "validation.error.msg.selfcare.duplicate.email":"Email Id is already exist",
 "label.pgconfig.globalpay.password":"Password",
 "label.pgconfig.globalpay.username":"userName",
+"label.pgconfig.dalpay.merchantid":"MerchantId",
+"label.pgconfig.dalpay.pageid":"PageId",
+"label.pgconfig.editdalpay":"Edit Dalpay",
+"label.pgconfig.editglobalpay":"Edit Globalpay",
 
 "#Audit trails":".....",
 "label.searchoptions":"Search Options",
