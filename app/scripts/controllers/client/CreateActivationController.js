@@ -10,8 +10,10 @@
 		  scope.ActivationData.bookorder = [];
 		  scope.ActivationData.owndevice = [];
 		  scope.data=[];
-		  var config = filter('ConfigLookup')('deviceAgrementType');
+		  //var config = filter('ConfigLookup')('deviceAgrementType');
+		  var config = webStorage.get("client_configuration").deviceAgrementType;
 		  scope.config=config;
+		  scope.configPayment = webStorage.get("client_configuration").payment;
 		  scope.PermissionService = PermissionService;
 		 
 		  
@@ -280,42 +282,51 @@
 	 	             delete this.formData2.itemCode;
 	 	             delete this.formData2.id;
 	               delete this.formData2.chargesData;
-	                }else{
+	                }else if(config =='OWN'){
 	                	
 	                	  scope.formData5.locale = $rootScope.locale.code;
 	  		            var reqDate = dateFilter(scope.first.date,'dd MMMM yyyy');
 	  		            scope.formData5.dateFormat = 'dd MMMM yyyy';
 	  		            scope.formData5.allocationDate = reqDate;
 	  		            scope.formData5.status = "ACTIVE";
-	  		          scope.formData5.serialNumber=scope.formData5.provisioningSerialNumber;
-	  		            
-	  		            
+	  		          //scope.formData5.serialNumber=scope.formData5.provisioningSerialNumber;
+	  		              if(scope.formData5.provisioningSerialNumber == undefined){ 
+	  		            	scope.formData5.provisioningSerialNumber = scope.formData5.serialNumber;
+	  		              }
+	                }else{
+	                	
 	                }
 	 	            
+	                if(config =='SALE'){
+	                	var temp1 = new Array();
+	    	 	        
+		 	        	$("input[name='serial']").each(function(){
+		 	        		var temp = {};
+		 	    			temp["serialNumber"] = $(this).val();
+		 	    			temp["orderId"] = routeParams.id;
+		 	    			temp["clientId"] = routeParams.clientId;
+		 	    			temp["status"] = "allocated";
+		 	    			temp["itemMasterId"] = scope.formData2.itemId;
+		 	    			  
+		 	    			temp["isNewHw"]="Y";
+		 	    			temp1.push(temp);
+		 	        	});
+		 	        	this.formData2.serialNumber=temp1;
+	                }
 	 	        	
-	 	        	var temp1 = new Array();
-	 	        
-	 	        	$("input[name='serial']").each(function(){
-	 	        		var temp = {};
-	 	    			temp["serialNumber"] = $(this).val();
-	 	    			temp["orderId"] = routeParams.id;
-	 	    			temp["clientId"] = routeParams.clientId;
-	 	    			temp["status"] = "allocated";
-	 	    			temp["itemMasterId"] = scope.formData2.itemId;
-	 	    			  
-	 	    			temp["isNewHw"]="Y";
-	 	    			temp1.push(temp);
-	 	        	});
 	 	            
 	 	        	 scope.formData3.itemMasterId=scope.formData2.itemId;
-	 	            this.formData2.serialNumber=temp1;
+	 	            
 
 	 	            var clientId=null;
-	 	            
-		            scope.ActivationData.owndevice.push(this.formData5);
+	 	            if(config =='OWN'){
+	 	            	scope.ActivationData.owndevice.push(this.formData5);
+	 	            }
 		            scope.ActivationData.bookorder.push(this.formData4);
 	 	            scope.ActivationData.allocate.push(this.formData3);
-	 	            scope.ActivationData.sale.push(this.formData2);
+	 	            if(config =='SALE'){
+	 	            	scope.ActivationData.sale.push(this.formData2);
+	 	            }
 	 	            scope.ActivationData.client.push(this.formData1);
 	 	            
 	 	            delete this.formData3.serialNumbers;
@@ -330,7 +341,8 @@
 	            
 	            resourceFactory.activationProcessResource.save(scope.ActivationData,function(data){
 	            	resourceId=data.resourceId;
-	            	var resp = filter('ConfigLookup')('payment');
+	            	//var resp = filter('ConfigLookup')('payment');
+	            	var resp = webStorage.get("client_configuration").payment;
 	          
 	            	if(resp){
 	            	

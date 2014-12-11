@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    CreateClientController: function(scope, resourceFactory, location, http, dateFilter,API_VERSION,$rootScope,PermissionService,$upload,filter) {
+    CreateClientController: function(scope, resourceFactory, location, http, dateFilter,API_VERSION,$rootScope,PermissionService,$upload,filter,webStorage) {
 
     	scope.formData = {};
        
@@ -9,7 +9,8 @@
         scope.clientCategoryDatas=[];
         scope.groupNameDatas=[];
         
-        var IsClientIndividual = filter('ConfigLookup')('IsClientIndividual');
+       // var IsClientIndividual = filter('ConfigLookup')('IsClientIndividual');
+        var IsClientIndividual =  webStorage.get("client_configuration").IsClientIndividual;
         if(IsClientIndividual == 'true'){
         	scope.formData.entryType ='IND';
         }else{
@@ -96,6 +97,7 @@
                                                               'PermissionService',
                                                               '$upload',
                                                               '$filter',
+                                                              'webStorage',
                                                               mifosX.controllers.CreateClientController]).run(function($log) {
     $log.info("CreateClientController initialized");
   });
