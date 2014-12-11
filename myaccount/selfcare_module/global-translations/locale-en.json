@@ -37,11 +37,8 @@
  	"btn.disconnect"		   	: "Disconnect",
  	"btn.checkout"		   		: "Check Out",
  	"btn.dalpay"		   		: "Dalpay",
-<<<<<<< HEAD
- 	"btn.ok"			   		: "OK",
-=======
  	"btn.proceed"		   		: "Proceed",
->>>>>>> upstream/master
+ 	"btn.ok"			   		: "OK",
  	
  "#labels"  :  "--------------------------",
  	"label.product.name" 		: "OBS",
@@ -881,7 +878,12 @@
 "error.msg.client.Not Parent.he.is. already. a parent.to.some other clients":"He is already a parent to some other clients",
 "error.msg.client.Not Parent.can.not.be.parent.to this.account":"Can not be parent to this account",
 
-<<<<<<< HEAD
+"label.paymentgateway.receiptNo"		: "Transaction Reference",
+"label.paymentgateway.amount"			: "Paid Amount",
+"label.paymentgateway.description"		: "Description",
+"label.paymentgateway.result"			: "Result",
+"label.paymentgateway.paymentId"		: "Payment Id",
+
 "#paymentGatewayConfig":"",
 "label.paypal":"Paypal",
 "label.globalpay":"GlobalPay",
@@ -892,13 +894,7 @@
 "label.add.globalpay.Info":"GlobalPay Information",
 "dialog.korta.title.message":"Alert Information",
 "dialog.korta.alert.message":"Dear Customer, You should Register your Card Details In Korta Payment Gateway System before Using this Service."
-=======
-"label.paymentgateway.receiptNo"		: "Transaction Reference",
-"label.paymentgateway.amount"			: "Paid Amount",
-"label.paymentgateway.description"		: "Description",
-"label.paymentgateway.result"			: "Result",
-"label.paymentgateway.paymentId"		: "Payment Id"
->>>>>>> upstream/master
+
 
 
 

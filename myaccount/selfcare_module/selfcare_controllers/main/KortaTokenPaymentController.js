@@ -70,11 +70,7 @@
 			  
 			  scope.downloadurl = selfcare.models.additionalKortaUrl+"/"+routeParams.planId+"/"+routeParams.clientId+"?encryptedKey="+scope.encryptedString+"&";
 			  
-<<<<<<< HEAD
-			  scope.formData.description = encodeURIComponent(scope.formData.description);
-			  var md5data = scope.formData.amount+scope.formData.currency+scope.kortaMerchantId+scope.kortaTerminalId+scope.formData.description+"//1"+"/"+scope.formData.token + scope.kortaSecretCode +scope.kortaTestServer;			 
-			  scope.formData.md5value=md5(md5data);
-=======
+
 			  if(scope.kortaTestServer == 'TEST'){
 				  scope.md5data = scope.formData.amount + scope.formData.currency + scope.kortaMerchantId
 				  + scope.kortaTerminalId + scope.formData.description + "//1/" 
@@ -88,8 +84,7 @@
 				  location.path('/profile');
 			  }
 			  scope.formData.md5value=md5(scope.md5data);
-			  
->>>>>>> upstream/master
+
 		  };
     }
   });

@@ -34,50 +34,6 @@
         	
         	if(downloadmd5String == downloadmd5){
         		
-<<<<<<< HEAD
-        		//scope.formData.reference = reference;
-        		scope.paymentFormData.transactionId = reference;
-        		scope.paymentFormData.source = 'korta';
-        		scope.paymentFormData.otherData = '{korta payment}';
-        		scope.paymentFormData.device = '';
-        		
-    	  			if(scope.PaymentMethod == "STNOCAP"){	
-    	  				httpService.post("/obsplatform/api/v1/authentication?username="+selfcare.models.obs_username+"&password="+selfcare.models.obs_password)	        	  		
-	           			.success(function(data){
-	        	  			 httpService.setAuthorization(data.base64EncodedAuthenticationKey);	        	  			
-	        	  			 rootScope.currentSession= {user :'selfcare'};
-	        	  			 RequestSender.updateKortaToken.update({clientId : scope.formData.clientId},{'kortaToken': scope.kortaToken},function(data){
-	 	           				rootScope.isActiveScreenPage= false;
-	 	           				location.path('/profile');	   
-	 	   					 });	
-	           			})
-	        		    .error(function(errordata){
-	        		    	console.log('authentication failure');
-	        		    });
-    	  	        }
-    	  			if(scope.PaymentMethod == "STORAGE"){
-	           			           			 
-	           			httpService.post("/obsplatform/api/v1/authentication?username="+selfcare.models.obs_username+"&password="+selfcare.models.obs_password)	        	  		
-	           			.success(function(data){
-	        	  			 httpService.setAuthorization(data.base64EncodedAuthenticationKey);	        	  			
-	        	  			 rootScope.currentSession= {user :'selfcare'};
-	        	  			 RequestSender.updateKortaToken.update({clientId : scope.paymentFormData.clientId},{'kortaToken': scope.kortaToken},function(data){
-	 	           				rootScope.isActiveScreenPage= false;
-	 	   					 });	
-	        	  			 
-	        	  			 RequestSender.kortaPaymentsResource.save({},scope.paymentFormData,function(data){	
-	        	  				 webStorage.add("paymentgatewayresponse",data);
-	        	  				 alert(data);
-	 	           				 location.path('/paymentgatewayresponse');
-	        	  				      	  			
-	        	  			 });
-	           			})
-	        		    .error(function(errordata){
-	        		    	console.log('authentication failure');
-	        		    });
-    	  			}
-    	  			
-=======
         		scope.formData.reference = reference;
         	
     	  			if(scope.PaymentMethod == "STNOCAP"){	
@@ -86,7 +42,6 @@
 	   						 location.path('/profile');
 	   					 });
     	  	        }
->>>>>>> upstream/master
            			
         	}else{
         		alert("calculate md5 String Value : "+ downloadmd5String+",downloadmd5 : "+ downloadmd5);

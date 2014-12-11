@@ -2387,7 +2387,11 @@
 "label.addons.service":"Service",
 "label.editaddons":"Edit Addons",
 "link.create.new.addon":"New Addon",
-"table.addons.price":"Price"
+"table.addons.price":"Price",
+
+"#Provision":".......",
+"label.provision.provisioningsystem":"Provisioning System",
+"label.provision.status":"Status"
 
 
 }

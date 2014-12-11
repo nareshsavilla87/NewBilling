@@ -97,17 +97,8 @@
 				  alert("Please Configure the Server Type Properly. Either 'TEST' or 'LIVE'");
 				  location.path('/profile');
 			  }
-<<<<<<< HEAD
-			 
-			  scope.formData.description = encodeURIComponent(scope.formData.description);
-			  
-			  var md5data = scope.formData.amount+scope.formData.currency+scope.kortaMerchantId+scope.kortaTerminalId+scope.formData.description+"/"+scope.formData.doAction+"//"+scope.formData.token + scope.kortaSecretCode +scope.kortaTestServer;			 
-			   
-			  scope.formData.md5value=md5(md5data);
-			  console.log(scope.formData.md5value);
-=======
+
 			  scope.formData.md5value=md5(scope.md5data);
->>>>>>> upstream/master
 		  };
     }
   });

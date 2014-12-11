@@ -76,12 +76,9 @@
     })
     .when('/paymentgatewayresponse',{
     	templateUrl: 'selfcare_module/views/paymentgatewayresponse.html'
-<<<<<<< HEAD
-=======
     })
     .when('/termsandconditionsonlinepayment',{
     	templateUrl: 'selfcare_module/views/termsandConditionsforOnlinePayment.html'
->>>>>>> upstream/master
     });
        
     $locationProvider.html5Mode(false);
