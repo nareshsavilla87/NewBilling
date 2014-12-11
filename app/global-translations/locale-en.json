@@ -2368,7 +2368,11 @@
 "label.checkedfrom":"Checked From",
 "label.checkedto":"Checked To",
 "label.audit":"Audit",
-"label.viewauditentry":"View Audit"
+"label.viewauditentry":"View Audit",
+
+"#Provision":".......",
+"label.provision.provisioningsystem":"Provisioning System",
+"label.provision.status":"Status"
 
 
 
