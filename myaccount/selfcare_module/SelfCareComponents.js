@@ -37,7 +37,7 @@ define(['underscore', 'selfcare'], function() {
 						      'main/ChangeOrderController',
 						      'main/RenewalOrderController',
 						      'main/RenewalOrderPreviewScreenController',
-						      'main/ListOfVODSController',
+						      'main/ServicesController',
 						      'main/KortaController',
 						      'main/KortaSuccessController',
 						      'main/KortaTokenPaymentController',
