@@ -28,30 +28,58 @@
     
     <script type="text/ng-template" id="editdalpay.html">
 
-	<form class="form-horizontal well" ng-submit="submit()">
-	 <div class="error" ng-show="errorStatus || errorDetails">
-		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
-	    </div>
-	<fieldset>
-		<legend>{{'label.edit' | translate}}</legend>
-		
-	</fieldset>
-	
-		<div class="control-group">
-           <label class="control-label" for="value">{{'label.pgconfig.dalpay.url' | translate}}</label>
-            <div class="controls">
-             <input type="text" id="value" ng-model="formData.value">
-            </div>
+	   <div class="modal-header silver">
+          <h3 class="bolder">{{'label.pgconfig.editdalpay' | translate}}</h3>
+        </div>
+	 <form name="editDalpayForm" novalidate="" class="form-horizontal well" ng-submit="submit()">
+        <div class="modal-body">
+			 <div class="error" ng-show="errorStatus || errorDetails">
+				<label>{{'label.contract.error' | translate}}</label>
+				<label ng-show="errorStatus">{{errorStatus}}</label>
+				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	   		 </div>
+ 		  <fieldset>
+           	<div class="control-group">
+				<label class="control-label">{{'label.pgconfig.dalpay.url' | translate}}<span class="required">*</span> :</label>
+			 	<div class="controls">
+              		<input  type="text" name="url" ng-model="formData.url" placeholder="enter Paypal here" required late-Validate/><br>
+                    <span  ng-show="editDalpayForm.url.$invalid">
+                    	<small class="error" ng-show="editDalpayForm.url.$error.req">
+                        	Required Field
+                    	</small>
+                   </span>
+            	</div>
+           	</div>
+          	<div class="control-group">
+				<label class="control-label">{{'label.pgconfig.dalpay.merchantid' | translate}}<span class="required">*</span> :</label>
+			 	<div class="controls">
+              		<input  type="text" name="merchantId" ng-model="formData.merchantId" placeholder="enter MerchantId here" required late-Validate/><br>
+                    <span  ng-show="editDalpayForm.merchantId.$invalid">
+                    	<small class="error" ng-show="editDalpayForm.merchantId.$error.req">
+                        	Required Field
+                    	</small>
+                   </span>
+            	</div>
+           	</div>
+			<div class="control-group">
+				<label class="control-label">{{'label.pgconfig.dalpay.pageid' | translate}}<span class="required">*</span> :</label>
+			 	<div class="controls">
+              		<input  type="text" name="pageId" ng-model="formData.pageId" placeholder="enter pageId here" required late-Validate/><br>
+                    <span  ng-show="editDalpayForm.terminalId.$invalid">
+                    	<small class="error" ng-show="editDalpayForm.terminalId.$error.req">
+                        	Required Field
+                    	</small>
+                   </span>
+            	</div>
+           	</div>
+		  </fieldset>
+        </div>
+        <div class="modal-footer">
+          <button id="cancel" class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+     	  <button id="submit" type="submit" class="btn btn-primary" ng-disabled="(!editDalpayForm.$valid)" >{{'label.confirm' | translate}}</button>
         </div>
 	</form>
-   <div class="modal-footer">
-         <button id="cancel" class="btn btn-warning" ng-click="reject()">{{'button.cancel' | translate}}</button>
-         <button id="submit" class="btn btn-primary" ng-click="accept()">{{'label.confirm' | translate}}</button>
-   </div>
-
-</script> 
+	</script> 
 <script type="text/ng-template" id="editPaypal.html">
 
 	   <div class="modal-header silver">
@@ -153,7 +181,7 @@
 <script type="text/ng-template" id="editGlobalpay.html">
 
 	   <div class="modal-header silver">
-          <h3 class="bolder">{{'label.pgconfig.editkorta' | translate}}</h3>
+          <h3 class="bolder">{{'label.pgconfig.editglobalpay' | translate}}</h3>
         </div>
 	 <form name="editGlobalpayForm" novalidate="" class="form-horizontal well" ng-submit="submit()">
         <div class="modal-body">
