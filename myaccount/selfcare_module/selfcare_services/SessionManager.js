@@ -1,10 +1,10 @@
 (function(selfcare_module) {
    selfcare.services = _.extend(selfcare_module, {
-    SessionManager: function(scope,webStorage, httpService,RequestSender,location) {
+    SessionManager: function(scope,webStorage, httpService,RequestSender,location,localStorageService) {
       var EMPTY_SESSION = {user:null};
 
       this.clear = function() {
-        webStorage.remove("selfcare_sessionData");
+    	localStorageService.remove("selfcare_sessionData");
         webStorage.remove("clientTotalData");
         webStorage.remove('selfcareUserName');
         webStorage.remove('selfcareUserData');
@@ -13,7 +13,7 @@
       };
 
         this.restore = function(handler) {
-            var selfcare_sessionData = webStorage.get('selfcare_sessionData');
+            var selfcare_sessionData = localStorageService.get('selfcare_sessionData');
             if (selfcare_sessionData !== null) {
               httpService.setAuthorization(selfcare_sessionData.authenticationKey);
               RequestSender.userResource.get({userId: selfcare_sessionData.userId}, function(userData) {
@@ -43,6 +43,7 @@
 												    'HttpService',
 												    'RequestSender',
 												    '$location',
+												    'localStorageService',
 												    selfcare.services.SessionManager
   ]).run(function($log) {
     $log.info("SessionManager initialized");

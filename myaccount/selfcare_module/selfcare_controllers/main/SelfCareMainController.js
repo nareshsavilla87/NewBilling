@@ -58,13 +58,6 @@
 				};
 			};
 			
-		 //isActive Function 
-		 scope.isActive = function (route) {
-			
-			 var active = route === location.path();
-			 	return active;
-	      };
-
 	//forgot password popup controller
 		 var ForgotPwdPopupController = function($scope,$modalInstance){
 			 
@@ -109,6 +102,13 @@
 				 resolve:{}
 	 			});
 		 };
+		 
+		//isActive Function 
+		 scope.isActive = function (route) {
+			
+			 var active = route === location.path();
+			 	return active;
+	      };
 		 
 		//calling this method every time if session is exit or not
 		   sessionManager.restore(function(session) {
