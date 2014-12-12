@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  MappingController: function(scope,webStorage, routeParams,location, resourceFactory, paginatorService,PermissionService,$modal,route) {
+	  MappingController: function(scope,webStorage, routeParams,location, resourceFactory, paginatorService,PermissionService,$modal,route,$rootScope) {
         scope.servicemappingdatas = [];
         scope.hardwaremappingdatas= [];
         scope.provisiongsystemData= [];
@@ -53,13 +53,18 @@
 		   }
         }
         
+       
         /*service mapping data*/
+        scope.serviceMapFetchFunction = function(offset, limit, callback) {
+        	resourceFactory.mappingResource.get({offset: offset, limit: limit} , callback);
+		};
         scope.getServiceMappingDetails = function(){
-        	
-             resourceFactory.mappingResource.get(function(data) {
+        	scope.servicemappingdatas = paginatorService.paginate(scope.serviceMapFetchFunction, 19);
+             /*resourceFactory.mappingResource.get(function(data) {
         	 scope.servicemappingdatas=data; 
-        });
+        });*/
         };
+       
         /*plan mapping data*/
         scope.getplanMappingdetails = function(){
         	
@@ -213,6 +218,32 @@
               location.path('/viewprovisioningmapping/'+ id);
           };
           
+          // popup for sortBy
+          scope.editSortservice = function (serviceId){
+		    	 scope.serviceId = serviceId;
+		     	 $modal.open({
+					 templateUrl: 'sortby.html',
+					 controller: editSortByController,
+					 resolve:{}
+				 });
+		   }; 
+		       
+		   function editSortByController($scope, $modalInstance) {
+			   $scope.formData = {};
+			   $scope.formData.sortBy = "";
+		     	  $scope.approveDeleteService = function () {
+		     		  this.formData.locale = $rootScope.locale.code;
+		     		  resourceFactory.serviceMappingResource.update({'serviceMappingId': scope.serviceId}, $scope.formData, function() {
+		     			  $modalInstance.close('delete');
+	        			  route.reload();
+		             });
+		     		
+		           };
+		           $scope.cancel = function () {
+		               $modalInstance.dismiss('cancel');
+		           };
+		   };
+          
     }
   });
   mifosX.ng.application.controller('MappingController', [
@@ -225,6 +256,7 @@
     'PermissionService', 
     '$modal',
     '$route',
+    '$rootScope',
     mifosX.controllers.MappingController
     ]).run(function($log) {
     $log.info("MappingController initialized");
