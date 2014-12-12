@@ -1,12 +1,17 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  ServicesController: function(scope, resourceFactory,location,PermissionService,$modal,route,$rootScope) {
+	  ServicesController: function(scope, resourceFactory,location,PermissionService,$modal,route,$rootScope,paginatorService) {
         
           scope.services = [];
           scope.PermissionService = PermissionService; 
-          resourceFactory.serviceResource.query(function(data){
+          
+          scope.serviceFetchFunction = function(offset, limit, callback) {
+        	  resourceFactory.serviceResource.get({offset: offset, limit: limit} , callback);
+  		  };
+  		  scope.services = paginatorService.paginate(scope.serviceFetchFunction, 19);
+          /*resourceFactory.serviceResource.query(function(data){
               scope.services = data;
-          });
+          });*/
           scope.routeTo = function(id){
               location.path('/viewservice/'+ id);
            };
@@ -33,31 +38,7 @@
 	               $modalInstance.dismiss('cancel');
 	           };
 	       };
-	       
-	       scope.editSortservice = function (serviceId){
-		    	 scope.serviceId = serviceId;
-		     	 $modal.open({
-					 templateUrl: 'sortby.html',
-					 controller: editSortByController,
-					 resolve:{}
-				 });
-		   }; 
-		       
-		   function editSortByController($scope, $modalInstance) {
-			   $scope.formData = {};
-			   $scope.formData.sortBy = "";
-		     	  $scope.approveDeleteService = function () {
-		     		  this.formData.locale = $rootScope.locale.code;
-		     		  resourceFactory.serviceResource.update({serviceId: scope.serviceId}, $scope.formData, function() {
-		     			  $modalInstance.close('delete');
-	        			  route.reload();
-		             });
-		           };
-		           $scope.cancel = function () {
-		               $modalInstance.dismiss('cancel');
-		           };
-		   };
-		       
+	            
      }
   });
   mifosX.ng.application.controller('ServicesController', [
@@ -68,6 +49,7 @@
                                                           '$modal',
                                                           '$route',
                                                           '$rootScope',
+                                                          'PaginatorService',
                                                           mifosX.controllers.ServicesController]).run(function($log) {
     $log.info("ServicesController initialized");
   });
