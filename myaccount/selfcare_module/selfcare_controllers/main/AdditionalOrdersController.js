@@ -180,7 +180,13 @@
 						 controller: TermsandConditionsKortaTokenController,
 						 resolve:{}
 			 	 });
-	    	  }
+	    	  }else if((scope.paymentGWName == 'paypal') || (scope.paymentGWName == 'dalpay') ){
+		    	  modal.open({
+		    		  templateUrl: 'termsandconditionspaypal.html',
+		    		  controller: TermsandConditionsPapaylController,
+		    		  resolve:{}
+		    	  });
+		      }
 	      };
 	      
 	      //starting korta controller
@@ -441,6 +447,18 @@
 					$scope.disAgree = function(){
 						$modalInstance.dismiss('cancel');
 				 };
+				};//ending globalpay controller
+				
+				//starting paypal controller
+				var TermsandConditionsPaypalController = function($scope,$modalInstance){
+					
+			    	  $scope.paymentURL = scope.paymentURL;
+						$scope.agree = function(){
+							$modalInstance.close('delete');
+						};
+						$scope.disAgree = function(){
+							$modalInstance.dismiss('cancel');
+					 };
 				};//ending globalpay controller
 	      
 	      scope.cancelPaymentFun = function(){
