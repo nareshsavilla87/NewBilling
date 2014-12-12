@@ -1,6 +1,6 @@
 (function(selfcare_module) {
    selfcare.controllers = _.extend(selfcare_module, {
-	  CreateTicketController: function(scope,webStorage, RequestSender, location, dateFilter) {
+	  CreateTicketController: function(scope,webStorage, RequestSender, location, dateFilter,localStorageService) {
             
 			scope.priorityTypes = [];
 			scope.formData={};						
@@ -18,9 +18,11 @@
 		        	showMeridian:false
 		        });
 			 var clientData= webStorage.get('clientTotalData');
+			 if(clientData){
 			   scope.clientId=clientData.clientId;
+			 }
 					        
-		        var selfcare_sessionData=webStorage.get('selfcare_sessionData');
+		        var selfcare_sessionData=localStorageService.get('selfcare_sessionData');
 		        if(selfcare_sessionData){
 		        	scope.formData.assignedTo=selfcare_sessionData.userId;
 		        }
@@ -79,6 +81,7 @@
                                                                 'RequestSender',
                                                                 '$location',
                                                                 'dateFilter', 
+                                                                'localStorageService', 
                                                                 selfcare.controllers.CreateTicketController]).run(function($log) {
       $log.info("CreateTicketController initialized");
   });
