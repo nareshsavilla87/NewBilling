@@ -450,7 +450,7 @@
 				};//ending globalpay controller
 				
 				//starting paypal controller
-				var TermsandConditionsPaypalController = function($scope,$modalInstance){
+				var TermsandConditionsPapaylController = function($scope,$modalInstance){
 					
 			    	  $scope.paymentURL = scope.paymentURL;
 						$scope.agree = function(){
