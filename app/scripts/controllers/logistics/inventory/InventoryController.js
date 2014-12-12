@@ -46,13 +46,13 @@
         }
         
         scope.routeTo = function(id){
-        	if(id !== 0){
+        	if(id !== 0 && id!=undefined && id!=null){
         		if(PermissionService.showMenu('READ_CLIENT'))
         			location.path('/viewclient/'+ parseInt(id));
-        	}else{
+        	}/*else{
         		if(PermissionService.showMenu('CREATE_CLIENT')&&PermissionService.showMenu('READ_ADDRESS'))
         				location.path('/createclient');
-        	}
+        	}*/else{}
           };
         scope.routeTogrn = function(id){
               location.path('/viewgrn/'+ parseInt(id));
