@@ -1,7 +1,7 @@
 <div>
 	<ul class="breadcrumb">
         <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
-        <li class="active">{{'link.admin.provision' | translate}}</li>
+        <li class="active">{{'label.provision.provisioningsystem' | translate}}</li>
     </ul>
 </div>
 <form class="form-horizontal well" ng-controller="ProvisionController" ng-submit="submit()">
@@ -13,10 +13,10 @@
 	<fieldset>
 		<div class="row-fluid" ng-show="provisionLogdatas">
 			<div ng-show="ProcessingAdapter" class="control-group">
-				<strong style="font-size: 20px;"> Adapter Provision: </strong><strong>{{AdapterProvSystem}}</strong>
-				<strong class="offset5">Status:</strong> <span>{{adapterStatus}}</span>
-				<button ng-click="RunCommand('start')" class="btn btn-success offset9" style="margin-top: 5px;" ng-show="adapterStatus=='Stopped'">Start</button>
-				<button ng-click="RunCommand('stop')" class="btn btn-danger offset9" style="margin-top: 5px;" ng-show="adapterStatus=='Running'">Stop</button>
+				<strong style="font-size: 20px;"> {{'label.provision.provisioningsystem' | translate}} : {{AdapterProvSystem}}</strong>
+				<strong style="font-size: 20px;"class="offset3">{{'label.provision.status' | translate}} : {{adapterStatus}}</strong>
+				<button ng-click="RunCommand('start')" class="btn btn-success" style="margin-left: 25px; padding: 10px 35px;" ng-show="adapterStatus=='Stopped'">Start</button>
+				<button ng-click="RunCommand('stop')" class="btn btn-danger" style="margin-left: 25px; padding: 10px 35px;" ng-show="adapterStatus=='Running'">Stop</button>
 			</div>
 			<table class="table">
 				<thead>

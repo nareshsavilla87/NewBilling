@@ -2373,10 +2373,28 @@
 "label.checkedfrom":"Checked From",
 "label.checkedto":"Checked To",
 "label.audit":"Audit",
-"label.viewauditentry":"View Audit"
+"label.viewauditentry":"View Audit",
 
 
+"#Addons":".........",
+"label.addons":"Add Ons",
+"label.createaddons":"Create Addons", 
+"label.createaddons":"Create AddOn",
+"label.addons.plan":"Plan",
+"label.addons.chargrcode":"Charge Code",
+"label.addons.priceregion":"Price Region",
+"placeholder.filter.category":"Filter by category",
+"table.addon.chargecode":"Charge Code",
+"table.addon.priceregion":"Price Region",
+"label.addon.prices":"Prices",
+"label.addons.service":"Service",
+"label.editaddons":"Edit Addons",
+"link.create.new.addon":"New Addon",
+"table.addons.price":"Price",
 
+"#Provision":".......",
+"label.provision.provisioningsystem":"Provisioning System",
+"label.provision.status":"Status"
 
 
 }

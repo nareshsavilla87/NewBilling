@@ -90,12 +90,15 @@
            		 </div>
            	</td>
            </tr>
-            <tr>
-            <td>
-         <strong>Device Info({{config}})</strong>
-         </td><td></td>
+           
+         <tr data-ng-hide="config == 'NONE'">
+            	<td>
+         			<strong>Device Info({{config}})</strong>
+         		</td>
+         		<td></td>
          </tr>
-         <tr data-ng-show="PermissionService.showMenu('CREATE_NEWSALE') || PermissionService.showMenu('CREATE_SECONDSALE') && config == 'SALE'"><td>
+         
+         <tr data-ng-show="(PermissionService.showMenu('CREATE_NEWSALE') || PermissionService.showMenu('CREATE_SECONDSALE')) && config == 'SALE'"><td>
          <div class="control-group">
            
               <div class="controls">
@@ -105,7 +108,9 @@
                <any ng-show="PermissionService.showMenu('CREATE_SECONDSALE')">&nbsp; Second Sale &nbsp;&nbsp;</any>
             </div>
           		</div>
-         </td></tr>
+         </td>
+         </tr>
+         
            	<tr data-ng-show="config == 'SALE'">
           	<td>
 				<div class="control-group">
@@ -134,7 +139,8 @@
           		</div>
 			</td>
              </tr>
-             <tr>
+             
+            <tr data-ng-hide="config == 'NONE'">
              <td>
           		  <div class="control-group">
            	<label class="control-label" for="itemId">{{ 'label.itemCode' | translate }}<span class="required">*</span></label>
@@ -150,11 +156,23 @@
                     <label class="control-label" for="serialNumber">{{ 'label.serialNumber' | translate }}&nbsp;<span class="required">*</span></label>
                     <div class="controls">
              	    <input type="text" data-ng-show="config == 'SALE'" data-ng-model="serial" name="serial" data-ng-change="getData(serial,formData2.officeId)" data-typeahead="itemDetail as itemDetail for itemDetail in itemDetails | limitTo:8" data-typeahead-min-length="0">
-             	     <input type="text" data-ng-show="config == 'OWN'" name="provisioningserialnumber" data-ng-model="formData5.provisioningSerialNumber" required data-late-Validate>
+             	     <input type="text" data-ng-show="config == 'OWN'" name="serialNumber" data-ng-model="formData5.serialNumber" required data-late-Validate>
                     </div>
                </div>
              </td>
              </tr>
+             
+             <tr data-ng-show="config == 'OWN'">
+             	<td>
+          		<div class="control-group"  data-ng-repeat="item in getNumber(formData2.quantity)">
+                    <label class="control-label" for="provisioningSerialNumber">Provisioning SerialNumber&nbsp;<span class="required">*</span></label>
+                    <div class="controls">
+             	     	<input type="text" data-ng-show="config == 'OWN'" name="provisioningSerialNumber" data-ng-model="formData5.provisioningSerialNumber">
+                    </div>
+               </div>
+             </td>
+             </tr>
+             
               <tr>
             <td>
          <strong>Plan Info</strong>
@@ -197,13 +215,13 @@
                  </div>
               </td>
               </tr>
-              <tr data-ng-show="'payment' | ConfigLookup">
+              <tr data-ng-show="configPayment == 'true'">
             <td>
          <strong>Payment Info</strong>
          </td><td></td>
          </tr>
          
-           	<tr data-ng-show="'payment' | ConfigLookup">
+           	<tr data-ng-show="configPayment == 'true'">
            	<td>
           		  <div class="control-group">
              		 <label class="control-label" for="amountPaid">{{'label.activation.amount' | translate}}<span class="required">*</span></label>
