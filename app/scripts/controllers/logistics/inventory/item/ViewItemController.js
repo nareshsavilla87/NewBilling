@@ -22,12 +22,12 @@
     	};
     	
     	scope.showAudit = function(){
-    		scope.showType="1";
+    		scope.showType = "audit";
     	};
     	scope.showItems =function(){
-    		scope.showType="";
+    		scope.showType = "item";
     	};
-    	if(showtype == 1){
+    	if(showtype == 'audit'){
     		scope.showAudit();
     	}
     	var Approve = function ($scope, $modalInstance) {
