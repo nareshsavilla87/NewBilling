@@ -26,7 +26,7 @@
         	delete this.formData.itemClassData;
         	this.formData.locale = $rootScope.locale.code;
             resourceFactory.itemResource.save(this.formData,function(data){
-            location.path('/viewitem/'+data.resourceId);
+            location.path('/viewitem/'+data.resourceId+'/item');
           });
         };
     }
