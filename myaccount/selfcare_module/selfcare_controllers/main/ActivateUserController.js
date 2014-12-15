@@ -231,7 +231,7 @@
 		  	           });
 		      	      function  approve($scope, $modalInstance) {
 		      	    	  rootScope.popUpMsgs.push({
-		      	    		  'image' : 'info-icon.png',
+		      	    		  'image' : './selfcare_module/images/info-icon.png',
 		      	    		  'names' : [{'name' : 'title.account.activated'},
 		      	    		             {'name' : 'title.account.activated.userpwd'},
 		      	    		             {'name' : 'title.login.msg'}]

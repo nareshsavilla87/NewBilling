@@ -32,7 +32,7 @@
 	        		  	         });
 	        		      	function  approve($scope, $modalInstance) {
 	        		      		rootScope.popUpMsgs.push({
-	        		      			'image' : 'info-icon.png',
+	        		      			'image' : './selfcare_module/images/info-icon.png',
 	        		      			'names' : [{'name' : 'title.thankyou'},
 	        		      			           {'name' : 'title.conformation.registration'},
 	        		      			           {'name' : 'title.conformation.activation.link'}]
@@ -54,7 +54,7 @@
   		  	            });
   		            	function  approve($scope, $modalInstance) {
   		            	  rootScope.popUpMsgs.push({
-		  						'image' : 'warning-icon.png',
+		  						'image' : './selfcare_module/images/warning-icon.png',
 		  						'names' : [{'name' : 'title.conformation.alreadyregistration'},
 		  						           {'name' : 'title.login.msg'}]
 	                     });

@@ -31,7 +31,7 @@
 		 <div class="alert alert-success" data-ng-repeat="msgs in infoMsgs">
 			   <table><tr>
 			   		<td colspan="msgs.names.length">
-						<span><img src="./selfcare_module/images/{{msgs.image}}" width="30"></span>
+						<span><img src="{{msgs.image}}" width="30"></span>
 					</td>
 	         		<td><span data-ng-repeat="msg in msgs.names">
 	         				<strong class="marginleft40" >{{msg.name | translate}}</strong><br/>
@@ -217,7 +217,7 @@
          <div class="alert alert-success" data-ng-repeat="msgs in popUpMsgs">
 			   <table><tr>
 			   		<td colspan="msgs.names.length" >
-						<span><img src="./selfcare_module/images/{{msgs.image}}" width="30"></span>
+						<span><img src="{{msgs.image}}" width="30"></span>
 					</td>
 	         		<td><span data-ng-repeat="msg in msgs.names">
 	         				<strong class="marginleft40" >{{msg.name | translate}}</strong><br/>
