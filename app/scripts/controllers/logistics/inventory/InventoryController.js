@@ -62,7 +62,7 @@
              location.path('/viewmrn/'+ scope.val[1]);
            };
         scope.routeToitem = function(id){
-            location.path('/viewitem/'+ parseInt(id));
+            location.path('/viewitem/'+ parseInt(id)+'/item');
           };
          
         
@@ -349,7 +349,7 @@
 						        };
 						        
 						    	scope.showAudit = function(id){
-						    	   location.path('/viewitem/'+id+'/1');
+						    	   location.path('/viewitem/'+id+'/audit');
 						    	};		        
 						        
        }
