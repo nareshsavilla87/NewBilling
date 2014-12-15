@@ -55,17 +55,16 @@
 	       		</tr>
 	       		<tr>
 	       			<td>
-            			<div class="control-group" style="margin-bottom:10px;" data-ng-show="isConfigNationalId">
+            			<div class="control-group" style="margin-bottom:30px;" data-ng-show="isConfigNationalId">
                             <label class="control-label">{{ 'label.nationalid' | translate }}&nbsp;<span class="required">*</span></label>
                              <div class="controls">
-    	                        <input type="text" data-ng-model="formData.nationalId" name="nationalId" placeholder= "{{ 'placeholder.enter.nationalid.example' | translate }}" maxlength="11"
+    	                        <input type="text" data-ng-model="formData.nationalId" name="nationalId" placeholder= "{{'hint.nationaid.pattern'|translate}}" maxlength="11"
 
     	                        data-ng-change="nationalIdValidationFun(formData.nationalId)"/><br/>
-    	                        <small>{{'label.pattern'|translate}}{{'hint.nationaid.pattern'|translate}}</small><br/>
     	                        <small class="error" data-ng-show="!nationalIdvalue">{{'form.error.nationalid.pattern'|translate}}</small>
                              </div>
                         </div>	
-                        <div class="control-group" style="margin-bottom:10px;" data-ng-hide="isConfigNationalId">
+                        <div class="control-group" style="margin-bottom:30px;" data-ng-hide="isConfigNationalId">
                             <label class="control-label">{{ 'label.nationalid' | translate }}&nbsp;</label>
                              <div class="controls">
     	                        <input type="text" data-ng-model="formData.nationalId" name="nationalId" placeholder= "{{ 'label.nationalid' | translate }}"/><br/>

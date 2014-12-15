@@ -1,7 +1,7 @@
 (function(selfcare_module) {
   selfcare.controllers = _.extend(selfcare_module, {
 	  ActivateUserController: function(scope,RequestSender,rootScope,routeParams,http,
-			  							webStorage,httpService,sessionManager,location,API_VERSION,filter,authenticationService) {
+			  							webStorage,httpService,sessionManager,location,API_VERSION,filter,authenticationService,$modal) {
 		  
 		//getting the mailId value form routeParams
 		  scope.existedEmail = routeParams.mailId;
@@ -208,25 +208,38 @@
 					 scope.clientData.phone = parseInt(scope.formData.mobileNo); 
 					 scope.clientData.email = scope.existedEmail;
 					 
-					 rootScope.infoMsgs = [];
+					 rootScope.popUpMsgs = [];
 					 RequestSender.authenticationClientResource.save(scope.clientData,function(data){
-		  				 rootScope.currentSession = sessionManager.clear();
+		  				 
+		  			     $modal.open({
+		  	                templateUrl: 'messagespopup.html',
+		  	                controller: approve,
+		  	                resolve:{}
+		  	           });
+		      	      function  approve($scope, $modalInstance) {
+		      	    	  rootScope.popUpMsgs.push({
+		      	    		  'image' : 'info-icon.png',
+		      	    		  'names' : [{'name' : 'title.account.activated'},
+		      	    		             {'name' : 'title.account.activated.userpwd'},
+		      	    		             {'name' : 'title.login.msg'}]
+		      	    	      });
+		      		
+		      		$scope.approve = function () { 
+		      			
+		      			$modalInstance.dismiss('cancel');
+		      			rootScope.currentSession = sessionManager.clear();
 		  				rootScope.isActiveScreenPage= false;
-		  				 location.path('/').replace();
-		  				 rootScope.infoMsgs.push({
-							  						'image' : 'info-icon.png',
-							  						'names' : [{'name' : 'title.account.activated'},
-							  						           {'name' : 'title.account.activated.userpwd'},
-															   {'name' : 'title.login.msg'}]
-						 });
-		  			 });
+		      			location.path('/').replace();
+		      		};
+		        } 
+		    });
 					
-			};
+		};
     }
   });
   selfcare.ng.application.controller('ActivateUserController', 
  ['$scope','RequestSender','$rootScope','$routeParams','$http','webStorage','HttpService',
-  'SessionManager','$location','API_VERSION','$filter','AuthenticationService',selfcare.controllers.ActivateUserController]).run(function($log) {
+  'SessionManager','$location','API_VERSION','$filter','AuthenticationService','$modal',selfcare.controllers.ActivateUserController]).run(function($log) {
       $log.info("ActivateUserController initialized");
   });
 }(selfcare.controllers || {}));
