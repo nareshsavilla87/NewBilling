@@ -1,6 +1,6 @@
 (function(selfcare_module) {
   selfcare.controllers = _.extend(selfcare_module, {
-	  SignInFormController: function(scope,webStorage,RequestSender,authenticationService,rootScope,location) {
+	  SignInFormController: function(scope,webStorage,localStorageService,RequestSender,authenticationService,rootScope,location) {
 		  
 		  scope.loginCredentials = {};
 		  scope.isProcessing  = false;
@@ -15,7 +15,7 @@
 	    			  
 	    			  scope.isProcessing = true;
 	    			  RequestSender.loginUser.save(scope.loginCredentials,function(successData){
-	    				  webStorage.add("selfcare_sessionData", {userId: data.userId, authenticationKey: data.base64EncodedAuthenticationKey});
+	    				  localStorageService.add("selfcare_sessionData", {userId: data.userId, authenticationKey: data.base64EncodedAuthenticationKey});
 	    				  webStorage.add("clientTotalData", successData);
 	    				  rootScope.currentSession= {user :successData.clientData.displayName||"abc"};
 	    				  rootScope.isSignInProcess = true;
@@ -46,6 +46,7 @@
   selfcare.ng.application.controller('SignInFormController', [
                                                               '$scope',
                                                               'webStorage',
+                                                              'localStorageService',
                                                               'RequestSender',
                                                               'AuthenticationService',
                                                               '$rootScope', 

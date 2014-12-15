@@ -1,6 +1,6 @@
 (function(selfcare_module) {
   selfcare.controllers = _.extend(selfcare_module, {
-	  SignUpFormController: function(scope,RequestSender,HttpService,rootScope,authenticationService,$modal,location,$window) {
+	  SignUpFormController: function(scope,RequestSender,HttpService,rootScope,authenticationService,$modal) {
 
 		  rootScope.signUpCredentials = {};
 		  
@@ -39,8 +39,9 @@
 	        		      		});
 	        		      		$scope.approve = function () { 
 	        		      			 $modalInstance.dismiss('cancel');
-	        		      			 //window.open(window.document.URL);
-	        		      			 
+	        		      			 // dom.allow_scripts_to_close_windows (true);
+	        		      			 // var mywindow=window.open('','_self','');
+	        		      			 // mywindow.close();	      		       
 	        		      		};
 	        		        }  
 	        			  
@@ -58,13 +59,7 @@
 		  						           {'name' : 'title.login.msg'}]
 	                     });
   		      		     $scope.approve = function () {
-  		      		     $window.open(location.path('/dsafdsf'),'_self'); 
-  		      		 
-	  		      		    //var mywindow=window.open("https://localhost:8085/","_self");
-  		      		        $modalInstance.dismiss('cancel');
-  		      		       //console.log(scope.mywindow);
-  		      		       $window.close();
-  		      		       		      		       
+  		      		    	 $modalInstance.dismiss('cancel');
   		      		     };
   		              }    
 			        });
@@ -88,8 +83,6 @@
                                                               '$rootScope',
                                                               'AuthenticationService',
                                                               '$modal',
-                                                              '$location',
-                                                              '$window',
                                                               selfcare.controllers.SignUpFormController]).run(function($log) {
       $log.info("SignUpFormController initialized");
   });
