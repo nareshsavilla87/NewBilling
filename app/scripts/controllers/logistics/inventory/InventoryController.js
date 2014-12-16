@@ -62,7 +62,7 @@
              location.path('/viewmrn/'+ scope.val[1]);
            };
         scope.routeToitem = function(id){
-            location.path('/viewitem/'+ parseInt(id));
+            location.path('/viewitem/'+ parseInt(id)+'/item');
           };
          
         
@@ -323,7 +323,8 @@
 						            $scope.approve = function (act) {
 						                
 						            resourceFactory.itemResource.delete({'itemId': scope.itemdetaiId},{},function(data){
-						                    location.path('/inventory');
+						            		route.reload();
+						            		webStorage.add("callingTab", {someString: "items"});
 
 						            });
 						                $modalInstance.close('delete');
@@ -349,7 +350,7 @@
 						        };
 						        
 						    	scope.showAudit = function(id){
-						    	   location.path('/viewitem/'+id+'/1');
+						    	   location.path('/viewitem/'+id+'/audit');
 						    	};		        
 						        
        }
