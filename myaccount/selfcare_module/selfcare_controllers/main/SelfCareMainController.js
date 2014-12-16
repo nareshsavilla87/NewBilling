@@ -119,7 +119,6 @@
 		    	  scope.currentSession = sessionManager.clear();
 		    	  location.path('/').replace;
 		      };
-		 
     }
   });
    selfcare.ng.application.controller('SelfCareMainController', [

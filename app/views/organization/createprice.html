@@ -5,7 +5,7 @@
               <li class="active">{{'label.creatprice' | translate}}</li>
           </ul>
      
-      <form class="form-horizontal well" name="createPlanPrice"  data-ng-submit="submit()">
+      <form class="form-horizontal well" name="createPlanPrice" novalidate=""  data-ng-submit="submit()">
        <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label data-ng-show="errorStatus">{{errorStatus}}</label>
@@ -82,9 +82,9 @@
           </div>
           </td>
               <td ><div style="margin-top:22px;"><a data-ng-click="addPriceData()" style="margin-left:25px;"><i class="icon-plus icon-white"></i></a></div>
-               <!-- <span data-ng-show="createPlanPrice.columnname.$invalid || columnnameerror">
-	                 <small class="error" data-ng-show="createPlanPrice.columnname.$error.req || columnnameerror">{{ 'label.'+labelerror | translate }}</small>
-	           </span> --></td>
+               <span data-ng-show="createPlanPrice.fields.$invalid || fieldserror">
+	                 <small class="error" data-ng-show="createPlanPrice.fields.$error.req || fieldserror">{{ 'label.'+labelerror | translate }}</small>
+	           </span></td>
               
           </tr>
           </table>

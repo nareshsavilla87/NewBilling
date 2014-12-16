@@ -33,7 +33,7 @@
 					  rootScope.isChangePassword = true;
 					  rootScope.currentSession = sessionManager.clear();
 					  rootScope.infoMsgs.push({
-						  						'image' : 'info-icon.png',
+						  						'image' : './selfcare_module/images/info-icon.png',
 						  						'names' : [{'name' : 'title.password.changed'}]
 					   });
 					  location.replace(selfcareMainPageURL);

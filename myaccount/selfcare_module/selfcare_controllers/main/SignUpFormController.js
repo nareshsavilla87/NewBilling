@@ -1,6 +1,6 @@
 (function(selfcare_module) {
   selfcare.controllers = _.extend(selfcare_module, {
-	  SignUpFormController: function(scope,RequestSender,HttpService,rootScope,authenticationService) {
+	  SignUpFormController: function(scope,RequestSender,HttpService,rootScope,authenticationService,$modal) {
 
 		  rootScope.signUpCredentials = {};
 		  
@@ -13,7 +13,7 @@
 		  //submit functionality
           scope.submitEmail = function(){
         	  
-        	  rootScope.signupErrorMsgs = [];rootScope.loginErrorMsgs = [];rootScope.infoMsgs = [];
+        	  rootScope.signupErrorMsgs = [];rootScope.loginErrorMsgs = [];rootScope.infoMsgs = [];rootScope.popUpMsgs = [];
         	  
         	  if(rootScope.signUpCredentials.userName){
         		  rootScope.signUpCredentials.returnUrl = scope.returnURL+"/"+rootScope.signUpCredentials.userName+"/";
@@ -24,20 +24,45 @@
 	    		  	 RequestSender.registrationResource.save(rootScope.signUpCredentials,function(successData){
 	        			  scope.isProcessing  = false;
 	        			  rootScope.signUpCredentials = {};
-	        			  rootScope.infoMsgs.push({
-							  						'image' : 'info-icon.png',
-							  						'names' : [{'name' : 'title.thankyou'},
-							  						           {'name' : 'title.conformation.registration'},
-	        		  										   {'name' : 'title.conformation.activation.link'}]
-						  });
+	        		 //popUp open
+	        			  $modal.open({
+	        		  	                templateUrl: 'messagespopup.html',
+	        		  	                controller: approve,
+	        		  	                resolve:{}
+	        		  	         });
+	        		      	function  approve($scope, $modalInstance) {
+	        		      		rootScope.popUpMsgs.push({
+	        		      			'image' : './selfcare_module/images/info-icon.png',
+	        		      			'names' : [{'name' : 'title.thankyou'},
+	        		      			           {'name' : 'title.conformation.registration'},
+	        		      			           {'name' : 'title.conformation.activation.link'}]
+	        		      		});
+	        		      		$scope.approve = function () { 
+	        		      			 $modalInstance.dismiss('cancel');
+	        		      			 // dom.allow_scripts_to_close_windows (true);
+	        		      			 // var mywindow=window.open('','_self','');
+	        		      			 // mywindow.close();	      		       
+	        		      		};
+	        		        }  
+	        			  
 			          },function(errorData){
 			        	  scope.isProcessing  = false;
-			        	  rootScope.infoMsgs.push({
-			        		  						'image' : 'warning-icon.png',
-			        		  						'names' : [{'name' : 'title.conformation.alreadyregistration'},
-			        		  						           {'name' : 'title.login.msg'}]
-			        	  });
-			          });
+			        	  $modal.open({
+  		  	                templateUrl: 'messagespopup.html',
+  		  	                controller: approve,
+  		  	                resolve:{}
+  		  	            });
+  		            	function  approve($scope, $modalInstance) {
+  		            	  rootScope.popUpMsgs.push({
+		  						'image' : './selfcare_module/images/warning-icon.png',
+		  						'names' : [{'name' : 'title.conformation.alreadyregistration'},
+		  						           {'name' : 'title.login.msg'}]
+	                     });
+  		      		     $scope.approve = function () {
+  		      		    	 $modalInstance.dismiss('cancel');
+  		      		     };
+  		              }    
+			        });
 	    		  });
         	  }else{
 				  rootScope.signupErrorMsgs.push({"name":'title.fill.emailid'});
@@ -57,6 +82,7 @@
                                                               'HttpService',
                                                               '$rootScope',
                                                               'AuthenticationService',
+                                                              '$modal',
                                                               selfcare.controllers.SignUpFormController]).run(function($log) {
       $log.info("SignUpFormController initialized");
   });
