@@ -52,8 +52,7 @@ define(['underscore', 'selfcare'], function() {
 					      
     selfcare_filters:    [
                        	      'DateFormat',
-                       	      'StatusLookup',
-                       	      'ConfigLookup'
+                       	      'StatusLookup'
                          ],
                        
     selfcare_directives: [

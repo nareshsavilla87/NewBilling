@@ -47,11 +47,10 @@
 	  					//getting data from c_configuration for isRegister_plan and isisDeviceEnabled
 	  					 var configurationDatas = [];
 	  					  RequestSender.configurationResource.get(function(data){
-	  						  
-	  						scope.isConfigNationalId = filter('ConfigLookup')('nationalId');
 	  						
 	  						var configDeviceAgreeType = {};
 	  						configDeviceAgreeType = JSON.parse(data.clientConfiguration);
+	  						scope.isConfigNationalId = configDeviceAgreeType.nationalId;
 	  						
 	  						(configDeviceAgreeType.deviceAgrementType == 'SALE') ?
 									  scope.isCPE_TYPESale = true:
