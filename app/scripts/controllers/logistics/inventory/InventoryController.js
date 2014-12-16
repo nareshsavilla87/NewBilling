@@ -46,13 +46,13 @@
         }
         
         scope.routeTo = function(id){
-        	if(id !== 0){
+        	if(id !== 0 && id!=undefined && id!=null){
         		if(PermissionService.showMenu('READ_CLIENT'))
         			location.path('/viewclient/'+ parseInt(id));
-        	}else{
+        	}/*else{
         		if(PermissionService.showMenu('CREATE_CLIENT')&&PermissionService.showMenu('READ_ADDRESS'))
         				location.path('/createclient');
-        	}
+        	}*/else{}
           };
         scope.routeTogrn = function(id){
               location.path('/viewgrn/'+ parseInt(id));
@@ -62,7 +62,7 @@
              location.path('/viewmrn/'+ scope.val[1]);
            };
         scope.routeToitem = function(id){
-            location.path('/viewitem/'+ parseInt(id));
+            location.path('/viewitem/'+ parseInt(id)+'/item');
           };
          
         
@@ -323,7 +323,8 @@
 						            $scope.approve = function (act) {
 						                
 						            resourceFactory.itemResource.delete({'itemId': scope.itemdetaiId},{},function(data){
-						                    location.path('/inventory');
+						            		route.reload();
+						            		webStorage.add("callingTab", {someString: "items"});
 
 						            });
 						                $modalInstance.close('delete');
@@ -349,7 +350,7 @@
 						        };
 						        
 						    	scope.showAudit = function(id){
-						    	   location.path('/viewitem/'+id+'/1');
+						    	   location.path('/viewitem/'+id+'/audit');
 						    	};		        
 						        
        }

@@ -4,7 +4,7 @@ define(['underscore', 'mifosX'], function() {
       'LoggedInUser',
       'roleMap',
       'Langs',
-      'paypalUser',
+      'provisionAdapter',
       'Encript'
     ],
     services: [

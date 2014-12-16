@@ -2363,6 +2363,10 @@
 "validation.error.msg.selfcare.duplicate.email":"Email Id is already exist",
 "label.pgconfig.globalpay.password":"Password",
 "label.pgconfig.globalpay.username":"userName",
+"label.pgconfig.dalpay.merchantid":"MerchantId",
+"label.pgconfig.dalpay.pageid":"PageId",
+"label.pgconfig.editdalpay":"Edit Dalpay",
+"label.pgconfig.editglobalpay":"Edit Globalpay",
 
 "#Audit trails":".....",
 "label.searchoptions":"Search Options",
@@ -2387,7 +2391,12 @@
 "label.addons.service":"Service",
 "label.editaddons":"Edit Addons",
 "link.create.new.addon":"New Addon",
-"table.addons.price":"Price"
+"table.addons.price":"Price",
+
+"#Provision":".......",
+"label.provision.provisioningsystem":"Provisioning System",
+"label.provision.status":"Status"
+
 
 
 }

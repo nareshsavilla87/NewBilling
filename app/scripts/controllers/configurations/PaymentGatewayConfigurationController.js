@@ -154,22 +154,35 @@
 
 				// DATA GET
 				resourceFactory.paymentGatewayConfigurationResource.get({configId : scope.editId}, function(data) {
-					$scope.formData = data;//{value: data.value};
-					$scope.formData.value = data.value;
-				});
+					var value = data.value;
+					var arr = value.split(",");
+					var url = arr[0].split('"');
+					var merchantId = arr[1].split('"');
+					var pageId = arr[2].split('"');
 
-				$scope.accept = function() {
-					$scope.flag = true;
-					this.updateData.value = this.formData.value;
-					resourceFactory.paymentGatewayConfigurationResource.update({configId : scope.editId }, this.updateData, function(data) {
-						route.reload();
+					$scope.formData.url = url[3];
+					$scope.formData.merchantId = merchantId[3];
+					$scope.formData.pageId = pageId[3];
+				});
+				
+				$scope.submit = function() {
+					
+					$scope.dalpayData = {
+						"value" : '{"url" : "' + $scope.formData.url
+								+ '","merchantId" : "' + $scope.formData.merchantId
+								+ '","pageId" : "' + $scope.formData.pageId
+								+ '"}'
+					};
+					$scope.updateData.value = $scope.dalpayData.value;
+
+					resourceFactory.paymentGatewayConfigurationResource.update({configId : scope.editId}, $scope.updateData, function(data) {
 						$modalInstance.close('delete');
+						route.reload();
 					}, function(errData) {
-						$scope.flag = false;
+						$scope.paypalFlag = false;
 					});
 				};
-				
-				$scope.reject = function() {
+				$scope.cancel = function() {
 					$modalInstance.dismiss('cancel');
 				};
 			};
