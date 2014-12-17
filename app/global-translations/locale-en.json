@@ -747,6 +747,7 @@
   "label.editprice":"Edit Price",
   "label.viewprice":"View Price",
   "label.existsprices":"Exists Prices",
+  "label.fieldserror":"Please add all fields",
   "dialog.price.title.message":"Delete Price",
   "validation.msg.price.chargeCode.cannot.be.blank":"Charge Code cannot be blank",
   "validation.msg.price.discountId.cannot.be.blank":"Please select discount",
@@ -2363,6 +2364,10 @@
 "validation.error.msg.selfcare.duplicate.email":"Email Id is already exist",
 "label.pgconfig.globalpay.password":"Password",
 "label.pgconfig.globalpay.username":"userName",
+"label.pgconfig.dalpay.merchantid":"MerchantId",
+"label.pgconfig.dalpay.pageid":"PageId",
+"label.pgconfig.editdalpay":"Edit Dalpay",
+"label.pgconfig.editglobalpay":"Edit Globalpay",
 
 "#Audit trails":".....",
 "label.searchoptions":"Search Options",
@@ -2387,7 +2392,12 @@
 "label.addons.service":"Service",
 "label.editaddons":"Edit Addons",
 "link.create.new.addon":"New Addon",
-"table.addons.price":"Price"
+"table.addons.price":"Price",
+
+"#Provision":".......",
+"label.provision.provisioningsystem":"Provisioning System",
+"label.provision.status":"Status"
+
 
 
 }

@@ -3,7 +3,8 @@
  	"title.obs.selfcare"					: "OBS SelfCare",
  	"title.selfcare"			: "Thor Telecom SelfCare",
  	"title.thankyou"						 : "Thank you for registering!",
- 	"title.conformation.registration" 		 : "A conformation mail has been sent to your mailId.Please login to your email account and",
+ 	"title.conformation.registration" 		 : "A conformation mail has been sent to your mailId.",
+ 	"title.conformation.email"               : "Please login to your email account and",
  	"title.conformation.activation.link"     : "Click on the Activation Link to complete the registration.",
  	"title.conformation.alreadyregistration" : "Client is already Registered with this mailId.",
  	"title.login.msg" 						 : "Please Login..!",
@@ -38,6 +39,7 @@
  	"btn.checkout"		   		: "Check Out",
  	"btn.dalpay"		   		: "Dalpay",
  	"btn.proceed"		   		: "Proceed",
+ 	"btn.ok"			   		: "OK",
  	
  "#labels"  :  "--------------------------",
  	"label.product.name" 		: "OBS",
@@ -126,6 +128,7 @@
  	"validation.msg.ticketmaster.description.exceeds.max.length" : "Description exceeds Max length",
  	"validation.msg.client.closureReasonId.cannot.be.blank" : "Closure Reason cannot be blank",
  	"error.msg.permission.code.invalid" 			: "Permission Denied",
+ 	"error.msg.client.duplicate.externalId" : "Given National id already exists",
  	
  	"#links " : "------------------------------------",
  	"link.gmail.account"		 :  "Gmail Account",
@@ -155,7 +158,7 @@
  	"placeholder.filter.ticket"				: "Filter by Id",
  	"placeholder.filter.vod"				: "Search Movie Name",
  	"placeholder.enter.nationalid"			: "Enter NationalID",
- 	"placeholder.enter.nationalid.example"	: "ex: 0908141234",
+ 	"placeholder.enter.nationalid.example"	: "ex: 0704901290",
  	"placeholder.filter.listofvods"			: "Filter by Id",
  	"placeholder.enter.serialnumber"		: "Enter Serial Number",
  	"placeholder.enter.text.search"			: "Enter text to search",
@@ -174,8 +177,8 @@
  	"label.client.balance"			: "Balance",
  	"label.telephone.number"		: "Telephone Number",
  	"label.pattern"					: "Pattern :",
- 	"hint.nationaid.pattern"		: "ddmmyyany 4 digits",
- 	"label.change.language" 		: "Change language:",
+ 	"hint.nationaid.pattern"		: "ddmmyy 4 digits",
+ 	"label.change.language" 		: "Change language ",
  	"label.korta"					: "Korta",
  	"label.thor.token"				: "Token",
  	"label.heading.language"		: "Language",
@@ -882,7 +885,19 @@
 "label.paymentgateway.amount"			: "Paid Amount",
 "label.paymentgateway.description"		: "Description",
 "label.paymentgateway.result"			: "Result",
-"label.paymentgateway.paymentId"		: "Payment Id"
+"label.paymentgateway.paymentId"		: "Payment Id",
+
+"#paymentGatewayConfig":"",
+"label.paypal":"Paypal",
+"label.globalpay":"GlobalPay",
+"label.globalpay.name":"Names",
+"label.globalpay.amount":"Amount",
+"label.globalpay.email":"Email Address",
+"label.globalpay.phone":"Phone Number",
+"label.add.globalpay.Info":"GlobalPay Information",
+"dialog.korta.title.message":"Alert Information",
+"dialog.korta.alert.message":"Dear Customer, You should Register your Card Details In Korta Payment Gateway System before Using this Service."
+
 
 
 

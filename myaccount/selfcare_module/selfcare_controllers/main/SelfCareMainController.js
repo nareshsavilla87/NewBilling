@@ -3,6 +3,8 @@
 	   SelfCareMainController: function(scope, translate,sessionManager,RequestSender,
 			   						authenticationService,location,modal,localStorageService,tmhDynamicLocale) {
 		   
+		   scope.popUpMsgs = [];
+		   scope.infoMsgs = [];
 		   scope.domReady = true;
 		   scope.isSignInProcess = false;
 		   scope.selfcare_userName = "";
@@ -58,13 +60,6 @@
 				};
 			};
 			
-		 //isActive Function 
-		 scope.isActive = function (route) {
-			
-			 var active = route === location.path();
-			 	return active;
-	      };
-
 	//forgot password popup controller
 		 var ForgotPwdPopupController = function($scope,$modalInstance){
 			 
@@ -110,6 +105,13 @@
 	 			});
 		 };
 		 
+		//isActive Function 
+		 scope.isActive = function (route) {
+			
+			 var active = route === location.path();
+			 	return active;
+	      };
+		 
 		//calling this method every time if session is exit or not
 		   sessionManager.restore(function(session) {
 		        scope.currentSession = session;
@@ -119,7 +121,6 @@
 		    	  scope.currentSession = sessionManager.clear();
 		    	  location.path('/').replace;
 		      };
-		 
     }
   });
    selfcare.ng.application.controller('SelfCareMainController', [

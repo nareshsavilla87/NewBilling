@@ -735,7 +735,7 @@
           	 update: { method: 'PUT'}
            }),       
           mappingResource: defineResource(apiVer + "/servicemapping/:servicemapId", {servicemapId:'@servicemapId'}, {
-              get: {method: 'GET', params: {}, isArray: true},
+              get: {method: 'GET', params: {}},
               update: { method: 'PUT'}
           }),
           hardwareMappingResource: defineResource(apiVer + "/hardwaremapping/:hardwaremapId", {hardwaremapId:'@hardwaremapId'}, {
@@ -1036,6 +1036,9 @@
             }),
 
             itemMasterDetailTemplateResource: defineResource(apiVer + "/itemdetails/serialnum", {}, {}),
+            clientConfigurationResource:defineResource(apiVer + "/configurations/config",{}, {
+                update: {method: 'PUT', params: {}}
+            })
            
         };
       }];

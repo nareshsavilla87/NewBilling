@@ -93,21 +93,19 @@
           			</div>	
 				</td>
 			</tr>
-			</table>
-				<center><i>{{ 'label.ticket.tooltip.description' | translate }}</i><span class="required">*</span></center>
-		
+			<tr>
+			<td colspan="2">
 					<div class="control-group">
-						<label class="control-label" for="description">{{ 'label.ticket.description' | translate }}<span class="required">*</span></label>
+						<label class="control-label" for="description" style="margin-top:15px;">{{ 'label.ticket.description' | translate }}<span class="required">*</span></label>
 						<div class="controls">
-							    <textarea data-ng-model="formData.description" name="description" style="width:92%; height:8em;" required data-late-Validate></textarea>
-						</div>
-					</div>
-				
-
-		<div class="pull-right">
+						<i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ 'label.ticket.tooltip.description' | translate }}</i><span class="required">*</span>
+						<textarea data-ng-model="formData.description" name="description" style="width:91%; height:8em;" required data-late-Validate></textarea>
+						</div></div>
+		   </td></tr>
+		   <tr><td colspan="2" align="right">
 			<a id="cancel" href="#/tickets"><button type="reset" class="btn">{{'btn.cancel' | translate}}</button></a>
 			<button id="submit" type="submit" data-ng-disabled="!createticketform.$valid" class="btn btn-primary">{{'btn.save' | translate}}</button>
-		</div>
+		</td></tr></table>
 	</fieldset>
 </form>
 </div>

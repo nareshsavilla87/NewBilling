@@ -61,7 +61,8 @@
            </div>
             </td></tr>
            <tr><td>
-          <div class="control-group" data-ng-show="'IPTV'| ConfigLookup">
+         
+          <div class="control-group" data-ng-show="configIPTV == 'true'">
             	<label class="control-label" for="category">{{'label.category' | translate }}</label>
             	<div class="controls">
                 <select data-ng-model="formData.category"  data-ng-options="c.mCodeValue as c.mCodeValue for c in categories">
@@ -70,7 +71,7 @@
            </div>
            </td></tr>
              <tr><td>	
-           <div class="control-group" data-ng-show="'IPTV'| ConfigLookup">
+           <div class="control-group" data-ng-show="configIPTV == 'true'">
             	<label class="control-label" for="subcategory">{{'label.subcategory' | translate }}</label>
             	<div class="controls">
                 <select data-ng-model="formData.subCategory"  data-ng-options="sc.mCodeValue as sc.mCodeValue for sc in subCategories">

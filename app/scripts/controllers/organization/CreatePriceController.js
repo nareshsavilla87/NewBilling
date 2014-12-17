@@ -11,7 +11,8 @@
         scope.formData = {};
         scope.prices = [];
         scope.planId = routeParams.id;
-       // scope.columnnameerror = false;
+        scope.fieldserror = false;
+        scope.labelerror = "requiredfields";
         
         
         resourceFactory.priceTemplateResource.get({planId: routeParams.id} , function(data) {
@@ -51,14 +52,10 @@
             });
         });
         
-        scope.readFormatOnly = true;
-        scope.editPrice=function(){
-		    scope.readFormatOnly = false;
-		  };
-        
         scope.addPriceData = function(){
         	if(scope.formData.chargeCode && scope.formData.chargevariant && scope.formData.discountId && scope.formData.serviceCode &&
         			scope.formData.isPrepaid && scope.formData.planCode && scope.formData.price && scope.formData.priceregion ){
+        		scope.fieldserror = false;
         		 if(scope.formData.isPrepaid == 'Y'){
         			 if(scope.formData.duration){
         				 scope.priceDatas.push(scope.formData);
@@ -77,11 +74,11 @@
         	        	scope.formData.planCode = planCode;
         	        	scope.formData.isPrepaid = isPrepaid;
         		 }
-        	}/*else{
-        	scope.errorDetails = [];
-        	 scope.columnnameerror = true;
-             scope.labelerror = "columnnameerr";
-        	}*/
+        	}else{
+        	 scope.errorDetails = [];
+        	 scope.fieldserror = true;
+             scope.labelerror = "fieldserror";
+        	}
         };
         
         scope.removePriceData = function (index,priceId) {

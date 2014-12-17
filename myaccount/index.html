@@ -28,10 +28,10 @@
       </table>
       <div class="container well margintop20" style="height: 500px;">
         <div class="row form-search paddedbottom" >
-			 <div class="alert alert-success" data-ng-repeat="msgs in infoMsgs">
+		 <div class="alert alert-success" data-ng-repeat="msgs in infoMsgs">
 			   <table><tr>
-			   		<td colspan="msgs.names.length" >
-						<span><img src="./selfcare_module/images/{{msgs.image}}" width="30"></span>
+			   		<td colspan="msgs.names.length">
+						<span><img src="{{msgs.image}}" width="30"></span>
 					</td>
 	         		<td><span data-ng-repeat="msg in msgs.names">
 	         				<strong class="marginleft40" >{{msg.name | translate}}</strong><br/>
@@ -212,5 +212,24 @@
                         <a id="submit" class="btn btn-primary" ng-click="done()">{{'btn.done' | translate}}</a>
                     </div>
       </script>
+       <script type="text/ng-template" id="messagespopup.html">
+         <div class="modal-body modal-medium">     
+         <div class="alert alert-success" data-ng-repeat="msgs in popUpMsgs">
+			   <table><tr>
+			   		<td colspan="msgs.names.length" >
+						<span><img src="{{msgs.image}}" width="30"></span>
+					</td>
+	         		<td><span data-ng-repeat="msg in msgs.names">
+	         				<strong class="marginleft40" >{{msg.name | translate}}</strong><br/>
+	         			</span>
+	         		</td></tr>
+			   </table> 
+			</div>
+          </div>
+		<div class="modal-footer">
+           <a id="submit" class="btn btn-primary" ng-click="approve()">{{'btn.done' | translate}}</a>
+          </div>
+      </script>
+      
 </body>
 </html>

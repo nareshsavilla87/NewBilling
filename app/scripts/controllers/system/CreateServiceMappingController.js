@@ -1,11 +1,12 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  CreateServiceMappingController: function(scope, resourceFactory, location) {
+	  CreateServiceMappingController: function(scope, resourceFactory, location,webStorage) {
         scope.serviceCodes = [];
         scope.statusDatas=[];
         scope.serviceParameters=[];
         scope.provisionSysDatas = [];
         
+        scope.configIPTV = webStorage.get("client_configuration").IPTV;
         resourceFactory.serviceMappingtemplateResource.getAllserviceMapping(function(data) {
            
         	scope.serviceCodes = data.serviceCodeData;
@@ -47,6 +48,7 @@
     '$scope', 
     'ResourceFactory', 
     '$location', 
+    'webStorage',
     mifosX.controllers.CreateServiceMappingController]).run(function($log) {
     $log.info("CreateServiceMappingController initialized");
   });
