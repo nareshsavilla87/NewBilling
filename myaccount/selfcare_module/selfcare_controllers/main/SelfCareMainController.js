@@ -3,6 +3,8 @@
 	   SelfCareMainController: function(scope, translate,sessionManager,RequestSender,
 			   						authenticationService,location,modal,localStorageService,tmhDynamicLocale) {
 		   
+		   scope.popUpMsgs = [];
+		   scope.infoMsgs = [];
 		   scope.domReady = true;
 		   scope.isSignInProcess = false;
 		   scope.selfcare_userName = "";
@@ -119,7 +121,6 @@
 		    	  scope.currentSession = sessionManager.clear();
 		    	  location.path('/').replace;
 		      };
-		 
     }
   });
    selfcare.ng.application.controller('SelfCareMainController', [

@@ -3,7 +3,8 @@
  	"title.obs.selfcare"					: "OBS SelfCare",
  	"title.selfcare"			: "Thor Telecom SelfCare",
  	"title.thankyou"						 : "Thank you for registering!",
- 	"title.conformation.registration" 		 : "A conformation mail has been sent to your mailId.Please login to your email account and",
+ 	"title.conformation.registration" 		 : "A conformation mail has been sent to your mailId.",
+ 	"title.conformation.email"               : "Please login to your email account and",
  	"title.conformation.activation.link"     : "Click on the Activation Link to complete the registration.",
  	"title.conformation.alreadyregistration" : "Client is already Registered with this mailId.",
  	"title.login.msg" 						 : "Please Login..!",
@@ -127,6 +128,7 @@
  	"validation.msg.ticketmaster.description.exceeds.max.length" : "Description exceeds Max length",
  	"validation.msg.client.closureReasonId.cannot.be.blank" : "Closure Reason cannot be blank",
  	"error.msg.permission.code.invalid" 			: "Permission Denied",
+ 	"error.msg.client.duplicate.externalId" : "Given National id already exists",
  	
  	"#links " : "------------------------------------",
  	"link.gmail.account"		 :  "Gmail Account",
