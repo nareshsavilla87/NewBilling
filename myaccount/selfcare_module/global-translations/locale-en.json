@@ -38,6 +38,7 @@
  	"btn.checkout"		   		: "Check Out",
  	"btn.dalpay"		   		: "Dalpay",
  	"btn.proceed"		   		: "Proceed",
+ 	"btn.ok"			   		: "OK",
  	
  "#labels"  :  "--------------------------",
  	"label.product.name" 		: "OBS",
@@ -882,7 +883,19 @@
 "label.paymentgateway.amount"			: "Paid Amount",
 "label.paymentgateway.description"		: "Description",
 "label.paymentgateway.result"			: "Result",
-"label.paymentgateway.paymentId"		: "Payment Id"
+"label.paymentgateway.paymentId"		: "Payment Id",
+
+"#paymentGatewayConfig":"",
+"label.paypal":"Paypal",
+"label.globalpay":"GlobalPay",
+"label.globalpay.name":"Names",
+"label.globalpay.amount":"Amount",
+"label.globalpay.email":"Email Address",
+"label.globalpay.phone":"Phone Number",
+"label.add.globalpay.Info":"GlobalPay Information",
+"dialog.korta.title.message":"Alert Information",
+"dialog.korta.alert.message":"Dear Customer, You should Register your Card Details In Korta Payment Gateway System before Using this Service."
+
 
 
 
