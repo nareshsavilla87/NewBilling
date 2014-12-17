@@ -323,7 +323,8 @@
 						            $scope.approve = function (act) {
 						                
 						            resourceFactory.itemResource.delete({'itemId': scope.itemdetaiId},{},function(data){
-						                    location.path('/inventory');
+						            		route.reload();
+						            		webStorage.add("callingTab", {someString: "items"});
 
 						            });
 						                $modalInstance.close('delete');

@@ -14,6 +14,8 @@
         scope.setDf = function(){
 
             	resourceFactory.configurationResource.get(function(data) {
+            		scope.clientConfigs = data.clientConfiguration;
+            		webStorage.add("client_configuration",JSON.parse(scope.clientConfigs));
                 	for(var i in data.globalConfiguration){
                         if(data.globalConfiguration[i].name=="date-format"){
                         	localStorageService.add('dateformat',data.globalConfiguration[i].value);

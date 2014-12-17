@@ -1,12 +1,14 @@
 (function(selfcare_module) {
   selfcare.controllers = _.extend(selfcare_module, {
-	  ActivateUserController: function(scope,RequestSender,rootScope,routeParams,webStorage,sessionManager,location,
-			  							filter,authenticationService,localStorageService) {
+	  ActivateUserController: function(scope,RequestSender,rootScope,routeParams,http,
+			  							webStorage,httpService,sessionManager,location,API_VERSION,filter,authenticationService,$modal,localStorageService) {
+
+
 		  
 		  localStorageService.remove("selfcare_sessionData");
 		  webStorage.remove("clientTotalData");
 		  rootScope.isSignInProcess = false;
-		  
+
 		  
 		//getting the mailId value form routeParams
 		  scope.existedEmail = routeParams.mailId;
@@ -218,34 +220,41 @@
 					 scope.clientData.phone = parseInt(scope.formData.mobileNo); 
 					 scope.clientData.email = scope.existedEmail;
 					 
-					 rootScope.infoMsgs = [];
+					 rootScope.popUpMsgs = [];
 					 RequestSender.authenticationClientResource.save(scope.clientData,function(data){
-		  				 rootScope.currentSession = sessionManager.clear();
-		  				 rootScope.isActiveScreenPage= false;
-		  				 location.path('/').replace();
-		  				 rootScope.infoMsgs.push({
-							  						'image' : 'info-icon.png',
-							  						'names' : [{'name' : 'title.account.activated'},
-							  						           {'name' : 'title.account.activated.userpwd'},
-															   {'name' : 'title.login.msg'}]
-						 });
-		  			 });
+
+		  				 
+		  			     $modal.open({
+		  	                templateUrl: 'messagespopup.html',
+		  	                controller: approve,
+		  	                resolve:{}
+		  	           });
+		      	      function  approve($scope, $modalInstance) {
+		      	    	  rootScope.popUpMsgs.push({
+		      	    		  'image' : './selfcare_module/images/info-icon.png',
+		      	    		  'names' : [{'name' : 'title.account.activated'},
+		      	    		             {'name' : 'title.account.activated.userpwd'},
+		      	    		             {'name' : 'title.login.msg'}]
+		      	    	      });
+		      		
+		      		$scope.approve = function () { 
+		      			
+		      			$modalInstance.dismiss('cancel');
+		      			rootScope.currentSession = sessionManager.clear();
+		  				rootScope.isActiveScreenPage= false;
+		      			location.path('/').replace();
+		      		};
+		        } 
+		    });
+
 					
-			};
+		};
     }
   });
-  selfcare.ng.application.controller('ActivateUserController', [
-                                                                '$scope',
-                                                                'RequestSender',
-                                                                '$rootScope',
-                                                                '$routeParams',
-                                                                'webStorage',
-                                                                'SessionManager',
-                                                                '$location',
-                                                                '$filter',
-                                                                'AuthenticationService',
-                                                                'localStorageService',
-                                                                selfcare.controllers.ActivateUserController]).run(function($log) {
+  selfcare.ng.application.controller('ActivateUserController', 
+ ['$scope','RequestSender','$rootScope','$routeParams','$http','webStorage','HttpService',
+  'SessionManager','$location','API_VERSION','$filter','AuthenticationService','$modal','localStorageService',selfcare.controllers.ActivateUserController]).run(function($log) {
+
       $log.info("ActivateUserController initialized");
   });
 }(selfcare.controllers || {}));

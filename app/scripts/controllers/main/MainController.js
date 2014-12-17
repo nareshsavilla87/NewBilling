@@ -85,6 +85,7 @@
             	  $rootScope.optlang = mifosX.models.Langs[i];
             	  $rootScope.locale=mifosX.models.Langs[i];
                   tmhDynamicLocale.set(mifosX.models.Langs[i].code);
+                  translate.uses($rootScope.optlang.code);
               }
           }
       } else {	
@@ -92,7 +93,6 @@
           $rootScope.locale=scope.langs[0];
           tmhDynamicLocale.set(scope.langs[0].code);
       }
-      translate.uses($rootScope.optlang.code);
 
       
       scope.isActive = function (route) {
