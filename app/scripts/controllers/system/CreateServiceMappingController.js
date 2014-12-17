@@ -4,6 +4,7 @@
         scope.serviceCodes = [];
         scope.statusDatas=[];
         scope.serviceParameters=[];
+        scope.provisionSysDatas = [];
         
         resourceFactory.serviceMappingtemplateResource.getAllserviceMapping(function(data) {
            
@@ -13,6 +14,7 @@
             scope.serviceParameters=data.serviceParameters;
             scope.categories=data.categories;
             scope.subCategories=data.subCategories;
+            scope.provisionSysDatas = data.provisionSysData;
         
         });
         
@@ -32,6 +34,7 @@
         	delete this.formData.statusData;
         	delete this.formData.serviceParameters;
         	delete this.formData.categories;
+        	delete this.formData.provisionSysDatas;
         	delete this.formData.subCategories;
         	
             resourceFactory.serviceMappingResource.save(scope.formData,function(data){
