@@ -35,6 +35,7 @@
 	        		      			'image' : './selfcare_module/images/info-icon.png',
 	        		      			'names' : [{'name' : 'title.thankyou'},
 	        		      			           {'name' : 'title.conformation.registration'},
+	        		      			           {'name' : 'title.conformation.email'},
 	        		      			           {'name' : 'title.conformation.activation.link'}]
 	        		      		});
 	        		      		$scope.approve = function () { 
@@ -74,6 +75,7 @@
                   scope.submitEmail();
               }
            });
+         
     }
   });
   selfcare.ng.application.controller('SignUpFormController', [
