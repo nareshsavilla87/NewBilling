@@ -18,6 +18,7 @@
         scope.jobparameters=data.jobparameters;
         scope.provisionSysData=data.provisionSysData;
         scope.formData=data;
+        
         var actDate = dateFilter(scope.jobparameters.processDate,'dd MMMM yyyy');
         scope.date.processDate = new Date(actDate);
         
