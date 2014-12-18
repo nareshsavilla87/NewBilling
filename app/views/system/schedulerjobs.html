@@ -46,7 +46,7 @@
                 <td class="pointer" data-ng-click="routeTo(job.jobId)">{{job.lastRunHistory.status}}</td>
                 <td class="pointer" data-ng-click="routeTo(job.jobId)">{{job.currentlyRunning | YesOrNo}}</td>
 		        <td><a ng-show="PermissionService.showMenu('UPDATE_SCHEDULERJOB')" href="#/editschedulerjob/{{job.jobId}}" style='color:#000000' popover="Edit" popover-trigger="mouseenter" ><i class="icon-edit"></i></a></td>
-          		<td><a ng-show="PermissionService.showMenu('UPDATE_SCHEDULERJOBPARAMETER')&&!(job.displayName == 'Requestor' || job.displayName =='Responser' || job.displayName =='PushNotification')" href="#/editjobparameters/{{job.jobId}}" style='color:#000000' popover="Edit Job Parameter" popover-trigger="mouseenter"><i class="icon-book"></i></a></td>
+          		<td><a ng-show="PermissionService.showMenu('UPDATE_SCHEDULERJOBPARAMETER')&&!(job.displayName == 'REQUESTOR' || job.displayName =='MESSAGING' || job.displayName =='EVENT_ACTIONS')" href="#/editjobparameters/{{job.jobId}}" style='color:#000000' popover="Edit Job Parameter" popover-trigger="mouseenter"><i class="icon-book"></i></a></td>
           		<td><a href="#/viewhistory/{{job.jobId}}" style='color:#3104B4' popover="View History" popover-trigger="mouseenter"><i class="icon-search"></a></td>
             </tr>
         </tbody>

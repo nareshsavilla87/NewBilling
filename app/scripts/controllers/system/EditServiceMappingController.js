@@ -24,7 +24,8 @@
                delete this.formData.statusData;
                delete this.formData.categories;
                delete this.formData.subCategories;
-           	    delete this.formData.provisionSysData;
+           	   delete this.formData.provisionSysData;
+               delete this.formData.sortBy;
                resourceFactory.serviceMappingResource.update({'serviceMappingId': routeParams.id},scope.formData,function(data){
                location.path('/viewServiceMapping/' + data.resourceId);
           });
