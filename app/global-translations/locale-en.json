@@ -2396,7 +2396,9 @@
 "#Provision":".......",
 "label.provision.provisioningsystem":"Provisioning System",
 "label.provision.status":"Status",
-"table.heading.saletype":"Sale Type"
+"table.heading.saletype":"Sale Type",
+"label.cornexpression":"Corn Expression",
+"label.job.isAutoRenewal":"is AutoRenewal"
 
 
 
