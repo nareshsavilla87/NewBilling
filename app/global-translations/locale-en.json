@@ -2395,7 +2395,8 @@
 
 "#Provision":".......",
 "label.provision.provisioningsystem":"Provisioning System",
-"label.provision.status":"Status"
+"label.provision.status":"Status",
+"table.heading.saletype":"Sale Type"
 
 
 
