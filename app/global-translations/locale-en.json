@@ -2396,7 +2396,7 @@
 "validation.msg.addons.planId.cannot.be.blank":"Please select plan",
 "validation.msg.addons.chargeCode.cannot.be.blank":"Please select charge code",
 "validation.msg.addons.priceRegionId.cannot.be.blank":"Please select price region",
-"validation.msg.addons.addons.not.greater.than.zero":"Please select atleast one category",
+"validation.msg.addons.addons.not.greater.than.zero":"Please add atleast one service from category's",
 "validation.msg.addons.null.not.greater.than.zero":"Please select atleast one service",
 "validation.msg.addons.price.cannot.be.blank":"price cannot be blank",
 "validation.msg.addons.contractId.cannot.be.blank":"Contract period cannot be blank",

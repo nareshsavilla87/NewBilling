@@ -16,6 +16,12 @@
             scope.categories=data.categories;
             scope.subCategories=data.subCategories;
             scope.provisionSysDatas = data.provisionSysData;
+            
+            for(var i in scope.provisionSysDatas){
+       		 if((scope.provisionSysDatas[i].mCodeValue).toLowerCase() == "none"){
+       			 scope.formData.provisionSystem = scope.provisionSysDatas[i].mCodeValue;
+       		 }
+       	 }
         
         });
         

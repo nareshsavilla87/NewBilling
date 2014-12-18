@@ -30,7 +30,7 @@
         	
         });
         
-        scope.isSelected = function(id,isActive,price){
+        scope.isSelected = function(id,isActive,price,index){
         
         	if(isActive =="Y"){
         		 scope.addonServices.push({
@@ -41,10 +41,11 @@
    			  });
 				
         	}else{
-        	
-        		scope.addonServices =  scope.addonServices.filter(function( obj ) {
+        		
+        	   scope.addonServices.splice(index, 1);
+        		/*scope.addonServices =  scope.addonServices.filter(function( obj ) {
         			return obj != id;
-					});
+					});*/
 			  }
 			  
 		  };
@@ -63,7 +64,6 @@
 
         scope.submit = function() { 
         	
-        	console.log(scope.addonServices);
 			/*  for(var i in scope.serviceIds){
 				  alert($("#"+scope.serviceIds[i]).val());
 				  scope.addonServices.push({
