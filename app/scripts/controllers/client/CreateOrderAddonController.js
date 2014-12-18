@@ -2,7 +2,6 @@
   mifosX.controllers = _.extend(module, {
 	  CreateOrderAddonController: function(scope, routeParams , location,resourceFactory,webStorage,dateFilter ) {		
             scope.formData={};
-            scope.clientId= routeParams.id;
             scope.subscriptiondatas=[];
             scope.addonsPriceDatas=[];
         	scope.addonServices=[];
@@ -25,15 +24,14 @@
             }
             scope.orderData = webStorage.get('orderData');
             scope.orderId=webStorage.get('orderId');
-        resourceFactory.orderaddonTemplateResource.get({planId : scope.orderData.planId,chargeCode :  scope.orderData.chargeCode} , function(data) {  
+            resourceFactory.orderaddonTemplateResource.get({planId : scope.orderData.planId,chargeCode :  scope.orderData.chargeCode} , function(data) {  
         	scope.subscriptiondatas=data.contractPeriods;
         	scope.addonsPriceDatas=data.addonsPriceDatas;
         	
         });
         
-       
         scope.isSelected = function(id,isActive,price){
-        	
+        
         	if(isActive =="Y"){
         		 scope.addonServices.push({
    				  "serviceId":id,
@@ -43,6 +41,7 @@
    			  });
 				
         	}else{
+        	
         		scope.addonServices =  scope.addonServices.filter(function( obj ) {
         			return obj != id;
 					});
@@ -64,7 +63,7 @@
 
         scope.submit = function() { 
         	
-        
+        	console.log(scope.addonServices);
 			/*  for(var i in scope.serviceIds){
 				  alert($("#"+scope.serviceIds[i]).val());
 				  scope.addonServices.push({
@@ -76,13 +75,12 @@
         	 this.formData.locale="en";
         	 this.formData.dateFormat="dd MMMM yyyy";
         	 this.formData.startDate=dateFilter(new Date(),'dd MMMM yyyy');
-			  this.formData.addonServices=scope.addonServices;
-			  this.formData.planName=scope.orderData.planName;
-			  scope.addonServices=[];
-			  scope.serviceIds=[];
-            resourceFactory.orderaddonResource.save({orderId: scope.orderId},this.formData,function(data){
+			 this.formData.addonServices=scope.addonServices;
+			 this.formData.planName=scope.orderData.planName;
+			 //scope.addonServices=[];
+			 scope.serviceIds=[];
+             resourceFactory.orderaddonResource.save({orderId: scope.orderId},this.formData,function(data){
            	 location.path('/vieworder/' +scope.orderId+'/'+scope.clientId);
-              
              });
         };
     

@@ -37,6 +37,7 @@
         	delete this.formData.categories;
         	delete this.formData.provisionSysDatas;
         	delete this.formData.subCategories;
+        	delete this.formData.provisionSysData;
         	
             resourceFactory.serviceMappingResource.save(scope.formData,function(data){
             		location.path('/viewServiceMapping/' + data.resourceId);

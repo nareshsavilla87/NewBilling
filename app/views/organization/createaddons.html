@@ -6,6 +6,11 @@
          </ul>
       </div>
   <form name="createAddonsForm" novalidate="" class="form-horizontal well" data-ng-controller="CreateAddonsController" data-rc-submit="submit()">
+  <div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
 <div>
 	 <div class="loading-widget-div" data-ng-show="blockUI">
         <div id="circularG">
@@ -32,17 +37,17 @@
        <tr>
        <td>
         <div class="control-group">
-            <label class="control-label" for="status">{{ 'label.addons.plan' | translate }}</label>
+            <label class="control-label" for="planId">{{ 'label.addons.plan' | translate }}</label>
             <div class="controls">
-              <select id="status" data-ng-model="formData.planId"  data-ng-options="planData.id as planData.planCode for planData in planDatas" ></select>
+              <select id="planId" data-ng-model="formData.planId"  data-ng-options="planData.id as planData.planCode for planData in planDatas" ></select>
             </div>
           </div>
        </td>
        <td>
         <div class="control-group">
-            <label class="control-label" for="status">{{ 'label.addons.chargrcode' | translate }}</label>
+            <label class="control-label" for="chargeCode">{{ 'label.addons.chargrcode' | translate }}</label>
             <div class="controls">
-              <select id="status" data-ng-model="formData.chargeCode"  data-ng-options="chargeCodeData.chargeCode as chargeCodeData.billFrequencyCode for chargeCodeData in chargeCodeDatas" ></select>
+              <select id="chargeCode" data-ng-model="formData.chargeCode"  data-ng-options="chargeCodeData.chargeCode as chargeCodeData.billFrequencyCode for chargeCodeData in chargeCodeDatas" ></select>
             </div>
           </div>
        </td>
@@ -50,9 +55,9 @@
        <tr>
        <td>
         <div class="control-group">
-            <label class="control-label" for="status">{{ 'label.addons.priceregion' | translate }}</label>
+            <label class="control-label" for="priceRegionId">{{ 'label.addons.priceregion' | translate }}</label>
             <div class="controls">
-              <select id="status" data-ng-model="formData.priceRegionId"  data-ng-options="priceRegionData.id as priceRegionData.priceregionCode for priceRegionData in priceRegionDatas" ></select>
+              <select id="priceRegionId" data-ng-model="formData.priceRegionId"  data-ng-options="priceRegionData.id as priceRegionData.priceregionCode for priceRegionData in priceRegionDatas" ></select>
             </div>
           </div>
        </td>
