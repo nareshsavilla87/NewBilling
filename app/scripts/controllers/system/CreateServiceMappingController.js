@@ -16,6 +16,12 @@
             scope.categories=data.categories;
             scope.subCategories=data.subCategories;
             scope.provisionSysDatas = data.provisionSysData;
+            
+            for(var i in scope.provisionSysDatas){
+       		 if((scope.provisionSysDatas[i].mCodeValue).toLowerCase() == "none"){
+       			 scope.formData.provisionSystem = scope.provisionSysDatas[i].mCodeValue;
+       		 }
+       	 }
         
         });
         
@@ -37,6 +43,7 @@
         	delete this.formData.categories;
         	delete this.formData.provisionSysDatas;
         	delete this.formData.subCategories;
+        	delete this.formData.provisionSysData;
         	
             resourceFactory.serviceMappingResource.save(scope.formData,function(data){
             		location.path('/viewServiceMapping/' + data.resourceId);

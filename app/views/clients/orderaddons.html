@@ -1,4 +1,4 @@
-<div ng-controller="CreateOrderAddonController">
+<div data-ng-controller="CreateOrderAddonController">
  
   <div>
      <ul class="breadcrumb">
@@ -51,7 +51,6 @@
         </table></li>
  </ul>
 <div>
-   
 		<ul class="breadcrumb">
 			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
 			<li><a href="#/vieworder/{{orderId}}/{{clientId}}">{{'link.view.order' | translate}}</a> <span class="divider">/</span></li>
@@ -61,10 +60,10 @@
    </div>
  <form class="form-horizontal well" data-ng-submit="submit()">
    
-	<div class="error" ng-show="errorStatus || errorDetails">
+	<div class="error" data-ng-show="errorStatus || errorDetails">
 			<label>{{'label.contract.error' | translate}}</label>
-			<label ng-show="errorStatus">{{errorStatus}}</label>
-			<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+			<label data-ng-show="errorStatus">{{errorStatus}}</label>
+			<label data-ng-hide="errorStatus"data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	</div>
   
 <label><b>Order Info</b></label>
@@ -107,12 +106,12 @@
 	  <div class="control-group">
                           <label class="control-label" for="startDate">{{ 'label.order.contractperiod' | translate }}</label>
                             <div class="controls">
-                 <select id="{{addonsPriceData.id}}" ng-model="formData.contractId" ng-options="subscriptiondata.id as subscriptiondata.Contractdata for subscriptiondata in subscriptiondatas" 
+                 <select id="{{addonsPriceData.id}}"  data-ng-model="formData.contractId" data-ng-options="subscriptiondata.id as subscriptiondata.Contractdata for subscriptiondata in subscriptiondatas" 
 				  value="{{subscriptiondata.Contractdata}}"></select>
                           </div>
                         </div>
 	
-	<table width="100%" class="table table-striped table-bordered">
+	<table  class="table table-striped table-bordered fullwidth">
 	  <thead>
 	   <tr class="graybg">
 	     <th>Select</th>
@@ -120,16 +119,16 @@
 	     <th>Price</th>
 	   </tr>
 	  </thead>
-			 <tr ng-repeat="addonsPriceData in addonsPriceDatas">
+			 <tr data-ng-repeat="addonsPriceData in addonsPriceDatas">
 				<td width="10%">
-				<input type="checkbox" id="{{addonsPriceData.id}}"  ng-change="isSelected(addonsPriceData.serviceId,isActive,addonsPriceData.price)" ng-model="isActive" ng-true-value="Y" ng-false-value="N"></td>
+				<input type="checkbox" id="{{addonsPriceData.id}}"  data-ng-change="isSelected(addonsPriceData.serviceId,isActive,addonsPriceData.price,$index)" data-ng-model="isActive" ng-true-value="Y" ng-false-value="N"></td>
 				<td width="40%">{{addonsPriceData.serviceCode}}</td>
 				<td width="60%">{{addonsPriceData.price}}</td>
 			</tr>
 		</table>
           </div>
           <div class="offset3">
-            <a href="#/plans"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+            <a href="#/vieworder/{{orderId}}/{{clientId}}"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
             <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
           </div>
         </form>
