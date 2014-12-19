@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    EditAddonController: function(scope, routeParams, resourceFactory,dateFilter, location,$rootScope) {
+    EditAddonController: function(scope, routeParams, resourceFactory,dateFilter, location,$rootScope,$modal) {
     	
     	scope.addonId = routeParams.id;
     	scope.formData = {};
@@ -116,7 +116,7 @@
 			  }
 			  
 		  };
-    
+		  
         scope.submit = function() {
 			scope.addons=[];
 			  for(var i in scope.serviceIds){
@@ -137,6 +137,27 @@
 				  location.path('/viewaddon/' +scope.addonId);
                });
 		  };
+		  
+		  scope.deleteAddon=function(){
+              $modal.open({
+                  templateUrl: 'deleteaddon.html',
+                  controller: Approve,
+                  resolve:{}
+              });
+          };
+         function Approve($scope, $modalInstance) {
+              $scope.approve = function () {
+                  resourceFactory.addonsResource.remove({addonId:scope.addonId},{},function(){
+                    location.path('/addons');
+                  });
+                  $modalInstance.close('delete');
+              };
+              $scope.cancel = function () {
+                  $modalInstance.dismiss('cancel');
+              };
+          }
+		  
+		  
     }
   });
   mifosX.ng.application.controller('EditAddonController', [
@@ -145,7 +166,8 @@
    'ResourceFactory', 
    'dateFilter',
    '$location',
-   '$rootScope', 
+   '$rootScope',
+   '$modal',
    mifosX.controllers.EditAddonController]).run(function($log) {
     $log.info("EditAddonController initialized");
   });

@@ -8,12 +8,12 @@
 	    <div class="pull-right">
 	      <div class="btn-group">
 	         <a data-ng-show="PermissionService.showMenu('UPDATE_ADDONS')" href="#/editaddon/{{formData.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
-	         <a data-ng-show="PermissionService.showMenu('DELETE_ADDONS')" data-ng-click="deleteplan()" class="btn btn-primary"><i class="icon-trash icon-white"></i> Delete</a>
+	         <a data-ng-show="PermissionService.showMenu('DELETE_ADDONS')" data-ng-click="deleteAddon()" class="btn btn-primary"><i class="icon-trash icon-white"></i> Delete</a>
 	      </div>
 	    </div>
 	</div>
 	
-	<script type="text/ng-template" id="approve.html">
+	<script type="text/ng-template" id="deleteaddon.html">
                     <div class="modal-header silver">
                         <h3 class="bolder">{{'dialog.plan.title.message' | translate}}</h3>
                     </div>
@@ -21,7 +21,7 @@
                        <h4>Are you sure?</h4>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+                        <button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
                         <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
                     </div>
       </script>
@@ -55,7 +55,7 @@
                                <td width="70%">{{ 'table.addons.price' | translate }}</td>
                            </tr>
                        </thead>
-						<tr ng-repeat="addonsPrice in addonsPrices">
+						<tr data-ng-repeat="addonsPrice in addonsPrices">
 							 <td width="40%">{{addonsPrice.serviceCode}}</td>        
                               <td width="70%">{{addonsPrice.price}}</td>         
 						</tr>

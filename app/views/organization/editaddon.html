@@ -2,10 +2,15 @@
         <ul class="breadcrumb">
           <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
           <li><a href="#/addons">{{'label.addons' | translate}}</a> <span class="divider">/</span></li>
-          <li class="active">{{'label.createaddons' | translate}}</li>
+          <li class="active">{{'label.editaddons' | translate}}</li>
          </ul>
       </div>
   <form name="createAddonsForm" novalidate="" class="form-horizontal well" data-ng-controller="EditAddonController" data-rc-submit="submit()">
+ <div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
 <div>
 	 <div class="loading-widget-div" data-ng-show="blockUI">
         <div id="circularG">
@@ -88,7 +93,7 @@
 	 </div>
 </div>
  <div class="offset3">
-            <a href="#/plans"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+            <a href="#/viewaddon/{{addonId}}"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
             <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
           </div>
 </form>
