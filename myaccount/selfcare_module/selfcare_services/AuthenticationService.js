@@ -4,7 +4,7 @@
     	
 
       this.authenticateWithUsernamePassword = function(handler) {
-	        httpService.post(/*API_VERSION*/"https://saas.openbillingsystem.com/obsplatform/api/v1/authentication?username="+selfcare.models.obs_username+"&password="+selfcare.models.obs_password)
+	        httpService.post(API_VERSION+"/obsplatform/api/v1/authentication?username="+selfcare.models.obs_username+"&password="+selfcare.models.obs_password)
 	          .success(function(data){
 	        	  httpService.setAuthorization(data.base64EncodedAuthenticationKey);
 	        	  handler(data);
