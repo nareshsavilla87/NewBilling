@@ -120,8 +120,7 @@
   						break;
   						
   				case 'globalpay' :
-  					
-  					scope.paymentURL = "#/globalpayIntegration/" + scope.formData.clientId+"/" + scope.formData.planAmount;
+  					scope.paymentURL = "#/globalpayIntegration/" + scope.formData.clientId + "/" + scope.formData.planAmount;
   					break;
 							
 				default :
