@@ -927,6 +927,9 @@
       })
       .when('/paymentgatewayconfig', {
         templateUrl: 'views/administration/paymentgatewayconfig.html'
+      })
+      .when('/eventaction', {
+        templateUrl: 'views/administration/eventaction.html'
       });
     
     $locationProvider.html5Mode(false);
