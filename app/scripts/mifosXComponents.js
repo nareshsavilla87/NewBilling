@@ -272,7 +272,12 @@ define(['underscore', 'mifosX'], function() {
       'main/ViewCheckerinboxController',
       'main/ViewMakerCheckerTaskController',
       'configurations/PaymentGatewayConfigurationController',
+      'organization/RadiusController',
+      'organization/CreateRadServiceController',
+      'organization/CreateNasController',
+      'paymentgateway/EventActionController',
       'client/CreateOrderAddonController'
+
 
     ],
     filters: [
