@@ -106,7 +106,7 @@
 	  <div class="control-group">
                           <label class="control-label" for="startDate">{{ 'label.order.contractperiod' | translate }}</label>
                             <div class="controls">
-                 <select id="{{addonsPriceData.id}}"  data-ng-model="formData.contractId" data-ng-options="subscriptiondata.id as subscriptiondata.Contractdata for subscriptiondata in subscriptiondatas" 
+                 <select id="contractId"  data-ng-model="formData.contractId" data-ng-options="subscriptiondata.id as subscriptiondata.Contractdata for subscriptiondata in subscriptiondatas" 
 				  value="{{subscriptiondata.Contractdata}}"></select>
                           </div>
                         </div>

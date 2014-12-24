@@ -1040,8 +1040,16 @@
                 update: {method: 'PUT', params: {}}
             }),
             
+            nasResource: defineResource(apiVer + "/freeradius/nas/:nasId", {nasId: '@nasId'}, {
+                update: { method: 'PUT' }
+             }),
+             
+            radServiceResource: defineResource(apiVer + "/freeradius/radservice/:radServiceId", {radServiceId:'@radServiceId'}, {
+                 update: { method: 'PUT' }
+              }),
+
             eventActionResource: defineResource(apiVer + "/eventactions", {}, {})
-           
+      
         };
       }];
     }
