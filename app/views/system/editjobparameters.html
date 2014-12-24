@@ -77,34 +77,34 @@
 				</div>
 			</div>
 			
-			<!-- <div class="control-group" data-ng-show="formData.displayName =='MIDDLEWARE'">             
+			<div class="control-group" data-ng-show="formData.displayName =='RADIUS'">             
                <label class="control-label">{{ 'label.job.ProvSystem' | translate }}<span class="required">*</span></label>
-                <div class="controls">
+                <!-- <div class="controls">
                 <input type="text" data-ng-model="jobparameters.provSystem">
-                </div>          
+                </div> -->          
                 <div class="controls">
-                  <select data-ng-model="jobparameters.provSystem"  ng-options="provisionSystemData.provisioingSystem as provisionSystemData.provisioingSystem for provisionSystemData in provisionSysData" value="{{provisionSystemData.provisioingSystem}}">
+                  <select data-ng-model="jobparameters.provSystem"  ng-options="provisionSystemData.mCodeValue as provisionSystemData.mCodeValue for provisionSystemData in provisionSysData" value="{{provisionSystemData.mCodeValue}}">
                 </select>
-                </div>    
+                </div>   
            </div>
-           <div class="control-group" data-ng-show="formData.displayName =='MIDDLEWARE'">              
+           <div class="control-group" data-ng-show="formData.displayName =='RADIUS'">              
                <label class="control-label">{{ 'label.job.url' | translate }}<span class="required">*</span></label>
                 <div class="controls">
                 <input type="text" data-ng-model="jobparameters.url">
                 </div>               
            </div>
-           <div class="control-group" data-ng-show="formData.displayName =='MIDDLEWARE'">              
+           <div class="control-group" data-ng-show="formData.displayName =='RADIUS'">              
                 <label class="control-label">{{ 'label.job.username' | translate }}<span class="required">*</span></label>
                 <div class="controls">
                 <input type="text" data-ng-model="jobparameters.username">
                 </div>          
            </div>
-           <div class="control-group" data-ng-show="formData.displayName =='MIDDLEWARE'">              
+           <div class="control-group" data-ng-show="formData.displayName =='RADIUS'">              
                 <label class="control-label">{{ 'label.job.password' | translate }}<span class="required">*</span></label>
                 <div class="controls">
                 <input type="text" data-ng-model="jobparameters.password">
                 </div>              
-           </div> -->
+           </div> 
            
 			<div class="control-group" data-ng-show="formData.displayName =='SIMULATOR'">
 				<label class="control-label">{{ 'label.job.updateStatus' | translate }}</label>
