@@ -927,6 +927,15 @@
       })
       .when('/paymentgatewayconfig', {
         templateUrl: 'views/administration/paymentgatewayconfig.html'
+      })
+       .when('/radius', {
+        templateUrl: 'views/organization/radius.html'
+      })
+      .when('/createRadService', {
+        templateUrl: 'views/organization/createRadService.html'
+      })
+       .when('/createNas', {
+        templateUrl: 'views/organization/createNas.html'
       });
     
     $locationProvider.html5Mode(false);

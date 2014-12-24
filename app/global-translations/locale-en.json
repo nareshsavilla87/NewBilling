@@ -2398,8 +2398,29 @@
 "label.provision.status":"Status",
 "label.cornexpression":"Corn Expression",
 "label.job.isAutoRenewal":"is AutoRenewal",
-"table.heading.saletype":"Sale Type"
+"table.heading.saletype":"Sale Type",
 
+"#nas":"......",
+"tab.nas":"Nas",
+"label.radius":"Radius",
+"table.heading.shortName":"ShortName",
+"table.heading.ip":"Ip",
+"table.heading.secret":"Secret",
+"table.heading.description":"Description",
+"link.create.new.nas":"Create Nas",
+"label.createnas":"Create Nas",
+"label.nas.message":"Delete Nas",
 
+"#radService":".......",
+"tab.radService":"RadService",
+"label.createradservice":"Create RadService",
+"label.downRate":"DownRate",
+"label.upRate":"UpRate",
+"table.heading.serviceName":"Service Name",
+"table.heading.serviceType":"Service Type",
+"table.heading.upRate":"Up Rate",
+"table.heading.downRate":"Down Rate",
+"link.create.new.radService":"Create RadService",
+"label.radService.message":"Delete RadService"
 
 }
