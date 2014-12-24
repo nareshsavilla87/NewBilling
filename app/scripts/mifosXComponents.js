@@ -81,6 +81,8 @@ define(['underscore', 'mifosX'], function() {
       'organization/CreateEmployeeController',
       'accounting/AccountModuleController',
       'organization/GroupsDetailsController',
+      'organization/AddonController',
+      'organization/EditAddonController',
       'organization/ViewGroupsDetailsController',
       'accounting/AccFreqPostingController',
       'accounting/AccCoaController',
@@ -119,6 +121,7 @@ define(['underscore', 'mifosX'], function() {
       'system/ViewSchedulerJobHistoryController',
       'organization/HolController',
       'organization/ViewHolController',
+      'organization/CreateAddonsController',
       'organization/AddHolController',
       'reports/ViewReportsController',
       'reports/RunReportsController',
@@ -268,7 +271,9 @@ define(['underscore', 'mifosX'], function() {
       'client/AddDeviceController',
       'main/ViewCheckerinboxController',
       'main/ViewMakerCheckerTaskController',
-      'configurations/PaymentGatewayConfigurationController'
+      'configurations/PaymentGatewayConfigurationController',
+      'paymentgateway/EventActionController',
+      'client/CreateOrderAddonController'
 
     ],
     filters: [

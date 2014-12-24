@@ -12,6 +12,8 @@
         scope.date={};
         scope.formData={};
         scope.searchData={};
+        scope.searchData.searchType ='payments';
+       
 
         resourceFactory.accountCoaResource.getAllAccountCoas({manualEntriesAllowed:true, usage:1, disabled:false}, function(data){
           scope.glAccounts = data;

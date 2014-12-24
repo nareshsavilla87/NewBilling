@@ -3,6 +3,7 @@
     	KortaSuccessController: function(scope, rootScope,RequestSender, location, http, dateFilter,webStorage,httpService) {
  
     		scope.formData = {};
+    		scope.paymentFormData = {};
     		scope.planFormData = {};
     		var kortaEncriptionKey = selfcare.models.kortaEncriptionKey;
         	
@@ -16,8 +17,8 @@
         	var kortaPaymentMethod = selfcare.models.kortaPaymentMethod;
         	var kortaTokenValue = selfcare.models.kortaTokenValue;
        
-        	scope.formData.amount = obj[kortaAmountField];
-        	scope.formData.clientId = obj[kortaclientId];
+        	scope.paymentFormData.total_amount = obj[kortaAmountField];
+        	scope.paymentFormData.clientId = obj[kortaclientId];
         	scope.PaymentMethod = obj[kortaPaymentMethod];
         	scope.kortaTokenValue = obj[kortaTokenValue];
         	
