@@ -1,0 +1,99 @@
+     <div>
+        <ul class="breadcrumb">
+          <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+          <li><a href="#/addons">{{'label.addons' | translate}}</a> <span class="divider">/</span></li>
+          <li class="active">{{'label.createaddons' | translate}}</li>
+         </ul>
+      </div>
+  <form name="createAddonsForm" novalidate="" class="form-horizontal well" data-ng-controller="CreateAddonsController" data-rc-submit="submit()">
+  <div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+<div>
+	 <div class="loading-widget-div" data-ng-show="blockUI">
+        <div id="circularG">
+            <div id="circularG_1" class="circularG">
+            </div>
+            <div id="circularG_2" class="circularG">
+            </div>
+            <div id="circularG_3" class="circularG">
+            </div>
+            <div id="circularG_4" class="circularG">
+            </div>
+            <div id="circularG_5" class="circularG">
+            </div>
+            <div id="circularG_6" class="circularG">
+            </div>
+            <div id="circularG_7" class="circularG">
+            </div>
+            <div id="circularG_8" class="circularG">
+            </div>
+        </div>
+      </div>
+          <legend>{{'label.createaddons' | translate}}</legend>
+      <table>
+       <tr>
+       <td>
+        <div class="control-group">
+            <label class="control-label" for="planId">{{ 'label.addons.plan' | translate }}</label>
+            <div class="controls">
+              <select id="planId" data-ng-model="formData.planId"  data-ng-options="planData.id as planData.planCode for planData in planDatas" ></select>
+            </div>
+          </div>
+       </td>
+       <td>
+        <div class="control-group">
+            <label class="control-label" for="chargeCode">{{ 'label.addons.chargrcode' | translate }}</label>
+            <div class="controls">
+              <select id="chargeCode" data-ng-model="formData.chargeCode"  data-ng-options="chargeCodeData.chargeCode as chargeCodeData.billFrequencyCode for chargeCodeData in chargeCodeDatas" ></select>
+            </div>
+          </div>
+       </td>
+       </tr>
+       <tr>
+       <td>
+        <div class="control-group">
+            <label class="control-label" for="priceRegionId">{{ 'label.addons.priceregion' | translate }}</label>
+            <div class="controls">
+              <select id="priceRegionId" data-ng-model="formData.priceRegionId"  data-ng-options="priceRegionData.id as priceRegionData.priceregionCode for priceRegionData in priceRegionDatas" ></select>
+            </div>
+          </div>
+       </td>
+       </tr>
+       </table>      
+	
+    <div ng-show="gridView">
+    	 <input ng-model="filterText" type="text" ng-autofocus="true" class="span "
+    	 	 placeholder="{{'placeholder.filter.category'|translate}}">
+    	 <br/>
+    	<div class="statusbad" ng-show="noChannels" style="text-align: center;">
+         	<strong style="font-size:20px;">No Optional Services are Available....</strong>
+		</div>
+	    <accordion close-others="true">
+	          	 <accordion-group  is-open = "$first" ng-repeat="categoryData in categoryDatas | filter:filterText" >
+	           		<accordion-heading>
+	          	 		<strong >{{categoryData.category}}</strong> 
+	          	 		<i class="pull-right" ng-class="{'icon-chevron-up': !$first, 'icon-chevron-down': $first }"></i> 
+	      			</accordion-heading>
+	      			<table class="fullwidth"> <tr><td align="left" ng-repeat="serviceData in serviceDatas">
+	      			<div>
+	      				<div id='sidebyside_div' class="cursor-pointer_sidebyside_div" ng-if="serviceData.category == categoryData.category" style="margin-bottom: 20px;">
+			  				
+			  				<input type="checkbox" name="{{serviceData.id}}" ng-change="isSelected(serviceData.id,isActive)" ng-model="isActive" ng-true-value="Y" ng-false-value="N">
+			  				 {{serviceData.serviceCode}} &nbsp;&nbsp;
+			  				 <input type="textbox" id="{{serviceData.id}}" ng-model="price"  style="width:50px">  
+						</div>
+	                 </div>
+	                 </td></tr></table>
+	                
+	  			 </accordion-group>
+	    </accordion>
+	 </div>
+</div>
+ <div class="offset3">
+            <a href="#/addons"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+            <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+          </div>
+</form>
