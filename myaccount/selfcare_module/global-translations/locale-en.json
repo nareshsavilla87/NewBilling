@@ -158,7 +158,7 @@
  	"placeholder.filter.ticket"				: "Filter by Id",
  	"placeholder.filter.vod"				: "Search Movie Name",
  	"placeholder.enter.nationalid"			: "Enter NationalID",
- 	"placeholder.enter.nationalid.example"	: "ex: 0704901290",
+ 	"placeholder.enter.nationalid.example"	: "ex: 0404121234",
  	"placeholder.filter.listofvods"			: "Filter by Id",
  	"placeholder.enter.serialnumber"		: "Enter Serial Number",
  	"placeholder.enter.text.search"			: "Enter text to search",

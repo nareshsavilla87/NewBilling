@@ -928,7 +928,7 @@
       .when('/paymentgatewayconfig', {
         templateUrl: 'views/administration/paymentgatewayconfig.html'
       })
-       .when('/createaddons', {
+      .when('/createaddons', {
         templateUrl: 'views/organization/createaddons.html'
       })
       .when('/viewaddon/:id', {
@@ -942,6 +942,9 @@
       })
       .when('/orderaddons',{
     	  templateUrl : 'views/clients/orderaddons.html'
+      })
+      .when('/eventaction', {
+        templateUrl: 'views/administration/eventaction.html'
       });
     
     $locationProvider.html5Mode(false);
