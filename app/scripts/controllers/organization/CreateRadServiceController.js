@@ -2,9 +2,12 @@
 	mifosX.controllers = _.extend(module, {
 		CreateRadServiceController : function(scope, location,  $modal, route,$http, webStorage,resourceFactory) {
 			
-			scope.formData = {};
-			scope.types =[{value:"KB"},{value:"MB"}];
-			
+		
+			scope.types =[{value:"KB"},{value:"MB"},{value:"GB"}];
+			  scope.formData = {
+					  upType  : scope.types[0].value,
+					  downType  : scope.types[0].value,
+		            };
 			
 			 scope.reset123 = function(){
 	        	   webStorage.add("callingTab", {someString: "radService" });

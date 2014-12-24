@@ -24,7 +24,7 @@
 		};
 		
 		scope.getRadService = function() {
-			resourceFactory.radServiceResource.query(function(data) {
+			resourceFactory.radServiceResource.query({attribute:'Mikrotik-Rate-Limit'},function(data) {
 				scope.radServices = data;
 				scope.value = [];
 				for(var i=0;i<scope.radServices.length;i++){
