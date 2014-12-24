@@ -5,8 +5,8 @@
       this.setBaseUrl = function(url) {baseUrl = url;};
       this.$get = ['$resource','$rootScope', function(resource,$rootScope) {
         var defineResource = function(url, paramDefaults, actions) {
-        	var tempUrl = baseUrl;
-        	$rootScope.hostUrl = tempUrl;
+        	var tempUrl =baseUrl;
+        	$rootScope.hostUrl =tempUrl;
           return resource(baseUrl + url, paramDefaults, actions);
         };
         return {
@@ -1007,21 +1007,49 @@
                 get: {method: 'GET', params: {}, isArray: true},
                 update: { method: 'PUT'}
             }),
+            
+            addonsTemplateResource: defineResource(apiVer + "/addons/template", {}, {
+                get: {method: 'GET', params: {}},
+            }),
+        
+            addonsResource: defineResource(apiVer + "/addons/:addonId", {addonId :'@addonId'}, {
+                get: {method: 'GET', params: {}},
+                update: {method: 'PUT', params: {}}
+            }),
+            
             paymentGatewayConfigurationResource:defineResource(apiVer + "/paymentgatewayconfigs/:configId",{configId : '@configId'}, {
                 get: {method: 'GET', params: {}},
                 update: {method: 'PUT', params: {}}
               }),
-           
+              
             checkerInboxResource: defineResource(apiVer + "/makercheckers/:templateResource", {templateResource: '@templateResource'}, {
                 get: {method: 'GET', params: {}},
                 search: {method: 'GET', params: {}, isArray: true}
             }),
+
+            orderaddonTemplateResource: defineResource(apiVer + "/orderaddons/template/:planId", {planId :'@planId',chargeCode :'@chargeCode'}, {
+                get: {method: 'GET', params: {}}
+            }),
             
+            orderaddonResource: defineResource(apiVer + "/orderaddons/:orderId", {orderId : '@orderId'}, {
+                get: {method: 'GET', params: {}, isArray: true}
+            }),
+
             itemMasterDetailTemplateResource: defineResource(apiVer + "/itemdetails/serialnum", {}, {}),
             clientConfigurationResource:defineResource(apiVer + "/configurations/config",{}, {
                 update: {method: 'PUT', params: {}}
-            })
-           
+            }),
+            
+            nasResource: defineResource(apiVer + "/freeradius/nas/:nasId", {nasId: '@nasId'}, {
+                update: { method: 'PUT' }
+             }),
+             
+            radServiceResource: defineResource(apiVer + "/freeradius/radservice/:radServiceId", {radServiceId:'@radServiceId'}, {
+                 update: { method: 'PUT' }
+              }),
+
+            eventActionResource: defineResource(apiVer + "/eventactions", {}, {})
+      
         };
       }];
     }

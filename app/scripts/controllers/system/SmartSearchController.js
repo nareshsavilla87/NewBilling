@@ -12,6 +12,8 @@
         scope.date={};
         scope.formData={};
         scope.searchData={};
+        scope.searchData.searchType ='payments';
+       
 
         resourceFactory.accountCoaResource.getAllAccountCoas({manualEntriesAllowed:true, usage:1, disabled:false}, function(data){
           scope.glAccounts = data;
@@ -41,6 +43,10 @@
   				scope.getTicketValues();
   										
   			});
+          };
+          
+          scope.getClientValues = function (){
+          	
           };
         
        var fetchFunction = function(offset, limit, callback) {
@@ -91,6 +97,13 @@
         	   if (scope.formData.user) { params.createdBy = scope.formData.user; };
         	   if (scope.formData.assignedToForLeads) { params.assignedTo = scope.formData.assignedToForLeads; };
         	   if (scope.formData.source) { params.source = scope.formData.source; };
+           }else if(scope.searchData.searchType == 'CLIENTS'){
+        	   
+        	   if (scope.formData.emailIdClient) { params.emailId = scope.formData.emailIdClient; };
+        	   if (scope.formData.phoneClient) { params.phone = scope.formData.phoneClient; };
+        	   if (scope.formData.city) { params.city = scope.formData.city; };
+        	   if (scope.formData.address) { params.address = scope.formData.address; };
+        	   if (scope.formData.externalId) { params.externalId = scope.formData.externalId; };
            }else{
         	   
            }
@@ -108,6 +121,10 @@
         	   scope.formData = {};
           }else if(scope.searchData.searchType == 'leads'){
         	  scope.displaySearchResultsForLeads = true;
+        	  scope.searchDatas = paginatorService.paginate(fetchTicketFunction, 14);
+        	   scope.formData = {};
+          }else if(scope.searchData.searchType == 'CLIENTS'){
+        	  scope.displaySearchResultsForClients = true;
         	  scope.searchDatas = paginatorService.paginate(fetchTicketFunction, 14);
         	   scope.formData = {};
           }else{

@@ -70,6 +70,7 @@
 			  
 			  scope.downloadurl = selfcare.models.additionalKortaUrl+"/"+routeParams.planId+"/"+routeParams.clientId+"?encryptedKey="+scope.encryptedString+"&";
 			  
+
 			  if(scope.kortaTestServer == 'TEST'){
 				  scope.md5data = scope.formData.amount + scope.formData.currency + scope.kortaMerchantId
 				  + scope.kortaTerminalId + scope.formData.description + "//1/" 
@@ -83,7 +84,7 @@
 				  location.path('/profile');
 			  }
 			  scope.formData.md5value=md5(scope.md5data);
-			  
+
 		  };
     }
   });

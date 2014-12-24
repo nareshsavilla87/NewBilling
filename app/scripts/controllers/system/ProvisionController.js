@@ -32,7 +32,7 @@
 				}
 			});
 			scope.logformData.dateFormat = mifosX.models.AdapterLogFileDateFormat;
-        	var reqDate = dateFilter(scope.start.date,'yyyy-MM-dd');
+        	var reqDate = dateFilter(scope.start.date,scope.logformData.dateFormat);
         	scope.logformData.startDate = reqDate;
         	scope.logformData.logFileLocation = mifosX.models.AdapterLogFileCommand;
         	scope.logformData.days = mifosX.models.AdapterLogFileIntervelDays;

@@ -1,0 +1,79 @@
+<div>
+	<ul class="breadcrumb">
+    	<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+        <li><a href="#/radius">{{'label.radius' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.createradservice' | translate}}</li>
+    </ul>
+</div>
+
+<form name="createradserviceform" novalidate="" class="form-horizontal well" data-ng-controller="CreateRadServiceController" data-ng-submit="submit()">
+	<div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>Create radService</legend>
+			<table>
+					<tr>
+							<td>
+								<div class="control-group">
+           					 	<label class="control-label" for="groupname">Group Name<span class="required">*</span></label>
+            					<div class="controls">
+             					 <input type="text" id="groupname" name="groupname" data-ng-model="formData.groupname" required data-late-Validate>
+             					  <span  data-ng-show="createradserviceform.groupname.$invalid || createradserviceform.groupname.$dirty">
+                                 <small class="error" data-ng-show="createradserviceform.groupname.$error.req">{{'label.required.field' | translate}}</small></span>
+           						</div>
+         						</div>	
+							</td></tr>
+							<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="attribute">Attribute<span class="required">*</span></label>
+            					<div class="controls">
+             					 <input type="text" id="attribute" name="attribute" data-ng-model="formData.attribute" required data-late-Validate>
+             					  <span  data-ng-show="createradserviceform.attribute.$invalid || createradserviceform.attribute.$dirty">
+                                  <small class="error" data-ng-show="createradserviceform.attribute.$error.req">{{'label.required.field' | translate}}</small></span>
+            					</div>
+          						</div>
+							</td>
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="op">Op</label>
+            					<div class="controls">
+              					<input type="text" id="secret" data-ng-model="formData.op">
+           						 </div>
+          						</div>
+							</td></tr>
+							<tr><td>
+								<div class="control-group">
+            					<label class="control-label" for="upRate">{{ 'label.upRate' | translate }}<span class="required">*</span></label>
+            					<div class="controls">
+              					<input type="text" class="input-medium" style="width:115px;" id="upRate" name="upRate" data-ng-model="formData.upRate" required data-late-Validate>
+              					<select id="type" class="input-small" data-ng-model="formData.upType" data-ng-options="type.value as type.value for type in types"  data-late-Validate></select>
+              					 <span  data-ng-show="createradserviceform.upRate.$invalid || createradserviceform.upRate.$dirty">
+                                 <small class="error" data-ng-show="createradserviceform.upRate.$error.req">{{'label.required.field' | translate}}</small></span>
+            					</div>
+          						</div>
+							</td></tr>
+							<tr><td>
+								<div class="control-group">
+            					<label class="control-label" for="downRate">{{ 'label.downRate' | translate }}<span class="required">*</span></label>
+            					<div class="controls">
+              					<input type="text" class="input-medium" style="width:115px;" id="downRate" name="downRate" data-ng-model="formData.downRate" required data-late-Validate>
+              					<select id="type" class="input-small" data-ng-model="formData.downType" data-ng-options="type.value as type.value for type in types" data-late-Validate></select>
+              					 <span  data-ng-show="createradserviceform.downRate.$invalid || createradserviceform.downRate.$dirty">
+                                 <small class="error" data-ng-show="createradserviceform.groupname.$error.req">{{'label.required.field' | translate}}</small></span>
+            					</div>
+          						</div>
+							</td></tr></table>
+							
+  	
+  			            <div class="offset3" style="marign-left:30%;">
+                         <a href="#/radius"><button id="cancel" type="reset" class="btn" data-ng-click="reset123()">{{'button.cancel'| translate}}</button></a>
+                         <button id="submit" type="submit" data-ng-disabled="!createradserviceform.$valid" class="btn btn-primary">{{'button.save'| translate}}</button>
+                     </div>
+        </fieldset>
+</form>
