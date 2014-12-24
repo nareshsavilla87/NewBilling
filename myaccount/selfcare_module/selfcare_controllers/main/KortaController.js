@@ -97,6 +97,7 @@
 				  alert("Please Configure the Server Type Properly. Either 'TEST' or 'LIVE'");
 				  location.path('/profile');
 			  }
+
 			  scope.formData.md5value=md5(scope.md5data);
 		  };
     }

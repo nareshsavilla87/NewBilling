@@ -19,7 +19,6 @@
 			   scope.isActiveScreenPage= false;
 		   }
 		   
-		   
 	   //setting the date format
 	   scope.setDf = function () {
 		   localStorageService.get('dateformat') ? scope.df = scope.dateformat = localStorageService.get('dateformat') 
