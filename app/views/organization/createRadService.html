@@ -65,13 +65,13 @@
               					<input type="text" class="input-medium" style="width:115px;" id="downRate" name="downRate" data-ng-model="formData.downRate" required data-late-Validate>
               					<select id="type" class="input-small" data-ng-model="formData.downType" data-ng-options="type.value as type.value for type in types" data-late-Validate></select>
               					 <span  data-ng-show="createradserviceform.downRate.$invalid || createradserviceform.downRate.$dirty">
-                                 <small class="error" data-ng-show="createradserviceform.groupname.$error.req">{{'label.required.field' | translate}}</small></span>
+                                 <small class="error" data-ng-show="createradserviceform.downRate.$error.req">{{'label.required.field' | translate}}</small></span>
             					</div>
           						</div>
 							</td></tr></table>
 							
   	
-  			            <div class="offset3" style="marign-left:30%;">
+  			            <div class="offset3" style="padding-left:2%;">
                          <a href="#/radius"><button id="cancel" type="reset" class="btn" data-ng-click="reset123()">{{'button.cancel'| translate}}</button></a>
                          <button id="submit" type="submit" data-ng-disabled="!createradserviceform.$valid" class="btn btn-primary">{{'button.save'| translate}}</button>
                      </div>
