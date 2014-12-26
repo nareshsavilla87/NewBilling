@@ -37,7 +37,7 @@
    '$scope', 
    '$routeParams', 
    'ResourceFactory', 
-   '$location', 
+   '$location',
    'webStorage',
     mifosX.controllers.EditServiceMappingController]).run(function($log) {
     $log.info("EditServiceMappingController initialized");
