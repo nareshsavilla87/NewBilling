@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  EditServiceMappingController: function(scope, routeParams, resourceFactory, location) {
+	  EditServiceMappingController: function(scope, routeParams, resourceFactory, location,webStorage) {
         scope.serviceCodes = [];
         scope.statusDatas=[];
         scope.provisionSysDatas = [];
@@ -38,6 +38,7 @@
    '$routeParams', 
    'ResourceFactory', 
    '$location', 
+   'webStorage',
     mifosX.controllers.EditServiceMappingController]).run(function($log) {
     $log.info("EditServiceMappingController initialized");
   });
