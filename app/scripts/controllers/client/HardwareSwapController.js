@@ -56,6 +56,7 @@
 	            this.formData.associationId=scope.association.id;
 	            this.formData.deviceAgrementType=scope.config;
 	            this.formData.saleId=routeParams.id;
+	            this.formData.deviceAgrementType=scope.config;
 	            delete this.formData.serials;
 
 	            resourceFactory.hardwareSwapResource.save({'clientId': routeParams.clientId},this.formData,function(data){
