@@ -35,6 +35,7 @@
 							  					});
 				  }
 			  }
+			  console.log(scope.categoryDatas);
 			  scope.categoryDatas =_.uniq(scope.categoryDatas,function(item,key,id){
 		             return item.category;
 		         });
