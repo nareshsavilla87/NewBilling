@@ -4,7 +4,7 @@
         scope.serviceCodes = [];
         scope.statusDatas=[];
         scope.provisionSysDatas = [];
-
+        scope.configIPTV = webStorage.get("client_configuration").IPTV;
          resourceFactory.serviceMappingResource.get({serviceMappingId: routeParams.id, template: 'true'} , function(data) {
             scope.serviceCodes = data.serviceCodeData;
             scope.statusDatas=data.statusData;
