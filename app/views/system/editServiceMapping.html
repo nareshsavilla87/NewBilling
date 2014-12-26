@@ -55,6 +55,14 @@
             </div>
           </div>
        </td></tr>
+       <tr><td>
+            <div class="control-group">
+            <label class="control-label" for="provisioingSystem">{{ 'label.plan.provisioningsystem' | translate }}</label>
+            <div class="controls">
+            <select id="provisioingSystem" data-ng-model="formData.provisionSystem"  data-ng-options="provisionSysData.mCodeValue as provisionSysData.mCodeValue for provisionSysData in provisionSysDatas" ></select>
+            </div>
+           </div>
+       </td></tr>
        
          <tr><td>
           <div class="control-group" data-ng-show="configIPTV == 'true' ">
