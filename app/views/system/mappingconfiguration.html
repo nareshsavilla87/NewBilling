@@ -24,8 +24,8 @@
                 <th>{{'table.servicemapping.serviceidentification' | translate}}</th>
                 <th>{{'table.servicemapping.status' | translate}}</th>
                 <th style="width:125px;">{{'table.servicemapping.image' | translate}}</th>
-                <th  data-ng-show="'IPTV'| ConfigLookup">Category</th>
-                <th  data-ng-show="'IPTV'| ConfigLookup">Sub Category</th>
+                <th  data-ng-show="configIPTV == 'true' ">Category</th>
+                <th  data-ng-show="configIPTV == 'true' ">Sub Category</th>
                 <th>{{ 'table.heading.actions' | translate }}</th>
               </tr>
             </thead>
@@ -36,8 +36,8 @@
                 <td class="pointer" data-ng-click="routeToservice(servicemappingdata.id)">{{servicemappingdata.serviceIdentification}}</td>
                 <td class="pointer" data-ng-click="routeToservice(servicemappingdata.id)">{{servicemappingdata.status}}</td>
                 <td class="pointer" data-ng-click="routeToservice(servicemappingdata.id)">{{servicemappingdata.image}}</td>
-                <td class="pointer" data-ng-show="'IPTV'| ConfigLookup" data-ng-click="routeToservice(servicemappingdata.id)">{{servicemappingdata.category}}</td>
-                <td class="pointer" data-ng-show="'IPTV'| ConfigLookup" data-ng-click="routeToservice(servicemappingdata.id)">{{servicemappingdata.subCategory}}</td>
+                <td class="pointer" data-ng-show="configIPTV == 'true' " data-ng-click="routeToservice(servicemappingdata.id)">{{servicemappingdata.category}}</td>
+                <td class="pointer" data-ng-show="configIPTV == 'true' " data-ng-click="routeToservice(servicemappingdata.id)">{{servicemappingdata.subCategory}}</td>
                 <td class="pointer">
                 	<a data-ng-show="PermissionService.showMenu('UPDATE_SERVICEMAPPING')" href="#/editServiceMapping/{{servicemappingdata.id}}"
                     data-popover="Edit Service Provcode" data-popover-trigger="mouseenter" class="icon-edit"></a>&nbsp;

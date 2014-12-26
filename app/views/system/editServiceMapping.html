@@ -55,17 +55,9 @@
             </div>
           </div>
        </td></tr>
-        <tr><td>
-            <div class="control-group">
-            <label class="control-label" for="provisioingSystem">{{ 'label.plan.provisioningsystem' | translate }}</label>
-            <div class="controls">
-            <select id="provisioingSystem" data-ng-model="formData.provisionSystem"  data-ng-options="provisionSysData.mCodeValue as provisionSysData.mCodeValue for provisionSysData in provisionSysDatas" ></select>
-            </div>
-           </div>
-            </td></tr>
        
          <tr><td>
-          <div class="control-group" data-ng-show="'IPTV'| ConfigLookup">
+          <div class="control-group" data-ng-show="configIPTV == 'true' ">
             	<label class="control-label" for="category">{{'label.category' | translate }}</label>
             	<div class="controls">
                 <select data-ng-model="formData.category"  data-ng-options="c.mCodeValue as c.mCodeValue for c in categories">
@@ -76,7 +68,7 @@
          </td></tr> 
                
          <tr><td>	
-           <div class="control-group" data-ng-show="'IPTV'| ConfigLookup">
+           <div class="control-group" data-ng-show="configIPTV == 'true' ">
             	<label class="control-label" for="subcategory">{{'label.subcategory' | translate }}</label>
             	<div class="controls">
                 <select data-ng-model="formData.subCategory"  data-ng-options="sc.mCodeValue as sc.mCodeValue for sc in subCategories">

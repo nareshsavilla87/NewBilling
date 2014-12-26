@@ -282,7 +282,6 @@ define(['underscore', 'mifosX'], function() {
       'StatusLookup',
       'YesOrNo',
       'DateFormat',
-      'ConfigLookup',
       'DecimalFormat',
       'DateTimeFormat',
       'UrlToString',
