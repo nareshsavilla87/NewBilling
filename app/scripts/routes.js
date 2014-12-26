@@ -928,8 +928,6 @@
       .when('/paymentgatewayconfig', {
         templateUrl: 'views/administration/paymentgatewayconfig.html'
       })
-      
-     
       .when('/eventaction', {
         templateUrl: 'views/administration/eventaction.html'
       })
@@ -941,6 +939,21 @@
       })
        .when('/createNas', {
         templateUrl: 'views/organization/createNas.html'
+      })
+      .when('/createaddons', {
+        templateUrl: 'views/organization/createaddons.html'
+      })
+      .when('/viewaddon/:id', {
+        templateUrl: 'views/organization/viewaddon.html'
+      })
+       .when('/editaddon/:id', {
+        templateUrl: 'views/organization/editaddon.html'
+      })
+      .when('/addons', {
+        templateUrl: 'views/organization/addons.html'
+      })
+      .when('/orderaddons',{
+    	  templateUrl : 'views/clients/orderaddons.html'
       });
     
     $locationProvider.html5Mode(false);
