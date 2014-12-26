@@ -24,6 +24,7 @@
 	            resourceFactory.associationResource.getAssociation({clientId: routeParams.clientId,id:routeParams.orderId} , function(data) {
 	                scope.association = data;                                                
 	            });
+	            
 	        scope.getData = function(query){
 	        	 return http.get($rootScope.hostUrl+ API_VERSION+'/itemdetails/'+scope.association.itemId+'/'+scope.officeId+'/', {
 	          	      params: {
@@ -53,6 +54,7 @@
 	            this.formData.planId=scope.association.planId;
 	            this.formData.serialNo=scope.association.serialNum;
 	            this.formData.associationId=scope.association.id;
+	            this.formData.deviceAgrementType=scope.config;
 	            this.formData.saleId=routeParams.id;
 	            this.formData.deviceAgrementType=scope.config;
 	            delete this.formData.serials;
