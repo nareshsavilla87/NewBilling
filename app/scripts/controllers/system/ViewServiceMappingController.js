@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  ViewServiceMappingController: function(scope, routeParams , resourceFactory,PermissionService ) {
+	  ViewServiceMappingController: function(scope, routeParams , resourceFactory,PermissionService,webStorage) {
         scope.sm = [];
         scope.id=[];
         scope.PermissionService =  PermissionService; 
@@ -16,6 +16,7 @@
      '$routeParams',
      'ResourceFactory',
      'PermissionService', 
+     'webStorage',
      mifosX.controllers.ViewServiceMappingController]).run(function($log) {
     $log.info("ViewServiceMappingController initialized");
   });
