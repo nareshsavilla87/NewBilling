@@ -15,6 +15,10 @@
 				<h4 class="list-group-item-heading"><i class="icon-sitemap icon-large"></i>&nbsp;&nbsp;Configure Maker Checker Task</h4>
 				<p class="list-group-item-text">Define or modify maker checker tasks</p>
 			</a>
+			 <a class="list-group-item" href="#/currencydetails" ng-show="PermissionService.showMenu('READ_COUNTRYCURRENCY')">
+	      		<h4 class="list-group-item-heading"><i class="icon-briefcase icon-large"></i>&nbsp;&nbsp;Currency Details</h4>
+	      		<p class="list-group-item-text">Enter the Currency that will be mapped </p>
+	    	</a>
 			
 			<a class="list-group-item" href="#/provision" ng-show="PermissionService.showMenu('READ_PROVISIONINGADAPTERSYSTEM')">
 				<h4 class="list-group-item-heading"><i class="icon-tags icon-large"></i>&nbsp;&nbsp;Provision Interface</h4>
@@ -45,11 +49,11 @@
                 <p class="list-group-item-text">Global configurations and Cache settings</p>
             </a>
             
-            <a class="list-group-item" href="#/paymentgatewayconfig" ng-show="PermissionService.showMenu('READ_PAYMENTGATEWAYCONFIG')">
+        <!--     <a class="list-group-item" href="#/paymentgatewayconfig" ng-show="PermissionService.showMenu('READ_PAYMENTGATEWAYCONFIG')">
                 <h4 class="list-group-item-heading"><i class="icon-large icon-gears"></i>&nbsp;&nbsp;{{'link.admin.paymentgatewayconfiguration' | translate}}</h4>
                 <p class="list-group-item-text">PaymentGateway configurations</p>
             </a>
-            
+             -->
              <a class="list-group-item" href="#/mappingconfig" ng-show="PermissionService.showMenu('READ_SERVICEMAPPING','READ_PLANMAPPING','READ_PROVISIONINGSYSTEM','READ_EVENTACTIONMAP')">
                 <h4 class="list-group-item-heading"><i class="icon-large icon-gears"></i>&nbsp;&nbsp;{{'link.admin.mappingconfiguration' | translate}}</h4>
                 <p class="list-group-item-text">Service and Hardware mapping configurations</p>

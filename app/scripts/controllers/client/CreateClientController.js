@@ -22,7 +22,7 @@
             scope.cities=data.addressTemplateData.cityData;
             scope.clientCategoryDatas=data.clientCategoryDatas;
             scope.groupNameDatas = data.groupNameDatas;
-            scope.configurationProperty=data.configurationProperty.enabled;
+            scope.configurationProperty=data.loginConfigurationProperty.enabled;
             scope.formData.clientCategory=scope.clientCategoryDatas[0].id;
             
         });
