@@ -11,6 +11,7 @@
         scope.selected = undefined;
         scope.PermissionService = PermissionService;
         scope.planmappingdatas= [];
+        scope.configIPTV = webStorage.get("client_configuration").IPTV;
         
         var callingTab = webStorage.get('callingTab',null);
         if(callingTab == null){

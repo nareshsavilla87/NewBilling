@@ -1008,15 +1008,6 @@
                 update: { method: 'PUT'}
             }),
             
-            addonsTemplateResource: defineResource(apiVer + "/addons/template", {}, {
-                get: {method: 'GET', params: {}},
-            }),
-        
-            addonsResource: defineResource(apiVer + "/addons/:addonId", {addonId :'@addonId'}, {
-                get: {method: 'GET', params: {}},
-                update: {method: 'PUT', params: {}}
-            }),
-            
             paymentGatewayConfigurationResource:defineResource(apiVer + "/paymentgatewayconfigs/:configId",{configId : '@configId'}, {
                 get: {method: 'GET', params: {}},
                 update: {method: 'PUT', params: {}}
@@ -1027,14 +1018,7 @@
                 search: {method: 'GET', params: {}, isArray: true}
             }),
 
-            orderaddonTemplateResource: defineResource(apiVer + "/orderaddons/template/:planId", {planId :'@planId',chargeCode :'@chargeCode'}, {
-                get: {method: 'GET', params: {}}
-            }),
             
-            orderaddonResource: defineResource(apiVer + "/orderaddons/:orderId", {orderId : '@orderId'}, {
-                get: {method: 'GET', params: {}, isArray: true}
-            }),
-
             itemMasterDetailTemplateResource: defineResource(apiVer + "/itemdetails/serialnum", {}, {}),
             clientConfigurationResource:defineResource(apiVer + "/configurations/config",{}, {
                 update: {method: 'PUT', params: {}}
@@ -1048,7 +1032,22 @@
                  update: { method: 'PUT' }
               }),
 
-            eventActionResource: defineResource(apiVer + "/eventactions", {}, {})
+            eventActionResource: defineResource(apiVer + "/eventactions", {}, {}),
+            addonsTemplateResource: defineResource(apiVer + "/addons/template", {}, {
+                get: {method: 'GET', params: {}},
+            }),
+        
+            addonsResource: defineResource(apiVer + "/addons/:addonId", {addonId :'@addonId'}, {
+                get: {method: 'GET', params: {}},
+                update: {method: 'PUT', params: {}}
+            }),
+            orderaddonTemplateResource: defineResource(apiVer + "/orderaddons/template/:planId", {planId :'@planId',chargeCode :'@chargeCode'}, {
+                get: {method: 'GET', params: {}}
+            }),
+            
+            orderaddonResource: defineResource(apiVer + "/orderaddons/:orderId", {orderId : '@orderId'}, {
+                get: {method: 'GET', params: {}, isArray: true}
+            }),
       
         };
       }];
