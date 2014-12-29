@@ -273,7 +273,12 @@ define(['underscore', 'mifosX'], function() {
       'organization/RadiusController',
       'organization/CreateRadServiceController',
       'organization/CreateNasController',
-      'paymentgateway/EventActionController'
+      'paymentgateway/EventActionController',
+      'organization/AddonController',
+      'organization/EditAddonController',
+      'organization/ViewGroupsDetailsController',
+      'organization/CreateAddonsController',
+      'client/CreateOrderAddonController',
       
 
 
@@ -282,7 +287,6 @@ define(['underscore', 'mifosX'], function() {
       'StatusLookup',
       'YesOrNo',
       'DateFormat',
-      'ConfigLookup',
       'DecimalFormat',
       'DateTimeFormat',
       'UrlToString',

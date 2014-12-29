@@ -9,9 +9,9 @@
 		  scope.formData=[];
 		  scope.date={};
 		//  scope.start.date = new Date();
-		  scope.date.processDate = new Date();
-	        scope.date.dueDate = new Date();
-	        scope.date.exipiryDate = new Date();
+		    scope.date.processDate = dateFilter(new Date(),'dd MMMM yyyy');
+	        scope.date.dueDate = dateFilter(new Date(),'dd MMMM yyyy');
+	        scope.date.exipiryDate = dateFilter(new Date(),'dd MMMM yyyy');
       resourceFactory.jobsparameters.get({jobId : routeParams.id}, function(data) {
         scope.reportDatas = data.queryData;
         scope.billingMessageDatas=data.billingMessageDatas;
@@ -70,6 +70,7 @@
     	  if(this.formData.name== "STATEMENT"){this.formData.dueDate = dateFilter(scope.date.dueDate,'dd MMMM yyyy');}
     	  if(this.formData.name== "AUTO_EXPIRY"){this.formData.exipiryDate = dateFilter(scope.date.exipiryDate,'dd MMMM yyyy');}
     	  if(this.formData.name == "PDF"){this.formData.processDate = dateFilter(scope.date.processDate,'dd MMMM yyyy');}
+    	  if(this.formData.name == "EXPORTDATA"){this.formData.processDate = dateFilter(scope.date.processDate,'dd MMMM yyyy');}
          
       delete this.formData.jobId;
    	  delete this.formData.displayName;
