@@ -68,7 +68,7 @@
     .when('/viewstatement/:billId',{
     	templateUrl: 'selfcare_module/views/clients/viewstatement.html'
     })
-    .when('/obsglobalpay/:planId/:clientId',{
+    .when('/obsglobalpay',{
     	templateUrl: 'selfcare_module/views/globalpay.html'
     })
     .when('/globalpayIntegration/:clientId/:amount',{
