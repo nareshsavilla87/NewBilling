@@ -16,7 +16,8 @@
 	
 	<form class="form-horizontal" data-ng-submit="submit()">
 		<fieldset>
-			<div class="control-group" data-ng-show="formData.displayName !='RADIUS' && formData.displayName !='SIMULATOR'">
+
+			<div class="control-group" data-ng-show="formData.displayName !='RADIUS' && formData.displayName !='SIMULATOR' && formData.displayName !='EXPORTDATA'" >
 				<label class="control-label">{{'label.job.reportname' | translate }}<span class="required">*</span></label>
 				<div class="controls">
 					<select data-ng-model="jobparameters.batchName" 
@@ -26,11 +27,11 @@
 				</div>
 			</div>
 
-			<div class="control-group" data-ng-show="formData.displayName =='INVOICING' || formData.displayName =='PDF'">
+			<div class="control-group" data-ng-show="formData.displayName =='INVOICING' || formData.displayName =='PDF' || formData.displayName =='EXPORTDATA'">
 				<label class="control-label" for="startDate">{{'label.job.processdate' | translate }}</label>
 				<div class="controls">
 					<input type="text" data-datepicker-pop="dd MMMM yyyy"
-						data-ng-model="date.processDate" data-is-open="opened" min="minDate"
+						data-ng-model="date.processDate" data-is-open="opened2" min="minDate"
 						max="'2020-06-22'" data-date-disabled="disabled(date, mode)" />
 				</div>
 			</div>
@@ -39,7 +40,7 @@
 				<label class="control-label" for="startDate">{{'label.job.duedate' | translate }}</label>
 				<div class="controls">
 					<input type="text" data-datepicker-pop="dd MMMM yyyy"
-						data-ng-model="date.dueDate" data-is-open="opened" min="minDate"
+						data-ng-model="date.dueDate" data-is-open="opened2" min="minDate"
 						max="'2020-06-22'" data-date-disabled="disabled(date, mode)" />
 				</div>
 			</div>
@@ -65,7 +66,7 @@
 				<label class="control-label" for="startDate">{{'label.job.exipirydate' | translate }}</label>
 				<div class="controls">
 					<input type="text" data-datepicker-pop="dd MMMM yyyy"
-						data-ng-model="date.exipiryDate" data-is-open="opened" min="minDate"
+						data-ng-model="date.exipiryDate" data-is-open="opened2" min="minDate"
 						max="'2020-06-22'" data-date-disabled="disabled(date, mode)" />
 				</div>
 			</div>
