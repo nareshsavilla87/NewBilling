@@ -19,7 +19,7 @@
 	            scope.phone=clientData.phone;
 	            scope.officeId = clientData.officeId;
 	            scope.image=clientData.image;
-	            var config = webStorage.get('CPE_TYPE');
+	            var config = webStorage.get('client_configuration').deviceAgrementType;
 	  		  scope.config=config;
 	            resourceFactory.associationResource.getAssociation({clientId: routeParams.clientId,id:routeParams.orderId} , function(data) {
 	                scope.association = data;                                                
@@ -54,6 +54,7 @@
 	            this.formData.serialNo=scope.association.serialNum;
 	            this.formData.associationId=scope.association.id;
 	            this.formData.saleId=routeParams.id;
+	            this.formData.deviceAgrementType=scope.config;
 	            delete this.formData.serials;
 
 	            resourceFactory.hardwareSwapResource.save({'clientId': routeParams.clientId},this.formData,function(data){
