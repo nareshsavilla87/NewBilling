@@ -1,20 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ng-app="selfcareApp">
 <head>
 	<meta charset="utf-8">
-	<link rel="icon" type="image/png" href="./selfcare_module/images/favicon.ico" />
+	<link rel="icon" type="image/png" href="./images/favicon.ico" />
 	<title>{{'title.obs.selfcare' | translate}}</title>
 	<style>[data-ng-cloak] { display: none !important; }</style>
+	<link rel="stylesheet" href="./css/bootstrap-combined.min.css" />
+	<link rel="stylesheet" href="./css/bootswatch.css" />
+	<link rel="stylesheet" href="./css/font-awesome.min.css" />
+	<link rel="stylesheet" href="./css/app.css" />
+	<link rel="stylesheet" href="./css/style.css" />
+	<link rel="stylesheet" href="./css/bootstrap-timepicker.css" />
+	<link rel="stylesheet" href="./css/jquery-ui.css" />
+	<script type='text/javascript' src='./loaderFiles.js'></script>
 </head>
-<body id="top" data-spy="scroll" data-target=".subnav" data-offset="80" data-ng-controller="SelfCareMainController">
+<body id="top" data-spy="scroll" data-target=".subnav" data-offset="80" data-ng-controller="SelfcareMainController">
     <div data-ng-hide="domReady" style="margin-left:auto;margin-top:auto; position: absolute;margin-top:240px; top:0px;left:550px;">
-        <img src="./selfcare_module/images/loading.gif" >
+        <img src="./images/loading.gif" >
     </div> 
     <div data-ng-hide="isActiveScreenPage || currentSession.user != null" data-ng-cloak >
 	  <table class="container">
 	  	 <tr>
 	  	  <td style="padding-left: 0px;">
-      	 	 <img src="./selfcare_module/images/Billing_logoSmall.png" alt="Billing" width="65">
+      	 	 <img src="./images/Billing_logoSmall.png" alt="Billing" width="65">
       	  </td>
       	  <td valign="bottom" style="padding-right: 0px;">
             <div class="dropdown pull-right" >{{ 'label.change.language' | translate }}
@@ -28,10 +36,10 @@
       </table>
       <div class="container well margintop20" style="height: 500px;">
         <div class="row form-search paddedbottom" >
-			 <div class="alert alert-success" data-ng-repeat="msgs in infoMsgs">
+		 <div class="alert alert-success" data-ng-repeat="msgs in infoMsgs">
 			   <table><tr>
 			   		<td colspan="msgs.names.length">
-						<span><img src="./selfcare_module/images/{{msgs.image}}" width="30"></span>
+						<span><img src="{{msgs.image}}" width="30"></span>
 					</td>
 	         		<td><span data-ng-repeat="msg in msgs.names">
 	         				<strong class="marginleft40" >{{msg.name | translate}}</strong><br/>
@@ -123,7 +131,7 @@
 		 <div class="navbar navbar-fixed-top container">
 	        <div class="navbar-inner" >
 	            <div class="container">
-	                <a class="brand" style="margin: 0px 40px;"><img src="./selfcare_module/images/Billing_logoSmall.png" alt="SelfCare" width="50px;"></a>
+	                <a class="brand" style="margin: 0px 40px;"><img src="./images/Billing_logoSmall.png" alt="SelfCare" width="50px;"></a>
 	                <div class="nav-collapse collapse" id="main-menu">
 	                    <ul class="nav" id="main-menu-left" data-ng-show="isSignInProcess">
 	                     <li><a href="#/profile" data-ng-class="{ activate: isActive('/profile') }"><i class="icon-user icon-white"></i>{{'label.profile' | translate}}</a></li>
@@ -168,7 +176,6 @@
 	       </div>
 	    </div>
     </div>
- 	<script type='text/javascript' data-main="selfcare_module/selfcare_loader.js" src='selfcare_module/bower_components/requirejs/require.js'></script>
       <script type="text/ng-template" id="forgotpwdpopup.html">
                     <div class="modal-header silver">
                         <h3 class="bolder">{{'header.forgot.password' | translate}}</h3>
@@ -212,5 +219,24 @@
                         <a id="submit" class="btn btn-primary" ng-click="done()">{{'btn.done' | translate}}</a>
                     </div>
       </script>
+       <script type="text/ng-template" id="messagespopup.html">
+         <div class="modal-body modal-medium">     
+         <div class="alert alert-success" data-ng-repeat="msgs in popUpMsgs">
+			   <table><tr>
+			   		<td colspan="msgs.names.length" >
+						<span><img src="{{msgs.image}}" width="30"></span>
+					</td>
+	         		<td><span data-ng-repeat="msg in msgs.names">
+	         				<strong class="marginleft40" >{{msg.name | translate}}</strong><br/>
+	         			</span>
+	         		</td></tr>
+			   </table> 
+			</div>
+          </div>
+		<div class="modal-footer">
+           <a id="submit" class="btn btn-primary" ng-click="approve()">{{'btn.done' | translate}}</a>
+          </div>
+      </script>
+      
 </body>
 </html>

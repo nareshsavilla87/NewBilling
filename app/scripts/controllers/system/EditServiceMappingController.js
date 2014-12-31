@@ -3,17 +3,20 @@
 	  EditServiceMappingController: function(scope, routeParams, resourceFactory, location) {
         scope.serviceCodes = [];
         scope.statusDatas=[];
+        scope.provisionSysDatas = [];
 
          resourceFactory.serviceMappingResource.get({serviceMappingId: routeParams.id, template: 'true'} , function(data) {
             scope.serviceCodes = data.serviceCodeData;
             scope.statusDatas=data.statusData;
             scope.formData=data;
             scope.serviceMappingId=routeParams.id;
+            scope.provisionSysDatas = data.provisionSysData;
             scope.categories=data.categories;
             scope.subCategories=data.subCategories;
         });
         
         scope.submit = function() {	
+        	
                scope.formData.serviceId=this.formData.id;
                delete this.formData.serviceCodeData;
                delete this.formData.serviceCode;
@@ -21,6 +24,9 @@
                delete this.formData.statusData;
                delete this.formData.categories;
                delete this.formData.subCategories;
+           	    delete this.formData.provisionSysData;
+           	   delete this.formData.provisionSysData;
+               delete this.formData.sortBy;
                resourceFactory.serviceMappingResource.update({'serviceMappingId': routeParams.id},scope.formData,function(data){
                location.path('/viewServiceMapping/' + data.resourceId);
           });

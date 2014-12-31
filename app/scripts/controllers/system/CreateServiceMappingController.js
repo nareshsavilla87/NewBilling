@@ -1,10 +1,12 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  CreateServiceMappingController: function(scope, resourceFactory, location) {
+	  CreateServiceMappingController: function(scope, resourceFactory, location,webStorage) {
         scope.serviceCodes = [];
         scope.statusDatas=[];
         scope.serviceParameters=[];
+        scope.provisionSysDatas = [];
         
+        scope.configIPTV = webStorage.get("client_configuration").IPTV;
         resourceFactory.serviceMappingtemplateResource.getAllserviceMapping(function(data) {
            
         	scope.serviceCodes = data.serviceCodeData;
@@ -13,6 +15,13 @@
             scope.serviceParameters=data.serviceParameters;
             scope.categories=data.categories;
             scope.subCategories=data.subCategories;
+            scope.provisionSysDatas = data.provisionSysData;
+            
+            for(var i in scope.provisionSysDatas){
+       		 if((scope.provisionSysDatas[i].mCodeValue).toLowerCase() == "none"){
+       			 scope.formData.provisionSystem = scope.provisionSysDatas[i].mCodeValue;
+       		 }
+       	 }
         
         });
         
@@ -32,7 +41,9 @@
         	delete this.formData.statusData;
         	delete this.formData.serviceParameters;
         	delete this.formData.categories;
+        	delete this.formData.provisionSysDatas;
         	delete this.formData.subCategories;
+        	delete this.formData.provisionSysData;
         	
             resourceFactory.serviceMappingResource.save(scope.formData,function(data){
             		location.path('/viewServiceMapping/' + data.resourceId);
@@ -44,6 +55,7 @@
     '$scope', 
     'ResourceFactory', 
     '$location', 
+    'webStorage',
     mifosX.controllers.CreateServiceMappingController]).run(function($log) {
     $log.info("CreateServiceMappingController initialized");
   });

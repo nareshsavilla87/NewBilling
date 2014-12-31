@@ -17,6 +17,7 @@
 	<form class="form-horizontal" data-ng-submit="submit()">
 		<fieldset>
 			<div class="control-group" data-ng-show="formData.displayName !='RADIUS' && formData.displayName !='SIMULATOR'">
+
 				<label class="control-label">{{'label.job.reportname' | translate }}<span class="required">*</span></label>
 				<div class="controls">
 					<select data-ng-model="jobparameters.batchName" 
@@ -76,7 +77,6 @@
 					<input type="text" data-ng-model="jobparameters.emailId">
 				</div>
 			</div>
-			
 			<div class="control-group" data-ng-show="formData.displayName =='RADIUS'">             
                <label class="control-label">{{ 'label.job.ProvSystem' | translate }}<span class="required">*</span></label>
                 <!-- <div class="controls">
@@ -88,12 +88,14 @@
                 </div>    
            </div>
            <div class="control-group" data-ng-show="formData.displayName =='RADIUS'">              
+
                <label class="control-label">{{ 'label.job.url' | translate }}<span class="required">*</span></label>
                 <div class="controls">
                 <input type="text" data-ng-model="jobparameters.url">
                 </div>               
            </div>
            <div class="control-group" data-ng-show="formData.displayName =='RADIUS'">              
+
                 <label class="control-label">{{ 'label.job.username' | translate }}<span class="required">*</span></label>
                 <div class="controls">
                 <input type="text" data-ng-model="jobparameters.username">
