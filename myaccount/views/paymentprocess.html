@@ -1,0 +1,144 @@
+<div data-ng-controller="PaymentProcessController">
+   <div class="loading-widget-div" data-ng-show="blockUI">
+	   <div id="circularG">
+	      <div id="circularG_1" class="circularG"></div><div id="circularG_2" class="circularG"></div>
+	       <div id="circularG_3" class="circularG"></div><div id="circularG_4" class="circularG"></div>
+	       <div id="circularG_5" class="circularG"></div><div id="circularG_6" class="circularG"></div>
+	       <div id="circularG_7" class="circularG"></div><div id="circularG_8" class="circularG"></div>
+	   </div>
+    </div>
+   <div class="error" data-ng-show="errorStatus || errorDetails">
+	  <label>{{'label.contract.error' | translate}}</label>
+	  <label data-ng-show="errorStatus">{{errorStatus}}</label>
+	  <label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+   </div>
+    <br/><br/>
+    <table data-ng-hide="price == 0">
+	  <tr>
+	  	<td>
+			<div id="packageSelection" class="stepProcess marginleft8 done">
+				<i class="icon-shopping-cart icon-large"></i> {{'header.package.selection'|translate}}
+			</div>
+		</td>
+		<td valign="top" style="padding:20px 0 0 25px;">
+			<i class="icon-arrow-right icon-xlarge"></i>
+		</td>
+		<td>
+			<div id="paymentSelection" class="stepProcess offset1 selected">
+				<i class="icon-usd"></i>{{'header.payment'|translate}}
+			</div>
+		</td>
+	  </tr>
+	</table>
+    <div >
+		<table class="table">
+			<thead>
+		           <tr class="graybg">
+					<th>{{'header.plan.name'|translate}}</th>
+					<th>{{'header.contract.period'|translate}}</th>
+					<th>{{'header.price'|translate}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="bigfont">{{planData.planCode}}</td>
+					<td class="bigfont">{{planData.duration}}</td>
+					<td class="bigfont">{{planData.price}}</td>
+				</tr>
+			</tbody>
+			
+		</table>
+		<br/>
+		<div class="offset1" style="margin-top: 35px;" data-ng-show="price != 0">
+		   <table class="fullwidth">
+			  <tr>
+   				<td width="42%" class="bigfont" valign="top">
+   						{{'label.select.payment.gateway' | translate}}&nbsp;&nbsp;:
+   				</td>
+       			<td>
+       				<div data-ng-repeat="paymentgatewayData in paymentgatewayDatas track by $index" class="marginbottom10">
+       					<input type="radio" id="{{paymentgatewayData.name}}" name="selectPWName" class="radioalign" data-ng-model="paymentGatewayName" 
+       					   value="{{paymentgatewayData.name}}" data-ng-click="paymentGatewayFun(paymentgatewayData.name)"/>&nbsp;
+      					   <label for="{{paymentgatewayData.name}}" class="inlinedis pointer">
+      								<img src="./images/{{paymentgatewayData.name}}.jpg" width="110px;">
+      					   </label><br/>
+       				</div>
+       				<div class="error" data-ng-show="paymentGatewayName==''" style="font-size: 1.5em;margin-top: 0px;">
+       					 {{'label.notselect.payment.gateway' | translate}}<br/><br/>
+       					 {{'label.atleast.one.payment.gateway' | translate}}
+       				</div> 
+       			</td>
+          	  </tr>
+          	  <tr data-ng-hide="paymentGatewayName==''">
+          	  	 <td width="42%"></td>
+          	     <td>
+          	       <div class="control-group margintop20">
+					 <div class="controls">
+					    <input type="checkbox" name="checkbox" data-ng-model="termsAndConditions" > 
+					    <span> {{'label.agree' | translate}} <a data-ng-click="termsAndConditionsFun()" style="color: #0066cc;text-decoration: underline;">
+					    		{{'label.Terms.Conditions' | translate}}</a> 
+					    </span>
+					</div>
+				   </div> 
+          	     </td>
+          	  </tr>
+          	  <tr data-ng-hide="paymentGatewayName==''" >
+          	    <td style="padding-top: 30px;" align="right">
+          	      <div><a  href="#/{{screenName}}/{{clientId}}" class="btn" >{{'btn.cancel' | translate}}</a></div> 
+          	    </td>
+       		 	<td style="padding-top: 30px;" >
+      		 	   <div >
+					  <a class="btn btn-primary" data-ng-hide="termsAndConditions" data-ng-disabled="true">{{'btn.proceed' | translate}}</a>
+					  <a data-ng-click="makePaymentFun()" class="btn btn-primary" href="{{paymentURL}}" data-ng-show="termsAndConditions">
+					  	{{'btn.proceed' | translate}}
+					  </a>
+				   </div>
+				   
+       		 	</td>
+          	  </tr>
+          	  <tr data-ng-show="paymentGatewayName==''" >
+          	  	<td style="padding-top: 30px;" colspan="2" align="right">
+          	      <div><a  href="#/{{screenName}}/{{clientId}}" class="btn" >{{'btn.cancel' | translate}}</a></div> 
+          	    </td>
+          	  </tr>
+          	</table>
+       	 </div>
+      </div>
+      <div data-ng-show="price == 0">
+              <br/>
+	       <div class="pull-right">
+				<a href="#/{{screenName}}/{{clientId}}" class="btn">{{'btn.cancel' | translate}}</a> 
+				<a data-ng-click="finishBtnFun()" class="btn btn-primary animated fadeInUp">{{'btn.subscribe' | translate}}</a>
+			</div> 
+			 
+	   </div>
+	   <script type="text/ng-template" id="termsandconditions.html">
+		<form  class="form-horizontal well" style="border:0px;width:550px;">
+			<h4><strong>Terms and Conditions</strong></h4>
+			<div>Read and accept the following agreement to continue.</div><br/>
+			<div style="max-height:300px; overflow-y:auto;border:1px solid;padding:10px;">
+				I will be showing how to create a Page and add content toit .ok sir Today I want all off you to start puting the feature 
+			    functionality that has been developed No matter on spelling / Sentence / Grammer .. Just add the data .. Will review as well we can get
+				it reviewed by our Pavan if necessary .. If the information is available it will be easy for every on to know as Knowledge base .. and address
+				the Enhancements Quickly .. Well now I will add One Page.1. How to add a Page 2. Basic Format to use while adding the content to that Page
+				The Structure is like this .. First Main Page as landing Page .. http://wiki.openbillingsystem.com/mw19/ Here you can see 6 Sections .. But we are going to use
+				the First one -- Open Billing System Every click in wiki is basically a Page ..With in the Page we have the relavent content ..
+				For Example --: I have created one for Client We can also have Sub Page for each Functionality But now let us keep it simple ..
+				like I will show you the Inventory Control -- It has hyper link that means It has a Page associate .. Where we will have 
+				content related to that .. For now I have not added any content and Page for that ..So when I click on it . it will take me to a new page ..
+				as there is no page created before it took me to Create Inventory control Page ..Now I will show a sample .. to add documentation of it here
+				The TOC is option but let use it .. If you see our Inventory we have some pre-requisites / Masters to be created :
+				Table Of Contents Pre-requisites Supplier Item Masters GRN (Goods Received Voucher) Item Details Item Detail via Form
+				Data Uploads for Bulk MRN (Material Requisition Note) Move Item via Form Data Uploads for Bulk Item History Any others pl add ..
+				== Note == This is like Header as well as Table of content Item If You give * it is a bullet point in  Next line 
+				Other Editing you can check on Mediawiki .. Well we need not duplicate we can give a hyperlink to GRN Page -- Will show that in next session .. or it is just linking
+				This is it ..  I want you to start putting ... the functionality / features that has been developed by you or you know about it .. 
+				I want you to spend at-least 30 Min to 1 hour per day .. Hope we will update it by week's time .. and it will be 
+				very helpfull for us .. That can save much time when we wanted to enhance / address some issue .. Let me know 
+				if you have problem in adding some thing to it. ok sir,let us start first ..if anything let you know... Thanks.
+				Start of now .. Add some text today and then leave for the day  ok sir... share this  documentation ok
+		   </div><br/>
+		 <table class="fullwidth"><tr><td align="center"><div><a data-ng-click="done()" class="btn btn-primary">Done</a></div></td></tr></table>
+		</form>
+      </script>
+</div>

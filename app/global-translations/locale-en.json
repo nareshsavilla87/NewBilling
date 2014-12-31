@@ -960,7 +960,7 @@
   "label.beginWith":"Begin With:",
   "label.pinCategory":"Pin Category:",
   "label.quantity":"Quantity:",
-  "label.serialNoLength":"Serial No Length:",
+  "label.serialNoLength":"Length of Serial NO:",
   "label.pinType":"PinType:",
   "label.ManageVoucherpins":"Voucher Pins",
   "validation.msg.voucher.batchName.cannot.be.blank":"Batch Name cannot be blank",
@@ -2407,7 +2407,10 @@
 "label.provision.status":"Status",
 "label.cornexpression":"Corn Expression",
 "label.job.isAutoRenewal":"is AutoRenewal",
-"table.heading.saletype":"Sale Type"
+"table.heading.saletype":"Sale Type",
+"table.heading.officeId":"officeId",
+"label.officeId":"Office"
+
 
 
 

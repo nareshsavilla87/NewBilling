@@ -9,10 +9,13 @@
 	        scope.start={};
 	        scope.start.date = dateFilter(new Date(),'dd MMMM yyyy');
 	        scope.lengthValidationError = false;
+	        scope.offices = [];
 	        
 	        resourceFactory.voucherpinTemplateResource.get(function(data) {
 	            scope.pinCategoryDatas = data.pinCategoryData;
 	            scope.pinTypeDatas.push({"value":"VALUE"},{"value":"PRODUCT"});
+	            scope.offices = data.offices;
+	            alert(scope.offices);
 	        });
 	        
 	        resourceFactory.orderTemplateResource.get({planId: 0},function(data) {
@@ -41,7 +44,7 @@
 	        		 scope.lengthValidationError = true;
 	        	 }
 	          }
-	        		 
+ 
 	        	
 	        };
 	    }
