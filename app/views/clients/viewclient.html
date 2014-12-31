@@ -470,6 +470,7 @@
 								<table class="table">
 									<thead>
 										<tr class="graybg">
+											<th>{{'table.heading.saletype' | translate}}</th>
 											<th>{{'table.heading.saledate' | translate}}</th>
 											<th>{{'table.heading.itemcode' | translate}}</th>
 											<th>{{'table.heading.serialNo' | translate}}</th>
@@ -484,6 +485,7 @@
 									</thead>
 									<tbody>
 										<tr class="pointer-main" data-ng-repeat="onetimesale in onetimesales  | filter:filterText">
+											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.saleType}}</td>
 											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.saleDate | DateFormat}}</td>
 											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.itemCode}}</td>
 											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.serialNo}}</td>
