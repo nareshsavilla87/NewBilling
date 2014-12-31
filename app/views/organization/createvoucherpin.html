@@ -28,10 +28,10 @@
 							</td>
 							<td>
 								<div class="control-group">
-            					<label class="control-label" for="batchDescription">{{ 'label.batchDescription' | translate }}<span class="required">*</span></label>
+            					<label class="control-label" for="officeId">{{ 'label.officeId' | translate }}<span class="required">*</span></label>
             					<div class="controls">
-              					<input type="text" id="batchDescription" data-ng-model="formData.batchDescription">
-            					</div>
+	             				 <select data-ng-model="formData.officeId"  data-ng-options="office.id as office.name for office in offices" ></select>
+	            				</div>
           						</div>
 							</td>
 							</tr>
