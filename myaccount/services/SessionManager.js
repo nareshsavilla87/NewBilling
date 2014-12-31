@@ -8,6 +8,7 @@ selfcareApp.service("SessionManager",['$rootScope','webStorage','HttpService','R
         webStorage.remove("clientTotalData");
         webStorage.remove('selfcareUserName');
         webStorage.remove('selfcareUserData');
+        localStorageService.remove('Language');
         httpService.cancelAuthorization();
         return scope.currentSession= {user:null};
       };

@@ -1,0 +1,66 @@
+<div>
+	<ul class="breadcrumb">
+    	<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+        <li><a href="#/radius">{{'label.radius' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.createnas' | translate}}</li>
+    </ul>
+</div>
+
+<form name="createnasform" novalidate="" class="form-horizontal well" data-ng-controller="CreateNasController" data-ng-submit="submit()">
+	<div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>Create Nas</legend>
+			<table>
+					<tr>
+							<td>
+								<div class="control-group">
+           					 	<label class="control-label" for="shortname">Short Name<span class="required">*</span></label>
+            					<div class="controls">
+             					 <input type="text" id="shortname" name="shortname" data-ng-model="formData.shortname" required data-late-Validate>
+             					 <span  data-ng-show="createnasform.shortname.$invalid || createnasform.shortname.$dirty">
+                                 <small class="error" data-ng-show="createnasform.shortname.$error.req">{{'label.required.field' | translate}}</small></span>
+           						</div>
+         						</div>	
+							</td></tr>
+							<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="ipaddress">Ip Address<span class="required">*</span></label>
+            					<div class="controls">
+             					 <input type="text" id="nasname" name="nasname" data-ng-model="formData.nasname" required data-late-Validate>
+             					 <span  data-ng-show="createnasform.nasname.$invalid || createnasform.nasname.$dirty" >
+                                 <small class="error" data-ng-show="createnasform.nasname.$error.req">{{'label.required.field' | translate}}</small></span>
+            					</div>
+          						</div>
+							</td>
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="secret">Secret<span class="required">*</span></label>
+            					<div class="controls">
+              					<input type="text" id="secret" name="secret" data-ng-model="formData.secret" required data-late-Validate>
+              					<span  data-ng-show="createnasform.secret.$invalid || createnasform.secret.$dirty">
+                                 <small class="error" data-ng-show="createnasform.secret.$error.req">{{'label.required.field' | translate}}</small></span>
+           						 </div>
+          						</div>
+							</td></tr>
+							<tr><td>
+								<div class="control-group">
+            					<label class="control-label" for="description">{{ 'label.description' | translate }}</label>
+            					<div class="controls">
+              					<input type="text" id="description" data-ng-model="formData.description">
+            					</div>
+          						</div>
+							</td></tr></table>
+  			            
+  			             <div class="offset3" style="padding-left:2%;">
+                        <a href="#/radius"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+                         <button id="submit" type="submit" data-ng-disabled="!createnasform.$valid" class="btn btn-primary">{{'button.save'| translate}}</button>
+                       </div>
+        </fieldset>
+</form>
