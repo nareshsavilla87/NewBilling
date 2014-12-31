@@ -206,6 +206,7 @@
 		        
             
 		        scope.enable = function (id, name) {
+		        	
 	                if (name == 'Is Cache Enabled') {
 	                    var temp = {};
 	                    temp.cacheType = 2;
