@@ -14,6 +14,11 @@
       .when('/dashboard', {
     	  templateUrl: 'views/private/dashboard.html'
       })
+
+      .when('/definations', {
+    	  templateUrl: 'views/private/definations.html'
+      })
+      
       .when('/templates', {
         templateUrl: 'views/templates/templates.html'
       })

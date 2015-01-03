@@ -116,6 +116,7 @@
          };
           
          var bookOrder = PermissionService.showMenu('CREATE_ORDER')&&PermissionService.showMenu('READ_ORDER');
+         var redemption = PermissionService.showMenu('CREATE_REDEMPTION');
          var riseTicket = PermissionService.showMenu('CREATE_TICKET')&&PermissionService.showMenu('READ_TICKET');
          var makePayment = PermissionService.showMenu('CREATE_PAYMENT')&&PermissionService.showMenu('READ_GETPAYMENT');
          var payInvoice = PermissionService.showMenu('CREATE_PAYMENT')&&PermissionService.showMenu('READ_GETPAYMENT')&&PermissionService.showMenu('READ_INVOICEMAP');
@@ -180,6 +181,13 @@
                       	                  icon:"icon-tag",
                       	                  ngShow : bookOrder
                          	            },
+                         	           {
+                                            name:"button.redemption",
+                                            href:"#/redemption",
+                                            icon :"icon-plus-sign",
+                                            ngShow : redemption
+                                          	 
+                                          },
                          	            {
                                           name:"button.neworder",
                                           href:"#/neworder/0",
@@ -249,7 +257,7 @@
                                         	name:"Delete",
                                         	href:"#/closeclient",
                                         	icon:"icon-remove",
-                                        	 ngShow : "true"
+                                        	ngShow : "true"
                                         },
                                         {
 	                                          name:"",	
@@ -387,6 +395,12 @@
                     controller: StatementPopController,
                     resolve:{}
                 });
+        	}else if(href == "#/redemption"){
+        		$modal.open({
+                    templateUrl: 'redemptionpop.html',
+                    controller: redemptionPopController,
+                    resolve:{}
+                });
         	}else if(href == "#/viewclient"){
         		route.reload();
         	}else{
@@ -425,6 +439,36 @@
         		$modalInstance.dismiss('cancel');
         	};
         };
+        
+ var redemptionPopController = function($scope, $modalInstance){
+        	
+        	
+        	$scope.acceptRedemption= function(){
+        		
+        		$scope.flagStatementPop = true;
+        		
+        		if($scope.formData == undefined || $scope.formData == null){
+        			$scope.formData = {"pinNumber":""};
+                }
+        		this.formData.clientId= routeParams.id;
+        		  
+        		  resourceFactory.redemptionResource.save(this.formData,function(data){
+        				location.path("/viewclient/"+routeParams.id);
+                    $modalInstance.close('delete');
+                },function(errorData){
+                	$scope.flagStatementPop = false;
+                	$scope.stmError = errorData.data.errors[0].userMessageGlobalisationCode;
+                	console.log(errorData);
+                	console.log($scope.stmError);
+                });
+        	};
+        
+        	$scope.rejectStatement = function(){
+        		console.log("Reject Statement");
+        		$modalInstance.dismiss('cancel');
+        	};
+        };
+        
         
         scope.deleteClient = function () {
         	

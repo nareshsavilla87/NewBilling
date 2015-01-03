@@ -1235,6 +1235,29 @@
         </div>
 	</script>
 	
+	    <script type="text/ng-template" id="redemptionpop.html">
+    	<div class="modal-header silver">
+        	<h3 class="bolder">{{'dialog.redemption.title.message' | translate}}</h3>
+        </div>
+        <div class="modal-body" style="height:255px;">
+        	<div class="control-group">
+       			<div class="controls">
+					<span class="control-label" style="color:red;" ng-show="stmError.length>0">{{stmError | translate}}</span>
+                </div>
+			</div>            	
+            <div class="control-group">
+            	<label class="control-label">{{ 'label.pinumber'| translate }}</label>
+                <div class="controls">
+                	 <input type="text" id="pinNumber" ng-model="formData.pinNumber">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+        	<button id="cancel" class="btn btn-warning" ng-click="rejectStatement()">{{'button.cancel' | translate}}</button>
+            <button id="submit" class="btn btn-primary" ng-click="acceptRedemption()">{{'label.confirm' | translate}}</button>
+        </div>
+	</script>
+	
    	<script type="text/ng-template" id="cancelpayment.html">
     	<div class="modal-header silver">
         	<h3 class="bolder">{{'dialog.cancelpayment.title.message' | translate}}</h3>
