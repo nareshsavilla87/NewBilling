@@ -20,10 +20,10 @@
         <thead>
             <tr class="graybg">
                 <th>{{ 'table.heading.batchName' | translate }}</th>
-                <th>{{ 'table.heading.batchDescription' | translate }}</th>
+                <th>{{ 'table.heading.pinCategory' | translate }}</th>
+                <th>{{ 'table.heading.officeId' | translate }}</th>
                 <th>{{ 'table.heading.length' | translate }}</th>
                 <th>{{ 'table.heading.beginWith' | translate }}</th>
-                <th>{{ 'table.heading.pinCategory' | translate }}</th>
                 <th>{{ 'table.heading.quantity' | translate }}</th>
                 <th>{{ 'table.heading.serialNo' | translate }}</th>
                 <th>{{ 'table.heading.pinType' | translate }}</th>
@@ -37,11 +37,11 @@
         <tbody>
             <tr data-ng-repeat="voucherpin in voucherpins | filter:filterText">
                        
-                <td>{{voucherpin.batchName}}</td>  
-                <td>{{voucherpin.batchDescription}}</td>        
+                <td>{{voucherpin.batchName}}</td>
+                <td>{{voucherpin.pinCategory}}</td>    
+                <td>{{voucherpin.officeId}}</td>        
                 <td>{{voucherpin.length}}</td>  
                 <td>{{voucherpin.beginWith}}</td>        
-                <td>{{voucherpin.pinCategory}}</td>  
                 <td>{{voucherpin.quantity}}</td>        
                 <td>{{voucherpin.serialNo}}</td>  
                 <td>{{voucherpin.pinType}}</td>        
