@@ -34,7 +34,6 @@ ChangePasswordController = function(scope,RequestSender,rootScope,routeParams,mo
 						  						'image' : './images/info-icon.png',
 						  						'names' : [{'name' : 'title.password.changed'}]
 					   });
-					  location.replace(selfcareMainPageURL);
 				  });
 			  }
 		  };
