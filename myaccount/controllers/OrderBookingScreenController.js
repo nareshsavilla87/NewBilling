@@ -29,7 +29,6 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 					RequestSender.bookOrderResource.save({clientId : clientId},orderBookingData,function(data){
 						localStorageService.remove("secretCode");
 						rootScope.iskortaTokenAvailable = true;
-						rootScope.isActiveScreenPage= false;
 						location.path('/paymentgatewayresponse/'+clientId);
 					});
 				}
