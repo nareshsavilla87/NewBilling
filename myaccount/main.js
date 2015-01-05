@@ -20,22 +20,19 @@ selfcareApp.controller('SelfcareMainController',['$rootScope','$translate','Sess
                                                  '$location','$modal','localStorageService','tmhDynamicLocale',
                                                  function(scope, translate,sessionManager,RequestSender,
                      			   				    authenticationService,location,modal,localStorageService,tmhDynamicLocale){
-	   
-	   scope.popUpMsgs = [];
-	   scope.infoMsgs = [];
 	   scope.domReady = true;
-	   scope.isSignInProcess = false;
 	   scope.selfcare_userName = "";
 	   scope.iskortaTokenAvailable = false;
 	   var urlAfterHash = window.location.hash;
-	   if((urlAfterHash.match('/active') == '/active')||(urlAfterHash.match('/additionalorderspreviewscreen') == '/additionalorderspreviewscreen')
-		||(urlAfterHash.match('/renewalorderpreviewscreen') == '/renewalorderpreviewscreen')||(urlAfterHash.match('/eventdetailspreviewscreen') == '/eventdetailspreviewscreen')
-		||(urlAfterHash.match('/kortatokenpaymentsuccess') == '/kortatokenpaymentsuccess')||(urlAfterHash.match('/kortasuccess') == '/kortasuccess')){
-		   scope.isActiveScreenPage= true;
+	   if((urlAfterHash.match('/active') == '/active')||(urlAfterHash.match('/orderbookingscreen') == '/orderbookingscreen')
+			   ||(urlAfterHash.match('/kortasuccess') == '/kortasuccess') || (urlAfterHash.match('/globalpaysuccess') == '/globalpaysuccess')){
+		   scope.isLandingPage= true;
 		   
 	   }else{
-		   scope.isActiveScreenPage= false;
+		   scope.isLandingPage= false;
 	   }
+	   
+	   (urlAfterHash.match('/active') == '/active') ? scope.isRegClientProcess = true : scope.isRegClientProcess = false;
 	   
 //setting the date format
 scope.setDf = function () {
@@ -69,13 +66,14 @@ if(localStorageService.get('Language')){
      tmhDynamicLocale.set(lang.code);
      translate.uses(lang.code);
  };
-	 
-	 var ForgotPwdPopupSuccessController = function($scope,$modalInstance){
-			
-			$scope.done = function(){
-				$modalInstance.close('delete');
-			};
-		};
+
+//forgot password success msg popup controller
+ var ForgotPwdPopupSuccessController = function($scope,$modalInstance){
+		
+		$scope.done = function(){
+			$modalInstance.close('delete');
+	};
+};
 		
 //forgot password popup controller
 	 var ForgotPwdPopupController = function($scope,$modalInstance){
@@ -136,6 +134,5 @@ if(localStorageService.get('Language')){
 	   
 	   scope.signout = function(){
 	    	  scope.currentSession = sessionManager.clear();
-	    	  location.path('/').replace;
 	      };
 }]);

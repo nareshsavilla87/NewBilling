@@ -10,6 +10,8 @@ selfcareApp.service("SessionManager",['$rootScope','webStorage','HttpService','R
         webStorage.remove('selfcareUserData');
         localStorageService.remove('Language');
         httpService.cancelAuthorization();
+        scope.isLandingPage= false;
+		location.path('/').replace();
         return scope.currentSession= {user:null};
       };
 
@@ -21,7 +23,6 @@ selfcareApp.service("SessionManager",['$rootScope','webStorage','HttpService','R
             	  var clientData = webStorage.get("clientTotalData");
             	  if(clientData){
             		  scope.selfcare_userName = webStorage.get('selfcareUserName');
-            		  scope.isSignInProcess = true;
             		  if(location.path() == "/")location.path('/profile');
             		  else if(location.path())location.path(location.path());
             		  else location.path('/profile');
@@ -29,7 +30,6 @@ selfcareApp.service("SessionManager",['$rootScope','webStorage','HttpService','R
                 handler({user: 'selfcare'});
               });
             } else {
-            	scope.isSignInProcess = false;
               handler(EMPTY_SESSION);
             }
         };

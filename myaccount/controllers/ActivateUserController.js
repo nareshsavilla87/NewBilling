@@ -1,13 +1,9 @@
 ActivateUserController = function(scope,RequestSender,rootScope,routeParams,http,
 			  							webStorage,httpService,sessionManager,location,API_VERSION,filter,authenticationService,$modal,localStorageService) {
 
-
-		  
-		  localStorageService.remove("selfcare_sessionData");
-		  webStorage.remove("clientTotalData");
-		  rootScope.isSignInProcess = false;
-
-		  
+		
+		rootScope.isRegClientProcess = true;
+		
 		//getting the mailId value form routeParams
 		  scope.existedEmail = routeParams.mailId;
 
@@ -25,8 +21,6 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,http
 		//function called when  clicking on Login link
 		  scope.goToSignInPageFun = function(){
 			  	rootScope.currentSession = sessionManager.clear();
-			  	rootScope.isActiveScreenPage = false;
-			  	  location.path('/').replace;
 		   };
 		  
 		  //adding jsondata for selfcare activation updation request
@@ -238,8 +232,6 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,http
 		      			
 		      			$modalInstance.dismiss('cancel');
 		      			rootScope.currentSession = sessionManager.clear();
-		  				rootScope.isActiveScreenPage= false;
-		      			location.path('/').replace();
 		      		};
 		        } 
 		    });
