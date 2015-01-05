@@ -1,20 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ng-app="selfcareApp">
 <head>
 	<meta charset="utf-8">
-	<link rel="icon" type="image/png" href="./selfcare_module/images/favicon.ico" />
+	<link rel="icon" type="image/png" href="./images/favicon.ico" />
 	<title>{{'title.obs.selfcare' | translate}}</title>
 	<style>[data-ng-cloak] { display: none !important; }</style>
+	<link rel="stylesheet" href="./css/bootstrap-combined.min.css" />
+	<link rel="stylesheet" href="./css/bootswatch.css" />
+	<link rel="stylesheet" href="./css/font-awesome.min.css" />
+	<link rel="stylesheet" href="./css/app.css" />
+	<link rel="stylesheet" href="./css/style.css" />
+	<link rel="stylesheet" href="./css/bootstrap-timepicker.css" />
+	<link rel="stylesheet" href="./css/jquery-ui.css" />
+	<script type='text/javascript' src='./loaderFiles.js'></script>
 </head>
-<body id="top" data-spy="scroll" data-target=".subnav" data-offset="80" data-ng-controller="SelfCareMainController">
+<body id="top" data-spy="scroll" data-target=".subnav" data-offset="80" data-ng-controller="SelfcareMainController">
     <div data-ng-hide="domReady" style="margin-left:auto;margin-top:auto; position: absolute;margin-top:240px; top:0px;left:550px;">
-        <img src="./selfcare_module/images/loading.gif" >
+        <img src="./images/loading.gif" >
     </div> 
-    <div data-ng-hide="isActiveScreenPage || currentSession.user != null" data-ng-cloak >
-	  <table class="container">
-	  	 <tr>
-	  	  <td style="padding-left: 0px;">
-      	 	 <img src="./selfcare_module/images/Billing_logoSmall.png" alt="Billing" width="65">
+    <div data-ng-hide="isLandingPage || currentSession.user != null" data-ng-cloak >
+	  <table class="container"><tr><td style="padding-left: 0px;">
+      	 	 <img src="./images/Billing_logoSmall.png" alt="Billing" width="65">
       	  </td>
       	  <td valign="bottom" style="padding-right: 0px;">
             <div class="dropdown pull-right" >{{ 'label.change.language' | translate }}
@@ -23,16 +29,12 @@
                  	<a data-ng-click="changeLang(lang)">{{lang.name}}</a></li>
               </ul>
             </div>
-         </td>
-        </tr>
+         </td></tr>
       </table>
       <div class="container well margintop20" style="height: 500px;">
         <div class="row form-search paddedbottom" >
 		 <div class="alert alert-success" data-ng-repeat="msgs in infoMsgs">
-			   <table><tr>
-			   		<td colspan="msgs.names.length">
-						<span><img src="{{msgs.image}}" width="30"></span>
-					</td>
+			   <table><tr><td colspan="msgs.names.length"><span><img src="{{msgs.image}}" width="30"></span></td>
 	         		<td><span data-ng-repeat="msg in msgs.names">
 	         				<strong class="marginleft40" >{{msg.name | translate}}</strong><br/>
 	         			</span>
@@ -40,16 +42,14 @@
 			   </table> 
 			</div>
          <table class="fullwidth margintop40">
-         <tr>
-         	 <td colspan="2">
+           <tr><td colspan="2">
          	    <table class="fullwidth"><tr>
          	    	<td width="32%" style="padding-left: 72px;"><h2><span >{{'label.signup.newuser' | translate}}</span></h2></td>
          	    	<td width="25%" align="right" style="padding-right:20px;"><h2><span >{{'label.or' | translate}}</span></h2></td>
          	    	<td><h2><span >{{'label.login.existuser' | translate}}</span></h2></td>
-         	    </tr></table>
-         	 </td>
-         </tr>
-          <tr>
+         	    </tr></table></td>
+           </tr>
+           <tr>
                <td class="indextdbox">
 	    		 <div data-ng-controller="SignUpFormController">
 				  <div class="row paddedbottom pull-right border-box-shape boxmaxheight">
@@ -57,12 +57,10 @@
 				   		<div style="color:#000000;margin: 25px 25px;">{{'label.new.customer.enteremail' | translate}}<br/>
 				   										{{'label.customer.email.gettingdetails' | translate}}</div>
 				   		 <table class="margintop65">
-				   		    <tr>
-				   		      <td colspan="2">
+				   		    <tr><td colspan="2">
 								<div class="error" data-ng-repeat="error in signupErrorMsgs">
 						 		 		<strong>*{{error.name | translate}}</strong>
-						 		 </div>
-				   		      </td>
+						 		 </div></td>
 				   		    </tr>
 				   		    <tr>
 							 <td><i class="icon-user"></i></td>
@@ -87,12 +85,10 @@
 					   		 <div style="margin: 25px 25px;"><strong style="font-size: 16px;font-weight: 700;">{{'label.registered.customer' | translate}}</strong></div>
 					   		 <div style="color:#000000;margin: 25px 25px;">{{'label.registered.customer.pleaselogin' | translate}}</div>
 					   		 <table>
-					   		   <tr>
-					   		     <td colspan="2">
+					   		   <tr><td colspan="2">
 					   		 		<div class="error" data-ng-repeat="error in loginErrorMsgs">
 						 		 		<strong>*{{error.name | translate}}</strong>
-						 		 </div>
-					   		     </td>
+						 		 </div></td>
 					   		   </tr>
 					   		   <tr>
 						   		 <td><i class="icon-user"></i><br><br></td>
@@ -123,15 +119,15 @@
 		 <div class="navbar navbar-fixed-top container">
 	        <div class="navbar-inner" >
 	            <div class="container">
-	                <a class="brand" style="margin: 0px 40px;"><img src="./selfcare_module/images/Billing_logoSmall.png" alt="SelfCare" width="50px;"></a>
+	                <a class="brand" style="margin: 0px 40px;"><img src="./images/Billing_logoSmall.png" alt="SelfCare" width="50px;"></a>
 	                <div class="nav-collapse collapse" id="main-menu">
-	                    <ul class="nav" id="main-menu-left" data-ng-show="isSignInProcess">
+	                    <ul class="nav" id="main-menu-left" data-ng-hide="isRegClientProcess">
 	                     <li><a href="#/profile" data-ng-class="{ activate: isActive('/profile') }"><i class="icon-user icon-white"></i>{{'label.profile' | translate}}</a></li>
 	                     <li><a href="#/services" data-ng-class="{ activate: isActive('/services') }"><i class="icon-list icon-white"></i>{{'label.services' | translate}}</a></li>
                          <li><a href="#/statements" data-ng-class="{ activate: isActive('/statements') }"><i class="icon-file icon-white"></i>{{'label.bill.statements' | translate}}</a></li>
                          <li><a href="#/newTicket"  data-ng-class="{ activate: isActive('/newTicket') }"><i class="icon-money"></i>{{'label.ticket.add.newticket'|translate}}</a></li>
 	                    </ul>
-	                    <ul class="nav pull-right " id="main-menu-right" data-ng-show="isSignInProcess">
+	                    <ul class="nav pull-right " id="main-menu-right" data-ng-hide="isRegClientProcess">
 	                        <li class="dropdown" id="preview-menu">
 	                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{selfcare_userName}}<b class="caret"></b>
 	                            </a>
@@ -143,7 +139,7 @@
 	                        </li>
 	                        <li class="marginright20"><a id="logout" data-ng-click="signout()"><i class="icon-off"></i>{{'label.signout' | translate}}</a></li>
 	                    </ul>
-	                    <ul class=" nav pull-right marginright20" id="main-menu-right" data-ng-hide="isSignInProcess">
+	                    <ul class=" nav pull-right marginright20" id="main-menu-right" data-ng-show="isRegClientProcess">
 		                    <li class="dropdown marginright20" id="preview-menu">
 		                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ 'label.change.language' | translate }}<b class="caret"></b></a>
 		                            <ul class="dropdown-menu">
@@ -168,7 +164,6 @@
 	       </div>
 	    </div>
     </div>
- 	<script type='text/javascript' data-main="selfcare_module/selfcare_loader.js" src='selfcare_module/bower_components/requirejs/require.js'></script>
       <script type="text/ng-template" id="forgotpwdpopup.html">
                     <div class="modal-header silver">
                         <h3 class="bolder">{{'header.forgot.password' | translate}}</h3>
