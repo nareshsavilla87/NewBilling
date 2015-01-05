@@ -17,6 +17,9 @@
          scope.payment = "PAYMENT";
          scope.invoice = "INVOICE";
          scope.adjustment = "ADJUSTMENT";
+         scope.journal ="JOURNAL VOUCHER";
+         
+         scope.financialJournals =[];
          scope.PermissionService = PermissionService;
          scope.ipstatus;
          scope.ipId;
@@ -929,6 +932,7 @@
         	scope.invoicesC = "";
         	scope.paymentsC = "";
         	scope.adjustmentsC = "";
+        	scope.journalsC ="";
         	scope.financialtransactions = paginatorService.paginate(scope.getFinancialTransactionsFetchFunction, 14);
         };
         scope.invoicesTab = function(){
@@ -936,6 +940,7 @@
         	scope.paymentsC = "";
         	scope.invoicesC = "active";
         	scope.adjustmentsC = "";
+        	scope.journalsC ="";
         	scope.financialInvoices = paginatorService.paginate(scope.getInvoice, 14);
         };
         scope.paymentsTab = function(){
@@ -943,6 +948,7 @@
         	scope.invoicesC = "";
         	scope.paymentsC = "active";
         	scope.adjustmentsC = "";
+        	scope.journalsC ="";
         	scope.financialPayments = paginatorService.paginate(scope.getPayments, 14);
         };
         scope.adjustmentsTab = function(){
@@ -950,7 +956,17 @@
         	scope.invoicesC = "";
         	scope.paymentsC = "";
         	scope.adjustmentsC = "active";
+        	scope.journalsC ="";
         	scope.financialAdjustments = paginatorService.paginate(scope.getAdjustments, 14);
+        };
+        
+        scope.journalsTab = function(){
+        	scope.financialsummaryC = "";
+        	scope.invoicesC = "";
+        	scope.paymentsC = "";
+        	scope.adjustmentsC = "";
+        	scope.journalsC ="active";
+        	scope.financialJournals = paginatorService.paginate(scope.getjournals, 14);
         };
         scope.eventsaleTab = function(){
         	scope.eventsaleC = "active";
@@ -1171,6 +1187,10 @@
 	  	scope.getAdjustments = function(offset, limit, callback,adjustment) {
   	  		resourceFactory.Filetrans.get({clientId: routeParams.id, offset: offset, limit: limit, type:scope.adjustment}, callback);
   	  	};
+  	  	
+  	  scope.getjournals = function(offset, limit, callback,adjustment) {
+	  		resourceFactory.Filetrans.get({clientId: routeParams.id, offset: offset, limit: limit, type:scope.journal}, callback);
+	  	};
         scope.getAllFineTransactions = function () {
         	scope.financialsummaryC = "active";
        	   	scope.invoicesC = "";

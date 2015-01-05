@@ -15,7 +15,7 @@
 	            scope.pinCategoryDatas = data.pinCategoryData;
 	            scope.pinTypeDatas.push({"value":"VALUE"},{"value":"PRODUCT"});
 	            scope.offices = data.offices;
-	            alert(scope.offices);
+	            
 	        });
 	        
 	        resourceFactory.orderTemplateResource.get({planId: 0},function(data) {
