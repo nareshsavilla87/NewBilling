@@ -122,7 +122,7 @@
 	<div class="paddedbottom10">
 		<b class="marginleft10" style="font-size: 20px;color: #080808;">{{'link.tickets'|translate}}</b>
 		<a href="#/newTicket" class="btn btn-primary pull-right"><i class="icon-plus icon-white"></i>{{'label.ticket.add.newticket'|translate}}</a>
-		<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.enter.text.search'|translate}}">
+		<input data-ng-model="filterText1" type="text" class="span marginbottom0px" placeholder="{{'placeholder.enter.text.search'|translate}}">
 		<table class="table">
 	        <thead>
 	             <tr class="graybg">
@@ -135,7 +135,7 @@
 	     		 </tr>
 	        </thead>
 	        <tbody>
-	            <tr data-ng-repeat="ticket in ticketsData.currentPageItems  | filter:filterText">
+	            <tr data-ng-repeat="ticket in ticketsData.currentPageItems  | filter:filterText1">
 	                <td>{{ticket.priority}}</td>  
 	                <td>{{ticket.ticketDate | DateFormat}}</td>
 	                <td>{{ticket.problemDescription}}</td>

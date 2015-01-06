@@ -2430,6 +2430,10 @@
 "table.heading.upRate":"Up Rate",
 "table.heading.downRate":"Down Rate",
 "link.create.new.radService":"Create RadService",
-"label.radService.message":"Delete RadService"
+"label.radService.message":"Delete RadService",
+"label.pgconfig.editneteller":"Edit Neteller",
+"label.pgconfig.neteller.url":"URL",
+"label.pgconfig.neteller.clientid":"Client Id",
+"label.pgconfig.neteller.secretcode":"Secret Code"
 
 }

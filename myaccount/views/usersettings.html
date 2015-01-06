@@ -8,7 +8,7 @@
     <div class="control-group offset1">
         <label class="control-label">{{ 'label.change.language' | translate }}</label>
         <div class="controls">
-            <select data-ng-model="optlang" data-ng-options="lang.name for lang in langs" data-ng-change="changeLang(optlang)">
+            <select data-ng-model="localeLang" data-ng-options="lang.name for lang in langs" data-ng-change="changeLang(localeLang)">
     		</select>
         </div>
     </div>
