@@ -2407,7 +2407,11 @@
 "label.provision.status":"Status",
 "label.cornexpression":"Corn Expression",
 "label.job.isAutoRenewal":"is AutoRenewal",
-"table.heading.saletype":"Sale Type"
+"table.heading.saletype":"Sale Type",
+"label.pgconfig.editneteller":"Edit Neteller",
+"label.pgconfig.neteller.url":"URL",
+"label.pgconfig.neteller.clientid":"Client Id",
+"label.pgconfig.neteller.secretcode":"Secret Code"
 
 
 
