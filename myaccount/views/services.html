@@ -47,7 +47,7 @@
  		<div class="pull-right">
 			<a href="#/vodevents" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'label.vod.add.event'|translate}}</a>
 		</div>
-		<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.enter.text.search'|translate}}">
+		<input data-ng-model="filterText1" type="text" class="span marginbottom0px" placeholder="{{'placeholder.enter.text.search'|translate}}">
 		<table class="table">
 	        <thead>
 	            <tr class="graybg">
@@ -58,7 +58,7 @@
 	            </tr>
 	        </thead>
 	        <tbody>
-	            <tr class="pointer-main" data-ng-repeat="vodData in VODSDatas.currentPageItems  | filter:filterText" >
+	            <tr class="pointer-main" data-ng-repeat="vodData in VODSDatas.currentPageItems  | filter:filterText1" >
 	                <td class="pointer">{{vodData.eventName}}</td>
 	                <td class="pointer">{{vodData.bookedDate | DateFormat}}</td>
 	                <td class="pointer">{{vodData.eventPrice}}</td>
