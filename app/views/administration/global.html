@@ -1,8 +1,10 @@
 <div>
     <ul class="breadcrumb">
-        <li class="active">Configurations</li>
+        <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'link.admin.configuration' | translate}}</li>
     </ul>
 </div>
+
 <div class="row-fluid" ng-controller="GlobalConfigurationController">
 	 <tabset  style="margin-bottom: 0px;">
 	 	<tab heading="Global Configuration">
@@ -37,7 +39,7 @@
     </table>
     </tab>
     
-    <tab heading="Client Configuration"> <!--  select="getConfigLookUp()" -->
+    <tab heading="Client Configuration"  active="clientConfigTab">
     	
     	<table class="table">
         <thead>
@@ -56,6 +58,31 @@
                 <a data-ng-show="(lookup.value != 'true')&&(lookup.value != 'false')" data-ng-click="editClientConfigs(lookup.name,lookup.value)" data-popover="Edit {{lookup.name}}" 
                        data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a>
             </td>
+        </tr>
+        </tbody>
+    </table>
+    	
+    </tab>
+    
+     <tab heading="Paymentgateway Configuration"  select="getpaymentgatewayData()" active="paymentConfigTab">
+    	
+    	<table class="table">
+        <thead>
+        <tr class="graybg">
+            <th>{{'label.form.name' | translate}}</th>
+            <th>{{'label.enabled' | translate}}</th>
+            <th>{{'label.value' | translate}}</th>
+            <th>{{'table.action' | translate}}</th>
+        </tr>
+        </thead>
+        <tbody>
+       <tr data-ng-repeat="config in paymentConfigs  | filter:filterText">
+            <td>{{config.name}}</td>
+            <td>{{config.enabled}}</td>
+            <td style="word-break:break-all;">{{config.value}}</td>
+            <td><button type="button" class="btn btn-success flag" data-ng-hide="config.enabled" data-ng-click="enable(config.id)"><i class="icon-flag-alt"></i></button>
+                <button type="button" class="btn btn-danger flag" data-ng-show="config.enabled" data-ng-click="disable(config.id)"><i class="icon-remove"></i></button>
+           		<a data-ng-click="editpaymentgatewayConfig(config.id,config.name)" data-popover="Edit" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a></td>        
         </tr>
         </tbody>
     </table>
@@ -150,3 +177,211 @@
         <button class="btn btn-primary" ng-click="approve(data.value)">{{'label.save' | translate}}</button>
     </div>
 </script>
+
+ <script type="text/ng-template" id="editdalpay.html">
+
+	   <div class="modal-header silver">
+          <h3 class="bolder">{{'label.pgconfig.editdalpay' | translate}}</h3>
+        </div>
+	 <form name="editDalpayForm" novalidate="" class="form-horizontal well" ng-submit="submit()">
+        <div class="modal-body">
+			 <div class="error" ng-show="errorStatus || errorDetails">
+				<label>{{'label.contract.error' | translate}}</label>
+				<label ng-show="errorStatus">{{errorStatus}}</label>
+				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	   		 </div>
+ 		  <fieldset>
+           	<div class="control-group">
+				<label class="control-label">{{'label.pgconfig.dalpay.url' | translate}}<span class="required">*</span> :</label>
+			 	<div class="controls">
+              		<input  type="text" name="url" ng-model="formData.url" placeholder="enter Paypal here" required late-Validate/><br>
+                    <span  ng-show="editDalpayForm.url.$invalid">
+                    	<small class="error" ng-show="editDalpayForm.url.$error.req">
+                        	Required Field
+                    	</small>
+                   </span>
+            	</div>
+           	</div>
+          	<div class="control-group">
+				<label class="control-label">{{'label.pgconfig.dalpay.merchantid' | translate}}<span class="required">*</span> :</label>
+			 	<div class="controls">
+              		<input  type="text" name="merchantId" ng-model="formData.merchantId" placeholder="enter MerchantId here" required late-Validate/><br>
+                    <span  ng-show="editDalpayForm.merchantId.$invalid">
+                    	<small class="error" ng-show="editDalpayForm.merchantId.$error.req">
+                        	Required Field
+                    	</small>
+                   </span>
+            	</div>
+           	</div>
+			<div class="control-group">
+				<label class="control-label">{{'label.pgconfig.dalpay.pageid' | translate}}<span class="required">*</span> :</label>
+			 	<div class="controls">
+              		<input  type="text" name="pageId" ng-model="formData.pageId" placeholder="enter pageId here" required late-Validate/><br>
+                    <span  ng-show="editDalpayForm.terminalId.$invalid">
+                    	<small class="error" ng-show="editDalpayForm.terminalId.$error.req">
+                        	Required Field
+                    	</small>
+                   </span>
+            	</div>
+           	</div>
+		  </fieldset>
+        </div>
+        <div class="modal-footer">
+          <button id="cancel" class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+     	  <button id="submit" type="submit" class="btn btn-primary" ng-disabled="(!editDalpayForm.$valid)" >{{'label.confirm' | translate}}</button>
+        </div>
+	</form>
+	</script> 
+<script type="text/ng-template" id="editPaypal.html">
+
+	   <div class="modal-header silver">
+          <h3 class="bolder">{{'label.pgconfig.editpaypal' | translate}}</h3>
+        </div>
+	 <form name="editPaypalForm" novalidate="" class="form-horizontal well" ng-submit="submit()">
+        <div class="modal-body">
+			 <div class="error" ng-show="errorStatus || errorDetails">
+				<label>{{'label.contract.error' | translate}}</label>
+				<label ng-show="errorStatus">{{errorStatus}}</label>
+				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	   		 </div>
+ 		  <fieldset>
+           	<div class="control-group">
+				<label class="control-label">{{'label.pgconfig.paypal.url' | translate}}<span class="required">*</span> :</label>
+			 	<div class="controls">
+              		<input  type="text" name="url" ng-model="formData.url" placeholder="enter Paypal here" required late-Validate/><br>
+                    <span  ng-show="editPaypalForm.url.$invalid">
+                    	<small class="error" ng-show="editPaypalForm.url.$error.req">
+                        	Required Field
+                    	</small>
+                   </span>
+            	</div>
+           	</div>
+          	<div class="control-group">
+            	 <label class="control-label">{{'label.pgconfig.paypal.bussiness.id' | translate}}<span class="required">*</span> :</label>
+			 	 <div class="controls">
+              		<input type="text" name="emailId" ng-model="formData.emailId" placeholder="enter Bussiness account EmailId here" required late-Validate/><br>
+					<span  ng-show="editPaypalForm.emailId.$invalid">
+                    	<small class="error" ng-show="editPaypalForm.emailId.$error.req">
+                        	Required Field
+                    	</small>
+                   </span>
+            	 </div>
+	      	</div>
+		  </fieldset>
+        </div>
+        <div class="modal-footer">
+          <button id="cancel" class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+     	  <button id="submit" type="submit" class="btn btn-primary" ng-disabled="(!editPaypalForm.$valid)" >{{'label.confirm' | translate}}</button>
+        </div>
+	</form>
+</script> 
+
+<script type="text/ng-template" id="editKorta.html">
+
+	   <div class="modal-header silver">
+          <h3 class="bolder">{{'label.pgconfig.editkorta' | translate}}</h3>
+        </div>
+	 <form name="editKortaForm" novalidate="" class="form-horizontal well" ng-submit="submit()">
+        <div class="modal-body">
+			 <div class="error" ng-show="errorStatus || errorDetails">
+				<label>{{'label.contract.error' | translate}}</label>
+				<label ng-show="errorStatus">{{errorStatus}}</label>
+				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	   		 </div>
+ 		  <fieldset>
+           	<div class="control-group">
+				<label class="control-label">{{'label.pgconfig.korta.merchantid' | translate}}<span class="required">*</span> :</label>
+			 	<div class="controls">
+              		<input  type="text" name="merchantId" ng-model="formData.merchantId" placeholder="enter MerchantId here" required late-Validate/><br>
+                    <span  ng-show="editKortaForm.merchantId.$invalid">
+                    	<small class="error" ng-show="editKortaForm.merchantId.$error.req">
+                        	Required Field
+                    	</small>
+                   </span>
+            	</div>
+           	</div>
+			<div class="control-group">
+				<label class="control-label">{{'label.pgconfig.korta.terminalid' | translate}}<span class="required">*</span> :</label>
+			 	<div class="controls">
+              		<input  type="text" name="terminalId" ng-model="formData.terminalId" placeholder="enter TerminalId here" required late-Validate/><br>
+                    <span  ng-show="editKortaForm.terminalId.$invalid">
+                    	<small class="error" ng-show="editKortaForm.terminalId.$error.req">
+                        	Required Field
+                    	</small>
+                   </span>
+            	</div>
+           	</div>
+          	<div class="control-group">
+            	 <label class="control-label">{{'label.pgconfig.korta.secretcode' | translate}}<span class="required">*</span> :</label>
+			 	 <div class="controls">
+              		<input type="text" name="secretCode" ng-model="formData.secretCode" placeholder="enter Korta secretcode here" required late-Validate/><br>
+					<span  ng-show="editKortaForm.secretCode.$invalid">
+                    	<small class="error" ng-show="editKortaForm.secretCode.$error.req">
+                        	Required Field
+                    	</small>
+                   </span>
+            	 </div>
+	      	</div>
+		  </fieldset>
+        </div>
+        <div class="modal-footer">
+          <button id="cancel" class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+     	  <button id="submit" type="submit" class="btn btn-primary" ng-disabled="(!editKortaForm.$valid)" >{{'label.confirm' | translate}}</button>
+        </div>
+	</form>
+</script> 
+<script type="text/ng-template" id="editGlobalpay.html">
+
+	   <div class="modal-header silver">
+          <h3 class="bolder">{{'label.pgconfig.editglobalpay' | translate}}</h3>
+        </div>
+	 <form name="editGlobalpayForm" novalidate="" class="form-horizontal well" ng-submit="submit()">
+        <div class="modal-body">
+			 <div class="error" ng-show="errorStatus || errorDetails">
+				<label>{{'label.contract.error' | translate}}</label>
+				<label ng-show="errorStatus">{{errorStatus}}</label>
+				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	   		 </div>
+ 		  <fieldset>
+           	<div class="control-group">
+				<label class="control-label">{{'label.pgconfig.korta.merchantid' | translate}}<span class="required">*</span> :</label>
+			 	<div class="controls">
+              		<input  type="text" name="merchantId" ng-model="formData.merchantId" placeholder="enter MerchantId here" required late-Validate/><br>
+                    <span  ng-show="editGlobalpayForm.merchantId.$invalid">
+                    	<small class="error" ng-show="editGlobalpayForm.merchantId.$error.req">
+                        	Required Field
+                    	</small>
+                   </span>
+            	</div>
+           	</div>
+			<div class="control-group">
+				<label class="control-label">{{'label.pgconfig.globalpay.username' | translate}}<span class="required">*</span> :</label>
+			 	<div class="controls">
+              		<input  type="text" name="userName" ng-model="formData.userName" placeholder="enter User Name here" required late-Validate/><br>
+                    <span  ng-show="editGlobalpayForm.userName.$invalid">
+                    	<small class="error" ng-show="editGlobalpayForm.userName.$error.req">
+                        	Required Field
+                    	</small>
+                   </span>
+            	</div>
+           	</div>
+          	<div class="control-group">
+            	 <label class="control-label">{{'label.pgconfig.globalpay.password' | translate}}<span class="required">*</span> :</label>
+			 	 <div class="controls">
+              		<input type="text" name="password" ng-model="formData.password" placeholder="enter Password here" required late-Validate/><br>
+					<span  ng-show="editGlobalpayForm.password.$invalid">
+                    	<small class="error" ng-show="editGlobalpayForm.password.$error.req">
+                        	Required Field
+                    	</small>
+                   </span>
+            	 </div>
+	      	</div>
+		  </fieldset>
+        </div>
+        <div class="modal-footer">
+          <button id="cancel" class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+     	  <button id="submit" type="submit" class="btn btn-primary" ng-disabled="(!editGlobalpayForm.$valid)" >{{'label.confirm' | translate}}</button>
+        </div>
+	</form>
+</script> 
+    
