@@ -657,6 +657,7 @@
 				    	<li class={{invoicesC}}><a data-ng-click="invoicesTab()" data-toggle="tab">{{'tab.invoices' | translate}}</a></li>
 				    	<li class={{paymentsC}}><a data-ng-click="paymentsTab()" data-toggle="tab">{{'label.payments' | translate}}</a></li>
     			 		<li class={{adjustmentsC}}><a data-ng-click="adjustmentsTab()" data-toggle="tab">{{'label.adjustments' | translate}}</a></li>
+    			 		<li class={{journalsC}}><a data-ng-click="journalsTab()" data-toggle="tab">{{'label.journals' | translate}}</a></li>
     			 		<div class="pull-right btn-group"><button id="download" class="btn btn-min btn-default " data-ng-click="exportFinancialCSV()">{{'button.exportfinancialcsv/pdf' | translate}}</button>
 			      		<a data-ng-show="PermissionService.showMenu('CREATE_ADJUSTMENT')" href="#/adjustments/{{client.id}}"  class="btn btn-primary"><i class="icon-adjust icon-white"></i>{{'button.adjustment' | translate}}</a></div>
 			    	</ul>
@@ -836,6 +837,53 @@
 									</thead>
 									<tbody>
 										<tr data-ng-repeat="financialtransaction in financialAdjustments.currentPageItems  | filter:filterText" data-ng-show="financialtransaction.transactionType =='ADJUSTMENT'"> 
+               								<td>
+                  								<any>{{financialtransaction.userName}}</any>
+              								</td>
+               								<td>
+                  								<any>{{financialtransaction.transactionId}}</any>
+              								</td>
+              								<td>
+                  								<any>{{financialtransaction.transDate | DateFormat}}</any>
+              								</td>
+              								<td>
+                  								<any>{{financialtransaction.transactionType}}</any>
+              								</td>
+              								<td>
+                  								<any>{{financialtransaction.transactionCategory}}</any>
+              								</td>
+              								<td>
+                  								<any>{{financialtransaction.creditAmount}}</any>
+              								</td>
+              								<td>
+                  								<any>{{financialtransaction.amount}}</any>
+              								</td>
+            							</tr>
+									</tbody>
+								</table>
+								<ul class="pager">
+        							<li class="previous"><a data-ng-click="financialAdjustments.previous()" href="" data-ng-disabled="!financialAdjustments.hasPrevious()">&larr; {{'label.prev' | translate}}</a></li>
+        							<li class="next" ><a data-ng-click="financialAdjustments.next()" href="" data-ng-disabled="!financialAdjustments.hasNext()">{{'label.next' | translate}} &rarr;</a></li>
+    							</ul>
+							</div>
+			    		</div>
+			    		<div id="pane5" class="tab-pane" data-ng-class="{active: journalsC}">
+			    			<div>
+								<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+								<table class="table">
+									<thead>
+										<tr class="graybg">
+											<th>{{'label.username' | translate}}</th>
+							 				<th>{{'label.transactionId' | translate}}</th>
+                							<th>{{'label.transaction.date' | translate}}</th>
+                							<th>{{'label.transaction.type' | translate}}</th>
+                							<th>{{'label.transaction.category' | translate}}</th>
+                							<th>{{'label.creditamount' | translate}}</th>
+                							<th>{{'label.denitamount' | translate}}</th>	
+										</tr>
+									</thead>
+									<tbody>
+										<tr data-ng-repeat="financialtransaction in financialJournals.currentPageItems  | filter:filterText" data-ng-show="financialtransaction.transactionType =='JOURNAL VOUCHER'"> 
                								<td>
                   								<any>{{financialtransaction.userName}}</any>
               								</td>
@@ -1232,6 +1280,29 @@
         <div class="modal-footer">
         	<button id="cancel" class="btn btn-warning" ng-click="rejectStatement()">{{'button.cancel' | translate}}</button>
             <button id="submit" class="btn btn-primary" ng-click="acceptStatement()">{{'label.confirm' | translate}}</button>
+        </div>
+	</script>
+	
+	    <script type="text/ng-template" id="redemptionpop.html">
+    	<div class="modal-header silver">
+        	<h3 class="bolder">{{'dialog.redemption.title.message' | translate}}</h3>
+        </div>
+        <div class="modal-body" style="height:255px;">
+        	<div class="control-group">
+       			<div class="controls">
+					<span class="control-label" style="color:red;" ng-show="stmError.length>0">{{stmError | translate}}</span>
+                </div>
+			</div>            	
+            <div class="control-group">
+            	<label class="control-label">{{ 'label.pinumber'| translate }}</label>
+                <div class="controls">
+                	 <input type="text" id="pinNumber" ng-model="formData.pinNumber">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+        	<button id="cancel" class="btn btn-warning" ng-click="rejectStatement()">{{'button.cancel' | translate}}</button>
+            <button id="submit" class="btn btn-primary" ng-click="acceptRedemption()">{{'label.confirm' | translate}}</button>
         </div>
 	</script>
 	

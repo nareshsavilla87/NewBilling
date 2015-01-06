@@ -157,7 +157,6 @@
              <li ng-show="PermissionService.showMenu('CREATE_CLIENT')" class="divider"></li>
              <li><a class="black" ng-show="jobs=PermissionService.showMenu('READ_SCHEDULERJOB')" href="#/jobs"> + Scheduler Jobs<i class="icon-gears icon-large pull-right"></i></a></li>
                <li ng-show="PermissionService.showMenu('CREATE_CLIENT')" class="divider"></li>
-             <li><a class="black" href="#/redemption">+ Redemption<i class="icon-briefcase icon-large pull-right"></i> </a></li>
              <li ng-show="PermissionService.showMenu('CREATE_CLIENT')" class="divider"></li>
              <li><a class="black" ng-show="accounting=PermissionService.showMenu('READ_JOURNALENTRY','READ_GLACCOUNT','READ_GLCLOSURE','READ_ACCOUNTINGRULE')" href="#/accounting"> + {{ 'link.accounting' | translate }}<i class="icon-money icon-large pull-right"></i></a></li>
              <li ng-show="PermissionService.showMenu('ACTIVATIONPROCESS_ACTIVATE')" class="divider"></li>
@@ -214,7 +213,6 @@
                                 <li><a ng-show="accounting=PermissionService.showMenu('READ_JOURNALENTRY','READ_GLACCOUNT','READ_GLCLOSURE','READ_ACCOUNTINGRULE')" href="#/accounting">{{ 'link.accounting' | translate }}</a></li>
                                 <li><a ng-show="upload=PermissionService.showMenu('READ_UPLOADSTATUS')" href="#/importing">{{'link.import' | translate }}</a></li>
                                 <li><a ng-show="jobs=PermissionService.showMenu('READ_SCHEDULERJOB')" href="#/jobs">Scheduler Jobs</a></li>
-                                <li><a href="#/redemption">Redemption</a></li> 
                                 <li><a ng-show="smartsearch=PermissionService.showMenu('READ_GLACCOUNT')&&PermissionService.showMenu('READ_OFFICE')&&PermissionService.showMenu('READ_SMARTSEARCH')" href="#/smartSearch">{{ 'link.smartsearch' | translate }}</a></li>
                                 <li><a ng-show="paymentGetWay=PermissionService.showMenu('READ_PAYMENTGATEWAY')" href="#/paymentGateway">PaymentGateway</a></li>
                                 <!--  <li><a ng-show="provision=PermissionService.showMenu('READ_PROVISIONINGADAPTERSYSTEM')" href="#/provision">Provision</a></li> -->

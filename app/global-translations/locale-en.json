@@ -36,6 +36,7 @@
   "label.add.kota.Info":"Korta Information",
   "label.heading.welcome": "Welcome",
   "label.heading.dashboard": "Dashboard",
+  "label.heading.definations" : "Definitions",
   "label.heading.home": "Home",
   "label.input.searchactivities": "Search activities",
   "label.heading.navigation.guide": "You can navigate your way through OBS using",
@@ -46,6 +47,7 @@
   "label.heading.recentactivities": "Recent Activities",
   "label.heading.frequentactivities": "Frequent Activities",
   "label.heading.obs": "Open Billing System",
+  "label.heading.definitions" :"Definitions",
 
   
 
@@ -291,6 +293,7 @@
   
   "#view client":"",
   "button.neworder":"Book Order",
+  "button.redemption":"Redeem",
   "button.sale":"New Sale",
   "button.adjustments":"Post Adjustment",
   "button.payments":"Make Payment",
@@ -304,10 +307,12 @@
   "label.activationdate":"Created Date:",
   "label.officename":"Office Name:",
   "label.officetype":"Office Type",
+  "label.pinumber" : "Pin Number",
   "label.memberof":"Member Of:",
   "table.heading.uniqueidentification":"Unique Identificatio#",
   "table.heading.identitydocuments":"Identity documents",
   "label.balance":"Balance",
+  "dialog.redemption.title.message" :"Redeem",
   "button.transferclient":"Transfer client",
   "label.assignstaff":"Assign staff",
   "label.closurereason":"Closure reason",
@@ -339,6 +344,7 @@
   "tab.financialsummary":"Financial summary",
   "tab.invoices":"Invoices",
   "button.adjustment":"Adjustment",
+  "label.journals":"Journals",
   "label.username":"Username",
   "label.transaction.category":"Transaction Category",
   "label.creditamount":"Credit Amount",
@@ -2124,6 +2130,8 @@
 "#Redemption":".......",
 "validation.msg.redemption.clientId.cannot.be.blank":"Client id cannot be blank",
 "validation.msg.redemption.pinNumber.cannot.be.blank":"Pin Number cannot be blank",
+"error.msg.redemption.pinNumber.invalid":"Pin number is invalid",
+"error.msg.redemption.pinNumber.already.use":"Pin number is already used",
 "error.msg.client.id.invalid":"Invalid Client Id",
 "#Add CreditCard":".....",
 "link.view.creditcard":"CreditCard",

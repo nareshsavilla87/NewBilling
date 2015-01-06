@@ -19,6 +19,9 @@
 	        	location.path('/home');
 			};
             
+			  scope.switchDef = function() {
+		        	location.path('/definations');
+				};
            
             scope.formatdate = function(){
                 var bardate = new Date();
