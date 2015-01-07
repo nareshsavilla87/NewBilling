@@ -15,9 +15,9 @@
          		</td></tr>
 		   </table> 
 		</div>
-	</form>
+	</form> 
 	<form name="regSuccessForm" novalidate class="form-horizontal well" data-ng-show="isRegPage">
-		<div  data-ng-hide="errorDetails[0].code == 'error.msg.billing.address.city.not.found'">
+		<div  data-ng-hide="errorDetails[0].code == 'error.msg.billing.address.city.not.found'" style="padding: 10px;">
 		 	<div class="error" data-ng-show="errorStatus || errorDetails">
 				<label>{{'label.error' | translate}}</label>
 				<label data-ng-show="errorStatus">{{errorStatus}}</label>
@@ -28,7 +28,7 @@
 			<h3 >{{'label.registration.page' | translate}}</h3>
 			<table >
 	       	  <tr>
-	       	    <td>
+	       	    <td valign="top">
           			<div class="control-group" style="margin-bottom:30px;">
           			   <label class="control-label">{{'label.customer.name' | translate}}&nbsp;<span class="required">*</span></label>
           			   <div class="controls">
@@ -36,7 +36,17 @@
           			   </div>
       				</div>
        			</td>
-       			<td>
+       			 <td valign="top">
+          			<div class="control-group" style="margin-bottom:30px;">
+          			   <label class="control-label">{{'label.password' | translate}}&nbsp;</label>
+          			   <div class="controls">
+		                 <input name="password" type="password" data-ng-model="formData.password" placeholder= "{{'label.password' | translate}}" />
+          			   </div>
+      				</div>
+       			</td>
+	       	 </tr>
+	       	 <tr>
+       			<td valign="top">
       			  <div class="control-group" style="margin-bottom:30px;">
           			<label class="control-label">{{'label.mobilephone' | translate}}&nbsp;<span class="required">*</span></label>
        				<div class="controls">
@@ -49,9 +59,7 @@
        				</div>
       			  </div>
 	       		</td>
-	       	 </tr>
-	       	 <tr>
-	       	   <td>
+	       	   <td valign="top">
        			<div class="control-group" style="margin-bottom:10px;" data-ng-show="isConfigNationalId">
                   <label class="control-label">{{ 'label.nationalid' | translate }}&nbsp;<span class="required">*</span></label>
                    <div class="controls">
@@ -61,14 +69,16 @@
 	                   <small class="error" data-ng-hide="nationalIdvalue">{{'form.error.nationalid.pattern'|translate}}</small>
                    </div>
                 </div>	
-                <div class="control-group" style="margin-bottom:10px;" data-ng-hide="isConfigNationalId">
+                <div class="control-group" style="margin-bottom:30px;" data-ng-hide="isConfigNationalId">
                    <label class="control-label">{{ 'label.nationalid' | translate }}&nbsp;</label>
                     <div class="controls">
                       <input type="text" data-ng-model="formData.nationalId" name="nationalId" placeholder= "{{ 'label.nationalid' | translate }}" maxlength="11"/><br/>
                     </div>
                </div>
        		  </td>
-       		  <td>
+	       	  </tr>
+	       	  <tr>
+       		  <td valign="top">
        			<div class="control-group" style="margin-bottom:30px;">
        			  <label class="control-label">{{'label.telephone.number' | translate}}&nbsp;</label>
        			  <div class="controls">
@@ -81,8 +91,6 @@
        			  </div>
    			    </div>
 	       	   </td>
-	       	  </tr>
-	       	  <tr>
        			<td valign="top">
            		  <div class="control-group" style="margin-bottom:30px;">
                     <label class="control-label" for="address">{{ 'label.home.address' | translate }}&nbsp;<span class="required">*</span></label>
@@ -91,17 +99,9 @@
                     </div>
                   </div>	
        			</td>
-       			<td>
-        		  <div class="control-group" style="margin-bottom:30px;">
-        			<label class="control-label">{{'label.email' | translate}}&nbsp;</label>
-        			<div class="controls">
-        			   <input name="email" type="text" data-ng-model="existedEmail" placeholder= "{{'label.email' | translate}}" data-ng-disabled="true" required data-late-Validate><br/>
-        			</div>
-    			  </div>
-       			</td>
        		  </tr>
        		  <tr>
-	       		<td>
+	       		<td valign="top">
         			<div class="control-group" style="margin-bottom:30px;">
          				 <label class="control-label" for="city">{{'label.home.postcode' | translate}}&nbsp;<span class="required">*</span></label>
 		              <div class="controls">
@@ -113,27 +113,33 @@
 		              </div>
        			    </div>
 	       	    </td>
-	       		<td>
-                  <div class="control-group" style="margin-bottom:30px;">
+       			<td valign="top">
+        		  <div class="control-group" style="margin-bottom:30px;">
+        			<label class="control-label">{{'label.email' | translate}}&nbsp;</label>
+        			<div class="controls">
+        			   <input name="email" type="text" data-ng-model="existedEmail" placeholder= "{{'label.email' | translate}}" data-ng-disabled="true" required data-late-Validate><br/>
+        			</div>
+    			  </div>
+       			</td>
+	       	   </tr>
+	       	   <tr >
+	       		<td valign="top">
+                  <div class="control-group" >
 	                <label class="control-label" for="state">{{'label.state/province' | translate}}&nbsp;</label>
 		            <div class="controls">
 		              <input type="text" id="state" data-ng-model="formData.state" disabled required data-late-Validate/>
 		            </div>
         		  </div>
      			</td>
-	       	   </tr>
-	       	   <tr data-ng-show="isDeviceEnabled==true && isCPE_TYPESale == true">
-	       		 <td>
-            	   <div class="control-group" >
+	       		 <td data-ng-show="isDeviceEnabled==true && isCPE_TYPESale == true" valign="top">
+            	   <div class="control-group" style="margin-bottom:30px;margin-left: 10px;">
                      <label class="control-label">{{ 'label.macid' | translate }}&nbsp;<span class="required">*</span></label>
                      <div class="controls">
-	                   <input type="text" data-ng-model="formData.deviceNo" name="deviceNo" placeholder= "{{ 'placeholder.enter.device' | translate }}"/><br/>
+	                   <input type="text" id="device" data-ng-model="formData.deviceNo" name="deviceNo" placeholder= "{{ 'placeholder.enter.device' | translate }}"/><br/>
                      </div>
                    </div>	
 	       		 </td>
-	       	   </tr>
-	       	   <tr data-ng-show="isDeviceEnabled==true && isCPE_TYPEOwn == true">
-	       		 <td>
+	       		 <td valign="top" data-ng-show="isDeviceEnabled==true && isCPE_TYPEOwn == true">
             	   <div class="control-group" style="margin-bottom:0px;">
                     <label class="control-label">{{ 'label.macid' | translate }}&nbsp;<span class="required">*</span></label>
                     <div class="controls">
@@ -142,11 +148,12 @@
     	              <small class="error" data-ng-show="isInvalidMacId">{{'form.error.macid.invalid'|translate}}</small>
                     </div>
                    </div>	
-	         	   <strong style="margin-top:50px;" class="offset7" data-ng-show="isDeviceEnabled==true && isCPE_TYPEOwn == true">{{'label.heading.or' | translate}}</strong>
+	         	   <strong class="offset7" >{{'label.heading.or' | translate}}</strong>
 	       		 </td>
 	       	   </tr>
 	       	   <tr data-ng-show="isDeviceEnabled==true && isCPE_TYPEOwn == true">
-	       		 <td>
+	       	    <td valign="top"></td>
+	       		<td valign="top">
             	  <div class="control-group">
                    <label class="control-label">{{ 'label.serialnumber' | translate }}&nbsp;<span class="required">*</span></label>
                    <div class="controls">
@@ -156,15 +163,17 @@
                    </div>
                   </div>	
     			</td>
+	       	   </tr>
+	       	   <tr>
+	       	   	  <td align="right" colspan="2">
+					 <button data-ng-show="isConfigNationalId" data-ng-click="registerBtnFun()" class="btn btn-primary pull-right" data-ng-disabled="!regSuccessForm.$valid||!formData.nationalId||!nationalIdvalue||isInvalidMacId||isInvalidSerialNumber"><i class="icon-thumbs-up icon-white"></i>{{'btn.register' | translate}}</button>
+					 <button data-ng-hide="isConfigNationalId" data-ng-click="registerBtnFun()" class="btn btn-primary pull-right" data-ng-disabled="!regSuccessForm.$valid||isInvalidMacId||isInvalidSerialNumber"><i class="icon-thumbs-up icon-white"></i>{{'btn.register' | translate}}</button>
+	       	   	  </td>
 	       	   </tr> 
 	       	</table>
 	       	<datalist id="citylist">
                    			<option  data-ng-repeat="city in cities" value="{{city}}">
             </datalist>
-	       	<div class="offset3">
-				 <button data-ng-show="isConfigNationalId" data-ng-click="registerBtnFun()" class="btn btn-primary pull-right" data-ng-disabled="!regSuccessForm.$valid||!formData.nationalId||!nationalIdvalue||isInvalidMacId||isInvalidSerialNumber"><i class="icon-thumbs-up icon-white"></i>{{'btn.register' | translate}}</button>
-				 <button data-ng-hide="isConfigNationalId" data-ng-click="registerBtnFun()" class="btn btn-primary pull-right" data-ng-disabled="!regSuccessForm.$valid||isInvalidMacId||isInvalidSerialNumber"><i class="icon-thumbs-up icon-white"></i>{{'btn.register' | translate}}</button>
-	        </div>
 	       </fieldset>
 	</form>
 </div>
