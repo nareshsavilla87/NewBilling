@@ -1,0 +1,70 @@
+<div data-ng-controller="NetellerController">
+    <div class="loading-widget-div" data-ng-show="blockUI">
+	   <div id="circularG">
+	      <div id="circularG_1" class="circularG"></div><div id="circularG_2" class="circularG"></div>
+	       <div id="circularG_3" class="circularG"></div><div id="circularG_4" class="circularG"></div>
+	       <div id="circularG_5" class="circularG"></div><div id="circularG_6" class="circularG"></div>
+	       <div id="circularG_7" class="circularG"></div><div id="circularG_8" class="circularG"></div>
+	   </div>
+    </div>
+ 
+    <br/><br/>
+    <form name="netellerform" class="form-horizontal well"  data-ng-submit="submit()">
+    
+     <div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	 </div>
+    
+    <table>
+    	<tr>
+    		<td>
+    			<div class="control-group">
+						<label class="control-label" for="value">Value : <span class="required">*</span></label>
+						<div class="controls">
+							<input type="text" name="value" data-ng-model="formData.value" required data-late-Validate 
+							data-ng-onblur="validationValueForNeteller(formData.value)" />
+							<div>
+								<small class="error" data-ng-show="validation.value">Please enter 'Value' details correctly</small>
+							</div>
+						</div>
+				</div>
+				<div class="control-group">
+						<label class="control-label" for="amount">Amount : <span class="required">*</span></label>
+						<div class="controls">
+							<input type="text" name="amount" class="input-medium" data-ng-model="formData.total_amount" readonly required data-late-Validate/>
+							<input type="text" name="amount" class="input-small" style="width:38px;" data-ng-model="formData.currency" readonly/>
+						</div>
+				</div>
+				<div class="control-group">
+						<label class="control-label" for="source">Source : <span class="required">*</span></label>
+						<div class="controls">
+							<input type="text" name="source" data-ng-model="formData.source" readonly required data-late-Validate/>
+							
+						</div>
+				</div>
+				<div class="control-group">
+						<label class="control-label" for="chargeCode">VerificationCode : <span class="required">*</span></label>
+						<div class="controls">
+							<input type="text" name="verificationcode" data-ng-model="formData.verificationCode" 
+							data-ng-onblur="validationForNeteller(formData.verificationCode)" required data-late-Validate/>
+							<div>
+								<small class="error" data-ng-show="validation.verificationCode">Please enter valid VerificationCode</small>
+							</div>
+						</div>
+				</div>
+    		</td>
+    	</tr>
+    	<!-- <tr>
+    		<td>&nbsp;</td>
+    	</tr> -->
+    	<tr>
+    		<td colspan="2" align="right">
+				<a id="cancel" href="#/paymentprocess/additionalorders/{{priceDataId}}/{{planCode}}/{{amount}}"><button type="reset" class="btn">Cancel</button></a>
+				<button id="submit" type="submit" data-ng-disabled="!netellerform.$valid" class="btn btn-primary">Proceed</button>
+			</td>
+    	</tr>
+    </table>
+    </form>
+</div>
