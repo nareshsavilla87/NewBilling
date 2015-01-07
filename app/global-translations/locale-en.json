@@ -2440,6 +2440,10 @@
 "link.create.new.radService":"Create RadService",
 "label.radService.message":"Delete RadService",
 "table.heading.officeId":"officeId",
-"label.officeId":"Office"
+"label.officeId":"Office",
+"label.pgconfig.editneteller":"Edit Neteller",
+"label.pgconfig.neteller.url":"URL",
+"label.pgconfig.neteller.clientid":"Client Id",
+"label.pgconfig.neteller.secretcode":"Secret Code"
 
 }
