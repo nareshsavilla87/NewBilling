@@ -15,6 +15,8 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,http
 		  scope.formData = {};
 		  var configDeviceAgreeType = {};
 		  
+		  var configDeviceAgreeType = {};
+		  
 		//getting the key value form routeParams
 		  var actualKey = routeParams.registrationKey || "";
 		  var afterSliceKey = actualKey.slice(0, 27);
@@ -42,7 +44,7 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,http
 	  					//getting data from c_configuration for isRegister_plan and isisDeviceEnabled
 	  					 var configurationDatas = [];
 	  					  RequestSender.configurationResource.get(function(data){
-	  						
+
 	  						configDeviceAgreeType = JSON.parse(data.clientConfiguration);
 	  						scope.isConfigNationalId = configDeviceAgreeType.nationalId;
 	  						
