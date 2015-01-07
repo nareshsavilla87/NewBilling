@@ -99,6 +99,7 @@
  	"label.services"			: "Þjónusta", 
  	"label.heading.or"			: "eða", 
  	"label.webtv"				: "vefnum sjónvarp", 
+ 	"label.password"			: "lykilorðið", 
  	
  	"label.signup.newuser"			 		    : "stofnaðu aðgang ",
  	"label.or"			 					    : " - eða - ",
