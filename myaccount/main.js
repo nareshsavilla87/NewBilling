@@ -16,21 +16,18 @@ selfcareApp.config(function($httpProvider ,$translateProvider) {
 	 $translateProvider.preferredLanguage(selfcareModels.locale);
 });
 
-SelfcareMainController = function(scope, translate,sessionManager,RequestSender,authenticationService,location,modal,localStorageService,tmhDynamicLocale){
+SelfcareMainController = function(scope, translate,sessionManager,RequestSender,authenticationService,location,modal,localStorageService,tmhDynamicLocale,webStorage,route){
 	
 	   scope.domReady = true;
 	   scope.selfcare_userName = "";
 	   scope.iskortaTokenAvailable = false;
 	   var urlAfterHash = window.location.hash;
-	   if((urlAfterHash.match('/active') == '/active')||(urlAfterHash.match('/orderbookingscreen') == '/orderbookingscreen')
-			   ||(urlAfterHash.match('/kortasuccess') == '/kortasuccess') || (urlAfterHash.match('/globalpaysuccess') == '/globalpaysuccess')){
+	   
+	   if(localStorageService.get('selfcare_sessionData')||webStorage.get("clientTotalData")){
 		   scope.isLandingPage= true;
-		   
-	   }else{
-		   scope.isLandingPage= false;
 	   }
 	   
-	   (urlAfterHash.match('/active') == '/active') ? scope.isRegClientProcess = true : scope.isRegClientProcess = false;
+	   (urlAfterHash.match('/active') == '/active') ? (scope.isLandingPage= true,scope.isRegClientProcess = true) : scope.isRegClientProcess = false;
 	   
 	   //adding web tv url
 	   scope.webtvURL = selfcareModels.webtvURL;
@@ -69,6 +66,17 @@ if(localStorageService.get('localeLang')){
      tmhDynamicLocale.set(lang.code);
      translate.uses(lang.code);
  };
+ 
+ window.setInterval(function(){
+	 //checking session every  second when scope.currentSession.user not null
+	 if((scope.currentSession.user != null)){
+		 //in this checking is it Registration Page or not  
+		 if(!(urlAfterHash.match('/active') == '/active')){
+			 if(localStorageService.get('selfcare_sessionData')||webStorage.get("clientTotalData")){}
+			 else scope.signout();
+		 }
+	 }
+   },1000);
 
 //forgot password success msg popup controller
  var ForgotPwdPopupSuccessController = function($scope,$modalInstance){
@@ -137,7 +145,8 @@ if(localStorageService.get('localeLang')){
 	   
 	   scope.signout = function(){
 	    	  scope.currentSession = sessionManager.clear();
-	      };
+	    	  route.reload();
+	   };
 };
 
 selfcareApp.controller('SelfcareMainController',['$rootScope',
@@ -149,4 +158,6 @@ selfcareApp.controller('SelfcareMainController',['$rootScope',
                                                  '$modal',
                                                  'localStorageService',
                                                  'tmhDynamicLocale',
+                                                 'webStorage',
+                                                 '$route',
                                                  SelfcareMainController]);

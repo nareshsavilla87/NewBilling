@@ -99,6 +99,7 @@
  	"label.services"			: "Services", 
  	"label.heading.or"			: "OR", 
  	"label.webtv"				: "Web Tv", 
+ 	"label.password"			: "Password", 
  	
  	"label.signup.newuser"			   			: "Signup new user ",
  	"label.or"			   						: " - or - ",
