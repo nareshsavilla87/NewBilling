@@ -13,6 +13,7 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,http
 		  
 		//declaration of formData
 		  scope.formData = {};
+		  var configDeviceAgreeType = {};
 		  
 		//getting the key value form routeParams
 		  var actualKey = routeParams.registrationKey || "";
@@ -42,7 +43,6 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,http
 	  					 var configurationDatas = [];
 	  					  RequestSender.configurationResource.get(function(data){
 	  						
-	  						var configDeviceAgreeType = {};
 	  						configDeviceAgreeType = JSON.parse(data.clientConfiguration);
 	  						scope.isConfigNationalId = configDeviceAgreeType.nationalId;
 	  						
@@ -183,6 +183,20 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,http
 				  });
 			  };
 		  
+			  function  approve($scope, $modalInstance) {
+      	    	  rootScope.currentSession = sessionManager.clear();
+      	    	  rootScope.popUpMsgs.push({
+      	    		  'image' : './images/info-icon.png',
+      	    		  'names' : [{'name' : 'title.account.activated'},
+      	    		             {'name' : 'title.account.activated.userpwd'},
+      	    		             {'name' : 'title.login.msg'}]
+      	    	      });
+      		
+      		$scope.approve = function () { 
+      			
+      			$modalInstance.dismiss('cancel');
+      		 };
+		   } 
 		  		
 			//function called when clicking on Register button in Registration Page
 			scope.registerBtnFun =function(){
@@ -195,6 +209,9 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,http
 					 if(scope.formData.homePhoneNumber){
 						 scope.clientData.homePhoneNumber = scope.formData.homePhoneNumber;
 					 }
+					 if((scope.formData.password) !=null){
+						 scope.clientData.password = scope.formData.password;
+					 }
 					 
 					 var name_array = new Array();
 					 name_array = (scope.formData.fullName.split(" "));
@@ -204,37 +221,33 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,http
 			            if(scope.clientData.fullname == null){
 			            	scope.clientData.fullname=".";
 			            }
-					 scope.clientData.address = scope.formData.address;
-					 scope.clientData.nationalId = scope.formData.nationalId;
-					 scope.clientData.zipCode = scope.formData.zipcode;
-					 scope.clientData.city = scope.formData.city;
-					 scope.clientData.phone = parseInt(scope.formData.mobileNo); 
-					 scope.clientData.email = scope.existedEmail;
+					 scope.clientData.address 				= scope.formData.address;
+					 scope.clientData.nationalId			= scope.formData.nationalId;
+					 scope.clientData.zipCode 				= scope.formData.zipcode;
+					 scope.clientData.city 					= scope.formData.city;
+					 scope.clientData.phone 				= parseInt(scope.formData.mobileNo); 
+					 scope.clientData.email 				= scope.existedEmail;
+					 scope.clientData.deviceAgreementType 	= configDeviceAgreeType.deviceAgrementType;
 					 
-					 rootScope.popUpMsgs = [];
+					 rootScope.popUpMsgs = [];rootScope.infoMsgs = [];
 					 RequestSender.authenticationClientResource.save(scope.clientData,function(data){
 
-		  				 
-		  			     $modal.open({
-		  	                templateUrl: 'messagespopup.html',
-		  	                controller: approve,
-		  	                resolve:{}
-		  	           });
-		      	      function  approve($scope, $modalInstance) {
-		      	    	  rootScope.popUpMsgs.push({
-		      	    		  'image' : './images/info-icon.png',
-		      	    		  'names' : [{'name' : 'title.account.activated'},
-		      	    		             {'name' : 'title.account.activated.userpwd'},
-		      	    		             {'name' : 'title.login.msg'}]
-		      	    	      });
-		      		
-		      		$scope.approve = function () { 
-		      			
-		      			$modalInstance.dismiss('cancel');
-		      			rootScope.currentSession = sessionManager.clear();
-		      		};
-		        } 
-		    });
+		  				if(scope.clientData.password) {
+		  					rootScope.currentSession = sessionManager.clear();
+		  					rootScope.infoMsgs.push({
+								  						'image' : './images/info-icon.png',
+								  						'names' : [{'name' : 'title.account.activated'},
+								  						           {'name' : 'title.login.msg'}]
+								  					});
+		  				}else{
+		  					$modal.open({
+		  						templateUrl: 'messagespopup.html',
+		  						controller: approve,
+		  						resolve:{}
+		  					});
+		  				}
+		      	      
+					 });
 
 					
 		};
