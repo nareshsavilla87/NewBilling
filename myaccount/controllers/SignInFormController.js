@@ -19,6 +19,7 @@
 	    				  scope.loginCredentials = {};rootScope.signUpCredentials = {};
 	            		  rootScope.signupErrorMsgs  =[];rootScope.loginErrorMsgs  =[];rootScope.infoMsgs  =[];
 	        	    	  scope.isProcessing  = false;
+	        	    	  rootScope.isRegClientProcess = false;
 	            		  location.path('/profile');
 	            	  },function(errorData){
 	            		  rootScope.loginErrorMsgs.push({'name' : 'error.login.failed'});
