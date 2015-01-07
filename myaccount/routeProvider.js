@@ -76,6 +76,9 @@ selfcareApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/paymentprocess/:screenName/:priceDataId/:planId/:price',{
     	templateUrl: 'views/paymentprocess.html'
+    })
+    .when('/neteller/:priceDataId',{
+    	templateUrl: 'views/neteller.html'
     });
        
     $locationProvider.html5Mode(false);
