@@ -16,10 +16,10 @@
 	    				  localStorageService.add("selfcare_sessionData", {userId: data.userId, authenticationKey: data.base64EncodedAuthenticationKey});
 	    				  webStorage.add("clientTotalData", successData);
 	    				  rootScope.currentSession= {user :successData.clientData.displayName||"abc"};
-	    				  rootScope.isSignInProcess = true;
 	    				  scope.loginCredentials = {};rootScope.signUpCredentials = {};
 	            		  rootScope.signupErrorMsgs  =[];rootScope.loginErrorMsgs  =[];rootScope.infoMsgs  =[];
 	        	    	  scope.isProcessing  = false;
+	        	    	  rootScope.isRegClientProcess = false;
 	            		  location.path('/profile');
 	            	  },function(errorData){
 	            		  rootScope.loginErrorMsgs.push({'name' : 'error.login.failed'});

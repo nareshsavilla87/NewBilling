@@ -6,11 +6,13 @@
             <div id="circularG_5" class="circularG"></div><div id="circularG_6" class="circularG"></div>
             <div id="circularG_7" class="circularG"></div><div id="circularG_8" class="circularG"></div>
         </div>
-    </div>
-    <h3 style="margin: 0;"><b class="marginleft10">{{'link.statements'|translate}}</b></h3>
+    </div><br/>
 	<div class="paddedbottom10">
- 		<input data-ng-model="filterText" type="text" data-ng-autofocus="true" class="span marginbottom0px" placeholder="{{'placeholder.enter.text.search'|translate}}">
-		<table class="table">
+		<div style="padding-bottom:5px;background: #939393;">
+		  <h3 style="margin: 0;text-transform: uppercase;display:inline;"><b class="marginleft10" style="font-size: 20px;color: #FFFFFF;">{{'link.statements'|translate}}</b></h3>
+		  <input data-ng-model="filterText" type="text" data-ng-autofocus="true" class="span marginbottom0px" style="margin-right: 15px;margin-top: 6px;" placeholder="{{'placeholder.enter.text.search'|translate}}" />
+		</div>
+		<div><table class="table">
 		 <thead>
   		   <tr class="graybg">
              <th>{{'table.header.statement.billdate'|translate}}</th>
@@ -30,16 +32,18 @@
   				</td>
 			</tr>
 		</tbody>
- 	   </table>
+ 	   </table></div>
  	   <ul class="pager">
 			<li class="previous"><a data-ng-click="statementsData.previous()" data-ng-disabled="!statementsData.hasPrevious()">&larr;{{'btn.previous'|translate}}</a></li>
 			<li class="next" ><a data-ng-click="statementsData.next()" data-ng-disabled="!statementsData.hasNext()">{{'btn.next'|translate}} &rarr;</a></li>
        </ul>
 	</div><br/>
-	<h3 style="margin: 0;"><b class="marginleft10">{{'link.payments'|translate}}</b></h3>
 	<div class="paddedbottom10">
-		<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.enter.text.search'|translate}}">
-		<table class="table">
+		<div style="padding-bottom:5px;background: #939393;">
+		  <h3 style="margin: 0;text-transform: uppercase;display:inline;"><b class="marginleft10" style="font-size: 20px;color: #FFFFFF;">{{'link.payments'|translate}}</b></h3>
+		  <input data-ng-model="filterText1" type="text" class="span marginbottom0px" style="margin-right: 15px;margin-top: 6px;" placeholder="{{'placeholder.enter.text.search'|translate}}" />
+		</div>
+		<div><table class="table">
 	        <thead>
 	             <tr class="graybg">
 	                <th>{{'table.header.payment.transactiondate'|translate}}</th>
@@ -50,7 +54,7 @@
             	</tr>
 	        </thead>
 	        <tbody>
-	            <tr data-ng-repeat="payment in paymentsData.currentPageItems  | filter:filterText" >
+	            <tr data-ng-repeat="payment in paymentsData.currentPageItems  | filter:filterText1" >
 	                <td>{{payment.transDate | DateFormat}}</td>
 	                <td>{{payment.transactionType}}</td>
 	                <td>{{payment.transactionCategory}}</td>
@@ -58,7 +62,7 @@
 	                <td>{{payment.amount}}</td>
 	            </tr>
 	        </tbody>
-	    </table>
+	    </table></div>
 	    <ul class="pager">
 			<li class="previous"><a data-ng-click="paymentsData.previous()" data-ng-disabled="!paymentsData.hasPrevious()">&larr;{{'btn.previous'|translate}}</a></li>
 			<li class="next" ><a data-ng-click="paymentsData.next()" data-ng-disabled="!paymentsData.hasNext()">{{'btn.next'|translate}} &rarr;</a></li>

@@ -1,6 +1,10 @@
 <div data-ng-controller="ChangeKortaTokenController">
-	<form name="changeTokenForm" novalidate action="https://netgreidslur.korta.is/testing/" method="post" class="form-horizontal well">
-
+<br/>
+<div style="padding-bottom:5px;background: #939393;">
+ <h3 style="margin: 0;text-transform: uppercase;display:inline;"><b class="marginleft10" style="font-size: 20px;color: #FFFFFF;">{{'label.add.kota.Info'|translate}}</b></h3>
+</div>
+<form name="changeTokenForm" novalidate action="https://netgreidslur.korta.is/testing/" method="post" class="form-horizontal well">
+<br/>
 		<input name="amount" type="hidden" value="{{amount}}">
 		<input name="currency" type="hidden" value="{{currency}}">
 		<input name="merchant" type="hidden" value="{{kortaMerchantId}}">
@@ -27,8 +31,6 @@
 		<input type="hidden" name="refertarget" value="_top">
 
 		<fieldset>
-			<legend>{{'label.add.kota.Info' | translate}}</legend>
-			
 			<div class="control-group">
 				<label class="control-label" >{{ 'label.do.action' | translate }}<span class="required">*</span></label>
 				<div class="controls">
@@ -55,7 +57,7 @@
 			<a id="cancel" href="#/profile" class="btn">{{'btn.cancel' | translate}}</a> 
 			<button id="submit" type="submit" data-ng-click="submit()" data-ng-disabled="terms == 'N'" class="btn btn-primary">{{'btn.submit' | translate}}</button>
 		</div>
-	</form>
+</form>
 	<script type="text/ng-template" id="termsandconditions.html">
 		<form  class="form-horizontal well" style="border:0px;width:650px;">
 			<h4><strong>Terms and Conditions</strong></h4>

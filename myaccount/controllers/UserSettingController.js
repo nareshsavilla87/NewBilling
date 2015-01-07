@@ -1,29 +1,26 @@
 UserSettingController = function(scope,rootScope,translate,localStorageService,tmhDynamicLocale) {
 		 
-		  scope.dateformat=localStorageService.get('dateformat');	
+		  scope.dateformat=localStorageService.get('localeDateFormat');	
 		  
 		  scope.langs = Langs;
-	    	if (localStorageService.get('Language')) {
-	            var temp = localStorageService.get('Language');
+	    	if (localStorageService.get('localeLang')) {
+	            var localeLang = localStorageService.get('localeLang');
 	            for (var i in Langs) {
-	                if (Langs[i].code == temp) {
-	                	rootScope.optlang = Langs[i];
-	                	rootScope.locale=Langs[i];
-	                    tmhDynamicLocale.set(Langs[i].code);
+	                if (Langs[i].code == localeLang) {
+	                	rootScope.localeLang = Langs[i];
+	                    tmhDynamicLocale.set(localeLang);
+	                    translate.uses(localeLang);
 	                }
 	            }
 	        } else {
-	        	rootScope.optlang = scope.langs[0];
-	            tmhDynamicLocale.set(scope.langs[0].code);
+	        	rootScope.localeLang = scope.langs[0];
 	        }
-	        translate.uses(rootScope.optlang.code);
 	        
 	        scope.changeLang = function (lang) {
-	            translate.uses(lang.code);
-	            rootScope.optlang = lang;
-	            rootScope.locale=lang;
-	            localStorageService.add('Language', lang.code);
+	        	rootScope.localeLang = lang;
+	            localStorageService.add('localeLang', lang.code);
 	            tmhDynamicLocale.set(lang.code);
+	            translate.uses(lang.code);
 	        };
 	        
 	        scope.dates = [
@@ -45,7 +42,7 @@ UserSettingController = function(scope,rootScope,translate,localStorageService,t
            scope.$watch(function () {
                return scope.dateformat;
            }, function () {
-               localStorageService.add('dateformat', scope.dateformat);
+               localStorageService.add('localeDateFormat', scope.dateformat);
                scope.df = scope.dateformat;
            });
 	        

@@ -26,5 +26,7 @@
 	   registrationRequiresDevice	: "registration-requires-device",
 	   deviceAgrementType			: "device-agrement-type",
 	   globalPayCurrencyType		: "NGN",
+	   
+	   webtvURL						: locationOrigin+"/cityonline/index.html#/",
 		   
    	};
