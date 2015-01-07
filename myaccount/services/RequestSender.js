@@ -1,6 +1,6 @@
 selfcareApp.config(function($provide) {
     $provide.provider('RequestSender',function(){
-      var baseUrl = "" , apiVer = "https://192.168.1.150:8443/obsplatform/api/v1";
+      var baseUrl = "" , apiVer = "/obsplatform/api/v1";
       this.setBaseUrl = function(url) {baseUrl = url;};
       this.$get = ['$resource','$rootScope', function(resource,$rootScope) {
         var defineResource = function(url, paramDefaults, actions) {

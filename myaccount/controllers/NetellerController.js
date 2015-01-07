@@ -51,7 +51,7 @@ NetellerController = function(scope,RequestSender,routeParams,
     		}
     		
     	};
-    	scope.submit = function() { alert(1);
+    	scope.submit = function() { 
     			if(!scope.validation.value && !scope.validation.verificationCode)
     			RequestSender.netellerPaymentResource.save({username:'billing',password:'password'},this.formData, function(data){
     				localStorageService.add("paymentgatewayresponse",data);
