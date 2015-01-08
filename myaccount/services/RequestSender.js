@@ -107,6 +107,8 @@ selfcareApp.config(function($provide) {
         		update : {method: 'PUT', params: {}}
         	}),
         	
+        	netellerPaymentResource: defineResource(apiVer + "/paymentgateways/neteller", {}, {}),
+        	
         };
       }];
     });
