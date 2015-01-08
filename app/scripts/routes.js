@@ -959,7 +959,11 @@
       })
       .when('/orderaddons',{
     	  templateUrl : 'views/clients/orderaddons.html'
-      });
+      })
+      .when('/createpartner', {
+        templateUrl: 'views/organization/createpartner.html'
+      })
+      ;
     
     $locationProvider.html5Mode(false);
   };

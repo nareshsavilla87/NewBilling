@@ -1048,6 +1048,14 @@
             orderaddonResource: defineResource(apiVer + "/orderaddons/:orderId", {orderId : '@orderId'}, {
                 get: {method: 'GET', params: {}, isArray: true}
             }),
+            
+            partnerTemplateResource: defineResource(apiVer + "/partners/template", {}, {
+                get: {method: 'GET', params: {}}
+            }),
+            
+            partnerResource: defineResource(apiVer + "/partners", {}, {
+            	 update: { method: 'PUT' }
+            }),
       
         };
       }];

@@ -2440,6 +2440,19 @@
 "link.create.new.radService":"Create RadService",
 "label.radService.message":"Delete RadService",
 "table.heading.officeId":"officeId",
-"label.officeId":"Office"
+"label.officeId":"Office",
+
+"#Partners":".........",
+"tab.offices":"Offices",
+"tab.partners":"Partners",
+"label.partnername":"Partner Name",
+"label.partnertype":"Partner Type",
+"label.company.image":"Company Logo",
+"label.organization":"Organization",
+"label.createpartner":"Create Partner",
+"label.managepartners":"Manage Partners",
+"table.heading.partner type":"Partner Type",
+"table.heading.partner currency":"currency"
+
 
 }
