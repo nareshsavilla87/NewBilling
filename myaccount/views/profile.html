@@ -100,7 +100,7 @@
 			 </thead>
 			 <tbody>
 				<tr data-ng-repeat="statement in statementsData.currentPageItems  | filter:filterText" >                 
-	   				<td>{{statement.billDate | DateFormat}}</td>
+	   				<td style="font-weight: inherit;color: #555555;">{{statement.billDate | DateFormat}}</td>
 	   				<td>{{statement.dueDate | DateFormat}}</td>
 	   				<td>{{statement.amount}}</td>
 	   				<td>
@@ -135,7 +135,7 @@
 	        </thead>
 	        <tbody>
 	            <tr data-ng-repeat="ticket in ticketsData.currentPageItems  | filter:filterText1">
-	                <td>{{ticket.priority}}</td>  
+	                <td style="font-weight: inherit;color: #555555;">{{ticket.priority}}</td>  
 	                <td>{{ticket.ticketDate | DateFormat}}</td>
 	                <td>{{ticket.problemDescription}}</td>
 	                <td>{{ticket.status}}</td>
