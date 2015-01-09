@@ -57,10 +57,13 @@ KortaSuccessController = function(RequestSender,location,localStorageService,rou
     					  localStorageService.add("paymentgatewayresponse", data);
 						var result = data.Result || "";
 						location.$$search = {};
-						if(result == 'SUCCESS'){
+						if(screenName === 'payment' || screenName == 'payment'){
+							location.path('/paymentgatewayresponse/'+formData.clientId);
+						}else if(result == 'SUCCESS'){
 							location.path("/orderbookingscreen/"+screenName+"/"+formData.clientId+"/"+planId+"/"+priceId);
 						}else{	 
-							location.replace('/paymentgatewayresponse/'+formData.clientId);
+							alert(screenName);
+							location.path('/paymentgatewayresponse/'+formData.clientId);
 
 						}
 					  });     	  		
@@ -69,17 +72,19 @@ KortaSuccessController = function(RequestSender,location,localStorageService,rou
         			
         		}else{
     				RequestSender.paymentGatewayResource.update({clientId : formData.clientId},formData,function(data){
-  					  localStorageService.add("paymentgatewayresponse", data);
-						var result = data.Result || "";
-						location.$$search = {};
-						if(result == 'SUCCESS'){
-							location.path("/orderbookingscreen/"+screenName+"/"+formData.clientId+"/"+planId+"/"+priceId);
-						}else{	 
-							location.path('/paymentgatewayresponse/'+formData.clientId);
+    					  localStorageService.add("paymentgatewayresponse", data);
+  						var result = data.Result || "";
+  						location.$$search = {};
+  						if(screenName === 'payment' || screenName == 'payment'){
+  							location.path('/paymentgatewayresponse/'+formData.clientId);
+  						}else if(result == 'SUCCESS'){
+  							location.path("/orderbookingscreen/"+screenName+"/"+formData.clientId+"/"+planId+"/"+priceId);
+  						}else{	 
+  							location.path('/paymentgatewayresponse/'+formData.clientId);
 
-						}
-    				});
-        		  }
+  						}
+      				});
+          		  }
         		
         	}else{
         		alert("calculate md5 String Value : "+ downloadmd5String+",downloadmd5 : "+ downloadmd5);
