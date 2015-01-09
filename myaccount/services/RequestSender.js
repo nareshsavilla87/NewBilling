@@ -109,6 +109,10 @@ selfcareApp.config(function($provide) {
         	
         	netellerPaymentResource: defineResource(apiVer + "/paymentgateways/neteller", {}, {}),
         	
+        	VoucherResource: defineResource(apiVer + "/vouchers/verify", {},  {}),
+        	
+        	redemptionResource: defineResource(apiVer + "/redemption", {}, {}),
+        	
         };
       }];
     });

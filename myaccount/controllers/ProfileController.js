@@ -44,6 +44,9 @@ ProfileController = function(scope,RequestSender,rootScope,webStorage,location,p
 			  scope.clientId = sessionData.clientId;
 			  RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
 				  scope.clientData = data;
+				  var paymentClientData = data || {};
+				  var totalOrdersData = [];
+				  localStorageService.add("storageData",{clientData:paymentClientData,totalOrdersData:totalOrdersData});
 				  if(data.selfcare){
 					  data.selfcare.token ? rootScope.iskortaTokenAvailable = true : rootScope.iskortaTokenAvailable = false;
 				  }

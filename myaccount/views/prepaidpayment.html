@@ -1,4 +1,4 @@
-<div data-ng-controller="PaymentProcessController">
+<div data-ng-controller="PrepaidPaymentController">
    <div class="loading-widget-div" data-ng-show="blockUI">
 	   <div id="circularG">
 	      <div id="circularG_1" class="circularG"></div><div id="circularG_2" class="circularG"></div>
@@ -13,54 +13,28 @@
 	  <label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
    </div>
     <br/><br/>
-    <table data-ng-hide="price == 0">
-	  <tr>
-	  	<td>
-			<div id="packageSelection" class="stepProcess marginleft8 done">
-				<i class="icon-shopping-cart icon-large"></i> {{'header.package.selection'|translate}}
-			</div>
-		</td>
-		<td valign="top" style="padding:20px 0 0 25px;">
-			<i class="icon-arrow-right icon-xlarge"></i>
-		</td>
-		<td>
-			<div id="paymentSelection" class="stepProcess offset1 selected">
-				<i class="icon-usd"></i>{{'header.payment'|translate}}
-			</div>
-		</td>
-	  </tr>
-	</table>
+    
     <div >
-		<table class="table">
-			<thead>
-		           <tr class="graybg">
-					<th>{{'header.plan.name'|translate}}</th>
-					<th>{{'header.contract.period'|translate}}</th>
-					<th>{{'header.price'|translate}}</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td style="font-weight: inherit;color: #555555;" class="bigfont">{{planData.planCode}}</td>
-					<td class="bigfont">{{planData.duration}}</td>
-					<td class="bigfont">{{planData.price}}</td>
-				</tr>
-			</tbody>
-			
-		</table>
-		<br/>
-		<div class="offset1" style="margin-top: 35px;" data-ng-show="price != 0">
-		   <table class="fullwidth">
+		<div class="form-horizontal offset1" style="margin-top:50px;">
+          			   <label class="control-label">{{'label.prepaid.amount' | translate }}&nbsp;<span class="required">*</span></label>
+          			   <div class="controls">
+          			   	 <input type="text" data-ng-model="formData.amount" data-ng-autofocus="true" data-ng-onblur="paymentGatewayDispaly(formData.amount)" required/> 
+          			   </div>
+      	</div>
+       	
+		<div class="offset1" style="margin-top:50px;">
+		   <table>
 			  <tr>
    				<td width="42%" class="bigfont" valign="top">
    						{{'label.select.payment.gateway' | translate}}&nbsp;&nbsp;:
    				</td>
        			<td>
+       			<!-- data-ng-click="paymentGatewayFun(paymentgatewayData.name)" -->
        				<div data-ng-repeat="paymentgatewayData in paymentgatewayDatas track by $index" class="marginbottom10" 
-       					data-ng-if="(paymentgatewayData.name=='dalpay')||(paymentgatewayData.name=='paypal')||(paymentgatewayData.name=='korta')||
-       								(paymentgatewayData.name=='globalpay')||(paymentgatewayData.name=='neteller')||(paymentgatewayData.name=='internalPayment')">
+       					data-ng-if="(paymentgatewayData.name=='paypal')||(paymentgatewayData.name=='korta')
+       					||(paymentgatewayData.name=='globalpay')||(paymentgatewayData.name=='neteller')||(paymentgatewayData.name=='internalPayment')">
        					<input type="radio" id="{{paymentgatewayData.name}}" name="selectPWName" class="radioalign" data-ng-model="paymentGatewayName" 
-       					   value="{{paymentgatewayData.name}}" data-ng-click="paymentGatewayFun(paymentgatewayData.name)"/>&nbsp;
+       					   value="{{paymentgatewayData.name}}" data-ng-click="paymentGateway(paymentgatewayData.name)" />&nbsp;
       					   <label for="{{paymentgatewayData.name}}" class="inlinedis pointer">
       								<img src="./images/{{paymentgatewayData.name}}.jpg" width="110px;">
       					   </label><br/>
@@ -84,36 +58,17 @@
 				   </div> 
           	     </td>
           	  </tr>
-          	  <tr data-ng-hide="paymentGatewayName==''" >
-          	    <td style="padding-top: 30px;" align="right">
-          	      <div><a  href="#/{{screenName}}/{{clientId}}" class="btn" >{{'btn.cancel' | translate}}</a></div> 
-          	    </td>
-       		 	<td style="padding-top: 30px;" >
-      		 	   <div >
-					  <a class="btn btn-primary" data-ng-hide="termsAndConditions" data-ng-disabled="true">{{'btn.proceed' | translate}}</a>
-					  <a data-ng-click="makePaymentFun()" class="btn btn-primary" href="{{paymentURL}}" data-ng-show="termsAndConditions">
-					  	{{'btn.proceed' | translate}}
-					  </a>
-				   </div>
-				   
-       		 	</td>
-          	  </tr>
-          	  <tr data-ng-show="paymentGatewayName==''" >
-          	  	<td style="padding-top: 30px;" colspan="2" align="right">
-          	      <div><a  href="#/{{screenName}}/{{clientId}}" class="btn" >{{'btn.cancel' | translate}}</a></div> 
-          	    </td>
-          	  </tr>
           	</table>
        	 </div>
+       	 <div class="offset3" style="padding-top: 20px;">
+       	 <a href="#/{{screenName}}/{{clientId}}" class="btn" >{{'btn.cancel' | translate}}</a>
+       	 <a data-ng-click="makePaymentFun(paymentGatewayName)" class="btn btn-primary" href="{{paymentURL}}" >
+					  	{{'btn.proceed' | translate}}
+		 </a>
+       	 
+       	 </div>
+       	 
       </div>
-      <div data-ng-show="price == 0">
-              <br/>
-	       <div class="pull-right">
-				<a href="#/{{screenName}}/{{clientId}}" class="btn">{{'btn.cancel' | translate}}</a> 
-				<a data-ng-click="finishBtnFun()" class="btn btn-primary animated fadeInUp">{{'btn.subscribe' | translate}}</a>
-			</div> 
-			 
-	   </div>
 	   <script type="text/ng-template" id="termsandconditions.html">
 		<form  class="form-horizontal well" style="border:0px;width:550px;">
 			<h4><strong>Terms and Conditions</strong></h4>

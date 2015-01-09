@@ -1,30 +1,14 @@
-PaymentProcessController = function(scope,routeParams,RequestSender,localStorageService,location,modal){
+PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorageService,location,modal){
 	
-	scope.screenName 		= routeParams.screenName;
-	var priceDataId 		= routeParams.priceDataId;
-	var planId 				= routeParams.planId;
-	scope.price		 	 	= routeParams.price;
+	//scope.termsAndConditions = true;
+	
+	var storageData			= localStorageService.get("storageData");
+	var clientData 			= storageData.clientData;
+	scope.clientId			= clientData.id;
+	scope.planData			= {};
+	scope.screenName        = {};
 	var encrytionKey 		= selfcareModels.encriptionKey;
 	
-	
-	var storageData			= localStorageService.get("storageData") ||"";
-	var clientData 			= storageData.clientData;
-	var totalOrdersData		= storageData.totalOrdersData;
-	scope.clientId			= clientData.id;
-	
-		for(var i in totalOrdersData){
-			if(totalOrdersData[i].planId == planId){
-				for(var j in totalOrdersData[i].pricingData){
-					if(totalOrdersData[i].pricingData[j].id == priceDataId){
-						scope.planData = totalOrdersData[i].pricingData[j] || {};
-						break;
-					}
-				}
-			  break;
-			}
-		}
-		
-		if(localStorageService.get("clientTotalData")){
 		  scope.paymentgatewayDatas = [];
 		  RequestSender.paymentGatewayConfigResource.get(function(data) {
 			  if(data.globalConfiguration){
@@ -33,13 +17,23 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 						   scope.paymentgatewayDatas.push(data.globalConfiguration[i]);
 					   }
 				  }
-				 scope.paymentGatewayName = scope.paymentgatewayDatas.length>=1 ?scope.paymentgatewayDatas[0].name :"";
-				 scope.paymentGatewayFun(scope.paymentGatewayName);
 			  }
 		  });
-		}
 	
 	var hostName = selfcareModels.selfcareAppUrl;
+	
+	scope.paymentGatewayDispaly = function(amount){
+		scope.planData.price = amount;
+		scope.planData.planCode = 'Pay';
+		scope.planData.id = 0;
+		if(amount<=0){
+			alert("Amount Must be Greater than Zero");
+			scope.formData.amonut = '';
+		}
+	};
+	scope.paymentGateway  = function(paymentGatewayName){
+		scope.paymentGatewayName = paymentGatewayName;
+	};
 	  
 	   scope.paymentGatewayFun  = function(paymentGatewayName){
 			  scope.termsAndConditions = false;
@@ -50,7 +44,7 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 				  } else if(scope.paymentgatewayDatas[i].name==paymentGatewayName){
 					  paymentGatewayValues =  JSON.parse(scope.paymentgatewayDatas[i].value);
 					  break;
-				  }
+				  };
 				  
 			  }
 	     switch(paymentGatewayName){
@@ -59,12 +53,12 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 					var url = paymentGatewayValues.url+'?mer_id='+paymentGatewayValues.merchantId+'&pageid='+paymentGatewayValues.pageId+'&item1_qty=1&num_items=1';
 				scope.paymentURL =  url+"&cust_name="+clientData.displayName+"&cust_phone="+clientData.phone+"&cust_email="+clientData.email+"&cust_state="+clientData.state+""+				
 				  	"&cust_address1="+clientData.addressNo+"&cust_zip="+clientData.zip+"&cust_city="+clientData.state+"&item1_desc="+scope.planData.planCode+"&item1_price="+scope.planData.price+"" + 	  				
-				  	"&user1="+scope.clientId+"&user2="+hostName+"&user3=orderbookingscreen/"+scope.screenName+"/"+scope.clientId+"/"+planId+"/"+priceDataId;
+				  	"&user1="+scope.clientId+"&user2="+hostName+"&user3=orderbookingscreen/payment/"+scope.clientId+"/"+0+"/"+0;
 					break;
 					
 			case 'korta' :
 				
-			    var kortaStorageData = {clientData :clientData,planId:planId,planData : scope.planData,screenName :scope.screenName,paymentGatewayValues:paymentGatewayValues};	
+			    var kortaStorageData = {clientData :clientData,planId:0,planData : scope.planData,screenName :'payment',paymentGatewayValues:paymentGatewayValues};	
 			    var encodeURIComponentData = encodeURIComponent(JSON.stringify(kortaStorageData));
 				var encryptedData = CryptoJS.AES.encrypt(encodeURIComponentData,encrytionKey).toString();
 				
@@ -74,47 +68,38 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 				break;
 					
 			case 'paypal' :
-				var query = {clientId :scope.clientId,locale : "en",planCode : planId,contractPeriod : scope.planData.contractId,
-							  paytermCode:scope.planData.billingFrequency,returnUrl:hostName, screenName:scope.screenName};
-			
+				var query = {clientId :scope.clientId,locale : "en",returnUrl:hostName,screenName :'payment'};
+				
 				scope.paymentURL = paymentGatewayValues.paypalUrl+'='+paymentGatewayValues.paypalEmailId+"&item_name="+scope.planData.planCode+"&amount="+scope.planData.price+"" +	  	  				
 				  	  "&custom="+JSON.stringify(query);
 					break;
 					
 			case 'globalpay' :
-				
-				var globalpayStorageData = {clientData :clientData,planId:planId,screenName :scope.screenName,price :scope.planData.price,
-											 priceId : scope.planData.id, globalpayMerchantId:paymentGatewayValues.merchantId};	
+				var globalpayStorageData = {clientData :clientData,planId:0,screenName :'payment',price :scope.planData.price,
+											 priceId : 0, globalpayMerchantId:paymentGatewayValues.merchantId};	
 			    var encodeURIComponentData = encodeURIComponent(JSON.stringify(globalpayStorageData));
 				var encryptedData = CryptoJS.AES.encrypt(encodeURIComponentData,encrytionKey).toString();
 				
 				scope.paymentURL = "#/globalpayintegration?key="+encryptedData;
 				break;
+				
 			case 'neteller' :
-				
 				var nettellerData = {clientId:scope.clientId,currency:"EUR",total_amount:scope.planData.price,
-									paytermCode:scope.planData.billingFrequency,planCode : planId,
-									contractPeriod : scope.planData.contractId,locale:"en",source:'neteller',
-									screenName:scope.screenName};
-				
+					locale:"en",source:'neteller',screenName:'payment'};
 				var encodeURINetellerData = encodeURIComponent(JSON.stringify(nettellerData));
 				var encryptedData = CryptoJS.AES.encrypt(encodeURINetellerData,encrytionKey).toString();
-				scope.paymentURL = "#/neteller/"+priceDataId+"?key="+encryptedData;
+				scope.paymentURL = "#/neteller/"+0+"?key="+encryptedData;
 				break;
 				
 			case 'internalPayment' :
-				scope.paymentURL =  "#/internalpayment/"+scope.screenName+"/"+scope.clientId+"/"+planId+"/"+priceDataId+"/"+scope.planData.price;
+				scope.paymentURL =  "#/internalpayment/"+'payment'+"/"+scope.clientId+"/"+0+"/"+0+"/"+scope.planData.price;
 				break;
-				
+					
 			default :
 						break;
 			}
 		    	  		 	
 		  };
-	
-	scope.finishBtnFun =function(){
-  	  		  location.path("/orderbookingscreen/"+scope.screenName+"/"+scope.clientId+"/"+planId+"/"+priceDataId);
-    };
     
     var TermsandConditionsController = function($scope,$modalInstance){
     	$scope.done = function(){
@@ -130,13 +115,17 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 		    });
     };
     
+    scope.makePaymentFun = function (paymentGatewayName){
+    	scope.paymentGatewayFun(paymentGatewayName);
+    };
+    
     
 };
 
-selfcareApp.controller("PaymentProcessController",['$scope',
+selfcareApp.controller("PrepaidPaymentController",['$scope',
                                                    '$routeParams',
                                                    'RequestSender',
                                                    'localStorageService',
                                                    '$location',
                                                    '$modal',
-                                                   PaymentProcessController]);
+                                                   PrepaidPaymentController]);
