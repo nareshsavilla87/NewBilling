@@ -38,19 +38,20 @@
                 }
               /*  scope.clientConfigs1 = data.clientConfiguration.split("{")[1].split("}")[0];
                 scope.clientConfigs = "{"+scope.clientConfigs1+"}";*/
-                scope.clientConfigs1 = data.clientConfiguration;
-                webStorage.add("client_configuration",JSON.parse(scope.clientConfigs1));
+                //scope.clientConfigs1 = data.clientConfiguration;
+                webStorage.add("client_configuration",JSON.parse(data.clientConfiguration));
                 //JSON.parse(scope.clientConfigs)
                 //console.log(scope.clientConfigs1.split(",").length+"hhjg");
-                
-                for(var j = 0; j < scope.clientConfigs1.split(",").length; j++){
+               
+                /*for(var j = 0; j < scope.clientConfigs1.split(",").length; j++){
                 	scope.temp = scope.clientConfigs1.split(",")[j].split("\":");
                 	//console.log(scope.temp[0]);
                 	//scope.myData = {"name":scope.temp[0].split("\"")[1],"value":scope.temp[1].split("\"")[1]};
                 	scope.myData.push({"name":scope.temp[0].split("\"")[1],"value":scope.temp[1].split("\"")[1]});
                 	//console.log(scope.clientConfigs1.split(",")[j].split("\":")[0].split("\"")[1]);
                 	//console.log(scope.clientConfigs1.split(",")[j].split("\":")[1].split("\"")[1]);
-                }
+                }*/
+                
                 resourceFactory.cacheResource.get(function(data) {
                     for(var i=0;i<data.length;i++ ){
                         if(data[i].cacheType.id==2){
@@ -165,6 +166,30 @@
 		    			$modalInstance.dismiss('cancel');
 		    		};
 		        };
+		        
+		        
+		        scope.getClientConfiguration = function(){
+		        	 scope.myData = [];
+           			 scope.mainObject = webStorage.get("client_configuration");
+           			 scope.clientListObject = webStorage.get("client_configuration").clientListing;;
+           			 
+           	    	  for (var key in scope.mainObject) {
+           	    		  if(key != "clientListing"){
+           	    			  scope.myData.push({
+       		  					"name" : key,
+       		  					"value" :scope.mainObject[key].toString(),
+           	    			  });
+           	    		  }else{
+           	    			  for (var keyClientList in scope.clientListObject){
+           	    				  scope.myData.push({
+           		  					"name" : keyClientList,
+           		  					"value" :scope.clientListObject[keyClientList].toString(),
+           	    				  });  
+           	    			  }	 
+           	    		  }
+           	    	  }
+		        };
+		        
 		        
 		        var editPaypalController=function($scope,$modalInstance){
 
