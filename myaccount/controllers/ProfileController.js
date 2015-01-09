@@ -1,4 +1,4 @@
-ProfileController = function(scope,RequestSender,rootScope,webStorage,location,paginatorService) {
+ProfileController = function(scope,RequestSender,rootScope,webStorage,location,paginatorService,localStorageService) {
 		  
 		  scope.clientData = {};
 		  
@@ -44,6 +44,9 @@ ProfileController = function(scope,RequestSender,rootScope,webStorage,location,p
 			  scope.clientId = clientTotalData.clientId;
 			  RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
 				  scope.clientData = data;
+				  var paymentClientData = data || {};
+				  var totalOrdersData = [];
+				  localStorageService.add("storageData",{clientData:paymentClientData,totalOrdersData:totalOrdersData});
 				  if(data.selfcare){
 					  if(data.selfcare.token){
 						  rootScope.iskortaTokenAvailable = true;
@@ -90,4 +93,5 @@ selfcareApp.controller('ProfileController', ['$scope',
                                              'webStorage',
                                              '$location',
                                              'PaginatorService', 
+                                             'localStorageService',
                                              ProfileController]);
