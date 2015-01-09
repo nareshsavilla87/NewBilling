@@ -1,52 +1,51 @@
-ServicesController = function(scope,RequestSender,webStorage,location,paginatorService) {
+ServicesController = function(scope,RequestSender,localStorageService,location,paginatorService) {
 		  
-		  scope.totalOrdersData =[];
-		  scope.retrivingOrdersData = {};
+		  var totalOrdersData =[];
+		  var retrivingOrdersData = {};
 		  scope.ordersData = [];
 		  
-		  scope.totalVODSData =[];
-		  scope.retrivingVODSData = {};
+		  var totalVODSData =[];
+		  var retrivingVODSData = {};
 		  scope.VODSDatas = [];
 		  
-		  var clientTotalData= webStorage.get('clientTotalData');
-		  scope.clientId = clientTotalData.clientId;
-		  
 		  	scope.getOrdersData = function(offset, limit, callback) {
-			  scope.retrivingOrdersData.pageItems = [];
+			  retrivingOrdersData.pageItems = [];
 				  var itrCount = 0;
-				  for (var i=offset;i<scope.totalOrdersData.length;i++) {
+				  for (var i=offset;i<totalOrdersData.length;i++) {
 					 itrCount += 1;
-					 scope.retrivingOrdersData.pageItems.push(scope.totalOrdersData[i]);
+					 retrivingOrdersData.pageItems.push(totalOrdersData[i]);
 					 if(itrCount==limit){
 						 break;
 					 }
 			      }
-				  callback(scope.retrivingOrdersData);
+				  callback(retrivingOrdersData);
 		  	};
 		  	
 		  	scope.getVODSData = function(offset, limit, callback) {
-		  		scope.retrivingVODSData.pageItems = [];
+		  		retrivingVODSData.pageItems = [];
 		  		var itrCount = 0;
-		  		for (var i=offset;i<scope.totalVODSData.length;i++) {
+		  		for (var i=offset;i<totalVODSData.length;i++) {
 		  			itrCount += 1;
-		  			scope.retrivingVODSData.pageItems.push(scope.totalVODSData[i]);
+		  			retrivingVODSData.pageItems.push(totalVODSData[i]);
 		  			if(itrCount==limit){
 		  				break;
 		  			}
 		  		}
-		  		callback(scope.retrivingVODSData);
+		  		callback(retrivingVODSData);
 		  	};
 	  	   
-		  if(clientTotalData){
+	  	  var clientData= localStorageService.get('clientTotalData');
+	  	  scope.clientId = clientData.id;
+		  if(clientData){
 			  
-			  RequestSender.getOrderResource.get({clientId:clientTotalData.clientId},function(data){
-				  scope.totalOrdersData = data.clientOrders;
-				  scope.retrivingOrdersData.totalFilteredRecords = scope.totalOrdersData.length;
+			  RequestSender.getOrderResource.get({clientId:scope.clientId},function(data){
+				  totalOrdersData = data.clientOrders;
+				  retrivingOrdersData.totalFilteredRecords = totalOrdersData.length;
 				  scope.ordersData = paginatorService.paginate(scope.getOrdersData, 4);
 				  
-				  RequestSender.eventOrderPriceTemplateResource.query({clientId:clientTotalData.clientId},function(data){
-					  scope.totalVODSData = data;
-					  scope.retrivingVODSData.totalFilteredRecords = scope.totalVODSData.length;
+				  RequestSender.eventOrderPriceTemplateResource.query({clientId:scope.clientId},function(data){
+					  totalVODSData = data;
+					  retrivingVODSData.totalFilteredRecords = totalVODSData.length;
 					  scope.VODSDatas = paginatorService.paginate(scope.getVODSData, 4);
 				  });
 			  });
@@ -59,7 +58,7 @@ ServicesController = function(scope,RequestSender,webStorage,location,paginatorS
 
 selfcareApp.controller('ServicesController', ['$scope',
                                               'RequestSender',
-                                              'webStorage',
+                                              'localStorageService',
                                               '$location',
                                               'PaginatorService',
                                               ServicesController]);
