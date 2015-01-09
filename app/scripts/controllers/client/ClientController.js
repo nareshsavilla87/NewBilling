@@ -1,8 +1,10 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    ClientController: function(scope, resourceFactory , paginatorService,location,PermissionService) {
+    ClientController: function(scope, resourceFactory , paginatorService,location,PermissionService,webStorage) {
         
       scope.clients = [];
+      scope.config = {};
+      scope.allDatas = [];
       scope.PermissionService = PermissionService;
       scope.pageNo = 1;
       scope.newClients = 0;
@@ -11,19 +13,43 @@
       scope.PendingClients = 0;
       scope.totalPages = 1;
       scope.status = 'ALL';
+      scope.config = webStorage.get("client_configuration").clientListing; 
       /**
        * @default
        * we call this function from below
        * scope.clients = paginatorService.paginate(fetchFunction, 14);
        * */
+      
+      var passwordSetToStar = function(){
+    	  for (var i in scope.allDatas){
+		        	
+         		if(scope.allDatas[i].clientPassword != undefined && scope.allDatas[i].clientPassword.length>0){
+         			var stars = "";
+         			for (var k in scope.allDatas[i].clientPassword){
+ 				        	if(k>=0 && k<scope.allDatas[i].clientPassword.length){
+ 				        		
+ 				        		stars += "*";
+ 				        	}
+ 				    }
+         			scope.allDatas[i].clientPassword = stars;
+         			// console.log(scope.allDatas[i].clientPassword);
+         		}
+ 		    }
+      };
+      
+      
       var fetchFunction = function(offset, limit, callback) {
         resourceFactory.clientResource.getAllClients({offset: offset, limit: limit} , function(data){
         	scope.totalClients = data.totalFilteredRecords;
+        	scope.allDatas = data.pageItems;
         	if(scope.totalClients%15 == 0)	
         		scope.totalPages = scope.totalClients/15;
         	else
         		scope.totalPages = Math.floor(scope.totalClients/15)+1;
         	
+        	if(scope.config.password == 'true'){
+        		passwordSetToStar();
+        	}
         	callback(data);
         });
       };
@@ -78,8 +104,14 @@
       
       
       scope.search123 = function(offset, limit, callback) {
-          resourceFactory.clientResource.getAllClients({offset: offset, limit: limit , sqlSearch: scope.filterText } , callback); 
-         };
+          resourceFactory.clientResource.getAllClients({offset: offset, limit: limit , sqlSearch: scope.filterText } , function(data){
+        	  scope.allDatas = data.pageItems;
+        	  if(scope.config.password == 'true'){
+        		  passwordSetToStar();
+ 	          }
+ 	        	callback(data);
+          }); 
+      };
        
        scope.search = function(filterText) {
         scope.clients = paginatorService.paginate(scope.search123, 14);
@@ -96,11 +128,15 @@
     	   scope.searchSources123 = function(offset, limit, callback) {
     			   resourceFactory.clientResource.getAllClients({offset: offset, limit: limit,status: sourceStatus} , function(data){
        	        	scope.totalClients = data.totalFilteredRecords;
+       	        	scope.allDatas = data.pageItems;
        	        	if(scope.totalClients%15 == 0)	
        	        		scope.totalPages = scope.totalClients/15;
        	        	else
        	        		scope.totalPages = Math.floor(scope.totalClients/15)+1;
        	        	
+       	        	if(scope.config.password == 'true'){
+       	        		passwordSetToStar();
+       	        	}
        	        	callback(data);
        	        });
     	   };
@@ -114,7 +150,7 @@
        };
     }
   });
-  mifosX.ng.application.controller('ClientController', ['$scope', 'ResourceFactory', 'PaginatorService','$location','PermissionService',mifosX.controllers.ClientController]).run(function($log) {
+  mifosX.ng.application.controller('ClientController', ['$scope', 'ResourceFactory', 'PaginatorService','$location','PermissionService','webStorage',mifosX.controllers.ClientController]).run(function($log) {
     $log.info("ClientController initialized");
   });
 }(mifosX.controllers || {}));
