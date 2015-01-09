@@ -38,14 +38,12 @@ SignUpFormController = function(scope,RequestSender,HttpService,rootScope,authen
 	        		      		});
 	        		      		$scope.approve = function () { 
 	        		      			 $modalInstance.dismiss('cancel');
-	        		      			 // dom.allow_scripts_to_close_windows (true);
-	        		      			 // var mywindow=window.open('','_self','');
-	        		      			 // mywindow.close();	      		       
 	        		      		};
 	        		        }  
 	        			  
 			          },function(errorData){
 			        	  scope.isProcessing  = false;
+			        	  rootScope.signUpCredentials = {};
 			        	  $modal.open({
   		  	                templateUrl: 'messagespopup.html',
   		  	                controller: approve,

@@ -23,7 +23,7 @@
 		 </thead>
 		 <tbody>
 			<tr data-ng-repeat="statement in statementsData.currentPageItems  | filter:filterText" >                 
-   				<td>{{statement.billDate | DateFormat}}</td>
+   				<td style="font-weight: inherit;color: #555555;">{{statement.billDate | DateFormat}}</td>
    				<td>{{statement.dueDate | DateFormat}}</td>
    				<td>{{statement.amount}}</td>
    				<td>
@@ -55,7 +55,7 @@
 	        </thead>
 	        <tbody>
 	            <tr data-ng-repeat="payment in paymentsData.currentPageItems  | filter:filterText1" >
-	                <td>{{payment.transDate | DateFormat}}</td>
+	                <td style="font-weight: inherit;color: #555555;">{{payment.transDate | DateFormat}}</td>
 	                <td>{{payment.transactionType}}</td>
 	                <td>{{payment.transactionCategory}}</td>
 	                <td>{{payment.creditAmount}}</td>

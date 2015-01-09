@@ -15,8 +15,6 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,http
 		  scope.formData = {};
 		  var configDeviceAgreeType = {};
 		  
-		  var configDeviceAgreeType = {};
-		  
 		//getting the key value form routeParams
 		  var actualKey = routeParams.registrationKey || "";
 		  var afterSliceKey = actualKey.slice(0, 27);
