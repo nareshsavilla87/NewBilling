@@ -75,3 +75,4 @@ document.write("<script type='text/javascript' src='./controllers/ViewOrderContr
 document.write("<script type='text/javascript' src='./controllers/ViewStatementController.js'></script>");
 document.write("<script type='text/javascript' src='./controllers/VODEventsController.js'></script>");
 document.write("<script type='text/javascript' src='./controllers/PaymentProcessController.js'></script>");
+document.write("<script type='text/javascript' src='./controllers/NetellerController.js'></script>");

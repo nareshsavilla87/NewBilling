@@ -28,7 +28,7 @@
 	        </thead>
 	        <tbody>
 	            <tr class="pointer-main" data-ng-repeat="order in ordersData.currentPageItems  | filter:filterText" >
-	                <td class="pointer" data-ng-click="routeToOrderView(order.id)">{{order.planCode}}</td>
+	                <td class="pointer" data-ng-click="routeToOrderView(order.id)" style="font-weight: inherit;color: #555555;">{{order.planCode}}</td>
 	                <td class="pointer" data-ng-click="routeToOrderView(order.id)">{{order.contractPeriod}}</td>
 	                <td class="pointer" data-ng-click="routeToOrderView(order.id)">{{order.activeDate | DateFormat}}</td>
 	                <td class="pointer" data-ng-click="routeToOrderView(order.id)">{{order.startDate | DateFormat}}</td>
@@ -61,7 +61,7 @@
 	        </thead>
 	        <tbody>
 	            <tr class="pointer-main" data-ng-repeat="vodData in VODSDatas.currentPageItems  | filter:filterText1" >
-	                <td class="pointer">{{vodData.eventName}}</td>
+	                <td class="pointer" style="font-weight: inherit;color: #555555;">{{vodData.eventName}}</td>
 	                <td class="pointer">{{vodData.bookedDate | DateFormat}}</td>
 	                <td class="pointer">{{vodData.eventPrice}}</td>
 	                <td class="pointer"><i class="icon-stop {{vodData.status | StatusLookup}}"></i>&nbsp;{{vodData.status}}</td>
