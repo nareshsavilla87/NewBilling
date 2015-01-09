@@ -2376,6 +2376,11 @@
 "label.pgconfig.dalpay.pageid":"PageId",
 "label.pgconfig.editdalpay":"Edit Dalpay",
 "label.pgconfig.editglobalpay":"Edit Globalpay",
+"label.pgconfig.editneteller":"Edit Neteller",
+"label.pgconfig.neteller.url":"Neteller Url",
+"label.pgconfig.neteller.clientid":"Neteller API clientId",
+"label.pgconfig.neteller.secretcode":"Neteller API secretCode",
+
 
 "#Audit trails":".....",
 "label.searchoptions":"Search Options",

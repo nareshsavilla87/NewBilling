@@ -79,6 +79,12 @@ selfcareApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/neteller/:priceDataId',{
     	templateUrl: 'views/neteller.html'
+    })
+    .when('/internalpayment/:screenName/:clientId/:planId/:priceId/:amount',{
+    	templateUrl: 'views/internalpayment.html'
+    })
+    .when('/prepaidpayment',{
+    	templateUrl: 'views/prepaidpayment.html'
     });
        
     $locationProvider.html5Mode(false);

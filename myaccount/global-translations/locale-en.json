@@ -901,7 +901,19 @@
 "dialog.korta.title.message":"Alert Information",
 "dialog.korta.alert.message":"Dear Customer, You should Register your Card Details In Korta Payment Gateway System before Using this Service.",
 "validation.msg.paymentgateway.verificationCode.length.error":"Please enter valid VerificationCode",
-"validation.msg.paymentgateway.value.cannot.be.blank":"Value cannot be blank"
+"validation.msg.paymentgateway.value.cannot.be.blank":"Value cannot be blank",
+
+"#Prepaid Payment":"",
+"label.client.prepaid.payment":"Payment",
+"label.prepaid.amount":"Amount",
+
+"#Neteller":"",
+"label.neteller.valid.verificationcode":"Please enter valid VerificationCode",
+"label.neteller.valid.value":"Please enter 'Value' details correctly",
+"label.neteller.verificationcode":"Verification Code",
+"label.neteller.value":"NETELLER EmailId",
+"label.neteller.source":"Source",
+"label.neteller.amount":"Amount"
 
 
 
