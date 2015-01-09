@@ -31,10 +31,15 @@
                 <th>Client Name</th>
                 <th>Status</th>
                 <th>Account #</th>
-                <th>Group</th>
+                <th data-ng-show="config['group/parentId']">Group</th>
                 <th>Office</th>
                 <th>Serial No</th>
-                <th>Balance</th>
+                <th>Balance</th> 	   
+                <th data-ng-show="config.userName">UserName</th>
+                <th data-ng-show="config.password">Password</th>
+                <th data-ng-show="config.externalId">ExternalId</th>
+                <th data-ng-show="config.customerCategory">Customer Category</th>
+                <th data-ng-show="config['group/parentId']">ParentId </th>
             </tr>
         </thead>
         <tbody>
@@ -42,10 +47,15 @@
                 <td class="pointer" data-ng-click="routeTo(client.id)" >{{client.displayName}}</td>
                 <td class="pointer" data-ng-click="routeTo(client.id)" ><i class="icon-stop {{client.status.value | StatusLookup}}"></i>&nbsp;{{client.status.value}}</td>
                 <td class="pointer" data-ng-click="routeTo(client.id)" >{{client.accountNo}}</td>
-                <td class="pointer" data-ng-click="routeToGroup(client.groupName)" >{{client.groupName}}</td>
+                <td data-ng-show="config['group/parentId']" class="pointer" data-ng-click="routeToGroup(client.groupName)" >{{client.groupName}}</td>
                 <td class="pointer" data-ng-click="routeTo(client.id)" >{{client.officeName}}</td>
                 <td class="pointer" data-ng-click="routeTo(client.id)" >{{client.hwSerialNumber}}</td>
                 <td class="pointer" data-ng-click="routeTo(client.id)" >{{client.balanceAmount}}</td>
+                <td data-ng-show="config.userName" class="pointer" data-ng-click="routeTo(client.id)" >{{client.userName}}</td>
+                <td data-ng-show="config.password" class="pointer" data-ng-click="routeTo(client.id)" >{{client.clientPassword}}</td>
+                <td data-ng-show="config.externalId" class="pointer" data-ng-click="routeTo(client.id)" >{{client.externalId}}</td>
+                <td data-ng-show="config.customerCategory" class="pointer" data-ng-click="routeTo(client.id)" >{{client.categoryType}}</td>
+                <td data-ng-show="config['group/parentId']" class="pointer" data-ng-click="routeTo(client.id)" >{{client.parentId}}</td> 
             </tr>
         </tbody>
     </table>
