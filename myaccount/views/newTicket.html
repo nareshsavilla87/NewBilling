@@ -14,17 +14,16 @@
 		</ul>
 	</div>
 <form name="createticketform" class="form-horizontal well"  data-ng-submit="submit()">
-
- <div class="error" data-ng-show="errorStatus || errorDetails">
+<br/>
+ 	<div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label data-ng-show="errorStatus">{{errorStatus}}</label>
 		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
-	    </div>
+    </div>
 	<fieldset>
-		<legend>{{'label.ticket.add.newticket' | translate}}</legend>
-		<table class="fullwidth">
+		<table>
 			<tr>
-				<td width="50%">
+				<td>
 					<div class="control-group">
 						<label class="control-label" for="Date">{{'label.ticket.date' | translate }}</label>
 						<div class = "controls">
@@ -33,7 +32,7 @@
 						</div>
 					</div>
 				</td>
-				<td width="50%">
+				<td>
 					<div class="control-group">
 						<label class="control-label" for="priority">{{'label.ticket.priority' | translate }}<span class="required">*</span></label>
 						<div class="controls">
@@ -46,7 +45,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td width="50%">
+				<td>
 					<div class="control-group">
 						<label class="control-label" for="Category">{{'label.ticket.category' | translate }}<span class="required">*</span></label>
 						<div class="controls">
@@ -56,7 +55,7 @@
 						</div>
 					</div>
 				</td>
-				<td width="50%">
+				<td>
 					<div class="control-group">
 						<label class="control-label" for="chargeCode">{{'label.ticket.assignto' | translate }}<span class="required">*</span></label>
 						<div class="controls">
