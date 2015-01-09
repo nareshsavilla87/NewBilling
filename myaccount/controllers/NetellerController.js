@@ -1,10 +1,10 @@
 NetellerController = function(scope,RequestSender,routeParams,
 			  							HttpService,location,dateFilter,localStorageService) {
 		  
-			
-		scope.formData = {};
+		scope.formData 			= {};
+		scope.screenName 		= routeParams.screenName;
 		scope.priceDataId 		= routeParams.priceDataId;
-		scope.validation = {};
+		scope.validation 		= {};
 		
 		var encrytionKey 		= selfcareModels.encriptionKey;
 		
@@ -16,7 +16,6 @@ NetellerController = function(scope,RequestSender,routeParams,
     	scope.amount = kortaStorageData.total_amount;
     	scope.clientId = kortaStorageData.clientId;
     	scope.formData = kortaStorageData;
-    	
     	 var tokenVal = "";
 		  var randomFun = function() {
 				var chars = "0123456789";
