@@ -1,15 +1,11 @@
-ChangePasswordController = function(scope,RequestSender,rootScope,routeParams,modal,
-			  							webStorage,HttpService,authenticationService,sessionManager,location) {
+ChangePasswordController = function(scope,RequestSender,rootScope,localStorageService) {
 		 
-		  //getting main page url from returnURL.js file
-		  var selfcareMainPageURL = selfcareModels.selfcareMainPageURL;
-		  
 		  scope.pwdData = {};
 		  scope.formData = {};
 		  scope.retype_pwd_valid = false;
-		  var clientDatas = webStorage.get("clientTotalData");
-		  if(clientDatas){
-			  scope.email = clientDatas.clientData.email;
+		  var clientData = localStorageService.get("clientTotalData");
+		  if(clientData){
+			  scope.email = clientData.email;
 		  }
 		  
 		  scope.passwordCheck = function(){
@@ -28,7 +24,6 @@ ChangePasswordController = function(scope,RequestSender,rootScope,routeParams,mo
 				  scope.formData.password = scope.pwdData.newPassword;
 				  scope.formData.uniqueReference = scope.email;
 				  RequestSender.changePwdResource.update(scope.formData,function(data){
-					  rootScope.isChangePassword = true;
 					  rootScope.currentSession = sessionManager.clear();
 					  rootScope.infoMsgs.push({
 						  						'image' : './images/info-icon.png',
@@ -43,11 +38,5 @@ ChangePasswordController = function(scope,RequestSender,rootScope,routeParams,mo
  selfcareApp.controller('ChangePasswordController',['$scope',
                                                     'RequestSender',
                                                     '$rootScope',
-                                                    '$routeParams',
-                                                    '$modal',
-                                                    'webStorage',
-                                                    'HttpService',
-                                                    'AuthenticationService',
-                                                    'SessionManager',
-                                                    '$location',
+                                                    'localStorageService',
                                                     ChangePasswordController]);

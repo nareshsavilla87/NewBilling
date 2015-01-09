@@ -35,15 +35,6 @@ selfcareApp.config(function($routeProvider, $locationProvider) {
 	.when('/vieworder/:orderId/:clientId', {
         templateUrl: 'views/vieworder.html'
 	})
-	.when('/changeorder/:orderId/:clientId', {
-	    templateUrl: 'views/changeorder.html'
-    })
-    .when('/renewalorder/:orderId/:clientId', {
-    	templateUrl: 'views/renewalorder.html'
-    })
-    .when('/renewalorderpreviewscreen/:orderId/:clientId', {
-    	templateUrl: 'views/renewalorderpreviewscreen.html'
-    })
     .when('/services', {
     	templateUrl: 'views/services.html'
 	})
@@ -79,6 +70,12 @@ selfcareApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/neteller/:priceDataId',{
     	templateUrl: 'views/neteller.html'
+    })
+    .when('/changeorder/:clientId',{
+    	templateUrl: 'views/changeorder.html'
+    }) 
+    .when('/renewalorder/:clientId/:planId', {
+    	templateUrl: 'views/renewalorder.html'
     });
        
     $locationProvider.html5Mode(false);

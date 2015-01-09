@@ -1,4 +1,4 @@
-KortaSuccessController = function(RequestSender,location,localStorageService,routeParams) {
+KortaSuccessController = function(rootScope,RequestSender,location,localStorageService,routeParams) {
  
     		
 			var formData = {};
@@ -55,6 +55,7 @@ KortaSuccessController = function(RequestSender,location,localStorageService,rou
     				RequestSender.updateKortaToken.update({clientId : formData.clientId},{kortaToken: kortaToken},function(data){
     				  RequestSender.paymentGatewayResource.update({},formData,function(data){
     					  localStorageService.add("paymentgatewayresponse", data);
+    					  rootScope.iskortaTokenAvailable = true;
 						var result = data.Result || "";
 						location.$$search = {};
 						if(result == 'SUCCESS'){
@@ -89,7 +90,8 @@ KortaSuccessController = function(RequestSender,location,localStorageService,rou
         	        	
         };
         
-selfcareApp.controller('KortaSuccessController', ['RequestSender', 
+selfcareApp.controller('KortaSuccessController', ['$rootScope',
+                                                  'RequestSender', 
                                                   '$location', 
                                                   'localStorageService',
                                                   '$routeParams',

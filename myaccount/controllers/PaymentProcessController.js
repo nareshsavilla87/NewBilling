@@ -2,12 +2,12 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 	
 	scope.screenName 		= routeParams.screenName;
 	var priceDataId 		= routeParams.priceDataId;
-	var planId 			= routeParams.planId;
+	var planId 				= routeParams.planId;
 	scope.price		 	 	= routeParams.price;
 	var encrytionKey 		= selfcareModels.encriptionKey;
 	
 	
-	var storageData			= localStorageService.get("storageData");
+	var storageData			= localStorageService.get("storageData") ||"";
 	var clientData 			= storageData.clientData;
 	var totalOrdersData		= storageData.totalOrdersData;
 	scope.clientId			= clientData.id;
@@ -23,6 +23,8 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 			  break;
 			}
 		}
+		
+		if(localStorageService.get("clientTotalData")){
 		  scope.paymentgatewayDatas = [];
 		  RequestSender.paymentGatewayConfigResource.get(function(data) {
 			  if(data.globalConfiguration){
@@ -35,6 +37,7 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 				 scope.paymentGatewayFun(scope.paymentGatewayName);
 			  }
 		  });
+		}
 	
 	var hostName = selfcareModels.selfcareAppUrl;
 	  
