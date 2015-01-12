@@ -1,38 +1,37 @@
-StatementsController = function(scope,RequestSender,webStorage,location,API_VERSION,paginatorService) {
+StatementsController = function(scope,RequestSender,localStorageService,location,API_VERSION,paginatorService) {
 		  
-		  scope.totalStatementsData = [];
-		  scope.retrivingStatementsData = {};
+		  var totalStatementsData = [];
+		  var retrivingStatementsData = {};
 		  scope.statementsData = [];
 		  
-		  scope.paymentsData = [];
 		  
-		  var clientTotalData= webStorage.get('clientTotalData');
 		  
 		  scope.getStatementsData = function(offset, limit, callback) {
-			  scope.retrivingStatementsData.pageItems = [];
+			  retrivingStatementsData.pageItems = [];
 			  var itrCount = 0;
-			  for (var i=offset;i<scope.totalStatementsData.length;i++) {
+			  for (var i=offset;i<totalStatementsData.length;i++) {
 				 itrCount += 1;
-				 scope.retrivingStatementsData.pageItems.push(scope.totalStatementsData[i]);
+				 retrivingStatementsData.pageItems.push(totalStatementsData[i]);
 				 if(itrCount==limit){
 					 break;
 				 }
 		      }
-			  callback(scope.retrivingStatementsData);
+			  callback(retrivingStatementsData);
 	  	   };
 		  
 		  scope.getPaymentsData = function(offset, limit, callback) {
 			  RequestSender.paymentsResource.get({clientId: scope.clientId ,offset: offset, limit: limit,type:'PAYMENT'} , callback);
 	  	   };
 	  		
-		  if(clientTotalData){
-			 
-			  scope.clientId = clientTotalData.clientId;
+	  	  var clientData= localStorageService.get('clientTotalData');
+		  if(clientData){
+			  scope.clientId = clientData.id;
 			  RequestSender.statementResource.query({clientId: scope.clientId} , function(data) {	
-                  scope.totalStatementsData = data;
-                  scope.retrivingStatementsData.totalFilteredRecords = scope.totalStatementsData.length;
+                  totalStatementsData = data;
+                  retrivingStatementsData.totalFilteredRecords = totalStatementsData.length;
 				  scope.statementsData = paginatorService.paginate(scope.getStatementsData, 4);
                   
+				  scope.paymentsData = [];
         	  	  scope.paymentsData = paginatorService.paginate(scope.getPaymentsData, 4);
                });
 		  }
@@ -48,7 +47,7 @@ StatementsController = function(scope,RequestSender,webStorage,location,API_VERS
     
 selfcareApp.controller('StatementsController', ['$scope',
                                                 'RequestSender',
-                                                'webStorage',
+                                                'localStorageService',
                                                 '$location',
                                                 'API_VERSION', 
                                                 'PaginatorService', 
