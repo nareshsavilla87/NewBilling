@@ -1,7 +1,7 @@
       <div>
         <ul class="breadcrumb">
           <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
-          <li class="active">{{'label.createvoucherpin' | translate}}</li>
+          <li class="active">{{'label.configure.smtp' | translate}}</li>
         </ul>
       </div>
       <form name="createsmtp" class="form-horizontal well" ng-controller="CreateSmtpController" ng-submit="submit()">
@@ -11,7 +11,7 @@
 		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
         <fieldset>
-          <legend>Create SMTP</legend>
+          <legend>{{'label.configure.smtp' | translate}}</legend>
 			<table>
 			<tr>
 				<td>
@@ -30,9 +30,9 @@
            					 	<label class="control-label" for="starttls">Starttls<span class="required">*</span></label>
 								<div class="controls" ng-init="formData.starttls='true'">
                						<input type="radio" id="type" ng-model="formData.starttls" name="starttls" value="true" checked="checked">
-               						&nbsp; True &nbsp;&nbsp;
+               						&nbsp; {{'label.configure.smtp.true' | translate}} &nbsp;&nbsp;
                						<input type="radio" id="type" ng-model="formData.starttls" name="starttls" value="false">
-               						&nbsp; False
+               						&nbsp; {{'label.configure.smtp.false' | translate}}
               					</div>
               					</div>
 							</td>
@@ -44,7 +44,7 @@
             					<div class="controls">
               					<input type="email" id="mailId" name="mailId" ng-model="formData.mailId">
               					<div ng-show="createsmtp.mailId.$dirty && createsmtp.mailId.$invalid">
-              						<small class="error" ng-show="createsmtp.mailId.$error.email">Invalid Email</small>
+              						<small class="error" ng-show="createsmtp.mailId.$error.email">{{ 'error.configure.smtp.invalid.email' | translate }}</small>
               					</div>
 							<td>
 									<div class="control-group">
