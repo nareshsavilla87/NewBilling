@@ -98,6 +98,8 @@
  	"table.header.statement.dueamount"		: "Due Amount", 
  	"label.services"			: "Services", 
  	"label.heading.or"			: "OR", 
+ 	"label.webtv"				: "Web Tv", 
+ 	"label.password"			: "Password", 
  	
  	"label.signup.newuser"			   			: "Signup new user ",
  	"label.or"			   						: " - or - ",
@@ -897,7 +899,9 @@
 "label.globalpay.phone":"Phone Number",
 "label.add.globalpay.Info":"GlobalPay Information",
 "dialog.korta.title.message":"Alert Information",
-"dialog.korta.alert.message":"Dear Customer, You should Register your Card Details In Korta Payment Gateway System before Using this Service."
+"dialog.korta.alert.message":"Dear Customer, You should Register your Card Details In Korta Payment Gateway System before Using this Service.",
+"validation.msg.paymentgateway.verificationCode.length.error":"Please enter valid VerificationCode",
+"validation.msg.paymentgateway.value.cannot.be.blank":"Value cannot be blank"
 
 
 

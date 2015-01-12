@@ -48,6 +48,13 @@
 					});
 
 				}
+				if(name == 'neteller'){
+					$modal.open({
+						templateUrl : 'editneteller.html',
+						controller : editNetellerController,
+						resolve : {}
+					});
+				}
 
 			};
 
@@ -225,6 +232,48 @@
 					$modalInstance.dismiss('cancel');
 				};
 			};
+			
+			var editNetellerController = function($scope, $modalInstance) {
+
+				$scope.formData = {};
+				$scope.statusData = [];
+				$scope.updateData = {};
+				//console.log(scope.editId);
+
+				// DATA GET
+				resourceFactory.paymentGatewayConfigurationResource.get({configId : scope.editId}, function(data) {
+					var value = data.value;
+					var arr = value.split(",");
+					var url = arr[0].split('"');
+					var clientId = arr[1].split('"');
+					var secreCode = arr[2].split('"');
+
+					$scope.formData.url = url[3];
+					$scope.formData.clientId = clientId[3];
+					$scope.formData.secretCode = secreCode[3];
+				});
+				
+				$scope.submit = function() {
+					
+					$scope.dalpayData = {
+						"value" : '{"url" : "' + $scope.formData.url
+								+ '","clientId" : "' + $scope.formData.clientId
+								+ '","secretCode" : "' + $scope.formData.secretCode
+								+ '"}'
+					};
+					$scope.updateData.value = $scope.dalpayData.value;
+
+					resourceFactory.paymentGatewayConfigurationResource.update({configId : scope.editId}, $scope.updateData, function(data) {
+						$modalInstance.close('delete');
+						route.reload();
+					}, function(errData) {
+						$scope.paypalFlag = false;
+					});
+				};
+				$scope.cancel = function() {
+					$modalInstance.dismiss('cancel');
+				};
+			};
 
 			scope.enable = function(id) {
 
@@ -241,6 +290,7 @@
 					route.reload();
 				});
 			};
+			
 		}
 	});
 

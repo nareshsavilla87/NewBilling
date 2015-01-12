@@ -47,7 +47,7 @@
 						<label class="control-label">{{ 'label.password' |translate }}<span class="required">*</span>
 						</label>
 						<div class="controls">
-							<input type="password" data-ng-model="formData.password">
+							<input type="password" id="password" data-ng-model="formData.password">
 						</div>
 					</div>
 
@@ -76,7 +76,7 @@
 						<label class="control-label">{{ 'label.email' | translate }}<span class="required">*</span>
 						</label>
 						<div class="controls">
-							<input type="email" data-ng-model="formData.email">
+							<input type="email" id="email" data-ng-model="formData.email">
 						</div>
 					</div>
 					
@@ -86,7 +86,7 @@
 						<label class="control-label">{{ 'label.organization' | translate }}<span class="required">*</span>
 						</label>
 						<div class="controls">
-							<input type="text" data-ng-model="formData.organization">
+							<input type="text" id="organization" data-ng-model="formData.organization">
 						</div>
 					</div>
 
@@ -142,11 +142,10 @@
 					</div>
 			</td></tr>
 			
-					<tr><td>
-					<div class="offset6">
+					<tr><td></td><td align="right">
 						<a href="#/offices"><button id="cancel" type="reset" data-ng-click="reset123()" class="btn">{{'button.cancel'| translate}}</button></a>
 						<button id="submit" type="submit" class="btn btn-primary">{{'label.save' | translate }}</button>
-					</div></td></tr>
+		   </td></tr>
 			
 		</table>
 	</fieldset>

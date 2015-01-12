@@ -2452,7 +2452,24 @@
 "label.createpartner":"Create Partner",
 "label.managepartners":"Manage Partners",
 "table.heading.partner type":"Partner Type",
-"table.heading.partner currency":"currency"
+"table.heading.partner currency":"currency",
+"validation.msg.partner.partnerName.cannot.be.blank":"Partner Name cannot be blank",
+"validation.msg.partner.loginName.cannot.be.blank":"Login Name cannot be blank",
+"validation.msg.partner.password.cannot.be.blank":"Password cannot be blank",
+"validation.msg.partner.phone.cannot.be.blank":"Phone cannot be blank",
+"validation.msg.partner.email.cannot.be.blank":"Email cannot be blank",
+"validation.msg.partner.organization.cannot.be.blank":"Organization cannot be blank",
+"validation.msg.partner.city.cannot.be.blank":"City cannot be blank",
+"validation.msg.partner.state.cannot.be.blank":"State cannot be blank",
+"validation.msg.partner.country.cannot.be.blank":"Country cannot be blank",
+"validation.msg.partner.currency.cannot.be.blank":"Currency cannot be blank",
+"validation.msg.partner.partnerName.exceeds.max.length":"Please give partner name below 100 characters only",
+"validation.msg.partner.loginName.exceeds.max.length":"Please give login name below 100 characters only",
+
+"label.pgconfig.editneteller":"Edit Neteller",
+"label.pgconfig.neteller.url":"URL",
+"label.pgconfig.neteller.clientid":"Client Id",
+"label.pgconfig.neteller.secretcode":"Secret Code"
 
 
 }

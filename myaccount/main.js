@@ -16,56 +16,67 @@ selfcareApp.config(function($httpProvider ,$translateProvider) {
 	 $translateProvider.preferredLanguage(selfcareModels.locale);
 });
 
-selfcareApp.controller('SelfcareMainController',['$rootScope','$translate','SessionManager','RequestSender','AuthenticationService',
-                                                 '$location','$modal','localStorageService','tmhDynamicLocale',
-                                                 function(scope, translate,sessionManager,RequestSender,
-                     			   				    authenticationService,location,modal,localStorageService,tmhDynamicLocale){
+SelfcareMainController = function(scope, translate,sessionManager,RequestSender,authenticationService,location,modal,localStorageService,tmhDynamicLocale,webStorage,route){
+	
 	   scope.domReady = true;
 	   scope.selfcare_userName = "";
 	   scope.iskortaTokenAvailable = false;
 	   var urlAfterHash = window.location.hash;
-	   if((urlAfterHash.match('/active') == '/active')||(urlAfterHash.match('/orderbookingscreen') == '/orderbookingscreen')
-			   ||(urlAfterHash.match('/kortasuccess') == '/kortasuccess') || (urlAfterHash.match('/globalpaysuccess') == '/globalpaysuccess')){
+	   
+	   if(localStorageService.get('selfcare_sessionData')||webStorage.get("clientTotalData")){
 		   scope.isLandingPage= true;
-		   
-	   }else{
-		   scope.isLandingPage= false;
 	   }
 	   
-	   (urlAfterHash.match('/active') == '/active') ? scope.isRegClientProcess = true : scope.isRegClientProcess = false;
+	   (urlAfterHash.match('/active') == '/active') ? (scope.isLandingPage= true,scope.isRegClientProcess = true) : scope.isRegClientProcess = false;
+	   
+	   //adding web tv url
+	   scope.webtvURL = selfcareModels.webtvURL;
+	   localStorageService.add("selfcareAppUrl",selfcareModels.selfcareAppUrl);
+	   
 	   
 //setting the date format
 scope.setDf = function () {
-	   localStorageService.get('dateformat') ? scope.df = scope.dateformat = localStorageService.get('dateformat') 
-			   								 : (localStorageService.add('dateformat', 'dd MMMM yyyy'),
+	   localStorageService.get('localeDateFormat') ? scope.df = scope.dateformat = localStorageService.get('localeDateFormat') 
+			   								 : (localStorageService.add('localeDateFormat', 'dd MMMM yyyy'),
 			   									scope.df = scope.dateformat = 'dd MMMM yyyy');
 };scope.setDf();
 	   
 //getting languages form model Lang.js 
 scope.langs = Langs;
 
-if(localStorageService.get('Language')){
-	   
+if(localStorageService.get('localeLang')){
+	   var localeLang = localStorageService.get('localeLang');
 	   for ( var i in scope.langs) {
-		   if(scope.langs[i].code == localStorageService.get('Language')){
-			   scope.optlang = scope.langs[i];
-			   tmhDynamicLocale.set(scope.optlang.code);
-			   translate.uses(scope.optlang.code);
+		   if(scope.langs[i].code == localeLang){
+			   scope.localeLang = scope.langs[i];
+			   tmhDynamicLocale.set(localeLang);
+			   translate.uses(localeLang);
 			   break;
 		   };
 	   };
 	   
 }else{
-	   scope.optlang = scope.langs[0];
+	   scope.localeLang = scope.langs[0];
 }
 
 //set the language code when change the language 
  scope.changeLang = function (lang) {
-     localStorageService.add('Language', lang.code);
-     scope.optlang = lang;
+     localStorageService.add('localeLang', lang.code);
+     scope.localeLang = lang;
      tmhDynamicLocale.set(lang.code);
      translate.uses(lang.code);
  };
+ 
+ window.setInterval(function(){
+	 //checking session every  second when scope.currentSession.user not null
+	 if((scope.currentSession.user != null)){
+		 //in this checking is it Registration Page or not  
+		 if(!(urlAfterHash.match('/active') == '/active')){
+			 if(localStorageService.get('selfcare_sessionData')||webStorage.get("clientTotalData")){}
+			 else scope.signout();
+		 }
+	 }
+   },1000);
 
 //forgot password success msg popup controller
  var ForgotPwdPopupSuccessController = function($scope,$modalInstance){
@@ -134,5 +145,19 @@ if(localStorageService.get('Language')){
 	   
 	   scope.signout = function(){
 	    	  scope.currentSession = sessionManager.clear();
-	      };
-}]);
+	    	  route.reload();
+	   };
+};
+
+selfcareApp.controller('SelfcareMainController',['$rootScope',
+                                                 '$translate',
+                                                 'SessionManager',
+                                                 'RequestSender',
+                                                 'AuthenticationService',
+                                                 '$location',
+                                                 '$modal',
+                                                 'localStorageService',
+                                                 'tmhDynamicLocale',
+                                                 'webStorage',
+                                                 '$route',
+                                                 SelfcareMainController]);

@@ -25,6 +25,7 @@
           };
           scope.onFileSelect = function($files) {
             scope.file = $files[0];
+            console.log(scope.file.val());
           };
           
           scope.reset123 = function(){
@@ -33,9 +34,10 @@
         
         scope.submit = function() {   
         	//this.formData.locale = $rootScope.locale.code;
-        	scope.formData.roleName ="Partner";
-        	
-    
+        	if(scope.file){ 
+        		scope.formData.companyLogo=scope.file;
+        	}
+          scope.formData.roleName ="Partner";
           resourceFactory.partnerResource.save(this.formData,function(data){
         		 location.path('/offices');
         		webStorage.add("callingTab", {someString: "Partners" });

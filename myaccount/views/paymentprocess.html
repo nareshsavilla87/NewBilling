@@ -57,7 +57,8 @@
    				</td>
        			<td>
        				<div data-ng-repeat="paymentgatewayData in paymentgatewayDatas track by $index" class="marginbottom10" 
-       					data-ng-if="(paymentgatewayData.name=='dalpay')||(paymentgatewayData.name=='paypal')||(paymentgatewayData.name=='korta')||(paymentgatewayData.name=='globalpay')">
+       					data-ng-if="(paymentgatewayData.name=='dalpay')||(paymentgatewayData.name=='paypal')||(paymentgatewayData.name=='korta')||
+       								(paymentgatewayData.name=='globalpay')||(paymentgatewayData.name=='neteller')">
        					<input type="radio" id="{{paymentgatewayData.name}}" name="selectPWName" class="radioalign" data-ng-model="paymentGatewayName" 
        					   value="{{paymentgatewayData.name}}" data-ng-click="paymentGatewayFun(paymentgatewayData.name)"/>&nbsp;
       					   <label for="{{paymentgatewayData.name}}" class="inlinedis pointer">

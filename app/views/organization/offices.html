@@ -72,12 +72,12 @@
 			</thead>
 			<tbody>
 				<tr class="pointer-main" data-ng-repeat="partner in partners  | filter:filterText">
-					<td class="pointer">{{partner.partnerName}}</td>
-				    <td class="pointer">{{partner.partnerType}}</td> 
-					<td class="pointer">{{partner.parentName}}</td>
-					<td class="pointer">{{partner.currency}}</td>  
-		     	    <td class="pointer">{{partner.officeType}}</td> 
-					<td class="pointer">{{partner.openingDate | DateFormat}}</td>
+					<td class="pointer" data-ng-click="routeToPartner(office.id)">{{partner.partnerName}}</td>
+				    <td class="pointer" data-ng-click="routeToPartner(office.id)">{{partner.partnerType}}</td> 
+					<td class="pointer" data-ng-click="routeToPartner(office.id)">{{partner.parentName}}</td>
+					<td class="pointer" data-ng-click="routeToPartner(office.id)">{{partner.currency}}</td>  
+		     	    <td class="pointer" data-ng-click="routeToPartner(office.id)">{{partner.officeType}}</td> 
+					<td class="pointer" data-ng-click="routeToPartner(office.id)">{{partner.openingDate | DateFormat}}</td>
 				</tr>
 			</tbody> 
 		</table>

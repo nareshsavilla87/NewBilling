@@ -70,7 +70,7 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 					
 			case 'paypal' :
 				var query = {clientId :scope.clientId,locale : "en",planCode : planId,contractPeriod : scope.planData.contractId,
-							  paytermCode:scope.planData.chargeCode,returnUrl:hostName};
+							  paytermCode:scope.planData.billingFrequency,returnUrl:hostName};
 				
 				scope.paymentURL = paymentGatewayValues.paypalUrl+'='+paymentGatewayValues.paypalEmailId+"&item_name="+scope.planData.planCode+"&amount="+scope.planData.price+"" +	  	  				
 				  	  "&custom="+JSON.stringify(query);
@@ -85,6 +85,14 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 				
 				scope.paymentURL = "#/globalpayintegration?key="+encryptedData;
 				break;
+			case 'neteller' :
+				//ClientId,Currency,amount,paytermCode,planCode,contractPeriod,locale,value(account number),verificationCode,source(send as "neteller"),transactionId.
+				var nettellerData = {clientId:scope.clientId,currency:"EUR",total_amount:scope.planData.price,
+									paytermCode:scope.planData.billingFrequency,planCode : planId,
+									contractPeriod : scope.planData.contractId,locale:"en",source:'neteller'};
+				var encodeURINetellerData = encodeURIComponent(JSON.stringify(nettellerData));
+				var encryptedData = CryptoJS.AES.encrypt(encodeURINetellerData,encrytionKey).toString();
+				scope.paymentURL = "#/neteller/"+priceDataId+"?key="+encryptedData;
 						
 			default :
 						break;

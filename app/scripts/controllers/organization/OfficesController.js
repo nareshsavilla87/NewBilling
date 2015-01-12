@@ -21,10 +21,10 @@
 				}
 			}
       
-
 			   scope.routeTo = function(id) {
 				location.path('/viewoffice/' + id);
 			};
+			
 
 			      scope.deepCopy = function(obj) {
 				if (Object.prototype.toString.call(obj) === '[object Array]') {
@@ -76,12 +76,15 @@
 			};  
      
 			 scope.getPartners = function() {
+				 scope.isTreeView = false;
 				 resourceFactory.partnerResource.query(function(data) {
 					 scope.partners =data;
 				 });
-				 console.log("ok");
-				 
 			};
+			
+			 scope.routeToPartner = function(id) {
+					location.path('/viewpartner/' + id);
+				};
     
     }
   });
