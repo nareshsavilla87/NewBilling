@@ -830,7 +830,7 @@
       .when('/editProvison/:id', {
         templateUrl: 'views/clients/editProvisioning.html'
       })
-       .when('/createsmtp', {
+       .when('/createsmtp/:id', {
         templateUrl: 'views/administration/createsmtp.html'
       })
       .when('/itemsale/:officeId',{
