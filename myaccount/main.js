@@ -19,8 +19,6 @@ selfcareApp.config(function($httpProvider ,$translateProvider) {
 SelfcareMainController = function(scope, translate,sessionManager,RequestSender,authenticationService,location,modal,localStorageService,tmhDynamicLocale,webStorage,route){
 	
 	   scope.domReady = true;
-	   scope.selfcare_userName = "";
-	   scope.iskortaTokenAvailable = false;
 	   var urlAfterHash = window.location.hash;
 	   
 	   if(localStorageService.get('selfcare_sessionData')||webStorage.get("clientTotalData")){
