@@ -1,6 +1,6 @@
-ChangeKortaTokenController = function(scope, RequestSender, location,webStorage,localStorageService,modal) {
+ChangeKortaTokenController = function(scope, RequestSender, location,localStorageService,modal) {
 		  
-		 var clientData 	= webStorage.get('selfcareUserData') || {};
+		 var clientData 	= localStorageService.get('clientTotalData') || {};
 		   var clientId 	= clientData.id;
 		  
 		   //values getting form constants.js file
@@ -108,7 +108,6 @@ ChangeKortaTokenController = function(scope, RequestSender, location,webStorage,
 selfcareApp.controller('ChangeKortaTokenController', ['$scope', 
                                                       'RequestSender',
                                                       '$location',
-                                                      'webStorage',
                                                       'localStorageService',
                                                       '$modal',
                                                       ChangeKortaTokenController]);

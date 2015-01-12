@@ -76,3 +76,5 @@ document.write("<script type='text/javascript' src='./controllers/ViewStatementC
 document.write("<script type='text/javascript' src='./controllers/VODEventsController.js'></script>");
 document.write("<script type='text/javascript' src='./controllers/PaymentProcessController.js'></script>");
 document.write("<script type='text/javascript' src='./controllers/NetellerController.js'></script>");
+document.write("<script type='text/javascript' src='./controllers/InternalPaymentController.js'></script>");
+document.write("<script type='text/javascript' src='./controllers/PrepaidPaymentController.js'></script>");

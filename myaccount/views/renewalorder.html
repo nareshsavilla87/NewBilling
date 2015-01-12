@@ -1,152 +1,89 @@
-<div ng-controller="RenewalOrderController">
-<div class="loading-widget-div" data-ng-show="blockUI">
-        <div id="circularG">
-            <div id="circularG_1" class="circularG">
-            </div>
-            <div id="circularG_2" class="circularG">
-            </div>
-            <div id="circularG_3" class="circularG">
-            </div>
-            <div id="circularG_4" class="circularG">
-            </div>
-            <div id="circularG_5" class="circularG">
-            </div>
-            <div id="circularG_6" class="circularG">
-            </div>
-            <div id="circularG_7" class="circularG">
-            </div>
-            <div id="circularG_8" class="circularG">
-            </div>
-        </div>
-</div>
-<br/>
-<h2 style="color:#000000;">{{'link.renewal.order'|translate}}</h2>
-<div ng-show="isOrderPage">
-	<span class="animated wobble" style="margin-left:280px;">{{'header.package.selection'|translate}}</span>
-	<span style="margin-left:270px;">{{'header.payment'|translate}}</span><br/>
-	<img class="animated wobble" style="margin-left:280px;" alt="{{'header.package.selection'|translate}}" src="./selfcare_module/images/Subscribe.jpg" width="60px;">
-	<img style="margin-left:280px;" alt="{{'header.payment'|translate}}" src="./selfcare_module/images/Payment.jpg" width="60px;"><br/>
-	<img class="animated pulse" style="margin-left:290px;margin-top:-28px" alt="ok" src="./selfcare_module/images/checkbox.png" width="40px;">
-</div>
-<div ng-show="isPaymentPage">
-	<span style="margin-left:280px;">{{'header.package.selection'|translate}}</span>
-	<span class="animated wobble" style="margin-left:270px;">{{'header.payment'|translate}}</span><br/>
-	<img style="margin-left:280px;" alt="{{'header.package.selection'|translate}}" src="./selfcare_module/images/Subscribe.jpg" width="60px;">
-	<img class="animated wobble" style="margin-left:280px;" alt="{{'header.payment'|translate}}" src="./selfcare_module/images/Payment.jpg" width="60px;"><br/>
-	<img class="animated pulse" style="margin-left:630px;margin-top:-28px" alt="ok" src="./selfcare_module/images/checkbox.png" width="40px;">
-</div>
-<div ng-show="isRedirectToDalpay">
-<div class="alert alert-info animated pulse" role="alert">
-	<img style="margin-left:400px;" alt="Loading.." ng-src="./selfcare_module/images/loader_circle.gif" width="20px"/>
-         <strong>{{'title.redirecting.dalpay'|translate}}</strong>
-		</div>
-</div>
-      <div ng-show="isOrderPage">
-	        <div class="animated bounce">
-	       	<h3>{{'header.packages'|translate}}</h3>
-	      		<div  style="margin-left:50px;">
-		      <tabset  type="pills">
-			    <tab heading="{{plansData.planCode}}">
-			    <div ng-repeat="contractData in plansData.pricingData track by $index" >
-			    	<div class="cust-body animated fadeInUp">
-			    		<span style="color:#0088cc;font-size:2.5em;">{{contractData.duration}}</span>
-			    		<span class="pull-right">
-			    			<sup class="sup animated pulse">{{'symbol.price'|translate}}</sup>
-			    			<span class="dollars animated pulse">{{contractData.price}}</span>
-			    			<a class="btn btn-primary cust-btn animated swing" 
-			    				  ng-click="selectedPLandAm(contractData.contractId,plan.planId,contractData.billingFrequency,contractData.price,contractData.planCode,contractData.duration)">{{'label.book.order'|translate}}</a>
-			    		</span>
-			    	 </div>
-			    </div>
-			    </tab>
-			  </tabset>
-		    </div> 
-		   </div>
-		   <div class="pull-left">
-		    <a id="cancel" href='#/vieworder/{{orderId}}/{{formData.clientId}}'><button type="reset" class="btn">{{'btn.cancel' | translate}}</button></a>
-		   </div>
+<div data-ng-controller="RenewalOrderController">
+	<div class="loading-widget-div" data-ng-show="blockUI">
+	   <div id="circularG">
+	      <div id="circularG_1" class="circularG"></div><div id="circularG_2" class="circularG"></div>
+	       <div id="circularG_3" class="circularG"></div><div id="circularG_4" class="circularG"></div>
+	       <div id="circularG_5" class="circularG"></div><div id="circularG_6" class="circularG"></div>
+	       <div id="circularG_7" class="circularG"></div><div id="circularG_8" class="circularG"></div>
 	   </div>
-	<form name="paymentBtnForm" novalidate="" class="form-horizontal well" ng-show="isPaymentPage">
-		<br>
-		 <div class="error" ng-show="errorStatus || errorDetails">
-		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
-	    </div>
-		<fieldset class="animated bounce">
-			<h3 style="padding-left:50px;">{{'label.payment.page'|translate}}</h3>
-			<div class="row paddedleft" style="margin-left:200px;">
-			<table width="100%">
-				<tr>
-					<td width="30%"><strong>{{'header.package.name'|translate}}</strong></td>
-					<td width="70%" class="animated pulse" style="color:#0088cc;font-size:1.5em;">:&nbsp;{{formData.planName}}</td>
-				</tr>
-				<tr>
-					<td><strong>{{'header.contract.period'|translate}}</strong></td>
-					<td class="animated pulse" style="color:#0088cc;font-size:1.5em;">:&nbsp;{{duration}}</td>
-				</tr>
-				<tr>
-					<td><strong>{{'header.price'|translate}}</strong></td>
-					<td class="animated pulse" style="color:#0088cc;font-size:1.5em;">:&nbsp;{{formData.planAmount}}</td>
-				</tr>
-				
-			</table>
-			</div><br/>
-			<table style="margin-left:50px;">
-	       		<tr>
-	       			<td>
-            			<div class="control-group">
-            				<div class="controls">
-            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('korta')" ng-model="paymentGatewayName" value="korta"/>
-            						&nbsp;<span  class="btn btn-primary animated pulse">{{'label.korta'|translate}}</span>
-            					
-            					<input type="radio" name="selectType" ng-click="paymentGatewayFun('dalpay')" ng-model="paymentGatewayName" value="dalpay" style="margin-left:20px;"/>
-            						&nbsp;<span  class="btn btn-primary animated pulse">{{'label.dalpay'|translate}}</span>
-            				</div>
-        				 </div>
-	         				 
-	       			</td>
-	       		</tr>
-	       	</table><br/>
-	       
-			<div class="offset3">
-				<a ng-disabled="isRedirectToDalpay" ng-click="cancelPaymentFun()"  class="btn" style="padding:9px 22px;margin-top:-19px;">{{'btn.cancel' | translate}}</a> 
-				<a href="{{paymentDalpayURL}}" ng-click="makePaymentFun()" 
-					ng-disabled="isRedirectToDalpay" class="btn btn-primary cust-btn animated fadeInUp">{{'btn.make.payment' | translate}}</a>
-			</div> 
-		</fieldset>
-	</form>
-	<form name="isAmountZeroForm" novalidate="" class="form-horizontal well" ng-show="isAmountZero">
-		<br>
-		 <div class="error" ng-show="errorStatus || errorDetails">
-		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
-	    </div>
-		<fieldset class="animated bounce">
-			<h3 style="padding-left:50px;">{{'label.subscription.page'|translate}}</h3>
-	 	 <div class="row paddedleft" style="margin-left:200px;">
-			<table width="100%">
-				<tr>
-					<td width="30%"><strong>{{'header.package.name'|translate}}</strong></td>
-					<td width="70%" class="animated pulse" style="color:#0088cc;font-size:1.5em;">:&nbsp;{{formData.planName}}</td>
-				</tr>
-				<tr>
-					<td><strong>{{'header.contract.period'|translate}}</strong></td>
-					<td class="animated pulse" style="color:#0088cc;font-size:1.5em;">:&nbsp;{{duration}}</td>
-				</tr>
-				<tr>
-					<td><strong>{{'header.price'|translate}}</strong></td>
-					<td class="animated pulse" style="color:#0088cc;font-size:1.5em;">:&nbsp;{{formData.planAmount}}</td>
-				</tr>
-				
-			</table>
-			</div><br/>
-	       <div class="offset3">
-				<a ng-click="cancelPaymentFun()"  class="btn">{{'btn.cancel' | translate}}</a> 
-				<a ng-click="finishBtnFun()" class="btn btn-primary animated fadeInUp">{{'btn.subscribe' | translate}}</a>
-			</div> 
-			 
-		</fieldset>
-	</form>
+    </div>
+     <div>
+	    <ul class="breadcrumb">
+	    	 <li><a href="#/services">{{'label.services' | translate}}</a> <span class="divider">/</span></li>
+	        <li class="active">{{'label.renewalorder'|translate}}</li>
+	    </ul>
+    </div><br/>
+	<table>
+	  <tr>
+	  	<td>
+			<div id="packageSelection" class="stepProcess marginleft8 selected">
+				<i class="icon-shopping-cart icon-large"></i> {{'header.package.selection'|translate}}
+			</div>
+		</td>
+		<td valign="top" style="padding:20px 0 0 25px;">
+			<i class="icon-arrow-right icon-xlarge"></i>
+		</td>
+		<td>
+			<div id="paymentSelection" class="stepProcess offset1">
+				<i class="icon-usd"></i>{{'header.payment'|translate}}
+			</div>
+		</td>
+	  </tr>
+	</table>
+	<table>
+	    <tr>
+	 	 <td valign="top">
+		   <accordion close-others="true" >
+			 <accordion-group is-open="planselectionTab" style="width:350px;">
+			   <accordion-heading>
+			     <strong style="margin-right: 12px;">{{'label.select' | translate}}</strong> 
+			     <strong>{{'header.plan.name'|translate}}</strong> 
+			     <i class="pull-right" data-ng-class="{'icon-chevron-up': planselectionTab, 'icon-chevron-down': !planselectionTab}"></i>
+			   </accordion-heading>
+			   <div style="max-height:450px; overflow-y:auto">
+	   			  <table class="table table-striped table-condensed table-hover">
+	           	    <tbody>
+	           	      <tr class="pointer-main" data-ng-repeat="plan in plansData track by $index">
+	           	   	    <td class="pointer" width="16%">
+	           	   	      <span>
+	           	   		  	<input type="checkbox" id="checkbox-2-{{plan.planId}}" class="regular-checkbox big-checkbox" data-ng-checked="isPlanActive=selectedPlanId == '{{plan.planId}}'" data-ng-model="isPlanActive"
+	           	   		  				data-ng-change="singlePlanPricingDatas(plan,isPlanActive)"/>
+	           	   		  	<label for="checkbox-2-{{plan.planId}}"></label>
+	           	   		  </span>
+	           	   	    </td>
+           	   		    <td class="pointer">
+                          <a style="text-decoration: none;"><label>{{plan.planCode}}</label></a>
+                       </td>
+	           	      </tr>
+	                </tbody>
+	              </table>
+			  </div>
+			</accordion-group>
+		   </accordion>
+	     </td>
+	     <td valign="top" data-ng-show="plansData.length > 0" style="width: 45em;padding-left: 2em;">
+	        <div>
+	        	<strong style="font-size:20px;">{{'label.duration' |translate}}</strong>
+	        	<div class="pull-right">
+	        		<strong style="font-size:20px;margin-right: 0.8em;">{{'header.price'|translate}}</strong>
+	        		<strong style="font-size:20px;">{{'header.action'|translate}}</strong>
+	        	</div>
+	        </div>    
+			<div data-ng-show="pricingDatas" data-ng-repeat="pd in pricingDatas track by $index">
+		    	<div class="cust-body">
+		    		<span style="color:#0088cc;font-size:2.5em;">{{pd.duration}}</span>
+		    		<span class="pull-right">
+		    			<span class="dollars">{{pd.price}}</span>
+		    			<a class="btn btn-primary cust-btn" href="#/paymentprocess/renewalorder/{{pd.id}}/{{planId}}/{{pd.price}}">
+		    				  {{'label.book.order'|translate}}
+		    			</a>
+		    		</span>
+		    	 </div>
+		    </div>
+		    <div data-ng-hide="pricingDatas" class="error" style="font-size: 2.5em;margin-top: 40px;text-align: center;">
+		    	 {{'label.msg.noprice' | translate}}
+		    </div>
+		 </td>
+        </tr>
+	 </table>
 </div>

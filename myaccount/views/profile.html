@@ -72,6 +72,8 @@
 						<h3 style="text-transform: uppercase;float:right;"><b class="marginleft10"> {{'label.client.balance'|translate}}: </b></h3>
 					</td><td width="20%">
 					  <h3 style="text-transform: uppercase;"><b class="marginleft10" style="color:#4C66A4;"> {{clientData.balanceAmount}}  </b></h3>
+					</td><td>
+						<a href="#/prepaidpayment" class="btn btn-primary pull-right"><i class="icon-plus icon-white"></i>{{'label.client.prepaid.payment'|translate}}</a>
 					</td></tr>
 				</table>
 				<div style="float:right;" data-ng-hide="clientData.selfcare.authPin=='Not Available'">
@@ -100,7 +102,7 @@
 			 </thead>
 			 <tbody>
 				<tr data-ng-repeat="statement in statementsData.currentPageItems  | filter:filterText" >                 
-	   				<td>{{statement.billDate | DateFormat}}</td>
+	   				<td style="font-weight: inherit;color: #555555;">{{statement.billDate | DateFormat}}</td>
 	   				<td>{{statement.dueDate | DateFormat}}</td>
 	   				<td>{{statement.amount}}</td>
 	   				<td>
@@ -135,7 +137,7 @@
 	        </thead>
 	        <tbody>
 	            <tr data-ng-repeat="ticket in ticketsData.currentPageItems  | filter:filterText1">
-	                <td>{{ticket.priority}}</td>  
+	                <td style="font-weight: inherit;color: #555555;">{{ticket.priority}}</td>  
 	                <td>{{ticket.ticketDate | DateFormat}}</td>
 	                <td>{{ticket.problemDescription}}</td>
 	                <td>{{ticket.status}}</td>

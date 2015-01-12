@@ -7,18 +7,14 @@
             <div id="circularG_7" class="circularG"></div><div id="circularG_8" class="circularG"></div>
         </div>
      </div>      
-	<div class="paddedbottom10">
-		<ul class="breadcrumb">
-	        <li><a href="#/services">{{'label.services' | translate}}</a> <span class="divider">/</span></li>
-	        <li class="active">{{orderData.id}}&nbsp;&nbsp;</li>
-	    </ul>
-	    <div class="pull-right">
-	         <!--<a data-ng-show="(orderData.status == 'DISCONNECTED')" href="#/renewalorder/{{orderId}}/{{clientId}}" class="btn btn-primary"><i class="icon-edit icon-white"></i>{{'btn.renewal' | translate}}</a>
-	         <a data-ng-show ="(orderData.status == 'ACTIVE')" href="#/changeorder/{{orderId}}/{{clientId}}" class="btn btn-primary"><i class="icon-cog"></i>{{'btn.change.plan' | translate}}</a>-->
-	         <a data-ng-show="(orderData.status == 'ACTIVE')||(orderData.status == 'SUSPENDED')" data-ng-click="orderDisconnect(orderData.id)" class="btn btn-primary"><i class="icon-remove fa-spin icon-white"></i>{{'btn.disconnect' | translate}}</a>
-	    </div>
-	</div><br/>
-	<h2 style="color:#0088cc" class="animated fadeInUp">{{ 'label.order.info' | translate }}</h2>
+	<br/>
+	<div style="padding-bottom:5px;background: #939393;">
+	  <h3 style="margin: 0;text-transform: uppercase;display:inline;"><b class="marginleft10" style="font-size: 20px;color: #FFFFFF;">{{'label.order.info'|translate}}</b></h3>
+	   <a data-ng-show="(orderData.status == 'ACTIVE')||(orderData.status == 'SUSPENDED')"  data-ng-click="orderDisconnect(orderData.id)" class="btn btn-primary pull-right" style="margin-right:20px;margin-top: 6px;"><i class="icon-remove fa-spin icon-white"></i>{{'btn.disconnect' | translate}}</a>
+	   <a data-ng-show="(orderData.status == 'ACTIVE')"  href="#/changeorder/{{clientId}}" class="btn btn-primary pull-right" style="margin-right:20px;margin-top: 6px;"><i class="icon-cog"></i>{{'btn.change.order' | translate}}</a>
+	   <a data-ng-show="(orderData.isPrepaid == 'Pre Paid') && (orderData.status == 'DISCONNECTED')"  href="#/renewalorder/{{clientId}}/{{orderData.pdid}}" class="btn btn-primary pull-right" style="margin-right:20px;margin-top: 6px;"><i class="icon-arrow-up icon-white"></i>{{'btn.topup' | translate}}</a>
+	   <a data-ng-show="(orderData.isPrepaid == 'Post Paid' && orderData.status == 'DISCONNECTED')"  href="#/renewalorder/{{clientId}}/{{orderData.pdid}}" class="btn btn-primary pull-right" style="margin-right:20px;margin-top: 6px;"><i class="icon-edit icon-white"></i>{{'btn.renewal' | translate}}</a>
+	</div>
  		<div class="row-fluid">
 		<br/>
 			<div class="row-fluid span">

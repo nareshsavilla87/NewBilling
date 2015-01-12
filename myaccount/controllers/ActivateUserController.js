@@ -1,5 +1,4 @@
-ActivateUserController = function(scope,RequestSender,rootScope,routeParams,http,
-			  							webStorage,httpService,sessionManager,location,API_VERSION,filter,authenticationService,$modal,localStorageService) {
+ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sessionManager,authenticationService,$modal) {
 
 		
 		rootScope.isRegClientProcess = true;
@@ -42,7 +41,7 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,http
 	  					//getting data from c_configuration for isRegister_plan and isisDeviceEnabled
 	  					 var configurationDatas = [];
 	  					  RequestSender.configurationResource.get(function(data){
-	  						
+
 	  						configDeviceAgreeType = JSON.parse(data.clientConfiguration);
 	  						scope.isConfigNationalId = configDeviceAgreeType.nationalId;
 	  						
@@ -257,14 +256,7 @@ selfcareApp.controller('ActivateUserController', ['$scope',
                                                   'RequestSender',
                                                   '$rootScope',
                                                   '$routeParams',
-                                                  '$http',
-                                                  'webStorage',
-                                                  'HttpService',
                                                   'SessionManager',
-                                                  '$location',
-                                                  'API_VERSION',
-                                                  '$filter',
                                                   'AuthenticationService',
                                                   '$modal',
-                                                  'localStorageService'
                                                   ,ActivateUserController]);
