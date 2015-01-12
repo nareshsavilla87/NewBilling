@@ -5,10 +5,12 @@
             scope.clientConfigs = {};
             scope.temp = [];
             scope.myData = [];
+            scope.showSmtp = true;
+            
             resourceFactory.configurationResource.get(function(data) {
                 for(var i in data.globalConfiguration){
-                	if(data.globalConfiguration[i].name == 'Is_Paypal'){
-                		data.globalConfiguration[i].value = "";
+                	if(data.globalConfiguration[i].name == 'smtp'){
+                		scope.showSmtp = false;
                 	}
                 	scope.configs.push(data.globalConfiguration[i]);
                 }
@@ -51,7 +53,7 @@
 		        	
 		        };
 		        
-		        scope.editPaypal= function(id){
+		        /*scope.editPaypal= function(id){
 			      	  scope.errorStatus=[];
 			      	  scope.errorDetails=[];
 			      	  scope.editId=id;
@@ -61,7 +63,7 @@
 			                resolve:{}
 			            });
 			        	
-			        };
+			        };*/
 		        
 		        var editGlobalController=function($scope,$modalInstance){
 			      	  
@@ -93,7 +95,7 @@
 		    		};
 		        };
 		        
-		        var editPaypalController=function($scope,$modalInstance){
+		        /*var editPaypalController=function($scope,$modalInstance){
 
 		        	$scope.formData = {}; 
 		            $scope.statusData=[];
@@ -129,7 +131,7 @@
 		    		$scope.cancel = function(){
 		    			$modalInstance.dismiss('cancel');
 		    		};
-		        };
+		        };*/
 		        
             
 		        scope.enable = function (id, name) {
