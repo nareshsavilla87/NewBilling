@@ -34,13 +34,14 @@
  	"btn.previous"		   		: "Previous",
  	"btn.next"		   			: "Next",
  	"btn.renewal"		   		: "Renewal",
- 	"btn.change.plan"		   	: "Change Plan",
+ 	"btn.change.order"		   	: "Change Order",
  	"btn.disconnect"		   	: "Disconnect",
  	"btn.checkout"		   		: "Check Out",
  	"btn.dalpay"		   		: "Dalpay",
  	"btn.proceed"		   		: "Proceed",
  	"btn.ok"			   		: "OK",
  	"btn.submit"				: "Submit",
+ 	"btn.topup"					: "TopUp",
  	
  "#labels"  :  "--------------------------",
  	"label.product.name" 		: "OBS",
@@ -100,6 +101,8 @@
  	"label.heading.or"			: "OR", 
  	"label.webtv"				: "Web Tv", 
  	"label.password"			: "Password", 
+ 	"label.changeorder"			: "Change Order", 
+ 	"label.renewalorder"		: "Renewal Order", 
  	
  	"label.signup.newuser"			   			: "Signup new user ",
  	"label.or"			   						: " - or - ",
@@ -901,7 +904,19 @@
 "dialog.korta.title.message":"Alert Information",
 "dialog.korta.alert.message":"Dear Customer, You should Register your Card Details In Korta Payment Gateway System before Using this Service.",
 "validation.msg.paymentgateway.verificationCode.length.error":"Please enter valid VerificationCode",
-"validation.msg.paymentgateway.value.cannot.be.blank":"Value cannot be blank"
+"validation.msg.paymentgateway.value.cannot.be.blank":"Value cannot be blank",
+
+"#Prepaid Payment":"",
+"label.client.prepaid.payment":"Payment",
+"label.prepaid.amount":"Amount",
+
+"#Neteller":"",
+"label.neteller.valid.verificationcode":"Please enter valid VerificationCode",
+"label.neteller.valid.value":"Please enter 'Value' details correctly",
+"label.neteller.verificationcode":"Verification Code",
+"label.neteller.value":"NETELLER EmailId",
+"label.neteller.source":"Source",
+"label.neteller.amount":"Amount"
 
 
 
