@@ -1,5 +1,4 @@
-AdditionalOrdersController = function(scope,RequestSender,rootScope,routeParams,modal,
-			  							webStorage,HttpService,authenticationService,localStorageService,sessionManager,location) {
+AdditionalOrdersController = function(scope,RequestSender,routeParams,localStorageService) {
 		  
 			scope.clientId = routeParams.clientId || "";
 		  	scope.planselectionTab = true;
@@ -17,7 +16,7 @@ AdditionalOrdersController = function(scope,RequestSender,rootScope,routeParams,
 			  }
 			  
 		  };
-			
+		if(localStorageService.get("clientTotalData")){
 		  RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
 			  var clientData = data || {};
 			  var totalOrdersData = [];
@@ -42,17 +41,11 @@ AdditionalOrdersController = function(scope,RequestSender,rootScope,routeParams,
 				  });
 			  });
 		  });
+	   }
     };
     
 selfcareApp.controller('AdditionalOrdersController',['$scope',
                                                      'RequestSender',
-                                                     '$rootScope',
                                                      '$routeParams',
-                                                     '$modal',
-                                                     'webStorage',
-                                                     'HttpService',
-                                                     'AuthenticationService',
                                                      'localStorageService',
-                                                     'SessionManager',
-                                                     '$location',
                                                      AdditionalOrdersController]);

@@ -13,8 +13,8 @@
 	    			  
 	    			  scope.isProcessing = true;
 	    			  RequestSender.loginUser.save(scope.loginCredentials,function(successData){
-	    				  localStorageService.add("selfcare_sessionData", {userId: data.userId, authenticationKey: data.base64EncodedAuthenticationKey});
-	    				  webStorage.add("clientTotalData", successData);
+	    				  localStorageService.add("selfcare_sessionData", {clientId: successData.clientId, userId : data.userId,
+	    					  												authenticationKey: data.base64EncodedAuthenticationKey});
 	    				  rootScope.currentSession= {user :successData.clientData.displayName||"abc"};
 	    				  scope.loginCredentials = {};rootScope.signUpCredentials = {};
 	            		  rootScope.signupErrorMsgs  =[];rootScope.loginErrorMsgs  =[];rootScope.infoMsgs  =[];

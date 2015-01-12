@@ -1,4 +1,4 @@
-	  CreateTicketController = function(scope,webStorage, RequestSender, location, dateFilter,localStorageService) {
+	  CreateTicketController = function(scope, RequestSender, location, dateFilter,localStorageService) {
             
 			scope.priorityTypes = [];
 			scope.formData={};						
@@ -15,43 +15,33 @@
 		        	showInputs:false,
 		        	showMeridian:false
 		        });
-			 var clientData= webStorage.get('clientTotalData');
+			 var clientData= localStorageService.get('clientTotalData');
 			 if(clientData){
-			   scope.clientId=clientData.clientId;
+			   var selfcare_sessionData=localStorageService.get('selfcare_sessionData');
+			   scope.formData.assignedTo=selfcare_sessionData.userId;
+			   scope.clientId=clientData.id;
+			   RequestSender.ticketResourceTemplate.get(function(data){ 
+				   
+				   scope.date = data.ticketDate;
+				   scope.priorityTypes=data.priorityType;
+				   for(var i=0;i<scope.priorityTypes.length;i++){
+					   
+					   if(scope.priorityTypes[i].value=='LOW'){
+						   scope.formData.priority=scope.priorityTypes[i].value;
+					   }
+				   }
+				   scope.problemsDatas=data.problemsDatas;
+				   scope.usersDatas=data.usersData;
+				   scope.sourceData=data.sourceData;
+				   for(var i=0;i<scope.sourceData.length;i++){
+					   
+					   if(scope.sourceData[i].mCodeValue=='Phone'){
+						   scope.formData.sourceOfTicket=scope.sourceData[i].mCodeValue;
+					   }
+				   }
+			   });
 			 }
 					        
-		        var selfcare_sessionData=localStorageService.get('selfcare_sessionData');
-		        if(selfcare_sessionData){
-		        	scope.formData.assignedTo=selfcare_sessionData.userId;
-		        }
-		       
-		     RequestSender.ticketResourceTemplate.get(function(data){ 
-            	
-              scope.date = data.ticketDate;
-              scope.priorityTypes=data.priorityType;
-              for(var i=0;i<scope.priorityTypes.length;i++){
-            	  
-              	if(scope.priorityTypes[i].value=='LOW'){
-              		scope.formData.priority=scope.priorityTypes[i].value;
-              	}
-              }
-              scope.problemsDatas=data.problemsDatas;
-              scope.usersDatas=data.usersData;
-              scope.sourceData=data.sourceData;
-              for(var i=0;i<scope.sourceData.length;i++){
-            	  
-                	if(scope.sourceData[i].mCodeValue=='Phone'){
-                		scope.formData.sourceOfTicket=scope.sourceData[i].mCodeValue;
-                	}
-                }
-            });
-            
-            
-            scope.reset123 = function(){
-         	   webStorage.add("callingTab", {someString: "Tickets" });
-         	   delete scope.first.time;
-            };
-           
 			scope.submit = function() { 
 				this.formData.locale = 'en';
 				scope.first.time=$('#timepicker1').val();
@@ -74,7 +64,6 @@
     };
 
 selfcareApp.controller('CreateTicketController', ['$scope', 
-                                                  'webStorage',
                                                   'RequestSender',
                                                   '$location',
                                                   'dateFilter', 
