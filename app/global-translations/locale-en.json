@@ -2491,9 +2491,23 @@
 "error.msg.agreement.duplicate.source.data.entry.issue":"Agreement with sourceCategory already exists",
 
 "label.pgconfig.editneteller":"Edit Neteller",
-"label.pgconfig.neteller.url":"URL",
-"label.pgconfig.neteller.clientid":"Client Id",
-"label.pgconfig.neteller.secretcode":"Secret Code"
+"label.pgconfig.neteller.url":"Neteller URL",
+"label.pgconfig.neteller.clientid":"Neteller ClientId",
+"label.pgconfig.neteller.secretcode":"Neteller SecretCode",
+"label.pgconfig.editmobilepaypal":"Edit Paypal",
+"label.pgconfig.paypal.mobile.clientid":"Paypal API ClientId",
+"label.pgconfig.mobilepaypal.secretCode":"Paypal SecretCode",
+
+"label.configure":"Configurations",
+
+"#smtp":".......",
+"label.configure.smtp":"Configure Email",
+"label.configure.smtp.true":"True",
+"label.configure.smtp.false":"False",
+"error.configure.smtp.invalid.email":"Please give valid EmailId"
+
+
+
 
 
 }
