@@ -1,19 +1,21 @@
-ViewOrderController = function(scope,RequestSender,location,routeParams,$modal,dateFilter,route) {
-		  scope.orderData = {};
-		  scope.orderPricingDatas = [];
+ViewOrderController = function(scope,RequestSender,routeParams,$modal,dateFilter,route,localStorageService) {
+	
 		  scope.orderId = routeParams.orderId;
 		  scope.clientId = routeParams.clientId;
 		  
-		  
-		  RequestSender.getSingleOrderResource.get({orderId: routeParams.orderId},function(data){
-			  scope.orderData=data.orderData;
-			  scope.orderPricingDatas = data.orderPriceData;
-			  if(data.orderData.isPrepaid == 'Y'){
-	            	scope.orderData.isPrepaid="Pre Paid";
-	            }else{
-	            	scope.orderData.isPrepaid="Post Paid";
-	            }
-		  });
+		  if(localStorageService.get('selfcare_sessionData')){
+			  scope.orderData = {};
+			  scope.orderPricingDatas = [];
+			  RequestSender.getSingleOrderResource.get({orderId: scope.orderId},function(data){
+				  scope.orderData=data.orderData;
+				  scope.orderPricingDatas = data.orderPriceData;
+				  if(data.orderData.isPrepaid == 'Y'){
+		            	scope.orderData.isPrepaid="Pre Paid";
+		            }else{
+		            	scope.orderData.isPrepaid="Post Paid";
+		            }
+			  });
+		  }
 		  
 		 var OrderDisconnectPopupController = function ($scope, $modalInstance) {
               
@@ -24,10 +26,6 @@ ViewOrderController = function(scope,RequestSender,location,routeParams,$modal,d
         	  $scope.start = {};
         	  $scope.start.date = new Date();
         	  $scope.formData = {};
-        	  
-        	  /*RequestSender.OrderDisconnectResource.get(function(data) {
-                  $scope.disconnectDetails = data.disconnectDetails;
-              });*/
         	  
         	  $scope.approveDisconnection = function () {
         		  $scope.flagOrderDisconnect=true;
@@ -53,26 +51,6 @@ ViewOrderController = function(scope,RequestSender,location,routeParams,$modal,d
               
           };
           
-          /*var ApproveReconnectPopupController = function ($scope, $modalInstance) {
-        	  $scope.flagApproveReconnect=false;
-        	  $scope.formData = {};
-        	  
-              $scope.approveReconnect = function () {
-
-              	$scope.flagApproveReconnect=true;
-              	RequestSender.OrderreconnectResource.update({orderId: routeParams.orderId} ,$scope.formData,function(data) {              	
-              		$modalInstance.close('delete');
-    	        	route.reload();
-                  },function(errData){
-  	        		$scope.flagApproveReconnect = false;
-  		          });
-              	
-              };
-              $scope.cancelReconnect = function () {
-                  $modalInstance.dismiss('cancel');
-              };
-          };*/
-		  
 		  scope.orderDisconnect = function(orderId){
 			  scope.orderDataId = orderId;
 			  scope.errorStatus=[];scope.errorDetails=[];
@@ -83,21 +61,13 @@ ViewOrderController = function(scope,RequestSender,location,routeParams,$modal,d
               });
           };
           
-          /*scope.reconnect = function (){
-          	scope.errorStatus=[];scope.errorDetails=[];
-          	 $modal.open({
-                   templateUrl: 'ApproveReconnect.html',
-                   controller: ApproveReconnectPopupController,
-                   resolve:{}
-               });
-            };*/
     };
     
 selfcareApp.controller('ViewOrderController', ['$scope',
                                                'RequestSender',
-                                               '$location',
                                                '$routeParams',
                                                '$modal',
                                                'dateFilter',
                                                '$route', 
+                                               'localStorageService', 
                                                ViewOrderController]);
