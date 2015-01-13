@@ -17,6 +17,7 @@
 	        scope.categoryType=clientData.categoryType;
 	        scope.email=clientData.email;
 	        scope.phone=clientData.phone;
+	        scope.formData ={};
 	        if(scope.imagePresent){
 	        scope.image=clientData.image;
 	        }

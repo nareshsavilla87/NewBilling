@@ -63,8 +63,10 @@
 			};
 
 			scope.submit = function() {
+				
 				this.formData.locale = $rootScope.locale.code;
 				this.formData.clientId =routeParams.id;
+				this.formData.deviceId =scope.hwSerialNumber;
 				this.formData.dateFormat = "dd MMMM yyyy";
 				var adjustmentDate = dateFilter(scope.start.date,
 						'dd MMMM yyyy');
