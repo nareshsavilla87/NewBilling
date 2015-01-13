@@ -103,6 +103,7 @@
  	"label.password"			: "lykilorðið", 
  	"label.changeorder"			: "Breyta Panta", 
  	"label.renewalorder"		: "endurnýjun Panta", 
+ 	"label.voucher.pinNo"		: "Úttektarmiðinn pinna Númer", 
  	
  	"label.signup.newuser"			 		    : "stofnaðu aðgang ",
  	"label.or"			 					    : " - eða - ",
@@ -343,14 +344,13 @@
 	 "validation.msg.activationprocess.device.cannot.be.blank"		: "Mac auðkenni má ekki vera autt",
 	 
  "# common errors ":"....",
-  "validation.msg.office.name.cannot.be.blank":"Office Name cannot be blank",
-  "error.msg.not.authorized":"Insufficient privileges to perform this action.",
+  "error.msg.billing.address.city.not.found"		: "borg ekki fann",
+  "error.internalPayment.invalidPin"				: "Ógilt Úttektarmiðinn pinna :",
   
   
-    "#address":".........",
-  "error.msg.billing.address.city.not.found":"borg ekki fann",
-  
-  "error.msg.currency.duplicate.configuration":"Currency is already configured",
+  "error.msg.currency.duplicate.configuration"		:"Currency is already configured",
+  "validation.msg.office.name.cannot.be.blank"		: "Office Name cannot be blank",
+  "error.msg.not.authorized"						: "Insufficient privileges to perform this action.",
 
   "#Admin users":"",
   "validation.msg.user.username.cannot.be.blank":"User Name cannot be blank",

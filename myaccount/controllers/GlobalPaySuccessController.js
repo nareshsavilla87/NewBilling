@@ -14,7 +14,11 @@ GlobalPaySuccessController = function(RequestSender, location,localStorageServic
 	    			localStorageService.remove("globalpayStorageData", data);
 	    			localStorageService.add("paymentgatewayresponse", data);
 	    			location.$$search = {};
-	    			location.path("/orderbookingscreen/"+screenName+"/"+clientId+"/"+planId+"/"+priceId);
+	    			if(screenName == 'payment'){
+						location.path('/paymentgatewayresponse/'+formData.clientId);
+					}else {
+						location.path("/orderbookingscreen/"+screenName+"/"+clientId+"/"+planId+"/"+priceId);
+					}
 	    		});
     		}
     		

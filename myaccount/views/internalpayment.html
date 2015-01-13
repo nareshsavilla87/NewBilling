@@ -1,8 +1,4 @@
 <div data-ng-controller="InternalPaymentController">
-
-</div>
-
-<div data-ng-controller="InternalPaymentController">
 	 <div class="loading-widget-div" data-ng-show="blockUI">
         <div id="circularG">
         	<div id="circularG_1" class="circularG"></div><div id="circularG_2" class="circularG"></div>
@@ -11,46 +7,26 @@
             <div id="circularG_7" class="circularG"></div><div id="circularG_8" class="circularG"></div>
         </div>
     </div>
-	<!-- <div>
-		<ul class="breadcrumb">
-			<li><a href="#/tickets">{{'link.tickets' | translate}}</a> <span class="divider">/</span></li>
-			<li class="active">{{'label.ticket.add.newticket' | translate}}</li>
-		</ul>
-	</div> -->
-<form name="createPaymentform" class="form-horizontal well"  data-ng-submit="submit()">
-
- <div class="error" data-ng-show="errorStatus || errorDetails">
-		<label>{{'label.contract.error' | translate}}</label>
+<form name="createPaymentform" novalidate class="form-horizontal well"  data-ng-submit="submit()">
+<br/><br/>
+ 	<div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.error' | translate}}</label>
 		<label data-ng-show="errorStatus">{{errorStatus}}</label>
 		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
-	    </div>
+	</div>
 	<fieldset>
-		<table class="fullwidth">
-			<tr>
-				<td>
-					<div class="control-group" style="margin: 100px 100px 20px;">
-                        <label class="control-label">{{ 'label.voucher.pinNo' | translate }}</label>
-                        <div class="controls">
-                            <input type="text" data-ng-model="formData.pinNumber" data-ng-onblur="pinNoValidationFun(formData.pinNumber)" 
-                            required/>                        									
-                        </div>
-          			</div>	
-				</td>
-			</tr>
-			<!-- <tr>
-				<td>
-					<div class="control-group" style="margin: 0px 100px 20px;">
-                        <label class="control-label">{{ 'label.voucher.amount' | translate }}</label>
-                        <div class="controls">
-                            <input type="text" data-ng-model="formData.amount" readonly required/>                        									
-                        </div>
-          			</div>	
-				</td>
-				
-			</tr> -->
-			<tr>
-		   <tr><td colspan="2" align="">
-			<a href="#/{{screenName}}/{{clientId}}" style="margin-left: 40.543%;" class="btn offset5">{{'btn.cancel' | translate}}</a> 
+		<table class="offset2">
+			<tr><td>
+			   <div class="control-group" >
+                  <label class="control-label">{{ 'label.voucher.pinNo' | translate }}</label>
+                  <div class="controls">
+                     <input type="text" data-ng-model="formData.pinNumber" data-ng-onblur="pinNoValidationFun(formData.pinNumber)" 
+                    	 required data-late-Validate/>                        									
+                  </div>
+       			</div>	
+			</td></tr>
+		   <tr><td align="right">
+			<a href="#/{{screenName}}/{{formData.clientId}}" class="btn">{{'btn.cancel' | translate}}</a> 
 			<button id="submit" type="submit" data-ng-disabled="!createPaymentform.$valid" class="btn btn-primary">{{'btn.save' | translate}}</button>
 		</td></tr></table>
 

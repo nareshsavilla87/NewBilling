@@ -6,36 +6,52 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 	var clientData 			= storageData.clientData;
 	scope.clientId			= clientData.id;
 	scope.planData			= {};
-	scope.screenName        = {};
 	var encrytionKey 		= selfcareModels.encriptionKey;
+	scope.amountEmpty 		= true;
 	
-		  scope.paymentgatewayDatas = [];
-		  RequestSender.paymentGatewayConfigResource.get(function(data) {
-			  if(data.globalConfiguration){
-				  for(var i in data.globalConfiguration){
-					   if(data.globalConfiguration[i].enabled){
-						   scope.paymentgatewayDatas.push(data.globalConfiguration[i]);
-					   }
-				  }
+	  scope.paymentgatewayDatas = [];
+	  RequestSender.paymentGatewayConfigResource.get(function(data) {
+		  if(data.globalConfiguration){
+			  for(var i in data.globalConfiguration){
+				   if(data.globalConfiguration[i].enabled){
+					   scope.paymentgatewayDatas.push(data.globalConfiguration[i]);
+				   }
 			  }
-		  });
+		  }
+	  });
 	
 	var hostName = selfcareModels.selfcareAppUrl;
 	
-	scope.paymentGatewayDispaly = function(amount){
-		scope.planData.price = amount;
-		scope.planData.planCode = 'Pay';
-		scope.planData.id = 0;
-		if(amount<=0){
-			alert("Amount Must be Greater than Zero");
-			scope.formData.amonut = '';
+	//this function calls when comeout from amount field
+	scope.amountFieldFun = function(amount){
+		if(amount){
+			if(amount<=0){
+				scope.amountEmpty = true;
+				delete scope.planData.price;
+				delete scope.planData.planCode;
+				delete scope.planData.id;
+				delete scope.amount;
+				alert("Amount Must be Greater than Zero");
+			}else{
+				scope.amountEmpty 		= false;
+				scope.planData.price 	= amount;
+				scope.planData.planCode = 'Pay';
+				scope.planData.id 		= 0;
+				scope.paymentGatewayName = scope.paymentgatewayDatas.length>=1 ?scope.paymentgatewayDatas[1].name :"";
+				scope.paymentGatewayFun(scope.paymentGatewayName);
+			}
+		}else{
+			scope.amountEmpty 		= true;
 		}
 	};
-	scope.paymentGateway  = function(paymentGatewayName){
+	
+	//this fun call when user select a particular PW 
+	scope.paymentGWNameFun  = function(paymentGatewayName){
 		scope.paymentGatewayName = paymentGatewayName;
 	};
 	  
-	   scope.paymentGatewayFun  = function(paymentGatewayName){
+	//this fun call when the user click on proceed btn
+	scope.paymentGatewayFun  = function(paymentGatewayName){
 			  scope.termsAndConditions = false;
 			  var paymentGatewayValues = {};
 			  for (var i in scope.paymentgatewayDatas){
@@ -95,12 +111,16 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 				scope.paymentURL =  "#/internalpayment/"+'payment'+"/"+scope.clientId+"/"+0+"/"+0+"/"+scope.planData.price;
 				break;
 					
-			default :
-						break;
+			default : break;
 			}
 		    	  		 	
 		  };
     
+	//this fun call when the user click on proceed btn
+	  scope.proceedFun = function (){
+		  scope.paymentGatewayFun(scope.paymentGatewayName);
+	  };
+	  
     var TermsandConditionsController = function($scope,$modalInstance){
     	$scope.done = function(){
     		$modalInstance.dismiss('cancel');
@@ -113,10 +133,6 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 				 controller: TermsandConditionsController,
 				 resolve:{}
 		    });
-    };
-    
-    scope.makePaymentFun = function (paymentGatewayName){
-    	scope.paymentGatewayFun(paymentGatewayName);
     };
     
     

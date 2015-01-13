@@ -105,7 +105,7 @@
 									<div class="control-group" style=" margin-top: -45px;">
 									   <div class="controls">
               							<input data-ng-show = "formData.pinType=='VALUE'" type="text" id="pinValue" data-ng-model="formData.pinValue"/>
-              							<select data-ng-show="formData.pinType=='PRODUCT'" id="productValue" data-ng-model="formData.pinValue"  data-ng-options="planData.id as planData.planCode for planData in planDatas">
+              							<select data-ng-show="formData.pinType=='PRODUCT'" id="productValue" data-ng-model="formData.pinValue"  data-ng-options="planPriceData.id as planPriceData.plan_duration for  planPriceData in planPriceData">
               							</select>
               						   </div>
               						</div>

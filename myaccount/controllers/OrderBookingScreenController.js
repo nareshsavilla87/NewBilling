@@ -47,17 +47,23 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 					changeOrderData.contractPeriod 	 = planData.contractId; 
 					changeOrderData.planCode 		 = planId;
 					changeOrderData.disconnectReason = "Not Interested";
-					RequestSender.changeOrderResource.update({'orderId':planId},changeOrderData,function(data){
+					var orderId						 = "";
+					localStorageService.get("storageData")? orderId = localStorageService.get("storageData").orderId
+														  : orderId = "";
+					RequestSender.changeOrderResource.update({'orderId':orderId},changeOrderData,function(data){
 						successFun(planData);
-	                  });
+					});
 				}else if(screenName == "renewalorder"){
 						 var renewalOrderData 			 = {};
 						 renewalOrderData.renewalPeriod  = planData.contractId; 
 						 renewalOrderData.description	 = 'Order Renewal through selfcare'; 
 						 
-					 RequestSender.orderRenewalResource.save({orderId :planId},renewalOrderData,function(data){
-						 successFun(planData);
-					 });
+						 var orderId						 = "";
+						localStorageService.get("storageData")? orderId = localStorageService.get("storageData").orderId
+																  : orderId = "";
+						RequestSender.orderRenewalResource.save({orderId :orderId},renewalOrderData,function(data){
+							 successFun(planData);
+						 });
 				}
 				break;
 			  }
