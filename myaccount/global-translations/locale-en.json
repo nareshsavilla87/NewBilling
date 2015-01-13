@@ -103,6 +103,7 @@
  	"label.password"			: "Password", 
  	"label.changeorder"			: "Change Order", 
  	"label.renewalorder"		: "Renewal Order", 
+ 	"label.voucher.pinNo"		: "Voucher Pin Number", 
  	
  	"label.signup.newuser"			   			: "Signup new user ",
  	"label.or"			   						: " - or - ",
@@ -343,14 +344,13 @@
 	 "validation.msg.activationprocess.device.cannot.be.blank"		: "Mac Id field cannot be blank",
 	 
  "# common errors ":"....",
-  "validation.msg.office.name.cannot.be.blank":"Office Name cannot be blank",
-  "error.msg.not.authorized":"Insufficient privileges to perform this action.",
+  "error.msg.billing.address.city.not.found"	    : "City Not Found",
+  "error.internalPayment.invalidPin"				: "Invalid Voucher Pin :",
+  	
   
-  
-  "#address":".........",
-  "error.msg.billing.address.city.not.found":"City Not Found",
-  
-  "error.msg.currency.duplicate.configuration":"Currency is already configured",
+  "error.msg.currency.duplicate.configuration"		:"Currency is already configured",
+  "validation.msg.office.name.cannot.be.blank"		: "Office Name cannot be blank",
+  "error.msg.not.authorized"						: "Insufficient privileges to perform this action.",
 
   "#Admin users":"",
   "validation.msg.user.username.cannot.be.blank":"User Name cannot be blank",

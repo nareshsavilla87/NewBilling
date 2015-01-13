@@ -2,6 +2,7 @@ RenewalOrderController = function(scope,RequestSender,routeParams,localStorageSe
 		  
 	scope.clientId = routeParams.clientId || "";
 	var planId	   = routeParams.planId || "";
+	var orderId	   = routeParams.orderId || "";
   	scope.planselectionTab = true;
   	
   scope.singlePlanPricingDatas = function(singlePlanData,isPlanActive){
@@ -31,7 +32,7 @@ RenewalOrderController = function(scope,RequestSender,routeParams,localStorageSe
 				if((totalOrdersData[j].planId == planId) && (totalOrdersData[j].isPrepaid == 'Y')){
 					scope.plansData.push(totalOrdersData[j]); 
 					scope.singlePlanPricingDatas(scope.plansData[0],true);
-					localStorageService.add("storageData",{clientData:clientData,totalOrdersData:totalOrdersData});
+					localStorageService.add("storageData",{clientData:clientData,totalOrdersData:totalOrdersData,orderId:orderId});
 					break;
 				}
 			  }

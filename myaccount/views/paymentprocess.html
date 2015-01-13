@@ -76,7 +76,7 @@
           	     <td>
           	       <div class="control-group margintop20">
 					 <div class="controls">
-					    <input type="checkbox" name="checkbox" data-ng-model="termsAndConditions" > 
+					    <input type="checkbox" name="checkbox" data-ng-model="termsAndConditions" style="vertical-align: sub;"> 
 					    <span> {{'label.agree' | translate}} <a data-ng-click="termsAndConditionsFun()" style="color: #0066cc;text-decoration: underline;">
 					    		{{'label.Terms.Conditions' | translate}}</a> 
 					    </span>
@@ -91,7 +91,7 @@
        		 	<td style="padding-top: 30px;" >
       		 	   <div >
 					  <a class="btn btn-primary" data-ng-hide="termsAndConditions" data-ng-disabled="true">{{'btn.proceed' | translate}}</a>
-					  <a data-ng-click="makePaymentFun()" class="btn btn-primary" href="{{paymentURL}}" data-ng-show="termsAndConditions">
+					  <a class="btn btn-primary" href="{{paymentURL}}" data-ng-show="termsAndConditions">
 					  	{{'btn.proceed' | translate}}
 					  </a>
 				   </div>
