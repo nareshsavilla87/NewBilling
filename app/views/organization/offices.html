@@ -63,21 +63,21 @@
 			<thead>
 				<tr class="graybg">
 					<th>{{ 'table.heading.name' | translate }}</th>
-					<th>{{ 'table.heading.partner type' | translate }}</th>
+			<!-- 		<th>{{ 'table.heading.partner type' | translate }}</th> -->
 					<th>{{ 'table.heading.parent office' | translate }}</th>
 					<th>{{ 'table.heading.partner currency' | translate }}</th>
-					<th>{{ 'table.heading.office type' | translate }}</th> 
+					<!-- <th>{{ 'table.heading.office type' | translate }}</th>  -->
 					<th>{{ 'table.heading.opened on' | translate }}</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr class="pointer-main" data-ng-repeat="partner in partners  | filter:filterText">
-					<td class="pointer" data-ng-click="routeToPartner(office.id)">{{partner.partnerName}}</td>
-				    <td class="pointer" data-ng-click="routeToPartner(office.id)">{{partner.partnerType}}</td> 
-					<td class="pointer" data-ng-click="routeToPartner(office.id)">{{partner.parentName}}</td>
-					<td class="pointer" data-ng-click="routeToPartner(office.id)">{{partner.currency}}</td>  
-		     	    <td class="pointer" data-ng-click="routeToPartner(office.id)">{{partner.officeType}}</td> 
-					<td class="pointer" data-ng-click="routeToPartner(office.id)">{{partner.openingDate | DateFormat}}</td>
+					<td class="pointer" data-ng-click="routeToPartner(partner.id)">{{partner.partnerName}}</td>
+				  <!--   <td class="pointer" data-ng-click="routeToPartner(partner.id)">{{partner.partnerType}}</td>  -->
+					<td class="pointer" data-ng-click="routeToPartner(partner.id)">{{partner.parentName}}</td>
+					<td class="pointer" data-ng-click="routeToPartner(partner.id)">{{partner.currency}}</td>  
+		     	   <!--  <td class="pointer" data-ng-click="routeToPartner(partner.id)">{{partner.officeType}}</td>  -->
+					<td class="pointer" data-ng-click="routeToPartner(partner.id)">{{partner.openingDate | DateFormat}}</td>
 				</tr>
 			</tbody> 
 		</table>

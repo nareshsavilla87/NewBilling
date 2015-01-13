@@ -1053,7 +1053,15 @@
                 get: {method: 'GET', params: {}}
             }),
             
-            partnerResource: defineResource(apiVer + "/partners", {}, {
+            partnerResource: defineResource(apiVer + "/partners/:partnerId", {partnerId :'@partnerId'}, {
+            	 update: { method: 'PUT' }
+            }),
+            
+            agreementTemplateResource: defineResource(apiVer + "/agreements/template", {}, {
+                
+            }),
+            
+            agreementResource: defineResource(apiVer + "/agreements/:partnerId", {partnerId :'@partnerId'}, {
             	 update: { method: 'PUT' }
             }),
       

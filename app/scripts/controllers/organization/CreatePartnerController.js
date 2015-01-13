@@ -25,7 +25,7 @@
           };
           scope.onFileSelect = function($files) {
             scope.file = $files[0];
-            console.log(scope.file.val());
+           
           };
           
           scope.reset123 = function(){

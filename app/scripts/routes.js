@@ -963,6 +963,12 @@
       .when('/createpartner', {
         templateUrl: 'views/organization/createpartner.html'
       })
+       .when('/viewpartner/:id', {
+        templateUrl: 'views/organization/viewpartner.html'
+      })
+       .when('/createpartneragreement/:id', {
+        templateUrl: 'views/organization/createpartneragreement.html'
+      })
       ;
     
     $locationProvider.html5Mode(false);
