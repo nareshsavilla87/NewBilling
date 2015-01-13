@@ -979,6 +979,9 @@
   "validation.msg.voucher.pinType.cannot.be.blank":"PinType cannot be blank",
   "validation.msg.voucher.pinValue.cannot.be.blank":"PinValue cannot be blank",
   "validation.msg.voucher.expiryDate.cannot.be.blank":"Expiry Date cannot be blank",
+  "button.exportBatch":"Export Batch",
+  "label.downloadVoucherPinData":"Download Voucher Data",
+  "label.processVoucherPinData":"Process Voucher Data",
   
   
   "#Table heading Voucher pins":"....",
