@@ -96,7 +96,7 @@
            	<div class="control-group">
 				<label class="control-label">{{'label.pgconfig.paypal.url' | translate}}<span class="required">*</span> :</label>
 			 	<div class="controls">
-              		<input  type="text" name="url" ng-model="formData.url" placeholder="enter Paypal here" required late-Validate/><br>
+              		<input  type="text" name="url" ng-model="formData.paypalUrl" placeholder="enter Paypal here" required late-Validate/><br>
                     <span  ng-show="editPaypalForm.url.$invalid">
                     	<small class="error" ng-show="editPaypalForm.url.$error.req">
                         	Required Field
@@ -107,7 +107,7 @@
           	<div class="control-group">
             	 <label class="control-label">{{'label.pgconfig.paypal.bussiness.id' | translate}}<span class="required">*</span> :</label>
 			 	 <div class="controls">
-              		<input type="text" name="emailId" ng-model="formData.emailId" placeholder="enter Bussiness account EmailId here" required late-Validate/><br>
+              		<input type="text" name="emailId" ng-model="formData.paypalEmailId" placeholder="enter Bussiness account EmailId here" required late-Validate/><br>
 					<span  ng-show="editPaypalForm.emailId.$invalid">
                     	<small class="error" ng-show="editPaypalForm.emailId.$error.req">
                         	Required Field
@@ -286,6 +286,50 @@
         </div>
 	</form>
 	</script>
+	
+	<script type="text/ng-template" id="editMobilePaypal.html">
+
+	   <div class="modal-header silver">
+          <h3 class="bolder">{{'label.pgconfig.editmobilepaypal' | translate}}</h3>
+        </div>
+	 <form name="editMobilePaypalForm" novalidate="" class="form-horizontal well" ng-submit="submit()">
+        <div class="modal-body">
+			 <div class="error" ng-show="errorStatus || errorDetails">
+				<label>{{'label.contract.error' | translate}}</label>
+				<label ng-show="errorStatus">{{errorStatus}}</label>
+				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	   		 </div>
+ 		  <fieldset>
+           	<div class="control-group">
+				<label class="control-label">{{'label.pgconfig.paypal.mobile.clientid' | translate}}<span class="required">*</span> :</label>
+			 	<div class="controls">
+              		<input  type="text" name="clientid" ng-model="formData.clientId" placeholder="enter Paypal ClientId here" required late-Validate/><br>
+                    <span  ng-show="editMobilePaypalForm.url.$invalid">
+                    	<small class="error" ng-show="editMobilePaypalForm.clientid.$error.req">
+                        	Required Field
+                    	</small>
+                   </span>
+            	</div>
+           	</div>
+          	<div class="control-group">
+            	 <label class="control-label">{{'label.pgconfig.mobilepaypal.secretCode' | translate}}<span class="required">*</span> :</label>
+			 	 <div class="controls">
+              		<input type="text" name="secretCode" ng-model="formData.secretCode" placeholder="enter Bussiness account EmailId here" required late-Validate/><br>
+					<span  ng-show="editMobilePaypalForm.emailId.$invalid">
+                    	<small class="error" ng-show="editMobilePaypalForm.secretCode.$error.req">
+                        	Required Field
+                    	</small>
+                   </span>
+            	 </div>
+	      	</div>
+		  </fieldset>
+        </div>
+        <div class="modal-footer">
+          <button id="cancel" class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+     	  <button id="submit" type="submit" class="btn btn-primary" ng-disabled="(!editMobilePaypalForm.$valid)" >{{'label.confirm' | translate}}</button>
+        </div>
+	</form>
+</script> 
     
     
 </div>
