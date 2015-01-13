@@ -55,50 +55,45 @@
 						resolve : {}
 					});
 				}
+				if(name == 'is-paypal' || name == 'is-paypal-for-ios'){
+					$modal.open({
+						templateUrl : 'editMobilePaypal.html',
+						controller : editMobilePaypalController,
+						resolve : {}
+					});
+				}
+				/*if(name == 'neteller'){
+					$modal.open({
+						templateUrl : 'editneteller.html',
+						controller : editNetellerController,
+						resolve : {}
+					});
+				}*/
 
 			};
-
-			/*scope.editPaypal = function(id) {
-				scope.errorStatus = [];
-				scope.errorDetails = [];
-				scope.editId = id;
-				$modal.open({
-					templateUrl : 'editPaypal.html',
-					controller : editPaypalController,
-					resolve : {}
-				});
-
-			};*/
 			
 			var editGlobalpayController = function($scope, $modalInstance) {
 
 				$scope.formData = {};
-				$scope.statusData = [];
 				$scope.updateData = {};
-
+	
 				// DATA GET
-				resourceFactory.paymentGatewayConfigurationResource.get({ configId : scope.editId }, function(data) {
-					var value = data.value;
-					var arr = value.split(",");
-					var merchantId = arr[0].split('"');
-					var userName = arr[1].split('"');
-					var password = arr[2].split('"');
-
-					$scope.formData.merchantId = merchantId[3];
-					$scope.formData.userName = userName[3];
-					$scope.formData.password = password[3];
+				resourceFactory.paymentGatewayConfigurationResource.get({ configId : scope.editId }, function(data) {		
+					var	val 	= JSON.parse(data.value);
+					$scope.formData.merchantId = val['merchantId'];
+					$scope.formData.userName = val['userName'];
+					$scope.formData.password = val['password'];
 				});
 
 				$scope.submit = function() {
-					
-					$scope.kortaData = {
-						"value" : '{"merchantId" : "' + $scope.formData.merchantId
-								+ '","userName" : "' + $scope.formData.userName
-								+ '","password" : "' + $scope.formData.password
-								+ '"}'
+					$scope.globalpayData = {
+							"value" : '{"merchantId" : "' + $scope.formData.merchantId
+									+ '","userName" : "' + $scope.formData.userName
+									+ '","password" : "' + $scope.formData.password
+									+ '"}'	
 					};
-					$scope.updateData.value = $scope.kortaData.value;
-					//console.log(this.updateData);
+						
+					$scope.updateData.value = $scope.globalpayData.value;
 					resourceFactory.paymentGatewayConfigurationResource.update({configId : scope.editId}, $scope.updateData, function(data) {
 						$modalInstance.close('delete');
 						route.reload();
@@ -114,32 +109,24 @@
 			var editKortaController = function($scope, $modalInstance) {
 
 				$scope.formData = {};
-				$scope.statusData = [];
 				$scope.updateData = {};
-
+				
 				// DATA GET
 				resourceFactory.paymentGatewayConfigurationResource.get({ configId : scope.editId }, function(data) {
-					var value = data.value;
-					var arr = value.split(",");
-					var merchantId = arr[0].split('"');
-					var terminalId = arr[1].split('"');
-					var secretCode = arr[2].split('"');
-
-					$scope.formData.merchantId = merchantId[3];
-					$scope.formData.terminalId = terminalId[3];
-					$scope.formData.secretCode = secretCode[3];
+					var	val 	= JSON.parse(data.value);
+					$scope.formData.merchantId = val['merchantId'];
+					$scope.formData.terminalId = val['terminalId'];
+					$scope.formData.secretCode = val['secretCode'];
 				});
 
 				$scope.submit = function() {
-					
 					$scope.kortaData = {
-						"value" : '{"merchantId" : "' + $scope.formData.merchantId
-								+ '","terminalId" : "' + $scope.formData.terminalId
-								+ '","secretCode" : "' + $scope.formData.secretCode
-								+ '"}'
-					};
+							"value" : '{"merchantId" : "' + $scope.formData.merchantId
+									+ '","terminalId" : "' + $scope.formData.terminalId
+									+ '","secretCode" : "' + $scope.formData.secretCode
+									+ '"}'
+					};				
 					$scope.updateData.value = $scope.kortaData.value;
-					//console.log(this.updateData);
 					resourceFactory.paymentGatewayConfigurationResource.update({configId : scope.editId}, $scope.updateData, function(data) {
 						$modalInstance.close('delete');
 						route.reload();
@@ -155,33 +142,25 @@
 			var editDalpayController = function($scope, $modalInstance) {
 
 				$scope.formData = {};
-				$scope.statusData = [];
 				$scope.updateData = {};
-				//console.log(scope.editId);
-
+				
 				// DATA GET
 				resourceFactory.paymentGatewayConfigurationResource.get({configId : scope.editId}, function(data) {
-					var value = data.value;
-					var arr = value.split(",");
-					var url = arr[0].split('"');
-					var merchantId = arr[1].split('"');
-					var pageId = arr[2].split('"');
-
-					$scope.formData.url = url[3];
-					$scope.formData.merchantId = merchantId[3];
-					$scope.formData.pageId = pageId[3];
+					var	val 	= JSON.parse(data.value);
+					$scope.formData.url = val['url'];
+					$scope.formData.merchantId = val['merchantId'];
+					$scope.formData.pageId = val['pageId'];
 				});
 				
 				$scope.submit = function() {
-					
 					$scope.dalpayData = {
-						"value" : '{"url" : "' + $scope.formData.url
-								+ '","merchantId" : "' + $scope.formData.merchantId
-								+ '","pageId" : "' + $scope.formData.pageId
-								+ '"}'
+							"value" : '{"url" : "' + $scope.formData.url
+									+ '","merchantId" : "' + $scope.formData.merchantId
+									+ '","pageId" : "' + $scope.formData.pageId
+									+ '"}'
 					};
+						
 					$scope.updateData.value = $scope.dalpayData.value;
-
 					resourceFactory.paymentGatewayConfigurationResource.update({configId : scope.editId}, $scope.updateData, function(data) {
 						$modalInstance.close('delete');
 						route.reload();
@@ -197,30 +176,24 @@
 			var editPaypalController = function($scope, $modalInstance) {
 
 				$scope.formData = {};
-				$scope.statusData = [];
 				$scope.updateData = {};
-
+				
 				// DATA GET
 				resourceFactory.paymentGatewayConfigurationResource.get({ configId : scope.editId }, function(data) {
-					var value = data.value;
-					var arr = value.split(",");
-					var paypalUrl = arr[0].split('"');
-					var paypalEmailId = arr[1].split('"');
-
-					$scope.formData.url = paypalUrl[3];
-					$scope.formData.emailId = paypalEmailId[3];
+					var	val 	= JSON.parse(data.value);
+					$scope.formData.paypalUrl = val['paypalUrl'];
+					$scope.formData.paypalEmailId = val['paypalEmailId'];
 				});
 
 				$scope.submit = function() {
 					$scope.paypalFlag = true;
-					//consoe.log($scope.clientId);
 					$scope.paypalData = {
-						"value" : '{"paypalUrl" : "' + $scope.formData.url
-								+ '","paypalEmailId" : "' + $scope.formData.emailId
-								+ '"}'
+							"value" : '{"paypalUrl" : "' + $scope.formData.paypalUrl
+									+ '","paypalEmailId" : "' + $scope.formData.paypalEmailId
+									+ '"}'
 					};
+						
 					$scope.updateData.value = $scope.paypalData.value;
-					//console.log(this.updateData);
 					resourceFactory.paymentGatewayConfigurationResource.update({configId : scope.editId}, $scope.updateData, function(data) {
 						$modalInstance.close('delete');
 						route.reload();
@@ -236,33 +209,59 @@
 			var editNetellerController = function($scope, $modalInstance) {
 
 				$scope.formData = {};
-				$scope.statusData = [];
 				$scope.updateData = {};
-				//console.log(scope.editId);
 
 				// DATA GET
-				resourceFactory.paymentGatewayConfigurationResource.get({configId : scope.editId}, function(data) {
-					var value = data.value;
-					var arr = value.split(",");
-					var url = arr[0].split('"');
-					var clientId = arr[1].split('"');
-					var secreCode = arr[2].split('"');
-
-					$scope.formData.url = url[3];
-					$scope.formData.clientId = clientId[3];
-					$scope.formData.secretCode = secreCode[3];
+				resourceFactory.paymentGatewayConfigurationResource.get({configId : scope.editId}, function(data) {		
+					var	val 	= JSON.parse(data.value);
+					$scope.formData.url = val['url'];
+					$scope.formData.clientId = val['clientId'];
+					$scope.formData.secretCode = val['secretCode'];
 				});
 				
 				$scope.submit = function() {
-					
-					$scope.dalpayData = {
-						"value" : '{"url" : "' + $scope.formData.url
-								+ '","clientId" : "' + $scope.formData.clientId
-								+ '","secretCode" : "' + $scope.formData.secretCode
-								+ '"}'
+					$scope.netellerData = {
+							"value" : '{"url" : "' + $scope.formData.url
+									+ '","clientId" : "' + $scope.formData.clientId
+									+ '","secretCode" : "' + $scope.formData.secretCode
+									+ '"}'
 					};
-					$scope.updateData.value = $scope.dalpayData.value;
+						
+					$scope.updateData.value = $scope.netellerData.value;
+					resourceFactory.paymentGatewayConfigurationResource.update({configId : scope.editId}, $scope.updateData, function(data) {
+						$modalInstance.close('delete');
+						route.reload();
+					}, function(errData) {
+						$scope.paypalFlag = false;
+					});
+				};
+				$scope.cancel = function() {
+					$modalInstance.dismiss('cancel');
+				};
+			};
+			
+			var editMobilePaypalController = function($scope, $modalInstance) {
 
+				$scope.formData = {};
+				$scope.updateData = {};
+				
+				// DATA GET
+				resourceFactory.paymentGatewayConfigurationResource.get({ configId : scope.editId }, function(data) {
+					var	val 	= JSON.parse(data.value);
+					$scope.formData.clientId = val['clientId'];
+					$scope.formData.secretCode = val['secretCode'];
+					alert($scope.formData.clientId);
+				});
+
+				$scope.submit = function() {
+					
+					$scope.mobilepaypalData = {
+							"value" : '{"clientId" : "' + $scope.formData.clientId
+									+ '","secretCode" : "' + $scope.formData.secretCode
+									+ '"}'
+					};
+						
+					$scope.updateData.value = $scope.mobilepaypalData.value;
 					resourceFactory.paymentGatewayConfigurationResource.update({configId : scope.editId}, $scope.updateData, function(data) {
 						$modalInstance.close('delete');
 						route.reload();
