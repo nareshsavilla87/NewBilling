@@ -65,6 +65,11 @@ if(localStorageService.get('localeLang')){
      translate.uses(lang.code);
  };
  
+ //cancel btn function ie going to previous page
+ scope.goBack = function(){
+	  window.history.go(-1);
+ };
+ 
  window.setInterval(function(){
 	 //checking session every  second when scope.currentSession.user not null
 	 if((scope.currentSession.user != null)){

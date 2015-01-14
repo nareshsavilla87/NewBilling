@@ -73,7 +73,7 @@ document.write("<script type='text/javascript' src='./controllers/TicketsControl
 document.write("<script type='text/javascript' src='./controllers/UserSettingController.js'></script>");
 document.write("<script type='text/javascript' src='./controllers/ViewOrderController.js'></script>");
 document.write("<script type='text/javascript' src='./controllers/ViewStatementController.js'></script>");
-document.write("<script type='text/javascript' src='./controllers/VODEventsController.js'></script>");
+document.write("<script type='text/javascript' src='./controllers/AddEventsController.js'></script>");
 document.write("<script type='text/javascript' src='./controllers/PaymentProcessController.js'></script>");
 document.write("<script type='text/javascript' src='./controllers/NetellerController.js'></script>");
 document.write("<script type='text/javascript' src='./controllers/InternalPaymentController.js'></script>");

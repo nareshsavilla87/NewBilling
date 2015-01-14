@@ -58,12 +58,11 @@ KortaSuccessController = function(rootScope,RequestSender,location,localStorageS
     					  rootScope.iskortaTokenAvailable = true;
 						var result = data.Result || "";
 						location.$$search = {};
-						if(screenName === 'payment' || screenName == 'payment'){
+						if(screenName == 'payment'){
 							location.path('/paymentgatewayresponse/'+formData.clientId);
 						}else if(result == 'SUCCESS'){
 							location.path("/orderbookingscreen/"+screenName+"/"+formData.clientId+"/"+planId+"/"+priceId);
 						}else{	 
-							alert(screenName);
 							location.path('/paymentgatewayresponse/'+formData.clientId);
 
 						}
