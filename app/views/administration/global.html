@@ -10,7 +10,7 @@
 	 	<tab heading="Global Configuration">
     <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'label.filterbyname' | translate}}">
     <div class="pull-right">
-        <a href="#/createsmtp" class="btn btn-primary"><i class="icon-plus icon-white"></i>Create SMTP</a>
+        <a href="#/createsmtp/0" data-ng-show ="showSmtp" class="btn btn-primary"><i class="icon-plus icon-white"></i>Create SMTP</a>
     </div>
     <table class="table">
         <thead>
@@ -31,16 +31,16 @@
                 <button type="button" class="btn btn-danger flag" data-ng-show="config.enabled" data-ng-click="disable(config.id,config.name)"><i class="icon-remove"></i></button>
             </td>
 
-            <td><a data-ng-hide="config.name == 'Is_Paypal'" ng-click="edit(config.id)" popover="Edit" popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a> 
+            <td><a data-ng-hide="config.name == 'smtp'" ng-click="edit(config.id)" popover="Edit" popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a> 
 
-                <a data-ng-show="config.enabled && (config.name=='Is_Paypal')" ng-click="editPaypal(config.id)" popover="Edit" popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a></td> 
+                <a data-ng-show="config.name=='smtp'" href="#/createsmtp/{{config.id}}" popover="Edit" popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a></td>
         </tr>
         </tbody>
     </table>
     </tab>
     
-    <tab heading="Client Configuration"  active="clientConfigTab">
-    	
+    <tab heading="Client Configuration"  active="clientConfigTab" select="getClientConfiguration()"> <!--  select="getConfigLookUp()" -->
+
     	<table class="table">
         <thead>
         <tr class="graybg">
@@ -119,50 +119,6 @@
    </div>
 
 </script> 
-<script type="text/ng-template" id="editPaypal.html">
-
-	   <div class="modal-header silver">
-          <h3 class="bolder">Edit Paypal</h3>
-        </div>
-	 <form name="editPaypalForm" novalidate="" class="form-horizontal well" ng-submit="submit()">
-        <div class="modal-body">
-			 <div class="error" ng-show="errorStatus || errorDetails">
-				<label>{{'label.contract.error' | translate}}</label>
-				<label ng-show="errorStatus">{{errorStatus}}</label>
-				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
-	   		 </div>
- 		  <fieldset>
-           	<div class="control-group">
-				<label class="control-label">Enter Client Id<span class="required">*</span> :</label>
-			 	<div class="controls">
-              		<input  type="text" name="clientId" ng-model="formData.id" placeholder="enter Id here" required late-Validate/><br>
-                    <span  ng-show="editPaypalForm.clientId.$invalid">
-                    	<small class="error" ng-show="editPaypalForm.clientId.$error.req">
-                        	Required Field
-                    	</small>
-                   </span>
-            	</div>
-           	</div>
-          	<div class="control-group">
-            	 <label class="control-label">Enter Secret Code<span class="required">*</span> :</label>
-			 	 <div class="controls">
-              		<input type="text" name="secretCode" ng-model="formData.code" placeholder="enter code here" required late-Validate/><br>
-					<span  ng-show="editPaypalForm.secretCode.$invalid">
-                    	<small class="error" ng-show="editPaypalForm.secretCode.$error.req">
-                        	Required Field
-                    	</small>
-                   </span>
-            	 </div>
-	      	</div>
-		  </fieldset>
-        </div>
-        <div class="modal-footer">
-          <button id="cancel" class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
-     	  <button id="submit" type="submit" class="btn btn-primary" ng-disabled="(!editPaypalForm.$valid) || paypalFlag" >{{'label.confirm' | translate}}</button>
-        </div>
-	</form>
-</script> 
-
 <script type="text/ng-template" id="editClientConfig.html">
 	<div class="modal-header silver">
     	<h3 class="bolder">Edit {{data.name}}</h3>

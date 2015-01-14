@@ -1,5 +1,4 @@
-ActivateUserController = function(scope,RequestSender,rootScope,routeParams,http,
-			  							webStorage,httpService,sessionManager,location,API_VERSION,filter,authenticationService,$modal,localStorageService) {
+ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sessionManager,authenticationService,$modal) {
 
 		
 		rootScope.isRegClientProcess = true;
@@ -13,8 +12,6 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,http
 		  
 		//declaration of formData
 		  scope.formData = {};
-		  var configDeviceAgreeType = {};
-		  
 		  var configDeviceAgreeType = {};
 		  
 		//getting the key value form routeParams
@@ -259,14 +256,7 @@ selfcareApp.controller('ActivateUserController', ['$scope',
                                                   'RequestSender',
                                                   '$rootScope',
                                                   '$routeParams',
-                                                  '$http',
-                                                  'webStorage',
-                                                  'HttpService',
                                                   'SessionManager',
-                                                  '$location',
-                                                  'API_VERSION',
-                                                  '$filter',
                                                   'AuthenticationService',
                                                   '$modal',
-                                                  'localStorageService'
                                                   ,ActivateUserController]);

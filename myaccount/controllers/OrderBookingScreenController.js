@@ -7,6 +7,11 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 	var priceId				= routeParams.priceId; 
 	var orderBookingData 	= {};
 	
+	function successFun(planData){
+    	localStorageService.remove("secretCode");
+		(planData.price==0) ? location.path("/services") : location.path('/paymentgatewayresponse/'+clientId);
+    }
+	
     RequestSender.clientResource.get({clientId: clientId} , function(data) {
 		  var clientData = data;
 	 RequestSender.orderTemplateResource.query({region : clientData.state},function(data){
@@ -27,10 +32,38 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 					orderBookingData.contractPeriod = planData.contractId; 
 					orderBookingData.planCode 		= planId;
 					RequestSender.bookOrderResource.save({clientId : clientId},orderBookingData,function(data){
-						localStorageService.remove("secretCode");
-						rootScope.iskortaTokenAvailable = true;
-						location.path('/paymentgatewayresponse/'+clientId);
+						successFun(planData);
 					});
+				}else if(screenName == "changeorder"){
+					var changeOrderData 			 = {};
+					changeOrderData.billAlign 		 = false;
+					changeOrderData.isNewplan 		 = false;
+					changeOrderData.locale 			 = 'en'; 
+					changeOrderData.dateFormat 		 = 'dd MMMM yyyy'; 
+					var reqDate 					 = dateFilter(new Date(),'dd MMMM yyyy');
+					changeOrderData.start_date 		 = reqDate; 
+					changeOrderData.disconnectionDate= reqDate;
+					changeOrderData.paytermCode 	 = planData.billingFrequency; 
+					changeOrderData.contractPeriod 	 = planData.contractId; 
+					changeOrderData.planCode 		 = planId;
+					changeOrderData.disconnectReason = "Not Interested";
+					var orderId						 = "";
+					localStorageService.get("storageData")? orderId = localStorageService.get("storageData").orderId
+														  : orderId = "";
+					RequestSender.changeOrderResource.update({'orderId':orderId},changeOrderData,function(data){
+						successFun(planData);
+					});
+				}else if(screenName == "renewalorder"){
+						 var renewalOrderData 			 = {};
+						 renewalOrderData.renewalPeriod  = planData.contractId; 
+						 renewalOrderData.description	 = 'Order Renewal through selfcare'; 
+						 
+						 var orderId						 = "";
+						localStorageService.get("storageData")? orderId = localStorageService.get("storageData").orderId
+																  : orderId = "";
+						RequestSender.orderRenewalResource.save({orderId :orderId},renewalOrderData,function(data){
+							 successFun(planData);
+						 });
 				}
 				break;
 			  }
@@ -40,28 +73,8 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 		}
 	  });
 	});
-	/*
-		 if(routeParams.orderId == 0 && routeParams.clientId == 0){
-				 RequestSender.bookOrderResource.save({clientId : scope.formData.clientId},scope.orderBookingData,function(data){
-					 webStorage.remove('additionalPlanFormData');
-					 rootScope.iskortaTokenAvailable = true;
-					 rootScope.isActiveScreenPage= false;
-					 location.path('/paymentgatewayresponse');
-					 
-				 });
-			 }else{
-				 scope.orderBookingData.disconnectionDate= reqDate;
-				 scope.orderBookingData.disconnectReason= "Not Interested";
-				 RequestSender.changeOrderResource.update({'orderId':routeParams.orderId},scope.orderBookingData,function(data){
-					 webStorage.remove('additionalPlanFormData');
-					 rootScope.iskortaTokenAvailable = true;
-					 rootScope.isActiveScreenPage= false;
-					 location.path('/paymentgatewayresponse');
-					
-	               });
-			 }*/
 		 
-    };
+  };
 
 selfcareApp.controller('OrderBookingScreenController', ['RequestSender',
                                                         '$rootScope',

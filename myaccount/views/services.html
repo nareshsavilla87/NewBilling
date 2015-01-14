@@ -28,7 +28,7 @@
 	        </thead>
 	        <tbody>
 	            <tr class="pointer-main" data-ng-repeat="order in ordersData.currentPageItems  | filter:filterText" >
-	                <td class="pointer" data-ng-click="routeToOrderView(order.id)">{{order.planCode}}</td>
+	                <td class="pointer" data-ng-click="routeToOrderView(order.id)" style="font-weight: inherit;color: #555555;">{{order.planCode}}</td>
 	                <td class="pointer" data-ng-click="routeToOrderView(order.id)">{{order.contractPeriod}}</td>
 	                <td class="pointer" data-ng-click="routeToOrderView(order.id)">{{order.activeDate | DateFormat}}</td>
 	                <td class="pointer" data-ng-click="routeToOrderView(order.id)">{{order.startDate | DateFormat}}</td>
@@ -48,7 +48,7 @@
 		<div style="padding-bottom:5px;background: #939393;">
 		  <h3 style="margin: 0;text-transform: uppercase;display:inline;"><b class="marginleft10" style="font-size: 20px;color: #FFFFFF;">{{'label.ondemands'|translate}}</b></h3>
 		  <input data-ng-model="filterText1" type="text" class="span marginbottom0px" style="margin-right: 15px;margin-top: 6px;" placeholder="{{'placeholder.enter.text.search'|translate}}" />
-		  <a href="#/vodevents" class="btn btn-primary pull-right" style="margin-right:20px;margin-top: 6px;"><i class="icon-plus-sign icon-white"></i>{{'label.vod.add.event' | translate}}</a>
+		  <a href="#/addevents" class="btn btn-primary pull-right" style="margin-right:20px;margin-top: 6px;"><i class="icon-plus-sign icon-white"></i>{{'label.vod.add.event' | translate}}</a>
 		</div>
 		<div><table class="table">
 	        <thead>
@@ -61,7 +61,7 @@
 	        </thead>
 	        <tbody>
 	            <tr class="pointer-main" data-ng-repeat="vodData in VODSDatas.currentPageItems  | filter:filterText1" >
-	                <td class="pointer">{{vodData.eventName}}</td>
+	                <td class="pointer" style="font-weight: inherit;color: #555555;">{{vodData.eventName}}</td>
 	                <td class="pointer">{{vodData.bookedDate | DateFormat}}</td>
 	                <td class="pointer">{{vodData.eventPrice}}</td>
 	                <td class="pointer"><i class="icon-stop {{vodData.status | StatusLookup}}"></i>&nbsp;{{vodData.status}}</td>

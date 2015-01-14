@@ -279,6 +279,9 @@ define(['underscore', 'mifosX'], function() {
       'organization/ViewGroupsDetailsController',
       'organization/CreateAddonsController',
       'client/CreateOrderAddonController',
+      'organization/CreatePartnerController',
+      'organization/ViewPartnerController',
+      'organization/CreatePartnerAgreementController',
       
 
 

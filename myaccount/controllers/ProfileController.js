@@ -1,71 +1,71 @@
-ProfileController = function(scope,RequestSender,rootScope,webStorage,location,paginatorService) {
+ProfileController = function(scope,RequestSender,rootScope,webStorage,location,paginatorService,localStorageService) {
 		  
 		  scope.clientData = {};
 		  
-		  scope.totalStatementsData = [];
-		  scope.retrivingStatementsData = {};
+		  var totalStatementsData = [];
+		  var retrivingStatementsData = {};
 		  scope.statementsData = [];
 		  
-		  scope.totalTicketsData = [];
-		  scope.retrivingTicketsData = {};
+		  var totalTicketsData = [];
+		  var retrivingTicketsData = {};
 		  scope.ticketsData=[];
 		  
-		  var clientTotalData= webStorage.get('clientTotalData');
 		  
           scope.getStatementsData = function(offset, limit, callback) {
         	  
-			  scope.retrivingStatementsData.pageItems = [];
+			  retrivingStatementsData.pageItems = [];
 			  var itrCount = 0;
-			  for (var i=offset;i<scope.totalStatementsData.length;i++) {
+			  for (var i=offset;i<totalStatementsData.length;i++) {
 				 itrCount += 1;
-				 scope.retrivingStatementsData.pageItems.push(scope.totalStatementsData[i]);
+				 retrivingStatementsData.pageItems.push(totalStatementsData[i]);
 				 if(itrCount==limit){
 					 break;
 				 }
 		      }
-			  callback(scope.retrivingStatementsData);
+			  callback(retrivingStatementsData);
 	  	   };
 	  	   
 	  	   scope.getTicketsData = function(offset, limit, callback) {
 	  		   
-	  		   scope.retrivingTicketsData.pageItems = [];
+	  		   retrivingTicketsData.pageItems = [];
 	  		   var itrCount = 0;
-	  		   for (var i=offset;i<scope.totalTicketsData.length;i++) {
+	  		   for (var i=offset;i<totalTicketsData.length;i++) {
 	  			   itrCount += 1;
-	  			   scope.retrivingTicketsData.pageItems.push(scope.totalTicketsData[i]);
+	  			   retrivingTicketsData.pageItems.push(totalTicketsData[i]);
 	  			   if(itrCount==limit){
 	  				   break;
 	  			   }
 	  		   }
-	  		   callback(scope.retrivingTicketsData);
+	  		   callback(retrivingTicketsData);
 	  	   };
 		  
-		 if(clientTotalData){		  
-			  scope.clientId = clientTotalData.clientId;
+	  	 var sessionData= localStorageService.get('selfcare_sessionData');
+		 if(sessionData){		  
+			  scope.clientId = sessionData.clientId;
 			  RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
 				  scope.clientData = data;
+				  var paymentClientData = data || {};
+				  var totalOrdersData = [];
+				  localStorageService.add("storageData",{clientData:paymentClientData,totalOrdersData:totalOrdersData});
 				  if(data.selfcare){
-					  if(data.selfcare.token){
-						  rootScope.iskortaTokenAvailable = true;
-					  }
+					  data.selfcare.token ? rootScope.iskortaTokenAvailable = true : rootScope.iskortaTokenAvailable = false;
 				  }
 				  if(data.selfcare){
-					  if(!scope.clientData.selfcare.authPin){
+					  if(!data.selfcare.authPin){
 						  scope.clientData.selfcare.authPin = 'Not Available';
 					  }
 				  }
 				  rootScope.selfcare_userName = data.displayName;
-				  webStorage.add('selfcareUserName',data.displayName);
-				  webStorage.add('selfcareUserData',data);
+				  localStorageService.add('clientTotalData',data);
 				  
 				  RequestSender.statementResource.query({clientId: scope.clientId} , function(data) {	
-					  scope.totalStatementsData = data;
-					  scope.retrivingStatementsData.totalFilteredRecords = scope.totalStatementsData.length;
+					  totalStatementsData = data;
+					  retrivingStatementsData.totalFilteredRecords = totalStatementsData.length;
 					  scope.statementsData = paginatorService.paginate(scope.getStatementsData, 2);
 					  
 					  RequestSender.ticketResource.query({clientId: scope.clientId},function(data) {	        
-						  scope.totalTicketsData = data;
-						  scope.retrivingTicketsData.totalFilteredRecords = scope.totalTicketsData.length;
+						  totalTicketsData = data;
+						  retrivingTicketsData.totalFilteredRecords = totalTicketsData.length;
 						  scope.ticketsData = paginatorService.paginate(scope.getTicketsData, 2);
 					  });
 				  });
@@ -90,4 +90,5 @@ selfcareApp.controller('ProfileController', ['$scope',
                                              'webStorage',
                                              '$location',
                                              'PaginatorService', 
+                                             'localStorageService', 
                                              ProfileController]);

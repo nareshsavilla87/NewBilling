@@ -29,21 +29,12 @@ selfcareApp.config(function($routeProvider, $locationProvider) {
     .when('/additionalorders/:clientId', {
     	templateUrl: 'views/additionalorders.html'
     })
-    .when('/vodevents', {
-	    templateUrl: 'views/vodevents.html'
+    .when('/addevents', {
+	    templateUrl: 'views/addevents.html'
 	})
 	.when('/vieworder/:orderId/:clientId', {
         templateUrl: 'views/vieworder.html'
 	})
-	.when('/changeorder/:orderId/:clientId', {
-	    templateUrl: 'views/changeorder.html'
-    })
-    .when('/renewalorder/:orderId/:clientId', {
-    	templateUrl: 'views/renewalorder.html'
-    })
-    .when('/renewalorderpreviewscreen/:orderId/:clientId', {
-    	templateUrl: 'views/renewalorderpreviewscreen.html'
-    })
     .when('/services', {
     	templateUrl: 'views/services.html'
 	})
@@ -79,6 +70,18 @@ selfcareApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/neteller/:priceDataId',{
     	templateUrl: 'views/neteller.html'
+    })
+    .when('/changeorder/:clientId/:orderId',{
+    	templateUrl: 'views/changeorder.html'
+    }) 
+    .when('/renewalorder/:clientId/:planId/:orderId', {
+    	templateUrl: 'views/renewalorder.html'
+    })
+    .when('/internalpayment/:screenName/:clientId/:planId/:priceId/:amount',{
+    	templateUrl: 'views/internalpayment.html'
+    })
+    .when('/prepaidpayment',{
+    	templateUrl: 'views/prepaidpayment.html'
     });
        
     $locationProvider.html5Mode(false);
