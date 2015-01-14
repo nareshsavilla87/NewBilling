@@ -360,6 +360,7 @@
            getAllEmployees: {method: 'GET', params: {}, isArray: true}
          }),
          voucherpinTemplateResource: defineResource(apiVer + "/vouchers/template", {}, {}),
+         voucherpinBatchTemplateResource: defineResource(apiVer + "/vouchers/batchtemplate", {}, {}),
          
          discountResource: defineResource(apiVer + "/discount/:discountId", {discountId:'@discountId'}, {
              get: {method: 'GET', params: {}, isArray: true},
