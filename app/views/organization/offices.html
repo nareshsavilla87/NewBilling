@@ -6,9 +6,11 @@
 </div>
 
 <div class="row-fluid" data-ng-controller="OfficesController">
+ <tabset style="margin-bottom: 0px;"> 
+	<tab heading="{{'tab.offices' | translate}}" select="getOffices()">
 	<div class="pull-right">
-		<a data-ng-show="isTreeView" data-ng-click="isTreeView=!isTreeView" class="btn btn-primary"><i class="icon-list icon-white"></i>List View</a>
-		<a data-ng-hide="isTreeView" data-ng-click="isTreeView=!isTreeView" class="btn btn-primary"><i class="icon-sitemap icon-white"></i>Tree View</a>
+	    <a data-ng-show="isTreeView" data-ng-click="isTreeView=!isTreeView" class="btn btn-primary"><i class="icon-list icon-white"></i>List View</a>
+		<a data-ng-hide="isTreeView" data-ng-click="isTreeView=!isTreeView" class="btn btn-primary"><i class="icon-sitemap icon-white"></i>Tree View</a> 
 		<a data-ng-show="PermissionService.showMenu('CREATE_OFFICE')" href="#/createoffice" class="btn btn-primary"><i class="icon-plus icon-white"></i> Create Office</a>
 	</div>
 	<div data-ng-hide="isTreeView">
@@ -17,7 +19,7 @@
 			<thead>
 				<tr class="graybg">
 					<th>{{ 'table.heading.name' | translate }}</th>
-					<th>{{ 'table.heading.office type' | translate }}</th>
+					<!-- <th>{{ 'table.heading.office type' | translate }}</th> -->
 					<th>{{ 'table.heading.external id' | translate }}</th>
 					<th>{{ 'table.heading.parent office' | translate }}</th>
 					<th>{{ 'table.heading.opened on' | translate }}</th>
@@ -27,7 +29,7 @@
 			<tbody>
 				<tr class="pointer-main" data-ng-repeat="office in offices  | filter:filterText">
 					<td class="pointer" data-ng-click="routeTo(office.id)">{{office.name}}</td>
-					<td class="pointer" data-ng-click="routeTo(office.id)">{{office.officeType}}</td>
+				<!-- 	<td class="pointer" data-ng-click="routeTo(office.id)">{{office.officeType}}</td> -->
 					<td class="pointer" data-ng-click="routeTo(office.id)">{{office.externalId}}</td>  
 					<td class="pointer" data-ng-click="routeTo(office.id)">{{office.parentName}}</td>
 					<td class="pointer" data-ng-click="routeTo(office.id)">{{office.openingDate | DateFormat}}</td>
@@ -47,4 +49,49 @@
 		data-node-children="children" >
 		</div>
 	</div>
+	</tab>
+	
+	<tab heading="{{'tab.partners' | translate}}" select="getPartners()" active="PartnersTab">
+	<div class="pull-right">
+<!-- 		<a data-ng-show="isTreeView" data-ng-click="isTreeView=!isTreeView" class="btn btn-primary"><i class="icon-list icon-white"></i>List View</a>
+		<a data-ng-hide="isTreeView" data-ng-click="isTreeView=!isTreeView" class="btn btn-primary"><i class="icon-sitemap icon-white"></i>Tree View</a> -->
+		<a data-ng-show="PermissionService.showMenu('CREATE_PARTNER')" href="#/createpartner" class="btn btn-primary"><i class="icon-plus icon-white"></i> Create Partner</a>
+	</div>
+	<div data-ng-hide="isTreeView">
+		<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.searchbar' | translate}}">
+		<table class="table">
+			<thead>
+				<tr class="graybg">
+					<th>{{ 'table.heading.name' | translate }}</th>
+			<!-- 		<th>{{ 'table.heading.partner type' | translate }}</th> -->
+					<th>{{ 'table.heading.parent office' | translate }}</th>
+					<th>{{ 'table.heading.partner currency' | translate }}</th>
+					<!-- <th>{{ 'table.heading.office type' | translate }}</th>  -->
+					<th>{{ 'table.heading.opened on' | translate }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="pointer-main" data-ng-repeat="partner in partners  | filter:filterText">
+					<td class="pointer" data-ng-click="routeToPartner(partner.id)">{{partner.partnerName}}</td>
+				  <!--   <td class="pointer" data-ng-click="routeToPartner(partner.id)">{{partner.partnerType}}</td>  -->
+					<td class="pointer" data-ng-click="routeToPartner(partner.id)">{{partner.parentName}}</td>
+					<td class="pointer" data-ng-click="routeToPartner(partner.id)">{{partner.currency}}</td>  
+		     	   <!--  <td class="pointer" data-ng-click="routeToPartner(partner.id)">{{partner.officeType}}</td>  -->
+					<td class="pointer" data-ng-click="routeToPartner(partner.id)">{{partner.openingDate | DateFormat}}</td>
+				</tr>
+			</tbody> 
+		</table>
+	</div>
+	<div data-ng-show="isTreeView">
+	<div
+		data-angular-treeview="true"
+		data-tree-id="treeview"
+		data-tree-model="treedata"
+		data-node-id="id"
+		data-node-label="name"
+		data-node-children="children" >
+		</div>
+	</div>
+	</tab>
+	
 </div>
