@@ -65,7 +65,33 @@
 								data-ng-options="partnerType.id as partnerType.mCodeValue for partnerType in partnerTypes"></select>
 						</div>
 					</div>
+					
+					<div class="control-group">
+						<label class="control-label" for="office">Office<span class="required">*</span>
+						</label>
+						<div class="controls">
+							<select data-ng-model="formData.parentId" data-ng-options="office.id as office.name for office in offices"></select>
+						</div>
+					</div>
 
+						<div class="control-group">
+							<label class="control-label" for="isCollective">{{'label.partner.isCollective' | translate }}</label>
+							<div class="controls">
+								<label class="checkbox"> <input type="checkbox" id="isCollective" data-ng-model="formData.isCollective">
+								</label>
+							</div>
+						</div>
+						
+					</td>
+				<td>
+					<div class="control-group">
+						<label class="control-label">{{ 'label.organization' | translate }}<span class="required">*</span>
+						</label>
+						<div class="controls">
+							<input type="text" id="organization" data-ng-model="formData.organization">
+						</div>
+					</div>
+					
 					<div class="control-group">
 						<label class="control-label" for="phone">{{'label.phone' | translate}}<span class="required">*</span>
 						</label>
@@ -79,29 +105,12 @@
 							</div>
 						</div>
 					</div>
+					
 					<div class="control-group">
 						<label class="control-label">{{ 'label.partner.email' | translate }}<span class="required">*</span>
 						</label>
 						<div class="controls">
 							<input type="email" id="email" data-ng-model="formData.email">
-						</div>
-					</div>
-					
-				</td>
-				<td>
-					<div class="control-group">
-						<label class="control-label">{{ 'label.organization' | translate }}<span class="required">*</span>
-						</label>
-						<div class="controls">
-							<input type="text" id="organization" data-ng-model="formData.organization">
-						</div>
-					</div>
-
-					<div class="control-group">
-						<label class="control-label" for="office">Office<span class="required">*</span>
-						</label>
-						<div class="controls">
-							<select data-ng-model="formData.parentId" data-ng-options="office.id as office.name for office in offices"></select>
 						</div>
 					</div>
 
@@ -142,14 +151,17 @@
 						</div>
 					</div>
 					
-					<div class="control-group">
+				</td></tr>
+				
+			<tr>
+			<td>
+				<div class="control-group">
 						<label class="control-label" for="file">{{'label.company.image'| translate}}</label>
 						<div class="controls">
 							<input type="file" data-ng-file-select="onFileSelect($files)">
 						</div>
-					</div>
-					
-				</td></tr>
+					</div>	
+			</td></tr>
 			<tr>
 			<td colspan="2" align="right">
 					  
