@@ -1,6 +1,7 @@
 ChangeOrderController = function(scope,RequestSender,routeParams,localStorageService) {
 		  
-	scope.clientId = routeParams.clientId || "";
+	scope.clientId 	= routeParams.clientId || "";
+	var orderId 	= routeParams.orderId || "";
   	scope.planselectionTab = true;
   	
   scope.singlePlanPricingDatas = function(singlePlanData,isPlanActive){
@@ -45,7 +46,7 @@ ChangeOrderController = function(scope,RequestSender,routeParams,localStorageSer
 				if(totalOrdersData[j].isPrepaid == 'Y')scope.plansData.push(totalOrdersData[j]); 
 			  }
 			  scope.singlePlanPricingDatas(scope.plansData[0],true);
-			  localStorageService.add("storageData",{clientData:clientData,totalOrdersData:totalOrdersData});
+			  localStorageService.add("storageData",{clientData:clientData,totalOrdersData:totalOrdersData,orderId:orderId});
 
 		  });
 	  });

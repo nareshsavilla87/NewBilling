@@ -18,9 +18,26 @@
 	            
 	        });
 	        
-	        resourceFactory.orderTemplateResource.get({planId: 0},function(data) {
+	        resourceFactory.priceResource.query(function(data){
+	        	if(data.length >=1){
+	        		scope.planDatas = _.filter(data, function(item) {
+	                      return item.isPrepaid != "N";
+	                  });
+	        	scope.planPriceData = [];
+        		for(var i in scope.planDatas){
+        			var planId		= scope.planDatas[i].planId;
+        			var planCode	= scope.planDatas[i].planCode;
+        			for(var j in scope.planDatas[i].pricingData){
+        				scope.planDatas[i].pricingData[j].plan_duration = planCode+"-"+scope.planDatas[i].pricingData[j].duration;
+        				scope.planDatas[i].pricingData[j].planId		= planId;
+        				scope.planPriceData.push(scope.planDatas[i].pricingData[j]);
+        			}
+        		}
+	        	}
+	        });
+	        /*resourceFactory.orderTemplateResource.get({planId: 0},function(data) {
 	            scope.planDatas = data.plandata;
-	       });
+	       });*/
 	        
 	        scope.setPinValue = function(){
 	        	scope.formData.pinValue = null;
@@ -35,6 +52,14 @@
 	        		 scope.formData.dateFormat = "dd MMMM yyyy";
 		             var exipiryDate = dateFilter(scope.start.date,'dd MMMM yyyy');
 		             scope.formData.expiryDate=exipiryDate;
+		             if(scope.formData.pinType == "PRODUCT"){
+		              for(var i in scope.planPriceData){
+		            	 if(scope.planPriceData[i].id == scope.formData.pinValue){
+		            		 scope.formData.pinValue = scope.planPriceData[i].planId;
+		            		 scope.formData.priceId = scope.planPriceData[i].id;
+		            	 }
+		              }
+		             }
 		             
 		            resourceFactory.voucherpinResource.save(scope.formData,function(data){
 		            	location.path('/voucherpins');

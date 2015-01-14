@@ -1,4 +1,4 @@
-VODEventsController = function(scope,RequestSender,rootScope,http,authenticationService,webStorage,httpService,sessionManager,location) {
+AddEventsController = function(scope,RequestSender,rootScope,http,authenticationService,webStorage,httpService,sessionManager,location) {
 		  
 		  scope.vodEventScreen = true;
 		  scope.eventDetailsPreview = false;
@@ -114,7 +114,7 @@ VODEventsController = function(scope,RequestSender,rootScope,http,authentication
 		  };
     };
     
-selfcareApp.controller('VODEventsController', ['$scope',
+selfcareApp.controller('AddEventsController', ['$scope',
                                                'RequestSender',
                                                '$rootScope',
                                                '$http',
@@ -123,4 +123,4 @@ selfcareApp.controller('VODEventsController', ['$scope',
                                                'HttpService',
                                                'SessionManager',
                                                '$location',
-                                               VODEventsController]);
+                                               AddEventsController]);
