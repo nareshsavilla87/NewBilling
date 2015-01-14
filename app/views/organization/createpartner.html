@@ -4,7 +4,6 @@
 		<li><a href="#/offices" data-ng-click="reset123()">{{'label.managepartners' | translate}}</a><span class="divider">/</span></li>
 		<li class="active">{{'label.createpartner' | translate}}</li>
 	</ul>
-</div>
 <form name="createpartnerform" class="form-horizontal well" novalidate  data-ng-submit="submit()">
 	<div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label> <label data-ng-show="errorStatus">{{errorStatus}}</label> 
@@ -48,6 +47,14 @@
 						</label>
 						<div class="controls">
 							<input type="password" id="password" data-ng-model="formData.password">
+						</div>
+					</div>
+					
+					<div class="control-group">
+						<label class="control-label">{{ 'label.repeatPassword' |translate }}<span class="required">*</span>
+						</label>
+						<div class="controls">
+							<input type="password" id="repeatPassword" data-ng-model="formData.repeatPassword">
 						</div>
 					</div>
 
@@ -105,6 +112,9 @@
 							<input type="text" id="city" name="city" data-ng-model="formData.city" autocomplete="off" list="citylist"
 								data-ng-change="getStateAndCountry(formData.city)" required />
 						</div>
+						<datalist id="citylist">
+                   					<option  data-ng-repeat="cityData in cityDatas" value="{{cityData}}">
+            		</datalist>
 					</div>
 
 					<div class="control-group">
@@ -131,22 +141,24 @@
 								data-value="{{currencydata.code}}"><option value="">{{'label.select.one'| translate}}</option></select>
 						</div>
 					</div>
-				</td>
-			</tr>
-			<tr><td>
-			<div class="control-group">
+					
+					<div class="control-group">
 						<label class="control-label" for="file">{{'label.company.image'| translate}}</label>
 						<div class="controls">
 							<input type="file" data-ng-file-select="onFileSelect($files)">
 						</div>
 					</div>
-			</td></tr>
-			
-					<tr><td></td><td align="right">
+					
+				</td></tr>
+			<tr>
+			<td colspan="2" class="pull-right">
+					  
 						<a href="#/offices"><button id="cancel" type="reset" data-ng-click="reset123()" class="btn">{{'button.cancel'| translate}}</button></a>
 						<button id="submit" type="submit" class="btn btn-primary">{{'label.save' | translate }}</button>
+			
 		   </td></tr>
 			
 		</table>
 	</fieldset>
 </form>
+</div>
