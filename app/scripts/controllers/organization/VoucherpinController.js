@@ -2,16 +2,37 @@
   mifosX.controllers = _.extend(module, {
 	  VoucherpinController: function(scope, resourceFactory,PermissionService,rootScope,API_VERSION,route,paginatorService,$modal) {
         scope.voucherpins = [];
+        scope.batchNameDatas = {};
+        scope.pinTypeDatas = [];
+        scope.searchData = {};
         scope.PermissionService = PermissionService;
-       
+      
         scope.voucherPinFetchFunction = function(offset, limit, callback) {
-			resourceFactory.voucherpinResource.get({offset: offset, limit: limit} , callback);
+        	var params = {};
+        	params.offset = offset;
+        	params.limit = limit;
+        	if(scope.searchData.pinType){
+        		params.pinType = scope.searchData.pinType;
+        	}
+        	if(scope.searchData.batchName){
+        		params.batchName = scope.searchData.batchName;
+        	}
+        	if(scope.searchData.status){
+        		params.statusType = scope.searchData.status;
+        	}
+        	if(scope.searchData.sqlSearch){
+        		params.sqlSearch = scope.searchData.sqlSearch;
+        	}
+			resourceFactory.voucherpinResource.get(params , callback);
 		};
 		
 		scope.voucherpins = paginatorService.paginate(scope.voucherPinFetchFunction, 14);
       /*  resourceFactory.voucherpinResource.getAllEmployees(function(data) {
             scope.voucherpins = data;
         });*/
+		resourceFactory.voucherpinTemplateResource.get({isBatchTemplate:true},function(data) {
+	        scope.batchNameDatas = data.voucherBatchData; 
+	    });
         
          scope.downloadFile = function (id){
         	window.open(rootScope.hostUrl+ API_VERSION +'/vouchers/'+id+'?tenantIdentifier=default');
@@ -31,6 +52,20 @@
             });
          };
         };
+        
+        scope.clearFilters = function () {
+             scope.searchData.batchName = null;
+             scope.searchData.pinType = null;
+             scope.searchData.status = null;
+            document.getElementById('batchNameDatas_chosen').childNodes[0].childNodes[0].innerHTML = "---Batch Name---";
+            document.getElementById('pinTypeDatas_chosen').childNodes[0].childNodes[0].innerHTML = "---PinType---";
+            document.getElementById('status_chosen').childNodes[0].childNodes[0].innerHTML = "---Status---";
+        
+        };
+  
+		scope.search = function(){
+			scope.voucherpins = paginatorService.paginate(scope.voucherPinFetchFunction, 14);
+		};
         
       //export Batch 
 		scope.exportBatch = function(value){
