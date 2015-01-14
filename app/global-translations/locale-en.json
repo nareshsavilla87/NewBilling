@@ -2463,7 +2463,8 @@
 "label.configure.smtp":"Configure Email",
 "label.configure.smtp.true":"True",
 "label.configure.smtp.false":"False",
-"error.configure.smtp.invalid.email":"Please give valid EmailId"
+"error.configure.smtp.invalid.email":"Please give valid EmailId",
+"error.msg.voucher.no.already.existed.with.thiscontract":"Duration cann't change,Voucher pins are already gererated"
 
 
 

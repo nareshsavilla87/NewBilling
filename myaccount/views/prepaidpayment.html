@@ -6,35 +6,29 @@
 	       <div id="circularG_5" class="circularG"></div><div id="circularG_6" class="circularG"></div>
 	       <div id="circularG_7" class="circularG"></div><div id="circularG_8" class="circularG"></div>
 	   </div>
-    </div>
+    </div><br/>
    <div class="error" data-ng-show="errorStatus || errorDetails">
 	  <label>{{'label.contract.error' | translate}}</label>
 	  <label data-ng-show="errorStatus">{{errorStatus}}</label>
 	  <label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
    </div>
     <br/><br/>
-    
-    <div >
-		<div class="form-horizontal offset1" style="margin-top:50px;">
-          			   <label class="control-label">{{'label.prepaid.amount' | translate }}&nbsp;<span class="required">*</span></label>
-          			   <div class="controls">
-          			   	 <input type="text" data-ng-model="formData.amount" data-ng-autofocus="true" data-ng-onblur="paymentGatewayDispaly(formData.amount)" required/> 
-          			   </div>
-      	</div>
-       	
 		<div class="offset1" style="margin-top:50px;">
 		   <table>
+		   	  <tr><td align="right" class="bigfont" valign="top">
+		   	  	  <span >{{'label.prepaid.amount' | translate }}<span class="required">*&nbsp;</span>:</span></td>
+		   	  <td><input type="number" data-ng-model="amount" data-ng-autofocus="true" data-ng-onblur="amountFieldFun(amount)" required/> 
+		   	  </td></tr>
 			  <tr>
-   				<td width="42%" class="bigfont" valign="top">
+   				<td width="50%" class="bigfont" valign="top" style="padding-top: 20px;">
    						{{'label.select.payment.gateway' | translate}}&nbsp;&nbsp;:
    				</td>
-       			<td>
-       			<!-- data-ng-click="paymentGatewayFun(paymentgatewayData.name)" -->
+       			<td style="padding-top: 20px;">
        				<div data-ng-repeat="paymentgatewayData in paymentgatewayDatas track by $index" class="marginbottom10" 
        					data-ng-if="(paymentgatewayData.name=='paypal')||(paymentgatewayData.name=='korta')
        					||(paymentgatewayData.name=='globalpay')||(paymentgatewayData.name=='neteller')||(paymentgatewayData.name=='internalPayment')">
        					<input type="radio" id="{{paymentgatewayData.name}}" name="selectPWName" class="radioalign" data-ng-model="paymentGatewayName" 
-       					   value="{{paymentgatewayData.name}}" data-ng-click="paymentGateway(paymentgatewayData.name)" />&nbsp;
+       					   value="{{paymentgatewayData.name}}" data-ng-click="paymentGWNameFun(paymentgatewayData.name)" />&nbsp;
       					   <label for="{{paymentgatewayData.name}}" class="inlinedis pointer">
       								<img src="./images/{{paymentgatewayData.name}}.jpg" width="110px;">
       					   </label><br/>
@@ -46,11 +40,11 @@
        			</td>
           	  </tr>
           	  <tr data-ng-hide="paymentGatewayName==''">
-          	  	 <td width="42%"></td>
+          	  	 <td width="50%"></td>
           	     <td>
           	       <div class="control-group margintop20">
 					 <div class="controls">
-					    <input type="checkbox" name="checkbox" data-ng-model="termsAndConditions" > 
+					    <input type="checkbox" name="checkbox" data-ng-model="termsAndConditions" style="vertical-align: sub;"> 
 					    <span> {{'label.agree' | translate}} <a data-ng-click="termsAndConditionsFun()" style="color: #0066cc;text-decoration: underline;">
 					    		{{'label.Terms.Conditions' | translate}}</a> 
 					    </span>
@@ -58,17 +52,27 @@
 				   </div> 
           	     </td>
           	  </tr>
+          	   <tr data-ng-hide="paymentGatewayName==''" >
+          	    <td style="padding-top: 30px;" align="right">
+          	      <div><a data-ng-click="goBack()" class="btn" >{{'btn.cancel' | translate}}</a></div> 
+          	    </td>
+       		 	<td style="padding-top: 30px;" >
+      		 	   <div>
+					  <a class="btn btn-primary" data-ng-hide="termsAndConditions&&!(amountEmpty)" data-ng-disabled="true">{{'btn.proceed' | translate}}</a>
+					  <a data-ng-click="proceedFun()" class="btn btn-primary" href="{{paymentURL}}" data-ng-show="termsAndConditions&&!(amountEmpty)">
+					  	{{'btn.proceed' | translate}}
+					  </a>
+				   </div>
+				   
+       		 	</td>
+          	  </tr>
+          	  <tr data-ng-show="paymentGatewayName==''" >
+          	  	<td style="padding-top: 30px;" colspan="2" align="right">
+          	      <div><a  data-ng-click="goBack()" class="btn" >{{'btn.cancel' | translate}}</a></div> 
+          	    </td>
+          	  </tr>
           	</table>
        	 </div>
-       	 <div class="offset3" style="padding-top: 20px;">
-       	 <a href="#/{{screenName}}/{{clientId}}" class="btn" >{{'btn.cancel' | translate}}</a>
-       	 <a data-ng-click="makePaymentFun(paymentGatewayName)" class="btn btn-primary" href="{{paymentURL}}" >
-					  	{{'btn.proceed' | translate}}
-		 </a>
-       	 
-       	 </div>
-       	 
-      </div>
 	   <script type="text/ng-template" id="termsandconditions.html">
 		<form  class="form-horizontal well" style="border:0px;width:550px;">
 			<h4><strong>Terms and Conditions</strong></h4>
