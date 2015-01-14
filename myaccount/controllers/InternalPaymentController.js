@@ -1,40 +1,36 @@
 InternalPaymentController = function(scope, routeParams, location, localStorageService,$timeout,RequestSender) {
 	
-	scope.formData = {};
-	scope.isValueVoucher = false;
-	scope.formData.clientId = routeParams.clientId;
-	scope.screenName = routeParams.screenName;
-	alert(scope.screenName);
-	scope.clientId = routeParams.clientId;
-	var planId = routeParams.planId || '';
-	var priceId = routeParams.priceId || '';
-	scope.formData.Amount = routeParams.amount;
+	scope.formData 				= {};
+	scope.formData.clientId 	= routeParams.clientId;
+	scope.formData.Amount 		= routeParams.amount;
+	var screenName 				= routeParams.screenName;
+	var planId 					= routeParams.planId || '';
+	var priceId 				= routeParams.priceId || '';
+	var isValueVoucher 			= false;
 	
 	scope.pinNoValidationFun = function(id){
 		 if(id){
 			 RequestSender.VoucherResource.query({pinNumber:id},function(data){
-				 scope.voucherArray = data;
-				 if(scope.voucherArray.length===1){
-					 //alert(scope.voucherArray.length);
-					 scope.pinType =  scope.voucherArray[0].pinType;
-					 scope.pinValue = scope.voucherArray[0].pinValue;
-					 //alert(scope.pinType);
-					 if(scope.pinType === 'VALUE'){
+				 var voucherArray = data;
+				 if(voucherArray.length == 1){
+					 var pinType 	= voucherArray[0].pinType;
+					 var pinValue 	= voucherArray[0].pinValue;
+					 if(pinType == 'VALUE'){
 						 scope.errorStatus='';
-						 if(scope.pinValue === scope.formData.Amount){
-							 scope.isValueVoucher = true;
+						 if(pinValue == scope.formData.Amount || scope.formData.Amount < pinValue){
+							 isValueVoucher = true;
 						 }else{
-							 scope.isValueVoucher = false;
+							 isValueVoucher = false;
 							 scope.errorStatus = "VoucherPin Value Greatethan or Equal to Plan Amount";
 						 }
 						 
 					 }else{
-						 scope.isValueVoucher = false;
+						 isValueVoucher = false;
 						 alert("Please Go to Redemption Option");
 					 }
 				 }else{
-					 scope.isValueVoucher = false;
-					 scope.formData.pinNumber='';
+					 isValueVoucher = false;
+					 delete scope.formData.pinNumber;
 					 scope.errorStatus = "Invalid Voucher Pin:"+id;
 				 }
 				 
@@ -43,16 +39,14 @@ InternalPaymentController = function(scope, routeParams, location, localStorageS
 	 };
 	 
 	 scope.submit = function(){
-		 if(scope.isValueVoucher){
+		 if(isValueVoucher){
 			 
 			 RequestSender.redemptionResource.save(scope.formData,function(data){
 				 localStorageService.add("paymentgatewayresponse", data);
-				 alert(2);
-				 if(scope.screenName === 'payment' || scope.screenName == 'payment'){
-					 alert(scope.screenName);
-					 location.path('/paymentgatewayresponse/'+scope.clientId);
+				 if(screenName == 'payment'){
+					 location.path('/paymentgatewayresponse/'+scope.formData.clientId);
 				 }else{	
-					 var pathUrl = "/orderbookingscreen/"+scope.screenName+"/"+scope.formData.clientId+"/"+planId+"/"+priceId;
+					 var pathUrl = "/orderbookingscreen/"+screenName+"/"+scope.formData.clientId+"/"+planId+"/"+priceId;
 					 location.path(pathUrl);
 					
 				 }
