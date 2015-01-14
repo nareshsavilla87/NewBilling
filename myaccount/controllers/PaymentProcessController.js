@@ -10,6 +10,7 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 	var storageData			= localStorageService.get("storageData") ||"";
 	var clientData 			= storageData.clientData;
 	var totalOrdersData		= storageData.totalOrdersData;
+	var orderId				= storageData.orderId;
 	scope.clientId			= clientData.id;
 	
 		for(var i in totalOrdersData){
@@ -75,7 +76,7 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 					
 			case 'paypal' :
 				var query = {clientId :scope.clientId,locale : "en",planCode : planId,contractPeriod : scope.planData.contractId,
-							  paytermCode:scope.planData.billingFrequency,returnUrl:hostName, screenName:scope.screenName};
+							  paytermCode:scope.planData.billingFrequency,returnUrl:hostName, screenName:scope.screenName,orderId:orderId};
 			
 				scope.paymentURL = paymentGatewayValues.paypalUrl+'='+paymentGatewayValues.paypalEmailId+"&item_name="+scope.planData.planCode+"&amount="+scope.planData.price+"" +	  	  				
 				  	  "&custom="+JSON.stringify(query);
@@ -95,7 +96,7 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 				var nettellerData = {clientId:scope.clientId,currency:"EUR",total_amount:scope.planData.price,
 									paytermCode:scope.planData.billingFrequency,planCode : planId,
 									contractPeriod : scope.planData.contractId,locale:"en",source:'neteller',
-									screenName:scope.screenName};
+									screenName:scope.screenName,orderId : orderId};
 				
 				var encodeURINetellerData = encodeURIComponent(JSON.stringify(nettellerData));
 				var encryptedData = CryptoJS.AES.encrypt(encodeURINetellerData,encrytionKey).toString();
