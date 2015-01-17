@@ -1,0 +1,49 @@
+<div data-ng-controller="DisbursementsController" >
+<div>
+	<ul class="breadcrumb">
+		<li class="active">Disbursements</li>
+	</ul>
+</div>
+
+<div class="row-fluid" >
+	
+     <div>
+		<input data-ng-model="filterText" type="text" data-ng-autofocus="true"  class="span marginbottom0px" placeholder="Enter text to search">
+		<table class="table">
+			<thead>
+				<tr class="graybg">
+					<th>Id</th>
+					<th>Partner Name</th>
+					<th>Transaction Date</th>
+					<th>Source</th>
+					<th>Charge Amount</th>
+					<th>Percentage(%)</th>
+					<th>Commission Amount</th>
+					<th>Net Amount</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr  data-ng-repeat="patnerDisbursementData in patnerDisbursementData.currentPageItems | filter:filterText">
+					<td >{{patnerDisbursementData.id}}</td>
+					<td >{{patnerDisbursementData.partnerName}}</td>
+					<td >{{patnerDisbursementData.transDate |DateFormat}}</td>
+					<td >{{patnerDisbursementData.source}}</td>
+					<td >{{patnerDisbursementData.chargeAmount}}</td>
+					<td >{{patnerDisbursementData.percentage}}</td>
+					<td >{{patnerDisbursementData.commissionAmount}}</td>
+					<td >{{patnerDisbursementData.netAmount}}</td>
+					
+				</tr>
+			</tbody>
+		</table>
+		<ul class="pager">
+   			<li class="previous"><a data-ng-click="patnerDisbursementData.previous()" href="" data-ng-disabled="!patnerDisbursementData.hasPrevious()">&larr; Prev</a></li>
+   			<li class="next" ><a data-ng-click="patnerDisbursementData.next()" href="" data-ng-disabled="!patnerDisbursementData.hasNext()">Next &rarr;</a></li>
+		</ul>
+	</div>
+ </div> 
+ </div>
+
+          
+	

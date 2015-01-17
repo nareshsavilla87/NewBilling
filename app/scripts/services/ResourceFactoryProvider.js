@@ -1065,6 +1065,9 @@
             agreementResource: defineResource(apiVer + "/agreements/:partnerId", {partnerId :'@partnerId'}, {
             	 update: { method: 'PUT' }
             }),
+            patnerDisbursementResource: defineResource(apiVer + "/patnerdisbursement", {}, {
+            	update: { method: 'PUT' }
+            }),
       
         };
       }];
