@@ -969,6 +969,9 @@
        .when('/createpartneragreement/:id', {
         templateUrl: 'views/organization/createpartneragreement.html'
       })
+      .when('/disbursements', {
+        templateUrl: 'views/administration/disbursements.html'
+      })
       ;
     
     $locationProvider.html5Mode(false);

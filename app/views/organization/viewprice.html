@@ -5,7 +5,12 @@
 	          <li><a href="#/plans">{{'label.plans' | translate}}</a> <span class="divider">/</span></li>
 	        <li><a href="#/prices/{{formData.planId}}">{{formData.planCode}}</a> <span class="divider">/</span></li>
 	        <li class="active">{{plan.planCode}}</li>
-	    </ul>
+	    </ul><br/>
+	    <div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
 	    <div class="pull-right">
 	      <div class="btn-group">
 	          <a data-ng-show="PermissionService.showMenu('UPDATE_PRICE')" href="#/editprice/{{formData.priceId}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
