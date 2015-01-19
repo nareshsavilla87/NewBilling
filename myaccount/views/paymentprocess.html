@@ -86,7 +86,7 @@
           	  </tr>
           	  <tr data-ng-hide="paymentGatewayName==''" >
           	    <td style="padding-top: 30px;" align="right">
-          	      <div><a  href="#/{{screenName}}/{{clientId}}" class="btn" >{{'btn.cancel' | translate}}</a></div> 
+          	      <div><a  data-ng-click="goBack()" class="btn" >{{'btn.cancel' | translate}}</a></div> 
           	    </td>
        		 	<td style="padding-top: 30px;" >
       		 	   <div >
@@ -100,7 +100,7 @@
           	  </tr>
           	  <tr data-ng-show="paymentGatewayName==''" >
           	  	<td style="padding-top: 30px;" colspan="2" align="right">
-          	      <div><a  href="#/{{screenName}}/{{clientId}}" class="btn" >{{'btn.cancel' | translate}}</a></div> 
+          	      <div><a  data-ng-click="goBack()" class="btn" >{{'btn.cancel' | translate}}</a></div> 
           	    </td>
           	  </tr>
           	</table>
@@ -109,7 +109,7 @@
       <div data-ng-show="price == 0">
               <br/>
 	       <div class="pull-right">
-				<a href="#/{{screenName}}/{{clientId}}" class="btn">{{'btn.cancel' | translate}}</a> 
+				<a data-ng-click="goBack()" class="btn">{{'btn.cancel' | translate}}</a> 
 				<a data-ng-click="finishBtnFun()" class="btn btn-primary animated fadeInUp">{{'btn.subscribe' | translate}}</a>
 			</div> 
 			 

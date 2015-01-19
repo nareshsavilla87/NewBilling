@@ -3,7 +3,7 @@
 	  VoucherpinController: function(scope, resourceFactory,PermissionService,rootScope,API_VERSION,route) {
         scope.voucherpins = [];
         scope.PermissionService = PermissionService;
-        resourceFactory.voucherpinResource.getAllEmployees(function(data) {
+        resourceFactory.voucherpinResource.get(function(data) {
             scope.voucherpins = data;
         });
         
