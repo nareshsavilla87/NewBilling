@@ -1068,6 +1068,9 @@
             patnerDisbursementResource: defineResource(apiVer + "/patnerdisbursement", {}, {
             	update: { method: 'PUT' }
             }),
+            patnerDisbursementTemplateResource: defineResource(apiVer + "/patnerdisbursement/template", {}, {
+            	update: { method: 'PUT' }
+            }),
       
         };
       }];
