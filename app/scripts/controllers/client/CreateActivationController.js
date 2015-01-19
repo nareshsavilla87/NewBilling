@@ -11,15 +11,13 @@
 		  scope.ActivationData.owndevice = [];
 		  scope.data=[];
 		  //var config = filter('ConfigLookup')('deviceAgrementType');
-		  var config = webStorage.get("client_configuration").deviceAgrementType;
-		  scope.config=config;
+		 
 		  scope.configPayment = webStorage.get("client_configuration").payment;
 		  scope.PermissionService = PermissionService;
 		 
 		  
 //create client controller
           scope.offices = [];
-          scope.staffs = [];
           scope.first = {};
           scope.allocation={};
           scope.first.date = new Date();
@@ -31,21 +29,25 @@
           
           resourceFactory.clientTemplateResource.get(function(data) {
               scope.offices = data.officeOptions;
-              scope.staffs = data.staffOptions;
               scope.formData1.officeId = scope.offices[0].id;
               scope.clientCategoryDatas=data.clientCategoryDatas;
-              scope.cities=data.addressTemplateData.cityData;
-              scope.configurationProperty=data.configurationProperty.enabled;
               scope.formData1.clientCategory=scope.clientCategoryDatas[0].id;
+              scope.cities=data.addressTemplateData.cityData;
+              scope.configurationProperty=data.loginConfigurationProperty.enabled;
           });
           
-         
-          scope.changeOffice =function(officeId) {
-            resourceFactory.clientTemplateResource.get({staffInSelectedOfficeOnly : false, officeId : officeId
-                }, function(data) {
-              scope.staffs = data.staffOptions;
-             
-            });
+          scope.formName=function(name){
+	    	  
+              
+              var mesage_array = new Array();
+              mesage_array = (name.split(" "));
+           
+           this.formData1.firstname=mesage_array[0];
+           this.formData1.lastname=mesage_array[1];
+           if(this.formData1.lastname == null){
+        	   this.formData1.lastname="Mr.";
+           }
+        	  
           };
          
           scope.getStateAndCountry=function(city){
@@ -58,42 +60,41 @@
         
 //addonetimsale controller
       	
-			  scope.clientId=routeParams.id;
 			  scope.formData2 = {};
-	          scope.data={};
 	          scope.maxDate = new Date();
 	          
-	          
+	          var config = webStorage.get("client_configuration").deviceAgrementType;
+			  scope.config=config;
+			  
 	          if(config == "SALE"){
 	        	  if(PermissionService.showMenu('CREATE_NEWSALE')){ 
 	        		  scope.formData2.saleType='NEWSALE';
 	    		  }else if(PermissionService.showMenu('CREATE_SECONDSALE')){
 	    			  scope.formData2.saleType='SECONDSALE';
-	           }
+	              }
 	        	  
-	        resourceFactory.oneTimeSaleTemplateResource.getOnetimes({clientId: routeParams.id}, function(data) {
-	        	scope.itemDatas = data.itemDatas;
-	            scope.discountMasterDatas = data.discountMasterDatas;
-	            scope.officesDatas=data.officesData;
-	            
-	            for(var i=0;i<scope.officesDatas.length;i++){
-	            	if(scope.officesDatas[i].id==1){
-	            		scope.formData2.officeId=scope.officesDatas[i].id;
-	            	}
-	            }
-                    scope.onetimesales=data;
-	            scope.date= {};
-	            scope.date.saleDate = new Date();
-	            
-	        });
+	        	  scope.clientId=routeParams.id;
+		           resourceFactory.oneTimeSaleTemplateResource.getOnetimes({clientId: scope.clientId}, function(data) {
+		        	   scope.itemDatas = data.itemDatas;
+		            	scope.discountMasterDatas = data.discountMasterDatas;
+			            scope.officesDatas=data.officesData;
+			            	
+			            for(var i=0;i<scope.officesDatas.length;i++){
+			            	if(scope.officesDatas[i].id==1){
+			            		scope.formData2.officeId=scope.officesDatas[i].id;
+			            	}
+			            }
+	                    scope.onetimesales=data;
+		            scope.date= {};
+		            scope.date.saleDate = new Date();
+		            
+		        });
 	        
 	          }else{
 	        	  scope.itemtypes=[];
 	              resourceFactory.itemResourceTemplate.getAll(function(data){
 	            	  scope.itemtypes=data.itemDatas;
-	            	  
-	    	 
-	            });	  
+	              });	  
 	          }
 	       
 	        scope.itemData=function(itemId,officeId){
@@ -218,20 +219,6 @@
 	             });
 	       };
 	        
-	       scope.formName=function(name){
-	    	  
-               
-               var mesage_array = new Array();
-               mesage_array = (name.split(" "));
-            
-            this.formData1.firstname=mesage_array[0];
-            this.formData1.lastname=mesage_array[1];
-            if(this.formData1.lastname == null){
-         	   this.formData1.lastname="Mr.";
-            }
-         	  
-           };
-	      
 	        scope.submit4 = function() {   
 	        	scope.flag = true;
 
@@ -240,9 +227,9 @@
 	        	var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
 	            this.formData4.dateFormat = 'dd MMMM yyyy';
 	            this.formData4.start_date = reqDate;
-	            if(this.formData4.isPrepaid == 'Y'){
+	            /*if(this.formData4.isPrepaid == 'Y'){
 	            this.formData4.paytermCode='Monthly';
-	            }
+	            }*/
 	            delete this.formData4.planId;
 	            delete this.formData4.id;
 	            delete this.formData4.isPrepaid;
