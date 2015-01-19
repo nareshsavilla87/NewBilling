@@ -2,11 +2,13 @@
   mifosX.controllers = _.extend(module, {
 	  VoucherpinController: function(scope, resourceFactory,PermissionService,rootScope,API_VERSION,route,paginatorService,$modal) {
         scope.voucherpins = [];
+        scope.voucherpinsBatchwise = [];
         scope.batchNameDatas = {};
         scope.pinTypeDatas = [];
         scope.searchData = {};
         scope.PermissionService = PermissionService;
-      
+        scope.isVouchersBatchWise = "false";
+        
         scope.voucherPinFetchFunction = function(offset, limit, callback) {
         	var params = {};
         	params.offset = offset;
@@ -23,13 +25,22 @@
         	if(scope.searchData.sqlSearch){
         		params.sqlSearch = scope.searchData.sqlSearch;
         	}
-			resourceFactory.voucherpinResource.get(params , callback);
+			resourceFactory.voucherpinBatchWiseResource.get(params , callback);
+		};
+		scope.voucherpinsBatchwise = paginatorService.paginate(scope.voucherPinFetchFunction, 14);
+		
+		scope.onSelectVouchers = function(){
+			scope.isVouchersBatchWise = "true";
 		};
 		
-		scope.voucherpins = paginatorService.paginate(scope.voucherPinFetchFunction, 14);
-      /*  resourceFactory.voucherpinResource.getAllEmployees(function(data) {
+		scope.onSelectVoucherPins = function(){
+			scope.isVouchersBatchWise = "false";
+		};
+		
+        resourceFactory.voucherpinResource.getAllEmployees(function(data) {
             scope.voucherpins = data;
-        });*/
+        });
+        
 		resourceFactory.voucherpinTemplateResource.get({isBatchTemplate:true},function(data) {
 	        scope.batchNameDatas = data.voucherBatchData; 
 	    });
@@ -64,7 +75,7 @@
         };
   
 		scope.search = function(){
-			scope.voucherpins = paginatorService.paginate(scope.voucherPinFetchFunction, 14);
+			scope.voucherpinsBatchwise = paginatorService.paginate(scope.voucherPinFetchFunction, 14);
 		};
         
       //export Batch 
