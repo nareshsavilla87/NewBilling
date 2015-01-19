@@ -46,7 +46,13 @@
 						<label class="control-label">{{ 'label.password' |translate }}<span class="required">*</span>
 						</label>
 						<div class="controls">
-							<input type="password" id="password" data-ng-model="formData.password">
+							<input type="password" name="password" id="password" data-ng-model="formData.password" data-ng-minlength=4 data-late-Validate><br/>
+							<span data-ng-show="createpartnerform.password.$invalid">
+								<small class="error" data-ng-show="createpartnerform.password.$error.pattern">alphanumeric and spaces only!</small> 
+								<small class="error" data-ng-show="createpartnerform.password.$error.req">{{'label.required.field' | translate}} </small> 
+								<small class="error" data-ng-show="createpartnerform.password.$error.minlength && !createpartnerform.password.$error.req">
+									  Password is required at least 4 characters</small>
+							</span>
 						</div>
 					</div>
 					
@@ -54,7 +60,13 @@
 						<label class="control-label">{{ 'label.repeatPassword' |translate }}<span class="required">*</span>
 						</label>
 						<div class="controls">
-							<input type="password" id="repeatPassword" data-ng-model="formData.repeatPassword">
+							<input type="password" name="repeatPassword" id="repeatPassword" data-ng-model="formData.repeatPassword" data-ng-minlength=4 data-late-Validate><br/>
+							<span data-ng-show="createpartnerform.repeatPassword.$invalid">
+								<small class="error" data-ng-show="createpartnerform.repeatPassword.$error.pattern">alphanumeric and spaces only!</small> 
+								<small class="error" data-ng-show="createpartnerform.repeatPassword.$error.req">{{'label.required.field' | translate}} </small> 
+								<small class="error" data-ng-show="createpartnerform.repeatPassword.$error.minlength && !createpartnerform.repeatPassword.$error.req">
+									 Repeat Password is required at least 4 characters</small>
+							</span>
 						</div>
 					</div>
 

@@ -2461,6 +2461,7 @@
 "label.managepartners":"Manage Partners",
 "table.heading.partner type":"Partner Type",
 "table.heading.partner currency":"currency",
+"table.heading.partner.amount":"Balance Amount",
 "label.partner.created.on":"Opened On",
 "label.partner.email":"Email",
 "label.repeatPassword":"Repeat Password",
