@@ -359,6 +359,9 @@
        voucherpinResource: defineResource(apiVer + "/vouchers/:voucherId", {voucherId:'@voucherId'}, {
            getAllEmployees: {method: 'GET', params: {}, isArray: true}
          }),
+         voucherpinBatchWiseResource: defineResource(apiVer + "/vouchers/batchwise/:voucherId", {voucherId:'@voucherId'}, {
+             getAllEmployees: {method: 'GET', params: {}, isArray: true}
+           }),
          voucherpinTemplateResource: defineResource(apiVer + "/vouchers/template", {}, {}),
          voucherpinBatchTemplateResource: defineResource(apiVer + "/vouchers/batchtemplate", {}, {}),
          
@@ -1066,6 +1069,9 @@
             	 update: { method: 'PUT' }
             }),
             patnerDisbursementResource: defineResource(apiVer + "/patnerdisbursement", {}, {
+            	update: { method: 'PUT' }
+            }),
+            patnerDisbursementTemplateResource: defineResource(apiVer + "/patnerdisbursement/template", {}, {
             	update: { method: 'PUT' }
             }),
       
