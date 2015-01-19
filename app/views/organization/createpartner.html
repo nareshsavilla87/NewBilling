@@ -4,7 +4,7 @@
 		<li><a href="#/offices" data-ng-click="reset123()">{{'label.managepartners' | translate}}</a><span class="divider">/</span></li>
 		<li class="active">{{'label.createpartner' | translate}}</li>
 	</ul>
-</div>
+
 <form name="createpartnerform" class="form-horizontal well" novalidate  data-ng-submit="submit()">
 	<div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label> <label data-ng-show="errorStatus">{{errorStatus}}</label> 
@@ -150,3 +150,4 @@
 		</table>
 	</fieldset>
 </form>
+</div>
