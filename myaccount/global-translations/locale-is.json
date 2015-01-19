@@ -891,7 +891,32 @@
 "label.paymentgateway.amount"			: "greiddur Upphæð",
 "label.paymentgateway.description"		: "lýsing á",
 "label.paymentgateway.result"			: "afleiðing",
-"label.paymentgateway.paymentId"		: "Kenni greiðsla"
+"label.paymentgateway.paymentId"		: "Kenni greiðsla",
+
+"#paymentGatewayConfig":"",
+"label.paypal":"Paypal",
+"label.globalpay":"GlobalPay",
+"label.globalpay.name":"Nafni",
+"label.globalpay.amount":"upphæð",
+"label.globalpay.email":"tölvupósti Heimilisfang",
+"label.globalpay.phone":"Símanúmer",
+"label.add.globalpay.Info":"GlobalPay Upplýsingar",
+"dialog.korta.title.message":"vakandi Upplýsingar",
+"dialog.korta.alert.message":"Kæri viðskiptavinur, ættir þú að skrá Card lykilorðið þitt í Korta Greiðsla Hlið Kerfi áður að nota þessa þjónustu.",
+"validation.msg.paymentgateway.verificationCode.length.error":"Vinsamlegast sláðu inn gilt sannprófun Kóði",
+"validation.msg.paymentgateway.value.cannot.be.blank":"Gildi má ekki vera autt",
+
+"#Prepaid Payment":"",
+"label.client.prepaid.payment":"greiðsla",
+"label.prepaid.amount":"upphæð",
+
+"#Neteller":"",
+"label.neteller.valid.verificationcode":"Vinsamlegast sláðu inn gilt sannprófun Kóði",
+"label.neteller.valid.value":"Vinsamlegast sláðu inn 'gildi' upplýsingar rétt",
+"label.neteller.verificationcode":"sannprófun Kóði",
+"label.neteller.value":"Neteller Email Kenni",
+"label.neteller.source":"Heimild",
+"label.neteller.amount":"upphæð"
 
 
 
