@@ -4,10 +4,7 @@
 	        <li><a href="#/offices" data-ng-click="partnersTab()">{{'label.managepartners' | translate}}</a> <span class="divider">/</span></li>
 	        <li><a href="#/viewpartner/{{partnerId}}">view partner</a><span class="divider">/</span></li>
 	        <li class="active">{{'label.createpartneragreement' | translate}}</li>
-
         </ul>
-
-
 <form name="partneragreement" novalidate class="form-horizontal well"   data-ng-submit="submit()">
 
   	<div class="error" data-ng-show="errorStatus || errorDetails">
@@ -77,7 +74,10 @@
                     <tr data-ng-repeat="gd in partnerSourceData" >
 					  <td><select class="input-medium" id="source" data-ng-model="gd.source" data-ng-options="sourceData.id as sourceData.mCodeValue for sourceData in sourceDatas"></select></td>
 					  <td><select class="input-medium" id="shareType"  data-ng-model="gd.shareType" data-ng-options="shareType.mCodeValue as shareType.mCodeValue for shareType in shareTypes"></select></td>
-                      <td><input  class="input-medium" id="shareAmount" data-ng-model="gd.shareAmount" type="text"  required ></td>
+                      <td><input  class="input-medium" name="shareAmount" id="shareAmount" data-ng-model="gd.shareAmount" type="text"  maxlength="5" required ><br/>
+                      <!-- data-ng-pattern="/^0*([0-9]{1,2}){1}(\.[0-9]{1,2})?|^100$/" <span data-ng-show="partneragreement.shareAmount.$invalid && partneragreement.shareAmount.$dirty">
+        			  <small class="error" data-ng-show="partneragreement.shareAmount.$error.pattern">accept digits between 0-100 only!</small>
+    				 </span> --></td>
 					  <td><select class="input-medium" id="status" data-ng-model="gd.status" data-ng-options="s.id as s.value for s in statusData"></select></td>
                       <td><a data-ng-click="removeSourceCategories($index)"><i class="icon-remove icon-white"></i></a></td>
                     </tr>
