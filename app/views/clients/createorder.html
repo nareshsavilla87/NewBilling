@@ -163,7 +163,7 @@
                               <select    ng-model="formData.contractPeriod"  ng-options="paytermdata.duration as paytermdata.paytermtype for paytermdata in paytermdatas" value="{{billRuleData.id}}"></select>
                            </div>
                         </div>
-                        <div class="control-group" ng-hide="formData.isPrepaid == 'Y'">
+                        <div class="control-group" ng-hide="isPrepaidPlan == 'Y'">
                           <label class="control-label" for="paytermCode">{{ 'label.order.billingfrequency' | translate }}</label>
                              <div class="controls">
                                 <select ng-model="formData.paytermCode"  ng-options="paytermdata.paytermtype as paytermdata.paytermtype for paytermdata in paytermdatas" value="{{billRuleData.id}}"></select>
