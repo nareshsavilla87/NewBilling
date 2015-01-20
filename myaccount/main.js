@@ -21,15 +21,12 @@ SelfcareMainController = function(scope, translate,sessionManager,RequestSender,
 	   scope.domReady = true;
 	   var urlAfterHash = window.location.hash;
 	   
-	   if(localStorageService.get('selfcare_sessionData')||webStorage.get("clientTotalData")){
+	   if(localStorageService.get('selfcare_sessionData')||localStorageService.get("clientTotalData")){
 		   scope.isLandingPage= true;
 	   }
 	   
 	   (urlAfterHash.match('/active') == '/active') ? (scope.isLandingPage= true,scope.isRegClientProcess = true) : scope.isRegClientProcess = false;
 	   
-	   //adding web tv url
-	   scope.webtvURL = selfcareModels.webtvURL;
-	   localStorageService.add("selfcareAppUrl",selfcareModels.selfcareAppUrl);
 	   
 	   
 //setting the date format
