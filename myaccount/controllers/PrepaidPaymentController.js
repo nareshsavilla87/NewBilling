@@ -39,7 +39,7 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 				scope.planData.price 	= amount;
 				scope.planData.planCode = 'Pay';
 				scope.planData.id 		= 0;
-				scope.paymentGatewayName = scope.paymentgatewayDatas.length>=1 ?scope.paymentgatewayDatas[1].name :"";
+				scope.paymentGatewayName = scope.paymentgatewayDatas.length>=1 ?scope.paymentgatewayDatas[0].name :"";
 				scope.paymentGatewayFun(scope.paymentGatewayName);
 			}
 		}else{
