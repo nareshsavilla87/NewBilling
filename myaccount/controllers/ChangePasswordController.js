@@ -1,4 +1,4 @@
-ChangePasswordController = function(scope,RequestSender,rootScope,localStorageService) {
+ChangePasswordController = function(scope,RequestSender,rootScope,localStorageService,sessionManager) {
 		 
 		  scope.pwdData = {};
 		  scope.formData = {};
@@ -39,4 +39,5 @@ ChangePasswordController = function(scope,RequestSender,rootScope,localStorageSe
                                                     'RequestSender',
                                                     '$rootScope',
                                                     'localStorageService',
+						    'SessionManager',
                                                     ChangePasswordController]);

@@ -259,4 +259,4 @@ selfcareApp.controller('ActivateUserController', ['$scope',
                                                   'SessionManager',
                                                   'AuthenticationService',
                                                   '$modal',
-                                                  ,ActivateUserController]);
+                                                  ActivateUserController]);
