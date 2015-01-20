@@ -4,10 +4,6 @@
 		<li><a href="#/offices" data-ng-click="reset123()">{{'label.managepartners' | translate}}</a><span class="divider">/</span></li>
 		<li class="active">{{'label.createpartner' | translate}}</li>
 	</ul>
-<<<<<<< HEAD
-
-=======
->>>>>>> upstream/master
 <form name="createpartnerform" class="form-horizontal well" novalidate  data-ng-submit="submit()">
 	<div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label> <label data-ng-show="errorStatus">{{errorStatus}}</label> 
@@ -73,22 +69,21 @@
 							</span>
 						</div>
 					</div>
-
 					<div class="control-group">
-						<label class="control-label">{{ 'label.partnertype' |translate }}</label>
+						<label class="control-label" for="office">Credit Limit</label>
 						<div class="controls">
-							<select data-ng-model="formData.partnerType"
-								data-ng-options="partnerType.id as partnerType.mCodeValue for partnerType in partnerTypes"></select>
+							<input type="text" data-ng-model="formData.creditLimit" id="creditlimit" name="creditlimit">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="currency">{{'label.currency' | translate }}</label>
+						<div class="controls">
+							<select id="currency" data-ng-model="formData.currency"
+								data-ng-options="currencydata.code as currencydata.displayLabel for currencydata in currencydatas"
+								data-value="{{currencydata.code}}"><option value="">{{'label.select.one'| translate}}</option></select>
 						</div>
 					</div>
 					
-					<div class="control-group">
-						<label class="control-label" for="office">Office<span class="required">*</span>
-						</label>
-						<div class="controls">
-							<select data-ng-model="formData.parentId" data-ng-options="office.id as office.name for office in offices"></select>
-						</div>
-					</div>
 
 						<div class="control-group">
 							<label class="control-label" for="isCollective">{{'label.partner.isCollective' | translate }}</label>
@@ -159,24 +154,16 @@
 						</div>
 					</div>
 					<div class="control-group">
-						<label class="control-label" for="currency">{{'label.currency' | translate }}</label>
-						<div class="controls">
-							<select id="currency" data-ng-model="formData.currency"
-								data-ng-options="currencydata.code as currencydata.displayLabel for currencydata in currencydatas"
-								data-value="{{currencydata.code}}"><option value="">{{'label.select.one'| translate}}</option></select>
-						</div>
-					</div>
-					
-				</td></tr>
-				
-			<tr>
-			<td>
-				<div class="control-group">
 						<label class="control-label" for="file">{{'label.company.image'| translate}}</label>
 						<div class="controls">
 							<input type="file" data-ng-file-select="onFileSelect($files)">
 						</div>
 					</div>	
+				</td></tr>
+				
+			<tr>
+			<td>
+				
 			</td></tr>
 			<tr>
 			<td colspan="2" align="right">

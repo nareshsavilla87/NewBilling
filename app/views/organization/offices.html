@@ -23,6 +23,7 @@
 					<th>{{ 'table.heading.external id' | translate }}</th>
 					<th>{{ 'table.heading.parent office' | translate }}</th>
 					<th>{{ 'table.heading.opened on' | translate }}</th>
+					<th>{{ 'table.heading.partner.amount' | translate }}</th> 
 					<th>{{ 'table.heading.actions' | translate }}</th>
 				</tr>
 			</thead>
@@ -33,6 +34,7 @@
 					<td class="pointer" data-ng-click="routeTo(office.id)">{{office.externalId}}</td>  
 					<td class="pointer" data-ng-click="routeTo(office.id)">{{office.parentName}}</td>
 					<td class="pointer" data-ng-click="routeTo(office.id)">{{office.openingDate | DateFormat}}</td>
+					<td class="pointer" data-ng-click="routeTo(office.id)">{{office.balance}}</td>
 					<td><a data-ng-show="PermissionService.showMenu('UPDATE_OFFICE')"
 					href="#/editoffice/{{office.id}}" data-popover="Edit Office" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a></td>
 				</tr>

@@ -8,12 +8,12 @@
         
        	 resourceFactory.partnerTemplateResource.get(function(data) {
             scope.offices = data.allowedParents;
-            scope.partnerTypes = data.partnerTypes;
+          //  scope.partnerTypes = data.partnerTypes;
             scope.currencydatas = data.currencyData.currencyOptions;
             scope.cityDatas = data.citiesData;
             scope.formData = {
               parentId : scope.offices[0].id,
-              partnerType : scope.partnerTypes[0].id,
+      //        partnerType : scope.partnerTypes[0].id,
               officeType : data.officeTypes[1].id,
             };
         });
@@ -34,8 +34,10 @@
           };
         
         scope.submit = function() {   
-        	//this.formData.locale = $rootScope.locale.code;
+          this.formData.parentId =1;
+          this.formData.locale ="en";
           scope.formData.roleName ="Partner";
+          
           resourceFactory.partnerResource.save(this.formData,function(data){
         	  
         	  if (scope.file) {
