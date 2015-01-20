@@ -4,7 +4,10 @@
 		<li><a href="#/offices" data-ng-click="reset123()">{{'label.managepartners' | translate}}</a><span class="divider">/</span></li>
 		<li class="active">{{'label.createpartner' | translate}}</li>
 	</ul>
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/master
 <form name="createpartnerform" class="form-horizontal well" novalidate  data-ng-submit="submit()">
 	<div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label> <label data-ng-show="errorStatus">{{errorStatus}}</label> 
@@ -47,7 +50,27 @@
 						<label class="control-label">{{ 'label.password' |translate }}<span class="required">*</span>
 						</label>
 						<div class="controls">
-							<input type="password" id="password" data-ng-model="formData.password">
+							<input type="password" name="password" id="password" data-ng-model="formData.password" data-ng-minlength=4 data-late-Validate><br/>
+							<span data-ng-show="createpartnerform.password.$invalid">
+								<small class="error" data-ng-show="createpartnerform.password.$error.pattern">alphanumeric and spaces only!</small> 
+								<small class="error" data-ng-show="createpartnerform.password.$error.req">{{'label.required.field' | translate}} </small> 
+								<small class="error" data-ng-show="createpartnerform.password.$error.minlength && !createpartnerform.password.$error.req">
+									  Password is required at least 4 characters</small>
+							</span>
+						</div>
+					</div>
+					
+					<div class="control-group">
+						<label class="control-label">{{ 'label.repeatPassword' |translate }}<span class="required">*</span>
+						</label>
+						<div class="controls">
+							<input type="password" name="repeatPassword" id="repeatPassword" data-ng-model="formData.repeatPassword" data-ng-minlength=4 data-late-Validate><br/>
+							<span data-ng-show="createpartnerform.repeatPassword.$invalid">
+								<small class="error" data-ng-show="createpartnerform.repeatPassword.$error.pattern">alphanumeric and spaces only!</small> 
+								<small class="error" data-ng-show="createpartnerform.repeatPassword.$error.req">{{'label.required.field' | translate}} </small> 
+								<small class="error" data-ng-show="createpartnerform.repeatPassword.$error.minlength && !createpartnerform.repeatPassword.$error.req">
+									 Repeat Password is required at least 4 characters</small>
+							</span>
 						</div>
 					</div>
 
@@ -58,7 +81,33 @@
 								data-ng-options="partnerType.id as partnerType.mCodeValue for partnerType in partnerTypes"></select>
 						</div>
 					</div>
+					
+					<div class="control-group">
+						<label class="control-label" for="office">Office<span class="required">*</span>
+						</label>
+						<div class="controls">
+							<select data-ng-model="formData.parentId" data-ng-options="office.id as office.name for office in offices"></select>
+						</div>
+					</div>
 
+						<div class="control-group">
+							<label class="control-label" for="isCollective">{{'label.partner.isCollective' | translate }}</label>
+							<div class="controls">
+								<label class="checkbox"> <input type="checkbox" id="isCollective" data-ng-model="formData.isCollective">
+								</label>
+							</div>
+						</div>
+						
+					</td>
+				<td>
+					<div class="control-group">
+						<label class="control-label">{{ 'label.organization' | translate }}<span class="required">*</span>
+						</label>
+						<div class="controls">
+							<input type="text" id="organization" data-ng-model="formData.organization">
+						</div>
+					</div>
+					
 					<div class="control-group">
 						<label class="control-label" for="phone">{{'label.phone' | translate}}<span class="required">*</span>
 						</label>
@@ -72,29 +121,12 @@
 							</div>
 						</div>
 					</div>
+					
 					<div class="control-group">
 						<label class="control-label">{{ 'label.partner.email' | translate }}<span class="required">*</span>
 						</label>
 						<div class="controls">
 							<input type="email" id="email" data-ng-model="formData.email">
-						</div>
-					</div>
-					
-				</td>
-				<td>
-					<div class="control-group">
-						<label class="control-label">{{ 'label.organization' | translate }}<span class="required">*</span>
-						</label>
-						<div class="controls">
-							<input type="text" id="organization" data-ng-model="formData.organization">
-						</div>
-					</div>
-
-					<div class="control-group">
-						<label class="control-label" for="office">Office<span class="required">*</span>
-						</label>
-						<div class="controls">
-							<select data-ng-model="formData.parentId" data-ng-options="office.id as office.name for office in offices"></select>
 						</div>
 					</div>
 
@@ -105,6 +137,9 @@
 							<input type="text" id="city" name="city" data-ng-model="formData.city" autocomplete="off" list="citylist"
 								data-ng-change="getStateAndCountry(formData.city)" required />
 						</div>
+						<datalist id="citylist">
+                   					<option  data-ng-repeat="cityData in cityDatas" value="{{cityData}}">
+            		</datalist>
 					</div>
 
 					<div class="control-group">
@@ -131,20 +166,24 @@
 								data-value="{{currencydata.code}}"><option value="">{{'label.select.one'| translate}}</option></select>
 						</div>
 					</div>
-				</td>
-			</tr>
-			<tr><td>
-			<div class="control-group">
+					
+				</td></tr>
+				
+			<tr>
+			<td>
+				<div class="control-group">
 						<label class="control-label" for="file">{{'label.company.image'| translate}}</label>
 						<div class="controls">
 							<input type="file" data-ng-file-select="onFileSelect($files)">
 						</div>
-					</div>
+					</div>	
 			</td></tr>
-			
-					<tr><td></td><td align="right">
+			<tr>
+			<td colspan="2" align="right">
+					  
 						<a href="#/offices"><button id="cancel" type="reset" data-ng-click="reset123()" class="btn">{{'button.cancel'| translate}}</button></a>
 						<button id="submit" type="submit" class="btn btn-primary">{{'label.save' | translate }}</button>
+			
 		   </td></tr>
 			
 		</table>

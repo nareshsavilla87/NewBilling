@@ -979,6 +979,9 @@
   "validation.msg.voucher.pinType.cannot.be.blank":"PinType cannot be blank",
   "validation.msg.voucher.pinValue.cannot.be.blank":"PinValue cannot be blank",
   "validation.msg.voucher.expiryDate.cannot.be.blank":"Expiry Date cannot be blank",
+  "button.exportBatch":"Export Batch",
+  "label.downloadVoucherPinData":"Download Voucher Data",
+  "label.processVoucherPinData":"Process Voucher Data",
   
   
   "#Table heading Voucher pins":"....",
@@ -2458,11 +2461,15 @@
 "label.managepartners":"Manage Partners",
 "table.heading.partner type":"Partner Type",
 "table.heading.partner currency":"currency",
+"table.heading.partner.amount":"Balance Amount",
 "label.partner.created.on":"Opened On",
 "label.partner.email":"Email",
+"label.repeatPassword":"Repeat Password",
+"label.partner.isCollective":"Is Collective",
 "validation.msg.partner.partnerName.cannot.be.blank":"Partner Name cannot be blank",
 "validation.msg.partner.loginName.cannot.be.blank":"Login Name cannot be blank",
 "validation.msg.partner.password.cannot.be.blank":"Password cannot be blank",
+"validation.msg.partner.repeatPassword.cannot.be.blank":"Repeat password cannot be blank",
 "validation.msg.partner.phone.cannot.be.blank":"Phone cannot be blank",
 "validation.msg.partner.email.cannot.be.blank":"Email cannot be blank",
 "validation.msg.partner.organization.cannot.be.blank":"Organization cannot be blank",
@@ -2505,7 +2512,8 @@
 "label.configure.smtp":"Configure Email",
 "label.configure.smtp.true":"True",
 "label.configure.smtp.false":"False",
-"error.configure.smtp.invalid.email":"Please give valid EmailId"
+"error.configure.smtp.invalid.email":"Please give valid EmailId",
+"error.msg.voucher.no.already.existed.with.thiscontract":"Duration cann't change,Voucher pins are already gererated"
 
 
 

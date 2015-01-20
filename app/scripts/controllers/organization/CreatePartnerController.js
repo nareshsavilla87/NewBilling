@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  CreatePartnerController: function(scope, resourceFactory, location,$rootScope,webStorage) {
+	  CreatePartnerController: function(scope, resourceFactory, location,$rootScope,webStorage,$upload,API_VERSION) {
         scope.offices = [];
         scope.partnerTypes = [];
         scope.currencydatas = [];
@@ -10,6 +10,7 @@
             scope.offices = data.allowedParents;
             scope.partnerTypes = data.partnerTypes;
             scope.currencydatas = data.currencyData.currencyOptions;
+            scope.cityDatas = data.citiesData;
             scope.formData = {
               parentId : scope.offices[0].id,
               partnerType : scope.partnerTypes[0].id,
@@ -34,13 +35,26 @@
         
         scope.submit = function() {   
         	//this.formData.locale = $rootScope.locale.code;
-        	if(scope.file){ 
-        		scope.formData.companyLogo=scope.file;
-        	}
           scope.formData.roleName ="Partner";
           resourceFactory.partnerResource.save(this.formData,function(data){
+        	  
+        	  if (scope.file) {
+            	  $upload.upload({
+                  url: $rootScope.hostUrl+ API_VERSION +'/partners/'+data.resourceId+'/images', 
+                  data: {},
+                  file: scope.file
+                }).then(function(imageData) {
+                    // to fix IE not refreshing the model
+                    if (!scope.$$phase) {
+                      scope.$apply();
+                    }
+                    location.path('/offices');
+            		webStorage.add("callingTab", {someString: "Partners" });
+                  });
+        	  }else{
         		 location.path('/offices');
         		webStorage.add("callingTab", {someString: "Partners" });
+        	  }	
           });
         };
     }
@@ -48,7 +62,11 @@
   mifosX.ng.application.controller('CreatePartnerController', 
   ['$scope', 
    'ResourceFactory', 
-   '$location','$rootScope','webStorage', 
+   '$location',
+   '$rootScope',
+   'webStorage', 
+   '$upload',
+   'API_VERSION',
     mifosX.controllers.CreatePartnerController
     ]).run(function($log) {
     $log.info("CreatePartnerController initialized");

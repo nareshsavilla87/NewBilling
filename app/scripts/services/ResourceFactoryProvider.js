@@ -359,7 +359,11 @@
        voucherpinResource: defineResource(apiVer + "/vouchers/:voucherId", {voucherId:'@voucherId'}, {
            getAllEmployees: {method: 'GET', params: {}, isArray: true}
          }),
+         voucherpinBatchWiseResource: defineResource(apiVer + "/vouchers/batchwise/:voucherId", {voucherId:'@voucherId'}, {
+             getAllEmployees: {method: 'GET', params: {}, isArray: true}
+           }),
          voucherpinTemplateResource: defineResource(apiVer + "/vouchers/template", {}, {}),
+         voucherpinBatchTemplateResource: defineResource(apiVer + "/vouchers/batchtemplate", {}, {}),
          
          discountResource: defineResource(apiVer + "/discount/:discountId", {discountId:'@discountId'}, {
              get: {method: 'GET', params: {}, isArray: true},
@@ -1063,6 +1067,12 @@
             
             agreementResource: defineResource(apiVer + "/agreements/:partnerId", {partnerId :'@partnerId'}, {
             	 update: { method: 'PUT' }
+            }),
+            patnerDisbursementResource: defineResource(apiVer + "/patnerdisbursement", {}, {
+            	update: { method: 'PUT' }
+            }),
+            patnerDisbursementTemplateResource: defineResource(apiVer + "/patnerdisbursement/template", {}, {
+            	update: { method: 'PUT' }
             }),
       
         };

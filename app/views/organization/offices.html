@@ -68,6 +68,7 @@
 					<th>{{ 'table.heading.partner currency' | translate }}</th>
 					<!-- <th>{{ 'table.heading.office type' | translate }}</th>  -->
 					<th>{{ 'table.heading.opened on' | translate }}</th>
+				    <th>{{ 'table.heading.partner.amount' | translate }}</th> 
 				</tr>
 			</thead>
 			<tbody>
@@ -76,8 +77,8 @@
 				  <!--   <td class="pointer" data-ng-click="routeToPartner(partner.id)">{{partner.partnerType}}</td>  -->
 					<td class="pointer" data-ng-click="routeToPartner(partner.id)">{{partner.parentName}}</td>
 					<td class="pointer" data-ng-click="routeToPartner(partner.id)">{{partner.currency}}</td>  
-		     	   <!--  <td class="pointer" data-ng-click="routeToPartner(partner.id)">{{partner.officeType}}</td>  -->
 					<td class="pointer" data-ng-click="routeToPartner(partner.id)">{{partner.openingDate | DateFormat}}</td>
+				    <td class="pointer" data-ng-click="routeToPartner(partner.id)">{{partner.balanceAmount}}</td>
 				</tr>
 			</tbody> 
 		</table>
