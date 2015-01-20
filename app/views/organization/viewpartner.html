@@ -14,52 +14,56 @@
 	      </div>
 	    </div>
 	</div>
-	<div class="row paddedleft">
+	<div class="row-fluid">
 		<h3>{{partner.partnerName}}</h3>
-		<table class="fullwidth">
+		<table>
 			<tr>
-				<td width="20%">{{ 'label.loginname' | translate }}:</td>
-				<td width="70%">{{partner.loginName}}</td>
+				<td>
+					<table >
+						<tr>
+							<td>{{ 'label.loginname' | translate }}:</td>
+							<td>{{partner.loginName}}</td>
+						</tr>
+						<tr>
+							<td>{{ 'label.office.parent office' | translate }}:</td>
+							<td>{{partner.parentName}}</td>
+						</tr>
+						<tr>
+							<td>{{ 'label.partner.created.on' | translate }}:</td>
+							<td>{{partner.openingDate | DateFormat}}</td>
+						</tr>
+						<tr>
+							<td>IsCollective:</td>
+							<td>{{partner.isCollective}}</td>
+						</tr>
+
+					</table>
+				</td>
+
+				<td align="right">
+					<table>
+						<tr>
+							<td >{{'label.Address' | translate}}</td>
+							<td >{{partner.city}}<strong>,</strong>{{partner.state}}
+							</td>
+						</tr>
+						<tr>
+							<td>{{ 'label.country' | translate }}:</td>
+							<td>{{partner.country}}<strong>,</strong>
+							</td>
+						</tr>
+						<tr>
+							<td>{{ 'label.email' | translate }}</td>
+							<td>{{partner.email}}</td>
+						</tr>
+					</table>
+				</td>
+
 			</tr>
-			<tr>
-				<td>{{ 'label.partnertype' | translate }}:</td>
-				<td>{{partner.partnerType}}</td>
-			</tr>
-			<tr>
-				<td>{{ 'label.office.parent office' | translate }}:</td>
-				<td>{{partner.parentName}}</td>
-			</tr>
-			<tr>
-				<td>{{ 'label.partner.created.on' | translate }}:</td>
-				<td>{{partner.openingDate | DateFormat}}</td>
-			</tr>	
-			<tr>
-				<td>IsCollective:</td>
-				<td>{{partner.isCollective}}</td>
-			</tr>	
-			
-			</table></div><br>
-	<!-- 		 <h4>Contact Details</h4>
-			<table class=" span2">
-			<tr>
-				<td width="20%">{{ 'label.email' | translate }}:</td>
-				<td width="70%">{{partner.email}}</td>
-			</tr>	
-			<tr>
-				<td >{{ 'label.city/area' | translate }}:</td>
-				<td >{{partner.city}}</td>
-			</tr>
-			<tr>
-				<td>{{ 'label.state' | translate }}:</td>
-				<td>{{partner.state}}</td>
-			</tr>
-			<tr>
-				<td>{{ 'label.country' | translate }}:</td>
-				<td>{{partner.country}}</td>
-				</tr>
-		</table> -->
-	<tabset  style="margin-bottom: 0px;">
-    <tab heading="Contact Details">
+		</table>
+	</div><br>
+ 	<tabset  style="margin-bottom: 0px;">
+  <!--  <tab heading="Contact Details">
      <br>
        <div>
         <table class="table">
@@ -81,7 +85,7 @@
           </tbody>
          </table>
         </div>
-      </tab>
+      </tab> -->
     <tab heading="Agreement Details" select="getAgreement()">
      <br>
        <div>
@@ -96,12 +100,12 @@
             </tr>
           </thead>
           <tbody>
-             <tr data-ng-repeat="agreement in agreements | filter:filterText">      
-                <td>{{agreement.agreementStatus}}</td>
-                <td>{{agreement.startDate | DateFormat}}</td>
-                <td>{{agreement.endDate | DateFormat}}</td> 
+             <tr >      
+                <td>{{agreements.agreementStatus}}</td>
+                <td>{{agreements.startDate | DateFormat}}</td>
+                <td>{{agreements.endDate | DateFormat}}</td> 
                 <td><a data-ng-show="PermissionService.showMenu('UPDATE_PARTNERAGREEMENT')" 
-							href="#/editpartneragreement/{{agreement.id}}" data-popover="{{'label.editagreement' | translate}}" data-popover-trigger="mouseenter">
+							href="#/editpartneragreement/{{agreements.id}}/{{agreements.partnerId}}" data-popover="{{'label.editagreement' | translate}}" data-popover-trigger="mouseenter">
                     		<i class="icon-edit icon-white"></i> </a></td>                  
              </tr>
           </tbody>

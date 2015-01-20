@@ -969,7 +969,7 @@
        .when('/createpartneragreement/:id', {
         templateUrl: 'views/organization/createpartneragreement.html'
       })  
-      .when('/editpartneragreement/:id', {
+      .when('/editpartneragreement/:id/:partnerId', {
         templateUrl: 'views/organization/editpartneragreement.html'
       })
       .when('/disbursements', {

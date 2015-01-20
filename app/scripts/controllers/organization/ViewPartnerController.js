@@ -17,7 +17,7 @@
 	        
 	        scope.getAgreement = function(){
 	        	
-	        	 resourceFactory.agreementResource.query({partnerId: routeParams.id} , function(data) {
+	        	 resourceFactory.agreementResource.get({partnerId: routeParams.id} , function(data) {
 	        	  scope.agreements = data;
 	        	 });
 	        };

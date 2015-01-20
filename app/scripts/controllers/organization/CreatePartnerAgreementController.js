@@ -26,17 +26,13 @@
 		        };
 				  
 				  scope.addSourceCategories = function(){
-					 
 			        	scope.partnerSourceData.push({
-								
 														source : scope.sourceData.source,
 														shareType : scope.sourceData.shareType,
 														shareAmount : scope.sourceData.shareAmount,
 														status : scope.sourceData.status,
-														locale : $rootScope.locale.code
-														
+														locale : $rootScope.locale.code,		
 													});
-			        	
 			        	scope.sourceData.source = undefined;
 			        	scope.sourceData.shareType = undefined;
 			        	scope.sourceData.shareAmount = undefined;
