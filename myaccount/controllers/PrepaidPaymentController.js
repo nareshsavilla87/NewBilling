@@ -13,10 +13,12 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 	  RequestSender.paymentGatewayConfigResource.get(function(data) {
 		  if(data.globalConfiguration){
 			  for(var i in data.globalConfiguration){
-				   if(data.globalConfiguration[i].enabled){
+				   if(data.globalConfiguration[i].enabled && data.globalConfiguration[i].name != 'is-paypal-for-ios'  
+					   && data.globalConfiguration[i].name != 'is-paypal'){
 					   scope.paymentgatewayDatas.push(data.globalConfiguration[i]);
 				   }
 			  }
+			  scope.paymentgatewayDatas.length==0 ?scope.paymentGatewayName="" : "";
 		  }
 	  });
 	
@@ -42,6 +44,8 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 			}
 		}else{
 			scope.amountEmpty 		= true;
+			delete scope.planData.price;delete scope.planData.planCode;delete scope.planData.id;delete scope.amount;
+			if(amount==0) alert("Amount Must be Greater than Zero");
 		}
 	};
 	
