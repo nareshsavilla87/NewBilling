@@ -86,24 +86,20 @@
         <table class="table">
           <thead>
             <tr class="graybg">
-				   <th>{{'table.heading.source' | translate}}</th>
 				   <th>{{'label.agreementstatus' | translate}}</th>
-                   <th>{{'table.heading.sharetype' | translate}}</th>
-                   <th>{{'table.heading.royaltyshare' | translate}}</th>
                    <th>{{'label.contreffectdate' | translate}}</th>
                    <th>{{'label.contrenddate' | translate}}</th>
-                   <th>{{'table.heading.status' | translate}}</th>
+                   <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-             <tr data-ng-repeat="agreement in agreements | filter:filterText">
-                <td>{{agreement.source}}</td>       
+             <tr data-ng-repeat="agreement in agreements | filter:filterText">      
                 <td>{{agreement.agreementStatus}}</td>
-                <td>{{agreement.shareType}}</td>
-                <td>{{agreement.shareAmount}}</td>
                 <td>{{agreement.startDate | DateFormat}}</td>
                 <td>{{agreement.endDate | DateFormat}}</td> 
-                <td>{{agreement.status.value}}</td>                  
+                <td><a data-ng-show="PermissionService.showMenu('UPDATE_PARTNERAGREEMENT')" 
+							href="#/editpartneragreement/{{agreement.id}}" data-popover="{{'label.editagreement' | translate}}" data-popover-trigger="mouseenter">
+                    		<i class="icon-edit icon-white"></i> </a></td>                  
              </tr>
           </tbody>
          </table>

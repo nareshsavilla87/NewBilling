@@ -1,9 +1,9 @@
-<div data-ng-controller="CreatePartnerAgreementController">
+<div data-ng-controller="EditPartnerAgreementController">
 <ul class="breadcrumb">
  <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
 	        <li><a href="#/offices" data-ng-click="partnersTab()">{{'label.managepartners' | translate}}</a> <span class="divider">/</span></li>
 	        <li><a href="#/viewpartner/{{partnerId}}">view partner</a><span class="divider">/</span></li>
-	        <li class="active">{{'label.createpartneragreement' | translate}}</li>
+	        <li class="active">{{'label.editpartneragreement' | translate}}</li>
         </ul>
 <form name="partneragreement" novalidate class="form-horizontal well"   data-ng-submit="submit()">
 
@@ -14,7 +14,7 @@
 	    </div>
 
 	 <fieldset>
-	 <legend>{{'label.partneragreement'| translate}}</legend>
+	 <legend>{{'label.editpartneragreement'| translate}}</legend>
 	 <div>
 	 <table>		 
 		<tr>

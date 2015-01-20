@@ -1,25 +1,21 @@
 (function(module) {
 	  mifosX.controllers = _.extend(module, {
-		  CreatePartnerAgreementController: function(scope, resourceFactory, location,dateFilter,$rootScope,webStorage,routeParams) {
+		  EditPartnerAgreementController: function(scope, resourceFactory, location,dateFilter,$rootScope,webStorage,routeParams) {
 		     
 			  scope.formData = {};
-			  scope.partnerId= routeParams.id;
+			  scope.agreementId= routeParams.id;
 			  scope.formData.startDate = dateFilter(new Date(),'dd MMMM yyyy');
 			  scope.minDate=dateFilter(new Date(),'dd MMMM yyyy');
-			 /* var dd=new Date();
-			  scope.formData.endDate = dateFilter(dd.setDate(dd.getDate()+1),'dd MMMM yyyy');*/
 			  scope.agreementTypes = [];
 			  scope.sourceDatas = [];
 			  scope.partnerSourceData = [];
-			  scope.sourceData = [];
-			      
-			  resourceFactory.agreementTemplateResource.get(function(data) {
-				  
-				 scope.agreementTypes =data.agreementTypes;
-				 scope.sourceDatas = data.sourceData;
-				 scope.shareTypes = data.shareTypes;
-		           
-		      });
+			  scope.sourceData = [];   	
+		        	 resourceFactory.agreementEditResource.query({agreementId: routeParams.id,template : 'true'} , function(data) {
+		        	    scope.agreements = data;
+		        	    scope.agreementTypes =data.agreementTypes;
+					    scope.sourceDatas = data.sourceData;
+						scope.shareTypes = data.shareTypes;
+		        	 });
 			  
 			  scope.partnersTab=function(){
 		        	webStorage.add("callingTab", {someString: "Partners" });
@@ -56,7 +52,7 @@
 				    var endDate = dateFilter(scope.formData.endDate, 'dd MMMM yyyy');
 			        scope.formData.startDate = startDate;
 			        scope.formData.endDate = endDate || "";
-		            scope.formData.sourceData = scope.partnerSourceData;
+		            scope.formData.newSourceData = scope.partnerSourceData;
 			       resourceFactory.agreementResource.save({partnerId: routeParams.id},scope.formData,function(data){
 			    	 location.path('/viewpartner/' +scope.partnerId);
 		
@@ -65,15 +61,15 @@
 		 
 		  }
 	  });
-	  mifosX.ng.application.controller('CreatePartnerAgreementController',
+	  mifosX.ng.application.controller('EditPartnerAgreementController',
 		['$scope', 
 		 'ResourceFactory', 
 		 '$location',
 		 'dateFilter',
 		 '$rootScope',
 		 'webStorage',
-		 '$routeParams', mifosX.controllers.CreatePartnerAgreementController]
+		 '$routeParams', mifosX.controllers.EditPartnerAgreementController]
 	  ).run(function($log) {
-	    $log.info("CreatePartnerAgreementController initialized");
+	    $log.info("EditPartnerAgreementController initialized");
 	  });
 	}(mifosX.controllers || {}));

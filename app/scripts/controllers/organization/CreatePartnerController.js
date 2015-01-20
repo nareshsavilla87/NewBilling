@@ -48,12 +48,10 @@
                     if (!scope.$$phase) {
                       scope.$apply();
                     }
-                    location.path('/offices');
-            		webStorage.add("callingTab", {someString: "Partners" });
+                    location.path('/viewpartner/' +data.resourceId);
                   });
         	  }else{
-        		 location.path('/offices');
-        		webStorage.add("callingTab", {someString: "Partners" });
+        		  location.path('/viewpartner/' +data.resourceId);
         	  }	
           });
         };
