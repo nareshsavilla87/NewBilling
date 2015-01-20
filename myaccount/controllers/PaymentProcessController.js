@@ -30,7 +30,8 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 		  RequestSender.paymentGatewayConfigResource.get(function(data) {
 			  if(data.globalConfiguration){
 				  for(var i in data.globalConfiguration){
-					   if(data.globalConfiguration[i].enabled){
+					   if(data.globalConfiguration[i].enabled && data.globalConfiguration[i].name != 'is-paypal-for-ios'  
+						   && data.globalConfiguration[i].name != 'is-paypal'){
 						   scope.paymentgatewayDatas.push(data.globalConfiguration[i]);
 					   }
 				  }
@@ -130,7 +131,6 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 				 resolve:{}
 		    });
     };
-    
     
 };
 
