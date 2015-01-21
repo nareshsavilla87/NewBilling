@@ -15,18 +15,16 @@
     <br/><br/>
 		<div class="offset1" style="margin-top:50px;">
 		   <table>
-		   	  <tr><td align="right" class="bigfont" valign="top">
+		   	  <tr data-ng-hide="paymentGatewayName==''"><td align="right" class="bigfont" valign="top" >
 		   	  	  <span >{{'label.prepaid.amount' | translate }}<span class="required">*&nbsp;</span>:</span></td>
 		   	  <td><input type="number" data-ng-model="amount" data-ng-autofocus="true" data-ng-onblur="amountFieldFun(amount)" required/> 
 		   	  </td></tr>
 			  <tr>
-   				<td width="50%" class="bigfont" valign="top" style="padding-top: 20px;">
+   				<td width="42%" class="bigfont" valign="top" style="padding-top: 20px;">
    						{{'label.select.payment.gateway' | translate}}&nbsp;&nbsp;:
    				</td>
        			<td style="padding-top: 20px;">
-       				<div data-ng-repeat="paymentgatewayData in paymentgatewayDatas track by $index" class="marginbottom10" 
-       					data-ng-if="(paymentgatewayData.name=='paypal')||(paymentgatewayData.name=='korta')
-       					||(paymentgatewayData.name=='globalpay')||(paymentgatewayData.name=='neteller')||(paymentgatewayData.name=='internalPayment')">
+       				<div data-ng-repeat="paymentgatewayData in paymentgatewayDatas track by $index" class="marginbottom10">
        					<input type="radio" id="{{paymentgatewayData.name}}" name="selectPWName" class="radioalign" data-ng-model="paymentGatewayName" 
        					   value="{{paymentgatewayData.name}}" data-ng-click="paymentGWNameFun(paymentgatewayData.name)" />&nbsp;
       					   <label for="{{paymentgatewayData.name}}" class="inlinedis pointer">

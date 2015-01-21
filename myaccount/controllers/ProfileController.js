@@ -1,4 +1,4 @@
-ProfileController = function(scope,RequestSender,rootScope,webStorage,location,paginatorService,localStorageService) {
+ProfileController = function(scope,RequestSender,rootScope,webStorage,location,paginatorService,localStorageService, API_VERSION) {
 		  
 		  scope.clientData = {};
 		  
@@ -91,4 +91,5 @@ selfcareApp.controller('ProfileController', ['$scope',
                                              '$location',
                                              'PaginatorService', 
                                              'localStorageService', 
+                                             'API_VERSION', 
                                              ProfileController]);

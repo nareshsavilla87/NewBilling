@@ -56,9 +56,7 @@
    						{{'label.select.payment.gateway' | translate}}&nbsp;&nbsp;:
    				</td>
        			<td>
-       				<div data-ng-repeat="paymentgatewayData in paymentgatewayDatas track by $index" class="marginbottom10" 
-       					data-ng-if="(paymentgatewayData.name=='dalpay')||(paymentgatewayData.name=='paypal')||(paymentgatewayData.name=='korta')||
-       								(paymentgatewayData.name=='globalpay')||(paymentgatewayData.name=='neteller')||(paymentgatewayData.name=='internalPayment')">
+       				<div data-ng-repeat="paymentgatewayData in paymentgatewayDatas track by $index" class="marginbottom10">
        					<input type="radio" id="{{paymentgatewayData.name}}" name="selectPWName" class="radioalign" data-ng-model="paymentGatewayName" 
        					   value="{{paymentgatewayData.name}}" data-ng-click="paymentGatewayFun(paymentgatewayData.name)"/>&nbsp;
       					   <label for="{{paymentgatewayData.name}}" class="inlinedis pointer">
@@ -86,7 +84,7 @@
           	  </tr>
           	  <tr data-ng-hide="paymentGatewayName==''" >
           	    <td style="padding-top: 30px;" align="right">
-          	      <div><a  href="#/{{screenName}}/{{clientId}}" class="btn" >{{'btn.cancel' | translate}}</a></div> 
+          	      <div><a  data-ng-click="goBack()" class="btn" >{{'btn.cancel' | translate}}</a></div> 
           	    </td>
        		 	<td style="padding-top: 30px;" >
       		 	   <div >
@@ -100,7 +98,7 @@
           	  </tr>
           	  <tr data-ng-show="paymentGatewayName==''" >
           	  	<td style="padding-top: 30px;" colspan="2" align="right">
-          	      <div><a  href="#/{{screenName}}/{{clientId}}" class="btn" >{{'btn.cancel' | translate}}</a></div> 
+          	      <div><a  data-ng-click="goBack()" class="btn" >{{'btn.cancel' | translate}}</a></div> 
           	    </td>
           	  </tr>
           	</table>
@@ -109,7 +107,7 @@
       <div data-ng-show="price == 0">
               <br/>
 	       <div class="pull-right">
-				<a href="#/{{screenName}}/{{clientId}}" class="btn">{{'btn.cancel' | translate}}</a> 
+				<a data-ng-click="goBack()" class="btn">{{'btn.cancel' | translate}}</a> 
 				<a data-ng-click="finishBtnFun()" class="btn btn-primary animated fadeInUp">{{'btn.subscribe' | translate}}</a>
 			</div> 
 			 

@@ -20,6 +20,9 @@ selfcareApp.service("SessionManager",['$rootScope','HttpService','$location','lo
               httpService.setAuthorization(selfcare_sessionData.authenticationKey);
             	  var clientData = localStorageService.get("clientTotalData");
             	  if(clientData){
+	            		//adding web tv url
+	           		   scope.webtvURL = selfcareModels.webtvURL+"?id="+clientData.id;
+	           		   localStorageService.add("selfcareAppUrl",selfcareModels.selfcareAppUrl);
             		  scope.selfcare_userName = clientData.displayName;
             		  clientData.selfcare.token ? scope.iskortaTokenAvailable = true :  scope.iskortaTokenAvailable = false;
             		  if(location.path() == "/")location.path('/profile');
