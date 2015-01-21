@@ -18,8 +18,8 @@
             		var clientConfigurations = JSON.parse(scope.clientConfigs);
             		webStorage.add("client_configuration",JSON.parse(scope.clientConfigs));
             		if(clientConfigurations){
-                    	localStorageService.add('dateformat',clientConfigurations.date-format);
-                    	scope.dateformat = clientConfigurations.date-format;
+                    	localStorageService.add('dateformat',clientConfigurations.date_format);
+                    	scope.dateformat = clientConfigurations.date_format;
             		}
                     	
                 	for(var i in data.globalConfiguration){

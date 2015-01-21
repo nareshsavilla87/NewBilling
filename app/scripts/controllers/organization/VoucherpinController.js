@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  VoucherpinController: function(scope, resourceFactory,PermissionService,rootScope,API_VERSION,route,paginatorService,$modal) {
+	  VoucherpinController: function(scope, resourceFactory,PermissionService,rootScope,API_VERSION,route,paginatorService,$modal,$http) {
         scope.voucherpins = [];
         scope.voucherpinsBatchwise = [];
         scope.batchNameDatas = {};
@@ -13,26 +13,25 @@
         
         scope.voucherPinFetchFunction = function(offset, limit, callback) {
         	var params = {};
+        	params.voucherId = scope.voucherId;
         	params.offset = offset;
         	params.limit = limit;
-        	if(scope.searchData.pinType){
-        		params.pinType = scope.searchData.pinType;
-        	}
-        	if(scope.searchData.batchName){
-        		params.batchName = scope.searchData.batchName;
-        	}
+        	
         	if(scope.searchData.status){
         		params.statusType = scope.searchData.status;
         	}
         	if(scope.searchData.sqlSearch){
         		params.sqlSearch = scope.searchData.sqlSearch;
         	}
-			resourceFactory.voucherpinBatchWiseResource.get(params , callback);
+        	scope.activeall = 'false';
+        	resourceFactory.voucherpinsByIdResource.get(params , callback);
 		};
-		scope.voucherpinsBatchwise = paginatorService.paginate(scope.voucherPinFetchFunction, 14);
 		
-		scope.onSelectVouchers = function(){
+		scope.onSelectVouchers = function(voucherId){
+			delete scope.searchData.status;
+			scope.voucherId = voucherId;
 			scope.isVouchersBatchWise = "true";
+			scope.voucherpinsBatchwise = paginatorService.paginate(scope.voucherPinFetchFunction, 14);
 		};
 		
 		scope.onSelectVoucherPins = function(){
@@ -42,10 +41,6 @@
         resourceFactory.voucherpinResource.getAllEmployees(function(data) {
             scope.voucherpins = data;
         });
-        
-		resourceFactory.voucherpinTemplateResource.get({isBatchTemplate:true},function(data) {
-	        scope.batchNameDatas = data.voucherBatchData; 
-	    });
         
          scope.downloadFile = function (id){
         	window.open(rootScope.hostUrl+ API_VERSION +'/vouchers/'+id+'?tenantIdentifier=default');
@@ -66,16 +61,6 @@
          };
         };
         
-        scope.clearFilters = function () {
-             scope.searchData.batchName = null;
-             scope.searchData.pinType = null;
-             scope.searchData.status = null;
-            document.getElementById('batchNameDatas_chosen').childNodes[0].childNodes[0].innerHTML = "---Batch Name---";
-            document.getElementById('pinTypeDatas_chosen').childNodes[0].childNodes[0].innerHTML = "---PinType---";
-            document.getElementById('status_chosen').childNodes[0].childNodes[0].innerHTML = "---Status---";
-        
-        };
-  
 		scope.search = function(){
 			scope.voucherpinsBatchwise = paginatorService.paginate(scope.voucherPinFetchFunction, 14);
 		};
@@ -97,8 +82,10 @@
 			    });*/
 				
 				$scope.accept = function(id){
-					console.log(scope.updateVoucherValues);
-					console.log(id);
+					var jsonData = {voucherIds : scope.updateVoucherValues, status : id};
+					resourceFactory.voucherpinResource.update({voucherId : scope.voucherId},jsonData,function(data) {
+						scope.voucherpinsBatchwise = paginatorService.paginate(scope.voucherPinFetchFunction, 14);
+			        });
 					$modalInstance.close('delete');
 				};
 		
@@ -118,7 +105,11 @@
       	  
             $scope.approve = function () {
                 scope.approveData = {};
-                console.log("delete()");
+                var jsonData = {voucherIds : scope.updateVoucherValues};
+                $http.post(rootScope.hostUrl+ API_VERSION +'/vouchers/'+scope.voucherId, jsonData).
+                  success(function(data) {
+                	  scope.voucherpinsBatchwise = paginatorService.paginate(scope.voucherPinFetchFunction, 14);
+                  });
                 $modalInstance.close('delete');
             };
             $scope.cancel = function () {
@@ -132,17 +123,20 @@
            
            if(selectAll == 'true') {
              for(var i in scope.voucherpinsBatchwise.currentPageItems) {
-            	 $("#" + scope.voucherpinsBatchwise.currentPageItems[i].id).prop('checked', true);
-            	 scope.updateVoucherValues.push({id:scope.voucherpinsBatchwise.currentPageItems[i].id});
+            	 if(scope.voucherpinsBatchwise.currentPageItems[i].status != 'USED'){
+            		 $("#" + scope.voucherpinsBatchwise.currentPageItems[i].id).prop('checked', true);
+            		 scope.updateVoucherValues.push(scope.voucherpinsBatchwise.currentPageItems[i].id);
+            	 }
              }
            } else {
         	   for(var i in scope.voucherpinsBatchwise.currentPageItems) {
-              	 $("#" + scope.voucherpinsBatchwise.currentPageItems[i].id).prop('checked', false);
+        		   if(scope.voucherpinsBatchwise.currentPageItems[i].status != 'USED'){
+        			   $("#" + scope.voucherpinsBatchwise.currentPageItems[i].id).prop('checked', false);
+        		   }
                }
         	  // scope.active = selectAll;
         	   scope.updateVoucherValues = [];
            }
-           console.log(scope.updateVoucherValues);
          };
 		
 		/*scope.checkAll = function () {
@@ -163,12 +157,11 @@
 	    
 	    scope.checkSingle = function (voucherpin, active) {
 	    	if(active == 'true') {
-	    		scope.updateVoucherValues.push({id:voucherpin.id});
+	    		scope.updateVoucherValues.push(voucherpin.id);
 	        	
 	        } else {
-	        	scope.updateVoucherValues = _.without(scope.updateVoucherValues, _.findWhere(scope.updateVoucherValues, {id:voucherpin.id}));
+	        	scope.updateVoucherValues = _.without(scope.updateVoucherValues, _.findWhere(scope.updateVoucherValues, voucherpin.id));
 	        }
-	    	console.log(scope.updateVoucherValues);
 	    };
 
         
@@ -184,6 +177,7 @@
                                                             '$route',
                                                             'PaginatorService',
                                                             '$modal',
+                                                            '$http',
                                                             mifosX.controllers.VoucherpinController]).run(function($log) {
 	  
     $log.info("VoucherpinController initialized");
