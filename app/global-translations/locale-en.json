@@ -2481,6 +2481,7 @@
 "validation.msg.partner.loginName.exceeds.max.length":"Please give login name below 100 characters only",
 
 "label.createpartneragreement":"Create Partner Agreement",
+"label.editpartneragreement":"Edit Partner Agreement",
 "label.office.parent office":"Parent Office",
 "label.partner.officetype":"Office Type",
 "label.partneragreement":"Partner Agreement",

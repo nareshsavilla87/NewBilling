@@ -27,6 +27,7 @@
 							  shareType : scope.agreements[i].shareType,
 							  shareAmount : scope.agreements[i].shareAmount,
 							  detailId : scope.agreements[i].detailId,
+							  locale : $rootScope.locale.code
 						  });
 					    }else{
 							    scope.agreementTypes =scope.agreements[i].agreementTypes;
@@ -60,8 +61,6 @@
 			        };	  
 				  
 			        scope.removeSourceCategories = function(detailId,index){
-			        	alert(index);
-			        	console.log(detailId);
 			        	if(detailId){
 			        		scope.removeData.push(scope.exitSourceData[index]);
 			        		scope.exitSourceData.splice(index,1);
@@ -84,13 +83,10 @@
 				    var endDate = dateFilter(scope.formData.endDate, 'dd MMMM yyyy');
 			        scope.formData.startDate = startDate;
 			        scope.formData.endDate = endDate || "";
-			        console.log(scope.exitSourceData);
-		        	console.log(scope.partnerSourceData);
-		        	console.log(scope.removeData);
 		        	for(var i in  scope.exitSourceData){
 		        		if(!scope.exitSourceData[i].detailId){
 		        			 scope.formData.newSourceData.push(scope.exitSourceData[i]);
-		        			 delete scope.exitSourceData[i]; 
+		        			 scope.exitSourceData = _.without(scope.exitSourceData, _.findWhere(scope.exitSourceData,scope.exitSourceData[i]));
 		        		}
 		        	}
 		            

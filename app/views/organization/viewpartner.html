@@ -8,9 +8,9 @@
 	    <div  class="pull-right">
 	      <div class="btn-group">
 	          <a href="#/createpartneragreement/{{partner.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Create Agreement</a>
-	          <a href="#/itemsale/{{partner.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Item Sale</a>
-	          <a href="#/officepayments/{{partner.id}}" class="btn btn-primary"><i class="icon-usd icon-white"></i>Payment</a>
-	          <a href="#/officeadjustments/{{partner.id}}" class="btn btn-primary"><i class="icon-adjust icon-white"></i>Adjustment</a>
+	          <a href="#/itemsale/{{partner.officeId}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Item Sale</a>
+	          <a href="#/officepayments/{{partner.officeId}}" class="btn btn-primary"><i class="icon-usd icon-white"></i>Payment</a>
+	          <a href="#/officeadjustments/{{partner.officeId}}" class="btn btn-primary"><i class="icon-adjust icon-white"></i>Adjustment</a>
 	      </div>
 	    </div>
 	</div>
@@ -40,7 +40,7 @@
 					</table>
 				</td>
 
-				<td align="right">
+				<td class="span8" align="right">
 					<table>
 						<tr>
 							<td >{{'label.Address' | translate}}</td>
@@ -63,29 +63,39 @@
 		</table>
 	</div><br>
  	<tabset  style="margin-bottom: 0px;">
-  <!--  <tab heading="Contact Details">
+   <tab heading="Office Financial Transactions">
      <br>
        <div>
+           <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.searchbar' | translate}}">
+          
         <table class="table">
           <thead>
             <tr class="graybg">
-                   <th>{{ 'label.city/area' | translate }}</th>
-				   <th>{{ 'label.state' | translate }}</th>
-                   <th>{{ 'label.country' | translate }}</th>
-				   <th>{{ 'label.partner.email' | translate }}</th>
+				   <th>Transaction Id</th>
+                   <th>User Name</th>
+				   <th>Office Id</th>
+                   <th>Transaction Date</th>
+                   <th>Transaction Type</th>
+                   <th>Transaction Category</th>
+                   <th>Credit Amount</th>
+                   <th>Debit Amount</th>
             </tr>
           </thead>
           <tbody>
-             <tr>
-                <td>{{partner.city}}</td>
-                <td>{{partner.state}}</td>
-                <td>{{partner.country}}</td>                     
-                <td>{{partner.email}}</td>       
+             <tr data-ng-repeat="officeFinTran in officeFinanceTrans | filter:filterText">
+                <td>{{officeFinTran.transactionId}}</td>       
+                <td>{{officeFinTran.userName}}</td>
+                <td>{{officeFinTran.officeId}}</td>
+                <td>{{officeFinTran.transDate | DateFormat}}</td>         
+                <td>{{officeFinTran.transactionType}}</td>        
+                <td>{{officeFinTran.transactionCategory}}</td>         
+                <td>{{officeFinTran.creditAmount}}</td> 
+                <td>{{officeFinTran.amount}}</td>              
              </tr>
           </tbody>
          </table>
         </div>
-      </tab> -->
+      </tab>
     <tab heading="Agreement Details" select="getAgreement()">
      <br>
        <div>
@@ -100,12 +110,12 @@
             </tr>
           </thead>
           <tbody>
-             <tr >      
+             <tr data-ng-show="agreements.id">      
                 <td>{{agreements.agreementStatus}}</td>
                 <td>{{agreements.startDate | DateFormat}}</td>
                 <td>{{agreements.endDate | DateFormat}}</td> 
                 <td><a data-ng-show="PermissionService.showMenu('UPDATE_PARTNERAGREEMENT')" 
-							href="#/editpartneragreement/{{agreements.id}}/{{agreements.partnerId}}" data-popover="{{'label.editagreement' | translate}}" data-popover-trigger="mouseenter">
+							href="#/editpartneragreement/{{agreements.id}}/{{partner.id}}" data-popover="Edit Agreement" data-popover-trigger="mouseenter">
                     		<i class="icon-edit icon-white"></i> </a></td>                  
              </tr>
           </tbody>
