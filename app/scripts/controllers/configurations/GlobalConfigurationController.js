@@ -408,7 +408,7 @@
 					};
 				};
 
-				scope.enable = function(id) {
+				scope.paymentConfigenable = function(id) {
 
 					var temp = {'enabled' : 'true'};
 					resourceFactory.paymentGatewayConfigurationResource.update({ 'configId' : id }, temp, function(data) {
@@ -416,7 +416,7 @@
 					});
 				};
 
-				scope.disable = function(id) {
+				scope.paymentConfigdisable = function(id) {
 
 					var temp = {'enabled' : 'false'};
 					resourceFactory.paymentGatewayConfigurationResource.update({ 'configId' : id }, temp, function(data) {
