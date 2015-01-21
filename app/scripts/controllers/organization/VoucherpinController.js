@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  VoucherpinController: function(scope, resourceFactory,PermissionService,rootScope,API_VERSION,route,paginatorService,$modal) {
+	  VoucherpinController: function(scope, resourceFactory,PermissionService,rootScope,API_VERSION,route,paginatorService,$modal,$http) {
         scope.voucherpins = [];
         scope.voucherpinsBatchwise = [];
         scope.batchNameDatas = {};
@@ -23,6 +23,7 @@
         	if(scope.searchData.sqlSearch){
         		params.sqlSearch = scope.searchData.sqlSearch;
         	}
+        	scope.activeall = 'false';
         	resourceFactory.voucherpinsByIdResource.get(params , callback);
 		};
 		
@@ -81,8 +82,6 @@
 			    });*/
 				
 				$scope.accept = function(id){
-					//console.log(scope.updateVoucherValues);
-					//console.log(id);
 					var jsonData = {voucherIds : scope.updateVoucherValues, status : id};
 					resourceFactory.voucherpinResource.update({voucherId : scope.voucherId},jsonData,function(data) {
 						scope.voucherpinsBatchwise = paginatorService.paginate(scope.voucherPinFetchFunction, 14);
@@ -106,11 +105,11 @@
       	  
             $scope.approve = function () {
                 scope.approveData = {};
-                //console.log("delete()");
                 var jsonData = {voucherIds : scope.updateVoucherValues};
-                resourceFactory.voucherpinResource.remove({voucherId : scope.voucherId},jsonData,function(data) {
-					scope.voucherpinsBatchwise = paginatorService.paginate(scope.voucherPinFetchFunction, 14);
-		        });
+                $http.post(rootScope.hostUrl+ API_VERSION +'/vouchers/'+scope.voucherId, jsonData).
+                  success(function(data) {
+                	  scope.voucherpinsBatchwise = paginatorService.paginate(scope.voucherPinFetchFunction, 14);
+                  });
                 $modalInstance.close('delete');
             };
             $scope.cancel = function () {
@@ -178,6 +177,7 @@
                                                             '$route',
                                                             'PaginatorService',
                                                             '$modal',
+                                                            '$http',
                                                             mifosX.controllers.VoucherpinController]).run(function($log) {
 	  
     $log.info("VoucherpinController initialized");
