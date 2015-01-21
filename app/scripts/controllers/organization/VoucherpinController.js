@@ -8,6 +8,8 @@
         scope.searchData = {};
         scope.PermissionService = PermissionService;
         scope.isVouchersBatchWise = "false";
+        scope.updateVoucherValues = [];
+        scope.voucherpin = {};
         
         scope.voucherPinFetchFunction = function(offset, limit, callback) {
         	var params = {};
@@ -78,37 +80,97 @@
 			scope.voucherpinsBatchwise = paginatorService.paginate(scope.voucherPinFetchFunction, 14);
 		};
         
-      //export Batch 
-		scope.exportBatch = function(value){
-			scope.isProcessedValue = value;
+      //update Vouchers 
+		scope.updateVouchers = function(){
 			$modal.open({
-				templateUrl: 'downloadBatchData.html',
-				controller: DownloadBatchDataController,
+				templateUrl: 'updateVouchers.html',
+				controller: UpdateVouchersController,
 				resolve:{}
 			});
 		};
-		var DownloadBatchDataController = function($scope, $modalInstance){
+		var UpdateVouchersController = function($scope, $modalInstance){
 			
 				$scope.batchDatas = {};
-				$scope.isProcessedValue = scope.isProcessedValue;
-				
-				resourceFactory.voucherpinBatchTemplateResource.query({isProcessed:$scope.isProcessedValue},function(data) {
+		
+				/*resourceFactory.voucherpinBatchTemplateResource.query({isProcessed:$scope.isProcessedValue},function(data) {
 					$scope.batchDatas = data;
-			    });
+			    });*/
 				
 				$scope.accept = function(id){
-					if($scope.isProcessedValue == 'true'){
-						scope.downloadFile(id);
-					}else{
-						scope.processFile(id);
-					}
+					console.log(scope.updateVoucherValues);
+					console.log(id);
 					$modalInstance.close('delete');
 				};
 		
 				$scope.reject = function(){
 					$modalInstance.dismiss('cancel');
 				};
-			};	
+		};	
+		
+		scope.deleteVouchers=function(){
+            $modal.open({
+                templateUrl: 'deletevouchers.html',
+                controller: Approve,
+                resolve:{}
+            });
+        };
+       function Approve($scope, $modalInstance) {
+      	  
+            $scope.approve = function () {
+                scope.approveData = {};
+                console.log("delete()");
+                $modalInstance.close('delete');
+            };
+            $scope.cancel = function () {
+                $modalInstance.dismiss('cancel');
+            };
+        }
+       
+       scope.selectAll = function(selectAll) {
+         
+           scope.updateVoucherValues = [];
+           
+           if(selectAll == 'true') {
+             for(var i in scope.voucherpinsBatchwise.currentPageItems) {
+            	 $("#" + scope.voucherpinsBatchwise.currentPageItems[i].id).prop('checked', true);
+            	 scope.updateVoucherValues.push({id:scope.voucherpinsBatchwise.currentPageItems[i].id});
+             }
+           } else {
+        	   for(var i in scope.voucherpinsBatchwise.currentPageItems) {
+              	 $("#" + scope.voucherpinsBatchwise.currentPageItems[i].id).prop('checked', false);
+               }
+        	  // scope.active = selectAll;
+        	   scope.updateVoucherValues = [];
+           }
+           console.log(scope.updateVoucherValues);
+         };
+		
+		/*scope.checkAll = function () {
+			scope.updateVoucherValues = [];
+	        angular.forEach(scope.voucherpinsBatchwise.currentPageItems, function (voucherpin) {
+	        	if(scope.selectedAll){
+	        		scope.selectedAll = true;
+	        		scope.updateVoucherValues.push({id:voucherpin.id});
+	        	}else{
+	        		scope.selectedAll = false;
+	        		scope.updateVoucherValues = [];
+	        	}
+	        	voucherpin.Selected = scope.selectedAll;
+	        	
+	        });
+	        console.log(scope.updateVoucherValues);
+	    };*/
+	    
+	    scope.checkSingle = function (voucherpin, active) {
+	    	if(active == 'true') {
+	    		scope.updateVoucherValues.push({id:voucherpin.id});
+	        	
+	        } else {
+	        	scope.updateVoucherValues = _.without(scope.updateVoucherValues, _.findWhere(scope.updateVoucherValues, {id:voucherpin.id}));
+	        }
+	    	console.log(scope.updateVoucherValues);
+	    };
+
         
     }
   

@@ -15,6 +15,8 @@
     	<button data-ng-hide="isVouchersBatchWise == 'true'" id="selectVouchers"  data-ng-click="onSelectVouchers()" class="btn btn-primary" >View Vouchers</button>
     	<button data-ng-show="isVouchersBatchWise == 'true'" id="selectVouchers" data-ng-click="onSelectVoucherPins()" class="btn btn-primary" ><img src="./images/backimg.png" width="20px" height="20px">Back to Vouchers</button>
         <a data-ng-hide="isVouchersBatchWise == 'true'" data-ng-show="PermissionService.showMenu('CREATE_VOUCHER')" href="#/createvoucherpin" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{ 'link.create.new.voucherpin' | translate }}</a>
+        <button data-ng-show="isVouchersBatchWise == 'true'" id="selectVouchers" data-ng-click="updateVouchers()" class="btn btn-primary" >Update</button>
+        <button data-ng-show="isVouchersBatchWise == 'true'" id="selectVouchers" data-ng-click="deleteVouchers()" class="btn btn-primary" >Delete</button>
     </div>
 </div>
 
@@ -103,7 +105,9 @@
                 <!-- <th>{{ 'table.heading.actions' | translate }}</th> -->
                 <th>{{'table.ippooling.clientId' | translate}}</th>
                 <th>{{'table.heading.status' | translate}}</th>
-               
+                <!-- <th>Select <input type="checkbox" data-ng-change="checkAll()" data-ng-model="selectedAll" id="selectedAll" /></th> -->
+                <th><input type="checkbox" id="activeallId" ng-model="activeall" ng-true-value="true" ng-false-value="false"
+                     ng-change="selectAll(activeall)">{{'label.selectall' | translate}}</th>
             </tr>
         </thead>
         <tbody>
@@ -127,6 +131,8 @@
                 </td>  --> 
                 <td>{{voucherpin.clientId}}</td>
                 <td>{{voucherpin.status}}</td>
+                <td><input type="checkbox" id="{{voucherpin.id}}" ng-model="active" ng-true-value="true" ng-false-value="false"
+                     ng-change="checkSingle(voucherpin, active)"></td>
             </tr>
         </tbody>
     </table>
@@ -135,7 +141,7 @@
         <li class="next" ><a data-ng-click="voucherpinsBatchwise.next()" href="" data-ng-disabled="!voucherpinsBatchwise.hasNext()">Next &rarr;</a></li>
 	</ul>
 </div>
-<script type="text/ng-template" id="downloadBatchData.html"> 
+<script type="text/ng-template" id="updateVouchers.html"> 
 	<form name="downloadCSVform" novalidate="" class="form-horizontal well">
 		<div class="error" ng-show="errorStatus || errorDetails">
 			<label>{{'label.contract.error' | translate}}</label>
@@ -143,15 +149,16 @@
 			<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	   	</div>
 		<fieldset>
-			<legend ng-show="isProcessedValue=='true'">{{'label.downloadVoucherPinData' | translate}}</legend>
-			<legend ng-hide="isProcessedValue=='true'">{{'label.processVoucherPinData' | translate}}</legend>
+			<legend >Update</legend>
 			<table width="100%">
 			<tr>
 				<td width="50%">
 					<div class="control-group">
 						<label class="control-label" for="status">{{ 'label.batchName' | translate }}<span class="required">*</span></label>
 						<div class="controls">
-							<select ng-model="batchNameId" data-ng-options="batchData.id as batchData.batchName for batchData in batchDatas" required>
+							<select ng-model="batchNameId" required>
+								<option value="LOST">LOST</option>
+								<option value="DAMAGE">DAMAGE</option>
           					</select>
 						</div>
 					</div>
@@ -164,6 +171,18 @@
 			</div>
 		</fieldset>
 	</form>
+</script>
+<script type="text/ng-template" id="deletevouchers.html">
+	<div class="modal-header silver">
+    	<h3 class="bolder">Delete Vouchers</h3>
+    </div>
+    <div class="modal-body modal-small">
+    	<h4>Are you sure?</h4>
+    </div>
+    <div class="modal-footer">
+    	<button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+        <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+   	</div>
 </script>
 </div>
 
