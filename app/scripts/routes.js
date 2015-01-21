@@ -968,6 +968,9 @@
       })
        .when('/createpartneragreement/:id', {
         templateUrl: 'views/organization/createpartneragreement.html'
+      })  
+      .when('/editpartneragreement/:id/:partnerId', {
+        templateUrl: 'views/organization/editpartneragreement.html'
       })
       .when('/disbursements', {
         templateUrl: 'views/administration/disbursements.html'
