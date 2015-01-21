@@ -39,5 +39,5 @@ ChangePasswordController = function(scope,RequestSender,rootScope,localStorageSe
                                                     'RequestSender',
                                                     '$rootScope',
                                                     'localStorageService',
-						    'SessionManager',
+                                                    'SessionManager',
                                                     ChangePasswordController]);
