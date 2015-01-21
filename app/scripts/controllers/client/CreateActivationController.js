@@ -208,6 +208,7 @@
 	        		 scope.paytermdatas=data.paytermdata;
 	        		
 	        		 scope.formData4.isPrepaid=data.isPrepaid;
+	        		 scope.isPrepaidPlanFormData4=data.isPrepaid;
 	        		 scope.formData4.planCode=value;
 	        		 
 	        		  for (var i in data.subscriptiondata) {
