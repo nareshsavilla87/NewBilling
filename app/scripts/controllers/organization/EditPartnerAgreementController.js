@@ -97,7 +97,7 @@
 		            scope.formData.removeSourceData = scope.removeData;
 			        resourceFactory.agreementResource.update({agreementId: routeParams.id},scope.formData,function(data){
 			    	location.path('/viewpartner/' +scope.partnerId);
-			    	webStorage.add("callingTab", {someString: "Agreement" });
+			    	
 			      });
 	    };        
 		 
