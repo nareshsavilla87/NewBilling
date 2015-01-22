@@ -1,4 +1,4 @@
-<div>
+	<div>
     <ul class="breadcrumb">
         <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
         <li class="active">{{'link.admin.configuration' | translate}}</li>
@@ -80,8 +80,8 @@
             <td>{{config.name}}</td>
             <td>{{config.enabled}}</td>
             <td style="word-break:break-all;">{{config.value}}</td>
-            <td><button type="button" class="btn btn-success flag" data-ng-hide="config.enabled" data-ng-click="enable(config.id)"><i class="icon-flag-alt"></i></button>
-                <button type="button" class="btn btn-danger flag" data-ng-show="config.enabled" data-ng-click="disable(config.id)"><i class="icon-remove"></i></button>
+            <td><button type="button" class="btn btn-success flag" data-ng-hide="config.enabled" data-ng-click="paymentConfigenable(config.id)"><i class="icon-flag-alt"></i></button>
+                <button type="button" class="btn btn-danger flag" data-ng-show="config.enabled" data-ng-click="paymentConfigdisable(config.id)"><i class="icon-remove"></i></button>
            		<a data-ng-click="editpaymentgatewayConfig(config.id,config.name)" data-popover="Edit" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a></td>        
         </tr>
         </tbody>
