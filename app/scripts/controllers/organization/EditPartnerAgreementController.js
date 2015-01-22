@@ -12,16 +12,18 @@
 			  scope.exitSourceData = [];
 			  scope.sourceData = []; 
 			  scope.removeData = [];
-			  scope.formData.newSourceData = [];
+		
 		        	 resourceFactory.agreementResource.query({agreementId: routeParams.id,anotherResource:'details',template : 'true'} , function(data) {
 		        	    scope.agreements = data;
 		        	    for(var i=0; i< scope.agreements.length; i++){
 		        	    if(scope.agreements[i].id)	{
 		        	    	scope.formData.agreementStatus=  scope.agreements[i].agreementStatus;
 		        	        var  actDate = dateFilter(scope.agreements[i].startDate,'dd MMMM yyyy');
+		        	        scope.formData.startDate=new Date(actDate);
+		        	        if(scope.agreements[i].endDate){
 		        	        var  actDate1 = dateFilter(scope.agreements[i].endDate,'dd MMMM yyyy');
-		        	     	scope.formData.startDate=new Date(actDate);
 		        	     	scope.formData.endDate=new Date(actDate1);
+		        	       }
 							scope.exitSourceData.push({
 							  source :scope.agreements[i].source,
 							  shareType : scope.agreements[i].shareType,
@@ -66,7 +68,6 @@
 			        		scope.exitSourceData.splice(index,1);
 			        	}else{
 			        	scope.exitSourceData.splice(index,1);	
-			        	scope.partnerSourceData.splice(index,1);
 			        	
 			        }
 			        	
@@ -83,18 +84,20 @@
 				    var endDate = dateFilter(scope.formData.endDate, 'dd MMMM yyyy');
 			        scope.formData.startDate = startDate;
 			        scope.formData.endDate = endDate || "";
-		        	for(var i in  scope.exitSourceData){
+		        /*	for(var i in  scope.exitSourceData){
 		        		if(!scope.exitSourceData[i].detailId){
 		        			 scope.formData.newSourceData.push(scope.exitSourceData[i]);
+		        			 if(scope.exitSourceData[i].source!=undefined&&scope.exitSourceData[i].shareType!=undefined){
 		        			 scope.exitSourceData = _.without(scope.exitSourceData, _.findWhere(scope.exitSourceData,scope.exitSourceData[i]));
+		        		  }
 		        		}
-		        	}
+		        	}*/
 		            
 		            scope.formData.sourceData = scope.exitSourceData;
 		            scope.formData.removeSourceData = scope.removeData;
-			       resourceFactory.agreementResource.update({agreementId: routeParams.id},scope.formData,function(data){
-			    	 location.path('/viewpartner/' +scope.partnerId);
-		
+			        resourceFactory.agreementResource.update({agreementId: routeParams.id},scope.formData,function(data){
+			    	location.path('/viewpartner/' +scope.partnerId);
+			    	webStorage.add("callingTab", {someString: "Agreement" });
 			      });
 	    };        
 		 
