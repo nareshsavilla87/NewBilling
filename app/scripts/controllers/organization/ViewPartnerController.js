@@ -6,6 +6,17 @@
 		  scope.agreements = [];
 		  scope.officeFinanceTrans = [];
 		 
+		  var callingTab = webStorage.get('callingTab', null);
+			if (callingTab == null) {
+				callingTab = "";
+			} else {
+				scope.displayTab = callingTab.someString;
+				if (scope.displayTab == "Agreement") {
+					scope.AgreementTab = true;
+					webStorage.remove('callingTab');
+				}
+			}
+		  
 
         resourceFactory.partnerResource.get({partnerId: routeParams.id} , function(data) {
             scope.partner = data;
