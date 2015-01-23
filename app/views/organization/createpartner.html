@@ -51,7 +51,7 @@
 								<small class="error" data-ng-show="createpartnerform.password.$error.pattern">alphanumeric and spaces only!</small> 
 								<small class="error" data-ng-show="createpartnerform.password.$error.req">{{'label.required.field' | translate}} </small> 
 								<small class="error" data-ng-show="createpartnerform.password.$error.minlength && !createpartnerform.password.$error.req">
-									  Password is required at least 4 characters</small>
+									  Password is require at least 4 characters</small>
 							</span>
 						</div>
 					</div>
@@ -65,16 +65,25 @@
 								<small class="error" data-ng-show="createpartnerform.repeatPassword.$error.pattern">alphanumeric and spaces only!</small> 
 								<small class="error" data-ng-show="createpartnerform.repeatPassword.$error.req">{{'label.required.field' | translate}} </small> 
 								<small class="error" data-ng-show="createpartnerform.repeatPassword.$error.minlength && !createpartnerform.repeatPassword.$error.req">
-									 Repeat Password is required at least 4 characters</small>
+									 Repeat Password is require at least 4 characters</small>
 							</span>
 						</div>
 					</div>
-					<div class="control-group">
+					
+				<!-- 	<div class="control-group">
 						<label class="control-label" for="office">Credit Limit</label>
 						<div class="controls">
-							<input type="text" data-ng-model="formData.creditLimit" id="creditlimit" name="creditlimit">
+							<input type="text" data-ng-model="formData.creditLimit" id="creditLimit" name="creditlimit">
 						</div>
-					</div>
+					</div> -->
+					
+					<div class="control-group">
+							<label class="control-label">{{ 'label.parentoffice' | translate }}</label>
+							<div class="controls">
+								<select data-ng-model="formData.parentId" data-ng-options="office.id as office.name for office in offices "></select>
+							</div>
+						</div>
+						
 					<div class="control-group">
 						<label class="control-label" for="currency">{{'label.currency' | translate }}</label>
 						<div class="controls">
@@ -95,15 +104,36 @@
 						
 					</td>
 				<td>
-					<div class="control-group">
+					<!-- <div class="control-group">
 						<label class="control-label">{{ 'label.organization' | translate }}<span class="required">*</span>
 						</label>
 						<div class="controls">
 							<input type="text" id="organization" data-ng-model="formData.organization">
 						</div>
-					</div>
+					</div> -->
 					
-					<div class="control-group">
+						<div class="control-group">
+						<label class="control-label" for="contactName">Contact Name</label>
+						<div class="controls">
+							<input type="text" data-ng-model="formData.contactName" id="contactName" name="contactName">
+						</div>
+					</div> 
+					
+						
+						<div class="control-group">
+						<label class="control-label" for="officeNumber">Ofiice Number</label>
+						<div class="controls">
+							<input type="text" id="officeNumber" data-ng-model="formData.officeNumber"
+								data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/"
+								name="phone" required data-late-Validate />
+							<div
+								data-ng-show="createpartnerform.officeNumber.$dirty && createpartnerform.officeNumber.$invalid">
+								<small class="error" data-ng-show="createpartnerform.phone.$error.pattern">wrong input or accepts only digits !</small>
+							</div>
+						</div>
+					</div>
+
+						<div class="control-group">
 						<label class="control-label" for="phone">{{'label.phone' | translate}}<span class="required">*</span>
 						</label>
 						<div class="controls">
@@ -153,17 +183,17 @@
 								data-ng-model="formData.country" readonly required />
 						</div>
 					</div>
-					<div class="control-group">
+					
+				</td></tr>
+				
+			<tr>
+			<td>
+				<div class="control-group">
 						<label class="control-label" for="file">{{'label.company.image'| translate}}</label>
 						<div class="controls">
 							<input type="file" data-ng-file-select="onFileSelect($files)">
 						</div>
 					</div>	
-				</td></tr>
-				
-			<tr>
-			<td>
-				
 			</td></tr>
 			<tr>
 			<td colspan="2" align="right">

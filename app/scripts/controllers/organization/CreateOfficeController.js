@@ -10,8 +10,10 @@
             scope.offices = data.allowedParents;
             scope.officeTypes = data.officeTypes;
             scope.formData = {
-              parentId : scope.offices[0].id
+              parentId : scope.offices[0].id,
+              officeType : data.officeTypes[0].id,
             };
+            
         });
         
         scope.submit = function() {   

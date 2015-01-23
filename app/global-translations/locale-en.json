@@ -2465,6 +2465,7 @@
 "label.partner.email":"Email",
 "label.repeatPassword":"Repeat Password",
 "label.partner.isCollective":"Is Collective",
+"label.partner.phone":"Phone",
 "validation.msg.partner.partnerName.cannot.be.blank":"Partner Name cannot be blank",
 "validation.msg.partner.loginName.cannot.be.blank":"Login Name cannot be blank",
 "validation.msg.partner.password.cannot.be.blank":"Password cannot be blank",

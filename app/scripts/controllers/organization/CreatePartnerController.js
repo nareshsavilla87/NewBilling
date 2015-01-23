@@ -34,7 +34,7 @@
           };
         
         scope.submit = function() {   
-          this.formData.parentId =1;
+          //this.formData.parentId =1;
           this.formData.locale ="en";
           scope.formData.roleName ="Partner";
           
