@@ -6,6 +6,7 @@
 		  scope.agreements = [];
 		  scope.officeFinanceTrans = [];
 		 
+		  
 		  var callingTab = webStorage.get('callingTab', null);
 			if (callingTab == null) {
 				callingTab = "";
@@ -32,14 +33,14 @@
 		  scope.partnersTab=function(){
 	        	webStorage.add("callingTab", {someString: "Partners" });
 	        };
-	        
+	       
 	        //for agreement data
 	        scope.getAgreement = function(){
 	        	
 	        	 resourceFactory.agreementResource.get({partnerId: scope.officeId} , function(data) {
 	        	  scope.agreements = data;
-	        	
 	        	 });
+	        	 
 	        };
     
     }

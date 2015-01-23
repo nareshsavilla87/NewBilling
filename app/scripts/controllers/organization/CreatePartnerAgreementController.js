@@ -12,6 +12,7 @@
 			  scope.sourceDatas = [];
 			  scope.partnerSourceData = [];
 			  scope.sourceData = [];
+			  scope.index=0;
 			      
 			  resourceFactory.agreementTemplateResource.get(function(data) {
 				  
@@ -26,17 +27,20 @@
 		        };
 				  
 				  scope.addSourceCategories = function(){
+					  scope.index = scope.index+1;
 			        	scope.partnerSourceData.push({
 														source : scope.sourceData.source,
 														shareType : scope.sourceData.shareType,
 														shareAmount : scope.sourceData.shareAmount,
 														status : scope.sourceData.status,
-														locale : $rootScope.locale.code,		
+														index : scope.sourceData.sequence=scope.index,
+														locale : $rootScope.locale.code,
 													});
 			        	scope.sourceData.source = undefined;
 			        	scope.sourceData.shareType = undefined;
 			        	scope.sourceData.shareAmount = undefined;
 			        	scope.sourceData.status = undefined;
+			        	scope.sourceData.index = undefined;
 						
 			        };	  
 				  
@@ -53,10 +57,16 @@
 			        scope.formData.startDate = startDate;
 			        scope.formData.endDate = endDate || "";
 		            scope.formData.sourceData = scope.partnerSourceData;
-			       resourceFactory.agreementResource.save({partnerId: routeParams.id},scope.formData,function(data){
-			    	 location.path('/viewpartner/' +scope.partnerId);
-		
-			      });
+			        resourceFactory.agreementResource.save({partnerId: routeParams.id},scope.formData,function(data){
+			    	 location.path('/viewpartner/' +scope.partnerId); 
+			      }/*function(errors){
+			    	  for(var i in  scope.partnerSourceData){
+			    		var error= $("source" +scope.partnerSourceData[i].source).val();
+			    		if(error=undefined){
+			    		$("source" +scope.partnerSourceData[i].index).addClass("validationerror");
+			    		}
+			    	  }*/
+			     );
 	    };        
 		 
 		  }
