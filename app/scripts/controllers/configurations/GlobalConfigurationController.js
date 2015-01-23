@@ -29,43 +29,34 @@
        			  webStorage.remove('callingTab');
                 }
                }
+        
+            function configurationResourceData(){
+            	resourceFactory.configurationResource.get(function(data) {
+            		for(var i in data.globalConfiguration){
+            			if(data.globalConfiguration[i].name == 'smtp'){
+            				scope.showSmtp = false;
+            			}
+            			scope.configs.push(data.globalConfiguration[i]);
+            		}
+            		webStorage.add("client_configuration",JSON.parse(data.clientConfiguration)); 
+            	});
+            }
+            configurationResourceData();
+            function cacheResouceData(){
+            	resourceFactory.cacheResource.get(function(data) {
+            		for(var i=0;i<data.length;i++ ){
+            			if(data[i].cacheType.id==2){
+                        var cache = {};
+                        cache.name = 'Is Cache Enabled';
+                        cache.enabled =  data[i].enabled;
+            		}
+                }
+                scope.configs.push(cache);
+            	});
+            }
+            cacheResouceData();
+            
                
-            
-               resourceFactory.configurationResource.get(function(data) {               
-            	   for(var i in data.globalConfiguration){                	
-            		   if(data.globalConfiguration[i].name == 'smtp'){                		
-            			   scope.showSmtp = false;               	
-            		   }                	
-            		   scope.configs.push(data.globalConfiguration[i]);          
-            	   }
-	              /*scope.clientConfigs1 = data.clientConfiguration.split("{")[1].split("}")[0];
-	                scope.clientConfigs = "{"+scope.clientConfigs1+"}";*/
-	                //scope.clientConfigs1 = data.clientConfiguration;
-            	   webStorage.add("client_configuration",JSON.parse(data.clientConfiguration));
-	                //JSON.parse(scope.clientConfigs)
-	                //console.log(scope.clientConfigs1.split(",").length+"hhjg");
-	               
-	                /*for(var j = 0; j < scope.clientConfigs1.split(",").length; j++){
-	                	scope.temp = scope.clientConfigs1.split(",")[j].split("\":");
-	                	//console.log(scope.temp[0]);
-	                	//scope.myData = {"name":scope.temp[0].split("\"")[1],"value":scope.temp[1].split("\"")[1]};
-	                	scope.myData.push({"name":scope.temp[0].split("\"")[1],"value":scope.temp[1].split("\"")[1]});
-	                	//console.log(scope.clientConfigs1.split(",")[j].split("\":")[0].split("\"")[1]);
-	                	//console.log(scope.clientConfigs1.split(",")[j].split("\":")[1].split("\"")[1]);
-	                }*/
-	                              
-            	   resourceFactory.cacheResource.get(function(data) {                    
-            		   for(var i=0;i<data.length;i++ ){                        
-            			   if(data[i].cacheType.id==2){                            
-            				   var cache = {};                          
-            				   cache.name = 'Is Cache Enabled';                           
-            				   cache.enabled =  data[i].enabled;                       
-            			   }                    
-            		   }                    
-            		   scope.configs.push(cache);               
-            	   });          
-               });
-            
             scope.getpaymentgatewayData = function(){
             	
             	resourceFactory.paymentGatewayConfigurationResource.get(function(data) {
@@ -146,11 +137,10 @@
 		         		this.updateData.value=this.formData.value;
 		         		resourceFactory.configurationResource.update({configId: scope.editId},this.updateData,function(data){ 
 		                  route.reload();
-		                 // location.path('/paymentGateway');
-		                        $modalInstance.close('delete');
-		                    },function(errData){
+		                  $modalInstance.close('delete');
+		                  },function(errData){
 		                  $scope.flag = false;
-		                   });
+		                });
 		         	};  
 		    		$scope.reject = function(){
 		    			$modalInstance.dismiss('cancel');
@@ -160,21 +150,25 @@
 		        scope.getClientConfiguration = function(){
 		        	 scope.myData = [];
           			 scope.mainObject = webStorage.get("client_configuration");
-          			 scope.clientListObject = webStorage.get("client_configuration").clientListing;;
+          			 scope.clientListObject = webStorage.get("client_configuration").clientListing;
           			 
           	    	  for (var key in scope.mainObject) {
           	    		  if(key != "clientListing"){
           	    			  scope.myData.push({
       		  					"name" : key,
-      		  					"value" :scope.mainObject[key].toString(),
+      		  					"value" :scope.mainObject[key],
           	    			  });
           	    		  }else{
-          	    			  for (var keyClientList in scope.clientListObject){
-          	    				  scope.myData.push({
-          		  					"name" : keyClientList,
-          		  					"value" :scope.clientListObject[keyClientList].toString(),
-          	    				  });  
-          	    			  }	 
+          	    			 scope.value = {};
+          	    			 for (var keyClientList in scope.clientListObject){
+          	    				 if(scope.clientListObject[keyClientList] == 'true'){
+          	    					scope.value[keyClientList] = scope.clientListObject[keyClientList]; 
+          	    				 }
+         	    			 }
+          	    			 scope.myData.push({
+     		  					"name" : key,
+     		  					"value" :scope.value,
+     	    				 }); 
           	    		  }
           	    	  }
 		        };
@@ -219,7 +213,7 @@
 	            	
 	            };
 	            
-	            scope.clientConfigChange = function(name,value){
+	            scope.clientConfigChange = function(name,value,fromClientListing){
 	            	
 	            	if(value == 'true'){
 	            		scope.oldValue = value;
@@ -232,6 +226,7 @@
 	            	resourceFactory.clientConfigurationResource.update(tempclient, function (data) {
 	            		webStorage.add("client_configuration",data);
                         route.reload();
+                        if(fromClientListing == 'true'){scope.editClientListing();};
                     });
 	            };
 	            
@@ -426,6 +421,21 @@
 	            
 	            function Approve($scope, $modalInstance) {
 	            	$scope.data = {};
+	            	$scope.dates = [
+		                      	        'dd MMM yyyy',
+		                                'dd MMMM yyyy',
+		                                'dd/MMM/yyyy',
+		                                'dd/MMMM/yyyy',
+		                                'dd-MMM-yyyy',
+		                                'dd-MMMM-yyyy',
+		                                'MMM-dd-yyyy',
+		                                'MMMM-dd-yyyy',
+		                                'MMM dd yyyy',
+		                                'MMMM dd yyyy',
+		                                'MMM/dd/yyyy',
+		                                'MMMM/dd/yyyy'
+		                                  
+		                           ];
 	            	$scope.data.value = scope.oldValue;
 	            	$scope.data.name = scope.clientConfigName;
 	                $scope.approve = function (newValue) {
@@ -435,6 +445,34 @@
 	                    	webStorage.add("client_configuration",data);
 	                        route.reload();
 	                    });
+	                    $modalInstance.close('delete');
+	                };
+	                $scope.cancel = function () {
+	                    $modalInstance.dismiss('cancel');
+	                };
+	            }
+	            
+	            scope.editClientListing=function(name, value){
+	                $modal.open({
+	                    templateUrl: 'editclientlisting.html',
+	                    controller: ApproveClientListing,
+	                    resolve:{}
+	                });
+	            };
+	           function ApproveClientListing($scope, $modalInstance) {
+	        	   
+	          	  	$scope.clientListData = [];
+	          	  	$scope.tempData = [];
+	          	  	$scope.tempData = webStorage.get("client_configuration").clientListing;
+	          	  	for (var key in $scope.tempData) {
+      	    			  $scope.clientListData.push({
+  		  					"name" : key,
+  		  					"value" :$scope.tempData[key].toString(),
+      	    			  });
+	          	  	}
+	                $scope.approve = function (name, value) {
+	                    scope.approveData = {};
+	                    scope.clientConfigChange(name, value , 'true');
 	                    $modalInstance.close('delete');
 	                };
 	                $scope.cancel = function () {
