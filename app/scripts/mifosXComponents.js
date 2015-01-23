@@ -284,6 +284,7 @@ define(['underscore', 'mifosX'], function() {
       'organization/CreatePartnerAgreementController',
       'organization/EditPartnerAgreementController',
       'organization/DisbursementsController',
+      'organization/EditPartnerController',
       
 
 
