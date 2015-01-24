@@ -1,10 +1,11 @@
 (function(module) {
 	mifosX.controllers = _.extend(module, {
 
-		ViewPartnerController : function(scope, routeParams, rootScope,	resourceFactory, webStorage) {
+		ViewPartnerController : function(scope, routeParams, rootScope,	resourceFactory, webStorage,PermissionService) {
 
 			scope.agreements = [];
 			scope.officeFinanceTrans = [];
+			scope.PermissionService = PermissionService;
 
 			/* var callingTab = webStorage.get('callingTab', null);
 			if (callingTab == null) {
@@ -47,7 +48,7 @@
 	mifosX.ng.application.controller(
 			'ViewPartnerController',
 			[ '$scope', '$routeParams', '$rootScope', 'ResourceFactory',
-					'webStorage', mifosX.controllers.ViewPartnerController ])
+					'webStorage','PermissionService', mifosX.controllers.ViewPartnerController ])
 			.run(function($log) {
 				$log.info("ViewPartnerController initialized");
 			});

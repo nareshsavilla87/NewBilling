@@ -975,6 +975,9 @@
       .when('/disbursements', {
         templateUrl: 'views/administration/disbursements.html'
       })
+       .when('/editpartner/:partnerId', {
+        templateUrl: 'views/organization/editpartner.html'
+      })
       ;
     
     $locationProvider.html5Mode(false);

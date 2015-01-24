@@ -45,7 +45,6 @@
 			        };	  
 				  
 			        scope.removeSourceCategories = function(index){	
-			        	  console.log(scope.index);
 			        	  if(scope.index>=1){
 			        	scope.partnerSourceData.splice(index,1);}
 			        };  
@@ -66,12 +65,12 @@
 			    		var error= $("#source" +scope.partnerSourceData[i].index).val();
 			    		var error1= $("#shareType" +scope.partnerSourceData[i].index).val();
 			    		var error2= $("#shareAmount" +scope.partnerSourceData[i].index).val();
-			    		console.log(error);
+			    		console.log(error2);
 			    		if(error == "?"){
 			    		$("#source" +scope.partnerSourceData[i].index).addClass("validationerror");}
 			    		if(error1 == "?"){
 			    		$("#shareType" +scope.partnerSourceData[i].index).addClass("validationerror");}
-			    		if(error2 == "?"){
+			    		if(error2 == ""){
 			    		$("#shareAmount" +scope.partnerSourceData[i].index).addClass("validationerror");}
 			    	  }
 			      });

@@ -1,25 +1,24 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  CreatePartnerController: function(scope, resourceFactory, location,$rootScope,webStorage,$upload,API_VERSION) {
+	  EditPartnerController: function(scope, resourceFactory, routeParams,location,$rootScope,webStorage,$upload,API_VERSION) {
         scope.offices = [];
         scope.partnerTypes = [];
         scope.currencydatas = [];
         scope.formData = {};
-        
-       	 resourceFactory.partnerTemplateResource.get(function(data) {
+        scope.partnerId =  routeParams.partnerId;
+       	 
+       	resourceFactory.partnerResource.get({partnerId: routeParams.partnerId,template:'true'} , function(data) {
+       		
+            scope.formData  = data;
+            scope.officeId =  scope.formData.officeId;
+            webStorage.add("partnerName", scope.formData.partnerName);
             scope.offices = data.allowedParents;
-          //  scope.partnerTypes = data.partnerTypes;
             scope.currencydatas = data.currencyData.currencyOptions;
             scope.cityDatas = data.citiesData;
-            scope.configCurrency = data.configCurrency;
-            for(var i in data.allowedParents){
-            if(data.allowedParents[i].id==1){
-            	 scope.formData.parentId=data.allowedParents[i].id;
-            }
-            }
-            scope.formData.officeType = data.officeTypes[1].id;
-   
-        });
+            scope.formData.officeType  = data.officeTypes[1].id;
+            
+         
+      });
         
         scope.getStateAndCountry=function(city){
         	  resourceFactory.AddressTemplateResource.get({city :city}, function(data) {
@@ -36,12 +35,27 @@
        	   webStorage.add("callingTab", {someString: "Partners" });
           };
         
-        scope.submit = function() {   
-          //this.formData.parentId =1;
-          this.formData.locale ="en";
-          scope.formData.roleName ="Partner";
+        scope.submit = function() {  
+        	
+        scope.formData.locale = $rootScope.locale.code;
+        scope.formData.roles = [10];
           
-          resourceFactory.partnerResource.save(this.formData,function(data){
+          delete scope.formData.id;
+          delete scope.formData.officeId;
+          delete scope.formData.parentName;
+          delete scope.formData.openingDate;
+          delete scope.formData.balanceAmount;
+          delete scope.formData.creditLimit;
+          delete scope.formData.currencyData;
+          delete scope.formData.officeTypes;
+          delete scope.formData.allowedParents;
+          delete scope.formData.configCurrency;
+          delete scope.formData.citiesData;
+          delete scope.formData.statesData;
+          delete scope.formData.countryData;
+      
+          
+          resourceFactory.partnerResource.update({partnerId : scope.partnerId},this.formData,function(data){
         	  
         	  if (scope.file) {
             	  $upload.upload({
@@ -62,16 +76,17 @@
         };
     }
   });
-  mifosX.ng.application.controller('CreatePartnerController', 
+  mifosX.ng.application.controller('EditPartnerController', 
   ['$scope', 
    'ResourceFactory', 
+   '$routeParams',
    '$location',
    '$rootScope',
    'webStorage', 
    '$upload',
    'API_VERSION',
-    mifosX.controllers.CreatePartnerController
+    mifosX.controllers.EditPartnerController
     ]).run(function($log) {
-    $log.info("CreatePartnerController initialized");
+    $log.info("EditPartnerController initialized");
   });
 }(mifosX.controllers || {}));
