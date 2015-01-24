@@ -28,9 +28,9 @@
 					<th>Transaction Date</th>
 					<th>Source</th>
 					<th>Charge Amount</th>
-					<th>Percentage(%)</th>
+					<th>Commission Type</th>
+					<th>Commission Rate</th>
 					<th>Commission Amount</th>
-					<th>Net Amount</th>
 					
 				</tr>
 			</thead>
@@ -40,10 +40,10 @@
 					<td >{{patnerDisbursementData.partnerName}}</td>
 					<td >{{patnerDisbursementData.transDate |DateFormat}}</td>
 					<td >{{patnerDisbursementData.source}}</td>
-					<td >{{patnerDisbursementData.chargeAmount}}</td>
-					<td >{{patnerDisbursementData.percentage}}</td>
-					<td >{{patnerDisbursementData.commissionAmount}}</td>
 					<td >{{patnerDisbursementData.netAmount}}</td>
+					<td >{{patnerDisbursementData.percentage}}</td>
+					<td >{{patnerDisbursementData.shareAmount}}</td>
+					<td >{{patnerDisbursementData.commissionAmount}}</td>
 					
 				</tr>
 			</tbody>

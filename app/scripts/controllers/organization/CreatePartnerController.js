@@ -11,11 +11,14 @@
           //  scope.partnerTypes = data.partnerTypes;
             scope.currencydatas = data.currencyData.currencyOptions;
             scope.cityDatas = data.citiesData;
-            scope.formData = {
-              parentId : scope.offices[0].id,
-      //        partnerType : scope.partnerTypes[0].id,
-              officeType : data.officeTypes[1].id,
-            };
+            scope.configCurrency = data.configCurrency;
+            for(var i in data.allowedParents){
+            if(data.allowedParents[i].id==1){
+            	 scope.formData.parentId=data.allowedParents[i].id;
+            }
+            }
+            scope.formData.officeType = data.officeTypes[1].id;
+   
         });
         
         scope.getStateAndCountry=function(city){

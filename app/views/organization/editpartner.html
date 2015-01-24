@@ -88,29 +88,29 @@
 					
 					
 					<div class="control-group">
-						<label class="control-label" for="phone">{{'label.mobilephone' | translate}}<span class="required">*</span>
+						<label class="control-label" for="phoneNumber">{{'label.mobilephone' | translate}}<span class="required">*</span>
 						</label>
 						<div class="controls">
-							<input type="text" id="phone" data-ng-model="formData.phone"
+							<input type="text" id="phoneNumber" data-ng-model="formData.phoneNumber"
 								data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/"
 								name="phone" required data-late-Validate />
 							<div
-								data-ng-show="editpartnerform.phone.$dirty && editpartnerform.phone.$invalid">
-								<small class="error" data-ng-show="editpartnerform.phone.$error.pattern">wrong input or accepts only digits !</small>
+								data-ng-show="editpartnerform.phoneNumber.$dirty && editpartnerform.phoneNumber.$invalid">
+								<small class="error" data-ng-show="editpartnerform.phoneNumber.$error.pattern">wrong input or accepts only digits !</small>
 							</div>
 						</div>
 					</div>
 					
 					<div class="control-group">
-						<label class="control-label" for="officePhone">{{'label.officephone' | translate}}
+						<label class="control-label" for="officeNumber">{{'label.officephone' | translate}}
 						</label>
 						<div class="controls">
-							<input type="text" id="officePhone" data-ng-model="formData.officeNumber"
+							<input type="text" id="officeNumber" data-ng-model="formData.officeNumber"
 								data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/"
-								name="officePhone" required data-late-Validate />
+								name="officeNumber" required data-late-Validate />
 							<div
-								data-ng-show="editpartnerform.officePhone.$dirty && editpartnerform.officePhone.$invalid">
-								<small class="error" data-ng-show="editpartnerform.officePhone.$error.pattern">wrong input or accepts only digits !</small>
+								data-ng-show="editpartnerform.officeNumber.$dirty && editpartnerform.officeNumber.$invalid">
+								<small class="error" data-ng-show="editpartnerform.officeNumber.$error.pattern">wrong input or accepts only digits !</small>
 							</div>
 						</div>
 					</div>
