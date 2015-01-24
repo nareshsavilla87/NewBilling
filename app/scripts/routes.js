@@ -946,6 +946,9 @@
       })
        .when('/createNas', {
         templateUrl: 'views/organization/createNas.html'
+      })
+       .when('/viewvouchers/:voucherId', {
+        templateUrl: 'views/organization/viewvouchers.html'
       });
     
     $locationProvider.html5Mode(false);
