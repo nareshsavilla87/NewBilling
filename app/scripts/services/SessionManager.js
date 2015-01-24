@@ -27,6 +27,7 @@
             handler({user: new mifosX.models.LoggedInUser(userData)});
           });
         } else {
+        	location.path('/').replace();
           handler(EMPTY_SESSION);
         }
       };
