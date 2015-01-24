@@ -58,7 +58,33 @@
 					</table></div>
 	</div><br>
  	<tabset  style="margin-bottom: 0px;">
-   <tab heading="Office Financial Transactions">
+    <tab heading="Agreement Details" >
+     <br>
+       <div>
+       <input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.searchbar' | translate}}">
+        <table class="table">
+          <thead>
+            <tr class="graybg">
+				   <th>{{'label.agreementstatus' | translate}}</th>
+                   <th>{{'label.contreffectdate' | translate}}</th>
+                   <th>{{'label.contrenddate' | translate}}</th>
+                   <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+             <tr data-ng-show="agreements.id">      
+                <td>{{agreements.agreementStatus}}</td>
+                <td>{{agreements.startDate | DateFormat}}</td>
+                <td>{{agreements.endDate | DateFormat}}</td> 
+                <td><a data-ng-show="PermissionService.showMenu('UPDATE_PARTNERAGREEMENT')" 
+							href="#/editpartneragreement/{{agreements.id}}/{{partner.id}}" data-popover="Edit Agreement" data-popover-trigger="mouseenter">
+                    		<i class="icon-edit icon-white"></i> </a></td>                  
+             </tr>
+          </tbody>
+         </table>
+        </div>
+      </tab>
+      <tab heading="Office Financial Transactions" select="getFinancialData()" active="FinancialTab">
      <br>
        <div>
            <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.searchbar' | translate}}">
@@ -86,32 +112,6 @@
                 <td>{{officeFinTran.transactionCategory}}</td>         
                 <td>{{officeFinTran.creditAmount}}</td> 
                 <td>{{officeFinTran.amount}}</td>              
-             </tr>
-          </tbody>
-         </table>
-        </div>
-      </tab>
-    <tab heading="Agreement Details" select="getAgreement()" active="AgreementTab">
-     <br>
-       <div>
-       <input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.searchbar' | translate}}">
-        <table class="table">
-          <thead>
-            <tr class="graybg">
-				   <th>{{'label.agreementstatus' | translate}}</th>
-                   <th>{{'label.contreffectdate' | translate}}</th>
-                   <th>{{'label.contrenddate' | translate}}</th>
-                   <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-             <tr data-ng-show="agreements.id">      
-                <td>{{agreements.agreementStatus}}</td>
-                <td>{{agreements.startDate | DateFormat}}</td>
-                <td>{{agreements.endDate | DateFormat}}</td> 
-                <td><a data-ng-show="PermissionService.showMenu('UPDATE_PARTNERAGREEMENT')" 
-							href="#/editpartneragreement/{{agreements.id}}/{{partner.id}}" data-popover="Edit Agreement" data-popover-trigger="mouseenter">
-                    		<i class="icon-edit icon-white"></i> </a></td>                  
              </tr>
           </tbody>
          </table>

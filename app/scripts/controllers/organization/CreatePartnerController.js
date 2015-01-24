@@ -12,7 +12,6 @@
             scope.currencydatas = data.currencyData.currencyOptions;
             scope.cityDatas = data.citiesData;
             scope.formData = {
-              parentId : scope.offices[0].id,
       //        partnerType : scope.partnerTypes[0].id,
               officeType : data.officeTypes[1].id,
             };

@@ -45,7 +45,9 @@
 			        };	  
 				  
 			        scope.removeSourceCategories = function(index){	
-			        	scope.partnerSourceData.splice(index,1);
+			        	  console.log(scope.index);
+			        	  if(scope.index>=1){
+			        	scope.partnerSourceData.splice(index,1);}
 			        };  
 		   
 			  scope.submit =function(){
@@ -59,14 +61,20 @@
 		            scope.formData.sourceData = scope.partnerSourceData;
 			        resourceFactory.agreementResource.save({partnerId: routeParams.id},scope.formData,function(data){
 			    	 location.path('/viewpartner/' +scope.partnerId); 
-			      }/*function(errors){
+			      },function(errors){
 			    	  for(var i in  scope.partnerSourceData){
-			    		var error= $("source" +scope.partnerSourceData[i].source).val();
-			    		if(error=undefined){
-			    		$("source" +scope.partnerSourceData[i].index).addClass("validationerror");
-			    		}
-			    	  }*/
-			     );
+			    		var error= $("#source" +scope.partnerSourceData[i].index).val();
+			    		var error1= $("#shareType" +scope.partnerSourceData[i].index).val();
+			    		var error2= $("#shareAmount" +scope.partnerSourceData[i].index).val();
+			    		console.log(error);
+			    		if(error == "?"){
+			    		$("#source" +scope.partnerSourceData[i].index).addClass("validationerror");}
+			    		if(error1 == "?"){
+			    		$("#shareType" +scope.partnerSourceData[i].index).addClass("validationerror");}
+			    		if(error2 == "?"){
+			    		$("#shareAmount" +scope.partnerSourceData[i].index).addClass("validationerror");}
+			    	  }
+			      });
 	    };        
 		 
 		  }

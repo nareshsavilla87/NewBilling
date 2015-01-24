@@ -80,7 +80,7 @@
 					<div class="control-group">
 							<label class="control-label">{{ 'label.parentoffice' | translate }}</label>
 							<div class="controls">
-								<select data-ng-model="formData.parentId" data-ng-options="office.id as office.name for office in offices "></select>
+								<select data-ng-model="formData.parentId" data-ng-options="office.id as office.name for office in offices  | orderBy:'id'"></select>
 							</div>
 						</div>
 						
@@ -121,14 +121,14 @@
 					
 						
 						<div class="control-group">
-						<label class="control-label" for="officeNumber">Ofiice Number</label>
+						<label class="control-label" for="officeNumber">Office Number</label>
 						<div class="controls">
 							<input type="text" id="officeNumber" data-ng-model="formData.officeNumber"
 								data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/"
 								name="phone" required data-late-Validate />
 							<div
 								data-ng-show="createpartnerform.officeNumber.$dirty && createpartnerform.officeNumber.$invalid">
-								<small class="error" data-ng-show="createpartnerform.phone.$error.pattern">wrong input or accepts only digits !</small>
+								<small class="error" data-ng-show="createpartnerform.officeNumber.$error.pattern">wrong input or accepts only digits !</small>
 							</div>
 						</div>
 					</div>
