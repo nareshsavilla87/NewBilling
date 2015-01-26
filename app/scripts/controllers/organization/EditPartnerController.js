@@ -6,24 +6,18 @@
         scope.currencydatas = [];
         scope.formData = {};
         scope.partnerId =  routeParams.partnerId;
-        
        	 
-       	 
-       	resourceFactory.partnerResource.get({partnerId: routeParams.partnerId} , function(data) {
-            scope.partner = data;
+       	resourceFactory.partnerResource.get({partnerId: routeParams.partnerId,template:'true'} , function(data) {
+       		
             scope.formData  = data;
-            scope.formData.phone = data.phoneNumber;
-            scope.officeId = scope.partner.officeId;
-            webStorage.add("partnerName",scope.partner.partnerName);
+            scope.officeId =  scope.formData.officeId;
+            webStorage.add("partnerName", scope.formData.partnerName);
+            scope.offices = data.allowedParents;
+            scope.currencydatas = data.currencyData.currencyOptions;
+            scope.cityDatas = data.citiesData;
+            scope.formData.officeType  = data.officeTypes[1].id;
             
-           resourceFactory.partnerTemplateResource.get(function(data) {
-               scope.offices = data.allowedParents;
-             //  scope.partnerTypes = data.partnerTypes;
-               scope.currencydatas = data.currencyData.currencyOptions;
-               scope.cityDatas = data.citiesData;
-         //        partnerType : scope.partnerTypes[0].id,
-               scope.formData.officeType  = data.officeTypes[1].id;
-           });
+         
       });
         
         scope.getStateAndCountry=function(city){
@@ -41,17 +35,25 @@
        	   webStorage.add("callingTab", {someString: "Partners" });
           };
         
-        scope.submit = function() {   
-          this.formData.locale ="en";
-          scope.formData.roleName ="Partner";
+        scope.submit = function() {  
+        	
+        scope.formData.locale = $rootScope.locale.code;
+        scope.formData.roles = [10];
           
           delete scope.formData.id;
           delete scope.formData.officeId;
           delete scope.formData.parentName;
           delete scope.formData.openingDate;
-          delete scope.formData.phoneNumber;
           delete scope.formData.balanceAmount;
           delete scope.formData.creditLimit;
+          delete scope.formData.currencyData;
+          delete scope.formData.officeTypes;
+          delete scope.formData.allowedParents;
+          delete scope.formData.configCurrency;
+          delete scope.formData.citiesData;
+          delete scope.formData.statesData;
+          delete scope.formData.countryData;
+      
           
           resourceFactory.partnerResource.update({partnerId : scope.partnerId},this.formData,function(data){
         	  

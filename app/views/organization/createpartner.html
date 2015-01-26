@@ -80,7 +80,7 @@
 					<div class="control-group">
 							<label class="control-label">{{ 'label.parentoffice' | translate }}</label>
 							<div class="controls">
-								<select data-ng-model="formData.parentId" data-ng-options="office.id as office.name for office in offices "></select>
+								<select data-ng-model="formData.parentId" data-ng-options="office.id as office.name for office in offices  | orderBy:'id'"></select>
 							</div>
 						</div>
 						
@@ -134,15 +134,15 @@
 					</div>
 
 						<div class="control-group">
-						<label class="control-label" for="phone">{{'label.phone' | translate}}<span class="required">*</span>
+						<label class="control-label" for="phoneNumber">{{'label.phone' | translate}}<span class="required">*</span>
 						</label>
 						<div class="controls">
-							<input type="text" id="phone" data-ng-model="formData.phone"
+							<input type="text" id="phoneNumber" data-ng-model="formData.phoneNumber"
 								data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/"
-								name="phone" required data-late-Validate />
+								name="phoneNumber" required data-late-Validate />
 							<div
-								data-ng-show="createpartnerform.phone.$dirty && createpartnerform.phone.$invalid">
-								<small class="error" data-ng-show="createpartnerform.phone.$error.pattern">wrong input or accepts only digits !</small>
+								data-ng-show="createpartnerform.phoneNumber.$dirty && createpartnerform.phoneNumber.$invalid">
+								<small class="error" data-ng-show="createpartnerform.phoneNumber.$error.pattern">wrong input or accepts only digits !</small>
 							</div>
 						</div>
 					</div>
