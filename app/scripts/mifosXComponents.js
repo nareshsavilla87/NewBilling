@@ -274,6 +274,7 @@ define(['underscore', 'mifosX'], function() {
       'organization/CreateRadServiceController',
       'organization/CreateNasController',
       'paymentgateway/EventActionController',
+      'organization/ViewVouchersController',
       'organization/AddonController',
       'organization/EditAddonController',
       'organization/ViewGroupsDetailsController',
@@ -285,8 +286,6 @@ define(['underscore', 'mifosX'], function() {
       'organization/EditPartnerAgreementController',
       'organization/DisbursementsController',
       'organization/EditPartnerController',
-      
-
 
     ],
     filters: [
