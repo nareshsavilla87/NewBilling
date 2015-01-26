@@ -966,10 +966,10 @@
       .when('/createpartner', {
         templateUrl: 'views/organization/createpartner.html'
       })
-       .when('/viewpartner/:id', {
+       .when('/viewpartner/:id/:officeId', {
         templateUrl: 'views/organization/viewpartner.html'
       })
-       .when('/createpartneragreement/:id', {
+       .when('/createpartneragreement/:id/:officeId', {
         templateUrl: 'views/organization/createpartneragreement.html'
       })  
       .when('/editpartneragreement/:id/:partnerId', {
@@ -977,11 +977,17 @@
       })
       .when('/disbursements', {
         templateUrl: 'views/administration/disbursements.html'
-      })
-       .when('/editpartner/:partnerId', {
+      }) 
+      .when('/editpartner/:partnerId', {
         templateUrl: 'views/organization/editpartner.html'
+      })
+      .when('/officepayments/:officeId/:partnerId',{
+       templateUrl: 'views/organization/officepayments.html'
+      })
+      .when('/officeadjustments/:officeId/:partnerId',{
+       templateUrl: 'views/organization/officeadjustments.html'
       });
-       
+
     $locationProvider.html5Mode(false);
   };
   mifosX.ng.application.config(defineRoutes).run(function($log) {

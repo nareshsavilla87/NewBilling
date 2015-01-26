@@ -12,9 +12,12 @@
 			  scope.exitSourceData = [];
 			  scope.sourceData = []; 
 			  scope.removeData = [];
+			  scope.index=0;
+			  scope.partnerName =  webStorage.get("partnerName");
 		
 		        	 resourceFactory.agreementResource.query({agreementId: routeParams.id,anotherResource:'details',template : 'true'} , function(data) {
 		        	    scope.agreements = data;
+		        	    scope.officeId = scope.agreements[0].officeId;
 		        	    for(var i=0; i< scope.agreements.length; i++){
 		        	    if(scope.agreements[i].id)	{
 		        	    	scope.formData.agreementStatus=  scope.agreements[i].agreementStatus;
@@ -96,8 +99,21 @@
 		            scope.formData.sourceData = scope.exitSourceData;
 		            scope.formData.removeSourceData = scope.removeData;
 			        resourceFactory.agreementResource.update({agreementId: routeParams.id},scope.formData,function(data){
-			    	location.path('/viewpartner/' +scope.partnerId);
+			    	location.path('/viewpartner/' +scope.partnerId + '/' + data.officeId);
 			    	
+			      },function(errors){
+			    	  for(var i in  scope.partnerSourceData){
+			    		var error= $("#source" +scope.partnerSourceData[i].index).val();
+			    		var error1= $("#shareType" +scope.partnerSourceData[i].index).val();
+			    		var error2= $("#shareAmount" +scope.partnerSourceData[i].index).val();
+			    	
+			    		if(error == "?"){
+			    		$("#source" +scope.partnerSourceData[i].index).addClass("validationerror");}
+			    		if(error1 == "?"){
+			    		$("#shareType" +scope.partnerSourceData[i].index).addClass("validationerror");}
+			    		if(error2 == ""){
+			    		$("#shareAmount" +scope.partnerSourceData[i].index).addClass("validationerror");}
+			    	  }
 			      });
 	    };        
 		 

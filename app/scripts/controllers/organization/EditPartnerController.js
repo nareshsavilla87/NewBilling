@@ -6,6 +6,7 @@
         scope.currencydatas = [];
         scope.formData = {};
         scope.partnerId =  routeParams.partnerId;
+        scope.partnerName =  webStorage.get("partnerName");
        	 
        	resourceFactory.partnerResource.get({partnerId: routeParams.partnerId,template:'true'} , function(data) {
        		
@@ -31,8 +32,12 @@
            
           };
           
-          scope.reset123 = function(){
+          scope.reset123 = function(partnerId,officeId){
+          if(partnerId&&officeId){
+        	  location.path('/viewpartner/' +partnerId +'/'+ officeId);
+          }else{	  
        	   webStorage.add("callingTab", {someString: "Partners" });
+          }
           };
         
         scope.submit = function() {  
@@ -59,7 +64,7 @@
         	  
         	  if (scope.file) {
             	  $upload.upload({
-                  url: $rootScope.hostUrl+ API_VERSION +'/partners/'+data.resourceId+'/images', 
+                  url: $rootScope.hostUrl+ API_VERSION +'/partners/'+data.officeId+'/images', 
                   data: {},
                   file: scope.file
                 }).then(function(imageData) {
@@ -67,10 +72,10 @@
                     if (!scope.$$phase) {
                       scope.$apply();
                     }
-                    location.path('/viewpartner/' +data.resourceId);
+                    location.path('/viewpartner/' +data.resourceId +'/'+data.officeId);
                   });
         	  }else{
-        		  location.path('/viewpartner/' +data.resourceId);
+        		  location.path('/viewpartner/' +data.resourceId +'/'+data.officeId);
         	  }	
           });
         };

@@ -11,17 +11,15 @@
             
             for(var i in data.officeTypes){
             	if(data.officeTypes[i].name == data.officeType){
-            		//alert(1);
             		scope.formData.officeType = data.officeTypes[i].id;
             	}
             }
-            scope.formData =
-          {
+            scope.formData = {
               name : data.name,
               externalId : data.externalId,
               officeType : scope.formData.officeType
               
-          }
+          };
            
         });
         
