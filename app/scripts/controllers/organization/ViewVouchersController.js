@@ -79,7 +79,7 @@
             $scope.approve = function () {
                 scope.approveData = {};
                 var jsonData = {voucherIds : scope.updateVoucherValues};
-                $http.post(rootScope.hostUrl+ API_VERSION +'/vouchers/'+scope.voucherId, jsonData).
+                $http.post(rootScope.hostUrl+ API_VERSION +'/vouchers/delete/'+scope.voucherId, jsonData).
                   success(function(data) {
                 	  scope.voucherpinsBatchwise = paginatorService.paginate(scope.voucherPinFetchFunction, 14);
                   });
