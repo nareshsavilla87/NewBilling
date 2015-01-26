@@ -15,16 +15,18 @@
 
             	resourceFactory.configurationResource.get(function(data) {
             		scope.clientConfigs = data.clientConfiguration;
+            		var clientConfigurations = JSON.parse(scope.clientConfigs);
             		webStorage.add("client_configuration",JSON.parse(scope.clientConfigs));
+            		if(clientConfigurations){
+                    	localStorageService.add('dateformat',clientConfigurations.date_format);
+                    	scope.dateformat = clientConfigurations.date_format;
+            		}
+                    	
                 	for(var i in data.globalConfiguration){
-                        if(data.globalConfiguration[i].name=="date-format"){
-                        	localStorageService.add('dateformat',data.globalConfiguration[i].value);
-                        	scope.dateformat = data.globalConfiguration[i].value;
-                        	
-                        }if(data.globalConfiguration[i].name=="device-agrement-type"){
+                        if(data.globalConfiguration[i].name=="device-agrement-type"){
                         	  webStorage.add("CPE_TYPE",data.globalConfiguration[i].value);
                         	  
-                        }if(data.globalConfiguration[i].name=="Registration_requires_device"){
+                        }if(data.globalConfiguration[i].name=="registration-requires-device"){
                         	  webStorage.add("Registration_requires_device",data.globalConfiguration[i].enabled);
                         	  
                         }if(data.globalConfiguration[i].name=="is-wallet-enable"){

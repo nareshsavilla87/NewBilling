@@ -357,8 +357,11 @@
        	update: { method: 'PUT' }
        }),
        voucherpinResource: defineResource(apiVer + "/vouchers/:voucherId", {voucherId:'@voucherId'}, {
-           getAllEmployees: {method: 'GET', params: {}, isArray: true}
+           getAllEmployees: {method: 'GET', params: {}, isArray: true},
+       	   update: {method: 'PUT', params: {}}
          }),
+         voucherpinsByIdResource: defineResource(apiVer + "/vouchers/voucherslist/:voucherId", {voucherId:'@voucherId'}, {
+           }),
          voucherpinTemplateResource: defineResource(apiVer + "/vouchers/template", {}, {}),
          
          discountResource: defineResource(apiVer + "/discount/:discountId", {discountId:'@discountId'}, {

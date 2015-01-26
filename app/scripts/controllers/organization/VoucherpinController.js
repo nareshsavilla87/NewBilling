@@ -1,8 +1,10 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  VoucherpinController: function(scope, resourceFactory,PermissionService,rootScope,API_VERSION,route) {
+	  VoucherpinController: function(scope, resourceFactory,PermissionService,rootScope,API_VERSION,route,paginatorService,location,$http) {
         scope.voucherpins = [];
         scope.PermissionService = PermissionService;
+        scope.voucherpin = {};
+        
         resourceFactory.voucherpinResource.getAllEmployees(function(data) {
             scope.voucherpins = data;
         });
@@ -26,6 +28,9 @@
          };
         };
         
+        scope.routeTo = function(voucherId){
+        	location.path("/viewvouchers/"+voucherId);
+        }
     }
   
   });
@@ -36,6 +41,9 @@
                                                             '$rootScope',
                                                             'API_VERSION',
                                                             '$route',
+                                                            'PaginatorService',
+                                                            '$location',
+                                                            '$http',
                                                             mifosX.controllers.VoucherpinController]).run(function($log) {
 	  
     $log.info("VoucherpinController initialized");

@@ -20,6 +20,9 @@
 	            		  rootScope.signupErrorMsgs  =[];rootScope.loginErrorMsgs  =[];rootScope.infoMsgs  =[];
 	        	    	  scope.isProcessing  = false;
 	        	    	  rootScope.isRegClientProcess = false;
+	        	    	  //adding web tv url
+	        	    	  rootScope.webtvURL = selfcareModels.webtvURL+"?id="+successData.clientId;
+	        			  localStorageService.add("selfcareAppUrl",selfcareModels.selfcareAppUrl);
 	            		  location.path('/profile');
 	            	  },function(errorData){
 	            		  rootScope.loginErrorMsgs.push({'name' : 'error.login.failed'});
