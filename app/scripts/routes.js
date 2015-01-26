@@ -945,6 +945,9 @@
        .when('/createNas', {
         templateUrl: 'views/organization/createNas.html'
       })
+      .when('/viewvouchers/:voucherId', {
+        templateUrl: 'views/organization/viewvouchers.html'
+      })
       .when('/createaddons', {
         templateUrl: 'views/organization/createaddons.html'
       })
@@ -977,9 +980,8 @@
       })
        .when('/editpartner/:partnerId', {
         templateUrl: 'views/organization/editpartner.html'
-      })
-      ;
-    
+      });
+       
     $locationProvider.html5Mode(false);
   };
   mifosX.ng.application.config(defineRoutes).run(function($log) {
