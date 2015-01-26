@@ -981,7 +981,11 @@
   "button.exportBatch":"Export Batch",
   "label.downloadVoucherPinData":"Download Voucher Data",
   "label.processVoucherPinData":"Process Voucher Data",
-  
+  "validation.msg.voucher.officeId.cannot.be.blank":"Please Select Office",
+  "validation.msg.voucher.productValue.cannot.be.blank":"Product Value cannot be blank",
+  "error.msg.please.pair.hardware.with.plan ":"Please pair hardware with plan",
+  "error.msg.device.details.not.found":"Device details not available",
+  "validation.msg.voucher.voucherIds.cannot.be.empty":"Please select atleast one Voucher",
   
   "#Table heading Voucher pins":"....",
   "table.heading.id":"Id",
@@ -1187,6 +1191,7 @@
   "validation.msg.itemsale.orderQuantity.cannot.be.blank":"Order Quantity cannot be blank",
   "validation.msg.itemsale.chargeAmount.cannot.be.blank":"Charge amount cannot be blank",
   "validation.msg.itemsale.taxAmount.cannot.be.blank":"tax Amount cannot be blank",
+  "error.msg.event.price.not.found":"No Price found for this Event ",
   
    "#service ":"....",
   "label.services":"Services",
