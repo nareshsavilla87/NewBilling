@@ -2,7 +2,7 @@
 <ul class="breadcrumb">
  <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
 	        <li><a href="#/offices" data-ng-click="partnersTab()">{{'label.managepartners' | translate}}</a> <span class="divider">/</span></li>
-	        <li><a href="#/viewpartner/{{partnerId}}">view partner</a><span class="divider">/</span></li>
+	        <li><a href="#/viewpartner/{{partnerId}}/{{officeId}}">{{partnerName}}</a><span class="divider">/</span></li>
 	        <li class="active">{{'label.editpartneragreement' | translate}}</li>
         </ul>
 <form name="partneragreement" novalidate class="form-horizontal well"   data-ng-submit="submit()">
@@ -80,7 +80,7 @@
     	</div>           
           
            <div class="offset9" >
-            <a href="#/viewpartner/{{partnerId}}" ><button type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+            <a href="#/viewpartner/{{partnerId}}/{{officeId}}" ><button type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
             <button type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
           </div>
 	 </fieldset>

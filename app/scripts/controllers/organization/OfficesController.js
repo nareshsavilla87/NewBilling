@@ -82,8 +82,8 @@
 				 });
 			};
 			
-			 scope.routeToPartner = function(id) {
-					location.path('/viewpartner/' + id);
+			 scope.routeToPartner = function(id,officeId) {
+					location.path('/viewpartner/' + id + '/' +officeId);
 				};
     
     }

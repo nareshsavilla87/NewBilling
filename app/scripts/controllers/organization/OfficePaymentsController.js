@@ -4,7 +4,9 @@
 
         scope.formData = {};
         scope.officeId = routeParams.officeId;
+        scope.partnerId = routeParams.partnerId ;
         scope.officeName = webStorage.get("officeName");
+        scope.partnerName =  webStorage.get("partnerName");
         scope.start={};
         scope.start.date = new Date();
         
@@ -22,6 +24,19 @@
                   };
         });
         
+        scope.reset = function(partnerId,officeId){
+            if(partnerId&&officeId){
+              location.path('/viewpartner/'+routeParams.partnerId+'/'+routeParams.officeId);
+       	      webStorage.add("callingTab", {someString: "financial" });
+           	}else if(officeId){
+       		   location.path('/viewoffice/'+routeParams.officeId); 
+       	   }
+        };
+        
+        scope.partnersTab = function(){
+      	   webStorage.add("callingTab", {someString: "Partners" });
+       };
+        
         scope.submit = function() {
 
           scope.flag = true;
@@ -35,7 +50,13 @@
         	  delete scope.formData.isChequeSelected;
           }
           resourceFactory.officePaymentsResource.postPayments({officeId : routeParams.officeId}, scope.formData, function(){
-            location.path('/viewoffice/'+routeParams.officeId);
+        	  if(scope.partnerId){
+        		  location.path('/viewpartner/'+routeParams.partnerId+'/'+routeParams.officeId);
+        		  webStorage.add("callingTab", {someString: "financial" });
+        		  
+        	  }else{
+                 location.path('/viewoffice/'+routeParams.officeId);
+        	  }
           });
           };
     }
