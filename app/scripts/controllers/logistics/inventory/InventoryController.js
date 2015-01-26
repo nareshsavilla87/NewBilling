@@ -70,9 +70,13 @@
 			resourceFactory.itemResource.getAllItems({offset: offset, limit: limit} , callback);
 		};
 		
-        
+        scope.officeDatas = [];scope.itemMasterDatas = [];
         scope.itemDetailsFetchFunction = function(offset, limit, callback) {
 			resourceFactory.itemDetailsResource.getAlldetails({offset: offset, limit: limit} , callback);
+			resourceFactory.itemDetailsTempDropdownResource.get(function(data){
+				scope.officeDatas = data.officeData;
+				scope.itemMasterDatas = data.itemMasterData;
+			});
 		};
                
 		scope.mrnDetailsFetchFunction = function(offset, limit, callback) {
@@ -246,10 +250,10 @@
 					          
 					          scope.searchStatusDetails = function(offset, limit, callback) {
 					        	  if(scope.source == 'ALL')
-						    	  resourceFactory.itemDetailsResource.getAlldetails({offset: offset, limit: limit} , callback);
+						    	  resourceFactory.itemDetailsResource.getAlldetails({offset: offset, limit: limit,officeName : scope.officeName,itemCode : scope.itemCode} , callback);
 					        	  else
 					        		  resourceFactory.itemDetailsResource.getAlldetails({offset: offset, limit: limit , 
-							    		  sqlSearch: scope.source } , callback);
+							    		  sqlSearch: scope.source ,officeName : scope.officeName,itemCode : scope.itemCode} , callback);
 						      };
 						  		
 						      scope.searchSource = function(source) {

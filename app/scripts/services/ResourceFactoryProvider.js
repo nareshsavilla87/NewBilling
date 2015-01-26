@@ -1075,6 +1075,8 @@
             patnerDisbursementTemplateResource: defineResource(apiVer + "/patnerdisbursement/template", {}, {
             	update: { method: 'PUT' }
             }),
+            itemDetailsTempDropdownResource: defineResource(apiVer + "/itemdetails/template/dropdown", {}, {
+            }),
       
         };
       }];
