@@ -5,6 +5,8 @@
         scope.formData = {};
         scope.officeId = routeParams.officeId;
         scope.officeName = webStorage.get("officeName");
+        scope.partnerId = routeParams.partnerId ;
+        scope.partnerName =  webStorage.get("partnerName");
         scope.start={};
         scope.start.date = new Date();
         
@@ -13,6 +15,18 @@
           scope.data = data.data;
         });
         
+        scope.reset = function(partnerId,officeId){
+         if(partnerId&&officeId){
+           location.path('/viewpartner/'+routeParams.partnerId+'/'+routeParams.officeId);
+    	   webStorage.add("callingTab", {someString: "financial" });
+        	}else if(officeId){
+    		   location.path('/viewoffice/'+routeParams.officeId); 
+    	   }else{
+     	   webStorage.add("callingTab", {someString: "Partners" });
+    	   }
+        };
+     
+        
         scope.submit = function() {
           scope.formData.locale = $rootScope.locale.code;
           scope.formData.dateFormat = "dd MMMM yyyy";
@@ -20,7 +34,13 @@
           scope.formData.adjustmentDate = adjustDate;
        
           resourceFactory.officeAdjustmentsResource.postAdjustments({officeId : routeParams.officeId}, scope.formData, function(){
-            location.path('/viewoffice/'+routeParams.officeId);
+        	  if( scope.partnerId){
+        		  location.path('/viewpartner/'+routeParams.partnerId+'/'+routeParams.officeId);
+        		  webStorage.add("callingTab", {someString: "financial" });
+        		  
+        	  }else{
+                 location.path('/viewoffice/'+routeParams.officeId);
+        	  }  
           });
         };
 

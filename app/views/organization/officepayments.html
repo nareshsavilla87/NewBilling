@@ -2,8 +2,10 @@
      <div>
         <ul class="breadcrumb">
           <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
-          <li><a href="#/offices">{{'label.manageoffices' | translate}}</a> <span class="divider">/</span></li>
-           <li><a href="#/viewoffice/{{officeId}}">{{officeName}}</a> <span class="divider">/</span></li>
+           <li data-ng-hide="officeId&&partnerId"><a href="#/offices">{{'label.manageoffices' | translate}}</a> <span class="divider">/</span></li>
+           <li data-ng-hide="officeId&&partnerId"><a href="#/viewoffice/{{officeId}}">{{officeName}}</a> <span class="divider">/</span></li>
+           <li data-ng-show="officeId&&partnerId"><a href="#/offices" data-ng-click="partnersTab()">{{'label.managepartners' | translate}}</a> <span class="divider">/</span></li>
+           <li data-ng-show="officeId&&partnerId"><a href="#/viewpartner/{{partnerId}}">View Partner</a><span class="divider">/</span></li>
           <li class="active">Make Payment</li>
         </ul>
       </div>

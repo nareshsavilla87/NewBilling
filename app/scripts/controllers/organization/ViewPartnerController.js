@@ -6,17 +6,18 @@
 			scope.agreements = [];
 			scope.officeFinanceTrans = [];
 			scope.PermissionService = PermissionService;
+			scope.officeId=routeParams.officeId;
 
-			/* var callingTab = webStorage.get('callingTab', null);
+			 var callingTab = webStorage.get('callingTab', null);
 			if (callingTab == null) {
 				callingTab = "";
 			} else {
 				scope.displayTab = callingTab.someString;
-				if (scope.displayTab == "Agreement") {
-					scope.AgreementTab = true;
+				if (scope.displayTab == "financial") {
+					scope.FinancialTab = true;
 					webStorage.remove('callingTab');
 				}
-			}*/
+			}
 
 			resourceFactory.partnerResource.get({partnerId : routeParams.id}, function(data) {
 				scope.partner = data;
@@ -32,7 +33,7 @@
 
 			//for office finance Transactions
 			scope.getFinancialData = function() {
-
+	
 				resourceFactory.officeFinancialTransactionResource.get({officeId : scope.officeId}, function(data) {
 					scope.officeFinanceTrans = data;
 				});

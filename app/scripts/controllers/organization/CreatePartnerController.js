@@ -53,7 +53,7 @@
                     if (!scope.$$phase) {
                       scope.$apply();
                     }
-                    location.path('/viewpartner/' +data.resourceId);
+                    location.path('/viewpartner/' +data.resourceId+ '/'+ data.officeId);
                   });
         	  }else{
         		  location.path('/viewpartner/' +data.resourceId);

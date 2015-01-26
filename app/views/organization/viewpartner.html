@@ -9,9 +9,9 @@
 	      <div class="btn-group">
 	          <a data-ng-show="PermissionService.showMenu('UPDATE_PARTNER')" href="#/editpartner/{{partner.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i>Edit Partner</a>
 	          <a data-ng-hide="agreements.id" data-ng-show="PermissionService.showMenu('CREATE_PARTNERAGREEMENT')" href="#/createpartneragreement/{{partner.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Create Agreement</a>
-	          <a href="#/itemsale/{{partner.officeId}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Item Sale</a>
-	          <a href="#/officepayments/{{partner.officeId}}" class="btn btn-primary"><i class="icon-usd icon-white"></i>Payment</a>
-	          <a href="#/officeadjustments/{{partner.officeId}}" class="btn btn-primary"><i class="icon-adjust icon-white"></i>Adjustment</a>
+	          <a href="#/itemsale/{{partner.officeId}}/{{partner.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Item Sale</a>
+	          <a href="#/officepayments/{{partner.officeId}}/{{partner.id}}" class="btn btn-primary"><i class="icon-usd icon-white"></i>Payment</a>
+	          <a href="#/officeadjustments/{{partner.officeId}}/{{partner.id}}" class="btn btn-primary"><i class="icon-adjust icon-white"></i>Adjustment</a>
 	      </div>
 	    </div>
 	</div>
@@ -53,7 +53,7 @@
 							<td>{{partner.email}}</td>
 						</tr>
 							<tr>
-							<td>{{ 'label.partner.phone' | translate }}:</td>
+							<td>Phone:</td>
 							<td>{{partner.phoneNumber}}</td>
 						</tr>
 					</table></div>

@@ -76,12 +76,12 @@
 			</thead>
 			<tbody>
 				<tr class="pointer-main" data-ng-repeat="partner in partners  | filter:filterText">
-					<td class="pointer" data-ng-click="routeToPartner(partner.id)">{{partner.partnerName}}</td>
+					<td class="pointer" data-ng-click="routeToPartner(partner.id,partner.officeId)">{{partner.partnerName}}</td>
 				  <!--   <td class="pointer" data-ng-click="routeToPartner(partner.id)">{{partner.partnerType}}</td>  -->
-					<td class="pointer" data-ng-click="routeToPartner(partner.id)">{{partner.parentName}}</td>
-					<td class="pointer" data-ng-click="routeToPartner(partner.id)">{{partner.currency}}</td>  
-					<td class="pointer" data-ng-click="routeToPartner(partner.id)">{{partner.openingDate | DateFormat}}</td>
-				    <td class="pointer" data-ng-click="routeToPartner(partner.id)">{{partner.balanceAmount}}</td>
+					<td class="pointer" data-ng-click="routeToPartner(partner.id,partner.officeId)">{{partner.parentName}}</td>
+					<td class="pointer" data-ng-click="routeToPartner(partner.id,partner.officeId)">{{partner.currency}}</td>  
+					<td class="pointer" data-ng-click="routeToPartner(partner.id,partner.officeId)">{{partner.openingDate | DateFormat}}</td>
+				    <td class="pointer" data-ng-click="routeToPartner(partner.id,partner.officeId)">{{partner.balanceAmount}}</td>
 				    <td><a data-ng-show="PermissionService.showMenu('UPDATE_PARTNER')"
 					href="#/editpartner/{{partner.id}}" data-popover="Edit Partner" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a></td>
 				</tr>
