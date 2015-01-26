@@ -8,15 +8,23 @@
         
        	 resourceFactory.partnerTemplateResource.get(function(data) {
             scope.offices = data.allowedParents;
-          //  scope.partnerTypes = data.partnerTypes;
             scope.currencydatas = data.currencyData.currencyOptions;
             scope.cityDatas = data.citiesData;
             scope.configCurrency = data.configCurrency;
+            //for head office
             for(var i in data.allowedParents){
             if(data.allowedParents[i].id==1){
             	 scope.formData.parentId=data.allowedParents[i].id;
             }
             }
+            for(var i in scope.currencydatas){
+            	 for(var j in scope.configCurrency){
+            		 if(scope.currencydatas[i].code == scope.configCurrency[j].currency){
+            			 scope.formData.currency=scope.currencydatas[i].displayLabel;
+            		 }
+            		 
+            	 }
+            }console.log(scope.formData.currency);
             scope.formData.officeType = data.officeTypes[1].id;
    
         });
@@ -45,7 +53,7 @@
         	  
         	  if (scope.file) {
             	  $upload.upload({
-                  url: $rootScope.hostUrl+ API_VERSION +'/partners/'+data.resourceId+'/images', 
+                  url: $rootScope.hostUrl+ API_VERSION +'/partners/'+data.officeId+'/images', 
                   data: {},
                   file: scope.file
                 }).then(function(imageData) {
@@ -56,7 +64,7 @@
                     location.path('/viewpartner/' +data.resourceId+ '/'+ data.officeId);
                   });
         	  }else{
-        		  location.path('/viewpartner/' +data.resourceId);
+        		  location.path('/viewpartner/' +data.resourceId + '/' + data.officeId);
         	  }	
           });
         };

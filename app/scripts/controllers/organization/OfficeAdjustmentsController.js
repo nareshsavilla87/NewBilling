@@ -21,10 +21,12 @@
     	   webStorage.add("callingTab", {someString: "financial" });
         	}else if(officeId){
     		   location.path('/viewoffice/'+routeParams.officeId); 
-    	   }else{
-     	   webStorage.add("callingTab", {someString: "Partners" });
     	   }
         };
+        
+        scope.partnersTab = function(){
+     	   webStorage.add("callingTab", {someString: "Partners" });
+      };
      
         
         scope.submit = function() {

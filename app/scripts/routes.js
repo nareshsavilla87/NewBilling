@@ -966,7 +966,7 @@
        .when('/viewpartner/:id/:officeId', {
         templateUrl: 'views/organization/viewpartner.html'
       })
-       .when('/createpartneragreement/:id', {
+       .when('/createpartneragreement/:id/:officeId', {
         templateUrl: 'views/organization/createpartneragreement.html'
       })  
       .when('/editpartneragreement/:id/:partnerId', {

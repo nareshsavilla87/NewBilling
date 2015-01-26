@@ -21,7 +21,6 @@
 
 			resourceFactory.partnerResource.get({partnerId : routeParams.id}, function(data) {
 				scope.partner = data;
-				scope.officeId = scope.partner.officeId;
 				webStorage.add("partnerName", scope.partner.partnerName);
                 
 				//for agreement data
