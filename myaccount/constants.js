@@ -15,7 +15,7 @@
 	   selfcareAppUrl 				: locationOrigin+locationPathname,
 	   additionalKortaUrl 			: locationOrigin+locationPathname+"#/kortasuccess",
 	   encriptionKey 				: "Hugo Technologys",
-	   kortaServer 					: "TEST",//or LIVE
+	   kortaServer 					: "LIVE",//or LIVE
 	   kortaAmountField 			: "amount",
 	   kortaclientId  				: 'clientId',
 	   kortaPaymentMethod			: "PaymentMethodType",
@@ -27,6 +27,6 @@
 	   deviceAgrementType			: "device-agrement-type",
 	   globalPayCurrencyType		: "NGN",
 	   
-	   webtvURL						: locationOrigin+"/cityonline/index.html#/",
+	   webtvURL						: locationOrigin+"/webtv/index.html#/",
 		   
    	};

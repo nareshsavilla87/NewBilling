@@ -10,12 +10,18 @@
        
         <div class="row-fluid pull-right">
         <form ng-submit="searchItemDetails(filterText)" style="margin: 0 0 1%;">
-        	<input ng-model="filterText" type="text" style="width:81.3%;" placeholder="Enter text to Search#">
+        	<input ng-model="filterText" type="text" style="width:46.99%;" placeholder="Enter text to Search#">
           	<select ng-model="source" style="width:16.75%;" ng-change="searchSource(source)">
               <option value="ALL">ALL</option>
               <option value="Available">Available</option>
               <option value="UnAvailable">UnAvailable</option>
               <option value="In use">In Use</option>
+    	  	</select>
+    	  	<select ng-model="officeName" style="width:16.75%;" ng-options="officeData.name as officeData.name for officeData in officeDatas"  ng-change="searchSource(officeName)">
+    	  		<option value="">--select office--</option>
+    	  	</select>
+    	  	<select ng-model="itemCode" style="width:16.75%;" ng-options="itemMasterData.itemCode as itemMasterData.itemCode for itemMasterData in itemMasterDatas"  ng-change="searchSource(itemCode)">
+    	  		<option value="">--select item--</option>
     	  	</select>
         </form>
         <table class="table">
@@ -107,7 +113,7 @@
       <tab heading="Items Transfer" select="getMRNdetails()" active="mrnTab"
       ng-show="$parent.PermissionService.showMenu('READ_MRN','MOVE_MRN')">
         <div class="pull-right btn-group">
-          <a href="#/itemsale/0" class="btn btn-primary"><i class="icon-plus icon-white"></i>Add Item Sale</a>
+          <a ng-show="PermissionService.showMenu('CREATE_ITEMSALE')"  href="#/itemsale/0" class="btn btn-primary"><i class="icon-plus icon-white"></i>Add Item Sale</a>
           <a ng-show="PermissionService.showMenu('CREATE_MRN')" href="#/createmrn" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
           <a ng-show="PermissionService.showMenu('MOVE_MRN')" href="#/movemrn" class="btn btn-primary"><i class="icon-move icon-white"></i>{{ 'button.mrn.move' | translate }}</a>
 

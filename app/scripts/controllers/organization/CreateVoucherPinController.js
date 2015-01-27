@@ -30,6 +30,7 @@
         			for(var j in scope.planDatas[i].pricingData){
         				scope.planDatas[i].pricingData[j].plan_duration = planCode+"-"+scope.planDatas[i].pricingData[j].duration+"-"+scope.planDatas[i].pricingData[j].price;
         				scope.planDatas[i].pricingData[j].planId		= planId;
+        				
         				scope.planPriceData.push(scope.planDatas[i].pricingData[j]);
         			}
         		}
