@@ -643,6 +643,7 @@
                  }),
                oneTimeSaleQuantityResource: defineResource(apiVer + "/onetimesales/:itemId/totalprice", {itemId:'@itemId'}, {
                 get: {method: 'POST', params: {}}
+            	  // get: {method: 'GET', params: {}}
                  }),
                oneTimeSaleAllocation: defineResource(apiVer + "/onetimesales/:orderId/allocation", {orderId:'@orderId'}, {
                 get: {method: 'GET', params: {}}
@@ -1074,6 +1075,8 @@
             }),
             patnerDisbursementTemplateResource: defineResource(apiVer + "/patnerdisbursement/template", {}, {
             	update: { method: 'PUT' }
+            }),
+            itemDetailsTempDropdownResource: defineResource(apiVer + "/itemdetails/template/dropdown", {}, {
             }),
       
         };

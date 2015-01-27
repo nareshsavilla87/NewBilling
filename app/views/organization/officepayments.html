@@ -2,8 +2,10 @@
      <div>
         <ul class="breadcrumb">
           <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
-          <li><a href="#/offices">{{'label.manageoffices' | translate}}</a> <span class="divider">/</span></li>
-           <li><a href="#/viewoffice/{{officeId}}">{{officeName}}</a> <span class="divider">/</span></li>
+           <li data-ng-hide="officeId&&partnerId"><a href="#/offices">{{'label.manageoffices' | translate}}</a> <span class="divider">/</span></li>
+           <li data-ng-hide="officeId&&partnerId"><a href="#/viewoffice/{{officeId}}">{{officeName}}</a> <span class="divider">/</span></li>
+           <li data-ng-show="officeId&&partnerId"><a href="#/offices" data-ng-click="partnersTab()">{{'label.managepartners' | translate}}</a> <span class="divider">/</span></li>
+          <li data-ng-show="officeId&&partnerId"><a href="#/viewpartner/{{partnerId}}/{{officeId}}">{{partnerName}}</a><span class="divider">/</span></li>
           <li class="active">Make Payment</li>
         </ul>
       </div>
@@ -75,7 +77,7 @@
 				   </td>
 			  </tr>
 			  <tr align="right" data-ng-hide="paymentType == 'Cheque'"><td>
-               <a href='#/viewoffice/{{officeId}}'><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+               <button id="cancel" type="reset" class="btn" data-ng-click="reset(partnerId,officeId)">{{'button.cancel'| translate}}</button></a>
                <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
                </td>
                </tr>
@@ -126,7 +128,7 @@
 				</tr>
 			 <tr align="right">
 			  <td>
-               <a data-ng-click="goBack()"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+               <button id="cancel" type="reset" class="btn" data-ng-click="reset(partnerId,officeId)">{{'button.cancel'| translate}}</button>
                <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
                </td>
                </tr>

@@ -4,6 +4,7 @@
 		     
 			  scope.formData = {};
 			  scope.partnerId= routeParams.id;
+			  scope.officeId = routeParams.officeId;
 			  scope.formData.startDate = dateFilter(new Date(),'dd MMMM yyyy');
 			  scope.minDate=dateFilter(new Date(),'dd MMMM yyyy');
 			 /* var dd=new Date();
@@ -13,6 +14,8 @@
 			  scope.partnerSourceData = [];
 			  scope.sourceData = [];
 			  scope.index=0;
+			  scope.partnerName =  webStorage.get("partnerName");
+			  
 			      
 			  resourceFactory.agreementTemplateResource.get(function(data) {
 				  
@@ -45,7 +48,8 @@
 			        };	  
 				  
 			        scope.removeSourceCategories = function(index){	
-			        	scope.partnerSourceData.splice(index,1);
+			        	  if(scope.index>=1){
+			        	scope.partnerSourceData.splice(index,1);}
 			        };  
 		   
 			  scope.submit =function(){
@@ -58,15 +62,21 @@
 			        scope.formData.endDate = endDate || "";
 		            scope.formData.sourceData = scope.partnerSourceData;
 			        resourceFactory.agreementResource.save({partnerId: routeParams.id},scope.formData,function(data){
-			    	 location.path('/viewpartner/' +scope.partnerId); 
-			      }/*function(errors){
+			    	 location.path('/viewpartner/' +scope.partnerId + '/' + scope.officeId); 
+			      },function(errors){
 			    	  for(var i in  scope.partnerSourceData){
-			    		var error= $("source" +scope.partnerSourceData[i].source).val();
-			    		if(error=undefined){
-			    		$("source" +scope.partnerSourceData[i].index).addClass("validationerror");
-			    		}
-			    	  }*/
-			     );
+			    		var error= $("#source" +scope.partnerSourceData[i].index).val();
+			    		var error1= $("#shareType" +scope.partnerSourceData[i].index).val();
+			    		var error2= $("#shareAmount" +scope.partnerSourceData[i].index).val();
+			    	
+			    		if(error == "?"){
+			    		$("#source" +scope.partnerSourceData[i].index).addClass("validationerror");}
+			    		if(error1 == "?"){
+			    		$("#shareType" +scope.partnerSourceData[i].index).addClass("validationerror");}
+			    		if(error2 == ""){
+			    		$("#shareAmount" +scope.partnerSourceData[i].index).addClass("validationerror");}
+			    	  }
+			      });
 	    };        
 		 
 		  }

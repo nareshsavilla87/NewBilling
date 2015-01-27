@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.services = _.extend(module, {
-    SessionManager: function(webStorage, httpService, resourceFactory,localStorageService) {
+    SessionManager: function(webStorage, httpService, resourceFactory,localStorageService,location) {
       var EMPTY_SESSION = {};
 
       this.get = function(data) {
@@ -21,9 +21,13 @@
         if (sessionData !== null) {
           httpService.setAuthorization(sessionData.authenticationKey);
           resourceFactory.userResource.get({userId: sessionData.userId}, function(userData) {
+   		  if(location.path() == "/")location.path('/home');
+   		  else if(location.path())location.path(location.path());
+   		  else location.path('/home');
             handler({user: new mifosX.models.LoggedInUser(userData)});
           });
         } else {
+        	location.path('/').replace();
           handler(EMPTY_SESSION);
         }
       };
@@ -34,6 +38,7 @@
     'HttpService',
     'ResourceFactory',
     'localStorageService',
+    '$location',
     mifosX.services.SessionManager
   ]).run(function($log) {
     $log.info("SessionManager initialized");
