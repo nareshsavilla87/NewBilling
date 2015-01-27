@@ -1,9 +1,17 @@
  <div data-ng-controller="ItemSaleController">
-   <div data-ng-hide="officeId == 0">
+   <div data-ng-hide="officeId == 0 && partnerId == 0">
         <ul class="breadcrumb">
           <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
           <li><a href="#/offices">{{'label.manageoffices' | translate}}</a> <span class="divider">/</span></li>
            <li><a href="#/viewoffice/{{officeId}}">{{officeName}}</a> <span class="divider">/</span></li>
+          <li class="active">Item Sale</li>
+        </ul>
+      </div> 
+      <div data-ng-show="partnerId !=0">
+        <ul class="breadcrumb">
+          <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+          <li data-ng-show="officeId&&partnerId"><a href="#/offices" data-ng-click="partnersTab()">{{'label.managepartners' | translate}}</a> <span class="divider">/</span></li>
+          <li data-ng-show="officeId&&partnerId"><a href="#/viewpartner/{{partnerId}}/{{officeId}}">{{partnerName}}</a><span class="divider">/</span></li>
           <li class="active">Item Sale</li>
         </ul>
       </div>
@@ -13,7 +21,7 @@
           <li class="active">{{'label.create.new.mrn' | translate}}</li>
         </ul>
      </div>
-      <form name="itemSaleForm" novalidate="" class="form-horizontal well" data-ng-submit="submit()">
+      <form name="itemSaleForm" novalidate class="form-horizontal well" data-ng-submit="submit()">
        <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label data-ng-show="errorStatus">{{errorStatus}}</label>

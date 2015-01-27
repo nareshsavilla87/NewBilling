@@ -83,6 +83,7 @@
 			};
 			
 			 scope.routeToPartner = function(id,officeId) {
+				
 					location.path('/viewpartner/' + id + '/' +officeId);
 				};
     

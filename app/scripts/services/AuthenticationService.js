@@ -39,9 +39,19 @@
         scope.df = scope.dateformat;
         };
         scope.setDf();	
-        
+        if(data.userRole[0].name =="Partner"){
+        	 httpService.get(apiVer + "/partners/"+data.userId + "/images").then(function(imageData){
+        		 scope.image = imageData.data;
+        		
+        	 });
+        }
         
       };
+      
+
+    scope.clearImage = function() {
+	     	delete scope.image;
+	};
 
       var onFailure = function(data) {
         scope.$broadcast("UserAuthenticationFailureEvent", data);
@@ -63,6 +73,7 @@
           .success(onSuccess)
           .error(onFailure);
       };
+   
     }
   });
   mifosX.ng.services.service('AuthenticationService', ['$rootScope', 'HttpService','$location','localStorageService','ResourceFactory','webStorage', mifosX.services.AuthenticationService]).run(function($log) {
