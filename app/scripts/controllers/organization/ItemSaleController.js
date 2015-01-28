@@ -5,8 +5,9 @@
 		   scope.officeId = routeParams.officeId;
 		   scope.officeName = webStorage.get("officeName");
 		   scope.partnerId = 0;
+		   if(routeParams.partnerId){
 		   scope.partnerId = routeParams.partnerId;
-		   console.log( scope.partnerId);
+		   }
 		   scope.partnerName = webStorage.get("partnerName");
     	   scope.officeDatas = [];
     	   scope.itemDatas = [];

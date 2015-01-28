@@ -17,7 +17,7 @@
 	<form class="form-horizontal" data-ng-submit="submit()">
 		<fieldset>
 
-			<div class="control-group" data-ng-show="formData.displayName !='RADIUS' && formData.displayName !='SIMULATOR' && formData.displayName !='EXPORTDATA'" >
+			<div class="control-group" data-ng-show="formData.displayName !='RADIUS' && formData.displayName !='SIMULATOR' && formData.displayName !='EXPORTDATA' && formData.displayName !='RESELLERCOMMISSION'" >
 				<label class="control-label">{{'label.job.reportname' | translate }}<span class="required">*</span></label>
 				<div class="controls">
 					<select data-ng-model="jobparameters.batchName" 
@@ -27,7 +27,7 @@
 				</div>
 			</div>
 
-			<div class="control-group" data-ng-show="formData.displayName =='INVOICING' || formData.displayName =='PDF' || formData.displayName =='EXPORTDATA'">
+			<div class="control-group" data-ng-show="formData.displayName =='INVOICING' || formData.displayName =='PDF' || formData.displayName =='EXPORTDATA' || formData.displayName =='RESELLERCOMMISSION'">
 				<label class="control-label" for="startDate">{{'label.job.processdate' | translate }}</label>
 				<div class="controls">
 					<input type="text" data-datepicker-pop="dd MMMM yyyy"
