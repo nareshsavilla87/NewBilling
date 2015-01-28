@@ -7,7 +7,7 @@
 			  scope.officeId = routeParams.officeId;
 			  scope.formData.startDate = dateFilter(new Date(),'dd MMMM yyyy');
 			  scope.minDate=dateFilter(new Date(),'dd MMMM yyyy');
-			 /* var dd=new Date();
+/*			  var dd=new Date();
 			  scope.formData.endDate = dateFilter(dd.setDate(dd.getDate()+1),'dd MMMM yyyy');*/
 			  scope.agreementTypes = [];
 			  scope.sourceDatas = [];

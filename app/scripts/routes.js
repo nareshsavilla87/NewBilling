@@ -835,7 +835,6 @@
       })
       .when('/itemsale/:officeId',{
     	  templateUrl: 'views/organization/itemSale.html'
-
       })
       .when('/officeadjustments/:officeId',{
      templateUrl: 'views/organization/officeadjustments.html'
@@ -986,8 +985,11 @@
       })
       .when('/officeadjustments/:officeId/:partnerId',{
        templateUrl: 'views/organization/officeadjustments.html'
+      })
+      .when('/itemsale/:officeId/:partnerId',{
+    	  templateUrl: 'views/organization/itemSale.html'
       });
-
+     
     $locationProvider.html5Mode(false);
   };
   mifosX.ng.application.config(defineRoutes).run(function($log) {

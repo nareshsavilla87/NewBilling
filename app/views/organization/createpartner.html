@@ -30,9 +30,9 @@
 
 					<div class="control-group">
 						<label class="control-label">{{ 'label.loginname' |translate }}<span class="required">*</span>
-							<input type="text" id="loginName || username" name="loginName" data-ng-model="formData.loginName" data-ng-pattern="/^[a-zA-Z0-9\-\&\s]+$/" required data-ng-minlength=3 data-late-Validate/><br/>
 						</label>
 						<div class="controls">
+							<input type="text" id="loginName || username" name="loginName" data-ng-model="formData.loginName" data-ng-pattern="/^[a-zA-Z0-9\-\&\s]+$/" required data-ng-minlength=3 data-late-Validate/><br/>
 						     <span data-ng-show="createpartnerform.loginName.$invalid">
 								<small class="error" data-ng-show="createpartnerform.loginName.$error.pattern">alphanumeric and spaces only!</small> 
 								<small class="error" data-ng-show="createpartnerform.loginName.$error.req">{{'label.required.field' | translate}} </small> 

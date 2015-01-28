@@ -4,6 +4,11 @@
 		  
 		   scope.officeId = routeParams.officeId;
 		   scope.officeName = webStorage.get("officeName");
+		   scope.partnerId = 0;
+		   if(routeParams.partnerId){
+		   scope.partnerId = routeParams.partnerId;
+		   }
+		   scope.partnerName = webStorage.get("partnerName");
     	   scope.officeDatas = [];
     	   scope.itemDatas = [];
     	   scope.purchase = {};
@@ -60,11 +65,17 @@
 
             	if(scope.officeId == 0){
             		location.path('/inventory');
+            	}else if(scope.partnerId !=0){
+            		location.path('/viewpartner/'+scope.partnerId+'/'+routeParams.officeId);		
             	}else{
             		location.path('/viewoffice/'+routeParams.officeId);		
             	}
 
           });
+        };
+        
+        scope.partnersTab = function(){
+       	   webStorage.add("callingTab", {someString: "Partners" });
         };
     }
   });

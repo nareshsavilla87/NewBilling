@@ -114,7 +114,7 @@
             </thead>
             <tbody>
                 <tr id="{{$index}}" data-ng-click="highlight($index)" ng-repeat="row in reportData.data" >
-                    <td ng-repeat="col in row.row" >{{col}}</td>
+                    <td ng-repeat="col in row.row track by $index" >{{col}}</td>
                 </tr>
             </tbody>
         </table>
