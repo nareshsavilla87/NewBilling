@@ -29,7 +29,6 @@
 				}else if(scope.radiusVersion == 'version-2'){
 					delete scope.formData.upType;
 					delete scope.formData.downType;
-					console.log(scope.formData);
 				}
 					//console.log(scope.formData.value);
 			    resourceFactory.radServiceResource.save(scope.formData,function(data){
