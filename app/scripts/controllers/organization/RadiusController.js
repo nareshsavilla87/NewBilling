@@ -24,19 +24,26 @@
 		};
 		
 		scope.getRadService = function() {
-			resourceFactory.radServiceResource.query({attribute:'Mikrotik-Rate-Limit'},function(data) {
-				scope.radServices = data;
-				scope.value = [];
-				for(var i=0;i<scope.radServices.length;i++){
-					if(scope.radServices[i].value){
-						scope.value[i]=scope.radServices[i].value.split('/');
-						var lengthPin = scope.value[i].length;
-						if(lengthPin > 1){
-							scope.radServices[i].upRate = scope.value[i][0];
-							scope.radServices[i].downRate = scope.value[i][1];
+			resourceFactory.radServiceResource.get({attribute:'Mikrotik-Rate-Limit'},function(data) {
+				scope.radServices2 = [];
+				scope.radiusVersion = data.radiusVersion;
+				if(scope.radiusVersion ==  'version-1'){
+					scope.radServices = data.radServiceData;
+					scope.value = [];
+					for(var i=0;i<scope.radServices.length;i++){
+						if(scope.radServices[i].value){
+							scope.value[i]=scope.radServices[i].value.split('/');
+							var lengthPin = scope.value[i].length;
+							if(lengthPin > 1){
+								scope.radServices[i].upRate = scope.value[i][0];
+								scope.radServices[i].downRate = scope.value[i][1];
+							}
 						}
-					}
-				};
+					};
+				}
+				else if(scope.radiusVersion ==  'version-2'){
+					scope.radServices2 = data.radServiceData;
+				}
 			});
 		};
 		

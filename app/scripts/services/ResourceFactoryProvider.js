@@ -1035,6 +1035,7 @@
             radServiceResource: defineResource(apiVer + "/freeradius/radservice/:radServiceId", {radServiceId:'@radServiceId'}, {
                  update: { method: 'PUT' }
               }),
+              radServiceTemplateResource: defineResource(apiVer + "/freeradius/raduser2/template", {}, {}),
 
             eventActionResource: defineResource(apiVer + "/eventactions", {}, {}),
             addonsTemplateResource: defineResource(apiVer + "/addons/template", {}, {
