@@ -7,13 +7,13 @@
             <div id="circularG_7" class="circularG"></div><div id="circularG_8" class="circularG"></div>
         </div>
     </div>
- 	<div class="row-fluid"><br/>
+ 	<div class="row-fluid" data-ng-show="vodEventScreen"><br/>
 		<div style="padding-bottom:5px;background: #939393;">
 		  <h3 style="margin: 0;text-transform: uppercase;display:inline;"><b class="marginleft10" style="font-size: 20px;color: #FFFFFF;">{{'label.vod.add.event'|translate}}</b></h3>
 		  <input data-ng-model="filterText" type="text" data-ng-autofocus="true" class="span marginbottom0px" style="margin-right: 15px;margin-top: 6px;" placeholder="{{'placeholder.filter.vod'|translate}}" />
 		</div>
 		<div>
-		 <table class="table">
+		 <table class="table" >
 	        <thead>
 	            <tr class="graybg">
 	                <th>{{'table.header.vod.name'|translate}}</th>
@@ -24,11 +24,10 @@
 	        </thead>
 	        <tbody>
 	            <tr class="pointer-main"  ng-repeat="mediaDetail in mediaDetails  | filter:filterText" >
-	                <td class="pointer"><label for="{{mediaDetail.mediaId}}{{mediaDetail.quality}}{{mediaDetail.optType}}">{{mediaDetail.mediaTitle}}</label></td>
-	                <td class="pointer"><label for="{{mediaDetail.mediaId}}{{mediaDetail.quality}}{{mediaDetail.optType}}">{{mediaDetail.quality}}</label></td>
-	                <td class="pointer"><label for="{{mediaDetail.mediaId}}{{mediaDetail.quality}}{{mediaDetail.optType}}">{{mediaDetail.price}}</label></td>
-	               <!--  <td><input type="checkbox" ng-model="active" ng-change="selectedEventsFun(mediaDetail.mediaId,mediaDetail.mediaTitle,mediaDetail.price,mediaDetail.quality,active)"></td> -->
-	                <td><label for="{{mediaDetail.mediaId}}{{mediaDetail.quality}}{{mediaDetail.optType}}"><input type="checkbox" id="{{mediaDetail.mediaId}}{{mediaDetail.quality}}{{mediaDetail.optType}}" ng-model="active" ng-change="selectedEventsFun(mediaDetail,active)"></label></td>
+	                <td class="pointer"><label >{{mediaDetail.mediaTitle}}</label></td>
+	                <td class="pointer"><label >{{mediaDetail.quality}}</label></td>
+	                <td class="pointer"><label >{{mediaDetail.price}}</label></td>
+	                <td><input type="checkbox" ng-model="active" ng-change="selectedEventsFun(mediaDetail,active)"></td>
 	            </tr>
 	        </tbody>
 	     </table>
@@ -66,12 +65,101 @@
 	 	  <span style="color:#0088cc;font-size:20px;margin-left:580px;" class="pull-left">{{'label.amount.total'|translate}}</span>
 	  	 <span style="font-size:20px;margin-right:210px;" class="pull-right">{{totalAmount}}</span><br/><br/>
 	   </div>
-		<h3 style="color:#0088cc;">{{'label.payment.gateway'|translate}}</h3><br/>
-	   <br/><br/>
-		<div class="offset2" >
-				<a ng-disabled="vodEventRedirectToDalpay"  ng-click="cancelDalpayBtnFun()" class="btn" style="padding:9px 22px;margin-top:-19px;">{{'btn.cancel'|translate}}</a>
-				<a href="{{URLForDalpay}}" ng-click="dalpayBtnFun()" ng-show="totalAmount != 0" ng-disabled="vodEventRedirectToDalpay" class="btn btn-primary cust-btn animated fadeInUp">{{'btn.make.payment'|translate}}</a>
-				<a ng-click="subscribeBtnFun()" ng-show="totalAmount == 0" class="btn btn-primary animated fadeInUp">{{'btn.subscribe'|translate}}</a>
-		</div> 
+		<!-- <h3 style="color:#0088cc;">{{'label.payment.gateway'|translate}}</h3><br/> -->
+		<br/>
+		<div >
+		<br/>
+		<div class="offset1" style="margin-top: 35px;">
+		   <table class="fullwidth">
+			  <tr>
+   				<td width="42%" class="bigfont" valign="top">
+   						{{'label.select.payment.gateway' | translate}}&nbsp;&nbsp;:
+   				</td>
+       			<td>
+       				<div data-ng-repeat="paymentgatewayData in paymentgatewayDatas track by $index" class="marginbottom10">
+       					<input type="radio" id="{{paymentgatewayData.name}}" name="selectPWName" class="radioalign" data-ng-model="paymentGatewayName" 
+       					   value="{{paymentgatewayData.name}}" data-ng-click="paymentGatewayFun(paymentgatewayData.name)"/>&nbsp;
+      					   <label for="{{paymentgatewayData.name}}" class="inlinedis pointer">
+      								<img src="./images/{{paymentgatewayData.name}}.jpg" width="110px;">
+      					   </label><br/>
+       				</div>
+       				<div class="error" data-ng-show="paymentGatewayName==''" style="font-size: 1.5em;margin-top: 0px;">
+       					 {{'label.notselect.payment.gateway' | translate}}<br/><br/>
+       					 {{'label.atleast.one.payment.gateway' | translate}}
+       				</div> 
+       			</td>
+          	  </tr>
+          	  <tr data-ng-hide="paymentGatewayName==''">
+          	  	 <td width="42%"></td>
+          	     <td>
+          	       <div class="control-group margintop20">
+					 <div class="controls">
+					    <input type="checkbox" name="checkbox" data-ng-model="termsAndConditions" style="vertical-align: sub;"> 
+					    <span> {{'label.agree' | translate}} <a data-ng-click="termsAndConditionsFun()" style="color: #0066cc;text-decoration: underline;">
+					    		{{'label.Terms.Conditions' | translate}}</a> 
+					    </span>
+					</div>
+				   </div> 
+          	     </td>
+          	  </tr>
+          	  <tr data-ng-hide="paymentGatewayName==''" >
+          	    <td style="padding-top: 30px;" align="right">
+          	      <div><a  data-ng-click="cancelBtnFun()" class="btn" >{{'btn.cancel' | translate}}</a></div> 
+          	    </td>
+       		 	<td style="padding-top: 30px;" >
+      		 	   <div >
+					  <a class="btn btn-primary" data-ng-hide="termsAndConditions" data-ng-disabled="true">{{'btn.proceed' | translate}}</a>
+					  <a class="btn btn-primary" href="{{paymentURL}}" data-ng-show="termsAndConditions">
+					  	{{'btn.proceed' | translate}}
+					  </a>
+				   </div>
+				   
+       		 	</td>
+          	  </tr>
+          	  <tr data-ng-show="paymentGatewayName==''" >
+          	  	<td style="padding-top: 30px;" colspan="2" align="right">
+          	      <div><a  data-ng-click="cancelBtnFun()" class="btn" >{{'btn.cancel' | translate}}</a></div> 
+          	    </td>
+          	  </tr>
+          	</table>
+       	 </div>
+      </div>
+      <div data-ng-show="price == 0">
+              <br/>
+	       <div class="pull-right">
+				<a ng-disabled="vodEventRedirectToDalpay"  ng-click="cancelBtnFun()" class="btn" style="padding:9px 22px;margin-top:-19px;">{{'btn.cancel'|translate}}</a> 
+				<a data-ng-click="finishBtnFun()" class="btn btn-primary animated fadeInUp">{{'btn.subscribe' | translate}}</a>
+			</div> 
+			 
+	   </div>
 	</div>
+	 <script type="text/ng-template" id="termsandconditions.html">
+		<form  class="form-horizontal well" style="border:0px;width:550px;">
+			<h4><strong>Terms and Conditions</strong></h4>
+			<div>Read and accept the following agreement to continue.</div><br/>
+			<div style="max-height:300px; overflow-y:auto;border:1px solid;padding:10px;">
+				I will be showing how to create a Page and add content toit .ok sir Today I want all off you to start puting the feature 
+			    functionality that has been developed No matter on spelling / Sentence / Grammer .. Just add the data .. Will review as well we can get
+				it reviewed by our Pavan if necessary .. If the information is available it will be easy for every on to know as Knowledge base .. and address
+				the Enhancements Quickly .. Well now I will add One Page.1. How to add a Page 2. Basic Format to use while adding the content to that Page
+				The Structure is like this .. First Main Page as landing Page .. http://wiki.openbillingsystem.com/mw19/ Here you can see 6 Sections .. But we are going to use
+				the First one -- Open Billing System Every click in wiki is basically a Page ..With in the Page we have the relavent content ..
+				For Example --: I have created one for Client We can also have Sub Page for each Functionality But now let us keep it simple ..
+				like I will show you the Inventory Control -- It has hyper link that means It has a Page associate .. Where we will have 
+				content related to that .. For now I have not added any content and Page for that ..So when I click on it . it will take me to a new page ..
+				as there is no page created before it took me to Create Inventory control Page ..Now I will show a sample .. to add documentation of it here
+				The TOC is option but let use it .. If you see our Inventory we have some pre-requisites / Masters to be created :
+				Table Of Contents Pre-requisites Supplier Item Masters GRN (Goods Received Voucher) Item Details Item Detail via Form
+				Data Uploads for Bulk MRN (Material Requisition Note) Move Item via Form Data Uploads for Bulk Item History Any others pl add ..
+				== Note == This is like Header as well as Table of content Item If You give * it is a bullet point in  Next line 
+				Other Editing you can check on Mediawiki .. Well we need not duplicate we can give a hyperlink to GRN Page -- Will show that in next session .. or it is just linking
+				This is it ..  I want you to start putting ... the functionality / features that has been developed by you or you know about it .. 
+				I want you to spend at-least 30 Min to 1 hour per day .. Hope we will update it by week's time .. and it will be 
+				very helpfull for us .. That can save much time when we wanted to enhance / address some issue .. Let me know 
+				if you have problem in adding some thing to it. ok sir,let us start first ..if anything let you know... Thanks.
+				Start of now .. Add some text today and then leave for the day  ok sir... share this  documentation ok
+		   </div><br/>
+		 <table class="fullwidth"><tr><td align="center"><div><a data-ng-click="done()" class="btn btn-primary">Done</a></div></td></tr></table>
+		</form>
+      </script>
 </div>

@@ -12,7 +12,7 @@ GlobalPaySuccessController = function(RequestSender, location,localStorageServic
     		if(StorageData){
 	    		RequestSender.paymentGatewayResource.update(formData, function(data){
 	    			localStorageService.remove("globalpayStorageData", data);
-	    			localStorageService.add("paymentgatewayresponse", data);
+	    			localStorageService.add("paymentgatewayresponse", {data:data});
 	    			location.$$search = {};
 	    			if(screenName == 'payment'){
 						location.path('/paymentgatewayresponse/'+formData.clientId);
