@@ -98,6 +98,7 @@
 	          }
 	       
 	        scope.itemData=function(itemId,officeId){
+	        	
 	        	  scope.saleType=scope.formData2.saleType;
 	        	resourceFactory.oneTimeSaleTemplateResourceData.get({itemId: itemId}, function(data) {
 	        	
@@ -110,20 +111,25 @@
 	        		scope.data.locale=$rootScope.locale.code;
 	        		scope.data.quantity=1;
 	        		scope.data.units=scope.formData2.units;
+	        		scope.formData2.quantity=1;
+	        		scope.formData2.totalPrice=scope.formData2.unitPrice;
+	        		scope.formData2.itemId=itemId;
+	        		scope.formData2.discountId = scope.discountMasterDatas[0].id;
 	        		
-	        		resourceFactory.oneTimeSaleQuantityResource.get({quantity:1,itemId:itemId},scope.data, function(data) {
+	        	/*	resourceFactory.oneTimeSaleQuantityResource.get({quantity:1,itemId:itemId},scope.data, function(data) {
 		        		
 	        			scope.formData2.quantity=1;
 		        		scope.formData2.totalPrice=data.totalPrice;
 		        		scope.formData2.itemId=itemId;
 		        		scope.formData2.discountId = scope.discountMasterDatas[0].id;
 		        		
-			        });	
+			        });	*/
 	        		
 	        		
 		        });	
 	        };
 	        scope.itemDataQuantity=function(quantity,itemId){
+	        	
 	        	this.data.unitPrice=this.formData2.unitPrice;
 	        	this.data.locale=$rootScope.locale.code;
 	        	this.data.quantity=1;
