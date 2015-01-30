@@ -4,7 +4,9 @@ PaymentGatewayResponseController = function(scope,localStorageService) {
 			
 			var responseData = localStorageService.get("paymentgatewayresponse");
 		     if(responseData){
-		    	 scope.formData = responseData;
+		    	 scope.formData		 = responseData.data;
+		    	 scope.cardType 	 = responseData.cardType || "";
+		    	 scope.cardNumber 	 = responseData.cardNumber || "";
 		    	 localStorageService.remove("paymentgatewayresponse");
 		     }
         };
