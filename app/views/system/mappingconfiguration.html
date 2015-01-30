@@ -154,7 +154,8 @@
                 <th>{{'table.eventactionmapping.event' | translate}}</th>
                 <th>{{'table.eventactionmapping.action' | translate}}</th>
                 <th>{{'table.eventactionmapping.process' | translate}}</th>
-                <th></th>
+                <th>{{'label.enabled' | translate}}</th>
+                <th>{{ 'table.heading.actions' | translate }}</th>
               </tr>
             </thead>
             <tbody>
@@ -162,9 +163,10 @@
                 <td><a href="#/vieweventactionmapping/{{data.id}}">{{data.eventName}}</a></td>
                 <td>{{data.actionName}}</td>
                 <td>{{data.process}}</td>
-                <!-- <td>{{data.isDeleted}}</td> -->
-                <td data-ng-show="data.isDeleted=='N'"><button type="button" class="btn btn-success flag" data-ng-click="isDeletedEventAction(data.id,data.isDeleted)"><i class="icon-flag-alt"></i></button></td>
-                <td data-ng-show="data.isDeleted=='Y'"><button type="button" class="btn btn-danger flag" data-ng-click="isDeletedEventAction(data.id,data.isDeleted)"><i class="icon-flag-alt"></i></button></td>
+                 <td data-ng-show = "data.isDeleted == 'N'">true</td>
+                <td data-ng-show = "data.isDeleted == 'Y'">false</td>
+                <td data-ng-show="data.isDeleted=='Y'"><button type="button" class="btn btn-success flag" data-ng-click="isDeletedEventAction(data.id,data.isDeleted)"><i class="icon-flag-alt"></i></button></td>
+                <td data-ng-show="data.isDeleted=='N'"><button type="button" class="btn btn-danger flag" data-ng-click="isDeletedEventAction(data.id,data.isDeleted)"><i class="icon-flag-alt"></i></button></td>
      		 </tbody>
           </table>
          </div>
