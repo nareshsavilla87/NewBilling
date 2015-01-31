@@ -9,8 +9,8 @@ KortaController = function(scope, routeParams, location, localStorageService,$ti
 		  var encrytionKey 			= selfcareModels.encriptionKey;
 		  scope.currency 			= selfcareModels.kortaCurrencyType;
 		  var langs 				= Langs;
-		  var temp 					= localStorageService.get('Language')||"";
-		  scope.optlang 			= temp.code || langs[0].code;
+		  var temp 					= localStorageService.get('localeLang')||"";
+		  scope.optlang 			= temp || langs[0].code;
 		  
 		  var encryptedData 		= location.search().key;
 		  
