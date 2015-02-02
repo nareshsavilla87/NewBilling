@@ -21,6 +21,8 @@ KortaSuccessController = function(rootScope,RequestSender,location,localStorageS
     		var reference 		  	= location.search().reference;        	
     		var checkvaluemd5 	  	= location.search().checkvaluemd5;
     		var encryptedData     	= location.search().key;
+    		var cardbrand 	  		= location.search().cardbrand;
+    		var card4 	  			= location.search().card4;
         	var decryptedData     	= CryptoJS.AES.decrypt(encryptedData, encrytionKey).toString(CryptoJS.enc.Utf8);
         	var	kortaStorageData 	= JSON.parse(decodeURIComponent(decryptedData));
         	formData.total_amount 	= kortaStorageData[kortaAmountField];
@@ -32,6 +34,9 @@ KortaSuccessController = function(rootScope,RequestSender,location,localStorageS
         	formData.otherData 		= '{"paymentId":'+reference+'}';
        	 	formData.device 		= '';
        	 	formData.currency 		= 'ISN';
+       	 	formData.cardType       = cardbrand;
+       	 	formData.cardNumber		= 'xxxxxxxxxxxx'+card4;
+       	 	
         	var PaymentMethod 		= kortaStorageData[kortaPaymentMethod];
         	var kortaToken			= kortaStorageData[kortaTokenValue];
         	
@@ -54,6 +59,7 @@ KortaSuccessController = function(rootScope,RequestSender,location,localStorageS
         				
     				RequestSender.updateKortaToken.update({clientId : formData.clientId},{kortaToken: kortaToken},function(data){
     				  RequestSender.paymentGatewayResource.update({},formData,function(data){
+    					  data.cardType = 
     					  localStorageService.add("paymentgatewayresponse", data);
     					  rootScope.iskortaTokenAvailable = true;
 						var result = data.Result || "";
