@@ -13,7 +13,7 @@ ChangeKortaTokenController = function(scope, RequestSender, location,localStorag
 		   scope.currency 			= selfcareModels.kortaCurrencyType;
 		   var langs 				= Langs;
 		   var temp 				= localStorageService.get('localeLang')||"";
-		   scope.optlang 			= temp || langs[0].code;
+		   scope.optlang 			= temp || selfcareModels.locale;
 		   
 		  RequestSender.clientResource.get({clientId: clientId} , function(data) {
 			  clientData 		= data || {};
