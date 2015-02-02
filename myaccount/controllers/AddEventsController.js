@@ -5,14 +5,12 @@ AddEventsController = function(scope,RequestSender,rootScope,http,authentication
 		  scope.formData = {};
 		  scope.planData = {};
 		  scope.addressData = {};
-		  scope.mediaDetails = [];
-		  
-		  var selfcareUserData = {};
 		  
 		  var clientData = {};
 		  if(localStorageService.get("clientTotalData")){
 			  clientData  = localStorageService.get("clientTotalData");
 			  scope.clientId = clientData.id;
+			  scope.mediaDetails = [];
 				  RequestSender.vodEventsResource.get({'filterType':'ALL','pageNo':0,clientType :clientData.categoryType},function(data){
 					  scope.mediaDetails = data.mediaDetails;
 				  });
@@ -25,9 +23,11 @@ AddEventsController = function(scope,RequestSender,rootScope,http,authentication
 			  }
 			  else{
 				  scope.totalAmount -=mediaData.price;
-				  for(var media in scope.mediaDatas){
-					  if(mediaData.mediaId == scope.mediaDatas[media].mediaId && mediaData.quality ==scope.mediaDatas[media].quality&& mediaData.optType == scope.mediaDatas[media].optType){
-						  scope.mediaDatas.splice(media,1);
+				  for(var i in scope.mediaDatas){
+					  if(scope.mediaDatas[i].mediaId == mediaData.mediaId && scope.mediaDatas[i].quality == mediaData.quality &&
+                      	   scope.mediaDatas[i].optType == mediaData.optType && scope.mediaDatas[i].price == mediaData.price &&
+                      	   scope.mediaDatas[i].eventId == mediaData.eventId && scope.mediaDatas[i].mediaTitle == mediaData.mediaTitle){
+						  scope.mediaDatas.splice(i,1);
 					  }
 				  }
 			  }
@@ -80,7 +80,7 @@ AddEventsController = function(scope,RequestSender,rootScope,http,authentication
 						var url = paymentGatewayValues.url+'?mer_id='+paymentGatewayValues.merchantId+'&pageid='+paymentGatewayValues.pageId+'&item1_qty=1&num_items=1';
 					scope.paymentURL =  url+"&cust_name="+clientData.displayName+"&cust_phone="+clientData.phone+"&cust_email="+clientData.email+"&cust_state="+clientData.state+""+				
 					  	"&cust_address1="+clientData.addressNo+"&cust_zip="+clientData.zip+"&cust_city="+clientData.state+"&item1_desc=AddingEvents&item1_price="+scope.totalAmount+"" + 	  				
-					  	"&user1="+scope.clientId+"&user2="+hostName+"&user3=orderbookingscreen/addingEvents"+scope.clientId+"/1/1";
+					  	"&user1="+scope.clientId+"&user2="+hostName+"&user3=orderbookingscreen/vod"+scope.clientId+"/1/1";
 						break;
 						
 				case 'korta' :
@@ -134,33 +134,56 @@ AddEventsController = function(scope,RequestSender,rootScope,http,authentication
 			    	  		 	
 			  };
 			  
-	   scope.finishBtnFun =function(){
-	  	  		  location.path("/orderbookingscreen/"+scope.screenName+"/"+scope.clientId+"/"+planId+"/"+priceDataId);
-	    };
+		   scope.subscribeBtnFun =function(){
+			   
+			  	 scope.eventSavedOneByOneFun = function(val){
+					 RequestSender.eventsResource.save(scope.eventFormData[val],function(data){
+						 if(val == scope.eventFormData.length-1){
+							 location.path('/services');
+						 }else{
+							 val += 1;
+						 	scope.eventSavedOneByOneFun(val);
+					 	 }
+					 });
+				 };
+			 
+				 var reqDate = dateFilter(new Date(),'dd MMMM yyyy');
+				 scope.eventFormData = [];
+				 for(var i in scope.mediaDatas) {
+					 
+						 scope.eventFormData[i] = {
+							 							eventId 		: scope.mediaDatas[i].eventId,
+							 							optType 		: scope.mediaDatas[i].optType,
+							 							formatType 		: scope.mediaDatas[i].quality,
+							 							clientId 		: scope.clientId,
+							 							locale 			: 'en',
+							 							eventBookedDate : reqDate,
+							 							dateFormat 		: 'dd MMMM yyyy',
+							 							deviceId 		: clientData.hwSerialNumber
+						 							};
+					 if(i == scope.mediaDatas.length-1){
+						 scope.eventSavedOneByOneFun(0);
+					 }
+				 }
+		    };
 	    
-	    var TermsandConditionsController = function($scope,$modalInstance){
-	    	$scope.done = function(){
-	    		$modalInstance.dismiss('cancel');
-	    	};
-	    };
-	   
-	    scope.termsAndConditionsFun = function(){
-			    modal.open({
-					 templateUrl: 'termsandconditions.html',
-					 controller: TermsandConditionsController,
-					 resolve:{}
-			    });
-	    };
-	      
-		  scope.subscribeBtnFun = function(){
-			  webStorage.add('eventData',scope.mediaDatas);
-			  webStorage.add('hwSerialNumber',scope.formData.hwSerialNumber);
-			  location.path("/eventdetailspreviewscreen");
-		  };
-		  
 		  scope.cancelBtnFun = function(){
 			  scope.vodEventScreen = true;
 			  scope.eventDetailsPreview = false;
+		  };
+		  
+		  var TermsandConditionsController = function($scope,$modalInstance){
+			  $scope.done = function(){
+				  $modalInstance.dismiss('cancel');
+			  };
+		  };
+		  
+		  scope.termsAndConditionsFun = function(){
+			  modal.open({
+				  templateUrl: 'termsandconditions.html',
+				  controller: TermsandConditionsController,
+				  resolve:{}
+			  });
 		  };
     };
     
