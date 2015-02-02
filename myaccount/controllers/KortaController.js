@@ -21,10 +21,10 @@ KortaController = function(scope, routeParams, location, localStorageService,$ti
       	  var planData 				= kortaStorageData.planData || "";
 		  
 		  var clientId 				= clientData.id;
-		  scope.fullName 			= clientData.displayName;
+		  scope.fullName 			= clientData.displayName || "";
 		  scope.address 			= clientData.addressNo;
 		  scope.emailId 			= clientData.email;
-		  clientData.zip 			== "" ? scope.zipcode = clientData.city : scope.zipcode = clientData.zip;
+		  (clientData.zip == null ||  clientData.zip == "") ? scope.zipcode = clientData.city : scope.zipcode = clientData.zip;
 		  scope.city 				= clientData.city;
 		  scope.country 			= clientData.country;
 		  scope.mobileNo 			= clientData.phone;

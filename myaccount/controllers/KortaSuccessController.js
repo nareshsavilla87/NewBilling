@@ -20,6 +20,8 @@ KortaSuccessController = function(rootScope,RequestSender,location,localStorageS
     		var downloadmd5		 	= location.search().downloadmd5;         
     		var reference 		  	= location.search().reference;        	
     		var checkvaluemd5 	  	= location.search().checkvaluemd5;
+    		var cardbrand	 	  	= location.search().cardbrand;
+    		var card4 	  			= location.search().card4;
     		var encryptedData     	= location.search().key;
     		var cardbrand 	  		= location.search().cardbrand;
     		var card4 	  			= location.search().card4;
@@ -34,9 +36,10 @@ KortaSuccessController = function(rootScope,RequestSender,location,localStorageS
         	formData.otherData 		= '{"paymentId":'+reference+'}';
        	 	formData.device 		= '';
        	 	formData.currency 		= 'ISN';
-       	 	formData.cardType       = cardbrand;
-       	 	formData.cardNumber		= 'xxxxxxxxxxxx'+card4;
-       	 	
+
+       	 	formData.cardType 		= cardbrand;
+       	 	formData.cardNumber 	= "XXXX-XXXX-XXXX-"+card4.toString();
+
         	var PaymentMethod 		= kortaStorageData[kortaPaymentMethod];
         	var kortaToken			= kortaStorageData[kortaTokenValue];
         	
@@ -59,8 +62,7 @@ KortaSuccessController = function(rootScope,RequestSender,location,localStorageS
         				
     				RequestSender.updateKortaToken.update({clientId : formData.clientId},{kortaToken: kortaToken},function(data){
     				  RequestSender.paymentGatewayResource.update({},formData,function(data){
-    					  data.cardType = 
-    					  localStorageService.add("paymentgatewayresponse", data);
+    					  localStorageService.add("paymentgatewayresponse", {data:data,cardType:formData.cardType,cardNumber:formData.cardNumber});
     					  rootScope.iskortaTokenAvailable = true;
 						var result = data.Result || "";
 						location.$$search = {};
@@ -78,7 +80,7 @@ KortaSuccessController = function(rootScope,RequestSender,location,localStorageS
         			
         		}else{
     				RequestSender.paymentGatewayResource.update({clientId : formData.clientId},formData,function(data){
-    					  localStorageService.add("paymentgatewayresponse", data);
+    					  localStorageService.add("paymentgatewayresponse", {data:data,cardType:formData.cardType,cardNumber:formData.cardNumber});
   						var result = data.Result || "";
   						location.$$search = {};
   						if(screenName === 'payment' || screenName == 'payment'){
