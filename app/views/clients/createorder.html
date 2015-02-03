@@ -160,7 +160,7 @@
                               <select    ng-model="formData.contractPeriod"  ng-options="subscriptiondata.id as subscriptiondata.Contractdata for subscriptiondata in subscriptiondatas" value="{{billRuleData.id}}"></select>
                            </div>
                            <div class="controls" ng-show="formData.isPrepaid == 'Y'">
-                              <select    ng-model="formData.contractPeriod"  ng-options="paytermdata.duration as paytermdata.paytermtype for paytermdata in paytermdatas" value="{{billRuleData.id}}"></select>
+                              <select    ng-model="formData.contractPeriod"  ng-options="paytermdata.duration as paytermdata.duration for paytermdata in paytermdatas" value="{{billRuleData.id}}"></select>
                            </div>
                         </div>
                         <div class="control-group" ng-hide="isPrepaidPlan == 'Y'">
