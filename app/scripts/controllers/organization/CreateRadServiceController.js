@@ -3,10 +3,10 @@
 		CreateRadServiceController : function(scope, location,  $modal, route,$http, webStorage,resourceFactory) {
 			
 		
-			scope.types =[{value:"KB"},{value:"MB"},{value:"GB"}];
+			scope.types =[{key:'K' ,value:"KB"},{key:'M',value:"MB"},{key:'G',value:"GB"}];
 			  scope.formData = {
-					  upType  : scope.types[0].value,
-					  downType  : scope.types[0].value,
+					  upType  : scope.types[0].key,
+					  downType  : scope.types[0].key,
 		            };
 			
 			 scope.reset123 = function(){
