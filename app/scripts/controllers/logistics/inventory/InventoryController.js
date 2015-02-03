@@ -177,20 +177,7 @@
 				  			scope.supplier = paginatorService.paginate(scope.searchSupplier123, 14);
 				  		};
 				  		
-		scope.searchHistory123 = function(offset, limit, callback) {
-					    	  resourceFactory.itemhistoryResource.getAlldetails({offset: offset, limit: limit , 
-					    		  sqlSearch:  scope.filterText } , callback); 
-					          };
-					  		
-					  		scope.searchHistory = function(filterText) {
-					  			
-					  			if(filterText === undefined || filterText ===""){
-					  				
-					  			}else{
-					  				
-					  				scope.itemhistory = paginatorService.paginate(scope.searchHistory123, 14);
-					  			}
-					  		};
+		
 							scope.editQuality = function(itemId,valueQuality,provisionalserialNum,serialNumber){
 					            scope.itemid=itemId;
 					            scope.valueQuality=valueQuality;
@@ -294,6 +281,7 @@
 						    		};
 						        };
 						        
+						        
 						        /**
 						           * popup for delete itemDetail
 						           * */
@@ -307,14 +295,37 @@
 						            });
 						    	};
 						    	
-						    	   scope.deleteItem = function(id){
-						    		   scope.itemdetaiId=id;
-						               $modal.open({
-						                   templateUrl: 'approve.html',
-						                   controller: Approve,
-						                   resolve:{}
-						               });
-						           
+						    	var ItemhistoryController=function($scope,$modalInstance){
+						    		$scope.searchHistory123 = function(offset, limit, callback) {
+								    	  resourceFactory.itemhistoryResource.getAlldetails({offset: offset, limit: limit , 
+								    		  sqlSearch:  scope.serialNumber } , callback); 
+								     };
+								  		
+								     $scope.itemhistory = paginatorService.paginate($scope.searchHistory123, 14);
+								     
+						    		$scope.accept = function(){
+						    		 $modalInstance.close('delete');
+						    		};
+						        };
+						    	
+					    	   scope.itemHistoryPopup = function(serialNumber){
+					    		   scope.serialNumber = serialNumber;
+					               $modal.open({
+					                   templateUrl: 'itemhistory.html',
+					                   controller: ItemhistoryController,
+					                   resolve:{}
+					               });
+					           
+					       		
+					       	};
+						       	scope.deleteItem = function(id){
+						       		scope.itemdetaiId=id;
+						       		$modal.open({
+						       			templateUrl: 'approve.html',
+						       			controller: Approve,
+						       			resolve:{}
+						       		});
+						       		
 						       		
 						       	};
 						       	
