@@ -270,7 +270,7 @@
   "label.job.isautorenewal":"Auto Renewal",
   "label.job.emailid":"Email Id",
   "validation.msg.schedulerjob.emailId.cannot.be.blank":"emailId cannot be blank",
-  "label.job.ProvSystem":"Provisioning System",
+  "label.job.ProvSystem":"System",
   "label.job.url":"Url",
   "label.job.username":"User Name",
   "label.job.password":"Password",
@@ -2513,6 +2513,9 @@
 "label.pgconfig.editmobilepaypal":"Edit Paypal",
 "label.pgconfig.paypal.mobile.clientid":"Paypal API ClientId",
 "label.pgconfig.mobilepaypal.secretCode":"Paypal SecretCode",
+"table.heading.serviceId":"Service Id",
+"table.heading.trafficUnit":"Traffic Unit",
+"table.heading.service":"Service",
 
 "label.configure":"Configurations",
 

@@ -241,7 +241,6 @@
             if(this.formData.isPrepaid == 'Y'){
 
             	  for (var i in scope.paytermdatas) {
-            		  console.log(this.formData.contractPeriod);
                      	if(scope.paytermdatas[i].duration == this.formData.contractPeriod){
                      		 this.formData.paytermCode=scope.paytermdatas[i].paytermtype; 
                      	}
@@ -297,7 +296,6 @@
             if(this.formData.isPrepaid == 'Y'){
 
           	  for (var i in scope.paytermdatas) {
-          		
                    	if(scope.paytermdatas[i].duration == this.formData.contractPeriod){
                    		 this.formData.paytermCode=scope.paytermdatas[i].paytermtype; 
                    	}
