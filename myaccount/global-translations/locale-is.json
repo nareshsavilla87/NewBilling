@@ -907,7 +907,7 @@
 "validation.msg.paymentgateway.value.cannot.be.blank":"Gildi má ekki vera autt",
 
 "#Prepaid Payment":"",
-"label.client.prepaid.payment":"greiðsla",
+"label.client.prepaid.payment":"netinu greiðsla",
 "label.prepaid.amount":"upphæð",
 
 "#Neteller":"",

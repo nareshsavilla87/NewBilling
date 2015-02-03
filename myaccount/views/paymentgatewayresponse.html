@@ -29,6 +29,14 @@
 						<td width="40%">{{'label.paymentgateway.paymentId' | translate}}</td>
 						<td width="60%">{{formData.ObsPaymentId}}</td>
 					</tr>
+					<tr data-ng-hide='cardType == ""'>
+						<td width="40%">{{'label.cardType' | translate}}</td>
+						<td width="60%">{{cardType}}</td>
+					</tr>
+					<tr data-ng-hide='cardNumber == ""'>
+						<td width="40%">{{'label.cardNumber' | translate}}</td>
+						<td width="60%">{{cardNumber}}</td>
+					</tr>
 					
 			  </table>
 	
