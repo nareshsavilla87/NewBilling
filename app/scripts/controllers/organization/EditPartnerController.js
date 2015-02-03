@@ -43,7 +43,7 @@
         scope.submit = function() {  
         	
         scope.formData.locale = $rootScope.locale.code;
-        scope.formData.roles = [10];
+        //scope.formData.roles = [10];
           
           delete scope.formData.id;
           delete scope.formData.officeId;
