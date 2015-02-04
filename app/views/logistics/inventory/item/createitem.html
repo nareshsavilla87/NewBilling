@@ -91,7 +91,9 @@
 						<div class="control-group">
             			<label class="control-label" for="warranty">{{'label.item.warranty' | translate }}&nbsp;<span class="required">*</span></label>
             			<div class="controls">
-              			<input type="text" id="warranty" ng-model="formData.warranty">
+              			<input type="text" id="warranty" class="input-medium" data-ng-model="formData.warranty">
+            			<!-- <span style="font-size: 200%;">&#47;</span>Months -->
+            			<span style="font-size:15px;"><img src="../app/images/slash.jpg" width="20">Month(s)</span>
             			</div>
           				</div>
 					</td>

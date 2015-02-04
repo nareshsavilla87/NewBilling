@@ -11,12 +11,11 @@ NetellerController = function(scope,RequestSender,routeParams,
 		var encryptedData     	= location.search().key;
     	var decryptedData     	= CryptoJS.AES.decrypt(encryptedData, encrytionKey).toString(CryptoJS.enc.Utf8);
     	var	kortaStorageData 	= JSON.parse(decodeURIComponent(decryptedData));
-    	//console.log(kortaStorageData); transactionId
-    	scope.planCode = kortaStorageData.planCode;
-    	scope.amount = kortaStorageData.total_amount;
-    	scope.clientId = kortaStorageData.clientId;
-    	scope.formData = kortaStorageData;
-    	 var tokenVal = "";
+    	scope.planCode 			= kortaStorageData.planCode;
+    	scope.amount 			= kortaStorageData.total_amount;
+    	scope.clientId 			= kortaStorageData.clientId;
+    	scope.formData 			= kortaStorageData;
+    	 var tokenVal 			= "";
 		  var randomFun = function() {
 				var chars = "0123456789";
 				var string_length = 6;
@@ -52,8 +51,9 @@ NetellerController = function(scope,RequestSender,routeParams,
     	};
     	scope.submit = function() { 
     			if(!scope.validation.value && !scope.validation.verificationCode)
-    			RequestSender.netellerPaymentResource.save({username:'billing',password:'password'},this.formData, function(data){
-    				localStorageService.add("paymentgatewayresponse",data);
+    			var authentication = {username:selfcareModels.obs_username,password:selfcareModels.obs_password};
+    			RequestSender.netellerPaymentResource.save(authentication,this.formData, function(data){
+    				localStorageService.add("paymentgatewayresponse",{data:data});
     				location.path('/paymentgatewayresponse/'+scope.clientId);
                });
 			

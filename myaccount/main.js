@@ -35,6 +35,11 @@ scope.setDf = function () {
 			   								 : (localStorageService.add('localeDateFormat', 'dd MMMM yyyy'),
 			   									scope.df = scope.dateformat = 'dd MMMM yyyy');
 };scope.setDf();
+
+//calling this method every time if session is exit or not
+sessionManager.restore(function(session) {
+     scope.currentSession = session;
+ });
 	   
 //getting languages form model Lang.js 
 scope.langs = Langs;
@@ -51,7 +56,7 @@ if(localStorageService.get('localeLang')){
 	   };
 	   
 }else{
-	   scope.localeLang = scope.langs[0];
+	for(var i in scope.langs) if(scope.langs[i].code == selfcareModels.locale) scope.localeLang = scope.langs[i];
 }
 
 //set the language code when change the language 
@@ -138,11 +143,6 @@ if(localStorageService.get('localeLang')){
 		 	return active;
    };
 	 
-	//calling this method every time if session is exit or not
-	   sessionManager.restore(function(session) {
-	        scope.currentSession = session;
-	    });
-	   
 	   scope.signout = function(){
 	    	  scope.currentSession = sessionManager.clear();
 	    	  route.reload();
