@@ -117,19 +117,15 @@ AddEventsController = function(scope,RequestSender,rootScope,http,authentication
 					scope.paymentURL = "#/globalpayintegration?key="+encryptedData;
 					break;
 				case 'neteller' :
-					
-					var nettellerData = {clientId:scope.clientId,currency:"EUR",total_amount:scope.planData.price,
-										paytermCode:scope.planData.billingFrequency,planCode : planId,
-										contractPeriod : scope.planData.contractId,locale:"en",source:'neteller',
-										screenName:scope.screenName,orderId : orderId};
-					
+					localStorageService.add("eventData",scope.mediaDatas);
+					var nettellerData = {currency:selfcareModels.netellerCurrencyType,total_amount:scope.totalAmount,screenName:'vod'};
 					var encodeURINetellerData = encodeURIComponent(JSON.stringify(nettellerData));
 					var encryptedData = CryptoJS.AES.encrypt(encodeURINetellerData,encrytionKey).toString();
-					scope.paymentURL = "#/neteller/"+priceDataId+"?key="+encryptedData;
+					scope.paymentURL = "#/neteller/"+scope.clientId+"?key="+encryptedData;
 					break;
 					
 				case 'internalPayment' :
-					scope.paymentURL =  "#/internalpayment/"+scope.screenName+"/"+scope.clientId+"/"+planId+"/"+priceDataId+"/"+scope.planData.price;
+					scope.paymentURL =  "#/internalpayment/vod/"+scope.clientId+"/"+0+"/"+0;
 					break;
 					
 				default :
