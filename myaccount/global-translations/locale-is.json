@@ -916,7 +916,12 @@
 "label.neteller.verificationcode":"sannprófun Kóði",
 "label.neteller.value":"Neteller Email Kenni",
 "label.neteller.source":"Heimild",
-"label.neteller.amount":"upphæð"
+"label.neteller.amount":"upphæð",
+"label.netteler.info'":"Neteller Upplýsingar",
+
+"#paymentgatewayresponser":"",
+"label.cardType":"kortið Týpa",
+"label.cardNumber":"kortið Númer"
 
 
 
