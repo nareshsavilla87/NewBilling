@@ -53,7 +53,7 @@
             					<label class="control-label" for="upRate">{{ 'label.upRate' | translate }}<span class="required">*</span></label>
             					<div class="controls">
               					<input type="text" class="input-medium" style="width:115px;" id="upRate" name="upRate" data-ng-model="formData.upRate" required data-late-Validate>
-              					<select id="type" class="input-small" data-ng-model="formData.upType" data-ng-options="type.value as type.value for type in types"  data-late-Validate></select>
+              					<select id="type" class="input-small" data-ng-model="formData.upType" data-ng-options="type.key as type.value for type in types"  data-late-Validate></select>
               					 <span  data-ng-show="createradserviceform1.upRate.$invalid || createradserviceform1.upRate.$dirty">
                                  <small class="error" data-ng-show="createradserviceform1.upRate.$error.req">{{'label.required.field' | translate}}</small></span>
             					</div>
@@ -64,7 +64,7 @@
             					<label class="control-label" for="downRate">{{ 'label.downRate' | translate }}<span class="required">*</span></label>
             					<div class="controls">
               					<input type="text" class="input-medium" style="width:115px;" id="downRate" name="downRate" data-ng-model="formData.downRate" required data-late-Validate>
-              					<select id="type" class="input-small" data-ng-model="formData.downType" data-ng-options="type.value as type.value for type in types" data-late-Validate></select>
+              					<select id="type" class="input-small" data-ng-model="formData.downType" data-ng-options="type.key as type.value for type in types" data-late-Validate></select>
               					 <span  data-ng-show="createradserviceform1.downRate.$invalid || createradserviceform1.downRate.$dirty">
                                  <small class="error" data-ng-show="createradserviceform1.downRate.$error.req">{{'label.required.field' | translate}}</small></span>
             					</div>
