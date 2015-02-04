@@ -17,16 +17,16 @@
             	 scope.formData.parentId=data.allowedParents[i].id;
             }
             }
-            for(var i in scope.currencydatas){
-            	 for(var j in scope.configCurrency){
-            		 if(scope.currencydatas[i].code == scope.configCurrency[j].currency){
-            			 scope.formData.currency=scope.currencydatas[i].displayLabel;
+            //for config currency
+            for(var j in scope.configCurrency){
+               for(var i in scope.currencydatas){
+            		  if(scope.configCurrency[j].currency == scope.currencydatas[i].code){
+            			 scope.formData.currency=scope.currencydatas[i].code;
+                         break;
             		 }
-            		 
             	 }
-            }console.log(scope.formData.currency);
+            }
             scope.formData.officeType = data.officeTypes[1].id;
-   
         });
         
         scope.getStateAndCountry=function(city){
