@@ -389,6 +389,7 @@
   "label.inventory":"Inventory",
   "label.hostName":"Host Name",
   "label.port":"Port",
+  "label.setcontentstring":"SetContent",
   "link.messanger":"Messanger",
   "link.settings" : "Settings",
   "link.logout" : "LogOut",
@@ -2245,6 +2246,7 @@
 "validation.msg.globalConfiguration.userName.cannot.be.blank":"Name cannot be blank",
 "validation.msg.note.note.cannot.be.blank":"Note cannot be blank",
 "error.msg.smtp.duplicate.name":"Already exists with this 'smtp' name",
+"validation.msg.globalConfiguration.setContentString.cannot.be.blank":"SetContent cannot be blank",
 
 "#Ippool Changes":".......",
 "label.pattern":"Pattern : ",
@@ -2525,7 +2527,8 @@
 "label.configure.smtp.false":"False",
 "error.configure.smtp.invalid.email":"Please give valid EmailId",
 "error.msg.voucher.no.already.existed.with.thiscontract":"Duration cann't change,Voucher pins are already gererated",
-"error.msg.voucher.no.isprocessed.exception":"Cann't delete VoucherPin/s Already Generated for your selected lists"
+"error.msg.voucher.no.isprocessed.exception":"Cann't delete VoucherPin/s Already Generated for your selected lists",
+"table.heading.warrantyDate":"Warranty Date"
 
 
 

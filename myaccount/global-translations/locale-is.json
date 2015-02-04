@@ -1,7 +1,7 @@
 {
   "ttles" :"----------------------------------------------------",
  	"title.obs.selfcare"					 : "OBS SelfCare",
- 	"title.thortelecom.selfcare"			 : "Thor Telecom SelfCare",
+ 	"title.selfcare"						 : "Thor Telecom SelfCare",
  	"title.thankyou"						 : "Þakka þér fyrir að skrá þig!",
  	"title.conformation.registration" 		 : "Í sköpulag hefur verið sendur til póstur auðkenni.",
  	"title.conformation.email"               : "Vinsamlegast innskráningu til þinn tölvupósti reikningur og",

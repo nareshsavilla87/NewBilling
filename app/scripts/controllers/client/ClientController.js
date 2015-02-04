@@ -27,7 +27,6 @@
          		if(scope.allDatas[i].clientPassword != undefined && scope.allDatas[i].clientPassword.length>0){
          			var stars = "";
          			for (var k in scope.allDatas[i].clientPassword){
-         				console.log(scope.allDatas[i].clientPassword);
  				        	if(k>=0 && k<scope.allDatas[i].clientPassword.length){
  				        		
  				        		stars += "*";
