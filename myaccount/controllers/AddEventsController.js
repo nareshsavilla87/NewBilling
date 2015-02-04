@@ -1,10 +1,11 @@
 AddEventsController = function(scope,RequestSender,rootScope,http,authenticationService,webStorage,httpService,sessionManager,location,localStorageService,modal,dateFilter) {
 		  
-		  scope.vodEventScreen = true;
+		  scope.vodEventScreen 		= true;
 		  scope.eventDetailsPreview = false;
-		  scope.formData = {};
-		  scope.planData = {};
-		  scope.addressData = {};
+		  scope.formData 			= {};
+		  scope.planData 			= {};
+		  scope.addressData 		= {};
+		  var encrytionKey 			= selfcareModels.encriptionKey;
 		  
 		  var clientData = {};
 		  if(localStorageService.get("clientTotalData")){
@@ -75,7 +76,6 @@ AddEventsController = function(scope,RequestSender,rootScope,http,authentication
 					  
 				  }
 		     switch(paymentGatewayName){
-		     
 				case 'dalpay' :
 						var url = paymentGatewayValues.url+'?mer_id='+paymentGatewayValues.merchantId+'&pageid='+paymentGatewayValues.pageId+'&item1_qty=1&num_items=1';
 					scope.paymentURL =  url+"&cust_name="+clientData.displayName+"&cust_phone="+clientData.phone+"&cust_email="+clientData.email+"&cust_state="+clientData.state+""+				
@@ -84,8 +84,9 @@ AddEventsController = function(scope,RequestSender,rootScope,http,authentication
 						break;
 						
 				case 'korta' :
-					
-				    var kortaStorageData = {clientData :clientData,planId:planId,planData : scope.planData,screenName :"addingEvents",paymentGatewayValues:paymentGatewayValues};	
+					localStorageService.add("eventData",scope.mediaDatas);
+					var planData = {id:0,"price":scope.totalAmount,"planCode":"Adding Events"};
+				    var kortaStorageData = {clientData :clientData,planId:0,planData : planData,screenName :"vod",paymentGatewayValues:paymentGatewayValues};	
 				    var encodeURIComponentData = encodeURIComponent(JSON.stringify(kortaStorageData));
 					var encryptedData = CryptoJS.AES.encrypt(encodeURIComponentData,encrytionKey).toString();
 					
@@ -95,9 +96,12 @@ AddEventsController = function(scope,RequestSender,rootScope,http,authentication
 					break;
 						
 				case 'paypal' :
-					var query = {clientId :scope.clientId,eventId : scope.mediaDatas[0].eventId,
-							optType : scope.mediaDatas[0].optType,formatType : scope.mediaDatas[0].quality,
- 							deviceId : clientData.hwSerialNumber,returnUrl:hostName, screenName:"vod"};
+					var mediaData = [];
+					for(var i in scope.mediaDatas){
+						mediaData.push({"eventId":scope.mediaDatas[i].eventId},{"formatType":scope.mediaDatas[i].quality},{"optType":scope.mediaDatas[i].optType});
+					}
+					var query = {clientId :scope.clientId,eventData:mediaData,
+							deviceId : clientData.hwSerialNumber,returnUrl:hostName, screenName:"vod"};
 				
 					scope.paymentURL = paymentGatewayValues.paypalUrl+'='+paymentGatewayValues.paypalEmailId+"&item_name=addingevents&amount="+scope.totalAmount+"" +	  	  				
 					  	  "&custom="+JSON.stringify(query);
@@ -105,8 +109,8 @@ AddEventsController = function(scope,RequestSender,rootScope,http,authentication
 						
 				case 'globalpay' :
 					
-					var globalpayStorageData = {clientData :clientData,planId:planId,screenName :scope.screenName,price :scope.planData.price,
-												 priceId : scope.planData.id, globalpayMerchantId:paymentGatewayValues.merchantId};	
+					var globalpayStorageData = {clientData :clientData,planId:0,screenName :"vod",price :scope.totalAmount,
+												 priceId : 0, globalpayMerchantId:paymentGatewayValues.merchantId};	
 				    var encodeURIComponentData = encodeURIComponent(JSON.stringify(globalpayStorageData));
 					var encryptedData = CryptoJS.AES.encrypt(encodeURIComponentData,encrytionKey).toString();
 					
@@ -135,36 +139,8 @@ AddEventsController = function(scope,RequestSender,rootScope,http,authentication
 			  };
 			  
 		   scope.subscribeBtnFun =function(){
-			   
-			  	 scope.eventSavedOneByOneFun = function(val){
-					 RequestSender.eventsResource.save(scope.eventFormData[val],function(data){
-						 if(val == scope.eventFormData.length-1){
-							 location.path('/services');
-						 }else{
-							 val += 1;
-						 	scope.eventSavedOneByOneFun(val);
-					 	 }
-					 });
-				 };
-			 
-				 var reqDate = dateFilter(new Date(),'dd MMMM yyyy');
-				 scope.eventFormData = [];
-				 for(var i in scope.mediaDatas) {
-					 
-						 scope.eventFormData[i] = {
-							 							eventId 		: scope.mediaDatas[i].eventId,
-							 							optType 		: scope.mediaDatas[i].optType,
-							 							formatType 		: scope.mediaDatas[i].quality,
-							 							clientId 		: scope.clientId,
-							 							locale 			: 'en',
-							 							eventBookedDate : reqDate,
-							 							dateFormat 		: 'dd MMMM yyyy',
-							 							deviceId 		: clientData.hwSerialNumber
-						 							};
-					 if(i == scope.mediaDatas.length-1){
-						 scope.eventSavedOneByOneFun(0);
-					 }
-				 }
+			   localStorageService.add("eventData",scope.mediaDatas);
+			   location.path("/orderbookingscreen/vod/"+scope.clientId+"/0/amountZero");
 		    };
 	    
 		  scope.cancelBtnFun = function(){

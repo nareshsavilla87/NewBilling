@@ -9,11 +9,18 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 	
 	function successFun(planData){
     	localStorageService.remove("secretCode");
-		(planData.price==0) ? location.path("/services") : location.path('/paymentgatewayresponse/'+clientId);
+    	if(screenName != "vod"){
+    		(planData.price==0) ? location.path("/services") : location.path('/paymentgatewayresponse/'+clientId);
+    	}
+    	else if (screenName == "vod"){
+    		localStorageService.remove("eventData");
+    		(priceId == "amountZero")? location.path("/services") : location.path('/paymentgatewayresponse/'+clientId);
+    	};
     }
 	
-    RequestSender.clientResource.get({clientId: clientId} , function(data) {
+  RequestSender.clientResource.get({clientId: clientId} , function(data) {
 		  var clientData = data;
+    if(screenName != "vod"){
 	 RequestSender.orderTemplateResource.query({region : clientData.state},function(data){
 			var totalOrdersData = data;
 		for(var i in totalOrdersData){
@@ -72,6 +79,39 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 		  }
 		}
 	  });
+     }else if(screenName == "vod"){
+    	 var mediaDatas 	= [];
+    	 	 mediaDatas 	= localStorageService.get("eventData") || "";
+    	 var eventSavedOneByOneFun = function(val){
+			 RequestSender.eventsResource.save(eventFormData[val],function(data){
+				 if(val == eventFormData.length-1){
+					 successFun("adding Events");
+				 }else{
+					 val += 1;
+				 	eventSavedOneByOneFun(val);
+			 	 }
+			 });
+		 };
+	 
+		 var reqDate = dateFilter(new Date(),'dd MMMM yyyy');
+		var eventFormData = [];
+		 for(var i in mediaDatas) {
+			 
+				 eventFormData[i] = {
+					 							eventId 		: mediaDatas[i].eventId,
+					 							optType 		: mediaDatas[i].optType,
+					 							formatType 		: mediaDatas[i].quality,
+					 							clientId 		: clientId,
+					 							locale 			: 'en',
+					 							eventBookedDate : reqDate,
+					 							dateFormat 		: 'dd MMMM yyyy',
+					 							deviceId 		: clientData.hwSerialNumber
+				 							};
+			 if(i == mediaDatas.length-1){
+				 eventSavedOneByOneFun(0);
+			 }
+		 }
+     }
 	});
 		 
   };
