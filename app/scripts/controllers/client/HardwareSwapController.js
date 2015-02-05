@@ -24,6 +24,7 @@
 	            resourceFactory.associationResource.getAssociation({clientId: routeParams.clientId,id:routeParams.orderId} , function(data) {
 	                scope.association = data;   
 	                scope.enumValuesDatas = data.enumValuesDatas;
+	                scope.reason = scope.enumValuesDatas[0].value
 	            });
 	        scope.getData = function(query){
 	        	 return http.get($rootScope.hostUrl+ API_VERSION+'/itemdetails/'+scope.association.itemId+'/'+scope.officeId+'/', {
