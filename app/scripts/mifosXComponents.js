@@ -287,7 +287,8 @@ define(['underscore', 'mifosX'], function() {
       'DateTimeFormat',
       'UrlToString',
       'EventTypeCategory',
-      'TranslateDataTableColumn'
+      'TranslateDataTableColumn',
+      'CodeValidate'
 
     ],
     directives: [

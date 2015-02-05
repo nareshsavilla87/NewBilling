@@ -108,6 +108,12 @@
 		<select ng-model="data.value" ng-options="format for format in dates" class="form-control">
 		</select>
     </div>	
+	
+	<div class="modal-body modal-small" data-ng-show="data.name == 'codeDefinitionLength'">
+		
+       <input type="text" id="type" ng-model="data.value">
+       
+    </div>
 
     <div class="modal-footer">
     	<button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
