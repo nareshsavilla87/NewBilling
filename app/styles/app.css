@@ -417,6 +417,18 @@ tr.pointer-main:hover {
     
 }
 
+.error-row {
+    color:red;
+    margin-bottom:10px;
+    margin-top:-10px;
+    padding: 10px;
+    z-index: 100;
+    left: 160px;
+    opacity: 0.9;
+    /* font-size: 99%; */
+    
+}
+
 .required {
     color:red;
     font-weight:bolder;
