@@ -390,6 +390,7 @@
   "label.inventory":"Inventory",
   "label.hostName":"Host Name",
   "label.port":"Port",
+  "label.setcontentstring":"SetContent",
   "link.messanger":"Messanger",
   "link.settings" : "Settings",
   "link.logout" : "LogOut",
@@ -2246,6 +2247,7 @@
 "validation.msg.globalConfiguration.userName.cannot.be.blank":"Name cannot be blank",
 "validation.msg.note.note.cannot.be.blank":"Note cannot be blank",
 "error.msg.smtp.duplicate.name":"Already exists with this 'smtp' name",
+"validation.msg.globalConfiguration.setContentString.cannot.be.blank":"SetContent cannot be blank",
 
 "#Ippool Changes":".......",
 "label.pattern":"Pattern : ",
