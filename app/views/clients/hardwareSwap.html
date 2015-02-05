@@ -87,6 +87,13 @@
 	 <fieldset>
 		<legend>{{'label.assignserialnumber' | translate}}</legend>
 		
+		<!-- <div class="control-group">
+   			<label class="control-label" for="reason">{{'label.reason' | translate }}&nbsp;</label>
+   			<div class="controls">
+     			<select data-ng-model="reason" data-ng-options="enumValuesData.value as enumValuesData.value for enumValuesData in enumValuesDatas">
+             	</select>
+   			</div>
+         </div> -->
 		<div class="control-group" ng-repeat="item in getNumber(formData.quantity)" name="serialNumberDiv">
             <label class="control-label" for="serialNumber">{{ 'label.serialNumber' | translate }}&nbsp;<span class="required">*</span></label>
             <div class="controls">
