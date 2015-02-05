@@ -104,11 +104,10 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 				break;
 				
 			case 'neteller' :
-				var nettellerData = {clientId:scope.clientId,currency:"EUR",total_amount:scope.planData.price,
-					locale:"en",source:'neteller',screenName:'payment'};
+				var nettellerData = {currency:selfcareModels.netellerCurrencyType,total_amount:scope.planData.price,screenName:'payment'};
 				var encodeURINetellerData = encodeURIComponent(JSON.stringify(nettellerData));
 				var encryptedData = CryptoJS.AES.encrypt(encodeURINetellerData,encrytionKey).toString();
-				scope.paymentURL = "#/neteller/"+0+"?key="+encryptedData;
+				scope.paymentURL = "#/neteller/"+scope.clientId+"?key="+encryptedData;
 				break;
 				
 			case 'internalPayment' :

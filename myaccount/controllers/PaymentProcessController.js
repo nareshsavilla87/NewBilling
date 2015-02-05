@@ -94,14 +94,13 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 				break;
 			case 'neteller' :
 				
-				var nettellerData = {clientId:scope.clientId,currency:"EUR",total_amount:scope.planData.price,
+				var nettellerData = {currency:selfcareModels.netellerCurrencyType,total_amount:scope.planData.price,
 									paytermCode:scope.planData.billingFrequency,planCode : planId,
-									contractPeriod : scope.planData.contractId,locale:"en",source:'neteller',
-									screenName:scope.screenName,orderId : orderId};
+									contractPeriod : scope.planData.contractId,screenName:scope.screenName,orderId : orderId};
 				
 				var encodeURINetellerData = encodeURIComponent(JSON.stringify(nettellerData));
 				var encryptedData = CryptoJS.AES.encrypt(encodeURINetellerData,encrytionKey).toString();
-				scope.paymentURL = "#/neteller/"+priceDataId+"?key="+encryptedData;
+				scope.paymentURL = "#/neteller/"+scope.clientId+"?key="+encryptedData;
 				break;
 				
 			case 'internalPayment' :
