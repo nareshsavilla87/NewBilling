@@ -10,14 +10,16 @@
  
     <br/><br/>
     <form name="netellerform" class="form-horizontal well"  data-ng-submit="submit()">
-    
+    <br/>
      <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label data-ng-show="errorStatus">{{errorStatus}}</label>
 		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	 </div>
-    
-    <table>
+    <br/>
+     <fieldset>
+          <legend class="offset1">{{'label.netteler.info' | translate}}</legend>
+      <table>
     	<tr>
     		<td>
 				<div class="control-group">
@@ -61,10 +63,11 @@
     	</tr> -->
     	<tr>
     		<td colspan="2" align="right">
-				<a id="cancel" href="#/paymentprocess/additionalorders/{{priceDataId}}/{{planCode}}/{{amount}}"><button type="reset" class="btn">{{'btn.cancel' | translate}}</button></a>
+				<a id="cancel" data-ng-click="goBack()"><button type="reset" class="btn">{{'btn.cancel' | translate}}</button></a>
 				<button id="submit" type="submit" data-ng-disabled="!netellerform.$valid" class="btn btn-primary">{{'btn.proceed' | translate}}</button>
 			</td>
     	</tr>
     </table>
+    </fieldset>
     </form>
 </div>

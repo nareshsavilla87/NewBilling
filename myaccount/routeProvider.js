@@ -68,7 +68,7 @@ selfcareApp.config(function($routeProvider, $locationProvider) {
     .when('/paymentprocess/:screenName/:priceDataId/:planId/:price',{
     	templateUrl: 'views/paymentprocess.html'
     })
-    .when('/neteller/:priceDataId',{
+    .when('/neteller/:clientId',{
     	templateUrl: 'views/neteller.html'
     })
     .when('/changeorder/:clientId/:orderId',{

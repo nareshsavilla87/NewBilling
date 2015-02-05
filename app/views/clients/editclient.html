@@ -90,9 +90,9 @@
             <label data-ng-hide="entryType =='ORP'" class="control-label" for="firstname">{{'label.firstname' | translate}}<span class="required">*</span></label> 
              <label data-ng-show="entryType =='ORP'" class="control-label" for="firstname">{{'label.corporate' | translate}}<span class="required">*</span></label>
                         <div class="controls">
-                           <input type="text" name="firstname" data-ng-model="formData.firstname" data-ng-pattern="/^[a-zA-Z0-9\-\&\s]+$/" required data-ng-minlength=3 data-late-Validate/>
+                           <input type="text" name="firstname" data-ng-model="formData.firstname" required data-ng-minlength=3 data-late-Validate/>
                                <span  data-ng-show="editclientform.firstname.$invalid">
-                               <small class="error" data-ng-show="editclientform.firstname.$error.pattern">alphanumeric and spaces only!</small>
+                               <!-- <small class="error" data-ng-show="editclientform.firstname.$error.pattern">alphanumeric and spaces only!</small> -->
                               <small class="error" data-ng-show="editclientform.firstname.$error.req">
                                Required Field
                              </small>
