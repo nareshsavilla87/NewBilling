@@ -2525,10 +2525,24 @@
 "label.configure.smtp.false":"False",
 "error.configure.smtp.invalid.email":"Please give valid EmailId",
 "error.msg.voucher.no.already.existed.with.thiscontract":"Duration cann't change,Voucher pins are already gererated",
-"error.msg.voucher.no.isprocessed.exception":"Cann't delete VoucherPin/s Already Generated for your selected lists"
+"error.msg.voucher.no.isprocessed.exception":"Cann't delete VoucherPin/s Already Generated for your selected lists",
 
-
-
-
+"#templates":".......",
+"label.anchor.templates":"Templates",
+"label.input.filterbyname":"Filter by name",
+"label.heading.type":"Type",
+"label.heading.name":"Name",
+"label.button.createtemplate":"Create Template",
+"label.anchor.createtemplate":"Create Template",
+"label.input.entity":"Entity",
+"label.input.type":"Type",
+"label.input.templatename":"Template Name",
+"label.button.advancedoptions":"Advance Options",
+"label.input.mapperkey":"Mapper Key",
+"label.input.mappervalue":"Mapper Value",
+"label.anchor.edittemplate":"Edit Template",
+"validation.msg.template.name.cannot.be.blank":"template name cannot be blank",
+"error.msg.tempalte.duplicate.name":"template name already exists"
+ 
 
 }

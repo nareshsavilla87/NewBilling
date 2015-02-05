@@ -68,6 +68,10 @@ padding-bottom: 10px;
 padding-bottom: 20px;
 }
 
+.paddedtop15 {
+padding-top: 15px;
+}
+
 td > a {
     color: #080808;
 }
@@ -944,7 +948,7 @@ nav:hover:after{
 	width: 100%;
 }
 
-.container td .paddedleftNone {
+.container td:first-child .paddedleftNone {
 	padding-left: 0;
 }
 
@@ -1133,6 +1137,16 @@ input#search:-ms-input-placeholder {
 .width11 {
     width: 11%;
 }
+
+.width8 {
+    width: 8%;
+}
+
+.width20 {
+    width: 20%;
+}
+
+
 
 /*        .onoffswitch {
     position: relative; width: 90px;
