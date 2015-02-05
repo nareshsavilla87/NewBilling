@@ -2478,7 +2478,9 @@
 "error.configure.smtp.invalid.email":"Please give valid EmailId",
 "error.msg.voucher.no.already.existed.with.thiscontract":"Duration cann't change,Voucher pins are already gererated",
 "error.msg.voucher.no.isprocessed.exception":"Cann't delete VoucherPin/s Already Generated for your selected lists",
-"table.heading.warrantyDate":"Warranty Date"
+"table.heading.warrantyDate":"Warranty Date",
+"label.reason":"Reason",
+"error.msg.hardware.swapping.warranty.expiry":"Couldn't swap Hardware, because hardware warranty date is expired."
 
 
 
