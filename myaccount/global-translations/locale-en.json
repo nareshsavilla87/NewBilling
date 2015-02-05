@@ -917,6 +917,7 @@
 "label.neteller.value":"NETELLER EmailId",
 "label.neteller.source":"Source",
 "label.neteller.amount":"Amount",
+"label.netteler.info":"Neteller Information",
 
 "#paymentgatewayresponser":"",
 "label.cardType":"Card Type",
