@@ -7,7 +7,7 @@
           <li class="active">{{'label.editpromotioncode' | translate}}</li>
         </ul>
     </div>
-    <form class="form-horizontal well" data-ng-submit="submit()">
+    <form name="editpromotionform" class="form-horizontal well" data-ng-submit="submit()">
     	<div class="error" data-ng-show="errorStatus || errorDetails">
 			<label>{{'label.contract.error' | translate}}</label>
 			<label data-ng-show="errorStatus">{{errorStatus}}</label>
@@ -22,7 +22,10 @@
 									<div class="control-group">
            					 		<label class="control-label" for="promotionCode">{{ 'label.promotionCode' | translate }}</label>
             						<div class="controls">
-             					 		<input type="text" id="promotionCode" data-ng-model="formData.promotionCode"/>
+             					 		<input type="text" id="promotionCode" name="promotionCode" data-ng-model="formData.promotionCode" data-ng-maxlength="{{'code' | CodeValidate}}"/></br>
+             					 		<span data-ng-show = "editpromotionform.promotionCode.$dirty && editpromotionform.promotionCode.$invalid">
+             					 			<small class="error-row">{{'error.code.definition.length.validation'| translate}}</small>
+             					 		</span>
            							</div>
          							</div>	
 							 	</td>
@@ -92,7 +95,7 @@
 								</td>
 								<td align="right">
         	<a href="#/viewpromotioncode/{{promotiondata.id}}"><button type="reset" class="btn">{{'label.cancel' | translate}}</button></a>
-            <button type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
+            <button type="submit" data-ng-disabled="editpromotionform.$dirty && editpromotionform.$invalid" class="btn btn-primary">{{'label.save' | translate}}</button>
          </td></tr></table>
         </fieldset>
     </form>
