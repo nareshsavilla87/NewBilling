@@ -8,6 +8,8 @@
             		value = webStorage.get("client_configuration").codeDefinitionLength;
             	}else if(input == 'number'){
             		value = "/^[0-9.]+$/";
+            	}else if(input == 'decimal'){
+            		value = "/^[+-]?[0-9]*(\\.[0-9]{0,2})?$/";
             	}
                 return value;
             }

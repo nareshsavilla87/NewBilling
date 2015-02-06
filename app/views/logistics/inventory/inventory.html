@@ -9,8 +9,9 @@
         </div>
        
         <div class="row-fluid pull-right">
-        <form ng-submit="searchItemDetails(filterText)" style="margin: 0 0 1%;">
-        	<input ng-model="filterText" type="text" style="width:46.99%;" placeholder="Enter text to Search#">
+
+        <form name="inventoryform" ng-submit="searchItemDetails(filterText)" style="margin: 0 0 1%;">
+        	<input ng-model="filterText" type="text" style="width:81.3%;" placeholder="Enter text to Search#">
           	<select ng-model="source" style="width:16.75%;" ng-change="searchSource(source)">
               <option value="ALL">ALL</option>
               <option value="Available">Available</option>
@@ -371,7 +372,7 @@
  	 
 <script type="text/ng-template" id="editsuppliers.html">
 
-	<form class="form-horizontal well" ng-submit="submit()">
+	<form name="editsupplierform" class="form-horizontal well" ng-submit="submit()">
 	 <div class="error" ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label ng-show="errorStatus">{{errorStatus}}</label>
@@ -382,7 +383,10 @@
 		  <div class="control-group">
             <label class="control-label" for="supplierCode">{{ 'label.supplier.code' | translate }}&nbsp;<span class="required">*</span></label>
             <div class="controls">
-              <input type="text" id="supplierCode" ng-model="formData.supplierCode">
+              <input type="text" id="supplierCode" name="supplierCode" ng-model="formData.supplierCode" data-ng-maxlength="{{'code' | CodeValidate}}"></br>
+				<span data-ng-show = "editsupplierform.supplierCode.$dirty && editsupplierform.supplierCode.$invalid">
+					<small class ="error-row">{{'error.code.definition.length.validation'| translate}}</small>
+				</span>
             </div>
           </div>
           <div class="control-group">
@@ -402,7 +406,7 @@
 	</form>
    <div class="modal-footer">
          <button id="cancel" class="btn btn-warning" ng-click="reject()">{{'button.cancel' | translate}}</button>
-         <button id="submit" class="btn btn-primary" ng-click="accept()" ng-disabled="flag">{{'label.save' | translate}}</button>
+         <button id="submit" data-ng-disabled="editsupplierform.$dirty && editsupplierform.$invalid" class="btn btn-primary" ng-click="accept()" ng-disabled="flag">{{'label.save' | translate}}</button>
    </div>
 
 </script> 
