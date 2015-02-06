@@ -5,7 +5,7 @@
         <li class="active">{{'label.createpromotioncode' | translate}}</li>
     </ul>
 </div>
-<form class="form-horizontal well" data-ng-controller="CreatePromotionController" data-ng-submit="submit()">
+<form name="createpromotionform" class="form-horizontal well" data-ng-controller="CreatePromotionController" data-ng-submit="submit()">
         <div class="error" data-ng-show="errorStatus || errorDetails">
 		   <label>{{'label.contract.error' | translate}}</label>
 		   <label data-ng-show="errorStatus">{{errorStatus}}</label>
@@ -19,7 +19,10 @@
 								<div class="control-group">
            					 	<label class="control-label" for="promotionCode">{{ 'label.promotionCode' | translate }}</label>
             					<div class="controls">
-             					 <input type="text" id="promotionCode" data-ng-model="formData.promotionCode"/>
+             					 <input type="text" id="promotionCode" name="promotionCode" data-ng-model="formData.promotionCode" data-ng-maxlength="{{'code' | CodeValidate}}"/></br>
+             					 <span data-ng-show = "createpromotionform.promotionCode.$dirty && createpromotionform.promotionCode.$invalid">
+             					 	<small class="error-row">{{'error.code.definition.length.validation'| translate}}</small>
+             					 </span>
            						</div>
          						</div>	
 							 </td>
@@ -84,7 +87,7 @@
 							</td>
 							<td align="right">
 							<a href="#/discounts"><button id="cancel" type="reset" data-ng-click="reset123()" class="btn">{{'button.cancel'| translate}}</button></a>
-                           <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+                           <button id="submit" type="submit" data-ng-disabled="createpromotionform.$dirty && createpromotionform.$invalid" class="btn btn-primary">{{'button.save'| translate}}</button>
 							</td>
 							</tr>
 					</table>
