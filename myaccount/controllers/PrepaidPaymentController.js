@@ -27,13 +27,14 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 	//this function calls when comeout from amount field
 	scope.amountFieldFun = function(amount){
 		if(amount){
-			if(amount<=0){
+			if(amount<=0 || isNaN(amount)){
 				scope.amountEmpty = true;
 				delete scope.planData.price;
 				delete scope.planData.planCode;
 				delete scope.planData.id;
 				delete scope.amount;
-				alert("Amount Must be Greater than Zero");
+				if(amount <=0)alert("Amount Must be Greater than Zero");
+				if(isNaN(amount))alert("Please enter digits only");
 			}else{
 				scope.amountEmpty 		= false;
 				scope.planData.price 	= amount;
