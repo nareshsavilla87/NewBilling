@@ -7,7 +7,7 @@
 			scope.statuses = [];
 			scope.start = {};
 			scope.date = {};
-			
+			scope.discountIdForCancel = routeParams.id;
 			resourceFactory.discountsResource.getDiscountDetails({discountId : routeParams.id,template : 'true'	},	function(data) {
 				scope.discountdetail = data;
 				scope.discountTypeDatas = data.discountTypeData;
