@@ -6,7 +6,7 @@
           <li class="active">{{'label.item.edit' | translate}}</li>
         </ul>
       </div>
-      <form class="form-horizontal well" ng-submit="submit()">
+      <form name="edititemform" class="form-horizontal well" ng-submit="submit()">
        <div class="error" ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label ng-show="errorStatus">{{errorStatus}}</label>
@@ -22,7 +22,10 @@
 						<div class="control-group">
             			<label class="control-label" for="itemCode">{{'label.item.itemcode' | translate }}&nbsp;<span class="required">*</span></label>
             			<div class="controls">
-              			<input type="text" id="itemCode" ng-model="formData.itemCode">
+              			<input type="text" id="itemCode" name="itemCode" ng-model="formData.itemCode" data-ng-maxlength="{{'code' | CodeValidate}}"></br>
+              			<span data-ng-show="edititemform.itemCode.$dirty && edititemform.itemCode.$invalid">
+              				<small class="error-row">{{'error.code.definition.length.validation'| translate}}</small>
+              			</span>
             			</div>
           				</div>
 					</td>
@@ -105,7 +108,7 @@
 				<div class="control-group">
 				<div class="controls">
             		<a href="#/inventory"><button id="cancel" type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
-            		<button id="submit" type="submit"  class="btn btn-primary">{{'label.save' | translate}}</button>
+            		<button id="submit" type="submit" data-ng-disabled="edititemform.$dirty && edititemform.$invalid" class="btn btn-primary">{{'label.save' | translate}}</button>
           		</div>
           		</div>	
 				</td>
