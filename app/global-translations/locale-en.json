@@ -389,6 +389,7 @@
   "label.inventory":"Inventory",
   "label.hostName":"Host Name",
   "label.port":"Port",
+  "label.setcontentstring":"SetContent",
   "link.messanger":"Messanger",
   "link.settings" : "Settings",
   "link.logout" : "LogOut",
@@ -494,6 +495,8 @@
   "app erros start" :"----------------------------------------------------",
   "error.login.failed":"Please try again, your credentials are not valid",
   "error.delete.failed":"System defined code values cannot be deleted",
+  "error.code.definition.length.validation":"length should be less than 10 characters",
+  "error.not.numeric.validation":"Invalid numeric value",
 
 
   "#Journal Entry Predefined Postings":"........",
@@ -2245,6 +2248,7 @@
 "validation.msg.globalConfiguration.userName.cannot.be.blank":"Name cannot be blank",
 "validation.msg.note.note.cannot.be.blank":"Note cannot be blank",
 "error.msg.smtp.duplicate.name":"Already exists with this 'smtp' name",
+"validation.msg.globalConfiguration.setContentString.cannot.be.blank":"SetContent cannot be blank",
 
 "#Ippool Changes":".......",
 "label.pattern":"Pattern : ",
@@ -2527,6 +2531,7 @@
 "error.msg.voucher.no.already.existed.with.thiscontract":"Duration cann't change,Voucher pins are already gererated",
 "error.msg.voucher.no.isprocessed.exception":"Cann't delete VoucherPin/s Already Generated for your selected lists",
 
+
 "#templates":".......",
 "label.anchor.templates":"Templates",
 "label.input.filterbyname":"Filter by name",
@@ -2544,7 +2549,10 @@
 "label.anchor.deletetemplate":"Delete Template",
 "label.heading.text":"Text",
 "validation.msg.template.name.cannot.be.blank":"template name cannot be blank",
-"error.msg.tempalte.duplicate.name":"template name already exists"
- 
+"error.msg.tempalte.duplicate.name":"template name already exists",
+
+"table.heading.warrantyDate":"Warranty Date"
+
+
 
 }

@@ -26,6 +26,7 @@
 	   registrationRequiresDevice	: "registration-requires-device",
 	   deviceAgrementType			: "device-agrement-type",
 	   globalPayCurrencyType		: "NGN",
+	   netellerCurrencyType			: "EUR",
 	   
 	   webtvURL						: locationOrigin+"/webtv/index.html#/",
 		   
