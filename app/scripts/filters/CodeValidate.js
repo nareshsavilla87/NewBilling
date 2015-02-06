@@ -6,6 +6,8 @@
             	
             	if(input == 'code'){
             		value = webStorage.get("client_configuration").codeDefinitionLength;
+            	}else if(input == 'number'){
+            		value = "/^[0-9.]+$/";
             	}
                 return value;
             }

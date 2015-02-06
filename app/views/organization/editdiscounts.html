@@ -11,7 +11,7 @@
 			<li class="active">{{'label.editdiscounts' | translate}}</li>
 		</ul>
 	</div>
-	<form class="form-horizontal well" data-ng-submit="submit()">
+	<form name="editdiscountsform" class="form-horizontal well" data-ng-submit="submit()">
 		<div class="error" data-ng-show="errorStatus || errorDetails">
 			<label>{{'label.contract.error' | translate}}</label> <label
 				data-ng-show="errorStatus">{{errorStatus}}</label> <label
@@ -25,17 +25,20 @@
 								<td>
 									<div class="control-group">
 										<label class="control-label" for="discountCode">{{
-											'label.discountCode' | translate }}</label>
+											'label.discountCode' | translate }}<span class="required">*</span></label>
 										<div class="controls">
-											<input type="text" id="discountCode"
-												data-ng-model="discountdetail.discountCode">
+											<input type="text" id="discountCode" name="discountCode" 
+												data-ng-model="discountdetail.discountCode" data-ng-maxlength="{{'code' | CodeValidate}}" ></br>
+											<span data-ng-show="editdiscountsform.discountCode.$dirty && editdiscountsform.discountCode.$invalid">
+												<small class="error-row" >{{'error.code.definition.length.validation'| translate}}</small>
+											</span>
 										</div>
 									</div>
 								</td>
 								<td>
 									<div class="control-group">
 										<label class="control-label" for="discountType">{{
-											'label.discountType' | translate }}</label>
+											'label.discountType' | translate }}<span class="required">*</span></label>
 										<div class="controls">
 											<select data-ng-model="discountdetail.discountType"
 												data-ng-options="discountTypeData.mCodeValue as discountTypeData.mCodeValue for discountTypeData in discountTypeDatas">
@@ -48,7 +51,7 @@
 								<td>
 									<div class="control-group">
 										<label class="control-label" for="discountDescription">{{
-											'label.discountDescription' | translate }}</label>
+											'label.discountDescription' | translate }}<span class="required">*</span></label>
 										<div class="controls">
 											<input type="text" id="discountDescription"
 												data-ng-model="discountdetail.discountDescription">
@@ -58,7 +61,7 @@
 								<td>
 									<div class="control-group">
 										<label class="control-label" for="discountRate">{{
-											'label.discountRate' | translate }}</label>
+											'label.discountRate' | translate }}<span class="required">*</span></label>
 										<div class="controls">
 											<input type="text" id="discountRate"
 												data-ng-model="discountdetail.discountRate">
@@ -70,7 +73,7 @@
 								<td>
 									<div class="control-group">
 										<label class="control-label" for="discountStartDate">{{
-											'label.startDate' | translate }}</label>
+											'label.startDate' | translate }}<span class="required">*</span></label>
 										<div class="controls">
 											<input type="text" data-datepicker-pop="dd MMMM yyyy"
 												data-ng-model="start.startDate" data-is-open="opened2" min="minDate"
@@ -81,7 +84,7 @@
 								<td>
 									<div class="control-group">
 										<label class="control-label" for="status">{{
-											'label.status' | translate }}</label>
+											'label.status' | translate }}<span class="required">*</span></label>
 										<div class="controls">
 											<select data-ng-model="discountdetail.discountStatus"
 												data-ng-options="status.value as status.value for status in statuses">
@@ -92,8 +95,8 @@
 							</tr>
 							<tr>
 							<td align="right" colspan="2">
-				       <a href="#/viewdiscounts/{{discountdetail.id}}"><button id="cancel" type="reset" class="btn">{{'label.cancel' |translate}}</button></a>
-				      <button id="submit" type="submit" class="btn btn-primary">{{'label.save'| translate}}</button>
+				       <a href="#/viewdiscounts/{{discountIdForCancel}}"><button id="cancel" type="reset" class="btn">{{'label.cancel' |translate}}</button></a>
+				      <button id="submit" type="submit" data-ng-disabled="editdiscountsform.$dirty && editdiscountsform.$invalid" class="btn btn-primary">{{'label.save'| translate}}</button>
 	           </td></tr></table>
 		</fieldset>
 	</form>

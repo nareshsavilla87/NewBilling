@@ -12,7 +12,7 @@
 			<li class="active">{{formData.eventName}}</li>
 		</ul>
 	</div>
- <form class="form-horizontal well" ng-submit="submit()">
+ <form name="editeventpriceform" class="form-horizontal well" ng-submit="submit()">
 	
 	 <div class="error" ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
@@ -80,7 +80,10 @@
 					<div class="control-group">
 						<label class="control-label" for="price">{{'label.eventprice.amount' | translate }}</label>
 						<div class="controls">
-							<input type="text" id="eventValidity" ng-model="formData.price">
+							<input type="text" id="eventValidity" name="amount" ng-model="formData.price" data-ng-pattern="{{ 'number' | CodeValidate }}"></br>
+							<span data-ng-show="editeventpriceform.amount.$dirty && editeventpriceform.amount.$invalid">
+								<small class="error-row" data-ng-show="editeventpriceform.amount.$error.pattern">{{'error.not.numeric.validation' | translate }}</small>
+							</span>
 						</div>
 					</div>
 				</td>
@@ -90,7 +93,7 @@
 		
 		<div class="offset3">
 			<a href="#/viewEventPrice/{{formData.id}}"><button type="reset" class="btn">Cancel</button></a>
-			<button type="submit" class="btn btn-primary">Save</button>
+			<button type="submit" data-ng-disabled="editeventpriceform.$dirty && editeventpriceform.$invalid" class="btn btn-primary">Save</button>
 		</div>
 	</fieldset>
 </form>
