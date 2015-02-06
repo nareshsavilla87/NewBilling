@@ -1,3 +1,4 @@
+ <div data-ng-controller="EditTemplateController">
  <div>
         <ul class="breadcrumb">
             <li><a href="#/templates">{{'label.anchor.templates' | translate}}</a><span class="divider">/</span></li>
@@ -5,7 +6,7 @@
             <li class="active">{{'label.anchor.edittemplate' | translate}}</li>
         </ul>
     </div>
-	<form class="well" data-ng-controller="EditTemplateController" >
+	<form class="well" >
 	   <api-validate></api-validate> 
 	    <fieldset>
 	             <table class="fullwidth"><tbody><tr>
@@ -85,11 +86,11 @@
 	                </div></td>
 	                 </tr>
 	                <tr><td align="right"><div>
-	                     <a href="#/templates"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+	                     <a href="#/viewtemplate/{{templateId}}"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
 	                    <button type="submit" data-ng-click="submit()" class="btn btn-primary">{{'button.save'| translate}}</button>
 	                </div></td></tr>
 	     </tbody> </table>
 	    </fieldset>
 	</form>
-	
+	</div>
 

@@ -2541,6 +2541,8 @@
 "label.input.mapperkey":"Mapper Key",
 "label.input.mappervalue":"Mapper Value",
 "label.anchor.edittemplate":"Edit Template",
+"label.anchor.deletetemplate":"Delete Template",
+"label.heading.text":"Text",
 "validation.msg.template.name.cannot.be.blank":"template name cannot be blank",
 "error.msg.tempalte.duplicate.name":"template name already exists"
  

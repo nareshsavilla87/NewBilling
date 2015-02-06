@@ -10,12 +10,13 @@
         
         scope.deleteTemplate = function (){
             $modal.open({
-                templateUrl: 'deletetemplate.html',
-                controller: TemplateDeleteCtrl
+                templateUrl: 'deletePopupForTemplate.html',
+                controller: approve,
+                resolve:{}
             });
         };
-      function TemplateDeleteCtrl($scope, $modalInstance) {
-            $scope.TemplateDeleteCtrl = function () {
+      function approve($scope, $modalInstance) {
+            $scope.approve = function () {
                 resourceFactory.templateResource.remove({templateId: routeParams.id}, {}, function(data) {
                     location.path('/templates');
                     // added dummy request param because Content-Type header gets removed
@@ -29,7 +30,15 @@
         };
     }
   });
-  mifosX.ng.application.controller('ViewTemplateController', ['$scope', '$routeParams','ResourceFactory', '$location','$modal','PermissionService', mifosX.controllers.ViewTemplateController]).run(function($log) {
+  mifosX.ng.application.controller('ViewTemplateController', [
+  '$scope', 
+  '$routeParams',
+  'ResourceFactory', 
+  '$location',
+  '$modal',
+  'PermissionService',
+  mifosX.controllers.ViewTemplateController
+  ]).run(function($log) {
     $log.info("ViewTemplateController initialized");
   });
 }(mifosX.controllers || {}));

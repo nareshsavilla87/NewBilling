@@ -12,20 +12,20 @@
             </div>
         </div>
     </div>
-    <script type="text/ng-template" id="deletetemplate.html">
-        <div class="modal-header silver">
-           <h3 class="bolder">Delete Template</h3>
+    <script type="text/ng-template" id="deletePopupForTemplate.html">
+    	<div class="modal-header silver">
+        	<h3 class="bolder">{{'label.anchor.deletetemplate' | translate}}</h3>
         </div>
+
         <div class="modal-body style="height:60px;">
             <h4>Are you sure?</h4>
-            <api-validate></api-validate>
-            <br>
         </div>
-         <div class="modal-footer">
+
+        <div class="modal-footer">
             <button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
-            <button class="btn btn-primary" ng-click="delete()">{{'label.confirm' | translate}}</button>
+            <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
         </div>
-    </script>
+   </script>
     <div class="row paddedleft">
         <h3>{{template.name}}</h3>
         <table class="table table-bordered" width="80%">

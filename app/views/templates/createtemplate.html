@@ -6,6 +6,12 @@
     </div>
 	<form class="well" data-ng-controller="CreateTemplateController" >
 	   <api-validate></api-validate> 
+	   <div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	   
 	    <fieldset>
 	             <table class="fullwidth"><tbody><tr>
 	                     <td valign="top" class="paddedleftNone" style="width: 100%;">
