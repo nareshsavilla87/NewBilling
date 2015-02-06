@@ -2,7 +2,7 @@
 	  mifosX.controllers = _.extend(module, {
 		  HardwareSwapController: function(scope, webStorage,routeParams , location, resourceFactory,http,$rootScope,API_VERSION) {
 			 scope.formData={};
-			  scope.association=[];
+			  scope.association=[];scope.enumValuesDatas = [];
 			  scope.clientId=routeParams.clientId;
 			  var clientData = webStorage.get('clientData');
 	            scope.displayName=clientData.displayName;
@@ -22,7 +22,9 @@
 	            var config = webStorage.get('client_configuration').deviceAgrementType;
 	  		  scope.config=config;
 	            resourceFactory.associationResource.getAssociation({clientId: routeParams.clientId,id:routeParams.orderId} , function(data) {
-	                scope.association = data;                                                
+	                scope.association = data;   
+	                scope.enumValuesDatas = data.enumValuesDatas;
+	                scope.reason = scope.enumValuesDatas[0].value
 	            });
 	        scope.getData = function(query){
 	        	 return http.get($rootScope.hostUrl+ API_VERSION+'/itemdetails/'+scope.association.itemId+'/'+scope.officeId+'/', {
