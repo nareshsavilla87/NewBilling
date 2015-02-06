@@ -19,7 +19,7 @@
            				<div class="control-group">
             				<label class="control-label" for="planCode">{{ 'label.plan.plancode' | translate }}<span class="required">*</span></label>
             				<div class="controls">
-              					<input type="text" id="planCode" name="planCode" data-ng-model="formData.planCode" data-ng-maxlength="{{ 'code' | CodeValidate }}" required data-late-Validate></br>
+              					<input type="text" id="planCode" name="planCode" data-ng-model="formData.planCode" data-ng-maxlength="{{ 'code' | CodeValidate }}"></br>
               					<span data-ng-show="createplan.planCode.$dirty && createplan.planCode.$invalid">
 								<small class="error-row" >{{'error.code.definition.length.validation'| translate}}</small>
 								</span>
@@ -31,7 +31,7 @@
           				<div class="control-group">
             				<label class="control-label" for="status">{{ 'label.plan.status' | translate }}<span class="required">*</span></label>
             				<div class="controls">
-              					<select id="status" data-ng-model="formData.status"  data-ng-options="planStatus.id as planStatus.value for planStatus in planStatus" required data-late-Validate></select>
+              					<select id="status" data-ng-model="formData.status"  data-ng-options="planStatus.id as planStatus.value for planStatus in planStatus"></select>
             				</div>
             			
           				</div>
@@ -43,7 +43,7 @@
             			<div class="control-group">
             				<label class="control-label" for="planDescription">{{ 'label.plan.plandescription' | translate }}<span class="required">*</span></label>
             				<div class="controls">
-              					<input type="text" id="planDescription" data-ng-model="formData.planDescription" required data-late-Validate>
+              					<input type="text" id="planDescription" data-ng-model="formData.planDescription">
              				</div>
             			</div>
             		</td>
@@ -52,7 +52,7 @@
             			<div class="control-group">
             				<label class="control-label" for="billRule">{{ 'label.plan.billingrule' | translate }}<span class="required">*</span></label>
             				<div class="controls">
-              					<select id="billRule" data-ng-model="formData.billRule"  data-ng-options="billRuleData.id as billRuleData.billruleOptions for billRuleData in billRuleDatas" required data-late-Validate></select>
+              					<select id="billRule" data-ng-model="formData.billRule"  data-ng-options="billRuleData.id as billRuleData.billruleOptions for billRuleData in billRuleDatas"></select>
             				</div>
            				</div>
            			</td>
@@ -72,7 +72,7 @@
             			<div class="control-group">
             				<label class="control-label" for="provisioingSystem">{{ 'label.plan.provisioningsystem' | translate }}<span class="required">*</span></label>
             				<div class="controls">
-            					<select id="provisioingSystem" data-ng-model="formData.provisioingSystem"  data-ng-options="provisionSysData.mCodeValue as provisionSysData.mCodeValue for provisionSysData in provisionSysDatas" required data-late-Validate></select>
+            					<select id="provisioingSystem" data-ng-model="formData.provisioingSystem"  data-ng-options="provisionSysData.mCodeValue as provisionSysData.mCodeValue for provisionSysData in provisionSysDatas"></select>
             				</div>
            				</div>
           			</td>
@@ -156,9 +156,9 @@
          				<td>
          					<label class="control-label" for="volume">{{ 'label.plan.units' | translate }}<span class="required">*</span></label>&nbsp;&nbsp;&nbsp;
          					<select data-ng-model="formData.volume" data-ng-options="volumeType.value as volumeType.value for volumeType in volumeTypes"></select>
-                 			<input type="number" name="units" class="input-small ng-pristine ng-valid" id="units" min="0" data-ng-model="formData.units">
+                 			<input type="text" name="units" class="input-small ng-pristine ng-valid" id="units" data-ng-pattern="{{ 'number' | CodeValidate }}" data-ng-model="formData.units">
                  			<span data-ng-show="createplan.units.$dirty && createplan.units.$invalid">
-								<small class="error-row" >{{'error.not.numeric.validation' | translate }}</small>
+								<small class="error-row" data-ng-show="createplan.units.$error.pattern">{{'error.not.numeric.validation' | translate }}</small>
 							</span>
          				</td>
          			</tr>
@@ -216,7 +216,7 @@
  -->          	
           	<div align="right" style="margin-right:9.5%;">
             	<a href="#/plans"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
-            	<button id="submit" data-ng-disabled="!createplan.$valid" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+            	<button id="submit" data-ng-disabled="createplan.$dirty && createplan.$invalid" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
           	</div>
         	</fieldset>
       </form>

@@ -7,6 +7,7 @@
 			scope.formData = {};
 			scope.selectedServices = [];
 			scope.availableServices = [];
+			scope.regionIdd = routeParams.id;
 			resourceFactory.regionResource.get({ regionId : routeParams.id }, function(data) {
 				scope.formData = data;
 				scope.countrydata = data.countryData;

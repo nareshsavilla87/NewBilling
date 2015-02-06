@@ -2531,6 +2531,10 @@
 "error.msg.voucher.no.already.existed.with.thiscontract":"Duration cann't change,Voucher pins are already gererated",
 "error.msg.voucher.no.isprocessed.exception":"Cann't delete VoucherPin/s Already Generated for your selected lists",
 
+"table.heading.warrantyDate":"Warranty Date",
+"label.reason":"Reason",
+"error.msg.hardware.swapping.warranty.expiry":"Couldn't swap Hardware, because hardware warranty date is expired.",
+
 
 "#templates":".......",
 "label.anchor.templates":"Templates",
@@ -2549,9 +2553,7 @@
 "label.anchor.deletetemplate":"Delete Template",
 "label.heading.text":"Text",
 "validation.msg.template.name.cannot.be.blank":"template name cannot be blank",
-"error.msg.tempalte.duplicate.name":"template name already exists",
-
-"table.heading.warrantyDate":"Warranty Date"
+"error.msg.tempalte.duplicate.name":"template name already exists"
 
 
 
