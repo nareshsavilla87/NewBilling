@@ -104,6 +104,8 @@
  	"label.changeorder"			: "Breyta Panta", 
  	"label.renewalorder"		: "endurnýjun Panta", 
  	"label.voucher.pinNo"		: "Úttektarmiðinn pinna Númer", 
+ 	"label.terms.conditions"	: "Skilmálar og skilyrði", 
+ 	"label.read.agreement"		: "Lesa og samþykkja eftirfarandi samkomulag til að halda áfram.",
  	
  	"label.signup.newuser"			 		    : "stofnaðu aðgang ",
  	"label.or"			 					    : " - eða - ",

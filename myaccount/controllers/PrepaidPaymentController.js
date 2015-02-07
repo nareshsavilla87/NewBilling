@@ -1,6 +1,17 @@
 PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorageService,location,modal){
 	
-	//scope.termsAndConditions = true;
+	
+	//getting Payment Gateway names form constans.js
+	var  kortaPG			=	paymentGatewayNames.korta || "";
+	var  dalpayPG			=	paymentGatewayNames.dalpay || "";
+	var  globalpayPG		=	paymentGatewayNames.globalpay || "";
+	var  paypalPG			=	paymentGatewayNames.paypal || "";
+	var  netellerPG			=	paymentGatewayNames.neteller || "";
+	var  internalPaymentPG	=	paymentGatewayNames.internalPayment || "";
+	
+	//getting locale value
+	 var temp 				= localStorageService.get('localeLang')||"";
+	 scope.optlang 			= temp || selfcareModels.locale;
 	
 	var storageData			= localStorageService.get("storageData");
 	var clientData 			= storageData.clientData;
@@ -57,6 +68,7 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 	  
 	//this fun call when the user click on proceed btn
 	scope.paymentGatewayFun  = function(paymentGatewayName){
+			  scope.paymentGatewayName = paymentGatewayName;
 			  scope.termsAndConditions = false;
 			  var paymentGatewayValues = {};
 			  for (var i in scope.paymentgatewayDatas){
@@ -70,14 +82,14 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 			  }
 	     switch(paymentGatewayName){
 	     
-			case 'dalpay' :
+			case dalpayPG :
 					var url = paymentGatewayValues.url+'?mer_id='+paymentGatewayValues.merchantId+'&pageid='+paymentGatewayValues.pageId+'&item1_qty=1&num_items=1';
 				scope.paymentURL =  url+"&cust_name="+clientData.displayName+"&cust_phone="+clientData.phone+"&cust_email="+clientData.email+"&cust_state="+clientData.state+""+				
 				  	"&cust_address1="+clientData.addressNo+"&cust_zip="+clientData.zip+"&cust_city="+clientData.state+"&item1_desc="+scope.planData.planCode+"&item1_price="+scope.planData.price+"" + 	  				
 				  	"&user1="+scope.clientId+"&user2="+hostName+"&user3=orderbookingscreen/payment/"+scope.clientId+"/"+0+"/"+0;
 					break;
 					
-			case 'korta' :
+			case kortaPG :
 				
 			    var kortaStorageData = {clientData :clientData,planId:0,planData : scope.planData,screenName :'payment',paymentGatewayValues:paymentGatewayValues};	
 			    var encodeURIComponentData = encodeURIComponent(JSON.stringify(kortaStorageData));
@@ -88,14 +100,14 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 				else scope.paymentURL = "#/kortaintegration?key="+encryptedData;	    		
 				break;
 					
-			case 'paypal' :
+			case paypalPG :
 				var query = {clientId :scope.clientId,locale : "en",returnUrl:hostName,screenName :'payment'};
 				
 				scope.paymentURL = paymentGatewayValues.paypalUrl+'='+paymentGatewayValues.paypalEmailId+"&item_name="+scope.planData.planCode+"&amount="+scope.planData.price+"" +	  	  				
 				  	  "&custom="+JSON.stringify(query);
 					break;
 					
-			case 'globalpay' :
+			case globalpayPG :
 				var globalpayStorageData = {clientData :clientData,planId:0,screenName :'payment',price :scope.planData.price,
 											 priceId : 0, globalpayMerchantId:paymentGatewayValues.merchantId};	
 			    var encodeURIComponentData = encodeURIComponent(JSON.stringify(globalpayStorageData));
@@ -104,14 +116,14 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 				scope.paymentURL = "#/globalpayintegration?key="+encryptedData;
 				break;
 				
-			case 'neteller' :
+			case netellerPG :
 				var nettellerData = {currency:selfcareModels.netellerCurrencyType,total_amount:scope.planData.price,screenName:'payment'};
 				var encodeURINetellerData = encodeURIComponent(JSON.stringify(nettellerData));
 				var encryptedData = CryptoJS.AES.encrypt(encodeURINetellerData,encrytionKey).toString();
 				scope.paymentURL = "#/neteller/"+scope.clientId+"?key="+encryptedData;
 				break;
 				
-			case 'internalPayment' :
+			case internalPaymentPG :
 				scope.paymentURL =  "#/internalpayment/"+'payment'+"/"+scope.clientId+"/"+0+"/"+0+"/"+scope.planData.price;
 				break;
 					
@@ -126,6 +138,16 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 	  };
 	  
     var TermsandConditionsController = function($scope,$modalInstance){
+    	var termsAndConditions = "termsAndConditions_"+scope.optlang+"_locale";
+    	if(scope.optlang){
+    		(scope.paymentGatewayName == kortaPG)?
+    			$scope.termsAndConditionsText = korta[termsAndConditions] 	 		: (scope.paymentGatewayName == dalpayPG)?
+    			$scope.termsAndConditionsText = dalpay[termsAndConditions] 	 		: (scope.paymentGatewayName == globalpayPG)?
+    			$scope.termsAndConditionsText = globalpay[termsAndConditions] 		: (scope.paymentGatewayName == paypalPG)?
+    			$scope.termsAndConditionsText = paypal[termsAndConditions] 	 		: (scope.paymentGatewayName == netellerPG)?
+    			$scope.termsAndConditionsText = neteller[termsAndConditions] 	 	: (scope.paymentGatewayName == internalPaymentPG)?
+    			$scope.termsAndConditionsText = internalPayment[termsAndConditions] : $scope.termsAndConditionsText = selectOnePaymentGatewayText[scope.optlang];
+    	}
     	$scope.done = function(){
     		$modalInstance.dismiss('cancel');
     	};
