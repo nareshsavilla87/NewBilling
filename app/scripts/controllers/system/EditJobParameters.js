@@ -71,6 +71,7 @@
     	  if(this.formData.name== "AUTO_EXPIRY"){this.formData.exipiryDate = dateFilter(scope.date.exipiryDate,'dd MMMM yyyy');}
     	  if(this.formData.name == "PDF"){this.formData.processDate = dateFilter(scope.date.processDate,'dd MMMM yyyy');}
     	  if(this.formData.name == "EXPORTDATA"){this.formData.processDate = dateFilter(scope.date.processDate,'dd MMMM yyyy');}
+    	  if(this.formData.name == "RESELLERCOMMISSION"){this.formData.processDate = dateFilter(scope.date.processDate,'dd MMMM yyyy');}
          
       delete this.formData.jobId;
    	  delete this.formData.displayName;

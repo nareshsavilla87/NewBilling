@@ -167,7 +167,8 @@
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container" style="width:1035px;">
-                <a class="brand" href="#/home"><img src="./images/BillingX_logoSmall.png" alt="BillingX" height="20"></a>
+                <a class="brand" href="#/home"><img data-ng-hide="image" src="./images/BillingX_logoSmall.png" alt="BillingX" height="20">
+                <img data-ng-show="image" src={{image}} alt="BillingX" height="20" width="30"></a>
                 
                 <div class="nav-collapse collapse" id="main-menu">
                     <ul class="nav" id="main-menu-left" style="font-size:15px;">
