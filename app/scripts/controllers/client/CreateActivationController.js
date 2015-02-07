@@ -9,7 +9,7 @@
 		  scope.ActivationData.allocate = [];
 		  scope.ActivationData.bookorder = [];
 		  scope.ActivationData.owndevice = [];
-		  scope.data=[];
+		  scope.data={};
 		  //var config = filter('ConfigLookup')('deviceAgrementType');
 		 
 		  scope.configPayment = webStorage.get("client_configuration").payment;
@@ -109,9 +109,11 @@
 	        		scope.data.unitPrice=scope.formData2.unitPrice;
 	        		scope.data.locale=$rootScope.locale.code;
 	        		scope.data.quantity=1;
+	        		scope.data.units=scope.formData2.units;
 	        		
 	        		resourceFactory.oneTimeSaleQuantityResource.get({quantity:1,itemId:itemId},scope.data, function(data) {
-		        		scope.formData2.quantity=1;
+		        		
+	        			scope.formData2.quantity=1;
 		        		scope.formData2.totalPrice=data.totalPrice;
 		        		scope.formData2.itemId=itemId;
 		        		scope.formData2.discountId = scope.discountMasterDatas[0].id;
@@ -208,6 +210,7 @@
 	        		 scope.paytermdatas=data.paytermdata;
 	        		
 	        		 scope.formData4.isPrepaid=data.isPrepaid;
+	        		 scope.isPrepaidPlanFormData4=data.isPrepaid;
 	        		 scope.formData4.planCode=value;
 	        		 
 	        		  for (var i in data.subscriptiondata) {
@@ -221,7 +224,6 @@
 	        
 	        scope.submit4 = function() {   
 	        	scope.flag = true;
-
 	        	this.formData4.locale = $rootScope.locale.code;
 	        	this.formData4.isNewplan=true;
 	        	var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');

@@ -357,13 +357,12 @@
        	update: { method: 'PUT' }
        }),
        voucherpinResource: defineResource(apiVer + "/vouchers/:voucherId", {voucherId:'@voucherId'}, {
-           getAllEmployees: {method: 'GET', params: {}, isArray: true}
+           getAllEmployees: {method: 'GET', params: {}, isArray: true},
+       	   update: {method: 'PUT', params: {}}
          }),
-         voucherpinBatchWiseResource: defineResource(apiVer + "/vouchers/batchwise/:voucherId", {voucherId:'@voucherId'}, {
-             getAllEmployees: {method: 'GET', params: {}, isArray: true}
+         voucherpinsByIdResource: defineResource(apiVer + "/vouchers/voucherslist/:voucherId", {voucherId:'@voucherId'}, {
            }),
          voucherpinTemplateResource: defineResource(apiVer + "/vouchers/template", {}, {}),
-         voucherpinBatchTemplateResource: defineResource(apiVer + "/vouchers/batchtemplate", {}, {}),
          
          discountResource: defineResource(apiVer + "/discount/:discountId", {discountId:'@discountId'}, {
              get: {method: 'GET', params: {}, isArray: true},
@@ -644,6 +643,7 @@
                  }),
                oneTimeSaleQuantityResource: defineResource(apiVer + "/onetimesales/:itemId/totalprice", {itemId:'@itemId'}, {
                 get: {method: 'POST', params: {}}
+            	  // get: {method: 'GET', params: {}}
                  }),
                oneTimeSaleAllocation: defineResource(apiVer + "/onetimesales/:orderId/allocation", {orderId:'@orderId'}, {
                 get: {method: 'GET', params: {}}
@@ -1035,6 +1035,7 @@
             radServiceResource: defineResource(apiVer + "/freeradius/radservice/:radServiceId", {radServiceId:'@radServiceId'}, {
                  update: { method: 'PUT' }
               }),
+              radServiceTemplateResource: defineResource(apiVer + "/freeradius/raduser2/template", {}, {}),
 
             eventActionResource: defineResource(apiVer + "/eventactions", {}, {})
       

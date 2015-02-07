@@ -9,9 +9,6 @@
 		  scope.formData=[];
 		  scope.date={};
 		//  scope.start.date = new Date();
-		    scope.date.processDate = dateFilter(new Date(),'dd MMMM yyyy');
-	        scope.date.dueDate = dateFilter(new Date(),'dd MMMM yyyy');
-	        scope.date.exipiryDate = dateFilter(new Date(),'dd MMMM yyyy');
       resourceFactory.jobsparameters.get({jobId : routeParams.id}, function(data) {
         scope.reportDatas = data.queryData;
         scope.billingMessageDatas=data.billingMessageDatas;
@@ -19,15 +16,20 @@
         scope.provisionSysData=data.provisionSysData;
         scope.formData=data;
         
+        if(scope.jobparameters.processDate){
         var actDate = dateFilter(scope.jobparameters.processDate,'dd MMMM yyyy');
         scope.date.processDate = new Date(actDate);
+        }
         
+        if(scope.jobparameters.dueDate){
         var dueDate = dateFilter(scope.jobparameters.dueDate,'dd MMMM yyyy');
         scope.date.dueDate = new Date(dueDate);
+        }
         
+        if(scope.jobparameters.exipiryDate){
         var exipiryDate= dateFilter(scope.jobparameters.exipiryDate,'dd MMMM yyyy');
         scope.date.exipiryDate = new Date(exipiryDate);
-       
+        }
        
         if(data.jobparameters.isDynamic=="Y"){
         	scope.formData.isDynamic=true;
@@ -62,15 +64,15 @@
     	  this.formData.messageTemplate=this.formData.jobparameters.messageTemplate;
     	  this.formData.emailId=this.formData.jobparameters.emailId;
     	  this.formData.URL=this.formData.jobparameters.url;
-    	  this.formData.ProvSystem=this.formData.jobparameters.provSystem;
+    	  this.formData.system=this.formData.jobparameters.provSystem;
     	  this.formData.Username=this.formData.jobparameters.username;
     	  this.formData.Password=this.formData.jobparameters.password;
     	  
     	  if(this.formData.name == "INVOICING"){this.formData.processDate = dateFilter(scope.date.processDate,'dd MMMM yyyy');}
-    	  if(this.formData.name== "STATEMENT"){this.formData.dueDate = dateFilter(scope.date.dueDate,'dd MMMM yyyy');}
+    	  if(this.formData.name== "Prepare Statements"){this.formData.dueDate = dateFilter(scope.date.dueDate,'dd MMMM yyyy');}
     	  if(this.formData.name== "AUTO_EXPIRY"){this.formData.exipiryDate = dateFilter(scope.date.exipiryDate,'dd MMMM yyyy');}
-    	  if(this.formData.name == "PDF"){this.formData.processDate = dateFilter(scope.date.processDate,'dd MMMM yyyy');}
-    	  if(this.formData.name == "EXPORTDATA"){this.formData.processDate = dateFilter(scope.date.processDate,'dd MMMM yyyy');}
+    	  if(this.formData.name == "Make PDFs"){this.formData.processDate = dateFilter(scope.date.processDate,'dd MMMM yyyy');}
+    	  if(this.formData.name == "Export Data"){this.formData.processDate = dateFilter(scope.date.processDate,'dd MMMM yyyy');}
          
       delete this.formData.jobId;
    	  delete this.formData.displayName;

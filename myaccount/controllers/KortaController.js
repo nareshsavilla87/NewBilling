@@ -8,9 +8,8 @@ KortaController = function(scope, routeParams, location, localStorageService,$ti
 		  var kortaTokenValue 		= selfcareModels.kortaTokenValue;
 		  var encrytionKey 			= selfcareModels.encriptionKey;
 		  scope.currency 			= selfcareModels.kortaCurrencyType;
-		  var langs 				= Langs;
-		  var temp 					= localStorageService.get('Language')||"";
-		  scope.optlang 			= temp.code || langs[0].code;
+		  var temp 					= localStorageService.get('localeLang')||"";
+		  scope.optlang 			= temp || selfcareModels.locale;
 		  
 		  var encryptedData 		= location.search().key;
 		  
@@ -21,10 +20,10 @@ KortaController = function(scope, routeParams, location, localStorageService,$ti
       	  var planData 				= kortaStorageData.planData || "";
 		  
 		  var clientId 				= clientData.id;
-		  scope.fullName 			= clientData.displayName;
+		  scope.fullName 			= clientData.displayName || "";
 		  scope.address 			= clientData.addressNo;
 		  scope.emailId 			= clientData.email;
-		  clientData.zip 			== "" ? scope.zipcode = clientData.city : scope.zipcode = clientData.zip;
+		  (clientData.zip == null ||  clientData.zip == "") ? scope.zipcode = clientData.city : scope.zipcode = clientData.zip;
 		  scope.city 				= clientData.city;
 		  scope.country 			= clientData.country;
 		  scope.mobileNo 			= clientData.phone;

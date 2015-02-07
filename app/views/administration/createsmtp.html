@@ -67,24 +67,40 @@
 								</td>
 								<td>
 									<div class="control-group">
+            						<label class="control-label" for="setContentString">{{'label.setcontentstring' | translate }}<span class="required">*</span></label>
+            						<div class="controls">
+            							<select data-ng-model="formData.setContentString">
+            								<option value="text/html;charset=utf-8">text/html;charset=utf-8</option>
+              								<option value="text/html;charset=utf-16">text/html;charset=utf-16</option>
+              								<option value="text/html">text/html</option>
+            							</select>
+            						</div>
+          							</div>
+								</td>
+								
+							</tr>
+							<tr>
+								<td>
+									<div class="control-group">
             						<label class="control-label" for="port">{{ 'label.port' | translate }}</label>
             						<div class="controls">
               						<input type="text" id="port" ng-model="formData.port">
             						</div>
           							</div>
 								</td>
+								<td>
+								</td>
 							</tr>
 							<tr>
-							<td>
-							</td>
-							<td align="right">
-							<div class="control-group">
-            				  <div class="controls">
-            				   <a href="#/global"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
-                               <button  id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
-            				  </div>
-          				  </div>
-							</td>
+								<td></td>
+								<td align="right">
+									<div class="control-group">
+            				  			<div class="controls">
+            				   				<a href="#/global"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+                               				<button  id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+            				  			</div>
+          				  			</div>
+								</td>
 							</tr>
 					</table>
 				</td>

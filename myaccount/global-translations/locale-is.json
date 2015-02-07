@@ -1,7 +1,7 @@
 {
   "ttles" :"----------------------------------------------------",
  	"title.obs.selfcare"					 : "OBS SelfCare",
- 	"title.thortelecom.selfcare"			 : "Thor Telecom SelfCare",
+ 	"title.selfcare"						 : "Thor Telecom SelfCare",
  	"title.thankyou"						 : "Þakka þér fyrir að skrá þig!",
  	"title.conformation.registration" 		 : "Í sköpulag hefur verið sendur til póstur auðkenni.",
  	"title.conformation.email"               : "Vinsamlegast innskráningu til þinn tölvupósti reikningur og",
@@ -907,7 +907,7 @@
 "validation.msg.paymentgateway.value.cannot.be.blank":"Gildi má ekki vera autt",
 
 "#Prepaid Payment":"",
-"label.client.prepaid.payment":"greiðsla",
+"label.client.prepaid.payment":"netinu greiðsla",
 "label.prepaid.amount":"upphæð",
 
 "#Neteller":"",
@@ -916,7 +916,12 @@
 "label.neteller.verificationcode":"sannprófun Kóði",
 "label.neteller.value":"Neteller Email Kenni",
 "label.neteller.source":"Heimild",
-"label.neteller.amount":"upphæð"
+"label.neteller.amount":"upphæð",
+"label.netteler.info'":"Neteller Upplýsingar",
+
+"#paymentgatewayresponser":"",
+"label.cardType":"kortið Týpa",
+"label.cardNumber":"kortið Númer"
 
 
 

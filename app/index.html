@@ -131,36 +131,101 @@
 
 
     <nav>
-        <ul class="margin-nav nav-list ext-sidenav" ng-show="office||prospect||createclient||activation">
-            <li><a class="black" ng-show="office=PermissionService.showMenu('READ_OFFICE')" href="#/nav/offices">+ Navigation<i class="icon-compass icon-large pull-right "></i></a></li>
+        <ul class="margin-nav nav-list ext-sidenav" data-ng-show="office||prospect||createclient||activation">
+        
+            <li>
+            	<a class="black" data-ng-show="office = PermissionService.showMenu('READ_OFFICE')" href="#/nav/offices">
+            		+ Navigation<i class="icon-compass icon-large pull-right "></i>
+            	</a>
+            </li>
+            <li data-ng-show="PermissionService.showMenu('CHECKER_SUPER_USER')" class="divider"></li> 
+            
+            <li>
+            	<a class="black" data-ng-show="PermissionService.showMenu('CHECKER_SUPER_USER')" href="#/tasks">
+            		+ Checker Inbox & Tasks<i class="icon-check icon-large pull-right"></i>
+            	</a>
+            </li>
             <li  data-ng-show="PermissionService.showMenu('CHECKER_SUPER_USER')" class="divider"></li> 
-             <li><a class="black" data-ng-show="PermissionService.showMenu('CHECKER_SUPER_USER')" href="#/tasks">+ Checker Inbox & Tasks<i class="icon-check icon-large pull-right"></i></a></li>
-               <li  data-ng-show="PermissionService.showMenu('CHECKER_SUPER_USER')" class="divider"></li> 
-             <li><a class="black" ng-show="system=PermissionService.showMenu('READ_DATATABLE','CREATE_CODE','READ_CODE','create_role','READ_role','UPDATE_PERMISSION','read_Audit',
-                                						'READ_REPORT','READ_CONFIGURATION','READ_SERVICEMAPPING','READ_PLANMAPPING','READ_PROVISIONINGSYSTEM','READ_EVENTACTIONMAP')" href="#/system">+ {{ 'link.admin.system' | translate }}<i class="icon-laptop icon-large pull-right"></i> </a></li>
-                                						<li  data-ng-show="PermissionService.showMenu('READ_SERVICEMAPPING')" class="divider"></li>
-                                						<li><a class="black" ng-show="organization=PermissionService.showMenu('READ_OFFICE','READ_STAFF','READ_CONTRACT','READ_MEDIAASSET','READ_EVENT','READ_DISCOUNT','READ_PROMOTIONCODE','READ_COUNTRYCURRENCY','READ_LOCATION',
-                                							'READ_CURRENCY','READ_SERVICE','READ_PLAN','READ_REGION','READ_RANDAMGENERATOR','READ_CHARGECODE','READ_MESSAGE')" href="#/organization"> + {{ 'link.admin.organisation' | translate }}<i class="icon-building icon-large pull-right"></i></a></li>
-             <li ng-show="PermissionService.showMenu('READ_OFFICE')" class="divider"></li>
-            <li> <a class="black" ng-show="prospect=PermissionService.showMenu('CREATE_PROSPECT')" href="#/createprospects">+ Leads<i class="icon-filter icon-large pull-right"></i></a></li> 
-            <li ng-show="PermissionService.showMenu('CREATE_PROSPECT')" class="divider"></li>
-            <li><a class="black" ng-show="createclient=PermissionService.showMenu('CREATE_CLIENT')" href="#/createclient"> + Client <i class="icon-user icon-large pull-right"></i></a></li>
-            <li ng-show="PermissionService.showMenu('CREATE_CLIENT')" class="divider"></li>
-            <li><a class="black" ng-show="activation=PermissionService.showMenu('ACTIVATIONPROCESS_ACTIVATE')" 
-            href="#/createsimpleActivation">  + Simple Activation<i class="icon-tasks icon-large pull-right"></i></a></li>
-            <li ng-show="PermissionService.showMenu('CREATE_CLIENT')" class="divider"></li> 
-             <li><a class="black" ng-show="smartsearch=PermissionService.showMenu('READ_GLACCOUNT')&&PermissionService.showMenu('READ_OFFICE')&&PermissionService.showMenu('READ_SMARTSEARCH')" href="#/smartSearch"> + {{ 'link.smartsearch' | translate }}<i class="icon-search icon-large pull-right"></i></a></li>
-             <li ng-show="PermissionService.showMenu('CREATE_CLIENT')" class="divider"></li>
-             <li><a class="black" ng-show="paymentGetWay=PermissionService.showMenu('READ_PAYMENTGATEWAY')" href="#/paymentGateway"> + PaymentGateway<i class="icon-money icon-large pull-right"></i></a></li>
-             <li ng-show="PermissionService.showMenu('CREATE_CLIENT')" class="divider"></li>
-             <li><a class="black" ng-show="upload=PermissionService.showMenu('READ_UPLOADSTATUS')" href="#/importing"> + {{'link.import' | translate }}<i class="icon-upload icon-large pull-right"></i></a></li>
-             <li ng-show="PermissionService.showMenu('CREATE_CLIENT')" class="divider"></li>
-             <li><a class="black" ng-show="jobs=PermissionService.showMenu('READ_SCHEDULERJOB')" href="#/jobs"> + Scheduler Jobs<i class="icon-gears icon-large pull-right"></i></a></li>
-               <li ng-show="PermissionService.showMenu('CREATE_CLIENT')" class="divider"></li>
-             <li ng-show="PermissionService.showMenu('CREATE_CLIENT')" class="divider"></li>
-             <li><a class="black" ng-show="accounting=PermissionService.showMenu('READ_JOURNALENTRY','READ_GLACCOUNT','READ_GLCLOSURE','READ_ACCOUNTINGRULE')" href="#/accounting"> + {{ 'link.accounting' | translate }}<i class="icon-money icon-large pull-right"></i></a></li>
-             <li ng-show="PermissionService.showMenu('ACTIVATIONPROCESS_ACTIVATE')" class="divider"></li>
-          	 <li><a class="black" ng-show="PermissionService.showMenu('ALL_FUNCTIONS')" class="bolder black" href="#/help">&nbsp; + {{ 'label.anchor.shortcuts' | translate }}<i class="icon-hand-left icon-large pull-right "></i></a></li>
+               
+            <li>
+            	<a class="black" data-ng-show="system = PermissionService.showMenu('READ_DATATABLE','CREATE_CODE','READ_CODE','create_role','READ_role','UPDATE_PERMISSION','read_Audit',
+                   'READ_REPORT','READ_CONFIGURATION','READ_SERVICEMAPPING','READ_PLANMAPPING','READ_PROVISIONINGSYSTEM','READ_EVENTACTIONMAP')" href="#/system">
+                   + {{ 'link.admin.system' | translate }}<i class="icon-laptop icon-large pull-right"></i> 
+                </a>
+            </li>
+            <li data-ng-show="system = PermissionService.showMenu('READ_DATATABLE','CREATE_CODE','READ_CODE','create_role','READ_role','UPDATE_PERMISSION','read_Audit',
+                   'READ_REPORT','READ_CONFIGURATION','READ_SERVICEMAPPING','READ_PLANMAPPING','READ_PROVISIONINGSYSTEM','READ_EVENTACTIONMAP')" class="divider"></li>
+                                						
+            <li>
+            	<a class="black" data-ng-show="organization = PermissionService.showMenu('READ_OFFICE','READ_STAFF','READ_CONTRACT','READ_MEDIAASSET','READ_EVENT','READ_DISCOUNT','READ_PROMOTIONCODE','READ_COUNTRYCURRENCY','READ_LOCATION',
+                   'READ_CURRENCY','READ_SERVICE','READ_PLAN','READ_REGION','READ_RANDAMGENERATOR','READ_CHARGECODE','READ_MESSAGE')" href="#/organization">
+                   + {{ 'link.admin.organisation' | translate }}<i class="icon-building icon-large pull-right"></i>
+                </a>
+            </li>
+            <li data-ng-show="organization = PermissionService.showMenu('READ_OFFICE','READ_STAFF','READ_CONTRACT','READ_MEDIAASSET','READ_EVENT','READ_DISCOUNT','READ_PROMOTIONCODE','READ_COUNTRYCURRENCY','READ_LOCATION',
+                                							'READ_CURRENCY','READ_SERVICE','READ_PLAN','READ_REGION','READ_RANDAMGENERATOR','READ_CHARGECODE','READ_MESSAGE')" class="divider"></li>
+               
+            <li>
+            	<a class="black" data-ng-show="prospect=  PermissionService.showMenu('CREATE_PROSPECT')" href="#/createprospects">
+            		+ Leads<i class="icon-filter icon-large pull-right"></i>
+            	</a>
+            </li> 
+            <li data-ng-show="prospect = PermissionService.showMenu('CREATE_PROSPECT')" class="divider"></li>
+            
+            <li>
+            	<a class="black" data-ng-show="createclient = PermissionService.showMenu('CREATE_CLIENT')" href="#/createclient">
+            		 + Client <i class="icon-user icon-large pull-right"></i>
+            	</a>
+            </li>
+            <li data-ng-show="createclient = PermissionService.showMenu('CREATE_CLIENT')" class="divider"></li>
+            
+            <li>
+            	<a class="black" data-ng-show="activation = PermissionService.showMenu('ACTIVATIONPROCESS_ACTIVATE')" 
+            		href="#/createsimpleActivation">  + Simple Activation<i class="icon-tasks icon-large pull-right"></i>
+            	</a>
+            </li>
+            <li data-ng-show="activation = PermissionService.showMenu('ACTIVATIONPROCESS_ACTIVATE')" class="divider"></li> 
+            	
+            <li>
+            	<a class="black" data-ng-show="smartsearch = PermissionService.showMenu('READ_GLACCOUNT')&&PermissionService.showMenu('READ_OFFICE')&&PermissionService.showMenu('READ_SMARTSEARCH')" href="#/smartSearch">
+            		 + {{ 'link.smartsearch' | translate }}<i class="icon-search icon-large pull-right"></i>
+            	</a>
+            </li>
+            <li data-ng-show="smartsearch = PermissionService.showMenu('READ_GLACCOUNT')&&PermissionService.showMenu('READ_OFFICE')&&PermissionService.showMenu('READ_SMARTSEARCH')" class="divider"></li>
+             
+            <li>
+            	<a class="black" data-ng-show="paymentGetWay = PermissionService.showMenu('READ_PAYMENTGATEWAY')" href="#/paymentGateway">
+            	 	+ PaymentGateway<i class="icon-money icon-large pull-right"></i>
+            	</a>
+            </li>
+            <li data-ng-show="paymentGetWay = PermissionService.showMenu('READ_PAYMENTGATEWAY')" class="divider"></li>
+             
+            <li>
+            	<a class="black" data-ng-show="upload = PermissionService.showMenu('READ_UPLOADSTATUS')" href="#/importing">
+             		 + {{'link.import' | translate }}<i class="icon-upload icon-large pull-right"></i>
+             	</a>
+            </li>
+            <li data-ng-show="upload = PermissionService.showMenu('READ_UPLOADSTATUS')" class="divider"></li>
+             
+            <li>
+            	<a class="black" data-ng-show="jobs = PermissionService.showMenu('READ_SCHEDULERJOB')" href="#/jobs">
+            		 + Scheduler Jobs<i class="icon-gears icon-large pull-right"></i>
+            	</a>
+            </li>
+            <li data-ng-show="jobs = PermissionService.showMenu('READ_SCHEDULERJOB')" class="divider"></li>
+            <!-- <li ng-show="PermissionService.showMenu('CREATE_CLIENT')" class="divider"></li> -->
+            <li>
+            	<a class="black" data-ng-show="accounting = PermissionService.showMenu('READ_JOURNALENTRY','READ_GLACCOUNT','READ_GLCLOSURE','READ_ACCOUNTINGRULE')" href="#/accounting"> 
+            		+ {{ 'link.accounting' | translate }}<i class="icon-money icon-large pull-right"></i>
+            	</a>
+            </li>
+            <li data-ng-show="accounting = PermissionService.showMenu('READ_JOURNALENTRY','READ_GLACCOUNT','READ_GLCLOSURE','READ_ACCOUNTINGRULE')" class="divider"></li>
+            
+          	<li>
+          		<a class="black" data-ng-show="PermissionService.showMenu('ALL_FUNCTIONS')" class="bolder black" href="#/help">
+          			&nbsp; + {{ 'label.anchor.shortcuts' | translate }}<i class="icon-hand-left icon-large pull-right "></i>
+          		</a>
+          	</li>
           	
         </ul>
     </nav>
@@ -173,25 +238,67 @@
                     <ul class="nav" id="main-menu-left" style="font-size:15px;">
                     
                         <!-- <li><a ng-show="PermissionService.showMenu('REPORTING_SUPER_USER')" href="#/home" ng-class="{ activate: isActive('/home') }"><i class="icon-home icon-white"></i>{{ 'link.home' | translate }}</a></li> -->
-                        <li><a ng-show="PermissionService.showMenu('READ_PROSPECT')" href="#/leads" ng-class="{ activate: isActive('/prospects') }"><i class="icon-filter"></i>{{ 'link.prospects' | translate }}</a></li>
-                        <li><a ng-show="PermissionService.showMenu('READ_INVENTORY','READ_GRN','READ_MRN','MOVE_MRN','READ_ITEM','CREATE_SUPPLIER','READ_SUPPLIER','READ_MRNDETAILS')" href="#/inventory" ng-class="{ activate: isActive('/inventory') }"><i class="icon-th icon-white"></i>{{ 'link.inventory' | translate }}</a></li>
-                         <li><a ng-show="PermissionService.showMenu('READ_CLIENT','CREATE_CLIENT','ACTIVATIONPROCESS_ACTIVATE')" href="#/clients"  ng-class="{ activate: isActive('/clients') }"><i class="icon-group"></i>{{ 'link.clients.clients' | translate }}</a></li>
-                         <li><a ng-show="PermissionService.showMenu('READ_TICKET')" ng-class="{ activate: isActive('tickets') }" href="#/assignedtickets"><i class="icon-money"></i>{{ 'link.tickets' | translate }}</a></li>
-                          <li class="dropdown" id="preview-menu" ng-show="PermissionService.showMenu('READ_REPORT')">
-                            <a class="dropdown-toggle" data-toggle="dropdown" ng-class="{ activate: isActive('rep') }" href="#"><i class="icon-bar-chart"></i>{{ 'link.reports' | translate }}<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#/reports/all">{{ 'link.reports.all' | translate }}</a></li>
-                                <li><a href="#/reports/clients">{{ 'link.reports.clients' | translate }}</a></li>
-                                <li><a href="#/reports/Orders">{{ 'link.reports.orders' | translate }}</a></li>
-                                <li><a href="#/reports/tickets">{{ 'link.reports.tickets' | translate }}</a></li>
-                                <li><a href="#/reports/inventory">{{ 'link.reports.inventory' | translate }}</a></li>
-                                 <li><a href="#/reports/leads">{{ 'link.reports.leads' | translate }}</a></li>
-                                  <li><a href="#/reports/accounting">{{ 'link.reports.accounting' | translate }}</a></li>
-                            </ul>
+                        <li>
+                        	<a data-ng-show="PermissionService.showMenu('READ_PROSPECT')" href="#/leads" data-ng-class="{ activate: isActive('/prospects') }">
+                        		<i class="icon-filter"></i>{{ 'link.prospects' | translate }}
+                        	</a>
+                        </li>
+                        
+                        <li>
+                        	<a data-ng-show="PermissionService.showMenu('READ_INVENTORY','READ_GRN','READ_MRN','MOVE_MRN','READ_ITEM','CREATE_SUPPLIER','READ_SUPPLIER','READ_MRNDETAILS')" href="#/inventory" data-ng-class="{ activate: isActive('/inventory') }">
+                        		<i class="icon-th icon-white"></i>{{ 'link.inventory' | translate }}
+                        	</a>
+                        </li>
+                        
+                        <li>
+                        	<a data-ng-show="PermissionService.showMenu('READ_CLIENT','CREATE_CLIENT','ACTIVATIONPROCESS_ACTIVATE')" href="#/clients"  data-ng-class="{ activate: isActive('/clients') }">
+                        		<i class="icon-group"></i>{{ 'link.clients.clients' | translate }}
+                        	</a>
+                        </li>
+                        
+                        <li>
+                        	<a data-ng-show="PermissionService.showMenu('READ_TICKET')" data-ng-class="{ activate: isActive('tickets') }" href="#/assignedtickets">
+                        		<i class="icon-money"></i>{{ 'link.tickets' | translate }}
+                        	</a>
+                        </li>
+                        
+                        <li class="dropdown" id="preview-menu" data-ng-show="PermissionService.showMenu('READ_REPORT')">
+                        	<a class="dropdown-toggle" data-toggle="dropdown" data-ng-class="{ activate: isActive('rep') }" href="#"><i class="icon-bar-chart"></i>{{ 'link.reports' | translate }}<b class="caret"></b></a>
+                        	<ul class="dropdown-menu">
+                        		<li>
+                        			<a href="#/reports/all">{{ 'link.reports.all' | translate }}</a>
+                        		</li>
+                        		
+                            	<li>
+                            		<a href="#/reports/clients">{{ 'link.reports.clients' | translate }}</a>
+                            	</li>
+                            	
+                            	<li>
+                            		<a href="#/reports/Orders">{{ 'link.reports.orders' | translate }}</a>
+                            	</li>
+                            	
+                            	<li>
+                            		<a href="#/reports/tickets">{{ 'link.reports.tickets' | translate }}</a>
+                            	</li>
+                            	
+                            	<li>
+                            		<a href="#/reports/inventory">{{ 'link.reports.inventory' | translate }}</a>
+                            	</li>
+                            	
+                            	<li>
+                            		<a href="#/reports/leads">{{ 'link.reports.leads' | translate }}</a>
+                            	</li>
+                            	
+                            	<li>
+                            		<a href="#/reports/accounting">{{ 'link.reports.accounting' | translate }}</a>
+                            	</li>
+                        	</ul>
                         </li>
                          
-                        <li class="dropdown" id="preview-menu" ng-show="user||organization||system||upload||jobs||accounting||smartsearch||paymentGetWay||pooling||provision">
-                            <a class="dropdown-toggle" data-toggle="dropdown" ng-class="{ activate: isActive('admin') }" href="#"><i class="icon-wrench"></i>{{ 'link.admin' | translate }}<b class="caret"></b></a>
+                        <li class="dropdown" id="preview-menu" data-ng-show="user||organization||system||upload||jobs||accounting||smartsearch||paymentGetWay||pooling||provision">
+                            <a class="dropdown-toggle" data-toggle="dropdown" data-ng-class="{ activate: isActive('admin') }" href="#">
+                            	<i class="icon-wrench"></i>{{ 'link.admin' | translate }}<b class="caret"></b>
+                            </a>
                             <ul class="dropdown-menu">
 <!-- 
                                 <li><a href="#/organization">{{ 'link.admin.organisation' | translate }}</a></li>
@@ -206,26 +313,59 @@
                                 
  -->
                              
-                                <li><a ng-show="system=PermissionService.showMenu('READ_DATATABLE','CREATE_CODE','READ_CODE','create_role','READ_role','UPDATE_PERMISSION','read_Audit',
-                                						'READ_REPORT','READ_CONFIGURATION','READ_SERVICEMAPPING','READ_PLANMAPPING','READ_PROVISIONINGSYSTEM','READ_EVENTACTIONMAP')" href="#/system">{{ 'link.admin.system' | translate }}</a></li>
-                                <li><a ng-show="organization=PermissionService.showMenu('READ_OFFICE','READ_STAFF','READ_CONTRACT','READ_MEDIAASSET','READ_EVENT','READ_DISCOUNT','READ_PROMOTIONCODE','READ_COUNTRYCURRENCY','READ_LOCATION',
-                                							'READ_CURRENCY','READ_SERVICE','READ_PLAN','READ_REGION','READ_RANDAMGENERATOR','READ_CHARGECODE','READ_MESSAGE')" href="#/organization">{{ 'link.admin.organisation' | translate }}</a></li>
-                                <li><a ng-show="accounting=PermissionService.showMenu('READ_JOURNALENTRY','READ_GLACCOUNT','READ_GLCLOSURE','READ_ACCOUNTINGRULE')" href="#/accounting">{{ 'link.accounting' | translate }}</a></li>
-                                <li><a ng-show="upload=PermissionService.showMenu('READ_UPLOADSTATUS')" href="#/importing">{{'link.import' | translate }}</a></li>
-                                <li><a ng-show="jobs=PermissionService.showMenu('READ_SCHEDULERJOB')" href="#/jobs">Scheduler Jobs</a></li>
-                                <li><a ng-show="smartsearch=PermissionService.showMenu('READ_GLACCOUNT')&&PermissionService.showMenu('READ_OFFICE')&&PermissionService.showMenu('READ_SMARTSEARCH')" href="#/smartSearch">{{ 'link.smartsearch' | translate }}</a></li>
-                                <li><a ng-show="paymentGetWay=PermissionService.showMenu('READ_PAYMENTGATEWAY')" href="#/paymentGateway">PaymentGateway</a></li>
+                                <li>
+                                	<a data-ng-show="system=PermissionService.showMenu('READ_DATATABLE','CREATE_CODE','READ_CODE','create_role','READ_role','UPDATE_PERMISSION','read_Audit',
+                                						'READ_REPORT','READ_CONFIGURATION','READ_SERVICEMAPPING','READ_PLANMAPPING','READ_PROVISIONINGSYSTEM','READ_EVENTACTIONMAP')" href="#/system">
+                                						{{ 'link.admin.system' | translate }}
+                                	</a>
+                                </li>
+                                
+                                <li>
+                                	<a data-ng-show="organization=PermissionService.showMenu('READ_OFFICE','READ_STAFF','READ_CONTRACT','READ_MEDIAASSET','READ_EVENT','READ_DISCOUNT','READ_PROMOTIONCODE','READ_COUNTRYCURRENCY','READ_LOCATION',
+                                							'READ_CURRENCY','READ_SERVICE','READ_PLAN','READ_REGION','READ_RANDAMGENERATOR','READ_CHARGECODE','READ_MESSAGE')" href="#/organization">
+                                							{{ 'link.admin.organisation' | translate }}
+                                	</a>
+                                </li>
+                                
+                                <li>
+                                	<a data-ng-show="accounting=PermissionService.showMenu('READ_JOURNALENTRY','READ_GLACCOUNT','READ_GLCLOSURE','READ_ACCOUNTINGRULE')" href="#/accounting">
+                                		{{ 'link.accounting' | translate }}
+                                	</a>
+                                </li>
+                                
+                                <li>
+                                	<a data-ng-show="upload=PermissionService.showMenu('READ_UPLOADSTATUS')" href="#/importing">
+                                		{{'link.import' | translate }}
+                                	</a>
+                                </li>
+                                
+                                <li>
+                                	<a data-ng-show="jobs=PermissionService.showMenu('READ_SCHEDULERJOB')" href="#/jobs">
+                                		Scheduler Jobs
+                                	</a>
+                                </li>
+                                
+                                <li>
+                                	<a data-ng-show="smartsearch=PermissionService.showMenu('READ_GLACCOUNT')&&PermissionService.showMenu('READ_OFFICE')&&PermissionService.showMenu('READ_SMARTSEARCH')" href="#/smartSearch">
+                                		{{ 'link.smartsearch' | translate }}
+                                	</a>
+                                </li>
+                                
+                                <li>
+                                	<a data-ng-show="paymentGetWay=PermissionService.showMenu('READ_PAYMENTGATEWAY')" href="#/paymentGateway">
+                                		PaymentGateway
+                                	</a>
+                                </li>
                                 <!--  <li><a ng-show="provision=PermissionService.showMenu('READ_PROVISIONINGADAPTERSYSTEM')" href="#/provision">Provision</a></li> -->
-                                <li><a href="#/eventaction">EventActions</a></li>
                                 
                             </ul>
                         </li>
                     </ul>
                     <ul class="nav pull-right" id="main-menu-right">
                         <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                        <li style="margin-top:15px;" ng-click="goBack()">
-                         <input type="image"  popover-placement="bottom" 
-                              popover="Go Back" popover-trigger="mouseenter"  src="./images/go-back-icon.png" width="20px" height="20px">
+                        <li style="margin-top:15px;" data-ng-click="goBack()">
+                         <input type="image"  data-popover-placement="bottom" 
+                              data-popover="Go Back" data-popover-trigger="mouseenter"  src="./images/go-back-icon.png" width="20px" height="20px">
                         	<!-- <a href="" ng-click="goBack()">
                         			<img src="./images/go-back-icon.png" alt="GoBack" width="20px">
                         		<i class="icon-circle-arrow-left icon-white"></i>
@@ -239,14 +379,14 @@
                           
                             <ul class="dropdown-menu">
                                 <li><a href="#/profile"><i class="icon-user"></i>{{ 'link.profile' | translate }}</a></li>
-                                 <li><a ng-show="PermissionService.showMenu('READ_USERCHATMESSAGE')" href="#/messanger"><i class="icon-envelope"></i>{{ 'link.messanger' | translate }}</a></li>
-                                 <li><a ng-show="PermissionService.showMenu('ALL_FUNCTIONS')" id="help" href="#/help"><i class="icon-question-sign"></i>{{ 'label.anchor.help' | translate }}</a></li>
-                                <li><a ng-show="PermissionService.showMenu('ALL_FUNCTIONS')" href="#/usersetting"><i class="icon-cog"></i>{{ 'link.settings' | translate }}</a></li>
+                                 <li><a data-ng-show="PermissionService.showMenu('READ_USERCHATMESSAGE')" href="#/messanger"><i class="icon-envelope"></i>{{ 'link.messanger' | translate }}</a></li>
+                                 <li><a data-ng-show="PermissionService.showMenu('ALL_FUNCTIONS')" id="help" href="#/help"><i class="icon-question-sign"></i>{{ 'label.anchor.help' | translate }}</a></li>
+                                <li><a data-ng-show="PermissionService.showMenu('ALL_FUNCTIONS')" href="#/usersetting"><i class="icon-cog"></i>{{ 'link.settings' | translate }}</a></li>
                                 <li><a id="logout" data-ng-click="logout()"><i class="icon-off"></i>{{ 'link.logout' | translate }}</a></li>
                             </ul>
                         </li>
                     </ul>
-                    <form ng-show="PermissionService.showMenu('READ_SEARCH')" ng-submit="search()" class="navbar-search pull-left ng-pristine ng-valid">
+                    <form data-ng-show="PermissionService.showMenu('READ_SEARCH')" data-ng-submit="search()" class="navbar-search pull-left ng-pristine ng-valid">
                     <input id="search" data-ng-model="search.query" type="text" placeholder="{{ 'label.searchorpress' | translate }}" class="search-query span3">
                     </form>
                 </div>
@@ -257,7 +397,7 @@
       <div>
         <div class="row-fluid whitebg">
             <div class="span12 pull-right whitebg">
-                <div class="whitebg" ng-view></div>
+                <div class="whitebg" data-ng-view></div>
             </div>
             <!-- Footer -->
             <hr>

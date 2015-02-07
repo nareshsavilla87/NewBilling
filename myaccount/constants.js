@@ -26,7 +26,8 @@
 	   registrationRequiresDevice	: "registration-requires-device",
 	   deviceAgrementType			: "device-agrement-type",
 	   globalPayCurrencyType		: "NGN",
+	   netellerCurrencyType			: "EUR",
 	   
-	   webtvURL						: locationOrigin+"/cityonline/index.html#/",
+	   webtvURL						: locationOrigin+"/webtv/index.html#/",
 		   
    	};

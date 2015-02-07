@@ -273,7 +273,8 @@ define(['underscore', 'mifosX'], function() {
       'organization/RadiusController',
       'organization/CreateRadServiceController',
       'organization/CreateNasController',
-      'paymentgateway/EventActionController'
+      'paymentgateway/EventActionController',
+      'organization/ViewVouchersController',
       
 
 
@@ -286,7 +287,8 @@ define(['underscore', 'mifosX'], function() {
       'DateTimeFormat',
       'UrlToString',
       'EventTypeCategory',
-      'TranslateDataTableColumn'
+      'TranslateDataTableColumn',
+      'CodeValidate'
 
     ],
     directives: [

@@ -907,7 +907,7 @@
 "validation.msg.paymentgateway.value.cannot.be.blank":"Value cannot be blank",
 
 "#Prepaid Payment":"",
-"label.client.prepaid.payment":"Payment",
+"label.client.prepaid.payment":"Online Payment",
 "label.prepaid.amount":"Amount",
 
 "#Neteller":"",
@@ -916,7 +916,12 @@
 "label.neteller.verificationcode":"Verification Code",
 "label.neteller.value":"NETELLER EmailId",
 "label.neteller.source":"Source",
-"label.neteller.amount":"Amount"
+"label.neteller.amount":"Amount",
+"label.netteler.info":"Neteller Information",
+
+"#paymentgatewayresponser":"",
+"label.cardType":"Card Type",
+"label.cardNumber":"Card Number"
 
 
 

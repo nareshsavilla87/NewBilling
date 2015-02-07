@@ -270,7 +270,7 @@
   "label.job.isautorenewal":"Auto Renewal",
   "label.job.emailid":"Email Id",
   "validation.msg.schedulerjob.emailId.cannot.be.blank":"emailId cannot be blank",
-  "label.job.ProvSystem":"Provisioning System",
+  "label.job.ProvSystem":"System",
   "label.job.url":"Url",
   "label.job.username":"User Name",
   "label.job.password":"Password",
@@ -390,6 +390,7 @@
   "label.inventory":"Inventory",
   "label.hostName":"Host Name",
   "label.port":"Port",
+  "label.setcontentstring":"SetContent",
   "link.messanger":"Messanger",
   "link.settings" : "Settings",
   "link.logout" : "LogOut",
@@ -495,6 +496,8 @@
   "app erros start" :"----------------------------------------------------",
   "error.login.failed":"Please try again, your credentials are not valid",
   "error.delete.failed":"System defined code values cannot be deleted",
+  "error.code.definition.length.validation":"length should be less than 10 characters",
+  "error.not.numeric.validation":"Invalid numeric value",
 
 
   "#Journal Entry Predefined Postings":"........",
@@ -982,7 +985,11 @@
   "button.exportBatch":"Export Batch",
   "label.downloadVoucherPinData":"Download Voucher Data",
   "label.processVoucherPinData":"Process Voucher Data",
-  
+  "validation.msg.voucher.officeId.cannot.be.blank":"Please Select Office",
+  "validation.msg.voucher.productValue.cannot.be.blank":"Product Value cannot be blank",
+  "error.msg.please.pair.hardware.with.plan ":"Please pair hardware with plan",
+  "error.msg.device.details.not.found":"Device details not available",
+  "validation.msg.voucher.voucherIds.cannot.be.empty":"Please select atleast one Voucher",
   
   "#Table heading Voucher pins":"....",
   "table.heading.id":"Id",
@@ -1188,6 +1195,7 @@
   "validation.msg.itemsale.orderQuantity.cannot.be.blank":"Order Quantity cannot be blank",
   "validation.msg.itemsale.chargeAmount.cannot.be.blank":"Charge amount cannot be blank",
   "validation.msg.itemsale.taxAmount.cannot.be.blank":"tax Amount cannot be blank",
+  "error.msg.event.price.not.found":"No Price found for this Event ",
   
    "#service ":"....",
   "label.services":"Services",
@@ -2241,6 +2249,7 @@
 "validation.msg.globalConfiguration.userName.cannot.be.blank":"Name cannot be blank",
 "validation.msg.note.note.cannot.be.blank":"Note cannot be blank",
 "error.msg.smtp.duplicate.name":"Already exists with this 'smtp' name",
+"validation.msg.globalConfiguration.setContentString.cannot.be.blank":"SetContent cannot be blank",
 
 "#Ippool Changes":".......",
 "label.pattern":"Pattern : ",
@@ -2456,6 +2465,9 @@
 "label.pgconfig.editmobilepaypal":"Edit Paypal",
 "label.pgconfig.paypal.mobile.clientid":"Paypal API ClientId",
 "label.pgconfig.mobilepaypal.secretCode":"Paypal SecretCode",
+"table.heading.serviceId":"Service Id",
+"table.heading.trafficUnit":"Traffic Unit",
+"table.heading.service":"Service",
 
 "label.configure":"Configurations",
 
@@ -2464,7 +2476,11 @@
 "label.configure.smtp.true":"True",
 "label.configure.smtp.false":"False",
 "error.configure.smtp.invalid.email":"Please give valid EmailId",
-"error.msg.voucher.no.already.existed.with.thiscontract":"Duration cann't change,Voucher pins are already gererated"
+"error.msg.voucher.no.already.existed.with.thiscontract":"Duration cann't change,Voucher pins are already gererated",
+"error.msg.voucher.no.isprocessed.exception":"Cann't delete VoucherPin/s Already Generated for your selected lists",
+"table.heading.warrantyDate":"Warranty Date",
+"label.reason":"Reason",
+"error.msg.hardware.swapping.warranty.expiry":"Couldn't swap Hardware, because hardware warranty date is expired."
 
 
 
