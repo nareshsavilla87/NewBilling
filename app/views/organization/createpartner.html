@@ -23,7 +23,7 @@
 								<small class="error" data-ng-show="createpartnerform.partnerName.$error.pattern">alphanumeric and spaces only!</small> 
 								<small class="error" data-ng-show="createpartnerform.partnerName.$error.req">{{'label.required.field' | translate}} </small> 
 								<small class="error" data-ng-show="createpartnerform.partnerName.$error.minlength && !createpartnerform.partnerName.$error.req">
-									      Partner Name is required at least 3 characters</small>
+									      Partner Name is require at least 3 characters</small>
 							</span>
 						</div>
 					</div>
@@ -38,7 +38,7 @@
 								<small class="error" data-ng-show="createpartnerform.loginName.$error.pattern">alphanumeric and spaces only!</small> 
 								<small class="error" data-ng-show="createpartnerform.loginName.$error.req">{{'label.required.field' | translate}} </small> 
 								<small class="error" data-ng-show="createpartnerform.loginName.$error.minlength && !createpartnerform.loginName.$error.req">
-									   Login Name is required at least 3 characters</small>
+									   Login Name is require at least 3 characters</small>
 							</span>
 						</div>
 					</div>
@@ -89,8 +89,8 @@
 						<label class="control-label" for="currency">{{'label.currency' | translate }}</label>
 						<div class="controls">
 							<select id="currency" data-ng-model="formData.currency"
-								data-ng-options="currencydata.code as currencydata.displayLabel for currencydata in currencydatas"
-								data-value="{{currencydata.code}}"><option value="">{{'label.select.one'| translate}}</option></select>
+								data-ng-options="currencydata.code as currencydata.displayLabel for currencydata in currencydatas">
+								<!-- data-value="{{currencydata.code}}"><option value="">{{'label.select.one'| translate}}</option> --></select>
 						</div>
 					</div>
 					

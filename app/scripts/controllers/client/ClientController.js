@@ -13,7 +13,8 @@
       scope.PendingClients = 0;
       scope.totalPages = 1;
       scope.status = 'ALL';
-      scope.config = webStorage.get("client_configuration").clientListing; 
+      scope.isPasswordShow = false;
+      scope.config = webStorage.get("client_configuration").clientListing || ""; 
       /**
        * @default
        * we call this function from below
@@ -31,12 +32,20 @@
  				        		stars += "*";
  				        	}
  				    }
+         			if(scope.isPasswordShow){
+         				scope.allDatas[i].password = scope.allDatas[i].clientPassword;
+         			}
          			scope.allDatas[i].clientPassword = stars;
          			// console.log(scope.allDatas[i].clientPassword);
          		}
  		    }
       };
       
+      if(PermissionService.showMenu('SHOW_PASSWORD')){
+    	  if(scope.config != null && scope.config.password == 'true'){
+    		 scope.isPasswordShow = true;
+    	  }
+      }
       
       var fetchFunction = function(offset, limit, callback) {
         resourceFactory.clientResource.getAllClients({offset: offset, limit: limit} , function(data){
@@ -50,6 +59,7 @@
         	if(scope.config.password == 'true'){
         		passwordSetToStar();
         	}
+        	
         	callback(data);
         });
       };

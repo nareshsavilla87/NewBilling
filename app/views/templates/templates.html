@@ -1,0 +1,51 @@
+<div  data-ng-controller="TemplateController">
+    <ul class="breadcrumb">
+        <li class="active">{{'label.anchor.templates' | translate}}</li>
+    </ul>
+
+    <input data-ng-autofocus="true" data-ng-model="filterText" data-ng-keyup="onFilter()" type="text" class="span marginbottom0px form-control" placeholder="{{ 'label.input.filterbyname' | translate }}">
+    <a href="#/createtemplate" class="btn btn-primary pull-right" data-ng-show="PermissionService.showMenu('CREATE_TEMPLATE')"><i class="icon-plus icon-white"></i>{{'label.button.createtemplate' | translate }}</a>
+
+    <table class="table">
+        <thead>
+        <tr class="graybg">
+            <th>{{ 'label.heading.entity' | translate }}</th>
+            <th>{{ 'label.heading.type' | translate }}</th>
+            <th>{{ 'label.heading.name' | translate }}</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="pointer-main" data-ng-repeat="template in templates | filter:filterText">
+            <td class="pointer" data-ng-click="routeTo(template.id)">{{template.entity}}</td>
+            <td class="pointer" data-ng-click="routeTo(template.id)">{{template.type}}</td>
+            <td class="pointer" data-ng-click="routeTo(template.id)">{{template.name}}</td>
+            <td>
+						<a data-ng-show="PermissionService.showMenu('UPDATE_TEMPLATE')" 
+							href="#/edittemplate/{{template.id}}" data-popover="{{'label.anchor.edittemplate' | translate}}" data-popover-trigger="mouseenter">
+                    		<i class="icon-edit icon-white"></i>
+                    	</a>&nbsp;
+                    	<a data-ng-show="PermissionService.showMenu('DELETE_TEMPLATE')"
+                    	 	data-ng-click="deleteTemplate(template.id)" data-popover="{{'label.anchor.deletetemplate' | translate}}" data-popover-trigger="mouseenter">
+                    		<i class="icon-remove icon-white"></i>
+                    	</a>
+					</td>
+        </tr>
+        </tbody>
+    </table>
+    
+    <script type="text/ng-template" id="deletePopupForTemplate.html">
+    	<div class="modal-header silver">
+        	<h3 class="bolder">{{'label.anchor.deletetemplate' | translate}}</h3>
+        </div>
+
+        <div class="modal-body style="height:60px;">
+            <h4>Are you sure?</h4>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+            <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+        </div>
+   </script>
+</div>

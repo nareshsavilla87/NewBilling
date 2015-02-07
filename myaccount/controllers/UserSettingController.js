@@ -13,7 +13,7 @@ UserSettingController = function(scope,rootScope,translate,localStorageService,t
 	                }
 	            }
 	        } else {
-	        	rootScope.localeLang = scope.langs[0];
+	        	for(var i in scope.langs) if(scope.langs[i].code == selfcareModels.locale) scope.localeLang = scope.langs[i];
 	        }
 	        
 	        scope.changeLang = function (lang) {

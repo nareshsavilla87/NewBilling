@@ -31,6 +31,7 @@ selfcareApp.service("SessionManager",['$rootScope','HttpService','$location','lo
             	  }
                 handler({user: 'selfcare'});
             } else {
+            	localStorageService.remove('localeLang');
               handler(EMPTY_SESSION);
             }
         };

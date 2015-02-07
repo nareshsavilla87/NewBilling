@@ -46,13 +46,13 @@
 	
 	<tab heading="{{'tab.radService' | translate}}" select="getRadService()" active="radServiceTab">
 	<div class="pull-right">
-		<a href="#/createRadService" class="btn btn-primary"><i
+		<a href="#/createRadService/{{radiusVersion}}" class="btn btn-primary"><i
 			class="icon-plus icon-white"></i> {{ 'link.create.new.radService' | translate }}</a>
 	</div>
 	<div>
 		<input data-ng-model="filterText" type="text" class="span marginbottom0px"
 			placeholder="Enter text to search"> <br>
-		<table class="table">
+		<table class="table" data-ng-show="radiusVersion=='version-1'">
 			<thead>
 				<tr class="graybg">
 					<th>{{ 'table.heading.serviceName' | translate }}</th>
@@ -72,6 +72,26 @@
                     		<i class="icon-remove icon-white"></i> </a>
                     	
 					</td>
+				</tr>
+			</tbody>
+		</table>
+		<table class="table" data-ng-show="radiusVersion=='version-2'">
+			<thead>
+				<tr class="graybg">
+					<th>{{ 'table.heading.serviceName' | translate }}</th>
+					<th>{{ 'table.heading.service' | translate }}</th>
+					<th>{{ 'table.heading.upRate' | translate }}</th>
+					<th>{{ 'table.heading.downRate' | translate }}</th>
+					<th>{{ 'table.heading.trafficUnit' | translate }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="pointer-main" data-ng-repeat="radService in radServices2 track by $index| filter:filterText">
+					<td class="pointer">{{radService.srvname}}</td>
+					<td class="pointer">{{radService.nextsrvid}}</td>
+					<td class="pointer">{{radService.uprate}}</td>	
+					<td class="pointer">{{radService.downrate}}</td>
+					<td class="pointer">{{radService.trafficunitdl}}</td>
 				</tr>
 			</tbody>
 		</table>

@@ -27,13 +27,14 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 	//this function calls when comeout from amount field
 	scope.amountFieldFun = function(amount){
 		if(amount){
-			if(amount<=0){
+			if(amount<=0 || isNaN(amount)){
 				scope.amountEmpty = true;
 				delete scope.planData.price;
 				delete scope.planData.planCode;
 				delete scope.planData.id;
 				delete scope.amount;
-				alert("Amount Must be Greater than Zero");
+				if(amount <=0)alert("Amount Must be Greater than Zero");
+				if(isNaN(amount))alert("Please enter digits only");
 			}else{
 				scope.amountEmpty 		= false;
 				scope.planData.price 	= amount;
@@ -104,11 +105,10 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 				break;
 				
 			case 'neteller' :
-				var nettellerData = {clientId:scope.clientId,currency:"EUR",total_amount:scope.planData.price,
-					locale:"en",source:'neteller',screenName:'payment'};
+				var nettellerData = {currency:selfcareModels.netellerCurrencyType,total_amount:scope.planData.price,screenName:'payment'};
 				var encodeURINetellerData = encodeURIComponent(JSON.stringify(nettellerData));
 				var encryptedData = CryptoJS.AES.encrypt(encodeURINetellerData,encrytionKey).toString();
-				scope.paymentURL = "#/neteller/"+0+"?key="+encryptedData;
+				scope.paymentURL = "#/neteller/"+scope.clientId+"?key="+encryptedData;
 				break;
 				
 			case 'internalPayment' :
