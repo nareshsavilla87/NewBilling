@@ -55,7 +55,10 @@
 									<div class="control-group">
             						<label class="control-label" for="discountRate">{{ 'label.discountRate' | translate }}</label>
             						<div class="controls">
-              							<input type="text" id="discountRate" data-ng-model="formData.discountRate">
+              							<input type="text" id="discountRate" name="discountRate" data-ng-model="formData.discountRate" data-ng-pattern="{{'decimal' | CodeValidate}}"></br>
+              							<span data-ng-show="editpromotionform.discountRate.$dirty && editpromotionform.discountRate.$invalid">
+              								<small class="error-row">{{'error.not.decimal.validation' | translate}}</small>
+              							</span>
             						</div>
           							</div>
 								</td>
@@ -76,7 +79,10 @@
 									<div class="control-group">
             						<label class="control-label" for="promotionduration">{{ 'label.duration' | translate }}</label>
             						<div class="controls">
-              							<input type="text" id="promotionduration" data-ng-model="formData.duration">
+              							<input type="text" id="promotionduration" name="promotionduration" data-ng-model="formData.duration" data-ng-pattern="{{'integer' | CodeValidate}}"></br>
+              							<span data-ng-show="editpromotionform.promotionduration.$dirty && editpromotionform.promotionduration.$invalid">
+              								<small class="error-row">{{'error.not.numeric.validation' | translate}}</small>
+              							</span>
            						 	</div>
           							</div>
 								</td>

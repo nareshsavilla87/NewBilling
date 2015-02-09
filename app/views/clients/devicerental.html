@@ -117,7 +117,11 @@
 								<div class="control-group">
             					<label class="control-label" for="quantity">{{ 'label.quantity' | translate }}</label>
             					<div class="controls">
-              					<input type="text" id="quantity" ng-model="formData.quantity" ng-change="itemDataQuantity(formData.quantity,formData.itemId,formData.officeId,formData.units)" ng-readonly="truefalse">
+              					<input type="text" id="quantity" name="quantity" ng-model="formData.quantity" ng-change="(formData.quantity) && !(deviceRental.quantity.$error.pattern) && (itemDataQuantity(formData.quantity,formData.itemId,formData.officeId,formData.units))" 
+              						ng-readonly="truefalse" data-ng-pattern="{{'integer' | CodeValidate}}"><br/>
+              					<span data-ng-show ="deviceRental.quantity.$dirty && deviceRental.quantity.$invalid" >
+									<small class ="error-row">{{'error.not.numeric.validation' | translate}}</small>
+								</span>
             					</div>
           						</div>
 							</td>
@@ -156,7 +160,7 @@
 										<a id="cancel" href="#/viewclient/{{clientId}}"><button type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
 
 										<!-- <button id="submit" type="submit" class="btn btn-primary" ng-disabled="flag">{{'button.save' | translate}}</button> -->
-										<button id="submit" type="submit" class="btn btn-primary">{{'button.save' | translate}}</button>
+										<button id="submit" type="submit" data-ng-disabled="deviceRental.$dirty && deviceRental.$invalid" class="btn btn-primary">{{'button.save' | translate}}</button>
 									</div>
 								</td>
 								<td>

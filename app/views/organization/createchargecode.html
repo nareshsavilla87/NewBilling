@@ -47,7 +47,10 @@
           	<div class="control-group">
             	<label class="control-label" for="chargeDuration">{{'label.chargeDuration' | translate }}<span class="required">*</span></label>
             	<div class="controls">
-              		<input type="text" id="chargeDuration" data-ng-model="formData.chargeDuration">
+              		<input type="text" id="chargeDuration" name="chargeDuration" data-ng-model="formData.chargeDuration" data-ng-pattern="{{'integer' | CodeValidate}}">
+              		<span data-ng-show="createchargeform.chargeDuration.$dirty && createchargeform.chargeDuration.$invalid">
+              			<small class="error-row">{{'error.not.numeric.validation' | translate}}</small>
+              		</span>
             	</div>
           	</div>
 
