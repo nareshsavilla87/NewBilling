@@ -79,7 +79,7 @@ KortaSuccessController = function(rootScope,RequestSender,location,localStorageS
     					  localStorageService.add("paymentgatewayresponse", {data:data,cardType:formData.cardType,cardNumber:formData.cardNumber});
   						var result = data.Result || "";
   						location.$$search = {};
-  						if(screenName === 'payment' || screenName == 'payment'){
+  						if(screenName == 'payment'){
   							location.path('/paymentgatewayresponse/'+formData.clientId);
   						}else if(result == 'SUCCESS'){
   							location.path("/orderbookingscreen/"+screenName+"/"+formData.clientId+"/"+planId+"/"+priceId);
