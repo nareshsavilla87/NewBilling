@@ -56,7 +56,7 @@
 			<li class="active">{{'link.add.onetimesale' | translate}}</li>
 		</ul>
 	</div>
-<form class="form-horizontal well" ng-submit="submit()">
+<form name="seconsaleform" class="form-horizontal well" ng-submit="submit()">
 	 <div class="error" ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label ng-show="errorStatus">{{errorStatus}}</label>
@@ -116,7 +116,11 @@
 								<div class="control-group">
             					<label class="control-label" for="quantity">{{ 'label.quantity' | translate }}</label>
             					<div class="controls">
-              					<input type="text" id="quantity" ng-model="formData.quantity" ng-change="itemDataQuantity(formData.quantity,formData.itemId,formData.officeId,formData.units)" ng-model="formData.quantity">
+              					<input type="text" id="quantity" name="quantity" ng-model="formData.quantity" ng-change="(formData.quantity) && !(seconsaleform.quantity.$error.pattern) && (itemDataQuantity(formData.quantity,formData.itemId,formData.officeId,formData.units))" 
+              						data-ng-readonly="truefalse" ng-model="formData.quantity" data-ng-pattern="{{'integer' | CodeValidate}}"><br/>
+              					<span data-ng-show ="seconsaleform.quantity.$dirty && seconsaleform.quantity.$invalid" >
+									<small class ="error-row">{{'error.not.numeric.validation' | translate}}</small>
+								</span>
             					</div>
           						</div>
 							</td>
@@ -137,7 +141,7 @@
 									<a id="cancel" href="#/viewclient/{{clientId}}"><button type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
 
 									<!-- <button id="submit" type="submit" class="btn btn-primary" ng-disabled="flag">{{'button.save' | translate}}</button> -->
-									<button id="submit" type="submit" class="btn btn-primary">{{'button.save' | translate}}</button>
+									<button id="submit" type="submit" data-ng-disabled="seconsaleform.$dirty && seconsaleform.$invalid" class="btn btn-primary">{{'button.save' | translate}}</button>
 								</div>
 								</td>
 								
