@@ -79,3 +79,4 @@ document.write("<script type='text/javascript' src='./controllers/PaymentProcess
 document.write("<script type='text/javascript' src='./controllers/NetellerController.js'></script>");
 document.write("<script type='text/javascript' src='./controllers/InternalPaymentController.js'></script>");
 document.write("<script type='text/javascript' src='./controllers/PrepaidPaymentController.js'></script>");
+document.write("<script type='text/javascript' src='./controllers/TwoCheckoutSuccessController.js'></script>");

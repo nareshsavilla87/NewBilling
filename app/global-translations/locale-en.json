@@ -2393,6 +2393,8 @@
 "label.pgconfig.neteller.url":"Neteller Url",
 "label.pgconfig.neteller.clientid":"Neteller API clientId",
 "label.pgconfig.neteller.secretcode":"Neteller API secretCode",
+ "label.pgconfig.edit":"Edit PaymentGateway",
+"label.pgconfig.generalForm.value":"Value",
 
 
 "#Audit trails":".....",
