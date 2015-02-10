@@ -54,13 +54,13 @@
 
             
         	scope.clientKeys = function() {
-  			  scope.templateKeys = [ "{{client.accountNo}}",
-  										"{{client.status.value}}",
-  										"{{client.fullname}}",
-  										"{{client.displayName}}",
-  										"{{client.officeName}}",
-  										"{{#client.groups}}",
-  										"{{/client.groups}}" ];
+  			  scope.templateKeys = [ "{{account_no}}",
+										"{{status}}",
+										"{{fullname}}",
+										"{{display_name}}",
+										"{{name}}",
+										"{{#client.groups}}",
+										"{{/client.groups}}" ];
   			  scope.templateEntity = [ {"entityName" : "Client","templateKeys" : scope.templateKeys} ];
   			  if (scope.templateKeyEntity != "client") {
                   CKEDITOR.instances.templateeditor.setData('');
