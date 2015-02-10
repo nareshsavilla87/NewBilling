@@ -6,7 +6,7 @@
               <li class="active">{{formData.priceId}}</li>
           </ul>
       </div>
-      <form class="form-horizontal well" data-ng-submit="submit()">
+      <form name="editpriceform" class="form-horizontal well" data-ng-submit="submit()">
        <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label data-ng-show="errorStatus">{{errorStatus}}</label>
@@ -76,7 +76,10 @@
           <div class="control-group">
             <label class="control-label" for="amount">{{ 'label.price.amount' | translate }}</label>
             <div class="controls">
-            <input type="text" id="price" data-ng-model="formData.price">
+            <input type="text" id="price" name="price" data-ng-model="formData.price" data-ng-pattern="{{'decimal' | CodeValidate}}"></br>
+            <span data-ng-show="editpriceform.price.$dirty && editpriceform.price.$invalid">
+            	<small class="error-row">{{'error.not.decimal.validation' | translate}}</small>
+            </span>
             </div>
           </div>
           </td>
@@ -95,7 +98,7 @@
       
           <div class="offset3">
             <a href="#/viewprice/{{formData.priceId}}/{{formData.planId}}"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
-            <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+            <button id="submit" type="submit" data-ng-disabled="editpriceform.$dirty && editpriceform.$invalid" class="btn btn-primary">{{'button.save'| translate}}</button>
           </div>
         </fieldset>
       </form>

@@ -77,14 +77,19 @@
           <div class="">
             <label class="" for="amount">{{ 'label.price.amount' | translate }}</label>
             <div class="">
-            <input type="text"  class="input-small" data-ng-model="formData.price">
+            <input type="text"  class="input-small" name="price" data-ng-model="formData.price" data-ng-pattern = "{{'decimal' | CodeValidate}}">
+            
             </div>
           </div>
           </td>
-              <td ><div style="margin-top:22px;"><a data-ng-click="addPriceData()" style="margin-left:25px;"><i class="icon-plus icon-white"></i></a></div>
-               <span data-ng-show="createPlanPrice.fields.$invalid || fieldserror">
-	                 <small class="error" data-ng-show="createPlanPrice.fields.$error.req || fieldserror">{{ 'label.'+labelerror | translate }}</small>
-	           </span></td>
+            <td><div style="margin-top:22px;"><a data-ng-click="!(createPlanPrice.price.$error.pattern)&&addPriceData()" style="margin-left:25px;"><i class="icon-plus icon-white"></i></a></div>
+               <span data-ng-show="(createPlanPrice.fields.$invalid || fieldserror || createPlanPrice.fields.$dirty) && !(createPlanPrice.price.$error.pattern)">
+	                 <small class="error-row" data-ng-show="createPlanPrice.fields.$error.req || fieldserror">{{ 'label.'+labelerror | translate }}</small>
+	           </span>
+	           <span data-ng-show = "createPlanPrice.price.$dirty && createPlanPrice.price.$invalid">
+            	<small class="error-row" data-ng-show="createPlanPrice.price.$error.pattern">{{'error.not.decimal.validation' | translate}}</small>
+            	</span>
+            </td>
               
           </tr>
           </table>
