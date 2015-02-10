@@ -22,53 +22,44 @@
 						controller : editKortaController,
 						resolve : {}
 					});
-				} 
-				
-				if(name == 'paypal'){
+				} else if(name == 'paypal'){
 					$modal.open({
 						templateUrl : 'editPaypal.html',
 						controller : editPaypalController,
 						resolve : {}
 					});
-				} 
-				
-				if(name == 'dalpay'){
+				} else if(name == 'dalpay'){
 					$modal.open({
 						templateUrl : 'editdalpay.html',
 						controller : editDalpayController,
 						resolve : {}
 					});
-				}
-				
-				if(name == 'globalpay'){
+				} else if(name == 'globalpay'){
 					$modal.open({
 						templateUrl : 'editGlobalpay.html',
 						controller : editGlobalpayController,
 						resolve : {}
 					});
 
-				}
-				if(name == 'neteller'){
+				} else if(name == 'neteller'){
 					$modal.open({
 						templateUrl : 'editneteller.html',
 						controller : editNetellerController,
 						resolve : {}
 					});
-				}
-				if(name == 'is-paypal' || name == 'is-paypal-for-ios'){
+				} else if(name == 'is-paypal' || name == 'is-paypal-for-ios'){
 					$modal.open({
 						templateUrl : 'editMobilePaypal.html',
 						controller : editMobilePaypalController,
 						resolve : {}
 					});
-				}
-				/*if(name == 'neteller'){
+				} else {
 					$modal.open({
-						templateUrl : 'editneteller.html',
-						controller : editNetellerController,
+						templateUrl : 'editgeneral.html',
+						controller : editgeneralController,
 						resolve : {}
 					});
-				}*/
+				}
 
 			};
 			
@@ -263,6 +254,29 @@
 						
 					$scope.updateData.value = $scope.mobilepaypalData.value;
 					resourceFactory.paymentGatewayConfigurationResource.update({configId : scope.editId}, $scope.updateData, function(data) {
+						$modalInstance.close('delete');
+						route.reload();
+					}, function(errData) {
+						$scope.paypalFlag = false;
+					});
+				};
+				$scope.cancel = function() {
+					$modalInstance.dismiss('cancel');
+				};
+			};
+			
+			var editgeneralController = function($scope, $modalInstance) {
+
+				$scope.formData = {};
+				$scope.updateData = {};
+	
+				// DATA GET
+				resourceFactory.paymentGatewayConfigurationResource.get({ configId : scope.editId }, function(data) {		
+					$scope.formData.value = data.value;
+				});
+
+				$scope.submit = function() {
+					resourceFactory.paymentGatewayConfigurationResource.update({configId : scope.editId}, $scope.formData, function(data) {
 						$modalInstance.close('delete');
 						route.reload();
 					}, function(errData) {
