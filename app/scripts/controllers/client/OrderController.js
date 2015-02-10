@@ -254,13 +254,29 @@
     			 
     	    	  for (var key in $scope.sentMessage) {
     	    		  if(key == "IP_ADDRESS"){
+    	    			  var outerStr = $scope.sentMessage[key].toString();$scope.sentMessage[key] = [];
+    	    			  $scope.sentMessage[key].push({"key":outerStr,"value":""});
     	    			  $scope.messageData.push({
 		  											"key" : key,
-		  											"value" :$scope.sentMessage[key].toString(),
+		  											"value" :$scope.sentMessage[key],
     	    			   });	
     	    			  
-    	    		  }
-    	    		  else{
+    	    		  }else{
+    	    			  var outerObj = $scope.sentMessage[key];$scope.sentMessage[key] = [];
+    	    			  if(typeof(outerObj) == 'object'){
+    	    				  var obj1 = outerObj[0];
+    	    				  if(typeof(obj1) == 'string'){
+    	    			          var obj2 = JSON.parse(obj1);
+    	    				      outerObj = [];outerObj.push(obj2);
+    	    				  }
+	    	    			  for(var key1 in outerObj){ var innerObj = outerObj[key1];
+	    	    				  for(var key2 in innerObj){
+	    	    					  $scope.sentMessage[key].push({"key":key2,"value":innerObj[key2]});
+	    	    				  };
+	    	    			  };
+    	    			  }else{
+    	    				  $scope.sentMessage[key].push({"key":outerObj,"value":""});
+    	    			  }
     	    			  $scope.messageData.push({
     	    			  						"key" : key,
     	    			  						"value" : $scope.sentMessage[key],
