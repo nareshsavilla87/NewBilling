@@ -50,7 +50,10 @@
 								<div class="control-group">
             					<label class="control-label" for="discountRate">{{ 'label.discountRate' | translate }}<span class="required">*</span></label>
             					<div class="controls">
-              					<input type="text" id="discountRate" data-ng-model="formData.discountRate">
+              					<input type="text" id="discountRate" name="discountRate" data-ng-model="formData.discountRate" data-ng-pattern="{{'decimal' | CodeValidate}}"></br>
+              					<span data-ng-show="creatediscountsform.discountRate.$dirty && creatediscountsform.discountRate.$invalid">
+              						<small class="error-row">{{'error.not.decimal.validation' | translate}}</small>
+              					</span>
             					</div>
           						</div>
 							</td>

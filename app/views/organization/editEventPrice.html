@@ -80,7 +80,7 @@
 					<div class="control-group">
 						<label class="control-label" for="price">{{'label.eventprice.amount' | translate }}</label>
 						<div class="controls">
-							<input type="text" id="eventValidity" name="amount" ng-model="formData.price" data-ng-pattern="{{ 'number' | CodeValidate }}"></br>
+							<input type="text" id="eventValidity" name="amount" ng-model="formData.price" data-ng-pattern="{{ 'integer' | CodeValidate }}"></br>
 							<span data-ng-show="editeventpriceform.amount.$dirty && editeventpriceform.amount.$invalid">
 								<small class="error-row" data-ng-show="editeventpriceform.amount.$error.pattern">{{'error.not.numeric.validation' | translate }}</small>
 							</span>

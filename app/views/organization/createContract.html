@@ -5,7 +5,7 @@
           <li class="active">{{'label.createcontract' | translate}}</li>
         </ul>
       </div>
-      <form class="form-horizontal well"  data-ng-controller="CreateContractController" data-ng-submit="submit()">
+      <form name="createcontractform" class="form-horizontal well"  data-ng-controller="CreateContractController" data-ng-submit="submit()">
          <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label data-ng-show="errorStatus">{{errorStatus}}</label>
@@ -36,7 +36,10 @@
           <div class="control-group">
             <label class="control-label" for="units">{{ 'label.contract.units' | translate }}</label>
             <div class="controls">
-              <input type="number" id="units" data-ng-model="formData.units">
+              <input type="text" id="units" name="units" data-ng-model="formData.units" data-ng-pattern="{{'integer' | CodeValidate}}"></br>
+              <span data-ng-show="createcontractform.units.$dirty && createcontractform.units.$invalid">
+              	<small class="error-row">{{'error.not.numeric.validation' | translate}}</small>
+              </span>
             </div>
           </div>
           </td></tr>
@@ -44,7 +47,7 @@
           <td align="right">
           <div>
             <a href="#/contract"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
-            <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+            <button id="submit" type="submit" data-ng-disabled="createcontractform.$dirty && createcontractform.$invalid" class="btn btn-primary">{{'button.save'| translate}}</button>
           </div>
           </td></tr>
           </table>

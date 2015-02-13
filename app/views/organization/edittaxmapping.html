@@ -33,7 +33,7 @@
           	<div class="control-group">
             	<label class="control-label" for="taxCode">{{'label.taxCode' | translate }}<span class="required">*</span></label>
             	<div class="controls">
-              		<input type="text" id="taxCode" name="taxCode" data-ng-model="formData.taxCode" data-ng-maxlength="{{'code' | CodeValidate}}">
+              		<input type="text" id="taxCode" name="taxCode" data-ng-model="formData.taxCode" data-ng-maxlength="{{'code' | CodeValidate}}"></br>
               		<span data-ng-show="edittaxform.taxCode.$dirty && edittaxform.taxCode.$invalid">
               			<small class="error-row">{{'error.code.definition.length.validation'| translate}}</small>
               		</span>
@@ -64,7 +64,10 @@
            	<div class="control-group">
             	<label class="control-label" for="rate">{{'label.rate' | translate }}<span class="required">*</span></label>
             	<div class="controls">
-              		<input type="text" id="rate" data-ng-model="formData.rate">
+              		<input type="text" id="rate" name="rate" data-ng-model="formData.rate" data-ng-pattern="{{'decimal' | CodeValidate}}"></br>
+              		<span data-ng-show="edittaxform.rate.$dirty && edittaxform.rate.$invalid">
+              			<small class="error-row">{{'error.not.decimal.validation' | translate}}</small>
+              		</span>
             	</div>
           	</div>
           	</td></tr>
