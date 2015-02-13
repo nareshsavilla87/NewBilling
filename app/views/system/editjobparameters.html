@@ -55,11 +55,11 @@
 			<div class="control-group" data-ng-show="formData.displayName =='MERGE_MESSAGE'">
 				<label class="control-label">{{ 'label.job.messagetemplate' | translate }}<span class="required">*</span> </label>
 				<div class="controls">
-			      <select data-ng-model="jobparameters.messageTemplate"
+					 <select data-ng-model="jobparameters.messageTemplate"
 						data-ng-options="billingMessageData.templateDescription as billingMessageData.templateDescription for billingMessageData in billingMessageDatas"
 						data-value="{{office.id}}">
 					</select> 
-				<!-- 	<select data-ng-model="jobparameters.messageTemplate"
+					<!-- <select data-ng-model="jobparameters.messageTemplate"
 						data-ng-options="templateData.name as templateData.name for templateData in templateDatas">
 					</select> -->
 				</div>
