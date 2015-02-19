@@ -53,7 +53,7 @@
             <td>{{lookup.value}}</td> 
             <td><button type="button" class="btn btn-success flag" data-ng-show="lookup.value == 'false' " data-ng-click="clientConfigChange(lookup.name,lookup.value,0)"><i class="icon-flag-alt"></i></button>
                 <button type="button" class="btn btn-danger flag" data-ng-show="lookup.value == 'true'" data-ng-click="clientConfigChange(lookup.name,lookup.value,0)"><i class="icon-remove"></i></button>
-                <a data-ng-show="(lookup.value != 'true')&&(lookup.value != 'false')&&(lookup.name != 'clientListing')" data-ng-click="editClientConfigs(lookup.name,lookup.value)" data-popover="Edit {{lookup.name}}" 
+                <a data-ng-show="(lookup.name == 'deviceAgrementType')||(lookup.name == 'date_format')" data-ng-click="editClientConfigs(lookup.name,lookup.value)" data-popover="Edit {{lookup.name}}" 
                        data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a>
                 <a data-ng-show="(lookup.name == 'clientListing')" data-ng-click="editClientListing(lookup.name,lookup.value)" data-popover="Edit {{lookup.name}}" 
                        data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a>
