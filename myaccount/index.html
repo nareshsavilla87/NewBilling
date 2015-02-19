@@ -26,7 +26,7 @@
         <img src="./images/loading.gif" >
     </div> 
     <div data-ng-hide="isLandingPage || currentSession.user != null" data-ng-cloak >
-      <div class="container well margintop20" style="height: 580px;">
+      <div class="container well margintop20" style="height: 580px;margin-bottom: 0;">
         <div class="row form-search paddedbottom" >
         <div id="header" style="padding:15px 10px 60px 15px;-webkit-box-shadow: 0 6px 4px -4px #BABABA;box-shadow: 0 6px 4px -4px #BABABA;">
 			<div class="pull-left">
@@ -75,10 +75,10 @@
 							</tr>
 					      </table>
 					      <div>
-				            <button type="submit" class="btn btn-success" data-ng-click="submitEmail()" data-ng-hide="isProcessing" style="margin-left:35px;margin-top:7px;padding:5px 20px;" >
+				            <button type="submit" class="btn btn-success" data-ng-click="submitEmail()" data-ng-hide="isProcessing" style="margin-left:40px;margin-top:7px;padding:5px 20px;" >
 				            		{{ 'btn.signup' | translate }}
 				            </button>
-					        <button class="btn" data-ng-show="isProcessing" style="margin-left:35px;margin-top:7px;">
+					        <button class="btn" data-ng-show="isProcessing" style="margin-left:40px;margin-top:7px;">
 					        	{{'label.pleasewait' | translate}}<i class="icon-refresh icon-spin"></i>
 							</button> 
 				          </div>
@@ -106,11 +106,11 @@
 				           			data-ng-disabled="signInProcessLoading" placeholder="{{ 'label.password' | translate }}" required></td></tr>
 				           		</table>
 				           		<div class="pull-right" style="color:#428bca;"data-ng-click="forgotPwdPopup()"><a>{{'label.forgot.password' | translate}}</a></div>
-				           		<button type="submit"  class="btn btn-success" style="margin-left:35px;margin-top:7px;padding:5px 27px;" 
+				           		<button type="submit"  class="btn btn-success" style="margin-left:43px;margin-top:7px;padding:5px 27px;" 
 				           							data-ng-hide="isProcessing" data-ng-click="login()">
 				           				{{ 'btn.login' | translate }}
 				           		</button>
-				           		<button class="btn" data-ng-show="isProcessing" style="margin-left:35px;margin-top:7px;">
+				           		<button class="btn" data-ng-show="isProcessing" style="margin-left:43px;margin-top:7px;">
 				           			{{'label.pleasewait' | translate}}<i class="icon-refresh icon-spin"></i>
 						  		</button> 
 					    </div>
@@ -120,6 +120,8 @@
 		  </table>
 		 </div>
 	   </div>
+	 <!--  <span class="pull-right" style="padding-right:325px;margin-top:-25px;">Thor Telecom - Dalvegur 16b - 201 Kópavogur - Sími 5 100 500 -
+	    <a  style="color:#007fff;" href="http://thortelecom.is" target="_blank">http://thortelecom.is/</a></span> -->
 	</div>
 	<div data-ng-class="{fullscreen:true,blockui:blockUI==true}" id="main" data-ng-cloak data-ng-hide="currentSession.user == null">
 		 <div class="navbar navbar-fixed-top container">
@@ -170,6 +172,8 @@
 	        </div>
 	       </div>
 	    </div>
+	      <!-- <span class="pull-right" style="padding-right:325px;margin-top:-80px;">Thor Telecom - Dalvegur 16b - 201 Kópavogur - Sími 5 100 500 - <a  style="color:#007fff;" href="http://thortelecom.is" target="_blank">http://thortelecom.is/</a>
+	    </span> --> 
     </div>
       <script type="text/ng-template" id="forgotpwdpopup.html">
                     <div class="modal-header silver">

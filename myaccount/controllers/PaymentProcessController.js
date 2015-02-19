@@ -5,6 +5,7 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 	var planId 				= routeParams.planId;
 	scope.price		 	 	= routeParams.price;
 	var encrytionKey 		= selfcareModels.encriptionKey;
+	scope.isRedirecting 	= false;
 	
 	//getting Payment Gateway names form constans.js
 	var  kortaPG			=	paymentGatewayNames.korta || "";
@@ -116,6 +117,7 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 				
 			case internalPaymentPG :
 				scope.paymentURL =  "#/internalpayment/"+scope.screenName+"/"+scope.clientId+"/"+planId+"/"+priceDataId+"/"+scope.planData.price;
+				break;
 				
 			case two_checkoutPG :
 				localStorageService.add("twoCheckoutStorageData",{screenName:scope.screenName,clientId:scope.clientId,
