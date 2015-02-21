@@ -215,7 +215,7 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 					 if((scope.formData.password) !=null){
 						 scope.clientData.password = scope.formData.password;
 					 }
-					 if(scope.isConfigPassport){
+					 if(scope.isConfigPassport=='true'){
 						 scope.clientData.passport = scope.formData.passport;
 					 }
 					 
@@ -236,7 +236,8 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 					 scope.clientData.deviceAgreementType 	= configDeviceAgreeType.deviceAgrementType;
 					 
 					 rootScope.popUpMsgs = [];rootScope.infoMsgs = [];
-					 RequestSender.authenticationClientResource.save(scope.clientData,function(data){
+					 console.log(scope.clientData);
+					 /*RequestSender.authenticationClientResource.save(scope.clientData,function(data){
 
 		  				if(scope.clientData.password) {
 		  					rootScope.currentSession = sessionManager.clear();
@@ -253,7 +254,7 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 		  					});
 		  				}
 		      	      
-					 });
+					 });*/
 
 					
 		};
