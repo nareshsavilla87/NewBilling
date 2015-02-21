@@ -236,8 +236,7 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 					 scope.clientData.deviceAgreementType 	= configDeviceAgreeType.deviceAgrementType;
 					 
 					 rootScope.popUpMsgs = [];rootScope.infoMsgs = [];
-					 console.log(scope.clientData);
-					 /*RequestSender.authenticationClientResource.save(scope.clientData,function(data){
+					 RequestSender.authenticationClientResource.save(scope.clientData,function(data){
 
 		  				if(scope.clientData.password) {
 		  					rootScope.currentSession = sessionManager.clear();
@@ -254,7 +253,7 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 		  					});
 		  				}
 		      	      
-					 });*/
+					 });
 
 					
 		};
