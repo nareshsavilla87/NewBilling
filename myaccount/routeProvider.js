@@ -68,7 +68,7 @@ selfcareApp.config(function($routeProvider, $locationProvider) {
     .when('/paymentprocess/:screenName/:priceDataId/:planId/:price',{
     	templateUrl: 'views/paymentprocess.html'
     })
-    .when('/neteller/:priceDataId',{
+    .when('/neteller/:clientId',{
     	templateUrl: 'views/neteller.html'
     })
     .when('/changeorder/:clientId/:orderId',{
@@ -82,6 +82,9 @@ selfcareApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/prepaidpayment',{
     	templateUrl: 'views/prepaidpayment.html'
+    })
+    .when('/twocheckoutsuccess',{
+    	templateUrl: 'views/twocheckoutsuccess.html'
     });
        
     $locationProvider.html5Mode(false);

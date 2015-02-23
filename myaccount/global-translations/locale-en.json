@@ -104,6 +104,9 @@
  	"label.changeorder"			: "Change Order", 
  	"label.renewalorder"		: "Renewal Order", 
  	"label.voucher.pinNo"		: "Voucher Pin Number", 
+ 	"label.terms.conditions"	: "Terms and Conditions", 
+ 	"label.read.agreement"		: "Read and accept the following agreement to continue.", 
+ 	"label.passport"			: "Passport", 
  	
  	"label.signup.newuser"			   			: "Signup new user ",
  	"label.or"			   						: " - or - ",
@@ -169,6 +172,7 @@
  	"placeholder.filter.listofvods"			: "Filter by Id",
  	"placeholder.enter.serialnumber"		: "Enter Serial Number",
  	"placeholder.enter.text.search"			: "Enter text to search",
+ 	"placeholder.enter.passport"			: "Enter Passport",
  	
  	
  	"#common labels " : "------------------------------------",
@@ -917,6 +921,7 @@
 "label.neteller.value":"NETELLER EmailId",
 "label.neteller.source":"Source",
 "label.neteller.amount":"Amount",
+"label.netteler.info":"Neteller Information",
 
 "#paymentgatewayresponser":"",
 "label.cardType":"Card Type",

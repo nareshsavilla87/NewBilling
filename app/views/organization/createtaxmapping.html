@@ -6,7 +6,7 @@
         <li class="active">{{'label.create.new.taxmapping' | translate}}</li>
     </ul>
   
-    <form class="form-horizontal well"  data-ng-submit="submit()">
+    <form name="createtaxform" class="form-horizontal well"  data-ng-submit="submit()">
     	<div class="error" data-ng-show="errorStatus || errorDetails">
 			<label>{{'label.contract.error' | translate}}</label>
 			<label data-ng-show="errorStatus">{{errorStatus}}</label>
@@ -19,7 +19,7 @@
           <table>
           <tr><td>
           	<div class="control-group">
-            	<label class="control-label" for="chargeCode">{{'label.chargeCode' | translate }}</label>
+            	<label class="control-label" for="chargeCode">{{'label.chargeCode' | translate }}<span class="required">*</span></label>
              	<div class="controls">
               		<input type="text"  data-ng-model="formData.chargeCode" readonly>
             	</div>
@@ -28,16 +28,19 @@
 
            <tr><td>
           	<div class="control-group">
-            	<label class="control-label" for="taxCode">{{'label.taxCode' | translate }}</label>
+            	<label class="control-label" for="taxCode">{{'label.taxCode' | translate }}<span class="required">*</span></label>
             	<div class="controls">
-              		<input type="text" id="taxCode" data-ng-model="formData.taxCode">
+              		<input type="text" id="taxCode" name="taxCode" data-ng-model="formData.taxCode" data-ng-maxlength="{{'code' | CodeValidate}}"></br>
+              		<span data-ng-show="createtaxform.taxCode.$dirty && createtaxform.taxCode.$invalid">
+              			<small class="error-row">{{'error.code.definition.length.validation'| translate}}</small>
+              		</span>
             	</div>
           	</div>
           	</td></tr>
           
           <tr><td>
            	<div class="control-group">
-           		<label class="control-label" for="startDate">{{'label.startDate' | translate }}</label>
+           		<label class="control-label" for="startDate">{{'label.startDate' | translate }}<span class="required">*</span></label>
             	<div class="controls">
               		<input type="text" data-datepicker-pop="dd MMMM yyyy" data-ng-model="start.date" data-is-open="opened" min="minDate" max="maxDate" data-date-disabled="disabled(date, mode)" required data-late-Validate style="background-color:#FFFFFF;"  readonly/>
             	</div>
@@ -46,7 +49,7 @@
           
           <tr><td>
            <div class="control-group">
-            <label class="control-label" for="taxType">{{'label.type' | translate }}</label>
+            <label class="control-label" for="taxType">{{'label.type' | translate }}<span class="required">*</span></label>
             <div class="controls">
               <select id="taxType" data-ng-model="formData.taxType"  data-ng-options="taxTypeData.mCodeValue as taxTypeData.mCodeValue for taxTypeData in taxTypeDatas">
               <option value="">{{'label.select.one' | translate}}</option></select>
@@ -56,9 +59,12 @@
           
           <tr><td>	
           <div class="control-group">
-          		<label class="control-label" for="rate">{{'label.rate' | translate }}</label>
+          		<label class="control-label" for="rate">{{'label.rate' | translate }}<span class="required">*</span></label>
             	<div class="controls">
-            		<input type="text" id="rate" data-ng-model="formData.rate">
+            		<input type="text" id="rate" name="rate" data-ng-model="formData.rate" data-ng-pattern="{{'decimal' | CodeValidate}}"></br>
+            		<span data-ng-show="createtaxform.rate.$dirty && createtaxform.rate.$invalid">
+						<small class="error-row">{{'error.not.decimal.validation' | translate}}</small>            		
+            		</span>
             	</div>
           	</div>
           	</td></tr>
@@ -73,7 +79,7 @@
           </div></td></tr>
                 <tr><td align="right">
           		<a href="#/chargecode"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
-            	<button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+            	<button id="submit" type="submit" data-ng-disabled="createtaxform.$dirty && createtaxform.$invalid" class="btn btn-primary">{{'button.save'| translate}}</button>
      </td></tr></table>
           
         </fieldset>

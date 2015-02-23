@@ -1,13 +1,25 @@
 PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorageService,location,modal){
 	
-	//scope.termsAndConditions = true;
 	
-	var storageData			= localStorageService.get("storageData");
-	var clientData 			= storageData.clientData;
+	//getting Payment Gateway names form constans.js
+	var  kortaPG			=	paymentGatewayNames.korta || "";
+	var  dalpayPG			=	paymentGatewayNames.dalpay || "";
+	var  globalpayPG		=	paymentGatewayNames.globalpay || "";
+	var  paypalPG			=	paymentGatewayNames.paypal || "";
+	var  netellerPG			=	paymentGatewayNames.neteller || "";
+	var  internalPaymentPG	=	paymentGatewayNames.internalPayment || "";
+	var  two_checkoutPG		=	paymentGatewayNames.two_checkout || "";
+	
+	//getting locale value
+	 var temp 				= localStorageService.get('localeLang')||"";
+	 scope.optlang 			= temp || selfcareModels.locale;
+	
+	var clientData			= localStorageService.get("clientTotalData");
 	scope.clientId			= clientData.id;
 	scope.planData			= {};
 	var encrytionKey 		= selfcareModels.encriptionKey;
 	scope.amountEmpty 		= true;
+	scope.isRedirecting 	= false;
 	
 	  scope.paymentgatewayDatas = [];
 	  RequestSender.paymentGatewayConfigResource.get(function(data) {
@@ -27,13 +39,14 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 	//this function calls when comeout from amount field
 	scope.amountFieldFun = function(amount){
 		if(amount){
-			if(amount<=0){
+			if(amount<=0 || isNaN(amount)){
 				scope.amountEmpty = true;
 				delete scope.planData.price;
 				delete scope.planData.planCode;
 				delete scope.planData.id;
 				delete scope.amount;
-				alert("Amount Must be Greater than Zero");
+				if(amount <=0)alert("Amount Must be Greater than Zero");
+				if(isNaN(amount))alert("Please enter digits only");
 			}else{
 				scope.amountEmpty 		= false;
 				scope.planData.price 	= amount;
@@ -50,33 +63,27 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 	};
 	
 	//this fun call when user select a particular PW 
-	scope.paymentGWNameFun  = function(paymentGatewayName){
-		scope.paymentGatewayName = paymentGatewayName;
-	};
-	  
-	//this fun call when the user click on proceed btn
 	scope.paymentGatewayFun  = function(paymentGatewayName){
+			  scope.paymentGatewayName = paymentGatewayName;
 			  scope.termsAndConditions = false;
 			  var paymentGatewayValues = {};
 			  for (var i in scope.paymentgatewayDatas){
-				  if(scope.paymentgatewayDatas[i].name=='internalPayment'){
-					  break;
-				  } else if(scope.paymentgatewayDatas[i].name==paymentGatewayName){
-					  paymentGatewayValues =  JSON.parse(scope.paymentgatewayDatas[i].value);
-					  break;
-				  };
+			    if(scope.paymentgatewayDatas[i].name==paymentGatewayName && scope.paymentgatewayDatas[i].name !='internalPayment'){
+				  paymentGatewayValues =  JSON.parse(scope.paymentgatewayDatas[i].value);
+				  break;
+			    }
 				  
 			  }
 	     switch(paymentGatewayName){
 	     
-			case 'dalpay' :
+			case dalpayPG :
 					var url = paymentGatewayValues.url+'?mer_id='+paymentGatewayValues.merchantId+'&pageid='+paymentGatewayValues.pageId+'&item1_qty=1&num_items=1';
 				scope.paymentURL =  url+"&cust_name="+clientData.displayName+"&cust_phone="+clientData.phone+"&cust_email="+clientData.email+"&cust_state="+clientData.state+""+				
 				  	"&cust_address1="+clientData.addressNo+"&cust_zip="+clientData.zip+"&cust_city="+clientData.state+"&item1_desc="+scope.planData.planCode+"&item1_price="+scope.planData.price+"" + 	  				
 				  	"&user1="+scope.clientId+"&user2="+hostName+"&user3=orderbookingscreen/payment/"+scope.clientId+"/"+0+"/"+0;
 					break;
 					
-			case 'korta' :
+			case kortaPG :
 				
 			    var kortaStorageData = {clientData :clientData,planId:0,planData : scope.planData,screenName :'payment',paymentGatewayValues:paymentGatewayValues};	
 			    var encodeURIComponentData = encodeURIComponent(JSON.stringify(kortaStorageData));
@@ -87,14 +94,14 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 				else scope.paymentURL = "#/kortaintegration?key="+encryptedData;	    		
 				break;
 					
-			case 'paypal' :
+			case paypalPG :
 				var query = {clientId :scope.clientId,locale : "en",returnUrl:hostName,screenName :'payment'};
 				
 				scope.paymentURL = paymentGatewayValues.paypalUrl+'='+paymentGatewayValues.paypalEmailId+"&item_name="+scope.planData.planCode+"&amount="+scope.planData.price+"" +	  	  				
 				  	  "&custom="+JSON.stringify(query);
 					break;
 					
-			case 'globalpay' :
+			case globalpayPG :
 				var globalpayStorageData = {clientData :clientData,planId:0,screenName :'payment',price :scope.planData.price,
 											 priceId : 0, globalpayMerchantId:paymentGatewayValues.merchantId};	
 			    var encodeURIComponentData = encodeURIComponent(JSON.stringify(globalpayStorageData));
@@ -103,16 +110,25 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 				scope.paymentURL = "#/globalpayintegration?key="+encryptedData;
 				break;
 				
-			case 'neteller' :
-				var nettellerData = {clientId:scope.clientId,currency:"EUR",total_amount:scope.planData.price,
-					locale:"en",source:'neteller',screenName:'payment'};
+			case netellerPG :
+				var nettellerData = {currency:selfcareModels.netellerCurrencyType,total_amount:scope.planData.price,screenName:'payment'};
 				var encodeURINetellerData = encodeURIComponent(JSON.stringify(nettellerData));
 				var encryptedData = CryptoJS.AES.encrypt(encodeURINetellerData,encrytionKey).toString();
-				scope.paymentURL = "#/neteller/"+0+"?key="+encryptedData;
+				scope.paymentURL = "#/neteller/"+scope.clientId+"?key="+encryptedData;
 				break;
 				
-			case 'internalPayment' :
+			case internalPaymentPG :
 				scope.paymentURL =  "#/internalpayment/"+'payment'+"/"+scope.clientId+"/"+0+"/"+0+"/"+scope.planData.price;
+				break;
+				
+			case two_checkoutPG :
+				localStorageService.add("twoCheckoutStorageData",{screenName:"payment",clientId:scope.clientId,
+				 											planId:0,priceId:0});
+				var zipCode = clientData.zip || clientData.city || "";
+				scope.paymentURL =  "https://sandbox.2checkout.com/checkout/purchase?sid="+paymentGatewayValues+"&mode=2CO&li_0_type=product&li_0_name=invoice&li_0_price="+scope.planData.price
+									+"&card_holder_name="+clientData.displayName+"&street_address="+clientData.addressNo+"&city="+clientData.city+"&state="+clientData.state+"&zip="+zipCode
+									+"&country="+clientData.country+"&email="+clientData.email+"&quantity=1";
+				
 				break;
 					
 			default : break;
@@ -120,12 +136,18 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 		    	  		 	
 		  };
     
-	//this fun call when the user click on proceed btn
-	  scope.proceedFun = function (){
-		  scope.paymentGatewayFun(scope.paymentGatewayName);
-	  };
-	  
     var TermsandConditionsController = function($scope,$modalInstance){
+    	var termsAndConditions = "termsAndConditions_"+scope.optlang+"_locale";
+    	if(scope.optlang){
+    		(scope.paymentGatewayName == kortaPG)?
+    			$scope.termsAndConditionsText = korta[termsAndConditions] 	 		: (scope.paymentGatewayName == dalpayPG)?
+    			$scope.termsAndConditionsText = dalpay[termsAndConditions] 	 		: (scope.paymentGatewayName == globalpayPG)?
+    			$scope.termsAndConditionsText = globalpay[termsAndConditions] 		: (scope.paymentGatewayName == paypalPG)?
+    			$scope.termsAndConditionsText = paypal[termsAndConditions] 	 		: (scope.paymentGatewayName == netellerPG)?
+    			$scope.termsAndConditionsText = neteller[termsAndConditions] 	 	: (scope.paymentGatewayName == internalPaymentPG)?
+    		    $scope.termsAndConditionsText = internalPayment[termsAndConditions] : (scope.paymentGatewayName == two_checkoutPG)?
+    			$scope.termsAndConditionsText = two_checkout[termsAndConditions]	: $scope.termsAndConditionsText = selectOnePaymentGatewayText[scope.optlang];
+    	}
     	$scope.done = function(){
     		$modalInstance.dismiss('cancel');
     	};

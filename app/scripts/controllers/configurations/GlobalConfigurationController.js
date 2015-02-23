@@ -139,7 +139,7 @@
 	            	
 	            };
 	            
-	            scope.clientConfigChange = function(name,value,fromClientListing){
+	            scope.clientConfigChange = function(name,value,html){
 	            	
 	            	if(value == 'true'){
 	            		scope.oldValue = value;
@@ -152,7 +152,8 @@
 	            	resourceFactory.clientConfigurationResource.update(tempclient, function (data) {
 	            		webStorage.add("client_configuration",data);
                         route.reload();
-                        if(fromClientListing == 'true'){scope.editClientListing();};
+                        if(html == 'editclientlisting.html'){scope.editClientListing();}
+                        else if(html == 'editregestrationlisting.html'){scope.editRegistrationListing();};
                     });
 	            };
 	            
@@ -206,6 +207,13 @@
 	                    resolve:{}
 	                });
 	            };
+	            scope.editRegistrationListing=function(){
+	            	$modal.open({
+	            		templateUrl: 'editregestrationlisting.html',
+	            		controller: ApproveRegistrationListing,
+	            		resolve:{}
+	            	});
+	            };
 	           function ApproveClientListing($scope, $modalInstance) {
 	        	   
 	          	  	$scope.clientListData = [];
@@ -219,13 +227,34 @@
 	          	  	}
 	                $scope.approve = function (name, value) {
 	                    scope.approveData = {};
-	                    scope.clientConfigChange(name, value , 'true');
+	                    scope.clientConfigChange(name, value , 'editclientlisting.html');
 	                    $modalInstance.close('delete');
 	                };
 	                $scope.cancel = function () {
 	                    $modalInstance.dismiss('cancel');
 	                };
 	            }
+	           
+	           function ApproveRegistrationListing($scope, $modalInstance) {
+	        	   
+	        	   $scope.registrationListData = [];
+	        	   $scope.tempData = [];
+	        	   $scope.tempData = webStorage.get("client_configuration").registrationListing;
+	        	   for (var key in $scope.tempData) {
+	        		   $scope.registrationListData.push({
+	        			   "name" : key,
+	        			   "value" :$scope.tempData[key].toString(),
+	        		   });
+	        	   }
+	        	   $scope.approve = function (name, value) {
+	        		   scope.approveData = {};
+	        		   scope.clientConfigChange(name, value , 'editregestrationlisting.html');
+	        		   $modalInstance.close('delete');
+	        	   };
+	        	   $scope.cancel = function () {
+	        		   $modalInstance.dismiss('cancel');
+	        	   };
+	           }
 	            
 	        }
 	    });

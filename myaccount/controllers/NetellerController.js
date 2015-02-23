@@ -2,8 +2,7 @@ NetellerController = function(scope,RequestSender,routeParams,
 			  							HttpService,location,dateFilter,localStorageService) {
 		  
 		scope.formData 			= {};
-		scope.screenName 		= routeParams.screenName;
-		scope.priceDataId 		= routeParams.priceDataId;
+		var clientId 			= routeParams.clientId;
 		scope.validation 		= {};
 		
 		var encrytionKey 		= selfcareModels.encriptionKey;
@@ -13,8 +12,11 @@ NetellerController = function(scope,RequestSender,routeParams,
     	var	kortaStorageData 	= JSON.parse(decodeURIComponent(decryptedData));
     	scope.planCode 			= kortaStorageData.planCode;
     	scope.amount 			= kortaStorageData.total_amount;
-    	scope.clientId 			= kortaStorageData.clientId;
     	scope.formData 			= kortaStorageData;
+    	var screenName 			= scope.formData.screenName;
+    	scope.formData.locale	= "en";
+    	scope.formData.source	= "neteller";
+    	
     	 var tokenVal 			= "";
 		  var randomFun = function() {
 				var chars = "0123456789";
@@ -50,14 +52,29 @@ NetellerController = function(scope,RequestSender,routeParams,
     		
     	};
     	scope.submit = function() { 
-    			if(!scope.validation.value && !scope.validation.verificationCode)
+    		var clientData = localStorageService.get("clientTotalData");
+    		if(clientData){
+    			scope.formData.clientId = clientId || clientData.id;
+    		  if(!scope.validation.value && !scope.validation.verificationCode){
+    			  if(screenName == 'vod') scope.formData.screenName = "";
+    			  console.log(scope.formData);
     			var authentication = {username:selfcareModels.obs_username,password:selfcareModels.obs_password};
-    			RequestSender.netellerPaymentResource.save(authentication,this.formData, function(data){
+    			RequestSender.netellerPaymentResource.save(authentication,scope.formData, function(data){
     				localStorageService.add("paymentgatewayresponse",{data:data});
-    				location.path('/paymentgatewayresponse/'+scope.clientId);
+    				if(screenName == 'vod'){
+    					if(data.Result.toLowerCase() == "success"){
+    						 location.path("/orderbookingscreen/"+screenName+"/"+clientId+"/0/0");
+    					}else if(data.Result.toLowerCase() == "failure"){
+    						location.path('/paymentgatewayresponse/'+clientId);
+    					}
+    				}else{
+    					location.path('/paymentgatewayresponse/'+clientId);
+    				}
                });
+    	    }
 			
     	};
+       };
     	
 		 
     };

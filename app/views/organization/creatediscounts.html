@@ -6,7 +6,7 @@
     </ul>
 </div>
 
-<form class="form-horizontal well" data-ng-controller="CreateDiscountsController" data-ng-submit="submit()">
+<form name="creatediscountsform" class="form-horizontal well" data-ng-controller="CreateDiscountsController" data-ng-submit="submit()">
 	<div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label data-ng-show="errorStatus">{{errorStatus}}</label>
@@ -18,15 +18,18 @@
 					<tr>
 							<td>
 								<div class="control-group">
-           					 	<label class="control-label" for="discountCode">{{ 'label.discountCode' | translate }}</label>
+           					 	<label class="control-label" for="discountCode">{{ 'label.discountCode' | translate }}<span class="required">*</span></label>
             					<div class="controls">
-             					 <input type="text" id="discountCode" data-ng-model="formData.discountCode">
+             					 <input type="text" id="discountCode" name="discountCode" data-ng-model="formData.discountCode" data-ng-maxlength="{{'code' | CodeValidate}}"></br>
+             					 <span data-ng-show="creatediscountsform.discountCode.$dirty && creatediscountsform.discountCode.$invalid">
+									<small class="error-row" >{{'error.code.definition.length.validation'| translate}}</small>
+								 </span>
            						</div>
          						</div>	
 							</td>
 							<td>
 								<div class="control-group">
-            					<label class="control-label" for="discountType">{{ 'label.discountType' | translate }}</label>
+            					<label class="control-label" for="discountType">{{ 'label.discountType' | translate }}<span class="required">*</span></label>
             					<div class="controls">
              					 <select id="discountType" data-ng-model="formData.discountType" data-ng-options="discounTypeData.mCodeValue as discounTypeData.mCodeValue for discounTypeData in discountTypeDatas">
              					 <option value="">{{'label.select.one' | translate}}</option></select>
@@ -37,7 +40,7 @@
 							<tr>
 							<td>
 								<div class="control-group">
-            					<label class="control-label" for="discountDescription">{{ 'label.discountDescription' | translate }}</label>
+            					<label class="control-label" for="discountDescription">{{ 'label.discountDescription' | translate }}<span class="required">*</span></label>
             					<div class="controls">
               					<input type="text" id="discountDescription" data-ng-model="formData.discountDescription">
            						 </div>
@@ -45,9 +48,12 @@
 							</td>
 							<td>
 								<div class="control-group">
-            					<label class="control-label" for="discountRate">{{ 'label.discountRate' | translate }}</label>
+            					<label class="control-label" for="discountRate">{{ 'label.discountRate' | translate }}<span class="required">*</span></label>
             					<div class="controls">
-              					<input type="text" id="discountRate" data-ng-model="formData.discountRate">
+              					<input type="text" id="discountRate" name="discountRate" data-ng-model="formData.discountRate" data-ng-pattern="{{'decimal' | CodeValidate}}"></br>
+              					<span data-ng-show="creatediscountsform.discountRate.$dirty && creatediscountsform.discountRate.$invalid">
+              						<small class="error-row">{{'error.not.decimal.validation' | translate}}</small>
+              					</span>
             					</div>
           						</div>
 							</td>
@@ -55,7 +61,7 @@
 							<tr>
 							<td>
 								<div class="control-group">
-                        		<label class="control-label">{{ 'label.startDate' | translate }}</label>
+                        		<label class="control-label">{{ 'label.startDate' | translate }}<span class="required">*</span></label>
                         		<div class="controls">
                             	<input type="text" data-datepicker-pop="dd MMMM yyyy" data-ng-model="start.date" data-is-open="opened2" min="minDate" 
                             	max="'2020-06-22'" data-date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
@@ -64,7 +70,7 @@
 							</td>
 							<td>
 								<div class="control-group">
-            					<label class="control-label" for="discountStatus">{{ 'label.status' | translate }}</label>
+            					<label class="control-label" for="discountStatus">{{ 'label.status' | translate }}<span class="required">*</span></label>
             					<div class="controls">
              					 <select  id="discountStatus" data-ng-model="formData.discountStatus"  data-ng-options="discountStatus.value as discountStatus.value for discountStatus in statusDatas">
              					 <option value="">{{'label.select.one' | translate}}</option></select>
@@ -75,7 +81,7 @@
   			             <tr>
   			            <td align="right" colspan="2">
                         <a href="#/discounts"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
-                         <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+                         <button id="submit" type="submit" data-ng-disabled="creatediscountsform.$dirty && creatediscountsform.$invalid" class="btn btn-primary">{{'button.save'| translate}}</button>
                  </td></tr></table>
         </fieldset>
 </form>

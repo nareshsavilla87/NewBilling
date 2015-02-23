@@ -331,6 +331,38 @@
         </div>
 	</form>
 </script> 
+<script type="text/ng-template" id="editgeneral.html">
+
+	   <div class="modal-header silver">
+          <h3 class="bolder">{{'label.pgconfig.edit' | translate}}</h3>
+        </div>
+	 <form name="editGeneralForm" novalidate="" class="form-horizontal well" ng-submit="submit()">
+        <div class="modal-body">
+			 <div class="error" ng-show="errorStatus || errorDetails">
+				<label>{{'label.contract.error' | translate}}</label>
+				<label ng-show="errorStatus">{{errorStatus}}</label>
+				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	   		 </div>
+ 		  <fieldset>
+           	<div class="control-group">
+				<label class="control-label">{{'label.pgconfig.generalForm.value' | translate}}<span class="required">*</span> :</label>
+			 	<div class="controls">
+              		<input type="text" name="value" ng-model="formData.value" placeholder="enter value here" required late-Validate/><br>
+                    <span ng-show="editGeneralForm.value.$invalid">
+                    	<small class="error" ng-show="editGeneralForm.value.$error.req">
+                        	Required Field
+                    	</small>
+                   </span>
+            	</div>
+           	</div>
+		  </fieldset>
+        </div>
+        <div class="modal-footer">
+          <button id="cancel" class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+     	  <button id="submit" type="submit" class="btn btn-primary" ng-disabled="(!editGeneralForm.$valid)" >{{'label.confirm' | translate}}</button>
+        </div>
+	</form>
+	</script>
     
     
 </div>

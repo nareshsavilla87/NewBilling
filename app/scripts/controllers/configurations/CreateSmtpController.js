@@ -4,6 +4,7 @@
 	        
 	    	scope.formData={};
 	    	scope.formData.userName="smtp";
+	    	scope.formData.setContentString="text/html;charset=utf-8";
 	    	
 	    	scope.id = routeParams.id;
 	    	
@@ -23,6 +24,7 @@
 					scope.formData.hostName = val['hostName'];
 					scope.formData.port = val['port'];
 					scope.formData.starttls = val['starttls'];
+					scope.formData.setContentString = val['setContentString'];
 	                 
 					var password = val['password'];
 					scope.formData.password = atob(password);
@@ -40,6 +42,7 @@
 									+ '","port" : "' + scope.formData.port
 									+ '","starttls" : "' + scope.formData.starttls
 									+ '","password" : "' + password
+									+ '","setContentString" : "' + scope.formData.setContentString
 									+ '"}'	
 					};
 		        	

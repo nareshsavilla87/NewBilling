@@ -205,8 +205,8 @@
         </thead>
         <tbody>
             <tr ng-repeat="orderPriceData in orderPriceDatas">
-                <td>{{orderPriceData.serviceDescrption}}</td>            
-                <td>{{orderPriceData.chargedesc}}</td>        
+                <td>{{orderPriceData.serviceDescription}}</td>            
+                <td>{{orderPriceData.chargeDescription}}</td>        
                 <td>{{orderPriceData.billStartDate | DateFormat}}</td>         
                 <td>{{orderPriceData.billEndDate| DateFormat}}</td>
                 <td>{{orderPriceData.invoiceTillDate| DateFormat}}</td>
@@ -615,11 +615,18 @@
                     <div class="modal-header silver">
                         <h3 class="bolder">Sent Message Details</h3>
                     </div>
-                    <div class="modal-body modal-big">
-						<table style="margin-left:50px;">
+                    <div class="modal-body modal-big" style="width:650px;">
+						<table style="" class="fullwidth">
 							<tr ng-repeat="messageData in messageData">
-								<td width="30%">{{messageData.key}}</td>
-								<td width="80%" style="color:#800080;">:&nbsp;&nbsp;{{messageData.value}}</td>
+								<td width="30%" valign="top" align="right">{{messageData.key}}:</td>
+								<!--<td width="80%" style="color:#800080;">:&nbsp;&nbsp;{{messageData.value}}</td>-->
+								<td width="70%" style="color:#800080;padding-left:10px;">
+								  <table class="fullwidth"><tr ng-repeat="msgValue in messageData.value track by $index">
+									<td width="35%" valign="top">{{msgValue.key}}</td>
+									<td data-ng-hide='msgValue.value ==""' width="1%" valign="top">:&nbsp;&nbsp;</td>
+									<td data-ng-hide='msgValue.value ==""'> {{msgValue.value}}</td>
+								</tr></table>
+								</td>
 							</tr>
 		        		 </table>
                     </div>

@@ -17,6 +17,7 @@ document.write("<script type='text/javascript' src='./bower_components/angular-d
 
 //individual js files
 document.write("<script type='text/javascript' src='./constants.js'></script>");
+document.write("<script type='text/javascript' src='./termsandconditions.js'></script>");
 document.write("<script type='text/javascript' src='./main.js'></script>");
 document.write("<script type='text/javascript' src='./routeProvider.js'></script>");
 
@@ -78,3 +79,4 @@ document.write("<script type='text/javascript' src='./controllers/PaymentProcess
 document.write("<script type='text/javascript' src='./controllers/NetellerController.js'></script>");
 document.write("<script type='text/javascript' src='./controllers/InternalPaymentController.js'></script>");
 document.write("<script type='text/javascript' src='./controllers/PrepaidPaymentController.js'></script>");
+document.write("<script type='text/javascript' src='./controllers/TwoCheckoutSuccessController.js'></script>");
