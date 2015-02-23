@@ -31,3 +31,14 @@
 	   webtvURL						: locationOrigin+"/webtv/index.html#/",
 		   
    	};
+   
+   paymentGatewayNames  = {
+		   
+		   korta 					: 'korta',
+		   dalpay 					: 'dalpay',
+		   globalpay 				: 'globalpay',
+		   paypal 					: 'paypal',
+		   neteller 				: 'neteller',
+		   internalPayment 			: 'internalPayment',
+		   two_checkout 			: '2checkout',
+   };

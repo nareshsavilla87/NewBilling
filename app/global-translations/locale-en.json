@@ -498,6 +498,7 @@
   "error.delete.failed":"System defined code values cannot be deleted",
   "error.code.definition.length.validation":"length should be less than 10 characters",
   "error.not.numeric.validation":"Invalid numeric value",
+  "error.not.decimal.validation":"Invalid decimal value",
 
 
   "#Journal Entry Predefined Postings":"........",
@@ -2392,6 +2393,8 @@
 "label.pgconfig.neteller.url":"Neteller Url",
 "label.pgconfig.neteller.clientid":"Neteller API clientId",
 "label.pgconfig.neteller.secretcode":"Neteller API secretCode",
+ "label.pgconfig.edit":"Edit PaymentGateway",
+"label.pgconfig.generalForm.value":"Value",
 
 
 "#Audit trails":".....",

@@ -1,11 +1,22 @@
-AddEventsController = function(scope,RequestSender,rootScope,http,authenticationService,webStorage,httpService,sessionManager,location,localStorageService,modal,dateFilter) {
+AddEventsController = function(scope,RequestSender,location,localStorageService,modal) {
 		  
 		  scope.vodEventScreen 		= true;
 		  scope.eventDetailsPreview = false;
-		  scope.formData 			= {};
-		  scope.planData 			= {};
-		  scope.addressData 		= {};
 		  var encrytionKey 			= selfcareModels.encriptionKey;
+		  scope.isRedirecting 		= false;
+		  
+		//getting Payment Gateway names form constans.js
+			var  kortaPG			=	paymentGatewayNames.korta || "";
+			var  dalpayPG			=	paymentGatewayNames.dalpay || "";
+			var  globalpayPG		=	paymentGatewayNames.globalpay || "";
+			var  paypalPG			=	paymentGatewayNames.paypal || "";
+			var  netellerPG			=	paymentGatewayNames.neteller || "";
+			var  internalPaymentPG	=	paymentGatewayNames.internalPayment || "";
+			var  two_checkoutPG		=	paymentGatewayNames.two_checkout || "";
+			
+			//getting locale value
+			 var temp 				= localStorageService.get('localeLang')||"";
+			 scope.optlang 			= temp || selfcareModels.locale;
 		  
 		  var clientData = {};
 		  if(localStorageService.get("clientTotalData")){
@@ -64,26 +75,25 @@ AddEventsController = function(scope,RequestSender,rootScope,http,authentication
 		  
 	  var hostName = selfcareModels.selfcareAppUrl;
 		   scope.paymentGatewayFun  = function(paymentGatewayName){
+			   	  scope.paymentGatewayName = paymentGatewayName;
 				  scope.termsAndConditions = false;
 				  var paymentGatewayValues = {};
 				  for (var i in scope.paymentgatewayDatas){
-					  if(scope.paymentgatewayDatas[i].name=='internalPayment'){
-						  break;
-					  } else if(scope.paymentgatewayDatas[i].name==paymentGatewayName){
-						  paymentGatewayValues =  JSON.parse(scope.paymentgatewayDatas[i].value);
-						  break;
-					  }
+				    if(scope.paymentgatewayDatas[i].name==paymentGatewayName && scope.paymentgatewayDatas[i].name !='internalPayment'){
+					  paymentGatewayValues =  JSON.parse(scope.paymentgatewayDatas[i].value);
+					  break;
+				    }
 					  
 				  }
 		     switch(paymentGatewayName){
-				case 'dalpay' :
+				case dalpayPG :
 						var url = paymentGatewayValues.url+'?mer_id='+paymentGatewayValues.merchantId+'&pageid='+paymentGatewayValues.pageId+'&item1_qty=1&num_items=1';
 					scope.paymentURL =  url+"&cust_name="+clientData.displayName+"&cust_phone="+clientData.phone+"&cust_email="+clientData.email+"&cust_state="+clientData.state+""+				
 					  	"&cust_address1="+clientData.addressNo+"&cust_zip="+clientData.zip+"&cust_city="+clientData.state+"&item1_desc=AddingEvents&item1_price="+scope.totalAmount+"" + 	  				
 					  	"&user1="+scope.clientId+"&user2="+hostName+"&user3=orderbookingscreen/vod"+scope.clientId+"/1/1";
 						break;
 						
-				case 'korta' :
+				case kortaPG :
 					localStorageService.add("eventData",scope.mediaDatas);
 					var planData = {id:0,"price":scope.totalAmount,"planCode":"Adding Events"};
 				    var kortaStorageData = {clientData :clientData,planId:0,planData : planData,screenName :"vod",paymentGatewayValues:paymentGatewayValues};	
@@ -95,7 +105,7 @@ AddEventsController = function(scope,RequestSender,rootScope,http,authentication
 					else scope.paymentURL = "#/kortaintegration?key="+encryptedData;	    		
 					break;
 						
-				case 'paypal' :
+				case paypalPG :
 					var mediaData = [];
 					for(var i in scope.mediaDatas){
 						mediaData.push({"eventId":scope.mediaDatas[i].eventId},{"formatType":scope.mediaDatas[i].quality},{"optType":scope.mediaDatas[i].optType});
@@ -107,7 +117,7 @@ AddEventsController = function(scope,RequestSender,rootScope,http,authentication
 					  	  "&custom="+JSON.stringify(query);
 						break;
 						
-				case 'globalpay' :
+				case globalpayPG :
 					
 					var globalpayStorageData = {clientData :clientData,planId:0,screenName :"vod",price :scope.totalAmount,
 												 priceId : 0, globalpayMerchantId:paymentGatewayValues.merchantId};	
@@ -116,7 +126,7 @@ AddEventsController = function(scope,RequestSender,rootScope,http,authentication
 					
 					scope.paymentURL = "#/globalpayintegration?key="+encryptedData;
 					break;
-				case 'neteller' :
+				case netellerPG :
 					localStorageService.add("eventData",scope.mediaDatas);
 					var nettellerData = {currency:selfcareModels.netellerCurrencyType,total_amount:scope.totalAmount,screenName:'vod'};
 					var encodeURINetellerData = encodeURIComponent(JSON.stringify(nettellerData));
@@ -124,8 +134,19 @@ AddEventsController = function(scope,RequestSender,rootScope,http,authentication
 					scope.paymentURL = "#/neteller/"+scope.clientId+"?key="+encryptedData;
 					break;
 					
-				case 'internalPayment' :
-					scope.paymentURL =  "#/internalpayment/vod/"+scope.clientId+"/"+0+"/"+0;
+				case internalPaymentPG :
+					scope.paymentURL =  "#/internalpayment/vod/"+scope.clientId+"/0/0/"+scope.totalAmount;
+					break;
+					
+				case two_checkoutPG :
+					localStorageService.add("twoCheckoutStorageData",{screenName:"vod",clientId:scope.clientId,
+																		planId:0,priceId:0});
+					localStorageService.add("eventData",scope.mediaDatas);
+					var zipCode = clientData.zip || clientData.city || "";
+					scope.paymentURL =  "https://sandbox.2checkout.com/checkout/purchase?sid="+paymentGatewayValues+"&mode=2CO&li_0_type=product&li_0_name=invoice&li_0_price="+scope.totalAmount
+										+"&card_holder_name="+clientData.displayName+"&street_address="+clientData.addressNo+"&city="+clientData.city+"&state="+clientData.state+"&zip="+zipCode
+										+"&country="+clientData.country+"&email="+clientData.email+"&quantity=1";
+					
 					break;
 					
 				default :
@@ -145,6 +166,17 @@ AddEventsController = function(scope,RequestSender,rootScope,http,authentication
 		  };
 		  
 		  var TermsandConditionsController = function($scope,$modalInstance){
+			  var termsAndConditions = "termsAndConditions_"+scope.optlang+"_locale";
+		    	if(scope.optlang){
+		    		(scope.paymentGatewayName == kortaPG)?
+		    			$scope.termsAndConditionsText = korta[termsAndConditions] 	 		: (scope.paymentGatewayName == dalpayPG)?
+		    			$scope.termsAndConditionsText = dalpay[termsAndConditions] 	 		: (scope.paymentGatewayName == globalpayPG)?
+		    			$scope.termsAndConditionsText = globalpay[termsAndConditions] 		: (scope.paymentGatewayName == paypalPG)?
+		    			$scope.termsAndConditionsText = paypal[termsAndConditions] 	 		: (scope.paymentGatewayName == netellerPG)?
+		    			$scope.termsAndConditionsText = neteller[termsAndConditions] 	 	: (scope.paymentGatewayName == internalPaymentPG)?
+		    			$scope.termsAndConditionsText = internalPayment[termsAndConditions] : (scope.paymentGatewayName == two_checkoutPG)?
+		    			$scope.termsAndConditionsText = two_checkout[termsAndConditions]	: $scope.termsAndConditionsText = selectOnePaymentGatewayText[scope.optlang];
+		    	}
 			  $scope.done = function(){
 				  $modalInstance.dismiss('cancel');
 			  };
@@ -157,18 +189,12 @@ AddEventsController = function(scope,RequestSender,rootScope,http,authentication
 				  resolve:{}
 			  });
 		  };
+		  
     };
     
 selfcareApp.controller('AddEventsController', ['$scope',
                                                'RequestSender',
-                                               '$rootScope',
-                                               '$http',
-                                               'AuthenticationService',
-                                               'webStorage',
-                                               'HttpService',
-                                               'SessionManager',
                                                '$location',
                                                'localStorageService',
                                                '$modal',
-                                               'dateFilter',
                                                AddEventsController]);

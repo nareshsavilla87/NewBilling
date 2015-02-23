@@ -104,6 +104,9 @@
  	"label.changeorder"			: "Breyta Panta", 
  	"label.renewalorder"		: "endurnýjun Panta", 
  	"label.voucher.pinNo"		: "Úttektarmiðinn pinna Númer", 
+ 	"label.terms.conditions"	: "Skilmálar og skilyrði", 
+ 	"label.read.agreement"		: "Lesa og samþykkja eftirfarandi samkomulag til að halda áfram.",
+ 	"label.passport"			: "vegabréf", 
  	
  	"label.signup.newuser"			 		    : "stofnaðu aðgang ",
  	"label.or"			 					    : " - eða - ",
@@ -169,6 +172,7 @@
  	"placeholder.filter.listofvods"			: "Sía eftir auðkenni",
  	"placeholder.enter.serialnumber"		: "Sláið inn raðnúmers",
  	"placeholder.enter.text.search"			: "Sláðu inn texta til að leita",
+ 	"placeholder.enter.passport"			: "Sláðu vegabréf"
  	
  	
  	"#common labels " : "------------------------------------",

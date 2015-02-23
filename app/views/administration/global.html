@@ -53,9 +53,11 @@
             <td>{{lookup.value}}</td> 
             <td><button type="button" class="btn btn-success flag" data-ng-show="lookup.value == 'false' " data-ng-click="clientConfigChange(lookup.name,lookup.value,0)"><i class="icon-flag-alt"></i></button>
                 <button type="button" class="btn btn-danger flag" data-ng-show="lookup.value == 'true'" data-ng-click="clientConfigChange(lookup.name,lookup.value,0)"><i class="icon-remove"></i></button>
-                <a data-ng-show="(lookup.value != 'true')&&(lookup.value != 'false')&&(lookup.name != 'clientListing')" data-ng-click="editClientConfigs(lookup.name,lookup.value)" data-popover="Edit {{lookup.name}}" 
+                <a data-ng-show="(lookup.name == 'deviceAgrementType')||(lookup.name == 'date_format')" data-ng-click="editClientConfigs(lookup.name,lookup.value)" data-popover="Edit {{lookup.name}}" 
                        data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a>
                 <a data-ng-show="(lookup.name == 'clientListing')" data-ng-click="editClientListing(lookup.name,lookup.value)" data-popover="Edit {{lookup.name}}" 
+                       data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a>
+                <a data-ng-show="(lookup.name == 'registrationListing')" data-ng-click="editRegistrationListing()" data-popover="Edit {{lookup.name}}" 
                        data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a>
             </td>
         </tr>
@@ -157,4 +159,40 @@
    	  
    </div>
 </script> 
+<script type="text/ng-template" id="editregestrationlisting.html">
+  <div style="width:680px;height:190px;">
+	<form class="form-horizontal well" ng-submit="submit()">
+	   <div class="error" ng-show="errorStatus || errorDetails">
+		  <label>{{'label.errors' | translate}}</label>
+		  <label ng-show="errorStatus">{{errorStatus}}</label>
+		  <label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	   </div>
+	   <fieldset>
+		  <legend>Edit Registration Listing</legend>
+		  		<table class="table">
+        		<thead>
+        			<tr class="graybg">
+            			<th>{{'label.form.name' | translate}}</th>
+            			<th>{{'table.heading.value' | translate}}</th>	
+            			<th>{{ 'table.heading.actions' | translate }}</th>
+        			</tr>
+        		</thead>
+        		<tbody>
+        			<tr ng-repeat="lookup in registrationListData">
+            			<td>{{lookup.name}}</a></td>
+            			<td>{{lookup.value}}</td> 
+            			<td><button type="button" class="btn btn-success flag" data-ng-show="lookup.value == 'false' " data-ng-click="approve(lookup.name,lookup.value)"><i class="icon-flag-alt"></i></button>
+                			<button type="button" class="btn btn-danger flag" data-ng-show="lookup.value == 'true'" data-ng-click="approve(lookup.name,lookup.value)"><i class="icon-remove"></i></button>
+            			</td>
+        			</tr>
+        		</tbody>
+    			</table>
+		 </fieldset>
+		<div class="modal-footer">
+         <button id="submit" class="btn btn-primary" data-ng-click="cancel()" >Close</button>
+        </div>
+	  </form>
+   	  
+   </div>
+</script>
 

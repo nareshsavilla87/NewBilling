@@ -26,6 +26,7 @@
 		        scope.data={};
 		        scope.maxDate = new Date();
 		        //scope.formData.chargeCode="NONE";
+		        scope.truefalse = true;
 	        resourceFactory.oneTimeSaleTemplateResource.getOnetimes({clientId: routeParams.id}, function(data) {
 	            
 	        	scope.itemDatas = data.itemDatas;
@@ -51,6 +52,7 @@
 	        		scope.formData.discountId = scope.discountMasterDatas[0].id;
 	        		scope.formData.officeId=officeId;
 	        		scope.formData.chargeCode="NONE";
+	        		scope.truefalse = false;
 		        });	
 	        };
 	        
