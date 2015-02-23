@@ -104,6 +104,8 @@
  	"label.changeorder"			: "Change Order", 
  	"label.renewalorder"		: "Renewal Order", 
  	"label.voucher.pinNo"		: "Voucher Pin Number", 
+ 	"label.terms.conditions"	: "Terms and Conditions", 
+ 	"label.read.agreement"		: "Read and accept the following agreement to continue.", 
  	
  	"label.signup.newuser"			   			: "Signup new user ",
  	"label.or"			   						: " - or - ",
@@ -917,6 +919,7 @@
 "label.neteller.value":"NETELLER EmailId",
 "label.neteller.source":"Source",
 "label.neteller.amount":"Amount",
+"label.netteler.info":"Neteller Information",
 
 "#paymentgatewayresponser":"",
 "label.cardType":"Card Type",

@@ -1,0 +1,46 @@
+<div  data-ng-controller="ViewTemplateController">
+    <div class="paddedbottom10">
+        <ul class="breadcrumb">
+            <li><a href="#/templates">{{'label.anchor.templates' | translate}}</a><span class="divider">/</span></li>
+            <li class="active">{{template.name}}</li>
+        </ul>
+        <div class="pull-right">
+            <div class="btn-group">
+                <a href="#/edittemplate/{{template.id}}" class="btn btn-primary" data-ng-show="PermissionService.showMenu('UPDATE_TEMPLATE')"><i class="icon-edit icon-white"></i>{{'button.edit' | translate}}</a>
+                <button type="button" class="btn btn-primary" data-ng-click="deleteTemplate()" data-ng-show="PermissionService.showMenu('DELETE_TEMPLATE')">
+                    <i class="icon-trash icon-white"></i>{{'button.delete' | translate}}</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/ng-template" id="deletePopupForTemplate.html">
+    	<div class="modal-header silver">
+        	<h3 class="bolder">{{'label.anchor.deletetemplate' | translate}}</h3>
+        </div>
+
+        <div class="modal-body style="height:60px;">
+            <h4>Are you sure?</h4>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+            <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+        </div>
+   </script>
+    <div class="row paddedleft">
+        <h3>{{template.name}}</h3>
+        <table class="table table-bordered" width="80%">
+            <tr>
+                <td width="20%">{{'label.heading.entity' | translate }}</td>
+                <td width="60%">{{template.entity}}</td>
+            </tr>
+            <tr>
+                <td>{{ 'label.heading.type' | translate }}</td>
+                <td>{{template.type}}</td>
+            </tr>
+            <tr data-ng-show="text">
+                <td valign="top">{{ 'label.heading.text' | translate }}</td>
+                <td data-ng-bind-html="text"></td>
+            </tr>
+        </table>
+    </div>
+</div>

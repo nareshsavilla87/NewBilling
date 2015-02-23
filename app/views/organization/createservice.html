@@ -19,8 +19,11 @@
                 <div class="control-group">
                   <label class="control-label" for="serviceCode">{{ 'label.service.servicecode' | translate }}<span class="required" >*</span></label>
                   <div class="controls">
-                    <input type="text" name="serviceCode" data-ng-model="formData.serviceCode"  data-ng-maxlength="10" />
-                    <form-validate formName="createServiceForm"  fieldName="serviceCode" maxLenMsg="10 characters"/> 
+                    <input type="text" name="serviceCode" data-ng-model="formData.serviceCode"  data-ng-maxlength="{{'code' | CodeValidate }}" />
+                    <!-- <form-validate formName="createServiceForm"  fieldName="serviceCode" maxLenMsg="10 characters"/>  -->
+                    <span data-ng-show="createServiceForm.serviceCode.$dirty && createServiceForm.serviceCode.$invalid">
+						<small class="error-row" >{{'error.code.definition.length.validation'| translate}}</small>
+					</span>
                   </div>
                 </div>
               </td>
@@ -30,7 +33,7 @@
                 <div class="control-group">
                   <label class="control-label" for="serviceDescription">{{ 'label.service.servicedescription' | translate }}<span class="required" >*</span></label>
                   <div class="controls">
-                    <input type="text" data-ng-model="formData.serviceDescription">
+                    <input type="text" data-ng-model="formData.serviceDescription" >
                   </div>
                 </div>
               </td>
@@ -82,7 +85,7 @@
           </table>
           <div class="offset3" style="margin-left:33%;">
             <a href="#/services"><button id="cancel" type="reset" class="btn">{{'button.cancel' | translate}}</button></a>
-            <button id="submit" type="submit" class="btn btn-primary">{{'button.save' | translate}}</button>
+            <button id="submit" type="submit" data-ng-disabled="createServiceForm.$dirty && createServiceForm.$invalid" class="btn btn-primary">{{'button.save' | translate}}</button>
           </div>
         </fieldset>
       </form>

@@ -109,7 +109,10 @@
 								<div class="control-group">
            					 	<label class="control-label" for="amountPaid">{{ 'label.amount' | translate }}</label>
             					<div class="controls">
-             					 <input type="text" id="amountPaid" ng-model="formData.amountPaid"/>
+             					 <input type="text" id="amountPaid" name="amountPaid" data-ng-model="formData.amountPaid" data-ng-pattern="{{'decimal' | CodeValidate}}"/>
+             					 <span data-ng-show="payInvoiceForm.amountPaid.$dirty && payInvoiceForm.amountPaid.$invalid">
+             					 	<small class="error-row">{{'error.not.decimal.validation' | translate}}</small>
+             					 </span>
            						</div>
          						</div>
 							</td>
@@ -217,7 +220,7 @@
 			<br>
 			 <div class="offset3" ng-hide= "selectInvoice">
            		 <a href='#/viewclient/{{clientId}}' class="btn">Cancel</a>
-          		 <button id="submit" type="submit" class="btn btn-primary" ng-click = "submitAccount()">{{'button.save'| translate}}</button>
+          		 <button id="submit" type="submit" data-ng-disabled="payInvoiceForm.$dirty && payInvoiceForm.$invalid" class="btn btn-primary" ng-click = "submitAccount()">{{'button.save'| translate}}</button>
           	</div>
 			<br>
 			<div class="control-group" ng-show = "selectInvoice">
@@ -255,10 +258,16 @@
                 <td>{{invoiceData.dueAmount}}</td>
                 <td>
              		<span style="color:green;" ng-show="(invoiceData.dueAmount == 0) && (value == invoiceData.id)">Paid</span>
-             		<input ng-show="(value == invoiceData.id) && (invoiceData.dueAmount != 0)" class="input-small" type="text" ng-model ="formData.amount" ng-change="amountField(formData.amount,invoiceData.dueAmount)">
+             		<input ng-show="(value == invoiceData.id) && (invoiceData.dueAmount != 0)" class="input-small" type="text" name="amountInvoice"
+             			ng-model ="formData.amount" ng-change="amountField(formData.amount,invoiceData.dueAmount)" data-ng-pattern="{{'decimal' | CodeValidate}}">
+             		
            		</td>
                  <td>
-                    <button ng-show="(value == invoiceData.id) && (invoiceData.dueAmount != 0)" class="btn btn-primary"  ng-click="submitInvoice()">Pay</button>
+                    <button ng-show="(value == invoiceData.id) && (invoiceData.dueAmount != 0)"  
+                    	class="btn btn-primary"  ng-click="submitInvoice()">Pay</button>
+                  <!--   <span data-ng-show="payInvoiceForm.amountInvoice.$dirty && payInvoiceForm.amountInvoice.$invalid">
+             			<small class="error-row" data-ng-show="payInvoiceForm.amountInvoice.$error.pattern">{{'error.not.decimal.validation' | translate}}</small>
+             		</span> -->
            		</td >
 
             </tr>

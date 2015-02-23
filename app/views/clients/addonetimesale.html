@@ -58,7 +58,7 @@
 			<li class="active">{{'link.add.onetimesale' | translate}}</li>
 		</ul>
 	</div>
-	<form class="form-horizontal well" data-ng-submit="submit()">
+	<form name="onetimesaleform" class="form-horizontal well" data-ng-submit="submit()">
 		<div class="error" data-ng-show="errorStatus || errorDetails">
 			<label>{{'label.contract.error' | translate}}</label> <label
 				data-ng-show="errorStatus">{{errorStatus}}</label> <label
@@ -131,9 +131,12 @@
 										<label class="control-label" for="quantity">{{
 											'label.quantity' | translate }}</label>
 										<div class="controls">
-											<input type="text" id="quantity" data-ng-model="formData.quantity"
-												data-ng-change="itemDataQuantity(formData.quantity,formData.itemId,formData.officeId,formData.units)"
-												data-ng-readonly="truefalse">
+											<input type="text" id="quantity" name="quantity" data-ng-model="formData.quantity"
+												data-ng-change="(formData.quantity) && !(onetimesaleform.quantity.$error.pattern) && (itemDataQuantity(formData.quantity,formData.itemId,formData.officeId,formData.units))"
+												data-ng-readonly="truefalse" data-ng-pattern="{{'integer' | CodeValidate}}"><br/>
+											<span data-ng-show ="onetimesaleform.quantity.$dirty && onetimesaleform.quantity.$invalid" >
+												<small class ="error-row">{{'error.not.numeric.validation' | translate}}</small>
+											</span>
 										</div>
 									</div>
 								</td>
@@ -180,7 +183,7 @@
 												| translate}}</button></a>
 
 										<!-- <button id="submit" type="submit" class="btn btn-primary" ng-disabled="flag">{{'button.save' | translate}}</button> -->
-										<button id="submit" type="submit" class="btn btn-primary">{{'button.save'
+										<button id="submit" type="submit" data-ng-disabled="onetimesaleform.$dirty && onetimesaleform.$invalid" class="btn btn-primary">{{'button.save'
 											| translate}}</button>
 									</div>
 								</td>

@@ -68,6 +68,10 @@ padding-bottom: 10px;
 padding-bottom: 20px;
 }
 
+.paddedtop15 {
+padding-top: 15px;
+}
+
 td > a {
     color: #080808;
 }
@@ -414,6 +418,18 @@ tr.pointer-main:hover {
     left: 160px;
     border:1px solid #ddd;
     opacity: 0.9;
+    
+}
+
+.error-row {
+    color:red;
+    margin-bottom:10px;
+    margin-top:-10px;
+    padding: 10px;
+    z-index: 100;
+    left: 160px;
+    opacity: 0.9;
+    /* font-size: 99%; */
     
 }
 
@@ -944,7 +960,7 @@ nav:hover:after{
 	width: 100%;
 }
 
-.container td .paddedleftNone {
+.container td:first-child .paddedleftNone {
 	padding-left: 0;
 }
 
@@ -1133,6 +1149,16 @@ input#search:-ms-input-placeholder {
 .width11 {
     width: 11%;
 }
+
+.width8 {
+    width: 8%;
+}
+
+.width20 {
+    width: 20%;
+}
+
+
 
 /*        .onoffswitch {
     position: relative; width: 90px;

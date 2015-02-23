@@ -5,7 +5,7 @@
         <li class="active">{{'label.editplan' | translate}}</li>
     </ul>
 </div>
-<form class="form-horizontal well" data-ng-controller="EditPlanController" data-ng-submit="submit()">
+<form name="editplan" class="form-horizontal well" data-ng-controller="EditPlanController" data-ng-submit="submit()">
 	<div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label data-ng-show="errorStatus">{{errorStatus}}</label>
@@ -17,15 +17,18 @@
             	<tr>
                 	<td width="50%">
 		          		<div class="control-group">
-		            		<label class="control-label" for="planCode">{{ 'label.plan.plancode' | translate }}</label>
+		            		<label class="control-label" for="planCode">{{ 'label.plan.plancode' | translate }}<span class="required">*</span></label>
 		            		<div class="controls">
-		              			<input type="text" id="planCode" data-ng-model="formData.planCode">
+		              			<input type="text" id="planCode" name="planCode" data-ng-model="formData.planCode" data-ng-maxlength="{{ 'code' | CodeValidate }}"></br>
+		              			<span data-ng-show="editplan.planCode.$dirty && editplan.planCode.$invalid">
+								<small class="error-row" >{{'error.code.definition.length.validation'| translate}}</small>
+								</span>
 		            		</div>
 		          		</div>
 		      		</td>
                 	<td width="50%">
 	           			<div class="control-group">
-	            			<label class="control-label" for="status">{{ 'label.plan.status' | translate }}</label>
+	            			<label class="control-label" for="status">{{ 'label.plan.status' | translate }}<span class="required">*</span></label>
 	            			<div class="controls">
 	              				<select id="status" data-ng-model="formData.status"  data-ng-options="planStatus.id as planStatus.value for planStatus in planStatus"></select>
 	            			</div>
@@ -35,7 +38,7 @@
           		<tr>
               		<td width="50%">
 	          			<div class="control-group">
-	            			<label class="control-label" for="planDescription">{{ 'label.plan.plandescription' | translate }}</label>
+	            			<label class="control-label" for="planDescription">{{ 'label.plan.plandescription' | translate }}<span class="required">*</span></label>
 	            			<div class="controls">
 	              				<input type="text" id="planDescription" data-ng-model="formData.planDescription">
 	            			</div>
@@ -43,7 +46,7 @@
               		</td>
               		<td width="50%">
 	           			<div class="control-group">
-		            		<label class="control-label" for="billRule">{{ 'label.plan.billingrule' | translate }}</label>
+		            		<label class="control-label" for="billRule">{{ 'label.plan.billingrule' | translate }}<span class="required">*</span></label>
 		            		<div class="controls">
 		              			<select id="billRule" data-ng-model="formData.billRule"  data-ng-options="billRuleData.id as billRuleData.billruleOptions for billRuleData in billRuleDatas"></select>
 		            		</div>
@@ -53,7 +56,7 @@
          		<tr>
              		<td width="50%">
 	          			<div class="control-group">
-	            			<label class="control-label" for="startDate">{{ 'label.plan.startdate' | translate }}</label>
+	            			<label class="control-label" for="startDate">{{ 'label.plan.startdate' | translate }}<span class="required">*</span></label>
 	            			<div class="controls">
 	                 			<input type="text" datepicker-pop="dd MMMM yyyy" data-ng-model="date.startDate" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"/>
 	            			</div>
@@ -61,7 +64,7 @@
              		</td>
               		<td width="50%">
 	          			<div class="control-group">
-	            			<label class="control-label" for="provisioingSystem">{{ 'label.plan.provisioningsystem' | translate }}</label>
+	            			<label class="control-label" for="provisioingSystem">{{ 'label.plan.provisioningsystem' | translate }}<span class="required">*</span></label>
 	            			<div class="controls">
 	            				<select id="provisioingSystem" data-ng-model="formData.provisioingSystem" data-ng-options="provisionSysData.mCodeValue as provisionSysData.mCodeValue for provisionSysData in provisionSysDatas"></select>
 	            			</div>
@@ -145,9 +148,12 @@
          					<input type="checkbox" style="margin-left:-2px;" data-ng-model="formData.allowTopup">
          				</td>
          				<td>
-         					<label class="control-label" for="volume">{{ 'label.plan.units' | translate }}</label>&nbsp;&nbsp;&nbsp;
+         					<label class="control-label" for="volume">{{ 'label.plan.units' | translate }}<span class="required">*</span></label>&nbsp;&nbsp;&nbsp;
          					<select data-ng-model="formData.volume"  data-ng-options="volumeType.value as volumeType.value for volumeType in volumeTypes" ></select>
-                 			<input type="text" class="input-small ng-pristine ng-valid" id="units" data-ng-model="formData.units">
+                 			<input type="text" name="units" class="input-small ng-pristine ng-valid" id="units" data-ng-pattern="{{ 'integer' | CodeValidate }}" data-ng-model="formData.units">
+                 			<span data-ng-show="editplan.units.$dirty && editplan.units.$invalid">
+								<small class="error-row" data-ng-show="editplan.units.$error.pattern">{{'error.not.numeric.validation' | translate }}</small>
+							</span>
          				</td>
          			</tr>
          		</table>
@@ -197,7 +203,7 @@
       		</table> -->
       		<div class="offset3" align="right" style="margin-right:9.5%;">
         		<a href="#/viewplan/{{planId}}"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
-        		<button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+        		<button id="submit" type="submit" data-ng-disabled="editplan.$dirty && editplan.$invalid" class="btn btn-primary">{{'button.save'| translate}}</button>
       		</div>
   		</fieldset>
 </form>

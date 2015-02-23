@@ -8,7 +8,7 @@
 			<li class="active">{{'label.editevent' | translate}}</li>
 		</ul>
 	</div>
-<form class="form-horizontal well" ng-submit="submit()">
+<form name="editeventform" class="form-horizontal well" ng-submit="submit()">
 	
 	 <div class="error" ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
@@ -23,7 +23,10 @@
 					<div class="control-group">
 						<label class="control-label" for="eventName"> {{'label.event.eventcode' | translate }}</label>
 						<div class="controls">
-							<input type="text" id="eventName" ng-model="formData.eventName">
+							<input type="text" id="eventName" name="eventName" data-ng-model="formData.eventName" data-ng-maxlength="{{'code' | CodeValidate }}" required data-late-Validate></br>
+							<span data-ng-show="editeventform.eventName.$dirty && editeventform.eventName.$invalid">
+								<small class="error-row" >{{'error.code.definition.length.validation'| translate}}</small>
+							</span>
 						</div>
 					</div>
 				</td>
@@ -172,7 +175,7 @@
 		
 		<div class="offset3">
 			<a href="#/viewEvent/{{formData.id}}"><button id="cancel" type="reset" class="btn">Cancel</button></a>
-			<button  id="submit" type="submit" class="btn btn-primary">Save</button>
+			<button  id="submit" type="submit" data-ng-disabled="editeventform.$dirty && editeventform.$invalid" class="btn btn-primary">Save</button>
 		</div>
 	</fieldset>
 </form>

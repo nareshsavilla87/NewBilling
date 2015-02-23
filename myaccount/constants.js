@@ -26,7 +26,18 @@
 	   registrationRequiresDevice	: "registration-requires-device",
 	   deviceAgrementType			: "device-agrement-type",
 	   globalPayCurrencyType		: "NGN",
+	   netellerCurrencyType			: "EUR",
 	   
 	   webtvURL						: locationOrigin+"/webtv/index.html#/",
 		   
    	};
+   
+   paymentGatewayNames  = {
+		   
+		   korta 					: 'korta',
+		   dalpay 					: 'dalpay',
+		   globalpay 				: 'globalpay',
+		   paypal 					: 'paypal',
+		   neteller 				: 'neteller',
+		   internalPayment 			: 'internalPayment',
+   };

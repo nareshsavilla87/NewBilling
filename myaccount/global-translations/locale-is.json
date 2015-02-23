@@ -1,7 +1,7 @@
 {
   "ttles" :"----------------------------------------------------",
  	"title.obs.selfcare"					 : "OBS SelfCare",
- 	"title.thortelecom.selfcare"			 : "Thor Telecom SelfCare",
+ 	"title.selfcare"						 : "Thor Telecom SelfCare",
  	"title.thankyou"						 : "Þakka þér fyrir að skrá þig!",
  	"title.conformation.registration" 		 : "Í sköpulag hefur verið sendur til póstur auðkenni.",
  	"title.conformation.email"               : "Vinsamlegast innskráningu til þinn tölvupósti reikningur og",
@@ -104,6 +104,8 @@
  	"label.changeorder"			: "Breyta Panta", 
  	"label.renewalorder"		: "endurnýjun Panta", 
  	"label.voucher.pinNo"		: "Úttektarmiðinn pinna Númer", 
+ 	"label.terms.conditions"	: "Skilmálar og skilyrði", 
+ 	"label.read.agreement"		: "Lesa og samþykkja eftirfarandi samkomulag til að halda áfram.",
  	
  	"label.signup.newuser"			 		    : "stofnaðu aðgang ",
  	"label.or"			 					    : " - eða - ",
@@ -916,7 +918,12 @@
 "label.neteller.verificationcode":"sannprófun Kóði",
 "label.neteller.value":"Neteller Email Kenni",
 "label.neteller.source":"Heimild",
-"label.neteller.amount":"upphæð"
+"label.neteller.amount":"upphæð",
+"label.netteler.info'":"Neteller Upplýsingar",
+
+"#paymentgatewayresponser":"",
+"label.cardType":"kortið Týpa",
+"label.cardNumber":"kortið Númer"
 
 
 

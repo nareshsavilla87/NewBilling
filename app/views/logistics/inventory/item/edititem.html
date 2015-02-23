@@ -6,7 +6,7 @@
           <li class="active">{{'label.item.edit' | translate}}</li>
         </ul>
       </div>
-      <form class="form-horizontal well" ng-submit="submit()">
+      <form name="edititemform" class="form-horizontal well" ng-submit="submit()">
        <div class="error" ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label ng-show="errorStatus">{{errorStatus}}</label>
@@ -22,7 +22,10 @@
 						<div class="control-group">
             			<label class="control-label" for="itemCode">{{'label.item.itemcode' | translate }}&nbsp;<span class="required">*</span></label>
             			<div class="controls">
-              			<input type="text" id="itemCode" ng-model="formData.itemCode">
+              			<input type="text" id="itemCode" name="itemCode" ng-model="formData.itemCode" data-ng-maxlength="{{'code' | CodeValidate}}"></br>
+              			<span data-ng-show="edititemform.itemCode.$dirty && edititemform.itemCode.$invalid">
+              				<small class="error-row">{{'error.code.definition.length.validation'| translate}}</small>
+              			</span>
             			</div>
           				</div>
 					</td>
@@ -71,7 +74,10 @@
 						<div class="control-group">
            				<label class="control-label" for="unitPrice ">{{'label.item.unitprice' | translate }}&nbsp;<span class="required">*</span></label>
            				<div class="controls">
-             			<input type="text" id="unitPrice" ng-model="formData.unitPrice">
+             			<input type="text" id="unitPrice" name="unitPrice" data-ng-model="formData.unitPrice" data-ng-pattern="{{'decimal' | CodeValidate}}"><br/>
+             			<span data-ng-show="edititemform.unitPrice.$dirty && edititemform.unitPrice.$invalid">
+             				<small class="error-row">{{'error.not.decimal.validation'| translate}}</small>
+             			</span>
            				</div>
           				</div>
 					</td>
@@ -82,18 +88,21 @@
 						<div class="control-group">
             			<label class="control-label" for="reorderLevel">{{'label.item.reorderlevel' | translate }}&nbsp;<span class="required">*</span></label>
             			<div class="controls">
-              			<input type="text" id="reorderLevel" name="reorderLevel"   ng-model="formData.reorderLevel" /><br/>
-              					<!-- <span ng-show="createitemform.reorderlevel.$dirty && createitemform.reorderlevel.$invalid">
-				        			<small class="error" ng-show="createitemform.reorderlevel.$error.pattern">{{'form.error.number'|translate}}</small>
-				    			</span>
- -->            			</div>
+              			<input type="text" id="reorderLevel" name="reorderLevel" data-ng-model="formData.reorderLevel" data-ng-pattern="{{'integer' | CodeValidate}}"/><br/>
+              				<span data-ng-show="edititemform.reorderLevel.$dirty && edititemform.reorderLevel.$invalid">
+				        		<small class="error-row">{{'error.not.numeric.validation'|translate}}</small>
+				    		</span>
+ 	            			</div>
           				</div>
 					</td>
 					<td>
 						<div class="control-group">
             			<label class="control-label" for="warranty">{{'label.item.warranty' | translate }}&nbsp;<span class="required">*</span></label>
             			<div class="controls">
-              			<input type="text" id="warranty" ng-model="formData.warranty">
+              			<input type="text" id="warranty" name="warranty" data-ng-model="formData.warranty" data-ng-pattern="{{'integer' | CodeValidate}}"><br/>
+              			<span data-ng-show="edititemform.warranty.$dirty && edititemform.warranty.$invalid">
+             				<small class="error-row">{{'error.not.numeric.validation'| translate}}</small>
+             			</span>
             			</div>
           				</div>
 					</td>
@@ -105,7 +114,7 @@
 				<div class="control-group">
 				<div class="controls">
             		<a href="#/inventory"><button id="cancel" type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
-            		<button id="submit" type="submit"  class="btn btn-primary">{{'label.save' | translate}}</button>
+            		<button id="submit" type="submit" data-ng-disabled="edititemform.$dirty && edititemform.$invalid" class="btn btn-primary">{{'label.save' | translate}}</button>
           		</div>
           		</div>	
 				</td>

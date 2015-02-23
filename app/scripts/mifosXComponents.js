@@ -286,6 +286,10 @@ define(['underscore', 'mifosX'], function() {
       'organization/EditPartnerAgreementController',
       'organization/DisbursementsController',
       'organization/EditPartnerController',
+      'templates/TemplateController',
+      'templates/CreateTemplateController',
+      'templates/ViewTemplateController',
+      'templates/EditTemplateController',
 
     ],
     filters: [
@@ -296,7 +300,8 @@ define(['underscore', 'mifosX'], function() {
       'DateTimeFormat',
       'UrlToString',
       'EventTypeCategory',
-      'TranslateDataTableColumn'
+      'TranslateDataTableColumn',
+      'CodeValidate'
 
     ],
     directives: [

@@ -14,6 +14,7 @@
 				scope.jobparameters = data.jobparameters;
 				scope.provisionSysData = data.provisionSysData;
 				scope.formData = data;
+				scope.templateDatas = data.templateData;
 				//processDate
 				if (scope.jobparameters.processDate) {
 					var actDate = dateFilter(scope.jobparameters.processDate,'dd MMMM yyyy');
@@ -88,7 +89,8 @@
 				delete this.formData.billingMessageDatas;
 				delete this.formData.historyId;
 				delete this.formData.initializingError;
-				delete this.formData.provisionSysData;			
+				delete this.formData.provisionSysData;	
+				delete this.formData.templateData;
 
 				resourceFactory.jobsparameters.update({jobId : routeParams.id}, this.formData, function(data) {
 									location.path('/viewschedulerjob/'+ data.resourceId);

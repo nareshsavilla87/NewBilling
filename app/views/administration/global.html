@@ -55,7 +55,7 @@
             <td>{{lookup.value}}</td> 
             <td><button type="button" class="btn btn-success flag" data-ng-show="lookup.value == 'false' " data-ng-click="clientConfigChange(lookup.name,lookup.value,0)"><i class="icon-flag-alt"></i></button>
                 <button type="button" class="btn btn-danger flag" data-ng-show="lookup.value == 'true'" data-ng-click="clientConfigChange(lookup.name,lookup.value,0)"><i class="icon-remove"></i></button>
-                <a data-ng-show="(lookup.value != 'true')&&(lookup.value != 'false')&&(lookup.name != 'clientListing')" data-ng-click="editClientConfigs(lookup.name,lookup.value)" data-popover="Edit {{lookup.name}}" 
+                <a data-ng-show="(lookup.name == 'deviceAgrementType')||(lookup.name == 'date_format')" data-ng-click="editClientConfigs(lookup.name,lookup.value)" data-popover="Edit {{lookup.name}}" 
                        data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a>
                 <a data-ng-show="(lookup.name == 'clientListing')" data-ng-click="editClientListing(lookup.name,lookup.value)" data-popover="Edit {{lookup.name}}" 
                        data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a>
@@ -135,6 +135,12 @@
 		<select ng-model="data.value" ng-options="format for format in dates" class="form-control">
 		</select>
     </div>	
+	
+	<div class="modal-body modal-small" data-ng-show="data.name == 'codeDefinitionLength'">
+		
+       <input type="text" id="type" ng-model="data.value">
+       
+    </div>
 
     <div class="modal-footer">
     	<button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
