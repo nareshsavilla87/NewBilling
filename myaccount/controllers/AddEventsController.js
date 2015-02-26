@@ -3,6 +3,7 @@ AddEventsController = function(scope,RequestSender,location,localStorageService,
 		  scope.vodEventScreen 		= true;
 		  scope.eventDetailsPreview = false;
 		  var encrytionKey 			= selfcareModels.encriptionKey;
+		  scope.isRedirecting 		= false;
 		  
 		//getting Payment Gateway names form constans.js
 			var  kortaPG			=	paymentGatewayNames.korta || "";
@@ -134,7 +135,7 @@ AddEventsController = function(scope,RequestSender,location,localStorageService,
 					break;
 					
 				case internalPaymentPG :
-					scope.paymentURL =  "#/internalpayment/vod/"+scope.clientId+"/"+0+"/"+0;
+					scope.paymentURL =  "#/internalpayment/vod/"+scope.clientId+"/0/0/"+scope.totalAmount;
 					break;
 					
 				case two_checkoutPG :
@@ -188,6 +189,7 @@ AddEventsController = function(scope,RequestSender,location,localStorageService,
 				  resolve:{}
 			  });
 		  };
+		  
     };
     
 selfcareApp.controller('AddEventsController', ['$scope',

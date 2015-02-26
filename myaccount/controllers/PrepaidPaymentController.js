@@ -19,6 +19,7 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 	scope.planData			= {};
 	var encrytionKey 		= selfcareModels.encriptionKey;
 	scope.amountEmpty 		= true;
+	scope.isRedirecting 	= false;
 	
 	  scope.paymentgatewayDatas = [];
 	  RequestSender.paymentGatewayConfigResource.get(function(data) {

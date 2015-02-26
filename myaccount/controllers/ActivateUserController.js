@@ -1,4 +1,4 @@
-ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sessionManager,authenticationService,$modal) {
+ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sessionManager,authenticationService,$modal,$filter) {
 
 		
 		rootScope.isRegClientProcess = true;
@@ -39,12 +39,16 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 	  					scope.cities=data.cityData;
 	  					  
 	  					//getting data from c_configuration for isRegister_plan and isisDeviceEnabled
-	  					 var configurationDatas = [];
+	  					 var configurationDatas = [];var registrationListing = {};
 	  					  RequestSender.configurationResource.get(function(data){
 
 	  						configDeviceAgreeType = JSON.parse(data.clientConfiguration);
-	  						scope.isConfigNationalId = configDeviceAgreeType.nationalId;
-	  						
+	  						scope.isConfigNationalId 	= configDeviceAgreeType.nationalId;
+	  							 registrationListing	= configDeviceAgreeType.registrationListing;
+	  						scope.isConfigPassport		= registrationListing.passport;
+	  						 if(scope.isConfigPassport == 'false'){
+	  							scope.formData.passport = "123456789";
+	  						 }
 	  						(configDeviceAgreeType.deviceAgrementType == 'SALE') ?
 									  scope.isCPE_TYPESale = true:
 								  (configDeviceAgreeType.deviceAgrementType == 'OWN') ?
@@ -211,6 +215,9 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 					 if((scope.formData.password) !=null){
 						 scope.clientData.password = scope.formData.password;
 					 }
+					 if(scope.isConfigPassport=='true'){
+						 scope.clientData.passport = scope.formData.passport;
+					 }
 					 
 					 var name_array = new Array();
 					 name_array = (scope.formData.fullName.split(" "));
@@ -259,4 +266,5 @@ selfcareApp.controller('ActivateUserController', ['$scope',
                                                   'SessionManager',
                                                   'AuthenticationService',
                                                   '$modal',
+                                                  '$filter',
                                                   ActivateUserController]);

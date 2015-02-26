@@ -106,6 +106,7 @@
  	"label.voucher.pinNo"		: "Voucher Pin Number", 
  	"label.terms.conditions"	: "Terms and Conditions", 
  	"label.read.agreement"		: "Read and accept the following agreement to continue.", 
+ 	"label.passport"			: "Passport", 
  	
  	"label.signup.newuser"			   			: "Signup new user ",
  	"label.or"			   						: " - or - ",
@@ -171,6 +172,7 @@
  	"placeholder.filter.listofvods"			: "Filter by Id",
  	"placeholder.enter.serialnumber"		: "Enter Serial Number",
  	"placeholder.enter.text.search"			: "Enter text to search",
+ 	"placeholder.enter.passport"			: "Enter Passport",
  	
  	
  	"#common labels " : "------------------------------------",

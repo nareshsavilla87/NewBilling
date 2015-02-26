@@ -5,6 +5,7 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 	var planId 				= routeParams.planId;
 	scope.price		 	 	= routeParams.price;
 	var encrytionKey 		= selfcareModels.encriptionKey;
+	scope.isRedirecting 	= false;
 	
 	//getting Payment Gateway names form constans.js
 	var  kortaPG			=	paymentGatewayNames.korta || "";
@@ -88,7 +89,7 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 					
 			case paypalPG :
 				var query = {clientId :scope.clientId,locale : "en",planCode : planId,contractPeriod : scope.planData.contractId,
-							  paytermCode:scope.planData.billingFrequency,returnUrl:hostName, screenName:scope.screenName,orderId:orderId};
+							  paytermCode:scope.planData.billingFrequency,returnUrl:hostName, screenName:scope.screenName,orderId:orderId,eventData:""};
 			
 				scope.paymentURL = paymentGatewayValues.paypalUrl+'='+paymentGatewayValues.paypalEmailId+"&item_name="+scope.planData.planCode+"&amount="+scope.planData.price+"" +	  	  				
 				  	  "&custom="+JSON.stringify(query);
@@ -116,6 +117,7 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 				
 			case internalPaymentPG :
 				scope.paymentURL =  "#/internalpayment/"+scope.screenName+"/"+scope.clientId+"/"+planId+"/"+priceDataId+"/"+scope.planData.price;
+				break;
 				
 			case two_checkoutPG :
 				localStorageService.add("twoCheckoutStorageData",{screenName:scope.screenName,clientId:scope.clientId,
