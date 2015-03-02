@@ -76,14 +76,19 @@
 				<div class="control-group">
 						<label class="control-label">Order Quantity&nbsp;:</label>
 						<div class="controls">
-							<input type="text" id="orderQuantity" data-ng-model="formData.orderQuantity" data-ng-change="itemDataQuantity(formData.orderQuantity,formData.itemId)" data-ng-model="formData.quantity">
+							<input type="text" id="orderQuantity" data-ng-model="formData.orderQuantity" name="orderQuantity" 
+								data-ng-change="itemDataQuantity(formData.orderQuantity,formData.itemId)" 
+								data-ng-model="formData.quantity" data-ng-pattern="{{'integer' | CodeValidate}}"></br>
+							<span data-ng-show="itemSaleForm.orderQuantity.$dirty && itemSaleForm.orderQuantity.$invalid">
+								<small class="error-row">{{'error.not.numeric.validation' | translate}}</small>
+							</span>
 						</div>
 					</div>
 				
 				</td>
 				<td>
 				 <div class="control-group">
-					   <label class="control-label">Unit Price&nbsp;:</label>
+					   <label class="control-label">Unit Price&nbsp;</label>
 					   <div class="controls">
 							<input  type="text" id="unitPrice" data-ng-model="formData.unitPrice" data-ng-change="itemDataQuantity(formData.orderQuantity,formData.itemId,formData.officeId)">
 						</div>
@@ -115,8 +120,9 @@
 			    <div class="control-group">
         	    <!-- <a data-ng-hide ="officeId ==0" href="#/viewoffice/{{officeId}}"><button id="cancel" type="reset" class="btn" data-ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
         	     <a data-ng-show ="officeId ==0"  href="#/inventory"><button id="cancel" type="reset" class="btn" data-ng-click="reset123()">{{'button.cancel' | translate}}</button></a> -->
-        	     <a data-ng-click="goBack()"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
-            	<button id="save" type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
+        	    <a data-ng-click="goBack()"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+            	<button id="save" type="submit" data-ng-disabled="itemSaleForm.$dirty && itemSaleForm.$invalid" class="btn btn-primary">{{'label.save' | translate}}</button>
+
           </div>
           </td>
           </tr>

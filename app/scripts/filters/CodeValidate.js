@@ -3,16 +3,23 @@
         CodeValidate: function (webStorage) {
             return function(input) {
             	var value = null;
-            	
-            	if(input == 'code'){
-            		value = webStorage.get("client_configuration").codeDefinitionLength;
-            	}else if(input == 'number'){
-            		value = "/^[0-9.]+$/";
-            	}else if(input == 'decimal'){
-            		value = "/^[+-]?[0-9]*(\\.[0-9]{0,2})?$/";
-            	}
+            	/** /^[+-]?[0-9]*(\\.[0-9]{0,2})?$/*/
+           
+            	switch (input) {
+				case "code":
+					value = webStorage.get("client_configuration").codeDefinitionLength;
+					break;
+				case "integer":
+					value = "/^[0-9]+$/";
+					break;
+				case "decimal":
+					value = "/^[0-9]*(\\.[0-9]{0,2})?$/";  /**   accepts two digits only after point('.')   */ 
+					break;
+				default:
+					break;
+				}
                 return value;
-            }
+            };
         }
     });
     mifosX.ng.application.filter('CodeValidate', ['webStorage',mifosX.filters.CodeValidate]).run(function($log) {

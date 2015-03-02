@@ -58,7 +58,10 @@
 									<div class="control-group">
 										<label class="control-label" for="orderdQuantity">{{'label.mrn.orderedquantity' | translate }}&nbsp;<span class="required">*</span></label>
 										<div class="controls">
-											<input type="text" name="orderdQuantity" ng-model="formData.orderdQuantity">
+											<input type="text" name="orderdQuantity" name="orderdQuantity" ng-model="formData.orderdQuantity" data-ng-pattern="{{'integer' | CodeValidate}}"></br>
+											<span data-ng-show="createMRNForm.orderdQuantity.$dirty && createMRNForm.orderdQuantity.$invalid">
+												<small class="error-row">{{'error.not.numeric.validation' | translate}}</small>
+											</span>
 										</div>
 									</div>
 								</td>
@@ -83,7 +86,7 @@
 			
           <div class="offset3">
             <a href="#/inventory"><button id="cancel" type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
-            <button id="save" type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
+            <button id="save" type="submit" data-ng-disabled="createMRNForm.$dirty && createMRNForm.$invalid" class="btn btn-primary">{{'label.save' | translate}}</button>
           </div>
           
         </fieldset>

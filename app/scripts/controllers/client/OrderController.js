@@ -249,8 +249,12 @@
     		  	
     		 if( scope.sentMessagesData[i].id == scope.provisioningDataId){
     			 
-    			 var obj  = JSON.parse(scope.sentMessagesData[i].sentMessage);
-    			 $scope.sentMessage = obj;
+    			 try{
+    				 var obj  = JSON.parse(scope.sentMessagesData[i].sentMessage);
+    				 $scope.sentMessage = obj;
+    			 }catch(e){
+    				 console.log(e.message);
+    			 }
     			 
     	    	  for (var key in $scope.sentMessage) {
     	    		  if(key == "IP_ADDRESS"){
@@ -266,8 +270,12 @@
     	    			  if(typeof(outerObj) == 'object'){
     	    				  var obj1 = outerObj[0];
     	    				  if(typeof(obj1) == 'string'){
-    	    			          var obj2 = JSON.parse(obj1);
-    	    				      outerObj = [];outerObj.push(obj2);
+    	    					  try {
+    	    						  var obj2 = JSON.parse(obj1);
+    	    						  outerObj = [];outerObj.push(obj2);
+    	    					  }catch(e) {
+    	    						  console.log(e.message);
+    	    					  }
     	    				  }
 	    	    			  for(var key1 in outerObj){ var innerObj = outerObj[key1];
 	    	    				  for(var key2 in innerObj){
