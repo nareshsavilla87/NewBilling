@@ -2,10 +2,8 @@ AddEventsController = function(scope,RequestSender,location,localStorageService,
 		  
 		  scope.vodEventScreen 		= true;
 		  scope.eventDetailsPreview = false;
-		  scope.formData 			= {};
-		  scope.planData 			= {};
-		  scope.addressData 		= {};
 		  var encrytionKey 			= selfcareModels.encriptionKey;
+		  scope.isRedirecting 		= false;
 		  
 		//getting Payment Gateway names form constans.js
 			var  kortaPG			=	paymentGatewayNames.korta || "";
@@ -14,6 +12,7 @@ AddEventsController = function(scope,RequestSender,location,localStorageService,
 			var  paypalPG			=	paymentGatewayNames.paypal || "";
 			var  netellerPG			=	paymentGatewayNames.neteller || "";
 			var  internalPaymentPG	=	paymentGatewayNames.internalPayment || "";
+			var  two_checkoutPG		=	paymentGatewayNames.two_checkout || "";
 			
 			//getting locale value
 			 var temp 				= localStorageService.get('localeLang')||"";
@@ -80,12 +79,10 @@ AddEventsController = function(scope,RequestSender,location,localStorageService,
 				  scope.termsAndConditions = false;
 				  var paymentGatewayValues = {};
 				  for (var i in scope.paymentgatewayDatas){
-					  if(scope.paymentgatewayDatas[i].name=='internalPayment'){
-						  break;
-					  } else if(scope.paymentgatewayDatas[i].name==paymentGatewayName){
-						  paymentGatewayValues =  JSON.parse(scope.paymentgatewayDatas[i].value);
-						  break;
-					  }
+				    if(scope.paymentgatewayDatas[i].name==paymentGatewayName && scope.paymentgatewayDatas[i].name !='internalPayment'){
+					  paymentGatewayValues =  JSON.parse(scope.paymentgatewayDatas[i].value);
+					  break;
+				    }
 					  
 				  }
 		     switch(paymentGatewayName){
@@ -138,7 +135,18 @@ AddEventsController = function(scope,RequestSender,location,localStorageService,
 					break;
 					
 				case internalPaymentPG :
-					scope.paymentURL =  "#/internalpayment/vod/"+scope.clientId+"/"+0+"/"+0;
+					scope.paymentURL =  "#/internalpayment/vod/"+scope.clientId+"/0/0/"+scope.totalAmount;
+					break;
+					
+				case two_checkoutPG :
+					localStorageService.add("twoCheckoutStorageData",{screenName:"vod",clientId:scope.clientId,
+																		planId:0,priceId:0});
+					localStorageService.add("eventData",scope.mediaDatas);
+					var zipCode = clientData.zip || clientData.city || "";
+					scope.paymentURL =  "https://sandbox.2checkout.com/checkout/purchase?sid="+paymentGatewayValues+"&mode=2CO&li_0_type=product&li_0_name=invoice&li_0_price="+scope.totalAmount
+										+"&card_holder_name="+clientData.displayName+"&street_address="+clientData.addressNo+"&city="+clientData.city+"&state="+clientData.state+"&zip="+zipCode
+										+"&country="+clientData.country+"&email="+clientData.email+"&quantity=1";
+					
 					break;
 					
 				default :
@@ -166,7 +174,8 @@ AddEventsController = function(scope,RequestSender,location,localStorageService,
 		    			$scope.termsAndConditionsText = globalpay[termsAndConditions] 		: (scope.paymentGatewayName == paypalPG)?
 		    			$scope.termsAndConditionsText = paypal[termsAndConditions] 	 		: (scope.paymentGatewayName == netellerPG)?
 		    			$scope.termsAndConditionsText = neteller[termsAndConditions] 	 	: (scope.paymentGatewayName == internalPaymentPG)?
-		    			$scope.termsAndConditionsText = internalPayment[termsAndConditions] : $scope.termsAndConditionsText = selectOnePaymentGatewayText[scope.optlang];
+		    			$scope.termsAndConditionsText = internalPayment[termsAndConditions] : (scope.paymentGatewayName == two_checkoutPG)?
+		    			$scope.termsAndConditionsText = two_checkout[termsAndConditions]	: $scope.termsAndConditionsText = selectOnePaymentGatewayText[scope.optlang];
 		    	}
 			  $scope.done = function(){
 				  $modalInstance.dismiss('cancel');
@@ -180,6 +189,7 @@ AddEventsController = function(scope,RequestSender,location,localStorageService,
 				  resolve:{}
 			  });
 		  };
+		  
     };
     
 selfcareApp.controller('AddEventsController', ['$scope',

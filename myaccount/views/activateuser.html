@@ -164,6 +164,17 @@
                   </div>	
     			</td>
 	       	   </tr>
+	       	   <tr data-ng-show="isConfigPassport">
+	       	    <td valign="top">
+	       	       <div class="control-group" style="margin-bottom:30px;">
+                    <label class="control-label" for="passport">{{ 'label.passport' | translate }}&nbsp;<span class="required">*</span></label>
+                    <div class="controls" >
+   	                  <input type="text" data-ng-model="formData.passport" id="passport" name="passport" placeholder= "{{ 'placeholder.enter.passport' | translate }}" required data-late-Validate/> 
+                    </div>
+                  </div>
+	       	    </td>
+	       		<td valign="top"></td>
+	       	   </tr>
 	       	   <tr>
 	       	   	  <td align="right" colspan="2">
 					 <button data-ng-show="isConfigNationalId" data-ng-click="registerBtnFun()" class="btn btn-primary pull-right" data-ng-disabled="!regSuccessForm.$valid||!formData.nationalId||!nationalIdvalue||isInvalidMacId||isInvalidSerialNumber"><i class="icon-thumbs-up icon-white"></i>{{'btn.register' | translate}}</button>

@@ -44,6 +44,9 @@
         <div class="pull-right" data-ng-show="authenticationFailed">
             <p>{{ 'error.login.failed' | translate }}</p>
         </div>
+        <div class="pull-right required" data-ng-show="errorStatus=='Invalid License'">
+            <p>License Expired. Please contact OBS Adminstrator</p>
+        </div>
     </div>
     <div class="row span8 offset2 paddedbottom">
     <table width="%100">
@@ -81,6 +84,7 @@
                 <ul>
                 <li>support@openbillingsystem.com</li>
                 <li><a target="http://support.openbillingsystem.com" href="http://support.openbillingsystem.com">{{ 'label.anchor.ticket' | translate }}</a></li>
+                <li><a ng-click="updateLicense()" >{{ 'label.update.license.key' | translate }}</a></li>
                 
                    <!--  <li><a target="https://groups.google.com/forum/#!forum/mifosusers" href="https://groups.google.com/forum/#!forum/mifosusers">{{ 'label.anchor.usersgroup' | translate }}</a></li>
                     <li><a target="https://groups.google.com/forum/#!forum/mifosdeveloper" href="https://groups.google.com/forum/#!forum/mifosdeveloper">{{ 'label.anchor.developergroup' | translate }}</a></li>
@@ -412,5 +416,47 @@
 <!-- </div> -->
 <!-- Le javascript -->
 <script type='text/javascript' data-main="scripts/loader.js" src='bower_components/requirejs/require.js'></script>
+<script type="text/ng-template" id="licensekey.html">
+		
+	<div class="modal-header silver">
+        <h3 class="bolder">Update LicenseKey</h3>
+    </div>
+    <div class="modal-body" style="height:160px;">
+ <div class="error" ng-show="errorStatus || errorDetails">
+		                 <label>{{'label.contract.error' | translate}}</label>
+		                 <label ng-show="errorStatus">{{errorStatus}}</label>
+		                 <label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	                     </div>
+       <fieldset>
+ <div class="control-group">
+			<label class="control-label" for="quality">{{'label.licensekey' | translate }}</label>
+			<div class="controls">
+             <input type="text" id="licensekey" ng-model="formData.key">
+            </div>
+	   </div>
+ 
+    </fieldset>
+    </div>
+     <div class="modal-footer">
+        <button id="cancel" class="btn btn-warning" ng-click="cancelRenewal()">{{'button.cancel' | translate}}</button>
+     	<button id="submit" class="btn btn-primary" ng-click="updateKey()" ng-disabled="flagOrderRenewal">{{'label.confirm' | translate}}</button>
+  </div>
+
+</script>
+<script type="text/ng-template" id="licensemessagespopup.html">
+        <div class="modal-body modal-small" style="padding:25px 0px 0px 35px;">
+                       	<div class="control-group">
+							<div class="controls">
+							   <span><img src="./images/info-icon.png" width="20px;" /></span>{{licenseMsg}}
+							</div>	
+						</div>
+                    </div>
+					<div class="modal-footer">
+                        <a id="submit" class="btn btn-primary" ng-click="approve()">{{'btn.ok' | translate}}</a>
+                    </div>
+      </script>
 </body>
+
+
+
 </html>

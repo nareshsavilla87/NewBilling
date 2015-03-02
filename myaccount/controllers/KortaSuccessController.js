@@ -33,7 +33,7 @@ KortaSuccessController = function(rootScope,RequestSender,location,localStorageS
         	formData.source 		= 'korta';	
         	formData.otherData 		= '{"paymentId":'+reference+'}';
        	 	formData.device 		= '';
-       	 	formData.currency 		= 'ISN';
+       	 	formData.currency 		= selfcareModels.kortaCurrencyType;
        	 	formData.cardType 		= cardbrand;
        	 	formData.cardNumber 	= "XXXX-XXXX-XXXX-"+card4.toString();
         	var PaymentMethod 		= kortaStorageData[kortaPaymentMethod];
@@ -81,7 +81,7 @@ KortaSuccessController = function(rootScope,RequestSender,location,localStorageS
   						location.$$search = {};
   						if(screenName == 'payment'){
   							location.path('/paymentgatewayresponse/'+formData.clientId);
-  						}else if(result == 'SUCCESS'){
+  						}else if(result == 'Success' || result == 'SUCCESS'){
   							location.path("/orderbookingscreen/"+screenName+"/"+formData.clientId+"/"+planId+"/"+priceId);
   						}else{	 
   							location.path('/paymentgatewayresponse/'+formData.clientId);
