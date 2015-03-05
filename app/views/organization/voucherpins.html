@@ -47,7 +47,8 @@
                 <td class="pointer" data-ng-click="routeTo(voucherpin.id)">{{voucherpin.quantity}}</td>       
                 <td class="pointer" data-ng-click="routeTo(voucherpin.id)">{{voucherpin.serialNo}}</td>  
                 <td class="pointer" data-ng-click="routeTo(voucherpin.id)">{{voucherpin.pinType}}</td>        
-                <td class="pointer" data-ng-click="routeTo(voucherpin.id)">{{voucherpin.pinValue}}</td>
+                <td class="pointer" data-ng-click="routeTo(voucherpin.id)" data-ng-show="voucherpin.pinType == 'VALUE'">{{voucherpin.pinValue}}</td>
+                <td class="pointer" data-ng-click="routeTo(voucherpin.id)" data-ng-show="voucherpin.pinType == 'PRODUCT'">&nbsp;</td>
                 <td class="pointer" data-ng-click="routeTo(voucherpin.id)">{{voucherpin.planCode}}</td> 
                 <td class="pointer" data-ng-click="routeTo(voucherpin.id)">{{voucherpin.expiryDate|DateFormat}}</td>
                 <td><a data-ng-show="(voucherpin.isProcessed == 'N')&&((voucherpin.id)!=dynamicVar)&&(PermissionService.showMenu('PROCESS_RANDAMGENERATOR'))" 

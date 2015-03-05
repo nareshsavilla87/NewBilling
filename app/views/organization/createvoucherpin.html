@@ -40,7 +40,10 @@
 								<div class="control-group">
             					<label class="control-label" for="length">{{ 'label.lengthOfPin' | translate }}<span class="required">*</span></label>
             					<div class="controls">
-              					<input type="text" id="length" data-ng-model="formData.length">
+              					<input type="text" id="length" name="length" data-ng-model="formData.length" data-ng-pattern="{{'integer' | CodeValidate}}"><br/>
+              					<span data-ng-show="createVoucherForm.length.$dirty && createVoucherForm.length.$invalid">
+              						<small class="error-row">{{'error.not.numeric.validation' | translate}}</small>
+              					</span>
            						 </div>
           						</div>
 							</td>
@@ -68,7 +71,10 @@
 								<div class="control-group">
             					<label class="control-label" for="quantity">{{ 'label.quantity' | translate }}<span class="required">*</span></label>
             					<div class="controls">
-              					<input type="text" id="quantity" data-ng-model="formData.quantity">
+              					<input type="text" id="quantity" name="quantity" data-ng-model="formData.quantity" data-ng-pattern="{{'integer' | CodeValidate}}"><br/>
+              					<span data-ng-show="createVoucherForm.quantity.$dirty && createVoucherForm.quantity.$invalid">
+              						<small class="error-row">{{'error.not.numeric.validation' | translate}}</small>
+              					</span>
             					</div>
           						</div>
 								</td>
@@ -78,7 +84,10 @@
 									<div class="control-group">
            					 		<label class="control-label" for="serialNo">{{ 'label.serialNoLength' | translate }}<span class="required">*</span></label>
             						<div class="controls">
-              						<input type="text" id="serialNo" data-ng-model="formData.serialNo">
+              						<input type="text" id="serialNo" name="serialNo" data-ng-model="formData.serialNo" data-ng-pattern="{{'integer' | CodeValidate}}"><br/>
+              						<span data-ng-show="createVoucherForm.serialNo.$dirty && createVoucherForm.serialNo.$invalid">
+              							<small class="error-row">{{'error.not.numeric.validation' | translate}}</small>
+              						</span>
             						</div>
           							</div>
 								</td>
@@ -102,11 +111,15 @@
           							</div>
           						</td>
 								<td>
-									<div class="control-group" style=" margin-top: -45px;">
+									<div class="control-group" style=" margin-top: -45px;line-height: 10px;">
 									   <div class="controls">
-              							<input data-ng-show = "formData.pinType=='VALUE'" type="text" id="pinValue" data-ng-model="formData.pinValue"/>
+              							<input data-ng-show = "formData.pinType=='VALUE'" type="text" id="pinValue" name="pinValue" data-ng-model="formData.pinValue" data-ng-pattern="{{'integer' | CodeValidate}}"/>
+              							
               							<select data-ng-show="formData.pinType=='PRODUCT'" id="productValue" data-ng-model="formData.pinValue"  data-ng-options="planPriceData.id as planPriceData.plan_duration for  planPriceData in planPriceData">
-              							</select>
+              							</select><br/>
+              							<span data-ng-show="createVoucherForm.pinValue.$dirty && createVoucherForm.pinValue.$invalid">
+              								<small class="error-row">{{'error.not.numeric.validation' | translate}}</small>
+              							</span>
               						   </div>
               						</div>
 								</td>
@@ -118,7 +131,7 @@
 			</table>
           <div class="pull-right" style="margin-right:55px;">
             <a href="#/voucherpins"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
-            <button  id="submit" type="submit" class="btn btn-primary" data-ng-disabled="!createVoucherForm.$valid">{{'button.save'| translate}}</button> 
+            <button  id="submit" type="submit" class="btn btn-primary" data-ng-disabled="createVoucherForm.$dirty && createVoucherForm.$invalid">{{'button.save'| translate}}</button> 
           </div>
           
         </fieldset>
