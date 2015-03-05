@@ -23,6 +23,8 @@ KortaSuccessController = function(rootScope,RequestSender,location,localStorageS
     		var cardbrand	 	  	= location.search().cardbrand;
     		var card4 	  			= location.search().card4;
     		var encryptedData     	= location.search().key;
+    		var cardbrand 	  		= location.search().cardbrand;
+    		var card4 	  			= location.search().card4;
         	var decryptedData     	= CryptoJS.AES.decrypt(encryptedData, encrytionKey).toString(CryptoJS.enc.Utf8);
         	var	kortaStorageData 	= JSON.parse(decodeURIComponent(decryptedData));
         	formData.total_amount 	= kortaStorageData[kortaAmountField];
@@ -36,6 +38,7 @@ KortaSuccessController = function(rootScope,RequestSender,location,localStorageS
        	 	formData.currency 		= selfcareModels.kortaCurrencyType;
        	 	formData.cardType 		= cardbrand;
        	 	formData.cardNumber 	= "XXXX-XXXX-XXXX-"+card4.toString();
+
         	var PaymentMethod 		= kortaStorageData[kortaPaymentMethod];
         	var kortaToken			= kortaStorageData[kortaTokenValue];
         	
