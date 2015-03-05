@@ -456,7 +456,8 @@
         		this.formData.clientId= routeParams.id;
         		  
         		  resourceFactory.redemptionResource.save(this.formData,function(data){
-        				location.path("/viewclient/"+routeParams.id);
+//        				location.path("/viewclient/"+routeParams.id);
+        			  route.reload();
                     $modalInstance.close('delete');
                 },function(errorData){
                 	$scope.flagStatementPop = false;

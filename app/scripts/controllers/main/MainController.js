@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    MainController: function(scope, location, sessionManager, translate,keyboardManager,$rootScope,webStorage,PermissionService,localStorageService,$idle,resourceFactory,tmhDynamicLocale) {
+    MainController: function(scope, location, sessionManager,$modal, translate,keyboardManager,$rootScope,webStorage,PermissionService,localStorageService,$idle,resourceFactory,tmhDynamicLocale) {
       
     	/**
     	 * Logout the user if Idle
@@ -58,6 +58,37 @@
       
       scope.search = function(){
           location.path('/search/' + scope.search.query );
+      };
+      
+      scope.updateLicense = function(){
+    	  scope.errorStatus=[];scope.errorDetails=[];
+    	  $modal.open({
+    		  templateUrl: 'licensekey.html',
+    		  controller: UpdateLicenseKeyController,
+    		  resolve:{}
+    	  });
+      };
+      
+      var UpdateLicenseKeyController =function ($scope, $modalInstance) {
+    	  $scope.subscriptiondatas = [];
+    	  $scope.formData = {};
+    	  $scope.updateKey = function(){
+    		  $scope.flagOrderRenewal=true;
+    		  var aa = {'key': $scope.formData.key};
+    		  console.log(aa);
+    		  
+    		  resourceFactory.LicenseResource.save(aa,function(data){
+    	             
+    	            $modalInstance.close('delete');
+    	            
+    	        },function(renewalErrorData){
+    	      	  $scope.flagOrderRenewal=false;
+    	        	//$scope.renewError = renewalErrorData.data.errors[0].userMessageGlobalisationCode;
+    	        });
+    	  };
+    	  $scope.cancelRenewal = function(){
+    		  $modalInstance.dismiss('cancel');
+    	  };
       };
       
       scope.logout = function() {
@@ -211,6 +242,7 @@
     '$scope',
     '$location',
     'SessionManager',
+    '$modal',
     '$translate',
     'keyboardManager',
     '$rootScope',

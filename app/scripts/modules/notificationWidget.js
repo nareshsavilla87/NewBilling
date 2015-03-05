@@ -86,6 +86,7 @@ angular.module('notificationWidget', [])
             	// request ended false blockUI
             	  $rootScope.blockUI = false;
               }
+              console.log(rejection);
               if (rejection.status === 0) {
                   $rootScope.errorStatus='No connection. Verify application is running.';
               } else if (rejection.status == 401) {
@@ -95,7 +96,11 @@ angular.module('notificationWidget', [])
               } else if (rejection.status == 405) {
                   $rootScope.errorStatus='HTTP verb not supported [405]';
               } else if (rejection.status == 500) {
+            	  if(rejection.data.match("InvalidLicenseKeyException")){
+            		  $rootScope.errorStatus='Invalid License';
+            	  }else{
                   $rootScope.errorStatus='Internal Server Error [500].';
+            	  }
               } else {
                   var jsonErrors = JSON.parse(JSON.stringify(rejection.data));
                   var valErrors = jsonErrors.errors;

@@ -353,6 +353,11 @@
         	 get: {method: 'GET', params: {}},
         	update: { method: 'PUT' }
         }),
+        
+        LicenseResource: defineResource(apiVer + "/licensekey/:key1", {key:'@key'},{
+       	 get: {method: 'GET', params: {}},
+       	update: { method: 'PUT' }
+       }),
         OrderrenewalResource: defineResource(apiVer + "/orders/renewal/:orderId", {orderId:'@orderId'},{
        	update: { method: 'PUT' }
        }),
