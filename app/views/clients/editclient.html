@@ -171,6 +171,25 @@
                 </div>
 				</td>
 			</tr>
+			<tr data-ng-show="isSelfCareUser">
+				<td>
+					<div class="control-group">
+                  		<label class="control-label">{{ 'label.username' | translate }}</label>
+                  		<div class="controls">
+                    		<input type="text" data-ng-model="formData.userName">
+                  		</div>
+                	</div>
+				</td>
+				
+				<td>
+					<div class="control-group">
+                  		<label class="control-label">{{ 'label.password' | translate }}</label>
+                  		<div class="controls">
+                    		<input type="password" data-ng-model="formData.password">
+                  		</div>
+                	</div>
+				</td>
+			</tr>
 			<tr >
 				<td>
 				<div class="offset3">
