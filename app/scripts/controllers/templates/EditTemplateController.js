@@ -61,7 +61,7 @@
 										"{{name}}",
 										"{{#client.groups}}",
 										"{{/client.groups}}" ];
-  			  scope.templateEntity = [ {"entityName" : "Client","templateKeys" : scope.templateKeys} ];
+  			  scope.templateEntity = [ {"entityName": "Client","templateKeys": scope.clientTemplateKeys} ];
   			  if (scope.templateKeyEntity != "client") {
                   CKEDITOR.instances.templateeditor.setData('');
               }
