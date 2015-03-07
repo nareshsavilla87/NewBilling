@@ -92,12 +92,12 @@
 						<label class="control-label" for="phoneNumber">{{'label.mobilephone' | translate}}<span class="required">*</span>
 						</label>
 						<div class="controls">
-							<input type="text" id="phoneNumber" data-ng-model="formData.phoneNumber"
+							<input type="text" id="phoneNumber" data-ng-model="formData.phoneNumber" maxlength="15"
 								data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/"
 								name="phone" required data-late-Validate />
 							<div
 								data-ng-show="editpartnerform.phoneNumber.$dirty && editpartnerform.phoneNumber.$invalid">
-								<small class="error" data-ng-show="editpartnerform.phoneNumber.$error.pattern">wrong input or accepts only digits !</small>
+								<small class="error" data-ng-show="editpartnerform.phoneNumber.$error.pattern">{{'error.invalid.phone.validation' | translate}}</small>
 							</div>
 						</div>
 					</div>
@@ -106,12 +106,12 @@
 						<label class="control-label" for="officeNumber">{{'label.officephone' | translate}}
 						</label>
 						<div class="controls">
-							<input type="text" id="officeNumber" data-ng-model="formData.officeNumber"
+							<input type="text" id="officeNumber" data-ng-model="formData.officeNumber" maxlength="15"
 								data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/"
 								name="officeNumber" required data-late-Validate />
 							<div
 								data-ng-show="editpartnerform.officeNumber.$dirty && editpartnerform.officeNumber.$invalid">
-								<small class="error" data-ng-show="editpartnerform.officeNumber.$error.pattern">wrong input or accepts only digits !</small>
+								<small class="error" data-ng-show="editpartnerform.officeNumber.$error.pattern">{{'error.invalid.phone.validation' | translate}}</small>
 							</div>
 						</div>
 					</div>
@@ -161,8 +161,8 @@
 			<tr>
 			<td colspan="2" align="right">
 					  
-						<button id="cancel" data-ng-click="reset123(partnerId,officeId)"type="reset" class="btn">{{'button.cancel'| translate}}</button>
-						<button id="submit" type="submit" class="btn btn-primary">{{'label.save' | translate }}</button>
+				<button id="cancel" data-ng-click="reset123(partnerId,officeId)"type="reset" class="btn">{{'button.cancel'| translate}}</button>
+				<button id="submit" type="submit" data-ng-disabled="editpartnerform.$dirty && editpartnerform.$invalid" class="btn btn-primary">{{'label.save' | translate }}</button>
 			
 		   </td></tr>
 			

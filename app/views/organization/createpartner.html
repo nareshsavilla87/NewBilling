@@ -124,12 +124,12 @@
 						<div class="control-group">
 						<label class="control-label" for="officeNumber">{{'label.officephone' | translate}}</label>
 						<div class="controls">
-							<input type="text" id="officeNumber" name="officeNumber" data-ng-model="formData.officeNumber"
+							<input type="text" id="officeNumber" name="officeNumber" data-ng-model="formData.officeNumber" maxlength="15" 
 								data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/"
-								name="phone" required data-late-Validate />
+								name="phone"  required data-late-Validate />
 							<div
 								data-ng-show="createpartnerform.officeNumber.$dirty && createpartnerform.officeNumber.$invalid">
-								<small class="error" data-ng-show="createpartnerform.officeNumber.$error.pattern">wrong input or accepts only digits !</small>
+								<small class="error" data-ng-show="createpartnerform.officeNumber.$error.pattern">{{'error.invalid.phone.validation' | translate}} </small> 
 							</div>
 						</div>
 					</div>
@@ -138,12 +138,12 @@
 						<label class="control-label" for="phoneNumber">{{'label.phone' | translate}}<span class="required">*</span>
 						</label>
 						<div class="controls">
-							<input type="text" id="phoneNumber" data-ng-model="formData.phoneNumber"
-								data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/"
+							<input type="text" id="phoneNumber" data-ng-model="formData.phoneNumber" maxlength="15"
+								data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/" 
 								name="phoneNumber" required data-late-Validate />
 							<div
 								data-ng-show="createpartnerform.phoneNumber.$dirty && createpartnerform.phoneNumber.$invalid">
-								<small class="error" data-ng-show="createpartnerform.phoneNumber.$error.pattern">wrong input or accepts only digits !</small>
+								<small class="error" data-ng-show="createpartnerform.phoneNumber.$error.pattern">{{'error.invalid.phone.validation' | translate}}</small>
 							</div>
 						</div>
 					</div>
@@ -199,8 +199,8 @@
 			<tr>
 			<td colspan="2" align="right">
 					  
-						<a href="#/offices"><button id="cancel" type="reset" data-ng-click="reset123()" class="btn">{{'button.cancel'| translate}}</button></a>
-						<button id="submit" type="submit" class="btn btn-primary">{{'label.save' | translate }}</button>
+				<a href="#/offices"><button id="cancel" type="reset" data-ng-click="reset123()" class="btn">{{'button.cancel'| translate}}</button></a>
+				<button id="submit" type="submit" data-ng-disabled="createpartnerform.$dirty && createpartnerform.$invalid" class="btn btn-primary">{{'label.save' | translate }}</button>
 			
 		   </td></tr>
 			
