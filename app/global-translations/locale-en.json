@@ -501,6 +501,7 @@
   "error.code.definition.length.validation":"length should be less than 10 characters",
   "error.not.numeric.validation":"Invalid numeric value",
   "error.not.decimal.validation":"Invalid decimal value",
+  "error.invalid.phone.validation":"Invalid phone number",
 
 
   "#Journal Entry Predefined Postings":"........",
