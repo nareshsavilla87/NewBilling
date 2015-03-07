@@ -5,6 +5,7 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 	var planId 				= routeParams.planId;
 	scope.price		 	 	= routeParams.price;
 	var encrytionKey 		= selfcareModels.encriptionKey;
+	scope.isRedirecting 	= false;
 	
 	//getting Payment Gateway names form constans.js
 	var  kortaPG			=	paymentGatewayNames.korta || "";
@@ -13,6 +14,7 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 	var  paypalPG			=	paymentGatewayNames.paypal || "";
 	var  netellerPG			=	paymentGatewayNames.neteller || "";
 	var  internalPaymentPG	=	paymentGatewayNames.internalPayment || "";
+	var  two_checkoutPG		=	paymentGatewayNames.two_checkout || "";
 	
 	//getting locale value
 	 var temp 				= localStorageService.get('localeLang')||"";
@@ -59,12 +61,10 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 			  scope.termsAndConditions = false;
 			  var paymentGatewayValues = {};
 			  for (var i in scope.paymentgatewayDatas){
-				  if(scope.paymentgatewayDatas[i].name=='internalPayment'){
-					  break;
-				  } else if(scope.paymentgatewayDatas[i].name==paymentGatewayName){
-					  paymentGatewayValues =  JSON.parse(scope.paymentgatewayDatas[i].value);
-					  break;
-				  }
+			    if(scope.paymentgatewayDatas[i].name==paymentGatewayName && scope.paymentgatewayDatas[i].name !='internalPayment'){
+				  paymentGatewayValues =  JSON.parse(scope.paymentgatewayDatas[i].value);
+				  break;
+			    }
 				  
 			  }
 	     switch(paymentGatewayName){
@@ -89,7 +89,7 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 					
 			case paypalPG :
 				var query = {clientId :scope.clientId,locale : "en",planCode : planId,contractPeriod : scope.planData.contractId,
-							  paytermCode:scope.planData.billingFrequency,returnUrl:hostName, screenName:scope.screenName,orderId:orderId};
+							  paytermCode:scope.planData.billingFrequency,returnUrl:hostName, screenName:scope.screenName,orderId:orderId,eventData:""};
 			
 				scope.paymentURL = paymentGatewayValues.paypalUrl+'='+paymentGatewayValues.paypalEmailId+"&item_name="+scope.planData.planCode+"&amount="+scope.planData.price+"" +	  	  				
 				  	  "&custom="+JSON.stringify(query);
@@ -119,6 +119,16 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 				scope.paymentURL =  "#/internalpayment/"+scope.screenName+"/"+scope.clientId+"/"+planId+"/"+priceDataId+"/"+scope.planData.price;
 				break;
 				
+			case two_checkoutPG :
+				localStorageService.add("twoCheckoutStorageData",{screenName:scope.screenName,clientId:scope.clientId,
+																 	planId:planId,priceId:priceDataId});
+				var zipCode = clientData.zip || clientData.city || "";
+				scope.paymentURL =  "https://sandbox.2checkout.com/checkout/purchase?sid="+paymentGatewayValues+"&mode=2CO&li_0_type=product&li_0_name=invoice&li_0_price="+scope.planData.price
+									+"&card_holder_name="+clientData.displayName+"&street_address="+clientData.addressNo+"&city="+clientData.city+"&state="+clientData.state+"&zip="+zipCode
+									+"&country="+clientData.country+"&email="+clientData.email+"&quantity=1";
+				
+				break;
+				
 			default :
 						break;
 			}
@@ -138,7 +148,8 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
     			$scope.termsAndConditionsText = globalpay[termsAndConditions] 		: (scope.paymentGatewayName == paypalPG)?
     			$scope.termsAndConditionsText = paypal[termsAndConditions] 	 		: (scope.paymentGatewayName == netellerPG)?
     			$scope.termsAndConditionsText = neteller[termsAndConditions] 	 	: (scope.paymentGatewayName == internalPaymentPG)?
-    			$scope.termsAndConditionsText = internalPayment[termsAndConditions] : $scope.termsAndConditionsText = selectOnePaymentGatewayText[scope.optlang];
+    			$scope.termsAndConditionsText = internalPayment[termsAndConditions] : (scope.paymentGatewayName == two_checkoutPG)?
+    			$scope.termsAndConditionsText = two_checkout[termsAndConditions]	: $scope.termsAndConditionsText = selectOnePaymentGatewayText[scope.optlang];
     	}
     	$scope.done = function(){
     		$modalInstance.dismiss('cancel');

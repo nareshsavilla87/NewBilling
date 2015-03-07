@@ -82,6 +82,9 @@ selfcareApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/prepaidpayment',{
     	templateUrl: 'views/prepaidpayment.html'
+    })
+    .when('/twocheckoutsuccess',{
+    	templateUrl: 'views/twocheckoutsuccess.html'
     });
        
     $locationProvider.html5Mode(false);

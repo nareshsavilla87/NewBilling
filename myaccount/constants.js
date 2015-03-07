@@ -40,4 +40,5 @@
 		   paypal 					: 'paypal',
 		   neteller 				: 'neteller',
 		   internalPayment 			: 'internalPayment',
+		   two_checkout 			: '2checkout',
    };

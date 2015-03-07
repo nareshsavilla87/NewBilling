@@ -23,6 +23,8 @@ KortaSuccessController = function(rootScope,RequestSender,location,localStorageS
     		var cardbrand	 	  	= location.search().cardbrand;
     		var card4 	  			= location.search().card4;
     		var encryptedData     	= location.search().key;
+    		var cardbrand 	  		= location.search().cardbrand;
+    		var card4 	  			= location.search().card4;
         	var decryptedData     	= CryptoJS.AES.decrypt(encryptedData, encrytionKey).toString(CryptoJS.enc.Utf8);
         	var	kortaStorageData 	= JSON.parse(decodeURIComponent(decryptedData));
         	formData.total_amount 	= kortaStorageData[kortaAmountField];
@@ -33,9 +35,10 @@ KortaSuccessController = function(rootScope,RequestSender,location,localStorageS
         	formData.source 		= 'korta';	
         	formData.otherData 		= '{"paymentId":'+reference+'}';
        	 	formData.device 		= '';
-       	 	formData.currency 		= 'ISN';
+       	 	formData.currency 		= selfcareModels.kortaCurrencyType;
        	 	formData.cardType 		= cardbrand;
        	 	formData.cardNumber 	= "XXXX-XXXX-XXXX-"+card4.toString();
+
         	var PaymentMethod 		= kortaStorageData[kortaPaymentMethod];
         	var kortaToken			= kortaStorageData[kortaTokenValue];
         	
@@ -81,7 +84,7 @@ KortaSuccessController = function(rootScope,RequestSender,location,localStorageS
   						location.$$search = {};
   						if(screenName == 'payment'){
   							location.path('/paymentgatewayresponse/'+formData.clientId);
-  						}else if(result == 'SUCCESS'){
+  						}else if(result == 'Success' || result == 'SUCCESS'){
   							location.path("/orderbookingscreen/"+screenName+"/"+formData.clientId+"/"+planId+"/"+priceId);
   						}else{	 
   							location.path('/paymentgatewayresponse/'+formData.clientId);
