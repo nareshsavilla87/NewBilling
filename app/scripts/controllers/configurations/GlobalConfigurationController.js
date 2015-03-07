@@ -16,6 +16,7 @@
             			scope.configs.push(data.globalConfiguration[i]);
             		}
             		webStorage.add("client_configuration",JSON.parse(data.clientConfiguration)); 
+            		 webStorage.add("global_configuration",data.globalConfiguration);
             	});
             }
             configurationResourceData();
@@ -112,6 +113,7 @@
 	                    var temp = {'enabled': 'true'};
 	                    resourceFactory.configurationResource.update({'configId': id}, temp, function (data) {
 	                        route.reload();
+	                        webStorage.add("global_configuration",data.globalConfiguration);
 	                    });
 	                }
 	            };
@@ -128,6 +130,7 @@
 	                    var temp = {'enabled': 'false'};
 	                    resourceFactory.configurationResource.update({'configId': id}, temp, function (data) {
 	                        route.reload();
+	                        webStorage.add("global_configuration",data.globalConfiguration);
 	                    });
 	                }
 	            };

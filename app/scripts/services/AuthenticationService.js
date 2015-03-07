@@ -15,8 +15,10 @@
 
             	resourceFactory.configurationResource.get(function(data) {
             		scope.clientConfigs = data.clientConfiguration;
+            		scope.globalconfigs = data.globalConfiguration;
             		var clientConfigurations = JSON.parse(scope.clientConfigs);
             		webStorage.add("client_configuration",JSON.parse(scope.clientConfigs));
+            		webStorage.add("global_configuration",scope.globalconfigs);
             		if(clientConfigurations){
                     	localStorageService.add('dateformat',clientConfigurations.date_format);
                     	scope.dateformat = clientConfigurations.date_format;

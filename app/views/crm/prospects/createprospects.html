@@ -76,7 +76,7 @@
 								<label class="control-label" for="homePhoneNumber"> {{'label.homephone' | translate }}</label>
 								<div class="controls">
 									<input type="text" id="homePhoneNumber" name="homephone" data-ng-model="formData.homePhoneNumber"
-										data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/">
+										data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/" maxlength="15" >
 									<div data-ng-show="createprospectsform.homephone.$dirty && createprospectsform.homephone.$invalid">
 										<small class="error" data-ng-show="createprospectsform.homephone.$error.pattern"> {{'label.prospect.error.mobileno' | translate}} </small>
 									</div>
@@ -90,7 +90,7 @@
 								<label class="control-label" for="workPhoneNumber">{{'label.officephone' | translate }}</label>
 								<div class="controls">
 									<input type="text" id="workPhoneNumber" name="workphone" data-ng-model="formData.workPhoneNumber"
-										data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/">
+										data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/" maxlength="15">
 									<div data-ng-show="createprospectsform.workphone.$dirty && createprospectsform.workphone.$invalid">
 										<small class="error" data-ng-show="createprospectsform.workphone.$error.pattern">{{'label.prospect.error.mobileno' | translate}} </small>
 									</div>
@@ -105,7 +105,7 @@
 								<div class="controls">
 									<input type="text" id="mobileNumber" data-ng-model="formData.mobileNumber"
 										data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/"
-										name="mobilenumber">
+										name="mobilenumber" maxlength="15">
 									<div data-ng-show="createprospectsform.mobilenumber.$dirty && createprospectsform.mobilenumber.$invalid">
 										<small class="error" data-ng-show="createprospectsform.mobilenumber.$error.pattern">{{'label.prospect.error.mobileno' | translate}} </small>
 									</div>
