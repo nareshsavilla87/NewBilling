@@ -4,12 +4,12 @@
 
 			scope.types =[{key:'K' ,value:"KB"},{key:'M',value:"MB"},{key:'G',value:"GB"}];
 			scope.radiusVersion = routeParams.radiusVersion;
-			  
-			scope.formData = {				 
-					upType  : scope.types[0].key,
-					downType  : scope.types[0].key,	  
-			};
 
+			  scope.formData = {
+					  upType  : scope.types[0].key,
+					  downType  : scope.types[0].key,
+		            };
+			
 			 scope.reset123 = function(){
 	        	   webStorage.add("callingTab", {someString: "radService" });
 	           };
