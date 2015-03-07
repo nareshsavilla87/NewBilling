@@ -2367,7 +2367,7 @@
 "label.prospect.corporate":"Corporate",
 "label.prospect.error.name":"alphanumeric and spaces only!",
 "label.prospect.error.required":"Required Field",
-"label.prospect.error.mobileno":"wrong input or accepts only digits !",
+"label.prospect.error.mobileno":"Invalid Phone number",
 "label.prospect.personaldetails":"Personal Details",
 "label.prospect.addressdetails":"Address Details",
 "label.prospect.error.email":"Invalid Email",
