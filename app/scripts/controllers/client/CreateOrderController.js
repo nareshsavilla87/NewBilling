@@ -63,7 +63,7 @@
     	   console.log("todayDate:"+scope.todayDate);
     	   console.log("selectedDate:"+scope.selectedDate);
        };
-       resourceFactory.orderTemplateResource.get({'planId': routeParams.planId},function(data) {
+       resourceFactory.orderTemplateResource.get({'planId': routeParams.planId,'clientId': routeParams.id},function(data) {
     	   
     	   scope.plandatas = data.plandata;	
     	   for(var plan in scope.plandatas){
