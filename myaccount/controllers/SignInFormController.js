@@ -1,4 +1,4 @@
-	  SignInFormController = function(scope,webStorage,localStorageService,RequestSender,authenticationService,rootScope,location) {
+	  SignInFormController = function(scope,webStorage,localStorageService,RequestSender,authenticationService,rootScope,location,localStorageService,SessionManager) {
 		  
 		  scope.loginCredentials = {};
 		  scope.isProcessing  = false;
@@ -23,9 +23,15 @@
 	        	    	  //adding web tv url
 	        	    	  rootScope.webtvURL = selfcareModels.webtvURL+"?id="+successData.clientId;
 	        			  localStorageService.add("selfcareAppUrl",selfcareModels.selfcareAppUrl);
+	        			  localStorageService.add("loginHistoryId", successData.loginHistoryId);
 	            		  location.path('/profile');
 	            	  },function(errorData){
-	            		  rootScope.loginErrorMsgs.push({'name' : 'error.login.failed'});
+	            		  //rootScope.loginErrorMsgs.push({'name' : 'error.login.failed'});
+	            		  if(errorData.data.userMessageGlobalisationCode == "error.msg.not.authenticated"){
+		            	  		rootScope.loginErrorMsgs.push({'name' : 'error.login.failed'});
+		            	  	  }else{
+		            	  		rootScope.loginErrorMsgs.push({'name' : errorData.data.errors[0].userMessageGlobalisationCode});
+		            	  	  }
 	            		  scope.isProcessing = false;
 	            	  });
 	    		  });
@@ -35,12 +41,12 @@
 	        
 	      };
 	      
-	      
 	      $('#pwd').keypress(function(e) {
 	          if(e.which == 13) {
 	              scope.login();
 	          }
 	        });
+	      
 		  
     };
   selfcareApp.controller('SignInFormController', [ '$scope',
@@ -50,4 +56,6 @@
                                                    'AuthenticationService',
                                                    '$rootScope', 
                                                    '$location', 
+                                                   'localStorageService', 
+                                                   'SessionManager', 
                                                    SignInFormController]);

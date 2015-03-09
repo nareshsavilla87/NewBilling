@@ -138,7 +138,8 @@
  	"validation.msg.ticketmaster.description.exceeds.max.length" : "Description exceeds Max length",
  	"validation.msg.client.closureReasonId.cannot.be.blank" : "Closure Reason cannot be blank",
  	"error.msg.permission.code.invalid" 			: "Permission Denied",
- 	"error.msg.client.duplicate.externalId" : "Given National id already exists",
+ 	"error.msg.client.duplicate.externalId" 		: "Given National id already exists",
+ 	"error.msg.exceeded.no.of.Viewers"				: "Already user logged in",
  	
  	"#links " : "------------------------------------",
  	"link.gmail.account"		 :  "Gmail Account",

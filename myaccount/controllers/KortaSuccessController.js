@@ -77,11 +77,12 @@ KortaSuccessController = function(rootScope,RequestSender,location,localStorageS
         		}else{
     				RequestSender.paymentGatewayResource.update({clientId : formData.clientId},formData,function(data){
     					  localStorageService.add("paymentgatewayresponse", {data:data,cardType:formData.cardType,cardNumber:formData.cardNumber});
-  						var result = data.Result || "";
+    					  var result = data.Result.toUpperCase() || "";
+    		    		  localStorageService.add("gatewayStatus",result);
   						location.$$search = {};
   						if(screenName == 'payment'){
   							location.path('/paymentgatewayresponse/'+formData.clientId);
-  						}else if(result == 'SUCCESS'){
+  						}else if(result.toUpperCase() == 'SUCCESS' || result == 'PENDING'){
   							location.path("/orderbookingscreen/"+screenName+"/"+formData.clientId+"/"+planId+"/"+priceId);
   						}else{	 
   							location.path('/paymentgatewayresponse/'+formData.clientId);
