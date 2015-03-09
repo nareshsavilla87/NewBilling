@@ -21,6 +21,9 @@
   "label.anchor.faq" : "FAQ",
   "label.heading.community" : "Support Service",
   "label.anchor.ticket":"Ticketing System",
+  "label.update.license.key":"Update License",
+  "label.licensekey":"License Key",
+  "btn.ok":"Ok",
   "label.users.group" : "User group",
   "label.developer.group" : "Developer group",
   "label.product.irc" : "IRC",
@@ -499,6 +502,7 @@
   "error.code.definition.length.validation":"length should be less than 10 characters",
   "error.not.numeric.validation":"Invalid numeric value",
   "error.not.decimal.validation":"Invalid decimal value",
+  "error.invalid.phone.validation":"Invalid phone number",
 
 
   "#Journal Entry Predefined Postings":"........",
@@ -2363,7 +2367,7 @@
 "label.prospect.corporate":"Corporate",
 "label.prospect.error.name":"alphanumeric and spaces only!",
 "label.prospect.error.required":"Required Field",
-"label.prospect.error.mobileno":"wrong input or accepts only digits !",
+"label.prospect.error.mobileno":"Invalid Phone number",
 "label.prospect.personaldetails":"Personal Details",
 "label.prospect.addressdetails":"Address Details",
 "label.prospect.error.email":"Invalid Email",

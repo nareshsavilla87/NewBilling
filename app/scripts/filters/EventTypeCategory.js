@@ -90,6 +90,9 @@
                         "SELFREGISTRATION ACTIVATE" : "Selfcare Registration Activated",
                         "CREATE SELFCARE" : "Selfcare Account Created successfully with UserName:"+jsonArray.userName,
                         
+                        // Redemption related data
+                        "CREATE REDEMPTION":"Redemption done successfully PinNumber:"+jsonArray.pinNumber
+                        
                      };
 
                       

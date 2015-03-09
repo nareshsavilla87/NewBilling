@@ -1,10 +1,10 @@
 (function(module) {
   mifosX.services = _.extend(module, {
-    AuthenticationService: function(scope, httpService,location,localStorageService,resourceFactory,webStorage) {
+    AuthenticationService: function(scope, httpService,location,localStorageService,resourceFactory,webStorage,$modal,rootScope) {
     	scope.activity = {};
         scope.activityQueue = [];
       var onSuccess = function(data) {
-    	
+    	var successData = data;
         scope.$broadcast("UserAuthenticationSuccessEvent", data);
         webStorage.add("userData",data);
         
@@ -15,8 +15,10 @@
 
             	resourceFactory.configurationResource.get(function(data) {
             		scope.clientConfigs = data.clientConfiguration;
+            		scope.globalconfigs = data.globalConfiguration;
             		var clientConfigurations = JSON.parse(scope.clientConfigs);
             		webStorage.add("client_configuration",JSON.parse(scope.clientConfigs));
+            		webStorage.add("global_configuration",scope.globalconfigs);
             		if(clientConfigurations){
                     	localStorageService.add('dateformat',clientConfigurations.date_format);
                     	scope.dateformat = clientConfigurations.date_format;
@@ -34,6 +36,22 @@
                         }
                         
                     }
+                	
+                	//popUp open
+                	if(successData.notificationMessage){
+                		$modal.open({
+      		  	                templateUrl: 'licensemessagespopup.html',
+      		  	                controller: LicenseMessagesPopup,
+      		  	                resolve:{}
+      		  	         });
+                	
+                	}
+                	function  LicenseMessagesPopup($scope, $modalInstance) {
+                		rootScope.licenseMsg = successData.notificationMessage;
+                		$scope.approve = function () { 
+                			$modalInstance.dismiss('cancel');
+                		};
+                	}
                 });
        
         scope.df = scope.dateformat;
@@ -65,7 +83,7 @@
       };
     }
   });
-  mifosX.ng.services.service('AuthenticationService', ['$rootScope', 'HttpService','$location','localStorageService','ResourceFactory','webStorage', mifosX.services.AuthenticationService]).run(function($log) {
+  mifosX.ng.services.service('AuthenticationService', ['$rootScope', 'HttpService','$location','localStorageService','ResourceFactory','webStorage','$modal','$rootScope', mifosX.services.AuthenticationService]).run(function($log) {
     $log.info("AuthenticationService initialized");
   });
 }(mifosX.services || {}));
