@@ -15,13 +15,13 @@
 	        	   webStorage.add("callingTab", {someString: "radService" });
 	           };
 	           
-	          /// if(scope.radiusVersion == 'version-2'){
+	          if(scope.radiusVersion == 'version-2'){
 	        	   scope.serviceCodes = [];
 	        	   resourceFactory.radServiceTemplateResource.query(function(data) {
 	        		   scope.serviceCodes = data;
 	        		   console.log(scope.serviceCodes);
 	               });
-	           //}
+	           }
 			
 			scope.submit = function() {
 				if(scope.radiusVersion == 'version-1'){

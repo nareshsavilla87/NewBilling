@@ -78,7 +78,7 @@
                      </div>
         </fieldset>
 </form>
-<form name="createradserviceform2" novalidate="" class="form-horizontal well" data-ng-submit="submit()">  <!-- data-ng-show="radiusVersion=='version-2'"> -->
+<form name="createradserviceform2" novalidate="" class="form-horizontal well" data-ng-submit="submit()" data-ng-show="radiusVersion=='version-2'"> 
 	<div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label data-ng-show="errorStatus">{{errorStatus}}</label>
