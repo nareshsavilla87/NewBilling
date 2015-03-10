@@ -113,6 +113,10 @@ selfcareApp.config(function($provide) {
         	
         	redemptionResource: defineResource(apiVer + "/redemption", {}, {}),
         	
+        	logoutResource: defineResource(apiVer + "/logout", {id:'@id'}, {}),
+        	
+        	scheduleOrderResource: defineResource(apiVer + "/orders/scheduling/:clientId", {clientId:'@clientId'}, {}),
+        	
         };
       }];
     });
