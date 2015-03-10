@@ -6,6 +6,7 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 	var planId				= routeParams.planId; 
 	var priceId				= routeParams.priceId; 
 	var orderBookingData 	= {};
+	var gatewayStatus		= localStorageService.get("gatewayStatus")||"";
 	
 	function successFun(planData){
     	localStorageService.remove("secretCode");
@@ -38,9 +39,18 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 					orderBookingData.paytermCode 	= planData.billingFrequency; 
 					orderBookingData.contractPeriod = planData.contractId; 
 					orderBookingData.planCode 		= planId;
-					RequestSender.bookOrderResource.save({clientId : clientId},orderBookingData,function(data){
-						successFun(planData);
-					});
+					if(gatewayStatus == "PENDING"){
+						orderBookingData.status 	= gatewayStatus;
+						orderBookingData.actionType	= screenName;
+						RequestSender.scheduleOrderResource.save({clientId : clientId},orderBookingData,function(data){
+							localStorageService.remove("gatewayStatus");
+							successFun(planData);
+						});
+					}else{
+						RequestSender.bookOrderResource.save({clientId : clientId},orderBookingData,function(data){
+							successFun(planData);
+						});
+					}
 				}else if(screenName == "changeorder"){
 					var changeOrderData 			 = {};
 					changeOrderData.billAlign 		 = false;
@@ -57,9 +67,18 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 					var orderId						 = "";
 					localStorageService.get("storageData")? orderId = localStorageService.get("storageData").orderId
 														  : orderId = "";
-					RequestSender.changeOrderResource.update({'orderId':orderId},changeOrderData,function(data){
-						successFun(planData);
-					});
+					if(gatewayStatus == "PENDING"){
+						changeOrderData.status 		= gatewayStatus;
+						changeOrderData.actionType	= screenName;
+						RequestSender.scheduleOrderResource.save({clientId : clientId},changeOrderData,function(data){
+							localStorageService.remove("gatewayStatus");
+							successFun(planData);
+						});
+					}else{
+						RequestSender.changeOrderResource.update({'orderId':orderId},changeOrderData,function(data){
+							successFun(planData);
+						});
+					}
 				}else if(screenName == "renewalorder"){
 						 var renewalOrderData 			 = {};
 						 renewalOrderData.renewalPeriod  = planData.contractId; 
@@ -68,9 +87,18 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 						 var orderId						 = "";
 						localStorageService.get("storageData")? orderId = localStorageService.get("storageData").orderId
 																  : orderId = "";
-						RequestSender.orderRenewalResource.save({orderId :orderId},renewalOrderData,function(data){
-							 successFun(planData);
-						 });
+						if(gatewayStatus == "PENDING"){
+							renewalOrderData.status 		= gatewayStatus;
+							renewalOrderData.actionType	= screenName;
+							RequestSender.scheduleOrderResource.save({clientId : clientId},renewalOrderData,function(data){
+								localStorageService.remove("gatewayStatus");
+								successFun(planData);
+							});
+						}else{
+							RequestSender.orderRenewalResource.save({orderId :orderId},renewalOrderData,function(data){
+								 successFun(planData);
+							 });
+						}
 				}
 				break;
 			  }

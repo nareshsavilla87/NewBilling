@@ -13,10 +13,12 @@ GlobalPaySuccessController = function(RequestSender, location,localStorageServic
 	    		RequestSender.paymentGatewayResource.update(formData, function(data){
 	    			localStorageService.remove("globalpayStorageData", data);
 	    			localStorageService.add("paymentgatewayresponse", {data:data});
+	    			var result = data.Result.toUpperCase() || "";
+	    			localStorageService.add("gatewayStatus",result);
 	    			location.$$search = {};
 	    			if(screenName == 'payment'){
 						location.path('/paymentgatewayresponse/'+formData.clientId);
-					}else {
+					}else if(result == 'SUCCESS' || result == 'PENDING'){
 						location.path("/orderbookingscreen/"+screenName+"/"+clientId+"/"+planId+"/"+priceId);
 					}
 	    		});
