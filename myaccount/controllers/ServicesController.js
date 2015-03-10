@@ -35,8 +35,8 @@ ServicesController = function(scope,RequestSender,localStorageService,location,p
 		  	};
 	  	   
 	  	  var clientData= localStorageService.get('clientTotalData');
-	  	  scope.clientId = clientData.id;
 		  if(clientData){
+			  scope.clientId = clientData.id;
 			  
 			  RequestSender.getOrderResource.get({clientId:scope.clientId},function(data){
 				  totalOrdersData = data.clientOrders;

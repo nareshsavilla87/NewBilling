@@ -16,10 +16,14 @@ selfcareApp.config(function($httpProvider ,$translateProvider) {
 	 $translateProvider.preferredLanguage(selfcareModels.locale);
 });
 
-SelfcareMainController = function(scope, translate,sessionManager,RequestSender,authenticationService,location,modal,localStorageService,tmhDynamicLocale,webStorage,route){
+SelfcareMainController = function(scope, translate,sessionManager,RequestSender,authenticationService,location,modal,localStorageService,tmhDynamicLocale,webStorage,route,$modal){
 	
 	   scope.domReady = true;
 	   var urlAfterHash = window.location.hash;
+	   if(urlAfterHash == '#/profile'){
+		   location.path('/').replace();
+	   }
+	   
 	   
 	   if(localStorageService.get('selfcare_sessionData')||localStorageService.get("clientTotalData")){
 		   scope.isLandingPage= true;
@@ -41,6 +45,7 @@ sessionManager.restore(function(session) {
      scope.currentSession = session;
  });
 	   
+
 //getting languages form model Lang.js 
 scope.langs = Langs;
 
@@ -71,8 +76,8 @@ if(localStorageService.get('localeLang')){
  scope.goBack = function(){
 	  window.history.go(-1);
  };
- 
  window.setInterval(function(){
+
 	 //checking session every  second when scope.currentSession.user not null
 	 if((scope.currentSession.user != null)){
 		 //in this checking is it Registration Page or not  
@@ -142,11 +147,72 @@ if(localStorageService.get('localeLang')){
 		 var active = route === location.path();
 		 	return active;
    };
-	 
 	   scope.signout = function(){
-	    	  scope.currentSession = sessionManager.clear();
-	    	  route.reload();
+			  var sessionData = localStorageService.get('loginHistoryId');
+			  if(sessionData){
+		          RequestSender.logoutResource.save({logout:'logout',id:sessionData},function(data){
+		        	  scope.currentSession = sessionManager.clear();
+	              });
+			  }
 	   };
+	   
+	/*   var validNavigation = false;
+	  function goodbye(e) {
+		   if(!validNavigation){	
+		    	scope.loginHistoryId = localStorageService.get('loginHistoryId');
+				  if(scope.loginHistoryId){
+					  window.location.href = selfcareModels.selfcareAppUrl;
+			          RequestSender.logoutResource.save({logout:'logout',id:scope.loginHistoryId},function(data){
+		              });
+			          scope.currentSession = sessionManager.clear();
+				  }
+		   }
+	   }
+	
+	   
+	  window.onbeforeunload = goodbye;
+	   function wireUpEvents() {*/
+		  /* $(window).on('beforeunload', function(){
+			   if(!validNavigation){	
+				   var sessionData = localStorageService.get('loginHistoryId');
+					  if(sessionData){
+				          RequestSender.logoutResource.save({logout:'logout',id:sessionData},function(data){
+			              });
+				          scope.currentSession = sessionManager.clear();
+					  }
+			   }
+		   });*/
+	     // Attach the event keypress to exclude the F5 refresh
+	   /*  $(document).bind('keypress', function(e) {
+	       if (e.keyCode == 116){
+	         validNavigation = true;
+	       }
+	     });
+	     $(document).bind('keydown', function(e) {
+	    	 if (e.keyCode == 116){
+	    		 validNavigation = true;
+	    	 }
+	     });*/
+	    
+	    /* // Attach the event click for all links in the page
+	     $("a").bind("click", function() {
+	       validNavigation = true;
+	     });
+	    
+	     // Attach the event submit for all forms in the page
+	     $("form").bind("submit", function() {
+	       validNavigation = true;
+	     });
+	    
+	     // Attach the event click for all inputs in the page
+	     $("input[type=submit]").bind("click", function() {
+	       validNavigation = true;
+	     });
+	      
+	   };
+	   wireUpEvents();*/
+	  
+	   
 };
 
 selfcareApp.controller('SelfcareMainController',['$rootScope',
@@ -160,4 +226,5 @@ selfcareApp.controller('SelfcareMainController',['$rootScope',
                                                  'tmhDynamicLocale',
                                                  'webStorage',
                                                  '$route',
+                                                 '$modal',
                                                  SelfcareMainController]);
