@@ -11,6 +11,12 @@
                   this._load();
                 }
               },
+              nextOrPrevoius: function(pageNo,offsetValue) {
+                  if(pageNo >= 1){
+                	  this.currentOffset = (pageNo*offsetValue)-offsetValue;
+                      this._load();
+                  }
+                },
               firstPage : function(){
             	  if(this.hasPrevious()) {
             		  this.currentOffset = 0;
