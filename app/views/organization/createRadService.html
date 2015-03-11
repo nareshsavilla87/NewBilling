@@ -78,7 +78,11 @@
                      </div>
         </fieldset>
 </form>
+<<<<<<< HEAD
 <form name="createradserviceform2" novalidate class="form-horizontal well" data-ng-submit="submit()"  data-ng-show="radiusVersion=='version-2'">
+=======
+<form name="createradserviceform2" novalidate="" class="form-horizontal well" data-ng-submit="submit()" data-ng-show="radiusVersion=='version-2'"> 
+>>>>>>> obsplatform-2.03
 	<div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label data-ng-show="errorStatus">{{errorStatus}}</label>
@@ -97,8 +101,7 @@
                                  <small class="error" data-ng-show="createradserviceform2.srvname.$error.req">{{'label.required.field' | translate}}</small></span>
            						</div>
          						</div>	
-							</td></tr>
-							<tr>
+							</td>
 							<td>
 								<div class="control-group">
             					<label class="control-label" for="serviceId">{{'table.heading.service'|translate}}<span class="required">*</span></label>
@@ -111,7 +114,8 @@
           						</div>
 							</td>
 							</tr>
-							<tr><td>
+							<tr>
+							   <td>
 								<div class="control-group">
             					<label class="control-label" for="uprate">{{ 'label.upRate' | translate }}<span class="required">*</span></label>
             					<div class="controls">
@@ -121,8 +125,8 @@
                                  <small class="error" data-ng-show="createradserviceform2.uprate.$error.req">{{'label.required.field' | translate}}</small></span>
             					</div>
           						</div>
-							</td></tr>
-							<tr><td>
+							</td>
+							<td>
 								<div class="control-group">
             					<label class="control-label" for="downrate">{{ 'label.downRate' | translate }}<span class="required">*</span></label>
             					<div class="controls">
@@ -142,7 +146,39 @@
                                   <small class="error" data-ng-show="createradserviceform2.trafficId.$error.req">{{'label.required.field' | translate}}</small></span>
             					</div>
           						</div>
-							</td></tr>
+							</td>
+							<td>
+         				     <div class="control-group">
+            				   <label class="control-label" for="islimitcomb">{{ 'label.islimitcomb' | translate }}</label>
+            				     <div class="controls">
+              					    <label class="checkbox">
+                					   <input type="checkbox" data-ng-model="formData.islimitcomb">
+              					</label>
+            				</div>
+          				</div>
+         			</td>
+							</tr>
+							<tr><td>
+								 <div class="control-group">
+            				   <label class="control-label" for="limitexpiration">{{ 'label.limitexpiration' | translate }}</label>
+            				     <div class="controls">
+              					    <label class="checkbox">
+                					   <input type="checkbox" data-ng-model="formData.limitexpiration">
+              					</label>
+            				</div>
+          				</div>
+							</td>
+							<td>
+         				     <div class="control-group">
+            				   <label class="control-label" for="renew">{{ 'label.renew' | translate }}</label>
+            				     <div class="controls">
+              					    <label class="checkbox">
+                					   <input type="checkbox" data-ng-model="formData.renew">
+              					</label>
+            				</div>
+          				</div>
+         			</td>
+							</tr>
 							</table>
 							
   	

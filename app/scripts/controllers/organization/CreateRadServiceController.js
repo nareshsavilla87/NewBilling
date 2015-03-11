@@ -5,28 +5,33 @@
 			scope.types =[{key:'K' ,value:"KB"},{key:'M',value:"MB"},{key:'G',value:"GB"}];
 			scope.radiusVersion = routeParams.radiusVersion;
 
-			  scope.formData = {
-					  upType  : scope.types[0].key,
-					  downType  : scope.types[0].key,
-		            };
-			
+			scope.formData = {				 
+					upType  : scope.types[0].key,
+					downType  : scope.types[0].key,
+					islimitcomb : false,
+					renew : false,
+					limitexpiration  : false
+			};
+
 			 scope.reset123 = function(){
 	        	   webStorage.add("callingTab", {someString: "radService" });
 	           };
 	           
-	           if(scope.radiusVersion == 'version-2'){
+	          if(scope.radiusVersion == 'version-2'){
 	        	   scope.serviceCodes = [];
 	        	   resourceFactory.radServiceTemplateResource.query(function(data) {
 	        		   scope.serviceCodes = data;
+	        		   console.log(scope.serviceCodes);
 	               });
 	           }
 			
 			scope.submit = function() {
 				if(scope.radiusVersion == 'version-1'){
-					scope.formData.value=scope.formData.downRate + scope.formData.downType +"/"+ scope.formData.upRate + scope.formData.upType;
+					scope.formData.value=scope.formData.downrate + scope.formData.downType +"/"+ scope.formData.uprate + scope.formData.upType;
 					delete scope.formData.downRate ;
 					delete scope.formData.upRate;
 				}else if(scope.radiusVersion == 'version-2'){
+					scope.formData.value=scope.formData.downrate + scope.formData.downType +"/"+ scope.formData.uprate + scope.formData.upType;
 					delete scope.formData.upType;
 					delete scope.formData.downType;
 				}
