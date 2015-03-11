@@ -2457,6 +2457,11 @@
 "label.createradservice":"Create RadService",
 "label.downRate":"DownRate",
 "label.upRate":"UpRate",
+"label.limitexpiration":"Limit Expiration",
+"label.islimitcomb":"Limit combo",
+"label.renew":"Renew",
+
+
 "table.heading.serviceName":"Service Name",
 "table.heading.serviceType":"Service Type",
 "table.heading.upRate":"Up Rate",
