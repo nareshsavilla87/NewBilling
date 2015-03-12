@@ -272,6 +272,7 @@ define(['underscore', 'mifosX'], function() {
       'configurations/PaymentGatewayConfigurationController',
       'organization/RadiusController',
       'organization/CreateRadServiceController',
+      'organization/EditRadServiceController',
       'organization/CreateNasController',
       'paymentgateway/EventActionController',
       'organization/ViewVouchersController',
