@@ -47,6 +47,12 @@
 			});
 		};
 		
+		
+		scope.routeToRadService = function(radiusVersion,radServiceId) {
+			
+			location.path("editRadService/"+radiusVersion + "/"+radServiceId);
+		};
+		
 	    /**
        	 * Delete Nas
        	 * */
