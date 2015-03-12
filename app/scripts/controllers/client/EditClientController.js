@@ -3,8 +3,17 @@
     EditClientController: function(scope,webStorage, routeParams, resourceFactory, location, http,dateFilter,API_VERSION,$rootScope,$upload,$parse) {
         scope.offices = [];
         scope.date = {};
+        scope.selfcareData = {};
         scope.clientId = routeParams.id;
         scope.walletConfig = webStorage.get('is-wallet-enable');
+        var data = webStorage.get("global_configuration");
+		for(var i in data){
+			if(data[i].name == "is-selfcareuser"){
+				scope.isSelfCareUser = data[i].enabled;
+				console.log(scope.isSelfCareUser);
+			}
+		}
+        
         var clientData = webStorage.get('clientData');
         scope.displayName=clientData.displayName;
         scope.statusActive=clientData.statusActive;
@@ -39,6 +48,13 @@
 	    	}
 	    }
         
+        if(data.selfcare != undefined){
+        	
+        	scope.selfcareData = {
+        		userName : data.selfcare.userName,
+        		password : data.selfcare.password
+        	};
+        }
 	    scope.clientCategoryDatas=data.clientCategoryDatas;
 
 	    for(var i=0;i<scope.clientCategoryDatas.length;i++){
@@ -57,7 +73,9 @@
               email:data.email,
               phone:data.phone,
               externalId:data.externalId,
-              homePhoneNumber:data.homePhoneNumber
+              homePhoneNumber:data.homePhoneNumber,
+              userName:scope.selfcareData.userName,
+              password:scope.selfcareData.password
             };
             var actDate = dateFilter(data.activationDate,'dd MMMM yyyy');
             scope.date.activationDate = new Date(actDate);

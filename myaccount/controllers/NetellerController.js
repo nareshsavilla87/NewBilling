@@ -57,7 +57,6 @@ NetellerController = function(scope,RequestSender,routeParams,
     			scope.formData.clientId = clientId || clientData.id;
     		  if(!scope.validation.value && !scope.validation.verificationCode){
     			  if(screenName == 'vod') scope.formData.screenName = "";
-    			  console.log(scope.formData);
     			var authentication = {username:selfcareModels.obs_username,password:selfcareModels.obs_password};
     			RequestSender.netellerPaymentResource.save(authentication,scope.formData, function(data){
     				localStorageService.add("paymentgatewayresponse",{data:data});

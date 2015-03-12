@@ -2,8 +2,8 @@
 <div>
 	<ul class="breadcrumb">
     	<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
-        <li><a href="#/radius">{{'label.radius' | translate}}</a> <span class="divider">/</span></li>
-        <li>{{discountdetail.discountCode}}<span class="divider">/</span></li>
+        <li><a href="#/radius" data-ng-click="reset123()">{{'label.radius' | translate}}</a> <span class="divider">/</span></li>
+        <li><a href="#/radius" data-ng-click="reset123()">{{formData.srvname}}</a><span class="divider">/</span></li>
 		<li class="active">{{'label.editradservice' | translate}}</li>
         </ul>
 </div>
@@ -79,6 +79,7 @@
                      </div>
         </fieldset>
 </form>
+
 <form name="editradserviceform2" novalidate class="form-horizontal well" data-ng-submit="submit()"  data-ng-show="radiusVersion=='version-2'">
 	<div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
@@ -98,21 +99,21 @@
                                  <small class="error" data-ng-show="editradserviceform2.srvname.$error.req">{{'label.required.field' | translate}}</small></span>
            						</div>
          						</div>	
-							</td></tr>
-							<tr>
+							</td>
 							<td>
 								<div class="control-group">
             					<label class="control-label" for="serviceId">{{'table.heading.service'|translate}}<span class="required">*</span></label>
             					<div class="controls">
              					 <!-- <input type="text" id="serviceId" name="serviceId" data-ng-model="formData.nextsrvid" required data-late-Validate> -->
-             					 <select  name="serviceId" data-ng-model="formData.nextsrvid" data-ng-options="serviceCode.srvid as serviceCode.srvname for serviceCode in serviceCodes" required data-late-Validate></select>
+             					 <select  name="serviceId" data-ng-model="formData.nextsrvid" data-ng-options="serviceCode.id as serviceCode.serviceName for serviceCode in serviceCodes" required data-late-Validate></select>
              					  <span  data-ng-show="editradserviceform2.serviceId.$invalid || editradserviceform2.serviceId.$dirty">
                                   <small class="error" data-ng-show="editradserviceform2.serviceId.$error.req">{{'label.required.field' | translate}}</small></span>
             					</div>
           						</div>
 							</td>
 							</tr>
-							<tr><td>
+							<tr>
+							   <td>
 								<div class="control-group">
             					<label class="control-label" for="uprate">{{ 'label.upRate' | translate }}<span class="required">*</span></label>
             					<div class="controls">
@@ -122,8 +123,8 @@
                                  <small class="error" data-ng-show="editradserviceform2.uprate.$error.req">{{'label.required.field' | translate}}</small></span>
             					</div>
           						</div>
-							</td></tr>
-							<tr><td>
+							</td>
+							<td>
 								<div class="control-group">
             					<label class="control-label" for="downrate">{{ 'label.downRate' | translate }}<span class="required">*</span></label>
             					<div class="controls">
@@ -143,11 +144,43 @@
                                   <small class="error" data-ng-show="editradserviceform2.trafficId.$error.req">{{'label.required.field' | translate}}</small></span>
             					</div>
           						</div>
-							</td></tr>
+							</td>
+							<td>
+         				     <div class="control-group">
+            				   <label class="control-label" for="islimitcomb">{{ 'label.islimitcomb' | translate }}</label>
+            				     <div class="controls">
+              					    <label class="checkbox">
+                					   <input type="checkbox" data-ng-model="formData.islimitcomb">
+              					</label>
+            				</div>
+          				</div>
+         			</td>
+							</tr>
+							<tr><td>
+								 <div class="control-group">
+            				   <label class="control-label" for="limitexpiration">{{ 'label.limitexpiration' | translate }}</label>
+            				     <div class="controls">
+              					    <label class="checkbox">
+                					   <input type="checkbox" data-ng-model="formData.limitexpiration">
+              					</label>
+            				</div>
+          				</div>
+							</td>
+							<td>
+         				     <div class="control-group">
+            				   <label class="control-label" for="renew">{{ 'label.renew' | translate }}</label>
+            				     <div class="controls">
+              					    <label class="checkbox">
+                					   <input type="checkbox" data-ng-model="formData.renew">
+              					</label>
+            				</div>
+          				</div>
+         			</td>
+							</tr>
 							</table>
 							
   	
-  			            <div class="offset3" style="padding-left:2%;">
+  			            <div class="offset8">
                          <a href="#/radius"><button id="cancel" type="reset" class="btn" data-ng-click="reset123()">{{'button.cancel'| translate}}</button></a>
                          <button id="submit" type="submit" data-ng-disabled="!editradserviceform2.$valid" class="btn btn-primary">{{'button.save'| translate}}</button>
                      </div>
