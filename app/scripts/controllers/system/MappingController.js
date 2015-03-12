@@ -6,6 +6,8 @@
         scope.provisiongsystemData= [];
         scope.selectedCurrOptions = [];
         scope.allCurrOptions = [];
+        scope.currentPage = 1;
+        scope.numPerPage = 15;
         scope.formData = {};
         scope.hideview = false;
         scope.selected = undefined;
@@ -57,15 +59,51 @@
        
         /*service mapping data*/
         scope.serviceMapFetchFunction = function(offset, limit, callback) {
-        	resourceFactory.mappingResource.get({offset: offset, limit: limit} , callback);
+        	resourceFactory.mappingResource.get({offset: offset, limit: limit} , function(data){
+        		scope.totalServices = data.totalFilteredRecords;
+        		
+        		if(scope.totalServices%scope.numPerPage == 0)	
+            		scope.totalPages = scope.totalServices/scope.numPerPage;
+            	else
+            		scope.totalPages = Math.floor(scope.totalServices/scope.numPerPage)+1;
+        		
+        		//console.log(scope.totalPages);
+        		
+        		/*scope.totalPagesData = [];
+        		for(var i = 1; i <= scope.totalPages; i++){
+        			scope.totalPagesData.push({
+		  					"id" : i,
+  	    			});
+        		};*/
+        		
+        		callback(data);
+        	});
+        	
+        	
 		};
         scope.getServiceMappingDetails = function(){
-        	scope.servicemappingdatas = paginatorService.paginate(scope.serviceMapFetchFunction, 19);
+        	scope.servicemappingdatas = paginatorService.paginate(scope.serviceMapFetchFunction, scope.numPerPage-1);
              /*resourceFactory.mappingResource.get(function(data) {
         	 scope.servicemappingdatas=data; 
         });*/
         };
        
+        scope.pageChanged = function(pageNo){
+        	
+        	//console.log("currentpage:"+pageNo +","+"totalpages"+scope.totalPages);
+        	if(scope.totalPages >= pageNo){
+        		scope.servicemappingdatas.nextOrPrevoius(pageNo, scope.numPerPage);
+        		//console.log(scope.servicemappingdatas);
+        	}
+        	
+        };
+        scope.setPage = function (pageNo) {
+        	if(scope.totalPages >= pageNo){
+        		scope.servicemappingdatas.nextOrPrevoius(pageNo, scope.numPerPage);
+        		//console.log(scope.servicemappingdatas);
+        	}
+            scope.currentPage = pageNo;
+        };
         /*plan mapping data*/
         scope.getplanMappingdetails = function(){
         	
