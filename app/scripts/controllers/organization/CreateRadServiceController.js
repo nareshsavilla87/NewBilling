@@ -27,7 +27,7 @@
 			
 			scope.submit = function() {
 				if(scope.radiusVersion == 'version-1'){
-					scope.formData.value=scope.formData.downrate + scope.formData.downType +"/"+ scope.formData.uprate + scope.formData.upType;
+					scope.formData.value= scope.formData.uprate + scope.formData.upType + "/"+ scope.formData.downrate + scope.formData.downType;
 					delete scope.formData.downRate ;
 					delete scope.formData.upRate;
 				}else if(scope.radiusVersion == 'version-2'){
