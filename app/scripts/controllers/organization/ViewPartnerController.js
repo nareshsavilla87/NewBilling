@@ -1,7 +1,7 @@
 (function(module) {
 	mifosX.controllers = _.extend(module, {
 
-		ViewPartnerController : function(scope, routeParams, rootScope,	resourceFactory, webStorage,PermissionService,route,$modal) {
+		ViewPartnerController : function(scope, routeParams, rootScope,	resourceFactory, webStorage,PermissionService,route,$modal,paginatorService) {
 
 			scope.agreements = [];
 			scope.officeFinanceTrans = [];
@@ -48,6 +48,32 @@
 				};
 			};
 			
+			//for office / partner Disbursement details 
+			scope.getPartnerDisbursements = function(){
+				
+				 scope.patnerDisbursementData = [];
+			      scope.searchData = {};
+			      scope.sourceDatas = [];
+			      scope.patnerDatas = [];
+			        
+			      scope.disbursementsFetchFunction = function(offset, limit, callback) {
+			    	      	var params = {};
+			    	      	params.offset = offset;
+			    	      	params.limit = limit;
+			    	      	scope.partnerType =	webStorage.get("partnerName");
+			    	      	if(scope.partnerType && scope.partnerType != 'ALL'){
+			    	      		params.partnerType = scope.partnerType;
+			    	      	}
+			    	    /*  	if(scope.searchData.sourceType && scope.searchData.sourceType != 'ALL'){
+			    	      		params.sourceType = scope.searchData.sourceType;
+			    	      	}*/
+			    			resourceFactory.patnerDisbursementResource.get(params , callback);
+			    	};
+			      scope.patnerDisbursementData = paginatorService.paginate(scope.disbursementsFetchFunction, 14);
+			      
+			
+		   };
+			
 			 /**
 	       	 * Delete Agreement
 	       	 * */
@@ -77,7 +103,7 @@
 	mifosX.ng.application.controller(
 			'ViewPartnerController',
 			[ '$scope', '$routeParams', '$rootScope', 'ResourceFactory',
-					'webStorage','PermissionService','$route','$modal', mifosX.controllers.ViewPartnerController ])
+					'webStorage','PermissionService','$route','$modal','PaginatorService', mifosX.controllers.ViewPartnerController ])
 			.run(function($log) {
 				$log.info("ViewPartnerController initialized");
 			});

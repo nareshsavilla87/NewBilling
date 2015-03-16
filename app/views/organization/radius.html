@@ -83,15 +83,26 @@
 					<th>{{ 'table.heading.upRate' | translate }}</th>
 					<th>{{ 'table.heading.downRate' | translate }}</th>
 					<th>{{ 'table.heading.trafficUnit' | translate }}</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr class="pointer-main" data-ng-repeat="radService in radServices2 track by $index| filter:filterText">
-					<td class="pointer">{{radService.srvname}}</td>
-					<td class="pointer">{{radService.nextsrvid}}</td>
-					<td class="pointer">{{radService.uprate}}</td>	
-					<td class="pointer">{{radService.downrate}}</td>
-					<td class="pointer">{{radService.trafficunitdl}}</td>
+					<td class="pointer" data-ng-click="routeToRadService(radiusVersion,radService.serviceId)">{{radService.serviceName}}</td>
+					<td class="pointer" data-ng-click="routeToRadService(radiusVersion,radService.serviceId)">{{radService.nextService}}</td>
+					<td class="pointer" data-ng-click="routeToRadService(radiusVersion,radService.serviceId)">{{radService.uprate}}</td>	
+					<td class="pointer" data-ng-click="routeToRadService(radiusVersion,radService.serviceId)">{{radService.downRate}}</td>
+					<td class="pointer" data-ng-click="routeToRadService(radiusVersion,radService.serviceId)">{{radService.trafficUnitdl}}</td>
+					<td>
+						<a data-ng-show="PermissionService.showMenu('UPDATE_RADSERVICE')" 
+							href="#/editRadService/{{radiusVersion}}/{{radService.serviceId}}" data-popover="{{'label.editradservice' | translate}}" data-popover-trigger="mouseenter">
+                    		<i class="icon-edit icon-white"></i>
+                    	</a>&nbsp;
+                    	<a data-ng-show="PermissionService.showMenu('DELETE_RADSERVICE')"
+                    	 	data-ng-click="deleteRadService(radService.serviceId)" data-popover="{{'label.deleteradservice' | translate}}" data-popover-trigger="mouseenter">
+                    		<i class="icon-remove icon-white"></i>
+                    	</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>

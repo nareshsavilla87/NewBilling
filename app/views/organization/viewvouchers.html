@@ -35,6 +35,7 @@
                 <th>{{ 'table.heading.serialNo' | translate }}</th>
                 <th>{{ 'table.heading.pinType' | translate }}</th>
                 <th>{{ 'table.heading.pinValue' | translate }}</th>
+                <!-- <th>{{ 'table.heading.product' | translate }}</th> -->
                 <th>{{'table.ippooling.clientId' | translate}}</th>
                 <th>{{'table.heading.status' | translate}}</th>
                 <th><input type="checkbox" id="activeallId" ng-model="activeall" ng-true-value="true" ng-false-value="false"
@@ -48,7 +49,9 @@
                 <td>{{voucherpin.officeId}}</td>        
                 <td>{{voucherpin.serialNo}}</td>  
                 <td>{{voucherpin.pinType}}</td>        
-                <td>{{voucherpin.pinValue}}</td> 
+                <td data-ng-show="voucherpin.pinType == 'VALUE'">{{voucherpin.pinValue}}</td> 
+                <td data-ng-show="voucherpin.pinType == 'PRODUCT'">&nbsp;</td>
+               <!--  <td>{{voucherpin.planCode}}</td>  -->
                 <td>{{voucherpin.clientId}}</td>
                 <td>{{voucherpin.status}}</td>
                 <td><input type="checkbox" id="{{voucherpin.id}}" ng-model="active" ng-true-value="true" ng-false-value="false"

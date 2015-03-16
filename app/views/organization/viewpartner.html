@@ -119,6 +119,42 @@
          </table>
         </div>
       </tab>
+    <tab  heading="Disbursements" select="getPartnerDisbursements()" active="PartnersDisbursementTab">
+     <br>
+	<div>
+	<input data-ng-model="filterText" type="text" data-ng-autofocus="true" class="span marginbottom0px" placeholder="{{'placehoder.searchbar' | translate}}">
+		<table class="table">
+			<thead>
+				<tr class="graybg">
+					<th>Id</th>
+					<th>Transaction Date</th>
+					<th>Source</th>
+					<th>Charge Amount</th>
+					<th>Commission Type</th>
+					<th>Commission Rate</th>
+					<th>Commission Amount</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr  data-ng-repeat="patnerDisbursementData in patnerDisbursementData.currentPageItems | filter:filterText">
+					<td >{{patnerDisbursementData.id}}</td>
+					<td >{{patnerDisbursementData.transDate |DateFormat}}</td>
+					<td >{{patnerDisbursementData.source}}</td>
+					<td >{{patnerDisbursementData.netAmount}}</td>
+					<td >{{patnerDisbursementData.percentage}}</td>
+					<td >{{patnerDisbursementData.shareAmount}}</td>
+					<td >{{patnerDisbursementData.commissionAmount}}</td>
+					
+				</tr>
+			</tbody>
+		</table>
+		<ul class="pager">
+   			<li class="previous"><a data-ng-click="patnerDisbursementData.previous()" href="" data-ng-disabled="!patnerDisbursementData.hasPrevious()">&larr; Prev</a></li>
+   			<li class="next" ><a data-ng-click="patnerDisbursementData.next()" href="" data-ng-disabled="!patnerDisbursementData.hasNext()">Next &rarr;</a></li>
+		</ul>
+	</div>
+	</tab>
     </tabset>
     	<script type="text/ng-template" id="deletePopupForAgreement.html">
     	<div class="modal-header silver">

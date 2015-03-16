@@ -501,6 +501,7 @@
   "error.code.definition.length.validation":"length should be less than 10 characters",
   "error.not.numeric.validation":"Invalid numeric value",
   "error.not.decimal.validation":"Invalid decimal value",
+  "error.invalid.phone.validation":"Invalid phone number",
 
 
   "#Journal Entry Predefined Postings":"........",
@@ -2366,7 +2367,7 @@
 "label.prospect.corporate":"Corporate",
 "label.prospect.error.name":"alphanumeric and spaces only!",
 "label.prospect.error.required":"Required Field",
-"label.prospect.error.mobileno":"wrong input or accepts only digits !",
+"label.prospect.error.mobileno":"Invalid Phone number",
 "label.prospect.personaldetails":"Personal Details",
 "label.prospect.addressdetails":"Address Details",
 "label.prospect.error.email":"Invalid Email",
@@ -2456,6 +2457,11 @@
 "label.createradservice":"Create RadService",
 "label.downRate":"DownRate",
 "label.upRate":"UpRate",
+"label.limitexpiration":"Limit Expiration",
+"label.islimitcomb":"Limit combo",
+"label.renew":"Renew",
+
+
 "table.heading.serviceName":"Service Name",
 "table.heading.serviceType":"Service Type",
 "table.heading.upRate":"Up Rate",
@@ -2468,6 +2474,7 @@
 "#Partners":".........",
 "tab.offices":"Offices",
 "tab.partners":"Partners",
+"tab.partnersDisbursements":"Partners Disbursements",
 "label.partnername":"Partner Name",
 "label.partnertype":"Partner Type",
 "label.company.image":"Company Logo",
@@ -2527,6 +2534,8 @@
 "table.heading.serviceId":"Service Id",
 "table.heading.trafficUnit":"Traffic Unit",
 "table.heading.service":"Service",
+"label.deleteradservice":"Delete RadService",
+"label.editradservice":"Edit RadService",
 
 "label.configure":"Configurations",
 

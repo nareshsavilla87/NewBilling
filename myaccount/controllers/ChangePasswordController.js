@@ -24,11 +24,16 @@ ChangePasswordController = function(scope,RequestSender,rootScope,localStorageSe
 				  scope.formData.password = scope.pwdData.newPassword;
 				  scope.formData.uniqueReference = scope.email;
 				  RequestSender.changePwdResource.update(scope.formData,function(data){
-					  rootScope.currentSession = sessionManager.clear();
-					  rootScope.infoMsgs.push({
-						  						'image' : './images/info-icon.png',
-						  						'names' : [{'name' : 'title.password.changed'}]
-					   });
+					  var sessionData = localStorageService.get('loginHistoryId');
+					  if(sessionData){
+				          RequestSender.logoutResource.save({logout:'logout',id:sessionData},function(data){
+				        	  rootScope.currentSession = sessionManager.clear();
+				        	  rootScope.infoMsgs.push({
+				        		  'image' : './images/info-icon.png',
+				        		  'names' : [{'name' : 'title.password.changed'}]
+				        	  });
+			              });
+					  }
 				  });
 			  }
 		  };

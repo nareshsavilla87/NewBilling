@@ -139,6 +139,7 @@
  	"validation.msg.client.closureReasonId.cannot.be.blank" : "Lokun Ástæða má ekki vera autt",
  	"error.msg.permission.code.invalid" 			: "Aðgangi hafnað",
  	"error.msg.client.duplicate.externalId" 		: "Kennitala eru nú þegar",
+ 	"error.msg.exceeded.no.of.Viewers"				: "nú þegar notandi skráður inn",
  	
  	"#links " : "------------------------------------",
  	"link.gmail.account"		 :  "að Gmail reikning",

@@ -8,6 +8,7 @@ selfcareApp.service("SessionManager",['$rootScope','HttpService','$location','lo
     	localStorageService.remove("clientTotalData");
         localStorageService.remove('localeLang');
         localStorageService.remove('selfcareAppUrl');
+        localStorageService.remove('loginHistoryId');
         httpService.cancelAuthorization();
         scope.isLandingPage= false;
 		location.path('/').replace();
