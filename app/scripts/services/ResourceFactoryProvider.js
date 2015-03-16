@@ -367,12 +367,19 @@
          }),
          voucherpinsByIdResource: defineResource(apiVer + "/vouchers/voucherslist/:voucherId", {voucherId:'@voucherId'}, {
            }),
+          CancelvoucherpinResource: defineResource(apiVer + "/vouchers/cancel/:voucherId", {voucherId:'@voucherId'}, {
+        	  update: { method: 'PUT' }
+           }),
          voucherpinTemplateResource: defineResource(apiVer + "/vouchers/template", {}, {}),
          
          discountResource: defineResource(apiVer + "/discount/:discountId", {discountId:'@discountId'}, {
              get: {method: 'GET', params: {}, isArray: true},
          	  update: { method: 'PUT' }
             }),
+            
+            cancelVoucherTemplateResource: defineResource(apiVer + "/vouchers/cancel/template", {}, {
+                get: {method: 'GET', params: {}}
+               }),
          discountTemplateResource: defineResource(apiVer + "/discount/template", {}, {
              get: {method: 'GET', params: {}}
             }),
