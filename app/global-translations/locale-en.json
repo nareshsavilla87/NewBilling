@@ -2481,6 +2481,8 @@
 "table.heading.serviceId":"Service Id",
 "table.heading.trafficUnit":"Traffic Unit",
 "table.heading.service":"Service",
+"label.deleteradservice":"Delete RadService",
+"label.editradservice":"Edit RadService",
 
 "label.configure":"Configurations",
 

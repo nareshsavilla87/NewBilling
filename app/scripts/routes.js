@@ -944,6 +944,9 @@
       .when('/createRadService/:radiusVersion', {
         templateUrl: 'views/organization/createRadService.html'
       })
+      .when('/editRadService/:radiusVersion/:serviceId', {
+        templateUrl: 'views/organization/editRadService.html'
+      })
        .when('/createNas', {
         templateUrl: 'views/organization/createNas.html'
       })
