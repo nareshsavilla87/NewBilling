@@ -36,6 +36,37 @@
 		scope.search = function(){
 			scope.voucherpinsBatchwise = paginatorService.paginate(scope.voucherPinFetchFunction, 14);
 		};
+		
+		scope.cancelVoucher= function(id){
+            scope.id=id;
+        	  $modal.open({
+                  templateUrl: 'CancelVoucher.html',
+                  controller: CancelVoucherController,
+                  resolve:{}
+              });
+          };
+          
+          var CancelVoucherController = function ($scope, $modalInstance) {
+
+	          	resourceFactory.cancelVoucherTemplateResource.get(function(data) {
+	                 $scope.reasondatas = data.reasondatas;
+	                 
+	              });
+	          	
+	        	  $scope.approve = function (value) {
+	        		  $scope.flagEditQuality=true;
+	        			  this.formData = {"cancelReason":value};
+	        			  resourceFactory.CancelvoucherpinResource.update({voucherId : scope.id},this.formData,function(data) {
+	  						scope.voucherpinsBatchwise = paginatorService.paginate(scope.voucherPinFetchFunction, 14);
+	  			        });
+	        		
+	              };
+	              $scope.cancelQuality = function () {
+	                  $modalInstance.dismiss('cancel');
+	              };
+	              
+	              
+	          };
         
       //update Vouchers 
 		scope.updateVouchers = function(){
@@ -45,6 +76,8 @@
 				resolve:{}
 			});
 		};
+		
+		
 		var UpdateVouchersController = function($scope, $modalInstance){
 			
 				$scope.batchDatas = {};
