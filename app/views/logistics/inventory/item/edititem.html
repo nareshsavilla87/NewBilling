@@ -121,8 +121,11 @@
                       <select data-ng-model="itemPricesFormData.regionId" data-ng-options="regionData.id as regionData.regionName  for regionData in regionDatas" >
                       </select>&nbsp;&nbsp;
                       
-                      <input type="text" data-ng-model="itemPricesFormData.price" placeholder="Price">
+                      <input type="text" name="price" data-ng-model="itemPricesFormData.price" placeholder="Price" data-ng-pattern="{{'decimal' | CodeValidate}}">
                       <a data-ng-click="addItemPrice()">&nbsp;<i class="icon-plus icon-white"></i></a>
+                      <span data-ng-show="edititemform.price.$dirty && edititemform.price.$invalid">
+              		  	<small class="error-row">{{'error.not.decimal.validation' | translate}}</small>
+              		  </span>
                     </form>
                   <table class="table fullwidth" data-ng-show="itemPrices.length>0">
                     <tr class="graybg">
