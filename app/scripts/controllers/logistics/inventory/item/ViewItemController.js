@@ -9,6 +9,7 @@
         resourceFactory.itemResource.get({itemId: routeParams.id} , function(data) {
         	scope.item = data;
         	scope.audit = data.auditDetails;
+        	scope.itemPricesDatas = data.itemPricesDatas;
         });
         
         scope.deleteItem = function(){

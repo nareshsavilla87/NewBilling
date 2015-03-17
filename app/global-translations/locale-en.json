@@ -861,6 +861,12 @@
   "validation.msg.item.reorderLevel.exceeds.max.length" : "Reorder Level exceeds max length of 2",
   "validation.msg.code.serialNumber.cannot.be.blank" : "serialNumber cannot be blank",
   "validation.msg.code.provisioningSerialNumber.cannot.be.blank" : "provisioningSerialNumber cannot be blank",
+  "label.itemmasterid":"ItemMaster Id",
+  "label.regionid":"RegionId",
+  "validation.msg.item.itemPrices.not.greater.than.zero":"Please add atleast one Regional Price",
+  "error.msg.cund.unknown.data.integrity.issue":"Duplicate Data added",
+  "label.regionalprice":"Regional Prices",
+  
   
   "#Import":"........",
   "label.heading.uploads":"Builk Uploads",
