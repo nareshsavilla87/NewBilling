@@ -866,6 +866,7 @@
   "validation.msg.item.itemPrices.not.greater.than.zero":"Please add atleast one Regional Price",
   "error.msg.cund.unknown.data.integrity.issue":"Duplicate Data added",
   "label.regionalprice":"Regional Prices",
+  "error.msg.item.regional.price.not.found":"No Regional Price found for this Item",
   
   "#Import":"........",
   "label.heading.uploads":"Builk Uploads",
