@@ -85,6 +85,9 @@ selfcareApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/twocheckoutsuccess',{
     	templateUrl: 'views/twocheckoutsuccess.html'
+    })
+    .when('/transc',{
+    	templateUrl: 'views/transaction.jsp'
     });
        
     $locationProvider.html5Mode(false);
