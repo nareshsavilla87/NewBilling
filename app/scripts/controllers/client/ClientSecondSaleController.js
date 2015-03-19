@@ -44,7 +44,7 @@
 	        });
 	        
 	        scope.itemData=function(itemId,officeId){
-	        	resourceFactory.oneTimeSaleTemplateResourceData.get({itemId: itemId}, function(data) {
+	        	resourceFactory.oneTimeSaleTemplateResourceData.get({itemId: itemId,clientId:clientData.clientId}, function(data) {
 	        		
 	        		scope.formData=data;
 	        		scope.unitsValue = data.units;
