@@ -180,7 +180,7 @@
                           <th>{{ 'label.item.itemcode' | translate }}</th>
                           <th>{{ 'label.item.itemdescription' | translate }}</th>
                           <th>{{ 'label.item.units' | translate }}</th>
-                          <th>{{ 'label.item.unitprice' | translate }}</th>
+                          <!-- <th>{{ 'label.item.unitprice' | translate }}</th> -->
                           <th style="text-align:center">{{ 'label.item.warranty' | translate }}</th>
                           <th>Used Items</th>
                           <th>Available Items</th>
@@ -193,7 +193,7 @@
                			<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.itemCode}}</td>        
                 		<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.itemDescription}}</td> 
                 		<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.units}}</td>
-                		<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.unitPrice || ISK}}</td> 
+                		<!-- <td class="pointer" data-ng-click="routeToitem(item.id)">{{item.unitPrice || ISK}}</td>  -->
                 		<td class="pointer" data-ng-click="routeToitem(item.id)" style="text-align:center">{{item.warranty}}</td> 
                 		<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.usedItems}}</td>
                 		<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.availableItems}}</td>

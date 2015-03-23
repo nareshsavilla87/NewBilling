@@ -40,6 +40,7 @@
                 <th>{{'table.heading.status' | translate}}</th>
                 <th><input type="checkbox" id="activeallId" ng-model="activeall" ng-true-value="true" ng-false-value="false"
                      ng-change="selectAll(activeall)">{{'label.selectall' | translate}}</th>
+                     <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -56,6 +57,8 @@
                 <td>{{voucherpin.status}}</td>
                 <td><input type="checkbox" id="{{voucherpin.id}}" ng-model="active" ng-true-value="true" ng-false-value="false"
                      ng-change="checkSingle(voucherpin, active)" data-ng-hide="voucherpin.status=='USED'"></td>
+                 <td data-ng-show="voucherpin.pinType == 'VALUE'&& voucherpin.status =='USED'" ><a ng-click="cancelVoucher(voucherpin.id)"
+                                 popover="Cancel Voucher" popover-trigger="mouseenter" class="icon-remove"></a></td>
             </tr>
         </tbody>
     </table>
@@ -94,6 +97,34 @@
 			</div>
 		</fieldset>
 	</form>
+</script>
+<script type="text/ng-template" id="CancelVoucher.html">
+		
+	<div class="modal-header silver">
+        <h3 class="bolder">Cancel Voucher</h3>
+    </div>
+    <div class="modal-body" style="height:160px;">
+ <div class="error" ng-show="errorStatus || errorDetails">
+		                 <label>{{'label.contract.error' | translate}}</label>
+		                 <label ng-show="errorStatus">{{errorStatus}}</label>
+		                 <label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	                     </div>
+       <fieldset>
+<div class="control-group">
+			<label class="control-label" for="quality">{{'label.voucher.cancelreason' | translate }}<span class="required">*</span></label>
+			<div class="controls">
+              <select ng-model="cancelReason"  ng-options="reasondata.mCodeValue as reasondata.mCodeValue for reasondata in reasondatas" value="{{q.mCodeValue}}" required>
+              </select>
+            </div>
+	   </div>
+ 
+    </fieldset>
+    </div>
+     <div class="modal-footer">
+        <button id="cancel" class="btn btn-warning" ng-click="cancelQuality()">{{'button.cancel' | translate}}</button>
+     	<button id="submit" class="btn btn-primary" ng-click="approve(cancelReason)" ng-disabled="flagEditQuality">{{'button.save' | translate}}</button>
+     </div>
+
 </script>
 <script type="text/ng-template" id="deletevouchers.html">
 	<div class="modal-header silver">
