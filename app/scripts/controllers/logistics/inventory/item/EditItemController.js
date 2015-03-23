@@ -24,6 +24,8 @@
         	 delete this.formData.unitData;
         	 delete this.formData.chargesData;
         	 delete this.formData.auditDetails;
+        	 delete this.formData.itemPricesDatas;
+        	 delete this.formData.regionDatas;
         	 this.formData.locale = $rootScope.locale.code;
                resourceFactory.itemResource.update({'itemId': routeParams.id},this.formData,function(data){
              location.path('/viewitem/' + data.resourceId +'/item');
