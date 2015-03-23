@@ -42,7 +42,7 @@ InternalPaymentController = function(scope, routeParams, location, localStorageS
 		 if(isValueVoucher){
 			 
 			 RequestSender.redemptionResource.save(scope.formData,function(data){
-				 localStorageService.add("paymentgatewayresponse", data);
+				 localStorageService.add("paymentgatewayresponse", {data:data});
 				 if(screenName == 'payment'){
 					 location.path('/paymentgatewayresponse/'+scope.formData.clientId);
 				 }else{	

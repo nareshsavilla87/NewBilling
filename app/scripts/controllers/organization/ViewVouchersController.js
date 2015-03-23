@@ -1,15 +1,13 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
 	  ViewVouchersController: function(scope,routeParams, resourceFactory,PermissionService,rootScope,API_VERSION,route,paginatorService,$modal,$http) {
-        scope.voucherpinsBatchwise = [];
-        scope.batchNameDatas = {};
-        scope.pinTypeDatas = [];
-        scope.searchData = {};
+       
         scope.PermissionService = PermissionService;
         scope.updateVoucherValues = [];
         scope.voucherpin = {};
         scope.voucherId = routeParams.voucherId;
         
+        scope.searchData = {};
         scope.voucherPinFetchFunction = function(offset, limit, callback) {
         	var params = {};
         	params.voucherId = scope.voucherId;
@@ -26,6 +24,7 @@
         	resourceFactory.voucherpinsByIdResource.get(params , callback);
 		};
 		
+		scope.voucherpinsBatchwise = [];
 		scope.voucherpinsBatchwise = paginatorService.paginate(scope.voucherPinFetchFunction, 14);
 		
 		scope.onSelectVouchers = function(voucherId){
@@ -90,6 +89,7 @@
 				$scope.accept = function(id){
 					var jsonData = {voucherIds : scope.updateVoucherValues, status : id};
 					resourceFactory.voucherpinResource.update({voucherId : scope.voucherId},jsonData,function(data) {
+						scope.updateVoucherValues =[];
 						scope.voucherpinsBatchwise = paginatorService.paginate(scope.voucherPinFetchFunction, 14);
 			        });
 					$modalInstance.close('delete');
@@ -114,6 +114,7 @@
                 var jsonData = {voucherIds : scope.updateVoucherValues};
                 $http.post(rootScope.hostUrl+ API_VERSION +'/vouchers/delete/'+scope.voucherId, jsonData).
                   success(function(data) {
+                	  scope.updateVoucherValues = [];
                 	  scope.voucherpinsBatchwise = paginatorService.paginate(scope.voucherPinFetchFunction, 14);
                   });
                 $modalInstance.close('delete');
@@ -140,33 +141,20 @@
         			   $("#" + scope.voucherpinsBatchwise.currentPageItems[i].id).prop('checked', false);
         		   }
                }
-        	  // scope.active = selectAll;
         	   scope.updateVoucherValues = [];
            }
          };
 		
-		/*scope.checkAll = function () {
-			scope.updateVoucherValues = [];
-	        angular.forEach(scope.voucherpinsBatchwise.currentPageItems, function (voucherpin) {
-	        	if(scope.selectedAll){
-	        		scope.selectedAll = true;
-	        		scope.updateVoucherValues.push({id:voucherpin.id});
-	        	}else{
-	        		scope.selectedAll = false;
-	        		scope.updateVoucherValues = [];
-	        	}
-	        	voucherpin.Selected = scope.selectedAll;
-	        	
-	        });
-	        console.log(scope.updateVoucherValues);
-	    };*/
-	    
 	    scope.checkSingle = function (voucherpin, active) {
 	    	if(active == 'true') {
 	    		scope.updateVoucherValues.push(voucherpin.id);
 	        	
 	        } else {
-	        	scope.updateVoucherValues = _.without(scope.updateVoucherValues, _.findWhere(scope.updateVoucherValues, voucherpin.id));
+        	      for(var i in scope.updateVoucherValues) {
+        	          if(scope.updateVoucherValues[i] === voucherpin.id) {
+        	        	  scope.updateVoucherValues.splice(i, 1);
+        	          }
+        	      }
 	        }
 	    };
 

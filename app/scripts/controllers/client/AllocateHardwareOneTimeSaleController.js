@@ -26,14 +26,14 @@
 	            	scope.itemDatas=data.pageItems;
 	            	for(var i in scope.itemDatas){
 	            		if(scope.itemDatas[i].itemCode == scope.itemcode){
-	            			scope.formData.itemMasterId = scope.itemDatas[i].id;
+	            			scope.formData.itemId = scope.itemDatas[i].id;
 	            		}
 	            	}
 	            });
 	        
 		        scope.getData = function(query){
 		        	 
-		        	 return http.get($rootScope.hostUrl+ API_VERSION+'/itemdetails/'+scope.formData.itemMasterId+'/'+scope.officeId, {
+		        	 return http.get($rootScope.hostUrl+ API_VERSION+'/itemdetails/'+scope.formData.itemId+'/'+scope.officeId, {
 		        	      params: {
 		        	    	  		query: query
 		        	      		  }
@@ -67,7 +67,7 @@
 	        															 orderId 		: routeParams.saleId,
 	        															 clientId 		: scope.clientId,
 	        															 status 		: "allocated",
-	        															 itemMasterId 	: scope.formData.itemMasterId, 
+	        															 itemMasterId 	: scope.formData.itemId, 
 	        															 isNewHw 		: "Y", 
 	        								});
 	        	});
