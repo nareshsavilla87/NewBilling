@@ -200,6 +200,17 @@
             getTemplateDetails: {method: 'GET', params: {}},
             update: {method: 'PUT', params: {}},
           }),
+          
+          VendorLemplateResource:defineResource(apiVer + "/vendorandloyalty/:vendorId/:resourceType",{vendorId: '@vendorId', resourceType:'@resourceType'}, {
+              get: {method: 'GET', params: {}, isArray:true},
+              getTemplateDetails: {method: 'GET', params: {}},
+              update: {method: 'PUT', params: {}},
+          }),
+          VendorTemplateResource:defineResource(apiVer + "/vendorandloyalty/template",{}, {
+             
+              getTemplateDetails: {method: 'GET', params: {}},
+              update: {method: 'PUT', params: {}},
+          }),
        
           auditResource: defineResource(apiVer + "/audits/:templateResource", {templateResource:'@templateResource'}, {
             get: {method: 'GET', params: {}},

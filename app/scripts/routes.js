@@ -22,6 +22,23 @@
       .when('/templates', {
         templateUrl: 'views/templates/templates.html'
       })
+      
+      .when('/vendor', {
+        templateUrl: 'views/vendormanagement/vendor.html'
+      })
+      
+      .when('/createvendor', {
+        templateUrl: 'views/vendormanagement/createvendor.html'
+      })
+      
+      .when('/editvendor/:id', {
+        templateUrl: 'views/vendormanagement/editvendor.html'
+      })
+      
+      .when('/viewvendor/:id', {
+        templateUrl: 'views/vendormanagement/viewvendor.html'
+      })
+      
       .when('/createtemplate', {
         templateUrl: 'views/templates/createtemplate.html'
       })
