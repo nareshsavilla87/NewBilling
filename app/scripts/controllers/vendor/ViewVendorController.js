@@ -5,8 +5,7 @@
         scope.PermissionService = PermissionService;
        
         resourceFactory.VendorLemplateResource.getTemplateDetails({vendorId: routeParams.id} , function(data) {
-        	scope.vendorData = data.singleVendorData[0];
-        	scope.vendorDetaildata = data.vendorDetailsData;
+        	scope.vendorData = data;
         });
         
     }

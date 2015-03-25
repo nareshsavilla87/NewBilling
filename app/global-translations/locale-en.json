@@ -209,6 +209,7 @@
   "table.actions":"Actions",
   "button.no":"NO",
   "button.yes":"YES",
+  "button.create":"Create",
 
   "#datatable":"",
   "table.heading.datatablename":"Data Table Name",
@@ -2577,7 +2578,29 @@
 "label.anchor.deletetemplate":"Delete Template",
 "label.heading.text":"Text",
 "validation.msg.template.name.cannot.be.blank":"template name cannot be blank",
-"error.msg.tempalte.duplicate.name":"template name already exists"
+"error.msg.tempalte.duplicate.name":"template name already exists",
+
+"#vendor":".......",
+"label.vendor.code":"Vendor Code",
+"label.vendor.name":"Vendor Name",
+"label.vendor.emailid":"EmailId",
+"label.vendor.conatactname":"Conatact Name",
+"label.vendor.mobileno":"MobileNo",
+"label.vendor.vendorlandlineno":"Vendor LandlineNo",
+"label.vendor.vendoraddress":"Vendor Address",
+"label.vendor.vendorcurrency":"Vendor Currency",
+"label.vendor.country":"Country",
+"label.vendor.vendormanagement":"Vendor Management",
+"label.createvendor":"Create Vendor",
+"validation.msg.vendormanagement.vendorCode.cannot.be.blank":"Vendor Code cannot be blank",
+"validation.msg.vendormanagement.vendorDescription.cannot.be.blank":"Vendor Name cannot be blank",
+"validation.msg.vendormanagement.vendorEmailId.cannot.be.blank":"EmailId cannot be blank",
+"validation.msg.vendormanagement.contactName.cannot.be.blank":"Contact Name cannot be blank",
+"validation.msg.vendormanagement.vendormobileNo.cannot.be.blank":"MobileNo cannot be blank",
+"validation.msg.vendormanagement.vendorTelephoneNo.cannot.be.blank":"TelephoneNo Cannot be blank",
+"validation.msg.vendormanagement.vendorAddress.cannot.be.blank":"Address Cannot be blank",
+"validation.msg.vendormanagement.vendorCountry.cannot.be.blank":"Please select Country",
+"validation.msg.vendormanagement.vendorCurrency.cannot.be.blank":"Please select Currency"
 
 
 

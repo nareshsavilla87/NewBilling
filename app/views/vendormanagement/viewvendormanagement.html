@@ -1,0 +1,58 @@
+<div  ng-controller="ViewVendorController">
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+	        <li><a href="#/vendormanagement">{{'label.vendor.vendormanagement' | translate}}</a> <span class="divider">/</span></li>
+	        <li class="active">{{vendorData.vendorCode}}&nbsp;&nbsp;</li>
+	    </ul>
+	    <div class="pull-right">
+	      <div class="btn-group">
+	          <a ng-show="PermissionService.showMenu('UPDATE_VENDOR')" href="#/editvendormanagement/{{vendorData.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
+	      </div>
+	    </div>
+	</div>
+
+	<div class="row paddedleft">
+		<h3>{{vendorData.vendorCode}}</h3>
+		<table width="100%">
+			<tr>
+				<td width="20%">{{'label.vendor.code' | translate}}</td>
+				<td width="80%">{{vendorData.vendorCode}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.vendor.name' | translate}}</td>
+				<td>{{vendorData.vendorName}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.vendor.emailid' | translate}}</td>
+				<td>{{vendorData.vendorEmailId}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.vendor.conatactname' | translate}}</td>
+				<td>{{vendorData.contactName}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.vendor.mobileno' | translate}}</td>
+				<td>{{vendorData.vendormobileNo}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.vendor.vendorlandlineno' | translate}}</td>
+				<td>{{vendorData.vendorLandlineNo}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.vendor.vendoraddress' | translate}}</td>
+				<td>{{vendorData.vendorAddress}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.vendor.country' | translate}}</td>
+				<td>{{vendorData.vendorCountryName}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.vendor.vendorcurrency' | translate}}</td>
+				<td>{{vendorData.vendorCurrency}}</td>
+			</tr>
+			
+		</table>
+	</div>
+
+</div>
+          

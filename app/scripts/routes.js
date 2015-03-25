@@ -23,20 +23,20 @@
         templateUrl: 'views/templates/templates.html'
       })
       
-      .when('/vendor', {
-        templateUrl: 'views/vendormanagement/vendor.html'
+      .when('/vendormanagement', {
+        templateUrl: 'views/vendormanagement/vendormanagement.html'
       })
       
-      .when('/createvendor', {
-        templateUrl: 'views/vendormanagement/createvendor.html'
+      .when('/createvendormanagement', {
+        templateUrl: 'views/vendormanagement/createvendormanagement.html'
       })
       
-      .when('/editvendor/:id', {
-        templateUrl: 'views/vendormanagement/editvendor.html'
+      .when('/editvendormanagement/:id', {
+        templateUrl: 'views/vendormanagement/editvendormanagement.html'
       })
       
-      .when('/viewvendor/:id', {
-        templateUrl: 'views/vendormanagement/viewvendor.html'
+      .when('/viewvendormanagement/:id', {
+        templateUrl: 'views/vendormanagement/viewvendormanagement.html'
       })
       
       .when('/createtemplate', {

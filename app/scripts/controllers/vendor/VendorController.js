@@ -8,7 +8,7 @@
         });
         
         scope.routeTo=function(id){
-        	location.path('/viewvendor/' +id);
+        	location.path('/viewvendormanagement/' +id);
         };
         
     }
