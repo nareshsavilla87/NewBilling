@@ -13,7 +13,7 @@ GlobalPaySuccessController = function(RequestSender, location,localStorageServic
 	    		RequestSender.paymentGatewayResource.update(formData, function(data){
 	    			localStorageService.remove("globalpayStorageData", data);
 	    			localStorageService.add("paymentgatewayresponse", {data:data});
-	    			var result = data.Result.toUpperCase() || "";
+	    			var result = angular.uppercase(data.Result) || "";
 	    			localStorageService.add("gatewayStatus",result);
 	    			location.$$search = {};
 	    			if(screenName == 'payment'){
