@@ -67,9 +67,10 @@
 			<thead>
 				<tr class="graybg">
 					<th>{{ 'table.heading.id' | translate }}</th>
-					<th>ItemMaster Id</th>
+					<th>{{'label.itemmasterid' | translate }}</th>
+					<th>{{'label.regionid' | translate}}</th>
 					<th>{{'label.item.itemcode' | translate }}</th>
-					<th>{{'label.item.unitprice' | translate }}</th>
+					<th>{{'label.item.unitprice' | translate }}</th> 
 					<th>ChangeDate</th>
 				</tr>
 			</thead>
@@ -77,9 +78,31 @@
 				<tr ng-repeat="audit in audit">
 				<td>{{audit.id}}</td>
 				<td>{{audit.itemMasterId}}</td>
+				<td>{{audit.regionId}}</td>
 				<td>{{audit.itemCode}}</td>
-				<td>{{audit.unitPrice}}</td>
+				<td>{{audit.unitPrice}}</td> 
 				<td>{{audit.changedDate|DateFormat}}</td>
+			</tbody>
+		</table>
+	</div>
+	
+	<div ng-hide="showType=='audit'">
+	<h3>List of Prices</h3>
+		<table class="table">
+			<thead>
+				<tr class="graybg">
+					<th>{{ 'table.heading.id' | translate }}</th>
+					<th>{{'label.itemmasterid' | translate }}</th>
+					<th>{{'label.regionid' | translate}}</th>
+					<th>{{'label.price' | translate}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="itemPricesData in itemPricesDatas">
+				<td>{{itemPricesData.id}}</td>
+				<td>{{itemPricesData.itemMasterId}}</td>
+				<td>{{itemPricesData.regionId}}</td>
+				<td>{{itemPricesData.price}}</td>
 			</tbody>
 		</table>
 	</div>
