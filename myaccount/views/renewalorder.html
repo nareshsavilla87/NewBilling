@@ -45,11 +45,13 @@
 	           	    <tbody>
 	           	      <tr class="pointer-main" data-ng-repeat="plan in plansData track by $index">
 	           	   	    <td class="pointer" width="16%">
-	           	   	      <span>
+	           	   	      <!-- <span>
 	           	   		  	<input type="checkbox" id="checkbox-2-{{plan.planId}}" class="regular-checkbox big-checkbox" data-ng-checked="isPlanActive=selectedPlanId == '{{plan.planId}}'" data-ng-model="isPlanActive"
 	           	   		  				data-ng-change="singlePlanPricingDatas(plan,isPlanActive)"/>
 	           	   		  	<label for="checkbox-2-{{plan.planId}}"></label>
-	           	   		  </span>
+	           	   		  </span> -->
+	           	   		  <input type="radio" id="{{plan.planId}}" name="planSelectionRadio" data-ng-model="$index" value="0"
+	           	   		  				 data-ng-click="singlePlanPricingDatas(plan,true)"/>
 	           	   	    </td>
            	   		    <td class="pointer">
                           <a style="text-decoration: none;"><label>{{plan.planCode}}</label></a>

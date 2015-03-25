@@ -86,7 +86,6 @@ angular.module('notificationWidget', [])
             	// request ended false blockUI
             	  $rootScope.blockUI = false;
               }
-              console.log(rejection);
               if (rejection.status === 0) {
                   $rootScope.errorStatus='No connection. Verify application is running.';
               } else if (rejection.status == 401) {

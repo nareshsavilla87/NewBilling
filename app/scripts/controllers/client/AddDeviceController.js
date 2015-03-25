@@ -134,7 +134,7 @@
 	        scope.newSaleSaveBtnFun = function() { 
 	        	
 	        	scope.formData.saleType = "NEWSALE";
-	        	scope.formData.saleDate = scope.date.saleDate;
+	        	scope.formData.saleDate = dateFilter(scope.date.saleDate,"dd MMMM yyyy");
 	        	
 	        	scope.formData.serialNumber = [{
 	        										serialNumber 	: scope.itemDetail,
@@ -157,7 +157,7 @@
 	        	var unitPrice = scope.formData.unitPrice;
 	        	var chargeCode = scope.formData.chargeCode;
 	        	scope.formData.saleType = "SECONDSALE";
-	        	scope.formData.saleDate = scope.date.saleDate;
+	        	scope.formData.saleDate = dateFilter(scope.date.saleDate,"dd MMMM yyyy");
 	        	scope.formData.unitPrice = parseInt(scope.formData.totalPrice);
 	        	scope.formData.chargeCode = "NONE";
 	        	scope.formData.discountId = scope.discountId;
@@ -184,7 +184,7 @@
 	        scope.deviceRentalSaveBtnFun = function() { 
 	        	
 	        	scope.formData.saleType = "DEVICERENTAL";
-	        	scope.formData.saleDate = scope.date.saleDate;
+	        	scope.formData.saleDate = dateFilter(scope.date.saleDate,"dd MMMM yyyy");
 	        	
 	        	scope.formData.serialNumber = [{
 									        		serialNumber 	: scope.itemDetail,
