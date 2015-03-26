@@ -78,6 +78,7 @@
 		<table class="table" data-ng-show="radiusVersion=='version-2'">
 			<thead>
 				<tr class="graybg">
+				    <th>{{ 'table.heading.serviceId' | translate }}</th>
 					<th>{{ 'table.heading.serviceName' | translate }}</th>
 					<th>{{ 'table.heading.service' | translate }}</th>
 					<th>{{ 'table.heading.upRate' | translate }}</th>
@@ -88,6 +89,7 @@
 			</thead>
 			<tbody>
 				<tr class="pointer-main" data-ng-repeat="radService in radServices2 track by $index| filter:filterText">
+				    <td class="pointer" data-ng-click="routeToRadService(radiusVersion,radService.serviceId)">{{radService.serviceId}}</td>
 					<td class="pointer" data-ng-click="routeToRadService(radiusVersion,radService.serviceId)">{{radService.serviceName}}</td>
 					<td class="pointer" data-ng-click="routeToRadService(radiusVersion,radService.serviceId)">{{radService.nextService}}</td>
 					<td class="pointer" data-ng-click="routeToRadService(radiusVersion,radService.serviceId)">{{radService.uprate}}</td>	

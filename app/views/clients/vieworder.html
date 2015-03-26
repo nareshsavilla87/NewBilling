@@ -389,7 +389,7 @@
     <div class="control-group">
             <label class="control-label" for="status">{{ 'label.order.renewalperiod' | translate }}</label>
             <div class="controls">
-              	<select ng-model="formData.renewalPeriod"  ng-options="subscriptiondata.id as subscriptiondata.Contractdata for subscriptiondata in subscriptiondatas" value="{{disconnectDetail.mCodeValue}}"></select>
+              	<select ng-model="formData.renewalPeriod" ng-change="renewalPrice(formData.renewalPeriod)" ng-options="subscriptiondata.id as subscriptiondata.Contractdata for subscriptiondata in subscriptiondatas" value="{{disconnectDetail.mCodeValue}}"></select>
             </div>
         </div>
 		<hr>
