@@ -106,7 +106,17 @@
             			</div>
           				</div>
 					</td>
-					
+					  <td>
+						<div class="control-group">
+           				<label class="control-label" for="unitPrice ">Default Price&nbsp;<span class="required">*</span></label>
+           				<div class="controls">
+             			<input type="text" id="unitPrice" name="unitPrice" data-ng-model="formData.unitPrice" data-ng-pattern="{{'decimal' | CodeValidate}}"><br/>
+             			<span data-ng-show="createitemform.unitPrice.$dirty && createitemform.unitPrice.$invalid">
+             				<small class="error-row">{{'error.not.decimal.validation'| translate}}</small>
+             			</span>
+           				</div>
+          				</div>
+					</td> 
 				</tr>
 				
 			</table>
