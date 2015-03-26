@@ -542,12 +542,22 @@
         	  resourceFactory.OrderrenewalResourceTemplate.get({orderId:routeParams.id,planType:scope.plantype},function(data) {
                   $scope.subscriptiondatas = data.subscriptiondata;
               });
+        	  $scope.formData={};
+        	  $scope.renewalPrice=function(subscriptionId){
+        		  for(var i in $scope.subscriptiondatas){
+        			  if(subscriptionId ==$scope.subscriptiondatas[i].id){
+        				  $scope.formData.priceId = $scope.subscriptiondatas[i].priceId;
+        				  break;
+        			  };
+        		  };
+        	  };
         	  
         	  $scope.approveRenewal = function(){
         		  $scope.flagOrderRenewal=true;
         		  
         		  if($scope.formData == undefined || $scope.formData == null){
-        			  $scope.formData = {"renewalPeriod":"","description":""};
+        			  $scope.formData.renewalPeriod="";
+        			  $scope.formData.description="";
         		  }
         		  
         		  resourceFactory.OrderrenewalResource.save({'orderId': routeParams.id},this.formData,function(data){
