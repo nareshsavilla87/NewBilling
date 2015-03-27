@@ -211,6 +211,11 @@
               getTemplateDetails: {method: 'GET', params: {}},
               update: {method: 'PUT', params: {}},
           }),
+          VendorAgreementTemplateResource:defineResource(apiVer + "/vendoragreement/template",{}, {
+              
+              getTemplateDetails: {method: 'GET', params: {}},
+              update: {method: 'PUT', params: {}},
+          }),
        
           auditResource: defineResource(apiVer + "/audits/:templateResource", {templateResource:'@templateResource'}, {
             get: {method: 'GET', params: {}},

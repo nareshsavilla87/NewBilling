@@ -1,0 +1,62 @@
+<div  data-ng-controller="VendorController">
+    <ul class="breadcrumb">
+        <li class="active">{{'label.vendor.vendormanagement' | translate}}</li>
+    </ul>
+
+    <input data-ng-autofocus="true" data-ng-model="filterText" data-ng-keyup="onFilter()" type="text" class="span marginbottom0px form-control" placeholder="{{ 'label.input.filterbyname' | translate }}">
+    <a href="#/createvendoragreement" class="btn btn-primary pull-right" data-ng-show="PermissionService.showMenu('CREATE_TEMPLATE')"><i class="icon-plus icon-white"></i>{{'button.create' | translate}}</a>
+
+    <table class="table">
+        <thead>
+        <tr class="graybg">
+            <th>{{'label.vendor.code' | translate}}</th>
+            <th>{{'label.vendor.name' | translate}}</th>
+            <th>{{'label.vendor.emailid' | translate}}</th>
+            <th>{{'label.vendor.conatactname' | translate}}</th>
+            <th>{{'label.vendor.mobileno' | translate}}</th>
+            <th>{{'label.vendor.vendorlandlineno' | translate}}</th>
+            <th>{{'label.vendor.vendoraddress' | translate}}</th>
+            <th>{{'label.vendor.vendorcurrency' | translate}}</th>
+            <th>{{'label.vendor.country' | translate}}</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="pointer-main" data-ng-repeat="template in vendorDatas | filter:filterText">
+            <td class="pointer" data-ng-click="routeTo(template.id)">{{template.vendorCode}}</td>
+            <td class="pointer" data-ng-click="routeTo(template.id)">{{template.vendorName}}</td>
+            <td class="pointer" data-ng-click="routeTo(template.id)">{{template.vendorEmailId}}</td>
+            <td class="pointer" data-ng-click="routeTo(template.id)">{{template.contactName}}</td>
+            <td class="pointer" data-ng-click="routeTo(template.id)">{{template.vendormobileNo}}</td>
+            <td class="pointer" data-ng-click="routeTo(template.id)">{{template.vendorLandlineNo}}</td>
+            <td class="pointer" data-ng-click="routeTo(template.id)">{{template.vendorAddress}}</td>
+            <td class="pointer" data-ng-click="routeTo(template.id)">{{template.vendorCurrency}}</td>
+             <td class="pointer" data-ng-click="routeTo(template.id)">{{template.vendorCountryName}}</td>
+            <td>
+				<a data-ng-show="PermissionService.showMenu('UPDATE_VENDOR')" 
+					href="#/editvendormanagement/{{template.id}}" data-popover="editvendor" 
+					data-popover-trigger="mouseenter">
+                    <i class="icon-edit icon-white"></i>
+                </a>     	
+                <a data-ng-show="PermissionService.showMenu('DELETE_VENDOR')" 
+                	data-ng-click="deleteVendor(template.id)" data-popover="{{'label.vendordelete' | translate}}" 
+						data-popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a>
+			</td>
+        </tr>
+        </tbody>
+    </table>
+    
+    <script type="text/ng-template" id="deletePopupForVendor.html">
+    	<div class="modal-header silver">
+        	<h3 class="bolder">{{'label.vendordelete' | translate}}</h3>
+        </div>
+
+        <div class="modal-body style="height:60px;">
+            <h4>Are you sure?</h4>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+            <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+        </div>
+ 	</script>
