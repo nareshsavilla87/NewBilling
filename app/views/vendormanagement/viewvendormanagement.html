@@ -7,6 +7,7 @@
 	    <div class="pull-right">
 	      <div class="btn-group">
 	          <a ng-show="PermissionService.showMenu('UPDATE_VENDOR')" href="#/editvendormanagement/{{vendorData.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
+	     	  <a ng-show="PermissionService.showMenu('DELETE_VENDOR')" data-ng-click="deleteVendor(vendorRouteParamId)" class="btn btn-primary"><i class="icon-edit icon-white"></i> Delete</a>
 	      </div>
 	    </div>
 	</div>
@@ -53,6 +54,21 @@
 			
 		</table>
 	</div>
+	
+	<script type="text/ng-template" id="deletePopupForVendor.html">
+    	<div class="modal-header silver">
+        	<h3 class="bolder">{{'label.vendordelete' | translate}}</h3>
+        </div>
 
+        <div class="modal-body style="height:60px;">
+            <h4>Are you sure?</h4>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+            <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+        </div>
+ 	</script>
+ 	
 </div>
           
