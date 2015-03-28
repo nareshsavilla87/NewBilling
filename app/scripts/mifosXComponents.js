@@ -295,7 +295,8 @@ define(['underscore', 'mifosX'], function() {
       'vendor/ViewVendorController',
       'vendor/CreateVendorController',
       'vendor/EditVendorController',
-      'vendor/CreateVendorAgreementController'
+      'vendor/CreateVendorAgreementController',
+      'vendor/EditVendorAgreementController',
 
     ],
     filters: [
