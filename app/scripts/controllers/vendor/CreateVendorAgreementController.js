@@ -1,7 +1,7 @@
 (function(module) {
 	mifosX.controllers = _.extend(module, {				
 		CreateVendorAgreementController : function(scope,resourceFactory, 
-				location, dateFilter,validator, $rootScope, $upload, API_VERSION) {
+				location, dateFilter,validator, $rootScope, $upload, API_VERSION, routeParams) {
 			
 			scope.priceRegionDatas = [];
 			scope.servicesData = [];
@@ -10,12 +10,13 @@
 			
 			scope.formData = {};
 			scope.json = {};
-			scope.attributesFormData={};
-			 scope.mediaassetAttributes=[];
+			scope.detailsFormData={};
+			 scope.vendorDetailsDatas=[];
 			 scope.start ={};
 			 var datetime = new Date();
 			 scope.start.date = datetime;
 			 scope.minDate = new Date();
+			 scope.vendorId = routeParams.vendorId;
 						
 			resourceFactory.VendorAgreementTemplateResource.getTemplateDetails(function(data) {
 				scope.priceRegionDatas = data.priceRegionData;
@@ -24,23 +25,23 @@
 				scope.agreementTypes = data.agreementTypes;
 			});
 			
-			scope.addMedia = function () {
-	        	if (scope.attributesFormData.contentCode && scope.attributesFormData.loyaltyType 
-	        			&& scope.attributesFormData.loyaltyShare && scope.attributesFormData.priceRegion) {
+			scope.addVendorDetails = function () {
+	        	if (scope.detailsFormData.contentCode && scope.detailsFormData.loyaltyType 
+	        			&& scope.detailsFormData.loyaltyShare && scope.detailsFormData.priceRegion) {
 	        		
-										              scope.mediaassetAttributes
+										              scope.vendorDetailsDatas
 												.push({
-													loyaltyType : scope.attributesFormData.loyaltyType,
-													contentCode : scope.attributesFormData.contentCode,
-													loyaltyShare : scope.attributesFormData.loyaltyShare,
-													priceRegion : scope.attributesFormData.priceRegion
+													loyaltyType : scope.detailsFormData.loyaltyType,
+													contentCode : scope.detailsFormData.contentCode,
+													loyaltyShare : scope.detailsFormData.loyaltyShare,
+													priceRegion : scope.detailsFormData.priceRegion
 												});
 	          
-	              scope.attributesFormData.loyaltyShare = undefined;
+	              scope.detailsFormData.loyaltyShare = undefined;
 	        	}
 	        };
-	        scope.deleteMedia = function (index) {
-	              scope.mediaassetAttributes.splice(index,1);
+	        scope.deleteVendorDetails = function (index) {
+	              scope.vendorDetailsDatas.splice(index,1);
 	        };
 	          
 			scope.onFileSelect = function($files) {
@@ -50,6 +51,7 @@
 			scope.submit = function() {			
 				this.formData.locale = $rootScope.locale.code;
 				this.formData.dateFormat = 'dd MMMM yyyy';
+				this.formData.vendorId = routeParams.vendorId;
 				
 	        	var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
 	        	var reqEndDate = dateFilter(scope.end.date,'dd MMMM yyyy');
@@ -59,15 +61,15 @@
 				
 				scope.formData.vendorDetails =new Array();
 				
-				if (scope.mediaassetAttributes.length > 0) {
+				if (scope.vendorDetailsDatas.length > 0) {
 		              
-	                 for (var i in scope.mediaassetAttributes) {
+	                 for (var i in scope.vendorDetailsDatas) {
 						                   scope.formData.vendorDetails
 													.push({
-														contentCode : scope.mediaassetAttributes[i].contentCode,
-														loyaltyType : scope.mediaassetAttributes[i].loyaltyType,
-														loyaltyShare : scope.mediaassetAttributes[i].loyaltyShare,
-														priceRegion : scope.mediaassetAttributes[i].priceRegion,
+														contentCode : scope.vendorDetailsDatas[i].contentCode,
+														loyaltyType : scope.vendorDetailsDatas[i].loyaltyType,
+														loyaltyShare : scope.vendorDetailsDatas[i].loyaltyShare,
+														priceRegion : scope.vendorDetailsDatas[i].priceRegion,
 														locale : $rootScope.locale.code});
 	                 };
 	               }
@@ -99,6 +101,7 @@
 	'$rootScope',
 	'$upload',
 	'API_VERSION',
+	'$routeParams',
 	mifosX.controllers.CreateVendorAgreementController 
 	]).run(function($log) {
 		$log.info("CreateVendorAgreementController initialized");	

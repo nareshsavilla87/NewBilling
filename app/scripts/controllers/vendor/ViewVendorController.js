@@ -8,6 +8,10 @@
         	scope.vendorData = data;
         });
         
+        resourceFactory.VendorAgreementDataResource.get({vendorId: routeParams.id} , function(data) {
+        	scope.agreements = data;
+        });
+        
         /**
        	 * Delete Vendor
        	 * */

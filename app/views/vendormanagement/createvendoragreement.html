@@ -1,10 +1,11 @@
 <div>
 	<ul class="breadcrumb">
-		<li><a href="#/leads">{{'link.prospects' | translate}}</a> <span class="divider">/</span></li>
-		<li class="active">{{'label.createprospect' | translate}}</li>
+		<li><a href="#/vendormanagement">{{'label.vendor.vendormanagement' | translate}}</a> <span class="divider">/</span></li>
+		<!-- <li><a href="#/vendormanagement/{{vendorId}}">viewvendor</a> <span class="divider">/</span></li> -->
+		<li class="active">Create Agreement</li>
 	</ul>
 </div>
-<form name="createprospectsform" class="form-horizontal well" data-ng-controller="CreateVendorAgreementController" data-ng-submit="submit()">
+<form name="createvendoragreeform" class="form-horizontal well" data-ng-controller="CreateVendorAgreementController" data-ng-submit="submit()">
 	<div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label> 
 		<label data-ng-show="errorStatus">{{errorStatus}}</label> 
@@ -37,7 +38,7 @@
 					<tr>
 						<td>
 							<div class="control-group">
-								<label class="control-label" for="agreementStatus">Agreement Status</label>
+								<label class="control-label" for="agreementStatus">Agreement Status<span class="required">*</span></label>
 								<div class="controls">
 									<select data-ng-model="formData.agreementStatus"
 										data-ng-options="statusData.mCodeValue as statusData.mCodeValue for statusData in agreementTypes"
@@ -65,7 +66,7 @@
 					<tr>
 						<td>
             				<div class="control-group">
-            					<label class="control-label" for="agreementEndDate">Agreement EndDate<span class="required">*</span></label>
+            					<label class="control-label" for="agreementEndDate">Agreement EndDate</label>
             					<div class="controls">
               						<input type="text" datepicker-pop="dd MMMM yyyy" readonly data-ng-model="end.date"  is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" style="background-color:#FFFFFF;" required late-Validate />
             					</div>
@@ -85,26 +86,26 @@
                 </td>
                 <td class="blockquoteresult">
                     <form>
-                      <select data-ng-model="attributesFormData.contentCode" data-ng-options="planData.id as planData.planCode for planData in planDatas" 
+                      <select data-ng-model="detailsFormData.contentCode" data-ng-options="planData.id as planData.planCode for planData in planDatas" 
                       	class="input-small" placeholder="contentCode">
                       	<option value="">--ContentCode(Plan/Services)--</option>
                       </select>&nbsp;&nbsp;
-                      <select data-ng-model="attributesFormData.loyaltyType" class="input-small" >
+                      <select data-ng-model="detailsFormData.loyaltyType" class="input-small" >
                       <option value="">--LoyaltyType--</option>
                       <option value="Flat">FLAT</option>
                       <option value="Percentage">PERCENTAGE</option>
                       <option value="None">NONE</option>
                       </select>&nbsp;&nbsp;
-                      <input class="input-small" type="text" data-ng-model="attributesFormData.loyaltyShare"  placeholder="loyaltyShare">&nbsp;&nbsp;
-                      <select data-ng-model="attributesFormData.priceRegion" data-ng-options="priceregionData.id as priceregionData.priceregion for priceregionData in priceRegionDatas" class="input-small" >
+                      <input class="input-small" type="text" data-ng-model="detailsFormData.loyaltyShare"  placeholder="loyaltyShare">&nbsp;&nbsp;
+                      <select data-ng-model="detailsFormData.priceRegion" data-ng-options="priceregionData.id as priceregionData.priceregion for priceregionData in priceRegionDatas" class="input-small" >
                       <option value="">--PriceRegion--</option>
                       </select>&nbsp;&nbsp;
-                      <input class="input-small"  type="text" data-ng-model="attributesFormData.contentCost" placeholder="contentCost">
+                      <input class="input-small"  type="text" data-ng-model="detailsFormData.contentCost" placeholder="contentCost">
                       
-                      <a data-ng-click="addMedia()">&nbsp;<i class="icon-plus icon-white" style="color: #007fff;"></i></a>&nbsp;&nbsp;
+                      <a data-ng-click="addVendorDetails()">&nbsp;<i class="icon-plus icon-white" style="color: #007fff;"></i></a>&nbsp;&nbsp;
                     </form>
                     <br><br>
-                  <table class="table fullwidth" data-ng-show="mediaassetAttributes.length>0">
+                  <table class="table fullwidth" data-ng-show="vendorDetailsDatas.length>0">
                     <tr></tr>
                     <tr class="graybg">
                       <th>contentCode</th>
@@ -114,18 +115,18 @@
                       <th>contentCost</th>
                        <th>{{'label.media.image' | translate}}</th>
                     </tr>
-                    <tr data-ng-repeat="mediaassetAttribute in mediaassetAttributes" >
-                      <td><select data-ng-model="mediaassetAttribute.contentCode" data-ng-options="planData.id as planData.planCode for planData in planDatas" class="input-small" ></select></td>
-                      <td><select data-ng-model="mediaassetAttribute.loyaltyType" class="input-small" >
+                    <tr data-ng-repeat="vendorDetailsData in vendorDetailsDatas" >
+                      <td><select data-ng-model="vendorDetailsData.contentCode" data-ng-options="planData.id as planData.planCode for planData in planDatas" class="input-small" ></select></td>
+                      <td><select data-ng-model="vendorDetailsData.loyaltyType" class="input-small" >
                       	<option value="">--LoyaltyType--</option>
                       	<option value="Flat">FLAT</option>
                       	<option value="Percentage">PERCENTAGE</option>
                       	<option value="None">NONE</option>
                       </select></td>
-                      <td><input type="text" class="input-small" data-ng-model="mediaassetAttribute.loyaltyShare" placeholder="loyaltyShare"></td>
-                      <td><select data-ng-model="mediaassetAttribute.priceRegion" data-ng-options="priceregionData.id as priceregionData.priceregion for priceregionData in priceRegionDatas" class="input-small" ></select></td>
-                      <td><input type="text" class="input-small" data-ng-model="mediaassetAttribute.contentCost" placeholder="contentCost"></td>
-                      <td><a data-ng-click="deleteMedia($index)"><i class="icon-remove icon-white"></i></a></td>
+                      <td><input type="text" class="input-small" data-ng-model="vendorDetailsData.loyaltyShare" placeholder="loyaltyShare"></td>
+                      <td><select data-ng-model="vendorDetailsData.priceRegion" data-ng-options="priceregionData.id as priceregionData.priceregion for priceregionData in priceRegionDatas" class="input-small" ></select></td>
+                      <td><input type="text" class="input-small" data-ng-model="vendorDetailsData.contentCost" placeholder="contentCost"></td>
+                      <td><a data-ng-click="deleteVendorDetails($index)"><i class="icon-remove icon-white"></i></a></td>
                     </tr>
                   </table>
                 </td>
@@ -141,7 +142,7 @@
 	
 	
 	<div class="offset3">
-		<a href="#/leads"><button type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+		<a href="#/viewvendormanagement/{{vendorId}}"><button type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
 		<button type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
 	</div>
 

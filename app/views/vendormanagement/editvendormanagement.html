@@ -1,7 +1,7 @@
 <div>
 	<ul class="breadcrumb">
     	<li><a href="#/vendormanagement">{{'label.vendor.vendormanagement' | translate}}</a> <span class="divider">/</span></li>
-        <li class="active">{{'label.createvendor' | translate}}</li>
+        <li class="active">{{'label.editvendor' | translate}}</li>
     </ul>
 </div>
 <form name="editvendorform" class="form-horizontal well" data-ng-controller="EditVendorController" data-ng-submit="submit()">
@@ -11,7 +11,7 @@
 		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
         <fieldset>
-          <legend>{{'label.editevendor' | translate}}</legend>
+          <legend>{{'label.editvendor' | translate}}</legend>
 			<table>
 					<tr>
 							<td>

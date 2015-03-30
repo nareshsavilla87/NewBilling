@@ -43,11 +43,11 @@
         templateUrl: 'views/vendormanagement/vendoragreement.html'
       })
       
-      .when('/createvendoragreement', {
+      .when('/createvendoragreement/:vendorId', {
         templateUrl: 'views/vendormanagement/createvendoragreement.html'
       })
       
-      .when('/editvendoragreement/:id', {
+      .when('/editvendoragreement/:id/:vendorId', {
         templateUrl: 'views/vendormanagement/editvendoragreement.html'
       })
       

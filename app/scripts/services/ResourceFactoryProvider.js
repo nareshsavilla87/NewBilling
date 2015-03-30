@@ -216,7 +216,12 @@
               getTemplateDetails: {method: 'GET', params: {}},
               update: {method: 'PUT', params: {}},
           }),
-          VendorAgreementResource:defineResource(apiVer + "/vendoragreement/:vendorAgreementId",{vendorAgreementId: '@vendorAgreementId'}, {
+          VendorAgreementResource:defineResource(apiVer + "/vendoragreement/:vendorAgreementId/:resourceType",{vendorAgreementId: '@vendorAgreementId', resourceType:'@resourceType'}, {
+              get: {method: 'GET', params: {}, isArray:true},
+              getTemplateDetails: {method: 'GET', params: {}},
+              update: {method: 'PUT', params: {}},
+          }),
+          VendorAgreementDataResource:defineResource(apiVer + "/vendoragreement/:vendorId",{vendorId: '@vendorId'}, {
               get: {method: 'GET', params: {}, isArray:true},
               getTemplateDetails: {method: 'GET', params: {}},
               update: {method: 'PUT', params: {}},

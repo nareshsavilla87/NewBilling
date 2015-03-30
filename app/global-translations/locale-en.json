@@ -2592,7 +2592,7 @@
 "label.vendor.country":"Country",
 "label.vendor.vendormanagement":"Vendor Management",
 "label.createvendor":"Create Vendor",
-"label.editevendor":"Edit Vendor",
+"label.editvendor":"Edit Vendor",
 "label.vendordelete":"Delete Vendor",
 "validation.msg.vendormanagement.vendorCode.cannot.be.blank":"Vendor Code cannot be blank",
 "validation.msg.vendormanagement.vendorDescription.cannot.be.blank":"Vendor Name cannot be blank",

@@ -1,10 +1,11 @@
 <div>
 	<ul class="breadcrumb">
-		<li><a href="#/leads">{{'link.prospects' | translate}}</a> <span class="divider">/</span></li>
-		<li class="active">{{'label.createprospect' | translate}}</li>
+		<li><a href="#/vendormanagement">{{'label.vendor.vendormanagement' | translate}}</a> <span class="divider">/</span></li>
+		<!-- <li><a href="#/vendormanagement/{{vendorId}}">viewvendor</a> <span class="divider">/</span></li> -->
+		<li class="active">Edit Agreement</li>
 	</ul>
 </div>
-<form name="createprospectsform" class="form-horizontal well" data-ng-controller="CreateVendorAgreementController" data-ng-submit="submit()">
+<form name="createprospectsform" class="form-horizontal well" data-ng-controller="EditVendorAgreementController" data-ng-submit="submit()">
 	<div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label> 
 		<label data-ng-show="errorStatus">{{errorStatus}}</label> 
@@ -141,7 +142,7 @@
 	
 	
 	<div class="offset3">
-		<a href="#/leads"><button type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+		<a href="#/viewvendormanagement/{{vendorId}}"><button type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
 		<button type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
 	</div>
 
