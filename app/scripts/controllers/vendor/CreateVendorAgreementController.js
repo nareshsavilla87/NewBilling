@@ -17,6 +17,7 @@
 			 scope.start.date = datetime;
 			 scope.minDate = new Date();
 			 scope.vendorId = routeParams.vendorId;
+			 scope.formData.contentType = "Service";
 						
 			resourceFactory.VendorAgreementTemplateResource.getTemplateDetails(function(data) {
 				scope.priceRegionDatas = data.priceRegionData;
@@ -27,17 +28,29 @@
 			
 			scope.addVendorDetails = function () {
 	        	if (scope.detailsFormData.contentCode && scope.detailsFormData.loyaltyType 
-	        			&& scope.detailsFormData.loyaltyShare && scope.detailsFormData.priceRegion) {
+	        			&& (scope.detailsFormData.loyaltyShare || scope.detailsFormData.contentCost) && scope.detailsFormData.priceRegion) {
 	        		
-										              scope.vendorDetailsDatas
-												.push({
-													loyaltyType : scope.detailsFormData.loyaltyType,
-													contentCode : scope.detailsFormData.contentCode,
-													loyaltyShare : scope.detailsFormData.loyaltyShare,
-													priceRegion : scope.detailsFormData.priceRegion
-												});
-	          
-	              scope.detailsFormData.loyaltyShare = undefined;
+	        			if(scope.detailsFormData.loyaltyShare){
+	        				scope.vendorDetailsDatas
+							.push({
+								loyaltyType : scope.detailsFormData.loyaltyType,
+								contentCode : scope.detailsFormData.contentCode,
+								loyaltyShare : scope.detailsFormData.loyaltyShare,
+								priceRegion : scope.detailsFormData.priceRegion
+							});
+	        				scope.detailsFormData.loyaltyShare = undefined;
+	        			}else{
+	        				
+	        				scope.vendorDetailsDatas
+							.push({
+								loyaltyType : scope.detailsFormData.loyaltyType,
+								contentCode : scope.detailsFormData.contentCode,
+								contentCost : scope.detailsFormData.contentCost,
+								priceRegion : scope.detailsFormData.priceRegion
+							});
+	        				scope.detailsFormData.contentCost = undefined;
+	        			}
+	         
 	        	}
 	        };
 	        scope.deleteVendorDetails = function (index) {
@@ -68,16 +81,15 @@
 													.push({
 														contentCode : scope.vendorDetailsDatas[i].contentCode,
 														loyaltyType : scope.vendorDetailsDatas[i].loyaltyType,
-														loyaltyShare : scope.vendorDetailsDatas[i].loyaltyShare,
+														loyaltyShare :scope.vendorDetailsDatas[i].loyaltyShare,
+														contentCost :scope.vendorDetailsDatas[i].contentCost,
 														priceRegion : scope.vendorDetailsDatas[i].priceRegion,
 														locale : $rootScope.locale.code});
 	                 };
 	               }
 					scope.json.jsonData = scope.formData;
 					console.log(scope.json);			
-				/*resourceFactory.VendorLemplateResource.save(this.formData, function(data) {
-					location.path('/viewvendormanagement/' + data.resourceId);										
-				});	*/	
+				
 				$upload.upload({
 	                url: $rootScope.hostUrl+ API_VERSION +'/vendoragreement', 
 	                data: scope.json,
@@ -87,7 +99,7 @@
 	                if (!scope.$$phase) {
 	                  scope.$apply();
 	                }
-	                location.path('/vendoragreement');
+	                location.path('/viewvendormanagement/'+routeParams.vendorId);
 	              });
 			};						
 		}			

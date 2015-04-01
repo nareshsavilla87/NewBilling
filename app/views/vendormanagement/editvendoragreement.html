@@ -5,7 +5,7 @@
 		<li class="active">Edit Agreement</li>
 	</ul>
 </div>
-<form name="createprospectsform" class="form-horizontal well" data-ng-controller="EditVendorAgreementController" data-ng-submit="submit()">
+<form name="editvendoragreeform" class="form-horizontal well" data-ng-controller="EditVendorAgreementController" data-ng-submit="submit()">
 	<div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label> 
 		<label data-ng-show="errorStatus">{{errorStatus}}</label> 
@@ -20,7 +20,7 @@
 					<tr>
 						<td>
 							<div class="control-group">
-								<label class="control-label" for="prospectType">Content Type<span class="required">*</span> </label>
+								<label class="control-label" for="contentType">Content Type<span class="required">*</span> </label>
 								<div class="controls" style="margin-top: 5px;">
 									<input type="radio" data-ng-model="formData.contentType" value="Service" data-ng-change="resetCredits()">Service &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
 									<input type="radio" data-ng-model="formData.contentType" value="Package" data-ng-change="resetCredits()">Package
@@ -86,47 +86,51 @@
                 </td>
                 <td class="blockquoteresult">
                     <form>
-                      <select data-ng-model="attributesFormData.contentCode" data-ng-options="planData.id as planData.planCode for planData in planDatas" 
+                      <select data-ng-show = "formData.contentType == 'Service'" data-ng-model="vendorAgreeDetailFormData.contentCode" data-ng-options="serviceData.id as serviceData.serviceCode for serviceData in servicesData" 
+                      	class="input-small" placeholder="contentCode">
+                      	<option value="">--ContentCode(Plan/Services)--</option>
+                      </select>
+                      <select data-ng-show = "formData.contentType == 'Package'" data-ng-model="vendorAgreeDetailFormData.contentCode" data-ng-options="planData.id as planData.planCode for planData in planDatas" 
                       	class="input-small" placeholder="contentCode">
                       	<option value="">--ContentCode(Plan/Services)--</option>
                       </select>&nbsp;&nbsp;
-                      <select data-ng-model="attributesFormData.loyaltyType" class="input-small" >
+                      <select data-ng-model="vendorAgreeDetailFormData.loyaltyType" class="input-small" >
                       <option value="">--LoyaltyType--</option>
                       <option value="Flat">FLAT</option>
                       <option value="Percentage">PERCENTAGE</option>
                       <option value="None">NONE</option>
                       </select>&nbsp;&nbsp;
-                      <input class="input-small" type="text" data-ng-model="attributesFormData.loyaltyShare"  placeholder="loyaltyShare">&nbsp;&nbsp;
-                      <select data-ng-model="attributesFormData.priceRegion" data-ng-options="priceregionData.id as priceregionData.priceregion for priceregionData in priceRegionDatas" class="input-small" >
+                      <input data-ng-hide = "vendorAgreeDetailFormData.loyaltyType == 'None'" class="input-small" type="text" data-ng-model="vendorAgreeDetailFormData.loyaltyShare"  placeholder="LoyaltyShare">&nbsp;&nbsp;
+                      <input data-ng-show = "vendorAgreeDetailFormData.loyaltyType == 'None'" class="input-small"  type="text" data-ng-model="vendorAgreeDetailFormData.contentCost" placeholder="ContentCost">
+                      <select data-ng-model="vendorAgreeDetailFormData.priceRegion" data-ng-options="priceregionData.id as priceregionData.priceregion for priceregionData in priceRegionDatas" class="input-small" >
                       <option value="">--PriceRegion--</option>
                       </select>&nbsp;&nbsp;
-                      <input class="input-small"  type="text" data-ng-model="attributesFormData.contentCost" placeholder="contentCost">
-                      
-                      <a data-ng-click="addMedia()">&nbsp;<i class="icon-plus icon-white" style="color: #007fff;"></i></a>&nbsp;&nbsp;
+                     
+                      <a data-ng-click="addVendorAgreeDetails()">&nbsp;<i class="icon-plus icon-white" style="color: #007fff;"></i></a>&nbsp;&nbsp;
                     </form>
                     <br><br>
-                  <table class="table fullwidth" data-ng-show="mediaassetAttributes.length>0">
+                  <table class="table fullwidth" data-ng-show="vendorAgreeDetails.length>0">
                     <tr></tr>
                     <tr class="graybg">
-                      <th>contentCode</th>
-                      <th>loyaltyType</th>
-                      <th>loyaltyShare</th>
-                      <th>priceRegion</th>
-                      <th>contentCost</th>
-                       <th>{{'label.media.image' | translate}}</th>
+                      <th>ContentCode</th>
+                      <th>LoyaltyType</th>
+                      <th>LoyaltyShare/ContentCost</th>
+                      <th>PriceRegion</th>
+                      <th>{{'label.media.image' | translate}}</th>
                     </tr>
-                    <tr data-ng-repeat="mediaassetAttribute in mediaassetAttributes" >
-                      <td><select data-ng-model="mediaassetAttribute.contentCode" data-ng-options="planData.id as planData.planCode for planData in planDatas" class="input-small" ></select></td>
-                      <td><select data-ng-model="mediaassetAttribute.loyaltyType" class="input-small" >
+                    <tr data-ng-repeat="vendorAgreeDetail in vendorAgreeDetails" >
+                      <td data-ng-show = "formData.contentType == 'Service'"><select data-ng-model="vendorAgreeDetail.contentCode" data-ng-options="service.id as service.serviceCode for service in servicesData" class="input-small" ></select></td>
+                      <td data-ng-show = "formData.contentType == 'Package'"><select data-ng-model="vendorAgreeDetail.contentCode" data-ng-options="planData.id as planData.planCode for planData in planDatas" class="input-small" ></select></td>
+                      <td><select data-ng-model="vendorAgreeDetail.loyaltyType" class="input-small" >
                       	<option value="">--LoyaltyType--</option>
                       	<option value="Flat">FLAT</option>
                       	<option value="Percentage">PERCENTAGE</option>
                       	<option value="None">NONE</option>
                       </select></td>
-                      <td><input type="text" class="input-small" data-ng-model="mediaassetAttribute.loyaltyShare" placeholder="loyaltyShare"></td>
-                      <td><select data-ng-model="mediaassetAttribute.priceRegion" data-ng-options="priceregionData.id as priceregionData.priceregion for priceregionData in priceRegionDatas" class="input-small" ></select></td>
-                      <td><input type="text" class="input-small" data-ng-model="mediaassetAttribute.contentCost" placeholder="contentCost"></td>
-                      <td><a data-ng-click="deleteMedia($index)"><i class="icon-remove icon-white"></i></a></td>
+                      <td data-ng-hide = "vendorAgreeDetail.loyaltyType == 'None'"><input type="text" style="width:150px;" class="input-small" data-ng-model="vendorAgreeDetail.loyaltyShare" placeholder="LoyaltyShare"></td>
+                      <td data-ng-show = "vendorAgreeDetail.loyaltyType == 'None'"><input type="text" style="width:150px;" class="input-small" data-ng-model="vendorAgreeDetail.contentCost" placeholder="ContentCost"></td>
+                      <td><select data-ng-model="vendorAgreeDetail.priceRegion" data-ng-options="priceregionData.id as priceregionData.priceregion for priceregionData in priceRegionDatas" class="input-small" ></select></td>
+                      <td><a data-ng-click="deleteVendorAgreeDetails($index)"><i class="icon-remove icon-white"></i></a></td>
                     </tr>
                   </table>
                 </td>

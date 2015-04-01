@@ -10,8 +10,8 @@
 			
 			scope.formData = {};
 			scope.json = {};
-			scope.attributesFormData={};
-			 scope.mediaassetAttributes=[];
+			scope.vendorAgreeDetailFormData={};
+			 scope.vendorAgreeDetails=[];
 			 scope.deleteAttributes=[];
 			 scope.start ={};
 			 scope.end ={};
@@ -28,34 +28,45 @@
 				scope.agreementTypes = data.agreementTypes;
 				scope.start.date = new Date(dateFilter(data.agreementStartDate,'dd MMMM yyyy'));
 				scope.end.date = new Date(dateFilter(data.agreementEndDate,'dd MMMM yyyy'));
-				scope.mediaassetAttributes = data.vendorAgreementDetailsData;
+				scope.vendorAgreeDetails = data.vendorAgreementDetailsData;
 				scope.formData = {
 						agreementStatus : data.agreementStatus,
 						contentType : data.contentType
 				};
 			});
 			
-			scope.addMedia = function () {
-	        	if (scope.attributesFormData.contentCode && scope.attributesFormData.loyaltyType 
-	        			&& scope.attributesFormData.loyaltyShare && scope.attributesFormData.priceRegion) {
-	        		
-										              scope.mediaassetAttributes
-												.push({
-													loyaltyType : scope.attributesFormData.loyaltyType,
-													contentCode : scope.attributesFormData.contentCode,
-													loyaltyShare : scope.attributesFormData.loyaltyShare,
-													priceRegion : scope.attributesFormData.priceRegion
-												});
+			scope.addVendorAgreeDetails = function () {
+	        	if (scope.vendorAgreeDetailFormData.contentCode && scope.vendorAgreeDetailFormData.loyaltyType 
+	        			&& (scope.vendorAgreeDetailFormData.loyaltyShare || scope.vendorAgreeDetailFormData.contentCost) && scope.vendorAgreeDetailFormData.priceRegion) {
+	        			
+	        		if(scope.vendorAgreeDetailFormData.loyaltyShare){
+								scope.vendorAgreeDetails
+											.push({
+													loyaltyType : scope.vendorAgreeDetailFormData.loyaltyType,
+													contentCode : scope.vendorAgreeDetailFormData.contentCode,
+													loyaltyShare : scope.vendorAgreeDetailFormData.loyaltyShare,
+													priceRegion : scope.vendorAgreeDetailFormData.priceRegion
+											});
+								scope.vendorAgreeDetailFormData.loyaltyShare = undefined;
+	        		}else{
+	        			scope.vendorAgreeDetails
+						.push({
+								loyaltyType : scope.vendorAgreeDetailFormData.loyaltyType,
+								contentCode : scope.vendorAgreeDetailFormData.contentCode,
+								contentCost : scope.vendorAgreeDetailFormData.contentCost,
+								priceRegion : scope.vendorAgreeDetailFormData.priceRegion
+						});
+	        			scope.vendorAgreeDetailFormData.contentCost = undefined;
+	        		}
 	          
-	              scope.attributesFormData.loyaltyShare = undefined;
 	        	}
 	        };
-	        scope.deleteMedia = function (index) {
+	        scope.deleteVendorAgreeDetails = function (index) {
 	        	 
-	        	  scope.deleteAttributes.push({contentCode:scope.mediaassetAttributes[index].contentCode,
-	        		  locale:$rootScope.locale.code, id:scope.mediaassetAttributes[index].id});
+	        	  scope.deleteAttributes.push({contentCode:scope.vendorAgreeDetails[index].contentCode,
+	        		  locale:$rootScope.locale.code, id:scope.vendorAgreeDetails[index].id});
 	        	  console.log(scope.deleteAttributes);
-	              scope.mediaassetAttributes.splice(index,1);
+	              scope.vendorAgreeDetails.splice(index,1);
 	        };
 	          
 			scope.onFileSelect = function($files) {
@@ -76,15 +87,17 @@
 				scope.formData.vendorDetails =new Array();
 				scope.formData.removeVendorDetails = new Array();
 				
-				if (scope.mediaassetAttributes.length > 0) {
+				if (scope.vendorAgreeDetails.length > 0) {
 		              
-	                 for (var i in scope.mediaassetAttributes) {
+	                 for (var i in scope.vendorAgreeDetails) {
 						                   scope.formData.vendorDetails
 													.push({
-														contentCode : scope.mediaassetAttributes[i].contentCode,
-														loyaltyType : scope.mediaassetAttributes[i].loyaltyType,
-														loyaltyShare : scope.mediaassetAttributes[i].loyaltyShare,
-														priceRegion : scope.mediaassetAttributes[i].priceRegion,
+														id : scope.vendorAgreeDetails[i].id,
+														contentCode : scope.vendorAgreeDetails[i].contentCode,
+														loyaltyType : scope.vendorAgreeDetails[i].loyaltyType,
+														loyaltyShare : scope.vendorAgreeDetails[i].loyaltyShare,
+														contentCost :scope.vendorAgreeDetails[i].contentCost,
+														priceRegion : scope.vendorAgreeDetails[i].priceRegion,
 														locale : $rootScope.locale.code});
 	                 };
 	               }
@@ -103,7 +116,7 @@
 	                if (!scope.$$phase) {
 	                  scope.$apply();
 	                }
-	                location.path('/vendoragreement');
+	                location.path('/viewvendormanagement/'+routeParams.vendorId);
 	              });
 			};						
 		}			

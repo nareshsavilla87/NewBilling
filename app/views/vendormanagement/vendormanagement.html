@@ -3,8 +3,8 @@
         <li class="active">{{'label.vendor.vendormanagement' | translate}}</li>
     </ul>
 
-    <input data-ng-autofocus="true" data-ng-model="filterText" data-ng-keyup="onFilter()" type="text" class="span marginbottom0px form-control" placeholder="{{ 'label.input.filterbyname' | translate }}">
     <a href="#/createvendormanagement" class="btn btn-primary pull-right" data-ng-show="PermissionService.showMenu('CREATE_TEMPLATE')"><i class="icon-plus icon-white"></i>{{'button.create' | translate}}</a>
+    <input data-ng-autofocus="true" data-ng-model="filterText" data-ng-keyup="onFilter()" type="text" class="span marginbottom0px form-control" placeholder="{{ 'label.input.filterbyname' | translate }}">
 
     <table class="table">
         <thead>
