@@ -110,6 +110,24 @@
   "label.maximum":"Maximum",
   "label.multiplesof":"Currency in multiples of:",
   "label.dueon":"Due on",
+  "label.gender":"Gender",
+  "label.nationality":"Nationality",
+  "label.jobTitle":"Job Title",
+  "label.dateOfBirth" :"Date Of Birth",
+  "label.preferredLang":"Prefer Language",
+  "label.remarks":"Remarks",
+  "label.idType":"Identification Type",
+  "label.idNumber":"Identification Number",
+  "label.ageGroup":"Age Group",
+  "label.utsCustomerId":"UTS Customer Id",
+  "label.preferredCommunication":"Preferred Communication",
+  
+   
+  
+  
+  
+  
+  
   "placeholder.searchbar":"Enter text to Search#",
   
   "label.fromdate":"From date",
