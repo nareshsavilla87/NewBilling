@@ -21,7 +21,7 @@
             <td style="word-break:break-all;">{{config.value}}</td>
             <td><button type="button" class="btn btn-success flag" data-ng-hide="config.enabled" data-ng-click="enable(config.id)"><i class="icon-flag-alt"></i></button>
                 <button type="button" class="btn btn-danger flag" data-ng-show="config.enabled" data-ng-click="disable(config.id)"><i class="icon-remove"></i></button>
-           		<a data-ng-click="edit(config.id,config.name)" data-popover="Edit" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a></td>        
+           		<a data-ng-click="edit(config.id,config.name,config.value)" data-popover="Edit" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a></td>        
         </tr>
         </tbody>
     </table>
@@ -330,6 +330,49 @@
         </div>
 	</form>
 </script> 
+<script type="text/ng-template" id="editinterswitch.html">
+
+	   <div class="modal-header silver">
+          <h3 class="bolder">{{'label.pgconfig.editinterswitch' | translate}}</h3>
+        </div>
+	 <form name="editInterswitchForm" novalidate="" class="form-horizontal well" ng-submit="submit()">
+        <div class="modal-body">
+			 <div class="error" ng-show="errorStatus || errorDetails">
+				<label>{{'label.contract.error' | translate}}</label>
+				<label ng-show="errorStatus">{{errorStatus}}</label>
+				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	   		 </div>
+ 		  <fieldset>
+           	<div class="control-group">
+				<label class="control-label">{{'label.pgconfig.editinterswitch.productid' | translate}}<span class="required">*</span> :</label>
+			 	<div class="controls">
+              		<input  type="text" name="productId" ng-model="formData.productId" placeholder="enter interswitch product id here" required late-Validate/><br>
+                    <span  ng-show="editInterswitchForm.productId.$invalid">
+                    	<small class="error" ng-show="editInterswitchForm.productId.$error.req">
+                        	Required Field
+                    	</small>
+                   </span>
+            	</div>
+           	</div>
+          	<div class="control-group">
+				<label class="control-label">{{'label.pgconfig.editinterswitch.payitemid' | translate}}<span class="required">*</span> :</label>
+			 	<div class="controls">
+              		<input  type="text" name="payItemId" ng-model="formData.payItemId" placeholder="enter pay item id here" required late-Validate/><br>
+                    <span  ng-show="editInterswitchForm.payItemId.$invalid">
+                    	<small class="error" ng-show="editInterswitchForm.payItemId.$error.req">
+                        	Required Field
+                    	</small>
+                   </span>
+            	</div>
+           	</div>
+		  </fieldset>
+        </div>
+        <div class="modal-footer">
+          <button id="cancel" class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+     	  <button id="submit" type="submit" class="btn btn-primary" ng-disabled="(!editInterswitchForm.$valid)" >{{'label.confirm' | translate}}</button>
+        </div>
+	</form>
+</script>
 <script type="text/ng-template" id="editgeneral.html">
 
 	   <div class="modal-header silver">
@@ -362,6 +405,32 @@
         </div>
 	</form>
 	</script>
+	
+	<script type="text/ng-template" id="editconfig.html">
+
+	   <div class="modal-header silver">
+          <h3 class="bolder">{{'label.pgconfig.editdalpay' | translate}}</h3>
+       </div>
+       <div class="modal-body">
+			 <div class="error" ng-show="errorStatus || errorDetails">
+				<label>{{'label.contract.error' | translate}}</label>
+				<label ng-show="errorStatus">{{errorStatus}}</label>
+				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	   		 </div>
+			<table>
+			<tr><th>key</th><th></th><th>Value</th></tr>
+			<tr data-ng-repeat="keyValue in keyValues">
+			<td><input type="text" name="url" ng-model="keyValue.key" placeholder="enter key here" readonly value="{{keyValue.key}}"/></td>
+			<td valign="top" style="padding-top:5px;"><strong>:</strong></td>
+            <td><input  type="text" name="url" ng-model="keyValue.value" placeholder="enter value here"/></td>
+		   </tr></table>
+        </div>
+        <div class="modal-footer">
+          <button id="cancel" class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+     	  <button id="submit" type="submit" class="btn btn-primary" >{{'button.save' | translate}}</button>
+        </div>
+	</script>
+
     
     
 </div>

@@ -11,7 +11,7 @@
 				}
 			});
 
-			scope.edit = function(id,name) {
+			scope.edit = function(id,name,val) {
 				scope.errorStatus = [];
 				scope.errorDetails = [];
 				scope.editId = id;
@@ -29,9 +29,26 @@
 						resolve : {}
 					});
 				} else if(name == 'dalpay'){
-					$modal.open({
+					/*$modal.open({
 						templateUrl : 'editdalpay.html',
 						controller : editDalpayController,
+						resolve : {}
+					});*/
+					scope.keyValues = [];
+					var aa = angular.fromJson(val);
+					console.log(aa);
+					for(var i in Object.keys(aa)){
+					var ss = Object.keys(aa)[i];
+					console.log(ss);
+					var ss1 = aa[ss];
+					console.log(ss1);
+					scope.keyValues.push({key:ss,value:ss1});
+					
+					}
+					console.log(scope.keyValues);
+					$modal.open({
+						templateUrl : 'editconfig.html',
+						controller : editConfigController,
 						resolve : {}
 					});
 				} else if(name == 'globalpay'){
@@ -53,6 +70,12 @@
 						controller : editMobilePaypalController,
 						resolve : {}
 					});
+				} else if(name == 'interswitch'){
+					$modal.open({
+						templateUrl : 'editinterswitch.html',
+						controller : editInterswitchController,
+						resolve : {}
+					});
 				} else {
 					$modal.open({
 						templateUrl : 'editgeneral.html',
@@ -61,6 +84,13 @@
 					});
 				}
 
+			};
+			
+			var editConfigController = function($scope, $modalInstance) {
+				$scope.keyValues= scope.keyValues
+				$scope.cancel = function() {
+					$modalInstance.dismiss('cancel');
+				};
 			};
 			
 			var editGlobalpayController = function($scope, $modalInstance) {
@@ -241,7 +271,6 @@
 					var	val 	= JSON.parse(data.value);
 					$scope.formData.clientId = val['clientId'];
 					$scope.formData.secretCode = val['secretCode'];
-					alert($scope.formData.clientId);
 				});
 
 				$scope.submit = function() {
@@ -258,6 +287,36 @@
 						route.reload();
 					}, function(errData) {
 						$scope.paypalFlag = false;
+					});
+				};
+				$scope.cancel = function() {
+					$modalInstance.dismiss('cancel');
+				};
+			};
+			
+			var editInterswitchController = function($scope, $modalInstance) {
+
+				$scope.formData = {};
+				$scope.updateData = {};
+
+				// DATA GET
+				resourceFactory.paymentGatewayConfigurationResource.get({configId : scope.editId}, function(data) {		
+					var	val 	= angular.fromJson(data.value);
+					$scope.formData.productId = val['productId'];
+					$scope.formData.payItemId = val['payItemId'];
+				});
+				
+				$scope.submit = function() {
+					$scope.interswitchData = {
+							"value" : '{"productId" : "' + $scope.formData.productId
+									+ '","payItemId" : "' + $scope.formData.payItemId
+									+ '"}'
+					};
+						
+					$scope.updateData.value = $scope.interswitchData.value;
+					resourceFactory.paymentGatewayConfigurationResource.update({configId : scope.editId}, $scope.updateData, function(data) {
+						$modalInstance.close('delete');
+						route.reload();
 					});
 				};
 				$scope.cancel = function() {
