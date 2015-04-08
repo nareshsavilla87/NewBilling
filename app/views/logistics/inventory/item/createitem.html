@@ -68,7 +68,7 @@
             			</div>
           				</div>
 					</td>
-					<td>
+					<!-- <td>
 						<div class="control-group">
            				<label class="control-label" for="unitPrice ">{{'label.item.unitprice' | translate }}&nbsp;<span class="required">*</span></label>
            				<div class="controls">
@@ -78,10 +78,7 @@
              			</span>
            				</div>
           				</div>
-					</td>
-				</tr>
-				
-				<tr>
+					</td> -->
 					<td>
 						<div class="control-group">
             			<label class="control-label" for="reorderLevel">{{'label.item.reorderlevel' | translate }}&nbsp;<span class="required">*</span></label>
@@ -93,6 +90,9 @@
            				</div>
           				</div>
 					</td>
+				</tr>
+				
+				<tr>
 					<td>
 						<div class="control-group">
             			<label class="control-label" for="warranty">{{'label.item.warranty' | translate }}&nbsp;<span class="required">*</span></label>
@@ -106,23 +106,64 @@
             			</div>
           				</div>
 					</td>
+					  <td>
+						<div class="control-group">
+           				<label class="control-label" for="unitPrice ">Default Price&nbsp;<span class="required">*</span></label>
+           				<div class="controls">
+             			<input type="text" id="unitPrice" name="unitPrice" data-ng-model="formData.unitPrice" data-ng-pattern="{{'decimal' | CodeValidate}}"><br/>
+             			<span data-ng-show="createitemform.unitPrice.$dirty && createitemform.unitPrice.$invalid">
+             				<small class="error-row">{{'error.not.decimal.validation'| translate}}</small>
+             			</span>
+           				</div>
+          				</div>
+					</td> 
 				</tr>
-				<tr>
-				<td>
-				</td>
-				<td align="right">
-				<div class="control-group">
-				<div class="controls">
-            		<a href="#/inventory"><button id="cancel" type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
-            		<button id="submit" type="submit" data-ng-disabled="createitemform.$dirty && createitemform.$invalid" class="btn btn-primary">{{'label.save' | translate}}</button>
-          		</div>
-          		</div>	
-				</td>
-				</tr>
+				
 			</table>
+          	
+          	<table>
+          		
+          		<tr class="control-group">
+                <td>
+                  <h4><label class="control-label">{{'label.regionalprice' | translate}}</label></h4>
+                </td>
+                <td class="blockquoteresult">
+                    <form>
+                      <select data-ng-model="itemPricesFormData.regionId" data-ng-options="regionData.id as regionData.regionName  for regionData in regionDatas" >
+                      </select>&nbsp;&nbsp;
+                      
+                      <input type="text" name="price" data-ng-model="itemPricesFormData.price" placeholder="Price" data-ng-pattern="{{'decimal' | CodeValidate}}">
+                      <a data-ng-click="addItemPrice()">&nbsp;<i class="icon-plus icon-white"></i></a>
+                      <span data-ng-show="createitemform.price.$dirty && createitemform.price.$invalid">
+              		  	<small class="error-row">{{'error.not.decimal.validation' | translate}}</small>
+              		  </span>
+                    </form>
+                  <table class="table fullwidth" data-ng-show="itemPrices.length>0">
+                    <tr class="graybg">
+                      <th>{{'table.heading.regionName' | translate}}</th>
+                      <th>{{'label.price' | translate}}</th>
+                    </tr>
+                    <tr data-ng-repeat="itemPrice in itemPrices" >
+                      <td><select data-ng-model="itemPrice.regionId" data-ng-options="regionData.id as regionData.regionName  for regionData in regionDatas" >
+                      </select></td>
+                      <td> <input type="text" data-ng-model="itemPrice.price" placeholder="Price"></td>
+                      <td><a data-ng-click="removeItemPrices($index)"><i class="icon-remove icon-white"></i></a></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+          		
+          	</table>
+         	</fieldset>
+         	
+			<div class="offset9">
+				
+            	<a href="#/inventory"><button id="cancel" type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
+            	<button id="submit" type="submit" data-ng-disabled="createitemform.$dirty && createitemform.$invalid" class="btn btn-primary">{{'label.save' | translate}}</button>
+          		
+          	</div>	
+				
           
-         
-          
-        </fieldset>
+        
       </form>
  
