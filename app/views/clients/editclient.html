@@ -74,13 +74,6 @@
               </div>
 		    </td>
 			 <td>
-			    <div class="control-group">
-                    <label class="control-label">{{'label.clientcategeory' | translate}}<span class="required">*</span></label>
-                <div class="controls">
-                   <select data-ng-model="clientCategory"  data-ng-options="clientCategoryData.id as clientCategoryData.categoryType for clientCategoryData in clientCategoryDatas">
-                   </select>
-                </div>
-              </div>
 			</td>
 			</tr>
 			<tr>
@@ -97,6 +90,13 @@
              	</div>
              	</td>
              	<td>
+             	<div class="control-group">
+                    <label class="control-label">{{'label.clientcategeory' | translate}}<span class="required">*</span></label>
+                <div class="controls">
+                   <select data-ng-model="clientCategory"  data-ng-options="clientCategoryData.id as clientCategoryData.categoryType for clientCategoryData in clientCategoryDatas">
+                   </select>
+                </div>
+              </div>
              	</td>
              	</tr>
 			<tr>
