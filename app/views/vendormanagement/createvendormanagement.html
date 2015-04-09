@@ -1,0 +1,120 @@
+<div>
+	<ul class="breadcrumb">
+    	<li><a href="#/vendormanagement">{{'label.vendor.vendormanagement' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.createvendor' | translate}}</li>
+    </ul>
+</div>
+<form name="createvendorform" class="form-horizontal well" data-ng-controller="CreateVendorController" data-ng-submit="submit()">
+	<div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>{{'label.createvendor' | translate}}</legend>
+			<table>
+					<tr>
+							<td>
+								<div class="control-group">
+           					 	<label class="control-label" for="vendorCode">{{'label.vendor.code' | translate}}<span class="required">*</span></label>
+            					<div class="controls">
+             					 <input type="text" id="vendorCode" name="vendorCode" data-ng-model="formData.vendorCode" data-ng-maxlength="{{'code' | CodeValidate}}"></br>
+             					 <span data-ng-show="createvendorform.vendorCode.$dirty && createvendorform.vendorCode.$invalid">
+									<small class="error-row" >{{'error.code.definition.length.validation'| translate}}</small>
+								 </span>
+           						</div>
+         						</div>	
+							</td>
+							<td>
+								<div class="control-group">
+           					 	<label class="control-label" for="vendormobileNo">{{'label.vendor.mobileno' | translate}}<span class="required">*</span></label>
+            					<div class="controls">
+             					 <input type="text" id="vendormobileNo" name="vendormobileNo" 
+             					 	data-ng-model="formData.vendormobileNo" data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/"></br>
+             					 	<div data-ng-show="createvendorform.vendormobileNo.$dirty && createvendorform.vendormobileNo.$invalid">
+										<small class="error-row" data-ng-show="createvendorform.vendormobileNo.$error.pattern"> {{'label.prospect.error.mobileno' | translate}} </small>
+									</div>
+           						</div>
+         						</div>	
+							</td>
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="vendorName">{{'label.vendor.name' | translate}}<span class="required">*</span></label>
+            					<div class="controls">
+              					<input type="text" id="vendorName" name="vendorName" data-ng-model="formData.vendorName">
+           						 </div>
+          						</div>
+							</td>
+							<td>
+								<div class="control-group">
+           					 	<label class="control-label" for="vendorLandlineNo">{{'label.vendor.vendorlandlineno' | translate}}<span class="required">*</span></label>
+            					<div class="controls">
+             					 <input type="text" id="vendorLandlineNo" name="vendorLandlineNo" 
+             					 	data-ng-model="formData.vendorLandlineNo" data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/"></br>
+             					 	<div data-ng-show="createvendorform.vendorLandlineNo.$dirty && createvendorform.vendorLandlineNo.$invalid">
+										<small class="error-row" data-ng-show="createvendorform.vendorLandlineNo.$error.pattern"> {{'label.prospect.error.mobileno' | translate}} </small>
+									</div>
+           						</div>
+         						</div>
+							</td>
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="contactName">{{'label.vendor.conatactname' | translate}}<span class="required">*</span></label>
+            					<div class="controls">
+              					<input type="text" id="contactName" name="contactName" data-ng-model="formData.contactName">
+           						 </div>
+          						</div>
+							</td>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="vendorAddress">{{'label.vendor.vendoraddress' | translate}}<span class="required">*</span></label>
+            					<div class="controls">
+              					<input type="text" id="vendorAddress" name="vendorAddress" data-ng-model="formData.vendorAddress">
+           						 </div>
+          						</div>
+							</td>
+							</tr>	
+							<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="vendorEmailId">{{'label.vendor.emailid' | translate}}<span class="required">*</span></label>
+            					<div class="controls">
+              					<input type="email" id="vendorEmailId" name="vendorEmailId" data-ng-model="formData.vendorEmailId">
+              						<div data-ng-show="createvendorform.vendorEmailId.$dirty && createvendorform.vendorEmailId.$invalid">
+										<small class="error-row" data-ng-show="createvendorform.vendorEmailId.$error.email"> {{'label.prospect.error.email' | translate}} </small>
+									</div>
+           						 </div>
+          						</div>
+							</td>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="vendorCountry">{{'label.vendor.country' | translate}}<span class="required">*</span></label>
+            					<div class="controls">
+             					 <select  id="vendorCountry" data-ng-model="formData.vendorCountry"  data-ng-options="countryData.id as countryData.countryName for countryData in countryDatas">
+             					 <option value="">{{'label.select.one' | translate}}</option></select>
+            					</div>
+          						</div>
+							</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="control-group">
+            					<label class="control-label" for="vendorCurrency">{{'label.vendor.vendorcurrency' | translate}}<span class="required">*</span></label>
+            					<div class="controls">
+             					 <select  id="vendorCurrency" data-ng-model="formData.vendorCurrency"  data-ng-options="currencyData.code as currencyData.displayLabel for currencyData in currencyDatas">
+             					 <option value="">{{'label.select.one' | translate}}</option></select>
+            					</div>
+          						</div>
+								</td>
+							</tr>
+  			             <tr>
+  			            <td align="right" colspan="2">
+                        <a href="#/vendormanagement"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+                         <button id="submit" type="submit" data-ng-disabled="createvendorform.$dirty && createvendorform.$invalid" class="btn btn-primary">{{'button.save'| translate}}</button>
+                 </td></tr></table>
+        </fieldset>
+</form>

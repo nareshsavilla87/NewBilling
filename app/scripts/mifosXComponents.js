@@ -291,6 +291,12 @@ define(['underscore', 'mifosX'], function() {
       'templates/CreateTemplateController',
       'templates/ViewTemplateController',
       'templates/EditTemplateController',
+      'vendor/VendorController',
+      'vendor/ViewVendorController',
+      'vendor/CreateVendorController',
+      'vendor/EditVendorController',
+      'vendor/CreateVendorAgreementController',
+      'vendor/EditVendorAgreementController',
 
     ],
     filters: [
