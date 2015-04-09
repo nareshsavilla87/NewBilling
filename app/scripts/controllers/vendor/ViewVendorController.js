@@ -4,12 +4,18 @@
         scope.vendorData = [];
         scope.PermissionService = PermissionService;
         scope.vendorRouteParamId = routeParams.id;
+        
         resourceFactory.VendorLemplateResource.getTemplateDetails({vendorId: routeParams.id} , function(data) {
         	scope.vendorData = data;
         });
         
         resourceFactory.VendorAgreementDataResource.get({vendorId: routeParams.id} , function(data) {
         	scope.agreements = data;
+        	for(var i=0; i<data.length; i++){
+        		if(data[i].agreementStatus == "Signed"){
+        			scope.idActiveAgreement = "Active";
+        		}
+        	}
         });
         
         /**
