@@ -80,3 +80,4 @@ document.write("<script type='text/javascript' src='./controllers/NetellerContro
 document.write("<script type='text/javascript' src='./controllers/InternalPaymentController.js'></script>");
 document.write("<script type='text/javascript' src='./controllers/PrepaidPaymentController.js'></script>");
 document.write("<script type='text/javascript' src='./controllers/TwoCheckoutSuccessController.js'></script>");
+document.write("<script type='text/javascript' src='./controllers/InterswitchIntegrationController.js'></script>");

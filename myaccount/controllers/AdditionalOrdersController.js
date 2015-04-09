@@ -16,6 +16,11 @@ AdditionalOrdersController = function(scope,RequestSender,routeParams,localStora
 			  }
 			  
 		  };
+		  
+		  scope.isSelectedPlan = function(planId){
+				return planId === scope.selectedPlanId;
+			};
+		  
 		if(localStorageService.get("clientTotalData")){
 		  RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
 			  var clientData = data || {};
@@ -42,6 +47,7 @@ AdditionalOrdersController = function(scope,RequestSender,routeParams,localStora
 			  });
 		  });
 	   }
+		
     };
     
 selfcareApp.controller('AdditionalOrdersController',['$scope',

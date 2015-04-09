@@ -497,7 +497,7 @@
   "label.parentoffice":"Parent office:",
   "app lebels end" :"-----------------------------------------------------",
   "app erros start" :"----------------------------------------------------",
-  "error.login.failed":"Invalid Credentials - Try with correct credentials",
+  "error.login.failed":"Please try again, your credentials are not valid",
   "error.delete.failed":"System defined code values cannot be deleted",
   "error.code.definition.length.validation":"Max Length 10 Characters",
   "error.not.numeric.validation":"Enter Numeric Value",
@@ -2406,6 +2406,9 @@
 "label.pgconfig.neteller.secretcode":"Neteller API secretCode",
  "label.pgconfig.edit":"Edit PaymentGateway",
 "label.pgconfig.generalForm.value":"Value",
+"label.pgconfig.editinterswitch":"Edit Interswitch",
+"label.pgconfig.editinterswitch.productid":"Product Id",
+"label.pgconfig.editinterswitch.payitemid":"Pay Item Id",
 
 
 "#Audit trails":".....",

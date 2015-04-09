@@ -86,8 +86,8 @@ selfcareApp.config(function($routeProvider, $locationProvider) {
     .when('/twocheckoutsuccess',{
     	templateUrl: 'views/twocheckoutsuccess.html'
     })
-    .when('/transc',{
-    	templateUrl: 'views/transaction.jsp'
+    .when('/interswitchintegration/:screenName/:clientId/:planId/:priceId/:amount/:productId/:payItemId',{
+    	templateUrl: 'views/interswitchintegration.html'
     });
        
     $locationProvider.html5Mode(false);

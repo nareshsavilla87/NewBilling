@@ -29,7 +29,7 @@ ChangePasswordController = function(scope,RequestSender,rootScope,localStorageSe
 				          RequestSender.logoutResource.save({logout:'logout',id:sessionData},function(data){
 				        	  rootScope.currentSession = sessionManager.clear();
 				        	  rootScope.infoMsgs.push({
-				        		  'image' : './images/info-icon.png',
+				        		  'image' : '../images/info-icon.png',
 				        		  'names' : [{'name' : 'title.password.changed'}]
 				        	  });
 			              });

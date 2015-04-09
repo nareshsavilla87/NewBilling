@@ -2,7 +2,7 @@
 <html lang="en" data-ng-app="selfcareApp">
 <head>
 	<meta charset="utf-8">
-	<link rel="icon" type="image/png" href="./images/favicon.ico" />
+	<link rel="icon" type="image/png" href="../images/favicon.ico" />
 	<title>{{'title.obs.selfcare' | translate}}</title>
 	<style>[data-ng-cloak] { display: none !important; }</style>
 	<style>
@@ -23,14 +23,14 @@
 </head>
 <body id="top" data-spy="scroll" data-target=".subnav" data-offset="80" data-ng-controller="SelfcareMainController" style="background: #DDDDDD;">
     <div data-ng-hide="domReady" style="margin-left:auto;margin-top:auto; position: absolute;margin-top:240px; top:0px;left:550px;">
-        <img src="./images/loading.gif" >
+        <img src="../images/loading.gif" >
     </div> 
     <div data-ng-hide="isLandingPage || currentSession.user != null" data-ng-cloak >
       <div class="container well margintop20" style="height: 580px;margin-bottom: 0;">
         <div class="row form-search paddedbottom" >
         <div id="header" style="padding:15px 10px 60px 15px;-webkit-box-shadow: 0 6px 4px -4px #BABABA;box-shadow: 0 6px 4px -4px #BABABA;">
 			<div class="pull-left">
-				<img src="./images/Billing_logoSmall.png" alt="Billing">
+				<img src="../images/logo.png" alt="Billing">
 			</div>
 			<div id="lang-ch" class="dropdown pull-right" style="margin-top:8px;margin-right:10px;">{{ 'label.change.language' | translate }}
 			  <a class="dropdown-toggle btn btn-primary">{{localeLang.name}}<i class="icon-sort-down"></i></a>
@@ -127,7 +127,7 @@
 		 <div class="navbar navbar-fixed-top container">
 	        <div class="navbar-inner" >
 	            <div class="container">
-	                <a class="brand" style="margin: 0px 0px;background:#fff;""><img src="./images/Billing_logoSmall.png" alt="SelfCare" width="50px;"></a>
+	                <a class="brand" style="margin: 0px 0px;background:#fff;""><img src="../images/logo.png" alt="SelfCare" width="50px;"></a>
 	                <div class="nav-collapse collapse" id="main-menu" style="float:right;">
 	                    <ul class="nav" id="main-menu-left" data-ng-hide="isRegClientProcess">
 	                     <li><a href="#/profile" data-ng-class="{ activate: isActive('/profile') }"><i class="icon-user icon-white"></i>{{'label.profile' | translate}}</a></li>
@@ -172,8 +172,8 @@
 	        </div>
 	       </div>
 	    </div>
-	      <!-- <span class="pull-right" style="padding-right:325px;margin-top:-80px;">Thor Telecom - Dalvegur 16b - 201 Kópavogur - Sími 5 100 500 - <a  style="color:#007fff;" href="http://thortelecom.is" target="_blank">http://thortelecom.is/</a>
-	    </span> --> 
+	       <!-- <span class="pull-right" style="padding-right:325px;margin-top:-80px;">Thor Telecom - Dalvegur 16b - 201 Kópavogur - Sími 5 100 500 - <a  style="color:#007fff;" href="http://thortelecom.is" target="_blank">http://thortelecom.is/</a>
+	    </span> -->
     </div>
       <script type="text/ng-template" id="forgotpwdpopup.html">
                     <div class="modal-header silver">

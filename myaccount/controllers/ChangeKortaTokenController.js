@@ -2,6 +2,9 @@ ChangeKortaTokenController = function(scope, RequestSender, location,localStorag
 		  
 		 var clientData 	= localStorageService.get('clientTotalData') || {};
 		   var clientId 	= clientData.id;
+		   
+		 //getting Payment Gateway names form constans.js
+			var  kortaPG			=	paymentGatewayNames.korta || "";
 		  
 		   //values getting form constants.js file
 		   var kortaServer 			= selfcareModels.kortaServer;
@@ -89,19 +92,23 @@ ChangeKortaTokenController = function(scope, RequestSender, location,localStorag
 		 };
 	    	  
 		  
-		  var TermsandConditionsController = function($scope,$modalInstance){
+		 var TermsandConditionsController = function($scope,$modalInstance){
+		    	var termsAndConditions = "termsAndConditions_"+scope.optlang+"_locale";
+		    	if(scope.optlang){
+		    			$scope.termsAndConditionsText = korta[termsAndConditions];
+		    	}
 		    	$scope.done = function(){
 		    		$modalInstance.dismiss('cancel');
 		    	};
 		    };
 		   
 		    scope.termsAndConditionsFun = function(){
-				    modal.open({
-						 templateUrl: 'termsandconditions.html',
-						 controller: TermsandConditionsController,
-						 resolve:{}
-				    });
-		    };
+			    modal.open({
+					 templateUrl: 'termsandconditions.html',
+					 controller: TermsandConditionsController,
+					 resolve:{}
+			    });
+	    };
 		  
 	  };
 
