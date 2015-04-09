@@ -13,8 +13,10 @@
 			scope.detailsFormData={};
 			 scope.vendorDetailsDatas=[];
 			 scope.start ={};
+			 scope.end ={};
 			 var datetime = new Date();
 			 scope.start.date = datetime;
+			 scope.end.date = datetime;
 			 scope.minDate = new Date();
 			 scope.vendorId = routeParams.vendorId;
 			 scope.formData.contentType = "Service";

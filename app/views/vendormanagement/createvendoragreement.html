@@ -66,7 +66,7 @@
 					<tr>
 						<td>
             				<div class="control-group">
-            					<label class="control-label" for="agreementEndDate">Agreement EndDate</label>
+            					<label class="control-label" for="agreementEndDate">Agreement EndDate<span class="required">*</span></label>
             					<div class="controls">
               						<input type="text" datepicker-pop="dd MMMM yyyy" readonly data-ng-model="end.date"  is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" style="background-color:#FFFFFF;" required late-Validate />
             					</div>
@@ -120,7 +120,7 @@
                        <th>{{'label.media.image' | translate}}</th>
                     </tr>
                     <tr data-ng-repeat="vendorDetailsData in vendorDetailsDatas" >
-                      <td data-ng-show = "formData.contentType == 'Service'"><select data-ng-model="vendorDetailsData.contentCode" data-ng-options="service.id as service.serviceCode for service in servicesData" class="input-small" ></select></td>
+                      <td data-ng-show = "formData.contentType == 'Service'"><select data-ng-model="vendorDetailsData.contentCode" data-ng-options="service.id as service.serviceCode for service in servicesData" class="input-small" ><option value="">--ContentCode(Plan/Services)--</option></select></td>
                       <td data-ng-show = "formData.contentType == 'Package'"><select data-ng-model="vendorDetailsData.contentCode" data-ng-options="planData.id as planData.planCode for planData in planDatas" class="input-small" ></select></td>
                       <td><select data-ng-model="vendorDetailsData.loyaltyType" class="input-small" >
                       	<option value="">--LoyaltyType--</option>
@@ -130,7 +130,7 @@
                       </select></td>
                       <td data-ng-hide = "vendorDetailsData.loyaltyType == 'None'"><input type="text" style="width:150px;" class="input-small" data-ng-model="vendorDetailsData.loyaltyShare" placeholder="LoyaltyShare"></td>
                       <td data-ng-show = "vendorDetailsData.loyaltyType == 'None'"><input type="text" style="width:150px;" class="input-small" data-ng-model="vendorDetailsData.contentCost" placeholder="ContentCost"></td>
-                      <td><select data-ng-model="vendorDetailsData.priceRegion" data-ng-options="priceregionData.id as priceregionData.priceregion for priceregionData in priceRegionDatas" class="input-small" ></select></td>
+                      <td><select data-ng-model="vendorDetailsData.priceRegion" data-ng-options="priceregionData.id as priceregionData.priceregion for priceregionData in priceRegionDatas" class="input-small" ><option value="">--PriceRegion--</option></select></td>
                       <td><a data-ng-click="deleteVendorDetails($index)"><i class="icon-remove icon-white"></i></a></td>
                     </tr>
                   </table>
