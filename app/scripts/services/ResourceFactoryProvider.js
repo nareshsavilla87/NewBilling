@@ -1117,6 +1117,14 @@
             }),
             itemDetailsTempDropdownResource: defineResource(apiVer + "/itemdetails/template/dropdown", {}, {
             }),
+            
+            propertyCodeResource: defineResource(apiVer + "/property", {}, {
+            	update: { method: 'PUT' }
+            }),
+            
+            propertyCodeTemplateResource: defineResource(apiVer + "/property/template", {}, {
+            	update: { method: 'PUT' }
+            }),
       
         };
       }];

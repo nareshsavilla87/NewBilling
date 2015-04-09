@@ -1020,7 +1020,14 @@
       })
       .when('/itemsale/:officeId/:partnerId',{
     	  templateUrl: 'views/organization/itemSale.html'
-      });
+      })
+       .when('/property', {
+        templateUrl: 'views/organization/property.html'
+      })
+      .when('/createproperty', {
+        templateUrl: 'views/organization/createproperty.html'
+      })
+      ;
      
     $locationProvider.html5Mode(false);
   };

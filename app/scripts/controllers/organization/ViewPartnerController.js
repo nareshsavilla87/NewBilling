@@ -42,10 +42,10 @@
 					scope.officeFinanceTrans = data;
 				});
 				
-				scope.partnersTab = function() {
+			/*	scope.partnersTab = function() {
 					
 					webStorage.add("callingTab", {someString : "Partners"});
-				};
+				};*/
 			};
 			
 			//for office / partner Disbursement details 
