@@ -34,17 +34,17 @@
 	</div>
 	
 	   <script type="text/ng-template" id="uploadProperty.html">
+
     	<div class="modal-header silver">
         	<h3 class="bolder">{{'dialog.upload.property.data' | translate}}</h3>
         </div>
-       	<form name="uploadPropertyForm" novalidate="" class="form-horizontal well">
 	 		<div class="error" ng-show="errorStatus || errorDetails">
 				<label>{{'label.contract.error' | translate}}</label>
 				<label ng-show="errorStatus">{{errorStatus}}</label>
 				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	   		</div>
-		   	<fieldset>
-					<table width="100%">
+             <fieldset>
+					<table>
 						<tr>
 						  <td width="50%">
 						    <div class="control-group">
@@ -58,12 +58,11 @@
                                <a ng-click="downloadFile()" data-popover-placement="left" data-popover="Download Sample File" data-popover-trigger="mouseenter"><i class=" icon-download-alt icon-white"></i></a>
                              </td> 
 						</tr>
-					</table>  
-           </fieldset>       	
-        </div>
+					</table> 
+          <fieldset>
         <div class="modal-footer">
         	<button id="cancel" class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
             <button id="submit" class="btn btn-primary" data-ng-disabled="!value" ng-click="approve()">{{'label.confirm' | translate}}</button>
-        </div>
+        </div> 
 	</script>
 </div>
