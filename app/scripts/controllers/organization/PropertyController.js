@@ -22,6 +22,7 @@
 	         };
 	          
 	      	function  approve($scope, $modalInstance) {
+	      		
 	      		 $scope.value=false;
 	      		 $scope.onFileSelect = function($files) {
 		             $scope.file = $files[0];
@@ -29,6 +30,11 @@
 		            	 $scope.value=true;
 		             }
 		           };
+		            
+		        $scope.downloadFile=function(){
+		          window.open("csv/Property Master.csv");
+		        } ;  
+		           
 	      		$scope.approve = function () {
 	      			 $upload.upload({/*41.75.85.206:8080*/
 	                     url: $rootScope.hostUrl+ API_VERSION +'/property/documents', 
