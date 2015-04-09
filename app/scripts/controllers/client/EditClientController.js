@@ -41,6 +41,7 @@
             scope.formData.entryType = data.entryType;
             scope.entryType=data.entryType;
             scope.formData.groupName=data.groupName;
+            scope.source = data.title;
             scope.groupNameDatas=data.groupNameDatas;
             if(data.clientAdditionalData){
             scope.nationalityDatas= data.clientAdditionalData.nationalityDatas;

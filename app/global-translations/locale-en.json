@@ -2600,6 +2600,7 @@
 "table.heading.parcel":"Parcel",
 "table.heading.buildingcode":"Building Code",
 "table.heading.precinct":"Precinct",
+"table.heading.allocated" :"Allocated",
 "label.create.new.property":"Create Property",
 "label.propertytype":"Property Type",
 "label.propertycode":"Property Code",
