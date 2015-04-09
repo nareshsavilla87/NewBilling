@@ -2504,7 +2504,9 @@
 "error.msg.voucher.no.isprocessed.exception":"Cannot delete VoucherPins, Already Generated for your selected lists",
 "table.heading.warrantyDate":"Warranty Date",
 "label.reason":"Reason",
-"error.msg.hardware.swapping.warranty.expiry":"Hardware warranty expired, Swap not allowed"
+"error.msg.hardware.swapping.warranty.expiry":"Hardware warranty expired, Swap not allowed",
+
+"label.pgconfig.editconfig":"Edit Configurations"
 
 
 

@@ -88,6 +88,12 @@ selfcareApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/interswitchintegration/:screenName/:clientId/:planId/:priceId/:amount/:productId/:payItemId',{
     	templateUrl: 'views/interswitchintegration.html'
+    })
+     .when('/paypalrecurring',{
+    	templateUrl: 'views/paypalrecurring.html'
+    })
+    .when('/paypalrecurringsuccess',{
+    	templateUrl: 'views/paypalrecurringsuccess.html'
     });
        
     $locationProvider.html5Mode(false);
