@@ -2577,7 +2577,41 @@
 "label.anchor.deletetemplate":"Delete Template",
 "label.heading.text":"Text",
 "validation.msg.template.name.cannot.be.blank":"template name cannot be blank",
-"error.msg.tempalte.duplicate.name":"template name already exists"
+"error.msg.tempalte.duplicate.name":"template name already exists",
+
+"#Property Definition":"........",
+"table.heading.propertycode":"Property Code",
+"table.heading.propertytype":"Property Type",
+"table.heading.parcel":"Parcel",
+"table.heading.buildingcode":"Building Code",
+"table.heading.precinct":"Precinct",
+"label.create.new.property":"Create Property",
+"label.propertytype":"Property Type",
+"label.propertycode":"Property Code",
+"label.unitcode":"Unit Code",
+"label.floor":"Floor / Level",
+"label.buildingcode":"Building Code",
+"label.parcel":"Parcel",
+"label.precinct":"Precinct",
+"label.poBox":"PO Box",
+"label.property":"Property Definition",
+"validation.msg.property.propertyCode.cannot.be.blank":"Property Code cannot be blank",
+"validation.msg.property.propertyType.cannot.be.blank":"Property Type cannot be blank",
+"validation.msg.property.unitCode.cannot.be.blank":"Unit Code cannot be blank",
+"validation.msg.property.floor.cannot.be.blank":"Floor/Level cannot be blank",
+"validation.msg.property.buildingCode.cannot.be.blank":"Building Code cannot be blank",
+"validation.msg.property.parcel.cannot.be.blank":"Parcel cannot be blank",
+"validation.msg.property.precinct.cannot.be.blank":"Precinct cannot be blank",
+"validation.msg.property.state.cannot.be.blank":"State cannot be blank",
+"validation.msg.property.country.cannot.be.blank":"Country cannot be blank",
+"error.msg.property.duplicate.code":"Given Property Code already exists",
+"error.msg.invalid.property.code":"Invalid Property Code",
+"dialog.upload.property.data":"Property Data Upload"
+
+
+
+
+
 
 
 

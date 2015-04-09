@@ -12,6 +12,7 @@
        		
             scope.formData  = data;
             scope.officeId =  scope.formData.officeId;
+            scope.partnerName = scope.formData.partnerName;
             webStorage.add("partnerName", scope.formData.partnerName);
             scope.offices = data.allowedParents;
             scope.currencydatas = data.currencyData.currencyOptions;

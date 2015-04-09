@@ -291,6 +291,8 @@ define(['underscore', 'mifosX'], function() {
       'templates/CreateTemplateController',
       'templates/ViewTemplateController',
       'templates/EditTemplateController',
+      'organization/PropertyController',
+      'organization/CreatePropertyController',
 
     ],
     filters: [
