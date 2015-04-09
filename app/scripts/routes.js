@@ -22,6 +22,35 @@
       .when('/templates', {
         templateUrl: 'views/templates/templates.html'
       })
+      
+      .when('/vendormanagement', {
+        templateUrl: 'views/vendormanagement/vendormanagement.html'
+      })
+      
+      .when('/createvendormanagement', {
+        templateUrl: 'views/vendormanagement/createvendormanagement.html'
+      })
+      
+      .when('/editvendormanagement/:id', {
+        templateUrl: 'views/vendormanagement/editvendormanagement.html'
+      })
+      
+      .when('/viewvendormanagement/:id', {
+        templateUrl: 'views/vendormanagement/viewvendormanagement.html'
+      })
+      
+      .when('/vendoragreement', {
+        templateUrl: 'views/vendormanagement/vendoragreement.html'
+      })
+      
+      .when('/createvendoragreement/:vendorId', {
+        templateUrl: 'views/vendormanagement/createvendoragreement.html'
+      })
+      
+      .when('/editvendoragreement/:id/:vendorId', {
+        templateUrl: 'views/vendormanagement/editvendoragreement.html'
+      })
+      
       .when('/createtemplate', {
         templateUrl: 'views/templates/createtemplate.html'
       })

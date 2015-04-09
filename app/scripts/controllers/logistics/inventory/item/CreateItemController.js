@@ -44,7 +44,7 @@
         	delete this.formData.unitData;
         	delete this.formData.chargesData;
         	delete this.formData.itemClassData;
-        	this.formData.unitPrice = "0";
+        	//this.formData.unitPrice = "0";
         	 scope.formData.itemPrices =new Array();
         	 if (scope.itemPrices.length > 0) {
                  

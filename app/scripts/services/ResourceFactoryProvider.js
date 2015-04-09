@@ -200,6 +200,32 @@
             getTemplateDetails: {method: 'GET', params: {}},
             update: {method: 'PUT', params: {}},
           }),
+          
+          VendorLemplateResource:defineResource(apiVer + "/vendormanagement/:vendorId",{vendorId: '@vendorId'}, {
+              get: {method: 'GET', params: {}, isArray:true},
+              getTemplateDetails: {method: 'GET', params: {}},
+              update: {method: 'PUT', params: {}},
+          }),
+          VendorTemplateResource:defineResource(apiVer + "/vendormanagement/template",{}, {
+             
+              getTemplateDetails: {method: 'GET', params: {}},
+              update: {method: 'PUT', params: {}},
+          }),
+          VendorAgreementTemplateResource:defineResource(apiVer + "/vendoragreement/template",{}, {
+              
+              getTemplateDetails: {method: 'GET', params: {}},
+              update: {method: 'PUT', params: {}},
+          }),
+          VendorAgreementResource:defineResource(apiVer + "/vendoragreement/:vendorAgreementId/:resourceType",{vendorAgreementId: '@vendorAgreementId', resourceType:'@resourceType'}, {
+              get: {method: 'GET', params: {}, isArray:true},
+              getTemplateDetails: {method: 'GET', params: {}},
+              update: {method: 'PUT', params: {}},
+          }),
+          VendorAgreementDataResource:defineResource(apiVer + "/vendoragreement/:vendorId",{vendorId: '@vendorId'}, {
+              get: {method: 'GET', params: {}, isArray:true},
+              getTemplateDetails: {method: 'GET', params: {}},
+              update: {method: 'PUT', params: {}},
+          }),
        
           auditResource: defineResource(apiVer + "/audits/:templateResource", {templateResource:'@templateResource'}, {
             get: {method: 'GET', params: {}},

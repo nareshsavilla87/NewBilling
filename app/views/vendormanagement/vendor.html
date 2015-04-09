@@ -1,0 +1,45 @@
+<div  data-ng-controller="VendorController">
+    <ul class="breadcrumb">
+        <li class="active">Vendor Management</li>
+    </ul>
+
+    <input data-ng-autofocus="true" data-ng-model="filterText" data-ng-keyup="onFilter()" type="text" class="span marginbottom0px form-control" placeholder="{{ 'label.input.filterbyname' | translate }}">
+    <a href="#/createvendor" class="btn btn-primary pull-right" data-ng-show="PermissionService.showMenu('CREATE_TEMPLATE')"><i class="icon-plus icon-white"></i>Create</a>
+
+    <table class="table">
+        <thead>
+        <tr class="graybg">
+            <th>VendorCode</th>
+            <th>VendorDescription</th>
+            <th>EmailId</th>
+            <th>ConatactName</th>
+            <th>MobileNo</th>
+            <th>AgreementStatus</th>
+            <th>ContentType</th>
+            <th>Country</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="pointer-main" data-ng-repeat="template in vendorDatas | filter:filterText">
+            <td class="pointer" data-ng-click="routeTo(template.id)">{{template.vendorCode}}</td>
+            <td class="pointer" data-ng-click="routeTo(template.id)">{{template.vendorDescription}}</td>
+            <td class="pointer" data-ng-click="routeTo(template.id)">{{template.vendorEmailId}}</td>
+            <td class="pointer" data-ng-click="routeTo(template.id)">{{template.contactName}}</td>
+            <td class="pointer" data-ng-click="routeTo(template.id)">{{template.vendormobileNo}}</td>
+            <td class="pointer" data-ng-click="routeTo(template.id)">{{template.agreementStatus}}</td>
+            <td class="pointer" data-ng-click="routeTo(template.id)">{{template.contentType}}</td>
+             <td class="pointer" data-ng-click="routeTo(template.id)">{{template.vendorCountry}}</td>
+            <td>
+				<a data-ng-show="PermissionService.showMenu('UPDATE_VENDOR')" 
+					href="#/editvendor/{{template.id}}" data-popover="editvendor" 
+					data-popover-trigger="mouseenter">
+                    <i class="icon-edit icon-white"></i>
+                </a>
+                    	
+			</td>
+        </tr>
+        </tbody>
+    </table>
+    
+</div>

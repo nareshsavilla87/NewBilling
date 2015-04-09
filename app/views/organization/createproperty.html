@@ -42,7 +42,7 @@
             	<label class="control-label" for="propertyCode">{{'label.propertycode' | translate }}<span class="required">*</span></label>
             	<div class="controls">
               		<input type="text" name="propertyCode" id="propertyCode" data-ng-model="formData.propertyCode" data-ng-minlength=13 maxlength=13
-              		data-ng-blur="checkProperty(formData.propertyCode)" required data-late-Validate><br/>
+              		data-ng-blur="checkProperty(formData.propertyCode)"  placeholder= "{{ 'placeholder.enter.propertycode.example' | translate }}" required data-late-Validate><br/>
               		<span data-ng-show="createpropertyform.propertyCode.$invalid">
 								<small class="error" data-ng-show="createpropertyform.propertyCode.$error.req">{{'label.required.field' | translate}} </small> 
 								<small class="error" data-ng-show="createpropertyform.propertyCode.$error.minlength && !createpropertyform.propertyCode.$error.req">
