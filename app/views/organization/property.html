@@ -10,7 +10,9 @@
 	</div>
 	</div>
 	<div  class="row-fluid">
+	   <form data-ng-submit="searchPropertyDetails(filterText)" style="margin: 0 0 1%;">
 		<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Enter text to search"> <br>
+		  </form>
 		<table class="table">
 			<thead>
 				<tr class="graybg">
@@ -22,15 +24,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="pointer-main" data-ng-repeat="propertyCode in propertyCodes | filter:filterText">
-					<td class="pointer" >{{propertyCode.propertyCode}}</td>
-					<td class="pointer" >{{propertyCode.propertyType}}</td>
-					<td class="pointer" >{{propertyCode.parcel}}</td>	
-                    <td class="pointer" >{{propertyCode.buildingCode}}</td>	
-					<td class="pointer" >{{propertyCode.precinct}}</td>
+				<tr class="pointer-main" data-ng-repeat="propertyCode in propertyCodes.currentPageItems  | filter:filterText">
+					<td class="pointer" data-ng-click="routeToProperty(propertyCode.id)">{{propertyCode.propertyCode}}</td>
+					<td class="pointer" data-ng-click="routeToProperty(propertyCode.id)">{{propertyCode.propertyType}}</td>
+					<td class="pointer" data-ng-click="routeToProperty(propertyCode.id)">{{propertyCode.parcel}}</td>	
+                    <td class="pointer" data-ng-click="routeToProperty(propertyCode.id)">{{propertyCode.buildingCode}}</td>	
+					<td class="pointer" data-ng-click="routeToProperty(propertyCode.id)">{{propertyCode.precinct}}</td>
 				</tr>
 			</tbody>
 		</table>
+		<ul class="pager">
+        			<li class="previous"><a data-ng-click="propertyCodes.previous()" href="" data-ng-disabled="!propertyCodes.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a data-ng-click="propertyCodes.next()" href=""  data-ng-disabled="!propertyCodes.hasNext()">Next &rarr;</a></li>
+    	</ul>
 	</div>
 	
 	   <script type="text/ng-template" id="uploadProperty.html">
@@ -43,23 +49,21 @@
 				<label ng-show="errorStatus">{{errorStatus}}</label>
 				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	   		</div>
-             <fieldset>
-					<table>
+				 <fieldset>
+                	<table>
 						<tr>
 						  <td width="50%">
-						    <div class="control-group">
-                            <label class="control-label" for="file">{{'label.client.select.file' | translate}}</label>
-                            <div class="controls">
-                           <input type="file" ng-file-select="onFileSelect($files)">
-                            </div>
-                              </div>
-							</td>
+                         <div class="control-group">
+			            <label class="control-label" for="file">{{'label.client.select.file' | translate}}</label>
+                        <div class="controls">                         
+                        <input type="file" ng-file-select="onFileSelect($files)"></div>
+                         </div></td>
                             <td vlign="top">
                                <a ng-click="downloadFile()" data-popover-placement="left" data-popover="Download Sample File" data-popover-trigger="mouseenter"><i class=" icon-download-alt icon-white"></i></a>
                              </td> 
 						</tr>
 					</table> 
-          <fieldset>
+ </fieldset>
         <div class="modal-footer">
         	<button id="cancel" class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
             <button id="submit" class="btn btn-primary" data-ng-disabled="!value" ng-click="approve()">{{'label.confirm' | translate}}</button>

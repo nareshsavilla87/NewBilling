@@ -111,7 +111,7 @@
         </div>
       </div>
 
-      <div class="control-group">
+      <div class="control-group" data-ng-hide="propertyMaster">
         <label class="control-label">{{'label.address1' | translate}}<span class="required">*</span></label>
         <div class="controls">
           <input type="text" id="addressNo" name="address" data-ng-model="formData.addressNo" required data-late-Validate/>
@@ -122,6 +122,19 @@
           </span>
         </div>
       </div>
+       <div class="control-group"  data-ng-show="propertyMaster">
+        <label class="control-label">{{'label.buildingcode' | translate}}<span class="required">*</span></label>
+        <div class="controls">
+          <input type="text" id="addressNo" name="address" data-ng-model="formData.addressNo" data-typeahead="propertyCode.propertyCode as propertyCode.propertyCode for propertyCode in getPropertyCode($viewValue)"
+           autocomplete="off" data-typeahead-min-length="0" data-typeahead-on-select="getPropertyDetails(formData.addressNo)" required data-late-Validate/>
+          <span  data-ng-show="createclientform.address.$invalid">
+              <small class="error" data-ng-show="createclientform.address.$error.req">
+                  {{'label.required.field' | translate}}
+              </small>
+          </span>
+        </div>
+      </div>
+      
       <div class="control-group">
         <label class="control-label">{{'label.street' | translate}}</label>
         <div class="controls">
@@ -130,9 +143,11 @@
       </div>
     <div class="control-group">
         <label class="control-label" for="city">{{'label.city/area' | translate}}<span class="required">*</span></label>
-        <div class="controls">
-          <input type="text" id="city" name="city" data-ng-model="formData.city" autocomplete="off" list ="citylist" data-ng-change="getStateAndCountry(formData.city)" required />
-         
+        <div class="controls" data-ng-hide="propertyMaster">
+          <input type="text" id="city" name="city" data-ng-model="formData.city" autocomplete="off" list ="citylist" data-ng-change="getStateAndCountry(formData.city)" required />  
+        </div>
+        <div class="controls" data-ng-show="propertyMaster">
+          <input type="text" id="city" name="city" data-ng-model="formData.city" readonly required />  
         </div>
       </div>
       <div class="control-group">

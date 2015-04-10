@@ -8,6 +8,7 @@
         scope.cities = [];
         scope.clientCategoryDatas=[];
         scope.groupNameDatas=[];
+        scope.propertyCodes = [];
         
        // var IsClientIndividual = filter('ConfigLookup')('IsClientIndividual');
         var IsClientIndividual =  webStorage.get("client_configuration").IsClientIndividual;
@@ -16,6 +17,9 @@
         }else{
         	scope.formData.entryType ='ORP';
         }
+        
+        scope.propertyMaster = webStorage.get("property-master");
+        
         resourceFactory.clientTemplateResource.get(function(data) {
             scope.offices = data.officeOptions;
             scope.formData.officeId = data.officeId;
@@ -33,6 +37,33 @@
           		scope.formData.country = data.country;
       	  });
         };
+        
+        // for building code base state
+         scope.getPropertyCode = function(query){
+	        	return http.get($rootScope.hostUrl+API_VERSION+'/property/propertycode/', {
+	        	      params: {
+	        	    	  		query: query
+	        	      		   }
+	        	    }).then(function(res){   
+	        	    	 scope.propertyCodes=res.data;				 
+	        	      return scope.propertyCodes;
+	        	    });
+         };   
+         
+        scope.getPropertyDetails=function(propertyCode){
+        	for(var i in scope.propertyCodes){
+        		if(scope.propertyCodes[i].propertyCode == propertyCode){
+        			 scope.formData.street = scope.propertyCodes[i].street;
+        			 scope.formData.city  =  scope.propertyCodes[i].precinct; 
+        			 scope.formData.state = scope.propertyCodes[i].state;
+        			 scope.formData.country = scope.propertyCodes[i].country;
+        			 scope.formData.zipCode = scope.propertyCodes[i].poBox;
+        			 break;
+        		}
+        	}
+        	
+        };
+
         scope.onFileSelect = function($files) {
           scope.file = $files[0];
         };

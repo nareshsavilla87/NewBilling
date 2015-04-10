@@ -1,14 +1,32 @@
 (function(module) {
 	mifosX.controllers = _.extend(module, {
-		PropertyController : function(scope, location,  $modal, route, webStorage,resourceFactory,PermissionService,$upload,$rootScope,API_VERSION) {
+		PropertyController : function(scope, location,  $modal, route, webStorage,resourceFactory,PermissionService,$upload,$rootScope,API_VERSION,paginatorService) {
 	
 			scope.formData={};
 			scope.propertyCodes = [];
 			scope.PermissionService = PermissionService;
-			resourceFactory.propertyCodeResource.query(function(data) {
-				scope.propertyCodes = data;
-			});
+			
+			scope.propertyDetailsFetchFunction = function(offset, limit, callback) {
+				resourceFactory.propertyCodeResource.getAlldetails({offset: offset, limit: limit} , callback);
+			};
+			
+			scope.propertyCodes = paginatorService.paginate(scope.propertyDetailsFetchFunction, 14);
+			
+
+		    scope.searchPropertyDetails123 = function(offset, limit, callback) {
+		    	  resourceFactory.propertyCodeResource.getAlldetails({offset: offset, limit: limit,sqlSearch: scope.filterText } , callback); 
+		     };
+		  		
+		    scope.searchPropertyDetails = function(filterText) {
+		  			scope.propertyCodes = paginatorService.paginate(scope.searchPropertyDetails123, 14);
+		  	};
 		
+			scope.routeToProperty = function(id) {
+				location.path('/viewproperty/' + id);
+			};
+		  	
+		  	
+		  	
 		    /**
 	       	 * Upload property
 	       	 * */
@@ -69,6 +87,7 @@
 	    '$upload',
 	    '$rootScope',
 	    'API_VERSION',
+	    'PaginatorService',
 	    mifosX.controllers.PropertyController 
 	    ]).run(function($log) {
 	    	$log.info("PropertyController initialized");

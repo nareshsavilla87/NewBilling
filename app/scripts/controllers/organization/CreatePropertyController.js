@@ -16,7 +16,7 @@
 				    var str=propertyCode;
 				    scope.precinct=str.substring(0,2);
 				    for(var i in scope.citiesData){
-				    	if(angular.lowercase(scope.citiesData[i].cityCode)==angular.lowercase(scope.precinct)){
+				    	if(angular.lowercase(scope.citiesData[i].cityCode).contains(angular.lowercase(scope.precinct))){
 					  	scope.formData.precinct = scope.citiesData[i].cityName;
 					    scope.formData.unitCode=str.substring(str.length-4);
 				     	scope.formData.floor=str.substring(7,9);
