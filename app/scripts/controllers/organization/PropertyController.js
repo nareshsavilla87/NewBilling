@@ -26,7 +26,6 @@
 			};
 		  	
 		  	
-		  	
 		    /**
 	       	 * Upload property
 	       	 * */
@@ -72,8 +71,31 @@
 	                  $modalInstance.dismiss('cancel');
 	            };
 	        }
+	      	
+	      	
+	        /**
+		      * Delete Property
+		      **/
+		     scope.deleteProperty = function (){
+		    	 $modal.open({
+		    		 templateUrl: 'deletePopupForProperty.html',
+		  	         controller: approve,
+		  	         resolve:{}
+		  	     });
+		     };
+		          
+		     function  approve($scope, $modalInstance) {
+		    	 $scope.approve = function () {
+		    		 resourceFactory.propertyCodeResource.remove({propertyId: routeParams.id} , {} , function() {
+		    			 location.path('/property');
+		             });
+		             $modalInstance.dismiss('delete');
+		      	 };
+		         $scope.cancel = function () {
+		        	 $modalInstance.dismiss('cancel');
+		         };
+		     }
 			
-	        
 		}
 	});
 	mifosX.ng.application.controller('PropertyController',[ 

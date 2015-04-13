@@ -7,18 +7,13 @@
 	        resourceFactory.propertyCodeResource.get({propertyId: routeParams.id} , function(data) {
 	            scope.property = data;                                                
 	        });
-	        scope.deletemessage = function (){
-	            resourceFactory.propertyCodeResource.remove({propertyId: routeParams.id} , {} , function(data) {
-	                  location.path('/discounts');
-	            });
-	         };
 	         
 	         /**
-		      * Delete Discount
+		      * Delete Property
 		      **/
-		     scope.deleteDiscount = function (){
+		     scope.deleteProperty = function (){
 		    	 $modal.open({
-		    		 templateUrl: 'deletePopupForDiscount.html',
+		    		 templateUrl: 'deletePopupForProperty.html',
 		  	         controller: approve,
 		  	         resolve:{}
 		  	     });
@@ -26,8 +21,8 @@
 		          
 		     function  approve($scope, $modalInstance) {
 		    	 $scope.approve = function () {
-		    		 resourceFactory.discountResource.remove({discountId: routeParams.id} , {} , function() {
-		    			 location.path('/discounts');
+		    		 resourceFactory.propertyCodeResource.remove({propertyId: routeParams.id} , {} , function() {
+		    			 location.path('/property');
 		             });
 		             $modalInstance.dismiss('delete');
 		      	 };
