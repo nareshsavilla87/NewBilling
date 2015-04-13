@@ -3,7 +3,8 @@
     	<ul class="breadcrumb">
         	<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
           	<li><a href="#/property">{{'label.property' | translate}}</a> <span class="divider">/</span></li>
-          	<li class="active">{{'label.create.new.property' | translate}}</li>
+           <li><a href="#/viewproperty/{{propertyId}}">{{formData.propertyCode}}</a> <span class="divider">/</span></li>
+          	<li class="active">Edit Property</li>
         </ul>
     </div>
     
@@ -123,7 +124,7 @@
             	</div>
           	</div>
           </td><td align="right" colspan="2">
-            	<a href="#/property"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+            	<a href="#/viewproperty/{{propertyId}}"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
             	<button  id="submit" type="submit" data-ng-disabled="!editpropertyform.$valid" class="btn btn-primary">{{'button.save'| translate}}</button>
           	</td></tr></table>
           

@@ -2624,6 +2624,13 @@
 "error.msg.invalid.property.code":"Invalid Property Code",
 "dialog.upload.property.data":"Property Data Upload",
 "placeholder.enter.propertycode.example":"Ex:PA04T06030013",
+"label.viewproperty":"View Property",
+"label.editproperty":"Edit Property",
+"label.deleteproperty":"Delete Property",
+"table.property.refType":"refType",
+"table.property.propertycode":"propertyCode",
+"table.property.transactionDate":"transactionDate",
+"table.property.status":"status",
 
 "#vendor":".......",
 "label.vendor.code":"Vendor Code",

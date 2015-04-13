@@ -1,12 +1,20 @@
 (function(module) {
 	mifosX.controllers = _.extend(module, {
-		EditPropertyController : function(scope, location,  $modal, route, webStorage,resourceFactory,PermissionService) {
+		EditPropertyController : function(scope, location,  $modal, route, webStorage,resourceFactory,PermissionService,routeParams) {
 	
 			scope.propertyTypes = [];
 			scope.formData = {};
 			scope.PermissionService = PermissionService;
-			resourceFactory.propertyCodeTemplateResource.get(function(data) {
+			scope.propertyId= routeParams.id;
+			resourceFactory.propertyCodeResource.get({propertyId: routeParams.id,template:'true'},function(data) {
+				scope.formData = data;
 				scope.propertyTypes = data.propertyTypes;
+				for(var i in scope.propertyTypes){
+					if(scope.propertyTypes[i].id==scope.formData.propertyTypeId){
+						scope.formData.propertyType=scope.propertyTypes[i].id;
+						break;
+					}
+				}
 				scope.citiesData = data.citiesData;
 			});
 			
@@ -59,8 +67,13 @@
 			  
 			scope.submit = function() { 
 				
-				resourceFactory.propertyCodeResource.save(scope.formData,function(data){
-				location.path('/property');
+				delete this.formData.id;
+				delete this.formData.propertyTypes;
+				delete this.formData.citiesData;
+				delete this.formData.clientId;
+				delete this.formData.propertyTypeId;
+				resourceFactory.propertyCodeResource.update({propertyId : routeParams.id}, scope.formData,function(data){
+				location.path('/viewproperty/'+data.resourceId);
 				});
 			}; 
 		}
@@ -73,6 +86,7 @@
 	    'webStorage',
 	    'ResourceFactory',
 	    'PermissionService',
+	    '$routeParams',
 	    mifosX.controllers.EditPropertyController 
 	    ]).run(function($log) {
 	    	$log.info("EditPropertyController initialized");

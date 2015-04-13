@@ -76,7 +76,8 @@
 	        /**
 		      * Delete Property
 		      **/
-		     scope.deleteProperty = function (){
+		     scope.deleteProperty = function (id){
+		    	 scope.propertyId=id;
 		    	 $modal.open({
 		    		 templateUrl: 'deletePopupForProperty.html',
 		  	         controller: approve,
@@ -86,17 +87,40 @@
 		          
 		     function  approve($scope, $modalInstance) {
 		    	 $scope.approve = function () {
-		    		 resourceFactory.propertyCodeResource.remove({propertyId: routeParams.id} , {} , function() {
-		    			 location.path('/property');
+		    		 resourceFactory.propertyCodeResource.remove({propertyId: scope.propertyId} , {} , function(data) {
+		    			 $modalInstance.dismiss('delete');
+		    			  route.reload();
 		             });
-		             $modalInstance.dismiss('delete');
 		      	 };
 		         $scope.cancel = function () {
 		        	 $modalInstance.dismiss('cancel');
 		         };
 		     }
-			
-		}
+		     
+		     
+		     
+		   	var propertyhistoryController=function($scope,$modalInstance){
+
+	    		$scope.searchHistory123 = function(offset, limit, callback) {
+			    	  resourceFactory.propertyCodeResource.getAlldetails({otherResource:'history',offset: offset, limit: limit ,sqlSearch: scope.propertyCode } , callback); 
+			     };
+			  		
+			     $scope.propertyhistory = paginatorService.paginate($scope.searchHistory123, 14);
+			     
+	    		$scope.accept = function(){
+	    		 $modalInstance.close('delete');
+	    		};
+	        };
+	    	
+    	   scope.propertyHistoryPopup = function(propertyCode){
+    		   scope.propertyCode = propertyCode;
+               $modal.open({
+                   templateUrl: 'propertyhistory.html',
+                   controller: propertyhistoryController,
+                   resolve:{}
+               });
+    	     };
+		  }
 	});
 	mifosX.ng.application.controller('PropertyController',[ 
 	    '$scope',

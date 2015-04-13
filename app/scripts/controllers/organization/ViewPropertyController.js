@@ -22,9 +22,9 @@
 		     function  approve($scope, $modalInstance) {
 		    	 $scope.approve = function () {
 		    		 resourceFactory.propertyCodeResource.remove({propertyId: routeParams.id} , {} , function() {
+		    			 $modalInstance.dismiss('delete');
 		    			 location.path('/property');
 		             });
-		             $modalInstance.dismiss('delete');
 		      	 };
 		         $scope.cancel = function () {
 		        	 $modalInstance.dismiss('cancel');

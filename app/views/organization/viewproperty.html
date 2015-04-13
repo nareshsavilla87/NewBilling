@@ -9,47 +9,64 @@
 			<div class="btn-group">
 				<a data-ng-show="PermissionService.showMenu('UPDATE_PROPERTY')"href="#/editproperty/{{property.id}}" 
 				 class="btn btn-primary"><i class="icon-edit icon-white"></i>{{'button.edit' | translate}}</a>
-				<a data-ng-show="PermissionService.showMenu('DELETE_PROPERTY')"data-ng-click="deleteProperty()" class="btn btn-primary"><i
+				<a data-ng-show="property.status=='VACANT'&&PermissionService.showMenu('DELETE_PROPERTY')"data-ng-click="deleteProperty()" class="btn btn-primary"><i
 					class="icon-trash icon-white"></i> {{'button.delete' | translate}}</a>
 			</div>
 		</div>
 	</div>
 
-	<div class="row paddedleft">
+	<div class="row-fluid">
 		<h3>{{property.propertyCode}}</h3>
-		<table style="width:100%;">
+		<div class="span6">
+		<table class="fullwidth">
 			<tr>
-				<td>{{'label.propertycode' | translate }}</td>
-				<td>{{property.propertyCode}}</td>
+				<td width="35%">{{ 'label.propertytype' | translate }}:</td>
+				<td width="65%">{{property.propertyType}}</td>
 			</tr>
 			<tr>
-				<td>{{ 'label.propertytype' | translate }}</td>
-				<td>{{property.propertyType}}</td>
-			</tr>
-			<tr>
-				<td>{{'label.unitcode' | translate }}</td>
+				<td>{{'label.unitcode' | translate }}:</td>
 				<td>{{property.unitCode}}</td>
 			</tr>
 			<tr>
-				<td>{{'label.buildingcode' | translate }}</td>
+				<td>{{'label.buildingcode' | translate }}:</td>
 				<td>{{property.buildingCode}}</td>
 			</tr>
 			<tr>
-				<td>{{'label.parcel' | translate }}</td>
+				<td>{{'label.parcel' | translate }}:</td>
 				<td>{{property.parcel}}</td>
 			</tr>
 			<tr>
-				<td>{{'label.floor' | translate }}</td>
+				<td>{{'label.floor' | translate }}:</td>
 				<td>{{property.floor}}</td>
 			</tr>
 		</table>
 	</div>
-	
+	   <div class="span4">
+					<table class="fullwidth">
+					<tr>
+				<td width="35%">{{'label.status' | translate }}:</td>
+				<td width="65%">{{property.status}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.state' | translate }}: </td>
+				<td>{{property.precinct}},{{property.state}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.country' | translate }}:</td>
+				<td>{{property.country}}</td>
+			</tr>
+			</table>
+	</div>
+	</div>
 	<script type="text/ng-template" id="deletePopupForProperty.html">
     	<div class="modal-header silver">
         	<h3 class="bolder">Delete Property Definition</h3>
         </div>
-
+        <div class="error" ng-show="errorStatus || errorDetails">
+				<label>{{'label.contract.error' | translate}}</label>
+				<label ng-show="errorStatus">{{errorStatus}}</label>
+				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	   		</div>    
         <div class="modal-body style="height:60px;">
             <h4>Are you sure?</h4>
         </div>
