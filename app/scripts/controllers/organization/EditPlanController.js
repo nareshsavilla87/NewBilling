@@ -80,6 +80,10 @@
              for(var i in scope.selectedServices){
             	 scope.formData.services[i] = scope.selectedServices[i].id;
              }
+             if(scope.formData.isPrepaid){
+             	scope.formData.units =0;
+             	scope.formData.volume = "None";
+             	}
              scope.formData.locale = $rootScope.locale.code;
              scope.formData.dateFormat = 'dd MMMM yyyy';
              scope.formData.startDate = dateFilter(scope.date.startDate,scope.formData.dateFormat);

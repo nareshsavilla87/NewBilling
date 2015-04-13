@@ -51,6 +51,20 @@
   "label.heading.frequentactivities": "Frequent Activities",
   "label.heading.obs": "Open Billing System",
   "label.heading.definitions" :"Definitions",
+  "label.gender":"gender",
+  "label.financeId":"Finance Id",
+  "label.nationality":"Nationality",
+  "label.jobTitle":"Job Title",
+  "label.dateOfBirth" :"Date Of Birth",
+  "label.preferredLang":"Prefer Language",
+  "label.remarks":"Remarks",
+  "label.idType":"Identification Type",
+  "label.idNumber":"Identification Number",
+  "label.ageGroup":"Age Group",
+  "label.utsCustomerId":"UTS Customer Id",
+  "label.preferredCommunication":"Preferred Communication",
+  
+  
 
   
 
@@ -2586,6 +2600,7 @@
 "table.heading.parcel":"Parcel",
 "table.heading.buildingcode":"Building Code",
 "table.heading.precinct":"Precinct",
+"table.heading.allocated" :"Allocated",
 "label.create.new.property":"Create Property",
 "label.propertytype":"Property Type",
 "label.propertycode":"Property Code",

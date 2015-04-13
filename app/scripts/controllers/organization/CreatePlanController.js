@@ -81,6 +81,10 @@
         	scope.formData.dateFormat = 'dd MMMM yyyy';
         	scope.formData.startDate = reqDate;
         	scope.formData.endDate = reqEndDate;
+        	if(scope.formData.isPrepaid){
+        	scope.formData.units =0;
+        	scope.formData.volume = "None";
+        	}
              var temp = [];
              for(var i in scope.selectedServices){
                  temp[i] = scope.selectedServices[i].id;

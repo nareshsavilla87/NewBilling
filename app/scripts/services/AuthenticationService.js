@@ -36,6 +36,10 @@
                         	  
                         }if(data.globalConfiguration[i].name=="property-master"){
                         	  webStorage.add("property-master",data.globalConfiguration[i].enabled);
+
+                        }if(data.globalConfiguration[i].name=="client-additional-data"){
+                        	  webStorage.add("client-additional-data",data.globalConfiguration[i].enabled);
+
                         }
                         
                     }
