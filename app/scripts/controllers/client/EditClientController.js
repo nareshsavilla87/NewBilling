@@ -102,8 +102,10 @@
             scope.formData.utsCustomerId = data.clientAdditionalData.utsCustomerId;
             scope.formData.financeId = data.clientAdditionalData.financeId;
             scope.formData.preferredCommunication = data.clientAdditionalData.preferCommId;
+            if(data.clientAdditionalData.dateOfBirth){
              var dateOfBirth = dateFilter(data.clientAdditionalData.dateOfBirth,'dd MMMM yyyy');
             scope.date.dateOfBirth = new Date(dateOfBirth);
+            }
             }
           
             var actDate = dateFilter(data.activationDate,'dd MMMM yyyy');
@@ -121,7 +123,8 @@
         };
         
         scope.submit = function() {
-	     this.formData.officeId=scope.officeId;
+	         this.formData.officeId=scope.officeId;
+	     	 this.formData.title=scope.source;
              this.formData.clientCategory=scope.clientCategory;
              this.formData.groupId=scope.groupId;
              this.formData.locale = $rootScope.locale.code;
