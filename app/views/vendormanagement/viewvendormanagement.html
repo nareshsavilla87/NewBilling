@@ -1,15 +1,15 @@
-<div  ng-controller="ViewVendorController">
+<div data-ng-controller="ViewVendorController">
 	<div class="paddedbottom10">
 		<ul class="breadcrumb">
 	        <li><a href="#/vendormanagement">{{'label.vendor.vendormanagement' | translate}}</a> <span class="divider">/</span></li>
-	        <li class="active">{{vendorData.vendorCode}}{{idActiveAgreement}}&nbsp;&nbsp;</li>
+	        <li class="active">{{vendorData.vendorCode}}&nbsp;&nbsp;</li>
 	    </ul>
 	    <div class="pull-right">
 	      <div class="btn-group">
 	      	  <a data-ng-show="PermissionService.showMenu('CREATE_VENDORAGREEMENT')" href="#/createvendoragreement/{{vendorData.id}}" class="btn btn-primary">
 	      	  	<i class="icon-plus icon-white"></i>Create VendorAgreement</a>
-	          <a ng-show="PermissionService.showMenu('UPDATE_VENDOR')" href="#/editvendormanagement/{{vendorData.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
-	     	  <a ng-hide="!PermissionService.showMenu('DELETE_VENDOR') || idActiveAgreement == 'Active'" data-ng-click="deleteVendor(vendorRouteParamId)" class="btn btn-primary"><i class="icon-edit icon-white"></i> Delete</a>
+	          <a data-ng-show="PermissionService.showMenu('UPDATE_VENDOR')" href="#/editvendormanagement/{{vendorData.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
+	     	  <a data-ng-hide="!PermissionService.showMenu('DELETE_VENDOR') || idActiveAgreement == 'Active'" data-ng-click="deleteVendor(vendorRouteParamId)" class="btn btn-primary"><i class="icon-edit icon-white"></i> Delete</a>
 	      </div>
 	    </div>
 	</div>
@@ -79,12 +79,12 @@
             </tr>
           </thead>
           <tbody>
-             <tr data-ng-show="agreement.id" data-ng-repeat="agreement in agreements | filter:filterText">      
-                <td>{{agreement.agreementStatus}}</td>
-                <td>{{agreement.agreementStartDate | DateFormat}}</td>
-                <td>{{agreement.agreementEndDate | DateFormat}}</td> 
-                <td>{{agreement.contentType}}</td>
-                <td><a data-ng-show="PermissionService.showMenu('UPDATE_VENDORAGREEMENT')" href="#/editvendoragreement/{{agreement.id}}/{{vendorData.id}}" 
+             <tr class="pointer-main" data-ng-show="agreement.id" data-ng-repeat="agreement in agreements | filter:filterText">      
+                <td class="pointer" data-ng-click="routeTo(vendorData.id,agreement.id)">{{agreement.agreementStatus}}</td>
+                <td class="pointer" data-ng-click="routeTo(vendorData.id,agreement.id)">{{agreement.agreementStartDate | DateFormat}}</td>
+                <td class="pointer" data-ng-click="routeTo(vendorData.id,agreement.id)">{{agreement.agreementEndDate | DateFormat}}</td> 
+                <td class="pointer" data-ng-click="routeTo(vendorData.id,agreement.id)">{{agreement.contentType}}</td>
+                <td class="pointer" data-ng-click="routeTo(vendorData.id,agreement.id)"><a data-ng-show="PermissionService.showMenu('UPDATE_VENDORAGREEMENT')" href="#/editvendoragreement/{{agreement.id}}/{{vendorData.id}}" 
                        data-popover="Edit Vendor Agreement" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i> </a>
                 </td>                  
              </tr>

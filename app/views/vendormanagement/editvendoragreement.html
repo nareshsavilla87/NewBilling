@@ -1,11 +1,12 @@
+<div data-ng-controller="EditVendorAgreementController">
 <div>
 	<ul class="breadcrumb">
 		<li><a href="#/vendormanagement">{{'label.vendor.vendormanagement' | translate}}</a> <span class="divider">/</span></li>
-		<!-- <li><a href="#/vendormanagement/{{vendorId}}">viewvendor</a> <span class="divider">/</span></li> -->
+		<li><a href="#/viewvendormanagement/{{vendorId}}">viewvendor</a> <span class="divider">/</span></li>
 		<li class="active">Edit Agreement</li>
 	</ul>
 </div>
-<form name="editvendoragreeform" class="form-horizontal well" data-ng-controller="EditVendorAgreementController" data-ng-submit="submit()">
+<form name="editvendoragreeform" class="form-horizontal well" data-ng-submit="submit()">
 	<div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label> 
 		<label data-ng-show="errorStatus">{{errorStatus}}</label> 
@@ -151,3 +152,4 @@
 	</div>
 
 </form>
+</div>
