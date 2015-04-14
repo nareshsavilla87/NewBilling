@@ -42,9 +42,11 @@
 				          scope.errorDetails = [];
 			              scope.errorDetails.push({code: 'error.msg.invalid.property.code'});
 			              $("#propertyCode").addClass("validationerror");
+			          
 				    }else{
-				    	scope.errorDetails = [];
-				    	$("#propertyCode").removeClass("validationerror");
+				    	 delete scope.errorDetails;
+				    	 $("#propertyCode").removeClass("validationerror");
+				    	 
 				    }
 		    	}else{
 		    		delete scope.formData.unitCode;
@@ -60,7 +62,7 @@
 			scope.submit = function() { 
 				
 				resourceFactory.propertyCodeResource.save(scope.formData,function(data){
-				location.path('/property');
+				location.path('/viewproperty/'+data.resourceId);
 				});
 			}; 
 		}

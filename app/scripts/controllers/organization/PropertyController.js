@@ -33,12 +33,12 @@
 	         scope.uploadProperty = function (){
 	          	 $modal.open({
 	  	                templateUrl: 'uploadProperty.html',
-	  	                controller: approve,
+	  	                controller: approve1,
 	  	                resolve:{}
 	  	        });
 	         };
 	          
-	      	function  approve($scope, $modalInstance) {
+	      	function  approve1($scope, $modalInstance) {
 	      		
 	      		 $scope.value=false;
 	      		 $scope.onFileSelect = function($files) {
@@ -48,9 +48,9 @@
 		             }
 		           };
 		            
-		        $scope.downloadFile=function(){
-		          window.open("csv/Property Master.csv");
-		        } ;  
+		           $scope.downloadFile=function(){
+		            window.open("csv/Property Master.csv");
+		           };  
 		           
 	      		$scope.approve = function () {
 	      			 $upload.upload({/*41.75.85.206:8080*/

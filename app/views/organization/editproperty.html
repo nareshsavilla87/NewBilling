@@ -8,15 +8,14 @@
         </ul>
     </div>
     
-    <div class="error" data-ng-show="errorStatus || errorDetails">
+    <form name="editpropertyform" novalidate class="form-horizontal well" data-ng-submit="submit()">
+       <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label data-ng-show="errorStatus">{{errorStatus}}</label>
 		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	</div>
-	
-    <form name="editpropertyform" novalidate class="form-horizontal well" data-ng-submit="submit()">
     	<fieldset>
-        	<legend>Property Definition</legend>
+        	<legend>Edit Property Definition</legend>
         <table>		 
 		<tr>
 	      <td>
