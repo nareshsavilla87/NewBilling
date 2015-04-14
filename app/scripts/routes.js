@@ -51,6 +51,10 @@
         templateUrl: 'views/vendormanagement/editvendoragreement.html'
       })
       
+      .when('/viewvendoragreement/:vendorId/:agreementId', {
+        templateUrl: 'views/vendormanagement/viewvendoragreement.html'
+      })
+      
       .when('/createtemplate', {
         templateUrl: 'views/templates/createtemplate.html'
       })
