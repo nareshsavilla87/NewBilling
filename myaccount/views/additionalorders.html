@@ -76,7 +76,7 @@
 		    		<span style="color:#0088cc;font-size:2.5em;">{{pd.duration}}</span>
 		    		<span class="pull-right">
 		    			<span class="dollars">{{pd.price}}</span>
-		    			<a class="btn btn-primary cust-btn" href="#/paymentprocess/additionalorders/{{pd.id}}/{{planId}}/{{pd.price}}">
+		    			<a class="btn btn-primary cust-btn" data-ng-click="checkingRecurringStatus(pd)">
 		    				  {{'label.book.order'|translate}}
 		    			</a>
 		    		</span>

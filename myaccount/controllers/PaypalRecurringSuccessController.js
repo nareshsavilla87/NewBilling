@@ -1,8 +1,13 @@
 PaypalRecurringSuccessController = function(rootScope,RequestSender,location,localStorageService,routeParams) {
  
-    		
+	
+		var screenName 		= routeParams.screenName||"";
+		var clientId 		= routeParams.clientId||"";
+		var planId 			= routeParams.planId||"";
+		var priceId 		= routeParams.priceId||"";
+	
 		localStorageService.add("gatewayStatus","RECURRING");
-		location.path("/orderbookingscreen/additionalorders/1348/59/99");
+		location.path("/orderbookingscreen/"+screenName+"/"+clientId+"/"+planId+"/"+priceId);
         	
         	
         	        	

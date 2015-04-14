@@ -82,3 +82,4 @@ document.write("<script type='text/javascript' src='./controllers/PrepaidPayment
 document.write("<script type='text/javascript' src='./controllers/TwoCheckoutSuccessController.js'></script>");
 document.write("<script type='text/javascript' src='./controllers/InterswitchIntegrationController.js'></script>");
 document.write("<script type='text/javascript' src='./controllers/PaypalRecurringSuccessController.js'></script>");
+document.write("<script type='text/javascript' src='./controllers/PaypalRecurringController.js'></script>");
