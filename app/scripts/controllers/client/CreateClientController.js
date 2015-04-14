@@ -91,16 +91,22 @@
                   if (!scope.$$phase) {
                     scope.$apply();
                   }
-                  if(PermissionService.showMenu('READ_CLIENT'))
+                  if(scope.clientAddInfo){
+            		  location.path('/clientadditionalinfo/' + data.resourceId);
+            	  }else if(PermissionService.showMenu('READ_CLIENT')){
                 	  location.path('/viewclient/'+data.resourceId);
-                  else
+            	  }else{
                 	  location.path('/clients');
+            	  }
                 });
               } else{
-            	  if(PermissionService.showMenu('READ_CLIENT'))
+            	  if(scope.clientAddInfo){
+            		  location.path('/clientadditionalinfo/' + data.resourceId);
+            	  }else if(PermissionService.showMenu('READ_CLIENT')){
             		  location.path('/viewclient/' + data.resourceId);
-            	  else
+            	  }else{
             		  location.path('/clients');
+            	  }
               }
             },function(errData){
           	  scope.flag = false;

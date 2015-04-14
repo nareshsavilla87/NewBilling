@@ -84,8 +84,14 @@
       .when('/createclient', {
         templateUrl: 'views/clients/createclient.html'  
       })
+      .when('/clientadditionalinfo/:id', {
+        templateUrl: 'views/clients/createclientadditionalinfo.html'  
+      })
       .when('/editclient/:id', {
         templateUrl : 'views/clients/editclient.html'
+      })
+      .when('/editadditionaldata/:id', {
+        templateUrl : 'views/clients/editadditionalinfo.html'
       })
       .when('/viewclient/:id', {
         templateUrl: 'views/clients/viewclient.html'
