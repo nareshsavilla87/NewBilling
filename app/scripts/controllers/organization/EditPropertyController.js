@@ -1,12 +1,20 @@
 (function(module) {
 	mifosX.controllers = _.extend(module, {
-		CreatePropertyController : function(scope, location,  $modal, route, webStorage,resourceFactory,PermissionService) {
+		EditPropertyController : function(scope, location,  $modal, route, webStorage,resourceFactory,PermissionService,routeParams) {
 	
 			scope.propertyTypes = [];
 			scope.formData = {};
 			scope.PermissionService = PermissionService;
-			resourceFactory.propertyCodeTemplateResource.get(function(data) {
+			scope.propertyId= routeParams.id;
+			resourceFactory.propertyCodeResource.get({propertyId: routeParams.id,template:'true'},function(data) {
+				scope.formData = data;
 				scope.propertyTypes = data.propertyTypes;
+				for(var i in scope.propertyTypes){
+					if(scope.propertyTypes[i].id==scope.formData.propertyTypeId){
+						scope.formData.propertyType=scope.propertyTypes[i].id;
+						break;
+					}
+				}
 				scope.citiesData = data.citiesData;
 			});
 			
@@ -59,13 +67,18 @@
 			  
 			scope.submit = function() { 
 				
-				resourceFactory.propertyCodeResource.save(scope.formData,function(data){
-				location.path('/property');
+				delete this.formData.id;
+				delete this.formData.propertyTypes;
+				delete this.formData.citiesData;
+				delete this.formData.clientId;
+				delete this.formData.propertyTypeId;
+				resourceFactory.propertyCodeResource.update({propertyId : routeParams.id}, scope.formData,function(data){
+				location.path('/viewproperty/'+data.resourceId);
 				});
 			}; 
 		}
 	});
-	mifosX.ng.application.controller('CreatePropertyController',[ 
+	mifosX.ng.application.controller('EditPropertyController',[ 
 	    '$scope',
 	    '$location',
 	    '$modal',
@@ -73,9 +86,10 @@
 	    'webStorage',
 	    'ResourceFactory',
 	    'PermissionService',
-	    mifosX.controllers.CreatePropertyController 
+	    '$routeParams',
+	    mifosX.controllers.EditPropertyController 
 	    ]).run(function($log) {
-	    	$log.info("CreatePropertyController initialized");
+	    	$log.info("EditPropertyController initialized");
 	    });
 }(mifosX.controllers || {}));
 

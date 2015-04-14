@@ -295,12 +295,15 @@ define(['underscore', 'mifosX'], function() {
       'templates/EditTemplateController',
       'organization/PropertyController',
       'organization/CreatePropertyController',
+      'organization/ViewPropertyController',
+      'organization/EditPropertyController',
       'vendor/VendorController',
       'vendor/ViewVendorController',
       'vendor/CreateVendorController',
       'vendor/EditVendorController',
       'vendor/CreateVendorAgreementController',
       'vendor/EditVendorAgreementController',
+      'vendor/ViewVendorAgreementController',
 
 
     ],

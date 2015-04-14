@@ -51,6 +51,10 @@
         templateUrl: 'views/vendormanagement/editvendoragreement.html'
       })
       
+      .when('/viewvendoragreement/:vendorId/:agreementId', {
+        templateUrl: 'views/vendormanagement/viewvendoragreement.html'
+      })
+      
       .when('/createtemplate', {
         templateUrl: 'views/templates/createtemplate.html'
       })
@@ -1032,6 +1036,12 @@
       })
       .when('/createproperty', {
         templateUrl: 'views/organization/createproperty.html'
+      })
+      .when('/viewproperty/:id', {
+        templateUrl: 'views/organization/viewproperty.html'
+      })
+      .when('/editproperty/:id', {
+        templateUrl: 'views/organization/editproperty.html'
       })
       ;
      

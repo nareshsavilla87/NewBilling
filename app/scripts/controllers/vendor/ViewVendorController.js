@@ -18,6 +18,10 @@
         	}
         });
         
+        scope.routeTo = function(vendorId,agreementId){
+            location.path('/viewvendoragreement/'+ vendorId+'/'+agreementId);
+        };
+        
         /**
        	 * Delete Vendor
        	 * */
