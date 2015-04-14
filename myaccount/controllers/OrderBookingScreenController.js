@@ -46,6 +46,15 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 							localStorageService.remove("gatewayStatus");
 							successFun(planData);
 						});
+					}
+					else if(gatewayStatus == "RECURRING"){
+						orderBookingData.status 	= gatewayStatus;
+						orderBookingData.actionType	= screenName;
+						RequestSender.scheduleOrderResource.save({clientId : clientId},orderBookingData,function(data){
+							localStorageService.remove("gatewayStatus");
+							successFun(planData);
+						});
+						
 					}else{
 						RequestSender.bookOrderResource.save({clientId : clientId},orderBookingData,function(data){
 							successFun(planData);
