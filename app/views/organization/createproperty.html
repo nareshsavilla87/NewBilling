@@ -1,5 +1,4 @@
- <div  data-ng-controller="CreatePropertyController" >
- 	<div>
+	<div>
     	<ul class="breadcrumb">
         	<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
           	<li><a href="#/property">{{'label.property' | translate}}</a> <span class="divider">/</span></li>
@@ -7,13 +6,12 @@
         </ul>
     </div>
     
+    <form name="createpropertyform" novalidate class="form-horizontal well"  data-ng-controller="CreatePropertyController"  data-ng-submit="submit()">
     <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label data-ng-show="errorStatus">{{errorStatus}}</label>
 		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
-	</div>
-	
-    <form name="createpropertyform" novalidate class="form-horizontal well" data-ng-submit="submit()">
+	    </div>
     	<fieldset>
         	<legend>Property Definition</legend>
         <table>		 
@@ -126,8 +124,5 @@
             	<a href="#/property"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
             	<button  id="submit" type="submit" data-ng-disabled="!createpropertyform.$valid" class="btn btn-primary">{{'button.save'| translate}}</button>
           	</td></tr></table>
-          
         </fieldset>
-        
      </form>
-</div>
