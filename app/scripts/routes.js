@@ -1031,6 +1031,12 @@
       .when('/createproperty', {
         templateUrl: 'views/organization/createproperty.html'
       })
+      .when('/viewproperty/:id', {
+        templateUrl: 'views/organization/viewproperty.html'
+      })
+      .when('/editproperty/:id', {
+        templateUrl: 'views/organization/editproperty.html'
+      })
       ;
      
     $locationProvider.html5Mode(false);
