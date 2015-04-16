@@ -527,12 +527,14 @@
  
         	scope.indentitiesSubTab = "active";
         	scope.documnetsUploadsTab = "";
+        	scope.additionaldataSubTab = "";
         	scope.creditCardDetailsTab = "";
         	scope.ACHDetailsTab = "";
         	scope.ChildDetailsTab = "";
         	
         	if(scope.displayTab == "documents"){
         		scope.indentitiesSubTab = "";
+        		scope.additionaldataSubTab = "";
             	scope.documnetsUploadsTab = "active";
             	scope.creditCardDetailsTab = "";
             	scope.ACHDetailsTab = "";
@@ -540,17 +542,29 @@
             	scope.displayTab = "";
             	scope.documnetsUploadsTabFun();
         		
+        	}else if(scope.displayTab == "additionaldata"){
+        		scope.indentitiesSubTab = "";
+            	scope.documnetsUploadsTab = "";
+            	scope.additionaldataSubTab = "active";
+            	scope.creditCardDetailsTab = "";
+            	scope.ACHDetailsTab = "";
+            	scope.ChildDetailsTab="";
+            	scope.displayTab = "";
+            	scope.additionalDataTabFun();
         	}else if(scope.displayTab == "creditCardDetails"){
         		scope.indentitiesSubTab = "";
             	scope.documnetsUploadsTab = "";
+            	scope.additionaldataSubTab = "";
             	scope.creditCardDetailsTab = "active";
             	scope.ACHDetailsTab = "";
             	scope.ChildDetailsTab="";
             	scope.displayTab = "";
             	scope.creditCardDetailsTabFun();
+            	
         	}else if(scope.displayTab == "ACHDetailsTab"){
         		scope.indentitiesSubTab = "";
             	scope.documnetsUploadsTab = "";
+            	scope.additionaldataSubTab = "";
             	scope.creditCardDetailsTab = "";
             	scope.ACHDetailsTab = "active";
             	scope.ChildDetailsTab = "";
@@ -560,6 +574,7 @@
         		scope.indentitiesSubTab = "";
             	scope.documnetsUploadsTab = "";
             	scope.creditCardDetailsTab = "";
+            	scope.additionaldataSubTab = "";
             	scope.ACHDetailsTab = "";
             	scope.ChildDetailsTab = "active";
             	scope.displayTab = "";
@@ -618,6 +633,7 @@
         scope.indentitiesTabFun = function(){
         	
         	scope.indentitiesSubTab = "active";
+        	scope.additionaldataSubTab ="";
         	scope.documnetsUploadsTab = "";
         	scope.creditCardDetailsTab = "";
         	scope.ACHDetailsTab = "";
@@ -641,6 +657,7 @@
         	
         	scope.indentitiesSubTab = "";
         	scope.documnetsUploadsTab = "active";
+        	scope.additionaldataSubTab ="";
         	scope.creditCardDetailsTab = "";
         	scope.ACHDetailsTab = "";
         	scope.ChildDetailsTab = "";
@@ -656,6 +673,7 @@
         	
         	scope.indentitiesSubTab = "";
         	scope.documnetsUploadsTab = "";
+        	scope.additionaldataSubTab ="";
         	scope.creditCardDetailsTab = "active";
         	scope.ACHDetailsTab = "";
         	scope.ChildDetailsTab = "";
@@ -713,11 +731,27 @@
             });
         };
         
+           scope.additionalDataTabFun = function(){
+        	scope.indentitiesSubTab = "";
+        	scope.documnetsUploadsTab = "";
+        	scope.creditCardDetailsTab = "";
+        	scope.additionaldataSubTab = "active";
+        	scope.ACHDetailsTab = "";
+        	scope.ChildDetailsTab = "";
+        	
+        	//credit card details
+            resourceFactory.clientAdditionalResource.get({clientId: routeParams.id}, function(data) {
+              scope.additionalDatas = data;
+              console.log(scope.additionalDatas);
+            });
+        };
+        
         scope.ACHDetailsTabFun = function(){
         	
         	scope.indentitiesSubTab = "";
         	scope.documnetsUploadsTab = "";
         	scope.creditCardDetailsTab = "";
+        	scope.additionaldataSubTab ="";
         	scope.ACHDetailsTab = "active";
         	scope.ChildDetailsTab = "";
         	//credit card details
@@ -779,6 +813,7 @@
         	scope.indentitiesSubTab = "";
         	scope.documnetsUploadsTab = "";
         	scope.creditCardDetailsTab = "";
+        	scope.additionaldataSubTab ="";
         	scope.ACHDetailsTab = "";
         	scope.ChildDetailsTab = "active";
         	

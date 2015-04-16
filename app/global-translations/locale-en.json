@@ -51,6 +51,7 @@
   "label.heading.frequentactivities": "Frequent Activities",
   "label.heading.obs": "Open Billing System",
   "label.heading.definitions" :"Definitions",
+  "label.createclientadditionalinfo":"Create Client Additional Info",
   "label.gender":"gender",
   "label.financeId":"Finance Id",
   "label.nationality":"Nationality",
@@ -63,9 +64,7 @@
   "label.ageGroup":"Age Group",
   "label.utsCustomerId":"UTS Customer Id",
   "label.preferredCommunication":"Preferred Communication",
-  
-  
-
+  "tab.additionalinfo":"Additional Info",  
   
 
  "# common table headings":"....",

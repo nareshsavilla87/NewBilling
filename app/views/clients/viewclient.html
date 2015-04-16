@@ -267,6 +267,7 @@
         		<div class="tabbable" >
   					<ul class="nav nav-tabs">
 				    	<li class={{indentitiesSubTab}}><a data-ng-click="indentitiesTabFun()" data-toggle="tab" >{{'tab.identities' | translate}}</a></li>
+				    	<li class={{additionaldataSubTab}}><a data-ng-click="additionalDataTabFun()" data-toggle="tab" >{{'tab.additionalinfo' | translate}}</a></li>
 				    	<li class={{documnetsUploadsTab}}><a data-ng-click="documnetsUploadsTabFun()" data-toggle="tab">{{'tab.documentsuploads' | translate}}</a></li>
     			 		<li class={{creditCardDetailsTab}}><a data-ng-click="creditCardDetailsTabFun()" data-toggle="tab">{{'tab.creditCarddetails' | translate}}</a></li>
     			 		<li class={{ACHDetailsTab}}><a data-ng-click="ACHDetailsTabFun()" data-toggle="tab">{{'label.client.achcard' | translate}}</a></li>
@@ -310,7 +311,37 @@
 			          		</table>
 			  			</div>
 			  			
-			    		<div id="pane2" class="tab-pane" data-ng-class="{active: documnetsUploadsTab}">
+			  			<div id="pane2" class="tab-pane" data-ng-class="{active: additionaldataSubTab}">
+					         <br/>
+			        		<table class="table" data-ng-show="additionalDatas">
+			            		<thead>
+			              			<tr class="graybg">
+			                			<th>{{'label.nationality' | translate}}</th>
+			                			<th>{{'label.dateOfBirth' | translate}}</th>
+			                			<th>{{'label.preferredLang' | translate}}</th>
+			                			<th>{{'label.financeId' | translate}}</th>
+			                			<th>{{'label.remarks' | translate}}</th>
+			                			<th></th>
+			              			</tr>
+			            		</thead>
+			            		<tbody>
+			              			<tr>
+			                			<td>{{additionalDatas.documentKey}}</td>
+			                			<td>{{additionalDatas.dateOfBirth | DateFormat }}</td>
+			                			<td>{{additionalDatas.description}}</td>
+			                			<td>{{additionalDatas.financeId}}</td>
+			                			<td></td>
+			                			<td>
+			                  				<a href="#/editadditionaldata/{{client.id}}" data-popover="Edit Info" data-popover-trigger="mouseenter"><i class="icon-edit"></i></a>&nbsp;
+			                  				<!-- <a data-ng-show="PermissionService.showMenu('DELETE_CLIENTIDENTIFIER')" data-ng-click="deletePopUp(client.id,document.id,$index,'Delete Identities')"
+			                  					data-popover="Delete Identities" data-popover-trigger="mouseenter"><i class="icon-remove"></i></a> -->
+			                			</td>
+			              			</tr>
+			            		</tbody>
+			          		</table>
+			  			</div>
+			  			
+			    		<div id="pane3" class="tab-pane" data-ng-class="{active: documnetsUploadsTab}">
 			    
 			    	 		<div class="pull-right">
           						<a data-ng-show=" PermissionService.showMenu('CREATE_DOCUMENT')" href="#/addclientdocument/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'button.documentuploads' | translate}}
@@ -340,7 +371,7 @@
 			          		</table>
 			    		</div>
 			    		
-		     			<div id="pane3" class="tab-pane" data-ng-class="{active: creditCardDetailsTab}">
+		     			<div id="pane4" class="tab-pane" data-ng-class="{active: creditCardDetailsTab}">
 		    
 			          		<div class="pull-right">
 			         	 		<a href="#/addcreditcarddetails/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'tab.creditCarddetails' | translate}}</a>
@@ -365,7 +396,7 @@
 			          		</table>
 		        		</div>
 		        		
-			    		<div id="pane4" class="tab-pane" data-ng-class="{active: ACHDetailsTab}">
+			    		<div id="pane5" class="tab-pane" data-ng-class="{active: ACHDetailsTab}">
 			    
 			        		<div class="pull-right">
 			          			<a href="#/addachdetails/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'label.client.achcard' | translate}}</a>
@@ -392,7 +423,7 @@
 			          		</table>
 			    		</div>
 			    
-			    		<div id="pane5" class="tab-pane" data-ng-class="{active: ChildDetailsTab}">
+			    		<div id="pane6" class="tab-pane" data-ng-class="{active: ChildDetailsTab}">
 			  		
 			        		<table class="table" data-ng-show="parentCount">
 			            		<thead>
