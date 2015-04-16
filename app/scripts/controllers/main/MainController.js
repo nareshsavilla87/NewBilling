@@ -72,6 +72,14 @@
       var UpdateLicenseKeyController =function ($scope, $modalInstance) {
     	  $scope.subscriptiondatas = [];
     	  $scope.formData = {};
+    	  
+    	  $scope.kayinfo = {};
+    		  resourceFactory.KeyInfoResource.get(function(data) {
+    			  data = angular.toJson(data);
+    			  console.log(data);
+    			  var dd = ""
+    			  
+    		  });
     	  $scope.updateKey = function(){
     		  $scope.flagOrderRenewal=true;
     		  var aa = {'key': $scope.formData.key};
