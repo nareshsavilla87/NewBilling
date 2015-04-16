@@ -3,6 +3,7 @@
 		EditAddressController : function(scope,webStorage,routeParams,resourceFactory,dateFilter, location,http,API_VERSION,$rootScope,PermissionService,$upload,filter) {
 							
 							scope.formData = {};
+							scope.oldProperty = {};
 							scope.addressTypeData=[];
 							scope.propertyCodes = [];
 						    scope.walletConfig = webStorage.get('is-wallet-enable');
@@ -33,6 +34,7 @@
                 	             
                 	            });
                 	            });*/
+                                scope.oldProperty = data.datas[0];
 							});		
 							
 							scope.getStateAndCountry=function(city){
@@ -60,9 +62,21 @@
 							        	      return scope.propertyCodes;
 							        	    });
 						         };   
-						         console.log(scope.formData.addressNo);
 						         
 						        scope.getPropertyDetails=function(propertyCode){
+
+						         if(propertyCode!=undefined){
+						        		
+						         /*  if(propertyCode == scope.oldProperty.addressNo){
+					        		 console.log("old:"+propertyCode);
+					        		 scope.formData.street = scope.oldProperty.street;
+					        		 scope.formData.city = scope.oldProperty.city;
+					        	     scope.formData.state = scope.oldProperty.state;
+				        			 scope.formData.country = scope.oldProperty.country;
+				        			 scope.formData.zip = scope.oldProperty.zip;
+				        				 
+					            	 }*/
+						        		
 						        	for(var i in scope.propertyCodes){
 						        		if(scope.propertyCodes[i].propertyCode == propertyCode){
 						        			 scope.formData.street = scope.propertyCodes[i].street;
@@ -71,11 +85,23 @@
 						        			 scope.formData.country = scope.propertyCodes[i].country;
 						        			 scope.formData.zip = scope.propertyCodes[i].poBox;
 						        			 break;
+						        		}else{
+						        			delete scope.formData.street;
+						        			delete scope.formData.city;
+						        			delete scope.formData.state;
+						        			delete scope.formData.country;
+						        			delete scope.formData.zip;
 						        		}
 						        	}
-						        	
+						        	}else{
+						        		delete scope.formData.street;
+					        			delete scope.formData.city;
+					        			delete scope.formData.state;
+					        			delete scope.formData.country;
+					        			delete scope.formData.zip;
+						        	}
 						        };
-						        console.log(scope.formData.addressNo);
+						      
 							scope.submit = function() {
 								
 								/*if(this.formData.addressTypeId=='1'){
