@@ -34,8 +34,8 @@
                         }if(data.globalConfiguration[i].name=="is-wallet-enable"){
                         	  webStorage.add("is-wallet-enable",data.globalConfiguration[i].enabled);
                         	  
-                        }if(data.globalConfiguration[i].name=="property-master"){
-                        	  webStorage.add("property-master",data.globalConfiguration[i].enabled);
+                        }if(data.globalConfiguration[i].name=="is-propertycode-enabled"){
+                        	  webStorage.add("is-propertycode-enabled",data.globalConfiguration[i].enabled);
 
                         }if(data.globalConfiguration[i].name=="client-additional-data"){
                         	  webStorage.add("client-additional-data",data.globalConfiguration[i].enabled);
