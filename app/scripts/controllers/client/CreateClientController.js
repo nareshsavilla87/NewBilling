@@ -29,7 +29,7 @@
         }
         
 
-        scope.propertyMaster = webStorage.get("property-master");
+        scope.propertyMaster = webStorage.get("is-propertycode-enabled");
       
         scope.clientAddInfo = webStorage.get("client-additional-data");
 
