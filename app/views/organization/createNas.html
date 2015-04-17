@@ -18,14 +18,23 @@
 					<tr>
 							<td>
 								<div class="control-group">
-           					 	<label class="control-label" for="shortname">Short Name<span class="required">*</span></label>
+           					 	<label class="control-label" for="shortname">Nas Name<span class="required">*</span></label>
             					<div class="controls">
              					 <input type="text" id="shortname" name="shortname" data-ng-model="formData.shortname" required data-late-Validate>
              					 <span  data-ng-show="createnasform.shortname.$invalid || createnasform.shortname.$dirty">
                                  <small class="error" data-ng-show="createnasform.shortname.$error.req">{{'label.required.field' | translate}}</small></span>
            						</div>
          						</div>	
-							</td></tr>
+							</td>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="description">{{ 'label.description' | translate }}</label>
+            					<div class="controls">
+              					<input type="text" id="description" data-ng-model="formData.description">
+            					</div>
+          						</div>
+							</td>
+							</tr>
 							<tr>
 							<td>
 								<div class="control-group">
@@ -37,8 +46,6 @@
             					</div>
           						</div>
 							</td>
-							</tr>
-							<tr>
 							<td>
 								<div class="control-group">
             					<label class="control-label" for="secret">Secret<span class="required">*</span></label>
@@ -48,19 +55,51 @@
                                  <small class="error" data-ng-show="createnasform.secret.$error.req">{{'label.required.field' | translate}}</small></span>
            						 </div>
           						</div>
-							</td></tr>
-							<tr><td>
+							</td>
+							</tr>
+							<tr>
+								<td>
 								<div class="control-group">
-            					<label class="control-label" for="description">{{ 'label.description' | translate }}</label>
-            					<div class="controls">
-              					<input type="text" id="description" data-ng-model="formData.description">
+            				   	<label class="control-label" for="enableapi">Enable Microtik Api</label>
+            				    <div class="controls">
+              					    <label class="checkbox">
+                					   <input type="checkbox" ng-true-value="1" ng-false-value="0" data-ng-model="formData.enableapi">
+              						</label>
             					</div>
           						</div>
-							</td></tr></table>
+								</td>
+								<td>
+								
+								</td>
+							</tr>
+							<tr>
+								<td>
+								<div class="control-group">
+            					<label class="control-label" for="apiuser">API User</label>
+            					<div class="controls">
+              					<input type="text" id="apiuser" data-ng-model="formData.apiusername">
+            					</div>
+          						</div>
+								</td>
+								<td>
+								<div class="control-group">
+            					<label class="control-label" for="apipassword">API Password</label>
+            					<div class="controls">
+              					<input type="text" id="apipassword" data-ng-model="formData.apipassword">
+            					</div>
+          						</div>
+							</td>
+							</tr>
+							<tr>
+								<td align="right" colspan="2">
+									<div>
+                        				<a href="#/radius"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+                         				<button id="submit" type="submit" data-ng-disabled="!createnasform.$valid" class="btn btn-primary">{{'button.save'| translate}}</button>
+                       				</div>
+								</td>
+							</tr>
+					</table>
   			            
-  			             <div class="offset3" style="padding-left:2%;">
-                        <a href="#/radius"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
-                         <button id="submit" type="submit" data-ng-disabled="!createnasform.$valid" class="btn btn-primary">{{'button.save'| translate}}</button>
-                       </div>
+  			             
         </fieldset>
 </form>

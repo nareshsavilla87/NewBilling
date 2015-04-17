@@ -17,22 +17,28 @@
 			<thead>
 				<tr class="graybg">
 					<th>{{ 'table.heading.shortName' | translate }}</th>
-					<th>{{ 'table.heading.ip' | translate }}</th>
+					<th>Nas Ip</th>
 					<th>{{ 'table.heading.secret' | translate }}</th>
 					<th>{{ 'table.heading.description' | translate }}</th>
+					<th>Microtik User</th>
+					<th>Microtik Password</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr class="pointer-main" data-ng-repeat="nasData in nasDatas | filter:filterText">
 					<td class="pointer"
-						data-ng-click="routeToNas(nasData.id)">{{nasData.shortname}}</td>
+						data-ng-click="routeToNas(nasData.id)">{{nasData.shortName}}</td>
 					<td class="pointer"
-						data-ng-click="routeToNas(nasData.id)">{{nasData.nasname}}</td>
+						data-ng-click="routeToNas(nasData.id)">{{nasData.nasName}}</td>
 					<td class="pointer"
 						data-ng-click="routeToNas(nasData.id)">{{nasData.secret}}</td>
 					<td class="pointer"
 						data-ng-click="routeToNas(nasData.id)">{{nasData.description}}</td>
+					<td class="pointer"
+						data-ng-click="routeToNas(nasData.id)">{{nasData.apiusername}}</td>
+					<td class="pointer"
+						data-ng-click="routeToNas(nasData.id)">{{nasData.apipassword}}</td>
 					<td>
                     	<a data-ng-click="deleteNas(nasData.id)" data-popover="{{'label.nas.message' | translate}}" data-popover-trigger="mouseenter">
                     		<i class="icon-remove icon-white"></i>
@@ -89,17 +95,18 @@
 			</thead>
 			<tbody>
 				<tr class="pointer-main" data-ng-repeat="radService in radServices2 track by $index| filter:filterText">
-				    <td class="pointer" data-ng-click="routeToRadService(radiusVersion,radService.serviceId)">{{radService.serviceId}}</td>
-					<td class="pointer" data-ng-click="routeToRadService(radiusVersion,radService.serviceId)">{{radService.serviceName}}</td>
-					<td class="pointer" data-ng-click="routeToRadService(radiusVersion,radService.serviceId)">{{radService.nextService}}</td>
-					<td class="pointer" data-ng-click="routeToRadService(radiusVersion,radService.serviceId)">{{radService.uprate}}</td>	
-					<td class="pointer" data-ng-click="routeToRadService(radiusVersion,radService.serviceId)">{{radService.downRate}}</td>
-					<td class="pointer" data-ng-click="routeToRadService(radiusVersion,radService.serviceId)">{{radService.trafficUnitdl}}</td>
+					<!-- data-ng-click="routeToRadService(radiusVersion,radService.serviceId) -->
+				    <td class="pointer" >{{radService.serviceId}}</td>
+					<td class="pointer" >{{radService.serviceName}}</td>
+					<td class="pointer" >{{radService.nextServicId}}</td>
+					<td class="pointer" >{{radService.uprate}}</td>	
+					<td class="pointer" >{{radService.downRate}}</td>
+					<td class="pointer" >{{radService.trafficUnitdl}}</td>
 					<td>
-						<a data-ng-show="PermissionService.showMenu('UPDATE_RADSERVICE')" 
+						<!-- <a data-ng-show="PermissionService.showMenu('UPDATE_RADSERVICE')" 
 							href="#/editRadService/{{radiusVersion}}/{{radService.serviceId}}" data-popover="{{'label.editradservice' | translate}}" data-popover-trigger="mouseenter">
                     		<i class="icon-edit icon-white"></i>
-                    	</a>&nbsp;
+                    	</a>&nbsp; -->
                     	<a data-ng-show="PermissionService.showMenu('DELETE_RADSERVICE')"
                     	 	data-ng-click="deleteRadService(radService.serviceId)" data-popover="{{'label.deleteradservice' | translate}}" data-popover-trigger="mouseenter">
                     		<i class="icon-remove icon-white"></i>
