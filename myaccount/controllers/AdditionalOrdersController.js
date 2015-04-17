@@ -1,4 +1,4 @@
-AdditionalOrdersController = function(scope,RequestSender,routeParams,localStorageService) {
+AdditionalOrdersController = function(scope,RequestSender,routeParams,localStorageService,location) {
 		  
 			scope.clientId = routeParams.clientId || "";
 		  	scope.planselectionTab = true;
@@ -16,6 +16,11 @@ AdditionalOrdersController = function(scope,RequestSender,routeParams,localStora
 			  }
 			  
 		  };
+		  
+		  scope.isSelectedPlan = function(planId){
+				return planId === scope.selectedPlanId;
+			};
+		  
 		if(localStorageService.get("clientTotalData")){
 		  RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
 			  var clientData = data || {};
@@ -42,10 +47,22 @@ AdditionalOrdersController = function(scope,RequestSender,routeParams,localStora
 			  });
 		  });
 	   }
+		
+		scope.checkingRecurringStatus = function(planData){
+			RequestSender.recurringStatusCheckingResource.get({planId:scope.planId,billFrequency:planData.billingFrequency},function(data){
+				if(planData.billingFrequency == data.billFrequencyCode && planData.price == data.price){
+					localStorageService.add("chargeCodeData",{data:data});
+					location.path( '/paymentprocess/additionalorders/'+planData.id+'/'+scope.planId+'/'+planData.price);
+				}
+			});
+			
+		};
+		
     };
     
 selfcareApp.controller('AdditionalOrdersController',['$scope',
                                                      'RequestSender',
                                                      '$routeParams',
                                                      'localStorageService',
+                                                     '$location',
                                                      AdditionalOrdersController]);

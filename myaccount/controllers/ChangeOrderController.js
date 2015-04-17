@@ -17,6 +17,10 @@ ChangeOrderController = function(scope,RequestSender,routeParams,localStorageSer
 	  }
 	  
   };
+  
+  scope.isSelectedPlan = function(planId){
+		return planId === scope.selectedPlanId;
+	};
 	
   if(localStorageService.get("clientTotalData")){
 	RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
