@@ -304,6 +304,7 @@ define(['underscore', 'mifosX'], function() {
       'vendor/CreateVendorAgreementController',
       'vendor/EditVendorAgreementController',
       'vendor/ViewVendorAgreementController',
+      'client/ServiceTransferRequestController',
 
 
     ],

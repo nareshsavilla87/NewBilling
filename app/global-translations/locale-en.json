@@ -2669,7 +2669,26 @@
 "validation.msg.vendor.contentCost.cannot.be.blank":"Content Cost cannot be blank",
 "error.msg.enddate.greater.than.startdate":"EndDate should be greater than StartDate",
 "error.msg.vendor.contentcode.lshare.duplicate":"Duplicate data with same Contentcode and loyaltyshare",
-"error.msg.vendor.active.agreement.with.this.dates":"Active agreement, already exist with same effective start & end date"
+"error.msg.vendor.active.agreement.with.this.dates":"Active agreement, already exist with same effective start & end date",
+
+"#Service Transfer Request":".......",
+"label.service.transfer"		: "Service Transfer Request",
+"label.client.id"				: "Client ID",
+"label.client.name"				: "Client Name",
+"label.residing.property"		: "Residing Property",
+"label.property.code"			: "Property Code",
+"label.property.name"			: "Property Name",
+"label.unit.code"				: "Unit Code",
+"label.shifting.to.same"		: "Shifting To Same",
+"label.unit.status"				: "Unit Status",
+"label.shifting.charges"		: "Shifting Charges",
+"label.current.address"			: "Current Address",
+
+"#Service Transfer Request Errors":".......",
+"validation.msg.serviceTransfer.oldPropertyCode.cannot.be.blank" 	: "Existing Property Code cannot be blank",
+"validation.msg.serviceTransfer.newPropertyCode.cannot.be.blank" 	: "Shifting Property Code cannot be blank",
+"validation.msg.serviceTransfer.shiftChargeAmount.cannot.be.blank" 	: " Shifting Charges cannot be blank",
+"label.digits.only" 	: "Enter Digits only!"
 
 
 
