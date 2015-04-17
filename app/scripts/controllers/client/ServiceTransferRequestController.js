@@ -33,7 +33,6 @@
     	   }else if(scope.shiftingCheckbox == "No"){
     		   scope.formData.newPropertyCode = scope.propertyCode; 
     	   }
-    	   console.log(scope.formData);
 	       resourceFactory.serviceTransferRequestResource.save({clientId:routeParams.clientId},scope.formData,function(data){
 	     	  location.path("/viewclient/"+scope.clientId);
 	       });
