@@ -2688,7 +2688,9 @@
 "validation.msg.serviceTransfer.oldPropertyCode.cannot.be.blank" 	: "Existing Property Code cannot be blank",
 "validation.msg.serviceTransfer.newPropertyCode.cannot.be.blank" 	: "Shifting Property Code cannot be blank",
 "validation.msg.serviceTransfer.shiftChargeAmount.cannot.be.blank" 	: " Shifting Charges cannot be blank",
-"label.digits.only" 	: "Enter Digits only!"
+"label.digits.only" 	: "Enter Digits only!",
+
+"label.add.additionalinfo" 	: "Add Additional Info"
 
 
 

@@ -92,7 +92,7 @@
                         
                         // Redemption related data
                         "CREATE REDEMPTION":"Redemption done successfully PinNumber:"+jsonArray.pinNumber,
-                        "CREATE SERVICETRANSFER":"Service transfered form "+jsonArray.oldPropertyCode +" to "+jsonArray.newPropertyCode
+                        "CREATE SERVICETRANSFER":"Service transfered from "+jsonArray.oldPropertyCode +" to "+jsonArray.newPropertyCode
                         
                      };
 
