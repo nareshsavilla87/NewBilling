@@ -1136,6 +1136,8 @@
             	update: { method: 'PUT' }
             }),
             serviceTransferRequestResource: defineResource(apiVer + "/servicetransfer/:clientId", {clientId:'@clientId'}, {}),
+            
+            KeyInfoResource: defineResource(apiVer + "/keyinfo", {},{}),
       
         };
       }];
