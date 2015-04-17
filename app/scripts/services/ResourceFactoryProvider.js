@@ -1135,6 +1135,7 @@
             propertyCodeTemplateResource: defineResource(apiVer + "/property/template", {}, {
             	update: { method: 'PUT' }
             }),
+            serviceTransferRequestResource: defineResource(apiVer + "/servicetransfer/:clientId", {clientId:'@clientId'}, {}),
       
         };
       }];

@@ -126,7 +126,9 @@
 	                <td>{{ph.description}}</td>
 	                <td>{{ph.propertyCode}}</td>
 	                <td>{{ph.transactionDate | DateFormat}}</td>
-	                <td>{{ph.status}}</td>
+	                <td>
+                     <span>{{ph.status}}</span> 
+                     <span ng-show="ph.status=='OCCUPIED'"> By {{ph.clientName}}-->{{ph.clientId}}</span></td>
 					<tr/>
 				  <tr><td colspan="5"><div data-ng-show="blockUI" class="offset3"><i class="icon-refresh icon-spin icon-large"></i>
 					</div></td></tr>

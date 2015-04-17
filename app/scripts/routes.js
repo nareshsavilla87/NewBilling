@@ -1043,6 +1043,9 @@
       .when('/editproperty/:id', {
         templateUrl: 'views/organization/editproperty.html'
       })
+      .when('/strequest/:clientId', {
+    	  templateUrl: 'views/clients/strequest.html'
+      })
       ;
      
     $locationProvider.html5Mode(false);
