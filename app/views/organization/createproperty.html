@@ -24,18 +24,7 @@
               <option value="">{{'label.select.one' | translate}}</option></select>
             </div>
           </div>
-          </td>
-          <td>
-          <div class="control-group">
-            	<label class="control-label" for="street">{{'label.street' | translate }}</label>
-            	<div class="controls">
-              		<input type="text" id="street" data-ng-model="formData.street">
-            	</div>
-          	</div>
-          </td>
-          </tr>
           
-         <tr> <td>
           	<div class="control-group">
             	<label class="control-label" for="propertyCode">{{'label.propertycode' | translate }}<span class="required">*</span></label>
             	<div class="controls">
@@ -44,83 +33,84 @@
               		<span data-ng-show="createpropertyform.propertyCode.$invalid">
 								<small class="error" data-ng-show="createpropertyform.propertyCode.$error.req">{{'label.required.field' | translate}} </small> 
 								<small class="error" data-ng-show="createpropertyform.propertyCode.$error.minlength && !createpropertyform.propertyCode.$error.req">
-									 Require minimum 13 characters</small>
-							</span>
-            	</div>
+									 Require minimum 13 characters</small></span>
+            	 </div>
           	</div>
-          	</td>
-          	<td>
-           <div class="control-group">
-            	<label class="control-label" for="precinct">{{'label.precinct' | translate }}</label>
-            	<div class="controls">
-              		<input type="text"  id="precinct" data-ng-model="formData.precinct" readonly required>
-            	</div>
-          	</div>
-          </td>
-          	</tr>
-
-           <tr> <td>
-           	<div class="control-group">
+          	
+          <div class="control-group">
             	<label class="control-label" for="unitCode">{{'label.unitcode' | translate }}</label>
             	<div class="controls">
               		<input type="text"  id="unitCode" data-ng-model="formData.unitCode" readonly required>
             	</div>
           	</div>
-          	</td>
-          	<td>
-            	<div class="control-group">
-            	<label class="control-label" for="poBox">{{'label.poBox' | translate }}</label>
-            	<div class="controls">
-              		<input type="text"  id="poBox" data-ng-model="formData.poBox" >
-            	</div>
-          	</div>
-          </td>
-          	</tr>
-          
-          <tr><td>
-           	<div class="control-group">
+          	
+          	<div class="control-group">
             	<label class="control-label" for="floor">{{'label.floor' | translate }}</label>
             	<div class="controls">
               		<input type="text" id="floor" data-ng-model="formData.floor" readonly required>
             	</div>
           	</div>
-          </td>
-          <td>
-           <div class="control-group">
-            	<label class="control-label" for="state">{{'label.state' | translate }}</label>
-            	<div class="controls">
-              		<input type="text"   id="state" data-ng-model="formData.state" readonly required>
-            	</div>
-          	</div>
-          </td>
-          </tr>
-          
-          <tr><td>
-           	<div class="control-group">
+          	
+          	<div class="control-group">
             	<label class="control-label" for="buildingCode">{{'label.buildingcode' | translate }}</label>
             	<div class="controls">
               		<input type="text"  id="buildingCode" data-ng-model="formData.buildingCode" readonly required>
             	</div>
           	</div>
-          	</td>
-          	<td>
-          <div class="control-group">
-            	<label class="control-label" for="country">{{'label.country' | translate }}</label>
-            	<div class="controls">
-              		<input type="text" id="country" data-ng-model="formData.country" readonly required>
-            	</div>
-          	</div>
-          </td>
-          	</tr>
-  
-         <tr><td>
-           	<div class="control-group">
+          	
+          	 	<div class="control-group">
             	<label class="control-label" for="parcel">{{'label.parcel' | translate }}</label>
             	<div class="controls">
               		<input type="text"  id="parcel" data-ng-model="formData.parcel" readonly required>
             	</div>
           	</div>
-          </td><td align="right" colspan="2">
+          </td>
+          
+          <td>
+            <div class="control-group">
+            	<label class="control-label" for="street">{{'label.street' | translate }}</label>
+            	<div class="controls">
+              		<input type="text" id="street" data-ng-model="formData.street">
+            	</div>
+          	</div>
+          	
+          	<div class="control-group">
+            	<label class="control-label" for="precinct">{{'label.precinct' | translate }}</label>
+            	<div class="controls">
+              		<input type="text"  id="precinct" data-ng-model="formData.precinct" readonly required>
+            	</div>
+          	</div>
+          	
+          	<div class="control-group">
+            	<label class="control-label" for="poBox">{{'label.poBox' | translate }}</label>
+            	<div class="controls">
+              		<input type="text"  id="poBox" data-ng-model="formData.poBox" >
+            	</div>
+          	</div>
+          	
+          	<div class="control-group">
+            	<label class="control-label" for="state">{{'label.state' | translate }}</label>
+            	<div class="controls">
+              		<input type="text"   id="state" data-ng-model="formData.state" readonly required>
+            	</div>
+          	</div>
+          	
+          	 <div class="control-group">
+            	<label class="control-label" for="country">{{'label.country' | translate }}</label>
+            	<div class="controls">
+              		<input type="text" id="country" data-ng-model="formData.country" readonly required>
+            	</div>
+          	</div>
+          	
+          		<div class="control-group">
+            	<label class="control-label" for="parcel">{{'label.parcel' | translate }}</label>
+            	<div class="controls">
+              		<input type="text"  id="parcel" data-ng-model="formData.parcel" readonly required>
+            	</div>
+          	</div>
+          </td></tr>
+          <tr><td></td>
+            <td align="right" colspan="2">
             	<a href="#/property"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
             	<button  id="submit" type="submit" data-ng-disabled="!createpropertyform.$valid" class="btn btn-primary">{{'button.save'| translate}}</button>
           	</td></tr></table>
