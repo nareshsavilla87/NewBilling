@@ -12,6 +12,10 @@
 	  <label data-ng-show="errorStatus">{{errorStatus}}</label>
 	  <label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
    </div>
+   <div class="error" data-ng-show="errorRecurring == 'error.msg.paypal.recurring.notpossible'"><br/>
+	  <label>{{'label.contract.error' | translate}}</label>
+	  <label>{{errorRecurring | translate}}</label>
+   </div>
     <br/><br/>
      <div class="alert alert-success" data-ng-show="isRedirecting">
 	   <table><tr>
@@ -69,8 +73,14 @@
        					<input type="radio" id="{{paymentgatewayData.name}}" name="selectPWName" class="radioalign" data-ng-model="paymentGatewayName" 
        					   value="{{paymentgatewayData.name}}" data-ng-click="paymentGatewayFun(paymentgatewayData.name)"/>&nbsp;
       					   <label for="{{paymentgatewayData.name}}" class="inlinedis pointer">
-      								<img src="../images/{{paymentgatewayData.name}}.jpg" width="110px;">
+      								<img src="../images/{{paymentgatewayData.name}}.jpg" width="110px;">&nbsp;
       					   </label><br/>
+      					  <!--  <div data-ng-show="paymentgatewayData.name==paypalPG" class="marginleft30">
+      					   	 <div data-ng-show="paypalType">
+      					   	  	<input style="vertical-align: sub;" type="radio" name="paypalTypeName" data-ng-click="paypalRecurringTypeNameFun('NormalType')"/>&nbsp;Normal&nbsp;
+      					   	  <input style="vertical-align: sub;" type="radio" name="paypalTypeName" data-ng-click="paypalRecurringTypeNameFun('RecurringType')"/>&nbsp;Recurring&nbsp;
+	      					  </div>
+      					   </div> -->
        				</div>
        				<div class="error" data-ng-show="paymentGatewayName==''" style="font-size: 1.5em;margin-top: 0px;">
        					 {{'label.notselect.payment.gateway' | translate}}<br/><br/>
@@ -97,8 +107,8 @@
           	    </td>
        		 	<td style="padding-top: 30px;" >
       		 	   <div >
-					  <a class="btn btn-primary" data-ng-hide="termsAndConditions&&!isRedirecting" data-ng-disabled="true">{{'btn.proceed' | translate}}</a>
-					  <a class="btn btn-primary" href="{{paymentURL}}" data-ng-show="termsAndConditions&&!isRedirecting" data-ng-click="isRedirecting=true">
+					  <a class="btn btn-primary" data-ng-hide="termsAndConditions&&isPaypalRecurringFun()" data-ng-disabled="true">{{'btn.proceed' | translate}}</a>
+					  <a class="btn btn-primary" href="{{paymentURL}}" data-ng-show="termsAndConditions&&isPaypalRecurringFun()">
 					  	{{'btn.proceed' | translate}}
 					  </a>
 				   </div>
