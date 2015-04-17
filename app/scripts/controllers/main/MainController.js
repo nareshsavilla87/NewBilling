@@ -73,11 +73,11 @@
     	  $scope.subscriptiondatas = [];
     	  $scope.formData = {};
     	  
-    	  $scope.kayinfo = {};
     		  resourceFactory.KeyInfoResource.get(function(data) {
-    			  data = angular.toJson(data);
-    			  console.log(data);
-    			  var dd = ""
+    			  var keyInfoArray = [];
+    			  angular.copy(data, keyInfoArray);
+    			  $scope.kayinfo = keyInfoArray.join("");
+    			 
     			  
     		  });
     	  $scope.updateKey = function(){
