@@ -1451,6 +1451,7 @@
   "validation.msg.null.itemDescription.cannot.be.blank":"Item cannot be blank",
   "validation.msg.null.mrnId.cannot.be.blank":"Select MRN ID from the List",
   "validation.msg.null.itemId.cannot.be.blank":"Select Item Id",
+  "invalid.move.operation":"Invalid Move ",
   "validation.msg.grn-allocation.purchaseNo.cannot.be.blank":"Purchase Number cannot be blank",
   
   
