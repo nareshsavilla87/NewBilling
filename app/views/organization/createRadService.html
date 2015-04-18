@@ -79,7 +79,7 @@
         </fieldset>
 </form>
 
-<form name="createradserviceform2" novalidate class="form-horizontal well" data-ng-submit="submit()"  data-ng-show="radiusVersion=='version-2'">
+<form name="createradserviceform2" novalidate class="form-horizontal well" data-ng-show="radiusVersion=='version-2'">
 	<div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label data-ng-show="errorStatus">{{errorStatus}}</label>
@@ -214,7 +214,8 @@
 								<td align="right" colspan="2">
 									<div >
                          <a href="#/radius"><button id="cancel" type="reset" class="btn" data-ng-click="reset123()">{{'button.cancel'| translate}}</button></a>
-                         <button id="submit" type="submit" data-ng-disabled="!createradserviceform2.$valid" class="btn btn-primary">{{'button.save'| translate}}</button>
+                         <button id="submit" type="submit" data-ng-click="submit('NO')" data-ng-disabled="!createradserviceform2.$valid" class="btn btn-primary">{{'button.save'| translate}}</button>
+                         <button id="submit" type="submit" data-ng-click="submit('YES')" data-ng-disabled="!createradserviceform2.$valid" class="btn btn-primary">Save With OBS</button>
                      </div>
 								</td>
 							</tr>

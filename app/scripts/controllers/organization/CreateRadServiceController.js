@@ -10,10 +10,10 @@
 					srvtype : 0,
 					upType  : scope.types[0].key,
 					downType  : scope.types[0].key,
-					limitcomb : false,
+					limitcomb : 0,
 					renew : false,
 					limitexpiration  : true,
-					limitdl : true,
+					limitdl : 1,
 					limitul : 0,
 					limituptime : 0,
 					poolname : '',
@@ -93,7 +93,7 @@
 	               });
 	           }
 			
-			scope.submit = function() {
+			scope.submit = function(saveWithOBSValue) {
 				if(scope.radiusVersion == 'version-1'){
 					scope.formData.value= scope.formData.uprate + scope.formData.upType + "/"+ scope.formData.downrate + scope.formData.downType;
 					delete scope.formData.downRate ;
@@ -109,6 +109,7 @@
 					scope.formData.trafficunitdl = trfficValue*Math.pow(2,30);
 					
 					scope.formData.descr = scope.formData.srvname;
+					scope.formData.isSaveWithOBS = saveWithOBSValue;
 					if(scope.formData.limitdl == 1){
 						scope.formData.dlquota = scope.formData.trafficunitdl;
 						scope.formData.combquota = 0;
