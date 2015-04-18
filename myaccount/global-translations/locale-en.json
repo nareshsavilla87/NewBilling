@@ -926,7 +926,9 @@
 
 "#paymentgatewayresponser":"",
 "label.cardType":"Card Type",
-"label.cardNumber":"Card Number"
+"label.cardNumber":"Card Number",
+
+"error.msg.paypal.recurring.notpossible":"Recurring Not Possible to this Contract Period"
 
 
 

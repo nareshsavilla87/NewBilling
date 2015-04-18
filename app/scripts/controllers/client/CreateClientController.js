@@ -8,9 +8,9 @@
         scope.cities = [];
         scope.clientCategoryDatas=[];
         scope.groupNameDatas=[];
+
         
         scope.propertyCodes = [];
-        
 
         scope.nationalityDatas = [];
         scope.genderDatas = [];
@@ -29,8 +29,8 @@
         }
         
 
+
         scope.propertyMaster = webStorage.get("is-propertycode-enabled");
-      
         scope.clientAddInfo = webStorage.get("client-additional-data");
 
         resourceFactory.clientTemplateResource.get(function(data) {

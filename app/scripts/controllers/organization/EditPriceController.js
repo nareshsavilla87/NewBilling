@@ -1,4 +1,4 @@
-(function(module) {
+z(function(module) {
   mifosX.controllers = _.extend(module, {
     EditPriceController: function(scope, routeParams, resourceFactory, location,$rootScope) {
         scope.serviceDatas = [];
@@ -16,6 +16,7 @@
             scope.chargevariants=data.chargevariant;
             scope.discountdatas=data.discountdata;
             scope.subscriptiondata = data.contractPeriods;
+            scope.serviceDatas.push({"id":0,"serviceCode":"none","serviceDescription":"None"});
         });
         
         scope.submit = function() {

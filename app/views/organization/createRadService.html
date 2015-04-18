@@ -104,7 +104,7 @@
             					<label class="control-label" for="serviceId">{{'table.heading.service'|translate}}<span class="required">*</span></label>
             					<div class="controls">
              					 <!-- <input type="text" id="serviceId" name="serviceId" data-ng-model="formData.nextsrvid" required data-late-Validate> -->
-             					 <select  name="serviceId" data-ng-model="formData.nextsrvid" data-ng-options="serviceCode.srvid as serviceCode.srvname for serviceCode in serviceCodes" data-required data-late-Validate></select>
+             					 <select  name="serviceId" data-ng-model="formData.nextsrvid" data-ng-options="serviceCode.id as serviceCode.serviceName for serviceCode in serviceCodes" data-required data-late-Validate></select>
              					  <span  data-ng-show="createradserviceform2.serviceId.$invalid || createradserviceform2.serviceId.$dirty">
                                   <small class="error" data-ng-show="createradserviceform2.serviceId.$error.req">{{'label.required.field' | translate}}</small></span>
             					</div>
