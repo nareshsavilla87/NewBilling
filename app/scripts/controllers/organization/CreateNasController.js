@@ -2,7 +2,17 @@
 	mifosX.controllers = _.extend(module, {
 		CreateNasController : function(scope, location,  $modal, route,$http, webStorage,resourceFactory) {
 			
-			scope.formData = {};
+			scope.formData = {
+					description : '',
+					enableapi  : 0,
+					type : '0',
+					ports : 'null',
+					community : 'null',
+					starospassword : '',
+					ciscobwmode : 0,
+					apiusername : '',
+					apipassword : ''
+			};
 			
 			
 			scope.submit = function() {  		

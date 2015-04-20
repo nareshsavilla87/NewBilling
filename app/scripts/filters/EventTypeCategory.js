@@ -92,7 +92,10 @@
                         
                         // Redemption related data
                         "CREATE REDEMPTION":"Redemption done successfully PinNumber:"+jsonArray.pinNumber,
-                        "CREATE SERVICETRANSFER":"Service transfered form "+jsonArray.oldPropertyCode +" to "+jsonArray.newPropertyCode + " with shiftchargeAmout :" + jsonArray.shiftChargeAmount
+                        
+                        // ServiceTransfer related data
+                        "CREATE SERVICETRANSFER":"Service transfered from "+jsonArray.oldPropertyCode +" to "+jsonArray.newPropertyCode+" with Shift Charge Amount "+jsonArray.shiftChargeAmount
+
                         
                      };
 

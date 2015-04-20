@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    ClientController: function(scope, resourceFactory , paginatorService,location,PermissionService,webStorage) {
+    ClientController: function(scope, resourceFactory , paginatorService,location,PermissionService,webStorage,$modal) {
         
       scope.clients = [];
       scope.config = {};
@@ -15,6 +15,7 @@
       scope.status = 'ALL';
       scope.isPasswordShow = false;
       scope.config = webStorage.get("client_configuration").clientListing || ""; 
+      scope.configValues = webStorage.get("client_configuration");
       /**
        * @default
        * we call this function from below
@@ -158,9 +159,59 @@
 		   }
     	   
        };
+       
+      /* scope.routeToCheckOnline = function(){
+    	   resourceFactory.radiusOnlineUser.get({checkOnline:true},function(data) {
+    		   scope.checkOnlineClient = data.onlineUsersdata;
+    		   console.log(scope.checkOnlineClient[0]);
+           });
+       };*/
+       
+       scope.routeToCheckOnline=function(clientNameForOnlineUser){
+    	   if(clientNameForOnlineUser == undefined){
+    		   scope.clientNameForOnlineUser = '';
+    	   }else{
+    		   scope.clientNameForOnlineUser = clientNameForOnlineUser;
+    	   }
+    	   
+    	   
+       	$modal.open({
+       		templateUrl: 'onlineuser.html',
+       		controller: ApproveRegistrationListing,
+       		resolve:{}
+       	});
+       };
+       
+       function ApproveRegistrationListing($scope, $modalInstance) {
+    	   
+    	   $scope.checkOnlineClient = {};
+    	   $scope.tempData = [];
+    	   $scope.name = scope.clientNameForOnlineUser;
+    	   resourceFactory.radiusOnlineUser.get({checkOnline:true,userName:scope.clientNameForOnlineUser},function(data) {
+    		   $scope.checkOnlineClient = data.onlineUsersdata;
+    		 //  $scope.count = $scope.checkOnlineClient[0].count;
+    		   console.log($scope.checkOnlineClient[0].count);
+    		   $scope.onlineUserName = scope.clientNameForOnlineUser;
+           });
+    	  
+    	  /* $scope.registrationListData.push({
+    			   "name" : key,
+    			   "value" :$scope.tempData[key].toString(),
+    	   });*/
+    	   
+    	   $scope.approve = function (name, value) {
+    		   scope.approveData = {};
+    		   scope.clientConfigChange(name, value , 'onlineuser.html');
+    		   $modalInstance.close('delete');
+    	   };
+    	   $scope.cancel = function () {
+    		   $modalInstance.dismiss('cancel');
+    	   };
+       }
+       
     }
   });
-  mifosX.ng.application.controller('ClientController', ['$scope', 'ResourceFactory', 'PaginatorService','$location','PermissionService','webStorage',mifosX.controllers.ClientController]).run(function($log) {
+  mifosX.ng.application.controller('ClientController', ['$scope', 'ResourceFactory', 'PaginatorService','$location','PermissionService','webStorage','$modal',mifosX.controllers.ClientController]).run(function($log) {
     $log.info("ClientController initialized");
   });
 }(mifosX.controllers || {}));
