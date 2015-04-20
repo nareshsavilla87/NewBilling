@@ -1141,7 +1141,7 @@
             propertyCodeTemplateResource: defineResource(apiVer + "/property/template", {}, {
             	update: { method: 'PUT' }
             }),
-            serviceTransferRequestResource: defineResource(apiVer + "/servicetransfer/:clientId/:id", {clientId:'@clientId',id:'@id'}, {}),
+            serviceTransferRequestResource: defineResource(apiVer + "/servicetransfer/:clientId", {clientId:'@clientId'}, {}),
             
             KeyInfoResource: defineResource(apiVer + "/keyinfo", {},{}),
             

@@ -391,10 +391,18 @@
                     <form data-ng-show="PermissionService.showMenu('READ_SEARCH')" data-ng-submit="search()" class="navbar-search pull-left ng-pristine ng-valid">
                     <input id="search" data-ng-model="search.query" type="text" placeholder="{{ 'label.searchorpress' | translate }}" class="search-query span3">
                     </form>
-                    <a  data-ng-show="PermissionService.showMenu('READ_GLACCOUNT')&&PermissionService.showMenu('READ_OFFICE')&&PermissionService.showMenu('READ_SMARTSEARCH')"  
-                    		href="#/smartSearch"><input type="image"  data-popover-placement="bottom" style="margin-top: 9px;margin-left: 20px;"
+                    <!-- <a  data-ng-show="PermissionService.showMenu('READ_GLACCOUNT')&&PermissionService.showMenu('READ_OFFICE')&&PermissionService.showMenu('READ_SMARTSEARCH')"  
+                    		href="#/smartSearch" style="margin-top: 9px;margin-left: 20px;">
+                    		<img src=./images/advanced_search_icon.png alt="smart-search" width="50" data-popover-placement="bottom" 
+                              data-popover="{{'link.smartsearch'|translate}}" data-popover-trigger="mouseenter">
+                    		<input type="image"  data-popover-placement="bottom" 
                               data-popover="{{'link.smartsearch'|translate}}" data-popover-trigger="mouseenter"  src="./images/advanced_search_icon.png" width="50px">
-                    </a>
+                    </a> -->
+                    <a class="brand" href="#/smartSearch" style="font-size: 14px; text-shadow: 0px 0px 0px; padding: 10px 45px;" 
+                    			data-ng-show="PermissionService.showMenu('READ_GLACCOUNT')&&PermissionService.showMenu('READ_OFFICE')&&PermissionService.showMenu('READ_SMARTSEARCH')">
+                    	<img src=./images/advanced_search_icon.png alt="smart-search" width="30" data-popover-placement="bottom" 
+                              data-popover="{{'link.smartsearch'|translate}}" data-popover-trigger="mouseenter">
+					</a>
                 </div>
             </div>
         </div>
