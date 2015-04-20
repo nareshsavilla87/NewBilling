@@ -1,4 +1,4 @@
-z(function(module) {
+(function(module) {
   mifosX.controllers = _.extend(module, {
     EditPriceController: function(scope, routeParams, resourceFactory, location,$rootScope) {
         scope.serviceDatas = [];
