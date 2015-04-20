@@ -91,7 +91,8 @@
                         "CREATE SELFCARE" : "Selfcare Account Created successfully with UserName:"+jsonArray.userName,
                         
                         // Redemption related data
-                        "CREATE REDEMPTION":"Redemption done successfully PinNumber:"+jsonArray.pinNumber
+                        "CREATE REDEMPTION":"Redemption done successfully PinNumber:"+jsonArray.pinNumber,
+                        "CREATE SERVICETRANSFER":"Service transfered form "+jsonArray.oldPropertyCode +" to "+jsonArray.newPropertyCode
                         
                      };
 

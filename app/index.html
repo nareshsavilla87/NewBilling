@@ -84,7 +84,6 @@
                 <ul>
                 <li>support@openbillingsystem.com</li>
                 <li><a target="http://support.openbillingsystem.com" href="http://support.openbillingsystem.com">{{ 'label.anchor.ticket' | translate }}</a></li>
-                <li><a ng-click="updateLicense()" >{{ 'label.update.license.key' | translate }}</a></li>
                 
                    <!--  <li><a target="https://groups.google.com/forum/#!forum/mifosusers" href="https://groups.google.com/forum/#!forum/mifosusers">{{ 'label.anchor.usersgroup' | translate }}</a></li>
                     <li><a target="https://groups.google.com/forum/#!forum/mifosdeveloper" href="https://groups.google.com/forum/#!forum/mifosdeveloper">{{ 'label.anchor.developergroup' | translate }}</a></li>
@@ -99,6 +98,7 @@
                 </div>
                 <ul>
                     <li><a target="http://www.openbillingsystem.com" href="http://www.openbillingsystem.com">For latest updated</a></li>
+                	<li><a ng-click="updateLicense()" >{{ 'label.update.license.key' | translate }}</a></li>
                     <!-- <li><a target="http://sourceforge.net/projects/mifos/" href="http://sourceforge.net/projects/mifos/">MifosX v1.15.2 is now Available!</a></li>
                     <li><a target="http://google-opensource.blogspot.in/" href="http://google-opensource.blogspot.in/">GSoC blog</a></li> -->
                 </ul>
@@ -363,8 +363,8 @@
                                 </li>
                                 <!--  <li><a ng-show="provision=PermissionService.showMenu('READ_PROVISIONINGADAPTERSYSTEM')" href="#/provision">Provision</a></li> -->
                                 <li><a href="#/eventaction">EventActions</a></li>
-                               <!--  <li><a href="#/disbursements">Disbursements</a></li> -->
-                                <li><a href="#/templates">Templates</a></li>
+                               <!--  <li><a href="#/disbursements">Disbursements</a></li>
+                                <li><a href="#/templates">Templates</a></li> -->
                             </ul>
                         </li>
                     </ul>
@@ -420,6 +420,7 @@
 	<div class="modal-header silver">
         <h3 class="bolder">Update LicenseKey</h3>
     </div>
+<div class="padded-td"><strong>Your License valid till :<span style="color:#0f82f5">{{kayinfo}}<span></strong></div>
     <div class="modal-body" style="height:160px;">
  <div class="error" ng-show="errorStatus || errorDetails">
 		                 <label>{{'label.contract.error' | translate}}</label>

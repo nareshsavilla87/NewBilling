@@ -54,9 +54,18 @@
           clientNotesResource: defineResource(apiVer + "/clients/:clientId/notes", {clientId:'@clientId'}, {
             getAllNotes: {method: 'GET', params: {}, isArray:true}
           }),
+          
+          clientAdditionalResource: defineResource(apiVer + "/clients/additionalinfo/:clientId", {clientId:'@clientId'}, {
+              getAll: {method: 'GET', params: {}, isArray:true},
+              update: {method: 'PUT'}
+            }),
+            
           clientTemplateResource: defineResource(apiVer + "/clients/template", {}, {
             get: {method: 'GET', params: {}}
           }),
+          clientAdditionalTemplateResource: defineResource(apiVer + "/clients/additionalinfo/template", {}, {
+              get: {method: 'GET', params: {}}
+            }),
           clientIdenfierTemplateResource: defineResource(apiVer + "/clients/:clientId/identifiers/template", {clientId:'@clientId'}, {
             get: {method: 'GET', params: {}}
           }),
@@ -1129,6 +1138,9 @@
             propertyCodeTemplateResource: defineResource(apiVer + "/property/template", {}, {
             	update: { method: 'PUT' }
             }),
+            serviceTransferRequestResource: defineResource(apiVer + "/servicetransfer/:clientId", {clientId:'@clientId'}, {}),
+            
+            KeyInfoResource: defineResource(apiVer + "/keyinfo", {},{}),
       
         };
       }];

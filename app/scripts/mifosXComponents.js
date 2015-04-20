@@ -49,6 +49,7 @@ define(['underscore', 'mifosX'], function() {
       'client/ClientSecondSaleController',
       'client/ViewClientOneTimeSaleController',
       'client/AllocateHardwareOneTimeSaleController',
+      'client/CreateClientAdditionalController',
       'client/UploadClientIdentifierDocumentController',
       'client/CreateClientControllerwizard',
       'client/CreateProvisioningController',
@@ -56,6 +57,7 @@ define(['underscore', 'mifosX'], function() {
       'client/EditProvisioningController',
       'client/IpchangeController',
       'client/EditProvisioningDetailsController',
+      'client/EditAdditionalInfoController',
       'user/UserController',
       'system/ViewProvisioningMappingController',
       'user/UserFormController',
@@ -302,6 +304,7 @@ define(['underscore', 'mifosX'], function() {
       'vendor/CreateVendorAgreementController',
       'vendor/EditVendorAgreementController',
       'vendor/ViewVendorAgreementController',
+      'client/ServiceTransferRequestController',
 
 
     ],

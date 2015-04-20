@@ -51,7 +51,7 @@
 			              scope.errorDetails.push({code: 'error.msg.invalid.property.code'});
 			              $("#propertyCode").addClass("validationerror");
 				    }else{
-				    	scope.errorDetails = [];
+				    	delete scope.errorDetails;
 				    	$("#propertyCode").removeClass("validationerror");
 				    }
 		    	}else{
