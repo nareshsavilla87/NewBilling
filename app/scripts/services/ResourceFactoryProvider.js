@@ -393,6 +393,9 @@
        	 get: {method: 'GET', params: {}},
        	update: { method: 'PUT' }
        }),
+       KeyInfoResource: defineResource(apiVer + "/keyinfo", {},{
+         	 get: {method: 'GET', params: {}}
+         }),
         OrderrenewalResource: defineResource(apiVer + "/orders/renewal/:orderId", {orderId:'@orderId'},{
        	update: { method: 'PUT' }
        }),
@@ -1083,6 +1086,9 @@
                  update: { method: 'PUT' }
               }),
               radServiceTemplateResource: defineResource(apiVer + "/freeradius/raduser2/template", {}, {}),
+              radiusOnlineUser: defineResource(apiVer + "/freeradius/onlineusers", {}, {
+                  update: { method: 'PUT' }
+               }),
 
             eventActionResource: defineResource(apiVer + "/eventactions", {}, {}),
             addonsTemplateResource: defineResource(apiVer + "/addons/template", {}, {

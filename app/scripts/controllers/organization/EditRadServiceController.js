@@ -12,7 +12,7 @@
 	           
 	           if(scope.radiusVersion == 'version-2'){
 	        	   resourceFactory.radServiceResource.get({radServiceId : routeParams.serviceId,template : 'true'	},	function(data) {
-	        		  scope.serviceCodes=data.radServiceTemplateData;
+	        		  scope.serviceCodes=JSON.parse(data.radServiceTemplateData);
 	        		  scope.formData = {
 	        				  srvname : data.serviceName,
 	        				  downrate : parseInt(data.downRate),

@@ -148,7 +148,7 @@
                               		<td valign="top">{{client.country}}<strong>,</strong>{{client.zip}}</td>
                             	</tr>
                              	<tr>
-                            		<td colspan="2"><a data-ng-show="PermissionService.showMenu('UPDATE_ADDRESS')&&PermissionService.showMenu('READ_ADDRESS')" href="#/editaddress/{{client.id}}" class="btn btn-primary"><i class="icon-edit icon-white" ></i>{{'label.editaddress' | translate}}</a>
+                            		<td colspan="2"><a data-ng-show="PermissionService.showMenu('UPDATE_ADDRESS')&&PermissionService.showMenu('READ_ADDRESS') && !propertyMaster" href="#/editaddress/{{client.id}}" class="btn btn-primary"><i class="icon-edit icon-white" ></i>{{'label.editaddress' | translate}}</a>
                              		<a data-ng-show="PermissionService.showMenu('UPDATE_ADDRESS')&&PermissionService.showMenu('READ_ADDRESS')" href="#/addaddress/{{client.id}}" class="btn btn-primary"><i class="icon-plus-sign icon-white" ></i>{{'label.addotheraddress' | translate}}</a></td>
                             	</tr>
                           	</table>
@@ -508,8 +508,8 @@
 							<div class="pull-right">
 								<a href="#/adddevice/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'label.add.device' | translate}}</a>
 								<a data-ng-show="PermissionService.showMenu('CREATE_NEWSALE')" href="#/addonetimesale/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{'button.sale' | translate}}</a>
-								<a data-ng-show="PermissionService.showMenu('CREATE_SECONDSALE')" href="#/addsecondsale/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{'label.device.secondsale' | translate}}</a>
-								<a data-ng-show="PermissionService.showMenu('CREATE_DEVICERENTAL')" href="#/devicerental/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{'button.devicerental' | translate}}</a>
+								<!-- <a data-ng-show="PermissionService.showMenu('CREATE_SECONDSALE')" href="#/addsecondsale/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{'label.device.secondsale' | translate}}</a> -->
+								<!-- <a data-ng-show="PermissionService.showMenu('CREATE_DEVICERENTAL')" href="#/devicerental/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{'button.devicerental' | translate}}</a> -->
 							</div>
 			    			<div>
 								<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name/Serial Number">

@@ -9,9 +9,9 @@
 	      <div class="btn-group">
 	          <a data-ng-show="PermissionService.showMenu('UPDATE_PARTNER')" href="#/editpartner/{{partner.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i>Edit Partner</a>
 	          <a data-ng-hide="agreements.id" data-ng-show="PermissionService.showMenu('CREATE_PARTNERAGREEMENT')" href="#/createpartneragreement/{{partner.id}}/{{partner.officeId}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Create Agreement</a>
-	          <a href="#/itemsale/{{partner.officeId}}/{{partner.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Item Sale</a>
+	         <!--  <a href="#/itemsale/{{partner.officeId}}/{{partner.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Item Sale</a>
 	          <a href="#/officepayments/{{partner.officeId}}/{{partner.id}}" class="btn btn-primary"><i class="icon-usd icon-white"></i>Payment</a>
-	          <a href="#/officeadjustments/{{partner.officeId}}/{{partner.id}}" class="btn btn-primary"><i class="icon-adjust icon-white"></i>Adjustment</a>
+	          <a href="#/officeadjustments/{{partner.officeId}}/{{partner.id}}" class="btn btn-primary"><i class="icon-adjust icon-white"></i>Adjustment</a> -->
 	      </div>
 	    </div>
 	</div>
@@ -86,7 +86,7 @@
          </table>
         </div>
       </tab>
-      <tab heading="Financial Transactions" select="getFinancialData()" active="FinancialTab">
+      <!-- <tab heading="Financial Transactions" select="getFinancialData()" active="FinancialTab">
      <br>
        <div>
            <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.searchbar' | translate}}">
@@ -118,7 +118,7 @@
           </tbody>
          </table>
         </div>
-      </tab>
+      </tab> -->
     <tab  heading="Disbursements" select="getPartnerDisbursements()" active="PartnersDisbursementTab">
      <br>
 	<div>
