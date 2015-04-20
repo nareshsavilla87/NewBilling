@@ -35,7 +35,7 @@
 					<td class="pointer" data-ng-click="routeToProperty(propertyCode.id)">{{propertyCode.precinct}}</td>
 					<td class="pointer" data-ng-click="routeToProperty(propertyCode.id)">{{propertyCode.clientId}}</td>
 					<td>
-						<a data-ng-show="PermissionService.showMenu('UPDATE_PROPERTY')" 
+						<a data-ng-show="PermissionService.showMenu('UPDATE_PROPERTY') && propertyCode.clientId == 'VACANT'"
 							href="#/editproperty/{{propertyCode.id}}" data-popover="{{'label.editproperty' | translate}}" data-popover-trigger="mouseenter">
                     		<i class="icon-edit icon-white"></i>
                     	</a>&nbsp;

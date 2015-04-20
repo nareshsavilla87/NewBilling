@@ -2629,6 +2629,7 @@
 "label.precinct":"Precinct",
 "label.poBox":"PO Box",
 "label.property":"Property Definition",
+"error.msg.property.code.already.allocated":"Property Code is already allocated to client",
 "validation.msg.property.propertyCode.cannot.be.blank":"Property Code cannot be blank",
 "validation.msg.property.propertyType.cannot.be.blank":"Property Type cannot be blank",
 "validation.msg.property.unitCode.cannot.be.blank":"Unit Code cannot be blank",
