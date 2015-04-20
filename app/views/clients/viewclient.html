@@ -148,7 +148,7 @@
                               		<td valign="top">{{client.country}}<strong>,</strong>{{client.zip}}</td>
                             	</tr>
                              	<tr>
-                            		<td colspan="2"><a data-ng-show="PermissionService.showMenu('UPDATE_ADDRESS')&&PermissionService.showMenu('READ_ADDRESS')" href="#/editaddress/{{client.id}}" class="btn btn-primary"><i class="icon-edit icon-white" ></i>{{'label.editaddress' | translate}}</a>
+                            		<td colspan="2"><a data-ng-show="PermissionService.showMenu('UPDATE_ADDRESS')&&PermissionService.showMenu('READ_ADDRESS') && !propertyMaster" href="#/editaddress/{{client.id}}" class="btn btn-primary"><i class="icon-edit icon-white" ></i>{{'label.editaddress' | translate}}</a>
                              		<a data-ng-show="PermissionService.showMenu('UPDATE_ADDRESS')&&PermissionService.showMenu('READ_ADDRESS')" href="#/addaddress/{{client.id}}" class="btn btn-primary"><i class="icon-plus-sign icon-white" ></i>{{'label.addotheraddress' | translate}}</a></td>
                             	</tr>
                           	</table>

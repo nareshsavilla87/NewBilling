@@ -89,7 +89,7 @@
                        data-popover="Edit Vendor Agreement" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i> </a>
                        
                 </td>  
-                <td><a  ng-click="downloadFile(agreement.id)" popover="Download Uploaded File" popover-trigger="mouseenter"><i class="icon-cloud-download"></i></a></td>                
+                <td><a data-ng-show="agreement.documentLocation.length > 0" ng-click="downloadFile(agreement.id)" popover="Download Uploaded File" popover-trigger="mouseenter"><i class="icon-cloud-download"></i></a></td>                
              </tr>
           </tbody>
          </table>

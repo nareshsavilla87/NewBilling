@@ -25,6 +25,7 @@
          scope.ipstatus;
          scope.ipId;
          scope.walletconfig = webStorage.get('is-wallet-enable');
+         scope.propertyMaster = webStorage.get("is-propertycode-enabled");
          
          var callingTab = webStorage.get('callingTab', null);
          if(callingTab == null){
