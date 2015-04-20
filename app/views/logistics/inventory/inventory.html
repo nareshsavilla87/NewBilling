@@ -27,6 +27,7 @@
         <table class="table">
             <thead>
               <tr class="graybg">
+                <th>Id</th>
                 <th>{{'table.itemdetails.officeName' | translate}}</th>
               	<th>{{'table.itemdetails.supplier' | translate}}</th>
                 <th>{{'table.itemdetails.itemDescription' | translate}}</th>
@@ -40,6 +41,7 @@
             </thead>
             <tbody>
               <tr class="pointer-main" ng-repeat="itemdetail in itemdetails.currentPageItems  | filter:filterText">
+                <td class="pointer" data-ng-click="routeTo(itemdetail.accountNumber)" style="text-align:left">{{itemdetail.id}}</td>
               	<td class="pointer" data-ng-click="routeTo(itemdetail.accountNumber)" style="text-align:left">{{itemdetail.officeName}}</td>
               	<td class="pointer" data-ng-click="routeTo(itemdetail.accountNumber)" style="text-align:left">{{itemdetail.supplier}}</td>
                 <td class="pointer" data-ng-click="routeTo(itemdetail.accountNumber)" style="text-align:left">{{itemdetail.itemDescription}}</td>
@@ -81,6 +83,7 @@
         <table class="table">
             <thead>
               <tr class="graybg">
+                <th>Id</th>
                 <th>{{'table.grn.purchaseDate' | translate}}</th>
                 <th style="text-align:left">{{'table.grn.supplierName' | translate}}</th>
                 <th style="text-align:center">{{'table.grn.officeName' | translate}}</th>
@@ -94,6 +97,7 @@
             </thead>
             <tbody>
               <tr class="pointer-main" ng-repeat="g in grn.currentPageItems | filter:filterText">
+               <td class="pointer" data-ng-click="routeTogrn(g.id)">{{g.id}}</td>
                <td class="pointer" data-ng-click="routeTogrn(g.id)">{{g.purchaseDate | DateFormat}}</td>
                <td class="pointer" data-ng-click="routeTogrn(g.id)" style="text-align:left">{{g.supplierName}}</td>
                 <td class="pointer" data-ng-click="routeTogrn(g.id)" style="text-align:left">{{g.officeName}}</td>
@@ -176,6 +180,7 @@
 	               <table class="table">
 					<thead>	
 						<tr class="graybg">
+						  <th>Id</th>
                           <th>{{ 'label.item.itemcode' | translate }}</th>
                           <th>{{ 'label.item.itemdescription' | translate }}</th>
                           <th>{{ 'label.item.units' | translate }}</th>
@@ -188,7 +193,8 @@
 						</tr>
 					</thead>
              	 <tbody>
-             		 <tr class="pointer-main" ng-repeat="item in items.currentPageItems | filter:filterText">    
+             		 <tr class="pointer-main" ng-repeat="item in items.currentPageItems | filter:filterText"> 
+             		    <td class="pointer" data-ng-click="routeToitem(item.id)">{{item.id}}</td>       
                			<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.itemCode}}</td>        
                 		<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.itemDescription}}</td> 
                 		<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.units}}</td>

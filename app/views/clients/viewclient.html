@@ -322,6 +322,10 @@
 			  			</div>
 			  			
 			  			<div id="pane2" class="tab-pane" data-ng-class="{active: additionaldataSubTab}">
+			  				<div class="pull-right" data-ng-hide="editAdditionalDatasBtn">
+	         			 		<a href="#/clientadditionalinfo/{{clientId}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'label.add.additionalinfo' | translate}}
+			 			 		</a>
+	        				</div>
 					         <br/>
 			        		<table class="table" data-ng-show="additionalDatas">
 			            		<thead>
@@ -331,17 +335,17 @@
 			                			<th>{{'label.preferredLang' | translate}}</th>
 			                			<th>{{'label.financeId' | translate}}</th>
 			                			<th>{{'label.remarks' | translate}}</th>
-			                			<th></th>
+			                			<th data-ng-show="editAdditionalDatasBtn">{{'table.heading.actions' | translate}}</th>
 			              			</tr>
 			            		</thead>
 			            		<tbody>
 			              			<tr>
-			                			<td>{{additionalDatas.documentKey}}</td>
+			                			<td>{{additionalDatas.nationality}}</td>
 			                			<td>{{additionalDatas.dateOfBirth | DateFormat }}</td>
-			                			<td>{{additionalDatas.description}}</td>
+			                			<td>{{additionalDatas.preferredLang}}</td>
 			                			<td>{{additionalDatas.financeId}}</td>
-			                			<td></td>
-			                			<td>
+			                			<td>{{additionalDatas.remarks}}</td>
+			                			<td data-ng-show="editAdditionalDatasBtn">
 			                  				<a href="#/editadditionaldata/{{client.id}}" data-popover="Edit Info" data-popover-trigger="mouseenter"><i class="icon-edit"></i></a>&nbsp;
 			                  				<!-- <a data-ng-show="PermissionService.showMenu('DELETE_CLIENTIDENTIFIER')" data-ng-click="deletePopUp(client.id,document.id,$index,'Delete Identities')"
 			                  					data-popover="Delete Identities" data-popover-trigger="mouseenter"><i class="icon-remove"></i></a> -->

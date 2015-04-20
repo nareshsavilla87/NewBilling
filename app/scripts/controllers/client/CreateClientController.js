@@ -74,6 +74,8 @@
          };   
          
         scope.getPropertyDetails=function(propertyCode){
+        	
+        if(propertyCode !=undefined){
         	for(var i in scope.propertyCodes){
         		if(scope.propertyCodes[i].propertyCode == propertyCode){
         			 scope.formData.street = scope.propertyCodes[i].street;
@@ -84,6 +86,13 @@
         			 break;
         		}
         	}
+         }else{
+        	 delete scope.formData.street ;
+			 delete scope.formData.city ;
+			 delete scope.formData.state;
+			 delete scope.formData.country;
+			 delete scope.formData.zipCode ;
+         }
         	
         };
 
