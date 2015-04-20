@@ -8,7 +8,7 @@
   "label.signin":"Sign In",
   "label.systemid": "System Id :",
   "label.product.name" : "Open Billing System",
-  "label.product.version" : "Version 2.0.1",
+  "label.product.version" : "Version 2.0.4",
   "label.product.status" : "OBS is upto date",
   "label.product.aboutus1" : "Designed by ",
   "label.product.aboutus2" : "A global community",
@@ -2672,7 +2672,7 @@
 "error.msg.vendor.active.agreement.with.this.dates":"Active agreement, already exist with same effective start & end date",
 
 "#Service Transfer Request":".......",
-"label.service.transfer"		: "Service Transfer Request",
+"label.service.transfer"		: "Service Transfer",
 "label.client.id"				: "Client ID",
 "label.client.name"				: "Client Name",
 "label.residing.property"		: "Residing Property",
@@ -2688,7 +2688,9 @@
 "validation.msg.serviceTransfer.oldPropertyCode.cannot.be.blank" 	: "Existing Property Code cannot be blank",
 "validation.msg.serviceTransfer.newPropertyCode.cannot.be.blank" 	: "Shifting Property Code cannot be blank",
 "validation.msg.serviceTransfer.shiftChargeAmount.cannot.be.blank" 	: " Shifting Charges cannot be blank",
-"label.digits.only" 	: "Enter Digits only!"
+"label.digits.only" 	: "Enter Digits only!",
+
+"label.add.additionalinfo" 	: "Add Additional Info"
 
 
 
