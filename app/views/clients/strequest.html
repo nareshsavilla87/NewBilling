@@ -115,7 +115,7 @@
           	 <div class="control-group">
          		<label class="control-label" for="shiftChargeAmount">{{ 'label.shifting.charges' | translate }}<span class="required">*</span></label>
 	         	<div class="controls">
-	          	  <input type="text" id="shiftChargeAmount" name="shiftChargeAmount" data-ng-model="shiftChargeAmount" data-ng-pattern="/^[0-9]*$/" required data-late-Validate/><br/>
+	          	  <input type="text" id="shiftChargeAmount" name="shiftChargeAmount" data-ng-model="formData.shiftChargeAmount" data-ng-pattern="/^[0-9]*$/" required data-late-Validate disabled /><br/>
 	          	  <span  data-ng-show="servicetransferform.shiftChargeAmount.$invalid">
 	                   <small class="error" data-ng-show="servicetransferform.shiftChargeAmount.$error.req">
 	                      {{'label.required.field' | translate}}

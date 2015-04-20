@@ -6,10 +6,13 @@
        scope.shiftingCheckbox = "Yes";
        scope.clientId = routeParams.clientId;
        scope.serviceTransferRequestData = {};
-       scope.propertyCodesData = [];
-       resourceFactory.serviceTransferRequestResource.get({clientId:routeParams.clientId},function(data){
+       scope.propertyCodesData = [];scope.feeMasterData = [];
+       resourceFactory.serviceTransferRequestResource.get({clientId:routeParams.clientId,id:1},function(data){
     	  scope.serviceTransferRequestData = data;
     	  scope.propertyCodesData = data.propertyCodesData;
+    	  scope.feeMasterData  = data.feeMasterData;
+    	  scope.formData.shiftChargeAmount = scope.feeMasterData.defaultFeeAmount;
+    	  scope.formData.chargeCode = scope.feeMasterData.chargeCode;
        });
        
        scope.selectPropertyCodesDataFun = function(propertyCode){
@@ -24,9 +27,7 @@
        };
        
        scope.submit = function(){
-    	   scope.formData = {};
     	   scope.formData.oldPropertyCode = scope.serviceTransferRequestData.propertyCode; 
-    	   scope.formData.shiftChargeAmount = scope.shiftChargeAmount; 
     	   scope.formData.locale = "en"; 
     	   if(scope.shiftingCheckbox == "Yes"){
     		   scope.formData.newPropertyCode = scope.serviceTransferRequestData.propertyCode; 

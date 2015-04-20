@@ -244,6 +244,28 @@
         scope.currentSession = session;
         scope.start(scope.currentSession);
       });
+      
+      scope.changePwd = function () {
+          $modal.open({
+              templateUrl: 'changepassword.html',
+              controller: changepasswordCtrl
+              
+          });
+      };
+      
+      function changepasswordCtrl($scope, $modalInstance) {
+    	  $scope.formData = {};
+    	  var sessionData = webStorage.get('sessionData') || "";
+    	  var userId	= sessionData.userId;
+          $scope.submit = function (staffId) {
+              resourceFactory.userListResource.update({'userId': userId},$scope.formData,function(data){
+            	  $modalInstance.close('delete');
+              });
+          };
+          $scope.cancel = function () {
+              $modalInstance.dismiss('cancel');
+          };
+      };
     }
   });
   mifosX.ng.application.controller('MainController', [

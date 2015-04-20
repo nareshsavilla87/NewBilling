@@ -16,6 +16,7 @@
 	<table class="table">
         <thead>
             <tr class="graybg">
+                <th>{{'label.heading.username' | translate}}</th>
                 <th>{{'label.user.firstname' | translate}}</th>
                 <th>{{'label.user.lastname' | translate}}</th>
                 <th>{{'label.user.email' | translate}}</th>
@@ -25,6 +26,7 @@
         </thead>
         <tbody>
             <tr class="pointer-main" ng-repeat="user in users | filter:filterText">
+                <td class="pointer" data-ng-click="routeTo(user.id)">{{user.username}}</td>            
                 <td class="pointer" data-ng-click="routeTo(user.id)">{{user.firstname}}</td>            
                 <td class="pointer" data-ng-click="routeTo(user.id)">{{user.lastname}}</td>            
                 <td class="pointer" data-ng-click="routeTo(user.id)">{{user.email}}</td>        
