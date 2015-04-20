@@ -7,24 +7,14 @@
        scope.clientId = routeParams.clientId;
        scope.serviceTransferRequestData = {};
        scope.propertyCodesData = [];scope.feeMasterData = [];
-       resourceFactory.serviceTransferRequestResource.get({clientId:routeParams.clientId,id:1},function(data){
+       resourceFactory.serviceTransferRequestResource.get({clientId:routeParams.clientId},function(data){
     	  scope.serviceTransferRequestData = data;
     	  scope.feeMasterData  = data.feeMasterData;
-    	  scope.formData.shiftChargeAmount = scope.feeMasterData.defaultFeeAmount;
-    	  scope.formData.chargeCode = scope.feeMasterData.chargeCode;
-    	  //scope.propertyCodesData = data.propertyCodesData;
+    	  if(scope.feeMasterData){
+    		  scope.formData.shiftChargeAmount = scope.feeMasterData.defaultFeeAmount;
+    		  scope.formData.chargeCode = scope.feeMasterData.chargeCode;
+    	  }
        });
-       
-    /*   scope.selectPropertyCodesDataFun = function(propertyCode){
-    	   for(var i in scope.propertyCodesData){
-    		   if(propertyCode == scope.propertyCodesData[i].propertyCode){
-    			   scope.propertyName = scope.propertyCodesData[i].precinct;
-    			   scope.unitCode = scope.propertyCodesData[i].unitCode;
-    			   scope.unitStatus = scope.propertyCodesData[i].status;
-    			   break;
-    		   }
-    	   }
-       };*/
        
        scope.getPropertyCode = function(query){
        	return http.get($rootScope.hostUrl+API_VERSION+'/property/propertycode/', {
