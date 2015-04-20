@@ -1046,6 +1046,18 @@
       .when('/strequest/:clientId', {
     	  templateUrl: 'views/clients/strequest.html'
       })
+      .when('/feemaster', {
+    	  templateUrl: 'views/organization/feemaster.html'
+      })
+      .when('/createfeemaster', {
+    	  templateUrl: 'views/organization/createfeemaster.html'
+      })
+      .when('/viewfeemaster/:id', {
+    	  templateUrl: 'views/organization/viewfeemaster.html'
+      })
+      .when('/editfeemaster/:id', {
+    	  templateUrl: 'views/organization/editfeemaster.html'
+      })
       ;
      
     $locationProvider.html5Mode(false);

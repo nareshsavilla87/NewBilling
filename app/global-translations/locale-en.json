@@ -2694,7 +2694,7 @@
 "error.msg.vendor.contentcode.lshare.duplicate":"Duplicate data with same Contentcode and loyaltyshare",
 "error.msg.vendor.active.agreement.with.this.dates":"Active agreement, already exist with same effective start & end date",
 
-"#Service Transfer Request":".......",
+"#Service Transfer ":".......",
 "label.service.transfer"		: "Service Transfer",
 "label.client.id"				: "Client ID",
 "label.client.name"				: "Client Name",
@@ -2707,13 +2707,37 @@
 "label.shifting.charges"		: "Shifting Charges",
 "label.current.address"			: "Current Address",
 
-"#Service Transfer Request Errors":".......",
+"#Service Transfer Errors":".......",
 "validation.msg.serviceTransfer.oldPropertyCode.cannot.be.blank" 	: "Existing Property Code cannot be blank",
 "validation.msg.serviceTransfer.newPropertyCode.cannot.be.blank" 	: "Shifting Property Code cannot be blank",
 "validation.msg.serviceTransfer.shiftChargeAmount.cannot.be.blank" 	: " Shifting Charges cannot be blank",
 "label.digits.only" 	: "Enter Digits only!",
 
-"label.add.additionalinfo" 	: "Add Additional Info"
+"label.add.additionalinfo" 	: "Add Additional Info",
+
+"#Fee Master  ":".......",
+"label.feemaster"  					:  "Fee Master",
+"label.create.feemaster"  			:  "Create Fee Master",
+"label.edit.feemaster"  			:  "Edit Fee Master",
+"label.delete.feemaster"  			:  "Delete Fee Master",
+"label.feemaster.code"  			:  "Fee Code",
+"label.feemaster.description"  		:  "Fee Description",
+"label.feemaster.transactiontype"  	:  "Transaction Type",
+"label.feemaster.defaultfeeamount" 	:  "Default Fee Amount",
+"label.feemaster.regionprices" 		:  "Region Prices",
+"label.feemaster.id" 				:  "Fee Master Id",
+"label.feemaster.regionid" 			:  "Region Id",
+"label.feemaster.list.regionprices" :  "List of Region Prices",
+"label.feemaster.selete.regionname" :  "Select Region Name",
+
+"#Fee Master  ":".......",
+"validation.msg.feemaster.feeCode.cannot.be.blank"    		 : "Fee Code can not be blank",
+"validation.msg.feemaster.feeDescription.cannot.be.blank"    : "Fee Description can not be blank",
+"validation.msg.feemaster.transactionType.cannot.be.blank"   : "Transaction Type can not be blank",
+"validation.msg.feemaster.chargeCode.cannot.be.blank"  		 : "Charge Code can not be blank",
+"validation.msg.feemaster.defaultFeeAmount.cannot.be.blank"  : "Default Fee Amount can not be blank"
+
+
 
 
 

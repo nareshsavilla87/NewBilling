@@ -1,0 +1,70 @@
+<div data-ng-controller="ViewFeeMasterController">
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+	        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+	        <li><a href="#/feemaster">{{'label.feemaster' | translate}}</a> <span class="divider">/</span></li>
+	        <li class="active">{{feeMasterData.feeCode}}</li>
+	    </ul>
+	    <div class="pull-right">
+	      <div class="btn-group">
+	          <a data-ng-show="PermissionService.showMenu('UPDATE_FEEMASTER')" href="#/editfeemaster/{{feeMasterData.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> {{'button.edit'|translate}}</a>
+	         <a data-ng-show="PermissionService.showMenu('DELETE_FEEMASTER')" data-ng-click="deleteFeeMaster()" class="btn btn-primary"><i class="icon-trash icon-white"></i> {{'button.delete'|translate}}</a>
+	      </div>
+	    </div>
+	</div>
+	<div class="row paddedleft" >
+		<!-- <h3>{{feeMasterData.feeCode}}</h3> -->
+		<table style="width:100%;">
+			<tr>
+				<td width="20%">{{ 'label.feemaster.code' | translate }}</td>
+				<td width="70%">{{feeMasterData.feeCode}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.feemaster.description' | translate }}</td>
+				<td>{{feeMasterData.feeDescription}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.feemaster.transactiontype' | translate }}</td>
+				<td>{{feeMasterData.transactionType}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.chargecode' | translate }}</td>
+				<td>{{feeMasterData.chargeCode}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.feemaster.defaultfeeamount' | translate }}</td>
+				<td>{{feeMasterData.defaultFeeAmount}}</td>
+			</tr>
+			<tr >
+				<td>{{ 'label.feemaster.list.regionprices' | translate }}</td>
+				<td class="blockquoteresult">
+                  <table class="table fullwidth" >
+                    <tr class="graybg">
+                      <th>{{'table.heading.regionName' | translate}}</th>
+                      <th>{{'label.amount' | translate}}</th>
+                    </tr>
+                    <tr data-ng-repeat="availbleRegion in availbleRegions" >
+                      <td>{{availbleRegion.regionName}}</td>
+                      <td> {{availbleRegion.amount}}</td>
+                    </tr>
+                  </table>
+                </td>
+			</tr>
+			
+		</table>
+	</div>
+	<script type="text/ng-template" id="approve.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">{{'label.delete.feemaster' | translate}}</h3>
+                    </div>
+                    <div class="modal-body style="height:60px;">
+                       <h4>Are you sure?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+                    </div>
+      </script>
+	
+</div>
+          
