@@ -50,7 +50,7 @@
 	            <label data-ng-hide="formData.entryType == 'ORP'" class="control-label" for="lastname">{{'label.lastname' | translate}}<span class="required">*</span></label>
 	            <label data-ng-show="formData.entryType == 'ORP'" class="control-label" for="lastname">{{'label.contactperson' | translate}}<span class="required">*</span></label>
 	            <div class="controls">
-	              <input type="text" id="lastname" data-ng-model="formData.lastname" data-ng-pattern="/^[a-zA-Z0-9\s]+$/" required data-ng-minlength=3 data-late-Validate/><br/>
+	              <input type="text" id="lastname" name="lastname" data-ng-model="formData.lastname" data-ng-pattern="/^[a-zA-Z0-9\s]+$/" required data-ng-minlength=3 data-late-Validate/><br/>
 	             <span  data-ng-show="createclientform.lastname.$invalid">
 	              	<small class="error" data-ng-show="createclientform.lastname.$error.pattern">alphanumeric and spaces only!</small>
 	                  <small class="error" data-ng-show="createclientform.lastname.$error.req">
@@ -136,7 +136,7 @@
         <label class="control-label">{{'label.buildingcode' | translate}}<span class="required">*</span></label>
         <div class="controls">
           <input type="text" id="addressNo" name="address" data-ng-model="formData.addressNo" data-typeahead="propertyCode.propertyCode as propertyCode.propertyCode for propertyCode in getPropertyCode($viewValue)"
-           autocomplete="off" data-typeahead-min-length="0" data-typeahead-on-select="getPropertyDetails(formData.addressNo)" required data-late-Validate/>
+           autocomplete="off" data-typeahead-min-length="0" data-ng-blur="getPropertyDetails(formData.addressNo)" required data-late-Validate/><br/>
           <span  data-ng-show="createclientform.address.$invalid">
               <small class="error" data-ng-show="createclientform.address.$error.req">
                   {{'label.required.field' | translate}}
