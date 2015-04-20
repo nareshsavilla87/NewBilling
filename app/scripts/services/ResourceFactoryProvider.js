@@ -1083,6 +1083,9 @@
                  update: { method: 'PUT' }
               }),
               radServiceTemplateResource: defineResource(apiVer + "/freeradius/raduser2/template", {}, {}),
+              radiusOnlineUser: defineResource(apiVer + "/freeradius/onlineusers", {}, {
+                  update: { method: 'PUT' }
+               }),
 
             eventActionResource: defineResource(apiVer + "/eventactions", {}, {}),
             addonsTemplateResource: defineResource(apiVer + "/addons/template", {}, {
