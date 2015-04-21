@@ -139,6 +139,7 @@
         	resourceFactory.clientResource.get({clientId: routeParams.id} , function(data) {
         		scope.orders = [];
                 scope.client = data;
+                webStorage.add("walletAmount",scope.client.walletAmount);
                 scope.statusActive = scope.client.status.code;
                 scope.taxExemption = scope.client.taxExemption;
                 if(scope.taxExemption == 'N'){
