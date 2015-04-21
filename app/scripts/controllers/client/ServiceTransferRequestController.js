@@ -3,7 +3,6 @@
 	  ServiceTransferRequestController: function(scope,webStorage, resourceFactory, routeParams, location,dateFilter,$rootScope, http,API_VERSION,PermissionService,$upload,filter) {
 
 	  scope.walletConfig = webStorage.get('is-wallet-enable');
-	  console.log(scope.walletConfig);
 		var clientData = webStorage.get('clientData');
 		scope.hwSerialNumber = clientData.hwSerialNumber;
 		scope.displayName = clientData.displayName;
@@ -19,7 +18,6 @@
         if(scope.imagePresent){
         	scope.image=clientData.image;
 		}  
-       console.log(webStorage.get("walletAmount"));
        scope.walletAmount = webStorage.get("walletAmount");
         
        scope.formData = {};
