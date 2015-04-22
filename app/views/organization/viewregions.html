@@ -8,9 +8,9 @@
 		</ul>
 		<div class="pull-right">
 			<div class="btn-group">
-				<a data-ng-show="PermissionService.showMenu('UPDATE_REGION')" href="#/editRegions/{{region.id}}" 
+				<a data-ng-show="PermissionService.showMenu('UPDATE_REGION') && region.regionCode !='Default'" href="#/editRegions/{{region.id}}" 
 					class="btn btn-primary"><i class="icon-edit icon-white"></i> {{'label.edit' | translate}} </a> 
-				<a data-ng-show="PermissionService.showMenu('DELETE_REGION')" data-ng-click="deleteRegion()" 
+				<a data-ng-show="PermissionService.showMenu('DELETE_REGION') && region.regionCode !='Default'" data-ng-click="deleteRegion()" 
 					class="btn btn-primary"><i class="icon-trash icon-white"></i> {{'label.delete' | translate}} </a>
 			</div>
 		</div>

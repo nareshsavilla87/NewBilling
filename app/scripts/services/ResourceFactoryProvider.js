@@ -220,7 +220,7 @@
               getTemplateDetails: {method: 'GET', params: {}},
               update: {method: 'PUT', params: {}},
           }),
-          VendorAgreementTemplateResource:defineResource(apiVer + "/vendoragreement/template",{}, {
+          VendorAgreementTemplateResource:defineResource(apiVer + "/vendoragreement/template",{vendorId: '@vendorId'}, {
               
               getTemplateDetails: {method: 'GET', params: {}},
               update: {method: 'PUT', params: {}},

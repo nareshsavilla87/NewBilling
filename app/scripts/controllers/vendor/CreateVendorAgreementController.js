@@ -1,6 +1,6 @@
 (function(module) {
 	mifosX.controllers = _.extend(module, {				
-		CreateVendorAgreementController : function(scope,resourceFactory, 
+		CreateVendorAgreementController : function(scope,routeParams,resourceFactory, 
 				location, dateFilter,validator, $rootScope, $upload, API_VERSION, routeParams) {
 			
 			scope.priceRegionDatas = [];
@@ -21,7 +21,7 @@
 			 scope.vendorId = routeParams.vendorId;
 			 scope.formData.contentType = "Service";
 						
-			resourceFactory.VendorAgreementTemplateResource.getTemplateDetails(function(data) {
+			resourceFactory.VendorAgreementTemplateResource.getTemplateDetails({'vendorId':routeParams.vendorId},function(data) {
 				scope.priceRegionDatas = data.priceRegionData;
 				scope.servicesData = data.servicesData;
 				scope.planDatas = data.planDatas;
@@ -108,6 +108,7 @@
 	});
 	mifosX.ng.application.controller('CreateVendorAgreementController', [ 
 	'$scope', 
+	'$routeParams',
 	'ResourceFactory', 
 	'$location', 
 	'dateFilter',
