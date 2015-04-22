@@ -95,7 +95,7 @@
                                   'Media Details','Add Media Details','Add Advanced Media Details','Messages','Create Message','Event Master','Create Event','IP Pool Management','Create IP Pool','Services',
                                   'Create Service','Closed User Group','Plans','Create Plan','Accounting','Frequent Postings','Chart Of Accounts','Add Journal Entry','Account Closure','Close Accounting','Search Transaction',
                                   'Accounting Rules','Create Accounting Rule','Data Uploads','Upload File','Scheduler Jobs','Create Redemption','Smart Search','Payment Gateway','Adapter Provision','Navigation','Shortcuts',
-                                  'User Profile','View Permissions','Messanger','User Notification','User Settings','Add Ons','Templates'];
+                                  'User Profile','View Permissions','Messanger','User Notification','User Settings','Add Ons','Templates','Fee Master','Create Fee Master'];
             scope.search = function () {
 		      switch (this.formData.search) {
 		          case 'Leads':
@@ -389,6 +389,12 @@
 		          case 'Templates':
 		              location.path('/templates');
 		              break;
+		          case 'Fee Master':
+		        	  location.path('/feemaster');
+		        	  break;
+		          case 'Create Fee Master':
+		        	  location.path('/createfeemaster');
+		        	  break;
 		          default:
 		              location.path('/home');
 		      }

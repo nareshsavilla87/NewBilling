@@ -51,11 +51,11 @@
     <div class="row span8 offset2 paddedbottom">
     <table width="%100">
         <tr>
-            <td width="30%">
+            <td width="30%" align="right">
                 <img src="./images/BillingX_logo.png" alt="BillingX" width="150">
             </td>    
             <td width="70%">
-                <h1>{{ 'label.product.name' | translate }}</h1>
+                <h1 style="font-size: 40px;">{{ 'label.product.name' | translate }}</h1>
                 <span>{{ 'label.product.version' | translate }}</span><br/>
                 <span>{{ 'label.product.status' | translate }}</span><br/>
                 <span>{{ 'label.product.aboutus1' | translate }}<a target="http://www.openbillingsystem.com/" href="http://www.openbillingsystem.com/">{{ 'label.community.name' | translate }}</a>.
@@ -300,7 +300,7 @@
                         	</ul>
                         </li>
                          
-                        <li class="dropdown" id="preview-menu" data-ng-show="user||organization||system||upload||jobs||accounting||smartsearch||paymentGetWay||pooling||provision">
+                        <li class="dropdown" id="preview-menu" data-ng-show="user||organization||system||upload||jobs||accounting||paymentGetWay||pooling||provision">
                             <a class="dropdown-toggle" data-toggle="dropdown" data-ng-class="{ activate: isActive('admin') }" href="#">
                             	<i class="icon-wrench"></i>{{ 'link.admin' | translate }}<b class="caret"></b>
                             </a>
@@ -350,11 +350,6 @@
                                 	</a>
                                 </li>
                                 
-                                <li>
-                                	<a data-ng-show="smartsearch=PermissionService.showMenu('READ_GLACCOUNT')&&PermissionService.showMenu('READ_OFFICE')&&PermissionService.showMenu('READ_SMARTSEARCH')" href="#/smartSearch">
-                                		{{ 'link.smartsearch' | translate }}
-                                	</a>
-                                </li>
                                 
                                 <li>
                                 	<a data-ng-show="paymentGetWay=PermissionService.showMenu('READ_PAYMENTGATEWAY')" href="#/paymentGateway">
@@ -387,7 +382,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="#/profile"><i class="icon-user"></i>{{ 'link.profile' | translate }}</a></li>
                                  <li><a data-ng-show="PermissionService.showMenu('READ_USERCHATMESSAGE')" href="#/messanger"><i class="icon-envelope"></i>{{ 'link.messanger' | translate }}</a></li>
-                                 <li><a data-ng-show="PermissionService.showMenu('ALL_FUNCTIONS')" id="help" href="#/help"><i class="icon-question-sign"></i>{{ 'label.anchor.help' | translate }}</a></li>
+                                 <li><a data-ng-show="PermissionService.showMenu('ALL_FUNCTIONS')" id="changePWD" data-ng-click="changePwd()"><i class="icon-cog"></i>{{ 'label.changepassword' | translate }}</a></li>
                                 <li><a data-ng-show="PermissionService.showMenu('ALL_FUNCTIONS')" href="#/usersetting"><i class="icon-cog"></i>{{ 'link.settings' | translate }}</a></li>
                                 <li><a id="logout" data-ng-click="logout()"><i class="icon-off"></i>{{ 'link.logout' | translate }}</a></li>
                             </ul>
@@ -396,6 +391,18 @@
                     <form data-ng-show="PermissionService.showMenu('READ_SEARCH')" data-ng-submit="search()" class="navbar-search pull-left ng-pristine ng-valid">
                     <input id="search" data-ng-model="search.query" type="text" placeholder="{{ 'label.searchorpress' | translate }}" class="search-query span3">
                     </form>
+                    <!-- <a  data-ng-show="PermissionService.showMenu('READ_GLACCOUNT')&&PermissionService.showMenu('READ_OFFICE')&&PermissionService.showMenu('READ_SMARTSEARCH')"  
+                    		href="#/smartSearch" style="margin-top: 9px;margin-left: 20px;">
+                    		<img src=./images/advanced_search_icon.png alt="smart-search" width="50" data-popover-placement="bottom" 
+                              data-popover="{{'link.smartsearch'|translate}}" data-popover-trigger="mouseenter">
+                    		<input type="image"  data-popover-placement="bottom" 
+                              data-popover="{{'link.smartsearch'|translate}}" data-popover-trigger="mouseenter"  src="./images/advanced_search_icon.png" width="50px">
+                    </a> -->
+                    <a class="brand" href="#/smartSearch" style="font-size: 14px; text-shadow: 0px 0px 0px; padding: 10px 45px;" 
+                    			data-ng-show="PermissionService.showMenu('READ_GLACCOUNT')&&PermissionService.showMenu('READ_OFFICE')&&PermissionService.showMenu('READ_SMARTSEARCH')">
+                    	<img src=./images/advanced_search_icon.png alt="smart-search" width="30" data-popover-placement="bottom" 
+                              data-popover="{{'link.smartsearch'|translate}}" data-popover-trigger="mouseenter">
+					</a>
                 </div>
             </div>
         </div>
@@ -420,7 +427,7 @@
 	<div class="modal-header silver">
         <h3 class="bolder">Update LicenseKey</h3>
     </div>
-<div class="padded-td"><strong>Your License valid till :<span style="color:#0f82f5">{{kayinfo}}<span></strong></div>
+<div class="padded-td"><strong>Your License valid till :<span style="color:red">{{kayinfo}}<span></strong></div>
     <div class="modal-body" style="height:160px;">
  <div class="error" ng-show="errorStatus || errorDetails">
 		                 <label>{{'label.contract.error' | translate}}</label>
@@ -454,7 +461,33 @@
 					<div class="modal-footer">
                         <a id="submit" class="btn btn-primary" ng-click="approve()">{{'btn.ok' | translate}}</a>
                     </div>
-      </script>
+</script>
+<script type="text/ng-template" id="changepassword.html">
+        <div class="modal-header silver">
+            <h3 class="bolder">{{'label.changepassword' | translate}}</h3>
+        </div>
+
+        <div class="modal-body">
+            <div class="control-group">
+                <label class="control-label" for="password">{{ 'label.password' | translate }}</label>
+                <div class="controls">
+                    <input type="password" id="password" ng-model="formData.password">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="repeatPassword">{{ 'label.repeatpassword' | translate }}</label>
+                <div class="controls">
+                    <input type="password" id="repeatPassword" ng-model="formData.repeatPassword">
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer silver">
+            <button class="btn btn-warning" ng-click="cancel()">{{'label.cancel' | translate}}</button>
+            <button class="btn btn-primary" ng-click="submit()">{{'label.save' | translate}}</button>
+        </div>
+</script>
+      
 </body>
 
 

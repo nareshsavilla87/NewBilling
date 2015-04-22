@@ -393,6 +393,9 @@
        	 get: {method: 'GET', params: {}},
        	update: { method: 'PUT' }
        }),
+       KeyInfoResource: defineResource(apiVer + "/keyinfo", {},{
+         	 get: {method: 'GET', params: {}}
+         }),
         OrderrenewalResource: defineResource(apiVer + "/orders/renewal/:orderId", {orderId:'@orderId'},{
        	update: { method: 'PUT' }
        }),
@@ -1141,6 +1144,9 @@
             serviceTransferRequestResource: defineResource(apiVer + "/servicetransfer/:clientId", {clientId:'@clientId'}, {}),
             
             KeyInfoResource: defineResource(apiVer + "/keyinfo", {},{}),
+            
+            feeMasterResource: defineResource(apiVer + "/feemaster/:id", {id:'@id'},{update: { method: 'PUT' }}),
+            feeMasterTemplateResource: defineResource(apiVer + "/feemaster/template", {},{}),
       
         };
       }];

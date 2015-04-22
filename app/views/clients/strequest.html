@@ -73,14 +73,24 @@
        	  </tr>
        	  <tr data-ng-hide="shiftingCheckbox == 'Yes'">
            <td>
-          	 <div class="control-group">
+          	<!--  <div class="control-group">
          		<label class="control-label" for="propertyCode">{{ 'label.property.code' | translate }}</label>
 	         	<div class="controls">
 	          	   <select data-ng-model="propertyCode"  data-ng-options="propertyCodesData.propertyCode as propertyCodesData.propertyCode for propertyCodesData in propertyCodesData" 
 	          	   		data-ng-change="selectPropertyCodesDataFun(propertyCode)">
             		</select>
 	         	</div>
-        	 </div>
+        	 </div> -->
+         <div class="control-group" >
+           <label class="control-label" for="propertyCode" >{{'label.property.code' | translate}}<span class="required">*</span></label>
+           <div class="controls">
+           <input type="text" id="propertyCode" name="propertyCode" data-ng-model="formData.propertyCode" data-typeahead="propertyCode.propertyCode as propertyCode.propertyCode for propertyCode in getPropertyCode($viewValue)"
+            autocomplete="off" data-typeahead-min-length="0" data-ng-blur="getPropertyDetails(formData.propertyCode)" required data-late-Validate/><br/>
+            <span  data-ng-show="servicetransferform.propertyCode.$invalid">
+              <small class="error" data-ng-show="servicetransferform.propertyCode.$error.req">{{'label.required.field' | translate}}</small>
+          </span>
+        </div>
+      </div>
        	   </td>
            <td>
           	 <div class="control-group">
@@ -115,7 +125,7 @@
           	 <div class="control-group">
          		<label class="control-label" for="shiftChargeAmount">{{ 'label.shifting.charges' | translate }}<span class="required">*</span></label>
 	         	<div class="controls">
-	          	  <input type="text" id="shiftChargeAmount" name="shiftChargeAmount" data-ng-model="shiftChargeAmount" data-ng-pattern="/^[0-9]*$/" required data-late-Validate/><br/>
+	          	  <input type="text" id="shiftChargeAmount" name="shiftChargeAmount" data-ng-model="formData.shiftChargeAmount" data-ng-pattern="/^[0-9]*$/" required data-late-Validate disabled /><br/>
 	          	  <span  data-ng-show="servicetransferform.shiftChargeAmount.$invalid">
 	                   <small class="error" data-ng-show="servicetransferform.shiftChargeAmount.$error.req">
 	                      {{'label.required.field' | translate}}

@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  ViewVendorController: function(scope, routeParams , resourceFactory ,location,$modal,PermissionService,route) {
+	  ViewVendorController: function(scope, routeParams , resourceFactory ,location,$modal,PermissionService,API_VERSION,$rootScope,route) {
         scope.vendorData = [];
         scope.PermissionService = PermissionService;
         scope.vendorRouteParamId = routeParams.id;
@@ -33,6 +33,11 @@
   	                resolve:{}
   	        });
          };
+         
+         
+         scope.downloadFile = function (id){ 
+        	 window.open($rootScope.hostUrl+ API_VERSION +'/vendoragreement/download/'+id+'?tenantIdentifier=default');
+      };
           
       	function  approve($scope, $modalInstance) {
       		$scope.approve = function () {
@@ -48,7 +53,7 @@
         
     }
   });
-  mifosX.ng.application.controller('ViewVendorController', ['$scope', '$routeParams','ResourceFactory', '$location','$modal','PermissionService','$route',mifosX.controllers.ViewVendorController]).run(function($log) {
+  mifosX.ng.application.controller('ViewVendorController', ['$scope', '$routeParams','ResourceFactory', '$location','$modal','PermissionService','API_VERSION','$rootScope','$route',mifosX.controllers.ViewVendorController]).run(function($log) {
     $log.info("ViewVendorController initialized");
   });
 }(mifosX.controllers || {}));

@@ -35,13 +35,13 @@
 					<td class="pointer" data-ng-click="routeToProperty(propertyCode.id)">{{propertyCode.precinct}}</td>
 					<td class="pointer" data-ng-click="routeToProperty(propertyCode.id)">{{propertyCode.clientId}}</td>
 					<td>
-						<a data-ng-show="PermissionService.showMenu('UPDATE_PROPERTY')" 
+						<a data-ng-show="PermissionService.showMenu('UPDATE_PROPERTY') && propertyCode.clientId == 'VACANT'"
 							href="#/editproperty/{{propertyCode.id}}" data-popover="{{'label.editproperty' | translate}}" data-popover-trigger="mouseenter">
                     		<i class="icon-edit icon-white"></i>
                     	</a>&nbsp;
                     	 <a data-ng-show="PermissionService.showMenu('READ_PROPERTY')" 
                     	    data-ng-click="propertyHistoryPopup(propertyCode.propertyCode)" data-popover="View Track" data-popover-trigger="mouseenter" >
-                    	  <i class="icon-search"></i></a>&nbsp;
+                    	  <i class="icon-list"></i></a>&nbsp;
                     	<a data-ng-show="propertyCode.status=='VACANT'&&PermissionService.showMenu('DELETE_PROPERTY')"
                     	 	data-ng-click="deleteProperty(propertyCode.id)" data-popover="{{'label.deleteproperty' | translate}}" data-popover-trigger="mouseenter">
                     		<i class="icon-remove icon-white"></i>
@@ -126,7 +126,9 @@
 	                <td>{{ph.description}}</td>
 	                <td>{{ph.propertyCode}}</td>
 	                <td>{{ph.transactionDate | DateFormat}}</td>
-	                <td>{{ph.status}}</td>
+	                <td>
+                     <span>{{ph.status}}</span> 
+                     <span ng-show="ph.status=='OCCUPIED'"> By {{ph.clientName}}-->{{ph.clientId}}</span></td>
 					<tr/>
 				  <tr><td colspan="5"><div data-ng-show="blockUI" class="offset3"><i class="icon-refresh icon-spin icon-large"></i>
 					</div></td></tr>

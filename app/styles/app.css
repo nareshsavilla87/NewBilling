@@ -40,6 +40,10 @@ body, html {
     padding-left: 8%;
 }
 
+.paddedleftnone {
+    padding-left: 0;
+}
+
 .paddedleft {
     padding-left: 20px;
 }

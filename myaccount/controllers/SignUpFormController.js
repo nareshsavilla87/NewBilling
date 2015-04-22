@@ -30,7 +30,7 @@ SignUpFormController = function(scope,RequestSender,HttpService,rootScope,authen
 	        		  	         });
 	        		      	function  approve($scope, $modalInstance) {
 	        		      		rootScope.popUpMsgs.push({
-	        		      			'image' : './images/info-icon.png',
+	        		      			'image' : '../images/info-icon.png',
 	        		      			'names' : [{'name' : 'title.thankyou'},
 	        		      			           {'name' : 'title.conformation.registration'},
 	        		      			           {'name' : 'title.conformation.email'},
@@ -51,7 +51,7 @@ SignUpFormController = function(scope,RequestSender,HttpService,rootScope,authen
   		  	            });
   		            	function  approve($scope, $modalInstance) {
   		            	  rootScope.popUpMsgs.push({
-		  						'image' : './images/warning-icon.png',
+		  						'image' : '../images/warning-icon.png',
 		  						'names' : [{'name' : 'title.conformation.alreadyregistration'},
 		  						           {'name' : 'title.login.msg'}]
 	                     });

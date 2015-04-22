@@ -48,6 +48,7 @@
 							var temp = {};								
 							temp.id = this.allowed[i];				
 							temp.stateName = scope.availableServices[j].stateName;
+							
 							scope.selectedServices.push(temp);
 							scope.availableServices.splice(j, 1);						
 						}					
@@ -86,6 +87,7 @@
 					}					
 					this.formData.states = temp;					
 				}
+				
 					
 				resourceFactory.regionResource.update({'regionId' : routeParams.id }, this.formData, function(data) {								
 					location.path('/viewregions/' + data.resourceId);							

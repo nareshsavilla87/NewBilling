@@ -25,6 +25,7 @@
          scope.ipstatus;
          scope.ipId;
          scope.walletconfig = webStorage.get('is-wallet-enable');
+         scope.propertyMaster = webStorage.get("is-propertycode-enabled");
          
          var callingTab = webStorage.get('callingTab', null);
          if(callingTab == null){
@@ -741,10 +742,36 @@
         	scope.ChildDetailsTab = "";
         	
         	//credit card details
-            resourceFactory.clientAdditionalResource.get({clientId: routeParams.id}, function(data) {
-              scope.additionalDatas = data;
-              console.log(scope.additionalDatas);
-            });
+        	 scope.additionalDatas = {};
+        	 resourceFactory.clientAdditionalResource.get({clientId: routeParams.id}, function(data) {
+        		 var dataObj = JSON.parse(angular.toJson(data));
+        		 console.log(Object.keys(dataObj).length);
+        		 Object.keys(dataObj).length == 0 ? scope.editAdditionalDatasBtn = false : scope.editAdditionalDatasBtn = true;
+        		 if(Object.keys(dataObj).length !=0 ){
+        			 
+	        		 resourceFactory.clientAdditionalResource.get({clientId: routeParams.id,template:true}, function(data) {
+	        			 var nationalityDatas 				= data.nationalityDatas;
+	        			 var languagesDatas 					= data.languagesDatas;
+	        			 
+	        			 
+	        			 scope.additionalDatas.remarks = data.remarks;
+	        			 scope.additionalDatas.dateOfBirth = data.dateOfBirth;
+	        			 scope.additionalDatas.financeId = data.financeId;
+	        			 for(var i in nationalityDatas){
+	        				 if(data.nationalityId == nationalityDatas[i].id){
+	        					 scope.additionalDatas.nationality = nationalityDatas[i].mCodeValue;
+	        					 break;
+	        				 }
+	        			 }
+	        			 for(var i in languagesDatas){
+	        				 if(data.preferLanId == languagesDatas[i].id){
+	        					 scope.additionalDatas.preferredLang = languagesDatas[i].mCodeValue;
+	        					 break;
+	        				 }
+	        			 }
+	        		 });
+        		 } 
+	        });
         };
         
         scope.ACHDetailsTabFun = function(){

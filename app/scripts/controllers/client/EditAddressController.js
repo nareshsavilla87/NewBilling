@@ -1,10 +1,13 @@
 (function(module) {
 	mifosX.controllers = _.extend(module,{
-		EditAddressController : function(scope,webStorage,routeParams,resourceFactory,dateFilter, location) {
+		EditAddressController : function(scope,webStorage,routeParams,resourceFactory,dateFilter, location,http,API_VERSION,$rootScope,PermissionService,$upload,filter) {
 							
 							scope.formData = {};
+							scope.oldProperty = {};
 							scope.addressTypeData=[];
+							scope.propertyCodes = [];
 						    scope.walletConfig = webStorage.get('is-wallet-enable');
+						    scope.propertyMaster = webStorage.get("is-propertycode-enabled");
 							 var clientData = webStorage.get('clientData');
 					            scope.displayName=clientData.displayName;
 					            scope.hwSerialNumber=clientData.hwSerialNumber;
@@ -31,6 +34,7 @@
                 	             
                 	            });
                 	            });*/
+                                scope.oldProperty = data.datas[0];
 							});		
 							
 							scope.getStateAndCountry=function(city){
@@ -46,6 +50,58 @@
 					            scope.cities=data.addressTemplateData.cityData;
 					            
 					        });*/
+						        
+						     // for building code base state
+						         scope.getPropertyCode = function(query){
+							        	return http.get($rootScope.hostUrl+API_VERSION+'/property/propertycode/', {
+							        	      params: {
+							        	    	  		query: query
+							        	      		   }
+							        	    }).then(function(res){   
+							        	    	 scope.propertyCodes=res.data;				 
+							        	      return scope.propertyCodes;
+							        	    });
+						         };   
+						         
+						        scope.getPropertyDetails=function(propertyCode){
+
+						         if(propertyCode!=undefined){
+						        		
+						         /*  if(propertyCode == scope.oldProperty.addressNo){
+					        		 console.log("old:"+propertyCode);
+					        		 scope.formData.street = scope.oldProperty.street;
+					        		 scope.formData.city = scope.oldProperty.city;
+					        	     scope.formData.state = scope.oldProperty.state;
+				        			 scope.formData.country = scope.oldProperty.country;
+				        			 scope.formData.zip = scope.oldProperty.zip;
+				        				 
+					            	 }*/
+						        		
+						        	for(var i in scope.propertyCodes){
+						        		if(scope.propertyCodes[i].propertyCode == propertyCode){
+						        			 scope.formData.street = scope.propertyCodes[i].street;
+						        			 scope.formData.city  =  scope.propertyCodes[i].precinct; 
+						        			 scope.formData.state = scope.propertyCodes[i].state;
+						        			 scope.formData.country = scope.propertyCodes[i].country;
+						        			 scope.formData.zip = scope.propertyCodes[i].poBox;
+						        			 break;
+						        		}else{
+						        			delete scope.formData.street;
+						        			delete scope.formData.city;
+						        			delete scope.formData.state;
+						        			delete scope.formData.country;
+						        			delete scope.formData.zip;
+						        		}
+						        	}
+						        	}else{
+						        		delete scope.formData.street;
+					        			delete scope.formData.city;
+					        			delete scope.formData.state;
+					        			delete scope.formData.country;
+					        			delete scope.formData.zip;
+						        	}
+						        };
+						      
 							scope.submit = function() {
 								
 								/*if(this.formData.addressTypeId=='1'){
@@ -74,7 +130,20 @@
 							};
 						}
 					});
-	mifosX.ng.application.controller('EditAddressController', ['$scope','webStorage', '$routeParams', 'ResourceFactory','dateFilter', '$location', mifosX.controllers.EditAddressController]).run(function($log) {
+	mifosX.ng.application.controller('EditAddressController',
+			['$scope',
+			 'webStorage', 
+			 '$routeParams', 
+			 'ResourceFactory',
+			 'dateFilter', 
+			 '$location',
+			 '$http', 
+             'API_VERSION',
+             '$rootScope',
+             'PermissionService',
+             '$upload',
+             '$filter',
+              mifosX.controllers.EditAddressController]).run(function($log) {
 	    $log.info("EditAddressController initialized");
 	  });
 	

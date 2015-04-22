@@ -38,7 +38,7 @@
 					<tr>
 						<td>
 							<div class="control-group">
-								<label class="control-label" for="agreementStatus">Agreement Status<span class="required">*</span></label>
+								<label class="control-label" for="agreementStatus">Status<span class="required">*</span></label>
 								<div class="controls">
 									<select data-ng-model="formData.agreementStatus"
 										data-ng-options="statusData.mCodeValue as statusData.mCodeValue for statusData in agreementTypes"
@@ -55,7 +55,7 @@
 					<tr>
 						<td>
             				<div class="control-group">
-            					<label class="control-label" for="agreementStartDate">Agreement StartDate<span class="required">*</span></label>
+            					<label class="control-label" for="agreementStartDate">StartDate<span class="required">*</span></label>
             					<div class="controls">
               						<input type="text" datepicker-pop="dd MMMM yyyy" readonly data-ng-model="start.date"  is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" style="background-color:#FFFFFF;" required late-Validate />
             					</div>
@@ -66,7 +66,7 @@
 					<tr>
 						<td>
             				<div class="control-group">
-            					<label class="control-label" for="agreementEndDate">Agreement EndDate<span class="required">*</span></label>
+            					<label class="control-label" for="agreementEndDate">EndDate<span class="required">*</span></label>
             					<div class="controls">
               						<input type="text" datepicker-pop="dd MMMM yyyy" readonly data-ng-model="end.date"  is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" style="background-color:#FFFFFF;" required late-Validate />
             					</div>
@@ -82,7 +82,7 @@
 	<table>
           <tr class="control-group">
                 <td>
-                  <h4><label class="control-label">VendorDetails<span class="required">*</span></label></h4>
+                  <h4><label class="control-label">Content Details<span class="required">*</span></label></h4>
                 </td>
                 <td class="blockquoteresult">
                     <form>
