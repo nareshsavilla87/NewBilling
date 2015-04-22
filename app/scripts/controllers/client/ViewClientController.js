@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    ViewClientController: function(scope,webStorage, routeParams , route, location, resourceFactory,paginatorService, http,$modal,dateFilter,API_VERSION,$rootScope,PermissionService) {
+    ViewClientController: function(scope,webStorage, routeParams , route, location, resourceFactory,paginatorService, http,$modal,dateFilter,API_VERSION,$rootScope,PermissionService,localStorageService) {
     	 scope.clientId = routeParams.id;
     	 scope.client = [];
          scope.error = {};
@@ -136,9 +136,15 @@
 
          var getDetails = function(){
         	 
+        	
         	resourceFactory.clientResource.get({clientId: routeParams.id} , function(data) {
         		scope.orders = [];
                 scope.client = data;
+                
+                //adding account no and name to display recent clients in dashboard
+                $rootScope.clientAccountNo = data.accountNo;
+                $rootScope.clientDisplayName = data.displayName;
+                
                 webStorage.add("walletAmount",scope.client.walletAmount);
                 scope.statusActive = scope.client.status.code;
                 scope.taxExemption = scope.client.taxExemption;
@@ -1602,6 +1608,7 @@
       'API_VERSION',
       '$rootScope',
       'PermissionService', 
+      'localStorageService', 
       mifosX.controllers.ViewClientController
       ]).run(function($log) {
     	  $log.info("ViewClientController initialized");

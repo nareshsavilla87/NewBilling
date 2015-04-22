@@ -58,7 +58,6 @@
                  return a[1] - b[1]
              });
              //sort end here
-             
            //to retrieve the locations from sorted array
              var sortedArray = [];
              for (var key in sortable) {
@@ -76,8 +75,23 @@
                      }
                  }
              }
-             // retrieved 8 frequent actions
-        	 
+             // retrieved 8 frequent actions end
+             var recentClients = []
+             	recentClients = localStorageService.get('recentClients');
+	             recentClients=_.uniq(recentClients,function(item,key,id){
+	                 return item.accountNo;
+	             });
+              scope.recentClients = [];
+             for(var val in  recentClients){
+            	 if(val<8){
+            		 scope.recentClients.push({
+						            		 	accountNo : recentClients[val].accountNo,
+						            		 	href : "/viewclient/"+parseInt(recentClients[val].accountNo),
+						            		 	displayName : recentClients[val].displayName
+						            	 });		
+            	 }
+             }
+             
             scope.switch1 = function() {
 	        	location.path('/dashboard');
 			};
