@@ -1267,6 +1267,7 @@
        	   	scope.invoicesC = "";
        	   	scope.paymentsC = "";
        	   	scope.adjustmentsC = "";
+       	   	scope.journalsC = "";
           	scope.financialtransactions = paginatorService.paginate(scope.getFinancialTransactionsFetchFunction, 14);
         };
           
