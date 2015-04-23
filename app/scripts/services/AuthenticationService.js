@@ -1,16 +1,11 @@
 (function(module) {
   mifosX.services = _.extend(module, {
     AuthenticationService: function(scope, httpService,location,localStorageService,resourceFactory,webStorage,$modal,rootScope) {
-    	scope.activity = {};
-        scope.activityQueue = [];
       var onSuccess = function(data) {
     	var successData = data;
         scope.$broadcast("UserAuthenticationSuccessEvent", data);
         webStorage.add("userData",data);
         
-        if(localStorageService.get('Location')){
-        scope.activityQueue = localStorageService.get('Location');
-        }
         scope.setDf = function(){
 
             	resourceFactory.configurationResource.get(function(data) {
@@ -82,13 +77,6 @@
         scope.$broadcast("UserAuthenticationFailureEvent", data);
         
       };
-      scope.$watch(function() {
-          return location.path();
-      }, function() {
-          scope.activity= location.path();
-          scope.activityQueue.push(scope.activity);
-          localStorageService.add('Location',scope.activityQueue);
-      });
       var apiVer = '/obsplatform/api/v1';
     
       this.authenticateWithUsernamePassword = function(credentials) {
