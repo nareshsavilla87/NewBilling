@@ -43,7 +43,8 @@
  		 recentClientArray = localStorageService.get('recentClients');
       }
       scope.$watch(function () {
-          return scope.clientAccountNo;
+    	  var val = scope.clientAccountNo+""+scope.clientDisplayName;
+          return val;
       }, function () {
     	  if(scope.clientAccountNo){
       		recentClient = {"accountNo":scope.clientAccountNo,"displayName" : scope.clientDisplayName};
