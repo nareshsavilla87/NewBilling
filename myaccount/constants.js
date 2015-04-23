@@ -27,6 +27,8 @@
 	   deviceAgrementType			: "device-agrement-type",
 	   globalPayCurrencyType		: "NGN",
 	   netellerCurrencyType			: "EUR",
+	   interswitchCurrencyType		: "566",
+	   interswitchJspPage			: "interswitch.jsp",
 	   
 	   webtvURL						: locationOrigin+"/webtv/index.html#/",
 		   
@@ -41,4 +43,5 @@
 		   neteller 				: 'neteller',
 		   internalPayment 			: 'internalPayment',
 		   two_checkout 			: '2checkout',
+		   interswitch	 			: 'interswitch',
    };

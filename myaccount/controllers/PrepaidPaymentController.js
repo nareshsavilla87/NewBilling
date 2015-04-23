@@ -9,6 +9,7 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 	var  netellerPG			=	paymentGatewayNames.neteller || "";
 	var  internalPaymentPG	=	paymentGatewayNames.internalPayment || "";
 	var  two_checkoutPG		=	paymentGatewayNames.two_checkout || "";
+	var  interswitchPG		=	paymentGatewayNames.interswitch || "";
 	
 	//getting locale value
 	 var temp 				= localStorageService.get('localeLang')||"";
@@ -130,6 +131,12 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 									+"&country="+clientData.country+"&email="+clientData.email+"&quantity=1";
 				
 				break;
+				
+			case interswitchPG :
+				
+				scope.paymentURL =  "#/interswitchintegration/"+'payment'+"/"+scope.clientId+"/"+0+"/"+0+"/"+scope.planData.price+"/"+paymentGatewayValues.productId+"/"+paymentGatewayValues.payItemId;
+				
+				break;
 					
 			default : break;
 			}
@@ -146,7 +153,8 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
     			$scope.termsAndConditionsText = paypal[termsAndConditions] 	 		: (scope.paymentGatewayName == netellerPG)?
     			$scope.termsAndConditionsText = neteller[termsAndConditions] 	 	: (scope.paymentGatewayName == internalPaymentPG)?
     		    $scope.termsAndConditionsText = internalPayment[termsAndConditions] : (scope.paymentGatewayName == two_checkoutPG)?
-    			$scope.termsAndConditionsText = two_checkout[termsAndConditions]	: $scope.termsAndConditionsText = selectOnePaymentGatewayText[scope.optlang];
+    			$scope.termsAndConditionsText = two_checkout[termsAndConditions]	: (scope.paymentGatewayName == interswitchPG)?
+    			$scope.termsAndConditionsText = interswitch[termsAndConditions]		: $scope.termsAndConditionsText = selectOnePaymentGatewayText[scope.optlang];
     	}
     	$scope.done = function(){
     		$modalInstance.dismiss('cancel');

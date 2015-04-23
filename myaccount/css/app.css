@@ -1209,6 +1209,11 @@ td .indextdbox{
 	width:300px;
 }
 
+ .table-striped tbody > tr.selectedOne > td {
+	 background-color: #e7f5fe;
+	 color : #ffffff !important;
+}
+
 .boxmaxheight{
 	min-height:275px;;
 }
@@ -1237,6 +1242,10 @@ td .indextdbox{
 
 .marginleft40{
 	margin-left:40px;
+}
+
+.marginleft30{
+	margin-left:30px;
 }
 
 .marginright20{
