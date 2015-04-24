@@ -60,17 +60,17 @@
                 <td data-ng-show="config.customerCategory" class="pointer" data-ng-click="routeTo(client.id)" >{{client.categoryType}}</td>
                 <td data-ng-show="config['group/parentId']" class="pointer" data-ng-click="routeTo(client.id)" >{{client.parentId}}</td> 
                 <td data-ng-show="configValues.clientonlinecheck" class="pointer" >
-                	<button id='pop-over-link' class = "btn-disable" ng-click="routeToCheckOnline(client.userName,client.id)" data-popover-trigger="focus" popover="{{isOnline}}"> <!-- data-popover-trigger="focus" popover="{{isOnline}}" -->
-                	<i class="icon-hand-right icon-white"></i>
+                	<a ng-hide="isOnline== 'Online{{client.id}}' || isOnline== 'Offline{{client.id}}'" id='pop-over-link' class = "btn-disable" ng-click="routeToCheckOnline(client.userName,client.id)"> <!-- data-popover-trigger="focus" popover="{{isOnline}}" -->
+                	<i><img src="./images/Query.png" width="45px" height="15px"/></i>
                 	<!-- <i ng-show="isOnline== 'Online{{client.id}}'" class = "btn btn-success"></i>
                 	<i ng-show="isOnline== 'Offline{{client.id}}'" class = "btn btn-danger"></i> -->
-                	</button>
-                	<!-- <a ng-show="isOnline== 'Online{{client.id}}'" id='pop-over-link' class = "btn-success" ng-click="routeToCheckOnline(client.userName,client.id)" >
-                	<i class="icon-hand-right icon-white"></i>
                 	</a>
-                	<a ng-show="isOnline== 'Offline{{client.id}}'" id='pop-over-link' class = "btn-danger" ng-click="routeToCheckOnline(client.userName,client.id)" >
-                	<i class="icon-hand-right icon-white"></i>
-                	</a> -->
+                	<a ng-show="isOnline== 'Online{{client.id}}'" id='pop-over-link'  ng-click="routeToCheckOnline(client.userName,client.id)" >
+                	<i><img src="./images/Online.png" width="45px" height="15px"/></i>
+                	</a>
+                	<a ng-show="isOnline== 'Offline{{client.id}}'" id='pop-over-link'  ng-click="routeToCheckOnline(client.userName,client.id)" >
+                	<i><img src="./images/Untitled.png" width="45px" height="15px"/></i>
+                	</a> 
                 	
                 </td>
             </tr>
