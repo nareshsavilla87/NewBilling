@@ -172,7 +172,7 @@
     		 //  $scope.count = $scope.checkOnlineClient[0].count;
     		   console.log(scope.checkOnlineClient[0].count);
     		   scope.onlineUserName = scope.clientNameForOnlineUser;
-    		   scope.checkOnlineClient[0].count > 0 ?scope.isOnline = "Online":scope.isOnline = "Offline";
+    		   scope.checkOnlineClient[0].count > 0 ?scope.isOnline = "Online"+clientId:scope.isOnline = "Offline"+clientId;
            });
     	
        };
