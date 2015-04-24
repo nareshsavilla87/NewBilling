@@ -12,6 +12,7 @@
       this.clear = function() {
         webStorage.remove("sessionData");
         webStorage.remove("clientData");
+        webStorage.remove("walletAmount");
         httpService.cancelAuthorization();
         return EMPTY_SESSION;
       };

@@ -22,18 +22,35 @@
           
       scope.leftnav = false;
       
-      scope.activity = {};
-      scope.activityQueue = [];
+      var activity = {};
+      var activityQueue = [];
       if (localStorageService.get('Location')) {
-          scope.activityQueue = localStorageService.get('Location');
+          var activityQueue = localStorageService.get('Location');
       }
       
       scope.$watch(function () {
           return location.path();
       }, function () {
-          scope.activity = location.path();
-          scope.activityQueue.push(scope.activity);
-          localStorageService.add('Location', scope.activityQueue);
+          activity = location.path();
+          activityQueue.push(activity);
+          localStorageService.add('Location', activityQueue);
+      });
+      
+      //adding account no and name to an recentClientarray
+ 	 var recentClient = {};
+ 	 var recentClientArray = [];
+ 	 if (localStorageService.get('recentClients')) {
+ 		 recentClientArray = localStorageService.get('recentClients');
+      }
+      scope.$watch(function () {
+    	  var val = scope.clientAccountNo+""+scope.clientDisplayName;
+          return val;
+      }, function () {
+    	  if(scope.clientAccountNo){
+      		recentClient = {"accountNo":scope.clientAccountNo,"displayName" : scope.clientDisplayName};
+      		recentClientArray.push(recentClient);
+      		localStorageService.add('recentClients', recentClientArray);
+    	  }
       });
       
       scope.$on("UserAuthenticationSuccessEvent", function(event, data) {

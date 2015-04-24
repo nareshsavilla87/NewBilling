@@ -47,8 +47,8 @@
   "label.heading.down.shortcuts": "the most recent used",
   "label.heading.top.menu": "the menu at the top",
   "label.heading.right.search": "the search tool at the top-right",
-  "label.heading.recentactivities": "Recent Activities",
-  "label.heading.frequentactivities": "Frequent Activities",
+  "label.heading.recent.frequent.activities": "Recent Frequent Activities",
+  "label.heading.visited.clients": "Recent Visited Clients",
   "label.heading.obs": "Open Billing System",
   "label.heading.definitions" :"Definitions",
   "label.createclientadditionalinfo":"Create Client Additional Info",
@@ -134,6 +134,7 @@
   "label.ageGroup":"Age Group",
   "label.utsCustomerId":"UTS Customer Id",
   "label.preferredCommunication":"Preferred Communication",
+  "label.eventactions":"Event Actions",
   
    
   
@@ -528,7 +529,7 @@
   "label.parentoffice":"Parent office:",
   "app lebels end" :"-----------------------------------------------------",
   "app erros start" :"----------------------------------------------------",
-  "error.login.failed":"Invalid Credentials - Try with correct credentials",
+  "error.login.failed":"Please try again, your credentials are not valid",
   "error.delete.failed":"System defined code values cannot be deleted",
   "error.code.definition.length.validation":"Max Length 10 Characters",
   "error.not.numeric.validation":"Enter Numeric Value",

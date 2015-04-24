@@ -40,7 +40,7 @@
                 <th data-ng-show="config.externalId">ExternalId</th>
                 <th data-ng-show="config.customerCategory">Customer Category</th>
                 <th data-ng-show="config['group/parentId']">ParentId </th>
-                <th data-ng-show="configValues.clientonlinecheck">Online</th>
+                <th data-ng-show="configValues.clientonlinecheck">Online</th> 
             </tr>
         </thead>
         <tbody>
@@ -53,14 +53,25 @@
                 <td class="pointer" data-ng-click="routeTo(client.id)" >{{client.hwSerialNumber}}</td>
                 <td class="pointer" data-ng-click="routeTo(client.id)" >{{client.balanceAmount}}</td>
                 <td data-ng-show="config.userName" class="pointer" data-ng-click="routeTo(client.id)" >{{client.userName}}</td>
-                <td data-ng-show="config.password" class="pointer" data-ng-click="routeTo(client.id)" popover-placement="top" 
-                              popover="{{client.password}}" popover-trigger="mouseenter" >{{client.clientPassword}}</td>
+                <td><a data-ng-show="config.password" data-ng-click="routeTo(client.id)" class="pointer" data-popover="{{client.password}}" 
+                       data-popover-trigger="mouseenter">{{client.clientPassword}}</a>&nbsp;
+                
                 <td data-ng-show="config.externalId" class="pointer" data-ng-click="routeTo(client.id)" >{{client.externalId}}</td>
                 <td data-ng-show="config.customerCategory" class="pointer" data-ng-click="routeTo(client.id)" >{{client.categoryType}}</td>
                 <td data-ng-show="config['group/parentId']" class="pointer" data-ng-click="routeTo(client.id)" >{{client.parentId}}</td> 
-                <td data-ng-show="configValues.clientonlinecheck" class="pointer" data-ng-click="routeToCheckOnline(client.userName)" >
-                <a id='pop-over-link' ><i class="icon-hand-right icon-white"></i></a>
-                
+                <td data-ng-show="configValues.clientonlinecheck" class="pointer" >
+                	<button id='pop-over-link' class = "btn-disable" ng-click="routeToCheckOnline(client.userName,client.id)" data-popover-trigger="focus" popover="{{isOnline}}"> <!-- data-popover-trigger="focus" popover="{{isOnline}}" -->
+                	<i class="icon-hand-right icon-white"></i>
+                	<!-- <i ng-show="isOnline== 'Online{{client.id}}'" class = "btn btn-success"></i>
+                	<i ng-show="isOnline== 'Offline{{client.id}}'" class = "btn btn-danger"></i> -->
+                	</button>
+                	<!-- <a ng-show="isOnline== 'Online{{client.id}}'" id='pop-over-link' class = "btn-success" ng-click="routeToCheckOnline(client.userName,client.id)" >
+                	<i class="icon-hand-right icon-white"></i>
+                	</a>
+                	<a ng-show="isOnline== 'Offline{{client.id}}'" id='pop-over-link' class = "btn-danger" ng-click="routeToCheckOnline(client.userName,client.id)" >
+                	<i class="icon-hand-right icon-white"></i>
+                	</a> -->
+                	
                 </td>
             </tr>
         </tbody>
@@ -74,37 +85,3 @@
     </ul>
 </div>
 </div>
-<script type="text/ng-template" id="onlineuser.html">
-  <div style="width:680px;height:190px;">
-	<form class="form-horizontal well" ng-submit="submit()">
-	   <div class="error" ng-show="errorStatus || errorDetails">
-		  <label>{{'label.errors' | translate}}</label>
-		  <label ng-show="errorStatus">{{errorStatus}}</label>
-		  <label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
-	   </div>
-	   <fieldset>
-		  <legend>Online User</legend>
-		  		<table class="table">
-        		<thead>
-        			<tr class="graybg">
-            			<th>UserName</th>
-            			<th>Online</th>
-        			</tr>
-        		</thead>
-        		<tbody>
-        			<tr>
-            			<td>{{onlineUserName}}</a></td>
-            			<td><button type="button" class="btn btn-success flag" data-ng-show="checkOnlineClient[0].count > 0 "></button>
-                			<button type="button" class="btn btn-danger flag" data-ng-hide="checkOnlineClient[0].count > 0 "></button>
-            			</td>
-        			</tr>
-        		</tbody>
-    			</table>
-		 </fieldset>
-		<div class="modal-footer">
-         <button id="submit" class="btn btn-primary" data-ng-click="cancel()" >Close</button>
-        </div>
-	  </form>
-   	  
-   </div>
-</script>
