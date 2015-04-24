@@ -18,6 +18,10 @@ RenewalOrderController = function(scope,RequestSender,routeParams,localStorageSe
 	  }
 	  
   };
+  
+  scope.isSelectedPlan = function(planId){
+		return planId === scope.selectedPlanId;
+	};
 	
   if(localStorageService.get("clientTotalData")){
 	RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {

@@ -117,6 +117,8 @@ selfcareApp.config(function($provide) {
         	
         	scheduleOrderResource: defineResource(apiVer + "/orders/scheduling/:clientId", {clientId:'@clientId'}, {}),
         	
+        	recurringStatusCheckingResource: defineResource(apiVer + "/chargecode/:planId/:billFrequency", {planId:'@planId',billFrequency:'@billFrequency'}, {}),
+        	
         };
       }];
     });

@@ -103,6 +103,13 @@
 							</div>
 						</div> -->
 						
+						<div class="control-group">
+						<label class="control-label" for="file">{{'label.company.image'| translate}}</label>
+						<div class="controls">
+							<input type="file" data-ng-file-select="onFileSelect($files)">
+						</div>
+					</div>	
+						
 					</td>
 				<td>
 					<!-- <div class="control-group">
@@ -122,11 +129,11 @@
 					
 						
 						<div class="control-group">
-						<label class="control-label" for="officeNumber">{{'label.officephone' | translate}}<span class="required">*</span></label>
+						<label class="control-label" for="officeNumber">{{'label.officephone' | translate}}</label>
 						<div class="controls">
 							<input type="text" id="officeNumber" name="officeNumber" data-ng-model="formData.officeNumber" maxlength="15" 
 								data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/"
-								name="phone"  required data-late-Validate />
+								name="phone" />
 							<div
 								data-ng-show="createpartnerform.officeNumber.$dirty && createpartnerform.officeNumber.$invalid">
 								<small class="error" data-ng-show="createpartnerform.officeNumber.$error.pattern">{{'error.invalid.phone.validation' | translate}} </small> 
@@ -187,7 +194,7 @@
 					
 				</td></tr>
 				
-			<tr>
+	<!-- 		<tr>
 			<td>
                 <div class="control-group">
                   <label class="control-label">{{ 'label.externalId' | translate }}</label>
@@ -203,7 +210,7 @@
 							<input type="file" data-ng-file-select="onFileSelect($files)">
 						</div>
 					</div>	
-			</td></tr>
+			</td></tr> -->
 			<tr>
 			<td colspan="2" align="right">
 					  

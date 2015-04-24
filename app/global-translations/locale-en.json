@@ -8,7 +8,7 @@
   "label.signin":"Sign In",
   "label.systemid": "System Id :",
   "label.product.name" : "Open Billing System",
-  "label.product.version" : "Version 2.0.1",
+  "label.product.version" : "Version 2.0.4",
   "label.product.status" : "OBS is upto date",
   "label.product.aboutus1" : "Designed by ",
   "label.product.aboutus2" : "A global community",
@@ -21,7 +21,7 @@
   "label.anchor.faq" : "FAQ",
   "label.heading.community" : "Support Service",
   "label.anchor.ticket":"Ticketing System",
-  "label.update.license.key":"Update License",
+  "label.update.license.key":"Key Info",
   "label.licensekey":"License Key",
   "btn.ok":"Ok",
   "label.users.group" : "User group",
@@ -110,6 +110,24 @@
   "label.maximum":"Maximum",
   "label.multiplesof":"Currency in multiples of:",
   "label.dueon":"Due on",
+  "label.gender":"Gender",
+  "label.nationality":"Nationality",
+  "label.jobTitle":"Job Title",
+  "label.dateOfBirth" :"Date Of Birth",
+  "label.preferredLang":"Prefer Language",
+  "label.remarks":"Remarks",
+  "label.idType":"Identification Type",
+  "label.idNumber":"Identification Number",
+  "label.ageGroup":"Age Group",
+  "label.utsCustomerId":"UTS Customer Id",
+  "label.preferredCommunication":"Preferred Communication",
+  
+   
+  
+  
+  
+  
+  
   "placeholder.searchbar":"Enter text to Search#",
   
   "label.fromdate":"From date",
@@ -1433,6 +1451,7 @@
   "validation.msg.null.itemDescription.cannot.be.blank":"Item cannot be blank",
   "validation.msg.null.mrnId.cannot.be.blank":"Select MRN ID from the List",
   "validation.msg.null.itemId.cannot.be.blank":"Select Item Id",
+  "invalid.move.operation":"Invalid Move ",
   "validation.msg.grn-allocation.purchaseNo.cannot.be.blank":"Purchase Number cannot be blank",
   
   
