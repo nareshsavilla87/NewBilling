@@ -2703,7 +2703,7 @@
 "label.property.code"			: "Property Code",
 "label.property.name"			: "Property Name",
 "label.unit.code"				: "Unit Code",
-"label.shifting.to.same"		: "Shifting To Same",
+"label.shifting.to.same"		: "Service Transfer In Same Address?",
 "label.unit.status"				: "Unit Status",
 "label.shifting.charges"		: "Shifting Charges",
 "label.current.address"			: "Current Address",
