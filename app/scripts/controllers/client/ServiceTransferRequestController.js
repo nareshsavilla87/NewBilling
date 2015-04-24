@@ -2,6 +2,24 @@
   mifosX.controllers = _.extend(module, {
 	  ServiceTransferRequestController: function(scope,webStorage, resourceFactory, routeParams, location,dateFilter,$rootScope, http,API_VERSION,PermissionService,$upload,filter) {
 
+	  scope.walletConfig = webStorage.get('is-wallet-enable');
+		var clientData = webStorage.get('clientData');
+		scope.hwSerialNumber = clientData.hwSerialNumber;
+		scope.displayName = clientData.displayName;
+		scope.statusActive = clientData.statusActive;
+		scope.accountNo = clientData.accountNo;
+		scope.officeName = clientData.officeName;
+		scope.balanceAmount = clientData.balanceAmount;
+		scope.currency = clientData.currency;
+		scope.imagePresent = clientData.imagePresent;
+		scope.categoryType = clientData.categoryType;
+		scope.email = clientData.email;
+		scope.phone = clientData.phone;
+        if(scope.imagePresent){
+        	scope.image=clientData.image;
+		}  
+       scope.walletAmount = webStorage.get("walletAmount");
+        
        scope.formData = {};
        scope.shiftingCheckbox = "Yes";
        scope.clientId = routeParams.clientId;

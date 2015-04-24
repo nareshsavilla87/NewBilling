@@ -203,9 +203,9 @@
       </td>
       <td>
       <div class="pull-right">
-        <a href="#/clients"><button id="cancel" type="reset" class="btn">Cancel</button></a>
-        <button ng-hide="clientAddInfo" id="submit" type="submit" data-ng-disabled="!createclientform.$valid" class="btn btn-primary">Save</button>
-        <button ng-show="clientAddInfo" id="submit" type="submit" data-ng-disabled="!createclientform.$valid" class="btn btn-primary">Next</button>
+        <a href="#/clients"><button id="cancel" type="reset" class="btn">{{'button.cancel' | translate}}</button></a>
+        <button ng-hide="clientAddInfo" id="submit" type="submit" data-ng-disabled="!createclientform.$valid" class="btn btn-primary">{{'button.save' | translate}}</button>
+        <button ng-show="clientAddInfo" id="submit" type="submit" data-ng-disabled="!createclientform.$valid" class="btn btn-primary">{{'button.save' | translate}}&nbsp;&nbsp;<i class="icon-forward icon-white"></i></button>
       </div>
       </td> 
      </tr>
