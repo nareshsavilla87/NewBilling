@@ -42,9 +42,9 @@
           resourceFactory.runReportsResource.get({reportSource: 'reportCategoryList', R_reportCategory:'Leads', parameterType : true, genericResultSet : false}, function(data){
               scope.reports = scope.getReports(data);
             });
-      }else if (routeParams.type == 'accounting') {
+      }else if (routeParams.type == 'invoice&collections') {
 
-        resourceFactory.runReportsResource.get({reportSource: 'reportCategoryList', R_reportCategory:'Accounting', parameterType : true, genericResultSet : false}, function(data){
+        resourceFactory.runReportsResource.get({reportSource: 'reportCategoryList', R_reportCategory:'Invoice&Collections', parameterType : true, genericResultSet : false}, function(data){
           scope.reports = scope.getReports(data);
         });
       }
