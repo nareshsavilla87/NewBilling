@@ -398,7 +398,7 @@
   "link.reports.tickets":"Tickets",
   "link.reports.inventory" : "Inventory",
   "link.reports.leads" : "Leads",
-  "link.reports.accounting" : "Accounting",
+  "link.reports.invoice&collections" : "Invoice&Collections",
   "link.admin.users" : "Users",
   "link.admin.organisation" : "Organisation",
   "link.admin.templates" : "Templates",
