@@ -48,6 +48,13 @@
           scope.getClientValues = function (){
           	
           };
+          
+          scope.getOnlineUsers = function (){
+          	
+        	  resourceFactory.radiusOnlineUser.get({limit:'15',offset:'0'},function(data) {
+  				scope.onlineUserDatas = data.onlineUsersdata;					
+  			});
+          };
         
        var fetchFunction = function(offset, limit, callback) {
           var reqFirstDate = dateFilter(scope.date.first,'yyyy-MM-dd');

@@ -953,6 +953,10 @@
           ipPoolingIpStatusResource: defineResource(apiVer + "/ippooling/updatestatus", {}, {
          	  update: { method: 'PUT' }
           }) ,
+          
+          ipPoolingStaticIpResource: defineResource(apiVer + "/ippooling/staticip", {}, {
+         	  update: { method: 'PUT' }
+          }) ,
 
           clientIpPoolingResource: defineResource(apiVer + "/ippooling/:clientId", {clientId: '@clientId'}, {
          	  get: {method: 'GET', params: {},isArray: true},
