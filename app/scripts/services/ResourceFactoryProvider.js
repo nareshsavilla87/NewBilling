@@ -1093,6 +1093,9 @@
               radiusOnlineUser: defineResource(apiVer + "/freeradius/onlineusers", {}, {
                   update: { method: 'PUT' }
                }),
+               nasReloadResource: defineResource(apiVer + "/freeradius/nas/reload", {}, {
+                   update: { method: 'PUT' }
+                }),
 
             eventActionResource: defineResource(apiVer + "/eventactions", {}, {}),
             addonsTemplateResource: defineResource(apiVer + "/addons/template", {}, {
