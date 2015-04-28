@@ -5,6 +5,7 @@
 		scope.nasDatas =[];	
 		scope.radServices =[];
 		scope.value = [];
+		scope.formData = {};
 		
 		var callingTab = webStorage.get('callingTab', null);
 		if (callingTab == null) {
@@ -78,6 +79,12 @@
             };
         }
       	
+      	scope.reloadNases = function(nasname){
+      		scope.formData.nasname = nasname;
+      		resourceFactory.nasReloadResource.save(scope.formData,function(data){
+       		  location.path('/radius' );
+         });
+      	};
       	
         /**
        	 * Delete radService
