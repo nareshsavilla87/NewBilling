@@ -48,6 +48,15 @@
           scope.getClientValues = function (){
           	
           };
+          
+          scope.getOnlineUsers = function (searchTypeValue){
+        	  
+          	scope.searchData.searchType = searchTypeValue;
+        	  /*resourceFactory.radiusOnlineUser.get({limit:'15',offset:'0'},function(data) {
+  				scope.onlineUserDatas = data.onlineUsersdata;					
+  			});*/
+        	  scope.searchTransaction();
+          };
         
        var fetchFunction = function(offset, limit, callback) {
           var reqFirstDate = dateFilter(scope.date.first,'yyyy-MM-dd');
@@ -113,8 +122,33 @@
            });
            
         };
-        scope.searchTransaction = function () {
+        
+        var fetchOnlineUsersFunction = function(offset, limit, callback) {
+        	
+            var params = {};
+            params.offset = offset;
+            params.limit = limit;
+           
+            if(scope.searchData.searchType == 'Onlineusers'){
+         	   
+         	   if (scope.formData.partner) { 
+         		   params.partner = scope.formData.partner;
+         	   }
+         	   else if (scope.formData.custattr) { params.custattr = scope.formData.custattr; }; 
+         	   
+            }else{
+         	   
+            }
          
+            resourceFactory.radiusOnlineUser.get(params,function(data) {
+  				scope.onlineUserDatas = data.onlineUsersdata;					
+  			});
+            
+         };
+        
+        
+        scope.searchTransaction = function () {
+        	
           if(scope.searchData.searchType == 'tickets'){
         	  scope.displaySearchResults = true;
         	  scope.searchDatas = paginatorService.paginate(fetchTicketFunction, 14);
@@ -126,6 +160,10 @@
           }else if(scope.searchData.searchType == 'CLIENTS'){
         	  scope.displaySearchResultsForClients = true;
         	  scope.searchDatas = paginatorService.paginate(fetchTicketFunction, 14);
+        	   scope.formData = {};
+          }else if(scope.searchData.searchType == 'Onlineusers'){
+        	  scope.displaySearchResultsForOnlineusers = true;
+        	  scope.searchDatas = paginatorService.paginate(fetchOnlineUsersFunction, 14);
         	   scope.formData = {};
           }else{
         	  scope.displayResults = true;

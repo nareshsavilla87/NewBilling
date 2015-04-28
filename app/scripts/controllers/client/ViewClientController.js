@@ -1592,6 +1592,88 @@
 	  					resolve:{}
 	  				});
 	  			};
+	  			
+	  			scope.ipChaneFunction = function(){
+	  				$modal.open({
+	                    templateUrl: 'Staticip.html',
+	                    controller: StaticIpPopController,
+	                    resolve:{}
+	                });
+	  			};
+	  			
+	  			var StaticIpPopController = function($scope, $modalInstance){
+	  				$scope.formData = {};
+	  				$scope.ipdata = {};
+	  				$scope.formData.poolName = "Adhoc";
+	  				$scope.getData = function(query){
+	 	  	       	   return http.get($rootScope.hostUrl+API_VERSION+'/ippooling/search/', {
+	 	  	       	      params: {
+	 	  	       	    	  query: query
+	 	  	       	      }
+	 	  	       	    }).then(function(res){
+	 	  	       	    	ipPoolData = [];
+	 	  	       	    	for(var i in res.data.ipAddressData){
+	 	  	       	    		ipPoolData.push(res.data.ipAddressData[i]);
+	 	  	       	    		if(i==5){
+	 	  	       	    			break;
+	 	  	       	    		}
+	 	  	       	    	}
+	 	  	       	      return  ipPoolData;
+	 	  	       	    });
+	 	  	       
+	 	  	       };
+	  				
+	  	        	$scope.acceptStatement = function(){
+	  	        		
+	  	        		$scope.flagStatementPop = true;
+	  	        		$scope.formData.status = 'A';
+	  	        		$scope.formData.clientId = scope.clientId;
+	  	        		$scope.formData.staticIpType = 'create';
+	  	        		if($scope.ipdata.ipAddressPool){
+	  	        			$scope.formData.ipAddress = $scope.ipdata.ipAddressPool;
+	  	        		}else if($scope.ipdata.ipAddressStatic){
+	  	        			delete $scope.formData.poolName;
+	  	        			$scope.formData.ipAddress = $scope.ipdata.ipAddressStatic;
+	  	        		}else{
+	  	        			
+	  	        		}
+	  	        		
+	  	        		resourceFactory.ipPoolingStaticIpResource.update(this.formData, function(data) {
+	  	                    location.path('/viewclient/' +scope.clientId);
+	  	                    $modalInstance.close('delete');
+	  	                },function(errorData){
+	  	                	$scope.flagStatementPop = false;
+	  	                	$scope.stmError = errorData.data.errors[0].userMessageGlobalisationCode;
+	  	                	console.log(errorData);
+	  	                	console.log($scope.stmError);
+	  	                });
+	  	        	};
+	  	        	
+	  	        	$scope.removeIp = function(){
+	  	        		
+	  	        		$scope.flagStatementPop = true;
+	  	        		$scope.formData.status = 'F';
+	  	        		$scope.formData.clientId = scope.clientId;
+	  	        		$scope.formData.staticIpType = 'remove';
+	  	        		
+	  	        		resourceFactory.ipPoolingStaticIpResource.update(this.formData, function(data) {
+	  	                    location.path('/viewclient/' +scope.clientId);
+	  	                    $modalInstance.close('delete');
+	  	                },function(errorData){
+	  	                	$scope.flagStatementPop = false;
+	  	                	$scope.stmError = errorData.data.errors[0].userMessageGlobalisationCode;
+	  	                	console.log(errorData);
+	  	                	console.log($scope.stmError);
+	  	                });
+	  	        	};
+	  	        
+	  	        	$scope.rejectStatement = function(){
+	  	        		console.log("Reject Statement");
+	  	        		$modalInstance.dismiss('cancel');
+	  	        	};
+	  	        };
+	  	        
+	  	      
     	}
   });
   

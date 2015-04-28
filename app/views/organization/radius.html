@@ -40,6 +40,9 @@
 					<td class="pointer"
 						data-ng-click="routeToNas(nasData.id)">{{nasData.apipassword}}</td>
 					<td>
+						<a data-ng-click="reloadNases(nasData.nasName)" data-popover="Reload" data-popover-trigger="mouseenter">
+                    		<i class="icon-plus icon-white"></i>
+                    	</a> 
                     	<a data-ng-click="deleteNas(nasData.id)" data-popover="{{'label.nas.message' | translate}}" data-popover-trigger="mouseenter">
                     		<i class="icon-remove icon-white"></i>
                     	</a> 
