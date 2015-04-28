@@ -36,6 +36,8 @@
                        data-popover-trigger="mouseenter" class="icon-plus-sign"></a>&nbsp; 
                 <a data-ng-show="PermissionService.showMenu('DELETE_PLAN')" data-ng-click="deleteplan(plan.id)" data-popover="Delete Plan" 
                        data-popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a>
+                      <!--  <a data-ng-show="PermissionService.showMenu('DELETE_PLAN')" data-ng-click="editPlanQualifier(plan.id)" data-popover="Delete Plan" 
+                       data-popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a> -->
             </td>
             </tr>
         </tbody>
@@ -47,6 +49,49 @@
                     </div>
                     <div class="modal-body modal-small">
                        <h4>Are you sure?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+                    </div>
+</script>
+
+<script type="text/ng-template" id="editplanqualifier.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">{{'dialog.plan.qualifier.message' | translate}}</h3>
+                    </div>
+                    <div class="modal-body modal-normal">
+                     <table>
+				<tr>
+					<td>
+
+						<div class="control-group">
+							<label class="control-label"></label>
+							<div class="span3">
+								<label class="control-label"> {{ 'label.region.availablestates' | translate }} </label> 
+								 <select multiple data-ng-model="allowed" data-ng-disabled="checked">
+									<option data-ng-repeat="availabePartnersData in availabePartnersDatas" value="{{availabePartnersData.id}}">{{availabePartnersData.partnerName}}</option>
+								</select>
+							</div>
+							<div class="paddedtop10 span1 paddedleft0">
+								<button type="button" class="btn btn-primary"data-ng-disabled="checked" data-ng-click="restrict()">
+									<i class="icon-double-angle-right"></i>
+								</button><br />
+								<button type="button" class="btn btn-primary" data-ng-disabled="checked" data-ng-click="allow()">
+									<i class="icon-double-angle-left"></i>
+								</button>
+							</div>
+							<div class="span3">
+								<label class="control-label"> {{ 'label.region.selectedstates' | translate }} </label> 
+								<select multiple data-ng-model="restricted" data-ng-disabled="checked">
+									<option data-ng-repeat="partnersData in partnersDatas" value="{{partnersData.id}}">{{partnersData.partnerName}}</option>
+								</select>
+							</div>
+							
+						</div>
+					</td>
+				</tr>
+			</table>
                     </div>
                     <div class="modal-footer">
                         <button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
