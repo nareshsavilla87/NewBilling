@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    CreateClientController: function(scope, resourceFactory, location, http, dateFilter,API_VERSION,$rootScope,PermissionService,$upload,filter,webStorage) {
+    CreateClientController: function(scope, resourceFactory, location, http, dateFilter,API_VERSION,$rootScope,PermissionService,$upload,filter,webStorage,$modal) {
 
     	scope.formData = {};
        
@@ -61,7 +61,90 @@
       	  });
         };
         
-        // for building code base state
+      
+	     scope.generatePropertyPopup = function (){
+	    	 $modal.open({
+	    		 templateUrl: 'generateProperty.html',
+	  	         controller: generatePropertyController,
+	  	         resolve:{}
+	  	     });
+	     };
+	          
+	     function  generatePropertyController($scope, $modalInstance) {
+	    	 console.log("generatePropertyController");
+	    	 $scope.propertyTypes = [];
+	    	 $scope.precinctData = [];
+	    	 $scope.formData = {};
+			  resourceFactory.propertyCodeTemplateResource.get(function(data) {
+				  $scope.propertyTypes = data.propertyTypes;
+				});
+			  
+			  //precinct auto complete 
+				$scope.getPrecinct = function(query){
+					return http.get($rootScope.hostUrl+API_VERSION+'/address/city/', {
+		        	      params: {
+		        	    	  		query: query
+		        	      		   }
+		        	    }).then(function(res){   
+		        	    	 $scope.precinctData=res.data;	
+		        	      return $scope.precinctData;
+		        	    });
+	             };   
+				
+				$scope.getPrecinctDetails = function(precinct){
+					if(precinct!=undefined){
+					    for(var i in $scope.precinctData){
+					    	if(precinct==$scope.precinctData[i].cityName){
+					    		$scope.precinct = $scope.precinctData[i].cityCode.substr(0,2);
+				          		$scope.formData.state =  $scope.precinctData[i].state;
+				          		$scope.formData.country = $scope.precinctData[i].country;
+				          		break;
+				          }else{
+				        	  
+								delete $scope.formData.state;
+					    		delete $scope.formData.country;
+							}
+						}
+					  }else{
+						    
+							delete $scope.formData.state;
+				    		delete $scope.formData.country; 
+					  }
+				};
+				
+				$scope.getPropertyCode=function(unitCode){
+					if($scope.precinct !=undefined&&$scope.formData.parcel!=undefined&&$scope.formData.buildingCode!=undefined && $scope.formData.floor!=undefined){
+				    $scope.formData.propertyCode=$scope.precinct.concat($scope.formData.parcel,$scope.formData.buildingCode,$scope.formData.floor,unitCode);
+					}
+				}; 
+	
+	    	 
+	    	 $scope.accept = function () {
+	    		 scope.formData.addressNo = $scope.formData.propertyCode;
+    			 scope.formData.street = $scope.formData.street;
+    			 scope.formData.city  =  $scope.formData.precinct; 
+    			 scope.formData.state =  $scope.formData.state;
+    			 scope.formData.country = $scope.formData.country;
+    			 scope.formData.zipCode = $scope.formData.poBox;
+    			 $modalInstance.dismiss('delete');
+	    		/* resourceFactory.propertyCodeResource.save({},$scope.formData,function(data){
+	    			 scope.formData.addressNo = $scope.formData.propertyCode;
+	    			 scope.formData.street = $scope.formData.street;
+        			 scope.formData.city  =  $scope.formData.precinct; 
+        			 scope.formData.state =  $scope.formData.state;
+        			 scope.formData.country = $scope.formData.country;
+        			 scope.formData.zipCode = $scope.formData.poBox;
+	    			 $modalInstance.dismiss('delete');
+	             },function(errorData){
+	            	 console.log(errorData);
+	             });*/
+	      	 };
+	         $scope.cancel = function () {
+	        	 $modalInstance.dismiss('cancel');
+	         };
+	     }
+        
+    /*   // for building code base state
          scope.getPropertyCode = function(query){
 	        	return http.get($rootScope.hostUrl+API_VERSION+'/property/propertycode/', {
 	        	      params: {
@@ -74,15 +157,16 @@
          };   
          
         scope.getPropertyDetails=function(propertyCode){
+        	console.log(propertyCode);
         	
         if(propertyCode !=undefined){
         	for(var i in scope.propertyCodes){
-        		if(scope.propertyCodes[i].propertyCode == propertyCode){
-        			 scope.formData.street = scope.propertyCodes[i].street;
-        			 scope.formData.city  =  scope.propertyCodes[i].precinct; 
-        			 scope.formData.state = scope.propertyCodes[i].state;
-        			 scope.formData.country = scope.propertyCodes[i].country;
-        			 scope.formData.zipCode = scope.propertyCodes[i].poBox;
+        		if($scope.formData.propertyCode == propertyCode){
+        			 scope.formData.street = $scope.formData.street;
+        			 scope.formData.city  =  $scope.formData.precinct; 
+        			 scope.formData.state = $scope.formData.state;
+        			 scope.formData.country = $scope.formData.country;
+        			 scope.formData.zipCode = $scope.formData.poBox;
         			 break;
         		}
         	}
@@ -94,7 +178,7 @@
 			 delete scope.formData.zipCode ;
          }
         	
-        };
+        };*/
 
         scope.onFileSelect = function($files) {
           scope.file = $files[0];
@@ -170,6 +254,7 @@
                                                               '$upload',
                                                               '$filter',
                                                               'webStorage',
+                                                              '$modal',
                                                               mifosX.controllers.CreateClientController]).run(function($log) {
     $log.info("CreateClientController initialized");
   });
