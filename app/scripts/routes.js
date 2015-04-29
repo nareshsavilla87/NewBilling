@@ -1058,6 +1058,18 @@
       .when('/editfeemaster/:id', {
     	  templateUrl: 'views/organization/editfeemaster.html'
       })
+      .when('/propertydefinition', {
+        templateUrl: 'views/organization/propertydefinition.html'
+      })
+      .when('/createpropertydefinition', {
+        templateUrl: 'views/organization/createpropertydefinition.html'
+      })
+      .when('/viewpropertydefinition/:id', {
+        templateUrl: 'views/organization/viewpropertydefinition.html'
+      })
+      .when('/editpropertydefinition/:id', {
+        templateUrl: 'views/organization/editpropertydefinition.html'
+      })
       ;
      
     $locationProvider.html5Mode(false);

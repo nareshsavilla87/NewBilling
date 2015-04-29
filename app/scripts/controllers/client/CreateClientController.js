@@ -11,6 +11,8 @@
 
         
         scope.propertyCodes = [];
+        scope.parcelData = [];
+   	    scope.floorData = [];
 
         scope.nationalityDatas = [];
         scope.genderDatas = [];
@@ -19,6 +21,7 @@
         scope.languagesDatas = [];
         scope.ageGroupDatas = [];
         scope.date = {};
+        scope.property = {};
 
        // var IsClientIndividual = filter('ConfigLookup')('IsClientIndividual');
         var IsClientIndividual =  webStorage.get("client_configuration").IsClientIndividual;
@@ -71,12 +74,38 @@
 	     };
 	          
 	     function  generatePropertyController($scope, $modalInstance) {
-	    	 console.log("generatePropertyController");
+	    	 console.log(scope.property);
 	    	 $scope.propertyTypes = [];
 	    	 $scope.precinctData = [];
 	    	 $scope.formData = {};
 			  resourceFactory.propertyCodeTemplateResource.get(function(data) {
 				  $scope.propertyTypes = data.propertyTypes;
+				  if(Object.keys(scope.property).length >0){
+			    		 $scope.formData.precinct=scope.property.precinct;
+			    		 $scope.formData.buildingCode=scope.property.buildingCode;
+			    		 $scope.formData.unitCode=scope.property.unitCode;
+			    		 $scope.formData.propertyCode=scope.property.propertyCode;
+			    		 $scope.formData.street=scope.property.street;
+			    		 $scope.formData.state=scope.property.state;
+			    		 $scope.formData.country=scope.property.country;
+			    		 $scope.formData.poBox=scope.property.poBox;
+			    		 $scope.formData.propertyType=scope.property.propertyType;
+			    		 for( var i in scope.parcelData){
+			    			 console.log( scope.parcelData[i].code);
+			    			 if(scope.property.parcel == scope.parcelData[i].code){
+			    				 console.log(scope.property.parcel);
+			    				 $scope.parcel = scope.parcelData[i].description;
+			    				 break;
+			    			 }
+			    		 }
+			    		 
+			    		 for( var i in scope.floorData){
+			    			 if(scope.property.floor ==  scope.floorData[i].code){
+			    				 $scope.floor =scope.floorData[i].description;
+			    				 break;
+			    			 }
+			    		 }
+			    	 }
 				});
 			  
 			  //precinct auto complete 
@@ -112,14 +141,73 @@
 					  }
 				};
 				
-				$scope.getPropertyCode=function(unitCode){
-					if($scope.precinct !=undefined&&$scope.formData.parcel!=undefined&&$scope.formData.buildingCode!=undefined && $scope.formData.floor!=undefined){
-				    $scope.formData.propertyCode=$scope.precinct.concat($scope.formData.parcel,$scope.formData.buildingCode,$scope.formData.floor,unitCode);
-					}
-				}; 
+				
+				$scope.getParcel = function(query){
+					return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
+		        	      params: {
+		        	    	  		query: 'parcel'
+		        	      		   }
+		        	    }).then(function(res){   
+		        	    	 scope.parcelData=res.data;	
+		        	      return scope.parcelData;
+		        	    });
+	             };   
+	             $scope.getParcelDetails = function(parcel){
+	            	 console.log(parcel);
+	            	 if(parcel !=undefined){
+	                 for(var i in scope.parcelData){
+	                	 if(parcel== scope.parcelData[i].description){
+					    		scope.property.parcel = scope.parcelData[i].code.substr(0,2);
+					    		$scope.formData.street = scope.parcelData[i].referenceValue;
+				          		break;
+				          }	 
+	                 }
+	                 console.log(scope.property.parcel);
+	                }
+	             };
+				
+				$scope.getFloor = function(query){
+					return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
+		        	      params: {
+		        	    	  		query: 'Level/Floor'
+		        	      		   }
+		        	    }).then(function(res){   
+		        	    	 scope.floorData=res.data;	
+		        	      return scope.floorData;
+		        	    });
+	             };   
+	             
+	             $scope.getFloorDetails = function(floor){
+	            	 console.log(floor);
+	            	 if(floor!=undefined){
+	            		 for( var i in scope.floorData){
+	            			 if(floor==scope.floorData[i].description){
+						    		scope.property.floor = scope.floorData[i].code.substr(0,2);
+						    		$scope.getWatch(scope.property.floor);
+					          		break;
+					          }	 
+		                 }
+	            		
+	            	 }	       	        
+	          };
 	
-	    	 
+	  		$scope.getPropertyCode=function(unitCode){
+				if($scope.precinct !=undefined&&scope.property.parcel!=undefined&&$scope.formData.buildingCode!=undefined &&scope.property.floor!=undefined){
+			    $scope.formData.propertyCode=$scope.precinct.concat(scope.property.parcel,$scope.formData.buildingCode,scope.property.floor,unitCode);
+				}
+			}; 
+			
 	    	 $scope.accept = function () {
+	    		 scope.property.precinct=$scope.formData.precinct; 
+	    		 scope.property.buildingCode=$scope.formData.buildingCode;
+	    		 scope.property.unitCode=$scope.formData.unitCode;
+	    		 scope.property.propertyType=$scope.formData.propertyType;
+	    		 scope.property.propertyCode=$scope.formData.propertyCode;
+	    		 scope.property.street=$scope.formData.street;
+	    		 scope.property.state=$scope.formData.state;
+	    		 scope.property.country=$scope.formData.country;
+	    		 scope.property.poBox=$scope.formData.poBox;
+	    		 
 	    		 scope.formData.addressNo = $scope.formData.propertyCode;
     			 scope.formData.street = $scope.formData.street;
     			 scope.formData.city  =  $scope.formData.precinct; 
@@ -127,58 +215,32 @@
     			 scope.formData.country = $scope.formData.country;
     			 scope.formData.zipCode = $scope.formData.poBox;
     			 $modalInstance.dismiss('delete');
-	    		/* resourceFactory.propertyCodeResource.save({},$scope.formData,function(data){
-	    			 scope.formData.addressNo = $scope.formData.propertyCode;
-	    			 scope.formData.street = $scope.formData.street;
-        			 scope.formData.city  =  $scope.formData.precinct; 
-        			 scope.formData.state =  $scope.formData.state;
-        			 scope.formData.country = $scope.formData.country;
-        			 scope.formData.zipCode = $scope.formData.poBox;
-	    			 $modalInstance.dismiss('delete');
-	             },function(errorData){
-	            	 console.log(errorData);
-	             });*/
+    			 if(scope.formData.addressNo!=undefined){
+    				 $('#addressNo1').attr("readonly","readonly");
+    			 }
+    			 console.log(scope.property);
 	      	 };
 	         $scope.cancel = function () {
 	        	 $modalInstance.dismiss('cancel');
 	         };
-	     }
-        
-    /*   // for building code base state
-         scope.getPropertyCode = function(query){
-	        	return http.get($rootScope.hostUrl+API_VERSION+'/property/propertycode/', {
-	        	      params: {
-	        	    	  		query: query
-	        	      		   }
-	        	    }).then(function(res){   
-	        	    	 scope.propertyCodes=res.data;				 
-	        	      return scope.propertyCodes;
-	        	    });
-         };   
-         
-        scope.getPropertyDetails=function(propertyCode){
-        	console.log(propertyCode);
-        	
-        if(propertyCode !=undefined){
-        	for(var i in scope.propertyCodes){
-        		if($scope.formData.propertyCode == propertyCode){
-        			 scope.formData.street = $scope.formData.street;
-        			 scope.formData.city  =  $scope.formData.precinct; 
-        			 scope.formData.state = $scope.formData.state;
-        			 scope.formData.country = $scope.formData.country;
-        			 scope.formData.zipCode = $scope.formData.poBox;
-        			 break;
-        		}
-        	}
-         }else{
-        	 delete scope.formData.street ;
-			 delete scope.formData.city ;
-			 delete scope.formData.state;
-			 delete scope.formData.country;
-			 delete scope.formData.zipCode ;
-         }
-        	
-        };*/
+	     /*    var aa
+	         $scope.$watch(function(){
+	        	 aa = $scope.formData.precinct+$scope.parcel+$scope.formData.propertyType+$scope.formData.buildingCode+$scope.floor+$scope.formData.unitCode;
+	        
+	        	 return aa;
+	         }, function(){
+	        	 if(aa)
+	        	if(!aa.contains("undefined"))
+	        	$scope.formData.propertyCode=.concat(scope.property.parcel,$scope.formData.buildingCode,scope.property.floor,$scope.formData.unitCode);
+	         });*/
+	         
+	         $scope.getWatch=function(labelValue){
+				  if(labelValue!=undefined&& $scope.formData.propertyCode !=undefined){
+				     $scope.formData.propertyCode=$scope.precinct.concat(scope.property.parcel,$scope.formData.buildingCode,scope.property.floor,$scope.formData.unitCode);
+					}
+	         
+	            };
+	     }//end of propertycontroller
 
         scope.onFileSelect = function($files) {
           scope.file = $files[0];
@@ -197,6 +259,14 @@
         };
 
         scope.submit = function() {
+        	
+        	if(scope.propertyMaster){
+        		 resourceFactory.propertyCodeResource.save({},scope.property,function(data){
+        		 
+        		 },function(errorData){
+        			 
+        		 });
+        	  }
         	 scope.flag = true;
             var reqDate = dateFilter(new Date(),'dd MMMM yyyy');
             this.formData.locale = $rootScope.locale.code;

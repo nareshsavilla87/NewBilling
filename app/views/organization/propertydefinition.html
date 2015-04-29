@@ -1,0 +1,122 @@
+<div data-ng-controller="PropertyDefinitionController">
+<div>
+	<ul class="breadcrumb">
+		<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+		<li class="active">Property Definition</li>
+	</ul>
+	<div class="pull-right">
+	    <a data-ng-show="PermissionService.showMenu('CREATE_PROPERTY')" data-ng-click="uploadPropertyDefinitions()" class="btn btn-primary"><i class="icon-cloud-upload"></i>Property Master Upload</a>
+		<a data-ng-show="PermissionService.showMenu('CREATE_PROPERTY')" href="#/createpropertydefinition" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{ 'label.create.new.property.master' | translate }}</a>
+	</div>
+	</div>
+	<div  class="row-fluid">
+	   <form data-ng-submit="searchPropertyDetails(filterText)" style="margin: 0 0 1%;">
+		<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by Property Type/Code"> <br>
+		  </form>
+		<table class="table">
+			<thead>
+				<tr class="graybg">
+					<th>{{ 'table.heading.propertytype' | translate }}</th>
+					<th>{{ 'table.heading.code' | translate }}</th>
+					<th>{{ 'table.heading.codedescription' | translate }}</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<tr class="pointer-main" data-ng-repeat="propertyCode in propertyCodes.currentPageItems  | filter:filterText">
+					<td class="pointer" >{{propertyCode.propertyCodeType}}</td>
+					<td class="pointer" >{{propertyCode.code}}</td>
+					<td class="pointer" >{{propertyCode.description}}</td>	
+				</tr>
+			</tbody>
+		</table>
+		<ul class="pager">
+        			<li class="previous"><a data-ng-click="propertyCodes.previous()" href="" data-ng-disabled="!propertyCodes.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a data-ng-click="propertyCodes.next()" href=""  data-ng-disabled="!propertyCodes.hasNext()">Next &rarr;</a></li>
+    	</ul>
+	</div>
+	
+	   <script type="text/ng-template" id="uploadPropertyDefinition.html">
+
+    	<div class="modal-header silver">
+        	<h3 class="bolder">{{'dialog.upload.property.master' | translate}}</h3>
+        </div>
+	 		<div class="error" ng-show="errorStatus || errorDetails">
+				<label>{{'label.contract.error' | translate}}</label>
+				<label ng-show="errorStatus">{{errorStatus}}</label>
+				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	   		</div>
+				 <fieldset>
+                	<table>
+						<tr>
+						  <td width="50%">
+                         <div class="control-group">
+			            <label class="control-label" for="file">{{'label.client.select.file' | translate}}</label>
+                        <div class="controls">                         
+                        <input type="file" ng-file-select="onFileSelect($files)"></div>
+                         </div></td>
+                            <td vlign="top">
+                               <a ng-click="downloadFile()" data-popover-placement="right" data-popover="Download Sample File" data-popover-trigger="mouseenter"><i class="icon-download-alt icon-white"></i></a>
+                             </td> 
+						</tr>
+					</table> 
+      </fieldset>
+        <div class="modal-footer">
+        	<button id="cancel" class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+            <button id="submit" class="btn btn-primary" data-ng-disabled="!value" ng-click="approve()">{{'label.confirm' | translate}}</button>
+        </div> 
+	</script>
+	
+	
+	<script type="text/ng-template" id="deletePopupForProperty.html">
+    	<div class="modal-header silver">
+        	<h3 class="bolder">Delete Property Definition</h3>
+        </div>
+        <div class="error" ng-show="errorStatus || errorDetails">
+				<label>{{'label.contract.error' | translate}}</label>
+				<label ng-show="errorStatus">{{errorStatus}}</label>
+				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	   		</div>
+        <div class="modal-body style="height:60px;">
+            <h4>Are you sure?</h4>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+            <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+        </div>
+   </script>
+   
+      <script type="text/ng-template" id="propertyhistory.html">
+      <div class="modal-header silver">
+           <h3 class="bolder">Track History</h3>
+       </div>
+       <div class="modal-body" style="height:auto;width:600px;">
+          <table class="table">
+	            <thead>
+	              <tr class="graybg">
+	                <th>{{'table.property.refType' | translate}}</th>
+                     <th>{{'table.property.propertycode' | translate}}</th>
+	                <th>{{'table.property.transactionDate' | translate}}</th>
+	                <th>{{'table.property.status' | translate}}</th>
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <tr ng-repeat="ph in propertyhistory.currentPageItems  | filter:filterText">
+	                <td>{{ph.description}}</td>
+	                <td>{{ph.propertyCode}}</td>
+	                <td>{{ph.transactionDate | DateFormat}}</td>
+	                <td>
+                     <span>{{ph.status}}</span> 
+                     <span ng-show="ph.status=='OCCUPIED'"> By {{ph.clientName}}-->{{ph.clientId}}</span></td>
+					<tr/>
+				  <tr><td colspan="5"><div data-ng-show="blockUI" class="offset3"><i class="icon-refresh icon-spin icon-large"></i>
+					</div></td></tr>
+	     		 </tbody>
+          	   </table>
+       </div>
+       <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="accept()">Done</button>
+        </div>
+	</script> 
+</div>
