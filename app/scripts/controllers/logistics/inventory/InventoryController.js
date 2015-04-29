@@ -57,9 +57,15 @@
         scope.routeTogrn = function(id){
               location.path('/viewgrn/'+ parseInt(id));
            };
-         scope.routeTomrn = function(id){
-        	 scope.val=id.split(" ");
-             location.path('/viewmrn/'+ scope.val[1]);
+          scope.routeTomrn = function(id){
+        	 /*scope.val=id.split(" ");*/
+        	 id=id.replace(/[{()}]/g,'');
+        	 scope.val = id.split(" ");
+        	 if(angular.uppercase(scope.val[0]) == 'MRN'){
+        		 location.path('/viewmrn/'+ scope.val[1]);
+        	 }else{
+        		 location.path('/viewmrn/'+ scope.val[2]);
+        	 }
            };
         scope.routeToitem = function(id){
             location.path('/viewitem/'+ parseInt(id)+'/item');
