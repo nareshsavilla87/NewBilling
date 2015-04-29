@@ -15,7 +15,7 @@
 	   selfcareAppUrl 				: locationOrigin+locationPathname,
 	   additionalKortaUrl 			: locationOrigin+locationPathname+"#/kortasuccess",
 	   encriptionKey 				: "Hugo Technologys",
-	   kortaServer 					: "TEST",//or LIVE
+	   kortaServer 					: "LIVE",//or TEST
 	   kortaAmountField 			: "amount",
 	   kortaclientId  				: 'clientId',
 	   kortaPaymentMethod			: "PaymentMethodType",
