@@ -79,6 +79,7 @@
 					              <ul style='margin-left:-95px;' class="dropdown dropdown-menu">
 					                <li>
 					                    <a href="#/strequest/{{clientId}}">{{'label.service.transfer' | translate}}</a>
+					                    <a ng-click="ipChaneFunction()">Static Ip</a>
 					                </li>
 					              </ul>
           						</span>
@@ -1455,4 +1456,78 @@
             	<button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
         	</div>
    		</script>
+   		
+   		<script type="text/ng-template" id="Staticip.html">
+    	<div class="modal-header silver">
+        	<h3 class="bolder">Static Ip</h3>
+        </div>
+        <div class="modal-body" style="height:255px;">
+        	<div class="control-group">
+       			<div class="controls">
+					<span class="control-label" style="color:red;" ng-show="stmError.length>0">{{stmError | translate}}</span>
+                </div>
+			</div>            	
+			<center></center>
+            <div class="control-group">
+                <div class="controls">
+					<table>
+						<tr>
+						<td>&nbsp;</td>
+						<td><i>Select or enter IP Address</i></td>
+						</tr>
+						<tr>
+							<td><select ng-model="formData.poolName">
+								<option value="">--Select Pool--</option>
+								<option value="Adhoc">Adhoc</option></select>
+							</td>
+							<td>
+								<input type="text" ng-model="ipdata.ipAddressPool" typeahead="ipPoolData as ipPoolData for ipPoolData in getData($viewValue)" typeahead-min-length="0"/>
+							</td>
+						</tr>
+						
+					</table>
+                	
+                </div>
+            </div>
+
+			<div class="control-group">
+                <div class="controls">
+					<table>
+						<tr>
+							<td>OR</td>
+						</tr>
+						
+					</table>
+                	
+                </div>
+            </div>
+
+			<div class="control-group">
+                <div class="controls">
+					<table>
+						<tr>
+							<td>
+								<i>Select or enter IP Address</i>
+							</td>
+						</tr>
+						<tr>
+							
+							<td>
+								<input type="text" ng-model="ipdata.ipAddressStatic" typeahead="ipPoolData as ipPoolData for ipPoolData in getData($viewValue)" typeahead-min-length="0"/>
+							</td>
+						</tr>
+						
+					</table>
+                	
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+        	<button id="cancel" class="btn btn-warning" ng-click="rejectStatement()">{{'button.cancel' | translate}}</button>
+            <button id="submit" class="btn btn-primary" ng-click="acceptStatement()">Save</button>
+			<button id="submit" class="btn btn-primary" ng-click="removeIp()">Remove IP</button>
+        </div>
+	</script>
+   		
 </div>

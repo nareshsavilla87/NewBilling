@@ -413,7 +413,7 @@
   "link.reports.tickets":"Tickets",
   "link.reports.inventory" : "Inventory",
   "link.reports.leads" : "Leads",
-  "link.reports.accounting" : "Accounting",
+  "link.reports.invoice&collections":"Invoice&Collections",
   "link.admin.users" : "Users",
   "link.admin.organisation" : "Organisation",
   "link.admin.templates" : "Templates",
@@ -2183,6 +2183,9 @@
 "validation.msg.provisioning.IP_ADDRESS.cannot.be.empty":"IP Address cannot be blank",
 "validation.msg.null.statusType.cannot.be.blank":"Status Type cannot be blank",
 "error.msg.ipaddress.give.incremental.iprange":"Give IP Address range in incremental way",
+"error.msg.ipaddress.static.ip.not.available.to.remove":"No IP's are available to remove it",
+"error.msg.ipaddress.static.ip.already.available.to.client":"Already IP available to this client",
+"error.msg.ipaddress.are.not.available.please.select.another.iprange":"Please select available IP's",
 
 "#Redemption":".......",
 "validation.msg.redemption.clientId.cannot.be.blank":"Client id cannot be blank",
