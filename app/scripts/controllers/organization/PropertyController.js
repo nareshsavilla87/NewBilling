@@ -4,13 +4,29 @@
 	
 			scope.formData={};
 			scope.propertyCodes = [];
+			scope.propertyMasters = [];
 			scope.PermissionService = PermissionService;
 			
+			var callingTab = webStorage.get('callingTab', null);
+			if (callingTab == null) {
+				callingTab = "";
+			} else {
+				scope.displayTab = callingTab.someString;
+				if (scope.displayTab == "PropertyMaster") {
+					scope.propertyMasterTab = true;
+					webStorage.remove('callingTab');
+				}
+			}
+			
+	
 			scope.propertyDetailsFetchFunction = function(offset, limit, callback) {
 				resourceFactory.propertyCodeResource.getAlldetails({offset: offset, limit: limit} , callback);
 			};
 			
-			scope.propertyCodes = paginatorService.paginate(scope.propertyDetailsFetchFunction, 14);
+			scope.getAllProperties = function(){
+				
+			  scope.propertyCodes = paginatorService.paginate(scope.propertyDetailsFetchFunction, 14);
+			};
 			
 
 		    scope.searchPropertyDetails123 = function(offset, limit, callback) {
@@ -49,7 +65,7 @@
 		           };
 		            
 		           $scope.downloadFile=function(){
-		            window.open("csv/Property Master.csv");
+		            window.open("csv/Property Data.csv");
 		           };  
 		           
 	      		$scope.approve = function () {
@@ -98,7 +114,7 @@
 		     }
 		     
 		     
-		     
+		     // property history
 		   	var propertyhistoryController=function($scope,$modalInstance){
 
 	    		$scope.searchHistory123 = function(offset, limit, callback) {
@@ -120,6 +136,72 @@
                    resolve:{}
                });
     	     };
+    	     
+    	     
+    	     
+    	     scope.propertyMasterFetchFunction = function(offset, limit, callback) {
+ 				resourceFactory.propertyResource.getAlldetails({offset: offset, limit: limit} , callback);
+ 			};
+ 			
+ 			scope.getPropertyMaster=function(){
+ 			   scope.propertyMasters = paginatorService.paginate(scope.propertyMasterFetchFunction, 14);
+ 			};
+
+ 		    scope.searchPropertyMaster123 = function(offset, limit, callback) {
+ 		    	  resourceFactory.propertyResource.getAlldetails({offset: offset, limit: limit,sqlSearch: scope.filterText } , callback); 
+ 		     };
+ 		  		
+ 		    scope.searchPropertyMaster = function(filterText) {
+ 		  			scope.propertyMasters = paginatorService.paginate(scope.searchPropertyMaster123, 14);
+ 		  	};
+ 		
+ 		   /**
+	       	 * Upload propertyMaster's
+	       	 * */
+			
+	         scope.uploadPropertyDefinitions = function (){
+	          	 $modal.open({
+	  	                templateUrl: 'uploadPropertyDefinition.html',
+	  	                controller: approve12,
+	  	                resolve:{}
+	  	        });
+	         };
+	          
+	      	function  approve12($scope, $modalInstance) {
+	      		
+	      		 $scope.value=false;
+	      		 $scope.onFileSelect = function($files) {
+		             $scope.file = $files[0];
+		             if($scope.file!=undefined){
+		            	 $scope.value=true;
+		             }
+		           };
+		            
+		           $scope.downloadFile=function(){
+		            window.open("csv/Property Master.csv");
+		           };  
+		           
+	      		$scope.approve = function () {
+	      			 $upload.upload({/*41.75.85.206:8080*/
+	                     url:$rootScope.hostUrl+ API_VERSION +'/propertymaster/documents', 
+	                     data: scope.formData,
+	                     file: $scope.file
+	                   }).then(function(data) {
+	                     // to fix IE not refreshing the model
+	                     if (!scope.$$phase) {
+	                       scope.$apply();
+	                     }
+	                 	$modalInstance.dismiss('delete');
+	                     webStorage.add("callingTab", {someString: "PropertyMaster" });
+	                     route.reload();
+	                   });
+	              
+	      		};
+	            $scope.cancel = function () {
+	                  $modalInstance.dismiss('cancel');
+	            };
+	        }
+    	     
 		  }
 	});
 	mifosX.ng.application.controller('PropertyController',[ 

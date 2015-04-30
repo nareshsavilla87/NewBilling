@@ -1043,8 +1043,8 @@
       .when('/editproperty/:id', {
         templateUrl: 'views/organization/editproperty.html'
       })
-      .when('/strequest/:clientId', {
-    	  templateUrl: 'views/clients/strequest.html'
+      .when('/servicetransfer/:clientId', {
+    	  templateUrl: 'views/clients/servicetransfer.html'
       })
       .when('/feemaster', {
     	  templateUrl: 'views/organization/feemaster.html'
@@ -1058,17 +1058,8 @@
       .when('/editfeemaster/:id', {
     	  templateUrl: 'views/organization/editfeemaster.html'
       })
-      .when('/propertydefinition', {
-        templateUrl: 'views/organization/propertydefinition.html'
-      })
       .when('/createpropertydefinition', {
         templateUrl: 'views/organization/createpropertydefinition.html'
-      })
-      .when('/viewpropertydefinition/:id', {
-        templateUrl: 'views/organization/viewpropertydefinition.html'
-      })
-      .when('/editpropertydefinition/:id', {
-        templateUrl: 'views/organization/editpropertydefinition.html'
       })
       ;
      

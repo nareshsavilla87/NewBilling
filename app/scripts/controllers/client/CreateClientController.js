@@ -13,6 +13,8 @@
         scope.propertyCodes = [];
         scope.parcelData = [];
    	    scope.floorData = [];
+   	    scope.buildingData = [];
+   	    scope.property = {};
 
         scope.nationalityDatas = [];
         scope.genderDatas = [];
@@ -21,7 +23,6 @@
         scope.languagesDatas = [];
         scope.ageGroupDatas = [];
         scope.date = {};
-        scope.property = {};
 
        // var IsClientIndividual = filter('ConfigLookup')('IsClientIndividual');
         var IsClientIndividual =  webStorage.get("client_configuration").IsClientIndividual;
@@ -74,7 +75,6 @@
 	     };
 	          
 	     function  generatePropertyController($scope, $modalInstance) {
-	    	 console.log(scope.property);
 	    	 $scope.propertyTypes = [];
 	    	 $scope.precinctData = [];
 	    	 $scope.formData = {};
@@ -91,14 +91,11 @@
 			    		 $scope.formData.poBox=scope.property.poBox;
 			    		 $scope.formData.propertyType=scope.property.propertyType;
 			    		 for( var i in scope.parcelData){
-			    			 console.log( scope.parcelData[i].code);
 			    			 if(scope.property.parcel == scope.parcelData[i].code){
-			    				 console.log(scope.property.parcel);
 			    				 $scope.parcel = scope.parcelData[i].description;
 			    				 break;
 			    			 }
 			    		 }
-			    		 
 			    		 for( var i in scope.floorData){
 			    			 if(scope.property.floor ==  scope.floorData[i].code){
 			    				 $scope.floor =scope.floorData[i].description;
@@ -124,9 +121,10 @@
 					if(precinct!=undefined){
 					    for(var i in $scope.precinctData){
 					    	if(precinct==$scope.precinctData[i].cityName){
-					    		$scope.precinct = $scope.precinctData[i].cityCode.substr(0,2);
+					    		scope.property.precinctCode = $scope.precinctData[i].cityCode.substr(0,2);
 				          		$scope.formData.state =  $scope.precinctData[i].state;
 				          		$scope.formData.country = $scope.precinctData[i].country;
+				          		$scope.getWatch(scope.property.precinctCode);
 				          		break;
 				          }else{
 				        	  
@@ -153,16 +151,15 @@
 		        	    });
 	             };   
 	             $scope.getParcelDetails = function(parcel){
-	            	 console.log(parcel);
 	            	 if(parcel !=undefined){
 	                 for(var i in scope.parcelData){
 	                	 if(parcel== scope.parcelData[i].description){
 					    		scope.property.parcel = scope.parcelData[i].code.substr(0,2);
 					    		$scope.formData.street = scope.parcelData[i].referenceValue;
+					    		$scope.getWatch(scope.property.parcel);
 				          		break;
 				          }	 
-	                 }
-	                 console.log(scope.property.parcel);
+	                    }
 	                }
 	             };
 				
@@ -178,7 +175,6 @@
 	             };   
 	             
 	             $scope.getFloorDetails = function(floor){
-	            	 console.log(floor);
 	            	 if(floor!=undefined){
 	            		 for( var i in scope.floorData){
 	            			 if(floor==scope.floorData[i].description){
@@ -187,13 +183,12 @@
 					          		break;
 					          }	 
 		                 }
-	            		
 	            	 }	       	        
 	          };
-	
+	            
 	  		$scope.getPropertyCode=function(unitCode){
-				if($scope.precinct !=undefined&&scope.property.parcel!=undefined&&$scope.formData.buildingCode!=undefined &&scope.property.floor!=undefined){
-			    $scope.formData.propertyCode=$scope.precinct.concat(scope.property.parcel,$scope.formData.buildingCode,scope.property.floor,unitCode);
+				if(scope.property.precinctCode !=undefined&&scope.property.parcel!=undefined&&$scope.formData.buildingCode!=undefined &&scope.property.floor!=undefined){
+			    $scope.formData.propertyCode=scope.property.precinctCode.concat(scope.property.parcel,$scope.formData.buildingCode,scope.property.floor,unitCode);
 				}
 			}; 
 			
@@ -215,32 +210,21 @@
     			 scope.formData.country = $scope.formData.country;
     			 scope.formData.zipCode = $scope.formData.poBox;
     			 $modalInstance.dismiss('delete');
-    			 if(scope.formData.addressNo!=undefined){
-    				 $('#addressNo1').attr("readonly","readonly");
+    			 if(!angular.isUndefined(scope.formData.addressNo)){
+    				 $('#propertyCode').attr("readonly","readonly");
     			 }
-    			 console.log(scope.property);
 	      	 };
 	         $scope.cancel = function () {
 	        	 $modalInstance.dismiss('cancel');
 	         };
-	     /*    var aa
-	         $scope.$watch(function(){
-	        	 aa = $scope.formData.precinct+$scope.parcel+$scope.formData.propertyType+$scope.formData.buildingCode+$scope.floor+$scope.formData.unitCode;
-	        
-	        	 return aa;
-	         }, function(){
-	        	 if(aa)
-	        	if(!aa.contains("undefined"))
-	        	$scope.formData.propertyCode=.concat(scope.property.parcel,$scope.formData.buildingCode,scope.property.floor,$scope.formData.unitCode);
-	         });*/
 	         
 	         $scope.getWatch=function(labelValue){
-				  if(labelValue!=undefined&& $scope.formData.propertyCode !=undefined){
-				     $scope.formData.propertyCode=$scope.precinct.concat(scope.property.parcel,$scope.formData.buildingCode,scope.property.floor,$scope.formData.unitCode);
+				  if(!angular.isUndefined(labelValue)&&!angular.isUndefined($scope.formData.propertyCode)){
+				     $scope.formData.propertyCode=scope.property.precinctCode.concat(scope.property.parcel,$scope.formData.buildingCode,scope.property.floor,$scope.formData.unitCode);
 					}
 	         
 	            };
-	     }//end of propertycontroller
+	     }//end of propertyController
 
         scope.onFileSelect = function($files) {
           scope.file = $files[0];
@@ -259,15 +243,56 @@
         };
 
         scope.submit = function() {
-        	
         	if(scope.propertyMaster){
+        		delete scope.property.precinctCode;
         		 resourceFactory.propertyCodeResource.save({},scope.property,function(data){
-        		 
-        		 },function(errorData){
-        			 
+        	        	scope.flag = true;
+        	            var reqDate = dateFilter(new Date(),'dd MMMM yyyy');
+        	            scope.formData.locale = $rootScope.locale.code;
+        	            scope.formData.active = true;
+        	            scope.formData.dateFormat = 'dd MMMM yyyy';
+        	            scope.formData.activationDate = reqDate;
+        	            scope.formData.flag=scope.configurationProperty;
+        	            scope.formData.locale = $rootScope.locale.code;
+        	            scope.formData.dateFormat = 'dd MMMM yyyy';
+        	            if(scope.date.dateOfBirth){scope.formData.dateOfBirth = dateFilter(scope.date.dateOfBirth,'dd MMMM yyyy');}
+        	            resourceFactory.clientResource.save(scope.formData,function(data){
+        	            	
+        	              if (scope.file) {
+        	            	  $upload.upload({
+        	                  url: $rootScope.hostUrl+ API_VERSION +'/clients/'+data.clientId+'/images', 
+        	                  data: {},
+        	                  file: scope.file
+        	                }).then(function(imageData) {
+        	                  // to fix IE not refreshing the model
+        	                  if (!scope.$$phase) {
+        	                    scope.$apply();
+        	                  }
+        	                  if(scope.clientAddInfo){
+        	            		  location.path('/clientadditionalinfo/' + data.resourceId);
+        	            	  }else if(PermissionService.showMenu('READ_CLIENT')){
+        	                	  location.path('/viewclient/'+data.resourceId);
+        	            	  }else{
+        	                	  location.path('/clients');
+        	            	  }
+        	                });
+        	              } else{
+        	            	  if(scope.clientAddInfo){
+        	            		  location.path('/clientadditionalinfo/' + data.resourceId);
+        	            	  }else if(PermissionService.showMenu('READ_CLIENT')){
+        	            		  location.path('/viewclient/' + data.resourceId);
+        	            	  }else{
+        	            		  location.path('/clients');
+        	            	  }
+        	              }
+        	            },function(errData){
+        	          	  scope.flag = false;
+        	            });
+        	        	},function(errorData){
+        	        		 scope.flag = false;
         		 });
-        	  }
-        	 scope.flag = true;
+        }else{
+        	scope.flag = true;
             var reqDate = dateFilter(new Date(),'dd MMMM yyyy');
             this.formData.locale = $rootScope.locale.code;
             this.formData.active = true;
@@ -309,7 +334,8 @@
             },function(errData){
           	  scope.flag = false;
             });
-          };
+        	}
+        };
     }
   });
   mifosX.ng.application.controller('CreateClientController', [

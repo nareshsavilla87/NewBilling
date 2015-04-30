@@ -1,14 +1,16 @@
-<div data-ng-controller="PropertyController">
 <div>
 	<ul class="breadcrumb">
 		<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
 		<li class="active">Property Definition</li>
 	</ul>
+</div>
+<div data-ng-controller="PropertyController">
+<tabset style="margin-bottom: 0px;"> 
+<tab heading="{{'tab.properties' | translate}}" select="getAllProperties()" data-ng-show="$parent.PermissionService.showMenu('READ_PROPERTY')">
 	<div class="pull-right">
 	    <a data-ng-show="PermissionService.showMenu('CREATE_PROPERTY')" data-ng-click="uploadProperty()" class="btn btn-primary"><i class="icon-cloud-upload"></i>Property Data Upload</a>
-		<a data-ng-show="PermissionService.showMenu('CREATE_PROPERTY')" href="#/createproperty" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{ 'label.create.new.property' | translate }}</a>
-	</div>
-	</div>
+<!-- 		<a data-ng-show="PermissionService.showMenu('CREATE_PROPERTY')" href="#/createproperty" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{ 'label.create.new.property' | translate }}</a>
+ -->	</div>
 	<div  class="row-fluid">
 	   <form data-ng-submit="searchPropertyDetails(filterText)" style="margin: 0 0 1%;">
 		<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by Property Code/Precinct/Allocated"> <br>
@@ -55,6 +57,42 @@
         			<li class="next" ><a data-ng-click="propertyCodes.next()" href=""  data-ng-disabled="!propertyCodes.hasNext()">Next &rarr;</a></li>
     	</ul>
 	</div>
+  </tab>
+  <tab heading="{{'tab.propertymaster' | translate}}" select="getPropertyMaster()" active="propertyMasterTab" data-ng-show="$parent.PermissionService.showMenu('READ_PROPERTYCODEMASTER')">
+		<div class="pull-right">
+	    <a data-ng-show="PermissionService.showMenu('CREATE_PROPERTYCODEMASTER')" data-ng-click="uploadPropertyDefinitions()" class="btn btn-primary"><i class="icon-cloud-upload"></i>Property Master Upload</a>
+		<a data-ng-show="PermissionService.showMenu('CREATE_PROPERTYCODEMASTER')" href="#/createpropertydefinition" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{ 'label.create.new.property.master' | translate }}</a>
+	 </div>
+	<div  class="row-fluid">
+	   <form data-ng-submit="searchPropertyMaster(filterText)" style="margin: 0 0 1%;">
+		<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by Property Type/Code"> <br>
+		  </form>
+		<table class="table">
+			<thead>
+				<tr class="graybg">
+					<th>{{ 'table.heading.propertytype' | translate }}</th>
+					<th>{{ 'table.heading.code' | translate }}</th>
+					<th>{{ 'table.heading.codedescription' | translate }}</th>
+					<th>{{ 'table.heading.referencevalue' | translate }}</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<tr class="pointer-main" data-ng-repeat="propertyMaster in propertyMasters.currentPageItems  | filter:filterText">
+					<td class="pointer" >{{propertyMaster.propertyCodeType}}</td>
+					<td class="pointer" >{{propertyMaster.code}}</td>
+					<td class="pointer" >{{propertyMaster.description}}</td>
+					<td class="pointer" >{{propertyMaster.referenceValue}}</td>	
+				</tr>
+			</tbody>
+		</table>
+		<ul class="pager">
+        			<li class="previous"><a data-ng-click="propertyMasters.previous()" href="" data-ng-disabled="!propertyMasters.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a data-ng-click="propertyMasters.next()" href=""  data-ng-disabled="!propertyMasters.hasNext()">Next &rarr;</a></li>
+    	</ul>
+	</div>
+		
+		</tab></tabset>
 	
 	   <script type="text/ng-template" id="uploadProperty.html">
 
@@ -139,4 +177,35 @@
             <button class="btn btn-primary" ng-click="accept()">Done</button>
         </div>
 	</script> 
+	
+    <script type="text/ng-template" id="uploadPropertyDefinition.html">
+
+    	<div class="modal-header silver">
+        	<h3 class="bolder">{{'dialog.upload.property.master' | translate}}</h3>
+        </div>
+	 		<div class="error" ng-show="errorStatus || errorDetails">
+				<label>{{'label.contract.error' | translate}}</label>
+				<label ng-show="errorStatus">{{errorStatus}}</label>
+				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	   		</div>
+				 <fieldset>
+                	<table>
+						<tr>
+						  <td width="50%">
+                         <div class="control-group">
+			            <label class="control-label" for="file">{{'label.client.select.file' | translate}}</label>
+                        <div class="controls">                         
+                        <input type="file" ng-file-select="onFileSelect($files)"></div>
+                         </div></td>
+                            <td vlign="top">
+                               <a ng-click="downloadFile()" data-popover-placement="right" data-popover="Download Sample File" data-popover-trigger="mouseenter"><i class="icon-download-alt icon-white"></i></a>
+                             </td> 
+						</tr>
+					</table> 
+      </fieldset>
+        <div class="modal-footer">
+        	<button id="cancel" class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+            <button id="submit" class="btn btn-primary" data-ng-disabled="!value" ng-click="approve()">{{'label.confirm' | translate}}</button>
+        </div> 
+	</script>
 </div>

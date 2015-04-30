@@ -2652,7 +2652,10 @@
 "table.property.transactionDate":"transactionDate",
 "table.property.status":"status",
 "table.heading.codedescription":"Code Description",
-
+"table.heading.referencevalue":"Reference Value",
+"tab.properties":"All Properties",
+"tab.propertymaster":"Property Master",
+ 
 "#Property Errors":".........",
 "error.msg.property.code.already.allocated":"Property Code is already allocated to client",
 "validation.msg.property.propertyCode.cannot.be.blank":"Property Code cannot be blank",
