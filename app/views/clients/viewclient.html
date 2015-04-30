@@ -172,6 +172,7 @@
                             	<th>{{'table.order.endDate' | translate}}</th>
                             	<th>{{'table.price.price' | translate}}</th>
                             	<th>{{'table.order.status' | translate}}</th> 
+                            	<!-- <th></th> -->
                         	</tr>
                           	<tr class="pointer-main" data-ng-repeat="order in orders | filter:filterText" >
                           		<td class="pointer" data-ng-click="routeTogeneral(order.id,client.id)">{{order.orderNo}}</td>
@@ -182,6 +183,18 @@
                           		<td class="pointer" data-ng-click="routeTogeneral(order.id,client.id)">{{order.endDate | DateFormat}}</td> 
                           		<td class="pointer" data-ng-click="routeTogeneral(order.id,client.id)">{{order.price}}</td>
                           		<td class="pointer" data-ng-click="routeTogeneral(order.id,client.id)"><i class="icon-stop {{order.status | StatusLookup}}"></i>&nbsp;{{order.status}}</td>
+                          		<!-- <td>
+                          			<span  class="btn-group" >
+				              		<a class="btn btn-primary dropdown-toggle">
+				                 <span class="caret"></span>
+				              	</a>
+					              <ul style='margin-left:-95px;' class="dropdown dropdown-menu">
+					                <li>
+					                    <a href="#/strequest/{{clientId}}">{{'label.service.transfer' | translate}}</a>
+					                </li>
+					              </ul>
+          						</span>
+                          		</td> -->
                           		<!-- <td><input type="radio" name="select" ng-click="selectedOrder(order.status)"/></td> -->
                          	</tr>
                         	<tr><td colspan="8">&nbsp;</td></tr>   
