@@ -36,6 +36,23 @@
           localStorageService.add('Location', scope.activityQueue);
       });
       
+    //adding account no and name to an recentClientarray
+  	 var recentClient = {};
+  	 var recentClientArray = [];
+  	 if (localStorageService.get('recentClients')) {
+  		 recentClientArray = localStorageService.get('recentClients');
+       }
+       scope.$watch(function () {
+     	  var val = scope.clientAccountNo+""+scope.clientDisplayName;
+           return val;
+       }, function () {
+     	  if(scope.clientAccountNo){
+       		recentClient = {"accountNo":scope.clientAccountNo,"displayName" : scope.clientDisplayName};
+       		recentClientArray.push(recentClient);
+       		localStorageService.add('recentClients', recentClientArray);
+     	  }
+       });
+      
       scope.$on("UserAuthenticationSuccessEvent", function(event, data) {
     	  
     	localStorageService.add("permissionsArray",data.permissions);
@@ -244,6 +261,28 @@
         scope.currentSession = session;
         scope.start(scope.currentSession);
       });
+      
+      scope.changePwd = function () {
+          $modal.open({
+              templateUrl: 'changepassword.html',
+              controller: changepasswordCtrl
+              
+          });
+      };
+      
+      function changepasswordCtrl($scope, $modalInstance) {
+    	  $scope.formData = {};
+    	  var sessionData = webStorage.get('sessionData') || "";
+    	  var userId	= sessionData.userId;
+          $scope.submit = function (staffId) {
+              resourceFactory.userListResource.update({'userId': userId},$scope.formData,function(data){
+            	  $modalInstance.close('delete');
+              });
+          };
+          $scope.cancel = function () {
+              $modalInstance.dismiss('cancel');
+          };
+      };
     }
   });
   mifosX.ng.application.controller('MainController', [
