@@ -647,7 +647,7 @@
       .when('/editownhardware/:id', {
         templateUrl: 'views/clients/editownhardware.html'
       })
-       .when('/addonetimesale/:id', {
+       .when('/addonetimesale/:id/:officeId', {
         templateUrl: 'views/clients/addonetimesale.html'
       })
       .when('/devicerental/:id', {
@@ -917,7 +917,7 @@
       .when('/provision',{
         templateUrl: 'views/system/provision.html'
       })
-      .when('/adddevice/:clientId', {
+      .when('/adddevice/:clientId/:officeId', {
         templateUrl: 'views/clients/adddevice.html'
       })
       .when('/viewcheckerinbox/:id', {

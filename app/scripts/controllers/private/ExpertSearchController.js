@@ -58,7 +58,6 @@
                  return a[1] - b[1]
              });
              //sort end here
-             
            //to retrieve the locations from sorted array
              var sortedArray = [];
              for (var key in sortable) {
@@ -71,13 +70,37 @@
                  if (sortedArray[freq]) {
                      if (sortedArray[freq] != '/') {
                          if (sortedArray[freq] != '/home') {
-                             scope.frequent.push(sortedArray[freq]);
+                        	 if(sortedArray[freq].indexOf('/viewclient') === -1){
+                        		 scope.frequent.push(sortedArray[freq]);
+                        	 }
                          }
                      }
                  }
              }
-             // retrieved 8 frequent actions
-        	 
+             // retrieved 8 frequent actions end
+             var recentClients = [];
+             	recentClients = localStorageService.get('recentClients')||[];
+           //count duplicates for clients
+             var len = recentClients.length;
+             var objClients = {};
+             while (len) {
+            	 objClients[recentClients[--len].accountNo] = (objClients[recentClients[len].accountNo] || 0) + 1;
+                 if((objClients[recentClients[len].accountNo]) > 1){
+                	 recentClients.splice(len,1);
+                 }
+             }
+             
+              scope.recentClients = [];
+              for (var val = recentClients.length - 1; val > recentClients.length - 9; val--) {
+                   if(recentClients[val]){
+		            	  scope.recentClients.push({
+								            		  accountNo : recentClients[val].accountNo,
+								            		  href : "/viewclient/"+parseInt(recentClients[val].accountNo),
+								            		  displayName : recentClients[val].displayName
+								            	  });	
+                   }
+              }
+             
             scope.switch1 = function() {
 	        	location.path('/dashboard');
 			};
@@ -401,4 +424,3 @@
         $log.info("ExpertSearchController initialized");
     });
 }(mifosX.controllers || {}));
-

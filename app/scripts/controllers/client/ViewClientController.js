@@ -137,6 +137,12 @@
         	resourceFactory.clientResource.get({clientId: routeParams.id} , function(data) {
         		scope.orders = [];
                 scope.client = data;
+                
+                //adding account no and name to display recent clients in dashboard
+                $rootScope.clientAccountNo = data.accountNo;
+                $rootScope.clientDisplayName = data.displayName;
+                
+                webStorage.add("walletAmount",scope.client.walletAmount);
                 scope.statusActive = scope.client.status.code;
                 scope.taxExemption = scope.client.taxExemption;
                 if(scope.taxExemption == 'N'){

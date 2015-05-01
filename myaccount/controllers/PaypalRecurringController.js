@@ -13,7 +13,10 @@ PaypalRecurringController = function(scope,RequestSender,location,localStorageSe
 			chargeCodeData  = chargeCodeData.data;
 		scope.period		= chargeCodeData.chargeDuration;
 		scope.time			= chargeCodeData.durationType[0];
-		scope.customValue   = {chargeDuration:chargeCodeData.chargeDuration,durationType:chargeCodeData.durationType};
+		//scope.customValue   = {chargeDuration:chargeCodeData.chargeDuration,durationType:chargeCodeData.durationType};
+		var planData = localStorageService.get("planData");
+		console.log(planData);
+		scope.customValue   = { clientId:clientId,planId:planId,paytermCode:chargeCodeData.billFrequencyCode,contractPeriod:planData.contractId};
 		var billFrequencyCode = 0;
 		var durationType = 0;
 			switch (chargeCodeData.durationType) {
