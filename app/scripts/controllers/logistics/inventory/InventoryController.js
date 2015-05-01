@@ -57,7 +57,9 @@
         scope.routeTogrn = function(id){
               location.path('/viewgrn/'+ parseInt(id));
            };
+
          scope.routeTomrn = function(id){
+
         	 /*scope.val=id.split(" ");*/
         	 id=id.replace(/[{()}]/g,'');
         	 scope.val = id.split(" ");

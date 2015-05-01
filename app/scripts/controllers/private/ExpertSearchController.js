@@ -430,4 +430,3 @@
         $log.info("ExpertSearchController initialized");
     });
 }(mifosX.controllers || {}));
-

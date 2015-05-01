@@ -3,6 +3,7 @@
 		  ClientOneTimeSaleController: function(scope, webStorage,routeParams , location, resourceFactory,dateFilter,$rootScope,API_VERSION,http) {
 		  
 			  scope.clientId=routeParams.id;
+			  var officeId=routeParams.officeId;
 			  scope.formData = {};
 			  scope.unitsValue = "";
 			  var clientData = webStorage.get('clientData');
@@ -43,7 +44,7 @@
 	            }
 	            scope.officesDatas=data.officesData;
 	            for(var i=0;i<scope.officesDatas.length;i++){
-	            	if(scope.officesDatas[i].id==1){
+	            	if(scope.officesDatas[i].id==officeId){
 	            		scope.formData.officeId=scope.officesDatas[i].id;
 	            	}
 	            }

@@ -34,6 +34,7 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 				for(var j in totalOrdersData[i].pricingData){
 					if(totalOrdersData[i].pricingData[j].id == priceDataId){
 						scope.planData = totalOrdersData[i].pricingData[j] || {};
+						localStorageService.add("planData",scope.planData);
 						break;
 					}
 				}
@@ -97,11 +98,11 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 				scope.paymentGatewayValues1 = paymentGatewayValues;
 				if(scope.paypalRecurringType){
 					if(scope.paypalType && scope.paypalRecurringType == 'RecurringType'){
-						chargeCodeData	= chargeCodeData.data;
-						var srt 		= srtCountCheckingFun(chargeCodeData);
-						 if(srt<=1){
+						/*chargeCodeData	= chargeCodeData.data;
+						var srt 		= srtCountCheckingFun(chargeCodeData);*/
+						 /*if(srt<=1){
 							scope.errorRecurring = "error.msg.paypal.recurring.notpossible"; 
-						 }else
+						 }else*/
 							 scope.paymentURL = "#/paypalrecurring/"+scope.screenName+"/"+scope.clientId+"/"+planId+"/"+priceDataId+"/"+scope.planData.price;
 					}else{
 						var query = {clientId :scope.clientId,locale : "en",planCode : planId,contractPeriod : scope.planData.contractId,
@@ -161,9 +162,9 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 				chargeCodeData	= chargeCodeData.data;
 				var srt 		= srtCountCheckingFun(chargeCodeData);
 				 console.log(srt);
-				 if(srt<=1){
+				/* if(srt<=1){
 					scope.errorRecurring = "error.msg.paypal.recurring.notpossible"; 
-				 }else
+				 }else*/
 					 scope.paymentURL = "#/paypalrecurring/"+scope.screenName+"/"+scope.clientId+"/"+planId+"/"+priceDataId+"/"+scope.planData.price;
 		}else{
 			var query = {clientId :scope.clientId,locale : "en",planCode : planId,contractPeriod : scope.planData.contractId,
