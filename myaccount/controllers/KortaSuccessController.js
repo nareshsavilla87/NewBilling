@@ -63,8 +63,7 @@ KortaSuccessController = function(rootScope,RequestSender,location,localStorageS
     				  RequestSender.paymentGatewayResource.update({},formData,function(data){
     					  localStorageService.add("paymentgatewayresponse", {data:data,cardType:formData.cardType,cardNumber:formData.cardNumber});
     					  rootScope.iskortaTokenAvailable = true;
-						var result = data.Result.toUpperCase() || "";
-						localStorageService.add("gatewayStatus",result);
+						var result = data.Result || "";
 						location.$$search = {};
 						if(screenName == 'payment'){
 							location.path('/paymentgatewayresponse/'+formData.clientId);
@@ -86,7 +85,7 @@ KortaSuccessController = function(rootScope,RequestSender,location,localStorageS
   						location.$$search = {};
   						if(screenName == 'payment'){
   							location.path('/paymentgatewayresponse/'+formData.clientId);
-  						}else if(result == 'SUCCESS' || result == 'PENDING'){
+  						}else if(result.toUpperCase() == 'SUCCESS' || result == 'PENDING'){
   							location.path("/orderbookingscreen/"+screenName+"/"+formData.clientId+"/"+planId+"/"+priceId);
   						}else{	 
   							location.path('/paymentgatewayresponse/'+formData.clientId);
