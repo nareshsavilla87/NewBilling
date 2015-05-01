@@ -309,6 +309,7 @@ define(['underscore', 'mifosX'], function() {
       'organization/CreateFeeMasterController',
       'organization/ViewFeeMasterController',
       'organization/EditFeeMasterController',
+      'organization/CreatePropertyDefinitionController',
 
 
     ],
