@@ -68,9 +68,8 @@
        	    }).then(function(res){   
        	    	 scope.propertyCodesData=res.data;	
        	    	if(scope.propertyCodesData.length>0){
-       	    		scope.unitStatus=scope.propertyCodesData.status;
-       	    		scope.propertyId=scope.propertyCodesData.id;
-       	    		console.log(scope.property.precinctCode);
+       	    		 scope.unitStatus=scope.propertyCodesData[0].status;
+       	    		 scope.propertyId=scope.propertyCodesData[0].id;
        	    	}else{
        	    		scope.unitStatus='VACANT';
        	    		scope.propertyId=undefined;
