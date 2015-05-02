@@ -136,7 +136,8 @@
        <div class="control-group"  data-ng-show="propertyMaster">
         <label class="control-label">{{'label.buildingcode' | translate}}<span class="required">*</span></label>
         <div class="controls">
-          <input type="text" id="propertyCode" name="address" data-ng-model="formData.addressNo" data-ng-blur="getPropertyDetails(formData.addressNo)"/>&nbsp;
+          <input type="text" id="propertyCode" name="address" data-ng-model="formData.addressNo" data-typeahead="propertyData.propertyCode as propertyData.propertyCode for propertyData in getExistsProperty($viewValue)"
+           autocomplete="off" data-typeahead-min-length="0"  data-typeahead-on-select="getPropertyDetails(formData.addressNo)" data-typeahead-editable="false" />&nbsp;
            <a data-ng-click="generatePropertyPopup()" data-popover-placement="right" data-popover="Generate Building Code" data-popover-trigger="mouseenter"><i class="icon-plus icon-white"></i></a><br/>
           <span  data-ng-show="createclientform.address.$invalid">
               <small class="error" data-ng-show="createclientform.address.$error.req">
@@ -220,6 +221,11 @@
       </div>
       <div class="modal-body" style="padding:0px;overflow-y=unset;">
   <form name="createpropertyform" novalidate  class="form-horizontal well"  data-ng-submit="submit()">
+     <div class="error" data-ng-show="errorStatus || errorData">
+			<label>{{'label.error' | translate}}</label>
+			<label data-ng-show="errorStatus">{{errorStatus}}</label>
+			<label data-ng-hide="errorStatus" data-ng-repeat="error in errorData">{{error.code | translate}}</label>
+	 </div>
         <table>		 
 		<tr>
 	      <td>
@@ -255,18 +261,18 @@
 				</span>
             </div>
           </div>
-      
-             <div class="control-group">
+     
+            <div class="control-group">
             	<label class="control-label" for="buildingCode">{{'label.buildingcode' | translate }}<span class="required">*</span></label>
             	<div class="controls">
-              		<input type="text"  id="buildingCode" name="buildingCode" data-ng-model="formData.buildingCode" data-ng-blur="getWatch(formData.buildingCode)"
-              		 data-ng-pattern="/^[a-zA-Z0-9\s]+$/" data-ng-minlength=3 maxlength=3 required data-late-Validate><br/>
+              		<input type="text"  id="buildingCode" name="buildingCode" data-ng-model="buildingCode" data-typeahead="building.code as building.code for building in getBuild($viewValue)" 
+              		autocomplete="off" data-typeahead-min-length="0" data-typeahead-on-select="getbuildCode(buildingCode)" required data-late-Validate/><br/>
               		<span data-ng-show="createpropertyform.buildingCode.$invalid">
-			          <small class="error" data-ng-show="createpropertyform.buildingCode.$error.req">{{'label.required.field' | translate}} </small> 
-					  <small class="error" data-ng-show="createpropertyform.buildingCode.$error.minlength && !createpropertyform.buildingCode.$error.req">It require 3 alphanumeric's only</small> 
+					  <small class="error" data-ng-show="createpropertyform.buildingCode.$error.req">{{'label.required.field' | translate}} </small> 
 					</span>
             	</div>
           	</div>
+          
           	
           	<div class="control-group">
             	<label class="control-label" for="floor">{{'label.floor' | translate }}<span class="required">*</span></label>
@@ -281,11 +287,10 @@
               <div class="control-group">
             	<label class="control-label" for="unitCode">{{'label.unitcode' | translate }}<span class="required">*</span></label>
             	<div class="controls">
-              		<input type="text"  id="unitCode" name="unitCode" data-ng-model="formData.unitCode"  
-              		data-ng-pattern="/^[a-zA-Z0-9\s]+$/" data-ng-blur="getPropertyCode(formData.unitCode)"data-ng-minlength=4 maxlength=4 required data-late-Validate><br/>
+              		<input type="text"  id="unitCode" name="unitCode" data-ng-model="unitCode" data-typeahead="unit.code as unit.code for unit in getUnit($viewValue)" 
+              		autocomplete="off" data-typeahead-min-length="0" data-typeahead-on-select="getunitCode(unitCode)" required data-late-Validate/><br/>
               		<span data-ng-show="createpropertyform.unitCode.$invalid">
 					  <small class="error" data-ng-show="createpropertyform.unitCode.$error.req">{{'label.required.field' | translate}} </small> 
-					  <small class="error" data-ng-show="createpropertyform.unitCode.$error.minlength && !createpropertyform.unitCode.$error.req">It require 4 alphanumeric's only</small> 
 					 </span>
             	</div>
           	</div>
@@ -295,7 +300,7 @@
           <div class="control-group">
             	<label class="control-label" for="propertyCode">{{'label.propertycode' | translate }}</label>
             	<div class="controls">
-              		<input type="text" name="propertyCode"  data-ng-model="formData.propertyCode" required readonly data-late-Validate><br/>
+              		<input type="text" id="generateProperty" name="propertyCode"  data-ng-model="formData.propertyCode" required readonly data-late-Validate><br/>
             	 </div>
           	</div>
           
@@ -336,4 +341,16 @@
       </div>
 </div>
 </script>
+
+   <!--     <div class="control-group">
+            	<label class="control-label" for="buildingCode">{{'label.buildingcode' | translate }}<span class="required">*</span></label>
+            	<div class="controls">
+              		<input type="text"  id="buildingCode" name="buildingCode" data-ng-model="formData.buildingCode" data-ng-blur="getWatch(formData.buildingCode)"
+              		 data-ng-pattern="/^[a-zA-Z0-9\s]+$/" data-ng-minlength=3 maxlength=3 required data-late-Validate><br/>
+              		<span data-ng-show="createpropertyform.buildingCode.$invalid">
+			          <small class="error" data-ng-show="createpropertyform.buildingCode.$error.req">{{'label.required.field' | translate}} </small> 
+					  <small class="error" data-ng-show="createpropertyform.buildingCode.$error.minlength && !createpropertyform.buildingCode.$error.req">It require 3 alphanumeric's only</small> 
+					</span>
+            	</div>
+          	</div> -->
 </div>

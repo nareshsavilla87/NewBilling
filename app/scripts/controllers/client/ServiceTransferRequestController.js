@@ -61,15 +61,29 @@
        });
        
        scope.getPropertyStatus = function(query){
-       	return http.get($rootScope.hostUrl+API_VERSION+'/property/propertycode/', {
-       	      params: {
-       	    	  		query: query
+       	return http.get($rootScope.hostUrl+API_VERSION+'/property', {
+       	      params: {       	    	 		       	  
+       	    	  sqlSearch: query,
+	    	         limit : 15,
+	    	         offset:0
        	      		   }
        	    }).then(function(res){   
-       	    	 scope.propertyCodesData=res.data;	
+       	    	 scope.propertyCodesData=res.data.pageItems;	
        	    	if(scope.propertyCodesData.length>0){
        	    		 scope.unitStatus=scope.propertyCodesData[0].status;
        	    		 scope.propertyId=scope.propertyCodesData[0].id;
+       	    		if(scope.unitStatus == 'OCCUPIED'){
+    	    		     scope.errorDetails= [];
+  	                     scope.errorDetails.push({code:'error.msg.property.code.already.allocated'});
+  	                    $("#propertyCode").addClass("validationerror");
+  	                   $("#unitStatus").addClass("validationerror");
+    	    	    }else{
+    	    		   delete scope.errorDetails;
+ 	    	    	   scope.propetyId=undefined;
+ 	    		       $("#propertyCode").removeClass("validationerror");
+ 	    		       $("#unitStatus").removeClass("validationerror");
+
+    	    	   }
        	    	}else{
        	    		scope.unitStatus='VACANT';
        	    		scope.propertyId=undefined;
@@ -160,6 +174,45 @@
                 }
        	 }	       	        
      };
+     
+     scope.getBuild = function(query){
+			return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
+     	      params: {
+     	    	  		query: 'Building Codes'
+     	      		   }
+     	    }).then(function(res){   
+     	    	 scope.buildingData=res.data;	
+     	      return scope.buildingData;
+     	    });
+      };   
+      scope.getbuildCode = function(buildingCode){
+     	 if(!angular.isUndefined(buildingCode)){
+			    		scope.property.buildingCode = buildingCode.substr(0,3);
+			    		scope.getWatch(scope.property.buildingCode);
+		          }	 
+      };  
+      
+      scope.getUnit = function(query){
+			return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
+      	      params: {
+      	    	  		query: 'Unit Codes'
+      	      		   }
+      	    }).then(function(res){   
+      	    	 scope.unitData=res.data;	
+      	      return scope.unitData;
+      	    });
+       };   
+       scope.getunitCode = function(unit){
+      	 if(!angular.isUndefined(unit)){
+          	 scope.property.unitCode=unit.substr(0,4);
+          	if(angular.isUndefined(scope.formData.propertyCode)){
+          	      scope.getPropertyCode(scope.property.unitCode);
+          	}else{
+          		$scope.getWatch(scope.property.unitCode);
+          	   }					 
+		      }	 
+       };
+    
        
 		scope.getPropertyCode=function(unitCode){
 		if(scope.property.precinctCode !=undefined&&scope.property.parcel!=undefined&&scope.property.buildingCode!=undefined &&scope.property.floor!=undefined){
