@@ -14,7 +14,9 @@
         scope.parcelData = [];
    	    scope.floorData = [];
    	    scope.buildingData = [];
+   	    scope.unitData = [];
    	    scope.property = {};
+   	    scope.propertyCodesData =[];
 
         scope.nationalityDatas = [];
         scope.genderDatas = [];
@@ -57,7 +59,8 @@
             
             
         });
-      scope.getStateAndCountry=function(city){
+    
+        scope.getStateAndCountry=function(city){
     	  
       	  resourceFactory.AddressTemplateResource.get({city :city}, function(data) {
           		scope.formData.state = data.state;
@@ -65,6 +68,35 @@
       	  });
         };
         
+        //vacant properties
+         scope.getPropertyDetails = function(existsProperty){   
+            	   if(!angular.isUndefined(existsProperty)){
+            		  for(var j in scope.propertyCodesData)  {
+            			 if(existsProperty == scope.propertyCodesData[j].propertyCode){
+            				 scope.formData.addressNo = scope.propertyCodesData[j].propertyCode;
+            				 scope.formData.street = scope.propertyCodesData[j].street;
+            				 scope.formData.city  =  scope.propertyCodesData[j].precinct; 
+            				 scope.formData.state =  scope.propertyCodesData[j].state;
+            				 scope.formData.country = scope.propertyCodesData[j].country;
+            				 scope.formData.zipCode = scope.propertyCodesData[j].poBox;
+            				 scope.status=scope.propertyCodesData[j].status;
+            				 scope.propetyId=scope.propertyCodesData[j].id;
+            				 break;
+            			 }
+            		 }
+            	   }else{
+                        
+            		 delete scope.formData.street;
+            		 delete scope.formData.city;
+            		 delete scope.formData.state;
+            		 delete scope.formData.country;
+            		 delete scope.formData.zipCode;
+        			 
+            	   }
+            	   console.log(scope.status, scope.propetyId);
+               };        
+             
+             
       
 	     scope.generatePropertyPopup = function (){
 	    	 $modal.open({
@@ -73,7 +105,8 @@
 	  	         resolve:{}
 	  	     });
 	     };
-	          
+	     
+	     //starting of property controller     
 	     function  generatePropertyController($scope, $modalInstance) {
 	    	 $scope.propertyTypes = [];
 	    	 $scope.precinctData = [];
@@ -82,8 +115,8 @@
 				  $scope.propertyTypes = data.propertyTypes;
 				  if(Object.keys(scope.property).length >0){
 			    		 $scope.formData.precinct=scope.property.precinct;
-			    		 $scope.formData.buildingCode=scope.property.buildingCode;
-			    		 $scope.formData.unitCode=scope.property.unitCode;
+			    /*		 $scope.formData.buildingCode=scope.property.buildingCode;
+			    		 $scope.formData.unitCode=scope.property.unitCode;*/
 			    		 $scope.formData.propertyCode=scope.property.propertyCode;
 			    		 $scope.formData.street=scope.property.street;
 			    		 $scope.formData.state=scope.property.state;
@@ -102,6 +135,9 @@
 			    				 break;
 			    			 }
 			    		 }
+			    		 $scope.buildingCode = scope.property.buildingCode;
+			    		 $scope.unitCode = scope.property.unitCode;
+			    		 
 			    	 }
 				});
 			  
@@ -162,6 +198,24 @@
 	                    }
 	                }
 	             };
+	             
+	             $scope.getBuild = function(query){
+						return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
+			        	      params: {
+			        	    	  		query: 'Building Codes'
+			        	      		   }
+			        	    }).then(function(res){   
+			        	    	 scope.buildingData=res.data;	
+			        	      return scope.buildingData;
+			        	    });
+		             };   
+		             $scope.getbuildCode = function(buildingCode){
+		            	 if(!angular.isUndefined(buildingCode)){
+						    		scope.property.buildingCode = buildingCode.substr(0,3);
+						    		$scope.getWatch(scope.property.buildingCode);
+					          }	 
+		             };  
+	             
 				
 				$scope.getFloor = function(query){
 					return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
@@ -185,17 +239,49 @@
 		                 }
 	            	 }	       	        
 	          };
-	            
+	          
+	          
+	          $scope.getUnit = function(query){
+					return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
+		        	      params: {
+		        	    	  		query: 'Unit Codes'
+		        	      		   }
+		        	    }).then(function(res){   
+		        	    	 scope.unitData=res.data;	
+		        	      return scope.unitData;
+		        	    });
+	             };   
+	             $scope.getunitCode = function(unit){
+	            	 if(!angular.isUndefined(unit)){
+	                	 scope.property.unitCode=unit.substr(0,4);
+	                	if(angular.isUndefined($scope.formData.propertyCode)){
+	                	      $scope.getPropertyCode(scope.property.unitCode);
+	                	}else{
+	                		$scope.getWatch(scope.property.unitCode);
+	                	   }					 
+				      }	 
+	             };
+	          
 	  		$scope.getPropertyCode=function(unitCode){
-				if(scope.property.precinctCode !=undefined&&scope.property.parcel!=undefined&&$scope.formData.buildingCode!=undefined &&scope.property.floor!=undefined){
-			    $scope.formData.propertyCode=scope.property.precinctCode.concat(scope.property.parcel,$scope.formData.buildingCode,scope.property.floor,unitCode);
+				if(scope.property.precinctCode !=undefined&&scope.property.parcel!=undefined&&scope.property.buildingCode!=undefined &&scope.property.floor!=undefined){
+			    $scope.formData.propertyCode=scope.property.precinctCode.concat(scope.property.parcel,scope.property.buildingCode,scope.property.floor,unitCode);
+			    scope.property.propertyCode=$scope.formData.propertyCode;
+			    $scope.getProperty($scope.formData.propertyCode);
 				}
 			}; 
 			
+			$scope.getWatch=function(labelValue){
+				if(!angular.isUndefined(labelValue)&&!angular.isUndefined(scope.property.propertyCode)){
+					$scope.formData.propertyCode=scope.property.precinctCode.concat(scope.property.parcel,scope.property.buildingCode,scope.property.floor,scope.property.unitCode);
+				   $scope.getProperty($scope.formData.propertyCode);
+				}			
+					
+			};
+			
 	    	 $scope.accept = function () {
 	    		 scope.property.precinct=$scope.formData.precinct; 
-	    		 scope.property.buildingCode=$scope.formData.buildingCode;
-	    		 scope.property.unitCode=$scope.formData.unitCode;
+	    		/* scope.property.buildingCode=$scope.formData.buildingCode;
+	    		 scope.property.unitCode=$scope.formData.unitCode;*/
 	    		 scope.property.propertyType=$scope.formData.propertyType;
 	    		 scope.property.propertyCode=$scope.formData.propertyCode;
 	    		 scope.property.street=$scope.formData.street;
@@ -218,13 +304,47 @@
 	        	 $modalInstance.dismiss('cancel');
 	         };
 	         
-	         $scope.getWatch=function(labelValue){
-				  if(!angular.isUndefined(labelValue)&&!angular.isUndefined($scope.formData.propertyCode)){
-				     $scope.formData.propertyCode=scope.property.precinctCode.concat(scope.property.parcel,$scope.formData.buildingCode,scope.property.floor,$scope.formData.unitCode);
-					}
+	   	    $scope.getProperty = function(query){
+	           	return http.get($rootScope.hostUrl+API_VERSION+'/property', {
+	           	      params: {
+	           	    	      sqlSearch: query,
+	           	    	         limit : 15,
+	           	    	         offset:0
+	           	      		   }
+	           	    }).then(function(res){   
+	           	    	 $scope.propertyCodesData=res.data.pageItems;
+	           	    	if($scope.propertyCodesData.length>0){
+	         	    		 $scope.unitStatus=$scope.propertyCodesData[0].status;
+	         	             scope.propetyId=$scope.propertyCodesData[0].id;
+	         	             console.log(scope.propetyId);
+	         	    		if($scope.unitStatus == 'OCCUPIED'){
+	         	    		     $scope.errorData= [];
+	       	                     $scope.errorData.push({code:'error.msg.property.code.already.allocated'});
+	       	                    $("#generateProperty").addClass("validationerror");
+	         	    	}
+	       		    }else{
+	       		    	
+	       		    	delete $scope.errorData;
+     	    	    	scope.propetyId=undefined;
+     	    		   $("#generateProperty").removeClass("validationerror");
+	       		        } 
+	           	      return scope.propertyCodesData;
+	           	 });
+	         };
 	         
-	            };
 	     }//end of propertyController
+	     
+
+	        scope.getExistsProperty = function(query){
+	           	return http.get($rootScope.hostUrl+API_VERSION+'/property/propertycode/', {
+	           	      params: {
+	           	    	  		query: query
+	           	      		   }
+	           	    }).then(function(res){   
+	           	    	 scope.propertyCodesData=res.data;
+	           	      return scope.propertyCodesData;
+	           	    });
+	             };  
 
         scope.onFileSelect = function($files) {
           scope.file = $files[0];
@@ -243,7 +363,7 @@
         };
 
         scope.submit = function() {
-        	if(scope.propertyMaster){
+        	if(scope.propertyMaster&&(angular.isUndefined(scope.propetyId))){
         		delete scope.property.precinctCode;
         		 resourceFactory.propertyCodeResource.save({},scope.property,function(data){
         	        	scope.flag = true;

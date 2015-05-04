@@ -23,21 +23,19 @@
              <label class="control-label" for="precinct">{{'label.precinct' | translate }}<span class="required">*</span></label>
               <div class="controls">
              <input type="text" id="precinct" name="precinct" data-ng-model="formData.precinct" data-typeahead="precinct.cityName as precinct.cityName for precinct in getPrecinct($viewValue)"
-             autocomplete="off" data-typeahead-min-length="0" data-ng-blur="getPrecinctDetails(formData.precinct)" required data-late-Validate/><br/>
+             autocomplete="off" data-typeahead-min-length="0" data-typeahead-on-select="getPrecinctDetails(formData.precinct)" required data-late-Validate/><br/>
              <span  data-ng-show="editpropertyform.precinct.$invalid">
               <small class="error" data-ng-show="editpropertyform.precinct.$error.req"> {{'label.required.field' | translate}}</small>
           </span>
         </div>
       </div>
-          	
-          	<div class="control-group">
+         	<div class="control-group">
             	<label class="control-label" for="parcel">{{'label.parcel' | translate }}<span class="required">*</span></label>
             	<div class="controls">
-              		<input type="text"  id="parcel" name="parcel" data-ng-model="formData.parcel" data-ng-blur="getPropertyCode(formData.parcel)" 
-              		 data-ng-pattern="/^[a-zA-Z0-9\s]+$/" data-ng-minlength=2 maxlength=2 required data-late-Validate><br/>
+              		<input type="text"  id="parcel" name="parcel" data-ng-model="formData.parcel" data-typeahead="parcel.description as parcel.description for parcel in getParcel($viewValue)" 
+              		autocomplete="off" data-typeahead-min-length="0" data-typeahead-on-select="getParcelDetails(parcel)" required data-late-Validate/><br/>
               		<span data-ng-show="editpropertyform.parcel.$invalid">
 					  <small class="error" data-ng-show="editpropertyform.parcel.$error.req">{{'label.required.field' | translate}} </small> 
-						<small class="error" data-ng-show="editpropertyform.parcel.$error.minlength && !editpropertyform.parcel.$error.req">It require 2 alphanumeric's only</small> 
 					</span>
             	</div>
           	</div>
@@ -64,17 +62,16 @@
 								</span>
             	</div>
           	</div>
-          	<div class="control-group">
+     	 <div class="control-group">
             	<label class="control-label" for="floor">{{'label.floor' | translate }}<span class="required">*</span></label>
             	<div class="controls">
-              		<input type="text" id="floor" name="floor" data-ng-model="formData.floor" data-ng-blur="getPropertyCode(formData.floor)" 
-              		 data-ng-pattern="/^[a-zA-Z0-9\s]+$/" data-ng-minlength=2 maxlength=2 required data-late-Validate><br/>
+              		<input type="text" id="floor" name="floor" data-ng-model="formData.floor" data-typeahead="floor.description as floor.description for floor in getFloor($viewValue)" 
+              	     autocomplete="off" data-typeahead-min-length="0" data-typeahead-on-select="getFloorDetails(floor)" required data-late-Validate/><br/>
               		<span data-ng-show="editpropertyform.floor.$invalid">
-			          <small class="error" data-ng-show="editpropertyform.floor.$error.req">{{'label.required.field' | translate}} </small> 
-					<small class="error" data-ng-show="editpropertyform.floor.$error.minlength && !editpropertyform.floor.$error.req">It require 2 alphanumeric's only</small> 
-					</span>
+		              <small class="error" data-ng-show="editpropertyform.floor.$error.req">{{'label.required.field' | translate}} </small></span>
             	</div>
           	</div>
+          	
           	  <div class="control-group">
             	<label class="control-label" for="unitCode">{{'label.unitcode' | translate }}<span class="required">*</span></label>
             	<div class="controls">

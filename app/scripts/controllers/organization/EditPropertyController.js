@@ -3,6 +3,9 @@
 		EditPropertyController : function(scope, location,  $modal, route, webStorage,resourceFactory,PermissionService,routeParams,http,dateFilter,API_VERSION,$rootScope,$upload,filter) {
 	
 			scope.propertyTypes = [];
+		    scope.precinctData=[];
+			scope.floorData=[];
+			scope.parcelData=[];
 			scope.formData = {};
 			scope.PermissionService = PermissionService;
 			scope.propertyId= routeParams.id;
@@ -63,7 +66,54 @@
 				  }
 			};
 			
-			scope.getPropertyCode=function(labelValue){
+			
+			scope.getParcel = function(query){
+				return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
+	        	      params: {
+	        	    	  		query: 'parcel'
+	        	      		   }
+	        	    }).then(function(res){   
+	        	    	 scope.parcelData=res.data;	
+	        	      return scope.parcelData;
+	        	    });
+             };   
+             scope.getParcelDetails = function(parcel){
+            	 if(parcel !=undefined){
+                 for(var i in scope.parcelData){
+                	 if(parcel== scope.parcelData[i].description){
+				    		scope.parcel = scope.parcelData[i].code.substr(0,2);
+				    		scope.formData.street = scope.parcelData[i].referenceValue;
+				    		scope.getWatch(scope.parcel);
+			          		break;
+			          }	 
+                    }
+                }
+             };
+			
+			scope.getFloor = function(query){
+				return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
+	        	      params: {
+	        	    	  		query: 'Level/Floor'
+	        	      		   }
+	        	    }).then(function(res){   
+	        	    	 scope.floorData=res.data;	
+	        	      return scope.floorData;
+	        	    });
+             };   
+             
+             scope.getFloorDetails = function(floor){
+            	 if(floor!=undefined){
+            		 for( var i in scope.floorData){
+            			 if(floor==scope.floorData[i].description){
+					    		scope.floor = scope.floorData[i].code.substr(0,2);
+					    		scope.getWatch(scope.floor);
+				          		break;
+				          }	 
+	                 }
+            	 }	       	        
+          };
+			
+			scope.getWatch=function(labelValue){
 			  if(labelValue!=undefined){
 			     scope.formData.propertyCode=scope.precinct.concat(scope.formData.parcel,scope.formData.buildingCode,scope.formData.floor,scope.formData.unitCode);
 				}
