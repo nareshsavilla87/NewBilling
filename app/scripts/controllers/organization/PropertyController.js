@@ -201,7 +201,35 @@
 	                  $modalInstance.dismiss('cancel');
 	            };
 	        }
+	      	
+	      	/**
+		      * Delete PropertyMaster
+		      **/
+		     scope.deletePropertyMaster = function (id){
+		    	 scope.propertyId=id;
+		    	 $modal.open({
+		    		 templateUrl: 'deletePopupForPropertyMaster.html',
+		  	         controller: approve3,
+		  	         resolve:{}
+		  	     });
+		     };
+		          
+		     function  approve3($scope, $modalInstance) {
+		    	 $scope.approve = function () {
+		    		 resourceFactory.propertyResource.remove({propertyId: scope.propertyId} , {} , function(data) {
+		    			 $modalInstance.dismiss('delete');
+		    			  route.reload();
+		             });
+		      	 };
+		         $scope.cancel = function () {
+		        	 $modalInstance.dismiss('cancel');
+		         };
+		     }
+	      	
     	     
+	      	scope.routeToPropertyMaster=function(id){
+	      		location.path('/editpropertydefinition/' + id);
+	      	};
 		  }
 	});
 	mifosX.ng.application.controller('PropertyController',[ 
