@@ -202,7 +202,8 @@
              <td>
            		<div class="control-group">
                		<label class="control-label" for="contractPeriod">{{ 'label.order.contractperiod' | translate }}</label>
-                	  <div class="controls" ng-hide="formData4.isPrepaid == 'Y'">
+                	 <div class="controls" ng-hide="formData4.isPrepaid == 'Y'">
+
                               <select    ng-model="formData4.contractPeriod"  ng-options="subscriptiondata.id as subscriptiondata.Contractdata for subscriptiondata in subscriptiondatas" value="{{billRuleData.id}}"></select>
                            </div>
                            <div class="controls" ng-show="formData4.isPrepaid == 'Y'">
