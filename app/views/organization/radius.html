@@ -40,6 +40,9 @@
 					<td class="pointer"
 						data-ng-click="routeToNas(nasData.id)">{{nasData.apipassword}}</td>
 					<td>
+						<a data-ng-click="reloadNases(nasData.nasName)" data-popover="Reload" data-popover-trigger="mouseenter">
+                    		<i class="icon-plus icon-white"></i>
+                    	</a> 
                     	<a data-ng-click="deleteNas(nasData.id)" data-popover="{{'label.nas.message' | translate}}" data-popover-trigger="mouseenter">
                     		<i class="icon-remove icon-white"></i>
                     	</a> 
@@ -89,7 +92,7 @@
 					<th>{{ 'table.heading.service' | translate }}</th>
 					<th>{{ 'table.heading.upRate' | translate }}</th>
 					<th>{{ 'table.heading.downRate' | translate }}</th>
-					<th>{{ 'table.heading.trafficUnit' | translate }}</th>
+					<th>Combquota</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -101,7 +104,7 @@
 					<td class="pointer" >{{radService.nextServicId}}</td>
 					<td class="pointer" >{{radService.uprate}}</td>	
 					<td class="pointer" >{{radService.downRate}}</td>
-					<td class="pointer" >{{radService.trafficUnitdl}}</td>
+					<td class="pointer" >{{radService.combquota}}</td>
 					<td>
 						<!-- <a data-ng-show="PermissionService.showMenu('UPDATE_RADSERVICE')" 
 							href="#/editRadService/{{radiusVersion}}/{{radService.serviceId}}" data-popover="{{'label.editradservice' | translate}}" data-popover-trigger="mouseenter">

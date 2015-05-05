@@ -220,7 +220,7 @@
               getTemplateDetails: {method: 'GET', params: {}},
               update: {method: 'PUT', params: {}},
           }),
-          VendorAgreementTemplateResource:defineResource(apiVer + "/vendoragreement/template",{}, {
+          VendorAgreementTemplateResource:defineResource(apiVer + "/vendoragreement/template",{vendorId: '@vendorId'}, {
               
               getTemplateDetails: {method: 'GET', params: {}},
               update: {method: 'PUT', params: {}},
@@ -251,6 +251,11 @@
           }),
           planResource: defineResource(apiVer + "/plans/:planId", {planId:'@planId'}, {
                 update: { method: 'PUT' }
+          }),
+          
+          planQualifierResource: defineResource(apiVer + "/plans/planQulifier/:planId", {planId:'@planId'}, {
+        	  get: {method: 'GET', params: {}},
+              update: { method: 'PUT' }
           }),
           planTemplateResource: defineResource(apiVer + "/plans/template", {}, {
                   get: {method: 'GET', params: {}}
@@ -953,6 +958,10 @@
           ipPoolingIpStatusResource: defineResource(apiVer + "/ippooling/updatestatus", {}, {
          	  update: { method: 'PUT' }
           }) ,
+          
+          ipPoolingStaticIpResource: defineResource(apiVer + "/ippooling/staticip", {}, {
+         	  update: { method: 'PUT' }
+          }) ,
 
           clientIpPoolingResource: defineResource(apiVer + "/ippooling/:clientId", {clientId: '@clientId'}, {
          	  get: {method: 'GET', params: {},isArray: true},
@@ -1089,6 +1098,9 @@
               radiusOnlineUser: defineResource(apiVer + "/freeradius/onlineusers", {}, {
                   update: { method: 'PUT' }
                }),
+               nasReloadResource: defineResource(apiVer + "/freeradius/nas/reload", {}, {
+                   update: { method: 'PUT' }
+                }),
 
             eventActionResource: defineResource(apiVer + "/eventactions", {}, {}),
             addonsTemplateResource: defineResource(apiVer + "/addons/template", {}, {
@@ -1141,6 +1153,16 @@
             propertyCodeTemplateResource: defineResource(apiVer + "/property/template", {}, {
             	update: { method: 'PUT' }
             }),
+            
+            propertyTemplateResource: defineResource(apiVer + "/propertymaster/template", {}, {
+            	update: { method: 'PUT' }
+            }),
+            
+            propertyResource: defineResource(apiVer + "/propertymaster/:otherResource/:propertyId", {otherResource:'@otherResource',propertyId:'@propertyId'}, {
+             	  getAlldetails: {method: 'GET', params: {}},
+                update: { method: 'PUT' }
+              }),
+            
             serviceTransferRequestResource: defineResource(apiVer + "/servicetransfer/:clientId", {clientId:'@clientId'}, {}),
             
             KeyInfoResource: defineResource(apiVer + "/keyinfo", {},{}),

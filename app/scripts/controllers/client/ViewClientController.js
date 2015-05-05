@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    ViewClientController: function(scope,webStorage, routeParams , route, location, resourceFactory,paginatorService, http,$modal,dateFilter,API_VERSION,$rootScope,PermissionService) {
+    ViewClientController: function(scope,webStorage, routeParams , route, location, resourceFactory,paginatorService, http,$modal,dateFilter,API_VERSION,$rootScope,PermissionService,localStorageService) {
     	 scope.clientId = routeParams.id;
     	 scope.client = [];
          scope.error = {};
@@ -136,9 +136,16 @@
 
          var getDetails = function(){
         	 
+        	
         	resourceFactory.clientResource.get({clientId: routeParams.id} , function(data) {
         		scope.orders = [];
                 scope.client = data;
+                
+                //adding account no and name to display recent clients in dashboard
+                $rootScope.clientAccountNo = data.accountNo;
+                $rootScope.clientDisplayName = data.displayName;
+                
+                webStorage.add("walletAmount",scope.client.walletAmount);
                 scope.statusActive = scope.client.status.code;
                 scope.taxExemption = scope.client.taxExemption;
                 if(scope.taxExemption == 'N'){
@@ -1260,6 +1267,7 @@
        	   	scope.invoicesC = "";
        	   	scope.paymentsC = "";
        	   	scope.adjustmentsC = "";
+       	   	scope.journalsC = "";
           	scope.financialtransactions = paginatorService.paginate(scope.getFinancialTransactionsFetchFunction, 14);
         };
           
@@ -1584,6 +1592,88 @@
 	  					resolve:{}
 	  				});
 	  			};
+	  			
+	  			scope.ipChaneFunction = function(){
+	  				$modal.open({
+	                    templateUrl: 'Staticip.html',
+	                    controller: StaticIpPopController,
+	                    resolve:{}
+	                });
+	  			};
+	  			
+	  			var StaticIpPopController = function($scope, $modalInstance){
+	  				$scope.formData = {};
+	  				$scope.ipdata = {};
+	  				$scope.formData.poolName = "Adhoc";
+	  				$scope.getData = function(query){
+	 	  	       	   return http.get($rootScope.hostUrl+API_VERSION+'/ippooling/search/', {
+	 	  	       	      params: {
+	 	  	       	    	  query: query
+	 	  	       	      }
+	 	  	       	    }).then(function(res){
+	 	  	       	    	ipPoolData = [];
+	 	  	       	    	for(var i in res.data.ipAddressData){
+	 	  	       	    		ipPoolData.push(res.data.ipAddressData[i]);
+	 	  	       	    		if(i==5){
+	 	  	       	    			break;
+	 	  	       	    		}
+	 	  	       	    	}
+	 	  	       	      return  ipPoolData;
+	 	  	       	    });
+	 	  	       
+	 	  	       };
+	  				
+	  	        	$scope.acceptStatement = function(){
+	  	        		
+	  	        		$scope.flagStatementPop = true;
+	  	        		$scope.formData.status = 'A';
+	  	        		$scope.formData.clientId = scope.clientId;
+	  	        		$scope.formData.staticIpType = 'create';
+	  	        		if($scope.ipdata.ipAddressPool){
+	  	        			$scope.formData.ipAddress = $scope.ipdata.ipAddressPool;
+	  	        		}else if($scope.ipdata.ipAddressStatic){
+	  	        			delete $scope.formData.poolName;
+	  	        			$scope.formData.ipAddress = $scope.ipdata.ipAddressStatic;
+	  	        		}else{
+	  	        			
+	  	        		}
+	  	        		
+	  	        		resourceFactory.ipPoolingStaticIpResource.update(this.formData, function(data) {
+	  	                    location.path('/viewclient/' +scope.clientId);
+	  	                    $modalInstance.close('delete');
+	  	                },function(errorData){
+	  	                	$scope.flagStatementPop = false;
+	  	                	$scope.stmError = errorData.data.errors[0].userMessageGlobalisationCode;
+	  	                	console.log(errorData);
+	  	                	console.log($scope.stmError);
+	  	                });
+	  	        	};
+	  	        	
+	  	        	$scope.removeIp = function(){
+	  	        		
+	  	        		$scope.flagStatementPop = true;
+	  	        		$scope.formData.status = 'F';
+	  	        		$scope.formData.clientId = scope.clientId;
+	  	        		$scope.formData.staticIpType = 'remove';
+	  	        		
+	  	        		resourceFactory.ipPoolingStaticIpResource.update(this.formData, function(data) {
+	  	                    location.path('/viewclient/' +scope.clientId);
+	  	                    $modalInstance.close('delete');
+	  	                },function(errorData){
+	  	                	$scope.flagStatementPop = false;
+	  	                	$scope.stmError = errorData.data.errors[0].userMessageGlobalisationCode;
+	  	                	console.log(errorData);
+	  	                	console.log($scope.stmError);
+	  	                });
+	  	        	};
+	  	        
+	  	        	$scope.rejectStatement = function(){
+	  	        		console.log("Reject Statement");
+	  	        		$modalInstance.dismiss('cancel');
+	  	        	};
+	  	        };
+	  	        
+	  	      
     	}
   });
   
@@ -1601,6 +1691,7 @@
       'API_VERSION',
       '$rootScope',
       'PermissionService', 
+      'localStorageService', 
       mifosX.controllers.ViewClientController
       ]).run(function($log) {
     	  $log.info("ViewClientController initialized");
