@@ -1061,6 +1061,9 @@
       .when('/createpropertydefinition', {
         templateUrl: 'views/organization/createpropertydefinition.html'
       })
+       .when('/editpropertydefinition/:id', {
+        templateUrl: 'views/organization/editpropertydefinition.html'
+      })
       ;
      
     $locationProvider.html5Mode(false);

@@ -2669,6 +2669,8 @@
 "validation.msg.property.country.cannot.be.blank":"Country cannot be blank",
 "error.msg.property.duplicate.code":"Given Property Code already exists",
 "error.msg.invalid.property.code":"Invalid Property Code",
+"error.msg.property.code.already.allocated.or.invalid.code":"This code type already used in define a propertyCode",
+"error.msg.propertycode.master.propertyCodeType.duplicate.name":"Given type of code already exists",
 "validation.msg.propertycodemaster.propertyCodeType.cannot.be.blank":"Property Code Type cannot be blank",
 "validation.msg.propertycodemaster.code.cannot.be.blank":"Code cannot be blank",
 "validation.msg.propertycodemaster.description.cannot.be.blank":"Description cannot be blank",

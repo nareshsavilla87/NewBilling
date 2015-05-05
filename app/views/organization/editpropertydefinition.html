@@ -1,3 +1,4 @@
+<div data-ng-controller="EditPropertyDefinitionController"> 
 <div>
 	<ul class="breadcrumb">
 		<li><a href="#/organization">{{'link.admin.organisation' |translate}}</a> <span class="divider">/</span></li>
@@ -5,7 +6,7 @@
 		<li class="active">Property Master defines</li>
 	</ul>
 </div>
-<form name="propertydefinitionform" novalidate class="form-horizontal well" data-ng-controller="CreatePropertyDefinitionController" data-ng-submit="submit()">
+<form name="editpropertydefinitionform" novalidate class="form-horizontal well" data-ng-submit="submit()">
 	<div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label> 
 		<label data-ng-show="errorStatus">{{errorStatus}}</label> 
@@ -32,11 +33,11 @@
 							<label class="control-label" for="code">{{ 'label.code' |translate }}<span class="required">*</span></label>
 							<div class="controls">
 								<input type="text" id="code" name="code" data-ng-model="formData.code" data-ng-pattern="/^[a-zA-Z0-9\s]+$/" data-ng-minlength=2 maxlength=4  required data-late-Validate><br/>
-								 <span data-ng-show="propertydefinitionform.code.$invalid">
-                                <small class="error" data-ng-show="propertydefinitionform.code.$error.req"> {{'label.required.field' | translate}}</small>
-                                <small class="error" data-ng-show="(propertydefinitionform.code.$error.minlength || propertydefinitionform.code.$error.pattern)&& !propertydefinitionform.code.$error.req">It require minimum 2 alphanumeric's only</small>
-                               <!--  <small class="error" data-ng-show="propertydefinitionform.code.$error.minlength && !propertydefinitionform.code.$error.req &&formData.propertyCodeType='Building Codes'">It require minimum 3 alphanumeric's only</small> 
-                                <small class="error" data-ng-show="propertydefinitionform.code.$error.minlength && !propertydefinitionform.code.$error.req &&formData.propertyCodeType='Unit Codes'">It require minimum 4 alphanumeric's only</small>   -->
+								 <span data-ng-show="editpropertydefinitionform.code.$invalid">
+                                <small class="error" data-ng-show="editpropertydefinitionform.code.$error.req"> {{'label.required.field' | translate}}</small>
+                                <small class="error" data-ng-show="(editpropertydefinitionform.code.$error.minlength || editpropertydefinitionform.code.$error.pattern)  && !editpropertydefinitionform.code.$error.req">It require minimum 2 alphanumeric's only</small>
+                               <!--  <small class="error" data-ng-show="editpropertydefinitionform.code.$error.minlength && !editpropertydefinitionform.code.$error.req &&formData.propertyCodeType='Building Codes'">It require minimum 3 alphanumeric's only</small> 
+                                <small class="error" data-ng-show="editpropertydefinitionform.code.$error.minlength && !editpropertydefinitionform.code.$error.req &&formData.propertyCodeType='Unit Codes'">It require minimum 4 alphanumeric's only</small>   -->
                                </span>
 							</div>
 						</div>
@@ -48,8 +49,8 @@
 							<label class="control-label" for="description">{{'label.codedescription' | translate }}<span class="required">*</span></label>
 							<div class="controls">
 								<input type="text" id="description" name="description" data-ng-model="formData.description" required data-late-Validate><br/>
-								<span data-ng-show="propertydefinitionform.description.$invalid">
-                                <small class="error" data-ng-show="propertydefinitionform.description.$error.req"> {{'label.required.field' | translate}}</small>
+								<span data-ng-show="editpropertydefinitionform.description.$invalid">
+                                <small class="error" data-ng-show="editpropertydefinitionform.description.$error.req"> {{'label.required.field' | translate}}</small>
                                </span>
 							</div>
 						</div>
@@ -69,11 +70,11 @@
 				<td align="right" colspan="2">
 				<div>
 			   <a href="#/property"><button id="cancel" type="reset" data-ng-click="reset123()" class="btn">{{'button.cancel'| translate}}</button></a>
-            	<button  id="submit" type="submit" data-ng-disabled="!propertydefinitionform.$valid" class="btn btn-primary">{{'button.save'| translate}}</button>
+            	<button  id="submit" type="submit" data-ng-disabled="!editpropertydefinitionform.$valid" class="btn btn-primary">{{'button.save'| translate}}</button>
                </div>
           	</td></tr>
 			</tbody>
 		</table>
 	</fieldset>
 </form>
-
+</div>
