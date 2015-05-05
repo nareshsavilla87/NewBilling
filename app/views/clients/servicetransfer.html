@@ -123,7 +123,7 @@
              autocomplete="off" data-typeahead-min-length="0" data-typeahead-on-select="getPrecinctDetails(precinct)"  data-typeahead-editable="false" required data-late-Validate/><br/>
              <span  data-ng-show="servicetransferform.precinct.$invalid">
               <small class="error" data-ng-show="servicetransferform.precinct.$error.req"> {{'label.required.field' | translate}}</small>
-              <small class="error" data-ng-show="servicetransferform.precinct.$error.req&&!servicetransferform.precinct.$error.editable"> {{'label.required.field' | translate}}</small>
+              <small class="error" data-ng-show="servicetransferform.precinct.$error.editable&&!servicetransferform.precinct.$error.req">Invalid Precinct</small>
           </span>
           </div> </div>
           	
@@ -131,10 +131,10 @@
             	<label class="control-label" for="parcel">{{'label.parcel' | translate }}<span class="required">*</span></label>
             	<div class="controls">
               		<input type="text"  id="parcel" name="parcel" data-ng-model="parcel" data-typeahead="parcel.description as parcel.description for parcel in getParcel($viewValue)" 
-              		autocomplete="off" data-typeahead-min-length="0" data-typeahead-on-select="getParcelDetails(parcel)" required data-late-Validate/><br/>
+              		autocomplete="off" data-typeahead-min-length="0" data-typeahead-on-select="getParcelDetails(parcel)" data-typeahead-editable="false"  required data-late-Validate/><br/>
               		<span data-ng-show="servicetransferform.parcel.$invalid">
 					  <small class="error" data-ng-show="servicetransferform.parcel.$error.req">{{'label.required.field' | translate}} </small> 
-					</span>
+					 <small class="error" data-ng-show="servicetransferform.parcel.$error.editable&&!servicetransferform.parcel.$error.req">Invalid Parcel</small> </span>
             	</div>
           	</div>
           	
@@ -165,10 +165,10 @@
             	<label class="control-label" for="buildingCode">{{'label.buildingcode' | translate }}<span class="required">*</span></label>
             	<div class="controls">
               		<input type="text"  id="buildingCode" name="buildingCode" data-ng-model="buildingCode" data-typeahead="building.code as building.code for building in getBuild($viewValue)" 
-              		autocomplete="off" data-typeahead-min-length="0" data-typeahead-on-select="getbuildCode(buildingCode)" required data-late-Validate/><br/>
+              		autocomplete="off" data-typeahead-min-length="0" data-typeahead-on-select="getbuildCode(buildingCode)" data-typeahead-editable="false"  required data-late-Validate/><br/>
               		<span data-ng-show="servicetransferform.buildingCode.$invalid">
 					  <small class="error" data-ng-show="servicetransferform.buildingCode.$error.req">{{'label.required.field' | translate}} </small> 
-					</span>
+					<small class="error" data-ng-show="servicetransferform.buildingCode.$error.editable&&!servicetransferform.buildingCode.$error.req">Invalid BuildingCode</small></span>
             	</div>
           	</div>  	
           	
@@ -177,9 +177,10 @@
             	<label class="control-label" for="floor">{{'label.floor' | translate }}<span class="required">*</span></label>
             	<div class="controls">
               		<input type="text" id="floor" name="floor" data-ng-model="floor" data-typeahead="floor.description as floor.description for floor in getFloor($viewValue)" 
-              	     autocomplete="off" data-typeahead-min-length="0" data-typeahead-on-select="getFloorDetails(floor)" required data-late-Validate/><br/>
+              	     autocomplete="off" data-typeahead-min-length="0" data-typeahead-on-select="getFloorDetails(floor)"  data-typeahead-editable="false"  required data-late-Validate/><br/>
               		<span data-ng-show="servicetransferform.floor.$invalid">
-		              <small class="error" data-ng-show="servicetransferform.floor.$error.req">{{'label.required.field' | translate}} </small></span>
+		              <small class="error" data-ng-show="servicetransferform.floor.$error.req">{{'label.required.field' | translate}} </small>
+		              <small class="error" data-ng-show="servicetransferform.floor.$error.editable&&!servicetransferform.floor.$error.req">Invalid Level/Floor</small></span>
             	</div>
           	</div>
           	
@@ -199,9 +200,10 @@
             	<label class="control-label" for="unitCode">{{'label.unitcode' | translate }}<span class="required">*</span></label>
             	<div class="controls">
               		<input type="text"  id="unitCode" name="unitCode" data-ng-model="unitCode" data-typeahead="unit.code as unit.code for unit in getUnit($viewValue)" 
-              		autocomplete="off" data-typeahead-min-length="0" data-typeahead-on-select="getunitCode(unitCode)" required data-late-Validate/><br/>
+              		autocomplete="off" data-typeahead-min-length="0" data-typeahead-on-select="getunitCode(unitCode)" data-typeahead-editable="false"  required data-late-Validate/><br/>
               		<span data-ng-show="servicetransferform.unitCode.$invalid">
-					  <small class="error" data-ng-show="servicetransferform.unitCode.$error.req">{{'label.required.field' | translate}} </small> 
+					  <small class="error" data-ng-show="servicetransferform.unitCode.$error.req">{{'label.required.field' | translate}} </small>
+					    <small class="error" data-ng-show="servicetransferform.unitCode.$error.editable&&!servicetransferform.unitCode.$error.req">Invalid UnitCode</small>  
 					 </span>
             	</div>
           	</div>
