@@ -9,10 +9,10 @@
     </div>
 </div>
 <div >
-    <legend>{{ 'label.closed.accounting.details' | translate }}</legend>
+    <legend>&nbsp;&nbsp;&nbsp;{{ 'label.closed.accounting.details' | translate }}</legend>
 
     <div class="pull-left">
-        <span for="officeId"><b>{{ 'label.office' | translate }}</b></span>
+        <span for="officeId"><b>&nbsp;&nbsp;&nbsp;{{ 'label.office' | translate }}</b></span>&nbsp;&nbsp;&nbsp;
         <select ng-model="formData.officeId" ng-change="closedAccountingDetails(formData.officeId)">
             <option value="">--{{ 'label.filterbyoffice' | translate }}--</option>
             <option ng-repeat="office in offices" value="{{office.id}}">{{office.name}}</option>
