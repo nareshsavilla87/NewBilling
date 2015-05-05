@@ -19,6 +19,7 @@
             'require-css':      '../bower_components/require-css/css',
             'd3':               '../bower_components/d3/d3',
             'nvd3':             '../bower_components/nvd3/nv.d3',
+            'bootstrap-switch': '../additionals/bootstrap-switch',
             'nvd3ChartDirectives':'../scripts/directives/angularjs-nvd3-directives',
             'styles':           '../styles',
             'test':             '../../test/functional',
@@ -36,7 +37,7 @@
             'multiple':'./modules/jquery.multiple.select',
             'ngIdle': '../bower_components/ng-idle/angular-idle.min',
             'md5': './CryptoJS/md5',
-            'tmh.dynamicLocale': '../bower_components/angular-dynamic-locale/tmhDynamicLocale.min'
+            'tmh.dynamicLocale': '../bower_components/angular-dynamic-locale/tmhDynamicLocale.min',
            
 
         },
@@ -69,6 +70,7 @@
             'md5':{deps: ['jquery']},
             'ngIdle': {deps: ['angular']},
             'tmh.dynamicLocale': {deps: ['angular']},
+            'bootstrap-switch': {deps: ['jquery']},
            
 
             'mifosX': {
@@ -100,7 +102,8 @@
                     'multiple',
                     'ngIdle',
                     'md5',
-                    'tmh.dynamicLocale'
+                    'tmh.dynamicLocale',
+                    'bootstrap-switch',
 
                 ],
                 exports: 'mifosX'
