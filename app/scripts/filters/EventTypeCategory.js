@@ -8,6 +8,10 @@
                     	jsonStringData = jsonStringData.replace("}","");
                     	jsonStringData = jsonStringData.replace(/"/g,"");
                     	var jsonArray = JSON.parse(historyData);
+                    	var serialNumber = "";
+                    	if(jsonArray.serialNumber){
+                    		serialNumber = jsonArray.serialNumber[0].serialNumber;
+                    	}
                     	var  eventTypeCategoryMsg = {
                     	
                         //client related data
@@ -39,7 +43,7 @@
                         						
                         						
                          "CREATE NEWSALE" : "NEWSALE Created Successfully with with Price "+jsonArray.totalPrice+" ," +
-                         		"Quantity "+jsonArray.quantity+" and SaleType "+jsonArray.saleType+" With Serial Number "+jsonArray.serialNumber[0].serialNumber,
+                         		"Quantity "+jsonArray.quantity+" and SaleType "+jsonArray.saleType+" With Serial Number "+serialNumber,
                          		
                         "DEALLOCATE INVENTORY" : "Deallocated item",
                         "DELETE ONETIMESALE"   : "Item sale deleted Successfully",

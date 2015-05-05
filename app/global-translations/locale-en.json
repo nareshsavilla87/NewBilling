@@ -1017,6 +1017,7 @@
   "label.serialNoLength":"Length of Serial NO:",
   "label.pinType":"PinType:",
   "label.ManageVoucherpins":"Voucher Pins",
+  "validation.msg.hardwareswap.provisionNum.cannot.be.blank":"Serial Number can not be blank",
   "validation.msg.voucher.batchName.cannot.be.blank":"Batch Name cannot be blank",
   "validation.msg.voucher.batchDescription.cannot.be.blank":"Batch Description cannot be blank",
   "validation.msg.voucher.length.cannot.be.blank":"Length Of Pin cannot be blank",
