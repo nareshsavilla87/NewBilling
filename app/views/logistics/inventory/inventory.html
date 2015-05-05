@@ -194,15 +194,15 @@
 					</thead>
              	 <tbody>
              		 <tr class="pointer-main" ng-repeat="item in items.currentPageItems | filter:filterText"> 
-             		    <td class="pointer" data-ng-click="routeToitem(item.id)">{{item.id}}</td>       
-               			<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.itemCode}}</td>        
-                		<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.itemDescription}}</td> 
-                		<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.units}}</td>
+             		    <td class="pointer" data-ng-click="routeToitem(item.id,item.totalItems)">{{item.id}}</td>       
+               			<td class="pointer" data-ng-click="routeToitem(item.id,item.totalItems)">{{item.itemCode}}</td>        
+                		<td class="pointer" data-ng-click="routeToitem(item.id,item.totalItems)">{{item.itemDescription}}</td> 
+                		<td class="pointer" data-ng-click="routeToitem(item.id,item.totalItems)">{{item.units}}</td>
                 		<!-- <td class="pointer" data-ng-click="routeToitem(item.id)">{{item.unitPrice || ISK}}</td>  -->
-                		<td class="pointer" data-ng-click="routeToitem(item.id)" style="text-align:center">{{item.warranty}}</td> 
-                		<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.usedItems}}</td>
-                		<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.availableItems}}</td>
-                		<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.totalItems}}</td>
+                		<td class="pointer" data-ng-click="routeToitem(item.id,item.totalItems)" style="text-align:center">{{item.warranty}}</td> 
+                		<td class="pointer" data-ng-click="routeToitem(item.id,item.totalItems)">{{item.usedItems}}</td>
+                		<td class="pointer" data-ng-click="routeToitem(item.id,item.totalItems)">{{item.availableItems}}</td>
+                		<td class="pointer" data-ng-click="routeToitem(item.id,item.totalItems)">{{item.totalItems}}</td>
                 		<td><a  data-ng-click="showAudit(item.id)" popover="Show Audit" popover-trigger="mouseenter" class="icon-list icon-white"></a> &nbsp; 
                 		<a ng-show="PermissionService.showMenu('UPDATE_ITEM')" href="#/edititem/{{item.id}}" 
                 		                 popover="Edit Item" popover-trigger="mouseenter" class="icon-edit"></a>&nbsp;

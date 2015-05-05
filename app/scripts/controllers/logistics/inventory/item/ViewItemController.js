@@ -6,6 +6,7 @@
         scope.showType="";
         scope.PermissionService = PermissionService;
         var showtype = routeParams.showtype;
+        scope.totalItem=routeParams.totalItem;
         resourceFactory.itemResource.get({itemId: routeParams.id} , function(data) {
         	scope.item = data;
         	scope.audit = data.auditDetails;
