@@ -120,9 +120,10 @@
              <label class="control-label" for="precinct">{{'label.precinct' | translate }}<span class="required">*</span></label>
               <div class="controls">
              <input type="text" id="precinct" name="precinct" data-ng-model="precinct" data-typeahead="precinct.cityName as precinct.cityName for precinct in getPrecinct($viewValue)"
-             autocomplete="off" data-typeahead-min-length="0" data-typeahead-on-select="getPrecinctDetails(precinct)" required data-late-Validate/><br/>
+             autocomplete="off" data-typeahead-min-length="0" data-typeahead-on-select="getPrecinctDetails(precinct)"  data-typeahead-editable="false" required data-late-Validate/><br/>
              <span  data-ng-show="servicetransferform.precinct.$invalid">
               <small class="error" data-ng-show="servicetransferform.precinct.$error.req"> {{'label.required.field' | translate}}</small>
+              <small class="error" data-ng-show="servicetransferform.precinct.$error.req&&!servicetransferform.precinct.$error.editable"> {{'label.required.field' | translate}}</small>
           </span>
           </div> </div>
           	
