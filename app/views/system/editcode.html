@@ -14,15 +14,15 @@
 		</ul>
 	</div>
 	
-	<h3>{{'label.editcode' | translate}}</h3>
+	<h3>&nbsp;&nbsp;&nbsp;{{'label.editcode' | translate}}</h3>
 	<form>
-		<input data-ng-model="newEle.name" placeholder="Code Value" type="text" />&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input data-ng-model="newEle.name" placeholder="Code Value" type="text" />&nbsp;
 		<input data-ng-model="newEle.position" placeholder="Position" type="text" />&nbsp;&nbsp;
 		<a data-ng-click="addCv()" class="btn btn-primary">
 		<i class="icon-plus icon-white"></i>{{'button.add' | translate}}</a>
 	</form>
 	<div data-ng-repeat="codevalue in codevalues">
-		<input disabled="" placeholder={{codevalue.name}} type="text" />&nbsp;&nbsp;<input
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input disabled="" placeholder={{codevalue.name}} type="text" />&nbsp;&nbsp;<input
 			disabled="" placeholder={{codevalue.position}} type="text" />&nbsp;&nbsp;<a
 			data-ng-show="PermissionService.showMenu('DELETE_CODEVALUE')"
 			data-ng-click='deleteCv(codevalue.id)'><i class="icon-remove"></i></a>
