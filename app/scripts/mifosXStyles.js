@@ -11,7 +11,8 @@ define(['underscore'], function() {
       'jquery-ui',
       'jquery.jWizard.min',
       'chosen.min',
-      'multiple-select'
+      'multiple-select',
+      'bootstrap-switch'
     ]
   };
 
