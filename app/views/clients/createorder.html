@@ -97,7 +97,7 @@
                               <label for="{{postpaidPlanData.id}}" >{{postpaidPlanData.planCode}}-
                      		     <any ng-repeat="services in postpaidPlanData.availableServices">
                        			    {{services.serviceDescription}} 
-                         	  	   <any ng-hide="(postpaidPlanData.availableServices.length-1)==$index">,</any>
+                         	  	   <any ng-hide="$last">,</any>
                         	     </any>
                               </label>
                            </td>
@@ -169,6 +169,14 @@
                                 <select ng-model="formData.paytermCode"  ng-options="paytermdata.paytermtype as paytermdata.paytermtype for paytermdata in paytermdatas" value="{{billRuleData.id}}"></select>
                             </div>
                           </div>
+                         <div class="control-group">
+                         <label class="control-label" for="autoRenew" style="padding-top: 0;">{{ 'label.order.autorenew' | translate }}</label>
+                            <div class="controls">
+                              <input type="checkbox" id="autoRenewCheckbox" name="autoRenewCheckbox" data-bs-switch data-ng-model="formData.autoRenew" 
+                               data-readonly="readonly" data-size="mini" data-on-color="success" data-off-color="danger"
+                               data-on-text="Yes" data-off-text="N0" >
+                           </div>
+                         </div> 
                      <!--    <div class="control-group" ng-hide="formData.isPrepaid == 'Y'">
                             <label class="control-label" for="billAlign">{{ 'label.order.billalign' | translate }}</label>
                         <div class="controls">
