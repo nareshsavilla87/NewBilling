@@ -1,68 +1,122 @@
 (function(module) {
 	mifosX.controllers = _.extend(module, {
-		EditPropertyController : function(scope, location,  $modal, route, webStorage,resourceFactory,PermissionService,routeParams) {
+		EditPropertyController : function(scope, location,  $modal, route, webStorage,resourceFactory,PermissionService,routeParams,http,dateFilter,API_VERSION,$rootScope,$upload,filter) {
 	
 			scope.propertyTypes = [];
+		    scope.precinctData=[];
+			scope.floorData=[];
+			scope.parcelData=[];
 			scope.formData = {};
 			scope.PermissionService = PermissionService;
 			scope.propertyId= routeParams.id;
 			resourceFactory.propertyCodeResource.get({propertyId: routeParams.id,template:'true'},function(data) {
 				scope.formData = data;
 				scope.propertyTypes = data.propertyTypes;
+				scope.citiesData = data.citiesData;
+				if(angular.lowercase(scope.formData.parcel).contains(angular.lowercase("Parcel"))){
+					scope.formData.parcel=scope.formData.parcel.replace('Parcel ','');
+				}
+				for(var i in scope.citiesData){
+				if(scope.formData.precinct==scope.citiesData[i].cityName){
+					scope.precinct = scope.citiesData[i].cityCode.substr(0,2);
+					break;
+				  }
+				}
 				for(var i in scope.propertyTypes){
 					if(scope.propertyTypes[i].id==scope.formData.propertyTypeId){
 						scope.formData.propertyType=scope.propertyTypes[i].id;
 						break;
 					}
 				}
-				scope.citiesData = data.citiesData;
+				
 			});
 			
-			scope.checkProperty =function(propertyCode){
-				
-		    	if(propertyCode!=undefined){
-				    var str=propertyCode;
-				    scope.precinct=str.substring(0,2);
-				    for(var i in scope.citiesData){
-				    	if(angular.lowercase(scope.citiesData[i].cityCode).contains(angular.lowercase(scope.precinct))){
-					  	scope.formData.precinct = scope.citiesData[i].cityName;
-					    scope.formData.unitCode=str.substring(str.length-4);
-				     	scope.formData.floor=str.substring(7,9);
-					    scope.formData.parcel="Parcel "+str.substring(2,4);
-					    scope.formData.buildingCode = str.substring(4,7);
-						resourceFactory.AddressTemplateResource.get({city :scope.formData.precinct}, function(data) {
-			          		scope.formData.state = data.state;
-			          		scope.formData.country = data.country;
-			      	  });
-						break;
-					}else{
-						delete scope.formData.unitCode;
-			    		delete scope.formData.floor;
-			    		delete scope.formData.parcel;
-			    		delete scope.formData.buildingCode;
-			    		delete scope.formData.precinct;
-			    		delete scope.formData.state;
-			    		delete scope.formData.country;
+			//precinct auto complete 
+			scope.getPrecinct = function(query){
+				return http.get($rootScope.hostUrl+API_VERSION+'/address/city/', {
+	        	      params: {
+	        	    	  		query: query
+	        	      		   }
+	        	    }).then(function(res){   
+	        	    	 scope.precinctData=res.data;	
+	        	      return scope.precinctData;
+	        	    });
+             };   
+			
+			scope.getPrecinctDetails = function(precinct){
+				if(precinct!=undefined){
+				    for(var i in scope.precinctData){
+				    	if(precinct==scope.precinctData[i].cityName){
+				    		scope.precinct = scope.precinctData[i].cityCode.substr(0,2);
+			          		scope.formData.state =  scope.precinctData[i].state;
+			          		scope.formData.country = scope.precinctData[i].country;
+						    scope.formData.propertyCode=scope.precinct.concat(scope.formData.parcel,scope.formData.buildingCode,scope.formData.floor,scope.formData.unitCode);
+			          		break;
+			          }else{
+			        	   
+							delete scope.formData.state;
+				    		delete scope.formData.country;
+						}
 					}
+				  }else{
+					    delete scope.formData.precinct;
+						delete scope.formData.state;
+			    		delete scope.formData.country; 
+			    		delete scope.formData.propertyCode;
 				  }
-				   // console.log(scope.formData.precinct);
-				    if(scope.formData.precinct == undefined){
-				          scope.errorDetails = [];
-			              scope.errorDetails.push({code: 'error.msg.invalid.property.code'});
-			              $("#propertyCode").addClass("validationerror");
-				    }else{
-				    	delete scope.errorDetails;
-				    	$("#propertyCode").removeClass("validationerror");
-				    }
-		    	}else{
-		    		delete scope.formData.unitCode;
-		    		delete scope.formData.floor;
-		    		delete scope.formData.parcel;
-		    		delete scope.formData.buildingCode;
-		    		delete scope.formData.precinct;
-		    		delete scope.formData.state;
-		    		delete scope.formData.country;
-		    	}
+			};
+			
+			
+			scope.getParcel = function(query){
+				return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
+	        	      params: {
+	        	    	  		query: 'parcel'
+	        	      		   }
+	        	    }).then(function(res){   
+	        	    	 scope.parcelData=res.data;	
+	        	      return scope.parcelData;
+	        	    });
+             };   
+             scope.getParcelDetails = function(parcel){
+            	 if(parcel !=undefined){
+                 for(var i in scope.parcelData){
+                	 if(parcel== scope.parcelData[i].description){
+				    		scope.parcel = scope.parcelData[i].code.substr(0,2);
+				    		scope.formData.street = scope.parcelData[i].referenceValue;
+				    		scope.getWatch(scope.parcel);
+			          		break;
+			          }	 
+                    }
+                }
+             };
+			
+			scope.getFloor = function(query){
+				return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
+	        	      params: {
+	        	    	  		query: 'Level/Floor'
+	        	      		   }
+	        	    }).then(function(res){   
+	        	    	 scope.floorData=res.data;	
+	        	      return scope.floorData;
+	        	    });
+             };   
+             
+             scope.getFloorDetails = function(floor){
+            	 if(floor!=undefined){
+            		 for( var i in scope.floorData){
+            			 if(floor==scope.floorData[i].description){
+					    		scope.floor = scope.floorData[i].code.substr(0,2);
+					    		scope.getWatch(scope.floor);
+				          		break;
+				          }	 
+	                 }
+            	 }	       	        
+          };
+			
+			scope.getWatch=function(labelValue){
+			  if(labelValue!=undefined){
+			     scope.formData.propertyCode=scope.precinct.concat(scope.formData.parcel,scope.formData.buildingCode,scope.formData.floor,scope.formData.unitCode);
+				}
 			};
 			  
 			scope.submit = function() { 
@@ -87,11 +141,43 @@
 	    'ResourceFactory',
 	    'PermissionService',
 	    '$routeParams',
+	    '$http', 
+        'dateFilter',
+        'API_VERSION',
+        '$rootScope',
+        '$upload',
+        '$filter',
 	    mifosX.controllers.EditPropertyController 
 	    ]).run(function($log) {
 	    	$log.info("EditPropertyController initialized");
 	    });
 }(mifosX.controllers || {}));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
