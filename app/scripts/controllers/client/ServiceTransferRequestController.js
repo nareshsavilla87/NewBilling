@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  ServiceTransferRequestController: function(scope,webStorage, resourceFactory, routeParams, location,dateFilter,$rootScope, http,API_VERSION,PermissionService,$upload,filter) {
+	  ServiceTransferRequestController: function(scope,webStorage, resourceFactory, routeParams, location,dateFilter,$rootScope, http,API_VERSION,PermissionService,$upload,filter,$modal) {
 		  
 		  
 		  scope.walletConfig = webStorage.get('is-wallet-enable');
@@ -60,6 +60,229 @@
     	  }
        });
        
+     //vacant properties
+       scope.getExistsProperty = function(query){
+          	return http.get($rootScope.hostUrl+API_VERSION+'/property/propertycode/', {
+          	      params: {
+          	    	  		query: query
+          	      		   }
+          	    }).then(function(res){   
+          	    	 scope.propertyCodesData=res.data;
+          	      return scope.propertyCodesData;
+          	    });
+            };  
+       
+       scope.getPropertyDetails = function(existsProperty){   
+          	   if(!angular.isUndefined(existsProperty)){
+          		  for(var j in scope.propertyCodesData)  {
+          			 if(existsProperty == scope.propertyCodesData[j].propertyCode){
+          				 scope.property.propertyCode = scope.propertyCodesData[j].propertyCode;
+          				 scope.unitStatus=scope.propertyCodesData[j].status;
+          				 scope.propetyId=scope.propertyCodesData[j].id;
+          				 break;
+          			 }
+          		 }
+          	   }else{
+                     
+          	   }
+             };        
+           
+	     scope.generatePropertyPopup = function (){
+	    	 $modal.open({
+	    		 templateUrl: 'generateProperty.html',
+	  	         controller: generatePropertyController,
+	  	         resolve:{}
+	  	     });
+	     };
+	     
+	     
+	     //starting of property controller     
+	     function  generatePropertyController($scope, $modalInstance) {
+	    	
+	    	 $scope.propertyTypesForPopup = scope.propertyTypes;
+	    	 
+	    	 if(Object.keys(scope.property).length >0){
+	    		 for( var i in scope.parcelData){
+	    			 if(scope.property.parcel == scope.parcelData[i].code){
+	    				 $scope.parcel = scope.parcelData[i].description;
+	    				 break;
+	    			 }
+	    		 }
+	    		 for( var i in scope.floorData){
+	    			 if(scope.property.floor ==  scope.floorData[i].code){
+	    				 $scope.floor =scope.floorData[i].description;
+	    				 break;
+	    			 }
+	    		 }
+	    		 $scope.precinct = scope.property.precinct;
+	    		 $scope.buildingCode = scope.property.buildingCode;
+	    		 $scope.unitCode = scope.property.unitCode;
+	    		 $scope.propertyCode = scope.property.propertyCode;
+	    		 $scope.propertyType =  scope.property.propertyType;
+	    		 
+	    	 }
+	    	
+	    	//precinct Data 
+	    	$scope.getPrecinct = function(query){
+				return http.get($rootScope.hostUrl+API_VERSION+'/address/city/', {
+	       	      params: {
+	       	    	  		query: query
+	       	      		   }
+	       	    }).then(function(res){   
+	       	    	 scope.precinctData=res.data;	
+	       	      return scope.precinctData;
+	       	    });
+	        };   
+			
+			$scope.getPrecinctDetails = function(precinct){
+				if(precinct!=undefined){
+				    for(var i in scope.precinctData){
+				    	if(precinct==scope.precinctData[i].cityName){
+				    		scope.property.precinctCode = scope.precinctData[i].cityCode.substr(0,2);
+			          		scope.property.state =  scope.precinctData[i].state;
+			          		scope.property.country = scope.precinctData[i].country;
+			          		scope.property.precinct = scope.precinctData[i].cityName;
+			          		$scope.getWatch(scope.property.precinctCode);
+			          		break;
+			          }else{
+			        	  
+							delete scope.property.state;
+				    		delete scope.property.country;
+						}
+					}
+				  }else{
+					    
+						delete scope.property.state;
+			    		delete scope.property.country; 
+				  }
+			};
+			
+			//parcel Data
+			$scope.getParcel = function(queryParam){
+				return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
+	       	      params: {
+	       	    	  		query: 'parcel',
+	       	    	  	    queryParam:queryParam			
+	       	      		   }
+	       	    }).then(function(res){   
+	       	    	 scope.parcelData=res.data;	
+	       	      return scope.parcelData;
+	       	    });
+	        };   
+	        
+	        $scope.getParcelDetails = function(parcel){
+	       	 if(parcel !=undefined){
+	            for(var i in scope.parcelData){
+	           	 if(parcel== scope.parcelData[i].description){
+				    		scope.property.parcel = scope.parcelData[i].code.substr(0,2);
+				    		scope.street = scope.parcelData[i].referenceValue;
+				    		$scope.getWatch(scope.property.parcel);
+			          		break;
+			          }	 
+	               }
+	           }
+	        };
+	        
+	        //Floor Data
+			$scope.getFloor = function(queryParam){
+				return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
+	       	      params: {
+	       	    	  		query: 'Level/Floor',
+	       	    	  	    queryParam:queryParam	
+	       	      		   }
+	       	    }).then(function(res){   
+	       	    	 scope.floorData=res.data;	
+	       	      return scope.floorData;
+	       	    });
+	        };   
+	        
+	        $scope.getFloorDetails = function(floor){
+	       	 if(floor!=undefined){
+	       		 for( var i in scope.floorData){
+	       			 if(floor==scope.floorData[i].description){
+					    		scope.property.floor = scope.floorData[i].code.substr(0,2);
+					    		$scope.getWatch(scope.property.floor);
+				          		break;
+				          }	 
+	                }
+	       	 }	       	        
+	     };
+	     
+	     //Building Code
+	     $scope.getBuild = function(queryParam){
+				return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
+	     	      params: {
+	     	    	  		query: 'Building Codes',
+	     	    	  		queryParam:queryParam
+	     	      		   }
+	     	    }).then(function(res){   
+	     	    	 scope.buildingData=res.data;	
+	     	      return scope.buildingData;
+	     	    });
+	      }; 
+	      
+	     $scope.getbuildCode = function(buildingCode){
+	     	 if(!angular.isUndefined(buildingCode)){
+				    		scope.property.buildingCode = buildingCode.substr(0,3);
+				    		$scope.getWatch(scope.property.buildingCode);
+			          }	 
+	      };  
+	      
+	      //Unit code Data
+	      $scope.getUnit = function(queryParam){
+				return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
+	      	      params: {
+	      	    	  		query: 'Unit Codes',
+	      	    	  	queryParam:queryParam
+	      	      		   }
+	      	    }).then(function(res){   
+	      	    	 scope.unitData=res.data;	
+	      	      return scope.unitData;
+	      	    });
+	       };
+	       
+	      $scope.getunitCode = function(unit){
+	      	 if(!angular.isUndefined(unit)){
+	          	 scope.property.unitCode=unit.substr(0,4);
+	          	if(angular.isUndefined(scope.property.propertyCode)){
+	          	      $scope.getPropertyCode(scope.property.unitCode);
+	          	}else{
+	          		$scope.getWatch(scope.property.unitCode);
+	          	   }					 
+			      }	 
+	       };
+	       
+	   	$scope.getPropertyCode=function(unitCode){
+			if(scope.property.precinctCode !=undefined&&scope.property.parcel!=undefined&&scope.property.buildingCode!=undefined &&scope.property.floor!=undefined){
+		    scope.property.propertyCode=scope.property.precinctCode.concat(scope.property.parcel,scope.property.buildingCode,scope.property.floor,unitCode);
+		    $scope.propertyCode=scope.property.precinctCode.concat(scope.property.parcel,scope.property.buildingCode,scope.property.floor,unitCode);
+		    scope.property.unitCode=unitCode;
+		    scope.getPropertyStatus(scope.property.propertyCode);
+			}
+		  }; 
+		  
+		 $scope.getWatch=function(labelValue){
+			  if(!angular.isUndefined(labelValue)&&!angular.isUndefined(scope.property.propertyCode)){
+			     scope.property.propertyCode=scope.property.precinctCode.concat(scope.property.parcel,scope.property.buildingCode,scope.property.floor, scope.property.unitCode);
+			     $scope.propertyCode=scope.property.precinctCode.concat(scope.property.parcel,scope.property.buildingCode,scope.property.floor, scope.property.unitCode);
+			     scope.getPropertyStatus(scope.property.propertyCode);
+			  }
+      
+         };
+		  
+		  $scope.accept = function (propertyType) {
+			 scope.property.propertyType = propertyType;
+ 			 $modalInstance.dismiss('delete');
+ 			
+	     };
+	    	
+	    	
+	      $scope.cancel = function () {
+		       $modalInstance.dismiss('cancel');
+		   };
+	         
+	     }//end of propertyController
+       
        scope.getPropertyStatus = function(query){
        	return http.get($rootScope.hostUrl+API_VERSION+'/property', {
        	      params: {       	    	 		       	  
@@ -73,16 +296,15 @@
        	    		 scope.unitStatus=scope.propertyCodesData[0].status;
        	    		 scope.propertyId=scope.propertyCodesData[0].id;
        	    		if(scope.unitStatus == 'OCCUPIED'){
-    	    		     scope.errorDetails= [];
-  	                     scope.errorDetails.push({code:'error.msg.property.code.already.allocated'});
+    	    		     $scope.errorData= [];
+  	                     $scope.errorData.push({code:'error.msg.property.code.already.allocated'});
   	                    $("#propertyCode").addClass("validationerror");
-  	                   $("#unitStatus").addClass("validationerror");
+  	                 
     	    	    }else{
-    	    		   delete scope.errorDetails;
+    	    		   delete $scope.errorData;
  	    	    	   scope.propetyId=undefined;
  	    		       $("#propertyCode").removeClass("validationerror");
- 	    		       $("#unitStatus").removeClass("validationerror");
-
+ 	    		     
     	    	   }
        	    	}else{
        	    		scope.unitStatus='VACANT';
@@ -92,144 +314,6 @@
        	    });
          };  
 
-     //precinct auto complete 
-		scope.getPrecinct = function(query){
-			return http.get($rootScope.hostUrl+API_VERSION+'/address/city/', {
-       	      params: {
-       	    	  		query: query
-       	      		   }
-       	    }).then(function(res){   
-       	    	 scope.precinctData=res.data;	
-       	      return scope.precinctData;
-       	    });
-        };   
-		
-		scope.getPrecinctDetails = function(precinct){
-			if(precinct!=undefined){
-			    for(var i in scope.precinctData){
-			    	if(precinct==scope.precinctData[i].cityName){
-			    		scope.property.precinctCode = scope.precinctData[i].cityCode.substr(0,2);
-		          		scope.property.state =  scope.precinctData[i].state;
-		          		scope.property.country = scope.precinctData[i].country;
-		          		scope.property.precinct = scope.precinctData[i].cityName;
-		          		scope.getWatch(scope.property.precinctCode);
-		          		break;
-		          }else{
-		        	  
-						delete scope.property.state;
-			    		delete scope.property.country;
-					}
-				}
-			  }else{
-				    
-					delete scope.property.state;
-		    		delete scope.property.country; 
-			  }
-		};
-		
-		
-		scope.getParcel = function(query){
-			return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
-       	      params: {
-       	    	  		query: 'parcel'
-       	      		   }
-       	    }).then(function(res){   
-       	    	 scope.parcelData=res.data;	
-       	      return scope.parcelData;
-       	    });
-        };   
-        
-        scope.getParcelDetails = function(parcel){
-       	 if(parcel !=undefined){
-            for(var i in scope.parcelData){
-           	 if(parcel== scope.parcelData[i].description){
-			    		scope.property.parcel = scope.parcelData[i].code.substr(0,2);
-			    		scope.street = scope.parcelData[i].referenceValue;
-			    		scope.getWatch(scope.property.parcel);
-		          		break;
-		          }	 
-               }
-           }
-        };
-		
-		scope.getFloor = function(query){
-			return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
-       	      params: {
-       	    	  		query: 'Level/Floor'
-       	      		   }
-       	    }).then(function(res){   
-       	    	 scope.floorData=res.data;	
-       	      return scope.floorData;
-       	    });
-        };   
-        
-        scope.getFloorDetails = function(floor){
-       	 if(floor!=undefined){
-       		 for( var i in scope.floorData){
-       			 if(floor==scope.floorData[i].description){
-				    		scope.property.floor = scope.floorData[i].code.substr(0,2);
-				    		scope.getWatch(scope.property.floor);
-			          		break;
-			          }	 
-                }
-       	 }	       	        
-     };
-     
-     scope.getBuild = function(query){
-			return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
-     	      params: {
-     	    	  		query: 'Building Codes'
-     	      		   }
-     	    }).then(function(res){   
-     	    	 scope.buildingData=res.data;	
-     	      return scope.buildingData;
-     	    });
-      };   
-      scope.getbuildCode = function(buildingCode){
-     	 if(!angular.isUndefined(buildingCode)){
-			    		scope.property.buildingCode = buildingCode.substr(0,3);
-			    		scope.getWatch(scope.property.buildingCode);
-		          }	 
-      };  
-      
-      scope.getUnit = function(query){
-			return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
-      	      params: {
-      	    	  		query: 'Unit Codes'
-      	      		   }
-      	    }).then(function(res){   
-      	    	 scope.unitData=res.data;	
-      	      return scope.unitData;
-      	    });
-       };   
-       scope.getunitCode = function(unit){
-      	 if(!angular.isUndefined(unit)){
-          	 scope.property.unitCode=unit.substr(0,4);
-          	if(angular.isUndefined(scope.formData.propertyCode)){
-          	      scope.getPropertyCode(scope.property.unitCode);
-          	}else{
-          		$scope.getWatch(scope.property.unitCode);
-          	   }					 
-		      }	 
-       };
-    
-       
-		scope.getPropertyCode=function(unitCode){
-		if(scope.property.precinctCode !=undefined&&scope.property.parcel!=undefined&&scope.property.buildingCode!=undefined &&scope.property.floor!=undefined){
-	    scope.property.propertyCode=scope.property.precinctCode.concat(scope.property.parcel,scope.property.buildingCode,scope.property.floor,unitCode);
-	    scope.property.unitCode=unitCode;
-	    scope.getPropertyStatus(scope.property.propertyCode);
-		}
-	  }; 
-       
-	   scope.getWatch=function(labelValue){
-			  if(!angular.isUndefined(labelValue)&&!angular.isUndefined(scope.property.propertyCode)){
-			     scope.property.propertyCode=scope.property.precinctCode.concat(scope.property.parcel,scope.property.buildingCode,scope.property.floor,scope.unitCode);
-			     scope.getPropertyStatus(scope.property.propertyCode);
-			  }
-      
-         };
-       
        
        scope.submit = function(){
     	   
@@ -257,7 +341,7 @@
     }
   });
   mifosX.ng.application.controller('ServiceTransferRequestController', ['$scope','webStorage', 'ResourceFactory', '$routeParams', '$location','dateFilter','$rootScope',
-                                                                        '$http','API_VERSION','PermissionService','$upload','$filter',
+                                                                        '$http','API_VERSION','PermissionService','$upload','$filter','$modal',
                                                                         mifosX.controllers.ServiceTransferRequestController]).run(function($log) {
     $log.info("ServiceTransferRequestController initialized");
   });
