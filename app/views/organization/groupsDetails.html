@@ -53,31 +53,31 @@
 				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	   		 </div>
            	<div class="control-group">
-				<label class="control-label" for="groupName">{{'label.groupsdetails.groupname'|translate}}<span class="required">*</span> :</label>
+				<label class="control-label" for="groupName">{{'label.groupsdetails.groupname'|translate}}<span class="required">*</span> </label>
 			 	<div class="controls">
               		<input  type="text"id="groupName" name="groupName" ng-model="formData.groupName" />
             	</div>
            	</div>
           	<div class="control-group">
-            	 <label class="control-label" for="groupAddress">{{'label.groupsdetails.groupaddress'|translate}}<span class="required">*</span> :</label>
+            	 <label class="control-label" for="groupAddress">{{'label.groupsdetails.groupaddress'|translate}}<span class="required">*</span> </label>
 			 	 <div class="controls">
               		<input type="text" id="groupAddress" name="groupAddress" ng-model="formData.groupAddress"/>
             	 </div>
 	      	</div>
 		    <div class="control-group">
-					<label class="control-label">{{ 'label.groupsdetails.additionalinfo' | translate }}:</label>
+					<label class="control-label">{{ 'label.groupsdetails.additionalinfo' | translate }}</label>
 			</div>
 			<table >
 				<tr>
 				  <td> 
 						<div class="control-group">
-              				<label class="control-label">{{ 'label.groupsdetails.groupcir' | translate }}<span class="required">*</span>:</label>
+              				<label class="control-label">{{ 'label.groupsdetails.groupcir' | translate }}<span class="required">*</span></label>
 							<input class="input-medium" id="attribute1" type="text" ng-model="formData.attribute1" />
 						</div>
 				  </td>			
 				  <td align="left"> 
 						<div class="control-group">
-              				<label class="control-label">{{ 'label.groupsdetails.dir' | translate }}<span class="required">*</span>:</label>
+              				<label class="control-label">{{ 'label.groupsdetails.dir' | translate }}<span class="required">*</span></label>
 							<input class="input-medium" id="attribute2" type="text" ng-model="formData.attribute2" />
 						</div>
 				  </td>
@@ -85,13 +85,13 @@
 				<tr>
 					<td> 
 							<div class="control-group">
-              					<label class="control-label">{{ 'label.groupsdetails.membercir' | translate }}<span class="required">*</span>:</label>
+              					<label class="control-label">{{ 'label.groupsdetails.membercir' | translate }}<span class="required">*</span></label>
 								<input class="input-medium" id="attribute3" type="text" ng-model="formData.attribute3" />
 							</div>
 				  	</td>				
 					<td> 
 							<div class="control-group">
-              					<label class="control-label">{{ 'label.groupsdetails.dir' | translate }}<span class="required">*</span>:</label>
+              					<label class="control-label">{{ 'label.groupsdetails.dir' | translate }}<span class="required">*</span></label>
 								<input class="input-medium" id="attribute4" type="text" ng-model="formData.attribute4" />
 							</div>
 				  	</td>

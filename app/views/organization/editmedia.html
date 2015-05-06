@@ -11,7 +11,7 @@
 		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
         <fieldset>
-          <legend>{{'label.media.editmedia' | translate}}</legend>
+          <!-- <legend>{{'label.media.editmedia' | translate}}</legend> -->
           
 		<!--           
 			<table width="100%">
@@ -227,6 +227,7 @@
                 </td>
               </tr>
            </table>		 -->
+          <legend>{{'label.media.editmedia' | translate}}</legend> 
            
            <table>
 				<tr>
@@ -241,7 +242,7 @@
 					
 					<td>
 						<div class="control-group">
-            			<label class="control-label" for="mediaCategoryId">{{ 'label.media.categeory' | translate }}<span class="required">*</span></label>
+            			<label class="control-label" for="mediaCategoryId">{{ 'table.mediadetails.categeory' | translate }}<span class="required">*</span></label>
             			<div class="controls">
               			<select ng-model="formData.catageoryId" id="catageoryId" ng-options="mediaCategeorydata.id as mediaCategeorydata.mCodeValue for mediaCategeorydata in mediaCategeorydatas" value="{{mediaCategeorydata.id}}"></select>
             			</div>

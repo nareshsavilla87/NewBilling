@@ -141,7 +141,8 @@
             }
          
             resourceFactory.radiusOnlineUser.get(params,function(data) {
-  				scope.onlineUserDatas = data.onlineUsersdata;					
+  				scope.onlineUserDatas = data.pageItems;		
+  				callback(data);
   			});
             
          };
