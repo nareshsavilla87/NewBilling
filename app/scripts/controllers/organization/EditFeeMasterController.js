@@ -62,6 +62,7 @@
 	                   };
 	                 }
 	          	scope.formData.locale = $rootScope.locale.code;
+	          	scope.formData.defaultFeeAmount=0;
 	             resourceFactory.feeMasterResource.update({id:routeParams.id},scope.formData,function(data){
 	              location.path('/viewfeemaster/'+data.resourceId);
 	            });
