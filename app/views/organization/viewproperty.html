@@ -37,7 +37,8 @@
 			</tr>
 			<tr>
 				<td>{{'label.floor' | translate }}:</td>
-				<td>{{property.floor}}</td>
+				<td data-ng-show="property.floorDesc">{{property.floorDesc}}</td>
+				<td data-ng-hide="property.floorDesc">{{property.floor}}</td>
 			</tr>
 		</table>
 	</div>

@@ -70,7 +70,8 @@
 		           
 	      		$scope.approve = function () {
 	      			 $upload.upload({/*41.75.85.206:8080*/
-	                     url: $rootScope.hostUrl+ API_VERSION +'/property/documents', 
+	                    // url: $rootScope.hostUrl+ API_VERSION +'/property/documents', 
+	                     url:' https://localhost:8443/obsplatform/api/v1/property/documents', 
 	                     data: scope.formData,
 	                     file: $scope.file
 	                   }).then(function(data) {
