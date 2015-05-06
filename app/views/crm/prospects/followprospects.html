@@ -14,7 +14,8 @@
 			<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 		</div>
 		<fieldset>
-			<legend>label.prospects.followup</legend>
+
+			<legend>{{'label.followup' | translate}}</legend>
 
 			<div class="control-group">
 				<label class="control-label" for="callStatus">{{'label.callstatus' | translate }}</label>
@@ -33,10 +34,8 @@
 						data-ng-model="first.date" min="minDate" data-is-open="opened2"
 						data-date-disabled="disabled(date, mode)" required data-late-Validate
 						style="width: 130px; background-color: #FFFFFF;" />
-					<div class="input-append bootstrap-timepicker">
 						<input id="timepicker1" readonly type="text" data-ng-model="first.time"
 							style="width: 60px; background-color: #FFFFFF;">
-					</div>
 
 
 				</div>

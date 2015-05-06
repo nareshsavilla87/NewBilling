@@ -24,6 +24,7 @@
         scope.formData =[];
         scope.walletConfig = webStorage.get('is-wallet-enable');
 
+        $("[name='autoRenewCheckbox']").bootstrapSwitch('state', false, true);
         var clientData = webStorage.get('clientData');
         scope.displayName=clientData.displayName;
         scope.statusActive=clientData.statusActive;
@@ -63,7 +64,7 @@
     	   console.log("todayDate:"+scope.todayDate);
     	   console.log("selectedDate:"+scope.selectedDate);
        };
-       resourceFactory.orderTemplateResource.get({'planId': routeParams.planId},function(data) {
+       resourceFactory.orderTemplateResource.get({'planId': routeParams.planId,'clientId': routeParams.id},function(data) {
     	   
     	   scope.plandatas = data.plandata;	
     	   for(var plan in scope.plandatas){
@@ -80,7 +81,7 @@
            
            scope.formData = {
              		billAlign: true,
-             		
+             		autoRenew : false
                    };
     	   
        });
@@ -223,8 +224,13 @@
          	console.log("dbclick");
          	return false;
          };
+         
+        $('input[name="autoRenewCheckbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
+   		  console.log(state); // true | false
+   		  	scope.formData.autoRenew = state;
+   		});
 
-        scope.submit = function() {   
+        scope.submit = function() { 
         	
         	this.formData.isNewplan =false;
         	if(routeParams.planId == 0){

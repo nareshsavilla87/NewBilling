@@ -78,7 +78,7 @@
 				              	</a>
 					              <ul style='margin-left:-95px;' class="dropdown dropdown-menu">
 					                <li>
-					                    <a href="#/strequest/{{clientId}}">{{'label.service.transfer' | translate}}</a>
+					                    <a href="#/servicetransfer/{{clientId}}">{{'label.service.transfer' | translate}}</a>
 					                    <a ng-click="ipChaneFunction()">Static Ip</a>
 					                </li>
 					              </ul>
@@ -159,7 +159,7 @@
                   	
                   	<div class="row-fluid" data-ng-show="PermissionService.showMenu('READ_ORDER')">
                   		<p>
-                      		<b><h4>{{'label.ordersoverview' | translate}}</h4></b>
+                      		<b><h4>&nbsp;&nbsp;&nbsp;{{'label.ordersoverview' | translate}}</h4></b>
                    		</p>
                    
                     	<table class="table">
@@ -172,6 +172,7 @@
                             	<th>{{'table.order.endDate' | translate}}</th>
                             	<th>{{'table.price.price' | translate}}</th>
                             	<th>{{'table.order.status' | translate}}</th> 
+                            	<!-- <th></th> -->
                         	</tr>
                           	<tr class="pointer-main" data-ng-repeat="order in orders | filter:filterText" >
                           		<td class="pointer" data-ng-click="routeTogeneral(order.id,client.id)">{{order.orderNo}}</td>
@@ -182,6 +183,18 @@
                           		<td class="pointer" data-ng-click="routeTogeneral(order.id,client.id)">{{order.endDate | DateFormat}}</td> 
                           		<td class="pointer" data-ng-click="routeTogeneral(order.id,client.id)">{{order.price}}</td>
                           		<td class="pointer" data-ng-click="routeTogeneral(order.id,client.id)"><i class="icon-stop {{order.status | StatusLookup}}"></i>&nbsp;{{order.status}}</td>
+                          		<!-- <td>
+                          			<span  class="btn-group" >
+				              		<a class="btn btn-primary dropdown-toggle">
+				                 <span class="caret"></span>
+				              	</a>
+					              <ul style='margin-left:-95px;' class="dropdown dropdown-menu">
+					                <li>
+					                    <a href="#/strequest/{{clientId}}">{{'label.service.transfer' | translate}}</a>
+					                </li>
+					              </ul>
+          						</span>
+                          		</td> -->
                           		<!-- <td><input type="radio" name="select" ng-click="selectedOrder(order.status)"/></td> -->
                          	</tr>
                         	<tr><td colspan="8">&nbsp;</td></tr>   
@@ -201,7 +214,7 @@
 				
                  	<div class="row-fluid">
                   		<p>
-                        	<b><h4>{{'label.scheduleorders' | translate}}</h4></b>
+                        	<b><h4>&nbsp;&nbsp;&nbsp;{{'label.scheduleorders' | translate}}</h4></b>
                    		</p>
                     	<table class="table">
                         	<tr class="graybg">
@@ -513,7 +526,7 @@
 								<!-- <a data-ng-show="PermissionService.showMenu('CREATE_DEVICERENTAL')" href="#/devicerental/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{'button.devicerental' | translate}}</a> -->
 							</div>
 			    			<div>
-								<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name/Serial Number">
+								<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter By Name/Serial Number">
 								<table class="table">
 									<thead>
 										<tr class="graybg">

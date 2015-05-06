@@ -252,6 +252,11 @@
           planResource: defineResource(apiVer + "/plans/:planId", {planId:'@planId'}, {
                 update: { method: 'PUT' }
           }),
+          
+          planQualifierResource: defineResource(apiVer + "/plans/planQulifier/:planId", {planId:'@planId'}, {
+        	  get: {method: 'GET', params: {}},
+              update: { method: 'PUT' }
+          }),
           planTemplateResource: defineResource(apiVer + "/plans/template", {}, {
                   get: {method: 'GET', params: {}}
            }),
@@ -1148,6 +1153,16 @@
             propertyCodeTemplateResource: defineResource(apiVer + "/property/template", {}, {
             	update: { method: 'PUT' }
             }),
+            
+            propertyTemplateResource: defineResource(apiVer + "/propertymaster/template", {}, {
+            	update: { method: 'PUT' }
+            }),
+            
+            propertyResource: defineResource(apiVer + "/propertymaster/:otherResource/:propertyId", {otherResource:'@otherResource',propertyId:'@propertyId'}, {
+             	  getAlldetails: {method: 'GET', params: {}},
+                update: { method: 'PUT' }
+              }),
+            
             serviceTransferRequestResource: defineResource(apiVer + "/servicetransfer/:clientId", {clientId:'@clientId'}, {}),
             
             KeyInfoResource: defineResource(apiVer + "/keyinfo", {},{}),

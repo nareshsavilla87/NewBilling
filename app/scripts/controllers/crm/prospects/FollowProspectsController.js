@@ -14,6 +14,7 @@
 			scope.minDate = new Date();
 
 			$('#timepicker1').timepicker({
+				showInputs:false,
 				showMeridian : false
 			});
 
