@@ -168,7 +168,7 @@
     		   scope.clientNameForOnlineUser = clientNameForOnlineUser;
     	   }
     	   resourceFactory.radiusOnlineUser.get({checkOnline:true,userName:scope.clientNameForOnlineUser},function(data) {
-    		   scope.checkOnlineClient = data.onlineUsersdata;
+    		   scope.checkOnlineClient = data.pageItems;
     		 //  $scope.count = $scope.checkOnlineClient[0].count;
     		   console.log(scope.checkOnlineClient[0].count);
     		   scope.onlineUserName = scope.clientNameForOnlineUser;
