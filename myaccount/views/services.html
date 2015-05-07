@@ -7,27 +7,28 @@
             <div id="circularG_7" class="circularG"></div><div id="circularG_8" class="circularG"></div>
         </div>
     </div><br/>
-    <div>
-		<div style="padding-bottom:13px;background: #939393;">
-		  <h3 style="margin: 0;text-transform: uppercase;display:inline;"><b class="marginleft10" style="font-size: 20px;color: #FFFFFF;">{{'link.orders'|translate}}</b></h3>
-		  <input data-ng-model="filterText" type="text" data-ng-autofocus="true" class="span marginbottom0px" style="margin-right: 15px;margin-top: 6px;" placeholder="{{'placeholder.enter.text.search'|translate}}" />
-		  <a href="#/additionalorders/{{clientId}}" class="btn btn-primary pull-right" style="margin-right:20px;margin-top: 6px;"><i class="icon-plus-sign icon-white"></i>{{'label.additionalplans' | translate}}</a>
-		</div>
-		<div>
-		  <table class="table" style="margin-top:-10px;">
-	        <thead>
-	            <tr class="graybg">
-	                <th>{{'table.header.plan'|translate}}</th>
-	                <th>{{'table.header.contractperoid'|translate}}</th>
-	                <th>{{'table.header.activationdate'|translate}}</th>
-	                <th>{{'table.header.start/renewaldate'|translate}}</th>
-	                <th>{{'table.header.enddate'|translate}}</th>
-	                <th>{{'table.header.price'|translate}}</th>
-	                <th>{{'table.header.status'|translate}}</th>
-	            </tr>
-	        </thead>
-	        <tbody>
-	            <tr class="pointer-main" data-ng-repeat="order in ordersData.currentPageItems  | filter:filterText" >
+	<div class="paddedbottom10 margintop10">
+		<div class="headersdiv" >
+		  <h3><b class="marginleft10">{{'link.orders'|translate}}</b></h3>
+		   <input type="text"  class="search-query span3 pull-right inputserach" data-ng-model="filterText"  
+		   		style="width:170px;min-height: 22px;" data-ng-autofocus="true" placeholder="{{ 'placeholder.enter.text.search' | translate }}">
+		    <a href="#/additionalorders/{{clientId}}" class="btn btn-primary pull-right marginright20 margintop5">
+		    	<i class="icon-plus-sign icon-white"></i>{{'label.additionalplans' | translate}}</a>
+		 </div>
+		<div><table class="table margintop10">
+		 <thead>
+  		   <tr class="graybg drakgraybg">
+               <th>{{'table.header.plan'|translate}}</th>
+               <th>{{'table.header.contractperoid'|translate}}</th>
+               <th>{{'table.header.activationdate'|translate}}</th>
+               <th>{{'table.header.start/renewaldate'|translate}}</th>
+               <th>{{'table.header.enddate'|translate}}</th>
+               <th>{{'table.header.price'|translate}}</th>
+               <th>{{'table.header.status'|translate}}</th>
+        	</tr>
+		 </thead>
+		 <tbody>
+			 <tr class="pointer-main" data-ng-repeat="order in ordersData.currentPageItems  | filter:filterText" >
 	                <td class="pointer" data-ng-click="routeToOrderView(order.id)" style="font-weight: inherit;color: #555555;">{{order.planCode}}</td>
 	                <td class="pointer" data-ng-click="routeToOrderView(order.id)">{{order.contractPeriod}}</td>
 	                <td class="pointer" data-ng-click="routeToOrderView(order.id)">{{order.activeDate | DateFormat}}</td>
@@ -36,23 +37,24 @@
 	                <td class="pointer" data-ng-click="routeToOrderView(order.id)">{{order.price }}</td>
 	                <td class="pointer" data-ng-click="routeToOrderView(order.id)"><i class="icon-stop {{order.status | StatusLookup}}"></i>&nbsp;{{order.status}}</td>
 	            </tr>
-	        </tbody>
-	      </table>
-	     </div>
-	    <ul class="pager">
+		</tbody>
+ 	   </table></div>
+ 	   <ul class="pager">
 			<li class="previous"><a data-ng-click="ordersData.previous()" data-ng-disabled="!ordersData.hasPrevious()">&larr;{{'btn.previous'|translate}}</a></li>
-			<li class="next" ><a data-ng-click="ordersData.next()"  data-ng-disabled="!ordersData.hasNext()">{{'btn.next'|translate}} &rarr;</a></li>
-    	</ul>
-	</div><br/>    
- 	<div>
-		<div style="padding-bottom:5px;background: #939393;">
-		  <h3 style="margin: 0;text-transform: uppercase;display:inline;"><b class="marginleft10" style="font-size: 20px;color: #FFFFFF;">{{'label.ondemands'|translate}}</b></h3>
-		  <input data-ng-model="filterText1" type="text" class="span marginbottom0px" style="margin-right: 15px;margin-top: 6px;" placeholder="{{'placeholder.enter.text.search'|translate}}" />
-		  <a href="#/addevents" class="btn btn-primary pull-right" style="margin-right:20px;margin-top: 6px;"><i class="icon-plus-sign icon-white"></i>{{'label.vod.add.event' | translate}}</a>
+			<li class="next" ><a data-ng-click="ordersData.next()" data-ng-disabled="!ordersData.hasNext()">{{'btn.next'|translate}} &rarr;</a></li>
+       </ul>
+	</div><br/>
+ 	 <div class="paddedbottom10 margintop10">
+		<div class="headersdiv" >
+		  <h3><b class="marginleft10">{{'label.ondemands'|translate}}</b></h3>
+		   <input type="text"  class="search-query span3 pull-right inputserach" data-ng-model="filterText1"  
+		   		style="width:170px;min-height: 22px;" placeholder="{{ 'placeholder.enter.text.search' | translate }}">
+		    <a href="#/addevents" class="btn btn-primary pull-right marginright20 margintop5">
+		    	<i class="icon-plus-sign icon-white"></i>{{'label.vod.add.event' | translate}}</a>
 		</div>
-		<div><table class="table">
+		<div><table class="table margintop10">
 	        <thead>
-	            <tr class="graybg">
+	            <tr class="graybg drakgraybg">
 	                <th>{{'table.header.listvod.eventname'|translate}}</th>
 	                <th>{{'table.header.listvod.bookeddate'|translate}}</th>
 	                <th>{{'table.header.listvod.eventprice'|translate}}</th>
@@ -72,5 +74,5 @@
 			<li class="previous"><a data-ng-click="VODSDatas.previous()" data-ng-disabled="!VODSDatas.hasPrevious()">&larr;{{'btn.previous'|translate}}</a></li>
 			<li class="next" ><a data-ng-click="VODSDatas.next()" data-ng-disabled="!VODSDatas.hasNext()">{{'btn.next'|translate}} &rarr;</a></li>
     	</ul>
-	</div>
+	</div> 
 </div>
