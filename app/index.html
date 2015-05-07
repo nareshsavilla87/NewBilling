@@ -282,8 +282,8 @@
     </nav>
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
-            <div class="container" style="width:1035px;">
-                <a class="brand" href="#/home"><img data-ng-hide="image" src="./images/BillingX_logoSmall.png" alt="BillingX" height="20">
+            <div class="container" style="width:1055px;">
+                <a class="brand" href="#/home" style="margin: 0px 0px;background:#fff;"><img data-ng-hide="image" src="./images/BillingX_logoSmall.png" alt="BillingX" height="20">
                 <img data-ng-show="image" src={{image}} alt="BillingX" height="20" width="30"></a>
                 
                 <div class="nav-collapse collapse" id="main-menu">
@@ -291,7 +291,7 @@
                     
                         <!-- <li><a ng-show="PermissionService.showMenu('REPORTING_SUPER_USER')" href="#/home" ng-class="{ activate: isActive('/home') }"><i class="icon-home icon-white"></i>{{ 'link.home' | translate }}</a></li> -->
                         <li>
-                        	<a data-ng-show="PermissionService.showMenu('READ_PROSPECT')" href="#/leads" data-ng-class="{ activate: isActive('/prospects') }">
+                        	<a data-ng-show="PermissionService.showMenu('READ_PROSPECT')" href="#/leads" data-ng-class="{ activate: isActive('/leads') }">
                         		<i class="icon-filter"></i>{{ 'link.prospects' | translate }}
                         	</a>
                         </li>
@@ -411,7 +411,7 @@
                                 <!--  <li><a ng-show="provision=PermissionService.showMenu('READ_PROVISIONINGADAPTERSYSTEM')" href="#/provision">Provision</a></li> -->
                                 <li><a href="#/eventaction">EventActions</a></li>
                                <!--  <li><a href="#/disbursements">Disbursements</a></li> -->
-                                <li><a href="#/templates">Templates</a></li>
+                               <!--  <li><a href="#/templates">Templates</a></li> -->
                                 
                                <!--  <li><a href="#/disbursements">Disbursements</a></li>
                                 <li><a href="#/templates">Templates</a></li> -->
