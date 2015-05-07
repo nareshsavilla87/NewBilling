@@ -176,10 +176,11 @@
 				};
 				
 				
-				$scope.getParcel = function(query){
+				$scope.getParcel = function(queryParam){
 					return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
 		        	      params: {
-		        	    	  		query: 'parcel'
+		        	    	  		query: 'parcel',
+		        	    	  		queryParam:queryParam		
 		        	      		   }
 		        	    }).then(function(res){   
 		        	    	 scope.parcelData=res.data;	
@@ -199,10 +200,11 @@
 	                }
 	             };
 	             
-	             $scope.getBuild = function(query){
+	             $scope.getBuild = function(queryParam){
 						return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
 			        	      params: {
-			        	    	  		query: 'Building Codes'
+			        	    	  		query: 'Building Codes',
+			        	    	  		queryParam:queryParam				
 			        	      		   }
 			        	    }).then(function(res){   
 			        	    	 scope.buildingData=res.data;	
@@ -217,10 +219,11 @@
 		             };  
 	             
 				
-				$scope.getFloor = function(query){
+				$scope.getFloor = function(queryParam){
 					return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
 		        	      params: {
-		        	    	  		query: 'Level/Floor'
+		        	    	  		query: 'Level/Floor',
+		        	    	  		queryParam:queryParam	
 		        	      		   }
 		        	    }).then(function(res){   
 		        	    	 scope.floorData=res.data;	
@@ -241,10 +244,11 @@
 	          };
 	          
 	          
-	          $scope.getUnit = function(query){
+	          $scope.getUnit = function(queryParam){
 					return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
 		        	      params: {
-		        	    	  		query: 'Unit Codes'
+		        	    	  		query: 'Unit Codes',
+		        	    	  		queryParam:queryParam		
 		        	      		   }
 		        	    }).then(function(res){   
 		        	    	 scope.unitData=res.data;	
@@ -366,6 +370,7 @@
         	if(scope.propertyMaster&&(angular.isUndefined(scope.propetyId))){
         		delete scope.property.precinctCode;
         		 resourceFactory.propertyCodeResource.save({},scope.property,function(data){
+        			 scope.propetyId=data.resourceId;
         	        	scope.flag = true;
         	            var reqDate = dateFilter(new Date(),'dd MMMM yyyy');
         	            scope.formData.locale = $rootScope.locale.code;
