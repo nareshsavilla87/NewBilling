@@ -2596,7 +2596,10 @@
 "label.anchor.deletetemplate":"Delete Template",
 "label.heading.text":"Text",
 "validation.msg.template.name.cannot.be.blank":"template name cannot be blank",
-"error.msg.tempalte.duplicate.name":"template name already exists"
+"error.msg.tempalte.duplicate.name":"template name already exists",
+
+
+"label.pgconfig.editconfig":"Edit Configurations"
 
 
 

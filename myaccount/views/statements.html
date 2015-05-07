@@ -7,14 +7,15 @@
             <div id="circularG_7" class="circularG"></div><div id="circularG_8" class="circularG"></div>
         </div>
     </div><br/>
-	<div class="paddedbottom10">
-		<div style="padding-bottom:5px;background: #939393;">
-		  <h3 style="margin: 0;text-transform: uppercase;display:inline;"><b class="marginleft10" style="font-size: 20px;color: #FFFFFF;">{{'link.statements'|translate}}</b></h3>
-		  <input data-ng-model="filterText" type="text" data-ng-autofocus="true" class="span marginbottom0px" style="margin-right: 15px;margin-top: 6px;" placeholder="{{'placeholder.enter.text.search'|translate}}" />
+	<div class="paddedbottom10 margintop10">
+		<div class="headersdiv" >
+		  <h3><b class="marginleft10">{{'link.statements'|translate}}</b></h3>
+		   <input type="text"  class="search-query span3 pull-right inputserach" data-ng-model="filterText"  
+		   		style="width:170px;min-height: 22px;" data-ng-autofocus="true" placeholder="{{ 'placeholder.enter.text.search' | translate }}">
 		</div>
-		<div><table class="table">
+		<div><table class="table margintop10">
 		 <thead>
-  		   <tr class="graybg">
+  		   <tr class="graybg drakgraybg">
              <th>{{'table.header.statement.billdate'|translate}}</th>
              <th>{{'table.header.statement.duedate'|translate}}</th>
              <th>{{'table.header.statement.amount'|translate}}</th>
@@ -38,14 +39,15 @@
 			<li class="next" ><a data-ng-click="statementsData.next()" data-ng-disabled="!statementsData.hasNext()">{{'btn.next'|translate}} &rarr;</a></li>
        </ul>
 	</div><br/>
-	<div class="paddedbottom10">
-		<div style="padding-bottom:5px;background: #939393;">
-		  <h3 style="margin: 0;text-transform: uppercase;display:inline;"><b class="marginleft10" style="font-size: 20px;color: #FFFFFF;">{{'link.payments'|translate}}</b></h3>
-		  <input data-ng-model="filterText1" type="text" class="span marginbottom0px" style="margin-right: 15px;margin-top: 6px;" placeholder="{{'placeholder.enter.text.search'|translate}}" />
+	<div class="paddedbottom10 margintop10">
+		<div class="headersdiv" >
+		  <h3><b class="marginleft10">{{'link.payments'|translate}}</b></h3>
+		   <input type="text"  class="search-query span3 pull-right inputserach" data-ng-model="filterText1"  
+		   		style="width:170px;min-height: 22px;" placeholder="{{ 'placeholder.enter.text.search' | translate }}">
 		</div>
-		<div><table class="table">
+		<div><table class="table margintop10">
 	        <thead>
-	             <tr class="graybg">
+	             <tr class="graybg drakgraybg">
 	                <th>{{'table.header.payment.transactiondate'|translate}}</th>
 	                <th>{{'table.header.payment.transactiontype'|translate}}</th>
 	                <th>{{'table.header.payment.transactioncategory'|translate}}</th>

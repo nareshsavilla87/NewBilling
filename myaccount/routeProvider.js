@@ -89,11 +89,14 @@ selfcareApp.config(function($routeProvider, $locationProvider) {
     .when('/interswitchintegration/:screenName/:clientId/:planId/:priceId/:amount/:productId/:payItemId',{
     	templateUrl: 'views/interswitchintegration.html'
     })
-     .when('/paypalrecurring/:screenName/:clientId/:planId/:priceId/:price',{
+     .when('/paypalrecurring/:screenName/:clientId/:planId/:priceId/:price/:emailId',{
     	templateUrl: 'views/paypalrecurring.html'
     })
     .when('/paypalrecurringsuccess/:screenName/:clientId/:planId/:priceId',{
     	templateUrl: 'views/paypalrecurringsuccess.html'
+    })
+    .when('/paypalredirection',{
+    	templateUrl: 'views/paypalredirection.html'
     });
        
     $locationProvider.html5Mode(false);
