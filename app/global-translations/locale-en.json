@@ -2765,7 +2765,10 @@
 "validation.msg.feemaster.transactionType.cannot.be.blank"   : "Transaction Type can not be blank",
 "validation.msg.feemaster.chargeCode.cannot.be.blank"  		 : "Charge Code can not be blank",
 "validation.msg.feemaster.defaultFeeAmount.cannot.be.blank"  : "Default Fee Amount can not be blank",
-"error.msg.feemaster.regional.price.not.found":"No Regional Price found for this Service Transfer"
+"error.msg.feemaster.regional.price.not.found":"No Regional Price found for this Service Transfer",
+
+"label.pgconfig.editconfig":"Edit Configurations"
+
 
 
 
