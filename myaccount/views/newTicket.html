@@ -8,9 +8,9 @@
         </div>
     </div>
 	<div>
-		<ul class="breadcrumb">
-			<li><a href="#/tickets">{{'link.tickets' | translate}}</a> <span class="divider">/</span></li>
-			<li class="active">{{'label.ticket.add.newticket' | translate}}</li>
+		<ul class="breadcrumb borderradius15">
+			<li><a href="#/tickets" class="colorwhite">{{'link.tickets' | translate}}</a> <span class="divider colorwhite">/</span></li>
+			<li class="active colorwhite">{{'label.ticket.add.newticket' | translate}}</li>
 		</ul>
 	</div>
 <form name="createticketform" class="form-horizontal well"  data-ng-submit="submit()">
@@ -98,7 +98,7 @@
 						<label class="control-label" for="description" style="margin-top:15px;">{{ 'label.ticket.description' | translate }}<span class="required">*</span></label>
 						<div class="controls">
 						<i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ 'label.ticket.tooltip.description' | translate }}</i><span class="required">*</span>
-						<textarea data-ng-model="formData.description" name="description" style="width:91%; height:8em;" required data-late-Validate></textarea>
+						<textarea data-ng-model="formData.description" name="description" style="width:77%; height:5.5em;" required data-late-Validate></textarea>
 						</div></div>
 		   </td></tr>
 		   <tr><td colspan="2" align="right">

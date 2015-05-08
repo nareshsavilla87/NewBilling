@@ -65,6 +65,7 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 	
 	//this fun call when user select a particular PW 
 	scope.paymentGatewayFun  = function(paymentGatewayName){
+		localStorageService.remove("N_PaypalData");
 			  scope.paymentGatewayName = paymentGatewayName;
 			  scope.termsAndConditions = false;
 			  var paymentGatewayValues = {};
@@ -96,10 +97,11 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 				break;
 					
 			case paypalPG :
-				var query = {clientId :scope.clientId,locale : "en",returnUrl:hostName,screenName :'payment'};
-				
+				/*var query = {clientId :scope.clientId,returnUrl:hostName,screenName :'payment'};*/
+				var query = hostName;
+				localStorageService.add("N_PaypalData",{clientId:scope.clientId,screenName :'payment'});
 				scope.paymentURL = paymentGatewayValues.paypalUrl+'='+paymentGatewayValues.paypalEmailId+"&item_name="+scope.planData.planCode+"&amount="+scope.planData.price+"" +	  	  				
-				  	  "&custom="+JSON.stringify(query);
+				  	  "&custom="+query;
 					break;
 					
 			case globalpayPG :
