@@ -1,5 +1,5 @@
 <div data-ng-controller="CreateClientController">
-<form name="createclientform" novalidate class="form-horizontal well"  data-ng-submit="submit()">
+<form  name="createclientform" novalidate class="form-horizontal well"  data-ng-submit="submit()">
      
       <div class="error" data-ng-show="errorStatus || errorDetails">
 			<label>{{'label.error' | translate}}</label>
@@ -158,19 +158,19 @@
           <input type="text" id="city" name="city" data-ng-model="formData.city" autocomplete="off" list ="citylist" data-ng-change="getStateAndCountry(formData.city)" required />  
         </div>
         <div class="controls" data-ng-show="propertyMaster">
-          <input type="text" id="city" name="city" data-ng-model="formData.city" readonly required />  
+          <input type="text" id="city" name="city" data-ng-model="formData.city" disabled required />  
         </div>
       </div>
       <div class="control-group">
         <label class="control-label" for="state">{{'label.state' | translate}}<span class="required">*</span></label>
         <div class="controls">
-          <input type="text" id="state" data-ng-model="formData.state" readonly required/>
+          <input type="text" id="state" data-ng-model="formData.state" disabled required/>
         </div>
       </div>
       <div class="control-group">
         <label class="control-label" for="country">{{'label.country' | translate}}<span class="required">*</span></label>
         <div class="controls">
-          <input type="text" id="country" name="country" data-ng-model="formData.country" readonly required />
+          <input type="text" id="country" name="country" data-ng-model="formData.country" disabled required />
         
         </div>
       </div>
@@ -345,16 +345,4 @@
       </div>
 </div>
 </script>
-
-   <!--     <div class="control-group">
-            	<label class="control-label" for="buildingCode">{{'label.buildingcode' | translate }}<span class="required">*</span></label>
-            	<div class="controls">
-              		<input type="text"  id="buildingCode" name="buildingCode" data-ng-model="formData.buildingCode" data-ng-blur="getWatch(formData.buildingCode)"
-              		 data-ng-pattern="/^[a-zA-Z0-9\s]+$/" data-ng-minlength=3 maxlength=3 required data-late-Validate><br/>
-              		<span data-ng-show="createpropertyform.buildingCode.$invalid">
-			          <small class="error" data-ng-show="createpropertyform.buildingCode.$error.req">{{'label.required.field' | translate}} </small> 
-					  <small class="error" data-ng-show="createpropertyform.buildingCode.$error.minlength && !createpropertyform.buildingCode.$error.req">It require 3 alphanumeric's only</small> 
-					</span>
-            	</div>
-          	</div> -->
 </div>
