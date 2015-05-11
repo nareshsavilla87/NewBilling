@@ -37,12 +37,12 @@
   "label.advancedaccountingrules":"Advanced accounting rules",
   "label.heading.language":"Language",
   "label.add.kota.Info":"Korta Information",
-  "label.heading.welcome": "Welcome",
+  "label.heading.welcome": "Welcome To",
   "label.heading.dashboard": "Dashboard",
   "label.heading.definations" : "Definitions",
   "label.heading.home": "Home",
   "label.input.searchactivities": "Search activities",
-  "label.heading.navigation.guide": "You can navigate your way through OBS using",
+  "label.heading.navigation.guide": "You Can Navigate Your Way Through OBS Using",
   "label.heading.left.shortcuts": "the shortcuts to the left",
   "label.heading.down.shortcuts": "the most recent used",
   "label.heading.top.menu": "the menu at the top",
@@ -1018,6 +1018,7 @@
   "label.serialNoLength":"Length of Serial NO",
   "label.pinType":"Pin Type",
   "label.ManageVoucherpins":"Voucher Pins",
+  "validation.msg.hardwareswap.provisionNum.cannot.be.blank":"Serial Number can not be blank",
   "validation.msg.voucher.batchName.cannot.be.blank":"Batch Name cannot be blank",
   "validation.msg.voucher.batchDescription.cannot.be.blank":"Batch Description cannot be blank",
   "validation.msg.voucher.length.cannot.be.blank":"Length Of Pin cannot be blank",
@@ -2766,7 +2767,7 @@
 "validation.msg.feemaster.chargeCode.cannot.be.blank"  		 : "Charge Code can not be blank",
 "validation.msg.feemaster.defaultFeeAmount.cannot.be.blank"  : "Default Fee Amount can not be blank",
 "error.msg.feemaster.regional.price.not.found":"No Regional Price found for this Service Transfer",
-
+"validation.msg.feemaster.regionPrices.not.greater.than.zero" :"Please add atleast one region price",
 "label.pgconfig.editconfig":"Edit Configurations"
 
 

@@ -71,9 +71,15 @@
 			</tr>
 			<tr>
 				<td valign="top">{{'label.roles' | translate}}</td>
-				<td ng-repeat="role in user.selectedRoles">
-					<span>{{role.name}}</span>
-				</td>		
+				<td class="paddedleftNone">
+					<table>
+						<tr data-ng-repeat="role in user.selectedRoles">
+							<td class="paddedleftNone">
+								<span>{{role.name}}</span>
+							</td>
+						</tr>
+					</table>		
+
 				</td>
 			</tr>
 		</table>
