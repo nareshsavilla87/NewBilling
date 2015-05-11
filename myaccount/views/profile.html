@@ -36,6 +36,10 @@
 						<td>{{'table.header.profile.email'|translate}}</td>
 						<td>{{clientData.email}}</td>
 					</tr>
+					<tr data-ng-show="isConfigPassport">
+						<td>{{'table.header.profile.passport'|translate}}</td>
+						<td>{{passport}}</td>
+					</tr>
 					<tr>
 						<td>{{'table.header.profile.nationalid'|translate}}</td>
 						<td>{{clientData.selfcare.nationalId}}</td>
