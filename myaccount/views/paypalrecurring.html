@@ -1,7 +1,7 @@
 <div data-ng-controller="PaypalRecurringController">
 <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top" >
 <input type="text" name="cmd" value="_xclick-subscriptions">
-<input type="text" name="business" value="lingala.ashokreddy@gmail.com">
+<input type="text" name="business" value="{{emailId}}">
 <input type="text" name="lc" value="US">
 <input type="text" name="item_name" value="billing">
 <!--<input type="text" name="no_note" value="123">-->
