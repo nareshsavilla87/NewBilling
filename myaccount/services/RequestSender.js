@@ -122,6 +122,8 @@ selfcareApp.config(function($provide) {
         	getRecurringScbcriberIdResource: defineResource(apiVer + "/recurringpayments/:orderId", {orderId:'@orderId'}, {}),
         	
         	orderDisconnectByScbcriberIdResource: defineResource(apiVer + "/recurringpayments", {}, {}),
+   
+        	clientIdentifiersResource: defineResource(apiVer + "/clients/:clientId/identifiers", {clientId:'@clientId'}, {}),
         	
         };
       }];

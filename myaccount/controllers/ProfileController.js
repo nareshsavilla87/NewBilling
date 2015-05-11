@@ -6,9 +6,9 @@ ProfileController = function(scope,RequestSender,rootScope,webStorage,location,p
 		  var retrivingStatementsData = {};
 		  scope.statementsData = [];
 		  
-		  var totalTicketsData = [];
+		  /*var totalTicketsData = [];
 		  var retrivingTicketsData = {};
-		  scope.ticketsData=[];
+		  scope.ticketsData=[];*/
 		  
 		  
           scope.getStatementsData = function(offset, limit, callback) {
@@ -25,7 +25,7 @@ ProfileController = function(scope,RequestSender,rootScope,webStorage,location,p
 			  callback(retrivingStatementsData);
 	  	   };
 	  	   
-	  	   scope.getTicketsData = function(offset, limit, callback) {
+	  	  /* scope.getTicketsData = function(offset, limit, callback) {
 	  		   
 	  		   retrivingTicketsData.pageItems = [];
 	  		   var itrCount = 0;
@@ -37,7 +37,7 @@ ProfileController = function(scope,RequestSender,rootScope,webStorage,location,p
 	  			   }
 	  		   }
 	  		   callback(retrivingTicketsData);
-	  	   };
+	  	   };*/
 		  
 	  	 var sessionData= localStorageService.get('selfcare_sessionData');
 		 if(sessionData){		  
@@ -63,11 +63,27 @@ ProfileController = function(scope,RequestSender,rootScope,webStorage,location,p
 					  retrivingStatementsData.totalFilteredRecords = totalStatementsData.length;
 					  scope.statementsData = paginatorService.paginate(scope.getStatementsData, 2);
 					  
-					  RequestSender.ticketResource.query({clientId: scope.clientId},function(data) {	        
+					  /*RequestSender.ticketResource.query({clientId: scope.clientId},function(data) {	        
 						  totalTicketsData = data;
 						  retrivingTicketsData.totalFilteredRecords = totalTicketsData.length;
 						  scope.ticketsData = paginatorService.paginate(scope.getTicketsData, 2);
-					  });
+					  });*/
+					//getting data from c_configuration for isRegister_plan and isisDeviceEnabled
+	  					 var registrationListing = {};
+	  					  RequestSender.configurationResource.get(function(data){
+	  						var configType = angular.fromJson(data.clientConfiguration);
+	  						if(configType) registrationListing	= configType.registrationListing;
+	  						scope.isConfigPassport		= registrationListing.passport;
+	  						if(scope.isConfigPassport){
+	  							RequestSender.clientIdentifiersResource.query({clientId:scope.clientId},function(identifiersdata){
+	  								angular.forEach(identifiersdata,function(val,key){
+	  									if(angular.lowercase(val.documentType['name']) == 'passport'){
+	  										scope.passport = val.documentKey;
+	  									}
+	  								});
+	  							});
+	  						}
+	  					  });
 				  });
 				
 			  });
