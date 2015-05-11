@@ -291,7 +291,7 @@
                     
                         <!-- <li><a ng-show="PermissionService.showMenu('REPORTING_SUPER_USER')" href="#/home" ng-class="{ activate: isActive('/home') }"><i class="icon-home icon-white"></i>{{ 'link.home' | translate }}</a></li> -->
                         <li>
-                        	<a data-ng-show="PermissionService.showMenu('READ_PROSPECT')" href="#/leads" data-ng-class="{ activate: isActive('/prospects') }">
+                        	<a data-ng-show="PermissionService.showMenu('READ_PROSPECT')" href="#/leads" data-ng-class="{ activate: isActive('/leads') }">
                         		<i class="icon-filter"></i>{{ 'link.prospects' | translate }}
                         	</a>
                         </li>
@@ -309,7 +309,7 @@
                         </li>
                         
                         <li>
-                        	<a data-ng-show="PermissionService.showMenu('READ_TICKET')" data-ng-class="{ activate: isActive('tickets') }" href="#/assignedtickets">
+                        	<a data-ng-show="PermissionService.showMenu('READ_TICKET')" data-ng-class="{ activate: isActive('assignedtickets') }" href="#/assignedtickets">
                         		<i class="icon-money"></i>{{ 'link.tickets' | translate }}
                         	</a>
                         </li>

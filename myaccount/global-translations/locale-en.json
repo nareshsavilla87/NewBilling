@@ -329,6 +329,7 @@
 	 "table.header.profile.state" 						: "State",
 	 "table.header.profile.country" 					: "Country",
 	 "table.header.profile.zipcode" 					: "Zipcode",
+	 "table.header.profile.passport" 					: "Passport",
 	 
 	 "#KortaResources "	 :"------------------------------------",
 	 "label.agree"										: "I agree to",
