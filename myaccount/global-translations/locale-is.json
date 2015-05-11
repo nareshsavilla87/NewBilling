@@ -172,7 +172,7 @@
  	"placeholder.enter.nationalid.example"	: "Dæmi: 0404121234",
  	"placeholder.filter.listofvods"			: "Sía eftir auðkenni",
  	"placeholder.enter.serialnumber"		: "Sláið inn raðnúmers",
- 	"placeholder.enter.text.search"			: "Sláðu inn texta til að leita",
+ 	"placeholder.enter.text.search"			: "Leita",
  	"placeholder.enter.passport"			: "Sláðu vegabréf",
  	
  	"#common labels " : "------------------------------------",
