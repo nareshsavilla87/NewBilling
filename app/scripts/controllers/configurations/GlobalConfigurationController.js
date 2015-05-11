@@ -262,6 +262,22 @@
 	                }
 	            };
 	            
+	            scope.enablePaymentGateway = function (id, name) {
+	                    var temp = {'enabled': 'true'};
+	                    resourceFactory.paymentGatewayConfigurationResource.update({'configId': id}, temp, function (data) {
+	                        route.reload();
+	                        webStorage.add("global_configuration",data.globalConfiguration);
+	                    });
+	            };
+	            
+	            scope.disablePaymentGateway = function (id, name) {
+	                    var temp = {'enabled': 'false'};
+	                    resourceFactory.paymentGatewayConfigurationResource.update({'configId': id}, temp, function (data) {
+	                        route.reload();
+	                        webStorage.add("global_configuration",data.globalConfiguration);
+	                    });
+	            };
+	            
 	            //client Configuration
 	            
 	            scope.getConfigLookUp = function(){

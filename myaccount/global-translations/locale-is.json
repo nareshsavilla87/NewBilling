@@ -328,6 +328,7 @@
 	 "table.header.profile.state" 						: "ástand",
 	 "table.header.profile.country" 					: "land",
 	 "table.header.profile.zipcode" 					: "póstnúmer",
+	 "table.header.profile.passport" 					: "vegabréf",
 	 
 	  "#KortaResources "	 :"------------------------------------",
 	 "label.agree"										: "Ég er sammála til að",
