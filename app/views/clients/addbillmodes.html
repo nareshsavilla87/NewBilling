@@ -51,7 +51,7 @@
 		<ul class="breadcrumb">
 			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
 			<li><a href="#/viewclient/{{clientId}}" data-ng-click="reset123()">{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
-			<li class="active">BillModes Details</li>
+			<li class="active">Bill Modes Details</li>
 		</ul>
 	</div>
   <form  novalidate="" class="form-horizontal" data-ng-submit="submit()">
@@ -61,7 +61,8 @@
 		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	  </div>
 	<fieldset>
-		<!-- <legend>BillMode Details</legend> -->
+		<legend>Bill Mode Details</legend>
+
 	 <table>
 	 	<tr><td><legend>Bill Mode Details</legend></td></tr>
 	   <tr>

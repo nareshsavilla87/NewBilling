@@ -53,6 +53,23 @@
     	  }
       });
       
+    //adding account no and name to an recentClientarray
+  	 var recentClient = {};
+  	 var recentClientArray = [];
+  	 if (localStorageService.get('recentClients')) {
+  		 recentClientArray = localStorageService.get('recentClients');
+       }
+       scope.$watch(function () {
+     	  var val = scope.clientAccountNo+""+scope.clientDisplayName;
+           return val;
+       }, function () {
+     	  if(scope.clientAccountNo){
+       		recentClient = {"accountNo":scope.clientAccountNo,"displayName" : scope.clientDisplayName};
+       		recentClientArray.push(recentClient);
+       		localStorageService.add('recentClients', recentClientArray);
+     	  }
+       });
+      
       scope.$on("UserAuthenticationSuccessEvent", function(event, data) {
     	  
     	localStorageService.add("permissionsArray",data.permissions);

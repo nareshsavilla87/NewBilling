@@ -464,7 +464,7 @@ tr.pointer-main:hover {
 
 .activate {
     font-weight: bold;
-	border-bottom: thin solid #FFF;
+	/* border-bottom: thin solid #FFF; */
 }
 
 div[data-angular-treeview] {
@@ -1475,6 +1475,12 @@ ul.breadcrumb li a{
 .margintop5{
 	margin-top : 5px;
 }
+
+.navbar .nav > li > a:focus,
+.navbar .nav > li > a:hover {
+  border-bottom: medium none;
+}
+
 /*new changes for selfcare ended*/
 
 

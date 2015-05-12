@@ -291,7 +291,7 @@
                     
                         <!-- <li><a ng-show="PermissionService.showMenu('REPORTING_SUPER_USER')" href="#/home" ng-class="{ activate: isActive('/home') }"><i class="icon-home icon-white"></i>{{ 'link.home' | translate }}</a></li> -->
                         <li>
-                        	<a data-ng-show="PermissionService.showMenu('READ_PROSPECT')" href="#/leads" data-ng-class="{ activate: isActive('/prospects') }">
+                        	<a data-ng-show="PermissionService.showMenu('READ_PROSPECT')" href="#/leads" data-ng-class="{ activate: isActive('/leads') }">
                         		<i class="icon-filter"></i>{{ 'link.prospects' | translate }}
                         	</a>
                         </li>
@@ -309,7 +309,7 @@
                         </li>
                         
                         <li>
-                        	<a data-ng-show="PermissionService.showMenu('READ_TICKET')" data-ng-class="{ activate: isActive('tickets') }" href="#/assignedtickets">
+                        	<a data-ng-show="PermissionService.showMenu('READ_TICKET')" data-ng-class="{ activate: isActive('assignedtickets') }" href="#/assignedtickets">
                         		<i class="icon-money"></i>{{ 'link.tickets' | translate }}
                         	</a>
                         </li>
@@ -397,7 +397,11 @@
                                 		Scheduler Jobs
                                 	</a>
                                 </li>
-                                
+                                <!-- <li>
+                                	<a data-ng-show="smartsearch=PermissionService.showMenu('READ_GLACCOUNT')&&PermissionService.showMenu('READ_OFFICE')&&PermissionService.showMenu('READ_SMARTSEARCH')" href="#/smartSearch">
+                                		{{ 'link.smartsearch' | translate }}
+                                	</a>
+                                </li> -->
                                 
                                 <li>
                                 	<a data-ng-show="paymentGetWay=PermissionService.showMenu('READ_PAYMENTGATEWAY')" href="#/paymentGateway">
@@ -430,7 +434,8 @@
                             <ul class="dropdown-menu">
                                 <li><a href="#/profile"><i class="icon-user"></i>{{ 'link.profile' | translate }}</a></li>
                                  <li><a data-ng-show="PermissionService.showMenu('READ_USERCHATMESSAGE')" href="#/messanger"><i class="icon-envelope"></i>{{ 'link.messanger' | translate }}</a></li>
-                                 <li><a data-ng-show="PermissionService.showMenu('ALL_FUNCTIONS')" id="changePWD" data-ng-click="changePwd()"><i class="icon-cog"></i>{{ 'label.changepassword' | translate }}</a></li>
+
+                                  <li><a data-ng-show="PermissionService.showMenu('ALL_FUNCTIONS')" id="changePWD" data-ng-click="changePwd()"><i class="icon-cog"></i>{{ 'label.changepassword' | translate }}</a></li>
                                 <li><a data-ng-show="PermissionService.showMenu('ALL_FUNCTIONS')" href="#/usersetting"><i class="icon-cog"></i>{{ 'link.settings' | translate }}</a></li>
                                 <li><a id="logout" data-ng-click="logout()"><i class="icon-off"></i>{{ 'link.logout' | translate }}</a></li>
                             </ul>
@@ -446,6 +451,7 @@
                     		<input type="image"  data-popover-placement="bottom" 
                               data-popover="{{'link.smartsearch'|translate}}" data-popover-trigger="mouseenter"  src="./images/advanced_search_icon.png" width="50px">
                     </a> -->
+
                     <a class="brand" href="#/smartSearch" style="font-size: 14px; text-shadow: 0px 0px 0px; padding: 10px 45px;" 
                     			data-ng-show="PermissionService.showMenu('READ_GLACCOUNT')&&PermissionService.showMenu('READ_OFFICE')&&PermissionService.showMenu('READ_SMARTSEARCH')">
                     	<img src=./images/advanced_search_icon.png alt="smart-search" width="30" data-popover-placement="bottom" 
@@ -509,7 +515,7 @@
 					<div class="modal-footer">
                         <a id="submit" class="btn btn-primary" ng-click="approve()">{{'btn.ok' | translate}}</a>
                     </div>
-</script>
+      </script>
 <script type="text/ng-template" id="changepassword.html">
         <div class="modal-header silver">
             <h3 class="bolder">{{'label.changepassword' | translate}}</h3>
@@ -535,7 +541,6 @@
             <button class="btn btn-primary" ng-click="submit()">{{'label.save' | translate}}</button>
         </div>
 </script>
-      
 </body>
 
 

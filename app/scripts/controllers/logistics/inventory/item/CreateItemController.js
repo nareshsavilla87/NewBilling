@@ -41,6 +41,7 @@
 	            
 	            
         scope.submit = function() {
+        	this.formData.unitPrice=0;
         	delete this.formData.unitData;
         	delete this.formData.chargesData;
         	delete this.formData.itemClassData;
@@ -57,7 +58,7 @@
         	 
         	this.formData.locale = $rootScope.locale.code;
             resourceFactory.itemResource.save(this.formData,function(data){
-            location.path('/viewitem/'+data.resourceId+'/item');
+            location.path('/viewitem/'+data.resourceId+'/item/0');
           });
         };
     }

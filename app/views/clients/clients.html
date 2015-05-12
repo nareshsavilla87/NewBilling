@@ -53,9 +53,9 @@
                 <td class="pointer" data-ng-click="routeTo(client.id)" >{{client.hwSerialNumber}}</td>
                 <td class="pointer" data-ng-click="routeTo(client.id)" >{{client.balanceAmount}}</td>
                 <td data-ng-show="config.userName" class="pointer" data-ng-click="routeTo(client.id)" >{{client.userName}}</td>
-                <td><a data-ng-show="config.password" data-ng-click="routeTo(client.id)" class="pointer" data-popover="{{client.password}}" 
-                       data-popover-trigger="mouseenter">{{client.clientPassword}}</a>&nbsp;
-                
+
+                <td><a data-ng-show="config.password" class="pointer" data-ng-click="routeTo(client.id)" popover-placement="top" 
+                              popover="{{client.password}}" popover-trigger="mouseenter" >{{client.clientPassword}}</a></td>
                 <td data-ng-show="config.externalId" class="pointer" data-ng-click="routeTo(client.id)" >{{client.externalId}}</td>
                 <td data-ng-show="config.customerCategory" class="pointer" data-ng-click="routeTo(client.id)" >{{client.categoryType}}</td>
                 <td data-ng-show="config['group/parentId']" class="pointer" data-ng-click="routeTo(client.id)" >{{client.parentId}}</td> 

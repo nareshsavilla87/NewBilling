@@ -84,8 +84,8 @@
             <td>{{config.name}}</td>
             <td>{{config.enabled}}</td>
             <td style="word-break:break-all;">{{config.value}}</td>
-            <td><button type="button" class="btn btn-success flag" data-ng-hide="config.enabled" data-ng-click="enable(config.id)"><i class="icon-flag-alt"></i></button>
-                <button type="button" class="btn btn-danger flag" data-ng-show="config.enabled" data-ng-click="disable(config.id)"><i class="icon-remove"></i></button>
+            <td><button type="button" class="btn btn-success flag" data-ng-hide="config.enabled" data-ng-click="enablePaymentGateway(config.id)"><i class="icon-flag-alt"></i></button>
+                <button type="button" class="btn btn-danger flag" data-ng-show="config.enabled" data-ng-click="disablePaymentGateway(config.id)"><i class="icon-remove"></i></button>
            		<a data-ng-show="config.value" data-ng-click="editPaymentGateway(config.id,config.name,config.value)" data-popover="Edit" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a></td>        
         </tr>
         </tbody>
