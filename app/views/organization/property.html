@@ -9,8 +9,8 @@
 <tab heading="{{'tab.properties' | translate}}" select="getAllProperties()" data-ng-show="$parent.PermissionService.showMenu('READ_PROPERTY')">
 	<div class="pull-right">
 	    <a data-ng-show="PermissionService.showMenu('CREATE_PROPERTY')" data-ng-click="uploadProperty()" class="btn btn-primary"><i class="icon-cloud-upload"></i>Property Data Upload</a>
-<!-- 		<a data-ng-show="PermissionService.showMenu('CREATE_PROPERTY')" href="#/createproperty" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{ 'label.create.new.property' | translate }}</a>
- -->	</div>
+		<a data-ng-show="PermissionService.showMenu('CREATE_PROPERTY')" href="#/createproperty" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{ 'label.create.new.property' | translate }}</a>
+ 	</div>
 	<div  class="row-fluid">
 	   <form data-ng-submit="searchPropertyDetails(filterText)" style="margin: 0 0 1%;">
 		<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by Property Code/Precinct/Allocated"> <br>
