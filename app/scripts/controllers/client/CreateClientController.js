@@ -25,6 +25,7 @@
         scope.languagesDatas = [];
         scope.ageGroupDatas = [];
         scope.date = {};
+       
 
        // var IsClientIndividual = filter('ConfigLookup')('IsClientIndividual');
         var IsClientIndividual =  webStorage.get("client_configuration").IsClientIndividual;
@@ -301,7 +302,8 @@
     			 scope.formData.zipCode = $scope.formData.poBox;
     			 $modalInstance.dismiss('delete');
     			 if(!angular.isUndefined(scope.formData.addressNo)){
-    				 $('#propertyCode').attr("readonly","readonly");
+    				 $('#propertyCode').attr("disabled","disabled");
+    				 
     			 }
 	      	 };
 	         $scope.cancel = function () {
