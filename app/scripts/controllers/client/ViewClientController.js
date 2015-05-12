@@ -399,6 +399,7 @@
         		location.path(url+"/"+scope.client.officeId);
 
         	}else if(href == "#/clientinvoice"){
+
         		$modal.open({
                     templateUrl: 'approve1.html',
                     controller: Approve,

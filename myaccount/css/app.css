@@ -1478,8 +1478,10 @@ ul.breadcrumb li a{
 
 .navbar .nav > li > a:focus,
 .navbar .nav > li > a:hover {
+
   border-bottom: medium none;
 }
+
 
 /*new changes for selfcare ended*/
 

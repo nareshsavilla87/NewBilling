@@ -18,8 +18,6 @@ PaypalRecurringController = function(scope,RequestSender,location,localStorageSe
 		scope.time			= chargeCodeData.durationType[0];
 		//scope.customValue   = {chargeDuration:chargeCodeData.chargeDuration,durationType:chargeCodeData.durationType};
 		var planData = localStorageService.get("planData");
-
-		console.log(planData);
 		if(screenName == "changeorder"){
 			scope.customValue   = { clientId:clientId,planId:planId,paytermCode:chargeCodeData.billFrequencyCode,
 					contractPeriod:planData.contractId,orderId:orderId};

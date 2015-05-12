@@ -92,7 +92,6 @@
              
              var count = 0;
              resourceFactory.runReportsResource.get({reportSource: 'ClientCounts',genericResultSet:false} , function(data) {
-
            	  for(var i in data){
            		  if(data[i].status == 'New')
            			count = data[i].counts;
