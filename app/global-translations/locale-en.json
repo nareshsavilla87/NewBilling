@@ -394,6 +394,7 @@
   "label.active":"Active",
   "label.fullname":"Full name or Business name:",
   "label.editclient":"Edit Client",
+  "label.editclient.info":"Edit Client Info",
   "label.closeclient":"Close Client",
   "label.createclient":"Create Client",
   "title.client.activate":"Client Activation",

@@ -336,7 +336,7 @@
 			  			</div>
 			  			
 			  			<div id="pane2" class="tab-pane" data-ng-class="{active: additionaldataSubTab}">
-			  				<div class="pull-right" data-ng-hide="editAdditionalDatasBtn">
+			  				<div class="pull-right" data-ng-show="clientAdditionalData && !editAdditionalDatasBtn">
 	         			 		<a href="#/clientadditionalinfo/{{clientId}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'label.add.additionalinfo' | translate}}
 			 			 		</a>
 	        				</div>
@@ -359,7 +359,7 @@
 			                			<td>{{additionalDatas.preferredLang}}</td>
 			                			<td>{{additionalDatas.financeId}}</td>
 			                			<td>{{additionalDatas.remarks}}</td>
-			                			<td data-ng-show="editAdditionalDatasBtn">
+			                			<td data-ng-show="clientAdditionalData && editAdditionalDatasBtn">
 			                  				<a href="#/editadditionaldata/{{client.id}}" data-popover="Edit Info" data-popover-trigger="mouseenter"><i class="icon-edit"></i></a>&nbsp;
 			                  				<!-- <a data-ng-show="PermissionService.showMenu('DELETE_CLIENTIDENTIFIER')" data-ng-click="deletePopUp(client.id,document.id,$index,'Delete Identities')"
 			                  					data-popover="Delete Identities" data-popover-trigger="mouseenter"><i class="icon-remove"></i></a> -->
