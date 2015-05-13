@@ -16,7 +16,7 @@
 		}
         
         var clientData = webStorage.get('clientData');
-        scope.clientAddInfo = webStorage.get("client-additional-data");
+        
         scope.displayName=clientData.displayName;
         scope.statusActive=clientData.statusActive;
         scope.hwSerialNumber=clientData.hwSerialNumber;

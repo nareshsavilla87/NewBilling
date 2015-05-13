@@ -355,21 +355,7 @@
 	            };
 	            
 	            scope.enablePaymentGateway = function (id, name) {
-<<<<<<< HEAD
-                    var temp = {'enabled': 'true'};
-                    resourceFactory.paymentGatewayConfigurationResource.update({'configId': id}, temp, function (data) {
-                        route.reload();
-                        webStorage.add("global_configuration",data.globalConfiguration);
-                    });
-	            };
-            
-	            scope.disablePaymentGateway = function (id, name) {
-                    var temp = {'enabled': 'false'};
-                    resourceFactory.paymentGatewayConfigurationResource.update({'configId': id}, temp, function (data) {
-                        route.reload();
-                        webStorage.add("global_configuration",data.globalConfiguration);
-                    });
-=======
+
 	                    var temp = {'enabled': 'true'};
 	                    resourceFactory.paymentGatewayConfigurationResource.update({'configId': id}, temp, function (data) {
 	                        route.reload();
@@ -383,7 +369,6 @@
 	                        route.reload();
 	                        webStorage.add("global_configuration",data.globalConfiguration);
 	                    });
->>>>>>> obsplatform-2.04
 	            };
 	            
 	            //client Configuration
