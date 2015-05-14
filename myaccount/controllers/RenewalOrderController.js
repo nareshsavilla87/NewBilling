@@ -33,6 +33,7 @@ RenewalOrderController = function(scope,RequestSender,routeParams,localStorageSe
 		  scope.plansData = [];
 		  scope.clientOrdersData = [];
 		  for(var j in totalOrdersData){
+			  console.log(totalOrdersData[j].planId+"------"+planId);
 				if((totalOrdersData[j].planId == planId) && (totalOrdersData[j].isPrepaid == 'Y')){
 					scope.plansData.push(totalOrdersData[j]); 
 					scope.singlePlanPricingDatas(scope.plansData[0],true);
