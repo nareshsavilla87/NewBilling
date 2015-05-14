@@ -84,3 +84,4 @@ document.write("<script type='text/javascript' src='./controllers/InterswitchInt
 document.write("<script type='text/javascript' src='./controllers/PaypalRecurringSuccessController.js'></script>");
 document.write("<script type='text/javascript' src='./controllers/PaypalRecurringController.js'></script>");
 document.write("<script type='text/javascript' src='./controllers/PaypalRedirectionController.js'></script>");
+document.write("<script type='text/javascript' src='./controllers/EventsController.js'></script>");
