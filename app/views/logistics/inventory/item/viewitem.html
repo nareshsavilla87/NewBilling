@@ -8,8 +8,8 @@
 	      <div class="btn-group">
 	      	  <a ng-show="showType=='audit'" ng-click="showItems()" class="btn btn-primary"><i class="icon-list icon-white"></i>View Item</a>
 	      	  <a ng-hide="showType=='audit'" data-ng-click="showAudit()" class="btn btn-primary"><i class="icon-list icon-white"></i> Show Audit</a>
-	          <a ng-show="PermissionService.showMenu('UPDATE_ITEM')" href="#/edititem/{{item.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
-	          <a ng-show="PermissionService.showMenu('DELETE_ITEM')"  data-ng-click="deleteItem()" class="btn btn-primary"><i class="icon-trash icon-white"></i> Delete</a>
+	          <a ng-show="PermissionService.showMenu('UPDATE_ITEM')" href="#/edititem/{{item.id}}/{{totalItem}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
+	          <a ng-show="PermissionService.showMenu('DELETE_ITEM') && totalItem == 0"  data-ng-click="deleteItem()" class="btn btn-primary"><i class="icon-trash icon-white"></i> Delete</a>
 	      </div>
 	    </div>
 	</div>
@@ -28,7 +28,7 @@
       </script>
 
 	<div ng-hide="showType=='audit'"class="row paddedleft">
-		<h3>{{item.itemCode}}</h3>
+		<h3>&nbsp;&nbsp;&nbsp;{{item.itemCode}}</h3>
 		<table width="100%">
 			<tr>
 				<td width="20%">{{'label.item.itemcode' | translate }}</td>
@@ -62,7 +62,7 @@
 		</table>
 	</div>
 	<div ng-show="showType=='audit'">
-	<h4>View Audit</h4>
+	<h3>&nbsp;&nbsp;&nbsp;View Audit</h3>
 		<table class="table">
 			<thead>
 				<tr class="graybg">
@@ -87,7 +87,7 @@
 	</div>
 	
 	<div ng-hide="showType=='audit'">
-	<h3>List of Prices</h3>
+	<h3>&nbsp;&nbsp;&nbsp;List of Prices</h3>
 		<table class="table">
 			<thead>
 				<tr class="graybg">

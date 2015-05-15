@@ -116,7 +116,7 @@
 	        	if(item || model || label){
 	        		var serialNum = item || model || label;
 	        		
-		        	resourceFactory.itemMasterDetailTemplateResource.get({query : serialNum},function(data) {
+		        	resourceFactory.itemMasterDetailTemplateResource.get({query : serialNum,clientId:scope.clientId},function(data) {
 
 		        	   if(data){
 		        		   scope.formData.itemId = data.id;

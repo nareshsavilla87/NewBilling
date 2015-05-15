@@ -392,7 +392,9 @@
 		scope.getMe = function(href, cId, subHref){
 			
 			var url = href.replace("#","")+"/"+ cId +""+(subHref == undefined?"":"/"+ subHref);
-        	if(href == "#/clientinvoice"){
+			if(href == "#/adddevice"){
+				location.path(url+"/"+scope.client.officeId);
+			}else if(href == "#/clientinvoice"){
         		$modal.open({
                     templateUrl: 'approve1.html',
                     controller: Approve,

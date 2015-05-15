@@ -172,7 +172,7 @@
  	"placeholder.enter.nationalid.example"	: "ex: 0404121234",
  	"placeholder.filter.listofvods"			: "Filter by Id",
  	"placeholder.enter.serialnumber"		: "Enter Serial Number",
- 	"placeholder.enter.text.search"			: "Enter text to search",
+ 	"placeholder.enter.text.search"			: "Search",
  	"placeholder.enter.passport"			: "Enter Passport",
  	
  	
@@ -329,6 +329,7 @@
 	 "table.header.profile.state" 						: "State",
 	 "table.header.profile.country" 					: "Country",
 	 "table.header.profile.zipcode" 					: "Zipcode",
+	 "table.header.profile.passport" 					: "Passport",
 	 
 	 "#KortaResources "	 :"------------------------------------",
 	 "label.agree"										: "I agree to",

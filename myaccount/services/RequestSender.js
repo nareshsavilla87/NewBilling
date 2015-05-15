@@ -119,6 +119,12 @@ selfcareApp.config(function($provide) {
         	
         	recurringStatusCheckingResource: defineResource(apiVer + "/chargecode/:planId/:billFrequency", {planId:'@planId',billFrequency:'@billFrequency'}, {}),
         	
+        	getRecurringScbcriberIdResource: defineResource(apiVer + "/recurringpayments/:orderId", {orderId:'@orderId'}, {}),
+        	
+        	orderDisconnectByScbcriberIdResource: defineResource(apiVer + "/recurringpayments", {}, {}),
+   
+        	clientIdentifiersResource: defineResource(apiVer + "/clients/:clientId/identifiers", {clientId:'@clientId'}, {}),
+        	
         };
       }];
     });

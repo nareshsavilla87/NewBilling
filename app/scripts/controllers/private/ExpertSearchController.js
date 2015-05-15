@@ -90,16 +90,35 @@
                  }
              }
              
-              scope.recentClients = [];
-              for (var val = recentClients.length - 1; val > recentClients.length - 9; val--) {
-                   if(recentClients[val]){
-		            	  scope.recentClients.push({
-								            		  accountNo : recentClients[val].accountNo,
-								            		  href : "/viewclient/"+parseInt(recentClients[val].accountNo),
-								            		  displayName : recentClients[val].displayName
-								            	  });	
-                   }
-              }
+             var count = 0;
+             resourceFactory.runReportsResource.get({reportSource: 'ClientCounts',genericResultSet:false} , function(data) {
+           	  for(var i in data){
+           		  if(data[i].status == 'New')
+           			count = data[i].counts;
+           		  if(data[i].status == 'Active')
+           			count = data[i].counts;
+           		  if(data[i].status == 'Inactive')
+           			count = data[i].counts;
+           		  if(data[i].status == 'Pending')
+           			count = data[i].counts;
+           	  }
+           	  scope.recentClients = [];
+           	  if(count){
+           		  for (var val = recentClients.length - 1; val > recentClients.length - 9; val--) {
+           			  if(recentClients[val]){
+           				  scope.recentClients.push({
+           					  accountNo : recentClients[val].accountNo,
+           					  href : "/viewclient/"+parseInt(recentClients[val].accountNo),
+           					  displayName : recentClients[val].displayName
+           				  });	
+           			  }
+           		  }
+           	  }else{
+           		  localStorageService.remove('recentClients')
+           	  }
+             });
+              
+             
              
             scope.switch1 = function() {
 	        	location.path('/dashboard');
