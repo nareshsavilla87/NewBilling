@@ -137,6 +137,12 @@
         	resourceFactory.clientResource.get({clientId: routeParams.id} , function(data) {
         		scope.orders = [];
                 scope.client = data;
+                
+                //adding account no and name to display recent clients in dashboard
+                $rootScope.clientAccountNo = data.accountNo;
+                $rootScope.clientDisplayName = data.displayName;
+                
+                webStorage.add("walletAmount",scope.client.walletAmount);
                 scope.statusActive = scope.client.status.code;
                 scope.taxExemption = scope.client.taxExemption;
                 if(scope.taxExemption == 'N'){
@@ -386,7 +392,9 @@
 		scope.getMe = function(href, cId, subHref){
 			
 			var url = href.replace("#","")+"/"+ cId +""+(subHref == undefined?"":"/"+ subHref);
-        	if(href == "#/clientinvoice"){
+			if(href == "#/adddevice"){
+				location.path(url+"/"+scope.client.officeId);
+			}else if(href == "#/clientinvoice"){
         		$modal.open({
                     templateUrl: 'approve1.html',
                     controller: Approve,

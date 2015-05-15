@@ -42,6 +42,20 @@ body, html {
 
 .paddedleft {
     padding-left: 20px;
+    
+}
+.activity_color{
+	color: #4c66a4;
+}
+
+.textcolor{
+	color:#2591dc;
+}
+.guide_text{
+	color:#2591dc;
+}
+.imgcolor{
+	color:#00FF00;
 }
 
 .paddedleft0 {
@@ -938,7 +952,7 @@ nav:hover:after{
 
 /* not good practice to set style on element at such broad scope*/
 .container td:first-child {    padding-left: 20px;  }
-.container th:first-child {    padding-left: 20px;  }
+.container th:first-child {    padding-left: 20px;   }
 .container td:last-child {    padding-right: 20px;  }
 .container th:last-child {    padding-right: 20px;  }
 
@@ -961,6 +975,10 @@ nav:hover:after{
 }
 
 .container td:first-child .paddedleftNone {
+	padding-left: 0;
+}
+
+.container td:last-child .paddedleftNone {
 	padding-left: 0;
 }
 
@@ -1227,6 +1245,6 @@ color:green;
 	background: #ffffff/*{bgColorContent}*/ ;
 	color: #222222/*{fcContent}*/;
 }
-
+.activity_color
 
 

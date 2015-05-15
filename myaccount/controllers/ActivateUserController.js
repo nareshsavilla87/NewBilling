@@ -189,7 +189,7 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 			  function  approve($scope, $modalInstance) {
       	    	  rootScope.currentSession = sessionManager.clear();
       	    	  rootScope.popUpMsgs.push({
-      	    		  'image' : './images/info-icon.png',
+      	    		  'image' : '../images/info-icon.png',
       	    		  'names' : [{'name' : 'title.account.activated'},
       	    		             {'name' : 'title.account.activated.userpwd'},
       	    		             {'name' : 'title.login.msg'}]
@@ -241,7 +241,7 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 		  				if(scope.clientData.password) {
 		  					rootScope.currentSession = sessionManager.clear();
 		  					rootScope.infoMsgs.push({
-								  						'image' : './images/info-icon.png',
+								  						'image' : '../images/info-icon.png',
 								  						'names' : [{'name' : 'title.account.activated'},
 								  						           {'name' : 'title.login.msg'}]
 								  					});

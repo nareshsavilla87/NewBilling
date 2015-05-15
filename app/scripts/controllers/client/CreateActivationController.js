@@ -235,16 +235,15 @@
 	        	var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
 	            this.formData4.dateFormat = 'dd MMMM yyyy';
 	            this.formData4.start_date = reqDate;
-	            if(this.formData.isPrepaid == 'Y'){
-
+	            if(this.formData4.isPrepaid == 'Y'){
 	            	  for (var i in scope.paytermdatas) {
-	                     	if(scope.paytermdatas[i].duration == this.formData.contractPeriod){
-	                     		 this.formData.paytermCode=scope.paytermdatas[i].paytermtype; 
+	                     	if(scope.paytermdatas[i].duration == this.formData4.contractPeriod){
+	                     		 this.formData4.paytermCode=scope.paytermdatas[i].paytermtype; 
 	                     	}
 	                  };
 	                  for (var i in scope.subscriptiondatas) {
-	                   	if(scope.subscriptiondatas[i].Contractdata == this.formData.contractPeriod){
-	                   		 this.formData.contractPeriod=scope.subscriptiondatas[i].id;
+	                   	if(scope.subscriptiondatas[i].Contractdata == this.formData4.contractPeriod){
+	                   		 this.formData4.contractPeriod=scope.subscriptiondatas[i].id;
 	                   		
 	                   	}
 	                };   

@@ -41,6 +41,7 @@
 	            
 	            
         scope.submit = function() {
+        	this.formData.unitPrice=0;
         	delete this.formData.unitData;
         	delete this.formData.chargesData;
         	delete this.formData.itemClassData;

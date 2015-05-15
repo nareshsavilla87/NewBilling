@@ -4,6 +4,7 @@
 				  																	$rootScope,API_VERSION,http) {
 		  
 			  scope.clientId=routeParams.clientId;
+			  var officeId=routeParams.officeId;
 			  scope.formData = {};
 			  scope.date = {};
 			  scope.date.saleDate = dateFilter(new Date(),"dd MMMM yyyy");
@@ -44,7 +45,7 @@
 		            scope.offices = data.officesData;
 		            
 		            for(var i in scope.offices){
-		            	if(scope.offices[i].id == 1){
+		            	if(scope.offices[i].id == officeId){
 		            		scope.formData.officeId=scope.offices[i].id;
 		            	}
 		            }
@@ -115,7 +116,7 @@
 	        	if(item || model || label){
 	        		var serialNum = item || model || label;
 	        		
-		        	resourceFactory.itemMasterDetailTemplateResource.get({query : serialNum},function(data) {
+		        	resourceFactory.itemMasterDetailTemplateResource.get({query : serialNum,clientId:scope.clientId},function(data) {
 
 		        	   if(data){
 		        		   scope.formData.itemId = data.id;
