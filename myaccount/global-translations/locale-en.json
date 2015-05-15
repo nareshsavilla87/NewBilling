@@ -943,6 +943,7 @@
 "btn.add.pack"										: "Add Pack",
 "btn.change.pack"									: "Change Pack",
 "btn.topup.pack"									: "Top Up Pack",
+"label.uncheck"										: "Uncheck",
 
 "error.msg.paypal.recurring.notpossible":"Recurring Not Possible to this Contract Period"
 
