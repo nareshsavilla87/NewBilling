@@ -6,7 +6,7 @@
         scope.chargesDatas = [];
         scope.formData = {};
         scope.removeItemPrices = [];
-        
+        scope.totalItem=routeParams.totalItem;
          resourceFactory.itemResource.get({itemId: routeParams.id} , function(data) {
         	scope.itemClassDatas = data.itemClassData;
             scope.unitDatas = data.unitData;
