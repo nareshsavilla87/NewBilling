@@ -27,11 +27,11 @@
 					<li>{{'table.header.status'|translate}} : <i class="icon-circle {{order.status | StatusLookup}}"></i>&nbsp;{{order.status}}</li>
 					<li class="noneli" data-ng-show="order.status == 'ACTIVE'"><strong class="lightbluecolor" >{{'label.wish.tochange'|translate}}</strong>
 					<input type="radio" name="packsel"  style="vertical-align: sub;" value="{{order.id}}" data-ng-click="packageSelectionFun(order.id,order.pdid,order.status)">
-					  <a><i class="icon-remove lightbluecolor" data-ng-show="order.id == selectedPriceId" data-ng-click="revertRadioBtnFun()"></i></a>
+					  <a data-popover="{{'label.uncheck'|translate}}" data-popover-trigger="mouseenter"><i class="icon-remove lightbluecolor" data-ng-show="order.id == selectedPriceId" data-ng-click="revertRadioBtnFun()"></i></a>
 					</li>
 					<li class="noneli" data-ng-show="order.status == 'DISCONNECTED'"><strong class="lightbluecolor" >{{'label.wish.totopup'|translate}}</strong>
 					<input type="radio" name="packsel"  style="vertical-align: sub;" value="{{order.id}}" data-ng-click="packageSelectionFun(order.id,order.pdid,order.status)">
-					  <a><i class="icon-remove lightbluecolor" data-ng-show="order.id == selectedPriceId" data-popover="{{'label.uncheck'|translate}}" data-popover-trigger="mouseenter" data-ng-click="revertRadioBtnFun()"></i></a>
+					  <a data-popover="{{'label.uncheck'|translate}}" data-popover-trigger="mouseenter" ><i class="icon-remove lightbluecolor" data-ng-show="order.id == selectedPriceId" data-ng-click="revertRadioBtnFun()"></i></a>
 					</li>
 				</ul>
 			 </div>

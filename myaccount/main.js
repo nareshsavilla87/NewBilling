@@ -64,6 +64,14 @@ if(localStorageService.get('localeLang')){
 	for(var i in scope.langs) if(scope.langs[i].code == selfcareModels.locale) scope.localeLang = scope.langs[i];
 }
 
+var localeLang = '';
+scope.$watch(function () {
+	 localStorageService.get('localeLang') ? localeLang = localStorageService.get('localeLang') : localeLang = selfcareModels.locale;
+    return localeLang;
+}, function () {
+    scope.localeLangCode = localeLang;
+});
+
 //set the language code when change the language 
  scope.changeLang = function (lang) {
      localStorageService.add('localeLang', lang.code);
