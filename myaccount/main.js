@@ -61,7 +61,12 @@ if(localStorageService.get('localeLang')){
 	   };
 	   
 }else{
-	for(var i in scope.langs) if(scope.langs[i].code == selfcareModels.locale) scope.localeLang = scope.langs[i];
+	for(var i in scope.langs){
+		if(scope.langs[i].code == selfcareModels.locale) {
+			tmhDynamicLocale.set(scope.langs[i].code);
+			scope.localeLang = scope.langs[i];
+		}
+	}
 }
 
 var localeLang = '';
