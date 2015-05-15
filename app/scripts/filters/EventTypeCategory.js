@@ -8,8 +8,8 @@
                     	jsonStringData = jsonStringData.replace("}","");
                     	jsonStringData = jsonStringData.replace(/"/g,"");
                     	var jsonArray = JSON.parse(historyData);
-                    	var serialNumber= '';
-                    	if(jsonArray.serialNumber[0]){
+                    	var serialNumber = "";
+                    	if(jsonArray.serialNumber){
                     		serialNumber = jsonArray.serialNumber[0].serialNumber;
                     	}
                     	var  eventTypeCategoryMsg = {
@@ -96,7 +96,11 @@
                         "CREATE SELFCARE" : "Selfcare Account Created successfully with UserName:"+jsonArray.userName,
                         
                         // Redemption related data
-                        "CREATE REDEMPTION":"Redemption done successfully PinNumber:"+jsonArray.pinNumber
+                        "CREATE REDEMPTION":"Redemption done successfully PinNumber:"+jsonArray.pinNumber,
+                        
+                        // ServiceTransfer related data
+                        "CREATE SERVICETRANSFER":"Service transfered from "+jsonArray.oldPropertyCode +" to "+jsonArray.newPropertyCode+" with Shift Charge Amount "+jsonArray.shiftChargeAmount
+
                         
                      };
 
