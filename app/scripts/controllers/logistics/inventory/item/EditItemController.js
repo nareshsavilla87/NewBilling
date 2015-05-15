@@ -69,7 +69,7 @@
               }
         	 this.formData.locale = $rootScope.locale.code;
                resourceFactory.itemResource.update({'itemId': routeParams.id},this.formData,function(data){
-             location.path('/viewitem/' + data.resourceId +'/item');
+             location.path('/viewitem/' + data.resourceId +'/item/'+scope.totalItem);
           });
         };
     }

@@ -67,8 +67,8 @@
         		 location.path('/viewmrn/'+ scope.val[2]);
         	 }
            };
-        scope.routeToitem = function(id){
-            location.path('/viewitem/'+ parseInt(id)+'/item');
+        scope.routeToitem = function(id,totalitem){
+            location.path('/viewitem/'+ parseInt(id)+'/item/'+parseInt(totalitem));
           };
          
         

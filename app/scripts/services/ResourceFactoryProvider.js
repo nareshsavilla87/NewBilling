@@ -358,7 +358,7 @@
        	 get: {method: 'GET', params: {}},
        	update: { method: 'PUT' }
        }),
-       KeyInfoResource: defineResource(apiVer + "/keyinfo", {},{
+       KeyInfoResource: defineResource(apiVer + "/licensekey", {},{
          	 get: {method: 'GET', params: {}}
          }),
         OrderrenewalResource: defineResource(apiVer + "/orders/renewal/:orderId", {orderId:'@orderId'},{
