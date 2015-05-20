@@ -42,6 +42,7 @@
  	"btn.ok"			   		: "allt í lagi",
  	"btn.submit"				: "leggja",
  	"btn.topup"					: "hæstu sig upp",
+ 	"btn.close"					: "Loka",
  	
  "#labels"  :  "--------------------------",
  	"label.product.name" 		: "OBS",
@@ -926,7 +927,24 @@
 
 "#paymentgatewayresponser":"",
 "label.cardType":"kortið Týpa",
-"label.cardNumber":"kortið Númer"
+"label.cardNumber":"kortið Númer",
+
+"#service":"------------------------",
+"label.currently.subscribed.Packs"					: "Þú ert áskrifandi að eftirfarandi Pakkningar:",
+"label.view"										: "útsýni",
+"label.price.symbol"								: "Rs.",
+"label.wish.tochange"								: "Óska eftir að Breyta :",
+"label.wish.totopup"								: "Óska eftir að TopUp :",
+"label.addpack.info"								: "Ef þú vilt bæta við pakka, vinsamlegast veldu einn af eftirfarandi pakkningum og smelltu á 'Bæta Pakki':",
+"label.anotherpack.info"							: "Ef þú vilt bæta við öðrum pakka, vinsamlegast veldu einn af eftirfarandi pakkningum og smelltu á 'Bæta Pakki':",
+"label.changepack.info"								: "Ef þú vilt breyta pakki, vinsamlegast veldu einn af eftirfarandi pakkningum og smelltu á 'Breyta Pakki':",
+"label.topuppack.info"								: "Ef þú vilt TopUp pakka, vinsamlegast veldu einn af endurnýjunartímabils og smelltu á 'Top Up':",
+"btn.add.pack"										: "Bæta pakki",
+"btn.change.pack"									: "Breyta pakki",
+"btn.topup.pack"									: "Top Up pakki",
+"label.uncheck"										: "Afhakaðu",
+
+"error.msg.paypal.recurring.notpossible":"Endurtekinn ekki hægt að þessu samningstímans"
 
 
 
