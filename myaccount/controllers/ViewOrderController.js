@@ -1,4 +1,4 @@
-ViewOrderController = function(scope,RequestSender,routeParams,$modal,dateFilter,route,localStorageService) {
+ViewOrderController = function(scope,RequestSender,routeParams,$modal,dateFilter,route,localStorageService,rootScope) {
 	
 		  scope.orderId = routeParams.orderId;
 		  scope.clientId = routeParams.clientId;
@@ -33,7 +33,7 @@ ViewOrderController = function(scope,RequestSender,routeParams,$modal,dateFilter
         		  var reqDate = dateFilter($scope.start.date,'dd MMMM yyyy');
         	        $scope.formData.dateFormat = 'dd MMMM yyyy';
         	        $scope.formData.disconnectionDate = reqDate;
-        	        $scope.formData.locale = "en";
+        	        $scope.formData.locale = rootScope.localeLangCode;
         		  
         	        RequestSender.bookOrderResource.update({'orderId': scope.orderDataId},$scope.formData,function(data){
         	        	$modalInstance.close('delete');
@@ -70,4 +70,5 @@ selfcareApp.controller('ViewOrderController', ['$scope',
                                                'dateFilter',
                                                '$route', 
                                                'localStorageService', 
+                                               '$rootScope', 
                                                ViewOrderController]);

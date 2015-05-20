@@ -81,7 +81,7 @@ ChangeKortaTokenController = function(scope, RequestSender, location,localStorag
 						  alert("Please Configure the Server Type Properly. Either 'TEST' or 'LIVE'");
 						  location.path('/profile');
 					  }
-					  
+					  localStorageService.add("secretCode",secretCode);
 					  scope.md5value=md5(scope.md5data);
 				  }
 			  });

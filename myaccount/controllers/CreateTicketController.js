@@ -1,4 +1,4 @@
-	  CreateTicketController = function(scope, RequestSender, location, dateFilter,localStorageService) {
+	  CreateTicketController = function(scope, RequestSender, location, dateFilter,localStorageService,rootScope) {
             
 			scope.priorityTypes = [];
 			scope.formData={};						
@@ -43,7 +43,7 @@
 			 }
 					        
 			scope.submit = function() { 
-				this.formData.locale = 'en';
+				this.formData.locale = rootScope.localeLangCode;
 				scope.first.time=$('#timepicker1').val();
 				var reqDueDate = dateFilter(scope.first.date,'yyyy-MM-dd');
 				if(scope.first.date==null||scope.first.time==''){
@@ -58,7 +58,7 @@
 				this.formData.dateFormat = 'dd MMMM yyyy';
 				this.formData.ticketTime = ' '+new Date().toLocaleTimeString().replace("IST","").trim();
 				RequestSender.ticketResource.save({'clientId': scope.clientId},this.formData,function(data){
-					location.path('/profile');
+					location.path('/tickets');
                });
          };
     };
@@ -68,5 +68,6 @@ selfcareApp.controller('CreateTicketController', ['$scope',
                                                   '$location',
                                                   'dateFilter', 
                                                   'localStorageService', 
+                                                  '$rootScope', 
                                                   CreateTicketController]);
 
