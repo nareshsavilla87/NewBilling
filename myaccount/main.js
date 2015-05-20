@@ -61,8 +61,21 @@ if(localStorageService.get('localeLang')){
 	   };
 	   
 }else{
-	for(var i in scope.langs) if(scope.langs[i].code == selfcareModels.locale) scope.localeLang = scope.langs[i];
+	for(var i in scope.langs){
+		if(scope.langs[i].code == selfcareModels.locale) {
+			tmhDynamicLocale.set(scope.langs[i].code);
+			scope.localeLang = scope.langs[i];
+		}
+	}
 }
+
+var localeLang = '';
+scope.$watch(function () {
+	 localStorageService.get('localeLang') ? localeLang = localStorageService.get('localeLang') : localeLang = selfcareModels.locale;
+    return localeLang;
+}, function () {
+    scope.localeLangCode = localeLang;
+});
 
 //set the language code when change the language 
  scope.changeLang = function (lang) {

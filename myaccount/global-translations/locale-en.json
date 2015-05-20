@@ -42,6 +42,7 @@
  	"btn.ok"			   		: "OK",
  	"btn.submit"				: "Submit",
  	"btn.topup"					: "TopUp",
+ 	"btn.close"					: "Close",
  	
  "#labels"  :  "--------------------------",
  	"label.product.name" 		: "OBS",
@@ -928,6 +929,21 @@
 "#paymentgatewayresponser":"",
 "label.cardType":"Card Type",
 "label.cardNumber":"Card Number",
+
+"#service":"------------------------",
+"label.currently.subscribed.Packs"					: "You are currently subscribed to the following Packs:",
+"label.view"										: "view",
+"label.price.symbol"								: "Rs.",
+"label.wish.tochange"								: "Wish to Change :",
+"label.wish.totopup"								: "Wish to  TopUp :",
+"label.addpack.info"								: "If you wish to add pack, please choose one of the following packs, and click on ‘Add Pack’:",
+"label.anotherpack.info"							: "If you wish to add another pack, please choose one of the following packs, and click on ‘Add Pack’:",
+"label.changepack.info"								: "If you wish to change pack, please choose one of the following packs, and click on ‘Change Pack’:",
+"label.topuppack.info"								: "If you wish to TopUp pack, please choose one of the Renewal Period, and click on ‘Top Up’:",
+"btn.add.pack"										: "Add Pack",
+"btn.change.pack"									: "Change Pack",
+"btn.topup.pack"									: "Top Up Pack",
+"label.uncheck"										: "Uncheck",
 
 "error.msg.paypal.recurring.notpossible":"Recurring Not Possible to this Contract Period"
 

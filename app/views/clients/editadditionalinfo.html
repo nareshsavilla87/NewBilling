@@ -52,7 +52,7 @@
           <ul class="breadcrumb">
             <li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
             <li><a href='#/viewclient/{{clientId}}'>{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
-              <li class="active">{{'label.editclient' | translate}}</li>
+              <li class="active">{{'label.editclient.info' | translate}}</li>
           </ul>
         </div>
 	 <div class="error" data-ng-show="errorStatus || errorDetails">
@@ -61,10 +61,10 @@
 		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
         <fieldset>
-          <legend>{{'label.editclient' | translate}}</legend>
+          <legend>{{'label.editclient.info' | translate}}</legend>
 		<table>
 		
-         <tr ng-show="clientAddInfo">
+         <tr >
            <td>
 	          <div class="control-group">
 	            <label class="control-label">{{'label.gender' | translate}}</label>

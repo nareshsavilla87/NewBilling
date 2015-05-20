@@ -97,6 +97,9 @@ selfcareApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/paypalredirection',{
     	templateUrl: 'views/paypalredirection.html'
+    })
+    .when('/events',{
+    	templateUrl: 'views/events.html'
     });
        
     $locationProvider.html5Mode(false);
