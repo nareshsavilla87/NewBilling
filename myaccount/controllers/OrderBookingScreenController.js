@@ -32,7 +32,7 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 				if(screenName == "additionalorders"){
 					orderBookingData.billAlign 		= false;
 					orderBookingData.isNewplan 		= true;
-					orderBookingData.locale 		= 'en'; 
+					orderBookingData.locale 		= rootScope.localeLangCode; 
 					orderBookingData.dateFormat 	= 'dd MMMM yyyy'; 
 					var reqDate 					= dateFilter(new Date(),'dd MMMM yyyy');
 					orderBookingData.start_date 	= reqDate; 
@@ -64,7 +64,7 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 					var changeOrderData 			 = {};
 					changeOrderData.billAlign 		 = false;
 					changeOrderData.isNewplan 		 = false;
-					changeOrderData.locale 			 = 'en'; 
+					changeOrderData.locale 			 = rootScope.localeLangCode; 
 					changeOrderData.dateFormat 		 = 'dd MMMM yyyy'; 
 					var reqDate 					 = dateFilter(new Date(),'dd MMMM yyyy');
 					changeOrderData.start_date 		 = reqDate; 
@@ -99,6 +99,7 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 				}else if(screenName == "renewalorder"){
 						 var renewalOrderData 			 = {};
 						 renewalOrderData.renewalPeriod  = planData.contractId; 
+						 renewalOrderData.priceId  		 = priceId; 
 						 renewalOrderData.description	 = 'Order Renewal through selfcare'; 
 						 
 						 var orderId						 = "";
@@ -147,7 +148,7 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 					 							optType 		: mediaDatas[i].optType,
 					 							formatType 		: mediaDatas[i].quality,
 					 							clientId 		: clientId,
-					 							locale 			: 'en',
+					 							locale 			: rootScope.localeLangCode,
 					 							eventBookedDate : reqDate,
 					 							dateFormat 		: 'dd MMMM yyyy',
 					 							deviceId 		: clientData.hwSerialNumber
