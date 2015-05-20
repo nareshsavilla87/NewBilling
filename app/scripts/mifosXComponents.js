@@ -323,7 +323,8 @@ define(['underscore', 'mifosX'], function() {
       'ContextMenuDirective',
       'AutofocusDirective',
       'ChosenComboboxDirective',
-      'NgAutoFocusFunDirective'
+      'NgAutoFocusFunDirective',
+      'inputDisableDirective'
     ]
   };
   

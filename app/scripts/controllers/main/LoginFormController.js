@@ -19,7 +19,6 @@
           }
         });
       scope.$on("UserAuthenticationFailureEvent", function(data) {
-    	  $rootScope.errorStatus='Invalid License';
     	  if($rootScope.errorStatus=='Invalid License'){
     		  
     	  }else{

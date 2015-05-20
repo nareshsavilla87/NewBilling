@@ -2,7 +2,7 @@
       <div>
         <ul class="breadcrumb">
           <li><a href="#/inventory">{{'link.inventory' | translate}}</a> <span class="divider">/</span></li>
-          <li><a href="#/viewitem/{{formData.id}}">&nbsp;{{formData.itemCode}}&nbsp;</a> <span class="divider">/</span></li>
+          <li><a href="#/viewitem/{{formData.id}}/item/{{totalItem}}">&nbsp;{{formData.itemCode}}&nbsp;</a> <span class="divider">/</span></li>
           <li class="active">{{'label.item.edit' | translate}}</li>
         </ul>
       </div>
@@ -106,7 +106,7 @@
             			</div>
           				</div>
 					</td>
-					<td>
+					<!-- <!-- <td>
 						<div class="control-group">
            				<label class="control-label" for="unitPrice ">Default Price&nbsp;<span class="required">*</span></label>
            				<div class="controls">
@@ -116,7 +116,7 @@
              			</span>
            				</div>
           				</div>
-					</td>
+					</td> --> 	
 				</tr>
 			
 			</table>

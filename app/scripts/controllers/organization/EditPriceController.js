@@ -16,6 +16,7 @@
             scope.chargevariants=data.chargevariant;
             scope.discountdatas=data.discountdata;
             scope.subscriptiondata = data.contractPeriods;
+            scope.serviceDatas.push({"id":0,"serviceCode":"none","serviceDescription":"None"});
         });
         
         scope.submit = function() {

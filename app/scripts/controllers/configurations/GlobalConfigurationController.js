@@ -67,44 +67,97 @@
     			});
             }
             
-            scope.editpaymentgatewayConfig = function(id,name) {
+            scope.editPaymentGateway = function(id,name,value) {
 				scope.errorStatus = [];
 				scope.errorDetails = [];
-				scope.editId = id;
-				
-				if(name == 'korta'){
+				var v = angular.fromJson(value);
+				if(typeof(v) == "object"){
 					$modal.open({
-						templateUrl : 'editKorta.html',
-						controller : editKortaController,
-						resolve : {}
+						templateUrl : 'editconfig.html',
+						controller : editConfigController,
+						resolve : {
+							configId: function () {
+						          return id;
+						        }
+						}
 					});
-				} 
-				
-				if(name == 'paypal'){
+				}else {
 					$modal.open({
-						templateUrl : 'editPaypal.html',
-						controller : editPaypalController,
-						resolve : {}
-					});
-				} 
-				
-				if(name == 'dalpay'){
-					$modal.open({
-						templateUrl : 'editdalpay.html',
-						controller : editDalpayController,
-						resolve : {}
+						templateUrl : 'editgeneral.html',
+						controller : editgeneralController,
+						resolve : {
+							configId: function () {
+						          return id;
+						        }
+						}
 					});
 				}
+			};
+			
+			function editConfigController($scope, $modalInstance,configId) {
+				$scope.keyValues = [];
+				resourceFactory.paymentGatewayConfigurationResource.get({ configId : configId }, function(data) {		
+					var val = angular.fromJson(data.value);
+					if(Object.keys(val).length==0){
+						$scope.createConfigParams();
+					}else{
+						for(var i in Object.keys(val)){
+							var key = Object.keys(val)[i];
+							var value = val[key];
+							$scope.keyValues.push({key : key , value : value,disable:true});
+						}
+					}
+				});
 				
-				if(name == 'globalpay'){
-					$modal.open({
-						templateUrl : 'editGlobalpay.html',
-						controller : editGlobalpayController,
-						resolve : {}
+				$scope.createConfigParams = function(){
+					$scope.keyValues.push({key : "" , value : "",disable:false});
+				};
+				$scope.editConfigParams = function(index,key){
+					$(".configParam"+key).removeAttr("disabled");
+					$scope.keyValues[index].disable = false;
+				};
+				$scope.deleteConfigParams = function(index){
+					$scope.keyValues.splice(index,1);
+				};
+				
+				$scope.submit = function() {
+					$scope.editedData = {};
+					for(var i in $scope.keyValues){
+						$scope.editedData[$scope.keyValues[i].key] = $scope.keyValues[i].value;
+					}
+						
+					$scope.updateData = {value:angular.toJson($scope.editedData)};
+					resourceFactory.paymentGatewayConfigurationResource.update({configId : configId}, $scope.updateData, function(data) {
+						$modalInstance.close('delete');
+						route.reload();
 					});
+				};
+				$scope.cancel = function() {
+					$modalInstance.dismiss('cancel');
+				};
+			};
+			
+			function editgeneralController($scope, $modalInstance,configId) {
 
-				}
+				$scope.formData = {};
+				$scope.updateData = {};
+	
+				// DATA GET
+				resourceFactory.paymentGatewayConfigurationResource.get({ configId : configId }, function(data) {		
+					$scope.formData.value = data.value;
+				});
 
+				$scope.submit = function() {
+					resourceFactory.paymentGatewayConfigurationResource.update({configId : configId}, $scope.formData, function(data) {
+						$modalInstance.close('delete');
+						route.reload();
+					}, function(errData) {
+						$scope.paypalFlag = false;
+					});
+				};
+				$scope.cancel = function() {
+					$modalInstance.dismiss('cancel');
+				};
 			};
 			
             scope.edit= function(id){
@@ -282,6 +335,22 @@
 	                }
 	            };
 	            
+	            scope.enablePaymentGateway = function (id, name) {
+	                    var temp = {'enabled': 'true'};
+	                    resourceFactory.paymentGatewayConfigurationResource.update({'configId': id}, temp, function (data) {
+	                        route.reload();
+	                        webStorage.add("global_configuration",data.globalConfiguration);
+	                    });
+	            };
+	            
+	            scope.disablePaymentGateway = function (id, name) {
+	                    var temp = {'enabled': 'false'};
+	                    resourceFactory.paymentGatewayConfigurationResource.update({'configId': id}, temp, function (data) {
+	                        route.reload();
+	                        webStorage.add("global_configuration",data.globalConfiguration);
+	                    });
+	            };
+	            
 	            //client Configuration
 	            
 	            scope.getConfigLookUp = function(){
@@ -318,169 +387,6 @@
 	                });
 	            };
 	            
-	    		var editGlobalpayController = function($scope, $modalInstance) {
-
-					$scope.formData = {};
-					$scope.statusData = [];
-					$scope.updateData = {};
-
-					// DATA GET
-					resourceFactory.paymentGatewayConfigurationResource.get({ configId : scope.editId }, function(data) {
-						var value = data.value;
-						var arr = value.split(",");
-						var merchantId = arr[0].split('"');
-						var userName = arr[1].split('"');
-						var password = arr[2].split('"');
-
-						$scope.formData.merchantId = merchantId[3];
-						$scope.formData.userName = userName[3];
-						$scope.formData.password = password[3];
-					});
-
-					$scope.submit = function() {
-						
-						$scope.kortaData = {
-							"value" : '{"merchantId" : "' + $scope.formData.merchantId
-									+ '","userName" : "' + $scope.formData.userName
-									+ '","password" : "' + $scope.formData.password
-									+ '"}'
-						};
-						$scope.updateData.value = $scope.kortaData.value;
-						//console.log(this.updateData);
-						resourceFactory.paymentGatewayConfigurationResource.update({configId : scope.editId}, $scope.updateData, function(data) {
-							$modalInstance.close('delete');
-							route.reload();
-						}, function(errData) {
-							$scope.paypalFlag = false;
-						});
-					};
-					$scope.cancel = function() {
-						$modalInstance.dismiss('cancel');
-					};
-				};
-				
-				var editKortaController = function($scope, $modalInstance) {
-
-					$scope.formData = {};
-					$scope.statusData = [];
-					$scope.updateData = {};
-
-					// DATA GET
-					resourceFactory.paymentGatewayConfigurationResource.get({ configId : scope.editId }, function(data) {
-						var value = data.value;
-						var arr = value.split(",");
-						var merchantId = arr[0].split('"');
-						var terminalId = arr[1].split('"');
-						var secretCode = arr[2].split('"');
-
-						$scope.formData.merchantId = merchantId[3];
-						$scope.formData.terminalId = terminalId[3];
-						$scope.formData.secretCode = secretCode[3];
-					});
-
-					$scope.submit = function() {
-						
-						$scope.kortaData = {
-							"value" : '{"merchantId" : "' + $scope.formData.merchantId
-									+ '","terminalId" : "' + $scope.formData.terminalId
-									+ '","secretCode" : "' + $scope.formData.secretCode
-									+ '"}'
-						};
-						$scope.updateData.value = $scope.kortaData.value;
-						//console.log(this.updateData);
-						resourceFactory.paymentGatewayConfigurationResource.update({configId : scope.editId}, $scope.updateData, function(data) {
-							$modalInstance.close('delete');
-							route.reload();
-						}, function(errData) {
-							$scope.paypalFlag = false;
-						});
-					};
-					$scope.cancel = function() {
-						$modalInstance.dismiss('cancel');
-					};
-				};
-
-				var editDalpayController = function($scope, $modalInstance) {
-
-					$scope.formData = {};
-					$scope.statusData = [];
-					$scope.updateData = {};
-					//console.log(scope.editId);
-
-					// DATA GET
-					resourceFactory.paymentGatewayConfigurationResource.get({configId : scope.editId}, function(data) {
-						var value = data.value;
-						var arr = value.split(",");
-						var url = arr[0].split('"');
-						var merchantId = arr[1].split('"');
-						var pageId = arr[2].split('"');
-
-						$scope.formData.url = url[3];
-						$scope.formData.merchantId = merchantId[3];
-						$scope.formData.pageId = pageId[3];
-					});
-					
-					$scope.submit = function() {
-						
-						$scope.dalpayData = {
-							"value" : '{"url" : "' + $scope.formData.url
-									+ '","merchantId" : "' + $scope.formData.merchantId
-									+ '","pageId" : "' + $scope.formData.pageId
-									+ '"}'
-						};
-						$scope.updateData.value = $scope.dalpayData.value;
-
-						resourceFactory.paymentGatewayConfigurationResource.update({configId : scope.editId}, $scope.updateData, function(data) {
-							$modalInstance.close('delete');
-							route.reload();
-						}, function(errData) {
-							$scope.paypalFlag = false;
-						});
-					};
-					$scope.cancel = function() {
-						$modalInstance.dismiss('cancel');
-					};
-				};
-
-				var editPaypalController = function($scope, $modalInstance) {
-
-					$scope.formData = {};
-					$scope.statusData = [];
-					$scope.updateData = {};
-
-					// DATA GET
-					resourceFactory.paymentGatewayConfigurationResource.get({ configId : scope.editId }, function(data) {
-						var value = data.value;
-						var arr = value.split(",");
-						var paypalUrl = arr[0].split('"');
-						var paypalEmailId = arr[1].split('"');
-
-						$scope.formData.url = paypalUrl[3];
-						$scope.formData.emailId = paypalEmailId[3];
-					});
-
-					$scope.submit = function() {
-						$scope.paypalFlag = true;
-						//consoe.log($scope.clientId);
-						$scope.paypalData = {
-							"value" : '{"paypalUrl" : "' + $scope.formData.url
-									+ '","paypalEmailId" : "' + $scope.formData.emailId
-									+ '"}'
-						};
-						$scope.updateData.value = $scope.paypalData.value;
-						//console.log(this.updateData);
-						resourceFactory.paymentGatewayConfigurationResource.update({configId : scope.editId}, $scope.updateData, function(data) {
-							$modalInstance.close('delete');
-							route.reload();
-						}, function(errData) {
-							$scope.paypalFlag = false;
-						});
-					};
-					$scope.cancel = function() {
-						$modalInstance.dismiss('cancel');
-					};
-				};
-
 				scope.paymentConfigenable = function(id) {
 
 					var temp = {'enabled' : 'true'};

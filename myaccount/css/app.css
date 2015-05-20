@@ -23,7 +23,7 @@ body, html {
 .well {
     background-color: #FFFFFF;
     border: 1px solid #E3E3E3;
-    border-radius: 4px 4px 4px 4px;
+    border-radius: 15px 15px 15px 15px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
     margin-bottom: 20px;
     min-height: 20px;
@@ -464,7 +464,7 @@ tr.pointer-main:hover {
 
 .activate {
     font-weight: bold;
-	border-bottom: thin solid #FFF;
+	/* border-bottom: thin solid #FFF; */
 }
 
 div[data-angular-treeview] {
@@ -1209,6 +1209,11 @@ td .indextdbox{
 	width:300px;
 }
 
+ .table-striped tbody > tr.selectedOne > td {
+	 background-color: #e7f5fe;
+	 color : #ffffff !important;
+}
+
 .boxmaxheight{
 	min-height:275px;;
 }
@@ -1237,6 +1242,10 @@ td .indextdbox{
 
 .marginleft40{
 	margin-left:40px;
+}
+
+.marginleft30{
+	margin-left:30px;
 }
 
 .marginright20{
@@ -1300,9 +1309,179 @@ td .indextdbox{
 	top : -4px;
 }
 
-.margintop5px{
+/*new changes for selfcare*/
+.loginbtn{
+	
+	margin-left:10%;
+	margin-top:2%;
+	padding:5px 27px;
+}
+
+.container td.fontinherit:first-child{
+	font-weight: inherit;
+	 
+}
+
+.marginround25{
+	margin: 25px;
+}
+
+.fontsize16{
+	font-size: 16px;
+}
+
+.fontweight700{
+	font-weight: 700;
+}
+
+.container td:last-child.paddingleftnone{
+	padding-left: 0;
+}
+
+.container td:first-child.paddingleftnone{
+	padding-left: 0;
+	font-weight: 100;
+}
+
+.container td:first-child.fontweightnone{
+	font-weight: 100;
+}
+
+.container td:first-child.paddingleft7{
+	padding-left: 7%;
+}
+
+.padding0{
+	padding: 0;
+}
+
+.lightbluecolor{
+	color: #2591dc;
+}
+.lightblue:hover,
+.lightblue:focus,
+.lightblue:active,
+.lightblue.active,
+.lightblue.disabled,
+.lightblue[disabled] {
+  color: #ffffff;
+  background-color:  #35b2df;
+  *background-color:  #35b2df;
+}
+
+.indexheader-span{
+	color: #2591dc;
+	font-weight: 500;
+	margin-left: 0;
+}
+
+.fontsize22{
+	font-size: 22px;
+}
+
+.forgotpwd{
+	color:#428bca;
+	font-weight: 500;
+	margin-top: 2%;
+	margin-right: 3%;
+}
+
+.colorwhite{
+	color : #ffffff;
+}
+
+.headersdiv{
+	/* padding-bottom:5px; */
+	background: #647ebc;
+	border-radius: 25px;
+}
+
+.headersdiv h3 {
+	margin: 0;
+	text-transform: uppercase;
+	display:inline;
+}
+
+.headersdiv h3 b.marginleft10 {
+	font-weight: 400;
+	font-size: 20px;
+	color: #FFFFFF;
+}
+
+h3 > b.lightbluecolor{
+	font-weight: 400;
+}
+
+tr.graybg.drakgraybg th {
+     background-color: #939393;
+     color: #ffffff;
+}
+
+tr.graybg.drakgraybg th:first-child{
+	-webkit-border-top-left-radius: 15px;
+	-webkit-border-bottom-left-radius: 15px;
+	-moz-border-radius-topleft: 15px;
+	-moz-border-radius-bottomleft: 15px;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+}
+
+tr.graybg.drakgraybg th:last-child{
+	-webkit-border-top-right-radius: 15px;
+	-webkit-border-bottom-right-radius: 15px;
+	-moz-border-radius-topright: 15px;
+	-moz-border-radius-bottomright: 15px;
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+
+ul.breadcrumb.borderradius15 {
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+}
+
+.table tbody > tr:first-child > td {
+  border-top: 0px ;
+}
+
+.inputserach{
+	margin-right: 15px;
+	margin-top: 9px;
+}
+
+.breadcrumb{
+	 background-color: #939393;
+}
+
+ul.breadcrumb li a{
+	color: #ffffff;
+	font-weight: bolder;
+}
+
+.breadcrumb > li > .divider {
+	color: #ffffff;
+}
+
+.breadcrumb .divider, .breadcrumb .active {
+	color: #ffffff;
+	font-weight: bolder;
+}
+
+.margintop10{
+	margin-top: 10px;
+}
+
+.margintop5{
 	margin-top : 5px;
 }
+
+.navbar .nav > li > a:focus,
+.navbar .nav > li > a:hover {
+	border-bottom: medium none;
+}
+/*new changes for selfcare ended*/
+
 
 /*        .onoffswitch {
     position: relative; width: 90px;

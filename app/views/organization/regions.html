@@ -24,10 +24,10 @@
 				<tr class="pointer-main" data-ng-repeat="region in regions | filter:filterText">
 					<td class="pointer" data-ng-click="routeTo(region.id)">{{region.regionCode}}</td>
 					<td class="pointer" data-ng-click="routeTo(region.id)">{{region.regionName}}</td>
-					<td><a data-ng-show="PermissionService.showMenu('UPDATE_REGION')" href="#/editRegions/{{region.id}}" 
+					<td><a data-ng-show="PermissionService.showMenu('UPDATE_REGION')  && region.regionCode !='Default' " href="#/editRegions/{{region.id}}" 
 						style='color: #000000' data-popover="Edit" data-popover-trigger="mouseenter">
 						<i class="icon-edit"></i></a> 
-						<a data-ng-show="PermissionService.showMenu('DELETE_REGION')" data-ng-click="deleteRegion(region.id)" 
+						<a data-ng-show="PermissionService.showMenu('DELETE_REGION')  && region.regionCode !='Default'" data-ng-click="deleteRegion(region.id)" 
 						style='color: #000000' data-popover="Delete" data-popover-trigger="mouseenter">
 						<i class="icon-remove"></i></a>
 					</td>

@@ -86,8 +86,17 @@ selfcareApp.config(function($routeProvider, $locationProvider) {
     .when('/twocheckoutsuccess',{
     	templateUrl: 'views/twocheckoutsuccess.html'
     })
-    .when('/transc',{
-    	templateUrl: 'views/transaction.jsp'
+    .when('/interswitchintegration/:screenName/:clientId/:planId/:priceId/:amount/:productId/:payItemId',{
+    	templateUrl: 'views/interswitchintegration.html'
+    })
+     .when('/paypalrecurring/:screenName/:clientId/:planId/:priceId/:price/:emailId',{
+    	templateUrl: 'views/paypalrecurring.html'
+    })
+    .when('/paypalrecurringsuccess/:screenName/:clientId/:planId/:priceId',{
+    	templateUrl: 'views/paypalrecurringsuccess.html'
+    })
+    .when('/paypalredirection',{
+    	templateUrl: 'views/paypalredirection.html'
     });
        
     $locationProvider.html5Mode(false);

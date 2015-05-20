@@ -1,4 +1,4 @@
-ChangeOrderController = function(scope,RequestSender,routeParams,localStorageService) {
+ChangeOrderController = function(scope,RequestSender,routeParams,localStorageService,location) {
 		  
 	scope.clientId 	= routeParams.clientId || "";
 	var orderId 	= routeParams.orderId || "";
@@ -17,6 +17,10 @@ ChangeOrderController = function(scope,RequestSender,routeParams,localStorageSer
 	  }
 	  
   };
+  
+  scope.isSelectedPlan = function(planId){
+		return planId === scope.selectedPlanId;
+	};
 	
   if(localStorageService.get("clientTotalData")){
 	RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
@@ -52,6 +56,16 @@ ChangeOrderController = function(scope,RequestSender,routeParams,localStorageSer
 	  });
    });
   }
+  
+  scope.checkingRecurringStatus = function(planData){
+		RequestSender.recurringStatusCheckingResource.get({planId:scope.planId,billFrequency:planData.billingFrequency},function(data){
+			if(planData.billingFrequency == data.billFrequencyCode && planData.price == data.price){
+				localStorageService.add("chargeCodeData",{data:data,orderId:orderId});
+				location.path( '/paymentprocess/changeorder/'+planData.id+'/'+scope.planId+'/'+planData.price);
+			}
+		});
+		
+	};
   		
 };
 
@@ -59,6 +73,7 @@ selfcareApp.controller('ChangeOrderController',['$scope',
                                                 'RequestSender',
                                                 '$routeParams',
                                                 'localStorageService',
+                                                '$location',
                                                 ChangeOrderController]);
 
 

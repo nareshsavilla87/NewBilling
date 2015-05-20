@@ -103,7 +103,7 @@
                 <td class="pointer" data-ng-click="routeTogrn(g.id)" style="text-align: center">{{g.balanceQuantity}}</td>
                 <td class="pointer" data-ng-click="routeTogrn(g.id)" style="text-align: left" ng-show="g.orderdQuantity != g.receivedQuantity">Pending</td>
                 <td class="pointer" data-ng-click="routeTogrn(g.id)" style="text-align: left" ng-show="g.orderdQuantity == g.receivedQuantity">Completed</td>
-                <td><a href="#/editgrn/{{g.id}}" popover="Edit Goods Reciept" popover-trigger="mouseenter" class="icon-edit"></a></td>
+                <td><a ng-show="g.orderdQuantity != g.receivedQuantity" href="#/editgrn/{{g.id}}" popover="Edit Goods Reciept" popover-trigger="mouseenter" class="icon-edit"></a></td>
            
      		 </tbody>
           </table>
@@ -190,18 +190,18 @@
 					</thead>
              	 <tbody>
              		 <tr class="pointer-main" ng-repeat="item in items.currentPageItems | filter:filterText">    
-               			<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.itemCode}}</td>        
-                		<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.itemDescription}}</td> 
-                		<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.units}}</td>
+               			<td class="pointer" data-ng-click="routeToitem(item.id,item.totalItems)">{{item.itemCode}}</td>        
+                		<td class="pointer" data-ng-click="routeToitem(item.id,item.totalItems)">{{item.itemDescription}}</td> 
+                		<td class="pointer" data-ng-click="routeToitem(item.id,item.totalItems)">{{item.units}}</td>
                 		<!-- <td class="pointer" data-ng-click="routeToitem(item.id)">{{item.unitPrice || ISK}}</td>  -->
-                		<td class="pointer" data-ng-click="routeToitem(item.id)" style="text-align:center">{{item.warranty}}</td> 
-                		<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.usedItems}}</td>
-                		<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.availableItems}}</td>
-                		<td class="pointer" data-ng-click="routeToitem(item.id)">{{item.totalItems}}</td>
-                		<td><a  data-ng-click="showAudit(item.id)" popover="Show Audit" popover-trigger="mouseenter" class="icon-list icon-white"></a> &nbsp; 
-                		<a ng-show="PermissionService.showMenu('UPDATE_ITEM')" href="#/edititem/{{item.id}}" 
+                		<td class="pointer" data-ng-click="routeToitem(item.id,item.totalItems)" style="text-align:center">{{item.warranty}}</td> 
+                		<td class="pointer" data-ng-click="routeToitem(item.id,item.totalItems)">{{item.usedItems}}</td>
+                		<td class="pointer" data-ng-click="routeToitem(item.id,item.totalItems)">{{item.availableItems}}</td>
+                		<td class="pointer" data-ng-click="routeToitem(item.id,item.totalItems)">{{item.totalItems}}</td>
+                		<td><a  data-ng-click="showAudit(item.id,item.totalItems)" popover="Show Audit" popover-trigger="mouseenter" class="icon-list icon-white"></a> &nbsp; 
+                		<a ng-show="PermissionService.showMenu('UPDATE_ITEM')" href="#/edititem/{{item.id}}/{{item.totalItems}}" 
                 		                 popover="Edit Item" popover-trigger="mouseenter" class="icon-edit"></a>&nbsp;
-                		<a ng-show="PermissionService.showMenu('DELETE_ITEM')"  data-ng-click="deleteItem(item.id)" 
+                		<a ng-show="PermissionService.showMenu('DELETE_ITEM') && item.totalItems == 0 "  data-ng-click="deleteItem(item.id)" 
                 		popover="Delete Item" popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a>
                 		</td>
              		</tr>

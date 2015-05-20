@@ -10,7 +10,7 @@
 	<div class="row-fluid">
 		<div style="padding:0 30px;">
 		   <div class="span6">
-		   <div><h3 style="text-transform: uppercase;"><b class="marginleft10">{{'link.profile'|translate}}:</b></h3></div>
+		   <div><h3 style="text-transform: uppercase;"><b class="marginleft10 lightbluecolor">{{'link.profile'|translate}}:</b></h3></div>
 				<table class="table table-striped table-bordered fullwidth">
 					<tr>
 						<td width="50%">{{'table.header.profile.accountNumber'|translate}}</td>
@@ -36,6 +36,10 @@
 						<td>{{'table.header.profile.email'|translate}}</td>
 						<td>{{clientData.email}}</td>
 					</tr>
+					<tr data-ng-show="isConfigPassport">
+						<td>{{'table.header.profile.passport'|translate}}</td>
+						<td>{{passport}}</td>
+					</tr>
 					<tr>
 						<td>{{'table.header.profile.nationalid'|translate}}</td>
 						<td>{{clientData.selfcare.nationalId}}</td>
@@ -44,7 +48,7 @@
 		   </div>	
 			  
 			<div class="span5" style="float:right;">
-				 <h3 style="text-transform: uppercase;"><b class="marginleft10">{{'link.address'|translate}}:</b></h3>
+				 <h3 style="text-transform: uppercase;"><b class="marginleft10 lightbluecolor">{{'link.address'|translate}}:</b></h3>
 				<table class="table table-striped table-bordered fullwidth">
 					<tr>
 						<td width="30%">{{'table.header.profile.address'|translate}}</td>
@@ -69,7 +73,7 @@
 				</table>
 				<table class="fullwidth">
 					<tr><td width="80%" style="color:#000000;">
-						<h3 style="text-transform: uppercase;float:right;"><b class="marginleft10"> {{'label.client.balance'|translate}}: </b></h3>
+						<h3 style="text-transform: uppercase;float:right;"><b class="marginleft10 lightbluecolor"> {{'label.client.balance'|translate}}: </b></h3>
 					</td><td width="20%">
 					  <h3 style="text-transform: uppercase;"><b class="marginleft10" style="color:#4C66A4;"> {{clientData.balanceAmount}}  </b></h3>
 					</td><td>
@@ -78,7 +82,7 @@
 				</table>
 				<div style="float:right;" data-ng-hide="clientData.selfcare.authPin=='Not Available'">
 				  <h3 style="text-transform: uppercase;line-height:10px;">
-					<b class="marginleft10" style="margin-left: 0px;">{{'table.header.profile.authpin'|translate}}:</b>
+					<b class="marginleft10 lightbluecolor" style="margin-left: 0px;">{{'table.header.profile.authpin'|translate}}:</b>
 					<b class="marginleft10" style="color:#4C66A4;">{{clientData.selfcare.authPin}}</b>
 				  </h3>
 				</div>
@@ -87,13 +91,14 @@
 	</div>
 	<div style="border-bottom: thin solid #E3E4E5;width:100%;margin-bottom:50px;"></div>
 	<div class="paddedbottom10">
-		<div style="padding-bottom:5px;background: #939393;">
-		  <h3 style="margin: 0;text-transform: uppercase;display:inline;"><b class="marginleft10" style="font-size: 20px;color: #FFFFFF;">{{'link.statements'|translate}}</b></h3>
-		  <input data-ng-model="filterText" type="text" data-ng-autofocus="true" class="span marginbottom0px" style="margin-right: 15px;margin-top: 6px;" placeholder="{{'placeholder.enter.text.search'|translate}}" />
+		<div class="headersdiv">
+		  <h3><b class="marginleft10">{{'link.statements'|translate}}</b></h3>
+		   <input type="text"  class="search-query span3 pull-right inputserach" data-ng-model="filterText" 
+		   		 style="width:170px;min-height: 22px;" data-ng-autofocus="true" placeholder="{{ 'placeholder.enter.text.search' | translate }}">
 		</div>
-		<div><table class="table">
+		<div><table class="table margintop10">
 			 <thead>
-	  		   <tr class="graybg">
+	  		   <tr class="graybg drakgraybg">
 	             <th>{{'table.header.statement.billdate'|translate}}</th>
 	             <th>{{'table.header.statement.duedate'|translate}}</th>
 	             <th>{{'table.header.statement.amount'|translate}}</th>
@@ -118,7 +123,7 @@
     	</ul>
 	</div>
 	<div style="border-bottom: thin solid #E3E4E5;width:100%;margin-bottom:50px;"></div>
-	<div class="paddedbottom10">
+	<!-- <div class="paddedbottom10">
 		<div style="padding-bottom:5px;background: #939393;">
 		  <h3 style="margin: 0;text-transform: uppercase;display:inline;"><b class="marginleft10" style="font-size: 20px;color: #FFFFFF;">{{'link.tickets'|translate}}</b></h3>
 		  <input data-ng-model="filterText1" type="text" class="span marginbottom0px" style="margin-right: 15px;margin-top: 6px;" placeholder="{{'placeholder.enter.text.search'|translate}}" />
@@ -151,5 +156,5 @@
 			<li class="next" ><a data-ng-click="ticketsData.next()" data-ng-disabled="!ticketsData.hasNext()">{{'btn.next'|translate}} &rarr;</a></li>
     	</ul>
 	</div>
-	<div style="border-bottom: thin solid #E3E4E5;width:100%;margin-bottom:50px;"></div>
+	<div style="border-bottom: thin solid #E3E4E5;width:100%;margin-bottom:50px;"></div> -->
 </div>

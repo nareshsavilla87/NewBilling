@@ -46,6 +46,15 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 							localStorageService.remove("gatewayStatus");
 							successFun(planData);
 						});
+					}
+					else if(gatewayStatus == "RECURRING"){
+						orderBookingData.status 	= gatewayStatus;
+						orderBookingData.actionType	= screenName;
+						RequestSender.scheduleOrderResource.save({clientId : clientId},orderBookingData,function(data){
+							localStorageService.remove("gatewayStatus");
+							location.path('/services');
+						});
+						
 					}else{
 						RequestSender.bookOrderResource.save({clientId : clientId},orderBookingData,function(data){
 							successFun(planData);
@@ -74,6 +83,14 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 							localStorageService.remove("gatewayStatus");
 							successFun(planData);
 						});
+					}else if(gatewayStatus == "RECURRING"){
+						changeOrderData.status 	= gatewayStatus;
+						changeOrderData.actionType	= screenName;
+						RequestSender.scheduleOrderResource.save({clientId : clientId},changeOrderData,function(data){
+							localStorageService.remove("gatewayStatus");
+							location.path('/services');
+						});
+						
 					}else{
 						RequestSender.changeOrderResource.update({'orderId':orderId},changeOrderData,function(data){
 							successFun(planData);

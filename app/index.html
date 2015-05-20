@@ -10,16 +10,59 @@
 </script> -->
 
 </head>
-<body  class="preview" id="top" data-spy="scroll" data-target=".subnav"  data-offset="80"  data-ng-controller="MainController">
+<body  class="preview " id="top" data-spy="scroll" data-target=".subnav"  data-offset="80"  data-ng-controller="MainController">
  <div data-ng-hide="domReady" style="position: absolute;margin-top:230px; top:0px;left:500px;">
     <div>
         <img src="./images/loading.gif" >
     </div>    
 </div> 
 <!-- Login Form  -->
-<div class="container well" data-ng-cloak  data-ng-hide="currentSession.user != null" >
+<div class="container well bgimg" data-ng-cloak  data-ng-hide="currentSession.user != null" >
 
-    <div class="row form-search ng-pristine ng-valid paddedbottom" data-ng-form="loginForm" data-ng-controller="LoginFormController">
+	<table class="fullwidth"><tr>
+	  <td width="58%" style="padding-top: 55px;">
+	  	<table class="fullwidth">
+	        <tr>
+	            <td width="30%" align="right">
+	                <img src="./images/BillingX_logo.png" alt="BillingX" width="150">
+	            </td>    
+	            <td width="70%">
+	                <h1 class="logocss">{{ 'label.product.name' | translate }}</h1>
+	                <span class="darkthick">{{ 'label.product.version' | translate }}</span><br/>
+	                <span class="darkthick">{{ 'label.product.status' | translate }}</span><br/>
+	                <span class="darkthick">{{ 'label.product.aboutus1' | translate }}<a target="http://www.openbillingsystem.com/" href="http://www.openbillingsystem.com/">{{ 'label.community.name' | translate }}</a>.
+	            </td>
+	        </tr>
+	    </table>  
+	  </td>
+	  <td valign="top">
+	  <div class="form-search ng-pristine ng-valid paddedbottom" data-ng-form="loginForm" data-ng-controller="LoginFormController">
+  		<div class="pull-right ">
+           <span class="dropdown darkthick" > {{ 'label.change.language' | translate }}
+             <a class="dropdown-toggle btn btn-primary lightbluebtn"> {{optlang.name}} <i class="icon-sort-down"></i> </a>
+             <ul class="dropdown-menu">
+               <li ng-repeat="lang in langs"> <a ng-click="changeLang(lang)">{{lang.name}}</a></li>
+             </ul>
+           </span>
+        </div>
+        <br/><br/>
+        <div class="pull-right">
+
+            <input ng-autofocus="true" type="text" data-ng-model="loginCredentials.username"   placeholder="{{ 'label.username' | translate }}" value="billing" class="input-small" required>
+            <input id="pwd"  type="password" data-ng-model="loginCredentials.password"   placeholder="{{ 'label.password' | translate }}" value="password" class="input-small"  required>
+            <button class="btn btn-primary lightbluebtn" type="submit" data-ng-click="login()">{{ 'label.signin' | translate }}</button>
+        </div>
+        <div class="pull-right required" data-ng-show="authenticationFailed">
+            <p>{{ 'error.login.failed' | translate }}</p>
+        </div>
+        <div class="pull-right required" data-ng-show="errorStatus=='Invalid License'">
+            <p>License Expired. Please contact OBS Adminstrator</p>
+        </div>
+        </div>
+	  </td>
+	  </tr></table>
+
+    <!-- <div class="row form-search ng-pristine ng-valid paddedbottom" data-ng-form="loginForm" data-ng-controller="LoginFormController">
         <div class="pull-right ">
             <span class="dropdown" >
               {{ 'label.change.language' | translate }}
@@ -39,9 +82,9 @@
 
             <input ng-autofocus="true" type="text" data-ng-model="loginCredentials.username"   placeholder="{{ 'label.username' | translate }}" value="billing" class="input-small" required>
             <input id="pwd"  type="password" data-ng-model="loginCredentials.password"   placeholder="{{ 'label.password' | translate }}" value="password" class="input-small"  required>
-            <button class="btn btn-success" type="submit" data-ng-click="login()">{{ 'label.signin' | translate }}</button>
+            <button class="btn btn-primary" type="submit" data-ng-click="login()">{{ 'label.signin' | translate }}</button>
         </div>
-        <div class="pull-right" data-ng-show="authenticationFailed">
+        <div class="pull-right required" data-ng-show="authenticationFailed">
             <p>{{ 'error.login.failed' | translate }}</p>
         </div>
         <div class="pull-right required" data-ng-show="errorStatus=='Invalid License'">
@@ -55,57 +98,61 @@
                 <img src="./images/BillingX_logo.png" alt="BillingX" width="150">
             </td>    
             <td width="70%">
-                <h1>{{ 'label.product.name' | translate }}</h1>
+                <h1 class="logocss">{{ 'label.product.name' | translate }}</h1>
                 <span>{{ 'label.product.version' | translate }}</span><br/>
                 <span>{{ 'label.product.status' | translate }}</span><br/>
                 <span>{{ 'label.product.aboutus1' | translate }}<a target="http://www.openbillingsystem.com/" href="http://www.openbillingsystem.com/">{{ 'label.community.name' | translate }}</a>.
             </td>
         </tr>
     </table>        
-    </div>
-    <div class="row">
+    </div> -->
+    <!-- <table class="fullwidth margintop20"><tr>
+    	<td align="center"><img src="./images/Money-Tree.png" alt="BillingX" width="150"></td>
+    </tr></table> -->
+   <!--  <div class="row headers" > -->
+   <table class="rowheaders"><tr><td>
       <div class="span4">
-            <div style="border: 1px solid #DDDDDD;padding:15px;height:112px">
-                <div style="background-color: #F5F5F5;border-bottom: 1px solid #DDDDDD;padding: 10px 15px;margin: -15px -15px 15px;">
+            <div class="indexheaderbody">
+                <div class="indexheader">
                     <strong>{{ 'label.heading.resources' | translate }}</strong>
                 </div>
                 <ul>
-                    <li><a target="http://help.openbillingsystem.com" href="http://help.openbillingsystem.com">{{ 'label.anchor.usermanual' | translate }}</a></li>
+                    <li><a target="http://help.openbillingsystem.com" href="http://help.openbillingsystem.com" class="darkthick">{{ 'label.anchor.usermanual' | translate }}</a></li>
                     <!-- <li><a target="https://mifosforge.jira.com/wiki/pages/viewpage.action?pageId=14712842" href="https://mifosforge.jira.com/wiki/pages/viewpage.action?pageId=14712842">{{ 'label.anchor.functionalspec' | translate }}</a></li> -->
-                    <li><a target="http://help.openbillingsystem.com" href="http://help.openbillingsystem.com">{{ 'label.anchor.faq' | translate }}</a></li>
+                    <li><a target="http://help.openbillingsystem.com" href="http://help.openbillingsystem.com" class="darkthick">{{ 'label.anchor.faq' | translate }}</a></li>
                 </ul>
             </div>
-    </div>
+    </div></td><td>
     <div class="span4">
-            <div style="border: 1px solid #DDDDDD;padding:15px;height:112px">
-                <div style="background-color: #F5F5F5;border-bottom: 1px solid #DDDDDD;padding: 10px 15px;margin: -15px -15px 15px;">
+            <div class="indexheaderbody">
+                <div class="indexheader">
                     <strong>{{ 'label.heading.community' | translate }}</strong>
                 </div>
                 <ul>
-                <li>support@openbillingsystem.com</li>
-                <li><a target="http://support.openbillingsystem.com" href="http://support.openbillingsystem.com">{{ 'label.anchor.ticket' | translate }}</a></li>
-                <li><a ng-click="updateLicense()" >{{ 'label.update.license.key' | translate }}</a></li>
+                <li class="darkthick">support@openbillingsystem.com</li>
+                <li ><a target="http://support.openbillingsystem.com" href="http://support.openbillingsystem.com" class="darkthick">{{ 'label.anchor.ticket' | translate }}</a></li>
                 
                    <!--  <li><a target="https://groups.google.com/forum/#!forum/mifosusers" href="https://groups.google.com/forum/#!forum/mifosusers">{{ 'label.anchor.usersgroup' | translate }}</a></li>
                     <li><a target="https://groups.google.com/forum/#!forum/mifosdeveloper" href="https://groups.google.com/forum/#!forum/mifosdeveloper">{{ 'label.anchor.developergroup' | translate }}</a></li>
                     <li><a target="http://mifos.org/community/communications/mifos-irc" href="http://mifos.org/community/communications/mifos-irc">{{ 'label.anchor.irc' | translate }}</a></li> -->
                 </ul>
             </div>
-    </div>
+    </div></td><td>
     <div class="span4">
-            <div style="border: 1px solid #DDDDDD;padding:15px;height:112px">
-                <div style="background-color: #F5F5F5;border-bottom: 1px solid #DDDDDD;padding: 10px 15px;margin: -15px -15px 15px;">
+            <div class="indexheaderbody">
+                <div class="indexheader">
                     <strong>{{ 'label.heading.news' | translate }}</strong>
                 </div>
                 <ul>
-                    <li><a target="http://www.openbillingsystem.com" href="http://www.openbillingsystem.com">For latest updated</a></li>
+                    <li><a target="http://www.openbillingsystem.com" href="http://www.openbillingsystem.com"  class="darkthick">For latest updated</a></li>
+                	<li><a ng-click="updateLicense()"  class="darkthick">{{ 'label.update.license.key' | translate }}</a></li>
                     <!-- <li><a target="http://sourceforge.net/projects/mifos/" href="http://sourceforge.net/projects/mifos/">MifosX v1.15.2 is now Available!</a></li>
                     <li><a target="http://google-opensource.blogspot.in/" href="http://google-opensource.blogspot.in/">GSoC blog</a></li> -->
                 </ul>
             </div>
 
-    </div>
-  </div>  
+    </div></td></tr></table>
+  <!-- </div> -->  
 </div>
 <!-- Navbar  -->
 
@@ -235,8 +282,8 @@
     </nav>
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
-            <div class="container" style="width:1035px;">
-                <a class="brand" href="#/home"><img data-ng-hide="image" src="./images/BillingX_logoSmall.png" alt="BillingX" height="20">
+            <div class="container" style="width:1055px;">
+                <a class="brand" href="#/home" style="margin: 0px 0px;background:#fff;"><img data-ng-hide="image" src="./images/BillingX_logoSmall.png" alt="BillingX" height="20">
                 <img data-ng-show="image" src={{image}} alt="BillingX" height="20" width="30"></a>
                 
                 <div class="nav-collapse collapse" id="main-menu">
@@ -244,7 +291,7 @@
                     
                         <!-- <li><a ng-show="PermissionService.showMenu('REPORTING_SUPER_USER')" href="#/home" ng-class="{ activate: isActive('/home') }"><i class="icon-home icon-white"></i>{{ 'link.home' | translate }}</a></li> -->
                         <li>
-                        	<a data-ng-show="PermissionService.showMenu('READ_PROSPECT')" href="#/leads" data-ng-class="{ activate: isActive('/prospects') }">
+                        	<a data-ng-show="PermissionService.showMenu('READ_PROSPECT')" href="#/leads" data-ng-class="{ activate: isActive('/leads') }">
                         		<i class="icon-filter"></i>{{ 'link.prospects' | translate }}
                         	</a>
                         </li>
@@ -262,7 +309,7 @@
                         </li>
                         
                         <li>
-                        	<a data-ng-show="PermissionService.showMenu('READ_TICKET')" data-ng-class="{ activate: isActive('tickets') }" href="#/assignedtickets">
+                        	<a data-ng-show="PermissionService.showMenu('READ_TICKET')" data-ng-class="{ activate: isActive('assignedtickets') }" href="#/assignedtickets">
                         		<i class="icon-money"></i>{{ 'link.tickets' | translate }}
                         	</a>
                         </li>
@@ -295,12 +342,12 @@
                             	</li>
                             	
                             	<li>
-                            		<a href="#/reports/accounting">{{ 'link.reports.accounting' | translate }}</a>
+                            		<a href="#/reports/invoice&collections">Invoice&Collections</a>
                             	</li>
                         	</ul>
                         </li>
                          
-                        <li class="dropdown" id="preview-menu" data-ng-show="user||organization||system||upload||jobs||accounting||smartsearch||paymentGetWay||pooling||provision">
+                        <li class="dropdown" id="preview-menu" data-ng-show="user||organization||system||upload||jobs||accounting||paymentGetWay||pooling||provision">
                             <a class="dropdown-toggle" data-toggle="dropdown" data-ng-class="{ activate: isActive('admin') }" href="#">
                             	<i class="icon-wrench"></i>{{ 'link.admin' | translate }}<b class="caret"></b>
                             </a>
@@ -350,22 +397,24 @@
                                 	</a>
                                 </li>
                                 
-                                <li>
+                                <!-- <li>
                                 	<a data-ng-show="smartsearch=PermissionService.showMenu('READ_GLACCOUNT')&&PermissionService.showMenu('READ_OFFICE')&&PermissionService.showMenu('READ_SMARTSEARCH')" href="#/smartSearch">
                                 		{{ 'link.smartsearch' | translate }}
                                 	</a>
-                                </li>
+                                </li> -->
                                 
                                 <li>
                                 	<a data-ng-show="paymentGetWay=PermissionService.showMenu('READ_PAYMENTGATEWAY')" href="#/paymentGateway">
-                                		PaymentGateway
+                                		{{'label.managepaymentgateway' |translate}}
                                 	</a>
                                 </li>
                                 <!--  <li><a ng-show="provision=PermissionService.showMenu('READ_PROVISIONINGADAPTERSYSTEM')" href="#/provision">Provision</a></li> -->
                                 <li><a href="#/eventaction">EventActions</a></li>
                                <!--  <li><a href="#/disbursements">Disbursements</a></li> -->
-                                <li><a href="#/templates">Templates</a></li>
+                               <!--  <li><a href="#/templates">Templates</a></li> -->
                                 
+                               <!--  <li><a href="#/disbursements">Disbursements</a></li>
+                                <li><a href="#/templates">Templates</a></li> -->
                             </ul>
                         </li>
                     </ul>
@@ -388,7 +437,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="#/profile"><i class="icon-user"></i>{{ 'link.profile' | translate }}</a></li>
                                  <li><a data-ng-show="PermissionService.showMenu('READ_USERCHATMESSAGE')" href="#/messanger"><i class="icon-envelope"></i>{{ 'link.messanger' | translate }}</a></li>
-                                 <li><a data-ng-show="PermissionService.showMenu('ALL_FUNCTIONS')" id="help" href="#/help"><i class="icon-question-sign"></i>{{ 'label.anchor.help' | translate }}</a></li>
+                                  <li><a data-ng-show="PermissionService.showMenu('ALL_FUNCTIONS')" id="changePWD" data-ng-click="changePwd()"><i class="icon-cog"></i>{{ 'label.changepassword' | translate }}</a></li>
                                 <li><a data-ng-show="PermissionService.showMenu('ALL_FUNCTIONS')" href="#/usersetting"><i class="icon-cog"></i>{{ 'link.settings' | translate }}</a></li>
                                 <li><a id="logout" data-ng-click="logout()"><i class="icon-off"></i>{{ 'link.logout' | translate }}</a></li>
                             </ul>
@@ -397,6 +446,11 @@
                     <form data-ng-show="PermissionService.showMenu('READ_SEARCH')" data-ng-submit="search()" class="navbar-search pull-left ng-pristine ng-valid">
                     <input id="search" data-ng-model="search.query" type="text" placeholder="{{ 'label.searchorpress' | translate }}" class="search-query span3">
                     </form>
+                    <a class="brand" href="#/smartSearch" style="font-size: 14px; text-shadow: 0px 0px 0px; padding: 10px 45px;" 
+                    			data-ng-show="PermissionService.showMenu('READ_GLACCOUNT')&&PermissionService.showMenu('READ_OFFICE')&&PermissionService.showMenu('READ_SMARTSEARCH')">
+                    	<img src=./images/advanced_search_icon.png alt="smart-search" width="30" data-popover-placement="bottom" 
+                              data-popover="{{'link.smartsearch'|translate}}" data-popover-trigger="mouseenter">
+					</a>
                 </div>
             </div>
         </div>
@@ -421,6 +475,7 @@
 	<div class="modal-header silver">
         <h3 class="bolder">Update LicenseKey</h3>
     </div>
+<div class="padded-td"><strong>Your License valid till :<span style="color:red">{{kayinfo}}<span></strong></div>
     <div class="modal-body" style="height:160px;">
  <div class="error" ng-show="errorStatus || errorDetails">
 		                 <label>{{'label.contract.error' | translate}}</label>
@@ -455,6 +510,31 @@
                         <a id="submit" class="btn btn-primary" ng-click="approve()">{{'btn.ok' | translate}}</a>
                     </div>
       </script>
+<script type="text/ng-template" id="changepassword.html">
+        <div class="modal-header silver">
+            <h3 class="bolder">{{'label.changepassword' | translate}}</h3>
+        </div>
+
+        <div class="modal-body">
+            <div class="control-group">
+                <label class="control-label" for="password">{{ 'label.password' | translate }}</label>
+                <div class="controls">
+                    <input type="password" id="password" ng-model="formData.password">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="repeatPassword">{{ 'label.repeatpassword' | translate }}</label>
+                <div class="controls">
+                    <input type="password" id="repeatPassword" ng-model="formData.repeatPassword">
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer silver">
+            <button class="btn btn-warning" ng-click="cancel()">{{'label.cancel' | translate}}</button>
+            <button class="btn btn-primary" ng-click="submit()">{{'label.save' | translate}}</button>
+        </div>
+</script>
 </body>
 
 
