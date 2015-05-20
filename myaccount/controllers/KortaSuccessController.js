@@ -52,7 +52,7 @@ KortaSuccessController = function(rootScope,RequestSender,location,localStorageS
         	if(downloadmd5String == downloadmd5){
 	        	
         		if(PaymentMethod == "STNOCAP"){
-        			
+        			localStorageService.remove("secretCode");
         			RequestSender.updateKortaToken.update({clientId : formData.clientId},{kortaToken: kortaToken},function(data){
         				location.$$search = {};
         				location.path('/profile');
