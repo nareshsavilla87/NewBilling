@@ -5,14 +5,34 @@
 	        scope.discountTypeDatas = [];
 	        scope.statusDatas = [];
 	        scope.start = {};
+	        scope.discountPricesFormData={};
+	        scope.clientCategoryDatas=[];
+	        scope.discountPrices =[];
 	        scope.start.date = dateFilter(new Date(), 'dd MMMM yyyy');
 	        
 	        resourceFactory.discountTemplateResource.get(function(data) {
 	        	scope.discountTypeDatas = data.discountTypeData;
 	            scope.statusDatas = data.statusData;
+	            scope.clientCategoryDatas =data.clientCategoryDatas;
 	            scope.formData = {};
 	        });
 	     
+	        scope.addDiscountPrice = function () {
+		           if (scope.discountPricesFormData.categoryId && scope.discountPricesFormData.discountRate) {
+		        	   
+		                scope.discountPrices.push({regionId:scope.discountPricesFormData.categoryId, 
+		                	price:scope.discountPricesFormData.discountRate
+		                });
+		              
+		                scope.discountPricesFormData.categoryId = undefined;
+		                scope.discountPricesFormData.discountRate = undefined;
+		                
+		          	}
+		            };
+		            
+		            scope.removeDiscountPrices = function (index) {
+		            scope.discountPrices.splice(index,1);
+		              };
 	        scope.submit = function() {  
 	        	
 	        	 this.formData.locale = $rootScope.locale.code;
