@@ -85,6 +85,7 @@
         	scope.formData.units =0;
         	scope.formData.volume = "None";
         	}
+
              var temp = [];
              for(var i in scope.selectedServices){
                  temp[i] = scope.selectedServices[i].id;

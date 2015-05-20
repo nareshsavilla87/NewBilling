@@ -459,9 +459,9 @@
 	                    	scope.getpaymentgatewayData();
 	                    });
 	            };
-	            
 				/*paymentgateway Configuration tab end*/ 
-	            
+
+
 	        }
 	    });
 
