@@ -81,6 +81,8 @@
         	scope.formData.dateFormat = 'dd MMMM yyyy';
         	scope.formData.startDate = reqDate;
         	scope.formData.endDate = reqEndDate;
+        	scope.formData.volume='None';
+        	scope.formData.units=0;
              var temp = [];
              for(var i in scope.selectedServices){
                  temp[i] = scope.selectedServices[i].id;
