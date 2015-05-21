@@ -80,6 +80,7 @@
             <th>{{'label.enabled' | translate}}</th>
             <th>{{'label.value' | translate}}</th>
             <th>{{'table.action' | translate}}</th>
+            <th></th> 
         </tr>
         </thead>
         <tbody>
@@ -90,7 +91,8 @@
             <td style="word-break:break-all;">{{config.value}}</td>
             <td><button type="button" class="btn btn-success flag" data-ng-hide="config.enabled" data-ng-click="enablePaymentGateway(config.id)"><i class="icon-flag-alt"></i></button>
                 <button type="button" class="btn btn-danger flag" data-ng-show="config.enabled" data-ng-click="disablePaymentGateway(config.id)"><i class="icon-remove"></i></button>
-           		<a data-ng-show="config.value" data-ng-click="editPaymentGateway(config.id,config.name,config.value)" data-popover="Edit" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a></td>        
+           		<a data-ng-show="config.value" data-ng-click="editPaymentGateway(config.id,config.name,config.value)" data-popover="Edit" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a></td>
+           		<td><a  data-ng-click="viewPaymentGateway(config.id)" data-popover="Help" data-popover-trigger="mouseenter"><i class="icon-question-sign"></i></a></td>         
         </tr>
         </tbody>
     </table>
@@ -412,4 +414,36 @@
 				</tr>
 			</table>
         </div>
-</script>
+	</script>
+	<script type="text/ng-template" id="viewPaymentgateway.html">
+
+	<form class="form-horizontal well" ng-submit="submit()">
+	 <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	<fieldset>
+		
+		
+	</fieldset>
+			<table class="table">
+        		<thead>
+        			<tr class="graybg">
+            			<th>{{'table.heading.description' | translate}}</th>	
+        			</tr>
+        		</thead>
+        		<tbody>
+        			<tr>
+            			<td>{{description}}</td> 
+        			</tr>
+        		</tbody>
+    			</table>
+	
+	</form>
+   <div class="modal-footer">
+        <button id="cancel" class="btn btn-primary" ng-click="reject()">{{'button.close' | translate}}</button>
+   </div>
+
+</script> 
+
