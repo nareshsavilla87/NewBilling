@@ -159,7 +159,7 @@
 					$modalInstance.dismiss('cancel');
 				};
 			};
-			/*payment*/
+			
 			scope.viewPaymentGateway= function(id){
 		      	  scope.errorStatus=[];
 		      	  scope.errorDetails=[];
@@ -185,7 +185,7 @@
 	    			$modalInstance.dismiss('cancel');
 	    		};
 	        };
-			/*end payment*/
+			
 			
             scope.edit= function(id){
 		      	  scope.errorStatus=[];
