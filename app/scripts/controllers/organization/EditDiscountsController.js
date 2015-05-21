@@ -6,30 +6,63 @@
 			scope.discountTypeDatas = [];
 			scope.statuses = [];
 			scope.start = {};
+			  scope.formData = {};
 			scope.date = {};
 			scope.discountIdForCancel = routeParams.id;
 			resourceFactory.discountsResource.getDiscountDetails({discountId : routeParams.id,template : 'true'	},	function(data) {
 				scope.discountdetail = data;
 				scope.discountTypeDatas = data.discountTypeData;
-			    scope.statuses = data.statusData;
+			    scope.statusDatas = data.statusData;
 				scope.formData = data;
+				scope.clientCategoryDatas =data.clientCategoryDatas;
+				scope.clientCategoryDatas.push({"id":0,"mCodeValue":"Default"});
 				var actDate = dateFilter(data.discountStartDate,'dd MMMM yyyy');
 			    scope.start.startDate = new Date(actDate);
+			    scope.discountPrices=data.discountDetailDatas;
 
 			});
 
+			
+			 scope.addDiscountPrice = function () {
+		           if (scope.discountPricesFormData.categoryId && scope.discountPricesFormData.discountRate) {
+		        	   
+		                scope.discountPrices.push({categoryId:scope.discountPricesFormData.categoryId, 
+		                	locale:$rootScope.locale.code,
+		                discountRate:scope.discountPricesFormData.discountRate
+		                });
+		              
+		                scope.discountPricesFormData.categoryId = undefined;
+		                scope.discountPricesFormData.discountRate = undefined;
+		                
+		          	}
+		            };
+		            
+		            scope.removeDiscountPrices = function (index) {
+		            scope.discountPrices.splice(index,1);
+		              };
 			scope.submit = function() {
 				this.formData.locale = $rootScope.locale.code;
 				this.formData.dateFormat = "dd MMMM yyyy";
 				this.formData.startDate = dateFilter(scope.start.startDate,	'dd MMMM yyyy');
 				this.formData.discountStatus;
 				this.formData.discountType;
-
+				 scope.formData.discountPrices =new Array();
+                   if (scope.discountPrices.length > 0) {
+                	   for (var i in scope.discountPrices) {
+                		   scope.formData.discountPrices.push({categoryId:scope.discountPrices[i].categoryId, 
+	                	   discountRate:scope.discountPrices[i].discountRate,locale:$rootScope.locale.code});
+	                 };
+	              }
+                   this.formData.discountPrices = scope.formData.discountPrices;
 				delete this.formData.id;
 				delete this.formData.status;
 				delete this.formData.discountTypeData;
 				delete this.formData.statusData;
 				delete this.formData.discountStartDate;
+				delete this.formData.clientCategoryDatas;
+				delete this.formData.discountDetailDatas;
+				
+				
 				resourceFactory.discountsResource.update({discountId : routeParams.id}, this.formData, function(data) {
 					location.path('/viewdiscounts/' + data.resourceId);
 				});

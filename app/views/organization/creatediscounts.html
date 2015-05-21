@@ -46,6 +46,15 @@
            						 </div>
           						</div>
 							</td>
+							<td>
+							<div class="control-group">
+            					<label class="control-label" for="discountStatus">{{ 'label.status' | translate }}<span class="required">*</span></label>
+            					<div class="controls">
+             					 <select  id="discountStatus" data-ng-model="formData.discountStatus"  data-ng-options="discountStatus.value as discountStatus.value for discountStatus in statusDatas">
+             					 <option value="">{{'label.select.one' | translate}}</option></select>
+            					</div>
+          						</div>
+          						</td>
 							<!-- <td>
 								<div class="control-group">
             					<label class="control-label" for="discountRate">{{ 'label.discountRate' | translate }}<span class="required">*</span></label>
@@ -69,13 +78,7 @@
           						</div>
 							</td>
 							<td>
-								<div class="control-group">
-            					<label class="control-label" for="discountStatus">{{ 'label.status' | translate }}<span class="required">*</span></label>
-            					<div class="controls">
-             					 <select  id="discountStatus" data-ng-model="formData.discountStatus"  data-ng-options="discountStatus.value as discountStatus.value for discountStatus in statusDatas">
-             					 <option value="">{{'label.select.one' | translate}}</option></select>
-            					</div>
-          						</div>
+								
 								</td>
 							</tr>	
   			            </table>
@@ -96,7 +99,7 @@
               		  	<small class="error-row">{{'error.not.decimal.validation' | translate}}</small>
               		  </span>
                     </form>
-                  <table class="table fullwidth" data-ng-show="itemPrices.length>0">
+                  <table class="table fullwidth" data-ng-show="discountPrices.length>0">
                     <tr class="graybg">
                       <th>{{'table.heading.customerCategory' | translate}}</th>
                       <th>{{'label.discountrate' | translate}}</th>

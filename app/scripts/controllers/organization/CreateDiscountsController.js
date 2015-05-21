@@ -14,14 +14,16 @@
 	        	scope.discountTypeDatas = data.discountTypeData;
 	            scope.statusDatas = data.statusData;
 	            scope.clientCategoryDatas =data.clientCategoryDatas;
+	            scope.clientCategoryDatas.push({"id":0,"mCodeValue":"Default"});
 	            scope.formData = {};
 	        });
 	     
 	        scope.addDiscountPrice = function () {
 		           if (scope.discountPricesFormData.categoryId && scope.discountPricesFormData.discountRate) {
 		        	   
-		                scope.discountPrices.push({regionId:scope.discountPricesFormData.categoryId, 
-		                	price:scope.discountPricesFormData.discountRate
+		                scope.discountPrices.push({categoryId:scope.discountPricesFormData.categoryId, 
+		                	locale:$rootScope.locale.code,
+		                discountRate:scope.discountPricesFormData.discountRate
 		                });
 		              
 		                scope.discountPricesFormData.categoryId = undefined;
@@ -39,6 +41,8 @@
 	             this.formData.dateFormat = "dd MMMM yyyy";
 	             var startDate = dateFilter(scope.start.date, 'dd MMMM yyyy');
 	             this.formData.startDate = startDate;
+	             this.formData.discountRate=0;
+	             this.formData.discountPrices = scope.discountPrices;
 	             
 	            resourceFactory.discountResource.save(this.formData, function(data){
 	            		location.path('/viewdiscounts/' + data.resourceId);
