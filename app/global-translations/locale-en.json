@@ -320,8 +320,8 @@
 
 
   "#view employee":"....",
-  "label.office.parentoffice":"Parent office",
-  "label.office.openedon":"Opened on",
+  "label.office.parentoffice":"Parent Office",
+  "label.office.openedon":"Opened On",
   "label.office.namedecorated":"Name Decorated",
   "label.office.externalid":"External Id",
   
@@ -525,10 +525,10 @@
   "table.heading.parent office":"Parent Office",
   "table.heading.office type":"Office Type",
   "table.heading.opened on":"Opened On",
-  "label.officename":"Office name",
+  "label.officename":"Office Name",
   "label.openedon":"Opened on:",
   "label.externalId":"External Id",
-  "label.openedon":"Opened on",
+  "label.openedon":"Opened On",
   "label.parentoffice":"Parent office",
   "app lebels end" :"-----------------------------------------------------",
   "app erros start" :"----------------------------------------------------",
@@ -1949,6 +1949,9 @@
 
  "#Mapping Configuration":"..........",
  "label.managemappingconfigurations":"Mapping Configurations",
+ "label.planMapping":"Plan Mapping",
+ "label.hardwareMapping":"Hardware Mapping",
+ "label.provisioningMapping":"Provisioning Mapping",
  "table.servicemapping.id":"Id",
  "table.servicemapping.servicecode":"Service Code",
  "table.servicemapping.serviceidentification":"Service Identification",
