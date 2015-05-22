@@ -160,6 +160,33 @@
 				};
 			};
 			
+			scope.viewPaymentGateway= function(id){
+		      	  scope.errorStatus=[];
+		      	  scope.errorDetails=[];
+		      	  scope.paymentconfigId=id;
+		        	  $modal.open({
+		                templateUrl: 'viewPaymentgateway.html',
+		                controller:viewPaymentgatewaycontroller ,
+		                resolve:{}
+		            });
+		        	
+		        };
+		        
+		        function viewPaymentgatewaycontroller($scope,$modalInstance){
+		     //console.log(scope.paymentConfigs);
+	        	for (var k in scope.paymentConfigs){
+      			if(scope.paymentconfigId == scope.paymentConfigs[k].id){
+      				$scope.description=scope.paymentConfigs[k].description;
+      				break;
+      			}
+	        	}
+	      
+	    		$scope.reject = function(){
+	    			$modalInstance.dismiss('cancel');
+	    		};
+	        };
+			
+			
             scope.edit= function(id){
 		      	  scope.errorStatus=[];
 		      	  scope.errorDetails=[];
