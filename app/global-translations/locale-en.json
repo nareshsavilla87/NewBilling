@@ -243,6 +243,7 @@
   "button.no":"NO",
   "button.yes":"YES",
   "button.create":"Create",
+   "button.close":"Close",
 
   "#datatable":"",
   "table.heading.datatablename":"Data Table Name",
@@ -2776,7 +2777,8 @@
 "validation.msg.feemaster.defaultFeeAmount.cannot.be.blank"  : "Default Fee Amount can not be blank",
 "error.msg.feemaster.regional.price.not.found":"No Regional Price found for this Service Transfer",
 "validation.msg.feemaster.regionPrices.not.greater.than.zero" :"Please add atleast one region price",
-"label.pgconfig.editconfig":"Edit Configurations"
+"label.pgconfig.editconfig":"Edit Configurations",
+"label.form.module":"Module"
 
 
 
