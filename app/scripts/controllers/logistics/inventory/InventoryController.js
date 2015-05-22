@@ -71,6 +71,7 @@
            };
         scope.routeToitem = function(id,totalItem){
             location.path('/viewitem/'+ parseInt(id)+'/item/'+totalItem);
+
           };
          
         
@@ -372,8 +373,8 @@
 						            };
 						        };
 						        
-						    	scope.showAudit = function(id){
-						    	   location.path('/viewitem/'+id+'/audit');
+						    	scope.showAudit = function(id,itotalItems){
+						    	   location.path('/viewitem/'+id+'/audit/'+itotalItems);
 						    	};		        
 						        
        }
