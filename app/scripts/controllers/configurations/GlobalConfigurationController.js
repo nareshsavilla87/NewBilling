@@ -160,6 +160,33 @@
 				};
 			};
 			
+			scope.viewPaymentGateway= function(id){
+		      	  scope.errorStatus=[];
+		      	  scope.errorDetails=[];
+		      	  scope.paymentconfigId=id;
+		        	  $modal.open({
+		                templateUrl: 'viewPaymentgateway.html',
+		                controller:viewPaymentgatewaycontroller ,
+		                resolve:{}
+		            });
+		        	
+		        };
+		        
+		        function viewPaymentgatewaycontroller($scope,$modalInstance){
+		     //console.log(scope.paymentConfigs);
+	        	for (var k in scope.paymentConfigs){
+      			if(scope.paymentconfigId == scope.paymentConfigs[k].id){
+      				$scope.description=scope.paymentConfigs[k].description;
+      				break;
+      			}
+	        	}
+	      
+	    		$scope.reject = function(){
+	    			$modalInstance.dismiss('cancel');
+	    		};
+	        };
+			
+			
             scope.edit= function(id){
 		      	  scope.errorStatus=[];
 		      	  scope.errorDetails=[];
@@ -171,7 +198,7 @@
 		            });
 		        	
 		        };
-		        
+
 		        var editGlobalController=function($scope,$modalInstance){
 			      	  
 		        	$scope.formData = {}; 
@@ -201,12 +228,43 @@
 		    		};
 		        };
 		        
+		        
+		        scope.popup= function(id){
+			      	  scope.errorStatus=[];
+			      	  scope.errorDetails=[];
+			      	  scope.configId=id;
+			        	  $modal.open({
+			                templateUrl: 'globalconfigpopup.html',
+			                controller:globalpopupcontroller ,
+			                resolve:{}
+			            });
+			        	
+			        };
+			        
+			        function globalpopupcontroller($scope,$modalInstance){
+			      /*console.log(scope.configs);*/
+		        	for (var j in scope.configs){
+            			if(scope.configId == scope.configs[j].id){
+            				$scope.module=scope.configs[j].module;
+            				$scope.description=scope.configs[j].description;
+            				break;
+            			}
+		        	}
+		      
+		    		$scope.reject = function(){
+		    			$modalInstance.dismiss('cancel');
+		    		};
+		        };
+		        
+		        
+		        
 		        scope.getClientConfiguration = function(){
 		        	 scope.myData = [];
           			 scope.mainObject = webStorage.get("client_configuration");
           			 scope.clientListObject = webStorage.get("client_configuration").clientListing;
+          			scope.orderActionListObject = webStorage.get("client_configuration").orderActions;
           			 
-          	    	  for (var key in scope.mainObject) {
+          	    	  /*for (var key in scope.mainObject) {
           	    		  if(key != "clientListing"){
           	    			  scope.myData.push({
       		  					"name" : key,
@@ -224,7 +282,49 @@
      		  					"value" :scope.value,
      	    				 }); 
           	    		  }
-          	    	  }
+          	    	  }*/
+          			for (var key in scope.mainObject) {
+          			switch (key) {
+					case "clientListing":
+						
+						 scope.value = {};
+      	    			 for (var keyClientList in scope.clientListObject){
+      	    				 if(scope.clientListObject[keyClientList] == 'true'){
+      	    					scope.value[keyClientList] = scope.clientListObject[keyClientList]; 
+      	    				 }
+     	    			 }
+      	    			 scope.myData.push({
+ 		  					"name" : key,
+ 		  					"value" :scope.value,
+ 	    				 }); 
+						
+						break;
+					
+					case "orderActions":
+						
+						scope.value = {};
+     	    			 for (var keyOrderList in scope.orderActionListObject){
+     	    				 if(scope.orderActionListObject[keyOrderList] == 'true'){
+     	    					scope.value[keyOrderList] = scope.orderActionListObject[keyOrderList]; 
+     	    				 }
+    	    			 }
+     	    			 scope.myData.push({
+		  					"name" : key,
+		  					"value" :scope.value,
+	    				 }); 
+						
+						break;
+
+					default:
+						scope.myData.push({
+		  					"name" : key,
+		  					"value" :scope.mainObject[key],
+    	    		    });
+						break;
+					}
+      	    	  }
+
+  
 		        };
             
 		        scope.enable = function (id, name) {
@@ -299,7 +399,8 @@
 	            		webStorage.add("client_configuration",data);
                         route.reload();
                         if(html == 'editclientlisting.html'){scope.editClientListing();}
-                        else if(html == 'editregestrationlisting.html'){scope.editRegistrationListing();};
+                        else if(html == 'editregestrationlisting.html'){scope.editRegistrationListing();}
+                        else if(html == 'editorderactions.html'){scope.editOrderActions();};
                     });
 	            };
 	            
@@ -376,6 +477,13 @@
 	            		resolve:{}
 	            	});
 	            };
+	            scope.editOrderActions=function(){
+	            	$modal.open({
+	            		templateUrl: 'editorderactions.html',
+	            		controller: ApproveOrderActions,
+	            		resolve:{}
+	            	});
+	            };
 	           function ApproveClientListing($scope, $modalInstance) {
 	        	   
 	          	  	$scope.clientListData = [];
@@ -418,6 +526,27 @@
 	        	   };
 	           }
 	            
+	           function ApproveOrderActions($scope, $modalInstance) {
+	        	   
+	          	  	$scope.orderActionsData = [];
+	          	  	$scope.tempData = [];
+	          	  	$scope.tempData = webStorage.get("client_configuration").orderActions;
+	          	  	for (var key in $scope.tempData) {
+    	    			  $scope.orderActionsData.push({
+		  					"name" : key,
+		  					"value" :$scope.tempData[key].toString(),
+    	    			  });
+	          	  	}
+	                $scope.approve = function (name, value) {
+	                    scope.approveData = {};
+	                    scope.clientConfigChange(name, value , 'editorderactions.html');
+	                    $modalInstance.close('delete');
+	                };
+	                $scope.cancel = function () {
+	                    $modalInstance.dismiss('cancel');
+	                };
+	            }
+
 	        }
 	    });
 
