@@ -801,6 +801,7 @@
   "table.heading.customerCategory":"Customer Category",
   "label.discountrate":"Discount Rate",
   "validation.msg.discount.discountPrices.not.greater.than.zero":"Please Select atleast one discount category",
+  "error.msg.customer.category.discount.duplicate.name":"Duplicate customer category discount price found",
   "label.fieldserror":"Please add all fields",
   "dialog.price.title.message":"Delete Price",
   "validation.msg.price.chargeCode.cannot.be.blank":"Charge Code Cannot be Blank",

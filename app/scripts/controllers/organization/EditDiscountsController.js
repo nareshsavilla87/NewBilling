@@ -24,10 +24,10 @@
 
 			
 			 scope.addDiscountPrice = function () {
-		           if (scope.discountPricesFormData.categoryId && scope.discountPricesFormData.discountRate) {
+		           if (scope.discountPricesFormData.discountRate) {
 		        	   
 		                scope.discountPrices.push({categoryId:scope.discountPricesFormData.categoryId, 
-		                	locale:$rootScope.locale.code,
+		                	locale:$rootScope.locale.code,id:scope.discountPricesFormData.id,
 		                discountRate:scope.discountPricesFormData.discountRate
 		                });
 		              
@@ -49,7 +49,8 @@
 				 scope.formData.discountPrices =new Array();
                    if (scope.discountPrices.length > 0) {
                 	   for (var i in scope.discountPrices) {
-                		   scope.formData.discountPrices.push({categoryId:scope.discountPrices[i].categoryId, 
+                		   scope.formData.discountPrices.push({categoryId:scope.discountPrices[i].categoryId,
+                			   id:scope.discountPrices[i].id,
 	                	   discountRate:scope.discountPrices[i].discountRate,locale:$rootScope.locale.code});
 	                 };
 	              }
