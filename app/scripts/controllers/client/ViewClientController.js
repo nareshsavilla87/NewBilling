@@ -399,6 +399,7 @@
         		location.path(url+"/"+scope.client.officeId);
 
         	}else if(href == "#/clientinvoice"){
+
         		$modal.open({
                     templateUrl: 'approve1.html',
                     controller: Approve,
@@ -751,6 +752,7 @@
         	scope.ACHDetailsTab = "";
         	scope.ChildDetailsTab = "";
         	
+        	scope.clientAdditionalData = webStorage.get("client-additional-data");
         	//credit card details
         	 scope.additionalDatas = {};
         	 resourceFactory.clientAdditionalResource.get({clientId: routeParams.id}, function(data) {

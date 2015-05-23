@@ -20,6 +20,8 @@
 	<link rel="stylesheet" href="./css/bootstrap-timepicker.css" />
 	<link rel="stylesheet" href="./css/jquery-ui.css" />
 	<link rel="stylesheet" href="./css/extrastyles.css" />
+	<link rel="stylesheet" href="./css/angular-ui-switch.css" />
+	<link rel="stylesheet" href="./css/bootstrap-switch.css" />
 	<script type='text/javascript' src='./loaderFiles.js'></script>
 </head>
 <body id="top" data-spy="scroll" data-target=".subnav" data-offset="80" data-ng-controller="SelfcareMainController" style="background: #DDDDDD;">
@@ -45,7 +47,7 @@
 		  <tr>
 		 	<td style="padding: 10px;background:#fff;" width="10%">
 				<div class="pull-left" style="margin: 0px 0px;background:#fff;">
-					<img src="../images/logo.png" alt="Billing">
+					<img src="../images/logo.png" alt="Billing" width="100">
 				</div>
 			</td>
 			<td style="background-color: #4c66a4">
@@ -151,9 +153,10 @@
 	                    <ul class="nav" id="main-menu-left" data-ng-hide="isRegClientProcess">
 	                     <li><a href="#/profile" data-ng-class="{ activate: isActive('/profile') }"><i class="icon-user icon-white"></i>{{'label.profile' | translate}}</a></li>
 	                     <li><a href="#/services" data-ng-class="{ activate: isActive('/services') }"><i class="icon-list icon-white"></i>{{'label.services' | translate}}</a></li>
+                         <li><a href="#/events" data-ng-class="{ activate: isActive('/events') }"><i class="icon-list icon-white"></i>{{'label.ondemands'|translate}}</a></li>
                          <li><a href="#/statements" data-ng-class="{ activate: isActive('/statements') }"><i class="icon-file icon-white"></i>{{'label.bill.statements' | translate}}</a></li>
                          <li><a href="#/tickets"  data-ng-class="{ activate: isActive('/tickets') }"><i class="icon-money icon-white"></i>{{'link.tickets'|translate}}</a></li>
-                         <!--<li><a href="{{webtvURL}}" data-ng-click="isWebtvClick = true"><i class="icon-facetime-video icon-white"></i>{{'label.webtv'|translate}}</a></li>-->
+                        <!--  <li><a href="{{webtvURL}}" data-ng-click="isWebtvClick = true"><i class="icon-facetime-video icon-white"></i>{{'label.webtv'|translate}}</a></li> -->
 	                    </ul>
 	                    <ul class="nav pull-right " id="main-menu-right" data-ng-hide="isRegClientProcess">
 	                        <li class="dropdown" id="preview-menu">

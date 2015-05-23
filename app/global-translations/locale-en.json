@@ -224,6 +224,7 @@
   "button.add":"Add",
   "button.save":"Save",
   "button.cancel":"Cancel",
+  "button.close":"Close",
   "button.done":"Done",
   "button.delete":"Delete",
   "button.undo":"Undo",
@@ -242,6 +243,7 @@
   "button.no":"NO",
   "button.yes":"YES",
   "button.create":"Create",
+   "button.close":"Close",
 
   "#datatable":"",
   "table.heading.datatablename":"Data Table Name",
@@ -319,8 +321,8 @@
 
 
   "#view employee":"....",
-  "label.office.parentoffice":"Parent office",
-  "label.office.openedon":"Opened on",
+  "label.office.parentoffice":"Parent Office",
+  "label.office.openedon":"Opened On",
   "label.office.namedecorated":"Name Decorated",
   "label.office.externalid":"External Id",
   
@@ -394,6 +396,7 @@
   "label.active":"Active",
   "label.fullname":"Full name or Business name:",
   "label.editclient":"Edit Client",
+  "label.editclient.info":"Edit Client Info",
   "label.closeclient":"Close Client",
   "label.createclient":"Create Client",
   "title.client.activate":"Client Activation",
@@ -413,7 +416,7 @@
   "link.reports.tickets":"Tickets",
   "link.reports.inventory" : "Inventory",
   "link.reports.leads" : "Leads",
-  "link.reports.invoice&collections":"Invoice&Collections",
+  "link.reports.invoice&collections" : "Invoice&Collections",
   "link.admin.users" : "Users",
   "link.admin.organisation" : "Organisation",
   "link.admin.templates" : "Templates",
@@ -523,10 +526,10 @@
   "table.heading.parent office":"Parent Office",
   "table.heading.office type":"Office Type",
   "table.heading.opened on":"Opened On",
-  "label.officename":"Office name",
+  "label.officename":"Office Name",
   "label.openedon":"Opened on:",
   "label.externalId":"External Id",
-  "label.openedon":"Opened on",
+  "label.openedon":"Opened On",
   "label.parentoffice":"Parent office",
   "app lebels end" :"-----------------------------------------------------",
   "app erros start" :"----------------------------------------------------",
@@ -639,6 +642,7 @@
   "label.numofactiveclient":"Active Clients:",
   "label.add":"Add",
   "label.form.name":"Name",
+  "label.form.module":"Module",
   "label.addnote":"Add Note",
   "label.reset":"Reset",
   "label.addrole":"Add Role",
@@ -983,6 +987,8 @@
   "validation.msg.order.suspensionReason.cannot.be.blank":"Please Select Suspension Reason",
   "validation.msg.order.suspensionDescription.cannot.be.blank":"Description can not be blank",
   "validation.msg.order.paytermCode.cannot.be.blank":"Please Select Billing frequency",
+  "validation.msg.promotioncode.durationType.cannot.be.blank":"Please select duration type",
+  "validation.msg.promotioncode.discountType.cannot.be.blank":"Please select discount type",
   "label.osdmessage.message":"message",
   "label.osdMessage":"OSD Message",
   "error.msg.billing.order.not.found":"No Orders found for Invoice",
@@ -1940,6 +1946,9 @@
 
  "#Mapping Configuration":"..........",
  "label.managemappingconfigurations":"Mapping Configurations",
+ "label.planMapping":"Plan Mapping",
+ "label.hardwareMapping":"Hardware Mapping",
+ "label.provisioningMapping":"Provisioning Mapping",
  "table.servicemapping.id":"Id",
  "table.servicemapping.servicecode":"Service Code",
  "table.servicemapping.serviceidentification":"Service Identification",
@@ -2768,9 +2777,8 @@
 "validation.msg.feemaster.defaultFeeAmount.cannot.be.blank"  : "Default Fee Amount can not be blank",
 "error.msg.feemaster.regional.price.not.found":"No Regional Price found for this Service Transfer",
 "validation.msg.feemaster.regionPrices.not.greater.than.zero" :"Please add atleast one region price",
-"label.pgconfig.editconfig":"Edit Configurations"
-
-
+"label.pgconfig.editconfig":"Edit Configurations",
+"label.form.module":"Module"
 
 
 

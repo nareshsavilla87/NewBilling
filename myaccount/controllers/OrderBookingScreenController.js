@@ -7,9 +7,12 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 	var priceId				= routeParams.priceId; 
 	var orderBookingData 	= {};
 	var gatewayStatus		= localStorageService.get("gatewayStatus")||"";
+	var isAutoRenew 		= localStorageService.get("isAutoRenew") || "";
+	alert(isAutoRenew);
 	
 	function successFun(planData){
-    	localStorageService.remove("secretCode");
+    	localStorageService.remove("secretCode");localStorageService.remove("storageData");
+    	localStorageService.remove("isAutoRenew");
     	if(screenName != "vod"){
     		(planData.price==0) ? location.path("/services") : location.path('/paymentgatewayresponse/'+clientId);
     	}
@@ -32,13 +35,14 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 				if(screenName == "additionalorders"){
 					orderBookingData.billAlign 		= false;
 					orderBookingData.isNewplan 		= true;
-					orderBookingData.locale 		= 'en'; 
+					orderBookingData.locale 		= rootScope.localeLangCode; 
 					orderBookingData.dateFormat 	= 'dd MMMM yyyy'; 
 					var reqDate 					= dateFilter(new Date(),'dd MMMM yyyy');
 					orderBookingData.start_date 	= reqDate; 
 					orderBookingData.paytermCode 	= planData.billingFrequency; 
 					orderBookingData.contractPeriod = planData.contractId; 
 					orderBookingData.planCode 		= planId;
+					orderBookingData.autoRenew 		= isAutoRenew;
 					if(gatewayStatus == "PENDING"){
 						orderBookingData.status 	= gatewayStatus;
 						orderBookingData.actionType	= screenName;
@@ -52,6 +56,7 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 						orderBookingData.actionType	= screenName;
 						RequestSender.scheduleOrderResource.save({clientId : clientId},orderBookingData,function(data){
 							localStorageService.remove("gatewayStatus");
+							localStorageService.remove("isAutoRenew");
 							location.path('/services');
 						});
 						
@@ -64,7 +69,7 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 					var changeOrderData 			 = {};
 					changeOrderData.billAlign 		 = false;
 					changeOrderData.isNewplan 		 = false;
-					changeOrderData.locale 			 = 'en'; 
+					changeOrderData.locale 			 = rootScope.localeLangCode; 
 					changeOrderData.dateFormat 		 = 'dd MMMM yyyy'; 
 					var reqDate 					 = dateFilter(new Date(),'dd MMMM yyyy');
 					changeOrderData.start_date 		 = reqDate; 
@@ -73,6 +78,7 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 					changeOrderData.contractPeriod 	 = planData.contractId; 
 					changeOrderData.planCode 		 = planId;
 					changeOrderData.disconnectReason = "Not Interested";
+					changeOrderData.autoRenew 		 = isAutoRenew;
 					var orderId						 = "";
 					localStorageService.get("storageData")? orderId = localStorageService.get("storageData").orderId
 														  : orderId = "";
@@ -88,6 +94,7 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 						changeOrderData.actionType	= screenName;
 						RequestSender.scheduleOrderResource.save({clientId : clientId},changeOrderData,function(data){
 							localStorageService.remove("gatewayStatus");
+							localStorageService.remove("isAutoRenew");
 							location.path('/services');
 						});
 						
@@ -99,6 +106,7 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 				}else if(screenName == "renewalorder"){
 						 var renewalOrderData 			 = {};
 						 renewalOrderData.renewalPeriod  = planData.contractId; 
+						 renewalOrderData.priceId  		 = priceId; 
 						 renewalOrderData.description	 = 'Order Renewal through selfcare'; 
 						 
 						 var orderId						 = "";
@@ -110,6 +118,15 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 							RequestSender.scheduleOrderResource.save({clientId : clientId},renewalOrderData,function(data){
 								localStorageService.remove("gatewayStatus");
 								successFun(planData);
+							});
+						}else if(gatewayStatus == "RECURRING"){
+							renewalOrderData.status 		= gatewayStatus;
+							renewalOrderData.orderId 		= orderId;
+							renewalOrderData.actionType		= screenName;
+							RequestSender.scheduleOrderResource.save({clientId : clientId},renewalOrderData,function(data){
+								localStorageService.remove("gatewayStatus");
+								localStorageService.remove("isAutoRenew");
+								location.path('/services');
 							});
 						}else{
 							RequestSender.orderRenewalResource.save({orderId :orderId},renewalOrderData,function(data){
@@ -147,7 +164,7 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 					 							optType 		: mediaDatas[i].optType,
 					 							formatType 		: mediaDatas[i].quality,
 					 							clientId 		: clientId,
-					 							locale 			: 'en',
+					 							locale 			: rootScope.localeLangCode,
 					 							eventBookedDate : reqDate,
 					 							dateFormat 		: 'dd MMMM yyyy',
 					 							deviceId 		: clientData.hwSerialNumber
