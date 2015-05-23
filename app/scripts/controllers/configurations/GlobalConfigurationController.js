@@ -127,6 +127,31 @@
 		    			$modalInstance.dismiss('cancel');
 		    		};
 		        };
+		        
+		      scope.globalConfigHelpPopup= function(configId){
+			        	  $modal.open({
+			                templateUrl: 'globalConfigHelpPopup.html',
+			                controller:GlobalConfigHelpPopupController ,
+			                resolve:{
+			                	configId : function(){
+			                		return configId;
+			                	}
+			                }
+			            });
+			        	
+			        };
+	        function GlobalConfigHelpPopupController($scope,$modalInstance,configId){
+		        	for (var j in scope.configs){
+            			if(configId == scope.configs[j].id){
+            				$scope.module=scope.configs[j].module;
+            				$scope.description=scope.configs[j].description;
+            				break;
+            			}
+		        	}
+		    		$scope.reject = function(){
+		    			$modalInstance.dismiss('cancel');
+		    		};
+		        };
            /*configuration tab end*/ 
 		        
 		   /*client Configuration tab start*/
