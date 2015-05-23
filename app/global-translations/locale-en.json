@@ -243,6 +243,7 @@
   "button.no":"NO",
   "button.yes":"YES",
   "button.create":"Create",
+   "button.close":"Close",
 
   "#datatable":"",
   "table.heading.datatablename":"Data Table Name",
@@ -320,8 +321,8 @@
 
 
   "#view employee":"....",
-  "label.office.parentoffice":"Parent office",
-  "label.office.openedon":"Opened on",
+  "label.office.parentoffice":"Parent Office",
+  "label.office.openedon":"Opened On",
   "label.office.namedecorated":"Name Decorated",
   "label.office.externalid":"External Id",
   
@@ -525,10 +526,10 @@
   "table.heading.parent office":"Parent Office",
   "table.heading.office type":"Office Type",
   "table.heading.opened on":"Opened On",
-  "label.officename":"Office name",
+  "label.officename":"Office Name",
   "label.openedon":"Opened on:",
   "label.externalId":"External Id",
-  "label.openedon":"Opened on",
+  "label.openedon":"Opened On",
   "label.parentoffice":"Parent office",
   "app lebels end" :"-----------------------------------------------------",
   "app erros start" :"----------------------------------------------------",
@@ -1945,6 +1946,9 @@
 
  "#Mapping Configuration":"..........",
  "label.managemappingconfigurations":"Mapping Configurations",
+ "label.planMapping":"Plan Mapping",
+ "label.hardwareMapping":"Hardware Mapping",
+ "label.provisioningMapping":"Provisioning Mapping",
  "table.servicemapping.id":"Id",
  "table.servicemapping.servicecode":"Service Code",
  "table.servicemapping.serviceidentification":"Service Identification",
@@ -2773,7 +2777,8 @@
 "validation.msg.feemaster.defaultFeeAmount.cannot.be.blank"  : "Default Fee Amount can not be blank",
 "error.msg.feemaster.regional.price.not.found":"No Regional Price found for this Service Transfer",
 "validation.msg.feemaster.regionPrices.not.greater.than.zero" :"Please add atleast one region price",
-"label.pgconfig.editconfig":"Edit Configurations"
+"label.pgconfig.editconfig":"Edit Configurations",
+"label.form.module":"Module"
 
 
 
