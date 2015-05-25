@@ -11,6 +11,7 @@
 			scope.discountIdForCancel = routeParams.id;
 			resourceFactory.discountsResource.getDiscountDetails({discountId : routeParams.id,template : 'true'	},	function(data) {
 				scope.discountdetail = data;
+				scope.discountId = discountdetails.id;
 				scope.discountTypeDatas = data.discountTypeData;
 			    scope.statusDatas = data.statusData;
 				scope.formData = data;
