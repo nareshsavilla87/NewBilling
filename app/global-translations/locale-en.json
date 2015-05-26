@@ -243,6 +243,7 @@
   "button.no":"NO",
   "button.yes":"YES",
   "button.create":"Create",
+   "button.close":"Close",
 
   "#datatable":"",
   "table.heading.datatablename":"Data Table Name",
@@ -415,7 +416,7 @@
   "link.reports.tickets":"Tickets",
   "link.reports.inventory" : "Inventory",
   "link.reports.leads" : "Leads",
-  "link.reports.invoice&collections":"Invoice&Collections",
+  "link.reports.invoice&collections" : "Invoice&Collections",
   "link.admin.users" : "Users",
   "link.admin.organisation" : "Organisation",
   "link.admin.templates" : "Templates",
@@ -801,6 +802,7 @@
   "table.heading.customerCategory":"Customer Category",
   "label.discountrate":"Discount Rate",
   "validation.msg.discount.discountPrices.not.greater.than.zero":"Please Select atleast one discount category",
+  "error.msg.customer.category.discount.duplicate.name":"Duplicate customer category discount price found",
   "label.fieldserror":"Please add all fields",
   "dialog.price.title.message":"Delete Price",
   "validation.msg.price.chargeCode.cannot.be.blank":"Charge Code Cannot be Blank",
@@ -2780,7 +2782,8 @@
 "validation.msg.feemaster.defaultFeeAmount.cannot.be.blank"  : "Default Fee Amount can not be blank",
 "error.msg.feemaster.regional.price.not.found":"No Regional Price found for this Service Transfer",
 "validation.msg.feemaster.regionPrices.not.greater.than.zero" :"Please add atleast one region price",
-"label.pgconfig.editconfig":"Edit Configurations"
+"label.pgconfig.editconfig":"Edit Configurations",
+"label.form.module":"Module"
 
 
 

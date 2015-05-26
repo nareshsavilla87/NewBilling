@@ -19,7 +19,7 @@
 	        });
 	     
 	        scope.addDiscountPrice = function () {
-		           if (scope.discountPricesFormData.categoryId && scope.discountPricesFormData.discountRate) {
+		           if (scope.discountPricesFormData.discountRate) {
 		        	   
 		                scope.discountPrices.push({categoryId:scope.discountPricesFormData.categoryId, 
 		                	locale:$rootScope.locale.code,
