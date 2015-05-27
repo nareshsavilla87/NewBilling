@@ -324,7 +324,7 @@
 					<td ng-show="provisioningdata.isProcessed == 'C'" class="pointer" >Success</td>
 					<td class="pointer" >{{provisioningdata.receiveMessage}}</td>
 					  <td><a ng-show="provisioningdata.isProcessed == 'F' " ng-click="reProcess(provisioningdata.id)" popover="Re Process" popover-trigger="mouseenter"><i class="icon-play icon-white"></i></a></td>
-					   <td><a ng-show="provisioningdata.isProcessed == 'F' " ng-click="confirmRequest(provisioningdata.id)" popover="Confirm Request" popover-trigger="mouseenter"><i class="icon-ok icon-white"></i></a></td>
+					   <td><a ng-show="provisioningdata.isProcessed == 'F' || provisioningdata.isProcessed == 'N'" ng-click="confirmRequest(provisioningdata.id)" popover="Confirm Request" popover-trigger="mouseenter"><i class="icon-ok icon-white"></i></a></td>
 					<td><button style="padding:3px 5px;" class="btn btn-primary" ng-hide="provisioningdata.requestType=='RETRACK'"
 								ng-click="sentMessagePopup(provisioningdata.id)" data-popover-trigger="mouseenter" data-popover="To See Click on Me">
 								<i class="icon-envelope icon-white"></i></button></td> 
