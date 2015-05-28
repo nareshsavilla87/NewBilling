@@ -36,15 +36,15 @@
          
          var prevAvailAmountArray =[]; 
          var paymentAmount;
+         var checkBox = false;
          scope.payAvailAmount = 0;
          scope.creditdistributions = [];
+         
         resourceFactory.paymentsTemplateResource.getPayments(function(data){
         	scope.payments = data;
             scope.data = data.data;
             scope.paymentTypeData=function(value){
-            	
             	for(var i=0;i<scope.data.length;i++){
-            		
             		if(scope.data[i].id==value){
             			scope.paymentType=scope.data[i].mCodeValue;
             		}
@@ -53,7 +53,11 @@
         });
         resourceFactory.payInvoiceTemplateResource.getPayInvoices({invoiceId : routeParams.id},function(data){
         		scope.invoiceDatas = data;
+        		for(var i in scope.invoiceDatas){
+        			scope.invoiceDatas[i].active=checkBox;
+        		}
         	});
+        
         scope.selectedAccount = function(){
         	$("#amountPaid").removeAttr("readonly");
         	delete this.formData.amountPaid;
@@ -68,26 +72,6 @@
         	scope.selectAccount = false; 
         };
         
-  /*      scope.amountField = function(amount,dueAmount){
-        	scope.formData.amountPaid = amount;
-        	if(amount > dueAmount){
-        		$modal.open({
-       			 templateUrl: 'alert.html',
-       			 controller: alertController,
-       			 resolve:{}
-       		 });
-        		 scope.formData.amountPaid = dueAmount;
-         		scope.formData.amount=dueAmount;
-        }
-        };
-          
-      scope.seletedRecord = function(id){
-        	delete this.formData.amount;
-        	delete this.formData.amountPaid;
-        	scope.value = id;
-        	scope.invoiceId = id;
-        };*/
-        
         scope.showInvoices= function(payAmount){
              scope.showInvoiceDetails=!scope.showInvoiceDetails;
              for(var i in scope.invoiceDatas){
@@ -101,17 +85,16 @@
              }
              
         };
-        // invoices selecting    
         
+        // invoices selecting     
         scope.selectedInvoices = function(invoiceId,amount,active,index){
-        	//scope.payAvailAmount = availableAmount ;
         	if(!angular.isUndefined(scope.formData.amountPaid)&& scope.formData.amountPaid > 0){
         		$("#amountPaid").attr("readonly","readonly");
         	}
         	if(active == true){
         		if(scope.payAvailAmount == 0){
         			$('#'+invoiceId).prop('checked',false);
-        			
+        			scope.invoiceDatas[index].active=false;
         			$modal.open({
               			 templateUrl: 'alert.html',
               			 controller: alertController,
@@ -136,18 +119,16 @@
         		     scope.payAvailAmount=0;
         			}else{
         			prevAvailAmountArray.push({id : invoiceId,amount : amount});
-        			scope.payAvailAmount=parseFloat((scope.payAvailAmount -=amount).toFixed(2));                 //Math.round(scope.formData.amountPaid -=amount);
+        			scope.payAvailAmount=parseFloat((scope.payAvailAmount -=amount).toFixed(2));   //Math.round(scope.formData.amountPaid -=amount);
         			console.log(scope.payAvailAmount);
         			scope.creditdistributions.push({
         				invoiceId : invoiceId,
         				amount : amount,
 						clientId  : parseInt(routeParams.id),
 						locale    : $rootScope.locale.code
-						
         				});
         		}
-        		//if(scope.formData.amountPaid != 0)
-        		//	scope.payAvailAmount=parseFloat((scope.payAvailAmount -= amount).toFixed(2));
+        		
         	}
         	else{
         		$("#amountPaid").removeAttr("readonly");
@@ -158,21 +139,19 @@
           					scope.payAvailAmount = prevAvailAmountArray[i].amount;
           				  else
           					scope.payAvailAmount=(parseFloat(scope.payAvailAmount)+parseFloat(prevAvailAmountArray[i].amount)).toFixed(2);
-        				   // scope.formData.amountPaid=(parseFloat(scope.formData.amountPaid)+parseFloat(prevAvailAmountArray[i].amount)).toFixed(2);
         				  break;
         			  }
         		  }
         		  prevAvailAmountArray = _.filter(prevAvailAmountArray, function(item) {
                       return item.id != invoiceId;
                   });
-        		scope.creditdistributions = _.filter(scope.creditdistributions, function(item) {
+        		  scope.creditdistributions = _.filter(scope.creditdistributions, function(item) {
                     return item.invoiceId != invoiceId;
                });
         	}
         };
         
          function  alertController($scope, $modalInstance) {
-        	//$scope.availAmount=scope.payAvailAmount;
       	    $scope.approve = function () {
       		  $modalInstance.close('delete');
             };
