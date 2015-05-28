@@ -129,6 +129,7 @@
  	"header.plan.name"		 		 : "Plan Name",
  	"header.contract.period" 		 : "Contract Period",
  	"header.price" 					 : "Price",
+ 	"header.finalprice"				 : "Final Price",
  	"header.packages" 				 : "Packages",
  	"header.current.plan" 			 : "Current Plan",
  	"header.change.plan" 			 : "Change Plan",

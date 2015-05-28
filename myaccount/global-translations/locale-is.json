@@ -129,6 +129,7 @@
  	"header.plan.name" 		 		 : "áætlun pakka",
  	"header.contract.period" 		 : "samningur Tímabil",
  	"header.price" 					 : "Verð",
+ 	"header.finalprice"				 : "endanleg Verð",
  	"header.packages" 				 : "Pakkar",
  	"header.current.plan" 			 : "núverandi áætlun",
  	"header.change.plan" 			 : "Breyta áætlun",

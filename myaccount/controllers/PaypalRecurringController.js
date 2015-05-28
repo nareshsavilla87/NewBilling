@@ -11,58 +11,66 @@ PaypalRecurringController = function(scope,RequestSender,location,localStorageSe
 		
 		scope.returnURL 	= selfcareAppUrl+"#/paypalrecurringsuccess/"+screenName+"/"+clientId+"/"+planId+"/"+priceId;
 		
-		var chargeCodeData = "";var orderId = null ;
+		var chargeCodeData = "";var orderId = null;var billingFrequency =null;
 		localStorageService.get("chargeCodeData") ? (chargeCodeData = localStorageService.get("chargeCodeData").data,
-													orderId = localStorageService.get("chargeCodeData").orderId):"";
+													orderId = localStorageService.get("chargeCodeData").orderId,
+													billingFrequency = localStorageService.get("chargeCodeData").billingFrequency):"";
 			console.log(orderId);
 		scope.period		= chargeCodeData.chargeDuration;
-		scope.time			= chargeCodeData.durationType[0];
+		scope.time			= chargeCodeData.chargeType[0];
 		
 		if(screenName == "changeorder"){
-			scope.customValue   = { clientId:clientId,planId:planId,paytermCode:chargeCodeData.billFrequencyCode,
+			scope.customValue   = { clientId:clientId,planId:planId,paytermCode:billingFrequency,
 					contractPeriod:contractId,orderId:orderId};
 		}else if(screenName == "renewalorder"){
-			scope.customValue   = {clientId:clientId,planId:planId,paytermCode:chargeCodeData.billFrequencyCode,
+			scope.customValue   = {clientId:clientId,planId:planId,paytermCode:billingFrequency,
 						renewalPeriod:contractId,orderId:orderId,priceId:priceId};
 		}else{
-			scope.customValue   = { clientId:clientId,planId:planId,paytermCode:chargeCodeData.billFrequencyCode,contractPeriod:contractId};
+			scope.customValue   = { clientId:clientId,planId:planId,paytermCode:billingFrequency,contractPeriod:contractId};
 		}
-		var billFrequencyCode = 0;
-		var durationType = 0;
-			switch (chargeCodeData.durationType) {
-									case "Month(s)":
-										durationType = 30;
-										break;
-									case "Day(s)":
-										durationType = 1;
-										break;
-									case "Week(s)":
-										durationType = 7;
-										break;
-									case "Year(s)":
-										durationType = 365;
-										break;
-									default:
-										break;
-			};
-			switch (chargeCodeData.billFrequencyCode) {
-									case "Monthly":
-										billFrequencyCode = 30;
-										break;
-									case "Daily":
-										billFrequencyCode = 1;
-										break;
-									case "Weekly":
-										billFrequencyCode = 7;
-										break;
-									case "Yearly":
-										billFrequencyCode = 365;
-										break;
-									default:
-										break;
-			};
-			console.log(billFrequencyCode/durationType*chargeCodeData.chargeDuration);
-			scope.srt = Math.round(billFrequencyCode/durationType*chargeCodeData.chargeDuration);
+		
+		var contractType = 0;
+		var chargeType = 0;
+		console.log("contractType**************>"+angular.lowercase(chargeCodeData.contractType));
+		console.log("chargeType**************>"+angular.lowercase(chargeCodeData.chargeType));
+    			switch (angular.lowercase(chargeCodeData.contractType)) {
+							case "month(s)":
+								contractType = 30;
+								break;
+							case "day(s)":
+								contractType = 1;
+								break;
+							case "week(s)":
+								contractType = 7;
+								break;
+							case "year(s)":
+								contractType = 365;
+								break;
+							default:
+								break;
+					};
+				switch (angular.lowercase(chargeCodeData.chargeType)) {
+							case "month(s)":
+								chargeType = 30;
+								break;
+							case "day(s)":
+								chargeType = 1;
+								break;
+							case "week(s)":
+								chargeType = 7;
+								break;
+							case "year(s)":
+								chargeType = 365;
+								break;
+							default:
+								break;
+						};
+						console.log("contractType-->"+contractType);
+						console.log("contractDuration-->"+chargeCodeData.contractDuration);
+						console.log("chargeType-->"+chargeType);
+						console.log("chargeDuration-->"+chargeCodeData.chargeDuration);
+				/*var srt =  Math.round(billFrequencyCode/(durationType*chargeCodeData.chargeDuration));*/
+			scope.srt = (chargeCodeData.contractDuration * contractType) / (chargeType * chargeCodeData.chargeDuration);
         	
         	        	
         };
