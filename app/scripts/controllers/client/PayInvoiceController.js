@@ -44,7 +44,6 @@
         	scope.payments = data;
             scope.data = data.data;
             scope.paymentTypeData=function(value){
-            	
             	for(var i=0;i<scope.data.length;i++){
             		if(scope.data[i].id==value){
             			scope.paymentType=scope.data[i].mCodeValue;
@@ -55,7 +54,7 @@
         resourceFactory.payInvoiceTemplateResource.getPayInvoices({invoiceId : routeParams.id},function(data){
         		scope.invoiceDatas = data;
         		for(var i in scope.invoiceDatas){
-        			scope.invoiceDatas[i].active = checkBox;
+        			scope.invoiceDatas[i].active=checkBox;
         		}
         	});
         
@@ -88,18 +87,16 @@
              }
         };
         
-        
-        // invoices selecting    
+        // invoices selecting     
         scope.selectedInvoices = function(invoiceId,amount,active,index){
-        	
         	if(!angular.isUndefined(scope.formData.amountPaid)&& scope.formData.amountPaid > 0){
         		$("#amountPaid").attr("readonly","readonly");
         	}
         	if(active == true){
         		 if(scope.payAvailAmount == 0){
         			$('#'+invoiceId).prop('checked',false);
-        			 scope.invoiceDatas[index].active = false;
-        			 $modal.open({
+        			scope.invoiceDatas[index].active=false;
+        			$modal.open({
               			 templateUrl: 'alert.html',
               			 controller: alertController,
               			 resolve:{}
@@ -123,7 +120,7 @@
         		     scope.payAvailAmount=0;
         			}else{
         			prevAvailAmountArray.push({id : invoiceId,amount : amount});
-        			scope.payAvailAmount=parseFloat((scope.payAvailAmount -=amount).toFixed(2));                 //Math.round(scope.formData.amountPaid -=amount);
+        			scope.payAvailAmount=parseFloat((scope.payAvailAmount -=amount).toFixed(2));   //Math.round(scope.formData.amountPaid -=amount);
         			console.log(scope.payAvailAmount);
         			scope.creditdistributions.push({
         				invoiceId : invoiceId,
@@ -132,8 +129,7 @@
 						locale    : $rootScope.locale.code
         				});
         		}
-        		//if(scope.formData.amountPaid != 0)
-        		//	scope.payAvailAmount=parseFloat((scope.payAvailAmount -= amount).toFixed(2));
+        		
         	}
         	else{
         		$("#amountPaid").removeAttr("readonly");
@@ -150,7 +146,7 @@
         		  prevAvailAmountArray = _.filter(prevAvailAmountArray, function(item) {
                       return item.id != invoiceId;
                   });
-        		scope.creditdistributions = _.filter(scope.creditdistributions, function(item) {
+        		  scope.creditdistributions = _.filter(scope.creditdistributions, function(item) {
                     return item.invoiceId != invoiceId;
                });
         	}
