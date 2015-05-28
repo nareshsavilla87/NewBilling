@@ -29,7 +29,7 @@ KortaController = function(scope, routeParams, location, localStorageService,$ti
 		  scope.mobileNo 			= clientData.phone;
 		  
 		  scope.doAction			= "STORAGE";
-		  scope.amount 				= planData.price;
+		  scope.amount 				= routeParams.price;
 		  scope.description 		= planData.planCode;
 		  scope.kortaMerchantId 	= paymentGatewayValues.merchantId;
 		  scope.kortaTerminalId 	= paymentGatewayValues.terminalId;

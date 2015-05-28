@@ -104,17 +104,17 @@ ServicesController = function(scope,RequestSender,localStorageService,location,p
        };
 	  scope.checkingRecurringStatus = function(autoRenew){
 		  if(scope.planId && scope.billingFrequency && scope.priceId && scope.price){
-			RequestSender.recurringStatusCheckingResource.get({planId:scope.planId,billFrequency:scope.billingFrequency,contractPeriod:scope.duration,clientId:scope.clientId},function(data){
-				if(scope.billingFrequency == data.billFrequencyCode && scope.price == data.price){
-					if(scope.screenName == "additionalorders")localStorageService.add("chargeCodeData",{data:data});
-					if(scope.screenName == "changeorder" || scope.screenName == "renewalorder")localStorageService.add("chargeCodeData",{data:data,orderId:scope.selectedOrderId});
+			RequestSender.recurringStatusCheckingResource.get({priceId:scope.priceId,clientId:scope.clientId},function(data){
+					if(scope.screenName == "additionalorders")localStorageService.add("chargeCodeData",{data:data,billingFrequency:scope.billingFrequency});
+					if(scope.screenName == "changeorder" || scope.screenName == "renewalorder")localStorageService.add("chargeCodeData",{data:data,orderId:scope.selectedOrderId,billingFrequency:scope.billingFrequency});
 					console.log('This is the state of my isAutoRenew: ' + autoRenew);
 					if(scope.screenName == "renewalorder")localStorageService.add("isAutoRenew",scope.orderRenew);
 					else localStorageService.add("isAutoRenew",autoRenew);
-					location.path( '/paymentprocess/'+scope.screenName+'/'+scope.planId+'/'+scope.priceId+'/'+scope.price);
-				}
+					location.path( '/paymentprocess/'+scope.screenName+'/'+scope.planId+'/'+scope.priceId+'/'+data.finalAmount);
 			});
 		  }else if(scope.price == 0){
+			  if(scope.screenName == "additionalorders" || scope.screenName == "changeorder") 
+				  localStorageService.add("isAutoRenew",autoRenew);
 			  location.path( '/paymentprocess/'+scope.screenName+'/'+scope.planId+'/'+scope.priceId+'/'+scope.price);
 		  }
 			
@@ -134,6 +134,21 @@ ServicesController = function(scope,RequestSender,localStorageService,location,p
 		 modalInstance.result.then(function () {}, function () {
 			 if(scope.orderDisconnect){route.reload();}
  	    });
+     };
+     scope.viewPlanServices = function(planId){
+    	 scope.orderDisconnect = false;
+    	 var modalInstance = $modal.open({
+    		 templateUrl: 'viewplanservice.html',
+    		 controller: viewPlanServicesPopupController,
+    		 resolve:{
+    			 planId : function(){
+    				 return planId;
+    			 }
+    		 }
+    	 });
+    	 modalInstance.result.then(function () {}, function () {
+    		 if(scope.orderDisconnect){route.reload();}
+    	 });
      };
     function vieworderPopupController($scope, $modalInstance,$log,orderId) {
    	  function initialFunCall(){
@@ -169,6 +184,15 @@ ServicesController = function(scope,RequestSender,localStorageService,location,p
     	};
    	  $scope.close = function () {$modalInstance.dismiss('cancel');};
          
+     };
+     
+     function viewPlanServicesPopupController($scope, $modalInstance,$log,planId) {
+    	RequestSender.planServicesResource.get({planId: planId},function(data){
+    			 $scope.planServices = data.selectedServices;
+    		 });
+    	 
+    	 $scope.close = function () {$modalInstance.dismiss('cancel');};
+    	 
      };
      
        var OrderDisconnectPopupController = function ($scope, $modalInstance,orderId) {
