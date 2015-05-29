@@ -257,7 +257,7 @@
 	 "table.header.plan" 					: "Plan",
 	 "table.header.contractperoid" 			: "Contract Period",
 	 "table.header.activationdate" 			: "Activation Date",
-	 "table.header.start/renewaldate" 		: "Start/Renewal Date",
+	 "table.header.start/renewaldate" 		: "Start Date",
 	 "table.header.enddate" 				: "End Date",
 	 "table.header.price" 					: "Price",
 	 "table.header.status" 					: "Status",

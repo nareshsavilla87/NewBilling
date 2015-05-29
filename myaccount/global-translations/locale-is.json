@@ -256,7 +256,7 @@
 	 "table.header.plan" 					: "áætlun",
 	 "table.header.contractperoid" 			: "samningur Tímabil",
 	 "table.header.activationdate" 			: "Virkjunardagsetning",
-	 "table.header.start/renewaldate" 		: "Byrja / endurnýjunardaginn",
+	 "table.header.start/renewaldate" 		: "upphafsdagur",
 	 "table.header.enddate" 				: "lokadagsetninguna",
 	 "table.header.price" 					: "Verð",
 	 "table.header.status" 					: "staða",
