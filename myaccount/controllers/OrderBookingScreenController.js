@@ -8,13 +8,15 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 	var orderBookingData 	= {};
 	var gatewayStatus		= localStorageService.get("gatewayStatus")||"";
 	var isAutoRenew 		= localStorageService.get("isAutoRenew") || "";
-	//alert(isAutoRenew);
+
+	var finalPrice			= localStorageService.get("finalPrice") || "";
 	
 	function successFun(planData){
     	localStorageService.remove("secretCode");localStorageService.remove("storageData");
     	localStorageService.remove("isAutoRenew");
     	if(screenName != "vod"){
-    		(planData.price==0) ? location.path("/services") : location.path('/paymentgatewayresponse/'+clientId);
+    		localStorageService.remove("finalPrice");
+    		(finalPrice==0) ? location.path("/services") : location.path('/paymentgatewayresponse/'+clientId);
     	}
     	else if (screenName == "vod"){
     		localStorageService.remove("eventData");
