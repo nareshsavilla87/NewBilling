@@ -28,7 +28,7 @@ KortaTokenController = function(scope, routeParams, location, localStorageServic
 		  scope.country 			= clientData.country;
 		  scope.mobileNo 			= clientData.phone;
 		  
-		  scope.amount 				= planData.price;
+		  scope.amount 				= routeParams.price;
 		  scope.description 		= planData.planCode;
 		  scope.kortaMerchantId 	= paymentGatewayValues.merchantId;
 		  scope.kortaTerminalId 	= paymentGatewayValues.terminalId;

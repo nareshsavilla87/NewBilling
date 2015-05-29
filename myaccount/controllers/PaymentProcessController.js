@@ -40,9 +40,10 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 			}
 		}
 		
-		if(clientData){
+	   if(clientData){
+		 if(scope.price != 0){
 		  scope.paymentgatewayDatas = [];
-		  RequestSender.paymentGatewayConfigResource.get(function(data) {
+		   RequestSender.paymentGatewayConfigResource.get(function(data) {
 			  if(data.globalConfiguration){
 				  for(var i in data.globalConfiguration){
 					   if(data.globalConfiguration[i].enabled && data.globalConfiguration[i].name != 'is-paypal-for-ios'  
@@ -53,13 +54,15 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 				 scope.paymentGatewayName = scope.paymentgatewayDatas.length>=1 ?scope.paymentgatewayDatas[0].name :"";
 				 scope.paymentGatewayFun(scope.paymentGatewayName);
 			  }
-		  });
+		   });
+		 }
 		}
 	
 	var hostName = selfcareModels.selfcareAppUrl;
 	
 	   scope.paymentGatewayFun  = function(paymentGatewayName){
 		   localStorageService.remove("N_PaypalData");
+		   scope.errorRecurring = "";
 		   scope.paymentGatewayName = paymentGatewayName;
 			  scope.termsAndConditions = false;
 			  var paymentGatewayValues = {};
@@ -75,7 +78,7 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 			case dalpayPG :
 					var url = paymentGatewayValues.url+'?mer_id='+paymentGatewayValues.merchantId+'&pageid='+paymentGatewayValues.pageId+'&item1_qty=1&num_items=1';
 				scope.paymentURL =  url+"&cust_name="+clientData.displayName+"&cust_phone="+clientData.phone+"&cust_email="+clientData.email+"&cust_state="+clientData.state+""+				
-				  	"&cust_address1="+clientData.addressNo+"&cust_zip="+clientData.zip+"&cust_city="+clientData.state+"&item1_desc="+scope.planData.planCode+"&item1_price="+scope.planData.price+"" + 	  				
+				  	"&cust_address1="+clientData.addressNo+"&cust_zip="+clientData.zip+"&cust_city="+clientData.state+"&item1_desc="+scope.planData.planCode+"&item1_price="+scope.price+"" + 	  				
 				  	"&user1="+scope.clientId+"&user2="+hostName+"&user3=orderbookingscreen/"+scope.screenName+"/"+scope.clientId+"/"+planId+"/"+priceDataId;
 					break;
 					
@@ -86,8 +89,8 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 				var encryptedData = CryptoJS.AES.encrypt(encodeURIComponentData,encrytionKey).toString();
 				
 				var token = clientData.selfcare.token;		    		
-				if(token != null && token != "") scope.paymentURL = "#/kortatokenintegration?key="+encryptedData;		    		 
-				else scope.paymentURL = "#/kortaintegration?key="+encryptedData;	    		
+				if(token != null && token != "") scope.paymentURL = "#/kortatokenintegration/"+scope.price+"?key="+encryptedData;		    		 
+				else scope.paymentURL = "#/kortaintegration/"+scope.price+"?key="+encryptedData;	    		
 				break;
 					
 			case paypalPG :
@@ -96,18 +99,17 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 					localStorageService.add("recurringData",angular.fromJson(angular.toJson(data)));
 				});
 				if(angular.fromJson(isAutoRenew)){
-						var chargeCodeData1	= chargeCodeData.data;
-						var srt 		= srtCountCheckingFun(chargeCodeData1);
-						 /*if(srt<=1){
+						var srt 		= srtCountCheckingFun(chargeCodeData.data);
+						 if(srt<=1){
 							scope.errorRecurring = "error.msg.paypal.recurring.notpossible"; 
-						 }else*/
+						 }else
 							 scope.paymentURL = "#/paypalrecurring/"+scope.screenName+"/"+scope.clientId+"/"+planId+"/"+priceDataId+"/"+scope.price+"/"+paymentGatewayValues.paypalEmailId+"/"+scope.planData.contractId;
 				}else{
 					
 						/*var query = {clientId :scope.clientId,planId: planId,screenName:scope.screenName,priceDataId:priceDataId};*/
 						var query = hostName;
 						localStorageService.add("N_PaypalData",{clientId:scope.clientId,screenName :scope.screenName,planId: planId,priceId:priceDataId});
-						scope.paymentURL = paymentGatewayValues.paypalUrl+'='+paymentGatewayValues.paypalEmailId+"&item_name="+scope.planData.planCode+"&amount="+scope.planData.price+"" +	  	  				
+						scope.paymentURL = paymentGatewayValues.paypalUrl+'='+paymentGatewayValues.paypalEmailId+"&item_name="+scope.planData.planCode+"&amount="+scope.price+"" +	  	  				
 						  	  "&custom="+query;
 				}
 				break;
@@ -140,7 +142,7 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 				localStorageService.add("twoCheckoutStorageData",{screenName:scope.screenName,clientId:scope.clientId,
 																 	planId:planId,priceId:priceDataId});
 				var zipCode = clientData.zip || clientData.city || "";
-				scope.paymentURL =  "https://sandbox.2checkout.com/checkout/purchase?sid="+paymentGatewayValues+"&mode=2CO&li_0_type=product&li_0_name=invoice&li_0_price="+scope.planData.price
+				scope.paymentURL =  "https://sandbox.2checkout.com/checkout/purchase?sid="+paymentGatewayValues+"&mode=2CO&li_0_type=product&li_0_name=invoice&li_0_price="+scope.price
 									+"&card_holder_name="+clientData.displayName+"&street_address="+clientData.addressNo+"&city="+clientData.city+"&state="+clientData.state+"&zip="+zipCode
 									+"&country="+clientData.country+"&email="+clientData.email+"&quantity=1";
 				
@@ -183,9 +185,9 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
     
     function srtCountCheckingFun(chargeCodeData){
     	var contractType = 0;
-		var durationType = 0;
+		var chargeType = 0;
 		console.log("contractType**************>"+angular.lowercase(chargeCodeData.contractType));
-		console.log("durationType**************>"+angular.lowercase(chargeCodeData.durationType));
+		console.log("chargeType**************>"+angular.lowercase(chargeCodeData.chargeType));
     			switch (angular.lowercase(chargeCodeData.contractType)) {
 							case "month(s)":
 								contractType = 30;
@@ -202,28 +204,28 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 							default:
 								break;
 					};
-				switch (angular.lowercase(chargeCodeData.durationType)) {
+				switch (angular.lowercase(chargeCodeData.chargeType)) {
 							case "month(s)":
-								durationType = 30;
+								chargeType = 30;
 								break;
 							case "day(s)":
-								durationType = 1;
+								chargeType = 1;
 								break;
 							case "week(s)":
-								durationType = 7;
+								chargeType = 7;
 								break;
 							case "year(s)":
-								durationType = 365;
+								chargeType = 365;
 								break;
 							default:
 								break;
 						};
 						console.log("contractType-->"+contractType);
-						console.log("units-->"+chargeCodeData.units);
-						console.log("durationType-->"+durationType);
+						console.log("contractDuration-->"+chargeCodeData.contractDuration);
+						console.log("chargeType-->"+chargeType);
 						console.log("chargeDuration-->"+chargeCodeData.chargeDuration);
 				/*var srt =  Math.round(billFrequencyCode/(durationType*chargeCodeData.chargeDuration));*/
-				  var srt = (chargeCodeData.units * contractType) / (durationType * chargeCodeData.chargeDuration);
+				  var srt = (chargeCodeData.contractDuration * contractType) / (chargeType * chargeCodeData.chargeDuration);
 				return srt;
     }
     
