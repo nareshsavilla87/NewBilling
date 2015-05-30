@@ -6,11 +6,15 @@
 	Langs = [{"name" : "English" , "code" : "en"},
             {"name" : "íslenska", "code":"is"}];
 	
+	
+	
 	 
    selfcareModels =  {
 	   
 	   obs_username 				: "selfcare",
 	   obs_password 				: "selfcare",
+	   tenantId		 				: "default",
+	   OBS_URL		 				: "/obsplatform/api/v1",
 	   returnURL 					: locationOrigin+locationPathname+"#/active",
 	   selfcareAppUrl 				: locationOrigin+locationPathname,
 	   additionalKortaUrl 			: locationOrigin+locationPathname+"#/kortasuccess",
