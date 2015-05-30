@@ -65,6 +65,7 @@
         	scope.selectAccount = true; 
         	scope.selectInvoice = false;  
         };
+        
         scope.selectedInvoice = function(){
         	delete this.formData.amountPaid;
         	delete this.formData.amount;
@@ -76,6 +77,7 @@
              scope.showInvoiceDetails=!scope.showInvoiceDetails;
              for(var i in scope.invoiceDatas){
             	 $('#'+scope.invoiceDatas[i].id).prop('checked',false);
+            	        // scope.invoiceDatas[i].active = checkBox;
                }
              if(!angular.isUndefined(payAmount)&&scope.showInvoiceDetails){
             	 scope.payAvailAmount=payAmount;
@@ -83,7 +85,6 @@
              }else{
             	 $("#amountPaid").removeAttr("readonly"); 
              }
-             
         };
         
         // invoices selecting     
@@ -92,7 +93,7 @@
         		$("#amountPaid").attr("readonly","readonly");
         	}
         	if(active == true){
-        		if(scope.payAvailAmount == 0){
+        		 if(scope.payAvailAmount == 0){
         			$('#'+invoiceId).prop('checked',false);
         			scope.invoiceDatas[index].active=false;
         			$modal.open({
@@ -181,21 +182,6 @@
           	  //route.reload();
           });
        };
-            
-      /*  scope.submitInvoice = function() {
-
-          this.formData.locale = $rootScope.locale.code;
-          this.formData.dateFormat = "dd MMMM yyyy";
-      	  var paymentDate = dateFilter(scope.start.date,'dd MMMM yyyy');
-          this.formData.paymentDate= paymentDate;
-          var res1 = validator.validateZipCode(scope.formData.receiptNo);
-          this.formData.invoiceId =	 scope.invoiceId ; 
-          delete this.formData.amount;
-          resourceFactory.paymentsResource.save({clientId : routeParams.id}, this.formData, function(data){
-        	  //route.reload();
-        	  location.path('/viewclient/'+routeParams.id);
-          });
-        };*/
     }
   });
   mifosX.ng.application.controller('PayInvoiceController', ['$scope','webStorage', 'ResourceFactory', '$routeParams', 
