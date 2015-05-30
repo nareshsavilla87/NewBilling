@@ -155,6 +155,7 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 		  };
 		  
 	scope.finishBtnFun =function(){
+			 localStorageService.add("finalPrice",scope.price);
   	  		  location.path("/orderbookingscreen/"+scope.screenName+"/"+scope.clientId+"/"+planId+"/"+priceDataId);
     };
     
