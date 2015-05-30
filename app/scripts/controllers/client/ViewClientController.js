@@ -184,12 +184,12 @@
                       	 });
                  }
                  //if (data.status.value == "Active") {
-                 scope.buttons = [{
+                 scope.buttons = [/*{
                       	                  name:"label.add.device",
                       	                  href:"#/adddevice",
                       	                  icon:"icon-tag",
                       	                  ngShow : bookOrder
-                         	            },
+                         	            },*/
                          	           {
                                             name:"button.redemption",
                                             href:"#/redemption",
@@ -205,12 +205,12 @@
                                         	 
                                         },
                                       
-                                        {
+                                        /*{
                                           name:"button.newTicket",
                                           href:"#/newTicket",
                                           icon :"icon-flag",
                                           ngShow : riseTicket
-                                        },
+                                        },*/
                                         
                                         /*{
 
@@ -249,12 +249,12 @@
                                              icon :"icon-play",
                                              ngShow : doInvoice
                                           },
-                                          {
+                                          /*{
                                              name:"button.statement",
                                              href:"#/statement",
                                              icon :"icon-file",
                                              ngShow : statement
-                                         },                                                                              
+                                         },*/                                                                              
 
                                          {
 	                                        name:"button.edit",
@@ -263,7 +263,7 @@
 	                                        ngShow : edit
                                         },
                                         {
-                                        	name:"Delete",
+                                        	name:"Close",
                                         	href:"#/closeclient",
                                         	icon:"icon-remove",
                                         	ngShow : "true"
