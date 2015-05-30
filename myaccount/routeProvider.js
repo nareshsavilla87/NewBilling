@@ -38,13 +38,13 @@ selfcareApp.config(function($routeProvider, $locationProvider) {
     .when('/services', {
     	templateUrl: 'views/services.html'
 	})
-	.when('/kortaintegration',{
+	.when('/kortaintegration/:price',{
     	templateUrl: 'views/kortaintegration.html'
     })
     .when('/kortasuccess/:screenName/:planId/:priceId',{
     	templateUrl: 'views/kortasuccess.html'
     })
-    .when('/kortatokenintegration',{
+    .when('/kortatokenintegration/:price',{
     	templateUrl: 'views/kortatokenintegration.html'
     })
     .when('/changekortatoken',{

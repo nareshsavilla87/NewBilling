@@ -27,7 +27,7 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 		  if(data.globalConfiguration){
 			  for(var i in data.globalConfiguration){
 				   if(data.globalConfiguration[i].enabled && data.globalConfiguration[i].name != 'is-paypal-for-ios'  
-					   && data.globalConfiguration[i].name != 'is-paypal'){
+					   && data.globalConfiguration[i].name != 'is-paypal' && data.globalConfiguration[i].name != 'paypal-recurring-payment-details'){
 					   scope.paymentgatewayDatas.push(data.globalConfiguration[i]);
 				   }
 			  }
@@ -92,8 +92,8 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 				var encryptedData = CryptoJS.AES.encrypt(encodeURIComponentData,encrytionKey).toString();
 				
 				var token = clientData.selfcare.token;		    		
-				if(token != null && token != "") scope.paymentURL = "#/kortatokenintegration?key="+encryptedData;		    		 
-				else scope.paymentURL = "#/kortaintegration?key="+encryptedData;	    		
+				if(token != null && token != "") scope.paymentURL = "#/kortatokenintegration/"+scope.planData.price+"?key="+encryptedData;		    		 
+				else scope.paymentURL = "#/kortaintegration/"+scope.planData.price+"?key="+encryptedData;	    		
 				break;
 					
 			case paypalPG :
