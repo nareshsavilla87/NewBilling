@@ -1,4 +1,4 @@
-PaypalRecurringController = function(scope,RequestSender,location,localStorageService,routeParams) {
+PaypalRecurringController = function(scope,RequestSender,location,localStorageService,routeParams,$timeout) {
  
 		var screenName 		= routeParams.screenName||"";
 		var clientId 		= routeParams.clientId||"";
@@ -71,6 +71,10 @@ PaypalRecurringController = function(scope,RequestSender,location,localStorageSe
 						console.log("chargeDuration-->"+chargeCodeData.chargeDuration);
 				/*var srt =  Math.round(billFrequencyCode/(durationType*chargeCodeData.chargeDuration));*/
 			scope.srt = (chargeCodeData.contractDuration * contractType) / (chargeType * chargeCodeData.chargeDuration);
+			
+			$timeout(function() {
+				  $("#submitPaypalRecurringBtn").click();
+			    }, 1000);
         	
         	        	
         };
@@ -80,5 +84,6 @@ selfcareApp.controller('PaypalRecurringController', ['$scope',
                                                   '$location', 
                                                   'localStorageService',
                                                   '$routeParams',
+                                                  '$timeout',
                                                   PaypalRecurringController]);
 

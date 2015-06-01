@@ -52,9 +52,8 @@ NetellerController = function(scope,RequestSender,routeParams,
     		
     	};
     	scope.submit = function() { 
-    		var clientData = localStorageService.get("clientTotalData");
-    		if(clientData){
-    			scope.formData.clientId = clientId || clientData.id;
+    		if(rootScope.selfcare_sessionData){
+    			scope.formData.clientId = clientId || rootScope.selfcare_sessionData.clientId;
     		  if(!scope.validation.value && !scope.validation.verificationCode){
     			  if(screenName == 'vod') scope.formData.screenName = "";
     			var authentication = {username:selfcareModels.obs_username,password:selfcareModels.obs_password};

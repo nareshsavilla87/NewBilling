@@ -1,6 +1,6 @@
 selfcareApp.config(function($provide) {
     $provide.provider('RequestSender',function(){
-      var baseUrl = "" , apiVer = "/obsplatform/api/v1";
+      var baseUrl = "" , apiVer = selfcareModels.OBS_URL;
       this.setBaseUrl = function(url) {baseUrl = url;};
       this.$get = ['$resource','$rootScope', function(resource,$rootScope) {
         var defineResource = function(url, paramDefaults, actions) {

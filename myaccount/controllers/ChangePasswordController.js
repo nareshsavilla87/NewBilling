@@ -3,9 +3,10 @@ ChangePasswordController = function(scope,RequestSender,rootScope,localStorageSe
 		  scope.pwdData = {};
 		  scope.formData = {};
 		  scope.retype_pwd_valid = false;
-		  var clientData = localStorageService.get("clientTotalData");
-		  if(clientData){
-			  scope.email = clientData.email;
+		  if(rootScope.selfcare_sessionData){
+			RequestSender.clientResource.get({clientId: rootScope.selfcare_sessionData.clientId} , function(data) {
+			  scope.email = data.email;
+		    });
 		  }
 		  
 		  scope.passwordCheck = function(){
