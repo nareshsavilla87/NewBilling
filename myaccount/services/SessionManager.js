@@ -11,7 +11,7 @@ selfcareApp.service("SessionManager",['$rootScope','HttpService','$location','lo
         localStorageService.remove('loginHistoryId');
         localStorageService.remove('isAutoRenewConfig');
         httpService.cancelAuthorization();
-        scope.isLandingPage= false;
+        scope.isLandingPage= false;scope.isRegClientProcess = false;
 		location.path('/').replace();
         return scope.currentSession= {user:null};
       };
