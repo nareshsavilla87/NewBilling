@@ -60,7 +60,7 @@ ProfileController = function(scope,RequestSender,rootScope,location,paginatorSer
            };
            
            scope.downloadFile = function (statementId){
-	           window.open(rootScope.hostUrl+ API_VERSION +'/billmaster/'+ statementId +'/print?tenantIdentifier=default');
+	           window.open(rootScope.hostUrl+ API_VERSION +'/billmaster/'+ statementId +'/print?tenantIdentifier='+selfcareModels.tenantId);
 	      };
 		 
 		
