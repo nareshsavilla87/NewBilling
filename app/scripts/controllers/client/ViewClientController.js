@@ -19,6 +19,7 @@
          scope.invoice = "INVOICE";
          scope.adjustment = "ADJUSTMENT";
          scope.journal ="JOURNAL VOUCHER";
+         scope.depositAndRefund ="DEPOSIT&REFUND";
          
          scope.financialJournals =[];
          scope.PermissionService = PermissionService;
@@ -1009,6 +1010,7 @@
         	scope.paymentsC = "";
         	scope.adjustmentsC = "";
         	scope.journalsC ="";
+        	scope.depositC = "";
         	scope.financialtransactions = paginatorService.paginate(scope.getFinancialTransactionsFetchFunction, 14);
         };
         scope.invoicesTab = function(){
@@ -1017,6 +1019,7 @@
         	scope.invoicesC = "active";
         	scope.adjustmentsC = "";
         	scope.journalsC ="";
+        	scope.depositC = "";
         	scope.financialInvoices = paginatorService.paginate(scope.getInvoice, 14);
         };
         scope.paymentsTab = function(){
@@ -1025,6 +1028,7 @@
         	scope.paymentsC = "active";
         	scope.adjustmentsC = "";
         	scope.journalsC ="";
+        	scope.depositC = "";
         	scope.financialPayments = paginatorService.paginate(scope.getPayments, 14);
         };
         scope.adjustmentsTab = function(){
@@ -1033,6 +1037,7 @@
         	scope.paymentsC = "";
         	scope.adjustmentsC = "active";
         	scope.journalsC ="";
+        	scope.depositC = "";
         	scope.financialAdjustments = paginatorService.paginate(scope.getAdjustments, 14);
         };
         
@@ -1042,8 +1047,21 @@
         	scope.paymentsC = "";
         	scope.adjustmentsC = "";
         	scope.journalsC ="active";
+        	scope.depositC = "";
         	scope.financialJournals = paginatorService.paginate(scope.getjournals, 14);
         };
+        
+        scope.depositsTab = function(){
+        	scope.financialsummaryC = "";
+        	scope.invoicesC = "";
+        	scope.paymentsC = "";
+        	scope.adjustmentsC = "";
+        	scope.journalsC ="";
+        	scope.depositC = "active";
+        	scope.financialDeposits = paginatorService.paginate(scope.getDeposits, 14);
+        	
+        };
+        
         scope.eventsaleTab = function(){
         	scope.eventsaleC = "active";
         	scope.mydeviceC = "";
@@ -1267,12 +1285,18 @@
   	  scope.getjournals = function(offset, limit, callback,adjustment) {
 	  		resourceFactory.Filetrans.get({clientId: routeParams.id, offset: offset, limit: limit, type:scope.journal}, callback);
 	  	};
+	  	
+	  	scope.getDeposits = function(offset, limit, callback,adjustment) {
+	  		resourceFactory.Filetrans.get({clientId: routeParams.id, offset: offset, limit: limit, type:scope.depositAndRefund}, callback);
+	  	};
+	  	
         scope.getAllFineTransactions = function () {
         	scope.financialsummaryC = "active";
        	   	scope.invoicesC = "";
        	   	scope.paymentsC = "";
        	   	scope.adjustmentsC = "";
        	   	scope.journalsC = "";
+       	   	scope.depositC = "";
           	scope.financialtransactions = paginatorService.paginate(scope.getFinancialTransactionsFetchFunction, 14);
         };
           
@@ -1587,6 +1611,47 @@
 		                  $modalInstance.dismiss('cancel');
 		            };
 		        }
+		      	
+		      	 scope.refundAmount = function(id,amount){
+		         	scope.errorDetails = [];
+		         	scope.errorStatus = [];
+		         	$modal.open({
+		                 templateUrl: 'refundamount.html',
+		                 controller: RefundAmountController,
+		                 resolve:{
+		                 	 	getPaymentId:function(){
+		                 	 		return id;
+		                 	 	},
+		                 	 	getAmount:function(){
+		                 	 		return amount;
+		                 	 	}
+		                 }
+		             });
+		         };
+		         
+		         var RefundAmountController = function($scope, $modalInstance, getPaymentId,getAmount){
+		        	$scope.formData = {};
+		        	resourceFactory.refundAmountResource.get({depositAmount:getAmount,depositId:scope.clientId} , function(data){
+		        		$scope.formData.refundAmount = data.availAmount;
+		            });
+		        	
+		        	$scope.formData.locale = "en";
+		 			$scope.accept = function(){
+		 				var depositId = getPaymentId;
+		 				resourceFactory.refundAmountResource.save({'depositId':depositId}, $scope.formData, function(data){
+		 					$modalInstance.close('delete');
+		 				    getDetails();
+		 				    scope.getAllFineTransactions();
+		 				},function(errorData){
+	  	                	$scope.stmError = errorData.data.errors[0].userMessageGlobalisationCode;
+	  	                	
+	  	                });         
+		 			};
+		 			
+		 			$scope.reject = function(){
+		 				$modalInstance.dismiss('cancel');
+		 			};
+		 		};
 		      	
 	  			//export financial csv 
 	  			scope.exportFinancialCSV = function(){

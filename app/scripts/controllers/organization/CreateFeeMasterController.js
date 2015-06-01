@@ -8,6 +8,7 @@
 			 scope.chargeDatas = data.chargeDatas;
 			 scope.regionDatas = data.regionDatas;
 			 scope.transactionTypeDatas = data.transactionTypeDatas;
+			 scope.itemTypeDatas = data.itemCodes;
 		  });
 		  
 		  scope.regionalPriceFormData={};scope.regionPrices = [];
@@ -39,7 +40,17 @@
                     	 							});
                    };
                  }
-          	 
+          	if(scope.formData.transactionType == 'Deposit'){
+          		var tempValue = scope.formData.isRefundable;
+          		if(tempValue){
+          			scope.formData.isRefundable = 'Y';
+          		}else{
+          			scope.formData.isRefundable = 'N';
+          		}
+          	}else{
+          		delete scope.formData.itemId;
+          		delete scope.formData.isRefundable;
+          	}
           	scope.formData.locale = $rootScope.locale.code;
           	scope.formData.defaultFeeAmount=0;
              resourceFactory.feeMasterResource.save(scope.formData,function(data){
