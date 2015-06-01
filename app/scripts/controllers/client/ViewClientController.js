@@ -1631,7 +1631,10 @@
 		         
 		         var RefundAmountController = function($scope, $modalInstance, getPaymentId,getAmount){
 		        	$scope.formData = {};
-		        	$scope.formData.refundAmount = getAmount;
+		        	resourceFactory.refundAmountResource.get({depositAmount:getAmount,depositId:scope.clientId} , function(data){
+		        		$scope.formData.refundAmount = data.availAmount;
+		            });
+		        	
 		        	$scope.formData.locale = "en";
 		 			$scope.accept = function(){
 		 				var depositId = getPaymentId;
@@ -1641,6 +1644,7 @@
 		 				    scope.getAllFineTransactions();
 		 				},function(errorData){
 	  	                	$scope.stmError = errorData.data.errors[0].userMessageGlobalisationCode;
+	  	                	
 	  	                });         
 		 			};
 		 			
