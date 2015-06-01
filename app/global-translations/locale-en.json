@@ -2786,7 +2786,12 @@
 "error.msg.feemaster.regional.price.not.found":"No Regional Price found for this Service Transfer",
 "validation.msg.feemaster.regionPrices.not.greater.than.zero" :"Please add atleast one region price",
 "label.pgconfig.editconfig":"Edit Configurations",
-"label.form.module":"Module"
+"label.form.module":"Module",
+
+"#Deposit and Refund  ":".......",
+"error.msg.hardware.unallocated":"Please Unallocate hardware",
+"error.msg.unable.to.refund.clientbalance.greater.than.refund.amount":"Unable refund client balance is greater than refund balance",
+"error.msg.hardware.quality.not.good":"Item Quality is not good"
 
 
 
