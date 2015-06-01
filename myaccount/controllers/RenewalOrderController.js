@@ -1,4 +1,4 @@
-RenewalOrderController = function(scope,RequestSender,routeParams,localStorageService) {
+RenewalOrderController = function(scope,RequestSender,routeParams,localStorageService,rootScope) {
 		  
 	scope.clientId = routeParams.clientId || "";
 	var planId	   = routeParams.planId || "";
@@ -23,7 +23,7 @@ RenewalOrderController = function(scope,RequestSender,routeParams,localStorageSe
 		return planId === scope.selectedPlanId;
 	};
 	
-  if(localStorageService.get("clientTotalData")){
+  if(rootScope.selfcare_sessionData){
 	RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
 	  var clientData = data || {};
 	  var totalOrdersData = [];
@@ -51,6 +51,7 @@ selfcareApp.controller('RenewalOrderController',['$scope',
                                                 'RequestSender',
                                                 '$routeParams',
                                                 'localStorageService',
+                                                '$rootScope',
                                                 RenewalOrderController]);
 
 

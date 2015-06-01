@@ -1,4 +1,4 @@
-AdditionalOrdersController = function(scope,RequestSender,routeParams,localStorageService,location) {
+AdditionalOrdersController = function(scope,RequestSender,routeParams,localStorageService,location,rootScope) {
 		  
 			scope.clientId = routeParams.clientId || "";
 		  	scope.planselectionTab = true;
@@ -21,7 +21,7 @@ AdditionalOrdersController = function(scope,RequestSender,routeParams,localStora
 				return planId === scope.selectedPlanId;
 			};
 		  
-		if(localStorageService.get("clientTotalData")){
+		if(rootScope.selfcare_sessionData){
 		  RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
 			  var clientData = data || {};
 			  var totalOrdersData = [];
@@ -65,4 +65,5 @@ selfcareApp.controller('AdditionalOrdersController',['$scope',
                                                      '$routeParams',
                                                      'localStorageService',
                                                      '$location',
+                                                     '$rootScope',
                                                      AdditionalOrdersController]);

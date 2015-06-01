@@ -15,37 +15,38 @@ ServicesController = function(scope,RequestSender,localStorageService,location,p
 		  var isAutoRenewConfig = angular.fromJson(localStorageService.get("isAutoRenewConfig"));
 		  	var clientOrdersData =[]; var retrivingOrdersData = {};scope.ordersData = [];
 		  	var completeOrdersData = [];
-	  	  var clientData= localStorageService.get('clientTotalData');
+	  	  var clientData= {};
 	  	  function initialFunCall(){
-	  		scope.screenName = "additionalorders";
-		    if(clientData){
-			  scope.clientId = clientData.id;
-			  
-			  RequestSender.getOrderResource.get({clientId:scope.clientId},function(data){
-				  clientOrdersData = data.clientOrders;
-				  retrivingOrdersData.totalFilteredRecords = clientOrdersData.length;
-				 // scope.ordersData = paginatorService.paginate(scope.getOrdersData,3);
-				  scope.ordersData = clientOrdersData;
-				  
-				  //new code for new ui
-				  var totalOrdersData = []; 
-				  RequestSender.orderTemplateResource.query({region : clientData.state},function(data){
-					  completeOrdersData = data;
-					  totalOrdersData = completeOrdersData;
-					  scope.plansData = [];
-						  for(var i in clientOrdersData ){
-							  totalOrdersData = _.filter(totalOrdersData, function(item) {
-			                      return item.planCode != clientOrdersData[i].planCode;
-			                  });
-						  }
-						  for(var j in totalOrdersData){
-							  totalOrdersData[j].autoRenew = isAutoRenewConfig;
-							if(totalOrdersData[j].isPrepaid == 'Y')scope.plansData.push(totalOrdersData[j]); 
-						  }
-						  localStorageService.add("storageData",{clientData:clientData,totalOrdersData:totalOrdersData});
-				  });
-			  });
-		    }
+	  		 if(rootScope.selfcare_sessionData){
+	  			 scope.clientId = rootScope.selfcare_sessionData.clientId;
+	  		   RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
+	  			  scope.screenName = "additionalorders";
+  				  RequestSender.getOrderResource.get({clientId:scope.clientId},function(data){
+  					  clientOrdersData = data.clientOrders;
+  					  retrivingOrdersData.totalFilteredRecords = clientOrdersData.length;
+  					  // scope.ordersData = paginatorService.paginate(scope.getOrdersData,3);
+  					  scope.ordersData = clientOrdersData;
+  					  
+  					  //new code for new ui
+  					  var totalOrdersData = []; 
+  					  RequestSender.orderTemplateResource.query({region : clientData.state},function(data){
+  						  completeOrdersData = data;
+  						  totalOrdersData = completeOrdersData;
+  						  scope.plansData = [];
+  						  for(var i in clientOrdersData ){
+  							  totalOrdersData = _.filter(totalOrdersData, function(item) {
+  								  return item.planCode != clientOrdersData[i].planCode;
+  							  });
+  						  }
+  						  for(var j in totalOrdersData){
+  							  totalOrdersData[j].autoRenew = isAutoRenewConfig;
+  							  if(totalOrdersData[j].isPrepaid == 'Y')scope.plansData.push(totalOrdersData[j]); 
+  						  }
+  						  localStorageService.add("storageData",{clientData:clientData,totalOrdersData:totalOrdersData});
+  					  });
+  				  });
+	  		  });
+	  	    }
 	  	  }initialFunCall();
 		  
 	 scope.packageSelectionFun = function(selectedOrderId,selectedPlanId,orderStatus,orderRenew){

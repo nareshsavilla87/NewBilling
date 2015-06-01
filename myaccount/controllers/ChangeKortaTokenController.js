@@ -1,7 +1,5 @@
-ChangeKortaTokenController = function(scope, RequestSender, location,localStorageService,modal) {
+ChangeKortaTokenController = function(scope, RequestSender, location,localStorageService,modal,rootScope) {
 		  
-		 var clientData 	= localStorageService.get('clientTotalData') || {};
-		   var clientId 	= clientData.id;
 		   
 		 //getting Payment Gateway names form constans.js
 			var  kortaPG			=	paymentGatewayNames.korta || "";
@@ -17,9 +15,11 @@ ChangeKortaTokenController = function(scope, RequestSender, location,localStorag
 		   var langs 				= Langs;
 		   var temp 				= localStorageService.get('localeLang')||"";
 		   scope.optlang 			= temp || selfcareModels.locale;
-		   
-		  RequestSender.clientResource.get({clientId: clientId} , function(data) {
-			  clientData 		= data || {};
+		   if(rootScope.selfcare_sessionData){
+			   scope.clientId = rootScope.selfcare_sessionData.clientId;
+		   }
+		  RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
+			  var clientData 		= data || {};
 			  scope.fullName 	= clientData.displayName;;
 			  scope.address 	= clientData.addressNo;
 			  scope.emailId 	= clientData.email;
@@ -50,7 +50,7 @@ ChangeKortaTokenController = function(scope, RequestSender, location,localStorag
 			  
 			  var encryptData = {};
 			  encryptData[kortaAmountField] = scope.amount;   		encryptData[kortaPaymentMethod]	= scope.doAction;
-			  encryptData[kortaTokenValue] 	= token;		  		encryptData[kortaclientId] 		= clientId;
+			  encryptData[kortaTokenValue] 	= token;		  		encryptData[kortaclientId] 		= scope.clientId;
 			  encryptData.locale 			= scope.optlang;  		encryptData.email 				= scope.emailId;
 			  
 			  var encodeURIComponentData  = encodeURIComponent(JSON.stringify(encryptData));
@@ -117,4 +117,5 @@ selfcareApp.controller('ChangeKortaTokenController', ['$scope',
                                                       '$location',
                                                       'localStorageService',
                                                       '$modal',
+                                                      '$rootScope',
                                                       ChangeKortaTokenController]);

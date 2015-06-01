@@ -1,4 +1,4 @@
-PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorageService,location,modal){
+PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorageService,location,modal,rootScope){
 	
 	
 	//getting Payment Gateway names form constans.js
@@ -15,13 +15,15 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 	 var temp 				= localStorageService.get('localeLang')||"";
 	 scope.optlang 			= temp || selfcareModels.locale;
 	
-	var clientData			= localStorageService.get("clientTotalData");
-	scope.clientId			= clientData.id;
+	rootScope.selfcare_sessionData ? scope.clientId = rootScope.selfcare_sessionData.clientId : null;
 	scope.planData			= {};
 	var encrytionKey 		= selfcareModels.encriptionKey;
 	scope.amountEmpty 		= true;
 	scope.isRedirecting 	= false;
 	
+	var clientData			= {};
+	RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
+		clientData = data;
 	  scope.paymentgatewayDatas = [];
 	  RequestSender.paymentGatewayConfigResource.get(function(data) {
 		  if(data.globalConfiguration){
@@ -34,6 +36,7 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 			  scope.paymentgatewayDatas.length==0 ?scope.paymentGatewayName="" : "";
 		  }
 	  });
+	});
 	
 	var hostName = selfcareModels.selfcareAppUrl;
 	
@@ -180,4 +183,5 @@ selfcareApp.controller("PrepaidPaymentController",['$scope',
                                                    'localStorageService',
                                                    '$location',
                                                    '$modal',
+                                                   '$rootScope',
                                                    PrepaidPaymentController]);

@@ -21,18 +21,13 @@ SelfcareMainController = function(scope, translate,sessionManager,RequestSender,
 	//loading image is hide when we load this file
 	   scope.domReady = true;
 	   
-	   var urlAfterHash = window.location.hash;
-	   if(urlAfterHash == '#/profile'){
-		   location.path('/').replace();
-	   }
-	   
 	   //index page hiding when we reloading the page bcoz already signed
-	   if(localStorageService.get('selfcare_sessionData')||localStorageService.get("clientTotalData")){
+	   if(scope.selfcare_sessionData){
 		   scope.isLandingPage= true;
 	   }
 	   
 	   //index page hiding when client registration form appear
-	   (urlAfterHash.match('/active') == '/active') ? (scope.isLandingPage= true,scope.isRegClientProcess = true) : scope.isRegClientProcess = false;
+	   (location.path().match('/active') == '/active') ? (scope.isLandingPage= true,scope.isRegClientProcess = true) : scope.isRegClientProcess = false;
 	   
 	   
 //calling this method every time if session is exit or not
@@ -97,8 +92,8 @@ scope.$watch(function () {
 	 //checking session every  second when scope.currentSession.user not null
 	 if((scope.currentSession.user != null)){
 		 //in this checking is it Registration Page or not  
-		 if(!(urlAfterHash.match('/active') == '/active')){
-			 if(localStorageService.get('selfcare_sessionData')||webStorage.get("clientTotalData")){}
+		 if(!(location.path().match('/active') == '/active')){
+			 if(scope.selfcare_sessionData){}
 			 else scope.signout();
 		 }
 	 }
@@ -157,9 +152,10 @@ scope.$watch(function () {
 	 
 	//execute this fun when we click on header bar links 
 	 scope.isActive = function (route) {
-		
 		 var active = route === location.path();
-		 	return active;
+		 if(scope.selfcare_sessionData == null && location.path().match('/active')!='/active') 
+			 location.path('/').replace();
+		 return active;
 	 };
 	 
 	 //fun executes when we click on logout link

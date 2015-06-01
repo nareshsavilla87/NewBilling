@@ -12,8 +12,8 @@
 	    		  authenticationService.authenticateWithUsernamePassword(function(data){
 	    			  scope.isProcessing = true;
 	    			  RequestSender.loginUser.save(scope.loginCredentials,function(successData){
-	    				  localStorageService.add("selfcare_sessionData", {clientId: successData.clientId, userId : data.userId,
-	    					  												authenticationKey: data.base64EncodedAuthenticationKey});
+	    				rootScope.selfcare_sessionData ={clientId: successData.clientId, authenticationKey: data.base64EncodedAuthenticationKey};
+	    				 localStorageService.add("selfcare_sessionData", rootScope.selfcare_sessionData);
 	    				  rootScope.currentSession= {user :successData.clientData.displayName||"selfcare"};
 	    				  scope.loginCredentials = {};rootScope.signUpCredentials = {};
 	            		  rootScope.signupErrorMsgs  =[];rootScope.loginErrorMsgs  =[];rootScope.infoMsgs  =[];
