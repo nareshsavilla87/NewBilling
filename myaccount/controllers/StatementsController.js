@@ -34,7 +34,7 @@ StatementsController = function(scope,RequestSender,location,API_VERSION,paginat
 	             location.path('/viewstatement/'+statementid);
 	      };
 	      scope.downloadFile = function (statementId){
-	           window.open(API_VERSION +'/billmaster/'+ statementId +'/print?tenantIdentifier=default');
+	           window.open(API_VERSION +'/billmaster/'+ statementId +'/print?tenantIdentifier='+selfcareModels.tenantId);
 	      };
           
     };

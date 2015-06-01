@@ -1,30 +1,17 @@
-ServicesController = function(scope,RequestSender,localStorageService,location,paginatorService,$modal,route,dateFilter,rootScope) {
+ServicesController = function(scope,RequestSender,localStorageService,location,$modal,route,dateFilter,rootScope) {
 		  
-		  	scope.getOrdersData = function(offset, limit, callback) {
-			  retrivingOrdersData.pageItems = [];
-				  var itrCount = 0;
-				  for (var i=offset;i<clientOrdersData.length;i++) {
-					 itrCount += 1;
-					 retrivingOrdersData.pageItems.push(clientOrdersData[i]);
-					 if(itrCount==limit){
-						 break;
-					 }
-			      }
-				  callback(retrivingOrdersData);
-		  	};
 		  var isAutoRenewConfig = angular.fromJson(localStorageService.get("isAutoRenewConfig"));
-		  	var clientOrdersData =[]; var retrivingOrdersData = {};scope.ordersData = [];
+		  	var clientOrdersData =[]; scope.ordersData = [];
 		  	var completeOrdersData = [];
 	  	  var clientData= {};
 	  	  function initialFunCall(){
 	  		 if(rootScope.selfcare_sessionData){
 	  			 scope.clientId = rootScope.selfcare_sessionData.clientId;
-	  		   RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
+	  		   RequestSender.clientResource.get({clientId: scope.clientId} , function(clientTotalData) {
 	  			  scope.screenName = "additionalorders";
+	  			  clientData	   = clientTotalData;
   				  RequestSender.getOrderResource.get({clientId:scope.clientId},function(data){
   					  clientOrdersData = data.clientOrders;
-  					  retrivingOrdersData.totalFilteredRecords = clientOrdersData.length;
-  					  // scope.ordersData = paginatorService.paginate(scope.getOrdersData,3);
   					  scope.ordersData = clientOrdersData;
   					  
   					  //new code for new ui
@@ -98,7 +85,6 @@ ServicesController = function(scope,RequestSender,localStorageService,location,p
     	   if(priceData.contractId != 0){
     		   scope.planId 	= planId;				scope.billingFrequency 	= priceData.billingFrequency;
     		   scope.priceId 	= priceData.id;			scope.price 			= priceData.price;
-    		   scope.duration 	= priceData.duration;
     	   }else if(priceData.contractId == 0){
     		   alert("Contract Id is '0',Please Choose another.....");
     	   }
@@ -236,7 +222,6 @@ selfcareApp.controller('ServicesController', ['$scope',
                                               'RequestSender',
                                               'localStorageService',
                                               '$location',
-                                              'PaginatorService',
                                               '$modal',
                                               '$route',
                                               'dateFilter',
