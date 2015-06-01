@@ -17,9 +17,9 @@ selfcareApp.service("SessionManager",['$rootScope','HttpService','$location','lo
       };
 
         this.restore = function(handler) {
-            var selfcare_sessionData = localStorageService.get('selfcare_sessionData');
-            if (selfcare_sessionData !== null) {
-              httpService.setAuthorization(selfcare_sessionData.authenticationKey);
+            scope.selfcare_sessionData = localStorageService.get('selfcare_sessionData');
+            if (scope.selfcare_sessionData !== null) {
+              httpService.setAuthorization(scope.selfcare_sessionData.authenticationKey);
             	  var clientData = localStorageService.get("clientTotalData");
             	  if(clientData){
 	            		//adding web tv url

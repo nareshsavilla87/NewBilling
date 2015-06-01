@@ -2,8 +2,7 @@
             
 		     scope.clientId 			= routeParams.clientId;
 		     scope.isConfigNationalId 	= angular.lowercase(routeParams.isConfigNationalId) == 'true';
-			 var clientData= localStorageService.get('clientTotalData');
-			 if(clientData){
+			 if(rootScope.selfcare_sessionData){
 				 scope.formData = {};
 				 RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
 					 scope.displayName					= data.displayName;
