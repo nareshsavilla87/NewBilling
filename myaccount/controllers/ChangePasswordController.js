@@ -1,8 +1,7 @@
 ChangePasswordController = function(scope,RequestSender,rootScope,localStorageService,sessionManager) {
 		 
-		  scope.pwdData = {};
-		  scope.formData = {};
-		  scope.retype_pwd_valid = false;
+		  
+		  scope.formData = {};scope.pwdData = {};
 		  if(rootScope.selfcare_sessionData){
 			RequestSender.clientResource.get({clientId: rootScope.selfcare_sessionData.clientId} , function(data) {
 			  scope.email = data.email;

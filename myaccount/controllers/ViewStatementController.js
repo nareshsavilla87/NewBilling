@@ -11,7 +11,7 @@ ViewStatementController = function(scope,routeParams , RequestSender,API_VERSION
         
         scope.downloadFile = function (){
         	
-        	window.open(rootScope.hostUrl+ API_VERSION +'/billmaster/'+scope.billId+'/print?tenantIdentifier=default');
+        	window.open(rootScope.hostUrl+ API_VERSION +'/billmaster/'+scope.billId+'/print?tenantIdentifier='+selfcareModels.tenantId);
         };
         
         
