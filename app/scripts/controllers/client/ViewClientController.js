@@ -1,6 +1,7 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    ViewClientController: function(scope,webStorage, routeParams , route, location, resourceFactory,paginatorService, http,$modal,dateFilter,API_VERSION,$rootScope,PermissionService) {
+    ViewClientController: function(scope,webStorage, routeParams , route, location, resourceFactory,paginatorService, http,$modal,dateFilter,API_VERSION,$rootScope,PermissionService,
+    		TENANT) {
     	 scope.client = [];
          scope.error = {};
          scope.identitydocuments = [];
@@ -184,12 +185,12 @@
                       	 });
                  }
                  //if (data.status.value == "Active") {
-                 scope.buttons = [{
+                 scope.buttons = [/*{
                       	                  name:"label.add.device",
                       	                  href:"#/adddevice",
                       	                  icon:"icon-tag",
                       	                  ngShow : bookOrder
-                         	            },
+                         	            },*/
                          	           {
                                             name:"button.redemption",
                                             href:"#/redemption",
@@ -205,12 +206,12 @@
                                         	 
                                         },
                                       
-                                        {
+                                        /*{
                                           name:"button.newTicket",
                                           href:"#/newTicket",
                                           icon :"icon-flag",
                                           ngShow : riseTicket
-                                        },
+                                        },*/
                                         
                                         /*{
 
@@ -249,12 +250,12 @@
                                              icon :"icon-play",
                                              ngShow : doInvoice
                                           },
-                                          {
+                                          /*{
                                              name:"button.statement",
                                              href:"#/statement",
                                              icon :"icon-file",
                                              ngShow : statement
-                                         },                                                                              
+                                         },*/                                                                              
 
                                          {
 	                                        name:"button.edit",
@@ -263,7 +264,7 @@
 	                                        ngShow : edit
                                         },
                                         {
-                                        	name:"Delete",
+                                        	name:"Close",
                                         	href:"#/closeclient",
                                         	icon:"icon-remove",
                                         	ngShow : "true"
@@ -919,7 +920,7 @@
                  data: {}
                })*/
               
-              window.open($rootScope.hostUrl+ API_VERSION +'/billmaster/'+ statementId +'/print?tenantIdentifier=default');
+              window.open($rootScope.hostUrl+ API_VERSION +'/billmaster/'+ statementId +'/print?tenantIdentifier='+TENANT);
         };
          
         scope.cancelScheduleOrder = function(id){
@@ -1123,7 +1124,7 @@
         };
 
         scope.downloadDocument = function(documentId,index) {
-        	window.open($rootScope.hostUrl+ API_VERSION +'/clients/'+ routeParams.id +'/documents/'+ documentId +'/attachment?tenantIdentifier=default');
+        	window.open($rootScope.hostUrl+ API_VERSION +'/clients/'+ routeParams.id +'/documents/'+ documentId +'/attachment?tenantIdentifier='+TENANT);
             /*resourceFactory.clientDocumentsResource.get({clientId: routeParams.id, documentId: documentId}, '', function(data) {
                 scope.clientdocuments.splice(index,1);
             });*/
@@ -1406,7 +1407,7 @@
 	  					var fromDate = new Date($scope.start.date).getTime();
 	  					var toDate = new Date($scope.to.date).getTime();
 	  					var downloadType = $scope.formData.downloadType;
-	  					window.open($rootScope.hostUrl+ API_VERSION +'/financialTransactions/download/'+ routeParams.id +'?downloadType='+ downloadType +'&fromDate='+fromDate+'&toDate='+toDate+'&tenantIdentifier=default');
+	  					window.open($rootScope.hostUrl+ API_VERSION +'/financialTransactions/download/'+ routeParams.id +'?downloadType='+ downloadType +'&fromDate='+fromDate+'&toDate='+toDate+'&tenantIdentifier='+TENANT);
 	  					$modalInstance.close('delete');
 	  				};
 				
@@ -1546,6 +1547,7 @@
       'API_VERSION',
       '$rootScope',
       'PermissionService', 
+      'TENANT',
       mifosX.controllers.ViewClientController
       ]).run(function($log) {
     	  $log.info("ViewClientController initialized");
