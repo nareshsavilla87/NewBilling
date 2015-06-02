@@ -89,6 +89,10 @@
         	scope.selectAccount = false; 
         };
         
+        scope.amountChange =function(Amount){
+        	scope.payAvailAmount=Amount;
+        };
+        
         scope.showInvoices= function(payAmount){
              scope.showInvoiceDetails=!scope.showInvoiceDetails;
              for(var i in scope.invoiceDatas){
@@ -153,7 +157,6 @@
         			}else{
         			prevAvailAmountArray.push({id : invoiceId,amount : amount});
         			scope.payAvailAmount=parseFloat((scope.payAvailAmount -=amount).toFixed(2));   //Math.round(scope.formData.amountPaid -=amount);
-        			console.log(scope.payAvailAmount);
         			scope.creditdistributions.push({
         				invoiceId : invoiceId,
         				amount : amount,
