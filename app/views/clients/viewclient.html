@@ -766,7 +766,7 @@
                 								{{financialtransaction.transactionType}}
               								</td>
               								<td class="pointer"  data-ng-click="routeTofinancial(financialtransaction.transactionId,financialtransaction.transactionType,client.id)">
-                								{{financialtransaction.transactionCategory}}
+                			 						{{financialtransaction.transactionCategory}}
               								</td>
               								<td class="pointer"  data-ng-click="routeTofinancial(financialtransaction.transactionId,financialtransaction.transactionType,client.id)">
                  								{{financialtransaction.creditAmount}}
@@ -775,7 +775,9 @@
                  								{{financialtransaction.amount}}
               								</td>
               								<td>
-                								<a data-ng-hide="financialtransaction.flag==true" data-ng-click="cancelPayment(financialtransaction.transactionId)" popover="Cancel Payment" popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a>
+                								<a data-ng-show="financialtransaction.transactionType == 'PAYMENT'  && financialtransaction.flag==false" data-ng-click="cancelPayment(financialtransaction.transactionId)" popover="Cancel Payment" popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a>
+                								<a ng-show="financialtransaction.transactionCategory == 'Deposit' && financialtransaction.flag==false" data-ng-click="refundAmount(financialtransaction.transactionId,financialtransaction.amount)" 
+                								   		popover="Refund Amount" popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a>
               								</td>
            								</tr>
 									</tbody>
@@ -1025,7 +1027,7 @@
                   								<any>{{financialtransaction.amount}}</any>
               								</td>
               								<td>
-                								<a ng-show="financialtransaction.transactionCategory == 'Deposit' && financialtransaction.flag=='N'" data-ng-click="refundAmount(financialtransaction.transactionId,financialtransaction.amount)" 
+                								<a ng-show="financialtransaction.transactionCategory == 'Deposit' && financialtransaction.flag==false" data-ng-click="refundAmount(financialtransaction.transactionId,financialtransaction.amount)" 
                 								   		popover="Refund Amount" popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a>
               								</td>
             							</tr>
