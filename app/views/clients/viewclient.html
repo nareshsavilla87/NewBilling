@@ -1025,7 +1025,7 @@
                   								<any>{{financialtransaction.amount}}</any>
               								</td>
               								<td>
-                								<a ng-show="financialtransaction.transactionCategory == 'Deposit'" data-ng-click="refundAmount(financialtransaction.transactionId,financialtransaction.amount)" 
+                								<a ng-show="financialtransaction.transactionCategory == 'Deposit' && financialtransaction.flag=='N'" data-ng-click="refundAmount(financialtransaction.transactionId,financialtransaction.amount)" 
                 								   		popover="Refund Amount" popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a>
               								</td>
             							</tr>
