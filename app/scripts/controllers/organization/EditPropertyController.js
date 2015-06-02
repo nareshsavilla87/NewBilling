@@ -67,10 +67,11 @@
 			};
 			
 			
-			scope.getParcel = function(query){
+			scope.getParcel = function(queryParam){
 				return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
 	        	      params: {
-	        	    	  		query: 'parcel'
+	        	    	  		query: 'parcel',
+	        	    	  		queryParam:queryParam
 	        	      		   }
 	        	    }).then(function(res){   
 	        	    	 scope.parcelData=res.data;	
@@ -89,11 +90,31 @@
                     }
                 }
              };
+             
+             scope.getBuild = function(queryParam){
+					return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
+		        	      params: {
+		        	    	  		query: 'Building Codes',
+		        	    	  		queryParam:queryParam				
+		        	      		   }
+		        	    }).then(function(res){   
+		        	    	 scope.buildingData=res.data;	
+		        	      return scope.buildingData;
+		        	    });
+	             };  
+	             
+	             scope.getbuildCode = function(buildingCode){
+	            	 if(!angular.isUndefined(buildingCode)){
+					    		scope.formData.buildingCode = buildingCode.substr(0,3);
+					    		scope.getWatch(scope.formData.buildingCode);
+				          }	 
+	             };  
 			
-			scope.getFloor = function(query){
+			scope.getFloor = function(queryParam){
 				return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
 	        	      params: {
-	        	    	  		query: 'Level/Floor'
+	        	    	  		query: 'Level/Floor',
+	        	    	  		queryParam:queryParam
 	        	      		   }
 	        	    }).then(function(res){   
 	        	    	 scope.floorData=res.data;	
@@ -113,6 +134,30 @@
             	 }	       	        
           };
 			
+          scope.getUnit = function(queryParam){
+				return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
+	        	      params: {
+	        	    	  		query: 'Unit Codes',
+	        	    	  		queryParam:queryParam		
+	        	      		   }
+	        	    }).then(function(res){   
+	        	    	 scope.unitData=res.data;	
+	        	      return scope.unitData;
+	        	    });
+           };   
+           
+           scope.getunitCode = function(unit){
+          	 if(!angular.isUndefined(unit)){
+              	 scope.formData.unitCode=unit.substr(0,4);
+              	 console.log(scope.formData.propertyCode);
+              	if(angular.isUndefined(scope.formData.propertyCode)){
+              	      scope.getPropertyCode(scope.formData.unitCode);
+              	}else{
+              		scope.getWatch(scope.formData.unitCode);
+              	   }					 
+			      }	 
+           };
+          
 			scope.getWatch=function(labelValue){
 			  if(labelValue!=undefined){
 			     scope.formData.propertyCode=scope.precinct.concat(scope.formData.parcel,scope.formData.buildingCode,scope.formData.floor,scope.formData.unitCode);
