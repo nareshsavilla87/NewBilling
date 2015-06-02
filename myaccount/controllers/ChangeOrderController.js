@@ -22,7 +22,7 @@ ChangeOrderController = function(scope,RequestSender,routeParams,localStorageSer
 		return planId === scope.selectedPlanId;
 	};
 	
-  if(localStorageService.get("clientTotalData")){
+  if(rootScope.selfcare_sessionData){
 	RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
 	  var clientData = data || {};
 	  var totalOrdersData = [];

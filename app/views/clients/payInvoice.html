@@ -109,7 +109,7 @@
 								<div class="control-group">
            					 	<label class="control-label" for="amountPaid">{{ 'label.amount' | translate }}</label>
             					<div class="controls">
-             					 <input type="text" id="amountPaid" name="amountPaid" data-ng-model="formData.amountPaid" data-ng-pattern="{{'decimal' | CodeValidate}}"/>
+             					 <input type="text" id="amountPaid" name="amountPaid" data-ng-model="formData.amountPaid" data-ng-change="selectInvoice&&amountChange(formData.amountPaid)" data-ng-pattern="{{'decimal' | CodeValidate}}"/>
              					 <input data-ng-show="showInvoiceDetails" type="text" class="input-small" id="payAvailAmount" 
              					    name="payAvailAmount" data-ng-model="payAvailAmount" data-ng-pattern="{{'decimal' | CodeValidate}}" disabled/>
              					     <span data-ng-show="payInvoiceForm.amountPaid.$dirty && payInvoiceForm.amountPaid.$invalid">
@@ -223,7 +223,7 @@
            		 <a href='#/viewclient/{{clientId}}' class="btn">Cancel</a>
           		 <button id="submit" type="submit" data-ng-disabled="payInvoiceForm.$dirty && payInvoiceForm.$invalid" class="btn btn-primary" data-ng-click = "submitAccount()">{{'button.save'| translate}}</button>
           	</div>
-			<div class="control-group" data-ng-show = "selectInvoice">
+			<div class="control-group" data-ng-show = "selectInvoice && formData.amountPaid">
           		<label class="control-label">{{'label.show.invoice.details' | translate}}</label>
          		 <div class="controls">
             		<a class="btn btn-primary" data-ng-click="showInvoices(formData.amountPaid)">
@@ -233,7 +233,7 @@
           		</div>
         	</div>
 			<br>
-			
+<div data-ng-show="formData.amountPaid">
 <div data-collapse = "!showInvoiceDetails">
 
 			<table class="table" >
@@ -279,6 +279,7 @@
             <a href='#/viewclient/{{clientId}}' class="btn">{{'button.cancel'  | translate}}</a>
           <button id="submit" type="submit" class="btn btn-primary" data-ng-disabled="payInvoiceForm.$dirty && payInvoiceForm.$invalid" class="btn btn-primary" data-ng-click = "submitAccount()">Pay</button>
           </div>	
+ </div>
  </div> 
         </fieldset>
       </form>
