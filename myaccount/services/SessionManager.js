@@ -22,11 +22,11 @@ selfcareApp.service("SessionManager",['$rootScope','HttpService','$location','lo
               httpService.setAuthorization(scope.selfcare_sessionData.authenticationKey);
             	  var clientData = localStorageService.get("clientTotalData");
             	  if(clientData){
+            		  scope.selfcare_userName = clientData.displayName;
+            		  clientData.selfcare.token ? scope.iskortaTokenAvailable = true :  scope.iskortaTokenAvailable = false;
 	            		//adding web tv url
 	           		   scope.webtvURL = selfcareModels.webtvURL+"?id="+clientData.id;
 	           		   localStorageService.add("selfcareAppUrl",selfcareModels.selfcareAppUrl);
-            		  scope.selfcare_userName = clientData.displayName;
-            		  clientData.selfcare.token ? scope.iskortaTokenAvailable = true :  scope.iskortaTokenAvailable = false;
             		  if(location.path() == "/")location.path('/profile');
             		  else if(location.path())location.path(location.path());
             		  else location.path('/profile');
