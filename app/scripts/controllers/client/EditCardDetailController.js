@@ -42,12 +42,12 @@
     			       //var decrypted3 = CryptoJS.AES.decrypt(scope.formData.cvvNumber,  key);
     			        //scope.formData.cvvNumber = decrypted3.toString(CryptoJS.enc.Utf8);
        			     //var cvvNum = decrypted3.toString(CryptoJS.enc.Utf8);
-			          var stars = "";
+			          /*var stars = "";
 			         for (var j in cvvNum){
 			        		 stars += "*";
 			         }
 			         cvvNum = stars;
-			         scope.formData.cvvNum = cvvNum;
+			         scope.formData.cvvNum = cvvNum;*/
 			         if(scope.formData.cardExpiryDate){
 			        	var expireCard = cardExpireDate(scope.formData.cardExpiryDate);
 			        	if(expireCard){
