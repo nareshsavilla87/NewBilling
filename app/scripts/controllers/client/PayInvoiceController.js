@@ -2,7 +2,8 @@
   mifosX.controllers = _.extend(module, {
 	  PayInvoiceController: function(scope,webStorage, resourceFactory, routeParams, location,dateFilter,validator,
 			                         route,$modal,$rootScope,$locale, $filter) {
-
+		  
+		var addAmountValue = 0;
         scope.formData = {};
         scope.creditData = {};
         scope.clientId = routeParams.id;
@@ -30,6 +31,7 @@
          
          scope.invoiceDatas = [];
          scope.showInvoiceDetails=false;
+         scope.showDepositDetails=false;
          scope.selectAccount = false;
          scope.formData.isSubscriptionPayment= false;
          scope.selectInvoice = false;
@@ -39,8 +41,10 @@
          var checkBox = false;
          scope.payAvailAmount = 0;
          scope.creditdistributions = [];
+         scope.DepositAmount=0;
+         scope.depositDistributions=[];
          
-        resourceFactory.paymentsTemplateResource.getPayments(function(data){
+        resourceFactory.paymentsTemplateResource.getPayments({clientId : scope.clientId}, function(data){
         	scope.payments = data;
             scope.data = data.data;
             scope.paymentTypeData=function(value){
@@ -50,6 +54,7 @@
             		}
             	}
             };
+            scope.depositDatas = data.depositDatas;
         });
         resourceFactory.payInvoiceTemplateResource.getPayInvoices({invoiceId : routeParams.id},function(data){
         		scope.invoiceDatas = data;
@@ -64,12 +69,23 @@
         	scope.showInvoiceDetails == false ? scope.showInvoiceDetails = false : scope.showInvoiceDetails = false;
         	scope.selectAccount = true; 
         	scope.selectInvoice = false;  
+        	scope.selectDeposit = false;
         };
         
         scope.selectedInvoice = function(){
+        	 $("#amountPaid").removeAttr("readonly"); 
         	delete this.formData.amountPaid;
         	delete this.formData.amount;
         	scope.selectInvoice = true; 
+        	scope.selectAccount = false; 
+        	scope.selectDeposit = false;
+        };
+        scope.selectedDeposit = function(){
+        	$("#amountPaid").attr("readonly","readonly");
+        	delete this.formData.amountPaid;
+        	delete this.formData.amount;
+        	scope.selectDeposit = true;
+        	scope.selectInvoice = false; 
         	scope.selectAccount = false; 
         };
         
@@ -91,8 +107,24 @@
              }
         };
         
+        scope.showDeposits= function(){
+            scope.showDepositDetails=!scope.showDepositDetails;
+            for(var i in scope.depositDatas){
+           	 $('#'+scope.depositDatas[i].id).prop('checked',false);
+              }
+            /*if(!angular.isUndefined(payAmount)&&scope.showDepositDetails){
+               scope.DepositAmount=payAmount;
+           	 $("#amountPaid").attr("readonly","readonly");
+            }else{
+           	 $("#amountPaid").removeAttr("readonly"); 
+            }*/
+            
+       };
+       
+        
         // invoices selecting     
         scope.selectedInvoices = function(invoiceId,amount,active,index){
+
         	if(!angular.isUndefined(scope.formData.amountPaid)&& scope.formData.amountPaid > 0){
         		$("#amountPaid").attr("readonly","readonly");
         	}
@@ -161,6 +193,75 @@
             };
         };
         
+        
+        
+        // deposit selecting
+        
+        scope.selectedDepositInvoices = function(invoiceId,amount,active,index){
+        	//scope.payAvailAmount = availableAmount ;
+        	addAmountValue = addAmountValue+amount;
+        	//alert("addAmountValue: "+addAmountValue);
+        	scope.formData.amountPaid = addAmountValue;
+        	if(!angular.isUndefined(scope.formData.amountPaid)&& scope.formData.amountPaid > 0){
+        		$("#amountPaid").attr("readonly","readonly");
+        	}
+        	if(active == true){
+        		/*if(scope.DepositAmount < addAmountValue ){
+        			$('#'+invoiceId).prop('checked',false);
+        			
+        			$modal.open({
+              			 templateUrl: 'alert.html',
+              			 controller: alertController,
+              			 resolve:{}
+              		 });
+        		}else if (scope.DepositAmount >= addAmountValue){//alert('same');
+*/        			prevAvailAmountArray.push({id : invoiceId,amount : scope.DepositAmount});
+        			//paymentAmount = scope.DepositAmount;
+        		    scope.depositDistributions.push({
+        				depositId : invoiceId,
+        				amount : amount,
+						clientId  : parseInt(routeParams.id),
+						locale    : $rootScope.locale.code
+        				});
+        		    console.log("Data: "+scope.depositDistributions[0].amount);
+        		    
+        			//}
+        	/*else{
+        			prevAvailAmountArray.push({id : invoiceId,amount : amount});
+        			scope.DepositAmount=parseFloat((scope.payAvailAmount -=amount).toFixed(2));                 //Math.round(scope.formData.amountPaid -=amount);
+        			console.log(scope.payAvailAmount);
+        			scope.creditdistributions.push({
+        				invoiceId : invoiceId,
+        				amount : amount,
+						clientId  : parseInt(routeParams.id),
+						locale    : $rootScope.locale.code
+						
+        				});
+        		}*/
+        		//if(scope.formData.amountPaid != 0)
+        		//	scope.payAvailAmount=parseFloat((scope.payAvailAmount -= amount).toFixed(2));
+        	}
+        	else{
+        		$("#amountPaid").removeAttr("readonly");
+        		  for(var i in prevAvailAmountArray){
+        			  if(prevAvailAmountArray[i].id==invoiceId){
+        				  
+        				  if(scope.DepositAmount == 0)
+          					scope.DepositAmount = prevAvailAmountArray[i].amount;
+          				  else
+          					scope.DepositAmount=(parseFloat(scope.DepositAmount)+parseFloat(prevAvailAmountArray[i].amount)).toFixed(2);
+        				  break;
+        			  }
+        		  }
+        		  prevAvailAmountArray = _.filter(prevAvailAmountArray, function(item) {
+                      return item.id != invoiceId;
+                  });
+        		scope.depositDistributions = _.filter(scope.depositDistributions, function(item) {
+                    return item.invoiceId != invoiceId;
+               });
+        	}
+        };
+        
         scope.submitAccount = function() {
         	
             this.formData.locale = $rootScope.locale.code;
@@ -170,6 +271,11 @@
             delete this.formData.amount;
             delete this.formData.invoiceId;
             var res1 = validator.validateZipCode(scope.formData.receiptNo);
+            if(scope.selectDeposit==true){
+            	this.formData.paymentType = "Deposit";
+            	this.formData.deposit= scope.depositDistributions;
+            }
+            
             resourceFactory.paymentsResource.save({clientId : routeParams.id}, this.formData, function(data){
             	if(!angular.isUndefined(data.resourceId) && scope.creditdistributions.length >0 && scope.selectInvoice==true){
             	for (var i in scope.creditdistributions){
