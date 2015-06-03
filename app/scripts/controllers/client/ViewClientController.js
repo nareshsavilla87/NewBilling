@@ -1,8 +1,8 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    ViewClientController: function(scope,webStorage, routeParams , route, location, resourceFactory,paginatorService, http,$modal,dateFilter,API_VERSION,$rootScope,PermissionService,localStorageService,
-    		TENANT) {
-    	scope.clientId = routeParams.id;
+
+    ViewClientController: function(scope,webStorage, routeParams , route, location, resourceFactory,paginatorService, http,$modal,dateFilter,API_VERSION,$rootScope,PermissionService,localStorageService,TENANT) {
+    	scope.clientId=routeParams.id;
     	 scope.client = [];
          scope.error = {};
          scope.identitydocuments = [];
