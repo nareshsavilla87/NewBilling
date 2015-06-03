@@ -109,7 +109,7 @@
 								<div class="control-group">
            					 	<label class="control-label" for="amountPaid">{{ 'label.amount' | translate }}</label>
             					<div class="controls">
-             					 <input type="text" id="amountPaid" name="amountPaid" data-ng-model="formData.amountPaid" data-ng-pattern="{{'decimal' | CodeValidate}}"/>
+             					 <input type="text" id="amountPaid" name="amountPaid" data-ng-model="formData.amountPaid" data-ng-change="selectInvoice&&amountChange(formData.amountPaid)" data-ng-pattern="{{'decimal' | CodeValidate}}"/>
              					 <input data-ng-show="showInvoiceDetails" type="text" class="input-small" id="payAvailAmount" 
              					    name="payAvailAmount" data-ng-model="payAvailAmount" data-ng-pattern="{{'decimal' | CodeValidate}}" disabled/>
              					     <span data-ng-show="payInvoiceForm.amountPaid.$dirty && payInvoiceForm.amountPaid.$invalid">
@@ -243,9 +243,8 @@
           		</div>
         	</div>
         	<br>
-<div data-collapse = "!showInvoiceDetails" data-ng-show="selectInvoice" >
-
-			<table class="table" >
+<div data-collapse = "!showInvoiceDetails" data-ng-show="selectInvoice &&formData.amountPaid" >
+	<table class="table" >
         <thead>
             <tr class="graybg">
             	<th>select</th>
@@ -288,7 +287,7 @@
             <a href='#/viewclient/{{clientId}}' class="btn">{{'button.cancel'  | translate}}</a>
           <button id="submit" type="submit" class="btn btn-primary" data-ng-disabled="payInvoiceForm.$dirty && payInvoiceForm.$invalid" class="btn btn-primary" data-ng-click = "submitAccount()">Pay</button>
           </div>	
- </div> 
+ </div>
  
  
  <div data-collapse = "!showDepositDetails" data-ng-show="selectDeposit" >
