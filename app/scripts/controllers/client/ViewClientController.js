@@ -1,12 +1,8 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-<<<<<<< HEAD
-    ViewClientController: function(scope,webStorage, routeParams , route, location, resourceFactory,paginatorService, http,$modal,dateFilter,API_VERSION,$rootScope,PermissionService,localStorageService) {
-    	 scope.clientId = routeParams.id;
-=======
-    ViewClientController: function(scope,webStorage, routeParams , route, location, resourceFactory,paginatorService, http,$modal,dateFilter,API_VERSION,$rootScope,PermissionService,
+    ViewClientController: function(scope,webStorage, routeParams , route, location, resourceFactory,paginatorService, http,$modal,dateFilter,API_VERSION,$rootScope,PermissionService,localStorageService,
     		TENANT) {
->>>>>>> obsplatform-2.04
+    	scope.clientId = routeParams.id;
     	 scope.client = [];
          scope.error = {};
          scope.identitydocuments = [];
@@ -1701,11 +1697,8 @@
       'API_VERSION',
       '$rootScope',
       'PermissionService', 
-<<<<<<< HEAD
       'localStorageService', 
-=======
       'TENANT',
->>>>>>> obsplatform-2.04
       mifosX.controllers.ViewClientController
       ]).run(function($log) {
     	  $log.info("ViewClientController initialized");

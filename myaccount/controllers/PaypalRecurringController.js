@@ -1,23 +1,32 @@
-PaypalRecurringController = function(scope,RequestSender,location,localStorageService,routeParams,$timeout) {
+PaypalRecurringController = function(scope,RequestSender,location,routeParams,$timeout) {
  
-		var screenName 		= routeParams.screenName||"";
-		var clientId 		= routeParams.clientId||"";
-		var planId 			= routeParams.planId||"";
-		var priceId 		= routeParams.priceId||"";
-		scope.price 		= routeParams.price||"";
-		scope.emailId 		= routeParams.emailId||"";
-		var contractId 		= routeParams.contractId||"";
-		var selfcareAppUrl	= selfcareModels.selfcareAppUrl;
+	 var encrytionKey 		 = selfcareModels.encriptionKey;
+	 var selfcareAppUrl		 = selfcareModels.selfcareAppUrl;
+	 
+	 var encryptedData 	   	 = location.search().key,
+ 	  	 decryptedData 		 = CryptoJS.AES.decrypt(encryptedData, encrytionKey).toString(CryptoJS.enc.Utf8),
+	  	 paypalStorageData 	 = angular.fromJson(decodeURIComponent(decryptedData)),
+	  	 ischargeCodeData	 = paypalStorageData.chargeCodeData,
+	 	 screenName			 = paypalStorageData.screenName,
+	 	 clientId			 = paypalStorageData.clientId,
+	 	 planId				 = paypalStorageData.planId,
+	 	 priceId			 = paypalStorageData.priceId,
+	 	 contractId			 = paypalStorageData.contractId;
+	 	 scope.price		 = paypalStorageData.price;
+	 	 scope.emailId		 = paypalStorageData.paypalEmailId;
+	 	 
+	 	 var orderId = 0, billingFrequency =null;
+	 	 if(ischargeCodeData){
+	 		 scope.chargeCodeData = ischargeCodeData.data;
+	 		 orderId 			 = ischargeCodeData.orderId || 0;
+	 		 billingFrequency 	 = ischargeCodeData.billingFrequency;
+	 	 }
 		
-		scope.returnURL 	= selfcareAppUrl+"#/paypalrecurringsuccess/"+screenName+"/"+clientId+"/"+planId+"/"+priceId;
+		scope.returnURL 	 = selfcareAppUrl+"#/paypalrecurringsuccess/"+screenName+"/"+clientId+"/"+planId+"/"+priceId+"/"+orderId;
 		
-		var chargeCodeData = "";var orderId = null;var billingFrequency =null;
-		localStorageService.get("chargeCodeData") ? (chargeCodeData = localStorageService.get("chargeCodeData").data,
-													orderId = localStorageService.get("chargeCodeData").orderId,
-													billingFrequency = localStorageService.get("chargeCodeData").billingFrequency):"";
-			console.log(orderId);
-		scope.period		= chargeCodeData.chargeDuration;
-		scope.time			= chargeCodeData.chargeType[0];
+		console.log(orderId);
+		scope.period		= scope.chargeCodeData.chargeDuration;
+		scope.time			= scope.chargeCodeData.chargeType[0];
 		
 		if(screenName == "changeorder"){
 			scope.customValue   = { clientId:clientId,planId:planId,paytermCode:billingFrequency,
@@ -29,48 +38,36 @@ PaypalRecurringController = function(scope,RequestSender,location,localStorageSe
 			scope.customValue   = { clientId:clientId,planId:planId,paytermCode:billingFrequency,contractPeriod:contractId};
 		}
 		
-		var contractType = 0;
-		var chargeType = 0;
-		console.log("contractType**************>"+angular.lowercase(chargeCodeData.contractType));
-		console.log("chargeType**************>"+angular.lowercase(chargeCodeData.chargeType));
-    			switch (angular.lowercase(chargeCodeData.contractType)) {
-							case "month(s)":
-								contractType = 30;
-								break;
-							case "day(s)":
-								contractType = 1;
-								break;
-							case "week(s)":
-								contractType = 7;
-								break;
-							case "year(s)":
-								contractType = 365;
-								break;
-							default:
-								break;
+		var contractType = 0,chargeType = 0;
+		console.log("contractType**************>"+angular.lowercase(scope.chargeCodeData.contractType));
+		console.log("chargeType**************>"+angular.lowercase(scope.chargeCodeData.chargeType));
+    			switch (angular.lowercase(scope.chargeCodeData.contractType)) {
+							case "month(s)": contractType = 30;
+											  break;
+							case "day(s)": contractType = 1;
+											  break;
+							case "week(s)": contractType = 7;
+											  break;
+							case "year(s)": contractType = 365;
+										break;
+							default: break;
 					};
-				switch (angular.lowercase(chargeCodeData.chargeType)) {
-							case "month(s)":
-								chargeType = 30;
-								break;
-							case "day(s)":
-								chargeType = 1;
-								break;
-							case "week(s)":
-								chargeType = 7;
-								break;
-							case "year(s)":
-								chargeType = 365;
-								break;
-							default:
-								break;
+				switch (angular.lowercase(scope.chargeCodeData.chargeType)) {
+							case "month(s)": chargeType = 30;
+											  break;
+							case "day(s)": chargeType = 1;
+											  break;
+							case "week(s)": chargeType = 7;
+											  break;
+							case "year(s)": chargeType = 365;
+											  break;
+							default: break;
 						};
 						console.log("contractType-->"+contractType);
-						console.log("contractDuration-->"+chargeCodeData.contractDuration);
+						console.log("contractDuration-->"+scope.chargeCodeData.contractDuration);
 						console.log("chargeType-->"+chargeType);
-						console.log("chargeDuration-->"+chargeCodeData.chargeDuration);
-				/*var srt =  Math.round(billFrequencyCode/(durationType*chargeCodeData.chargeDuration));*/
-			scope.srt = (chargeCodeData.contractDuration * contractType) / (chargeType * chargeCodeData.chargeDuration);
+						console.log("chargeDuration-->"+scope.chargeCodeData.chargeDuration);
+			scope.srt = (scope.chargeCodeData.contractDuration * contractType) / (chargeType * scope.chargeCodeData.chargeDuration);
 			
 			$timeout(function() {
 				  $("#submitPaypalRecurringBtn").click();
@@ -82,7 +79,6 @@ PaypalRecurringController = function(scope,RequestSender,location,localStorageSe
 selfcareApp.controller('PaypalRecurringController', ['$scope',
                                                   'RequestSender', 
                                                   '$location', 
-                                                  'localStorageService',
                                                   '$routeParams',
                                                   '$timeout',
                                                   PaypalRecurringController]);

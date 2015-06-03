@@ -19,7 +19,6 @@ ProfileController = function(scope,RequestSender,rootScope,location,paginatorSer
 			  scope.clientId = rootScope.selfcare_sessionData.clientId;
 			  RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
 				  scope.clientData = data;
-				  localStorageService.add("storageData",{clientData:data || {},totalOrdersData:[]});
 				  if(data.selfcare){
 					  data.selfcare.token ? rootScope.iskortaTokenAvailable = true : rootScope.iskortaTokenAvailable = false;
 					  !data.selfcare.authPin ? scope.clientData.selfcare.authPin = 'Not Available':null;
