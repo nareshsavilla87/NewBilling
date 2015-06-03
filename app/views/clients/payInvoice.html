@@ -223,7 +223,7 @@
            		 <a href='#/viewclient/{{clientId}}' class="btn">Cancel</a>
           		 <button id="submit" type="submit" data-ng-disabled="payInvoiceForm.$dirty && payInvoiceForm.$invalid" class="btn btn-primary" data-ng-click = "submitAccount()">{{'button.save'| translate}}</button>
           	</div>
-			<div class="control-group" data-ng-show = "selectInvoice && formData.amountPaid">
+			<div class="control-group" data-ng-show = "selectInvoice">
           		<label class="control-label">{{'label.show.invoice.details' | translate}}</label>
          		 <div class="controls">
             		<a class="btn btn-primary" data-ng-click="showInvoices(formData.amountPaid)">
