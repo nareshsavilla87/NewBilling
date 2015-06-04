@@ -189,12 +189,12 @@
                       	 });
                  }
                  //if (data.status.value == "Active") {
-                 scope.buttons = [{
+                 scope.buttons = [/*{
                       	                  name:"label.add.device",
                       	                  href:"#/adddevice",
                       	                  icon:"icon-tag",
                       	                  ngShow : bookOrder
-                         	            },
+                         	            },*/
                          	            {
                                             name:"button.neworder",
                                             href:"#/neworder/0",
@@ -1653,7 +1653,10 @@
 		        	$scope.formData = {};
 		        	resourceFactory.refundAmountResource.get({depositAmount:getAmount,depositId:scope.clientId} , function(data){
 		        		$scope.formData.refundAmount = data.availAmount;
-		            });
+		            },function(errorData){
+  	                	$scope.stmError = errorData.data.errors[0].userMessageGlobalisationCode;
+  	                	
+  	                });
 		        	
 		        	$scope.formData.locale = "en";
 		 			$scope.accept = function(){

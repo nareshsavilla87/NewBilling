@@ -2793,7 +2793,7 @@
 
 "#Deposit and Refund  ":".......",
 "error.msg.hardware.unallocated":"Please Unallocate hardware",
-"error.msg.unable.to.refund.clientbalance.greater.than.refund.amount":"Unable refund client balance is greater than refund balance",
+"error.msg.unable.to.refund.clientbalance.greater.than.refund.amount":"Unable refund client due balance is greater than refund balance",
 "error.msg.hardware.quality.not.good":"Item Quality is not good"
 
 
