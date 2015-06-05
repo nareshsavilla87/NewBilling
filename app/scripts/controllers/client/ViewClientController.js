@@ -1009,6 +1009,17 @@
               
               window.open($rootScope.hostUrl+ API_VERSION +'/billmaster/'+ statementId +'/print?tenantIdentifier='+TENANT);
         };
+        
+        scope.downloadInvoice = function (invoiceId){
+       	 
+       	 /*http({
+                method:'PUT',
+                url: $rootScope.hostUrl+ API_VERSION +'/billmaster/'+statementId+'/print?tenantIdentifier=default',
+                data: {}
+              })*/
+             
+             window.open($rootScope.hostUrl+ API_VERSION +'/billmaster/print/'+ routeParams.id +'/'+invoiceId+'?tenantIdentifier='+TENANT);
+       };
          
         scope.cancelScheduleOrder = function(id){
         	resourceFactory.OrderSchedulingResource.remove({'clientId':id}, {}, function(data){

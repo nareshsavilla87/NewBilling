@@ -36,12 +36,11 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
 	  	    }
 	  	  }initialFunCall();
 		  
-	 scope.packageSelectionFun = function(selectedOrderId,selectedPlanId,orderStatus,orderRenew){
+	 scope.activePackageSelectionFun = function(selectedOrderId,selectedPlanId,orderStatus,orderRenew){
 		 scope.orderRenew = angular.uppercase(orderRenew) == 'Y';
 		 scope.selectedOrderId = selectedOrderId;
 		 scope.selectedPlanId = selectedPlanId;
 		 
-		 if(angular.lowercase(orderStatus) == 'active'){
 			 scope.screenName = "changeorder";var totalOrdersData = [];
 			 angular.copy(completeOrdersData,totalOrdersData);
 			  for(var i in totalOrdersData){
@@ -60,20 +59,23 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
 				if(totalOrdersData[j].isPrepaid == 'Y')scope.plansData.push(totalOrdersData[j]); 
 			  }
 			  localStorageService.add("storageData",{clientData:clientData,totalOrdersData:totalOrdersData,orderId:scope.selectedOrderId});
-	 	}
-		if(angular.lowercase(orderStatus) == 'disconnected'){
-			scope.screenName = "renewalorder";var totalOrdersData = [];
-			angular.copy(completeOrdersData,totalOrdersData);
-				  scope.plansData = [];
-				  for(var j in totalOrdersData){
-						if((totalOrdersData[j].planId == scope.selectedPlanId) && (totalOrdersData[j].isPrepaid == 'Y')){
-							totalOrdersData[j].autoRenew = isAutoRenewConfig;
-							scope.plansData.push(totalOrdersData[j]); 
-							break;
-						}
-					  }
+	  };
+	  scope.disconnectedPackageSelectionFun = function(selectedOrderId,selectedPlanId,orderStatus,orderRenew){
+		  scope.orderRenew = angular.uppercase(orderRenew) == 'Y';
+		  scope.selectedOrderId = selectedOrderId;
+		  scope.selectedPlanId = selectedPlanId;
+		  
+			  scope.screenName = "renewalorder";var totalOrdersData = [];
+			  angular.copy(completeOrdersData,totalOrdersData);
+			  scope.plansData = [];
+			  for(var j in totalOrdersData){
+				  if((totalOrdersData[j].planId == scope.selectedPlanId) && (totalOrdersData[j].isPrepaid == 'Y')){
+					  totalOrdersData[j].autoRenew = isAutoRenewConfig;
+					  scope.plansData.push(totalOrdersData[j]); 
+					  break;
+				  }
+			  }
 			  localStorageService.add("storageData",{clientData:clientData,totalOrdersData:totalOrdersData,orderId:scope.selectedOrderId});
-		  }
 	  };
 	  
 	  scope.revertRadioBtnFun = function(){

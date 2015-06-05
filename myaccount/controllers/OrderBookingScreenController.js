@@ -1,4 +1,4 @@
-OrderBookingScreenController = function(RequestSender,rootScope,location,dateFilter,routeParams, localStorageService) {
+OrderBookingScreenController = function(RequestSender,rootScope,location,dateFilter,routeParams, localStorageService,modal) {
 		  
 	//values getting form routeParams 
 	var  screenName			= routeParams.screenName;
@@ -15,7 +15,21 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 		localStorageService.remove("gatewayStatus"); localStorageService.remove("storageData"); 
 		localStorageService.remove("isAutoRenew");localStorageService.remove("chargeCodeData"); 
 		if(gatewayStatus == 'RECURRING'){
-			location.path('/services');
+			var paypalrecurringsuccessPopupController = function ($scope,$modalInstance,$log){
+				$scope.done = function(){
+					$modalInstance.dismiss('cancel');
+				};
+				modalInstance.result.then(function () {
+				}, function () {
+					$log.info('Modal dismissed at: ' + new Date());
+					location.path('/services');
+				});
+			};
+			var modalInstance = modal.open({
+				 templateUrl: 'paypalrecurringsuccesspopup.html',
+				 controller: paypalrecurringsuccessPopupController,
+				 resolve:{}
+			 });
 		}
 		else if(screenName != "vod"){
     		(location.search().amount==0) ? (location.$$search = {},location.path("/services")) : location.path('/paymentgatewayresponse/'+clientId);
@@ -169,4 +183,5 @@ selfcareApp.controller('OrderBookingScreenController', ['RequestSender',
                                                         'dateFilter',
                                                         '$routeParams',
                                                         'localStorageService',
+                                                        '$modal',
                                                          OrderBookingScreenController]);
