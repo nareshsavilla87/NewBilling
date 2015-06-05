@@ -13,6 +13,8 @@
 				scope.formData = data;
 				scope.propertyTypes = data.propertyTypes;
 				scope.citiesData = data.citiesData;
+				scope.floor=scope.formData.floor;
+				scope.parcel=scope.formData.parcel;
 				if(angular.lowercase(scope.formData.parcel).contains(angular.lowercase("Parcel"))){
 					scope.formData.parcel=scope.formData.parcel.replace('Parcel ','');
 				}
@@ -30,7 +32,6 @@
 				}
 				
 			});
-			
 			//precinct auto complete 
 			scope.getPrecinct = function(query){
 				return http.get($rootScope.hostUrl+API_VERSION+'/address/city/', {
@@ -50,7 +51,8 @@
 				    		scope.precinct = scope.precinctData[i].cityCode.substr(0,2);
 			          		scope.formData.state =  scope.precinctData[i].state;
 			          		scope.formData.country = scope.precinctData[i].country;
-						    scope.formData.propertyCode=scope.precinct.concat(scope.formData.parcel,scope.formData.buildingCode,scope.formData.floor,scope.formData.unitCode);
+			          		scope.getWatch(scope.precinct);
+						    //scope.formData.propertyCode=scope.precinct.concat(scope.parcel,scope.formData.buildingCode,scope.floor,scope.formData.unitCode);
 			          		break;
 			          }else{
 			        	   
@@ -59,14 +61,12 @@
 						}
 					}
 				  }else{
-					    delete scope.formData.precinct;
+					    //delete scope.formData.precinct;
 						delete scope.formData.state;
 			    		delete scope.formData.country; 
-			    		delete scope.formData.propertyCode;
+			    		//delete scope.formData.propertyCode;
 				  }
 			};
-			
-			
 			scope.getParcel = function(queryParam){
 				return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
 	        	      params: {
@@ -90,25 +90,25 @@
                     }
                 }
              };
-             
+
              scope.getBuild = function(queryParam){
 					return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
 		        	      params: {
 		        	    	  		query: 'Building Codes',
-		        	    	  		queryParam:queryParam				
+			        	    	  	queryParam:queryParam		
 		        	      		   }
 		        	    }).then(function(res){   
 		        	    	 scope.buildingData=res.data;	
 		        	      return scope.buildingData;
 		        	    });
-	             };  
+	             };   
 	             
 	             scope.getbuildCode = function(buildingCode){
-	            	 if(!angular.isUndefined(buildingCode)){
-					    		scope.formData.buildingCode = buildingCode.substr(0,3);
-					    		scope.getWatch(scope.formData.buildingCode);
-				          }	 
-	             };  
+		            	 if(!angular.isUndefined(buildingCode)){
+						    		scope.formData.buildingCode = buildingCode.substr(0,3);
+						    		scope.getWatch(scope.formData.buildingCode);
+					          }	 
+		             }; 
 			
 			scope.getFloor = function(queryParam){
 				return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
@@ -133,7 +133,6 @@
 	                 }
             	 }	       	        
           };
-			
           scope.getUnit = function(queryParam){
 				return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
 	        	      params: {
@@ -157,10 +156,15 @@
               	   }					 
 			      }	 
            };
-          
+           scope.getPropertyCode=function(unitCode){
+				if(scope.precinctCode !=undefined&&scope.parcel!=undefined&&scope.formData.buildingCode!=undefined &&scope.floor!=undefined){
+			     scope.formData.propertyCode=scope.precinctCode.concat(scope.parcel,scope.formData.buildingCode,scope.floor,unitCode);
+			    // scope.getProperty($scope.formData.propertyCode);
+				}
+			}; 
 			scope.getWatch=function(labelValue){
 			  if(labelValue!=undefined){
-			     scope.formData.propertyCode=scope.precinct.concat(scope.formData.parcel,scope.formData.buildingCode,scope.formData.floor,scope.formData.unitCode);
+			     scope.formData.propertyCode=scope.precinct.concat(scope.parcel,scope.formData.buildingCode,scope.floor,scope.formData.unitCode);
 				}
 			};
 			  
@@ -171,6 +175,8 @@
 				delete this.formData.citiesData;
 				delete this.formData.clientId;
 				delete this.formData.propertyTypeId;
+				delete this.formData.floorDesc;
+				delete this.formData.parcelDesc;
 				resourceFactory.propertyCodeResource.update({propertyId : routeParams.id}, scope.formData,function(data){
 				location.path('/viewproperty/'+data.resourceId);
 				});
@@ -197,69 +203,4 @@
 	    	$log.info("EditPropertyController initialized");
 	    });
 }(mifosX.controllers || {}));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

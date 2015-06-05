@@ -60,31 +60,55 @@
     	  }
        });
        
+       
+       scope.invalidBuildingCode = false;
+       var serviceTransferFormVal = false;
+       scope.$watch(function(){
+       	return scope.invalidBuildingCode;
+       },function(){
+       	if(scope.invalidBuildingCode){
+       		scope.servicetransferform.$valid ?
+       				(serviceTransferFormVal = scope.servicetransferform.$valid,scope.servicetransferform.$valid = !serviceTransferFormVal) :
+       					scope.servicetransferform.$valid = false;
+       	}else{
+       		if(scope.servicetransferform.$valid) scope.servicetransferform.$valid = true;
+       		else {
+       			if(serviceTransferFormVal) scope.servicetransferform.$valid = true;
+       			else scope.servicetransferform.$valid = false;
+       		}
+       	}
+       });
+
      //vacant properties
        scope.getExistsProperty = function(query){
+    	   scope.invalidBuildingCode = true;
           	return http.get($rootScope.hostUrl+API_VERSION+'/property/propertycode/', {
           	      params: {
           	    	  		query: query
           	      		   }
           	    }).then(function(res){   
           	    	 scope.propertyCodesData=res.data;
+          	    	
           	      return scope.propertyCodesData;
           	    });
             };  
        
-       scope.getPropertyDetails = function(existsProperty){   
+       scope.getPropertyDetails = function(existsProperty){ 
+    	   
           	   if(!angular.isUndefined(existsProperty)){
           		  for(var j in scope.propertyCodesData)  {
           			 if(existsProperty == scope.propertyCodesData[j].propertyCode){
+          				 scope.invalidBuildingCode = false;
           				 scope.property.propertyCode = scope.propertyCodesData[j].propertyCode;
-          				 scope.unitStatus=scope.propertyCodesData[j].status;
-          				 scope.propetyId=scope.propertyCodesData[j].id;
+          				 scope.unitStatus = scope.propertyCodesData[j].status;
+          				 scope.propertyId = scope.propertyCodesData[j].id;
           				 break;
           			 }
           		 }
           	   }else{
-                     
+          		 
           	   }
+          	 
              };        
            
 	     scope.generatePropertyPopup = function (){
@@ -271,6 +295,7 @@
          };
 		  
 		  $scope.accept = function (propertyType) {
+			 scope.invalidBuildingCode = false;
 			 scope.property.propertyType = propertyType;
  			 $modalInstance.dismiss('delete');
  			
@@ -302,7 +327,7 @@
   	                 
     	    	    }else{
     	    		   delete $scope.errorData;
- 	    	    	   scope.propetyId=undefined;
+ 	    	    	   scope.propertyId=undefined;
  	    		       $("#propertyCode").removeClass("validationerror");
  	    		     
     	    	   }
@@ -316,7 +341,6 @@
 
        
        scope.submit = function(){
-    	   
     	   scope.formData.oldPropertyCode = scope.serviceTransferRequestData.propertyCode; 
     	   scope.formData.locale = "en"; 
     	   if(scope.shiftingCheckbox == "Yes"){

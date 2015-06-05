@@ -71,7 +71,7 @@
                     	<div class="btn-group pull-right">
                         	<span data-ng-repeat="button in buttons">
                           	<a href="" class="btn btn-primary" data-ng-show="button.ngShow" data-ng-click="getMe(button.href,client.id,button.subhref)"><i class="{{button.icon}} icon-white" ></i>{{button.name | translate}}</a>
-                          	<span  class="btn-group" ng-show="$index==buttons.length-2">
+                          	 <!--<span  class="btn-group" ng-show="$index==buttons.length-2">
 				              		<a class="btn btn-primary dropdown-toggle">
 					                	{{ 'label.button.more' | translate}}
 				                 <span class="caret"></span>
@@ -81,7 +81,7 @@
 					                    <a href="#/servicetransfer/{{clientId}}">{{'label.service.transfer' | translate}}</a>
 					                    <a ng-click="ipChaneFunction()">Static Ip</a>
 					                </li>
-					              </ul>
+					              </ul> -->
           						</span>
                         	</span>
                           	<button type="button" class="btn btn-primary" data-ng-click="deleteClient()" data-ng-show="(client.status.value=='Pending')&&PermissionService.showMenu('DELETE_CLIENT')"><i class="icon-trash icon-white"></i>{{"label.delete" | translate}}</button>
@@ -775,6 +775,7 @@
               								</td>
               								<td>
                 								<a data-ng-hide="financialtransaction.flag==true" data-ng-click="cancelPayment(financialtransaction.transactionId)" popover="Cancel Payment" popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a>
+                								<a ng-show="financialtransaction.transactionType == 'INVOICE'" data-ng-click="downloadInvoice(financialtransaction.transactionId)" popover="Print Invoice" popover-trigger="mouseenter"><i class=" icon-download-alt icon-white"></i></a>&nbsp;
               								</td>
            								</tr>
 									</tbody>
@@ -852,7 +853,8 @@
                 							<th>{{'label.transaction.type' | translate}}</th>
                 							<th>{{'label.transaction.category' | translate}}</th>
                 							<th>{{'label.creditamount' | translate}}</th>
-                							<th>{{'label.denitamount' | translate}}</th>	
+                							<th>{{'label.denitamount' | translate}}</th>
+                							<th>{{'table.actions' | translate}}</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -878,6 +880,9 @@
               								</td>
               								<td class="pointer"  data-ng-click="routeTofinancial(financialtransaction.transactionId,client.id)">
                   								<any>{{financialtransaction.amount}}</any>
+              								</td>
+              								<td>
+              								<a ng-show="financialtransaction.transactionType == 'INVOICE'" data-ng-click="downloadInvoice(financialtransaction.transactionId)" popover="Print Invoice" popover-trigger="mouseenter"><i class=" icon-download-alt icon-white"></i></a>&nbsp;
               								</td>	
             							</tr>
 									</tbody>
@@ -927,6 +932,7 @@
               								<td>
                   								<any>{{financialtransaction.amount}}</any>
               								</td>
+              								
             							</tr>
 									</tbody>
 								</table>
