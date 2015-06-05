@@ -74,11 +74,30 @@
       	  });
         };
         
+        scope.invalidBuildingCode = false;
+        var createClientFormVal = false;
+        
+        scope.$watch(function(){
+        	return scope.invalidBuildingCode;
+        },function(){
+        	if(scope.invalidBuildingCode){
+        		scope.createclientform.$valid ?
+        				(createClientFormVal = scope.createclientform.$valid,scope.createclientform.$valid = !createClientFormVal) :
+        					scope.createclientform.$valid = false;
+        	}else{
+        		if(scope.createclientform.$valid) scope.createclientform.$valid = true;
+        		else {
+        			if(createClientFormVal) scope.createclientform.$valid = true;
+        			else scope.createclientform.$valid = false;
+        		}
+        	}
+        });
         //vacant properties
          scope.getPropertyDetails = function(existsProperty){   
             	   if(!angular.isUndefined(existsProperty)){
             		  for(var j in scope.propertyCodesData)  {
             			 if(existsProperty == scope.propertyCodesData[j].propertyCode){
+            				 scope.invalidBuildingCode = false;
             				 scope.formData.addressNo = scope.propertyCodesData[j].propertyCode;
             				 scope.formData.street = scope.propertyCodesData[j].street;
             				 scope.formData.city  =  scope.propertyCodesData[j].precinct; 
@@ -305,6 +324,7 @@
     			 scope.formData.state =  $scope.formData.state;
     			 scope.formData.country = $scope.formData.country;
     			 scope.formData.zipCode = $scope.formData.poBox;
+    			 scope.invalidBuildingCode = false;
     			 $modalInstance.dismiss('delete');
     			 if(!angular.isUndefined(scope.formData.addressNo)){
     				 $('#propertyCode').attr("disabled","disabled");
@@ -347,6 +367,7 @@
 	     
 
 	        scope.getExistsProperty = function(query){
+	        	scope.invalidBuildingCode = true;
 	           	return http.get($rootScope.hostUrl+API_VERSION+'/property/propertycode/', {
 	           	      params: {
 	           	    	  		query: query
