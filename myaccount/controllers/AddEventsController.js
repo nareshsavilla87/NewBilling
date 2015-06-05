@@ -15,8 +15,7 @@ AddEventsController = function(scope,RequestSender,location,localStorageService,
 			var  two_checkoutPG		=	paymentGatewayNames.two_checkout || "";
 			
 			//getting locale value
-			 var temp 				= localStorageService.get('localeLang')||"";
-			 scope.optlang 			= temp || selfcareModels.locale;
+			 scope.optlang 			= rootScope.localeLangCode;
 		  
 		  var clientData = {};
 		  if(rootScope.selfcare_sessionData){
