@@ -143,12 +143,13 @@
         <label class="control-label">{{'label.buildingcode' | translate}}<span class="required">*</span></label>
         <div class="controls">
           <input type="text" id="propertyCode" name="address" data-ng-model="formData.addressNo" data-typeahead="propertyData.propertyCode as propertyData.propertyCode for propertyData in getExistsProperty($viewValue)"
-           autocomplete="off" data-typeahead-min-length="0"  data-typeahead-on-select="getPropertyDetails(formData.addressNo)" data-typeahead-editable="false" />&nbsp;
+           autocomplete="off" data-typeahead-min-length="0"  data-typeahead-on-select="getPropertyDetails(formData.addressNo)" />&nbsp;
            <a data-ng-click="generatePropertyPopup()" data-popover-placement="right" data-popover="Generate Building Code" data-popover-trigger="mouseenter"><i class="icon-plus icon-white"></i></a><br/>
           <span  data-ng-show="createclientform.address.$invalid">
               <small class="error" data-ng-show="createclientform.address.$error.req">{{'label.required.field' | translate}}</small>
-              <small class="error" data-ng-show="createclientform.address.$error.editable&&!createclientform.address.$error.req">Invalid BuildingCode</small>
+<!--               <small class="error" data-ng-show="createclientform.address.$error.editable&&!createclientform.address.$error.req">Invalid BuildingCode</small> -->
           </span>
+          <small class="error" data-ng-show="invalidBuildingCode">Invalid BuildingCode</small>
         </div>
       </div>
       
