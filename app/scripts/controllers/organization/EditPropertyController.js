@@ -67,7 +67,6 @@
 			    		//delete scope.formData.propertyCode;
 				  }
 			};
-			
 			scope.getParcel = function(queryParam){
 				return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
 	        	      params: {
@@ -91,6 +90,7 @@
                     }
                 }
              };
+
              scope.getBuild = function(queryParam){
 					return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
 		        	      params: {
@@ -133,7 +133,6 @@
 	                 }
             	 }	       	        
           };
-          
           scope.getUnit = function(queryParam){
 				return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
 	        	      params: {

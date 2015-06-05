@@ -60,8 +60,28 @@
     	  }
        });
        
+       
+       scope.invalidBuildingCode = false;
+       var serviceTransferFormVal = false;
+       scope.$watch(function(){
+       	return scope.invalidBuildingCode;
+       },function(){
+       	if(scope.invalidBuildingCode){
+       		scope.servicetransferform.$valid ?
+       				(serviceTransferFormVal = scope.servicetransferform.$valid,scope.servicetransferform.$valid = !serviceTransferFormVal) :
+       					scope.servicetransferform.$valid = false;
+       	}else{
+       		if(scope.servicetransferform.$valid) scope.servicetransferform.$valid = true;
+       		else {
+       			if(serviceTransferFormVal) scope.servicetransferform.$valid = true;
+       			else scope.servicetransferform.$valid = false;
+       		}
+       	}
+       });
+
      //vacant properties
        scope.getExistsProperty = function(query){
+    	   scope.invalidBuildingCode = true;
           	return http.get($rootScope.hostUrl+API_VERSION+'/property/propertycode/', {
           	      params: {
           	    	  		query: query
@@ -78,6 +98,7 @@
           	   if(!angular.isUndefined(existsProperty)){
           		  for(var j in scope.propertyCodesData)  {
           			 if(existsProperty == scope.propertyCodesData[j].propertyCode){
+          				 scope.invalidBuildingCode = false;
           				 scope.property.propertyCode = scope.propertyCodesData[j].propertyCode;
           				 scope.unitStatus = scope.propertyCodesData[j].status;
           				 scope.propertyId = scope.propertyCodesData[j].id;
@@ -274,6 +295,7 @@
          };
 		  
 		  $scope.accept = function (propertyType) {
+			 scope.invalidBuildingCode = false;
 			 scope.property.propertyType = propertyType;
  			 $modalInstance.dismiss('delete');
  			

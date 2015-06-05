@@ -128,12 +128,13 @@
             	<div class="controls">
               		<input type="text" id="propertyCode" name="propertyCode"  data-ng-model="property.propertyCode"
               		 data-typeahead="propertyData.propertyCode as propertyData.propertyCode for propertyData in getExistsProperty($viewValue)"
-                     autocomplete="off" data-typeahead-min-length="0"  data-typeahead-on-select="getPropertyDetails(property.propertyCode)" data-typeahead-editable="false"/>&nbsp;
+                     autocomplete="off" data-typeahead-min-length="0"  data-typeahead-on-select="getPropertyDetails(property.propertyCode)"/>&nbsp;
                     <a data-ng-click="generatePropertyPopup()" data-popover-placement="right" data-popover="Generate New Property Code" data-popover-trigger="mouseenter"><i class="icon-plus icon-white"></i></a><br/>
                      <span  data-ng-show="servicetransferform.propertyCode.$invalid">
                       <small class="error" data-ng-show="servicetransferform.propertyCode.$error.req">{{'label.required.field' | translate}}</small>
-                      <small class="error" data-ng-show="servicetransferform.propertyCode.$error.editable&&!servicetransferform.propertyCode.$error.req">Invalid Property Code</small>
+                     <!--  <small class="error" data-ng-show="servicetransferform.propertyCode.$error.editable&&!servicetransferform.propertyCode.$error.req">Invalid Property Code</small> -->
                        </span>
+                        <small class="error" data-ng-show="invalidBuildingCode">Invalid BuildingCode</small>
             	 </div>
           	</div>
           	
@@ -182,7 +183,7 @@
       <td width="50%">
         	<div  class="control-group offset2">
             <a data-ng-click="goBack()"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
-            <button id="submit" type="submit" data-ng-disabled="(servicetransferform.$dirty && servicetransferform.$invalid)&&(shiftingCheckbox=='No')" class="btn btn-primary">{{'button.save'| translate}}</button>
+            <button id="submit" type="submit" data-ng-disabled="(!servicetransferform.$valid)&&(shiftingCheckbox=='No')" class="btn btn-primary">{{'button.save'| translate}}</button>
            </div>
       </td>
       </tr>
