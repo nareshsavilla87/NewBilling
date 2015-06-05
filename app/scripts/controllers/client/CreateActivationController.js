@@ -333,6 +333,7 @@
 	 	             delete this.formData2.itemCode;
 	 	             delete this.formData2.id;
 	               delete this.formData2.chargesData;
+	               delete this.formData2.feeMasterData;
 	                }else if(config =='OWN'){
 	                	
 	                	  scope.formData5.locale = $rootScope.locale.code;
