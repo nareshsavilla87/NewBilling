@@ -110,6 +110,10 @@
  	"label.read.agreement"		: "Read and accept the following agreement to continue.", 
  	"label.passport"			: "Passport", 
  	"label.autorenew"			: "Is Auto Renew", 
+ 	"label.nopacks.available"	: "Sorry... No Packs Available",
+ 	"label.thankyou.msg"		: "Thank You,Choosing this pack",
+ 	"label.verify.recurringmsg.payment"	: "To complete the action of book this pack,a confirmation is needed from paypal.",
+ 	"label.verify.recurringmsg.waitmsg"	: "Please.. wait till that confirmation reached.",
  	
  	"label.signup.newuser"			   			: "Signup new user ",
  	"label.or"			   						: " - or - ",
