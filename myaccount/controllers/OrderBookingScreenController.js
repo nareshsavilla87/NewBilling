@@ -8,7 +8,7 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 	
 	var gatewayStatus		= localStorageService.get("gatewayStatus")||"";
 	var isAutoRenew 		= localStorageService.get("isAutoRenew") || "";
-	var finalPrice			= localStorageService.get("finalPrice") || "";
+
 
 	
 	function successFun(planData){

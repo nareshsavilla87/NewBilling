@@ -435,6 +435,11 @@
   "link.logout" : "LogOut",
   "link.admin.provision" : "Adapter Provision",
   "label.eventactions":"Event Actions",
+  "button.additemdetails":"Add Item Details",
+  "button.addgoodreceipt":"Goods Receipt",
+  "button.addmrn":"Add Mrn",
+  "button.addsupplier":"Add Supplier",
+  
   
 
   "#accounting coa":"....",
