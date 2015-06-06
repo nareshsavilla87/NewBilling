@@ -1,0 +1,71 @@
+EvoIntegrationController = function(scope, RequestSender,location, localStorageService,$timeout,rootScope,dateFilter) {  
+		 
+		//values getting form constants.js file
+		  scope.currencyType		= selfcareModels.EVO_CurrencyType;
+		  scope.blowfishKey			= selfcareModels.EVO_Blowfish;
+		  scope.HMACKey				= selfcareModels.EVO_HMAC;
+		  scope.optlang 			= rootScope.localeLangCode;
+		  var appURL				= selfcareModels.selfcareAppUrl;
+		  
+		  var decryptedData 		= CryptoJS.AES.decrypt(location.search().key, selfcareModels.encriptionKey).toString(CryptoJS.enc.Utf8),
+		  	   evoStorageData 		= angular.fromJson(decodeURIComponent(decryptedData)),
+		  	   clientData 			= evoStorageData.clientData,
+		  	   planData 			= evoStorageData.planData,
+		  	   clientId				= clientData.id;
+    	  scope.names 				= clientData.displayName;
+    	  scope.email 				= clientData.email;
+    	  scope.phone 				= clientData.phone;
+    	  scope.price				= evoStorageData.price;
+    	  scope.merchantId			= evoStorageData.merchantId;
+    	  
+    	 var evoData = {screenName:evoStorageData.screenName,planId:evoStorageData.planId,priceId:evoStorageData.priceId,price:evoStorageData.price,
+						clientId:clientData.id,email:scope.email};
+    	 var encryptedData = CryptoJS.AES.encrypt(encodeURIComponent(angular.toJson(evoData)),selfcareModels.encriptionKey).toString();
+    	  
+		 var randomFun = function() {
+				var chars = "0123456789";
+				var string_length = 6;
+				var randomstring = dateFilter(new Date(),'yyMMddHHmmss');
+				
+				for (var i=0; i<string_length; i++) {
+					var rnum = Math.floor(Math.random() * chars.length);
+					randomstring += chars.substring(rnum,rnum+1);	
+				}	
+				scope.transactionId = randomstring;
+				console.log(scope.transactionId);
+				
+			};randomFun();
+			
+			
+	 var macDataString = "*"+clientId+"*"+scope.merchantId+"*"+scope.price+"*"+scope.currencyType; 
+	 
+	 var hashVal = CryptoJS.HmacSHA256(macDataString, scope.HMACKey);
+	 var MAC = CryptoJS.enc.Hex.stringify(hashVal);
+	 
+	 var dataString = "TransID="+clientId+"&RefNr="+scope.transactionId+"&amount="+scope.price+"&FirstName="+scope.names+"&" +
+	 					"E-Mail="+scope.email+"&Currency="+scope.currencyType+"&OrderDesc="+planData.planCode+"&" +
+	 					"Response=encrypt&MAC="+MAC+"&" +
+	 					"URLSuccess="+appURL+"#/evosuccess&" +
+	 					"URLFailure="+appURL+"#/evosuccess&" +
+	 					"UserData="+encryptedData+"&ReqId="+scope.transactionId;
+	 
+	 scope.len = dataString.length;
+	 var blowfishEncData = {text:dataString,length:scope.len};
+	
+	 RequestSender.evoPaymentGatewayResource.save({method:'encrypt'},blowfishEncData,function(data){
+		 scope.data = data.map.blowfishData;
+		 $timeout(function() {
+			  $("#submitEvoIntegration").click();
+		    }, 1000);
+	 });
+			
+    };
+    
+selfcareApp.controller('EvoIntegrationController', ['$scope', 
+                                                    'RequestSender',
+                                                    '$location', 
+                                                    'localStorageService',
+                                                    '$timeout',
+                                                    '$rootScope',
+                                                    'dateFilter',
+                                                    EvoIntegrationController]);

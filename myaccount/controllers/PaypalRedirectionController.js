@@ -37,7 +37,7 @@ PaypalRedirectionController = function(scope,RequestSender, location,localStorag
 	    			if(screenName == 'payment'){
 						location.path('/paymentgatewayresponse/'+formData.clientId);
 					}else if(result == 'SUCCESS' || result == 'PENDING'){
-						if(result == 'PENDING')localStorageService.add("gatewayStatus",formData.status);
+						localStorageService.add("gatewayStatus",formData.status);
 						var storageData = localStorageService.get("storageData")||{};
 						var orderId 	= storageData.orderId || 0;
 						RequestSender.getRecurringScbcriberIdResource.get({orderId:orderId},function(data){
