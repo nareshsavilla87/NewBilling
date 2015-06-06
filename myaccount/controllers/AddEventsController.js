@@ -13,6 +13,7 @@ AddEventsController = function(scope,RequestSender,location,localStorageService,
 			var  netellerPG			=	paymentGatewayNames.neteller || "";
 			var  internalPaymentPG	=	paymentGatewayNames.internalPayment || "";
 			var  two_checkoutPG		=	paymentGatewayNames.two_checkout || "";
+			var  evoPG				=	paymentGatewayNames.evo || "";
 			
 			//getting locale value
 			 scope.optlang 			= rootScope.localeLangCode;
@@ -53,7 +54,7 @@ AddEventsController = function(scope,RequestSender,location,localStorageService,
 				  if(data.globalConfiguration){
 					  for(var i in data.globalConfiguration){
 						   if(data.globalConfiguration[i].enabled && data.globalConfiguration[i].name != 'is-paypal-for-ios'  
-							   && data.globalConfiguration[i].name != 'is-paypal'){
+							   && data.globalConfiguration[i].name != 'is-paypal' && data.globalConfiguration[i].name != 'paypal-recurring-payment-details'){
 							   scope.paymentgatewayDatas.push(data.globalConfiguration[i]);
 						   }
 					  }
@@ -150,6 +151,14 @@ AddEventsController = function(scope,RequestSender,location,localStorageService,
 					
 					break;
 					
+				case evoPG :
+					var evoData = {screenName:'vod',planId:scope.planId,priceId:scope.priceId,price:scope.totalAmount,
+									clientData:clientData,planData:scope.planData, merchantId: paymentGatewayValues.merchantId};
+					var encryptedData = CryptoJS.AES.encrypt(encodeURIComponent(angular.toJson(evoData)),encrytionKey).toString();
+					
+					scope.paymentURL = "#/evointegration?key="+encryptedData;
+					break;
+					
 				default :
 							break;
 				}
@@ -176,7 +185,8 @@ AddEventsController = function(scope,RequestSender,location,localStorageService,
 		    			$scope.termsAndConditionsText = paypal[termsAndConditions] 	 		: (scope.paymentGatewayName == netellerPG)?
 		    			$scope.termsAndConditionsText = neteller[termsAndConditions] 	 	: (scope.paymentGatewayName == internalPaymentPG)?
 		    			$scope.termsAndConditionsText = internalPayment[termsAndConditions] : (scope.paymentGatewayName == two_checkoutPG)?
-		    			$scope.termsAndConditionsText = two_checkout[termsAndConditions]	: $scope.termsAndConditionsText = selectOnePaymentGatewayText[scope.optlang];
+		    			$scope.termsAndConditionsText = two_checkout[termsAndConditions]	: (scope.paymentGatewayName == evoPG)?
+		    			$scope.termsAndConditionsText = evo[termsAndConditions]				: $scope.termsAndConditionsText = selectOnePaymentGatewayText[scope.optlang];
 		    	}
 			  $scope.done = function(){
 				  $modalInstance.dismiss('cancel');
