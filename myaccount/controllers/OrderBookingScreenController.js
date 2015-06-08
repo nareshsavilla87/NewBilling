@@ -33,7 +33,6 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
     		(location.search().amount==0) ? (location.$$search = {},location.path("/services")) : location.path('/paymentgatewayresponse/'+clientId);
     	}
 		else if (screenName == "vod"){
-    		localStorageService.remove("eventData");
     		(priceId == "amountZero")? location.path("/services") : location.path('/paymentgatewayresponse/'+clientId);
     	};
     }
@@ -41,6 +40,7 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 	var storageData = localStorageService.get("storageData");
 		  var clientData 			= storageData.clientData;
 		  var totalOrdersData 		= storageData.totalOrdersData;
+		  var eventData		 		= storageData.eventData || "";
 		  var orderId 				= storageData.orderId || null;
     if(screenName != "vod"){
 		for(var i in totalOrdersData){
@@ -140,8 +140,6 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 		  }
 		}
      }else if(screenName == "vod"){
-    	 var mediaDatas 	= [];
-    	 	 mediaDatas 	= localStorageService.get("eventData") || "";
     	 var eventSavedOneByOneFun = function(val){
 			 RequestSender.eventsResource.save(eventFormData[val],function(data){
 				 if(val == eventFormData.length-1){
@@ -153,21 +151,20 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 			 });
 		 };
 	 
-		 var reqDate = dateFilter(new Date(),'dd MMMM yyyy');
 		var eventFormData = [];
-		 for(var i in mediaDatas) {
+		 for(var i in eventData) {
 			 
 				 eventFormData[i] = {
-					 							eventId 		: mediaDatas[i].eventId,
-					 							optType 		: mediaDatas[i].optType,
-					 							formatType 		: mediaDatas[i].quality,
+					 							eventId 		: eventData[i].eventId,
+					 							optType 		: eventData[i].optType,
+					 							formatType 		: eventData[i].quality,
 					 							clientId 		: clientId,
 					 							locale 			: rootScope.localeLangCode,
-					 							eventBookedDate : reqDate,
+					 							eventBookedDate : dateFilter(new Date(),'dd MMMM yyyy'),
 					 							dateFormat 		: 'dd MMMM yyyy',
 					 							deviceId 		: clientData.hwSerialNumber
 				 							};
-			 if(i == mediaDatas.length-1){
+			 if(i == eventData.length-1){
 				 eventSavedOneByOneFun(0);
 			 }
 		 }
