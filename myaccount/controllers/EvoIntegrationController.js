@@ -37,7 +37,6 @@ EvoIntegrationController = function(scope, RequestSender,location, localStorageS
 					randomstring += chars.substring(rnum,rnum+1);	
 				}	
 				scope.transactionId = randomstring;
-				console.log(scope.transactionId);
 				
 			};randomFun();
 			

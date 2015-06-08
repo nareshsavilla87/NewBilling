@@ -19,7 +19,6 @@ EvoSuccessController = function(scope,RequestSender, location,localStorageServic
     				var splitEqual = splitAmpersand[i].split('=');
     				outputObj[splitEqual[0]] = splitEqual[1];
     			}
-    			console.log(outputObj);
     			
     			var decryptedData 		= CryptoJS.AES.decrypt(outputObj.UserData, selfcareModels.encriptionKey).toString(CryptoJS.enc.Utf8),
     				evoStorageData 		= angular.fromJson(decodeURIComponent(decryptedData)),
