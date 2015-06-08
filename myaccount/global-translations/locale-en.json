@@ -373,6 +373,8 @@
   "error.msg.currency.duplicate.configuration"		:"Currency is already configured",
   "validation.msg.office.name.cannot.be.blank"		: "Office Name cannot be blank",
   "error.msg.not.authorized"						: "Insufficient privileges to perform this action.",
+  "error.msg.please.pair.hardware.with.plan"		: "Please pair hardware with plan.",
+  "error.msg.insufficient.amount.for.bookevent"		: "Insufficient Amount to Book The Event.",
 
   "#Admin users":"",
   "validation.msg.user.username.cannot.be.blank":"User Name cannot be blank",
