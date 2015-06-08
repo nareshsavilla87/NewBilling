@@ -9,7 +9,8 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 		  netellerPG		=  paymentGatewayNames.neteller || "",
 		  internalPaymentPG	=  paymentGatewayNames.internalPayment || "",
 		  two_checkoutPG	=  paymentGatewayNames.two_checkout || "",
-		  interswitchPG		=  paymentGatewayNames.interswitch || "";
+		  interswitchPG		=  paymentGatewayNames.interswitch || "",
+		  evoPG				=  paymentGatewayNames.evo || "";
 	 scope.optlang 			=  rootScope.localeLangCode;
 	 var encrytionKey 		=  selfcareModels.encriptionKey;
 	
@@ -132,6 +133,14 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 				scope.paymentURL =  "#/interswitchintegration/"+screenName+"/"+scope.clientId+"/"+0+"/"+0+"/"+scope.planData.price+"/"+paymentGatewayValues.productId+"/"+paymentGatewayValues.payItemId;
 				
 				break;
+				
+			case evoPG :
+				var evoData = {screenName:screenName,planId:0,priceId:0,price:scope.planData.price,
+								clientData:clientData,planData:scope.planData, merchantId: paymentGatewayValues.merchantId};
+				var encryptedData = CryptoJS.AES.encrypt(encodeURIComponent(angular.toJson(evoData)),encrytionKey).toString();
+				
+				scope.paymentURL = "#/evointegration?key="+encryptedData;
+				break;
 					
 			default : break;
 			}
@@ -149,7 +158,8 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
     			$scope.termsAndConditionsText = neteller[termsAndConditions] 	 	: (scope.paymentGatewayName == internalPaymentPG)?
     		    $scope.termsAndConditionsText = internalPayment[termsAndConditions] : (scope.paymentGatewayName == two_checkoutPG)?
     			$scope.termsAndConditionsText = two_checkout[termsAndConditions]	: (scope.paymentGatewayName == interswitchPG)?
-    			$scope.termsAndConditionsText = interswitch[termsAndConditions]		: $scope.termsAndConditionsText = selectOnePaymentGatewayText[scope.optlang];
+    			$scope.termsAndConditionsText = interswitch[termsAndConditions]		: (scope.paymentGatewayName == evoPG)?
+    	    	$scope.termsAndConditionsText = evo[termsAndConditions]				: $scope.termsAndConditionsText = selectOnePaymentGatewayText[scope.optlang];
     	}
     	$scope.done = function(){
     		$modalInstance.dismiss('cancel');
