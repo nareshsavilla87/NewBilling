@@ -21,6 +21,7 @@
 				}*/
 				for(var i in scope.citiesData){
 				if(scope.formData.precinct==scope.citiesData[i].cityName){
+					scope.cityName=scope.formData.precinct;
 					scope.precinctCode = scope.citiesData[i].cityCode.substr(0,2);
 					break;
 				  }
