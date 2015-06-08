@@ -61,7 +61,7 @@ EvoIntegrationController = function(scope, RequestSender,location, localStorageS
 		 dataString = dataString+"&AddrZip="+scope.zip;
 	 }
 	 
-	 scope.len = 400;//dataString.length;
+	 scope.len = dataString.length;
 	 var blowfishEncData = {text:dataString,length:scope.len};
 	
 	 RequestSender.evoPaymentGatewayResource.save({method:'encrypt'},blowfishEncData,function(data){
