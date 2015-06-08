@@ -39,7 +39,7 @@ EvoSuccessController = function(scope,RequestSender, location,localStorageServic
     			formData.currency = scope.currencyType;
     			formData.clientId = clientId;
     			
-    			var cardNumber = "XXXX-XXXX-XXXX-"+outputObj.PCNr.toString().substring(13, 16);
+    			var cardNumber = "XXXX-XXXX-XXXX-X"+outputObj.PCNr.toString().substring(13, 16);
     			var cardType = outputObj.CCBrand;
     			if(angular.uppercase(outputObj.Status) == 'AUTHORIZED' || angular.uppercase(outputObj.Status) == 'OK'){
     			  RequestSender.paymentGatewayResource.update({},formData,function(data){
