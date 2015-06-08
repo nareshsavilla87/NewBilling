@@ -110,6 +110,10 @@
  	"label.read.agreement"		: "Read and accept the following agreement to continue.", 
  	"label.passport"			: "Passport", 
  	"label.autorenew"			: "Is Auto Renew", 
+ 	"label.nopacks.available"	: "Sorry... No Packs Available",
+ 	"label.thankyou.msg"		: "Thank You,Choosing this pack",
+ 	"label.verify.recurringmsg.payment"	: "To complete the action of book this pack,a confirmation is needed from paypal.",
+ 	"label.verify.recurringmsg.waitmsg"	: "Please.. wait till that confirmation reached.",
  	
  	"label.signup.newuser"			   			: "Signup new user ",
  	"label.or"			   						: " - or - ",
@@ -369,6 +373,7 @@
   "error.msg.currency.duplicate.configuration"		:"Currency is already configured",
   "validation.msg.office.name.cannot.be.blank"		: "Office Name cannot be blank",
   "error.msg.not.authorized"						: "Insufficient privileges to perform this action.",
+  "error.msg.please.pair.hardware.with.plan"		: "Please pair hardware with plan.",
 
   "#Admin users":"",
   "validation.msg.user.username.cannot.be.blank":"User Name cannot be blank",

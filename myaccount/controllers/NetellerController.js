@@ -57,7 +57,7 @@ NetellerController = function(scope,RequestSender,routeParams,location,dateFilte
     				
     				if(screenName == 'vod'){
     					if(result == "SUCCESS" || result == 'PENDING'){
-    						if(result=='PENDING')localStorageService.add("gatewayStatus",result);
+    						localStorageService.add("gatewayStatus",result);
     						 location.path("/orderbookingscreen/"+screenName+"/"+clientId+"/0/0");
     					}else if(result == "FAILURE"){
     						location.path('/paymentgatewayresponse/'+clientId);
