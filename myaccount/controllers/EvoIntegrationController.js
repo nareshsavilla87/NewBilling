@@ -12,7 +12,12 @@ EvoIntegrationController = function(scope, RequestSender,location, localStorageS
 		  	   clientData 			= evoStorageData.clientData,
 		  	   planData 			= evoStorageData.planData || "",
 		  	   clientId				= clientData.id;
-    	  scope.names 				= clientData.displayName;
+    	  scope.firstname			= clientData.firstname;
+    	  scope.lastname			= clientData.lastname;
+    	  scope.city				= clientData.city;
+    	  scope.state				= clientData.state;
+    	  scope.addressNo			= clientData.addressNo;
+    	  scope.zip					= clientData.zip;
     	  scope.email 				= clientData.email;
     	  scope.phone 				= clientData.phone;
     	  scope.price				= evoStorageData.price;
@@ -42,14 +47,21 @@ EvoIntegrationController = function(scope, RequestSender,location, localStorageS
 	 var hashVal = CryptoJS.HmacSHA256(macDataString, scope.HMACKey);
 	 var MAC = CryptoJS.enc.Hex.stringify(hashVal);
 	 
-	 var dataString = "TransID="+clientId+"&RefNr="+scope.transactionId+"&amount="+scope.price+"&FirstName="+scope.names+"&" +
-	 					"E-Mail="+scope.email+"&Currency="+scope.currencyType+"&OrderDesc="+planData.planCode+"&" +
+	 var dataString = "TransID="+clientId+"&RefNr="+scope.transactionId+"&amount="+scope.price+"&FirstName="+scope.firstname+"&" +
+	 					"LastName="+scope.lastname+"&AddrCity="+scope.city+"&AddrState="+scope.state+"&" +
+	 					"phone="+scope.phone+"&E-Mail="+scope.email+"&Currency="+scope.currencyType+"&OrderDesc="+planData.planCode+"&" +
 	 					"Response=encrypt&MAC="+MAC+"&" +
 	 					"URLSuccess="+appURL+"#/evosuccess&" +
 	 					"URLFailure="+appURL+"#/evosuccess&" +
 	 					"UserData="+encryptedData+"&ReqId="+scope.transactionId;
+	 if(scope.addressNo != null|| scope.addressNo !=""){
+		 dataString = dataString+"&AddrStreet="+scope.addressNo;
+	 }
+	 if(scope.zip != null|| scope.zip !=""){
+		 dataString = dataString+"&AddrZip="+scope.zip;
+	 }
 	 
-	 scope.len = dataString.length;
+	 scope.len = 400;//dataString.length;
 	 var blowfishEncData = {text:dataString,length:scope.len};
 	
 	 RequestSender.evoPaymentGatewayResource.save({method:'encrypt'},blowfishEncData,function(data){
