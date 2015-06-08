@@ -189,12 +189,12 @@
                       	 });
                  }
                  //if (data.status.value == "Active") {
-                 scope.buttons = [/*{
+                 scope.buttons = [{
                       	                  name:"label.add.device",
                       	                  href:"#/adddevice",
                       	                  icon:"icon-tag",
                       	                  ngShow : bookOrder
-                         	            },*/
+                         	            },
                          	            {
                                             name:"button.neworder",
                                             href:"#/neworder/0",
