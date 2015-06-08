@@ -14,7 +14,8 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 		 paypalPG			=	paymentGatewayNames.paypal || "",
 		 netellerPG			=	paymentGatewayNames.neteller || "",
 		 internalPaymentPG	=	paymentGatewayNames.internalPayment || "",
-		 two_checkoutPG		=	paymentGatewayNames.two_checkout || "";
+		 two_checkoutPG		=	paymentGatewayNames.two_checkout || "",
+		 evoPG				=	paymentGatewayNames.evo || "";
 	
 	//getting locale value
 	 scope.optlang 			= rootScope.localeLangCode;
@@ -143,6 +144,14 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 									+"&country="+clientData.country+"&email="+clientData.email+"&quantity=1";
 				
 				break;
+			
+			case evoPG :
+				var evoData = {screenName:scope.screenName,planId:scope.planId,priceId:scope.priceId,price:scope.price,
+								clientData:clientData,planData:scope.planData, merchantId: paymentGatewayValues.merchantId};
+				var encryptedData = CryptoJS.AES.encrypt(encodeURIComponent(angular.toJson(evoData)),encrytionKey).toString();
+				
+				scope.paymentURL = "#/evointegration?key="+encryptedData;
+				break;
 				
 			default : break;
 			}
@@ -159,7 +168,8 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
     			$scope.termsAndConditionsText = paypal[termsAndConditions] 	 		: (scope.paymentGatewayName == netellerPG)?
     			$scope.termsAndConditionsText = neteller[termsAndConditions] 	 	: (scope.paymentGatewayName == internalPaymentPG)?
     			$scope.termsAndConditionsText = internalPayment[termsAndConditions] : (scope.paymentGatewayName == two_checkoutPG)?
-    			$scope.termsAndConditionsText = two_checkout[termsAndConditions]	: $scope.termsAndConditionsText = selectOnePaymentGatewayText[scope.optlang];
+    			$scope.termsAndConditionsText = two_checkout[termsAndConditions]	: (scope.paymentGatewayName == evoPG)?
+    	    	$scope.termsAndConditionsText = evo[termsAndConditions]				: $scope.termsAndConditionsText = selectOnePaymentGatewayText[scope.optlang];
     	}
     	$scope.done = function(){
     		$modalInstance.dismiss('cancel');

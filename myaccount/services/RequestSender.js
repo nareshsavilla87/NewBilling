@@ -128,6 +128,8 @@ selfcareApp.config(function($provide) {
         	clientIdentifiersResource: defineResource(apiVer + "/clients/:clientId/identifiers", {clientId:'@clientId'}, {}),
         	
         	planServicesResource: defineResource(apiVer + "/plans/:planId", {planId:'@planId'}, {}),
+        	
+        	evoPaymentGatewayResource: defineResource(apiVer + "/evo/:method", {method:'@method'}, {}),
 
         	
         };
