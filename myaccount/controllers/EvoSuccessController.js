@@ -39,9 +39,11 @@ EvoSuccessController = function(scope,RequestSender, location,localStorageServic
     			formData.currency = scope.currencyType;
     			formData.clientId = clientId;
     			
+    			var cardNumber = "XXXX-XXXX-XXXX-"+outputObj.PCNr.toString().substring(13, 16);
+    			var cardType = outputObj.CCBrand;
     			if(angular.uppercase(outputObj.Status) == 'AUTHORIZED' || angular.uppercase(outputObj.Status) == 'OK'){
     			  RequestSender.paymentGatewayResource.update({},formData,function(data){
-					  localStorageService.add("paymentgatewayresponse", {data:data});
+					  localStorageService.add("paymentgatewayresponse", {data:data,cardType:cardType,cardNumber:cardNumber});
 					  var result = angular.uppercase(data.Result);
 		    		  location.$$search = {};
 		    		 if(screenName == 'payment'){
