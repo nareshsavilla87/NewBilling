@@ -10,7 +10,7 @@ EvoIntegrationController = function(scope, RequestSender,location, localStorageS
 		  var decryptedData 		= CryptoJS.AES.decrypt(location.search().key, selfcareModels.encriptionKey).toString(CryptoJS.enc.Utf8),
 		  	   evoStorageData 		= angular.fromJson(decodeURIComponent(decryptedData)),
 		  	   clientData 			= evoStorageData.clientData,
-		  	   planData 			= evoStorageData.planData || "",
+		  	   planCode 			= evoStorageData.planCode || "None",
 		  	   clientId				= clientData.id;
     	  scope.firstname			= clientData.firstname;
     	  scope.lastname			= clientData.lastname;
@@ -48,11 +48,11 @@ EvoIntegrationController = function(scope, RequestSender,location, localStorageS
 	 
 	 var dataString = "TransID="+clientId+"&RefNr="+scope.transactionId+"&amount="+scope.price+"&FirstName="+scope.firstname+"&" +
 	 					"LastName="+scope.lastname+"&AddrCity="+scope.city+"&AddrState="+scope.state+"&" +
-	 					"phone="+scope.phone+"&E-Mail="+scope.email+"&Currency="+scope.currencyType+"&OrderDesc="+planData.planCode+"&" +
+	 					"phone="+scope.phone+"&E-Mail="+scope.email+"&Currency="+scope.currencyType+"&OrderDesc="+planCode+"&" +
 	 					"Response=encrypt&MAC="+MAC+"&" +
 	 					"URLSuccess="+appURL+"#/evosuccess&" +
 	 					"URLFailure="+appURL+"#/evosuccess&" +
-	 					"UserData="+encryptedData+"&ReqId="+scope.transactionId;
+	 					"UserData="+encryptedData+"&ReqId="+scope.transactionId+"&URLBack="+appURL;
 	 if(scope.addressNo != null|| scope.addressNo !=""){
 		 dataString = dataString+"&AddrStreet="+scope.addressNo;
 	 }
