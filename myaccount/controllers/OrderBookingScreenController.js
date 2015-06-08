@@ -33,7 +33,7 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
     		(location.search().amount==0) ? (location.$$search = {},location.path("/services")) : location.path('/paymentgatewayresponse/'+clientId);
     	}
 		else if (screenName == "vod"){
-    		(priceId == "amountZero")? location.path("/services") : location.path('/paymentgatewayresponse/'+clientId);
+    		(priceId == "amountZero")? location.path("/events") : location.path('/paymentgatewayresponse/'+clientId);
     	};
     }
 	
