@@ -182,6 +182,7 @@
  	"placeholder.enter.serialnumber"		: "Sláið inn raðnúmers",
  	"placeholder.enter.text.search"			: "Leita",
  	"placeholder.enter.passport"			: "Sláðu vegabréf",
+ 	"placeholder.enter.voucher.number"		: "Sláðu gjafabréfi Fjöldi",
  	
  	"#common labels " : "------------------------------------",
  	"label.home.page"				: "Þetta er upphafssíða...",
@@ -218,6 +219,7 @@
 	"label.statement.transactions"	: "fundargerðir",
 	"label.statement.transactiontype"	: "Viðskiptakostnaður Tegund",
 	"label.receiptpage"				: "kvittun síðu",
+	"label.voucher.number"			: "skírteini Fjöldi",
  	
  	"#form validations errors " : "------------------------------------",
  	"form.error.alphanumeric"		     : "tölustafi og rými aðeins!",
@@ -356,9 +358,22 @@
 	 "label.globalpay.phone"	    : "Símanúmer",
 	 "label.add.globalpay.Info"		: "GlobalPay Upplýsingar",
 	 
-	 "#paymentGatewayConfig" :"------------------------------------",
+	 "#EditProfileResouces" :"------------------------------------",
 	 "label.edit.profile"								: "Breyta prófíl",
 	 
+	 "#EvoPaymentGatewayResources" :"------------------------------------",
+	 "label.evo.review.cart"		 : "umsögn Körfu",
+	 "label.evo.billing.info"		 : "greiðanda Upplýsingar",
+	 "label.evo.description"		 : "Lýsing",
+	 "label.evo.unit.price"	 		 : "eining verð",
+	 "label.evo.quantity"	 		 : "magn",
+	 "label.evo.numofitems"	 		 : "Fjöldi liðum",
+	 "label.evo.subtotal"	 		 : "Raða",
+	 "label.evo.current.total"	 	 : "Núverandi Samtals ",
+	 "button.evo.continue.billinfo"	 : "Halda áfram að Innheimtuupplýsinga",
+	 "label.evo.fullname"	 		 : "Fullt nafn",
+	 "label.evo.zipcode"	 		 : "póstnúmer",
+	 "button.evo.continue.paymentmethod" : "Halda áfram að greiðslumáta",
 	 
 	  "#Registration errors ":"-----------------------------------",
 	 "validation.msg.activationprocess.device.cannot.be.blank"		: "Mac auðkenni má ekki vera autt",

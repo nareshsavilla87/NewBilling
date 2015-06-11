@@ -152,7 +152,7 @@ AddEventsController = function(scope,RequestSender,location,localStorageService,
 				case evoPG :
 					
 					var evoData = {screenName:screenName,planId:0,priceId:0,price:scope.totalAmount,
-									clientData:clientData,planCode:"Adding Events", merchantId: paymentGatewayValues.merchantId};
+									clientData:clientData,planCode:"Adding Events", merchantId: paymentGatewayValues.merchantId,numOfItems:scope.mediaDatas.length};
 					var encryptedData = CryptoJS.AES.encrypt(encodeURIComponent(angular.toJson(evoData)),encrytionKey).toString();
 					
 					scope.paymentURL = "#/evointegration?key="+encryptedData;
