@@ -197,18 +197,39 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
      	  $scope.approveDisconnection = function () {
      		  $scope.flagOrderDisconnect=true;
      		  
-     		  var reqDate = dateFilter($scope.start.date,'dd MMMM yyyy');
-     	        $scope.formData.dateFormat = 'dd MMMM yyyy';
-     	        $scope.formData.disconnectionDate = reqDate;
-     	        $scope.formData.locale = rootScope.localeLangCode;
-     		  
-     	        RequestSender.bookOrderResource.update({'orderId': orderId},$scope.formData,function(data){
-     	        	$modalInstance.close('delete');
-     	        },function(orderErrorData){
-     	        	 $scope.flagOrderDisconnect=false;
-     	        	$scope.orderError = orderErrorData.data.errors[0].userMessageGlobalisationCode;
-     	        });
-     		  
+     		 RequestSender.getRecurringScbcriberIdResource.get({orderId:orderId},function(recurringdata){
+     			scope.recurringData = angular.fromJson(angular.toJson(recurringdata));
+     			scope.subscriberId	= scope.recurringData.subscriberId;
+     			console.log("subscriberId-->"+scope.subscriberId);
+     			if(scope.subscriberId){
+     				var formData = {orderId:orderId,recurringStatus:"CANCEL",subscr_id : scope.subscriberId};
+     				RequestSender.orderDisconnectByScbcriberIdResource.update(formData,function(data){
+     					var reqDate = dateFilter($scope.start.date,'dd MMMM yyyy');
+     	     	        $scope.formData.dateFormat = 'dd MMMM yyyy';
+     	     	        $scope.formData.disconnectionDate = reqDate;
+     	     	        $scope.formData.locale = rootScope.localeLangCode;
+     	     		  
+     	     	        RequestSender.bookOrderResource.update({'orderId': orderId},$scope.formData,function(data){
+     	     	        	$modalInstance.close('delete');
+     	     	        },function(orderErrorData){
+     	     	        	 $scope.flagOrderDisconnect=false;
+     	     	        	$scope.orderError = orderErrorData.data.errors[0].userMessageGlobalisationCode;
+     	     	        });
+     				});
+     			}else{
+     				var reqDate = dateFilter($scope.start.date,'dd MMMM yyyy');
+         	        $scope.formData.dateFormat = 'dd MMMM yyyy';
+         	        $scope.formData.disconnectionDate = reqDate;
+         	        $scope.formData.locale = rootScope.localeLangCode;
+         		  
+         	        RequestSender.bookOrderResource.update({'orderId': orderId},$scope.formData,function(data){
+         	        	$modalInstance.close('delete');
+         	        },function(orderErrorData){
+         	        	 $scope.flagOrderDisconnect=false;
+         	        	$scope.orderError = orderErrorData.data.errors[0].userMessageGlobalisationCode;
+         	        });
+     			}
+     		});
            };
            $scope.cancelDisconnection = function () {
                $modalInstance.dismiss('cancel');

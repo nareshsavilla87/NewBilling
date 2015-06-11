@@ -95,15 +95,15 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 					
 			case paypalPG :
 				if(angular.fromJson(isAutoRenew)){
-						 if(srtCountCheckingFun(chargeCodeData.data)<=1) 
+						 /*if(srtCountCheckingFun(chargeCodeData.data)<=1) 
 							 scope.errorRecurring = "error.msg.paypal.recurring.notpossible"; 
-						 else{
+						 else{*/
 						   var paypalStorageData = {screenName:scope.screenName,clientId:scope.clientId,planId:scope.planId,priceId:scope.priceId,
 								   	price:scope.price,paypalEmailId:paymentGatewayValues.paypalEmailId,contractId:scope.planData.contractId,
 								   	chargeCodeData : chargeCodeData};
 						   var encryptedData = CryptoJS.AES.encrypt(encodeURIComponent(angular.toJson(paypalStorageData)),encrytionKey).toString();
 							 scope.paymentURL = "#/paypalrecurring?key="+encryptedData;
-						 }
+						 //}
 				}else{
 					
 						/*var query = {clientId :scope.clientId,planId: planId,screenName:scope.screenName,priceDataId:scope.priceId};*/

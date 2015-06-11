@@ -182,6 +182,7 @@
  	"placeholder.enter.serialnumber"		: "Enter Serial Number",
  	"placeholder.enter.text.search"			: "Search",
  	"placeholder.enter.passport"			: "Enter Passport",
+ 	"placeholder.enter.voucher.number"		: "Enter Voucher Number",
  	
  	
  	"#common labels " : "------------------------------------",
@@ -219,6 +220,7 @@
 	"label.statement.transactions"	: "Transactions",
 	"label.statement.transactiontype"	: "Transaction Type",
 	"label.receiptpage"				: "Receipt Page",
+	"label.voucher.number"			: "Voucher Number",
  	
  	"#form validations errors " : "------------------------------------",
  	"form.error.alphanumeric"		     : "alphanumeric and spaces only!",
@@ -360,6 +362,20 @@
 	 
 	 "#EditProfileResouces" :"------------------------------------",
 	 "label.edit.profile"								: "Edit Profile",
+	 
+	 "#EvoPaymentGatewayResources" :"------------------------------------",
+	 "label.evo.review.cart"		 : "Review Cart",
+	 "label.evo.billing.info"		 : "Billing Information",
+	 "label.evo.description"	 	 : "Description",
+	 "label.evo.unit.price"	 		 : "Unit Price",
+	 "label.evo.quantity"	 		 : "Quantity",
+	 "label.evo.numofitems"	 		 : "Number of Items",
+	 "label.evo.subtotal"	 		 : "Subtotal",
+	 "label.evo.current.total"	 	 : "Current Total ",
+	 "button.evo.continue.billinfo"	 : "Continue to Billing Information",
+	 "label.evo.fullname"	 		 : "Full Name",
+	 "label.evo.zipcode"	 		 : "Zip Code",
+	 "button.evo.continue.paymentmethod" : "Continue to Payment Method",
 	 
 	 
 	 "#Registration errors ":"-----------------------------------",
