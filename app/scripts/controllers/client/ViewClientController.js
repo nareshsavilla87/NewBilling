@@ -1018,7 +1018,14 @@
               })*/
              
              window.open($rootScope.hostUrl+ API_VERSION +'/billmaster/print/'+ routeParams.id +'/'+invoiceId+'?tenantIdentifier='+TENANT);
+             
        };
+       
+       
+       scope.downloadPayment = function (paymentId){
+            
+            window.open($rootScope.hostUrl+ API_VERSION +'/billmaster/payment/'+ routeParams.id +'/'+paymentId+'?tenantIdentifier='+TENANT);
+      };
          
         scope.cancelScheduleOrder = function(id){
         	resourceFactory.OrderSchedulingResource.remove({'clientId':id}, {}, function(data){
