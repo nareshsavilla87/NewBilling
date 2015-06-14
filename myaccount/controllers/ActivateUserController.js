@@ -40,10 +40,10 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 	  						configDeviceAgreeType = JSON.parse(data.clientConfiguration);
 	  						scope.isConfigNationalId 	= configDeviceAgreeType.nationalId;
 	  							 registrationListing	= configDeviceAgreeType.registrationListing;
-	  						scope.isConfigPassport		= registrationListing.passport;
-	  						 if(scope.isConfigPassport == 'false'){
-	  							scope.formData.passport = "123456789";
-	  						 }
+	  						scope.isConfigPassport		= registrationListing.passport == 'true';
+	  						scope.isConfigRedeem		= registrationListing['is-redeem'] == 'true';
+	  						 if(!scope.isConfigPassport) scope.formData.passport = "123456789";
+	  						 if(!scope.isConfigRedeem) scope.voucherNumber = "A123";
 	  						(configDeviceAgreeType.deviceAgrementType == 'SALE') ?
 									  scope.isCPE_TYPESale = true:
 								  (configDeviceAgreeType.deviceAgrementType == 'OWN') ?
@@ -197,6 +197,30 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 		      			$modalInstance.dismiss('cancel');
 		      		 };
 			  	} 
+			 
+			 scope.voucherNumberValidationFun = function(id){
+					 if(id){
+						 RequestSender.VoucherResource.query({pinNumber:id},function(data){
+							 if(data.length == 1){
+								 scope.isInValidVoucher = false;
+								 var expiryDate  = $filter('DateFormat')(data[0].expiryDate);
+								 var todayDate	 = new Date().toDateString();
+								 if(Date.parse(expiryDate) < Date.parse(todayDate)){
+									 console.log(expiryDate);
+									 delete scope.voucherNumber;
+									 scope.isDateExpired = true;
+								 }else{
+									 scope.isDateExpired = false;
+								 }
+							 }else{
+								 scope.isInValidVoucher = true;
+								 delete scope.voucherNumber;
+								 scope.voucher = id;
+							 }
+							 
+						 });
+					 }
+				 };
 		  		
 			//function called when clicking on Register button in Registration Page
 			scope.registerBtnFun =function(){
@@ -212,7 +236,7 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 					 if((scope.formData.password) !=null){
 						 scope.clientData.password = scope.formData.password;
 					 }
-					 if(scope.isConfigPassport=='true'){
+					 if(scope.isConfigPassport){
 						 scope.clientData.passport = scope.formData.passport;
 					 }
 					 
@@ -234,23 +258,73 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 					 
 					 rootScope.popUpMsgs = [];rootScope.infoMsgs = [];
 					 RequestSender.authenticationClientResource.save(scope.clientData,function(data){
-
-		  				if(scope.clientData.password) {
-		  					rootScope.currentSession = sessionManager.clear();
-		  					rootScope.infoMsgs.push({
-								  						'image' : '../images/info-icon.png',
-								  						'names' : [{'name' : 'title.account.activated'},
-								  						           {'name' : 'title.login.msg'}]
-								  					});
-		  				}else{
-		  					$modal.open({
-		  						templateUrl: 'messagespopup.html',
-		  						controller: approve,
-		  						resolve:{}
-		  					});
-		  				}
+						 scope.clientId = data.resourceId;
+						 isConfigRedeemFun(function(){
+							 
+							 if(scope.clientData.password) {
+								 rootScope.currentSession = sessionManager.clear();
+								 rootScope.infoMsgs.push({
+									 'image' : '../images/info-icon.png',
+									 'names' : [{'name' : 'title.account.activated'},
+									            {'name' : 'title.login.msg'}]
+								 });
+							 }else{
+								 $modal.open({
+									 templateUrl: 'messagespopup.html',
+									 controller: approve,
+									 resolve:{}
+								 });
+							 }
+						 });
 		      	      
 					 });
+					 
+					 function  RedemptionErrorMsgPopupController($scope, $modalInstance) {
+		      	    	if(scope.clientData.password) {
+							 rootScope.currentSession = sessionManager.clear();
+							 rootScope.popUpMsgs.push({
+								 'image' : '../images/info-icon.png',
+								 'names' : [{'name' : 'title.account.activated'},
+								            {'name' : 'title.redeem.errormsg'},
+								            {'name' :  scope.errorMsg},
+								            {'name' : 'title.redeem.login.msg'}]
+							 });
+							
+						 }else{
+							 rootScope.currentSession = sessionManager.clear();
+			      	    	  rootScope.popUpMsgs.push({
+			      	    		  'image' : '../images/info-icon.png',
+			      	    		  'names' : [{'name' : 'title.account.activated'},
+			      	    		             {'name' : 'title.account.activated.userpwd'},
+			      	    		             {'name' : 'title.redeem.errormsg'},
+			      	    		             {'name' :  scope.errorMsg},
+			      	    		             {'name' : 'title.redeem.login.msg'}]
+			      	    	      });
+						 }
+		      		
+				      		$scope.approve = function () { 
+				      			
+				      			$modalInstance.dismiss('cancel');
+				      		 };
+					  	}
+					 
+				   function isConfigRedeemFun(handler){
+					 if(scope.isConfigRedeem){
+					   var voucherData = {clientId:scope.clientId,pinNumber:scope.voucherNumber};
+					   RequestSender.redemptionResource.save(voucherData,function(data){
+						   handler();
+					   },function(errorData){
+						   scope.errorMsg = errorData.data.errors[0].userMessageGlobalisationCode;
+						   $modal.open({
+								 templateUrl: 'messagespopup.html',
+								 controller: RedemptionErrorMsgPopupController,
+								 resolve:{}
+							 });
+					   });
+					 }else{
+						 handler();
+					 }
+				   }
 
 					
 		};

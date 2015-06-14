@@ -18,6 +18,8 @@
  	"title.fill.emailid" 					 : "Please fill Email Field/Invalid Email..",
  	"title.redirecting" 					 : "Redirecting Please Wait...",
  	"title.msg.firsttimeregistration" 		 : "If you are signing in for the first time please register your email by clicking SIGN-UP button",
+ 	"title.redeem.errormsg"					 : "But,with the voucher pin number following Error ",
+ 	"title.redeem.login.msg"				 : "Please Login..! and do Redemption.",
  	
  	
  "#buttons"  : "--------------------------",
@@ -384,6 +386,8 @@
  "# common errors ":"....",
   "error.msg.billing.address.city.not.found"	    : "City Not Found",
   "error.internalPayment.invalidPin"				: "Invalid Voucher Pin :",
+  "error.invalid.voucher"							: "Invalid Voucher Number",
+  "error.voucher.dateexpiry"						: "Voucher Number Date Expired",
   	
   
   "error.msg.currency.duplicate.configuration"		:"Currency is already configured",
