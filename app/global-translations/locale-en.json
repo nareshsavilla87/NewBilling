@@ -502,6 +502,7 @@
   "currencyIdSelectAll":"Select A Currency",
   "validation.msg.report.reportName.cannot.be.blank":"Report Name cannot be blank",
   "validation.msg.report.reportSql.must.be.provided.when.reportType.is.Table":"SQL field cannot be Blank",
+  "error.message.report.incorrect.values.for.date.fields":"Please give startDate should be less than endDate",
 
   "#DataTables":"...",
   "apptable.m.client":"Client",
