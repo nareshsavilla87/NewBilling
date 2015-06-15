@@ -257,7 +257,7 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 					 scope.clientData.deviceAgreementType 	= configDeviceAgreeType.deviceAgrementType;
 					 
 					 rootScope.popUpMsgs = [];rootScope.infoMsgs = [];
-					 /*RequestSender.authenticationClientResource.save(scope.clientData,function(data){
+					 RequestSender.authenticationClientResource.save(scope.clientData,function(data){
 						 scope.clientId = data.resourceId;
 						 isConfigRedeemFun(function(){
 							 
@@ -277,26 +277,28 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 							 }
 						 });
 		      	      
-					 });*/
+					 });
 					 
-					 function  RedemptionErrorMsgPopupController($scope, $modalInstance,errorDatas) {
-		      	    	  
+					 function  RedemptionErrorMsgPopupController($scope, $modalInstance) {
 		      	    	if(scope.clientData.password) {
 							 rootScope.currentSession = sessionManager.clear();
-							 rootScope.infoMsgs.push({
+							 rootScope.popUpMsgs.push({
 								 'image' : '../images/info-icon.png',
 								 'names' : [{'name' : 'title.account.activated'},
 								            {'name' : 'title.redeem.errormsg'},
-								            {'name' : 'title.redeem.errormsg'},
+								            {'name' :  scope.errorMsg},
 								            {'name' : 'title.redeem.login.msg'}]
 							 });
+							
 						 }else{
 							 rootScope.currentSession = sessionManager.clear();
 			      	    	  rootScope.popUpMsgs.push({
 			      	    		  'image' : '../images/info-icon.png',
 			      	    		  'names' : [{'name' : 'title.account.activated'},
 			      	    		             {'name' : 'title.account.activated.userpwd'},
-			      	    		             {'name' : 'title.login.msg'}]
+			      	    		             {'name' : 'title.redeem.errormsg'},
+			      	    		             {'name' :  scope.errorMsg},
+			      	    		             {'name' : 'title.redeem.login.msg'}]
 			      	    	      });
 						 }
 		      		
@@ -306,26 +308,23 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 				      		 };
 					  	}
 					 
-				   //function isConfigRedeemFun(handler){
+				   function isConfigRedeemFun(handler){
 					 if(scope.isConfigRedeem){
-					   var voucherData = {clientId:1584,pinNumber:scope.voucherNumber};
+					   var voucherData = {clientId:scope.clientId,pinNumber:scope.voucherNumber};
 					   RequestSender.redemptionResource.save(voucherData,function(data){
 						   handler();
 					   },function(errorData){
+						   scope.errorMsg = errorData.data.errors[0].userMessageGlobalisationCode;
 						   $modal.open({
 								 templateUrl: 'messagespopup.html',
 								 controller: RedemptionErrorMsgPopupController,
-								 resolve:{
-									 errorDatas : function(){
-										 errorDatas = errorData;
-									 }
-								 }
+								 resolve:{}
 							 });
 					   });
 					 }else{
 						 handler();
 					 }
-				   //}
+				   }
 
 					
 		};
