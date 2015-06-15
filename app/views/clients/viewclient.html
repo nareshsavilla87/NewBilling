@@ -774,8 +774,10 @@
                  								{{financialtransaction.amount}}
               								</td>
               								<td>
+                								<a data-ng-show="financialtransaction.transactionType == 'INVOICE'" data-ng-click="downloadInvoice(financialtransaction.transactionId)" popover="Print Invoice" popover-trigger="mouseenter"><i class=" icon-download-alt icon-white"></i></a>&nbsp;
+                								<a data-ng-show="financialtransaction.transactionType == 'PAYMENT'" data-ng-click="downloadPayment(financialtransaction.transactionId)" popover="Print Payment" popover-trigger="mouseenter"><i class=" icon-download-alt icon-white"></i></a>&nbsp;
                 								<a data-ng-hide="financialtransaction.flag==true" data-ng-click="cancelPayment(financialtransaction.transactionId)" popover="Cancel Payment" popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a>
-                								<a ng-show="financialtransaction.transactionType == 'INVOICE'" data-ng-click="downloadInvoice(financialtransaction.transactionId)" popover="Print Invoice" popover-trigger="mouseenter"><i class=" icon-download-alt icon-white"></i></a>&nbsp;
+                								
               								</td>
            								</tr>
 									</tbody>
@@ -828,6 +830,7 @@
               								</td>
               								<td>
                 								<span data-ng-show="PermissionService.showMenu('CANCEL_PAYMENT')">
+                									<a data-ng-show="financialtransaction.transactionType == 'PAYMENT'" data-ng-click="downloadPayment(financialtransaction.transactionId)" popover="Print Payment" popover-trigger="mouseenter"><i class=" icon-download-alt icon-white"></i></a>&nbsp;
                 									<a data-ng-hide="financialtransaction.flag==true" data-ng-click="cancelPayment(financialtransaction.transactionId)" popover="Cancel Payment" popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a>
                 								</span>
               								</td>
