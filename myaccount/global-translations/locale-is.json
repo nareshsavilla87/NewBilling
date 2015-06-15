@@ -381,7 +381,8 @@
  "# common errors ":"....",
   "error.msg.billing.address.city.not.found"		: "borg ekki fann",
   "error.internalPayment.invalidPin"				: "Ógilt Úttektarmiðinn pinna :",
-  
+  "error.invalid.voucher"							: "Ógilt Úttektarmiðinn Fjöldi",
+  "error.voucher.dateexpiry"						: "Úttektarmiðinn Fjöldi Dagsetning útrunnið",
   
   "error.msg.currency.duplicate.configuration"		:"Currency is already configured",
   "validation.msg.office.name.cannot.be.blank"		: "Office Name cannot be blank",
