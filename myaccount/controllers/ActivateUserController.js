@@ -219,7 +219,7 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 								 delete scope.voucherNumber;
 								 scope.voucher = id;
 							 }
-							 valid = !$scope.isInValidVoucher && !$scope.isDateExpired; 
+							 valid = !scope.isInValidVoucher && !scope.isDateExpired; 
 						 });
 					 }
 				 };
