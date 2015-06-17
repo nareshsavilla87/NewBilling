@@ -766,6 +766,7 @@
   "error.msg.prepaid.chargecode.contract.should.be.same":"Chargecode and Duration values must be same",
   "error.msg.contract.duration.cannot.be.null":"Please select Duration",
   "error.msg.postpaid.billfrequency.less.than.contractperiod":" Billing Frequency must be less than Contract Period",
+  "error.msg.select.renewal.period.more.than":"Please select Renewal Period more than '{{params[0].value}}'",
     
   "#Price":".......",
   "label.creatprice":"Create Price",
