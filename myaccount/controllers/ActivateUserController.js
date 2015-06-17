@@ -204,8 +204,8 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 							 if(data.length == 1){
 								 scope.isInValidVoucher = false;
 								 var expiryDate  = $filter('DateFormat')(data[0].expiryDate);
-								 var todayDate	 = new Date().toDateString();
-								 if(Date.parse(expiryDate) < Date.parse(todayDate)){
+								 var todayDate	 = $filter('DateFormat')(new Date());
+								 if (new Date(expiryDate) < new Date(todayDate)) {
 									 console.log(expiryDate);
 									 delete scope.voucherNumber;
 									 scope.isDateExpired = true;
@@ -213,6 +213,7 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 									 scope.isDateExpired = false;
 								 }
 							 }else{
+								 scope.isDateExpired = false;
 								 scope.isInValidVoucher = true;
 								 delete scope.voucherNumber;
 								 scope.voucher = id;
