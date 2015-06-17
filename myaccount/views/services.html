@@ -16,8 +16,8 @@
 		 	<div class="marginleft10 lightbluecolor" data-ng-show="ordersData.length!=0">
 		 		<strong>{{'label.currently.subscribed.Packs' | translate}}</strong>
 		 	</div>
-		 	<div style="height: 220px;overflow-y:auto;width:980px;" data-ng-show="ordersData.length!=0">
-		 	 <div class="packbox6"  data-ng-repeat="order in ordersData"  style="margin-bottom: 5px;min-height: 200px;">
+		 	<div style="height: 230px;overflow-y:auto;width:980px;" data-ng-show="ordersData.length!=0">
+		 	 <div class="packbox6"  data-ng-repeat="order in ordersData"  style="margin-bottom: 5px;min-height: 210px;">
 		 		<h1 style="line-height: 25px;">{{order.planCode}}</h1>
 		 		<ul> <li>{{'table.header.contractperoid'|translate}} : <span>{{order.contractPeriod}}</span>
 						<a data-ng-click="viewOrder(order.id)" style="color:blue;"> ({{'label.view' | translate}}) </a></li>
@@ -30,7 +30,11 @@
 					<input type="radio" name="packsel"  style="vertical-align: sub;" value="{{order.id}}" data-ng-click="activePackageSelectionFun(order.id,order.pdid,order.status)">
 					  <a data-popover="{{'label.uncheck'|translate}}" data-popover-trigger="mouseenter"><i class="icon-remove lightbluecolor" data-ng-show="order.id == selectedOrderId && (screenName=='changeorder')" data-ng-click="revertRadioBtnFun()"></i></a>
 					</li>
-					<li class="noneli" data-ng-show="order.status == 'DISCONNECTED' || order.status == 'ACTIVE'"><strong class="lightbluecolor" >{{'label.wish.totopup'|translate}}</strong>
+					<li class="noneli" data-ng-show="order.status == 'ACTIVE' && order.autoRenew == 'N'"><strong class="lightbluecolor" >{{'label.wish.totopup'|translate}}</strong>
+					<input type="radio" name="packsel"  style="vertical-align: sub;" value="{{order.id}}" data-ng-click="disconnectedPackageSelectionFun(order.id,order.pdid,order.status,order.autoRenew)">
+					  <a data-popover="{{'label.uncheck'|translate}}" data-popover-trigger="mouseenter" ><i class="icon-remove lightbluecolor" data-ng-show="order.id == selectedOrderId && (screenName=='renewalorder')" data-ng-click="revertRadioBtnFun()"></i></a>
+					</li>
+					<li class="noneli" data-ng-show="order.status == 'DISCONNECTED'"><strong class="lightbluecolor" >{{'label.wish.totopup'|translate}}</strong>
 					<input type="radio" name="packsel"  style="vertical-align: sub;" value="{{order.id}}" data-ng-click="disconnectedPackageSelectionFun(order.id,order.pdid,order.status,order.autoRenew)">
 					  <a data-popover="{{'label.uncheck'|translate}}" data-popover-trigger="mouseenter" ><i class="icon-remove lightbluecolor" data-ng-show="order.id == selectedOrderId && (screenName=='renewalorder')" data-ng-click="revertRadioBtnFun()"></i></a>
 					</li>

@@ -15,6 +15,7 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 		 netellerPG			=	paymentGatewayNames.neteller || "",
 		 internalPaymentPG	=	paymentGatewayNames.internalPayment || "",
 		 two_checkoutPG		=	paymentGatewayNames.two_checkout || "",
+		 interswitchPG		=  paymentGatewayNames.interswitch || "",
 		 evoPG				=	paymentGatewayNames.evo || "";
 	
 	//getting locale value
@@ -62,7 +63,6 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 	
 	   scope.paymentGatewayFun  = function(paymentGatewayName){
 		   localStorageService.remove("N_PaypalData");
-		   localStorageService.remove("recurringData");
 		   scope.errorRecurring = "";
 		   scope.paymentGatewayName = paymentGatewayName;
 			  scope.termsAndConditions = false;
@@ -95,15 +95,15 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 					
 			case paypalPG :
 				if(angular.fromJson(isAutoRenew)){
-						 if(srtCountCheckingFun(chargeCodeData.data)<=1) 
+						 /*if(srtCountCheckingFun(chargeCodeData.data)<=1) 
 							 scope.errorRecurring = "error.msg.paypal.recurring.notpossible"; 
-						 else{
+						 else{*/
 						   var paypalStorageData = {screenName:scope.screenName,clientId:scope.clientId,planId:scope.planId,priceId:scope.priceId,
 								   	price:scope.price,paypalEmailId:paymentGatewayValues.paypalEmailId,contractId:scope.planData.contractId,
 								   	chargeCodeData : chargeCodeData};
 						   var encryptedData = CryptoJS.AES.encrypt(encodeURIComponent(angular.toJson(paypalStorageData)),encrytionKey).toString();
 							 scope.paymentURL = "#/paypalrecurring?key="+encryptedData;
-						 }
+						 //}
 				}else{
 					
 						/*var query = {clientId :scope.clientId,planId: planId,screenName:scope.screenName,priceDataId:scope.priceId};*/
@@ -136,6 +136,7 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 				break;
 				
 			case two_checkoutPG :
+				
 				localStorageService.add("twoCheckoutStorageData",{screenName:scope.screenName,clientId:scope.clientId,
 																 	planId:scope.planId,priceId:scope.priceId});
 				var zipCode = clientData.zip || clientData.city || "";
@@ -144,10 +145,17 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 									+"&country="+clientData.country+"&email="+clientData.email+"&quantity=1";
 				
 				break;
+				
+			case interswitchPG :
+				
+				scope.paymentURL =  "#/interswitchintegration/"+scope.screenName+"/"+scope.clientId+"/"+scope.planId+"/"+scope.priceId+"/"+scope.price+"/"+paymentGatewayValues.productId+"/"+paymentGatewayValues.payItemId;
+				
+				break;
 			
 			case evoPG :
+				
 				var evoData = {screenName:scope.screenName,planId:scope.planId,priceId:scope.priceId,price:scope.price,
-								clientData:clientData,planData:scope.planData, merchantId: paymentGatewayValues.merchantId};
+								clientData:clientData,planCode:scope.planData.planCode, merchantId: paymentGatewayValues.merchantId};
 				var encryptedData = CryptoJS.AES.encrypt(encodeURIComponent(angular.toJson(evoData)),encrytionKey).toString();
 				
 				scope.paymentURL = "#/evointegration?key="+encryptedData;
@@ -168,7 +176,8 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
     			$scope.termsAndConditionsText = paypal[termsAndConditions] 	 		: (scope.paymentGatewayName == netellerPG)?
     			$scope.termsAndConditionsText = neteller[termsAndConditions] 	 	: (scope.paymentGatewayName == internalPaymentPG)?
     			$scope.termsAndConditionsText = internalPayment[termsAndConditions] : (scope.paymentGatewayName == two_checkoutPG)?
-    			$scope.termsAndConditionsText = two_checkout[termsAndConditions]	: (scope.paymentGatewayName == evoPG)?
+    			$scope.termsAndConditionsText = two_checkout[termsAndConditions]	: (scope.paymentGatewayName == interswitchPG)?
+		    	$scope.termsAndConditionsText = interswitch[termsAndConditions]		: (scope.paymentGatewayName == evoPG)?
     	    	$scope.termsAndConditionsText = evo[termsAndConditions]				: $scope.termsAndConditionsText = selectOnePaymentGatewayText[scope.optlang];
     	}
     	$scope.done = function(){

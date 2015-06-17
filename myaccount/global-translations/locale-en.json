@@ -18,6 +18,8 @@
  	"title.fill.emailid" 					 : "Please fill Email Field/Invalid Email..",
  	"title.redirecting" 					 : "Redirecting Please Wait...",
  	"title.msg.firsttimeregistration" 		 : "If you are signing in for the first time please register your email by clicking SIGN-UP button",
+ 	"title.redeem.errormsg"					 : "But,with the voucher pin number following Error ",
+ 	"title.redeem.login.msg"				 : "Please Login..! and do Redemption.",
  	
  	
  "#buttons"  : "--------------------------",
@@ -197,6 +199,7 @@
  	"placeholder.enter.serialnumber"		: "Enter Serial Number",
  	"placeholder.enter.text.search"			: "Search",
  	"placeholder.enter.passport"			: "Enter Passport",
+ 	"placeholder.enter.voucher.number"		: "Enter Voucher Number",
  	
  	
  	"#common labels " : "------------------------------------",
@@ -234,6 +237,7 @@
 	"label.statement.transactions"	: "Transactions",
 	"label.statement.transactiontype"	: "Transaction Type",
 	"label.receiptpage"				: "Receipt Page",
+	"label.voucher.number"			: "Voucher Number",
  	
  	"#form validations errors " : "------------------------------------",
  	"form.error.alphanumeric"		     : "alphanumeric and spaces only!",
@@ -377,6 +381,20 @@
 	 "label.edit.profile"								: "Edit Profile",
 	 "label.edit.info"								    : "Edit Info",
 	 
+	 "#EvoPaymentGatewayResources" :"------------------------------------",
+	 "label.evo.review.cart"		 : "Review Cart",
+	 "label.evo.billing.info"		 : "Billing Information",
+	 "label.evo.description"	 	 : "Description",
+	 "label.evo.unit.price"	 		 : "Unit Price",
+	 "label.evo.quantity"	 		 : "Quantity",
+	 "label.evo.numofitems"	 		 : "Number of Items",
+	 "label.evo.subtotal"	 		 : "Subtotal",
+	 "label.evo.current.total"	 	 : "Current Total ",
+	 "button.evo.continue.billinfo"	 : "Continue to Billing Information",
+	 "label.evo.fullname"	 		 : "Full Name",
+	 "label.evo.zipcode"	 		 : "Zip Code",
+	 "button.evo.continue.paymentmethod" : "Continue to Payment Method",
+	 
 	 
 	 "#Registration errors ":"-----------------------------------",
 	 "validation.msg.activationprocess.device.cannot.be.blank"		: "Mac Id field cannot be blank",
@@ -384,12 +402,15 @@
  "# common errors ":"....",
   "error.msg.billing.address.city.not.found"	    : "City Not Found",
   "error.internalPayment.invalidPin"				: "Invalid Voucher Pin :",
+  "error.invalid.voucher"							: "Invalid Voucher Number",
+  "error.voucher.dateexpiry"						: "Voucher Number Date Expired",
   	
   
   "error.msg.currency.duplicate.configuration"		: "Currency is already configured",
   "validation.msg.office.name.cannot.be.blank"		: "Office Name cannot be blank",
   "error.msg.not.authorized"						: "Insufficient privileges to perform this action.",
   "error.msg.please.pair.hardware.with.plan"		: "Please pair hardware with plan.",
+  "error.msg.insufficient.amount.for.bookevent"		: "Insufficient Amount to Book The Event.",
 
   "#Admin users":"",
   "validation.msg.user.username.cannot.be.blank":"User Name cannot be blank",

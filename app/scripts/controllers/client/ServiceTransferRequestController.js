@@ -304,7 +304,6 @@
 		       $modalInstance.dismiss('cancel');
 		   };
 	         
-	     }//end of propertyController
        
        scope.getPropertyStatus = function(query){
        	return http.get($rootScope.hostUrl+API_VERSION+'/property', {
@@ -321,12 +320,12 @@
        	    		if(scope.unitStatus == 'OCCUPIED'){
     	    		     $scope.errorData= [];
   	                     $scope.errorData.push({code:'error.msg.property.code.already.allocated'});
-  	                    $("#propertyCode").addClass("validationerror");
+  	                    $("#property").addClass("validationerror");
   	                 
     	    	    }else{
     	    		   delete $scope.errorData;
  	    	    	   scope.propertyId=undefined;
- 	    		       $("#propertyCode").removeClass("validationerror");
+ 	    		       $("#property").removeClass("validationerror");
  	    		     
     	    	   }
        	    	}else{
@@ -335,8 +334,9 @@
        	    	}
        	      return scope.propertyCodesData;
        	    });
-         };  
-
+           }; 
+           
+	     }//end of propertyController
        
        scope.submit = function(){
     	   scope.formData.oldPropertyCode = scope.serviceTransferRequestData.propertyCode; 

@@ -10,20 +10,26 @@ EvoIntegrationController = function(scope, RequestSender,location, localStorageS
 		  var decryptedData 		= CryptoJS.AES.decrypt(location.search().key, selfcareModels.encriptionKey).toString(CryptoJS.enc.Utf8),
 		  	   evoStorageData 		= angular.fromJson(decodeURIComponent(decryptedData)),
 		  	   clientData 			= evoStorageData.clientData,
-		  	   planData 			= evoStorageData.planData || "",
 		  	   clientId				= clientData.id;
+		  scope.planCode 			= evoStorageData.planCode || "None",
     	  scope.firstname			= clientData.firstname;
     	  scope.lastname			= clientData.lastname;
+    	  scope.fullName			= clientData.displayName;
     	  scope.city				= clientData.city;
     	  scope.state				= clientData.state;
+    	  scope.country				= clientData.country;
     	  scope.addressNo			= clientData.addressNo;
     	  scope.zip					= clientData.zip;
     	  scope.email 				= clientData.email;
     	  scope.phone 				= clientData.phone;
     	  scope.price				= evoStorageData.price;
     	  scope.merchantId			= evoStorageData.merchantId;
+    	  scope.screenName			= evoStorageData.screenName;
+    	  scope.numOfItems			= evoStorageData.numOfItems;
     	  
-    	 var evoData = {screenName:evoStorageData.screenName,planId:evoStorageData.planId,priceId:evoStorageData.priceId,price:evoStorageData.price,
+    	  scope.evoPG = {reviewCart:true,billingInfo:false,isFirstDisabled:true};
+    	  
+    	 var evoData = {screenName:scope.screenName,planId:evoStorageData.planId,priceId:evoStorageData.priceId,price:evoStorageData.price,
 						clientId:clientData.id,email:scope.email};
     	 var encryptedData = CryptoJS.AES.encrypt(encodeURIComponent(angular.toJson(evoData)),selfcareModels.encriptionKey).toString();
     	  
@@ -48,11 +54,11 @@ EvoIntegrationController = function(scope, RequestSender,location, localStorageS
 	 
 	 var dataString = "TransID="+clientId+"&RefNr="+scope.transactionId+"&amount="+scope.price+"&FirstName="+scope.firstname+"&" +
 	 					"LastName="+scope.lastname+"&AddrCity="+scope.city+"&AddrState="+scope.state+"&" +
-	 					"phone="+scope.phone+"&E-Mail="+scope.email+"&Currency="+scope.currencyType+"&OrderDesc="+planData.planCode+"&" +
+	 					"phone="+scope.phone+"&E-Mail="+scope.email+"&Currency="+scope.currencyType+"&OrderDesc="+scope.planCode+"&" +
 	 					"Response=encrypt&MAC="+MAC+"&" +
 	 					"URLSuccess="+appURL+"#/evosuccess&" +
 	 					"URLFailure="+appURL+"#/evosuccess&" +
-	 					"UserData="+encryptedData+"&ReqId="+scope.transactionId;
+	 					"UserData="+encryptedData+"&ReqId="+scope.transactionId+"&URLBack="+appURL+"&Capture=AUTO";
 	 if(scope.addressNo != null|| scope.addressNo !=""){
 		 dataString = dataString+"&AddrStreet="+scope.addressNo;
 	 }
@@ -66,9 +72,13 @@ EvoIntegrationController = function(scope, RequestSender,location, localStorageS
 	 RequestSender.evoPaymentGatewayResource.save({method:'encrypt'},blowfishEncData,function(data){
 		 scope.data = data.map.blowfishData;
 		 $timeout(function() {
-			  $("#submitEvoIntegration").click();
+			  //$("#submitEvoIntegration").click();
 		    }, 1000);
 	 });
+	 
+	 scope.submitPaymentMethodFun = function(){
+		 $("#submitEvoIntegration").click();
+	 };
 			
     };
     

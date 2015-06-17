@@ -5,7 +5,6 @@ NetellerController = function(scope,RequestSender,routeParams,location,dateFilte
 		scope.formData 			= {};
 		var	decryptedData     	= CryptoJS.AES.decrypt(location.search().key, selfcareModels.encriptionKey).toString(CryptoJS.enc.Utf8),
 			kortaStorageData 	= angular.fromJson(decodeURIComponent(decryptedData));
-    	scope.planCode 			= kortaStorageData.planCode;
     	scope.amount 			= kortaStorageData.total_amount;
     	scope.formData 			= kortaStorageData;
     	var screenName 			= scope.formData.screenName;
@@ -58,7 +57,7 @@ NetellerController = function(scope,RequestSender,routeParams,location,dateFilte
     				if(screenName == 'vod'){
     					if(result == "SUCCESS" || result == 'PENDING'){
     						localStorageService.add("gatewayStatus",result);
-    						 location.path("/orderbookingscreen/"+screenName+"/"+clientId+"/0/0");
+    						location.path("/orderbookingscreen/"+screenName+"/"+clientId+"/0/0");
     					}else if(result == "FAILURE"){
     						location.path('/paymentgatewayresponse/'+clientId);
     					}
