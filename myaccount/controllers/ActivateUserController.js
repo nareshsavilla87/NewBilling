@@ -213,6 +213,7 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 									 scope.isDateExpired = false;
 								 }
 							 }else{
+								 scope.isDateExpired = false;
 								 scope.isInValidVoucher = true;
 								 delete scope.voucherNumber;
 								 scope.voucher = id;

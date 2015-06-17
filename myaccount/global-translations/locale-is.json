@@ -18,7 +18,7 @@
  	"title.fill.emailid" 					 : "Vinsamlegast fyllið  Tölvupóstur reit/Ógilt netfang..",
  	"title.redirecting" 					 : "Áframsendi vinsaml...",
  	"title.msg.firsttimeregistration" 		 : "Ef þú ert að skrá þig inn í fyrsta skipti skaltu skrá netfangið þitt með því að smella Nýskráningarforritið hnappinn",
- 	"title.redeem.errormsg"					 : "En, með skírteini pin-númer eftirfarandi Villa ",
+ 	"title.redeem.errormsg"					 : "En, með Úttektarmiðinn pin-númer eftirfarandi Villa ",
  	"title.redeem.login.msg"				 : "Vinsamlegast Innskráning ..! og gera Innlausn.",
  	
  	
@@ -221,7 +221,6 @@
 	"label.statement.transactions"	: "fundargerðir",
 	"label.statement.transactiontype"	: "Viðskiptakostnaður Tegund",
 	"label.receiptpage"				: "kvittun síðu",
-	"label.voucher.number"			: "skírteini Fjöldi",
  	
  	"#form validations errors " : "------------------------------------",
  	"form.error.alphanumeric"		     : "tölustafi og rými aðeins!",
@@ -377,14 +376,23 @@
 	 "label.evo.zipcode"	 		 : "póstnúmer",
 	 "button.evo.continue.paymentmethod" : "Halda áfram að greiðslumáta",
 	 
+	 "#RedemptionResources" :"------------------------------------",
+	 "label.voucher.number"			: "Úttektarmiðinn Fjöldi",
+	 "label.redeem"					: "innleysa",
+	 "validation.msg.redemption.clientId.cannot.be.blank"  : "Kenni viðskiptavinar má ekki vera autt",
+	 "validation.msg.redemption.pinNumber.cannot.be.blank" : "Úttektarmiðinn Númer má ekki vera auður",
+	 "error.msg.client.id.invalid"						   : "Ógilt Auðkenni viðskiptavinar",
+	 "error.invalid.voucher"							   : "Ógilt Úttektarmiðinn Fjöldi",
+     "error.voucher.dateexpiry"						       : "Úttektarmiðinn Fjöldi Dagsetning útrunnið",
+     "error.msg.redemption.pinNumber.invalid"			   : "Ógilt Úttektarmiðinn Fjöldi",
+     "error.msg.redemption.pinNumber.already.use"		   : "Úttektarmiðinn Númer þegar notað",
+	 
 	  "#Registration errors ":"-----------------------------------",
 	 "validation.msg.activationprocess.device.cannot.be.blank"		: "Mac auðkenni má ekki vera autt",
 	 
  "# common errors ":"....",
   "error.msg.billing.address.city.not.found"		: "borg ekki fann",
   "error.internalPayment.invalidPin"				: "Ógilt Úttektarmiðinn pinna :",
-  "error.invalid.voucher"							: "Ógilt Úttektarmiðinn Fjöldi",
-  "error.voucher.dateexpiry"						: "Úttektarmiðinn Fjöldi Dagsetning útrunnið",
   
   "error.msg.currency.duplicate.configuration"		:"Currency is already configured",
   "validation.msg.office.name.cannot.be.blank"		: "Office Name cannot be blank",
@@ -881,11 +889,6 @@
 "error.msg.ipaddress.already.allocated.please.select.another.iprange":"Ip addresses are already allocated.please select another ip range",
 "validation.msg.provisioning.IP_ADDRESS.cannot.be.empty":"Ip Address can not br blank",
 "validation.msg.null.statusType.cannot.be.blank":"Status Type cannot be blank",
-
-"#Redemption":".......",
-"validation.msg.redemption.clientId.cannot.be.blank":"Client id cannot be blank",
-"validation.msg.redemption.pinNumber.cannot.be.blank":"Pin Number cannot be blank",
-"error.msg.client.id.invalid":"Invalid Client Id",
 
 "#Add CreditCard":".....",
 
