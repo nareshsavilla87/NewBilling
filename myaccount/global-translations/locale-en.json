@@ -222,7 +222,6 @@
 	"label.statement.transactions"	: "Transactions",
 	"label.statement.transactiontype"	: "Transaction Type",
 	"label.receiptpage"				: "Receipt Page",
-	"label.voucher.number"			: "Voucher Number",
  	
  	"#form validations errors " : "------------------------------------",
  	"form.error.alphanumeric"		     : "alphanumeric and spaces only!",
@@ -380,15 +379,24 @@
 	 "button.evo.continue.paymentmethod" : "Continue to Payment Method",
 	 
 	 
+	 "#RedemptionResources" :"------------------------------------",
+	 "label.voucher.number"			: "Voucher Number",
+	 "label.redeem"					: "Redeem",
+	 "validation.msg.redemption.clientId.cannot.be.blank"  : "Client Id cannot be blank",
+	 "validation.msg.redemption.pinNumber.cannot.be.blank" : "Voucher Number cannot be blank",
+	 "error.msg.client.id.invalid"						   : "Invalid Client Id",
+	 "error.invalid.voucher"							   : "Invalid Voucher Number",
+  	 "error.voucher.dateexpiry"							   : "Voucher Number Date Expired",
+  	 "error.msg.redemption.pinNumber.invalid"			   : "Invalid Voucher Number",
+  	 "error.msg.redemption.pinNumber.already.use"		   : "Voucher Number already used",
+	 
+	 
 	 "#Registration errors ":"-----------------------------------",
 	 "validation.msg.activationprocess.device.cannot.be.blank"		: "Mac Id field cannot be blank",
 	 
  "# common errors ":"....",
   "error.msg.billing.address.city.not.found"	    : "City Not Found",
   "error.internalPayment.invalidPin"				: "Invalid Voucher Pin :",
-  "error.invalid.voucher"							: "Invalid Voucher Number",
-  "error.voucher.dateexpiry"						: "Voucher Number Date Expired",
-  	
   
   "error.msg.currency.duplicate.configuration"		:"Currency is already configured",
   "validation.msg.office.name.cannot.be.blank"		: "Office Name cannot be blank",
@@ -885,11 +893,6 @@
 "error.msg.ipaddress.already.allocated.please.select.another.iprange":"Ip addresses are already allocated.please select another ip range",
 "validation.msg.provisioning.IP_ADDRESS.cannot.be.empty":"Ip Address can not br blank",
 "validation.msg.null.statusType.cannot.be.blank":"Status Type cannot be blank",
-
-"#Redemption":".......",
-"validation.msg.redemption.clientId.cannot.be.blank":"Client id cannot be blank",
-"validation.msg.redemption.pinNumber.cannot.be.blank":"Pin Number cannot be blank",
-"error.msg.client.id.invalid":"Invalid Client Id",
 
 "#Add CreditCard":".....",
 
