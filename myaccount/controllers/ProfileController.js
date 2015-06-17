@@ -52,7 +52,7 @@ ProfileController = function(scope,RequestSender,rootScope,location,paginatorSer
 	  						var configurationDatas = data.globalConfiguration;
 	  						  for(var i in configurationDatas){
 	  							 if(configurationDatas[i].name==selfcareModels.isRedemption){
-	  								 
+	  								  localStorageService.add('isRedemptionConfig',configurationDatas[i].enabled);
 	  								  rootScope.isRedemptionConfig = configurationDatas[i].enabled;
 	  								  break;
 	  						      }
