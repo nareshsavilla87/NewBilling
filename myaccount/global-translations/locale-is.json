@@ -359,6 +359,22 @@
 	 "#paymentGatewayConfig" :"------------------------------------",
 	 "label.edit.profile"								: "Breyta prófíl",
 	 
+	 "#additionalinfo"  :  "--------------------------",
+ 	"label.client.gender"				: "kyn",
+ 	"label.client.nationality"			: "Þjóðerni",
+ 	"label.client.jobtitle"				: "Job Title",
+ 	"label.client.dateofbirth"			: "Fæðingardagur",
+ 	"label.client.preferlanguage"		: "vilja Tungumál",
+ 	"label.client.remarks"				: "athugasemdir",
+ 	"label.client.identificationtype"	: "Identification Tegund",
+ 	"label.client.identificationnumber"	: "Identification Number",
+ 	"label.client.agegroup"				: "Aldur Group",
+ 	"label.client.utscustomerid"		: "UTS Auðkenni viðskiptavinar",
+ 	"label.client.financeid"			: "Id Fjármál",
+ 	"label.client.preferredcommunication": "Valið Samskipti",
+ 	"link.additionalinfo" 		 		:  "Viðskiptavinur Aðrar upplýsingar",
+ 	"label.edit.info"					: "Breyta Info",
+	 
 	 
 	  "#Registration errors ":"-----------------------------------",
 	 "validation.msg.activationprocess.device.cannot.be.blank"		: "Mac auðkenni má ekki vera autt",
