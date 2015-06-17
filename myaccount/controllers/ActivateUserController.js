@@ -198,7 +198,7 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 		      			$modalInstance.dismiss('cancel');
 		      		 };
 			  	} 
-			 
+			 var valid = false;
 			 scope.voucherNumberValidationFun = function(id){
 					 if(id){
 						 RequestSender.VoucherResource.query({pinNumber:id},function(data){
@@ -219,14 +219,14 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 								 delete scope.voucherNumber;
 								 scope.voucher = id;
 							 }
-							 
+							 valid = !$scope.isInValidVoucher && !$scope.isDateExpired; 
 						 });
 					 }
 				 };
 		  		
 			//function called when clicking on Register button in Registration Page
 			scope.registerBtnFun =function(){
-				
+			  if(valid){	
 				scope.clientData = {};
 				 //deviceNo added to form data when isDeviceEnabled true
 					 if(scope.formData.deviceNo){
@@ -281,6 +281,7 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 							 }
 		      	      
 					 });
+			}
 		};
     };
     

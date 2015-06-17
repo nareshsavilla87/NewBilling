@@ -14,8 +14,8 @@ ProfileController = function(scope,RequestSender,rootScope,location,paginatorSer
 		      }
 			  callback(retrivingStatementsData);
 	  	   };
-	  	   
-		 if(rootScope.selfcare_sessionData){		  
+	  	function initialCallFun(){   
+		   if(rootScope.selfcare_sessionData){		  
 			  scope.clientId = rootScope.selfcare_sessionData.clientId;
 			  RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
 				  scope.clientData = data;
@@ -61,7 +61,8 @@ ProfileController = function(scope,RequestSender,rootScope,location,paginatorSer
 				  });
 				
 			  });
-		  }
+		    }
+	  	  }initialCallFun();
 		 
 		  scope.routeTostatement = function(statementid){
              location.path('/viewstatement/'+statementid);
@@ -76,6 +77,7 @@ ProfileController = function(scope,RequestSender,rootScope,location,paginatorSer
 	 		 
 	 		 $scope.isProcessing = false;
 	 		 $scope.formData = {};
+	 		 var valid = false;
 	 		 $scope.voucherNumberValidationFun = function(voucherNumber){
 	 			 if(voucherNumber){
 	 				 RequestSender.VoucherResource.query({pinNumber:voucherNumber},function(data){
@@ -94,20 +96,20 @@ ProfileController = function(scope,RequestSender,rootScope,location,paginatorSer
 	 						 $scope.isInValidVoucher = true;
 	 						 delete $scope.formData.voucherNumber;
 	 					 }
-	 					 
+	 					 valid = !$scope.isInValidVoucher && !$scope.isDateExpired;
 	 				 });
 	 			 }
 	 		 };
 	 		 
 	 		 $scope.confirm = function(voucherNumber){
-	 			 if(!$scope.isInValidVoucher && !$scope.isDateExpired){
+	 			 if(valid){
 	 			   var voucherData = {'clientId' : scope.clientId,'pinNumber': voucherNumber};
 	 			  
 	 				 $scope.isProcessing = true;$scope.voucherError = null;
 	 				 RequestSender.redemptionResource.save(voucherData,function(data){
 	 					 
 	 					 $scope.isProcessing = false;
-	 					 location.path('/').replace();
+	 					 initialCallFun();
 	 					 location.path('/profile');
 	 					 $modalInstance.close('delete');
 	 					 
@@ -116,8 +118,7 @@ ProfileController = function(scope,RequestSender,rootScope,location,paginatorSer
 	 					 $scope.voucherError = errorData.data.errors[0].userMessageGlobalisationCode;
 	 					 $scope.isProcessing = false;
 	 				 });
-	 			 }
-	 				 
+	 			 }	 
 	 		};
 	 		
 	 		$scope.cancel = function(){
