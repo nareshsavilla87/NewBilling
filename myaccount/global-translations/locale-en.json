@@ -18,8 +18,6 @@
  	"title.fill.emailid" 					 : "Please fill Email Field/Invalid Email..",
  	"title.redirecting" 					 : "Redirecting Please Wait...",
  	"title.msg.firsttimeregistration" 		 : "If you are signing in for the first time please register your email by clicking SIGN-UP button",
- 	"title.redeem.errormsg"					 : "But,with the voucher pin number following Error ",
- 	"title.redeem.login.msg"				 : "Please Login..! and do Redemption.",
  	
  	
  "#buttons"  : "--------------------------",
