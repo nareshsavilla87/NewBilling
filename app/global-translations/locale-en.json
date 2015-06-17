@@ -545,7 +545,7 @@
   "error.not.numeric.validation":"Enter Numeric Value",
   "error.not.decimal.validation":"Enter Decimal Value",
   "error.invalid.phone.validation":"MAX Length 15 Numbers",
-
+   
 
   "#Journal Entry Predefined Postings":"........",
   "label.select.accountingrule":"--Select accounting rule--",
@@ -739,6 +739,8 @@
   "label.contract.error":"Errors:",
   "validation.msg.subscriptoins.subscriptionPeriod.cannot.be.blank":"Contract Period Cannot be Blank",
   "validation.msg.subscriptoins.units.cannot.be.blank":"UNITS Cannot be Blank",
+  "error.msg.contract.code.duplicate.name":"A contract with the same name already exists. Please use a different name",
+   "error.code.definition.length.validation":"Value exceeded. Please enter a valid value",
   
   "#Plan":"......",
   "link.create.new.plan":"Add Plan",
