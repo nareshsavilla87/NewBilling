@@ -109,8 +109,8 @@ ProfileController = function(scope,RequestSender,rootScope,location,paginatorSer
 	 				 RequestSender.redemptionResource.save(voucherData,function(data){
 	 					 
 	 					 $scope.isProcessing = false;
-	 					 initialCallFun();
-	 					 location.path('/profile');
+	 					 if('/profile' == location.path()) initialCallFun();
+	 					 else location.path('/profile');
 	 					 $modalInstance.close('delete');
 	 					 
 	 					 
