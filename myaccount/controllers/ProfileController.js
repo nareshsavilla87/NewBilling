@@ -1,4 +1,4 @@
-ProfileController = function(scope,RequestSender,rootScope,location,paginatorService,localStorageService, API_VERSION) {
+ProfileController = function(scope,RequestSender,rootScope,location,paginatorService,localStorageService, API_VERSION,modal) {
 		  
 		  var totalStatementsData = [];var retrivingStatementsData = {};scope.statementsData = [];
           scope.getStatementsData = function(offset, limit, callback) {
@@ -48,6 +48,15 @@ ProfileController = function(scope,RequestSender,rootScope,location,paginatorSer
 	  								});
 	  							});
 	  						}
+	  						
+	  						var configurationDatas = data.globalConfiguration;
+	  						  for(var i in configurationDatas){
+	  							 if(configurationDatas[i].name==selfcareModels.isRedemption){
+	  								 
+	  								  rootScope.isRedemptionConfig = configurationDatas[i].enabled;
+	  								  break;
+	  						      }
+	  						  }
 	  					  });
 				  });
 				
@@ -61,6 +70,68 @@ ProfileController = function(scope,RequestSender,rootScope,location,paginatorSer
            scope.downloadFile = function (statementId){
 	           window.open(rootScope.hostUrl+ API_VERSION +'/billmaster/'+ statementId +'/print?tenantIdentifier='+selfcareModels.tenantId);
 	      };
+	      
+	    //redemption popup controller
+	 	 var RedemptionPopupController = function($scope,$modalInstance,$filter){
+	 		 
+	 		 $scope.isProcessing = false;
+	 		 $scope.formData = {};
+	 		 $scope.voucherNumberValidationFun = function(voucherNumber){
+	 			 if(voucherNumber){
+	 				 RequestSender.VoucherResource.query({pinNumber:voucherNumber},function(data){
+	 					 if(data.length == 1){
+	 						 $scope.isInValidVoucher = false;
+	 						 var expiryDate  = $filter('DateFormat')(data[0].expiryDate);
+	 						 var todayDate	 = $filter('DateFormat')(new Date());
+	 						 if (new Date(expiryDate) < new Date(todayDate)) {
+	 							 delete $scope.formData.voucherNumber;
+	 							 $scope.isDateExpired = true;
+	 						 }else{
+	 							 $scope.isDateExpired = false;
+	 						 }
+	 					 }else{
+	 						 $scope.isDateExpired = false;
+	 						 $scope.isInValidVoucher = true;
+	 						 delete $scope.formData.voucherNumber;
+	 					 }
+	 					 
+	 				 });
+	 			 }
+	 		 };
+	 		 
+	 		 $scope.confirm = function(voucherNumber){
+	 			 if(!$scope.isInValidVoucher && !$scope.isDateExpired){
+	 			   var voucherData = {'clientId' : scope.clientId,'pinNumber': voucherNumber};
+	 			  
+	 				 $scope.isProcessing = true;$scope.voucherError = null;
+	 				 RequestSender.redemptionResource.save(voucherData,function(data){
+	 					 
+	 					 $scope.isProcessing = false;
+	 					 location.path('/').replace();
+	 					 location.path('/profile');
+	 					 $modalInstance.close('delete');
+	 					 
+	 					 
+	 				 },function(errorData){
+	 					 $scope.voucherError = errorData.data.errors[0].userMessageGlobalisationCode;
+	 					 $scope.isProcessing = false;
+	 				 });
+	 			 }
+	 				 
+	 		};
+	 		
+	 		$scope.cancel = function(){
+	 			$modalInstance.dismiss('cancel');
+	 		};
+	 	 };
+	      
+	      rootScope.redeemFun = function(){
+	    	  modal.open({
+	 			 templateUrl: 'redemptionpop.html',
+	 			 controller: RedemptionPopupController,
+	 			 resolve:{}
+	 			});
+	      };
 		 
 		
     };
@@ -72,4 +143,5 @@ selfcareApp.controller('ProfileController', ['$scope',
                                              'PaginatorService', 
                                              'localStorageService', 
                                              'API_VERSION', 
+                                             '$modal', 
                                              ProfileController]);

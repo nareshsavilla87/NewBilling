@@ -208,13 +208,13 @@ scope.$watch(function () {
 	 };
 	 
 	 //redeem Popup open fun
-	 scope.redeemFun = function(){
+	 /*scope.redeemFun = function(){
 		 modal.open({
 			 templateUrl: 'redemptionpop.html',
 			 controller: RedemptionPopupController,
 			 resolve:{}
 			});
-	 };
+	 };*/
 	 
 	//execute this fun when we click on header bar links 
 	 scope.isActive = function (route) {
