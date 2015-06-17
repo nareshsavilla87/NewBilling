@@ -205,7 +205,7 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 								 scope.isInValidVoucher = false;
 								 var expiryDate  = $filter('DateFormat')(data[0].expiryDate);
 								 var todayDate	 = new Date().toDateString();
-								 if(Date.parse(expiryDate) < Date.parse(todayDate)){
+								 if(Date.parse(expiryDate) <= Date.parse(todayDate)){
 									 console.log(expiryDate);
 									 delete scope.voucherNumber;
 									 scope.isDateExpired = true;
