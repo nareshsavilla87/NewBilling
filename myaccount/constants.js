@@ -31,6 +31,7 @@
 	   registerPlan		    		: "register-plan",
 	   registrationRequiresDevice	: "registration-requires-device",
 	   deviceAgrementType			: "device-agrement-type",
+	   isRedemption					: "is-redemption",
 	   globalPayCurrencyType		: "NGN",
 	   netellerCurrencyType			: "EUR",
 	   interswitchCurrencyType		: "566",
