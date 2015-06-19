@@ -222,6 +222,7 @@
   "#common button name":"",
   "button.edit":"Edit",
   "button.add":"Add",
+  "button.addmrn":"Add Mrn",
   "button.save":"Save",
   "button.cancel":"Cancel",
   "button.close":"Close",
@@ -1989,6 +1990,7 @@
   "validation.msg.planmappig.planCode.cannot.be.blank":"Plan Code cannot be blank",
   "validation.msg.planmappig.itemCode.cannot.be.blank":"Item Code cannot be blank",
   "error.msg.service.mapping.duplicate":"Mapping has already done with this service",
+  "validation.msg.ServiceMapping.provisionSystem.cannot.be.blank":"Please Select Provisioning system",
   
   "#HardWareMapping":"...........",
   "table.hardwaremapping.id":"Id",
@@ -2799,7 +2801,7 @@
 
 "#Deposit and Refund  ":".......",
 "error.msg.hardware.unallocated":"Please Unallocate hardware",
-"error.msg.unable.to.refund.clientbalance.greater.than.refund.amount":"Unable refund client balance is greater than refund balance",
+"error.msg.unable.to.refund.clientbalance.greater.than.refund.amount":"Unable refund client due balance is greater than refund balance",
 "error.msg.hardware.quality.not.good":"Item Quality is not good"
 
 

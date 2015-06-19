@@ -39,6 +39,8 @@
 	           };
 			   
 	           
+	         
+	           
 	        
 	        scope.submit = function() {  
 	            resourceFactory.propertyResource.save(scope.formData, function(data){
