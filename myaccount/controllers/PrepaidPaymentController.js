@@ -2,22 +2,19 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 	
 	
 	//getting Payment Gateway names form constans.js
-	var  kortaPG			=	paymentGatewayNames.korta || "";
-	var  dalpayPG			=	paymentGatewayNames.dalpay || "";
-	var  globalpayPG		=	paymentGatewayNames.globalpay || "";
-	var  paypalPG			=	paymentGatewayNames.paypal || "";
-	var  netellerPG			=	paymentGatewayNames.neteller || "";
-	var  internalPaymentPG	=	paymentGatewayNames.internalPayment || "";
-	var  two_checkoutPG		=	paymentGatewayNames.two_checkout || "";
-	var  interswitchPG		=	paymentGatewayNames.interswitch || "";
-	
-	//getting locale value
-	 var temp 				= localStorageService.get('localeLang')||"";
-	 scope.optlang 			= temp || selfcareModels.locale;
+	var   kortaPG			=  paymentGatewayNames.korta || "",
+		  dalpayPG			=  paymentGatewayNames.dalpay || "",
+		  globalpayPG		=  paymentGatewayNames.globalpay || "",
+		  paypalPG			=  paymentGatewayNames.paypal || "",
+		  netellerPG		=  paymentGatewayNames.neteller || "",
+		  internalPaymentPG	=  paymentGatewayNames.internalPayment || "",
+		  two_checkoutPG	=  paymentGatewayNames.two_checkout || "",
+		  interswitchPG		=  paymentGatewayNames.interswitch || "",
+		  evoPG				=  paymentGatewayNames.evo || "";
+	 scope.optlang 			=  rootScope.localeLangCode;
+	 var encrytionKey 		=  selfcareModels.encriptionKey;
 	
 	rootScope.selfcare_sessionData ? scope.clientId = rootScope.selfcare_sessionData.clientId : null;
-	scope.planData			= {};
-	var encrytionKey 		= selfcareModels.encriptionKey;
 	scope.amountEmpty 		= true;
 	scope.isRedirecting 	= false;
 	
@@ -26,21 +23,18 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 		clientData = data;
 	  scope.paymentgatewayDatas = [];
 	  RequestSender.paymentGatewayConfigResource.get(function(data) {
-		  if(data.globalConfiguration){
-			  for(var i in data.globalConfiguration){
-				   if(data.globalConfiguration[i].enabled && data.globalConfiguration[i].name != 'is-paypal-for-ios'  
-					   && data.globalConfiguration[i].name != 'is-paypal' && data.globalConfiguration[i].name != 'paypal-recurring-payment-details'){
-					   scope.paymentgatewayDatas.push(data.globalConfiguration[i]);
-				   }
-			  }
-			  scope.paymentgatewayDatas.length==0 ?scope.paymentGatewayName="" : "";
+		  for(var i in data.globalConfiguration){
+			   if(data.globalConfiguration[i].enabled && data.globalConfiguration[i].name != 'is-paypal-for-ios'  
+				   && data.globalConfiguration[i].name != 'is-paypal' && data.globalConfiguration[i].name != 'paypal-recurring-payment-details'){
+				   scope.paymentgatewayDatas.push(data.globalConfiguration[i]);
+			   }
 		  }
+		  scope.paymentgatewayDatas.length==0 ?scope.paymentGatewayName="" : "";
 	  });
 	});
 	
-	var hostName = selfcareModels.selfcareAppUrl;
-	
 	//this function calls when comeout from amount field
+	scope.planData			= {};
 	scope.amountFieldFun = function(amount){
 		if(amount){
 			if(amount<=0 || isNaN(amount)){
@@ -54,7 +48,7 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 			}else{
 				scope.amountEmpty 		= false;
 				scope.planData.price 	= amount;
-				scope.planData.planCode = 'Pay';
+				scope.planData.planCode = 'Online Payment';
 				scope.planData.id 		= 0;
 				scope.paymentGatewayName = scope.paymentgatewayDatas.length>=1 ?scope.paymentgatewayDatas[0].name :"";
 				scope.paymentGatewayFun(scope.paymentGatewayName);
@@ -67,14 +61,15 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 	};
 	
 	//this fun call when user select a particular PW 
+	var hostName = selfcareModels.selfcareAppUrl;var screenName = "payment";
 	scope.paymentGatewayFun  = function(paymentGatewayName){
-		localStorageService.remove("N_PaypalData");
+			  localStorageService.remove("N_PaypalData");
 			  scope.paymentGatewayName = paymentGatewayName;
 			  scope.termsAndConditions = false;
 			  var paymentGatewayValues = {};
 			  for (var i in scope.paymentgatewayDatas){
 			    if(scope.paymentgatewayDatas[i].name==paymentGatewayName && scope.paymentgatewayDatas[i].name !='internalPayment'){
-				  paymentGatewayValues =  JSON.parse(scope.paymentgatewayDatas[i].value);
+				  paymentGatewayValues =  angular.fromJson(scope.paymentgatewayDatas[i].value);
 				  break;
 			    }
 				  
@@ -85,49 +80,51 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 					var url = paymentGatewayValues.url+'?mer_id='+paymentGatewayValues.merchantId+'&pageid='+paymentGatewayValues.pageId+'&item1_qty=1&num_items=1';
 				scope.paymentURL =  url+"&cust_name="+clientData.displayName+"&cust_phone="+clientData.phone+"&cust_email="+clientData.email+"&cust_state="+clientData.state+""+				
 				  	"&cust_address1="+clientData.addressNo+"&cust_zip="+clientData.zip+"&cust_city="+clientData.state+"&item1_desc="+scope.planData.planCode+"&item1_price="+scope.planData.price+"" + 	  				
-				  	"&user1="+scope.clientId+"&user2="+hostName+"&user3=orderbookingscreen/payment/"+scope.clientId+"/"+0+"/"+0;
+				  	"&user1="+scope.clientId+"&user2="+hostName+"&user3=orderbookingscreen/"+screenName+"/"+scope.clientId+"/0/0";
 					break;
 					
 			case kortaPG :
 				
-			    var kortaStorageData = {clientData :clientData,planId:0,planData : scope.planData,screenName :'payment',paymentGatewayValues:paymentGatewayValues};	
-			    var encodeURIComponentData = encodeURIComponent(JSON.stringify(kortaStorageData));
-				var encryptedData = CryptoJS.AES.encrypt(encodeURIComponentData,encrytionKey).toString();
+			    var kortaStorageData = {clientData :clientData,planId:0,planData : scope.planData,screenName :screenName,paymentGatewayValues:paymentGatewayValues};	
+				var encryptedData = CryptoJS.AES.encrypt(encodeURIComponent(angular.toJson(kortaStorageData)),encrytionKey).toString();
 				
-				var token = clientData.selfcare.token;		    		
-				if(token != null && token != "") scope.paymentURL = "#/kortatokenintegration/"+scope.planData.price+"?key="+encryptedData;		    		 
+				if(clientData.selfcare.token != null && clientData.selfcare.token != "") 
+					scope.paymentURL = "#/kortatokenintegration/"+scope.planData.price+"?key="+encryptedData;		    		 
 				else scope.paymentURL = "#/kortaintegration/"+scope.planData.price+"?key="+encryptedData;	    		
 				break;
 					
 			case paypalPG :
-				/*var query = {clientId :scope.clientId,returnUrl:hostName,screenName :'payment'};*/
-				var query = hostName;
-				localStorageService.add("N_PaypalData",{clientId:scope.clientId,screenName :'payment'});
+				
+				/*var query = {clientId :scope.clientId,returnUrl:hostName,screenName :screenName};*/
+				localStorageService.add("N_PaypalData",{clientId:scope.clientId,screenName :screenName});
 				scope.paymentURL = paymentGatewayValues.paypalUrl+'='+paymentGatewayValues.paypalEmailId+"&item_name="+scope.planData.planCode+"&amount="+scope.planData.price+"" +	  	  				
-				  	  "&custom="+query;
+				  	  "&custom="+hostName;
 					break;
 					
 			case globalpayPG :
-				var globalpayStorageData = {clientData :clientData,planId:0,screenName :'payment',price :scope.planData.price,
+				
+				var globalpayStorageData = {clientData :clientData,planId:0,screenName :screenName,price :scope.planData.price,
 											 priceId : 0, globalpayMerchantId:paymentGatewayValues.merchantId};	
-			    var encodeURIComponentData = encodeURIComponent(JSON.stringify(globalpayStorageData));
-				var encryptedData = CryptoJS.AES.encrypt(encodeURIComponentData,encrytionKey).toString();
+				var encryptedData = CryptoJS.AES.encrypt(encodeURIComponent(angular.toJson(globalpayStorageData)),encrytionKey).toString();
 				
 				scope.paymentURL = "#/globalpayintegration?key="+encryptedData;
 				break;
 				
 			case netellerPG :
-				var nettellerData = {currency:selfcareModels.netellerCurrencyType,total_amount:scope.planData.price,screenName:'payment'};
-				var encodeURINetellerData = encodeURIComponent(JSON.stringify(nettellerData));
-				var encryptedData = CryptoJS.AES.encrypt(encodeURINetellerData,encrytionKey).toString();
+				
+				var nettellerData = {currency:selfcareModels.netellerCurrencyType,total_amount:scope.planData.price,screenName:screenName};
+				var encryptedData = CryptoJS.AES.encrypt(encodeURIComponent(angular.toJson(nettellerData)),encrytionKey).toString();
+				
 				scope.paymentURL = "#/neteller/"+scope.clientId+"?key="+encryptedData;
 				break;
 				
 			case internalPaymentPG :
-				scope.paymentURL =  "#/internalpayment/"+'payment'+"/"+scope.clientId+"/"+0+"/"+0+"/"+scope.planData.price;
+				
+				scope.paymentURL =  "#/internalpayment/"+screenName+"/"+scope.clientId+"/0/0/"+scope.planData.price;
 				break;
 				
 			case two_checkoutPG :
+				
 				localStorageService.add("twoCheckoutStorageData",{screenName:"payment",clientId:scope.clientId,
 				 											planId:0,priceId:0});
 				var zipCode = clientData.zip || clientData.city || "";
@@ -139,8 +136,17 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 				
 			case interswitchPG :
 				
-				scope.paymentURL =  "#/interswitchintegration/"+'payment'+"/"+scope.clientId+"/"+0+"/"+0+"/"+scope.planData.price+"/"+paymentGatewayValues.productId+"/"+paymentGatewayValues.payItemId;
+				scope.paymentURL =  "#/interswitchintegration/"+screenName+"/"+scope.clientId+"/0/0/"+scope.planData.price+"/"+paymentGatewayValues.productId+"/"+paymentGatewayValues.payItemId;
 				
+				break;
+				
+			case evoPG :
+				
+				var evoData = {screenName:screenName,planId:0,priceId:0,price:scope.planData.price,
+								clientData:clientData,planCode:scope.planData.planCode, merchantId: paymentGatewayValues.merchantId};
+				var encryptedData = CryptoJS.AES.encrypt(encodeURIComponent(angular.toJson(evoData)),encrytionKey).toString();
+				
+				scope.paymentURL = "#/evointegration?key="+encryptedData;
 				break;
 					
 			default : break;
@@ -159,7 +165,8 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
     			$scope.termsAndConditionsText = neteller[termsAndConditions] 	 	: (scope.paymentGatewayName == internalPaymentPG)?
     		    $scope.termsAndConditionsText = internalPayment[termsAndConditions] : (scope.paymentGatewayName == two_checkoutPG)?
     			$scope.termsAndConditionsText = two_checkout[termsAndConditions]	: (scope.paymentGatewayName == interswitchPG)?
-    			$scope.termsAndConditionsText = interswitch[termsAndConditions]		: $scope.termsAndConditionsText = selectOnePaymentGatewayText[scope.optlang];
+    			$scope.termsAndConditionsText = interswitch[termsAndConditions]		: (scope.paymentGatewayName == evoPG)?
+    	    	$scope.termsAndConditionsText = evo[termsAndConditions]				: $scope.termsAndConditionsText = selectOnePaymentGatewayText[scope.optlang];
     	}
     	$scope.done = function(){
     		$modalInstance.dismiss('cancel');

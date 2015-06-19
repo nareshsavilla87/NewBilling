@@ -36,12 +36,11 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
 	  	    }
 	  	  }initialFunCall();
 		  
-	 scope.packageSelectionFun = function(selectedOrderId,selectedPlanId,orderStatus,orderRenew){
+	 scope.activePackageSelectionFun = function(selectedOrderId,selectedPlanId,orderStatus,orderRenew){
 		 scope.orderRenew = angular.uppercase(orderRenew) == 'Y';
 		 scope.selectedOrderId = selectedOrderId;
 		 scope.selectedPlanId = selectedPlanId;
 		 
-		 if(angular.lowercase(orderStatus) == 'active'){
 			 scope.screenName = "changeorder";var totalOrdersData = [];
 			 angular.copy(completeOrdersData,totalOrdersData);
 			  for(var i in totalOrdersData){
@@ -60,20 +59,23 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
 				if(totalOrdersData[j].isPrepaid == 'Y')scope.plansData.push(totalOrdersData[j]); 
 			  }
 			  localStorageService.add("storageData",{clientData:clientData,totalOrdersData:totalOrdersData,orderId:scope.selectedOrderId});
-	 	}
-		if(angular.lowercase(orderStatus) == 'disconnected'){
-			scope.screenName = "renewalorder";var totalOrdersData = [];
-			angular.copy(completeOrdersData,totalOrdersData);
-				  scope.plansData = [];
-				  for(var j in totalOrdersData){
-						if((totalOrdersData[j].planId == scope.selectedPlanId) && (totalOrdersData[j].isPrepaid == 'Y')){
-							totalOrdersData[j].autoRenew = isAutoRenewConfig;
-							scope.plansData.push(totalOrdersData[j]); 
-							break;
-						}
-					  }
+	  };
+	  scope.disconnectedPackageSelectionFun = function(selectedOrderId,selectedPlanId,orderStatus,orderRenew){
+		  scope.orderRenew = angular.uppercase(orderRenew) == 'Y';
+		  scope.selectedOrderId = selectedOrderId;
+		  scope.selectedPlanId = selectedPlanId;
+		  
+			  scope.screenName = "renewalorder";var totalOrdersData = [];
+			  angular.copy(completeOrdersData,totalOrdersData);
+			  scope.plansData = [];
+			  for(var j in totalOrdersData){
+				  if((totalOrdersData[j].planId == scope.selectedPlanId) && (totalOrdersData[j].isPrepaid == 'Y')){
+					  totalOrdersData[j].autoRenew = isAutoRenewConfig;
+					  scope.plansData.push(totalOrdersData[j]); 
+					  break;
+				  }
+			  }
 			  localStorageService.add("storageData",{clientData:clientData,totalOrdersData:totalOrdersData,orderId:scope.selectedOrderId});
-		  }
 	  };
 	  
 	  scope.revertRadioBtnFun = function(){
@@ -195,18 +197,39 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
      	  $scope.approveDisconnection = function () {
      		  $scope.flagOrderDisconnect=true;
      		  
-     		  var reqDate = dateFilter($scope.start.date,'dd MMMM yyyy');
-     	        $scope.formData.dateFormat = 'dd MMMM yyyy';
-     	        $scope.formData.disconnectionDate = reqDate;
-     	        $scope.formData.locale = rootScope.localeLangCode;
-     		  
-     	        RequestSender.bookOrderResource.update({'orderId': orderId},$scope.formData,function(data){
-     	        	$modalInstance.close('delete');
-     	        },function(orderErrorData){
-     	        	 $scope.flagOrderDisconnect=false;
-     	        	$scope.orderError = orderErrorData.data.errors[0].userMessageGlobalisationCode;
-     	        });
-     		  
+     		 RequestSender.getRecurringScbcriberIdResource.get({orderId:orderId},function(recurringdata){
+     			scope.recurringData = angular.fromJson(angular.toJson(recurringdata));
+     			scope.subscriberId	= scope.recurringData.subscriberId;
+     			console.log("subscriberId-->"+scope.subscriberId);
+     			if(scope.subscriberId){
+     				var formData = {orderId:orderId,recurringStatus:"CANCEL",subscr_id : scope.subscriberId};
+     				RequestSender.orderDisconnectByScbcriberIdResource.update(formData,function(data){
+     					var reqDate = dateFilter($scope.start.date,'dd MMMM yyyy');
+     	     	        $scope.formData.dateFormat = 'dd MMMM yyyy';
+     	     	        $scope.formData.disconnectionDate = reqDate;
+     	     	        $scope.formData.locale = rootScope.localeLangCode;
+     	     		  
+     	     	        RequestSender.bookOrderResource.update({'orderId': orderId},$scope.formData,function(data){
+     	     	        	$modalInstance.close('delete');
+     	     	        },function(orderErrorData){
+     	     	        	 $scope.flagOrderDisconnect=false;
+     	     	        	$scope.orderError = orderErrorData.data.errors[0].userMessageGlobalisationCode;
+     	     	        });
+     				});
+     			}else{
+     				var reqDate = dateFilter($scope.start.date,'dd MMMM yyyy');
+         	        $scope.formData.dateFormat = 'dd MMMM yyyy';
+         	        $scope.formData.disconnectionDate = reqDate;
+         	        $scope.formData.locale = rootScope.localeLangCode;
+         		  
+         	        RequestSender.bookOrderResource.update({'orderId': orderId},$scope.formData,function(data){
+         	        	$modalInstance.close('delete');
+         	        },function(orderErrorData){
+         	        	 $scope.flagOrderDisconnect=false;
+         	        	$scope.orderError = orderErrorData.data.errors[0].userMessageGlobalisationCode;
+         	        });
+     			}
+     		});
            };
            $scope.cancelDisconnection = function () {
                $modalInstance.dismiss('cancel');

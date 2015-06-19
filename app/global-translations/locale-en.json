@@ -221,7 +221,7 @@
 
   "#common button name":"",
   "button.edit":"Edit",
-  "button.add":"Add Mrn",
+  "button.add":"Add",
   "button.save":"Save",
   "button.cancel":"Cancel",
   "button.close":"Close",
@@ -434,6 +434,11 @@
   "link.logout" : "LogOut",
   "link.admin.provision" : "Adapter Provision",
   "label.eventactions":"Event Actions",
+  "button.additemdetails":"Add Item Details",
+  "button.addgoodreceipt":"Goods Receipt",
+  "button.addmrn":"Add Mrn",
+  "button.addsupplier":"Add Supplier",
+  
   
 
   "#accounting coa":"....",
@@ -496,6 +501,7 @@
   "currencyIdSelectAll":"Select A Currency",
   "validation.msg.report.reportName.cannot.be.blank":"Report Name cannot be blank",
   "validation.msg.report.reportSql.must.be.provided.when.reportType.is.Table":"SQL field cannot be Blank",
+  "error.message.report.incorrect.values.for.date.fields":"Please give startDate should be less than endDate",
 
   "#DataTables":"...",
   "apptable.m.client":"Client",
@@ -539,7 +545,7 @@
   "error.not.numeric.validation":"Enter Numeric Value",
   "error.not.decimal.validation":"Enter Decimal Value",
   "error.invalid.phone.validation":"MAX Length 15 Numbers",
-
+   
 
   "#Journal Entry Predefined Postings":"........",
   "label.select.accountingrule":"--Select accounting rule--",
@@ -733,6 +739,8 @@
   "label.contract.error":"Errors:",
   "validation.msg.subscriptoins.subscriptionPeriod.cannot.be.blank":"Contract Period Cannot be Blank",
   "validation.msg.subscriptoins.units.cannot.be.blank":"UNITS Cannot be Blank",
+  "error.msg.contract.code.duplicate.name":"A contract with the same name already exists. Please use a different name",
+   "error.code.definition.length.validation":"Value exceeded. Please enter a valid value",
   
   "#Plan":"......",
   "link.create.new.plan":"Add Plan",
@@ -2740,6 +2748,7 @@
 "error.msg.enddate.greater.than.startdate":"EndDate should be greater than StartDate",
 "error.msg.vendor.contentcode.lshare.duplicate":"Duplicate data with same Contentcode and loyaltyshare",
 "error.msg.vendor.active.agreement.with.this.dates":"Active agreement, already exist with same effective start & end date",
+"validation.msg.vendormanagement.vendormobileNo.exceeds.max.length":"MobileNo exceeds maximum length",
 
 "#Service Transfer ":".......",
 "label.service.transfer"		: "Service Transfer",
