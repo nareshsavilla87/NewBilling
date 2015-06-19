@@ -61,6 +61,10 @@
 		 		<h3><span class="required">{{'label.nopacks.available' | translate}}</span></h3>
 		 	</div>
 		 </div>
+		 <div class="marginleft10 lightbluecolor" style="margin-left: 25em">
+		 	<input type="radio" name="planType"  style="vertical-align: sub;" data-ng-click="">&nbsp;<strong>Prepaid</strong>
+		 	<input type="radio" name="planType"  style="vertical-align: sub;margin-left: 20px;" data-ng-click="">&nbsp;<strong>Pospaid</strong>
+		 </div>
 		 <div>
 		 <div style="height:430px;overflow-y:auto; ">
 		 	<div data-ng-repeat="plan in plansData track by $index" data-ng-show="plan.pricingData.length!=0"> 

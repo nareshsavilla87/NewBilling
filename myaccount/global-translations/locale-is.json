@@ -18,8 +18,6 @@
  	"title.fill.emailid" 					 : "Vinsamlegast fyllið  Tölvupóstur reit/Ógilt netfang..",
  	"title.redirecting" 					 : "Áframsendi vinsaml...",
  	"title.msg.firsttimeregistration" 		 : "Ef þú ert að skrá þig inn í fyrsta skipti skaltu skrá netfangið þitt með því að smella Nýskráningarforritið hnappinn",
- 	"title.redeem.errormsg"					 : "En, með Úttektarmiðinn pin-númer eftirfarandi Villa ",
- 	"title.redeem.login.msg"				 : "Vinsamlegast Innskráning ..! og gera Innlausn.",
  	
  	
  "#buttons"  : "--------------------------",
