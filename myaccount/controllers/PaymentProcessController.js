@@ -34,6 +34,13 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 				for(var j in totalOrdersData[i].pricingData){
 					if(totalOrdersData[i].pricingData[j].id == scope.priceId){
 						scope.planData = totalOrdersData[i].pricingData[j] || {};
+						if(scope.planData.isPrepaid == 'N'){
+							var contractsData = localStorageService.get("contractsData");
+							if(contractsData){
+								scope.planData.contractId = contractsData.contractId;
+								scope.contractPeriod	  = contractsData.contractPeriod;
+							}
+						}
 						break;
 					}
 				}

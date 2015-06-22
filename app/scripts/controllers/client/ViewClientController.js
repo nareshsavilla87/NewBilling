@@ -1108,14 +1108,14 @@
                 data: {}
               })*/
              
-             window.open($rootScope.hostUrl+ API_VERSION +'/billmaster/print/'+ routeParams.id +'/'+invoiceId+'?tenantIdentifier='+TENANT);
+             window.open($rootScope.hostUrl+ API_VERSION +'/billmaster/invoice/'+ routeParams.id +'/'+invoiceId+'?email=false&tenantIdentifier='+TENANT);
              
        };
        
        
        scope.downloadPayment = function (paymentId){
             
-            window.open($rootScope.hostUrl+ API_VERSION +'/billmaster/payment/'+ routeParams.id +'/'+paymentId+'?tenantIdentifier='+TENANT);
+            window.open($rootScope.hostUrl+ API_VERSION +'/billmaster/payment/'+ routeParams.id +'/'+paymentId+'?email=false&tenantIdentifier='+TENANT);
       };
          
         scope.cancelScheduleOrder = function(id){
