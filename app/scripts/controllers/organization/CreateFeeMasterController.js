@@ -8,7 +8,6 @@
 			 scope.chargeDatas = data.chargeDatas;
 			 scope.regionDatas = data.regionDatas;
 			 scope.transactionTypeDatas = data.transactionTypeDatas;
-			 scope.itemTypeDatas = data.itemCodes;
 		  });
 		  
 		  scope.regionalPriceFormData={};scope.regionPrices = [];
@@ -40,7 +39,7 @@
                     	 							});
                    };
                  }
-          	if(scope.formData.transactionType == 'Deposit'){
+         	if(scope.formData.transactionType == 'Deposit'){
           		var tempValue = scope.formData.isRefundable;
           		if(tempValue){
           			scope.formData.isRefundable = 'Y';

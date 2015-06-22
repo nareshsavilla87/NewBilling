@@ -1173,6 +1173,7 @@
                 get: {method: 'GET', params: {}},
                 update: { method: 'PUT'}
             }), 
+            depositAmountResource: defineResource(apiVer + "/deposit/:client", {client:'@client'}, {}), 
       
         };
       }];
