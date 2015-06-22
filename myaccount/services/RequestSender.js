@@ -135,6 +135,7 @@ selfcareApp.config(function($provide) {
         		update : {method: 'PUT', params: {}}
         	}),
         	
+        	gettingContractsResource: defineResource(apiVer + "/orders/:planId/template", {planId:'@planId'}, {}),
         	
         	
         };

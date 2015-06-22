@@ -65,6 +65,7 @@
   "label.utsCustomerId":"UTS Customer Id",
   "label.preferredCommunication":"Preferred Communication",
   "tab.additionalinfo":"Additional Info",  
+  "tab.addressinfo":"Address Info",
   
 
  "# common table headings":"....",
@@ -1075,6 +1076,7 @@
   "table.heading.pinType":"Pin Type",
   "table.heading.pinValue":"Pin Value",
   "table.heading.expiryDate":"Expiry Date",
+  "table.heading.propertycode":"Property Code",
   
   "#Discounts":"....",
   "link.create.new.discount":"Create Discounts",
@@ -2531,6 +2533,11 @@
 "link.create.new.nas":"Create NAS",
 "label.createnas":"Create NAS",
 "label.nas.message":"Delete NAS",
+"label.heading.shortname"		: "Short Name",
+"label.heading.ip"				: "IP",
+"lable.heading.secret"			: "Secret",
+"lable.heading.description"		: "Description",
+
 
 "#radService":".......",
 "tab.radService":"RadService",
@@ -2656,6 +2663,7 @@
 "error.msg.tempalte.duplicate.name":"template name already exists",
 
 "#Property Definition":"........",
+"label.current.device" :"Device",
 "table.heading.propertycode":"Property Code",
 "table.heading.propertytype":"Property Type",
 "table.heading.parcel":"Parcel",
@@ -2667,6 +2675,8 @@
 "label.propertycode":"Property Code",
 "label.unitcode":"Unit Code",
 "label.floor":"Floor / Level",
+"label.devices" :"Devices",
+"label.shifting.address":"Shifting To",
 "label.buildingcode":"Building Code",
 "label.parcel":"Parcel",
 "label.precinct":"Precinct",
