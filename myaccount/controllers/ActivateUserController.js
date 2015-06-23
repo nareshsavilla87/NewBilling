@@ -41,9 +41,7 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 	  						scope.isConfigNationalId 	= configDeviceAgreeType.nationalId;
 	  							 registrationListing	= configDeviceAgreeType.registrationListing;
 	  						scope.isConfigPassport		= registrationListing.passport == 'true';
-	  						scope.isConfigRedeem		= registrationListing['is-redeem'] == 'true';
 	  						 if(!scope.isConfigPassport) scope.formData.passport = "123456789";
-	  						 if(!scope.isConfigRedeem) scope.voucherNumber = "A123";
 	  						(configDeviceAgreeType.deviceAgrementType == 'SALE') ?
 									  scope.isCPE_TYPESale = true:
 								  (configDeviceAgreeType.deviceAgrementType == 'OWN') ?
@@ -53,16 +51,19 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 
 	  						configurationDatas = data.globalConfiguration;
 	  						  for(var i in configurationDatas){
-	  							 if(configurationDatas[i].name==selfcareModels.registerPlan){
+	  							 if(configurationDatas[i].name==selfcareModels.isRedemption){
 	  								 
-	  								  scope.isRegisteredPlan = configurationDatas[i].enabled;
+	  								  scope.isConfigRedeem = configurationDatas[i].enabled;
+	  								  if(!scope.isConfigRedeem) scope.voucherNumber = "A123";
 	  								  
-	  						      }else if(configurationDatas[i].name==selfcareModels.registrationRequiresDevice){
+	  						      }
+	  							  if(configurationDatas[i].name==selfcareModels.registrationRequiresDevice){
 	  						    	  
 	  								  scope.isDeviceEnabled = configurationDatas[i].enabled;
 	  								  
 	  							  }
 	  						  }
+	  						  
 	  					  });
 	  					});
 	
@@ -197,7 +198,7 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 		      			$modalInstance.dismiss('cancel');
 		      		 };
 			  	} 
-			 
+			 var valid = false;
 			 scope.voucherNumberValidationFun = function(id){
 					 if(id){
 						 RequestSender.VoucherResource.query({pinNumber:id},function(data){
@@ -218,14 +219,14 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 								 delete scope.voucherNumber;
 								 scope.voucher = id;
 							 }
-							 
+							 valid = !scope.isInValidVoucher && !scope.isDateExpired; 
 						 });
 					 }
 				 };
 		  		
 			//function called when clicking on Register button in Registration Page
 			scope.registerBtnFun =function(){
-				
+			  if(valid){	
 				scope.clientData = {};
 				 //deviceNo added to form data when isDeviceEnabled true
 					 if(scope.formData.deviceNo){
@@ -240,15 +241,19 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 					 if(scope.isConfigPassport){
 						 scope.clientData.passport = scope.formData.passport;
 					 }
-					 
-					 var name_array = new Array();
-					 name_array = (scope.formData.fullName.split(" "));
+					 if(scope.isConfigRedeem){
+						 scope.clientData.pinNumber = scope.voucherNumber;
+					 }
 			            
-			          scope.clientData.firstname = name_array[0];
-			          scope.clientData.fullname = name_array[1];
-			            if(scope.clientData.fullname == null){
+		            var name_array = new Array();
+					 name_array = (scope.displayName.split(" "));
+			            
+			          scope.clientData.firstname = name_array.shift();
+			          scope.clientData.fullname = name_array.join(' ');
+			            if(scope.clientData.fullname == ""){
 			            	scope.clientData.fullname=".";
 			            }
+				            
 					 scope.clientData.address 				= scope.formData.address;
 					 scope.clientData.nationalId			= scope.formData.nationalId;
 					 scope.clientData.zipCode 				= scope.formData.zipcode;
@@ -259,8 +264,6 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 					 
 					 rootScope.popUpMsgs = [];rootScope.infoMsgs = [];
 					 RequestSender.authenticationClientResource.save(scope.clientData,function(data){
-						 scope.clientId = data.resourceId;
-						 isConfigRedeemFun(function(){
 							 
 							 if(scope.clientData.password) {
 								 rootScope.currentSession = sessionManager.clear();
@@ -276,58 +279,9 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 									 resolve:{}
 								 });
 							 }
-						 });
 		      	      
 					 });
-					 
-					 function  RedemptionErrorMsgPopupController($scope, $modalInstance) {
-		      	    	if(scope.clientData.password) {
-							 rootScope.currentSession = sessionManager.clear();
-							 rootScope.popUpMsgs.push({
-								 'image' : '../images/info-icon.png',
-								 'names' : [{'name' : 'title.account.activated'},
-								            {'name' : 'title.redeem.errormsg'},
-								            {'name' :  scope.errorMsg},
-								            {'name' : 'title.redeem.login.msg'}]
-							 });
-							
-						 }else{
-							 rootScope.currentSession = sessionManager.clear();
-			      	    	  rootScope.popUpMsgs.push({
-			      	    		  'image' : '../images/info-icon.png',
-			      	    		  'names' : [{'name' : 'title.account.activated'},
-			      	    		             {'name' : 'title.account.activated.userpwd'},
-			      	    		             {'name' : 'title.redeem.errormsg'},
-			      	    		             {'name' :  scope.errorMsg},
-			      	    		             {'name' : 'title.redeem.login.msg'}]
-			      	    	      });
-						 }
-		      		
-				      		$scope.approve = function () { 
-				      			
-				      			$modalInstance.dismiss('cancel');
-				      		 };
-					  	}
-					 
-				   function isConfigRedeemFun(handler){
-					 if(scope.isConfigRedeem){
-					   var voucherData = {clientId:scope.clientId,pinNumber:scope.voucherNumber};
-					   RequestSender.redemptionResource.save(voucherData,function(data){
-						   handler();
-					   },function(errorData){
-						   scope.errorMsg = errorData.data.errors[0].userMessageGlobalisationCode;
-						   $modal.open({
-								 templateUrl: 'messagespopup.html',
-								 controller: RedemptionErrorMsgPopupController,
-								 resolve:{}
-							 });
-					   });
-					 }else{
-						 handler();
-					 }
-				   }
-
-					
+			}
 		};
     };
     
