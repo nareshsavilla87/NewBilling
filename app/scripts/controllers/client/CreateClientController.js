@@ -324,7 +324,7 @@
 	    		 
 	    		 scope.formData.addressNo = $scope.formData.propertyCode;
     			 scope.formData.street = $scope.formData.street;
-    			 scope.formData.city  =  $scope.formData.precinct; 
+    			 scope.formData.city  =   scope.property.precinct;// $scope.formData.precinct; 
     			 scope.formData.state =  $scope.formData.state;
     			 scope.formData.country = $scope.formData.country;
     			 scope.formData.zipCode = $scope.formData.poBox;
