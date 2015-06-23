@@ -240,6 +240,12 @@
    	                                        ngShow : edit
                                            },
                                            {
+                                            name:"Deposit",
+                                            href:"#/depositPopup",
+                                            icon:"icon-briefcase",
+                                            ngShow : "true"
+                                           },
+                                           {
                                            	name:"Close",
                                            	href:"#/closeclient",
                                            	icon:"icon-remove",
@@ -435,6 +441,13 @@
         		$modal.open({
                     templateUrl: 'Staticip.html',
                     controller: StaticIpPopController,
+                    resolve:{}
+                });
+        	}else if(href == "#/depositPopup"){
+
+        		$modal.open({
+                    templateUrl: 'depositpop.html',
+                    controller: depositPopController,
                     resolve:{}
                 });
         	}else if(href == "#/viewclient"){
@@ -1786,6 +1799,30 @@
 	  	        	};
 	  	        };
 	  	        
+	  	        
+	  	       function depositPopController($scope, $modalInstance){
+		        	$scope.formData = {};
+		        	resourceFactory.depositAmountResource.query({client:scope.clientId} , function(data){
+		        		$scope.depositAmount =data[0].defaultFeeAmount;
+		        		$scope.formData.feeId = data[0].id;
+		            },function(errorData){
+ 	                	$scope.stmError = errorData.data.errors[0].userMessageGlobalisationCode;
+ 	                	
+ 	                });
+		        	
+		        	$scope.formData.clientId =scope.clientId;
+		 			$scope.accept = function(){
+		 				resourceFactory.depositAmountResource.save($scope.formData, function(data){
+		 					$modalInstance.close('delete');
+		 				},function(errorData){
+	  	                	$scope.stmError = errorData.data.errors[0].userMessageGlobalisationCode;
+	  	                	
+	  	                });         
+		 			};
+		 			$scope.reject = function(){
+		 				$modalInstance.dismiss('cancel');
+		 			};
+		 		};
 	  	      
     	}
   });
