@@ -587,7 +587,8 @@
         	            
         	        },function(renewalErrorData){
         	      	  $scope.flagOrderRenewal=false;
-        	        	$scope.renewError = renewalErrorData.data.errors[0].userMessageGlobalisationCode;
+        	        	//$scope.renewError = renewalErrorData.data.errors[0].userMessageGlobalisationCode;
+        	        	//$scope.errorArg = renewalErrorData.data.errors[0].args;
         	        });
         	  };
         	  $scope.cancelRenewal = function(){
