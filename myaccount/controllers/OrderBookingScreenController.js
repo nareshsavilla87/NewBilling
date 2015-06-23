@@ -8,11 +8,11 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 	
 	var gatewayStatus		= localStorageService.get("gatewayStatus")||"";
 	var isAutoRenew 		= localStorageService.get("isAutoRenew") || "";
-
 	
 	function successFun(planData){
 		localStorageService.remove("gatewayStatus"); localStorageService.remove("storageData"); 
-		localStorageService.remove("isAutoRenew");localStorageService.remove("chargeCodeData"); 
+		localStorageService.remove("isAutoRenew");localStorageService.remove("chargeCodeData");
+		localStorageService.remove("contractsData");
 		if(gatewayStatus == 'RECURRING'){
 			var paypalrecurringsuccessPopupController = function ($scope,$modalInstance,$log){
 				$scope.done = function(){
@@ -49,9 +49,15 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 			for(var j in totalOrdersData[i].pricingData){
 			  if(totalOrdersData[i].pricingData[j].id == priceId){
 				var planData = totalOrdersData[i].pricingData[j];
+				if(planData.isPrepaid == 'N'){
+					var contractsData = localStorageService.get("contractsData");
+					if(contractsData){
+						planData.contractId = contractsData.contractId;
+					}
+				}
 				if(screenName == "additionalorders"){
 					var orderBookingData 			= {};
-					orderBookingData.billAlign 		= false;
+					(planData.isPrepaid=='Y') ? orderBookingData.billAlign 		= false : orderBookingData.billAlign 		= true;
 					orderBookingData.isNewplan 		= true;
 					orderBookingData.locale 		= rootScope.localeLangCode; 
 					orderBookingData.dateFormat 	= 'dd MMMM yyyy'; 
@@ -81,7 +87,7 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 					}
 				}else if(screenName == "changeorder"){
 					var changeOrderData 			 = {};
-					changeOrderData.billAlign 		 = false;
+					(planData.isPrepaid=='Y') ? changeOrderData.billAlign 		= false : changeOrderData.billAlign 		= true;
 					changeOrderData.isNewplan 		 = false;
 					changeOrderData.locale 			 = rootScope.localeLangCode; 
 					changeOrderData.dateFormat 		 = 'dd MMMM yyyy'; 

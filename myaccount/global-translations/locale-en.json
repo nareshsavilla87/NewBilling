@@ -153,6 +153,7 @@
  	"header.change.plan" 			 : "Change Plan",
  	"header.action"				 	 : "Action",
  	"header.actions"			 	 : "Actions",
+ 	"header.contract.billingfrequency" : "Billing Frequency",
  	
  	"#errors " : "------------------------------------",
  	"error.login.failed"						:"Please try again, your credentials are not valid",
@@ -300,6 +301,10 @@
 	 "table.header.order.servicecode"		: "Service Code",
 	 "table.header.order.servicedescription": "Service Description",
 	 "table.header.order.servicetype"		: "Service Type",
+	 "label.prepaid"						: "Prepaid",
+	 "label.postpaid"						: "Postpaid",
+	 "label.contract.selection"				: "Contract Selection",
+	 "label.contract.period"				: "Contract Period",
 	 
 	 
 	  "#ListofVODSResources "	 :"------------------------------------",
@@ -411,6 +416,7 @@
  "# common errors ":"....",
   "error.msg.billing.address.city.not.found"	    : "City Not Found",
   "error.internalPayment.invalidPin"				: "Invalid Voucher Pin :",
+  "error.plan.already.pending"						: "Existing Plan is already in pending state wait for complete action",
   
   "error.msg.currency.duplicate.configuration"		: "Currency is already configured",
   "validation.msg.office.name.cannot.be.blank"		: "Office Name cannot be blank",
