@@ -1,4 +1,4 @@
-ProfileController = function(scope,RequestSender,rootScope,location,paginatorService,localStorageService, API_VERSION,modal) {
+ProfileController = function(scope,RequestSender,rootScope,location,paginatorService,localStorageService, API_VERSION) {
 		  
 		  var totalStatementsData = [];var retrivingStatementsData = {};scope.statementsData = [];
           scope.getStatementsData = function(offset, limit, callback) {
@@ -14,8 +14,7 @@ ProfileController = function(scope,RequestSender,rootScope,location,paginatorSer
 		      }
 			  callback(retrivingStatementsData);
 	  	   };
-	  	function initialCallFun(){   
-		   if(rootScope.selfcare_sessionData){		  
+		 if(rootScope.selfcare_sessionData){		  
 			  scope.clientId = rootScope.selfcare_sessionData.clientId;
 			  RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
 				  scope.clientData = data;
@@ -61,8 +60,7 @@ ProfileController = function(scope,RequestSender,rootScope,location,paginatorSer
 				  });
 				
 			  });
-		    }
-	  	  }initialCallFun();
+		  }
 		 
 		  scope.routeTostatement = function(statementid){
              location.path('/viewstatement/'+statementid);
@@ -71,69 +69,6 @@ ProfileController = function(scope,RequestSender,rootScope,location,paginatorSer
            scope.downloadFile = function (statementId){
 	           window.open(rootScope.hostUrl+ API_VERSION +'/billmaster/'+ statementId +'/print?tenantIdentifier='+selfcareModels.tenantId);
 	      };
-	      
-	    //redemption popup controller
-	 	 var RedemptionPopupController = function($scope,$modalInstance,$filter){
-	 		 
-	 		 $scope.isProcessing = false;
-	 		 $scope.formData = {};
-	 		 var valid = false;
-	 		 $scope.voucherNumberValidationFun = function(voucherNumber){
-	 			 if(voucherNumber){
-	 				 RequestSender.VoucherResource.query({pinNumber:voucherNumber},function(data){
-	 					 if(data.length == 1){
-	 						 $scope.isInValidVoucher = false;
-	 						 var expiryDate  = $filter('DateFormat')(data[0].expiryDate);
-	 						 var todayDate	 = $filter('DateFormat')(new Date());
-	 						 if (new Date(expiryDate) < new Date(todayDate)) {
-	 							 delete $scope.formData.voucherNumber;
-	 							 $scope.isDateExpired = true;
-	 						 }else{
-	 							 $scope.isDateExpired = false;
-	 						 }
-	 					 }else{
-	 						 $scope.isDateExpired = false;
-	 						 $scope.isInValidVoucher = true;
-	 						 delete $scope.formData.voucherNumber;
-	 					 }
-	 					 valid = !$scope.isInValidVoucher && !$scope.isDateExpired;
-	 				 });
-	 			 }
-	 		 };
-	 		 
-	 		 $scope.confirm = function(voucherNumber){
-	 			 if(valid){
-	 			   var voucherData = {'clientId' : scope.clientId,'pinNumber': voucherNumber};
-	 			  
-	 				 $scope.isProcessing = true;$scope.voucherError = null;
-	 				 RequestSender.redemptionResource.save(voucherData,function(data){
-	 					 
-	 					 $scope.isProcessing = false;
-	 					 if('/profile' == location.path()) initialCallFun();
-	 					 else location.path('/profile');
-	 					 $modalInstance.close('delete');
-	 					 
-	 					 
-	 				 },function(errorData){
-	 					 $scope.voucherError = errorData.data.errors[0].userMessageGlobalisationCode;
-	 					 $scope.isProcessing = false;
-	 				 });
-	 			 }	 
-	 		};
-	 		
-	 		$scope.cancel = function(){
-	 			$modalInstance.dismiss('cancel');
-	 		};
-	 	 };
-	      
-	      rootScope.redeemFun = function(){
-	    	  modal.open({
-	 			 templateUrl: 'redemptionpop.html',
-	 			 controller: RedemptionPopupController,
-	 			 resolve:{}
-	 			});
-	      };
-		 
 		
     };
     
@@ -144,5 +79,4 @@ selfcareApp.controller('ProfileController', ['$scope',
                                              'PaginatorService', 
                                              'localStorageService', 
                                              'API_VERSION', 
-                                             '$modal', 
                                              ProfileController]);

@@ -139,6 +139,7 @@
  	"header.change.plan" 			 : "Breyta áætlun",
  	"header.action"				 	 : "aðgerð",
  	"header.actions"				 : "aðgerðum",
+ 	"header.contract.billingfrequency" : "Innheimta Tíðni",
  	
  	"#errors " : "------------------------------------",
  	"error.login.failed"						:"Vinsamlegast reyndu aftur, eru persónuskilríki þín ekki gild",
@@ -284,6 +285,10 @@
 	 "table.header.order.servicecode"		: "þjónusta Kóði",
 	 "table.header.order.servicedescription": "þjónusta Lýsing",
 	 "table.header.order.servicetype"		: "þjónusta Tegund",
+	 "label.prepaid"						: "Fyrirframgreiðsla",
+	 "label.postpaid"						: "eftirágreiðsla",
+	 "label.contract.selection"				: "samningur Val",
+	 "label.contract.period"				: "samningur Tímabil",
 	 
 	 
 	  "#ListofVODSResources "	 :"------------------------------------",
@@ -407,6 +412,7 @@
  "# common errors ":"....",
   "error.msg.billing.address.city.not.found"		: "borg ekki fann",
   "error.internalPayment.invalidPin"				: "Ógilt Úttektarmiðinn pinna :",
+  "error.plan.already.pending"						: "Núverandi Plan er nú þegar í bið ástand bíða fyrir heill aðgerð",
   
   "error.msg.currency.duplicate.configuration"		:"Currency is already configured",
   "validation.msg.office.name.cannot.be.blank"		: "Office Name cannot be blank",
