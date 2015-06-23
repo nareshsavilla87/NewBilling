@@ -16,6 +16,10 @@
 	   AdapterStartingResponse   : "Adapter started",
 	   
 	   AdapterProvSystem : "CMS",
-	   AdapterFileName : "adapter"
+	   AdapterFileName : "adapter",
+	   
+	   
+	   
+	   radiusVersion : "version-1",
   });
 }(mifosX.models || {}));
