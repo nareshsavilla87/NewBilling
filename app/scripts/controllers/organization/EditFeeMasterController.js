@@ -15,7 +15,7 @@
 	            scope.transactionTypeDatas 		= data.transactionTypeDatas;
 	            scope.chargeDatas 				= data.chargeDatas;
 	            scope.feeMasterRegionPricesDatas = data.feeMasterRegionPricesDatas;
-	            scope.itemTypeDatas = data.itemCodes;
+	            /*scope.itemTypeDatas = data.itemCodes;*/
 	            scope.formData.itemId = scope.feeMasterData.itemId;
 	            if(scope.feeMasterData.isRefundable != undefined){
 	            	scope.formData.isRefundable = scope.feeMasterData.isRefundable == 'Y'?true:false;
