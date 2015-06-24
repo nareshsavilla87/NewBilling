@@ -17,7 +17,6 @@
 	   
 	   AdapterProvSystem : "CMS",
 	   AdapterFileName : "adapter",
-	   
 	   radiusVersion : "version-1",
   });
 }(mifosX.models || {}));

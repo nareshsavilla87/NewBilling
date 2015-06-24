@@ -65,6 +65,7 @@
   "label.utsCustomerId":"UTS Customer Id",
   "label.preferredCommunication":"Preferred Communication",
   "tab.additionalinfo":"Additional Info",  
+  "tab.addressinfo":"Address Info",
   
 
  "# common table headings":"....",
@@ -1075,6 +1076,8 @@
   "table.heading.pinType":"Pin Type",
   "table.heading.pinValue":"Pin Value",
   "table.heading.expiryDate":"Expiry Date",
+  "table.heading.propertycode":"Property Code",
+  "label.allocateproperty":"Allocate Property",
   
   "#Discounts":"....",
   "link.create.new.discount":"Create Discounts",
@@ -2536,7 +2539,6 @@
 "lable.heading.secret"			: "Secret",
 "lable.heading.description"		: "Description",
 
-
 "#radService":".......",
 "tab.radService":"RadService",
 "label.createradservice":"Create RadService",
@@ -2661,6 +2663,7 @@
 "error.msg.tempalte.duplicate.name":"template name already exists",
 
 "#Property Definition":"........",
+"label.current.device" :"Device",
 "table.heading.propertycode":"Property Code",
 "table.heading.propertytype":"Property Type",
 "table.heading.parcel":"Parcel",
@@ -2672,6 +2675,8 @@
 "label.propertycode":"Property Code",
 "label.unitcode":"Unit Code",
 "label.floor":"Floor / Level",
+"label.devices" :"Devices",
+"label.shifting.address":"Shifting To",
 "label.buildingcode":"Building Code",
 "label.parcel":"Parcel",
 "label.precinct":"Precinct",
@@ -2718,6 +2723,7 @@
 "validation.msg.propertycodemaster.code.exceeds.max.length":"Code cannot be exceeds it's max length",
 "validation.msg.propertycodemaster.propertyCodeType.exceeds.max.length":"",
 "validation.msg.propertycodemaster.description.exceeds.max.length":"Code Description cannot be exceeds it's max length",
+"error.msg.property.code.device.mapping.exist":"Property Mapped with Device",
 
 
 "#vendor":".......",
