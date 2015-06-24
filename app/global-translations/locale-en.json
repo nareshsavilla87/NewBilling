@@ -1077,6 +1077,7 @@
   "table.heading.pinValue":"Pin Value",
   "table.heading.expiryDate":"Expiry Date",
   "table.heading.propertycode":"Property Code",
+  "label.allocateproperty":"Allocate Property",
   
   "#Discounts":"....",
   "link.create.new.discount":"Create Discounts",
@@ -2723,6 +2724,7 @@
 "validation.msg.propertycodemaster.code.exceeds.max.length":"Code cannot be exceeds it's max length",
 "validation.msg.propertycodemaster.propertyCodeType.exceeds.max.length":"",
 "validation.msg.propertycodemaster.description.exceeds.max.length":"Code Description cannot be exceeds it's max length",
+"error.msg.property.code.device.mapping.exist":"Property Mapped with Device",
 
 
 "#vendor":".......",

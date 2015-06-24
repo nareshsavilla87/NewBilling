@@ -1652,6 +1652,8 @@
 	  			
 	  			 scope.deleteaddress = function (id){
 			    	 scope.id=id;
+			    	 scope.errorDetails = [];
+			    	 scope.errorStatus = [];
 			    	 $modal.open({
 			    		 templateUrl: 'deletePopup.html',
 			  	         controller: approve3,
@@ -1664,6 +1666,8 @@
 			    		 resourceFactory.addressResource.remove({clientId:scope.id} , {} , function(data) {
 			    			 $modalInstance.dismiss('delete');
 			    			  route.reload();
+			             },function(errorData){
+			            	 $scope.orderError = errorData.data.errors[0].userMessageGlobalisationCode;
 			             });
 			      	 };
 			         $scope.cancel = function () {

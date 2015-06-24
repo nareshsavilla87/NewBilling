@@ -363,6 +363,7 @@
  	    		     
     	    	   }
        	    	}else{
+       	    	    delete $scope.errorData;
        	    		scope.unitStatus='VACANT';
        	    		scope.propertyId=undefined;
        	    	}

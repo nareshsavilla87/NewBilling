@@ -341,7 +341,7 @@
 			  			</div>
 			  			
 			  			<div id="pane2" class="tab-pane" data-ng-class="{active:additionaldataSubTab }">
-			  				<div class="pull-right" data-ng-show="additionaladdress">
+			  				<div class="pull-right" data-ng-show="additionalDatas  && !editAdditionalDatasBtn">
 	         			 		<a href="#/clientadditionalinfo/{{clientId}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'label.add.additionalinfo' | translate}}
 			 			 		</a>
 	        				</div>
@@ -376,7 +376,7 @@
 			  			
 			  			<div id="pane3" class="tab-pane" data-ng-class="{active: additionaladdressdataSubTab}">
 					         <br/>
-			        		<table class="table" data-ng-show="additionaladdressDatas">
+			        		<table class="table">
 			            		<thead>
 			              			<tr class="graybg">
 			                			<th>{{'table.heading.propertycode' | translate}}</th>
@@ -1552,21 +1552,6 @@
 			</form>
 		</script> 
 		
-		<script type="text/ng-template" id="deletePopup.html">
-    		<div class="modal-header silver">
-        		<h3 class="bolder">{{deletePopupName}}</h3>
-        	</div>
-
-        	<div class="modal-body style="height:60px;">
-            	<h4>Are you sure?</h4>
-        	</div>
-
-        	<div class="modal-footer">
-            	<button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
-            	<button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
-        	</div>
-   		</script>
-   		
    <script type="text/ng-template" id="allocateproperty.html">
 		
 	<div class="modal-header silver">
@@ -1594,13 +1579,12 @@
 
 	<script type="text/ng-template" id="deletePopup.html">
     	<div class="modal-header silver">
-        	<h3 class="bolder">Delete Property Master</h3>
+        	<h3 class="bolder">Vacate Property</h3>
         </div>
-        <div class="error" ng-show="errorStatus || errorDetails">
-				<label>{{'label.contract.error' | translate}}</label>
-				<label ng-show="errorStatus">{{errorStatus}}</label>
-				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
-	   		</div>
+        <div class="control-group">
+	            <label class="control-label" style="color:red;" ng-show="orderError.length>0">{{orderError | translate}}</label>
+            	<div class="controls"></div>
+        	</div>
         <div class="modal-body style="height:60px;">
             <h4>Are you sure?</h4>
         </div>
