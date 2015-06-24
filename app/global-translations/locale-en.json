@@ -2531,6 +2531,10 @@
 "link.create.new.nas":"Create NAS",
 "label.createnas":"Create NAS",
 "label.nas.message":"Delete NAS",
+"label.heading.shortname"		: "Short Name",
+"label.heading.ip"				: "IP",
+"lable.heading.secret"			: "Secret",
+"lable.heading.description"		: "Description",
 
 "#radService":".......",
 "tab.radService":"RadService",
