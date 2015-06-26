@@ -4,7 +4,8 @@ ChangePasswordController = function(scope,RequestSender,rootScope,localStorageSe
 		  scope.formData = {};scope.pwdData = {};
 		  if(rootScope.selfcare_sessionData){
 			RequestSender.clientResource.get({clientId: rootScope.selfcare_sessionData.clientId} , function(data) {
-			  scope.email = data.email;
+			  scope.email = data.selfcare.uniqueReference;
+			  scope.userName = data.selfcare.userName;
 		    });
 		  }
 		  
@@ -23,6 +24,7 @@ ChangePasswordController = function(scope,RequestSender,rootScope,localStorageSe
 				  rootScope.infoMsgs  =[];
 				  scope.formData.password = scope.pwdData.newPassword;
 				  scope.formData.uniqueReference = scope.email;
+				  scope.formData.userName = scope.userName;
 				  RequestSender.changePwdResource.update(scope.formData,function(data){
 					  var sessionData = localStorageService.get('loginHistoryId');
 					  if(sessionData){

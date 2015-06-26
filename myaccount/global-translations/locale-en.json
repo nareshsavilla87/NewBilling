@@ -18,8 +18,6 @@
  	"title.fill.emailid" 					 : "Please fill Email Field/Invalid Email..",
  	"title.redirecting" 					 : "Redirecting Please Wait...",
  	"title.msg.firsttimeregistration" 		 : "If you are signing in for the first time please register your email by clicking SIGN-UP button",
- 	"title.redeem.errormsg"					 : "But,with the voucher pin number following Error ",
- 	"title.redeem.login.msg"				 : "Please Login..! and do Redemption.",
  	
  	
  "#buttons"  : "--------------------------",
@@ -117,20 +115,6 @@
  	"label.verify.recurringmsg.payment"	: "To complete the action of book this pack,a confirmation is needed from paypal.",
  	"label.verify.recurringmsg.waitmsg"	: "Please.. wait till that confirmation reached.",
  	
- 	"#additionalinfo"  :  "--------------------------",
- 	"label.client.gender"				: "Gender",
- 	"label.client.nationality"			: "Nationality",
- 	"label.client.jobtitle"				: "Job Title",
- 	"label.client.dateofbirth"			: "Date Of Birth",
- 	"label.client.preferlanguage"		: "Prefer Language",
- 	"label.client.remarks"				: "Remarks",
- 	"label.client.identificationtype"	: "Identification Type",
- 	"label.client.identificationnumber"	: "Identification Number",
- 	"label.client.agegroup"				: "Age Group",
- 	"label.client.utscustomerid"		: "UTS Customer Id",
- 	"label.client.financeid"			: "Finance Id",
- 	"label.client.preferredcommunication": "Preferred Communication",
- 	
  	"label.signup.newuser"			   			: "Signup new user ",
  	"label.or"			   						: " - or - ",
  	"label.login.existuser"			   			: " Login",
@@ -155,6 +139,7 @@
  	"header.change.plan" 			 : "Change Plan",
  	"header.action"				 	 : "Action",
  	"header.actions"			 	 : "Actions",
+ 	"header.contract.billingfrequency" : "Billing Frequency",
  	
  	"#errors " : "------------------------------------",
  	"error.login.failed"						:"Please try again, your credentials are not valid",
@@ -181,7 +166,6 @@
  	"link.address" 			 	 :  "Address",
  	"link.listofvods" 			 :  "List Of VODS",
  	"link.vod.add.event" 		 :  "Add Event",
- 	"link.additionalinfo" 		 :  "Client Additional Info",
  	
  	"#place holders " : "------------------------------------",
  	"placeholder.enter.device"				: "ex: 1A:1B:1C:1D:1E:1F",
@@ -302,6 +286,10 @@
 	 "table.header.order.servicecode"		: "Service Code",
 	 "table.header.order.servicedescription": "Service Description",
 	 "table.header.order.servicetype"		: "Service Type",
+	 "label.prepaid"						: "Prepaid",
+	 "label.postpaid"						: "Postpaid",
+	 "label.contract.selection"				: "Contract Selection",
+	 "label.contract.period"				: "Contract Period",
 	 
 	 
 	  "#ListofVODSResources "	 :"------------------------------------",
@@ -377,8 +365,23 @@
 	 
 	 
 	 "#EditProfileResouces" :"------------------------------------",
-	 "label.edit.profile"								: "Edit Profile",
-	 "label.edit.info"								    : "Edit Info",
+	 "label.edit.profile"		       : "Edit Profile",
+	 "label.edit.info"				   : "Edit Info",
+	 
+	 "#additionalinfo"  :  "--------------------------",
+	 "link.additionalinfo" 		 		: "Client Additional Info",
+ 	 "label.client.gender"				: "Gender",
+ 	 "label.client.nationality"			: "Nationality",
+ 	 "label.client.jobtitle"			: "Job Title",
+ 	 "label.client.dateofbirth"			: "Date Of Birth",
+ 	 "label.client.preferlanguage"		: "Prefer Language",
+ 	 "label.client.remarks"				: "Remarks",
+ 	 "label.client.identificationtype"	: "Identification Type",
+ 	 "label.client.identificationnumber": "Identification Number",
+ 	 "label.client.agegroup"			: "Age Group",
+ 	 "label.client.utscustomerid"		: "UTS Customer Id",
+ 	 "label.client.financeid"			: "Finance Id",
+ 	 "label.client.preferredcommunication": "Preferred Communication",
 	 
 	 "#EvoPaymentGatewayResources" :"------------------------------------",
 	 "label.evo.review.cart"		 : "Review Cart",
@@ -413,6 +416,7 @@
  "# common errors ":"....",
   "error.msg.billing.address.city.not.found"	    : "City Not Found",
   "error.internalPayment.invalidPin"				: "Invalid Voucher Pin :",
+  "error.plan.already.pending"						: "Existing Plan is already in pending state wait for complete action",
   
   "error.msg.currency.duplicate.configuration"		: "Currency is already configured",
   "validation.msg.office.name.cannot.be.blank"		: "Office Name cannot be blank",
