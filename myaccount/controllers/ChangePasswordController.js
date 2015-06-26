@@ -4,7 +4,7 @@ ChangePasswordController = function(scope,RequestSender,rootScope,localStorageSe
 		  scope.formData = {};scope.pwdData = {};
 		  if(rootScope.selfcare_sessionData){
 			RequestSender.clientResource.get({clientId: rootScope.selfcare_sessionData.clientId} , function(data) {
-			  scope.email = data.email;
+			  scope.email = data.selfcare.uniqueReference;
 			  scope.userName = data.selfcare.userName;
 		    });
 		  }
