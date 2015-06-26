@@ -10,20 +10,23 @@
 	<div class="paddedbottom10 margintop10">
 		<div class="headersdiv" >
 		  <h3><b class="marginleft10">{{'link.orders'|translate}}</b></h3>
-		 </div><br/>
-		 <table class="fullwidth"><tr><td class="paddingleftnone">
+		 </div>
+		 <table class="fullwidth" style="margin-top: 5px;"><tr><td class="paddingleftnone" >
 		 <div>
-		 	<div class="marginleft10 lightbluecolor" data-ng-show="ordersData.length!=0">
+		 	<div class="marginleft10" data-ng-show="ordersData.length!=0" style="font-size: 20px;">
 		 		<strong>{{'label.currently.subscribed.Packs' | translate}}</strong>
 		 	</div>
-		 	<div style="height: 230px;overflow-y:auto;width:980px;" data-ng-show="ordersData.length!=0">
-		 	 <div class="packbox6"  data-ng-repeat="order in ordersData"  style="margin-bottom: 5px;min-height: 210px;">
-		 		<h1 style="line-height: 25px;">{{order.planCode}}
-		 		<a style="color:#fff;text-transform: lowercase;"> ({{order.planType}}) </a></h1>
+		 	<div style="height: 205px;overflow-y:auto;width:980px;" data-ng-show="ordersData.length!=0">
+		 	 <div class="packbox6"  data-ng-repeat="order in ordersData"  style="margin-bottom: 5px;min-height: 185px;">
+				<div class="ribbon ribbon-small" data-ng-class="{ribbongreen : order.isPrepaid=='Y',ribbonred : order.isPrepaid=='N'}">
+					<div class="banner">
+						<div class="text">{{order.planType}}</div>
+					</div>
+				</div>
+		 		<h1 style="line-height: 25px;">{{order.planCode}}</h1>
 		 		<ul> <li>{{'table.header.contractperoid'|translate}} : <span>{{order.contractPeriod}}</span>
 						<a data-ng-click="viewOrder(order.id)" style="color:blue;"> ({{'label.view' | translate}}) </a></li>
 					<li><span style="padding: 0px; margin:0px;">{{'table.header.price'|translate}} : {{'label.price.symbol'|translate}} {{order.price }}</span></li>
-					<li>{{'table.header.activationdate'|translate}} : {{order.activeDate | DateFormat}}</li>
 					<li>{{'table.header.start/renewaldate'|translate}} : {{order.startDate | DateFormat}}</li>
 					<li>{{'table.header.enddate'|translate}} : {{order.endDate | DateFormat}}</li>
 					<li>{{'table.header.status'|translate}} : <i class="icon-circle {{order.status | StatusLookup}}"></i>&nbsp;{{order.status}}</li>
@@ -45,7 +48,7 @@
 		   </div>
           </td></tr>
 		 </table>
-		 <div class="marginleft10 lightbluecolor">
+		 <div class="marginleft10 " style="font-size: 18px;">
 		 	<strong data-ng-show="ordersData.length==0">{{'label.addpack.info' | translate}}</strong>
 		 	<div  data-ng-show="ordersData.length!=0">
 		 		<strong data-ng-show="screenName == 'additionalorders'">{{'label.anotherpack.info' | translate}}</strong>
@@ -53,11 +56,15 @@
 		 		<strong data-ng-show="screenName == 'renewalorder'">{{'label.topuppack.info' | translate}}</strong>
 		 	</div>
 		 </div>
-		 <div class="marginleft10 lightbluecolor" style="margin-left: 25em">
-		 	<input type="radio" name="planType"  style="vertical-align: sub;" data-ng-click="planTypeSelFun('prepaid')" 
-		 					data-ng-model="planType" value="prepaid">&nbsp;<strong>{{'label.prepaid' | translate}}</strong>
-		 	<input type="radio" name="planType"  style="vertical-align: sub;margin-left: 20px;" data-ng-click="planTypeSelFun('postpaid')"
-		 				data-ng-model="planType" value="postpaid">&nbsp;<strong>{{'label.postpaid' | translate}}</strong>
+		 <div class="marginleft10 lightbluecolor" style="margin-left: 18em; font-size: 20px;">
+		    <div class="btn btn-primary" style="border-radius:20px;" data-ng-click="planTypeSelFun('prepaid')">
+		 		<input type="radio" name="planType"  style="vertical-align: top;" data-ng-model="planType" value="prepaid">
+		 			<strong>{{'label.prepaid' | translate}}</strong>
+		    </div>
+		    <div class="btn btn-primary" style="border-radius:20px;" data-ng-click="planTypeSelFun('postpaid')">
+		 	   <input type="radio" name="planType"  style="vertical-align: top;" data-ng-model="planType" value="postpaid">
+		 		<strong>{{'label.postpaid' | translate}}</strong>
+		    </div>
 		 </div>
 		 <div data-ng-show="plansData.length==0" >
 		 		<h3><span class="required">{{'label.nopacks.available' | translate}}</span></h3>
@@ -66,10 +73,16 @@
 		 <div style="height:430px;overflow-y:auto; ">
 		 	<div data-ng-repeat="plan in plansData track by $index" data-ng-show="plan.pricingData.length!=0"> 
 		 	  <div class="packbox6" style="height:210px;">
+		 	  <div class="ribbon ribbon-small" data-ng-class="{ribbongreen : plan.isPrepaid=='Y',ribbonred : plan.isPrepaid=='N'}">
+					<div class="banner">
+						<div class="text" data-ng-if="plan.isPrepaid=='Y'">PREPAID</div>
+						<div class="text" data-ng-if="plan.isPrepaid=='N'">POSTPAID</div>
+					</div>
+				</div>
 				<h1 style="line-height: 25px;">{{plan.planCode}}
 				<a data-ng-click="viewPlanServices(plan.planId)" style="color:#fff;text-transform: lowercase;"> ({{'label.view' | translate}}) </a></h1>
 				<ul style="margin: 0 0 0 0px;padding: 5px 2px 0px 2px;" data-ng-class="{newprepboxh:plan.isPrepaid == 'Y',newpostpboxh:plan.isPrepaid == 'N',renewprepboxh:screenName == 'renewalorder'}">
-				<li data-ng-repeat="priceData in plan.pricingData track by $index">
+				<li data-ng-repeat="priceData in plan.pricingData track by $index" class="nonecontent" style="margin-left: 15px;">
 					<input type="radio" name="addPackRadio" style="vertical-align: sub;" data-ng-model="priceId" data-ng-click="durationSelectionFun(priceData,plan.planId)" data-ng-value="priceData.id">&nbsp;
 					<span style="font-size: 14px;"  data-ng-if="plan.isPrepaid == 'Y'">
 						<span>{{priceData.duration}}</span><span style="color:blue;">({{'label.price.symbol'|translate}}{{priceData.price}})</span>
@@ -79,6 +92,9 @@
 					</span>
 				</li>
 				</ul>
+				<div data-ng-if="plan.isPrepaid=='N'" class="marginleft10">
+					<strong class="lightbluecolor" data-ng-show="contractPeriod && plan.planId ==planId">{{'table.header.contractperoid'|translate}}&nbsp;:&nbsp;{{contractPeriod}}</strong> 
+				</div>
 				<table data-ng-show="plan.isPrepaid=='Y'&&(screenName == 'additionalorders'||screenName == 'changeorder')" ><tr>
 					<td valign="top" style="padding-top: 0px;"><strong class="lightbluecolor">{{'label.autorenew'|translate}} :</strong></td>
 					<td><switch name="yesNo" ng-model="plan.autoRenew"  on="Yes" off="No" class="wide"></switch></td>
