@@ -602,7 +602,7 @@
 							    			<a href="" data-ng-click="deletePopUp(onetimesale.id,'',$index,'Cancel Sale')" popover="Cancel Sale" popover-trigger="mouseenter"
 							    			data-ng-show="(onetimesale.hardwareAllocated == 'UNALLOCATED')&&(PermissionService.showMenu('DELETE_ONETIMESALE')) && (onetimesale.units=='PIECES')" 
 							    			 ><i class="icon-remove"></i></a>
-							    			 <a href="" ng-show="propertyMaster && !onetimesale.propertyCode" data-ng-click="allocateProperty(onetimesale.serialNo)" popover="Allocate Property" popover-trigger="mouseenter"
+							    			 <a href="" ng-show="propertyMaster && !onetimesale.propertyCode && onetimesale.serialNo" data-ng-click="allocateProperty(onetimesale.serialNo)" popover="Allocate Property" popover-trigger="mouseenter"
 							    			    data-ng-show="(onetimesale.hardwareAllocated == 'ALLOCATED')&&(PermissionService.showMenu('DELETE_ONETIMESALE')) && (onetimesale.units=='PIECES')" 
 							    			 ><i class="icon-lock"></i></a>
 							    			 </td> 

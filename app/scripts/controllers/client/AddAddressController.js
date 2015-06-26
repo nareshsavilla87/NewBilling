@@ -94,7 +94,7 @@
 						            				 scope.formData.city  =  scope.propertyCodesData[j].precinct; 
 						            				 scope.formData.state =  scope.propertyCodesData[j].state;
 						            				 scope.formData.country = scope.propertyCodesData[j].country;
-						            				 scope.formData.zipCode = scope.propertyCodesData[j].poBox;
+						            				 scope.formData.zip = scope.propertyCodesData[j].poBox;
 						            				 scope.status=scope.propertyCodesData[j].status;
 						            				 scope.propetyId=scope.propertyCodesData[j].id;
 						            				 break;

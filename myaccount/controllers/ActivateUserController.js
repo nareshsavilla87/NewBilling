@@ -226,7 +226,6 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 		  		
 			//function called when clicking on Register button in Registration Page
 			scope.registerBtnFun =function(){
-			  if(valid){	
 				scope.clientData = {};
 				 //deviceNo added to form data when isDeviceEnabled true
 					 if(scope.formData.deviceNo){
@@ -281,7 +280,6 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 							 }
 		      	      
 					 });
-			}
 		};
     };
     
