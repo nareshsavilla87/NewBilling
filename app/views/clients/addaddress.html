@@ -60,7 +60,8 @@
 		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
 	<fieldset>
-		<legend>{{'label.addaddress' | translate}}</legend>
+		<legend data-ng-show="!propertyMaster">{{'label.addaddress' | translate}}</legend>
+		<legend data-ng-show="propertyMaster">{{'label.addProperty' | translate}}</legend>
 		<table>
 		  <tr>
 			<td >
