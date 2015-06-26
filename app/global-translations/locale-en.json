@@ -1706,6 +1706,7 @@
   "error.msg.billing.address.city.not.found":"City Not Found",
   "label.addaddress":"Add Address",
   "label.addotheraddress":"Add Other Address",
+  "label.addProperty":"Add Property",
   
   "#link.scheduler":"....",
   "link.scheduler":"Scheduler",
