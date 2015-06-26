@@ -35,7 +35,7 @@ ActivateUserController = function(scope,RequestSender,rootScope,routeParams,sess
 	  					  
 	  					//getting data from c_configuration for isRegister_plan and isisDeviceEnabled
 	  					 var configurationDatas = [];var registrationListing = {};
-	  					  RequestSender.configurationResource.get(function(data){
+	  					  RequestSender.configurationResource.get({tenant:selfcareModels.tenantId},function(data){
 
 	  						configDeviceAgreeType = JSON.parse(data.clientConfiguration);
 	  						scope.isConfigNationalId 	= configDeviceAgreeType.nationalId;
