@@ -670,7 +670,8 @@
                 				<td class="pointer" data-ng-click="routeToticket(clientId,ticket.id)">{{ticket.priority}}</td>  
                 				<td class="pointer" data-ng-click="routeToticket(clientId,ticket.id)">{{ticket.ticketDate | DateFormat}}</td>
                 				<td class="pointer" data-ng-click="routeToticket(clientId,ticket.id)">{{ticket.problemDescription}}</td>
-                				<td class="pointer" data-ng-click="routeToticket(clientId,ticket.id)">{{ticket.status}}</td>
+                				<td data-ng-show="(ticket.status == 'OPEN') && ticket.ticketstatus" class="pointer" data-ng-click="routeToticket(clientId,ticket.id)">{{ticket.ticketstatus}}</td>
+                				<td data-ng-show="(ticket.status == 'CLOSED') || !ticket.ticketstatus" class="pointer" data-ng-click="routeToticket(clientId,ticket.id)">{{ticket.status}}</td>
                 				<td class="pointer" data-ng-click="routeToticket(clientId,ticket.id)">{{ticket.userName}}</td>  
                 				<td class="pointer" data-ng-click="routeToticket(clientId,ticket.id)">{{ticket.lastComment}}</td>
                 				<td>
