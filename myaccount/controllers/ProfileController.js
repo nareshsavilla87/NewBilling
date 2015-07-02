@@ -18,7 +18,6 @@ ProfileController = function(scope,RequestSender,rootScope,location,paginatorSer
 			  scope.clientId = rootScope.selfcare_sessionData.clientId;
 			  sessionManager.configurationFun(function(data){
 				  scope.clientData = data;
-				  (!scope.clientData.currency) ? scope.clientData.currency = 'INR' :"";
 				  if(data.selfcare){
 					  data.selfcare.token ? rootScope.iskortaTokenAvailable = true : rootScope.iskortaTokenAvailable = false;
 					  !data.selfcare.authPin ? scope.clientData.selfcare.authPin = 'Not Available':null;

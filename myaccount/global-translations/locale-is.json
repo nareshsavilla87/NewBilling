@@ -191,6 +191,7 @@
  	"label.city"					: "borg",
  	"label.address"					: "heimilisfang",
  	"label.home.address"			: "Heimilisfang",
+ 	"label.current.password"		: "Núverandi Lykilorð",
  	"label.new.password"			: "nýtt lykilorð",
  	"label.confirm.password"		: "staðfesta lykilorð",
  	"dialog.confirm.message"		: "Ertu viss?",
