@@ -251,7 +251,7 @@
   "table.heading.new.name":"New Name",
   "table.heading.new.code":"New Code",
   "table.heading.associatedwith":"Associated With",
-  "button.createdatatable":"Create Datatable",
+  "button.createdatatable":"Create Data Table",
   "label.edit.datatable":"Edit Datatable",
   "dialog.dataTable.title.message":"Delete Datatable",
   "validation.msg.datatable.length.not.greater.than.zero":"Please provide string length value",
@@ -750,7 +750,7 @@
   "table.plan.code":"Plan Code",
   "table.plan.description":"Plan Description",
   "table.plan.status":"Status",
-  "table.plan.provision system":"Provision System",
+  "table.plan.provision system":"Provisioning System",
   "label.plans":"Manage Plans",
   "label.createplan":"Create Plan",
   "label.plan.plancode":"Plan Code",
@@ -788,6 +788,7 @@
   "error.msg.contract.duration.cannot.be.null":"Please select Duration",
   "error.msg.postpaid.billfrequency.less.than.contractperiod":" Billing Frequency must be less than Contract Period",
   "error.msg.select.renewal.period.more.than":"Please select Renewal Period more than '{{params[0].value}}'",
+  "error.msg.select.renewal.period.must.be":"Please select Renewal Period must be '{{params[0].value}}'",
     
   "#Price":".......",
   "label.creatprice":"Create Price",
@@ -1708,6 +1709,7 @@
   "error.msg.billing.address.city.not.found":"City Not Found",
   "label.addaddress":"Add Address",
   "label.addotheraddress":"Add Other Address",
+  "label.addProperty":"Add Property",
   
   "#link.scheduler":"....",
   "link.scheduler":"Scheduler",
