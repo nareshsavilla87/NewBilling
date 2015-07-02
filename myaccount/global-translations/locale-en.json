@@ -192,6 +192,7 @@
  	"label.city"					: "City",
  	"label.address"					: "Address",
  	"label.home.address"			: "Home Address",
+ 	"label.current.password"		: "Current Password",
  	"label.new.password"			: "New Password",
  	"label.confirm.password"		: "Confirm Password",
  	"dialog.confirm.message"		: "Are you sure?",
