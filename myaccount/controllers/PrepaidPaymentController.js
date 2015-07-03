@@ -19,8 +19,8 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 	scope.isRedirecting 	= false;
 	
 	var clientData			= {};
-	RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
-		clientData = data;
+	RequestSender.clientResource.get({clientId: scope.selfcare_sessionData.clientId} , function(clientTotalData) {
+		clientData = clientTotalData;
 	  scope.paymentgatewayDatas = [];
 	  RequestSender.paymentGatewayConfigResource.get(function(data) {
 		  for(var i in data.globalConfiguration){
