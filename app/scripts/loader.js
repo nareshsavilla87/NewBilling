@@ -38,6 +38,8 @@
             'ngIdle': '../bower_components/ng-idle/angular-idle.min',
             'md5': './CryptoJS/md5',
             'tmh.dynamicLocale': '../bower_components/angular-dynamic-locale/tmhDynamicLocale.min',
+            'moment': './calendar/moment.min',
+            'fullcalendar': './calendar/fullcalendar.min',
            
 
         },
@@ -71,6 +73,8 @@
             'ngIdle': {deps: ['angular']},
             'tmh.dynamicLocale': {deps: ['angular']},
             'bootstrap-switch': {deps: ['jquery']},
+            'moment': {deps: ['jquery']},
+            'fullcalendar': {deps: ['jquery']},
            
 
             'mifosX': {
@@ -104,6 +108,8 @@
                     'md5',
                     'tmh.dynamicLocale',
                     'bootstrap-switch',
+                    'moment',
+                    'fullcalendar'
 
                 ],
                 exports: 'mifosX'
