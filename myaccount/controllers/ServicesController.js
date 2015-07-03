@@ -6,7 +6,7 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
 	  	  scope.templateName = "views/prepaidplans.html";
 	  		 if(rootScope.selfcare_sessionData){
 	  			 scope.clientId = rootScope.selfcare_sessionData.clientId;
-	  			RequestSender.clientResource.get({clientId: rootScope.selfcare_sessionData.clientId} , function(clientTotalData) {
+	  			RequestSender.clientResource.get({clientId: scope.clientId} , function(clientTotalData) {
 	  				scope.clienData = clientTotalData;
   				  RequestSender.getOrderResource.get({clientId:scope.clientId},function(data){
   					  clientOrdersData = data.clientOrders;

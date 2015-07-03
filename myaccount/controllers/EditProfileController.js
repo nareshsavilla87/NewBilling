@@ -4,13 +4,13 @@
 			 if(rootScope.selfcare_sessionData){
 				 scope.formData = {};
 				 scope.clientData={};
-				 RequestSender.clientResource.get({clientId: rootScope.selfcare_sessionData.clientId} , function(data) {
+				 RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
 					 scope.displayName					= data.displayName;
 					 scope.formData.officeId			= data.officeId;
 					 scope.formData.phone 				= data.phone;
 					 scope.formData.homePhoneNumber		= data.homePhoneNumber;
 					 scope.formData.externalId			= data.externalId;
-				 });
+					 
 				  RequestSender.clientDataResource.get({clientId: scope.clientId} , function(additionalData) {
 					var dataObj = angular.fromJson(angular.toJson(additionalData));
 	        		 Object.keys(dataObj).length == 0 ? scope.editAdditionalDatasBtn = false : scope.editAdditionalDatasBtn = true;
@@ -47,6 +47,7 @@
 	            	  }
 				    });
 	        	  }
+			    });
 			   });
 			 }
 			 
