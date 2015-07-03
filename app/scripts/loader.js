@@ -75,7 +75,6 @@
             'bootstrap-switch': {deps: ['jquery']},
             'moment': {deps: ['jquery']},
             'fullcalendar': {deps: ['jquery']},
-           
 
             'mifosX': {
                 deps: [
@@ -110,6 +109,7 @@
                     'bootstrap-switch',
                     'moment',
                     'fullcalendar'
+
 
                 ],
                 exports: 'mifosX'
