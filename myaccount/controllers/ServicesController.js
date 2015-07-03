@@ -2,12 +2,12 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
 		  
 		  var isAutoRenewConfig = angular.fromJson(localStorageService.get("isAutoRenewConfig"));
 		  var clientOrdersData =[],completeOrdersData = [];
-	  	  scope.clientData= {}; scope.ordersData = [];
+	  	  scope.clienData = {};scope.ordersData = [];
 	  	  scope.templateName = "views/prepaidplans.html";
 	  		 if(rootScope.selfcare_sessionData){
 	  			 scope.clientId = rootScope.selfcare_sessionData.clientId;
-	  		   RequestSender.clientResource.get({clientId: scope.clientId} , function(clientTotalData) {
-	  			  scope.clientData	   = clientTotalData;
+	  			RequestSender.clientResource.get({clientId: scope.clientId} , function(clientTotalData) {
+	  				scope.clienData = clientTotalData;
   				  RequestSender.getOrderResource.get({clientId:scope.clientId},function(data){
   					  clientOrdersData = data.clientOrders;
   					  scope.ordersData = clientOrdersData;
@@ -15,12 +15,12 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
   						  if(value.isPrepaid == 'Y') scope.ordersData[key].planType = 'prepaid';
   						  else scope.ordersData[key].planType = 'postpaid';
   					  });
-  					  RequestSender.orderTemplateResource.query({region : scope.clientData.state},function(data){
+  					  RequestSender.orderTemplateResource.query({region : scope.clienData.state},function(data){
   						  completeOrdersData = data;
   						additionalPlansFun('prepaid');
   					  });
   				  });
-	  		  });
+	  			});
 	  	    }
 	  	  
 	 scope.planTypeSelFun = function(name){
@@ -53,7 +53,7 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
 				  if(scope.planType == 'postpaid')
 					  if(totalOrdersData[j].isPrepaid == 'N')scope.plansData.push(totalOrdersData[j]); 
 			  }
-			  localStorageService.add("storageData",{clientData:scope.clientData,totalOrdersData:totalOrdersData});
+			  localStorageService.add("storageData",{clientData:scope.clienData,totalOrdersData:totalOrdersData});
 			  templateSelectionFun(scope.planType);
 	 }
 		  
@@ -82,7 +82,7 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
 				  if(scope.planType == 'postpaid')
 					  if(totalOrdersData[j].isPrepaid == 'N')scope.plansData.push(totalOrdersData[j]); 
 			  }
-			  localStorageService.add("storageData",{clientData:scope.clientData,totalOrdersData:totalOrdersData,orderId:scope.selectedOrderId});
+			  localStorageService.add("storageData",{clientData:scope.clienData,totalOrdersData:totalOrdersData,orderId:scope.selectedOrderId});
 			  templateSelectionFun(scope.planType);
 	  };
 	  scope.disconnectedPackageSelectionFun = function(selectedOrderId,selectedPlanId,orderStatus,orderRenew,planType){
@@ -110,7 +110,7 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
 					  }
 				  }
 			  }
-			  localStorageService.add("storageData",{clientData:scope.clientData,totalOrdersData:totalOrdersData,orderId:scope.selectedOrderId});
+			  localStorageService.add("storageData",{clientData:scope.clienData,totalOrdersData:totalOrdersData,orderId:scope.selectedOrderId});
 			  templateSelectionFun(scope.planType);
 	  };
 	  
