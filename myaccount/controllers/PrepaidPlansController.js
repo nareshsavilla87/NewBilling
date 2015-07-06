@@ -49,7 +49,7 @@ PrepaidPlansController = function(scope,RequestSender,localStorageService,locati
 			  
 			  if(scope.planId && scope.billingFrequency && scope.priceId && scope.price){
 				 
-				RequestSender.recurringStatusCheckingResource.get({priceId:scope.priceId,clientId:scope.clientId},function(data){
+				RequestSender.finalPriceCheckingResource.get({priceId:scope.priceId,clientId:scope.clientId},function(data){
 				   scope.screenName == "additionalorders" ?
 						localStorageService.add("chargeCodeData",{data:data,billingFrequency:scope.billingFrequency}) :
 							localStorageService.add("chargeCodeData",{data:data,orderId:scope.selectedOrderId,billingFrequency:scope.billingFrequency});

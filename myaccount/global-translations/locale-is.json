@@ -414,6 +414,7 @@
   "error.msg.billing.address.city.not.found"		: "borg ekki fann",
   "error.internalPayment.invalidPin"				: "Ógilt Úttektarmiðinn pinna :",
   "error.plan.already.pending"						: "Núverandi Plan er nú þegar í bið ástand bíða fyrir heill aðgerð",
+  "error.msg.postpaid.billfrequency.less.than.contractperiod": "Frumvarp Tíðni verður að vera minna en samningstímanum",
   
   "error.msg.currency.duplicate.configuration"		:"Currency is already configured",
   "validation.msg.office.name.cannot.be.blank"		: "Office Name cannot be blank",
