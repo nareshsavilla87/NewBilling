@@ -17,7 +17,8 @@ selfcareApp.service("SessionManager",['$rootScope','HttpService','$location','lo
       
       this.configurationFun = function(handler){
     	  RequestSender.clientResource.get({clientId: scope.selfcare_sessionData.clientId} , function(clientData) {
-    		  scope.currencyCode = clientData.currency;
+    		  scope.clientData = clientData || {};
+    		  scope.currencyCode = scope.clientData.currency;
         		RequestSender.configurationResource.get({tenant:selfcareModels.tenantId},function(configData){
         			var clientConfig = angular.fromJson(configData.clientConfiguration) || {};
         			scope.isConfigNationalId 			= clientConfig.nationalId == 'true';
