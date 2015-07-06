@@ -546,7 +546,6 @@
   "error.not.numeric.validation":"Enter Numeric Value",
   "error.not.decimal.validation":"Enter Decimal Value",
   "error.invalid.phone.validation":"MAX Length 15 Numbers",
-   
 
   "#Journal Entry Predefined Postings":"........",
   "label.select.accountingrule":"--Select accounting rule--",
