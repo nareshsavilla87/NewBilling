@@ -1801,6 +1801,7 @@
 		        	$scope.formData = {};
 		        	resourceFactory.refundAmountResource.get({depositAmount:getAmount,depositId:scope.clientId} , function(data){
 		        		$scope.formData.refundAmount = data.availAmount;
+		        		$scope.refundModeData=data.data;
 		            },function(errorData){
   	                	$scope.stmError = errorData.data.errors[0].userMessageGlobalisationCode;
   	                	

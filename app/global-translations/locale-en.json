@@ -2822,7 +2822,9 @@
 "#Deposit and Refund  ":".......",
 "error.msg.hardware.unallocated":"Please Unallocate hardware",
 "error.msg.unable.to.refund.clientbalance.greater.than.refund.amount":"Unable refund client due balance is greater than refund balance",
-"error.msg.hardware.quality.not.good":"Item Quality is not good"
+"error.msg.hardware.quality.not.good":"Item Quality is not good",
+"validation.msg.refund.refundMode.cannot.be.blank":"Please Select Refund Type",
+"validation.msg.refund.refundAmount.cannot.be.blank":"Please add Amount"
 
 
 

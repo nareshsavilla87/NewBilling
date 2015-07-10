@@ -1675,19 +1675,38 @@
     	<div class="modal-header silver">
         	<h3 class="bolder">Refund</h3>
         </div>
-        <div class="modal-body modal-small">
+        <div class="modal-body" >
         	<div class="control-group">
 				<div class="controls">
 					<span class="control-label" style="color:red;" ng-show="stmError.length>0">{{stmError | translate}}</span>
 				</div>	
 			</div>
-			<div class="control-group">
+<table>
+<tr>
+	<td>
+		<div class="control-group">
+         <label class="control-label" for="refundMode">Refund Type<span class="required">*</span></label>
+           <div class="controls">
+             <select id="refundMode" data-ng-model="formData.refundMode" data-ng-options="data.id as data.mCodeValue for data in refundModeData">
+              <option value="">{{'label.select.one' | translate}}</option></select>
+           </div>
+        </div>
+	</td>
+</tr>
+<tr>
+	<td>
+		<div class="control-group">
 				<label class="control-label">Amount</label>
 				<div class="controls">
 					<input type="text" ng-model="formData.refundAmount" required readonly late-Validate style="background-color:#FFFFFF;"/> 
 				</div>	
-			</div>
 		</div>
+	</td>
+</tr>
+</table>
+     
+			
+        </div>
         <div class="modal-footer">
         	<button id="cancel" class="btn btn-warning" ng-click="reject()">{{'button.cancel' | translate}}</button>
             <button id="submit" class="btn btn-primary" ng-click="accept(formData.cancelRemark)" ng-disabled="flagcancelpayment">{{'label.confirm' | translate}}</button>
@@ -1703,7 +1722,7 @@
        			<div class="controls">
 					<span class="control-label" style="color:red;" ng-show="stmError.length>0">{{stmError | translate}}</span>
                 </div>
-			</div>            	
+			</div> 
          <div class="control-group">
 				<label class="control-label">Amount</label>
 				<div class="controls">
