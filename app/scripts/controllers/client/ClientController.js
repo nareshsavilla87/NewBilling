@@ -51,10 +51,10 @@
         resourceFactory.clientResource.getAllClients({offset: offset, limit: limit} , function(data){
         	scope.totalClients = data.totalFilteredRecords;
         	scope.allDatas = data.pageItems;
-        	if(scope.totalClients%15 == 0)	
-        		scope.totalPages = scope.totalClients/15;
+        	if(scope.totalClients%25 == 0)	
+        		scope.totalPages = scope.totalClients/25;
         	else
-        		scope.totalPages = Math.floor(scope.totalClients/15)+1;
+        		scope.totalPages = Math.floor(scope.totalClients/25)+1;
         	
         	if(scope.config.password == 'true'){
         		passwordSetToStar();
@@ -110,7 +110,7 @@
        };
        
       if(PermissionService.showMenu('READ_CLIENT'))
-    	  scope.clients = paginatorService.paginate(fetchFunction, 14);
+    	  scope.clients = paginatorService.paginate(fetchFunction, 24);
       
       
       scope.search123 = function(offset, limit, callback) {
@@ -124,7 +124,7 @@
       };
        
        scope.search = function(filterText) {
-        scope.clients = paginatorService.paginate(scope.search123, 14);
+        scope.clients = paginatorService.paginate(scope.search123, 24);
        };
        
        /**
@@ -139,10 +139,10 @@
     			   resourceFactory.clientResource.getAllClients({offset: offset, limit: limit,status: sourceStatus} , function(data){
        	        	scope.totalClients = data.totalFilteredRecords;
        	        	scope.allDatas = data.pageItems;
-       	        	if(scope.totalClients%15 == 0)	
-       	        		scope.totalPages = scope.totalClients/15;
+       	        	if(scope.totalClients%25 == 0)	
+       	        		scope.totalPages = scope.totalClients/25;
        	        	else
-       	        		scope.totalPages = Math.floor(scope.totalClients/15)+1;
+       	        		scope.totalPages = Math.floor(scope.totalClients/25)+1;
        	        	
        	        	if(scope.config.password == 'true'){
        	        		passwordSetToStar();
@@ -152,9 +152,9 @@
     	   };
     	   
     	   if(sourceStatus == 'ALL'){
-			   scope.clients = paginatorService.paginate(fetchFunction, 14);
+			   scope.clients = paginatorService.paginate(fetchFunction, 24);
 		   }else{
-			   scope.clients = paginatorService.paginate(scope.searchSources123, 14);
+			   scope.clients = paginatorService.paginate(scope.searchSources123, 24);
 		   }
     	   
        };

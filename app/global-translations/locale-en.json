@@ -2466,6 +2466,7 @@
 "table.addons.price":"Price",
 "validation.msg.addons.planId.cannot.be.blank":"Select Plan from the List",
 "validation.msg.addons.chargeCode.cannot.be.blank":"Select charge code",
+"error.msg.select.addon.period.more.than":"contract is not applicable for this chargecode.",
 "validation.msg.addons.priceRegionId.cannot.be.blank":"Select price region",
 "validation.msg.addons.addons.not.greater.than.zero":"Add at-least one service from category's",
 "validation.msg.addons.null.not.greater.than.zero":"Select at-least one service",
