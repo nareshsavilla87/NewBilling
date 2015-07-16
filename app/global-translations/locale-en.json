@@ -207,7 +207,7 @@
 
   "#common button name":"",
   "button.edit":"Edit",
-  "button.add":"Add Mrn",
+  "button.add":"Add",
   "button.save":"Save",
   "button.cancel":"Cancel",
   "button.close":"Close",
@@ -417,6 +417,11 @@
   "link.logout" : "LogOut",
   "link.admin.provision" : "Adapter Provision",
   "label.eventactions":"Event Actions",
+  "button.additemdetails":"Add Item Details",
+  "button.addgoodreceipt":"Goods Receipt",
+  "button.addmrn":"Add Mrn",
+  "button.addsupplier":"Add Supplier",
+  
   
 
   "#accounting coa":"....",
@@ -758,6 +763,10 @@
   "validation.msg.plan.planDescription.cannot.be.blank":"Plan Description Cannot be Blank",
   "validation.msg.plan.billRule.cannot.be.blank":"Select Rule From List",
   "plan.is.already.exists.with.charge.code":"Price Already Exist With This Charge Code",
+  "error.msg.prepaid.chargecode.contract.should.be.same":"Chargecode and Duration values must be same",
+  "error.msg.contract.duration.cannot.be.null":"Please select Duration",
+  "error.msg.postpaid.billfrequency.less.than.contractperiod":" Billing Frequency must be less than Contract Period",
+  "error.msg.select.renewal.period.more.than":"Please select Renewal Period more than '{{params[0].value}}'",
     
   "#Price":".......",
   "label.creatprice":"Create Price",
