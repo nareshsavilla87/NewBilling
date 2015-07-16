@@ -44,7 +44,6 @@
         
             
         scope.isSelected = function(id,isActive,price,chargeCodeId,index){
-        
         	if(isActive =="Y"){
         		 scope.addonServices.push({
    				  "serviceId":id,
@@ -56,10 +55,12 @@
 				
         	}else{
         		
-        	   scope.addonServices.splice(index, 1);
-        		/*scope.addonServices =  scope.addonServices.filter(function( obj ) {
-        			return obj != id;
-					});*/
+        	   //scope.addonServices.splice(index, 1);
+        		angular.forEach(scope.addonServices,function(value,key){
+        			if(value.serviceId == id && value.chargeCodeId == chargeCodeId){
+        				scope.addonServices.splice(key, 1);
+        			}
+        		});
 			  }
 			  
 		  };
