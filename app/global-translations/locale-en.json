@@ -319,6 +319,7 @@
   "validation.msg.schedulerjob.Username.cannot.be.blank":"User Name cannot be blank",
   "validation.msg.schedulerjob.Password.cannot.be.blank":"Password cannot be blank",
   "validation.msg.schedulerjob.URL.cannot.be.blank":"URL cannot be blank",
+  "label.job.isDisconnectUnpaidCustomers":"is Disconnect Unpaid Customers",
   
 
 

@@ -48,6 +48,10 @@
 				} else {
 					scope.formData.isCreateTicket = false;
 				}
+				
+				if (data.jobparameters.isDisconnectUnpaidCustomers == "Y") {
+					scope.formData.isDisconnectUnpaidCustomers = true;
+				}
 
 			});						
 
