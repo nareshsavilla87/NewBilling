@@ -90,14 +90,16 @@
 		<table class="table margintop10">
 		 <thead>
   		   <tr class="graybg drakgraybg">
-             <th style="padding-left:20px;">{{'table.header.order.servicecode'|translate}}</th>
+             <th style="padding-left:20px;">{{'table.header.order.serviceimage'|translate}}</th>
+             <th>{{'table.header.order.servicecode'|translate}}</th>
              <th>{{'table.header.order.servicedescription'|translate}}</th>
              <th>{{'table.header.order.servicetype'|translate}}</th>
         	</tr>
 		 </thead>
 		 <tbody>
 			<tr data-ng-repeat="orderService in orderServices  | filter:filterText" >                 
-   				<td style="font-weight: inherit;color: #555555;padding-left:20px;">{{orderService.servicecode}}</td>
+   				<td style="font-weight: inherit;color: #555555;padding-left:20px;"><img ng-src="{{orderService.image}}" alt="No image" width="50"/></td>
+   				<td>{{orderService.servicecode}}</td>
    				<td>{{orderService.serviceDescription}}</td>
    				<td>{{orderService.serviceType}}</td>
 			</tr>
@@ -118,13 +120,15 @@
 		<table class="table margintop10">
 		 <thead>
   		   <tr class="graybg drakgraybg">
-             <th style="padding-left:20px;">{{'table.header.order.servicecode'|translate}}</th>
+             <th style="padding-left:20px;">{{'table.header.order.serviceimage'|translate}}</th>
+             <th>{{'table.header.order.servicecode'|translate}}</th>
              <th>{{'table.header.order.servicedescription'|translate}}</th>
         	</tr>
 		 </thead>
 		 <tbody>
 			<tr data-ng-repeat="planservice in planServices  | filter:filterText" >                 
-   				<td style="font-weight: inherit;color: #555555;padding-left:20px;">{{planservice.serviceCode}}</td>
+   				<td style="font-weight: inherit;color: #555555;padding-left:20px;"><img ng-src="{{planservice.image}}" alt="No image" width="50"/></td>
+   				<td>{{planservice.serviceCode}}</td>
    				<td>{{planservice.serviceDescription}}</td>
 			</tr>
 		</tbody>

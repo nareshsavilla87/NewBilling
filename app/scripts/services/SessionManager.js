@@ -23,6 +23,7 @@
           if(sessionData.tenant == TENANT){
 	          httpService.setAuthorization(sessionData.authenticationKey);
 	          resourceFactory.userResource.get({userId: sessionData.userId}, function(userData) {
+	        	  console.log(userData);
 	   		  if(location.path() == "/")location.path('/home');
 	   		  else if(location.path())location.path(location.path());
 	   		  else location.path('/home');
