@@ -48,6 +48,11 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
 		  }
 		 for(var j in totalOrdersData){
 				  totalOrdersData[j].autoRenew = isAutoRenewConfig;
+				  scope.autoRenewBtn = isAutoRenewConfig;
+				  for(var k in totalOrdersData[j].pricingData){
+					  totalOrdersData[j].pricingData[k].isCheck = 'no';
+					  totalOrdersData[j].pricingData[k].planId = totalOrdersData[j].planId;
+				  }
 				  if(scope.planType == 'prepaid')
 				  if(totalOrdersData[j].isPrepaid == 'Y')scope.plansData.push(totalOrdersData[j]); 
 				  if(scope.planType == 'postpaid')
