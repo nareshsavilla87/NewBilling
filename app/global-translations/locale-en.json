@@ -1035,7 +1035,7 @@
   "label.beginWith":"Begin With",
   "label.pinCategory":"Pin Category",
   "label.quantity":"Quantity",
-  "label.serialNoLength":"Length of Serial NO",
+  "label.serialNoLength":"Length of Serial No",
   "label.pinType":"Pin Type",
   "label.ManageVoucherpins":"Voucher Pins",
   "validation.msg.hardwareswap.provisionNum.cannot.be.blank":"Serial Number can not be blank",
@@ -1057,6 +1057,7 @@
   "error.msg.please.pair.hardware.with.plan ":"Pair hardware with a Plan",
   "error.msg.device.details.not.found":"Device details not available",
   "validation.msg.voucher.voucherIds.cannot.be.empty":"Select atleast one Voucher",
+  "validation.msg.voucher.serialNo.is.not.within.expected.range":"The Length of Serial No must be between 0 and 18",
   
   "#Table heading Voucher pins":"....",
   "table.heading.id":"Id",
