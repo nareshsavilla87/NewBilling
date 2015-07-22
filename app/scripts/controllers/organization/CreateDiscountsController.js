@@ -9,6 +9,8 @@
 	        scope.clientCategoryDatas=[];
 	        scope.discountPrices =[];
 	        scope.start.date = dateFilter(new Date(), 'dd MMMM yyyy');
+	        scope.minDate = new Date();
+	        scope.prevDate = new Date();
 	        
 	        resourceFactory.discountTemplateResource.get(function(data) {
 	        	scope.discountTypeDatas = data.discountTypeData;
@@ -17,6 +19,10 @@
 	            scope.clientCategoryDatas.push({"id":0,"mCodeValue":"Default"});
 	            scope.formData = {};
 	        });
+	        
+	        scope.doSomething =function(){
+	     	   scope.prevDate=scope.start.date;
+	        };
 	     
 	        scope.addDiscountPrice = function () {
 		           if (scope.discountPricesFormData.discountRate) {
