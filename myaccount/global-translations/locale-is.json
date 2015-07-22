@@ -286,6 +286,7 @@
 	 "table.header.order.servicecode"		: "þjónusta Kóði",
 	 "table.header.order.servicedescription": "þjónusta Lýsing",
 	 "table.header.order.servicetype"		: "þjónusta Tegund",
+	 "table.header.order.serviceimage"		: "Mynd",
 	 "label.prepaid"						: "Fyrirframgreiðsla",
 	 "label.postpaid"						: "eftirágreiðsla",
 	 "label.contract.selection"				: "samningur Val",

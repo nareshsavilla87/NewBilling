@@ -23,7 +23,7 @@
 	             this.formData.startDate = startdate;
 	             
 	            resourceFactory.promotionResource.save(this.formData, function(data){
-	            		location.path('/viewpromotioncode/'+ data.resourceId);
+	            		location.path('/discounts');
 	          });
 	           
 	            webStorage.add("callingTab", {someString: "Promotioncode" });
