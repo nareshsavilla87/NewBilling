@@ -6,9 +6,12 @@
 			scope.discountTypeDatas = [];
 			scope.statuses = [];
 			scope.start = {};
-			  scope.formData = {};
+			scope.formData = {};
 			scope.date = {};
 			scope.discountIdForCancel = routeParams.id;
+			scope.minDate = new Date();
+	        scope.prevDate = new Date();
+			
 			resourceFactory.discountsResource.getDiscountDetails({discountId : routeParams.id,template : 'true'	},	function(data) {
 				scope.discountdetail = data;
 				scope.discountTypeDatas = data.discountTypeData;
@@ -21,6 +24,10 @@
 			    scope.discountPrices=data.discountDetailDatas;
 
 			});
+			
+			scope.doSomething =function(){
+		     	   scope.prevDate=scope.start.date;
+		        };
 
 			
 			 scope.addDiscountPrice = function () {
