@@ -1407,6 +1407,7 @@
   "validation.msg.chargecode.billFrequencyCode.not.zero.or.greater":"Missing Bill Frequency Code",
   "validation.msg.chargecode.chargeType.not.zero.or.greater":"Missing Charge Type",
   "validation.msg.chargecode.durationType.not.zero.or.greater":"Missing Duration Type",
+  "validation.msg.chargecode.chargeDuration.not.greater.than.zero":"Charge Duration should not Greaterthan Zero",
   "error.msg.chargecode.duplicate.name":"Charge Code already exist with this name",
   "error.msg.chargecode.can not.delete or update already use":"Charge code in use, cannot delete or update",
   "validation.msg.taxmap.chargeCode.not.zero.or.greater":"Missing Charge code",
@@ -2515,6 +2516,7 @@
 "table.addons.price":"Price",
 "validation.msg.addons.planId.cannot.be.blank":"Select Plan from the List",
 "validation.msg.addons.chargeCode.cannot.be.blank":"Select charge code",
+"error.msg.select.addon.period.more.than":"contract is not applicable for this chargecode.",
 "validation.msg.addons.priceRegionId.cannot.be.blank":"Select price region",
 "validation.msg.addons.addons.not.greater.than.zero":"Add at-least one service from category's",
 "validation.msg.addons.null.not.greater.than.zero":"Select at-least one service",
@@ -2664,8 +2666,8 @@
 "label.anchor.edittemplate":"Edit Template",
 "label.anchor.deletetemplate":"Delete Template",
 "label.heading.text":"Text",
-"validation.msg.template.name.cannot.be.blank":"template name cannot be blank",
-"error.msg.tempalte.duplicate.name":"template name already exists",
+"validation.msg.template.name.cannot.be.blank":"Template name cannot be blank",
+"error.msg.tempalte.duplicate.name":"Template name already exists",
 
 "#Property Definition":"........",
 "label.current.device" :"Device",
@@ -2809,23 +2811,25 @@
 "label.feemaster.selete.regionname" :  "Select Region Name",
 
 "#Fee Master  ":".......",
-"validation.msg.feemaster.feeCode.cannot.be.blank"    		 : "Fee Code can not be blank",
-"validation.msg.feemaster.feeDescription.cannot.be.blank"    : "Fee Description can not be blank",
-"validation.msg.feemaster.transactionType.cannot.be.blank"   : "Transaction Type can not be blank",
-"validation.msg.feemaster.chargeCode.cannot.be.blank"  		 : "Charge Code can not be blank",
-"validation.msg.feemaster.defaultFeeAmount.cannot.be.blank"  : "Default Fee Amount can not be blank",
+"validation.msg.feemaster.feeCode.cannot.be.blank"    		 : "Fee Code cannot be blank",
+"validation.msg.feemaster.feeDescription.cannot.be.blank"    : "Fee Description cannot be blank",
+"validation.msg.feemaster.transactionType.cannot.be.blank"   : "Transaction Type cannot be blank",
+"validation.msg.feemaster.chargeCode.cannot.be.blank"  		 : "Charge Code cannot be blank",
+"validation.msg.feemaster.defaultFeeAmount.cannot.be.blank"  : "Default Fee Amount cannot be blank",
 "error.msg.feemaster.regional.price.not.found":"No Regional Price found for this Service Transfer",
 "validation.msg.feemaster.regionPrices.not.greater.than.zero" :"Please add atleast one region price",
 "label.pgconfig.editconfig":"Edit Configurations",
 "label.form.module":"Module",
-"error.msg.fee.transaction.alredy.exists":"A Fee with this transaction already exists,Please Update it",
 
 "#Deposit and Refund  ":".......",
 "error.msg.hardware.unallocated":"Please Unallocate hardware",
 "error.msg.unable.to.refund.clientbalance.greater.than.refund.amount":"Unable refund client due balance is greater than refund balance",
+
 "error.msg.hardware.quality.not.good":"Item Quality is not good",
 "validation.msg.refund.refundMode.cannot.be.blank":"Please Select Refund Type",
-"validation.msg.refund.refundAmount.cannot.be.blank":"Please add Amount"
+"validation.msg.refund.refundAmount.cannot.be.blank":"Please add Amount",
+"error.msg.fee.code.duplicate.name":"Fee Code already exists",
+"error.msg.fee.transaction.alredy.exists":"A Fee with this transaction already exists,Please Update it"
 
 
 
