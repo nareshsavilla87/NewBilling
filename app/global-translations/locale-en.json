@@ -1038,6 +1038,7 @@
   "label.quantity":"Quantity",
   "label.serialNoLength":"Length of Serial No",
   "label.pinType":"Pin Type",
+  "label.promotion":"Promotion",
   "label.ManageVoucherpins":"Voucher Pins",
   "validation.msg.hardwareswap.provisionNum.cannot.be.blank":"Serial Number can not be blank",
   "validation.msg.voucher.batchName.cannot.be.blank":"Batch Name cannot be blank",
@@ -1059,6 +1060,7 @@
   "error.msg.device.details.not.found":"Device details not available",
   "validation.msg.voucher.voucherIds.cannot.be.empty":"Select atleast one Voucher",
   "validation.msg.voucher.serialNo.is.not.within.expected.range":"The Length of Serial No must be between 0 and 18",
+  "validation.msg.voucher.promotionValue.cannot.be.blank":"Promotion cannot be blank",
   
   "#Table heading Voucher pins":"....",
   "table.heading.id":"Id",
@@ -1073,6 +1075,7 @@
   "table.heading.pinValue":"Pin Value",
   "table.heading.expiryDate":"Expiry Date",
   "table.heading.propertycode":"Property Code",
+  "table.heading.promotiondesc":"Promotion Description",
   
   "#Discounts":"....",
   "link.create.new.discount":"Create Discounts",
