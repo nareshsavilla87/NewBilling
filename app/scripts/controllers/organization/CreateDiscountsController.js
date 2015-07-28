@@ -5,11 +5,12 @@
 	        scope.discountTypeDatas = [];
 	        scope.statusDatas = [];
 	        scope.start = {};
-	        scope.start.date = dateFilter(new Date(), 'dd MMMM yyyy');
+	        //scope.start.date = dateFilter(new Date(), 'dd MMMM yyyy');
 	        
 	        resourceFactory.discountTemplateResource.get(function(data) {
 	        	scope.discountTypeDatas = data.discountTypeData;
 	            scope.statusDatas = data.statusData;
+	            scope.start.date = new Date(data.date);
 	            scope.formData = {};
 	        });
 	     
