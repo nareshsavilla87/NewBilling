@@ -61,7 +61,7 @@
 	        		scope.formData.itemId=itemId;
 	        		scope.formData.discountId = scope.discountMasterDatas[0].discountMasterId;
 	        		scope.formData.officeId=officeId;
-	        		scope.formData.amount = data.feeMasterData[0].defaultFeeAmount;
+	        		//scope.formData.amount = data.feeMasterData[0].defaultFeeAmount;
 	        		scope.truefalse = false;
 	        		 if(scope.saleType == 'DEVICERENTAL'){
 	 	            	scope.formData.totalPrice=0;
