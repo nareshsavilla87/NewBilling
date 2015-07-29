@@ -23,6 +23,7 @@
         scope.start.date = new Date();
         scope.minDate = new Date();
         scope.minendDate = new Date();
+       
      
         resourceFactory.planTemplateResource.get(function(data) {
         	

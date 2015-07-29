@@ -176,6 +176,28 @@
           	
           };
           
+          scope.disconnectAddon = function(value){
+        	  scope.addonId=value;
+              $modal.open({
+                  templateUrl: 'disconnectaddon.html',
+                  controller: ApproveDisconnection,
+                  resolve:{}
+              });
+          };
+          
+          function ApproveDisconnection($scope, $modalInstance) {
+        	  
+              $scope.approve = function () {
+                  scope.approveData = {};
+                  resourceFactory.orderaddonResource.remove({orderId:scope.addonId},{},function(){
+                      route.reload();
+                  });
+                  $modalInstance.close('delete');
+              };
+              $scope.cancel = function () {
+                  $modalInstance.dismiss('cancel');
+              };
+          }
           
       var applyPromoController=function($scope,$modalInstance){
     	  $scope.start = {};

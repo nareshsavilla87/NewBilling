@@ -307,6 +307,7 @@
   "label.job.exipirydate":"Exipiry Date",
   "label.job.isDynamic":"Is Dynamic",
   "label.job.isautorenwalactive":"Is Auto Renewal",
+  "label.job.addon.exipiry":"Addon Exipiry",
   "label.job.isautorenewal":"Auto Renewal",
   "label.job.emailid":"Email Id",
   "validation.msg.schedulerjob.emailId.cannot.be.blank":"Email Id cannot be blank",
@@ -548,7 +549,6 @@
   "error.not.numeric.validation":"Enter Numeric Value",
   "error.not.decimal.validation":"Enter Decimal Value",
   "error.invalid.phone.validation":"MAX Length 15 Numbers",
-   
 
   "#Journal Entry Predefined Postings":"........",
   "label.select.accountingrule":"--Select accounting rule--",
@@ -926,6 +926,7 @@
   "error.msg.cund.unknown.data.integrity.issue":"Duplicate Data added",
   "label.regionalprice":"Regional Prices",
   "error.msg.item.regional.price.not.found":"No Regional Price found for this Item",
+  "error.msg.hardware.quality.not.good":"Item Quality is not good",
   
   "#Import":"........",
   "label.heading.uploads":"Builk Uploads",
@@ -1043,8 +1044,9 @@
   "label.beginWith":"Begin With",
   "label.pinCategory":"Pin Category",
   "label.quantity":"Quantity",
-  "label.serialNoLength":"Length of Serial NO",
+  "label.serialNoLength":"Length of Serial No",
   "label.pinType":"Pin Type",
+  "label.promotion":"Promotion",
   "label.ManageVoucherpins":"Voucher Pins",
   "validation.msg.hardwareswap.provisionNum.cannot.be.blank":"Serial Number can not be blank",
   "validation.msg.voucher.batchName.cannot.be.blank":"Batch Name cannot be blank",
@@ -1065,6 +1067,8 @@
   "error.msg.please.pair.hardware.with.plan ":"Pair hardware with a Plan",
   "error.msg.device.details.not.found":"Device details not available",
   "validation.msg.voucher.voucherIds.cannot.be.empty":"Select atleast one Voucher",
+  "validation.msg.voucher.serialNo.is.not.within.expected.range":"The Length of Serial No must be between 0 and 18",
+  "validation.msg.voucher.promotionValue.cannot.be.blank":"Promotion cannot be blank",
   
   "#Table heading Voucher pins":"....",
   "table.heading.id":"Id",
@@ -1080,6 +1084,7 @@
   "table.heading.expiryDate":"Expiry Date",
   "table.heading.propertycode":"Property Code",
   "label.allocateproperty":"Allocate Property",
+  "table.heading.promotiondesc":"Promotion Description",
   
   "#Discounts":"....",
   "link.create.new.discount":"Create Discounts",
@@ -2004,6 +2009,8 @@
   "validation.msg.planmappig.itemCode.cannot.be.blank":"Item Code cannot be blank",
   "error.msg.service.mapping.duplicate":"Mapping has already done with this service",
   "validation.msg.ServiceMapping.provisionSystem.cannot.be.blank":"Please Select Provisioning system",
+  "label.item.type":"Item Type",
+  "validation.msg.ServiceMapping.itemId.cannot.be.blank":"Item Type cannot be blank",
   
   "#HardWareMapping":"...........",
   "table.hardwaremapping.id":"Id",
@@ -2514,6 +2521,7 @@
 "label.editaddons":"Edit Addons",
 "link.create.new.addon":"New Addon",
 "table.addons.price":"Price",
+"dialog.addon.disconnect.message":"Disconnect Addon",
 "validation.msg.addons.planId.cannot.be.blank":"Select Plan from the List",
 "validation.msg.addons.chargeCode.cannot.be.blank":"Select charge code",
 "error.msg.select.addon.period.more.than":"contract is not applicable for this chargecode.",
@@ -2820,16 +2828,14 @@
 "validation.msg.feemaster.regionPrices.not.greater.than.zero" :"Please add atleast one region price",
 "label.pgconfig.editconfig":"Edit Configurations",
 "label.form.module":"Module",
+"error.msg.fee.code.duplicate.name":"Fee Code already exists",
+"error.msg.fee.transaction.alredy.exists":"A Fee with this transaction already exists,Please Update it",
 
 "#Deposit and Refund  ":".......",
 "error.msg.hardware.unallocated":"Please Unallocate hardware",
 "error.msg.unable.to.refund.clientbalance.greater.than.refund.amount":"Unable refund client due balance is greater than refund balance",
-
-"error.msg.hardware.quality.not.good":"Item Quality is not good",
 "validation.msg.refund.refundMode.cannot.be.blank":"Please Select Refund Type",
-"validation.msg.refund.refundAmount.cannot.be.blank":"Please add Amount",
-"error.msg.fee.code.duplicate.name":"Fee Code already exists",
-"error.msg.fee.transaction.alredy.exists":"A Fee with this transaction already exists,Please Update it"
+"validation.msg.refund.refundAmount.cannot.be.blank":"Please add Amount"
 
 
 
