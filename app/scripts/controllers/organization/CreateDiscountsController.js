@@ -11,12 +11,14 @@
 	        scope.start.date = dateFilter(new Date(), 'dd MMMM yyyy');
 	        scope.minDate = new Date();
 	        scope.prevDate = new Date();
+	        //scope.start.date = dateFilter(new Date(), 'dd MMMM yyyy');
 	        
 	        resourceFactory.discountTemplateResource.get(function(data) {
 	        	scope.discountTypeDatas = data.discountTypeData;
 	            scope.statusDatas = data.statusData;
 	            scope.clientCategoryDatas =data.clientCategoryDatas;
 	            scope.clientCategoryDatas.push({"id":0,"mCodeValue":"Default"});
+	            scope.start.date = new Date(data.date);
 	            scope.formData = {};
 	        });
 	        
