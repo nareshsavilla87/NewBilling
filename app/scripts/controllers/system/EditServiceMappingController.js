@@ -22,10 +22,9 @@
         
         scope.submit = function() {	
         	
-        	if(!scope.formData.isHwReq){
+        	if(!this.formData.isHwReq){
         		delete this.formData.itemId;
-        	   }
-        	
+        	}
                scope.formData.serviceId=this.formData.id;
                delete this.formData.serviceCodeData;
                delete this.formData.serviceCode;

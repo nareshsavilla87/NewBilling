@@ -41,6 +41,9 @@
            };  
         scope.submit = function() {
         	
+        	if(!this.formData.isHwReq){
+        		delete this.formData.itemId;
+        	}
         	delete this.formData.serviceCodeData;
         	delete this.formData.statusData;
         	delete this.formData.serviceParameters;
