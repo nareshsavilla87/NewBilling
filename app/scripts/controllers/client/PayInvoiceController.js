@@ -25,8 +25,8 @@
 		    }
         //scope.datass = {};
          scope.start={};
-         scope.start.date = new Date();
-         scope.maxDate= scope.start.date;
+         /*scope.start.date = new Date();
+         scope.maxDate= scope.start.date;*/
          
          scope.invoiceDatas = [];
          scope.showInvoiceDetails=false;
@@ -41,6 +41,10 @@
          scope.creditdistributions = [];
          
         resourceFactory.paymentsTemplateResource.getPayments(function(data){
+        	
+        	scope.start.date = new Date(data.date);
+            scope.maxDate= scope.start.date;
+            
         	scope.payments = data;
             scope.data = data.data;
             scope.paymentTypeData=function(value){
