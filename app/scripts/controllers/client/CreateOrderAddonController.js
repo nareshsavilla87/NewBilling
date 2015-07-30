@@ -24,7 +24,9 @@
             }
             scope.orderData = webStorage.get('orderData');
             scope.orderId=webStorage.get('orderId');
-            resourceFactory.orderaddonTemplateResource.get({planId : scope.orderData.planId,chargeCode :  scope.orderData.chargeCode} , function(data) {  
+            var date;
+            resourceFactory.orderaddonTemplateResource.get({planId : scope.orderData.planId,chargeCode :  scope.orderData.chargeCode} , function(data) { 
+            	 date = data.date;
         	scope.subscriptiondatas=data.contractPeriods;
         	/* removing contracts from drop down of contract period label which have no end date..... */
         	for (var i=scope.subscriptiondatas.length -1; i>=0; i--){
@@ -89,7 +91,7 @@
 			  }*/
         	 this.formData.locale="en";
         	 this.formData.dateFormat="dd MMMM yyyy";
-        	 this.formData.startDate=dateFilter(new Date(),'dd MMMM yyyy');
+        	 this.formData.startDate=dateFilter(new Date(date),'dd MMMM yyyy');
 			 this.formData.addonServices=scope.addonServices;
 			 this.formData.planName=scope.orderData.planName;
 			 //scope.addonServices=[];

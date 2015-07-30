@@ -9,7 +9,7 @@
         scope.provisioning={};
         scope.commandData = [];
         scope.start = {};
-        scope.start.date = new Date();
+        //scope.start.date = new Date();
         var orderId=routeParams.id;
         scope.isextensionEnable=false;
         scope.clientId=routeParams.clientId;
@@ -38,7 +38,8 @@
          scope.orderAddonsDatas =[];
       
         resourceFactory.getSingleOrderResource.get({orderId: routeParams.id} , function(data) {
-           
+        	scope.start.date = new Date(data.date);
+        	
         	scope.orderPriceDatas= data.orderPriceData;
             scope.orderHistorydata=data.orderHistory;
             scope.orderData=data.orderData;
@@ -523,9 +524,11 @@
 	 
 	 $scope.reasons = [];
 	 $scope.start = {};
-	 $scope.start.date = new Date();
-	 $scope.maxDate=new Date();
+	 /*$scope.start.date = new Date();
+	 $scope.maxDate=new Date();*/
 	  resourceFactory.OrderSuspensionResource.get(function(data) {
+		  $scope.start.date = new Date(data.date);
+		  $scope.maxDate=new Date(data.date);
          $scope.reasons = data.reasons;
      });
     		
@@ -614,8 +617,9 @@
               
         	  $scope.disconnectDetails = [];
         	  $scope.start = {};
-        	  $scope.start.date = new Date();
+        	  //$scope.start.date = new Date();
               resourceFactory.OrderDisconnectResource.get(function(data) {
+            	  $scope.start.date = new Date(data.date);
                   $scope.disconnectDetails = data.disconnectDetails;
               });
         	  
