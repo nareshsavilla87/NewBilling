@@ -451,7 +451,7 @@
         		 });
         }else{
         	scope.flag = true;
-            var reqDate = dateFilter(new Date(),'dd MMMM yyyy');
+            var reqDate = dateFilter(new Date(scope.activationDate),'dd MMMM yyyy');
             this.formData.locale = $rootScope.locale.code;
             this.formData.active = true;
             this.formData.dateFormat = 'dd MMMM yyyy';

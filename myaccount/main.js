@@ -162,7 +162,7 @@ scope.$watch(function () {
  					 if(data.length == 1){
  						 $scope.isInValidVoucher = false;
  						 var expiryDate  = $filter('DateFormat')(data[0].expiryDate);
- 						 var todayDate	 = $filter('DateFormat')(new Date());
+ 						 var todayDate	 = $filter('DateFormat')(new Date(data[0].date));
  						 if (new Date(expiryDate) < new Date(todayDate)) {
  							 delete $scope.formData.voucherNumber;
  							 $scope.isDateExpired = true;
