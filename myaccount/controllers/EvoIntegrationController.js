@@ -26,6 +26,7 @@ EvoIntegrationController = function(scope, RequestSender,location, localStorageS
     	  scope.merchantId			= evoStorageData.merchantId;
     	  scope.screenName			= evoStorageData.screenName;
     	  scope.numOfItems			= evoStorageData.numOfItems;
+    	  scope.evoPrice			= parseInt(scope.price)* 100;
     	  
     	  scope.evoPG = {reviewCart:true,billingInfo:false,isFirstDisabled:true};
     	  
@@ -47,12 +48,12 @@ EvoIntegrationController = function(scope, RequestSender,location, localStorageS
 			};randomFun();
 			
 			
-	 var macDataString = "*"+clientId+"*"+scope.merchantId+"*"+scope.price+"*"+scope.currencyType; 
+	 var macDataString = "*"+clientId+"*"+scope.merchantId+"*"+scope.evoPrice+"*"+scope.currencyType; 
 	 
 	 var hashVal = CryptoJS.HmacSHA256(macDataString, scope.HMACKey);
 	 var MAC = CryptoJS.enc.Hex.stringify(hashVal);
 	 
-	 var dataString = "TransID="+clientId+"&RefNr="+scope.transactionId+"&amount="+scope.price+"&FirstName="+scope.firstname+"&" +
+	 var dataString = "TransID="+clientId+"&RefNr="+scope.transactionId+"&amount="+scope.evoPrice+"&FirstName="+scope.firstname+"&" +
 	 					"LastName="+scope.lastname+"&AddrCity="+scope.city+"&AddrState="+scope.state+"&" +
 	 					"phone="+scope.phone+"&E-Mail="+scope.email+"&Currency="+scope.currencyType+"&OrderDesc="+scope.planCode+"&" +
 	 					"Response=encrypt&MAC="+MAC+"&" +
