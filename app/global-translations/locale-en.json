@@ -354,6 +354,7 @@
   "dialog.redemption.title.message" :"Redeem",
   "button.transferclient":"Transfer client",
   "label.assignstaff":"Assign staff",
+  "error.msg.staff.duplicate.displayName":"Name already exist with this name",
   "label.closurereason":"Closure reason",
   "tab.heading.client.documents":"Documents",
   "label.select.file":"Select file",

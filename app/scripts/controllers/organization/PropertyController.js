@@ -37,9 +37,29 @@
 		  			scope.propertyCodes = paginatorService.paginate(scope.searchPropertyDetails123, 14);
 		  	};
 		
+		  	 scope.nextPageNo = function(){
+		    	  if(scope.pageNo < scope.totalPages)
+		    	   scope.pageNo +=1;
+		      };
+		      
+		      scope.previousPageNo = function(){
+		    	  if(scope.pageNo >1)
+		    	  scope.pageNo -=1;
+		      };
+		      
+		      scope.lastPageNo = function(){
+		    	  scope.pageNo =scope.totalPages;
+		      };
+		      
+		      scope.firstPageNo = function(){
+		    	  scope.pageNo =1;
+		      };
+		      
+		  	
 			scope.routeToProperty = function(id) {
 				location.path('/viewproperty/' + id);
 			};
+			 
 		  	
 		  	
 		    /**
