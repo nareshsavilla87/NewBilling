@@ -186,6 +186,7 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
 	            }else{
 	            	$scope.orderData.isPrepaid="Post Paid";
 	            }
+			  scope.orderGetDate = data.date;
 		  });
    	  }initialFunCall();
     	
@@ -228,7 +229,7 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
 			                              {'id':2,'mCodeValue':'Plan Change'},
 							        	  {'id':3,'mCodeValue':'Wrong plan'}];
      	  $scope.start = {};
-     	  $scope.start.date = new Date();
+     	  $scope.start.date = new Date(scope.orderGetDate);
      	  $scope.formData = {};
      	  
      	  $scope.approveDisconnection = function () {
