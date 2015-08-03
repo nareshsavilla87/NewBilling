@@ -75,7 +75,7 @@
         
     
         
-       if(PermissionService.showMenu('READ_ASSOCIATION')){ 
+   /*    if(PermissionService.showMenu('READ_ASSOCIATION')){ 
     	   resourceFactory.associationResource.getAssociation({clientId: routeParams.clientId,id:routeParams.id} , function(data) {
     		   scope.association = data;
     		   if(data.orderId){
@@ -84,7 +84,7 @@
     			   scope.flag=false;
     		   }
     	   });
-       }
+       }*/
         
         scope.reconnect = function (){
         	scope.errorStatus=[];scope.errorDetails=[];

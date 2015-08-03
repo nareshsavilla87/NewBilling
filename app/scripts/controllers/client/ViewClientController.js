@@ -1779,7 +1779,7 @@
 		                  $modalInstance.dismiss('cancel');
 		            };
 		        }
-		      	
+
 		      	 scope.refundAmount = function(id,amount){
 		         	scope.errorDetails = [];
 		         	scope.errorStatus = [];
@@ -1815,16 +1815,29 @@
 		 				    getDetails();
 		 				    scope.getAllFineTransactions();
 		 				},function(errorData){
+		   
 	  	                	$scope.stmError = errorData.data.errors[0].userMessageGlobalisationCode;
 	  	                	
-	  	                });         
-		 			};
-		 			
-		 			$scope.reject = function(){
-		 				$modalInstance.dismiss('cancel');
-		 			};
-		 		};
-		      	
+	  	                });
+			        	
+			        	$scope.formData.locale = "en";
+			 			$scope.accept = function(){
+			 				var depositId = getPaymentId;
+			 				resourceFactory.refundAmountResource.save({'depositId':depositId}, $scope.formData, function(data){
+			 					$modalInstance.close('delete');
+			 				    getDetails();
+			 				    scope.getAllFineTransactions();
+			 				},function(errorData){
+		  	                	$scope.stmError = errorData.data.errors[0].userMessageGlobalisationCode;
+		  	                	
+		  	                });         
+			 			};
+			 			
+			 			$scope.reject = function(){
+			 				$modalInstance.dismiss('cancel');
+			 			};
+			 		};
+		         };
 	  			//export financial csv 
 	  			scope.exportFinancialCSV = function(){
             	
