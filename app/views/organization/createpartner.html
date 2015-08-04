@@ -86,7 +86,7 @@
 						</div>
 						
 					<div class="control-group">
-						<label class="control-label" for="currency">{{'label.currency' | translate }}</label>
+						<label class="control-label" for="currency">{{'label.currency' | translate }}<span class="required">*</span></label>
 						<div class="controls">
 							<select id="currency" data-ng-model="formData.currency"
 								data-ng-options="currencydata.code as currencydata.displayLabel for currencydata in currencydatas">

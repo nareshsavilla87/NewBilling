@@ -247,7 +247,7 @@
 	  "label.ticket.description"			: "Description" ,
 	  "label.ticket.tooltip.description"	: "Please provide as much detail as possible so we can best assist you." ,
 	  "label.ticket.add.newticket"			: "Add New Ticket",
-	  
+	  "label.ticket.file"					:  "Attachments",
 	  
 	  "table.header.ticket.id"				: "Id",
 	  "table.header.ticket.priority"		: "Priority",
