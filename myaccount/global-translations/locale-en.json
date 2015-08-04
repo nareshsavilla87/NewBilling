@@ -388,6 +388,7 @@
 	 "#EvoPaymentGatewayResources" :"------------------------------------",
 	 "label.evo.review.cart"		 : "Review Cart",
 	 "label.evo.billing.info"		 : "Billing Information",
+	 "label.evo.payment.method"		 : "Payment Method",
 	 "label.evo.description"	 	 : "Description",
 	 "label.evo.unit.price"	 		 : "Unit Price",
 	 "label.evo.quantity"	 		 : "Quantity",
@@ -1004,6 +1005,19 @@
 "btn.change.pack"									: "Change Pack",
 "btn.topup.pack"									: "Top Up Pack",
 "label.uncheck"										: "Uncheck",
+"label.addons"										: "AddOns",
+"label.header.addons"								: "Add Ons",
+"label.filter.servicename"							: "Filter by service name",
+"label.order.chargecode"							: "Charge Code",
+
+"validation.msg.addons.planId.cannot.be.blank"			: "Select Plan from the List",
+"validation.msg.addons.chargeCode.cannot.be.blank"		: "Select charge code",
+"validation.msg.addons.priceRegionId.cannot.be.blank"	: "Select price region",
+"validation.msg.addons.addons.not.greater.than.zero"	: "Add at-least one service from category's",
+"validation.msg.addons.null.not.greater.than.zero"		: "Select at-least one service",
+"validation.msg.addons.price.cannot.be.blank"			: "Price cannot be blank",
+"validation.msg.addons.contractId.cannot.be.blank"		: "Contract period cannot be blank",
+"error.msg.addon.enddate.should.lessthan.order.enddate"	: "Add-ons end date should be less than order end-date", 
 
 "error.msg.paypal.recurring.notpossible":"Recurring Not Possible to this Contract Period"
 
