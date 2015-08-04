@@ -71,7 +71,7 @@
 	         <a ng-show="config['topup/renewal'] == 'true'&&((orderData.isPrepaid == 'Y' && (orderData.status != 'TERMINATED') && orderData.status != 'PENDING')&&PermissionService.showMenu('RENEWAL_ORDER'))"  href="" ng-click="orderRenew(orderPriceDatas[0].orderId)"class="btn btn-primary"><i class="icon-arrow-up icon-white"></i>TopUp</a>
 	        <!--  <a ng-show="orderData.status == 'ACTIVE'" ng-click="CommandCenter(orderPriceDatas[0].orderId)" class="btn btn-primary"><i class=" icon-repeat icon-white"></i> Command Center</a> -->
 	         <a ng-show="(orderData.status == 'PENDING')&&PermissionService.showMenu('DELETE_ORDER')" ng-click="cancelOrder()" class="btn btn-primary"><i class="icon-remove-circle icon-white"></i> Cancel Order</a>
-	         <a ng-show ="config.pairing=='true'&&((association.orderId == null)&&PermissionService.showMenu('CREATE_ASSOCIATION'))"  href="#/association/{{clientId}}/{{orderPriceDatas[0].orderId}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Pairing</a>
+	         <a ng-show ="config.pairing=='true'&&(!serviceMapEnabled&&PermissionService.showMenu('CREATE_ASSOCIATION'))"  href="#/association/{{clientId}}/{{orderPriceDatas[0].orderId}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Pairing</a>
 	         <a ng-show="config.addons=='true'&&((orderData.status == 'ACTIVE')&&PermissionService.showMenu('CREATE_ORDERADDONS'))"  href="#/orderaddons/" class="btn btn-primary"><i class="icon-shopping-cart fa-spin icon-white"></i> AddOns</a>
 		     <a ng-show ="(orderData.status == 'DISCONNECTED' && association.orderId != null)&&PermissionService.showMenu('DEASSOCIATION_ASSOCIATION')" ng-click="deAssociation()" class="btn btn-primary"><i class="icon-repeat icon-white"></i> Un Pairing</a>
 		     <a ng-show ="config.deviceswap=='true'&&((orderData.status == 'ACTIVE')&&PermissionService.showMenu('SWAPPING_HARDWARESWAPPING')&&association.saleId)" href="#/hardwareswap/{{association.saleId}}/{{clientId}}/{{association.orderId}}" class="btn btn-primary"><i class="icon-move"></i>Device Swap</a>
@@ -175,15 +175,19 @@
                 			<th>{{ 'table.order.serviceType' | translate }}</th>
                 			<th>{{ 'table.order.serviceDescription' | translate }}</th>
                 			<th>{{ 'table.order.pairing' | translate }}</th>
+                			<th></th>
             			</tr>
         			</thead>
         		<tbody>
-            		<tr ng-repeat="orderServicesData in orderServicesData">
+            		<tr data-ng-repeat="orderServicesData in orderServicesData">
                 		<td>{{orderServicesData.id}}</td>            
                 		<td>{{orderServicesData.servicecode}}</td>        
                 		<td>{{orderServicesData.serviceType}}</td>
                 		<td>{{orderServicesData.serviceDescription}}</td>
                 		<td>{{orderServicesData.serialNo}}</td>
+                		<td data-ng-show="(config.pairing=='true'&&serviceMapEnabled)&&(isServiceLevelMap&&orderServicesData.serialNo==null)">
+                		<a data-ng-show="PermissionService.showMenu('CREATE_ASSOCIATION')" data-ng-click="serviceLevelPairing(orderServicesData.orderId,orderServicesData.serviceId)" class="btn btn-primary">
+                		<i class="icon-plus icon-white"></i>Pairing</a></td>
             		</tr>
         	</tbody>
     	</table>
@@ -677,4 +681,32 @@
                         <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
                     </div>
 </script>
+
+<script type="text/ng-template" id="ApprovePairing.html">
+		
+	<div class="modal-header silver">
+        <h3 class="bolder">{{'label.createassociation' | translate}}</h3>
+    </div>
+    <div class="modal-body">
+       	<fieldset>
+			<div class="error" ng-show="errorStatus || errorDetails">
+				<label>{{'label.contract.error' | translate}}</label>
+				<label ng-show="errorStatus">{{errorStatus}}</label>
+				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate : error.args}}</label>
+	    </div>
+    <div class="control-group">
+            <label class="control-label" for="provisionNum">{{'label.association.serialno' | translate}}</label>
+            <div class="controls">
+              	<select id="serialNo" data-ng-model="formData.provisionNum"
+						data-ng-options="hardwareData.serialNum as hardwareData.serialNum for hardwareData in hardwareDatas"></select>
+            </div>
+        </div>
+    </fieldset>
+   </div>
+  <div class="modal-footer">
+        <button id="cancel" class="btn btn-warning" data-ng-click="cancel()">{{'button.cancel' | translate}}</button>
+     	<button id="submit" class="btn btn-primary" data-ng-click="approve()" data-ng-disabled="!formData.provisionNum">{{'label.confirm' | translate}}</button>
+  </div>
+</script>
+
 </div>

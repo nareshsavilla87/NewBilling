@@ -15,6 +15,8 @@
         scope.clientId=routeParams.clientId;
         scope.walletConfig = webStorage.get('is-wallet-enable');
         scope.config = webStorage.get("client_configuration").orderActions;
+        scope.isServiceLevelMap = webStorage.get("service-device-mapping");
+        scope.serviceMapEnabled=false;
         
          var clientData = webStorage.get('clientData');
          webStorage.add("orderId",routeParams.id);
@@ -51,6 +53,13 @@
             scope.formData.flag=data.flag;
             scope.orderServicesData=data.orderServices;
             scope.orderDiscountDatas=data.orderDiscountDatas;
+            for (var i in scope.orderServicesData){
+            	if(scope.orderServicesData[i].serialNo!=null){
+            		scope.serviceMapEnabled=true;
+            		break;
+            	}
+            }
+            
           
       
 	    if(data.orderData.isPrepaid == 'Y'){
@@ -85,6 +94,52 @@
     		   }
     	   });
        }*/
+        
+        scope.serviceLevelPairing = function (orderId,serviceId){
+          scope.errorStatus=[];scope.errorDetails=[];
+       	 $modal.open({
+                templateUrl: 'ApprovePairing.html',
+                controller: ApprovePairing,
+                resolve:{
+                	orderId : function(){
+                	 return orderId;
+                	},
+                	serviceId : function(){
+                		return serviceId;
+                		}
+                	}
+            });
+        	
+        };
+        
+      	function  ApprovePairing($scope, $modalInstance,orderId,serviceId) {
+      		 $scope.formData = {};
+      		 resourceFactory.associationTemplate.get({clientId: scope.clientId} , function(data) {  
+             	$scope.hardwareDatas=data.hardwareData;
+             	$scope.planData=data.planData;
+             });
+      		
+      		  $scope.approve = function () {
+      			 $scope.formData.orderId=orderId;
+      			 $scope.formData.serviceId=serviceId;
+                for ( var j in $scope.hardwareDatas) {																			
+     				 if ($scope.hardwareDatas[j].serialNum ==  $scope.formData.provisionNum ) {											
+     					 $scope.formData.allocationType= $scope.hardwareDatas[j].allocationType;
+     				}
+     			}
+              	resourceFactory.associationSaveResource.save({clientId: scope.clientId} ,$scope.formData, function(data) {
+                    route.reload();
+                    $modalInstance.dismiss('delete');
+              	},function(errData){
+              		console.log(errData);
+              		scope.errorDetails=errData;
+              	});
+      		};
+            $scope.cancel = function () {
+                  $modalInstance.dismiss('cancel');
+            };
+        }
+        
         
         scope.reconnect = function (){
         	scope.errorStatus=[];scope.errorDetails=[];
