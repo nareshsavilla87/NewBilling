@@ -26,9 +26,13 @@ EvoIntegrationController = function(scope, RequestSender,location, localStorageS
     	  scope.merchantId			= evoStorageData.merchantId;
     	  scope.screenName			= evoStorageData.screenName;
     	  scope.numOfItems			= evoStorageData.numOfItems;
-    	  scope.evoPrice			= parseInt(scope.price)* 100;
     	  
-    	  scope.evoPG = {reviewCart:true,billingInfo:false,isFirstDisabled:true};
+    	  scope.evoPG = {reviewCart:true,billingInfo:false,paymentInfo:false,isFirstDisabled:true};
+    	  
+   RequestSender.evoPaymentResource.save({"amount" : scope.price},function(data){
+	   scope.evoPrice = data.map.amount;
+    		
+    	  
     	  
     	 var evoData = {screenName:scope.screenName,planId:evoStorageData.planId,priceId:evoStorageData.priceId,price:evoStorageData.price,
 						clientId:clientData.id,email:scope.email};
@@ -73,13 +77,17 @@ EvoIntegrationController = function(scope, RequestSender,location, localStorageS
 	 RequestSender.evoPaymentGatewayResource.save({method:'encrypt'},blowfishEncData,function(data){
 		 scope.data = data.map.blowfishData;
 		 $timeout(function() {
-			  //$("#submitEvoIntegration").click();
+			  $("#submitEvoIntegration").click();
 		    }, 1000);
 	 });
-	 
-	 scope.submitPaymentMethodFun = function(){
+    });
+   scope.blockUI = true;
+		$timeout(function() {
+	  scope.blockUI = false;
+   }, 4000);
+	 /*scope.submitPaymentMethodFun = function(){
 		 $("#submitEvoIntegration").click();
-	 };
+	 };*/
 			
     };
     
