@@ -78,7 +78,7 @@
 		 <br/>
 </div>
 <script type="text/ng-template" id="vieworder.html"> 
-  <div class="modal43" style="min-width:700px;">	
+  <div class="modal43" style="width:700px;">	
 	<div class="modal-header silver">
         <h3 class="bolder">{{'label.service.info' | translate}}
 			<a data-ng-show="(orderData.status == 'ACTIVE')||(orderData.status == 'SUSPENDED')" 
@@ -87,21 +87,11 @@
 		</h3>
     </div>
     <div class="modal-body">
-		<table class="table margintop10">
-		 <thead>
-  		   <tr class="graybg drakgraybg">
-             <th style="padding-left:20px;">{{'table.header.order.servicecode'|translate}}</th>
-             <th>{{'table.header.order.servicedescription'|translate}}</th>
-             <th>{{'table.header.order.servicetype'|translate}}</th>
-        	</tr>
-		 </thead>
-		 <tbody>
-			<tr data-ng-repeat="orderService in orderServices  | filter:filterText" >                 
-   				<td style="font-weight: inherit;color: #555555;padding-left:20px;">{{orderService.servicecode}}</td>
-   				<td>{{orderService.serviceDescription}}</td>
-   				<td>{{orderService.serviceType}}</td>
+		<table class="margintop10 fullwidth">
+			<tr data-ng-repeat="orderServiceParent in orderServices"">                 
+   			 <td style="padding :0 0 10px 20px;" data-ng-repeat="orderServiceChild in orderServiceParent">
+			   <img ng-src="{{orderServiceChild.image}}" alt="No image" width="50"/></td>
 			</tr>
-		</tbody>
  	   </table>
      </div>
      <div class="modal-footer">
@@ -110,24 +100,16 @@
 </div>
 </script>
 <script type="text/ng-template" id="viewplanservice.html"> 
-  <div class="modal43" style="min-width:700px;">	
+  <div class="modal43" style="width:700px;">	
 	<div class="modal-header silver">
         <h3 class="bolder">{{'label.service.info' | translate}}</h3>
     </div>
     <div class="modal-body">
-		<table class="table margintop10">
-		 <thead>
-  		   <tr class="graybg drakgraybg">
-             <th style="padding-left:20px;">{{'table.header.order.servicecode'|translate}}</th>
-             <th>{{'table.header.order.servicedescription'|translate}}</th>
-        	</tr>
-		 </thead>
-		 <tbody>
-			<tr data-ng-repeat="planservice in planServices  | filter:filterText" >                 
-   				<td style="font-weight: inherit;color: #555555;padding-left:20px;">{{planservice.serviceCode}}</td>
-   				<td>{{planservice.serviceDescription}}</td>
+		<table class="margintop10 fullwidth">
+			<tr data-ng-repeat="planserviceParent in planServices">                 
+   				<td style="padding :0 0 10px 20px;" data-ng-repeat="planserviceChild in planserviceParent">
+					<img ng-src="{{planserviceChild.image}}" alt="No image" width="50"/></td>
 			</tr>
-		</tbody>
  	   </table>
      </div>
      <div class="modal-footer">

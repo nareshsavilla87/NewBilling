@@ -48,6 +48,11 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
 		  }
 		 for(var j in totalOrdersData){
 				  totalOrdersData[j].autoRenew = isAutoRenewConfig;
+				  scope.autoRenewBtn = isAutoRenewConfig;
+				  for(var k in totalOrdersData[j].pricingData){
+					  totalOrdersData[j].pricingData[k].isCheck = 'no';
+					  totalOrdersData[j].pricingData[k].planId = totalOrdersData[j].planId;
+				  }
 				  if(scope.planType == 'prepaid')
 				  if(totalOrdersData[j].isPrepaid == 'Y')scope.plansData.push(totalOrdersData[j]); 
 				  if(scope.planType == 'postpaid')
@@ -153,10 +158,27 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
     		 if(scope.orderDisconnect){route.reload();}
     	 });
      };
+     
+     function twoDimensionalArray(array, elementsPerSubArray) {
+		    var resultArray = [], i, k;
+
+		    for (i = 0, k = -1; i < array.length; i++) {
+		        if (i % elementsPerSubArray === 0) {
+		            k++;
+		            resultArray[k] = [];
+		        }
+
+		        resultArray[k].push(array[i]);
+		    }
+
+		    return resultArray;
+		}
+     
     function vieworderPopupController($scope, $modalInstance,$log,orderId) {
    	  function initialFunCall(){
     	RequestSender.getSingleOrderResource.get({orderId: orderId},function(data){
-    		$scope.orderServices = data.orderServices;
+    		$scope.orderServices = twoDimensionalArray(data.orderServices, 3);
+    		//$scope.orderServices = data.orderServices;
     		$scope.orderData = data.orderData;
     		$scope.orderPricingDatas = data.orderPriceData;
 			  if(data.orderData.isPrepaid == 'Y'){
@@ -191,7 +213,8 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
      
      function viewPlanServicesPopupController($scope, $modalInstance,$log,planId) {
     	RequestSender.planServicesResource.get({planId: planId},function(data){
-    			 $scope.planServices = data.selectedServices;
+    			 //$scope.planServices = data.selectedServices;
+    			 $scope.planServices = twoDimensionalArray(data.selectedServices, 3);
     		 });
     	 
     	 $scope.close = function () {$modalInstance.dismiss('cancel');};
