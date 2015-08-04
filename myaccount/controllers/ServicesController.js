@@ -159,6 +159,20 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
     	 });
      };
      
+     scope.createAddOn = function(planId,orderId){
+    	 
+		 var modalInstance = $modal.open({
+                templateUrl: 'createaddons.html',
+                controller: CreateAddonsPopupController,
+                resolve:{
+                	resoures : function(){
+                		return {planId:planId,orderId:orderId};
+                	}
+                }
+            });
+		 modalInstance.result.then(function () {route.reload();}, function () {});
+     };
+     
      function twoDimensionalArray(array, elementsPerSubArray) {
 		    var resultArray = [], i, k;
 
@@ -263,6 +277,69 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
            };
            
        };
+       
+       function CreateAddonsPopupController($scope, $modalInstance,$log,resoures) {
+    	   
+    	   $scope.subscriptiondatas=[];
+           $scope.addonsPriceDatas=[];
+       	   $scope.addonServices=[];
+       	   $scope.formData = {};
+    	   
+    	  RequestSender.getSingleOrderResource.get({orderId: resoures.orderId},function(orderData){
+    		  $scope.orderData = orderData.orderData;
+       		RequestSender.orderaddonTemplateResource.get({planId : resoures.planId,chargeCode :  orderData.orderPriceData[0].billingFrequency} , function(data) {
+       			$scope.subscriptiondatas=data.contractPeriods;
+            	$scope.addonsPriceDatas=data.addonsPriceDatas;
+            	$scope.serviceCategoryDatas = [];
+                angular.forEach($scope.addonsPriceDatas,function(value,key){
+                	$scope.serviceCategoryDatas.push({serviceCode:value.serviceCode});
+                });
+                $scope.serviceCategoryDatas = _.uniq($scope.serviceCategoryDatas,function(item){
+                 return item.serviceCode;
+                });
+       		});
+   		  });
+    	  
+    	  $scope.isSelected = function(id,isActive,price,chargeCodeId,index){
+          	if(isActive =="Y"){
+          		$scope.addonServices.push({
+     				  "serviceId":id,
+     				  "locale":rootScope.localeLangCode,
+     				  "chargeCodeId":chargeCodeId,
+     				  "price":price
+     				 
+     			  });
+  				
+          	}else{
+          		
+          		angular.forEach($scope.addonServices,function(value,key){
+          			if(value.serviceId == id && value.chargeCodeId == chargeCodeId){
+          				$scope.addonServices.splice(key, 1);
+          			}
+          		});
+  			  }
+  			  
+  		  };
+    	   
+  		 $scope.save = function(){
+  			
+  			$scope.formData.locale=rootScope.localeLangCode;
+  			$scope.formData.dateFormat="dd MMMM yyyy";
+  			$scope.formData.startDate=dateFilter(new Date(),'dd MMMM yyyy');
+  			$scope.formData.addonServices=$scope.addonServices;
+  			$scope.formData.planName=$scope.orderData.planCode;
+  			
+			 RequestSender.orderaddonResource.save({orderId: $scope.orderData.id},$scope.formData,function(data){
+				 $modalInstance.close('delete');
+             },function(orderErrorData){
+            	 $scope.errorDetails = rootScope.errorDetails;
+            	 rootScope.errorDetails = [];
+  	        });
+  		 };
+       
+       	 $scope.close = function () {$modalInstance.dismiss('cancel');};
+       	 
+        };
        
        
 	       
