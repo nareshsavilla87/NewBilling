@@ -1008,6 +1008,13 @@
 "label.header.addons"								: "Bæta ons",
 "label.filter.servicename"							: "Sía eftir nafni þjónustu",
 "label.order.chargecode"							: "Hleðsla Kóði",
+"table.order.addons.service"						: "þjónusta",
+"table.order.addons.startdate"						: "upphafsdagur",
+"table.order.addons.endDate"						: "endir Dagsetning",
+"table.order.addons.status"							: "staða",
+"table.order.addons.actions"						: "aðgerðum",
+"label.header.create.addons"						: "Búa bæta ons",
+"label.header.disconnect.addons"					: "Aftengja bæta ons",
 
 "validation.msg.addons.planId.cannot.be.blank"			: "Veldu Plan úr listanum",
 "validation.msg.addons.chargeCode.cannot.be.blank"		: "Veldu númer ákæra",
@@ -1017,6 +1024,7 @@
 "validation.msg.addons.price.cannot.be.blank"			: "Verð má ekki vera auður",
 "validation.msg.addons.contractId.cannot.be.blank"		: "Samningstíminn má ekki vera autt",
 "error.msg.addon.enddate.should.lessthan.order.enddate"	: "Bæta við-ons lokadag ætti að vera minna en röð lok dags", 
+"error.msg.select.addon.period.more.than"				: "samningur gildir ekki fyrir þennan Kóði.", 
 
 "error.msg.paypal.recurring.notpossible":"Endurtekinn ekki hægt að þessu samningstímans"
 

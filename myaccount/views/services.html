@@ -29,7 +29,7 @@
 					</div>
 				</div>
 		 		<h1 style="line-height: 25px;">{{order.planCode}}
-		 		<a data-ng-click="createAddOn(order.pdid,order.id)" style="color:#fff;text-transform: lowercase;"> ({{'label.addons' | translate}}) </a></h1>
+		 		<a data-ng-click="viewAddOns(order.id)" style="color:#fff;text-transform: lowercase;"> ({{'label.addons' | translate}}) </a></h1>
 		 		<ul> <li>{{'table.header.contractperoid'|translate}} : <span>{{order.contractPeriod}}</span>
 						<a data-ng-click="viewOrder(order.id)" style="color:blue;"> ({{'label.view' | translate}}) </a></li>
 					<li><span style="padding: 0px; margin:0px;">{{'table.header.price'|translate}} : {{order.price }}({{currencyCode}})</span></li>
@@ -149,10 +149,42 @@
      	<button id="submit" class="btn btn-primary" ng-click="approveDisconnection()" ng-disabled="flagOrderDisconnect">{{'label.confirm' | translate}}</button>
       </div>
 </script>
+<script type="text/ng-template" id="viewaddons.html"> 
+ <div class="modal43" style="width:700px;">
+	<div class="modal-header silver">
+        <h3 class="bolder">{{'label.header.addons' | translate}}
+			<a data-ng-click="createAddOn()" class="btn btn-primary pull-right" >
+    	 		<i class="icon-plus-sign icon-white"></i>{{'label.header.create.addons' | translate}}</a>
+		</h3>
+    </div>
+    <div class="modal-body">
+	  <table class="table">
+        <tr class="graybg">
+          <th>{{ 'table.order.addons.service' | translate }}</th>
+          <th>{{ 'table.order.addons.startdate' | translate }}</th>
+          <th>{{ 'table.order.addons.endDate' | translate }}</th>
+          <th>{{ 'table.order.addons.status' | translate }}</th>
+          <th>{{ 'table.order.addons.actions' | translate }}</th>
+        </tr>
+        <tr ng-repeat="orderAddonsData in orderAddonsDatas">
+          <td>{{orderAddonsData.serviceCode}}</td>
+          <td>{{orderAddonsData.startDate | DateFormat}}</td>
+          <td>{{orderAddonsData.endDate | DateFormat}}</td>            
+          <td>{{orderAddonsData.status}}</td> 
+          <td> <a data-ng-click="disConnectAddon(orderAddonsData.id)" data-popover="Disconnect" 
+                    data-popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a></td>       
+        </tr>
+       </table>
+     </div>
+     <div class="modal-footer">
+     	<button class="btn btn-primary" ng-click="close()" >{{'btn.close' | translate}}</button>
+     </div>
+  </div>
+</script>
 <script type="text/ng-template" id="createaddons.html">
 		
 	<div class="modal-header silver">
-        <h3 class="bolder">{{'label.header.addons' | translate}}</h3>
+        <h3 class="bolder">{{'label.header.create.addons' | translate}}</h3>
     </div>
     <div class="modal-body" style="height:300px;">
 	    <div class="error" data-ng-show="errorStatus || errorDetails">
@@ -198,5 +230,22 @@
         <button id="cancel" class="btn" data-ng-click="close()">{{'btn.cancel' | translate}}</button>
      	<button id="submit" class="btn btn-primary" data-ng-click="save()">{{'btn.save' | translate}}</button>
       </div>
+</script>
+<script type="text/ng-template" id="disconnectaddon.html">
+         <div class="modal-header silver">
+             <h3 class="bolder">{{'label.header.disconnect.addons' | translate}}</h3>
+         </div>
+         <div class="modal-body modal-small">
+			<div class="error" data-ng-show="errorStatus || errorDetails">
+		  		<label>{{'label.contract.error' | translate}}</label>
+		  		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		  		<label data-ng-hide="errorStatus"data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    	</div>
+            <h4>{{'label.confirm.msg' | translate}}</h4>
+         </div>
+         <div class="modal-footer">
+             <button class="btn" ng-click="close()">{{'btn.cancel' | translate}}</button>
+             <button class="btn btn-primary" ng-click="save()">{{'label.confirm' | translate}}</button>
+         </div>
 </script>
 </div>
