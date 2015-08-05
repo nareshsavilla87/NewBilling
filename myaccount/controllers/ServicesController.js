@@ -159,18 +159,20 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
     	 });
      };
      
-     scope.createAddOn = function(planId,orderId){
+     scope.viewAddOns  = function(orderId){
+    	 var modalInstance = $modal.open({
+    		 templateUrl : 'viewaddons.html',
+    		 controller : ViewAddOnsPopupController,
+    		 resolve:{
+    			 orderId : function(){
+    				 return orderId;
+    			 }
+    		 }
+    	 });
     	 
-		 var modalInstance = $modal.open({
-                templateUrl: 'createaddons.html',
-                controller: CreateAddonsPopupController,
-                resolve:{
-                	resoures : function(){
-                		return {planId:planId,orderId:orderId};
-                	}
-                }
-            });
-		 modalInstance.result.then(function () {route.reload();}, function () {});
+    	 modalInstance.result.then(function () {}, function () {
+    		 if(scope.orderDisconnect){route.reload();}
+    	 });
      };
      
      function twoDimensionalArray(array, elementsPerSubArray) {
@@ -278,16 +280,56 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
            
        };
        
-       function CreateAddonsPopupController($scope, $modalInstance,$log,resoures) {
+       function ViewAddOnsPopupController($scope, $modalInstance,$log,orderId) {
+     	   
+      	  RequestSender.getSingleOrderResource.get({orderId: orderId},function(orderData){
+      		  $scope.orderAddonsDatas = orderData.orderAddonsDatas;
+      		  $scope.planId = orderData.orderData.pdid;
+     	  });
+      	  
+      	  $scope.createAddOn = function(){
+          	 
+      		$modalInstance.dismiss('cancel');
+      		
+      		 var modalInstance = $modal.open({
+                      templateUrl: 'createaddons.html',
+                      controller: CreateAddonsPopupController,
+                      resolve:{
+                    	  orderId : function(){
+                      		return orderId;
+                      	}
+                      }
+                  });
+           };
+           
+           $scope.disConnectAddon = function(addonId){
+        	   
+        	   var modalInstance = $modal.open({
+                   templateUrl: 'disconnectaddon.html',
+                   controller: DisconnectAddonsPopupController,
+                   resolve:{
+                	   addonId : function(){
+                   		return addonId;
+                   	}
+                   }
+               });
+           };
+           
+           	$scope.close = function () {$modalInstance.dismiss('cancel');};
+         	 
+          };
+       
+       function CreateAddonsPopupController($scope, $modalInstance,$log,orderId) {
     	   
     	   $scope.subscriptiondatas=[];
            $scope.addonsPriceDatas=[];
        	   $scope.addonServices=[];
        	   $scope.formData = {};
     	   
-    	  RequestSender.getSingleOrderResource.get({orderId: resoures.orderId},function(orderData){
+    	  RequestSender.getSingleOrderResource.get({orderId: orderId},function(orderData){
     		  $scope.orderData = orderData.orderData;
-       		RequestSender.orderaddonTemplateResource.get({planId : resoures.planId,chargeCode :  orderData.orderPriceData[0].billingFrequency} , function(data) {
+    		  $scope.planId = orderData.orderData.pdid;
+       		RequestSender.orderaddonTemplateResource.get({planId : $scope.planId,chargeCode :  orderData.orderPriceData[0].billingFrequency} , function(data) {
        			$scope.subscriptiondatas=data.contractPeriods;
             	$scope.addonsPriceDatas=data.addonsPriceDatas;
             	$scope.serviceCategoryDatas = [];
@@ -331,16 +373,34 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
   			
 			 RequestSender.orderaddonResource.save({orderId: $scope.orderData.id},$scope.formData,function(data){
 				 $modalInstance.close('delete');
+				 route.reload();
              },function(orderErrorData){
             	 $scope.errorDetails = rootScope.errorDetails;
-            	 rootScope.errorDetails = [];
+            	 $scope.errorStatus = rootScope.errorStatus;
+            	 rootScope.errorDetails = [];rootScope.errorStatus = [];
   	        });
   		 };
        
        	 $scope.close = function () {$modalInstance.dismiss('cancel');};
        	 
         };
-       
+        
+        function DisconnectAddonsPopupController($scope, $modalInstance,$log,addonId) {
+        	
+      	   $scope.save = function(){
+        	  RequestSender.orderaddonResource.remove({orderId:addonId},{},function(data){
+        		  $modalInstance.close('delete');
+        		  route.reload();
+        	  },function(errorData){
+            	 $scope.errorDetails = rootScope.errorDetails;
+            	 $scope.errorStatus = rootScope.errorStatus;
+            	 rootScope.errorDetails = [];rootScope.errorStatus = [];
+  	          });
+      	   };
+        	  
+             $scope.close = function () {$modalInstance.dismiss('cancel');};
+           	 
+          };
        
 	       
  };
