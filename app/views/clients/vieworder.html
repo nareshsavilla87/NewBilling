@@ -188,6 +188,7 @@
                 		<td data-ng-show="(config.pairing=='true'&&serviceMapEnabled)&&(isServiceLevelMap&&orderServicesData.serialNo==null)">
                 		<a data-ng-show="PermissionService.showMenu('CREATE_ASSOCIATION')" data-ng-click="serviceLevelPairing(orderServicesData.orderId,orderServicesData.serviceId)" class="btn btn-primary">
                 		<i class="icon-plus icon-white"></i>Pairing</a></td>
+                		<td data-ng-hide="(config.pairing=='true'&&serviceMapEnabled)&&(isServiceLevelMap&&orderServicesData.serialNo==null)"></td>
             		</tr>
         	</tbody>
     	</table>
