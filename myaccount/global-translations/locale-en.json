@@ -1009,6 +1009,13 @@
 "label.header.addons"								: "Add Ons",
 "label.filter.servicename"							: "Filter by service name",
 "label.order.chargecode"							: "Charge Code",
+"table.order.addons.service"						: "Service",
+"table.order.addons.startdate"						: "Start Date",
+"table.order.addons.endDate"						: "End Date",
+"table.order.addons.status"							: "Status",
+"table.order.addons.actions"						: "Actions",
+"label.header.create.addons"						: "Create Add Ons",
+"label.header.disconnect.addons"					: "Disconnect Add Ons",
 
 "validation.msg.addons.planId.cannot.be.blank"			: "Select Plan from the List",
 "validation.msg.addons.chargeCode.cannot.be.blank"		: "Select charge code",
@@ -1018,6 +1025,7 @@
 "validation.msg.addons.price.cannot.be.blank"			: "Price cannot be blank",
 "validation.msg.addons.contractId.cannot.be.blank"		: "Contract period cannot be blank",
 "error.msg.addon.enddate.should.lessthan.order.enddate"	: "Add-ons end date should be less than order end-date", 
+"error.msg.select.addon.period.more.than"				: "contract is not applicable for this chargecode.", 
 
 "error.msg.paypal.recurring.notpossible":"Recurring Not Possible to this Contract Period"
 
