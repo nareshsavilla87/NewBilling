@@ -159,6 +159,22 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
     	 });
      };
      
+     scope.viewAddOns  = function(orderId){
+    	 var modalInstance = $modal.open({
+    		 templateUrl : 'viewaddons.html',
+    		 controller : ViewAddOnsPopupController,
+    		 resolve:{
+    			 orderId : function(){
+    				 return orderId;
+    			 }
+    		 }
+    	 });
+    	 
+    	 modalInstance.result.then(function () {}, function () {
+    		 if(scope.orderDisconnect){route.reload();}
+    	 });
+     };
+     
      function twoDimensionalArray(array, elementsPerSubArray) {
 		    var resultArray = [], i, k;
 
@@ -264,6 +280,127 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
            
        };
        
+       function ViewAddOnsPopupController($scope, $modalInstance,$log,orderId) {
+     	   
+      	  RequestSender.getSingleOrderResource.get({orderId: orderId},function(orderData){
+      		  $scope.orderAddonsDatas = orderData.orderAddonsDatas;
+      		  $scope.planId = orderData.orderData.pdid;
+     	  });
+      	  
+      	  $scope.createAddOn = function(){
+          	 
+      		$modalInstance.dismiss('cancel');
+      		
+      		 var modalInstance = $modal.open({
+                      templateUrl: 'createaddons.html',
+                      controller: CreateAddonsPopupController,
+                      resolve:{
+                    	  orderId : function(){
+                      		return orderId;
+                      	}
+                      }
+                  });
+           };
+           
+           $scope.disConnectAddon = function(addonId){
+        	   
+        	   var modalInstance = $modal.open({
+                   templateUrl: 'disconnectaddon.html',
+                   controller: DisconnectAddonsPopupController,
+                   resolve:{
+                	   addonId : function(){
+                   		return addonId;
+                   	}
+                   }
+               });
+           };
+           
+           	$scope.close = function () {$modalInstance.dismiss('cancel');};
+         	 
+          };
+       
+       function CreateAddonsPopupController($scope, $modalInstance,$log,orderId) {
+    	   
+    	   $scope.subscriptiondatas=[];
+           $scope.addonsPriceDatas=[];
+       	   $scope.addonServices=[];
+       	   $scope.formData = {};
+    	   
+    	  RequestSender.getSingleOrderResource.get({orderId: orderId},function(orderData){
+    		  $scope.orderData = orderData.orderData;
+    		  $scope.planId = orderData.orderData.pdid;
+       		RequestSender.orderaddonTemplateResource.get({planId : $scope.planId,chargeCode :  orderData.orderPriceData[0].billingFrequency} , function(data) {
+       			$scope.subscriptiondatas=data.contractPeriods;
+            	$scope.addonsPriceDatas=data.addonsPriceDatas;
+            	$scope.serviceCategoryDatas = [];
+                angular.forEach($scope.addonsPriceDatas,function(value,key){
+                	$scope.serviceCategoryDatas.push({serviceCode:value.serviceCode});
+                });
+                $scope.serviceCategoryDatas = _.uniq($scope.serviceCategoryDatas,function(item){
+                 return item.serviceCode;
+                });
+       		});
+   		  });
+    	  
+    	  $scope.isSelected = function(id,isActive,price,chargeCodeId,index){
+          	if(isActive =="Y"){
+          		$scope.addonServices.push({
+     				  "serviceId":id,
+     				  "locale":rootScope.localeLangCode,
+     				  "chargeCodeId":chargeCodeId,
+     				  "price":price
+     				 
+     			  });
+  				
+          	}else{
+          		
+          		angular.forEach($scope.addonServices,function(value,key){
+          			if(value.serviceId == id && value.chargeCodeId == chargeCodeId){
+          				$scope.addonServices.splice(key, 1);
+          			}
+          		});
+  			  }
+  			  
+  		  };
+    	   
+  		 $scope.save = function(){
+  			
+  			$scope.formData.locale=rootScope.localeLangCode;
+  			$scope.formData.dateFormat="dd MMMM yyyy";
+  			$scope.formData.startDate=dateFilter(new Date(),'dd MMMM yyyy');
+  			$scope.formData.addonServices=$scope.addonServices;
+  			$scope.formData.planName=$scope.orderData.planCode;
+  			
+			 RequestSender.orderaddonResource.save({orderId: $scope.orderData.id},$scope.formData,function(data){
+				 $modalInstance.close('delete');
+				 route.reload();
+             },function(orderErrorData){
+            	 $scope.errorDetails = rootScope.errorDetails;
+            	 $scope.errorStatus = rootScope.errorStatus;
+            	 rootScope.errorDetails = [];rootScope.errorStatus = [];
+  	        });
+  		 };
+       
+       	 $scope.close = function () {$modalInstance.dismiss('cancel');};
+       	 
+        };
+        
+        function DisconnectAddonsPopupController($scope, $modalInstance,$log,addonId) {
+        	
+      	   $scope.save = function(){
+        	  RequestSender.orderaddonResource.remove({orderId:addonId},{},function(data){
+        		  $modalInstance.close('delete');
+        		  route.reload();
+        	  },function(errorData){
+            	 $scope.errorDetails = rootScope.errorDetails;
+            	 $scope.errorStatus = rootScope.errorStatus;
+            	 rootScope.errorDetails = [];rootScope.errorStatus = [];
+  	          });
+      	   };
+        	  
+             $scope.close = function () {$modalInstance.dismiss('cancel');};
+           	 
+          };
        
 	       
  };
