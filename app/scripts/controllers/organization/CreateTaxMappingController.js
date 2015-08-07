@@ -7,13 +7,15 @@
         scope.date = {};
         scope.start = {};
         scope.formData = {};
-        scope.start.date = new Date();
-        scope.minDate = new Date();
+        //scope.start.date = new Date();
+        
         
         resourceFactory.taxmappingtemplateResource.getAlltaxmapping({'chargeCode':routeParams.chargeCode}, function(data) {
             scope.taxTypeDatas = data.taxTypeData;
             scope.priceRegionDatas = data.priceRegionData;
-            scope.formData = data;
+            scope.start.date = new Date(data.date);
+            scope.minDate = new Date(data.date);
+            scope.formData.chargeCode = data.chargeCode;
         });
         
         scope.doSomething =function(){
