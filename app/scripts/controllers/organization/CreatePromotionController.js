@@ -5,11 +5,12 @@
 	        scope.promotiondatas = [];
 	        scope.durationTypes = [];
 	        scope.start = {};
-	        scope.start.date = new Date();
+	        //scope.start.date = new Date();
 	        
 	        resourceFactory.promotionTemplateResource.get(function(data) {
 	            scope.promotiondatas = data.discountTypeData;
 	            scope.durationTypes = data.contractTypedata;
+	            scope.start.date = new Date(data.date);
 	           	scope.formData = {};
 	        });
 	        scope.reset123 = function(){
