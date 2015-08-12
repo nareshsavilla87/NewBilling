@@ -320,6 +320,7 @@
   "validation.msg.schedulerjob.Username.cannot.be.blank":"User Name cannot be blank",
   "validation.msg.schedulerjob.Password.cannot.be.blank":"Password cannot be blank",
   "validation.msg.schedulerjob.URL.cannot.be.blank":"URL cannot be blank",
+  "label.job.isDisconnectUnpaidCustomers":"is Disconnect Unpaid Customers",
   
 
 
@@ -926,6 +927,7 @@
   "error.msg.cund.unknown.data.integrity.issue":"Duplicate Data added",
   "label.regionalprice":"Regional Prices",
   "error.msg.item.regional.price.not.found":"No Regional Price found for this Item",
+  "error.msg.hardware.quality.not.good":"Item Quality is not good",
   
   "#Import":"........",
   "label.heading.uploads":"Builk Uploads",
@@ -2008,6 +2010,8 @@
   "validation.msg.planmappig.itemCode.cannot.be.blank":"Item Code cannot be blank",
   "error.msg.service.mapping.duplicate":"Mapping has already done with this service",
   "validation.msg.ServiceMapping.provisionSystem.cannot.be.blank":"Please Select Provisioning system",
+  "label.item.type":"Item Type",
+  "validation.msg.ServiceMapping.itemId.cannot.be.blank":"Item Type cannot be blank",
   
   "#HardWareMapping":"...........",
   "table.hardwaremapping.id":"Id",
@@ -2825,16 +2829,14 @@
 "validation.msg.feemaster.regionPrices.not.greater.than.zero" :"Please add atleast one region price",
 "label.pgconfig.editconfig":"Edit Configurations",
 "label.form.module":"Module",
-
+"error.msg.fee.code.duplicate.name":"Fee Code already exists",
 "error.msg.fee.transaction.alredy.exists":"A Fee with this transaction already exists,Please Update it",
 
 "#Deposit and Refund  ":".......",
 "error.msg.hardware.unallocated":"Please Unallocate hardware",
 "error.msg.unable.to.refund.clientbalance.greater.than.refund.amount":"Unable refund client due balance is greater than refund balance",
-"error.msg.hardware.quality.not.good":"Item Quality is not good",
-"error.msg.fee.code.duplicate.name":"Fee Code already exists",
-"error.msg.fee.transaction.alredy.exists":"A Fee with this transaction already exists,Please Update it"
-
+"validation.msg.refund.refundMode.cannot.be.blank":"Please Select Refund Type",
+"validation.msg.refund.refundAmount.cannot.be.blank":"Please add Amount"
 
 
 

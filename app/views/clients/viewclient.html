@@ -1118,7 +1118,7 @@
             				</tr>
         				</thead>
         				<tbody>
-            				<tr data-ng-repeat="statement in states  | filter:filterText">                 
+            				<tr data-ng-repeat="statement in states  | filter:filterText">                
                 				<td>{{statement.billDate | DateFormat}}</td>
                 				<td>{{statement.dueDate | DateFormat}}</td>
                 				<td>{{statement.amount}}</td>
@@ -1760,7 +1760,7 @@
        			<div class="controls">
 					<span class="control-label" style="color:red;" ng-show="stmError.length>0">{{stmError | translate}}</span>
                 </div>
-			</div>            	
+			</div> 
          <div class="control-group">
 				<label class="control-label">Amount</label>
 				<div class="controls">
