@@ -217,39 +217,6 @@ scope.$watch(function () {
 			});
     };
     
-    //date search functionality
-    var monthArray  =  ["january","february","march","april","may","june","july","august","september","october","november","december"];
-	 
-	 scope.dateSearch = function(filterText){
-		 
-		 var searchArray = angular.lowercase(filterText).split(" ");
-		 for(var i in monthArray){
-			 if(monthArray[i].indexOf(searchArray[1]) > -1){
-				 if( i < 10) searchArray[1] = "0"+(Number(i)+1);
-				 else searchArray[1] = Number(i)+1;
-				 var totalWord = "";
-				 for(var j = searchArray.length-1;j>=0;j--){
-					 if(j == 0) totalWord = totalWord+searchArray[j];
-					 else totalWord = totalWord+searchArray[j]+"-";
-				 }
-				 filterText = totalWord;
-				 return filterText;
-			 }else if(monthArray[i].indexOf(searchArray[0]) > -1){
-				 
-				 if( i < 10) searchArray[0] = "0"+(Number(i)+1);
-				 else searchArray[0] = Number(i)+1;
-				 var totalWord = "";
-				 for(var j = searchArray.length-1;j>=0;j--){
-					 if(j == 0) totalWord = totalWord+searchArray[j];
-					 else totalWord = totalWord+searchArray[j]+"-";
-				 }
-				 filterText = totalWord;
-				 return filterText;
-			 }
-		 }
-		 return filterText;
-	 };
-	 
 	//execute this fun when we click on header bar links 
 	 scope.isActive = function (route) {
 		 var active = route === location.path();
