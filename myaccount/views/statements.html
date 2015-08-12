@@ -24,8 +24,8 @@
 		 </thead>
 		 <tbody>
 			<tr data-ng-repeat="statement in statementsData.currentPageItems  | customFilter: filterText : ['billDate','dueDate','amount']" >                 
-   				<td style="font-weight: inherit;color: #555555;">{{statement.billDate | DateFormat}}</td>
-   				<td>{{statement.dueDate | DateFormat}}</td>
+   				<td style="font-weight: inherit;color: #555555;">{{statement.billDate}}</td>
+   				<td>{{statement.dueDate}}</td>
    				<td>{{statement.amount}}</td>
    				<td>
    					<a data-ng-click="routeTostatement(statement.id)" class="btn btn-primary">{{'label.html' | translate}}</a>&nbsp;
@@ -57,7 +57,7 @@
 	        </thead>
 	        <tbody>
 	            <tr data-ng-repeat="payment in paymentsData.currentPageItems  | customFilter: filterText1 : ['transDate','transactionType','transactionCategory','creditAmount','amount']" >
-	                <td style="font-weight: inherit;color: #555555;">{{payment.transDate | DateFormat}}</td>
+	                <td style="font-weight: inherit;color: #555555;">{{payment.transDate}}</td>
 	                <td>{{payment.transactionType}}</td>
 	                <td>{{payment.transactionCategory}}</td>
 	                <td>{{payment.creditAmount}}</td>

@@ -36,7 +36,7 @@ StatementsController = function(scope,RequestSender,location,API_VERSION,paginat
 		  
 		  scope.fetchSearchStatements = function(offset, limit, callback) {
 			  
-	          RequestSender.statementResource.get({clientId: scope.clientId ,offset: offset, limit: limit,sqlSearch: scope.searchText} , function(data){
+	          RequestSender.statementResource.get({clientId: scope.clientId ,offset: offset, limit: limit,sqlSearch: scope.filterText} , function(data){
 				  
 				  angular.forEach(data.pageItems,function(val,key){
 					  data.pageItems[key].billDate = filter('DateFormat')(val.billDate);
@@ -48,13 +48,13 @@ StatementsController = function(scope,RequestSender,location,API_VERSION,paginat
 	      };
 	       
 	       scope.searchStatements = function() {
-	    	   scope.statementsData = [];scope.searchText = rootScope.dateSearch(scope.filterText);
+	    	   scope.statementsData = [];
 	    	   scope.statementsData = paginatorService.paginate(scope.fetchSearchStatements, 4);
 	       };
 	       
 	       scope.fetchSearchPayments = function(offset, limit, callback) {
 				  
-	    	   RequestSender.paymentsResource.get({clientId: scope.clientId ,offset: offset, limit: limit,type:'PAYMENT',sqlSearch: scope.searchText} , function(data){
+	    	   RequestSender.paymentsResource.get({clientId: scope.clientId ,offset: offset, limit: limit,type:'PAYMENT',sqlSearch: scope.filterText1} , function(data){
 					  
 					  angular.forEach(data.pageItems,function(val,key){
 						  data.pageItems[key].transDate = filter('DateFormat')(val.transDate);
@@ -65,7 +65,7 @@ StatementsController = function(scope,RequestSender,location,API_VERSION,paginat
 		      };
 		       
 		       scope.searchPayments = function() {
-		    	   scope.paymentsData = [];scope.searchText = rootScope.dateSearch(scope.filterText1);
+		    	   scope.paymentsData = [];
 		    	   scope.paymentsData = paginatorService.paginate(scope.fetchSearchPayments, 4);
 		       };
 		       
