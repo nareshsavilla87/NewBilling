@@ -384,9 +384,9 @@
  	 "label.client.preferredcommunication": "Valið Samskipti",
 	 
 	 "#EvoPaymentGatewayResources" :"------------------------------------",
-	 "label.evo.review.cart"		 : "umsögn Körfu",
-	 "label.evo.billing.info"		 : "greiðanda Upplýsingar",
-	 "label.evo.payment.method"		 : "Greiðslumáti",
+	 "label.evo.review.cart"		 : "1-umsögn Körfu",
+	 "label.evo.billing.info"		 : "2-greiðanda Upplýsingar",
+	 "label.evo.payment.method"		 : "3-Greiðslumáti",
 	 "label.evo.description"		 : "Lýsing",
 	 "label.evo.unit.price"	 		 : "eining verð",
 	 "label.evo.quantity"	 		 : "magn",

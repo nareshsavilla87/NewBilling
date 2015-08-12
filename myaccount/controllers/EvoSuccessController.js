@@ -1,4 +1,9 @@
 EvoSuccessController = function(scope,RequestSender, location,localStorageService,rootScope) {
+	
+		rootScope.evoSuccesssPage = true;
+		if(location.path().match('/evosuccess') != '/evosuccess'){
+			rootScope.showFrame 	= false;
+		}
  
     		//values getting form constants.js file
   		    scope.blowfishKey    	= selfcareModels.EVO_Blowfish;

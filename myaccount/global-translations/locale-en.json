@@ -386,9 +386,9 @@
  	 "label.client.preferredcommunication": "Preferred Communication",
 	 
 	 "#EvoPaymentGatewayResources" :"------------------------------------",
-	 "label.evo.review.cart"		 : "Review Cart",
-	 "label.evo.billing.info"		 : "Billing Information",
-	 "label.evo.payment.method"		 : "Payment Method",
+	 "label.evo.review.cart"		 : "1-Review Cart",
+	 "label.evo.billing.info"		 : "2-Billing Information",
+	 "label.evo.payment.method"		 : "3-Payment Method",
 	 "label.evo.description"	 	 : "Description",
 	 "label.evo.unit.price"	 		 : "Unit Price",
 	 "label.evo.quantity"	 		 : "Quantity",

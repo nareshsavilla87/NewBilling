@@ -1,18 +1,15 @@
-ProfileController = function(scope,RequestSender,rootScope,location,paginatorService,localStorageService, API_VERSION,sessionManager) {
+ProfileController = function(scope,RequestSender,rootScope,location,paginatorService,localStorageService, API_VERSION,sessionManager,filter) {
 		  
-		  var totalStatementsData = [];var retrivingStatementsData = {};scope.statementsData = [];
-          scope.getStatementsData = function(offset, limit, callback) {
-        	  
-			  retrivingStatementsData.pageItems = [];
-			  var itrCount = 0;
-			  for (var i=offset;i<totalStatementsData.length;i++) {
-				 itrCount += 1;
-				 retrivingStatementsData.pageItems.push(totalStatementsData[i]);
-				 if(itrCount==limit){
-					 break;
-				 }
-		      }
-			  callback(retrivingStatementsData);
+	  	 scope.getStatementsData = function(offset, limit, callback) {
+			  RequestSender.statementResource.get({clientId: scope.clientId ,offset: offset, limit: limit} , function(data){
+				  
+				  angular.forEach(data.pageItems,function(val,key){
+					  data.pageItems[key].billDate = filter('DateFormat')(val.billDate);
+					  data.pageItems[key].dueDate = filter('DateFormat')(val.dueDate);
+				  });
+				  
+				  callback(data);
+			  });
 	  	   };
 		 if(rootScope.selfcare_sessionData){		  
 			  scope.clientId = rootScope.selfcare_sessionData.clientId;
@@ -24,24 +21,45 @@ ProfileController = function(scope,RequestSender,rootScope,location,paginatorSer
 				  }
 				  rootScope.selfcare_userName = data.displayName;
 				  
-				  RequestSender.statementResource.query({clientId: scope.clientId} , function(data) {	
-					  totalStatementsData = data;
-					  retrivingStatementsData.totalFilteredRecords = totalStatementsData.length;
-					  scope.statementsData = paginatorService.paginate(scope.getStatementsData, 2);
-					  
-	  					  if(rootScope.isConfigPassport){
-	  						  RequestSender.clientIdentifiersResource.query({clientId:scope.clientId},function(identifiersdata){
-	  							  angular.forEach(identifiersdata,function(val,key){
-	  								  if(angular.lowercase(val.documentType['name']) == selfcareModels.isPassport){
-	  									  scope.passport = val.documentKey;
-	  								  }
-	  							  });
-	  						  });
-	  					  }
-				  });
+				  scope.statementsData = [];
+        	  	  scope.statementsData = paginatorService.paginate(scope.getStatementsData, 2);
+				  
+				  if(rootScope.isConfigPassport){
+					  RequestSender.clientIdentifiersResource.query({clientId:scope.clientId},function(identifiersdata){
+						  angular.forEach(identifiersdata,function(val,key){
+							  if(angular.lowercase(val.documentType['name']) == selfcareModels.isPassport){
+								  scope.passport = val.documentKey;
+							  }
+						  });
+					  });
+				  }
 				
 			  });
 		  }
+		 
+		 scope.fetchSearchStatements = function(offset, limit, callback) {
+			  
+	          RequestSender.statementResource.get({clientId: scope.clientId ,offset: offset, limit: limit,sqlSearch: scope.searchText} , function(data){
+				  
+				  angular.forEach(data.pageItems,function(val,key){
+					  data.pageItems[key].billDate = filter('DateFormat')(val.billDate);
+					  data.pageItems[key].dueDate = filter('DateFormat')(val.dueDate);
+				  });
+				  
+				  callback(data);
+			  });
+	      };
+	       
+	       scope.searchStatements = function() {
+	    	   scope.statementsData = [];scope.searchText = rootScope.dateSearch(scope.filterText);
+	    	   scope.statementsData = paginatorService.paginate(scope.fetchSearchStatements, 4);
+	       };
+	       
+	       $('#searchStatements').keypress(function(e) {
+		          if(e.which == 13) {
+		              scope.searchStatements();
+		          }
+		 });
 		 
 		  scope.routeTostatement = function(statementid){
              location.path('/viewstatement/'+statementid);
@@ -61,4 +79,26 @@ selfcareApp.controller('ProfileController', ['$scope',
                                              'localStorageService', 
                                              'API_VERSION', 
                                              'SessionManager', 
+                                             '$filter', 
                                              ProfileController]);
+
+
+
+//not used code
+/*scope.getStatementsData123 = function(offset, limit, callback) {
+	  
+	  retrivingStatementsData.pageItems = [];
+	  var itrCount = 0;
+	  for (var i=offset;i<totalStatementsData.length;i++) {
+		 itrCount += 1;
+		 retrivingStatementsData.pageItems.push(totalStatementsData[i]);
+		 if(itrCount==limit){
+			 break;
+		 }
+    }
+	  angular.forEach(retrivingStatementsData.pageItems,function(val,key){
+		  retrivingStatementsData.pageItems[key].billDate = filter('DateFormat')(val.billDate);
+		  retrivingStatementsData.pageItems[key].dueDate = filter('DateFormat')(val.dueDate);
+	  });
+	  callback(retrivingStatementsData);
+   };*/
