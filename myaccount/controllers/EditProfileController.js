@@ -16,7 +16,6 @@
 	        		 Object.keys(dataObj).length == 0 ? scope.editAdditionalDatasBtn = false : scope.editAdditionalDatasBtn = true;
 	        		 
 	        		 scope.date = {};
-	        		 if(scope.editAdditionalDatasBtn){
 					   RequestSender.clientDataResource.get({clientId: scope.clientId,template:'true'} , function(data) {
 						 	scope.editInfoBtn 				= true;
 						 	scope.maxDate 					= new Date(data.date);
@@ -46,7 +45,6 @@
 				            }
 	            	  }
 				    });
-	        	  }
 			    });
 			   });
 			 }
