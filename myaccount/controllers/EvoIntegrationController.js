@@ -6,6 +6,8 @@ EvoIntegrationController = function(scope, RequestSender,location, localStorageS
 		  scope.HMACKey				= selfcareModels.EVO_HMAC;
 		  scope.optlang 			= rootScope.localeLangCode;
 		  var appURL				= selfcareModels.selfcareAppUrl;
+		  rootScope.showFrame 		= false;
+		  rootScope.evoSuccesssPage = false;
 		  
 		  var decryptedData 		= CryptoJS.AES.decrypt(location.search().key, selfcareModels.encriptionKey).toString(CryptoJS.enc.Utf8),
 		  	   evoStorageData 		= angular.fromJson(decodeURIComponent(decryptedData)),
@@ -27,7 +29,7 @@ EvoIntegrationController = function(scope, RequestSender,location, localStorageS
     	  scope.screenName			= evoStorageData.screenName;
     	  scope.numOfItems			= evoStorageData.numOfItems;
     	  
-    	  scope.evoPG = {reviewCart:true,billingInfo:false,paymentInfo:false,isFirstDisabled:true};
+    	  scope.evoPG = {reviewCart:true,billingInfo:true,paymentMethod:true,isFirstDisabled:true};
     	  
    RequestSender.evoPaymentResource.save({"amount" : scope.price},function(data){
 	   scope.evoPrice = data.map.amount;
@@ -83,7 +85,8 @@ EvoIntegrationController = function(scope, RequestSender,location, localStorageS
     });
    scope.blockUI = true;
 		$timeout(function() {
-	  scope.blockUI = false;
+	  scope.blockUI 		= false;
+	  rootScope.showFrame 	= true;
    }, 4000);
 	 /*scope.submitPaymentMethodFun = function(){
 		 $("#submitEvoIntegration").click();

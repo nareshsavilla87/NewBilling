@@ -33,7 +33,7 @@
 	            </tr>
 	        </thead>
 	        <tbody>
-	            <tr data-ng-repeat="mediaDetail in mediaDetails  | filter:filterText" >
+	            <tr data-ng-repeat="mediaDetail in mediaDetails  | customFilter: filterText : ['mediaTitle','quality','price']" >
 	                <td style="font-weight: inherit;color: #555555;"><label >{{mediaDetail.mediaTitle}}</label></td>
 	                <td><label >{{mediaDetail.quality}}</label></td>
 	                <td><label >{{mediaDetail.price}}</label></td>
