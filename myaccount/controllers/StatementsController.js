@@ -1,35 +1,85 @@
-StatementsController = function(scope,RequestSender,location,API_VERSION,paginatorService,rootScope) {
+StatementsController = function(scope,RequestSender,location,API_VERSION,paginatorService,rootScope,filter) {
 		  
-		  var totalStatementsData = [];var retrivingStatementsData = {};scope.statementsData = [];
+		  
 		  scope.getStatementsData = function(offset, limit, callback) {
-			  retrivingStatementsData.pageItems = [];
-			  var itrCount = 0;
-			  for (var i=offset;i<totalStatementsData.length;i++) {
-				 itrCount += 1;
-				 retrivingStatementsData.pageItems.push(totalStatementsData[i]);
-				 if(itrCount==limit){
-					 break;
-				 }
-		      }
-			  callback(retrivingStatementsData);
+			  RequestSender.statementResource.get({clientId: scope.clientId ,offset: offset, limit: limit} , function(data){
+				  
+				  angular.forEach(data.pageItems,function(val,key){
+					  data.pageItems[key].billDate = filter('DateFormat')(val.billDate);
+					  data.pageItems[key].dueDate = filter('DateFormat')(val.dueDate);
+				  });
+				  
+				  callback(data);
+			  });
 	  	   };
 		  
 		  scope.getPaymentsData = function(offset, limit, callback) {
-			  RequestSender.paymentsResource.get({clientId: scope.clientId ,offset: offset, limit: limit,type:'PAYMENT'} , callback);
+			  RequestSender.paymentsResource.get({clientId: scope.clientId ,offset: offset, limit: limit,type:'PAYMENT'} , function(data){
+				  
+				  angular.forEach(data.pageItems,function(val,key){
+					  data.pageItems[key].transDate = filter('DateFormat')(val.transDate);
+				  });
+				  
+				  callback(data);
+			  });
 	  	   };
 	  		
 		  if(rootScope.selfcare_sessionData){
 			  scope.clientId = rootScope.selfcare_sessionData.clientId;
-			  RequestSender.statementResource.query({clientId: scope.clientId} , function(data) {	
-                  totalStatementsData = data;
-                  retrivingStatementsData.totalFilteredRecords = totalStatementsData.length;
-				  scope.statementsData = paginatorService.paginate(scope.getStatementsData, 4);
                   
+				  scope.statementsData = [];
+				  scope.statementsData = paginatorService.paginate(scope.getStatementsData, 4);
+				  
 				  scope.paymentsData = [];
         	  	  scope.paymentsData = paginatorService.paginate(scope.getPaymentsData, 4);
-               });
 		  }
 		  
+		  scope.fetchSearchStatements = function(offset, limit, callback) {
+			  
+	          RequestSender.statementResource.get({clientId: scope.clientId ,offset: offset, limit: limit,sqlSearch: scope.searchText} , function(data){
+				  
+				  angular.forEach(data.pageItems,function(val,key){
+					  data.pageItems[key].billDate = filter('DateFormat')(val.billDate);
+					  data.pageItems[key].dueDate = filter('DateFormat')(val.dueDate);
+				  });
+				  
+				  callback(data);
+			  });
+	      };
+	       
+	       scope.searchStatements = function() {
+	    	   scope.statementsData = [];scope.searchText = rootScope.dateSearch(scope.filterText);
+	    	   scope.statementsData = paginatorService.paginate(scope.fetchSearchStatements, 4);
+	       };
+	       
+	       scope.fetchSearchPayments = function(offset, limit, callback) {
+				  
+	    	   RequestSender.paymentsResource.get({clientId: scope.clientId ,offset: offset, limit: limit,type:'PAYMENT',sqlSearch: scope.searchText} , function(data){
+					  
+					  angular.forEach(data.pageItems,function(val,key){
+						  data.pageItems[key].transDate = filter('DateFormat')(val.transDate);
+					  });
+					  
+					  callback(data);
+				  });
+		      };
+		       
+		       scope.searchPayments = function() {
+		    	   scope.paymentsData = [];scope.searchText = rootScope.dateSearch(scope.filterText1);
+		    	   scope.paymentsData = paginatorService.paginate(scope.fetchSearchPayments, 4);
+		       };
+		       
+		    $('#searchStatements').keypress(function(e) {
+			          if(e.which == 13) {
+			              scope.searchStatements();
+			          }
+			 });
+		    $('#searchPayments').keypress(function(e) {
+		    	if(e.which == 13) {
+		    		scope.searchPayments();
+		    	}
+		    });
+		    
 		  scope.routeTostatement = function(statementid){
 	             location.path('/viewstatement/'+statementid);
 	      };
@@ -45,4 +95,5 @@ selfcareApp.controller('StatementsController', ['$scope',
                                                 'API_VERSION', 
                                                 'PaginatorService', 
                                                 '$rootScope', 
+                                                '$filter', 
                                                 StatementsController]);
