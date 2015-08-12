@@ -1132,6 +1132,10 @@
             				</tr>
         				</tbody>
     				</table>
+    				<ul class="pager">
+						<li class="previous"><a data-ng-click="states.previous()" href="" data-ng-disabled="!states.hasPrevious()">&larr; {{'label.prev' | translate}}</a></li>
+						<li class="next" ><a data-ng-click="states.next()" href="" data-ng-disabled="!states.hasNext()">{{'label.next' | translate}} &rarr;</a></li>
+					</ul>
 				</div>
 			</tab>
 			
