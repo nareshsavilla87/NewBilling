@@ -2,6 +2,9 @@
 	var locationOrigin = window.location.origin;
 	var locationPathname = window.location.pathname;
 	
+	if(window.location.href.match('/evosuccess') == '/evosuccess'){
+		   window.top.location.href = window.location.href;
+	 }
 	
 	Langs = [{"name" : "English" , "code" : "en"},
             {"name" : "íslenska", "code":"is"}];
