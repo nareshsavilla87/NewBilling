@@ -1058,7 +1058,7 @@
             				</tr>
         				</thead>
         				<tbody>
-            				<tr data-ng-repeat="statement in states  | filter:filterText">                 
+            				<tr data-ng-repeat="statement in states.currentPageItems  | filter:filterText">                 
                 				<td>{{statement.billDate | DateFormat}}</td>
                 				<td>{{statement.dueDate | DateFormat}}</td>
                 				<td>{{statement.amount}}</td>
@@ -1071,6 +1071,10 @@
             				</tr>
         				</tbody>
     				</table>
+    				<ul class="pager">
+						<li class="previous"><a data-ng-click="states.previous()" href="" data-ng-disabled="!states.hasPrevious()">&larr; {{'label.prev' | translate}}</a></li>
+						<li class="next" ><a data-ng-click="states.next()" href="" data-ng-disabled="!states.hasNext()">{{'label.next' | translate}} &rarr;</a></li>
+					</ul>
 				</div>
 			</tab>
 			

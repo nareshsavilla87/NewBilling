@@ -1,4 +1,4 @@
-<div data-ng-controller="EvoIntegrationController">
+<div data-ng-controller="EvoIntegrationController" data-ng-hide="evoSuccesssPage">
 <br/>
 <div class="loading-widget-div" data-ng-show="blockUI">
         <div id="circularG">
@@ -33,7 +33,6 @@
 	 <accordion close-others="false">
         <accordion-group is-open="evoPG.reviewCart" >
           <accordion-heading>
-            <i class="icon-ok-sign icon-large" data-ng-class="{statusactive:!evoPG.reviewCart,statusdeleted:evoPG.reviewCart}"></i>
             <strong style="font-size: 18px;color:#7793cc;">{{'label.evo.review.cart'|translate}}</strong> 
              <i class="pull-right" ng-class="{'icon-chevron-up': evoPG.reviewCart, 'icon-chevron-down': !evoPG.reviewCart}"></i>
           </accordion-heading>
@@ -64,14 +63,10 @@
 					</tr>
 				</tbody>
 			</table>
-			<div>
-			  <button class="btn btn-primary pull-right" ng-click="evoPG.billingInfo = evoPG.reviewCart">{{'button.evo.continue.billinfo' | translate}}</button>
-			</div>
           </div>
         </accordion-group>
     	<accordion-group is-open="evoPG.billingInfo">
             <accordion-heading>
-            <i class="icon-ok-sign icon-large" data-ng-class="{statusactive:!evoPG.billingInfo,statusdeleted:evoPG.billingInfo}"></i>
                <strong style="font-size: 18px;color:#7793cc;">{{'label.evo.billing.info'|translate}}</strong>
             	<i class="pull-right" ng-class="{'icon-chevron-up': evoPG.billingInfo, 'icon-chevron-down': !evoPG.billingInfo}"></i>
         	</accordion-heading>
@@ -81,17 +76,19 @@
 			<tr>
 				<td>
 					<div class="control-group">
-						<label class="control-label" for="country">{{'label.country' | translate }}</label>
-						<div class = "controls">
-							 <input type="text" data-ng-model="country" readonly/>
+						<label class="control-label" for="fullname">{{'label.evo.fullname' | translate }}</label>
+						<div class="controls">
+							<!-- <input type="text" data-ng-model="fullName" readonly/> -->
+							<label style="padding-top: 5px">:&nbsp;{{fullName}}</label>
 						</div>
 					</div>
 				</td>
 				<td>
 					<div class="control-group">
-						<label class="control-label" for="fullname">{{'label.evo.fullname' | translate }}</label>
+						<label class="control-label" for="address">{{'label.address' | translate }}</label>
 						<div class="controls">
-							<input type="text" data-ng-model="fullName" readonly/>
+							<!-- <input type="text" data-ng-model="addressNo" readonly/> -->
+							<label style="padding-top: 5px">:&nbsp;{{addressNo}}</label>
 						</div>
 					</div>
 				</td>
@@ -99,24 +96,26 @@
 			<tr>
 				<td>
 					<div class="control-group">
-						<label class="control-label" for="address">{{'label.address' | translate }}</label>
-						<div class="controls">
-							<input type="text" data-ng-model="addressNo" readonly/>
-						</div>
-					</div>
-				</td>
+                        <label class="control-label">{{ 'label.email' | translate }}</label>
+                        <div class="controls">
+                            <!-- <input type="text" data-ng-model="email" readonly/> -->
+                            <label style="padding-top: 5px">:&nbsp;{{email}}</label>
+                        </div>
+          			</div>	
+				</td> 
 				<td>
 					<div class="control-group">
 						<label class="control-label" for="city">{{'label.city' | translate }}</label>
 						<div class="controls">
-							<input type="text" data-ng-model="city" readonly/>
+							<!-- <input type="text" data-ng-model="city" readonly/> -->
+							<label style="padding-top: 5px">:&nbsp;{{city}}</label>
 						</div>
 					</div>
 				</td>
 				
 
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td>
 					<div class="control-group">
             			<label class="control-label" for="state">{{ 'label.state/province' | translate }}</label>
@@ -135,8 +134,8 @@
                         </div>
           			</div>	
 				</td> 
-			</tr>
-			<tr>
+			</tr> -->
+			<!-- <tr>
 				 <td>
 					<div class="control-group">
                         <label class="control-label">{{ 'label.mobilephone' | translate }}</label>
@@ -147,29 +146,23 @@
 				</td> 
 				 <td>
 					<div class="control-group">
-                        <label class="control-label">{{ 'label.email' | translate }}</label>
-                        <div class="controls">
-                            <input type="text" data-ng-model="email" readonly/>
-                        </div>
-          			</div>	
-				</td> 
-			</tr>
-			<tr>
-				<td colspan="2">
-			 		 <button class="btn btn-primary pull-right" ng-click="evoPG.paymentMethod = evoPG.billingInfo">{{'button.evo.continue.paymentmethod' | translate}}</button>
+						<label class="control-label" for="country">{{'label.country' | translate }}</label>
+						<div class = "controls">
+							 <input type="text" data-ng-model="country" readonly/>
+						</div>
+					</div>
 				</td>
-			</tr>
+			</tr> -->
 		   </table>
 		   </fieldset>
             </div>
        </accordion-group>
        <accordion-group is-open="evoPG.paymentMethod">
           <accordion-heading>
-            <i class="icon-ok-sign icon-large" data-ng-class="{statusactive:!evoPG.paymentMethod,statusdeleted:evoPG.paymentMethod}"></i>
             <strong style="font-size: 18px;color:#7793cc;">{{'label.evo.payment.method'|translate}}</strong> 
              <i class="pull-right" ng-class="{'icon-chevron-up': evoPG.paymentMethod, 'icon-chevron-down': !evoPG.paymentMethod}"></i>
           </accordion-heading>
-          <div>
+          <div data-ng-show="showFrame">
         	 <table class="fullwidth">
 				<tr>
 					<td align="center">

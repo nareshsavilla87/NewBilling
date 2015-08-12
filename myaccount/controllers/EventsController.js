@@ -11,6 +11,9 @@ EventsController = function(scope,RequestSender,paginatorService,rootScope) {
 	  				break;
 	  			}
 	  		}
+	  		angular.forEach(retrivingVODSData.pageItems,function(val,key){
+	  				retrivingVODSData.pageItems[key].bookedDate = filter('DateFormat')(val.bookedDate);
+			  });
 	  		callback(retrivingVODSData);
 	  	};
 		

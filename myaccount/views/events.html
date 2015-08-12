@@ -25,7 +25,7 @@
 	            </tr>
 	        </thead>
 	        <tbody>
-	            <tr data-ng-repeat="vodData in VODSDatas.currentPageItems  | filter:filterText1" >
+	            <tr data-ng-repeat="vodData in VODSDatas.currentPageItems  | customFilter: filterText1 : ['eventName','bookedDate','eventPrice','status']" >
 	                <td style="font-weight: inherit;color: #555555;">{{vodData.eventName}}</td>
 	                <td>{{vodData.bookedDate | DateFormat}}</td>
 	                <td>{{vodData.eventPrice}}</td>
