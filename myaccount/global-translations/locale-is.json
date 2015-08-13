@@ -218,6 +218,7 @@
 	"label.change.dateformat"	 	: "Breyting Dagsetning Forsníða",
 	"label.html"	 				: "í HTML",
 	"label.pdf"	 					: "PDF skjal",
+	"label.pay"	 					: "borga",
 	"label.statement.transactions"	: "fundargerðir",
 	"label.statement.transactiontype"	: "Viðskiptakostnaður Tegund",
 	"label.receiptpage"				: "kvittun síðu",
@@ -1013,7 +1014,7 @@
 "table.order.addons.endDate"						: "endir Dagsetning",
 "table.order.addons.status"							: "staða",
 "table.order.addons.actions"						: "aðgerðum",
-"label.header.create.addons"						: "Búa bæta ons",
+"label.header.add.addons"							: "Bæta tur",
 "label.header.disconnect.addons"					: "Aftengja bæta ons",
 
 "validation.msg.addons.planId.cannot.be.blank"			: "Veldu Plan úr listanum",

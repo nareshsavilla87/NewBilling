@@ -8,6 +8,7 @@ PaymentGatewayResponseController = function(scope,localStorageService) {
 		    	 scope.cardType 	 = responseData.cardType || "";
 		    	 scope.cardNumber 	 = responseData.cardNumber || "";
 		    	 localStorageService.remove("paymentgatewayresponse");
+		    	 localStorageService.remove("statementsPayData");
 		     }
         };
         

@@ -29,7 +29,39 @@ PaypalRedirectionController = function(scope,RequestSender, location,localStorag
     		var priceId						= N_PaypalData.priceId;
     	
     	 if(N_PaypalData != ""){
-    		RequestSender.paymentGatewayResource.update({},formData,function(data){
+    		
+    	    if(localStorageService.get("statementsPayData")){
+					
+				 RequestSender.paymentTemplateResource.get(function(paymentTemplateData){
+					 var paymentFormData = {};
+					 paymentFormData.dateFormat = "dd MMMM yyyy";
+					 paymentFormData.isSubscriptionPayment = false;
+					 paymentFormData.locale = formData.locale;
+					 paymentFormData.paymentDate = dateFilter(new Date(),'dd MMMM yyyy');
+					 paymentFormData.receiptNo = formData.transactionId;
+					 paymentFormData.amountPaid = formData.total_amount;
+					 for(var m in paymentTemplateData.data){
+							 if(angular.lowercase(paymentTemplateData.data[m].mCodeValue) == 'online payment'){
+								 paymentFormData.paymentCode = paymentTemplateData.data[m].id;
+								 break;
+							 }
+						 }
+						
+					RequestSender.paymentResource.save({clientId : formData.clientId},paymentFormData,function(data){
+						var successData = {};
+						successData.Result = "Success";
+						successData.Description = "Transaction Successfully Completed";
+						successData.Amount = formData.total_amount;
+						successData.TransactionId = formData.transactionId;
+						
+						localStorageService.add("paymentgatewayresponse", {data:successData});
+						location.$$search = {};localStorageService.remove("N_PaypalData");
+						  location.path('/paymentgatewayresponse/'+formData.clientId);
+					});
+				});
+					
+		   }else{
+			   RequestSender.paymentGatewayResource.update({},formData,function(data){
     			  
 				  localStorageService.add("paymentgatewayresponse", {data:data});
 				  var result = angular.uppercase(data.Result) || "";
@@ -61,6 +93,7 @@ PaypalRedirectionController = function(scope,RequestSender, location,localStorag
 						
 					}
 			  });
+		    }
     	  }
     		
 		};
