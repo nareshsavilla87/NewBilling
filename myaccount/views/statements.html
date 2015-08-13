@@ -30,6 +30,7 @@
    				<td>
    					<a data-ng-click="routeTostatement(statement.id)" class="btn btn-primary">{{'label.html' | translate}}</a>&nbsp;
    					<a data-ng-click="downloadFile(statement.id)" class="btn btn-primary"><i class=" icon-download-alt icon-white"></i>{{'label.pdf' | translate}}</a>&nbsp;
+   					<a data-ng-if="statement.amount > 0" data-ng-click="payment(statement.amount)" class="btn btn-primary"><i class="icon-usd icon-white"></i>{{'label.pay' | translate}}</a>&nbsp;
   				</td>
 			</tr>
 		</tbody>

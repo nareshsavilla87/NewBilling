@@ -1,7 +1,7 @@
 PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorageService,location,modal,rootScope){
 	
 	
-	//getting Payment Gateway names form constans.js
+	//getting Payment Gateway names form constants.js
 	var   kortaPG			=  paymentGatewayNames.korta || "",
 		  dalpayPG			=  paymentGatewayNames.dalpay || "",
 		  globalpayPG		=  paymentGatewayNames.globalpay || "",
@@ -18,6 +18,12 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 	scope.amountEmpty 		= true;
 	scope.isRedirecting 	= false;
 	
+	var statementsPayData   = localStorageService.get("statementsPayData");
+	if(statementsPayData){
+		scope.payInvoice = statementsPayData[0];
+		scope.amount = statementsPayData[1];
+	}
+	
 	var clientData			= {};
 	if(scope.clientId){
 	 RequestSender.clientResource.get({clientId: scope.clientId} , function(data) {
@@ -31,6 +37,9 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 			   }
 		  }
 		  scope.paymentgatewayDatas.length==0 ?scope.paymentGatewayName="" : "";
+		  if(statementsPayData){
+				scope.amountFieldFun(statementsPayData[1]);
+			}
 	   });
 	  });
 	}
@@ -61,6 +70,7 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 			if(amount==0) alert("Amount Must be Greater than Zero");
 		}
 	};
+	
 	
 	//this fun call when user select a particular PW 
 	var hostName = selfcareModels.selfcareAppUrl;var screenName = "payment";

@@ -293,8 +293,8 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
       		$modalInstance.dismiss('cancel');
       		
       		 var modalInstance = $modal.open({
-                      templateUrl: 'createaddons.html',
-                      controller: CreateAddonsPopupController,
+                      templateUrl: 'addaddons.html',
+                      controller: AddAddonsPopupController,
                       resolve:{
                     	  orderId : function(){
                       		return orderId;
@@ -320,7 +320,7 @@ ServicesController = function(scope,RequestSender,localStorageService,location,$
          	 
           };
        
-       function CreateAddonsPopupController($scope, $modalInstance,$log,orderId) {
+       function AddAddonsPopupController($scope, $modalInstance,$log,orderId) {
     	   
     	   $scope.subscriptiondatas=[];
            $scope.addonsPriceDatas=[];

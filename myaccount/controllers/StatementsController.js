@@ -1,4 +1,4 @@
-StatementsController = function(scope,RequestSender,location,API_VERSION,paginatorService,rootScope,filter) {
+StatementsController = function(scope,RequestSender,location,API_VERSION,paginatorService,rootScope,filter,localStorageService) {
 		  
 		  
 		  scope.getStatementsData = function(offset, limit, callback) {
@@ -86,6 +86,10 @@ StatementsController = function(scope,RequestSender,location,API_VERSION,paginat
 	      scope.downloadFile = function (statementId){
 	           window.open(API_VERSION +'/billmaster/'+ statementId +'/print?tenantIdentifier='+selfcareModels.tenantId);
 	      };
+	      scope.payment = function(amount){
+	    	  localStorageService.add("statementsPayData",["invoicingPay",amount]);
+	    	location.path('/prepaidpayment');  
+	      };
           
     };
     
@@ -96,4 +100,5 @@ selfcareApp.controller('StatementsController', ['$scope',
                                                 'PaginatorService', 
                                                 '$rootScope', 
                                                 '$filter', 
+                                                'localStorageService', 
                                                 StatementsController]);

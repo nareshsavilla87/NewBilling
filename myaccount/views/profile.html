@@ -81,7 +81,7 @@
 					</td><td width="30%">
 					  <h3 style="text-transform: uppercase;"><b class="marginleft10" style="color:#4C66A4;"> {{clientData.balanceAmount}}({{currencyCode}})  </b></h3>
 					</td><td style="padding-right: 0">
-						<a href="#/prepaidpayment" class="btn btn-primary pull-right">{{'label.client.prepaid.payment'|translate}}</a>
+						<a data-ng-click="onlinePayment()" class="btn btn-primary pull-right">{{'label.client.prepaid.payment'|translate}}</a>
 					</td></tr>
 				</table>
 				<div style="float:right;" data-ng-hide="clientData.selfcare.authPin=='Not Available'">
@@ -117,6 +117,7 @@
 	   				<td>
 	   					<a data-ng-click="routeTostatement(statement.id)" class="btn btn-primary">{{'label.html' | translate}}</a>&nbsp;
 	   					<a data-ng-click="downloadFile(statement.id)" class="btn btn-primary"><i class=" icon-download-alt icon-white"></i>{{'label.pdf' | translate}}</a>&nbsp;
+	   					<a data-ng-if="statement.amount > 0" data-ng-click="payment(statement.amount)" class="btn btn-primary"><i class="icon-usd icon-white"></i>{{'label.pay' | translate}}</a>&nbsp;
 	  				</td>
 				</tr>
 			</tbody>

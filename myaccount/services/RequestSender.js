@@ -143,6 +143,10 @@ selfcareApp.config(function($provide) {
         	
         	orderaddonResource: defineResource(apiVer + "/orderaddons/:orderId", {orderId : '@orderId'}, {}),
         	
+        	paymentTemplateResource: defineResource(apiVer + "/payments/template", {}, {}),
+        	
+        	paymentResource: defineResource(apiVer + "/payments/:clientId", {clientId : '@clientId'}, {}),
+        	
         };
       }];
     });
