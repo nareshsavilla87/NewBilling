@@ -219,6 +219,7 @@
 	"label.change.dateformat"	 	: "Change Date Format",
 	"label.html"	 				: "HTML",
 	"label.pdf"	 					: "PDF",
+	"label.pay"	 					: "Pay",
 	"label.statement.transactions"	: "Transactions",
 	"label.statement.transactiontype"	: "Transaction Type",
 	"label.receiptpage"				: "Receipt Page",
@@ -1014,7 +1015,7 @@
 "table.order.addons.endDate"						: "End Date",
 "table.order.addons.status"							: "Status",
 "table.order.addons.actions"						: "Actions",
-"label.header.create.addons"						: "Create Add Ons",
+"label.header.add.addons"							: "Add Addons",
 "label.header.disconnect.addons"					: "Disconnect Add Ons",
 
 "validation.msg.addons.planId.cannot.be.blank"			: "Select Plan from the List",
