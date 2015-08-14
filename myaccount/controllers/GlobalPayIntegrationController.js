@@ -15,7 +15,7 @@ GlobalPayIntegrationController = function(scope, RequestSender,location, localSt
     	  scope.merchantId			= globalpayStorageData.globalpayMerchantId;
     	  scope.amount 				= globalpayStorageData.price;
     	  localStorageService.add("globalpayStorageData", {screenName : globalpayStorageData.screenName,clientId : clientId,
-    		  											    planId : globalpayStorageData.planId, priceId : globalpayStorageData.priceId});
+    		  											    planId : globalpayStorageData.planId, priceId : globalpayStorageData.priceId,price:scope.amount});
     	  
   		
 		  var randomFun = function() {

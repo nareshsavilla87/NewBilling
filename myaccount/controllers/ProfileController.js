@@ -39,7 +39,7 @@ ProfileController = function(scope,RequestSender,rootScope,location,paginatorSer
 		 
 		 scope.fetchSearchStatements = function(offset, limit, callback) {
 			  
-	          RequestSender.statementResource.get({clientId: scope.clientId ,offset: offset, limit: limit,sqlSearch: scope.searchText} , function(data){
+	          RequestSender.statementResource.get({clientId: scope.clientId ,offset: offset, limit: limit,sqlSearch: scope.filterText} , function(data){
 				  
 				  angular.forEach(data.pageItems,function(val,key){
 					  data.pageItems[key].billDate = filter('DateFormat')(val.billDate);
@@ -51,7 +51,7 @@ ProfileController = function(scope,RequestSender,rootScope,location,paginatorSer
 	      };
 	       
 	       scope.searchStatements = function() {
-	    	   scope.statementsData = [];scope.searchText = rootScope.dateSearch(scope.filterText);
+	    	   scope.statementsData = [];
 	    	   scope.statementsData = paginatorService.paginate(scope.fetchSearchStatements, 4);
 	       };
 	       
@@ -61,12 +61,21 @@ ProfileController = function(scope,RequestSender,rootScope,location,paginatorSer
 		          }
 		 });
 		 
+	      scope.onlinePayment = function(){
+	    	  localStorageService.remove("statementsPayData");
+	    	  location.path('/prepaidpayment');
+	      };
+	       
 		  scope.routeTostatement = function(statementid){
              location.path('/viewstatement/'+statementid);
            };
            
            scope.downloadFile = function (statementId){
 	           window.open(rootScope.hostUrl+ API_VERSION +'/billmaster/'+ statementId +'/print?tenantIdentifier='+selfcareModels.tenantId);
+	      };
+	      scope.payment = function(amount){
+	    	  localStorageService.add("statementsPayData",["invoicingPay",amount]);
+	    	location.path('/prepaidpayment');  
 	      };
 		
     };
