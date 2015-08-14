@@ -2,7 +2,6 @@ TwoCheckoutSuccessController = function(scope,RequestSender, location,localStora
  
     		var formData = {};
     		scope.isQueryString = true;
-    		console.log(window.location.search);
     		   if(window.location.search){
     			   scope.isQueryString = true;
     			   var qs = (function(a) {

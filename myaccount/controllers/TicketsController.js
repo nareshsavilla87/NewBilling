@@ -1,4 +1,4 @@
-TicketsController = function(scope,RequestSender,rootScope) {
+TicketsController = function(scope,RequestSender,rootScope,filter) {
 		  
 		  if(rootScope.selfcare_sessionData){
 			  scope.clientId = rootScope.selfcare_sessionData.clientId;
@@ -15,4 +15,5 @@ TicketsController = function(scope,RequestSender,rootScope) {
 selfcareApp.controller('TicketsController', ['$scope',
                                              'RequestSender',
                                              '$rootScope',
+                                             '$filter',
                                              TicketsController]);
