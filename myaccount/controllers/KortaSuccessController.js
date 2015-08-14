@@ -1,4 +1,4 @@
-KortaSuccessController = function(rootScope,RequestSender,location,localStorageService,routeParams) {
+KortaSuccessController = function(rootScope,RequestSender,location,localStorageService,routeParams,dateFilter) {
  
 			//getting routeParams values
 			var screenName 			= routeParams.screenName,
@@ -57,39 +57,108 @@ KortaSuccessController = function(rootScope,RequestSender,location,localStorageS
         		}else if(PaymentMethod == selfcareModels.kortaDoActionMsg){
         				
     				RequestSender.updateKortaToken.update({clientId : formData.clientId},{kortaToken: kortaToken},function(data){
-    				  RequestSender.paymentGatewayResource.update({},formData,function(data){
-    					  localStorageService.add("paymentgatewayresponse", {data:data,cardType:formData.cardType,cardNumber:formData.cardNumber});
-    					  rootScope.iskortaTokenAvailable = true;
-    					  var result = angular.uppercase(data.Result);
-    		    		  location.$$search = {};
-    		    		  localStorageService.remove("secretCode");
-    		    		if(screenName == 'payment'){
-    							location.path('/paymentgatewayresponse/'+formData.clientId);
-    					}else if(result == 'SUCCESS'|| result == 'PENDING'){
-							localStorageService.add("gatewayStatus",result);
-							location.path("/orderbookingscreen/"+screenName+"/"+formData.clientId+"/"+planId+"/"+priceId);
-						}else{	 
-							location.path('/paymentgatewayresponse/'+formData.clientId);
-						}
-					  });     	  		
+    					if(localStorageService.get("statementsPayData")){
+    						
+    					 RequestSender.paymentTemplateResource.get(function(paymentTemplateData){
+    						 var paymentFormData = {};
+    						 paymentFormData.dateFormat = "dd MMMM yyyy";
+    						 paymentFormData.isSubscriptionPayment = false;
+    						 paymentFormData.locale = formData.locale;
+    						 paymentFormData.paymentDate = dateFilter(new Date(),'dd MMMM yyyy');
+    						 paymentFormData.receiptNo = formData.transactionId;
+    						 paymentFormData.amountPaid = formData.total_amount;
+    						 for(var m in paymentTemplateData.data){
+       							 if(angular.lowercase(paymentTemplateData.data[m].mCodeValue) == 'online payment'){
+       								 paymentFormData.paymentCode = paymentTemplateData.data[m].id;
+       								 break;
+       							 }
+       						 }
+    							
+    						RequestSender.paymentResource.save({clientId : formData.clientId},paymentFormData,function(data){
+    							var successData = {};
+    							successData.Result = "Success";
+    							successData.Description = "Transaction Successfully Completed";
+    							successData.Amount = formData.total_amount;
+    							successData.TransactionId = formData.transactionId;
+    							
+    							localStorageService.add("paymentgatewayresponse", {data:successData,cardType:formData.cardType,cardNumber:formData.cardNumber});
+     							rootScope.iskortaTokenAvailable = true;
+     							location.$$search = {};
+     							localStorageService.remove("secretCode");
+     								location.path('/paymentgatewayresponse/'+formData.clientId);
+    						});
+    					   });
+    						
+    					}else{
+    						
+	    				  RequestSender.paymentGatewayResource.update({},formData,function(data){
+	    					  localStorageService.add("paymentgatewayresponse", {data:data,cardType:formData.cardType,cardNumber:formData.cardNumber});
+	    					  rootScope.iskortaTokenAvailable = true;
+	    					  var result = angular.uppercase(data.Result);
+	    		    		  location.$$search = {};
+	    		    		  localStorageService.remove("secretCode");
+	    		    		if(screenName == 'payment'){
+	    							location.path('/paymentgatewayresponse/'+formData.clientId);
+	    					}else if(result == 'SUCCESS'|| result == 'PENDING'){
+								localStorageService.add("gatewayStatus",result);
+								location.path("/orderbookingscreen/"+screenName+"/"+formData.clientId+"/"+planId+"/"+priceId);
+							}else{	 
+								location.path('/paymentgatewayresponse/'+formData.clientId);
+							}
+						  });
+    					}
     				});
         			
         			
         		}else{
-    				RequestSender.paymentGatewayResource.update({clientId : formData.clientId},formData,function(data){
-    					  localStorageService.add("paymentgatewayresponse", {data:data,cardType:formData.cardType,cardNumber:formData.cardNumber});
-    					  var result = angular.uppercase(data.Result);
-  							location.$$search = {};
-  							localStorageService.remove("secretCode");
-  						if(screenName == 'payment'){
-  							location.path('/paymentgatewayresponse/'+formData.clientId);
-  						}else if(result == 'SUCCESS' || result == 'PENDING'){
-  							localStorageService.add("gatewayStatus",result);
-  							location.path("/orderbookingscreen/"+screenName+"/"+formData.clientId+"/"+planId+"/"+priceId);
-  						}else{	 
-  							location.path('/paymentgatewayresponse/'+formData.clientId);
-  						}
-      				});
+        			if(localStorageService.get("statementsPayData")){
+						
+   					 RequestSender.paymentTemplateResource.get(function(paymentTemplateData){
+   						 var paymentFormData = {};
+   						 paymentFormData.dateFormat = "dd MMMM yyyy";
+   						 paymentFormData.isSubscriptionPayment = false;
+   						 paymentFormData.locale = formData.locale;
+   						 paymentFormData.paymentDate = dateFilter(new Date(),'dd MMMM yyyy');
+   						 paymentFormData.receiptNo = formData.transactionId;
+   						 paymentFormData.amountPaid = formData.total_amount;
+   						 for(var m in paymentTemplateData.data){
+   							 if(angular.lowercase(paymentTemplateData.data[m].mCodeValue) == 'online payment'){
+   								 paymentFormData.paymentCode = paymentTemplateData.data[m].id;
+   								 break;
+   							 }
+   						 }
+   							
+   						RequestSender.paymentResource.save({clientId : formData.clientId},paymentFormData,function(data){
+   							var successData = {};
+   							successData.Result = "Success";
+   							successData.Description = "Transaction Successfully Completed";
+   							successData.Amount = formData.total_amount;
+   							successData.TransactionId = formData.transactionId;
+   							
+   							localStorageService.add("paymentgatewayresponse", {data:successData,cardType:formData.cardType,cardNumber:formData.cardNumber});
+    							rootScope.iskortaTokenAvailable = true;
+    							location.$$search = {};
+    							localStorageService.remove("secretCode");
+    								location.path('/paymentgatewayresponse/'+formData.clientId);
+   						});
+   					   });
+   						
+   					}else{
+	    				RequestSender.paymentGatewayResource.update({clientId : formData.clientId},formData,function(data){
+	    					  localStorageService.add("paymentgatewayresponse", {data:data,cardType:formData.cardType,cardNumber:formData.cardNumber});
+	    					  var result = angular.uppercase(data.Result);
+	  							location.$$search = {};
+	  							localStorageService.remove("secretCode");
+	  						if(screenName == 'payment'){
+	  							location.path('/paymentgatewayresponse/'+formData.clientId);
+	  						}else if(result == 'SUCCESS' || result == 'PENDING'){
+	  							localStorageService.add("gatewayStatus",result);
+	  							location.path("/orderbookingscreen/"+screenName+"/"+formData.clientId+"/"+planId+"/"+priceId);
+	  						}else{	 
+	  							location.path('/paymentgatewayresponse/'+formData.clientId);
+	  						}
+	      				});
+   					}
           		  }
         		
         	}else{
@@ -105,5 +174,6 @@ selfcareApp.controller('KortaSuccessController', ['$rootScope',
                                                   '$location', 
                                                   'localStorageService',
                                                   '$routeParams',
+                                                  'dateFilter',
                                                   KortaSuccessController]);
 
