@@ -140,9 +140,9 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 				localStorageService.add("twoCheckoutStorageData",{screenName:"payment",clientId:scope.clientId,
 				 											planId:0,priceId:0});
 				var zipCode = clientData.zip || clientData.city || "";
-				scope.paymentURL =  "https://sandbox.2checkout.com/checkout/purchase?sid="+paymentGatewayValues+"&mode=2CO&li_0_type=product&li_0_name=invoice&li_0_price="+scope.planData.price
+				scope.paymentURL =  paymentGatewayValues.url+"?sid="+paymentGatewayValues.sid+"&mode=2CO&li_0_type=product&li_0_name=online payment&li_0_price="+scope.planData.price
 									+"&card_holder_name="+clientData.displayName+"&street_address="+clientData.addressNo+"&city="+clientData.city+"&state="+clientData.state+"&zip="+zipCode
-									+"&country="+clientData.country+"&email="+clientData.email+"&quantity=1";
+									+"&country="+clientData.country+"&phone="+clientData.phone+"&email="+clientData.email+"&quantity=1";
 				
 				break;
 				
