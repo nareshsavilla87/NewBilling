@@ -48,23 +48,55 @@ NetellerController = function(scope,RequestSender,routeParams,location,dateFilte
     		if(rootScope.selfcare_sessionData){
     			scope.formData.clientId = clientId;
     		  if(!scope.validation.value && !scope.validation.verificationCode){
-    			  if(screenName == 'vod') scope.formData.screenName = "";
-    			  var authentication = {username:selfcareModels.obs_username,password:selfcareModels.obs_password};
-    			  RequestSender.netellerPaymentResource.save(authentication,scope.formData, function(data){
-    				localStorageService.add("paymentgatewayresponse",{data:data});
-    				var result = angular.uppercase(data.Result);
-    				
-    				if(screenName == 'vod'){
-    					if(result == "SUCCESS" || result == 'PENDING'){
-    						localStorageService.add("gatewayStatus",result);
-    						location.path("/orderbookingscreen/"+screenName+"/"+clientId+"/0/0");
-    					}else if(result == "FAILURE"){
-    						location.path('/paymentgatewayresponse/'+clientId);
-    					}
-    				}else{
-    					location.path('/paymentgatewayresponse/'+clientId);
-    				}
-               });
+    			  
+    			  if(localStorageService.get("statementsPayData")){
+  					
+    	   				 RequestSender.paymentTemplateResource.get(function(paymentTemplateData){
+    	   					 var paymentFormData = {};
+    	   					 paymentFormData.dateFormat = "dd MMMM yyyy";
+    	   					 paymentFormData.isSubscriptionPayment = false;
+    	   					 paymentFormData.locale = scope.formData.locale;
+    	   					 paymentFormData.paymentDate = dateFilter(new Date(),'dd MMMM yyyy');
+    	   					 paymentFormData.receiptNo = scope.formData.transactionId;
+    	   					 paymentFormData.amountPaid = scope.amount;
+    	   					 for(var m in paymentTemplateData.data){
+    	   							 if(angular.lowercase(paymentTemplateData.data[m].mCodeValue) == 'online payment'){
+    	   								 paymentFormData.paymentCode = paymentTemplateData.data[m].id;
+    	   								 break;
+    	   							 }
+    	   						 }
+    	   						
+    	   					RequestSender.paymentResource.save({clientId : clientId},paymentFormData,function(data){
+    	   						var successData = {};
+    	   						successData.Result = "Success";
+    	   						successData.Description = "Transaction Successfully Completed";
+    	   						successData.Amount = scope.amount;
+    	   						successData.TransactionId = scope.formData.transactionId;
+    	   						
+    	   						localStorageService.add("paymentgatewayresponse", {data:successData});
+    	   						  location.path('/paymentgatewayresponse/'+clientId);
+    	   					});
+    	   				});
+    	   					
+    	   		   }else{
+		    			  if(screenName == 'vod') scope.formData.screenName = "";
+		    			  var authentication = {username:selfcareModels.obs_username,password:selfcareModels.obs_password};
+		    			  RequestSender.netellerPaymentResource.save(authentication,scope.formData, function(data){
+		    				localStorageService.add("paymentgatewayresponse",{data:data});
+		    				var result = angular.uppercase(data.Result);
+		    				
+		    				if(screenName == 'vod'){
+		    					if(result == "SUCCESS" || result == 'PENDING'){
+		    						localStorageService.add("gatewayStatus",result);
+		    						location.path("/orderbookingscreen/"+screenName+"/"+clientId+"/0/0");
+		    					}else if(result == "FAILURE"){
+		    						location.path('/paymentgatewayresponse/'+clientId);
+		    					}
+		    				}else{
+		    					location.path('/paymentgatewayresponse/'+clientId);
+		    				}
+		               });
+    	   		   }
     	    }
 			
     	};
