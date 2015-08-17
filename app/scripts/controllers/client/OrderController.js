@@ -16,7 +16,7 @@
         scope.walletConfig = webStorage.get('is-wallet-enable');
         scope.config = webStorage.get("client_configuration").orderActions;
         scope.isServiceLevelMap = webStorage.get("service-device-mapping");
-        scope.serviceMapEnabled=false;
+        scope.serviceLevelPairEnabled=false;
         
          var clientData = webStorage.get('clientData');
          webStorage.add("orderId",routeParams.id);
@@ -56,7 +56,7 @@
             scope.orderDiscountDatas=data.orderDiscountDatas;
             for (var i in scope.orderServicesData){
             	if(scope.orderServicesData[i].serialNo!=null){
-            		scope.serviceMapEnabled=true;
+            		scope.serviceLevelPairEnabled=true;
             		break;
             	}
             }
