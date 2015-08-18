@@ -40,6 +40,7 @@ document.write("<script type='text/javascript' src='./CryptoJS/enc-base64-min.js
 //filters folder js files
 document.write("<script type='text/javascript' src='./filters/DateFormat.js'></script>");
 document.write("<script type='text/javascript' src='./filters/StatusLookup.js'></script>");
+document.write("<script type='text/javascript' src='./filters/customFilter.js'></script>");
 
 //directives folder js files
 document.write("<script type='text/javascript' src='./directives/LateValidateDirective.js'></script>");

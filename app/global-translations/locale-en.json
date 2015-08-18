@@ -355,6 +355,7 @@
   "dialog.redemption.title.message" :"Redeem",
   "button.transferclient":"Transfer client",
   "label.assignstaff":"Assign staff",
+  "error.msg.staff.duplicate.displayName":"Name already exist with this name",
   "label.closurereason":"Closure reason",
   "tab.heading.client.documents":"Documents",
   "label.select.file":"Select file",
@@ -1411,12 +1412,12 @@
   "validation.msg.chargecode.durationType.not.zero.or.greater":"Missing Duration Type",
   "validation.msg.chargecode.chargeDuration.not.greater.than.zero":"Charge Duration should not Greaterthan Zero",
   "error.msg.chargecode.duplicate.name":"Charge Code already exist with this name",
-  "error.msg.chargecode.can not.delete or update already use":"Charge code in use, cannot delete or update",
+  "error.msg.chargecode.can not.delete or update already used":"Charge code in use, cannot delete or update",
   "validation.msg.taxmap.chargeCode.not.zero.or.greater":"Missing Charge code",
   "button.viewtax":"View Tax",
   "button.addtax":"Add Tax",
  
-  
+ 
   "#taxmapping":"....",
   "label.taxmapping":"Tax Mapping",
   "label.edittaxmapping":"Edit Tax Mapping",

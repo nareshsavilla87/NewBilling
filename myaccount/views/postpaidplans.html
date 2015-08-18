@@ -111,10 +111,11 @@
     </div>
     <div class="modal-body" style="height:300px;">
        	<fieldset>
-     		<div class="control-group">
-	            <label class="control-label" style="color:red;" ng-show="contractError.length>0">{{contractError | translate}}</label>
-            	<div class="controls"></div>
-        	</div>
+			<div class="error" data-ng-show="errorStatus || errorDetails">
+		  		<label>{{'label.contract.error' | translate}}</label>
+		  		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		  		<label data-ng-hide="errorStatus"data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    	</div>
 			<div class="control-group">
            		 <label class="control-label" for="status">{{ 'label.contract.period' | translate }}<span class="required">*</span></label>
             	<div class="controls">

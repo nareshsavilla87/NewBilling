@@ -41,8 +41,11 @@
           <tr><td>
            	<div class="control-group">
            		<label class="control-label" for="startDate">{{'label.startDate' | translate }}<span class="required">*</span></label>
-            	<div class="controls">
+            	<!-- <div class="controls">
               		<input type="text" data-datepicker-pop="dd MMMM yyyy" data-ng-model="start.date" data-is-open="opened" min="minDate" max="maxDate" data-date-disabled="disabled(date, mode)" required data-late-Validate style="background-color:#FFFFFF;"  readonly/>
+            	</div> -->
+            	<div class="controls">
+              		<input type="text" datepicker-pop="dd MMMM yyyy" readonly data-ng-model="start.date"  is-open="opened" min="minDate" date-disabled="disabled(date, mode)" style="background-color:#FFFFFF;" required late-Validate />
             	</div>
           	</div>
           	</td></tr>

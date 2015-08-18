@@ -29,6 +29,9 @@ SelfcareMainController = function(scope, translate,sessionManager,RequestSender,
 	   //index page hiding when client registration form appear
 	   (location.path().match('/active') == '/active') ? (scope.isLandingPage= true,scope.isRegClientProcess = true) : scope.isRegClientProcess = false;
 	   
+	   if(location.path().match('/evosuccess') == '/evosuccess'){
+ 		   scope.evoSuccesssPage = true;
+ 	   }
 	   
 //calling this method every time if session is exit or not
 	   sessionManager.restore(function(session) {
@@ -213,7 +216,7 @@ scope.$watch(function () {
 			 resolve:{}
 			});
     };
-	 
+    
 	//execute this fun when we click on header bar links 
 	 scope.isActive = function (route) {
 		 var active = route === location.path();
