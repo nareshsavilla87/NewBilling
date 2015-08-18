@@ -631,10 +631,10 @@
       .when('/createtaxmapping/:chargeCode', {
         templateUrl: 'views/organization/createtaxmapping.html'
       })
-      .when('/viewtaxmapping/:id', {
+      .when('/viewtaxmapping/:id/:chargeCodeId', {
         templateUrl: 'views/organization/viewtaxmapping.html'
       })
-      .when('/edittaxmapping/:id', {
+      .when('/edittaxmapping/:id/:chargeCodeId', {
         templateUrl: 'views/organization/edittaxmapping.html'
       })
       .when('/viewitemdetails/:id', {

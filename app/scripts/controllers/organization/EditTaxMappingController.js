@@ -5,6 +5,7 @@
 		  scope.typetaxmapdatas = [];
 		  scope.priceRegionDatas = [];
 		  scope.date = {};
+		  scope.chargeCodeId = routeParams.chargeCodeId;
         
          resourceFactory.getTaxmappingResource.get({taxId: routeParams.id, template: 'true'} , function(data) {
         	 scope.chargecodetaxs = data.chargeCodesForTax;
@@ -32,7 +33,7 @@
         	 delete this.formData.chargeCodesForTax;
             
              resourceFactory.getTaxmappingResource.update({'taxId': routeParams.id}, this.formData, function(data){
-            	 location.path('/viewtaxmapping/' + data.resourceId);
+            	 location.path('/viewtaxmapping/' + data.resourceId+'/'+scope.chargeCodeId);
              });
         };
     }

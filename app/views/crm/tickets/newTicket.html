@@ -149,6 +149,12 @@
 						</div>
 					</div>
 				
+					<div class="control-group">
+						<label class="control-label" for="Attachments"> {{'label.ticket.file' | translate }}</label>
+						<div class="controls">
+							<input type= "file" ng-file-select="onFileSelect($files)">
+						</div>
+					</div>
 
 		<div class="pull-right">
 			<a id="cancel" href="#/viewclient/{{clientId}}"><button type="reset" class="btn" ng-click="reset123()">Cancel</button></a>
