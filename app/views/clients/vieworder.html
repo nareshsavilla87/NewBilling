@@ -1,4 +1,4 @@
-<div ng-controller="OrderController">
+<div data-ng-controller="OrderController">
   <div>
      <ul class="breadcrumb">
       	<li><table>
@@ -56,55 +56,55 @@
 			<li class="active">{{orderData.planCode}}</li>
 		</ul>
    </div>
-	<div class="error" ng-show="errorStatus || errorDetails">
+	<div class="error" data-ng-show="errorStatus || errorDetails">
 			<label>{{'label.contract.error' | translate}}</label>
-			<label ng-show="errorStatus">{{errorStatus}}</label>
-			<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+			<label data-ng-show="errorStatus">{{errorStatus}}</label>
+			<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	</div>
 </div>  
    	<div class="row-fluid primarydiv"> 
 	   <span class="pull-right">
 	       <div class="btn-group">
-	         <a ng-show="config.disconnect=='true'&&((orderData.status == 'ACTIVE')&&PermissionService.showMenu('UPDATE_ORDER')||(orderData.status == 'SUSPENDED'))" href="" ng-click="orderDisconnect(orderPriceDatas[0].orderId)" class="btn btn-primary"><i class="icon-remove fa-spin icon-white"></i> Disconnect</a>
-	         <a ng-show="config.reconnect=='true'&& ((orderData.status == 'DISCONNECTED')&&PermissionService.showMenu('RECONNECT_ORDER')&&(orderData.contractPeriod == 'Perpetual')) " ng-click="reconnect()" class="btn btn-primary"><i class=" icon-repeat icon-white"></i> Reconnect</a>
-	         <a ng-show="config['topup/renewal'] == 'true'&&((orderData.endDate && orderData.status != 'PENDING' && orderData.status != 'SUSPENDED' && orderData.status != 'TERMINATED' && orderData.isPrepaid == 'N')&&PermissionService.showMenu('RENEWAL_ORDER')&&(orderData.contractPeriod != 'Perpetual')) " href="" ng-click="orderRenew(orderPriceDatas[0].orderId)" class="btn btn-primary"><i class="icon-edit icon-white"></i>Renewal</a>
-	         <a ng-show="config['topup/renewal'] == 'true'&&((orderData.isPrepaid == 'Y' && (orderData.status != 'TERMINATED') && orderData.status != 'PENDING')&&PermissionService.showMenu('RENEWAL_ORDER'))"  href="" ng-click="orderRenew(orderPriceDatas[0].orderId)"class="btn btn-primary"><i class="icon-arrow-up icon-white"></i>TopUp</a>
-	        <!--  <a ng-show="orderData.status == 'ACTIVE'" ng-click="CommandCenter(orderPriceDatas[0].orderId)" class="btn btn-primary"><i class=" icon-repeat icon-white"></i> Command Center</a> -->
-	         <a ng-show="(orderData.status == 'PENDING')&&PermissionService.showMenu('DELETE_ORDER')" ng-click="cancelOrder()" class="btn btn-primary"><i class="icon-remove-circle icon-white"></i> Cancel Order</a>
-	         <a ng-show ="config.pairing=='true'&&(!serviceMapEnabled&&PermissionService.showMenu('CREATE_ASSOCIATION'))"  href="#/association/{{clientId}}/{{orderPriceDatas[0].orderId}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Pairing</a>
-	         <a ng-show="config.addons=='true'&&((orderData.status == 'ACTIVE')&&PermissionService.showMenu('CREATE_ORDERADDONS'))"  href="#/orderaddons/" class="btn btn-primary"><i class="icon-shopping-cart fa-spin icon-white"></i> AddOns</a>
-		     <a ng-show ="(orderData.status == 'DISCONNECTED' && association.orderId != null)&&PermissionService.showMenu('DEASSOCIATION_ASSOCIATION')" ng-click="deAssociation()" class="btn btn-primary"><i class="icon-repeat icon-white"></i> Un Pairing</a>
-		     <a ng-show ="config.deviceswap=='true'&&((orderData.status == 'ACTIVE')&&PermissionService.showMenu('SWAPPING_HARDWARESWAPPING')&&association.saleId)" href="#/hardwareswap/{{association.saleId}}/{{clientId}}/{{association.orderId}}" class="btn btn-primary"><i class="icon-move"></i>Device Swap</a>
-		     <a ng-show ="config.applypromo=='true'&&((orderData.status == 'ACTIVE')&&PermissionService.showMenu('APPLYPROMO_ORDER'))" ng-click="applyPromo()" class="btn btn-primary"><i class="icon-gift"></i>Apply Promo</a>
-		     <!-- <a ng-show ="orderData.status != 'PENDING' && orderData.status != 'SUSPENDED' && orderData.status != 'TERMINATED' " ng-click="extension()" class="btn btn-primary"><i class="icon-cog"></i>Extension</a> -->
-		     <a ng-show ="config.changeplan=='true'&&(orderData.status == 'ACTIVE')&&PermissionService.showMenu('CHANGEPLAN_ORDER')" href="#/neworder/{{orderData.pdid}}/{{clientId}}" class="btn btn-primary"><i class="icon-cog"></i>Change Plan</a>
-		     <a ng-show ="orderData.status == 'PENDING' && orderServicesData[0].isAutoProvision == 'N'" href="#/provision/{{orderData.id}}/{{clientId}}/{{orderServicesData[0].serviceId}}" class="btn btn-primary"><i class="icon-cog"></i>Provision It</a>
-		     <a ng-show ="orderData.status == 'ACTIVE' && orderServicesData[0].isAutoProvision == 'N' " href="#/editprovison/{{orderData.id}}/{{clientId}}/{{orderServicesData[0].serviceId}}" class="btn btn-primary"><i class="icon-cog"></i>Edit Provision</a>
-		     <a ng-show="config.terminate=='true'&&((orderData.status == 'DISCONNECTED')&&PermissionService.showMenu('RECONNECT_ORDER'))" ng-click="terminate()" class="btn btn-primary"><i class=" icon-repeat icon-white"></i> Terminate</a> 
-		     <a ng-show="orderData.status == 'SUSPENDED'" ng-click="reactive()" class="btn btn-primary"><i class=" icon-repeat icon-white"></i> ReActive</a>
+	         <a data-ng-show="config.disconnect=='true'&&((orderData.status == 'ACTIVE')&&PermissionService.showMenu('UPDATE_ORDER')||(orderData.status == 'SUSPENDED'))" href="" data-ng-click="orderDisconnect(orderPriceDatas[0].orderId)" class="btn btn-primary"><i class="icon-remove fa-spin icon-white"></i> Disconnect</a>
+	         <a data-ng-show="config.reconnect=='true'&& ((orderData.status == 'DISCONNECTED')&&PermissionService.showMenu('RECONNECT_ORDER')&&(orderData.contractPeriod == 'Perpetual')) " data-ng-click="reconnect()" class="btn btn-primary"><i class=" icon-repeat icon-white"></i> Reconnect</a>
+	         <a data-ng-show="config['topup/renewal'] == 'true'&&((orderData.endDate && orderData.status != 'PENDING' && orderData.status != 'SUSPENDED' && orderData.status != 'TERMINATED' && orderData.isPrepaid == 'N')&&PermissionService.showMenu('RENEWAL_ORDER')&&(orderData.contractPeriod != 'Perpetual')) " href="" data-ng-click="orderRenew(orderPriceDatas[0].orderId)" class="btn btn-primary"><i class="icon-edit icon-white"></i>Renewal</a>
+	         <a data-ng-show="config['topup/renewal'] == 'true'&&((orderData.isPrepaid == 'Y' && (orderData.status != 'TERMINATED') && orderData.status != 'PENDING')&&PermissionService.showMenu('RENEWAL_ORDER'))"  href="" data-ng-click="orderRenew(orderPriceDatas[0].orderId)"class="btn btn-primary"><i class="icon-arrow-up icon-white"></i>TopUp</a>
+	        <!--  <a data-ng-show="orderData.status == 'ACTIVE'" data-ng-click="CommandCenter(orderPriceDatas[0].orderId)" class="btn btn-primary"><i class=" icon-repeat icon-white"></i> Command Center</a> -->
+	         <a data-ng-show="(orderData.status == 'PENDING')&&PermissionService.showMenu('DELETE_ORDER')" data-ng-click="cancelOrder()" class="btn btn-primary"><i class="icon-remove-circle icon-white"></i> Cancel Order</a>
+	         <a data-ng-show ="config.pairing=='true'&&(!serviceLevelPairEnabled&&PermissionService.showMenu('CREATE_ASSOCIATION'))"  href="#/association/{{clientId}}/{{orderPriceDatas[0].orderId}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Pairing</a>
+	         <a data-ng-show="config.addons=='true'&&((orderData.status == 'ACTIVE')&&PermissionService.showMenu('CREATE_ORDERADDONS'))"  href="#/orderaddons/" class="btn btn-primary"><i class="icon-shopping-cart fa-spin icon-white"></i> AddOns</a>
+		     <a data-ng-show ="(orderData.status == 'DISCONNECTED')&&PermissionService.showMenu('DEASSOCIATION_ASSOCIATION')&&!serviceLevelUnPairEnabled&&serviceLevelPairEnabled" data-ng-click="deAssociation(orderServicesData[0].associateId)" class="btn btn-primary"><i class="icon-repeat icon-white"></i> Un Pairing</a>
+		     <a data-ng-show ="config.deviceswap=='true'&&((orderData.status == 'ACTIVE')&&PermissionService.showMenu('SWAPPING_HARDWARESWAPPING')&&association.saleId)" href="#/hardwareswap/{{association.saleId}}/{{clientId}}/{{association.orderId}}" class="btn btn-primary"><i class="icon-move"></i>Device Swap</a>
+		     <a data-ng-show ="config.applypromo=='true'&&((orderData.status == 'ACTIVE')&&PermissionService.showMenu('APPLYPROMO_ORDER'))" data-ng-click="applyPromo()" class="btn btn-primary"><i class="icon-gift"></i>Apply Promo</a>
+		     <!-- <a data-ng-show ="orderData.status != 'PENDING' && orderData.status != 'SUSPENDED' && orderData.status != 'TERMINATED' " data-ng-click="extension()" class="btn btn-primary"><i class="icon-cog"></i>Extension</a> -->
+		     <a data-ng-show ="config.changeplan=='true'&&(orderData.status == 'ACTIVE')&&PermissionService.showMenu('CHANGEPLAN_ORDER')" href="#/neworder/{{orderData.pdid}}/{{clientId}}" class="btn btn-primary"><i class="icon-cog"></i>Change Plan</a>
+		     <a data-ng-show ="orderData.status == 'PENDING' && orderServicesData[0].isAutoProvision == 'N'" href="#/provision/{{orderData.id}}/{{clientId}}/{{orderServicesData[0].serviceId}}" class="btn btn-primary"><i class="icon-cog"></i>Provision It</a>
+		     <a data-ng-show ="orderData.status == 'ACTIVE' && orderServicesData[0].isAutoProvision == 'N' " href="#/editprovison/{{orderData.id}}/{{clientId}}/{{orderServicesData[0].serviceId}}" class="btn btn-primary"><i class="icon-cog"></i>Edit Provision</a>
+		     <a data-ng-show="config.terminate=='true'&&((orderData.status == 'DISCONNECTED')&&PermissionService.showMenu('RECONNECT_ORDER'))" data-ng-click="terminate()" class="btn btn-primary"><i class=" icon-repeat icon-white"></i> Terminate</a> 
+		     <a data-ng-show="orderData.status == 'SUSPENDED'" data-ng-click="reactive()" class="btn btn-primary"><i class=" icon-repeat icon-white"></i> ReActive</a>
 	        	<span  class="btn-group">
-              		<a class="btn btn-primary dropdown-toggle" ng-show="(orderData.status == 'ACTIVE')&&PermissionService.showMenu('RETRACKOSDMESSAGE_ORDER')">
+              		<a class="btn btn-primary dropdown-toggle" data-ng-show="(orderData.status == 'ACTIVE')&&PermissionService.showMenu('RETRACKOSDMESSAGE_ORDER')">
 	                	{{ 'label.button.more' | translate}}
                  <span class="caret"></span>
               	</a>
               <ul style='margin-left:-95px;' class="dropdown dropdown-menu">
                 <li>
-                    <a ng-show ="config.suspend=='true'&&orderData.status == 'ACTIVE'" ng-click="suspend()">Suspend</a>
-                    <a ng-show ="config.commandcenter=='true'" ng-click="CommandCenter(orderPriceDatas[0].orderId)">Command Center</a>
-                    <a ng-show ="config.ipchange=='true'" href="#/ipchange/{{clientId}}/{{orderData.id}}/{{orderServicesData[0].serviceId}}">Ip Change</a>
+                    <a data-ng-show ="config.suspend=='true'&&orderData.status == 'ACTIVE'" data-ng-click="suspend()">Suspend</a>
+                    <a data-ng-show ="config.commandcenter=='true'" data-ng-click="CommandCenter(orderPriceDatas[0].orderId)">Command Center</a>
+                    <a data-ng-show ="config.ipchange=='true'" href="#/ipchange/{{clientId}}/{{orderData.id}}/{{orderServicesData[0].serviceId}}">Ip Change</a>
                 </li>
               </ul>
           </span> 
 	    </div>  
 	</span>
-	   <span ng-show="buttons.options" class="btn-group">
+	   <span data-ng-show="buttons.options" class="btn-group">
               <a class="btn btn-primary dropdown-toggle">
                 {{ 'label.button.more' | translate}}
                 <span class="caret"></span>
               </a>
               	<ul style='margin-left:-95px;' class="dropdown dropdown-menu">
-                	<li class="{{button.icon}}" ng-repeat="button in buttons.options">
-                    	<a ng-click="clickEvent(button.name.replace('button.',''), loandetails.id)">{{'label.'+ button.name | translate}}</a>
+                	<li class="{{button.icon}}" data-ng-repeat="button in buttons.options">
+                    	<a data-ng-click="clickEvent(button.name.replace('button.',''), loandetails.id)">{{'label.'+ button.name | translate}}</a>
                 	</li>
               </ul>
      </span> 
@@ -185,10 +185,13 @@
                 		<td>{{orderServicesData.serviceType}}</td>
                 		<td>{{orderServicesData.serviceDescription}}</td>
                 		<td>{{orderServicesData.serialNo}}</td>
-                		<td data-ng-show="(config.pairing=='true'&&serviceMapEnabled)&&(isServiceLevelMap&&orderServicesData.serialNo==null)">
-                		<a data-ng-show="PermissionService.showMenu('CREATE_ASSOCIATION')" data-ng-click="serviceLevelPairing(orderServicesData.orderId,orderServicesData.serviceId)" class="btn btn-primary">
-                		<i class="icon-plus icon-white"></i>Pairing</a></td>
-                		<td data-ng-hide="(config.pairing=='true'&&serviceMapEnabled)&&(isServiceLevelMap&&orderServicesData.serialNo==null)"></td>
+                		<td>
+                			<a data-ng-if="(config.pairing=='true'&&serviceLevelPairEnabled)&&(isServiceLevelMap&&orderServicesData.serialNo==null)&&PermissionService.showMenu('CREATE_ASSOCIATION')" 
+                				data-ng-click="serviceLevelPairing(orderServicesData.orderId,orderServicesData.serviceId)" class="btn btn-primary">
+                				<i class="icon-plus icon-white"></i>Pairing</a>
+                			<a data-ng-if="(orderData.status == 'DISCONNECTED')&&(serviceLevelUnPairEnabled&&isServiceLevelMap&&orderServicesData.serialNo)&&PermissionService.showMenu('DEASSOCIATION_ASSOCIATION')" 
+                				data-ng-click="deAssociation(orderServicesData.associateId)" class="btn btn-primary">
+                				<i class="icon-plus icon-white"></i>UnPairing</a></td>
             		</tr>
         	</tbody>
     	</table>
@@ -210,7 +213,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="orderPriceData in orderPriceDatas">
+            <tr data-ng-repeat="orderPriceData in orderPriceDatas">
                 <td>{{orderPriceData.serviceDescription}}</td>            
                 <td>{{orderPriceData.chargeDescription}}</td>        
                 <td>{{orderPriceData.billStartDate | DateFormat}}</td>         
@@ -219,7 +222,7 @@
                 <td>{{orderPriceData.billingCycle}}</td>
                 <td><input type="text" id="planCode" ng-model="orderPriceData.price" class="input-small" ng-change="status()"></td>
                 <td>
-                 <a ng-show="PermissionService.showMenu('UPDATE_ORDERPRICE')" ng-click="updatePrice(orderPriceData.id,orderPriceData.price)" class="btn btn-primary"><i class="icon-remove-circle icon-white"></i>Update</a>
+                 <a data-ng-show="PermissionService.showMenu('UPDATE_ORDERPRICE')" data-ng-click="updatePrice(orderPriceData.id,orderPriceData.price)" class="btn btn-primary"><i class="icon-remove-circle icon-white"></i>Update</a>
            </td>
             </tr>
         </tbody>
@@ -237,7 +240,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="orderDiscountData in orderDiscountDatas">
+            <tr data-ng-repeat="orderDiscountData in orderDiscountDatas">
                 <td>{{orderDiscountData.id}}</td>            
                 <td>{{orderDiscountData.discountdescription}}</td>
                 <td>{{orderDiscountData.discountType}}</td>
@@ -264,7 +267,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="orderAddonsData in orderAddonsDatas">
+            <tr data-ng-repeat="orderAddonsData in orderAddonsDatas">
                 <td>{{orderAddonsData.serviceCode}}</td>
                 <td>{{orderAddonsData.startDate | DateFormat}}</td>
                 <td>{{orderAddonsData.endDate | DateFormat}}</td>            
@@ -292,7 +295,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="orderHistory in orderHistorydata">
+            <tr data-ng-repeat="orderHistory in orderHistorydata">
                 <td>{{orderHistory.PrepareRequsetId}}</td>
                 <td>{{orderHistory.transactionDate | DateFormat}}</td>
                 <td>{{orderHistory.transactioType}}</td>            
@@ -321,19 +324,19 @@
 				</tr>
         </thead>
         <tbody>
-          <tr class="pointer-main" ng-repeat="provisioningdata in provisioningdatas  | filter:filterText">
+          <tr class="pointer-main" data-ng-repeat="provisioningdata in provisioningdatas  | filter:filterText">
 					<td class="pointer" >{{provisioningdata.id}}</td>
 					<td class="pointer" >{{provisioningdata.orderId}}</td>  
 					<td class="pointer" >{{provisioningdata.requestType}}</td>
-					<td ng-show="provisioningdata.isProcessed == 'F'" class="pointer" >Failure</td>
-					<td ng-show="provisioningdata.isProcessed == 'Y'" class="pointer" >Success</td>
-					<td ng-show="provisioningdata.isProcessed == 'N'" class="pointer" >Processing</td>
-					<td ng-show="provisioningdata.isProcessed == 'C'" class="pointer" >Success</td>
+					<td data-ng-show="provisioningdata.isProcessed == 'F'" class="pointer" >Failure</td>
+					<td data-ng-show="provisioningdata.isProcessed == 'Y'" class="pointer" >Success</td>
+					<td data-ng-show="provisioningdata.isProcessed == 'N'" class="pointer" >Processing</td>
+					<td data-ng-show="provisioningdata.isProcessed == 'C'" class="pointer" >Success</td>
 					<td class="pointer" >{{provisioningdata.receiveMessage}}</td>
-					  <td><a ng-show="provisioningdata.isProcessed == 'F' " ng-click="reProcess(provisioningdata.id)" popover="Re Process" popover-trigger="mouseenter"><i class="icon-play icon-white"></i></a></td>
-					   <td><a ng-show="provisioningdata.isProcessed == 'F' || provisioningdata.isProcessed == 'N'" ng-click="confirmRequest(provisioningdata.id)" popover="Confirm Request" popover-trigger="mouseenter"><i class="icon-ok icon-white"></i></a></td>
-					<td><button style="padding:3px 5px;" class="btn btn-primary" ng-hide="provisioningdata.requestType=='RETRACK'"
-								ng-click="sentMessagePopup(provisioningdata.id)" data-popover-trigger="mouseenter" data-popover="To See Click on Me">
+					  <td><a data-ng-show="provisioningdata.isProcessed == 'F' " data-ng-click="reProcess(provisioningdata.id)" popover="Re Process" popover-trigger="mouseenter"><i class="icon-play icon-white"></i></a></td>
+					   <td><a data-ng-show="provisioningdata.isProcessed == 'F' || provisioningdata.isProcessed == 'N'" data-ng-click="confirmRequest(provisioningdata.id)" popover="Confirm Request" popover-trigger="mouseenter"><i class="icon-ok icon-white"></i></a></td>
+					<td><button style="padding:3px 5px;" class="btn btn-primary" data-ng-hide="provisioningdata.requestType=='RETRACK'"
+								data-ng-click="sentMessagePopup(provisioningdata.id)" data-popover-trigger="mouseenter" data-popover="To See Click on Me">
 								<i class="icon-envelope icon-white"></i></button></td> 
 				</tr>
         </tbody>
@@ -352,7 +355,7 @@
     <div class="modal-body" style="height:300px;">
        	<fieldset>
      		<div class="control-group">
-	            <label class="control-label" style="color:red;" ng-show="orderError.length>0">{{orderError | translate}}</label>
+	            <label class="control-label" style="color:red;" data-ng-show="orderError.length>0">{{orderError | translate}}</label>
             	<div class="controls"></div>
         	</div>
 	<div class="control-group">
@@ -377,8 +380,8 @@
    </fieldset>
 </div>
 <div class="modal-footer">
-        <button id="cancel" class="btn btn-warning" ng-click="cancelDisconnection()">{{'button.cancel' | translate}}</button>
-     	<button id="submit" class="btn btn-primary" ng-click="approveDisconnection()" ng-disabled="flagOrderDisconnect">{{'label.confirm' | translate}}</button>
+        <button id="cancel" class="btn btn-warning" data-ng-click="cancelDisconnection()">{{'button.cancel' | translate}}</button>
+     	<button id="submit" class="btn btn-primary" data-ng-click="approveDisconnection()" ng-disabled="flagOrderDisconnect">{{'label.confirm' | translate}}</button>
 </div>
 </script>
 
@@ -389,10 +392,10 @@
     </div>
     <div class="modal-body modal-big">
        	<fieldset>
-			<div class="error" ng-show="errorStatus || errorDetails">
+			<div class="error" data-ng-show="errorStatus || errorDetails">
 				<label>{{'label.contract.error' | translate}}</label>
-				<label ng-show="errorStatus">{{errorStatus}}</label>
-				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate : error.args}}</label>
+				<label data-ng-show="errorStatus">{{errorStatus}}</label>
+				<label ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate : error.args}}</label>
 	    </div>
     <div class="control-group">
             <label class="control-label" for="status">{{ 'label.order.renewalperiod' | translate }}</label>
@@ -410,8 +413,8 @@
     </fieldset>
    </div>
   <div class="modal-footer">
-        <button id="cancel" class="btn btn-warning" ng-click="cancelRenewal()">{{'button.cancel' | translate}}</button>
-     	<button id="submit" class="btn btn-primary" ng-click="approveRenewal()" ng-disabled="flagOrderRenewal">{{'label.confirm' | translate}}</button>
+        <button id="cancel" class="btn btn-warning" data-ng-click="cancelRenewal()">{{'button.cancel' | translate}}</button>
+     	<button id="submit" class="btn btn-primary" data-ng-click="approveRenewal()" ng-disabled="flagOrderRenewal">{{'label.confirm' | translate}}</button>
   </div>
 </script>
 	
@@ -420,16 +423,16 @@
    			<h3 class="bolder">{{'dialog.reconnect.title.message' | translate}}</h3>
    </div>
     <div class="modal-body modal-small">
-       	<div class="error" ng-show="errorStatus || errorDetails">
+       	<div class="error" data-ng-show="errorStatus || errorDetails">
 			<label>{{'label.contract.error' | translate}}</label>
-			<label ng-show="errorStatus">{{errorStatus}}</label>
-			<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+			<label data-ng-show="errorStatus">{{errorStatus}}</label>
+			<label ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
          <h4>Are you sure?</h4>
     </div>
     <div class="modal-footer">
-     		<button id="cancel" class="btn btn-warning" ng-click="cancelReconnect()">{{'button.cancel' | translate}}</button>
-            <button id="submit" class="btn btn-primary" ng-click="approveReconnect()" ng-disabled="flagApproveReconnect">{{'label.confirm' | translate}}</button>
+     		<button id="cancel" class="btn btn-warning" data-ng-click="cancelReconnect()">{{'button.cancel' | translate}}</button>
+            <button id="submit" class="btn btn-primary" data-ng-click="approveReconnect()" ng-disabled="flagApproveReconnect">{{'label.confirm' | translate}}</button>
     </div>
       </script>
 
@@ -438,16 +441,16 @@
   			<h3 class="bolder">{{'dialog.terminate.title.message' | translate}}</h3>
     </div>
     <div class="modal-body modal-small">
-       	<div class="error" ng-show="errorStatus || errorDetails">
+       	<div class="error" data-ng-show="errorStatus || errorDetails">
 			<label>{{'label.contract.error' | translate}}</label>
-			<label ng-show="errorStatus">{{errorStatus}}</label>
-			<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+			<label data-ng-show="errorStatus">{{errorStatus}}</label>
+			<label ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
       <h4>Are you sure?</h4>
    </div>
    <div class="modal-footer">
-   			<button id="cancel" class="btn btn-warning" ng-click="cancelReconnect()">{{'button.cancel' | translate}}</button>
-            <button id="submit" class="btn btn-primary" ng-click="approveTerminate()" ng-disabled="flagApproveTerminate">{{'label.confirm' | translate}}</button>
+   			<button id="cancel" class="btn btn-warning" data-ng-click="cancelReconnect()">{{'button.cancel' | translate}}</button>
+            <button id="submit" class="btn btn-primary" data-ng-click="approveTerminate()" ng-disabled="flagApproveTerminate">{{'label.confirm' | translate}}</button>
    </div>
 </script>
 
@@ -456,16 +459,16 @@
   			<h3 class="bolder">{{'dialog.confirm.title.message' | translate}}</h3>
     </div>
     <div class="modal-body modal-small">
-       	<div class="error" ng-show="errorStatus || errorDetails">
+       	<div class="error" data-ng-show="errorStatus || errorDetails">
 			<label>{{'label.contract.error' | translate}}</label>
-			<label ng-show="errorStatus">{{errorStatus}}</label>
-			<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+			<label data-ng-show="errorStatus">{{errorStatus}}</label>
+			<label ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
       <h4>Are you sure?</h4>
    </div>
    <div class="modal-footer">
-   			<button id="cancel" class="btn btn-warning" ng-click="cancelReconnect()">{{'button.cancel' | translate}}</button>
-            <button id="submit" class="btn btn-primary" ng-click="approveTerminate()" ng-disabled="flagApproveTerminate">{{'label.confirm' | translate}}</button>
+   			<button id="cancel" class="btn btn-warning" data-ng-click="cancelReconnect()">{{'button.cancel' | translate}}</button>
+            <button id="submit" class="btn btn-primary" data-ng-click="approveTerminate()" ng-disabled="flagApproveTerminate">{{'label.confirm' | translate}}</button>
    </div>
 </script>
 
@@ -474,16 +477,16 @@
   			<h3 class="bolder">{{'dialog.reactive.title.message' | translate}}</h3>
     </div>
     <div class="modal-body modal-small">
-       	<div class="error" ng-show="errorStatus || errorDetails">
+       	<div class="error" data-ng-show="errorStatus || errorDetails">
 			<label>{{'label.contract.error' | translate}}</label>
-			<label ng-show="errorStatus">{{errorStatus}}</label>
-			<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+			<label data-ng-show="errorStatus">{{errorStatus}}</label>
+			<label ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
       <h4>Are you sure?</h4>
    </div>
    <div class="modal-footer">
-   			<button id="cancel" class="btn btn-warning" ng-click="cancelReactive()">{{'button.cancel' | translate}}</button>
-            <button id="submit" class="btn btn-primary" ng-click="approveReactive()" ng-disabled="flagApproveTerminate">{{'label.confirm' | translate}}</button>
+   			<button id="cancel" class="btn btn-warning" data-ng-click="cancelReactive()">{{'button.cancel' | translate}}</button>
+            <button id="submit" class="btn btn-primary" data-ng-click="approveReactive()" ng-disabled="flagApproveTerminate">{{'label.confirm' | translate}}</button>
    </div>
 </script>
 
@@ -494,7 +497,7 @@
     <div class="modal-body modal-big">
        	<fieldset>
 			<div class="control-group">
-            	<label class="control-label" style="color:red;" ng-show="renewError.length>0">{{renewError | translate}}</label>
+            	<label class="control-label" style="color:red;" data-ng-show="renewError.length>0">{{renewError | translate}}</label>
             <div class="controls"></div>
     </div>
      <div class="control-group">
@@ -520,8 +523,8 @@
     </fieldset>
    </div>
    <div class="modal-footer">
-   		<button id="cancel" class="btn btn-warning" ng-click="cancelReconnect()">{{'button.cancel' | translate}}</button>
-        <button id="submit" class="btn btn-primary" ng-click="approveSuspend()" ng-disabled="flagApproveTerminate">{{'label.confirm' | translate}}</button>
+   		<button id="cancel" class="btn btn-warning" data-ng-click="cancelReconnect()">{{'button.cancel' | translate}}</button>
+        <button id="submit" class="btn btn-primary" data-ng-click="approveSuspend()" ng-disabled="flagApproveTerminate">{{'label.confirm' | translate}}</button>
    </div>
 </script>    
 <script type="text/ng-template" id="ProvisioningSystemPop.html">
@@ -529,10 +532,10 @@
     		<h3 class="bolder">{{'dialog.provisioning.title.message' | translate}}</h3>
      </div>
      <div class="modal-body" style="height:330px;">
-			<div class="error" ng-show="errorStatus || errorDetails">
+			<div class="error" data-ng-show="errorStatus || errorDetails">
 		    	<label>{{'label.contract.error' | translate}}</label>
-		        <label ng-show="errorStatus">{{errorStatus}}</label>
-		        <label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		        <label data-ng-show="errorStatus">{{errorStatus}}</label>
+		        <label ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	        </div>
             <div class="control-group">
             		<label class="control-label" for="status">{{ 'label.provisioning.commandname' | translate }}</label>
@@ -548,8 +551,8 @@
              </div>		
      </div>
      <div class="modal-footer">
-                        <button id="cancel" class="btn btn-warning" ng-click="rejectProvisioning()">{{'button.cancel' | translate}}</button>
-                        <button id="submit" class="btn btn-primary" ng-click="acceptProvisioning()" >{{'label.confirm' | translate}}</button>
+                        <button id="cancel" class="btn btn-warning" data-ng-click="rejectProvisioning()">{{'button.cancel' | translate}}</button>
+                        <button id="submit" class="btn btn-primary" data-ng-click="acceptProvisioning()" >{{'label.confirm' | translate}}</button>
      </div>
       </script>
       
@@ -561,7 +564,7 @@
     <div class="modal-body"  style="height:280px;">
        <fieldset>
 		<div class="control-group">
-            <label class="control-label" style="color:red;" ng-show="renewError.length>0">{{renewError | translate}}</label>
+            <label class="control-label" style="color:red;" data-ng-show="renewError.length>0">{{renewError | translate}}</label>
             <div class="controls">
             </div>
         </div>
@@ -581,8 +584,8 @@
 		</fieldset>
     </div>
    <div class="modal-footer">
-         <button id="cancel" class="btn btn-warning" ng-click="rejectProvisioning()">{{'button.cancel' | translate}}</button>
-         <button id="submit" class="btn btn-primary" ng-click="accept()" ng-disabled="flagPromo">{{'label.confirm' | translate}}</button>
+         <button id="cancel" class="btn btn-warning" data-ng-click="rejectProvisioning()">{{'button.cancel' | translate}}</button>
+         <button id="submit" class="btn btn-primary" data-ng-click="accept()" ng-disabled="flagPromo">{{'label.confirm' | translate}}</button>
    </div>
 </script>     
 
@@ -594,7 +597,7 @@
     <div class="modal-body"  style="height:250px;">
        <fieldset>
 		<div class="control-group">
-            <label class="control-label" style="color:red;" ng-show="renewError.length>0">{{renewError | translate}}</label>
+            <label class="control-label" style="color:red;" data-ng-show="renewError.length>0">{{renewError | translate}}</label>
             <div class="controls">
             </div>
         </div>
@@ -616,8 +619,8 @@
 		</fieldset>
     </div>
    <div class="modal-footer">
-         <button id="cancel" class="btn btn-warning" ng-click="rejectExtension()">{{'button.cancel' | translate}}</button>
-         <button id="submit" class="btn btn-primary" ng-click="accept()" ng-disabled="flagExtension">{{'label.confirm' | translate}}</button>
+         <button id="cancel" class="btn btn-warning" data-ng-click="rejectExtension()">{{'button.cancel' | translate}}</button>
+         <button id="submit" class="btn btn-primary" data-ng-click="accept()" ng-disabled="flagExtension">{{'label.confirm' | translate}}</button>
    </div>
 </script> 
 <script type="text/ng-template" id="editProvision.html">
@@ -634,7 +637,7 @@
               				</tr>
             			</thead>
             			<tbody>
-              				<tr ng-repeat="parameterData in parameterDatas">
+              				<tr data-ng-repeat="parameterData in parameterDatas">
                 				<td>{{parameterData.id}}</td>
                					<td>{{parameterData.paramName}}</td>
              					<td>{{parameterData.paramValue}}</td>
@@ -644,7 +647,7 @@
 						
                     </div>
                     <div class="modal-footer">
-                        <button id="cancel" class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+                        <button id="cancel" class="btn btn-warning" data-ng-click="cancel()">{{'button.cancel' | translate}}</button>
                     </div>
       </script>
 <script type="text/ng-template" id="sentMessage.html">
@@ -653,11 +656,11 @@
                     </div>
                     <div class="modal-body modal-big" style="width:650px;">
 						<table style="" class="fullwidth">
-							<tr ng-repeat="messageData in messageData">
+							<tr data-ng-repeat="messageData in messageData">
 								<td width="30%" valign="top" align="right">{{messageData.key}}:</td>
 								<!--<td width="80%" style="color:#800080;">:&nbsp;&nbsp;{{messageData.value}}</td>-->
 								<td width="70%" style="color:#800080;padding-left:10px;">
-								  <table class="fullwidth"><tr ng-repeat="msgValue in messageData.value track by $index">
+								  <table class="fullwidth"><tr data-ng-repeat="msgValue in messageData.value track by $index">
 									<td width="35%" valign="top">{{msgValue.key}}</td>
 									<td data-ng-hide='msgValue.value ==""' width="1%" valign="top">:&nbsp;&nbsp;</td>
 									<td data-ng-hide='msgValue.value ==""'> {{msgValue.value}}</td>
@@ -667,7 +670,7 @@
 		        		 </table>
                     </div>
                     <div class="modal-footer">
-                        <button id="cancel" class="btn btn-primary" ng-click="cancel()">{{'button.done' | translate}}</button>
+                        <button id="cancel" class="btn btn-primary" data-ng-click="cancel()">{{'button.done' | translate}}</button>
                     </div>
  </script>
       <script type="text/ng-template" id="disconnectaddon.html">
@@ -678,8 +681,8 @@
                        <h4>Are you sure?</h4>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
-                        <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+                        <button class="btn" data-ng-click="cancel()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" data-ng-click="approve()">{{'label.confirm' | translate}}</button>
                     </div>
 </script>
 
@@ -690,10 +693,10 @@
     </div>
     <div class="modal-body">
        	<fieldset>
-			<div class="error" ng-show="errorStatus || errorDetails">
+			<div class="error" data-ng-show="errorStatus || errorDetails">
 				<label>{{'label.contract.error' | translate}}</label>
-				<label ng-show="errorStatus">{{errorStatus}}</label>
-				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate : error.args}}</label>
+				<label data-ng-show="errorStatus">{{errorStatus}}</label>
+				<label ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate : error.args}}</label>
 	    </div>
     <div class="control-group">
             <label class="control-label" for="provisionNum">{{'label.association.serialno' | translate}}</label>

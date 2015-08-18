@@ -16,7 +16,8 @@
         scope.walletConfig = webStorage.get('is-wallet-enable');
         scope.config = webStorage.get("client_configuration").orderActions;
         scope.isServiceLevelMap = webStorage.get("service-device-mapping");
-        scope.serviceMapEnabled=false;
+        scope.serviceLevelPairEnabled=false;
+        scope.serviceLevelUnPairEnabled=false;
         
          var clientData = webStorage.get('clientData');
          webStorage.add("orderId",routeParams.id);
@@ -54,14 +55,23 @@
             scope.formData.flag=data.flag;
             scope.orderServicesData=data.orderServices;
             scope.orderDiscountDatas=data.orderDiscountDatas;
+            
             for (var i in scope.orderServicesData){
             	if(scope.orderServicesData[i].serialNo!=null){
-            		scope.serviceMapEnabled=true;
+            		scope.serviceLevelPairEnabled=true;
             		break;
             	}
             }
             
-          
+            var serviceKey = 0;
+            while(serviceKey != scope.orderServicesData.length-1&&scope.orderServicesData[serviceKey].associateId){
+            	serviceKey += 1;
+	            	if(scope.orderServicesData[0].associateId == scope.orderServicesData[serviceKey].associateId){
+	            		scope.serviceLevelUnPairEnabled=false;
+	            		break;
+	            	}else scope.serviceLevelUnPairEnabled=true;
+            }
+            
       
 	    if(data.orderData.isPrepaid == 'Y'){
             	scope.formData.isPrepaid="Pre Paid";
@@ -132,7 +142,6 @@
                     route.reload();
                     $modalInstance.dismiss('delete');
               	},function(errData){
-              		console.log(errData);
               		scope.errorDetails=errData;
               	});
       		};
@@ -718,9 +727,9 @@
             	});
           }
         
-        scope.deAssociation=function (){
+        scope.deAssociation=function (associateId){
         	
-        	resourceFactory.deAssociationResource.update({id:scope.association.id} , function(data) {
+        	resourceFactory.deAssociationResource.update({id:associateId} , function(data) {
              
         		 route.reload();
             });
