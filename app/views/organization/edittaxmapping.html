@@ -2,7 +2,7 @@
 	<div>
     	<ul class="breadcrumb">
         	<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
-          	<li><a href="#/taxmapping/{{formData.chargeCode}}/{{formData.id}}">{{'label.managetaxmapping' | translate}}</a> <span class="divider">/</span></li>
+          	<li><a href="#/taxmapping/{{formData.chargeCode}}/{{chargeCodeId}}">{{'label.managetaxmapping' | translate}}</a> <span class="divider">/</span></li>
           	<li><a href="#/viewtaxmapping/{{taxMapId}}">&nbsp;{{formData.taxCode}}&nbsp;</a> <span class="divider">/</span></li>
           	<li class="active">{{'label.edittaxmapping' | translate}}</li>
         </ul>
@@ -84,7 +84,7 @@
           	</td></tr>
           
           	<tr><td align="right">
-            	<a href="#/viewtaxmapping/{{taxMapId}}"><button id="cancel" type="reset" class="btn">{{'label.cancel' | translate}}</button></a>
+            	<a href="#/viewtaxmapping/{{taxMapId}}/{{chargeCodeId}}"><button id="cancel" type="reset" class="btn">{{'label.cancel' | translate}}</button></a>
             	<button id="submit" type="submit" data-ng-disabled="edittaxform.$dirty && edittaxform.$invalid" class="btn btn-primary">{{'label.save' | translate}}</button>
           </td></tr>
           </table>
