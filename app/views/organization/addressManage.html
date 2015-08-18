@@ -25,7 +25,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr  ng-repeat="addressManage in addressManages.currentPageItems | filter:filterText">
+				<tr  ng-repeat="addressManage in addressManages.currentPageItems | orderBy:'countryName' | filter:filterText">
+				<!-- <tr  ng-repeat="addressManage in addressManages.currentPageItems | filter:filterText"> -->
 					<td >{{addressManage.countryName}}</td>
 					<td >{{addressManage.stateName}}</td>  
 					<td >{{addressManage.cityName}}</td>
@@ -35,7 +36,7 @@
 		</table>
 		<ul class="pager">
         			<li class="previous" ><a ng-click="addressManages.previous()" href="" ng-hide="!addressManages.hasPrevious()" >&larr; Prev</a></li>
-        			<li class="next" ><a ng-click="addressManages.next()" href="" ng-disabled="!addressManages.hasNext()">Next &rarr;</a></li>
+        			<li class="next" ><a ng-click="addressManages.next()" href="" ng-hide="!addressManages.hasNext()">Next &rarr;</a></li>
     			</ul>
 	</div>
  </div> 

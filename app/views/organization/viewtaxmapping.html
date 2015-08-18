@@ -3,7 +3,7 @@
 	<div class="paddedbottom10">
 		<ul class="breadcrumb">
 	    	<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
-	        <li><a href="#/taxmapping/{{taxmapping.chargeCode}}/{{taxmapping.id}}">{{'label.managetaxmapping' | translate}}</a>
+	        <li><a href="#/taxmapping/{{taxmapping.chargeCode}}/{{chargeCodeId}}">{{'label.managetaxmapping' | translate}}</a>
 	         	<span class="divider">/</span>
 	        </li>
 	        <li class="active">{{taxmapping.taxCode}}&nbsp;&nbsp;</li>
@@ -11,7 +11,7 @@
 	    
 	    <div class="pull-right">
 	    	<div class="btn-group">
-	          <a data-ng-show="PermissionService.showMenu('UPDATE_TAXMAPPING')" href="#/edittaxmapping/{{taxmapping.id}}" class="btn btn-primary">
+	          <a data-ng-show="PermissionService.showMenu('UPDATE_TAXMAPPING')" href="#/edittaxmapping/{{taxmapping.id}}/{{chargeCodeId}}" class="btn btn-primary">
 	          	<i class="icon-edit icon-white"></i> {{'button.edit' | translate}}
 	         </a>
 	    	 <!-- <a class="btn btn-primary"><i class="icon-trash icon-white"></i> Delete</a>     -->

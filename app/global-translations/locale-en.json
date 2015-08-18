@@ -1134,6 +1134,7 @@
  "validation.msg.promotioncode.duration.cannot.be.blank" : "Duration cannot be blank",
  "validation.msg.promotioncode.discounttype.cannot.be.blank" : "Discount Type cannot be blank",
  "validation.msg.promotioncode.discountRate.cannot.be.blank" : "Discount Rate cannot be blank",
+ "error.msg.promotionCode.duplicate.name" : "Promotion Code already exist",
   
   "#Prospects":"....",
   "link.prospects" : "Leads",
@@ -1196,6 +1197,7 @@
   "table.heading.regionCode":"Region Code",
   "table.heading.regionName":"Region Name",
   "link.admin.regions":"Manage Regions",
+  "dialog.region.message" : "Delete Region",
   
   "#countrycurrency":"....",
   "link.add.new.currencydetails" : "Add Currency Details",

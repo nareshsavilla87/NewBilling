@@ -34,6 +34,7 @@
                     var curr_month = bardate.getMonth() +1;
                     scope.formattedDate[i] = curr_date + "/" + curr_month;
                 }
+                //console.log(bardate);
             };scope.formatdate();
 
             
@@ -139,7 +140,7 @@
                 }
             };
             
-             scope.id = this.officeId || 1;	
+            /*  scope.id = this.officeId || 1;	
                resourceFactory.runReportsResource.get({reportSource: 'ClientTrendsByDay',R_officeId:scope.id, genericResultSet:false} , function(data) {
                    scope.client = data;
                    scope.days = [];
@@ -158,8 +159,9 @@
                            scope.tempDate[i] = tday + "/" + tmonth;
                        }
                    }
+                   console.log(scope.fcount);
                    scope.getFcount(scope.formattedDate,scope.tempDate,scope.client);
-   		 scope.id = this.officeId || 1;
+                   scope.id = this.officeId || 1;
                    resourceFactory.runReportsResource.get({reportSource: 'OrderTrendsByDay',R_officeId:scope.id, genericResultSet:false} , function(data) {
                        scope.ldays = [];
                        scope.ltempDate = [];
@@ -182,7 +184,7 @@
                    });
                });
 
-//tab1 active
+	//tab1 active
        scope.clientTrendsTabFun = function(){
     	   
     	   scope.ClientTrendsTab="active";
@@ -248,7 +250,7 @@
 	   scope.StockItemDetailsTab="";
 	   scope.TicketsStatisticsTab="";
 
-/* Paymode Collection Chart */
+ Paymode Collection Chart 
 		 scope.id = this.officeIdCollection || 1;
          resourceFactory.runReportsResource.get({reportSource: 'PaymodeCollection Chart',R_officeId:scope.id, genericResultSet:false} , function(data) 
             	{	
@@ -273,7 +275,7 @@
             });
  };
             
-/* status wise orders */
+ status wise orders 
 		 scope.id = this.officeIdCum || 1;
             resourceFactory.runReportsResource.get({reportSource: 'CumulativeCustomersChart',R_officeId:scope.id, genericResultSet:false} , function(data) {
             	
@@ -294,7 +296,7 @@
         							console.log(scope.cumCustomerData);
         					  		}
         		});
-            	/*scope.cumCustomersPieData = data;
+            	scope.cumCustomersPieData = data;
             	if(data[0].clients == 0 && data[1].clients == 0 && data[2].clients == 0){
                     scope.showCumCustomerDataerror = true;
                 }
@@ -303,7 +305,7 @@
             	                       {key:"Disconnected", y:scope.cumCustomersPieData[1].clients},
             	                       {key:"Pending", y:scope.cumCustomersPieData[2].clients}
             	                   ];
-            });*/
+            });
             
 
  //tab3 active 
@@ -342,7 +344,7 @@
   	 scope.TicketsStatisticsTab="active";
   	 //scope.template2="views/private/ticketDashboard.html"; 
   	 
-  	/* Added by sarath on 26-jun-2014 ----> */
+  	 Added by sarath on 26-jun-2014 ----> 
   	scope.client1 = [];
     scope.offices1 = [];
     scope.bOfficeName1 = 'Head Office';
@@ -434,7 +436,7 @@
             }
     };
 
- scope.id1 = this.officeId1 || 1;	
+ 	scope.id1 = this.officeId1 || 1;	
     resourceFactory.runReportsResource.get({reportSource: 'TicketsbyDays',R_officeId:scope.id1, genericResultSet:false} , function(data) {
         scope.client1 = data;
         scope.days1 = [];
@@ -454,7 +456,7 @@
         	}
         }
         scope.getFcount1(scope.tempDate1,scope.client1);
- scope.id1 = this.officeId1 || 1;
+ 		scope.id1 = this.officeId1 || 1;
         resourceFactory.runReportsResource.get({reportSource: 'TicketsbyDays',R_officeId:scope.id1, genericResultSet:false} , function(data) {
             scope.ldays1 = [];
             scope.ltempDate1 = [];
@@ -475,152 +477,152 @@
             scope.getBarData1(scope.ltempDate1,scope.fcount1,scope.lcount1);
         });
     });
+			
+			resourceFactory.groupTemplateResource.get(function(data) {scope.offices1 = data.officeOptions;scope.officeId1=data.officeId;});
+			
+			Daily Data 
+			scope.getDailyData1 = function(){
+			scope.chartType1 = 'Days';
+			scope.id1 = this.officeId1 || 1;
+			resourceFactory.runReportsResource.get({reportSource: 'TicketsbyDays',R_officeId:scope.id1, genericResultSet:false} , function(data) {
+				scope.client1 = data;
+			    scope.days1 = [];
+			    scope.tempDate1 = [];
+			    scope.fcount1 = [];
+			    for(var i in scope.offices1){
+			        if(scope.offices1[i].id == scope.id1){
+			            scope.bOfficeName1 = scope.offices1[i].name;
+			        }
+			    }
+			    for(var i in scope.client1)
+			    {
+			        scope.days1[i] = scope.client1[i].days;
+			    }
+			    for(var i in scope.days1)
+			    {
+			    	if(scope.days1[i] && scope.days1[i].length > 2){
+			        var tday = scope.days1[i][2];
+			        var tmonth = scope.days1[i][1];
+			        scope.tempDate1[i] = tday + "/" + tmonth;
+			    	}
+			    }
+			    scope.getFcount1(scope.tempDate1,scope.client1);
+			    scope.id1 = this.officeId1 || 1;
+			    resourceFactory.runReportsResource.get({reportSource: 'TicketsbyDays',R_officeId:scope.id1, genericResultSet:false} , function(data) {
+			        scope.ldays1 = [];
+			        scope.ltempDate1 = [];
+			        scope.lcount1 = [];
+			        for(var i in data)
+			        {
+			            scope.ldays1[i] = data[i].days;
+			        }
+			        for(var i in scope.ldays1)
+			        {
+			        	if(scope.ldays1[i] && scope.ldays1[i].length > 2){
+			            var tday = scope.ldays1[i][2];
+			            var tmonth = scope.ldays1[i][1];
+			            scope.ltempDate1[i] = tday + "/" + tmonth;
+			        	}
+			        }
+			        scope.getLcount1(scope.ltempDate1,data);
+			        scope.getBarData1(scope.ltempDate1,scope.fcount1,scope.lcount1);
+			    }); 
+			});
+			};
 
-resourceFactory.groupTemplateResource.get(function(data) {scope.offices1 = data.officeOptions;scope.officeId1=data.officeId;});
+			scope.getWeeklyData1 = function(){
+			scope.chartType1 = 'Weeks';
+			scope.id1 = this.officeId1 || 1;
+			resourceFactory.runReportsResource.get({reportSource: 'TicketsByWeek',R_officeId:scope.id1, genericResultSet:false} , function(data) {
+			    scope.client1 = data;
+			    scope.weeks1 = [];
+			    scope.fcount1 = [];
+			
+			    for(var i in scope.offices1){
+			        if(scope.offices1[i].id == scope.id1){
+			            scope.bOfficeName1 = scope.offices1[i].name;
+			        }
+			    }
+			    for(var i in scope.client1)
+			    {
+			        scope.weeks1[i] = scope.client1[i].Weeks;
+			    }
+			
+			    scope.getFcount1(scope.formattedWeek1,scope.weeks1,scope.client1);
+			    scope.id1 = this.officeId1 || 1;
+			    resourceFactory.runReportsResource.get({reportSource: 'TicketsByWeek',R_officeId:scope.id1, genericResultSet:false} , function(data) {
+			        scope.lweeks1 = [];
+			        scope.lcount1 = [];
+			        for(var i in data)
+			        {
+			            scope.lweeks1[i] = data[i].Weeks;
+			        }
+			        scope.getLcount1(scope.formattedWeek1,scope.lweeks1,data);
+			        scope.getBarData1(scope.formattedWeek1,scope.fcount1,scope.lcount1);
+			    });
+			});
+			};
 
-/*Daily Data */
-scope.getDailyData1 = function(){
-scope.chartType1 = 'Days';
-scope.id1 = this.officeId1 || 1;
-resourceFactory.runReportsResource.get({reportSource: 'TicketsbyDays',R_officeId:scope.id1, genericResultSet:false} , function(data) {
-	scope.client1 = data;
-    scope.days1 = [];
-    scope.tempDate1 = [];
-    scope.fcount1 = [];
-    for(var i in scope.offices1){
-        if(scope.offices1[i].id == scope.id1){
-            scope.bOfficeName1 = scope.offices1[i].name;
-        }
-    }
-    for(var i in scope.client1)
-    {
-        scope.days1[i] = scope.client1[i].days;
-    }
-    for(var i in scope.days1)
-    {
-    	if(scope.days1[i] && scope.days1[i].length > 2){
-        var tday = scope.days1[i][2];
-        var tmonth = scope.days1[i][1];
-        scope.tempDate1[i] = tday + "/" + tmonth;
-    	}
-    }
-    scope.getFcount1(scope.tempDate1,scope.client1);
-    scope.id1 = this.officeId1 || 1;
-    resourceFactory.runReportsResource.get({reportSource: 'TicketsbyDays',R_officeId:scope.id1, genericResultSet:false} , function(data) {
-        scope.ldays1 = [];
-        scope.ltempDate1 = [];
-        scope.lcount1 = [];
-        for(var i in data)
-        {
-            scope.ldays1[i] = data[i].days;
-        }
-        for(var i in scope.ldays1)
-        {
-        	if(scope.ldays1[i] && scope.ldays1[i].length > 2){
-            var tday = scope.ldays1[i][2];
-            var tmonth = scope.ldays1[i][1];
-            scope.ltempDate1[i] = tday + "/" + tmonth;
-        	}
-        }
-        scope.getLcount1(scope.ltempDate1,data);
-        scope.getBarData1(scope.ltempDate1,scope.fcount1,scope.lcount1);
-    }); 
-});
-};
-
-scope.getWeeklyData1 = function(){
-scope.chartType1 = 'Weeks';
-scope.id1 = this.officeId1 || 1;
-resourceFactory.runReportsResource.get({reportSource: 'TicketsByWeek',R_officeId:scope.id1, genericResultSet:false} , function(data) {
-    scope.client1 = data;
-    scope.weeks1 = [];
-    scope.fcount1 = [];
-
-    for(var i in scope.offices1){
-        if(scope.offices1[i].id == scope.id1){
-            scope.bOfficeName1 = scope.offices1[i].name;
-        }
-    }
-    for(var i in scope.client1)
-    {
-        scope.weeks1[i] = scope.client1[i].Weeks;
-    }
-
-    scope.getFcount1(scope.formattedWeek1,scope.weeks1,scope.client1);
-    scope.id1 = this.officeId1 || 1;
-    resourceFactory.runReportsResource.get({reportSource: 'TicketsByWeek',R_officeId:scope.id1, genericResultSet:false} , function(data) {
-        scope.lweeks1 = [];
-        scope.lcount1 = [];
-        for(var i in data)
-        {
-            scope.lweeks1[i] = data[i].Weeks;
-        }
-        scope.getLcount1(scope.formattedWeek1,scope.lweeks1,data);
-        scope.getBarData1(scope.formattedWeek1,scope.fcount1,scope.lcount1);
-    });
-});
-};
-
-scope.getMonthlyData1 = function() {
-scope.chartType1 = 'Months';
-scope.id1 = this.officeId1 || 1;
-scope.formattedSMonth1 = [];
-var monthArray = new Array('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec');
-var today = new Date();
-var aMonth = today.getMonth();
-for (var i=0; i<12; i++)
-{
-    scope.formattedSMonth1.push(monthArray[aMonth]);
-    aMonth--;
-    if (aMonth < 0)
-    {
-        aMonth = 11;
-    }
-}
-resourceFactory.runReportsResource.get({reportSource: 'TicketsByMonth',R_officeId:scope.id1, genericResultSet:false} , function(data) {
-    scope.client1 = data;
-    scope.months1 = [];
-    scope.fcount1 = [];
-
-    for(var i in scope.offices1){
-        if(scope.offices1[i].id == scope.id1){
-            scope.bOfficeName1 = scope.offices1[i].name;
-        }
-    }
-    for(var i in scope.client1)
-    {
-        scope.months1[i] = scope.client1[i].Months;
-    }
-    scope.getFcount1(scope.formattedMonth1,scope.months1,scope.client1);
-    scope.id1 = this.officeId1 || 1;
-    resourceFactory.runReportsResource.get({reportSource: 'TicketsByMonth',R_officeId:scope.id1, genericResultSet:false} , function(data) {
-        scope.lmonths1 = [];
-        scope.lcount1 = [];
-
-        for(var i in data)
-        {
-            scope.lmonths1[i] = data[i].Months;
-        }
-        scope.getLcount1(scope.formattedMonth1,scope.lmonths1,data);
-        scope.getBarData1(scope.formattedSMonth1,scope.fcount1,scope.lcount1);
-    });
-});
-};
-
-var colorArray = ['#0f82f5', '#008000', '#808080', '#000000', '#FFE6E6'];
-scope.colorFunction1= function() {
-return function(d, i) {
-    return colorArray[i];
-};
-};
-
-
-
-/* Added by sarath on 26-jun-2014 ----> */
-   };
+			scope.getMonthlyData1 = function() {
+			scope.chartType1 = 'Months';
+			scope.id1 = this.officeId1 || 1;
+			scope.formattedSMonth1 = [];
+			var monthArray = new Array('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec');
+			var today = new Date();
+			var aMonth = today.getMonth();
+			for (var i=0; i<12; i++)
+			{
+			    scope.formattedSMonth1.push(monthArray[aMonth]);
+			    aMonth--;
+			    if (aMonth < 0)
+			    {
+			        aMonth = 11;
+			    }
+			}
+			resourceFactory.runReportsResource.get({reportSource: 'TicketsByMonth',R_officeId:scope.id1, genericResultSet:false} , function(data) {
+			    scope.client1 = data;
+			    scope.months1 = [];
+			    scope.fcount1 = [];
+			
+			    for(var i in scope.offices1){
+			        if(scope.offices1[i].id == scope.id1){
+			            scope.bOfficeName1 = scope.offices1[i].name;
+			        }
+			    }
+			    for(var i in scope.client1)
+			    {
+			        scope.months1[i] = scope.client1[i].Months;
+			    }
+			    scope.getFcount1(scope.formattedMonth1,scope.months1,scope.client1);
+			    scope.id1 = this.officeId1 || 1;
+			    resourceFactory.runReportsResource.get({reportSource: 'TicketsByMonth',R_officeId:scope.id1, genericResultSet:false} , function(data) {
+			        scope.lmonths1 = [];
+			        scope.lcount1 = [];
+			
+			        for(var i in data)
+			        {
+			            scope.lmonths1[i] = data[i].Months;
+			        }
+			        scope.getLcount1(scope.formattedMonth1,scope.lmonths1,data);
+			        scope.getBarData1(scope.formattedSMonth1,scope.fcount1,scope.lcount1);
+			    });
+			});
+			};
+			
+			var colorArray = ['#0f82f5', '#008000', '#808080', '#000000', '#FFE6E6'];
+			scope.colorFunction1= function() {
+			return function(d, i) {
+			    return colorArray[i];
+			};
+			};
+			
+			
+			
+			 Added by sarath on 26-jun-2014 ----> 
+			   };
+			         
          
-         
-         /*Daily Data */
+         Daily Data 
             scope.getDailyData = function(){
                 scope.chartType = 'Days';
                 scope.id = this.officeId || 1;
@@ -648,7 +650,7 @@ return function(d, i) {
                     	}
                     }
                     scope.getFcount(scope.formattedDate,scope.tempDate,scope.client);
-			 scope.id = this.officeId || 1;
+			 		scope.id = this.officeId || 1;
                     resourceFactory.runReportsResource.get({reportSource: 'OrderTrendsByDay',R_officeId:scope.id, genericResultSet:false} , function(data) {
                         scope.ldays = [];
                         scope.ltempDate = [];
@@ -691,7 +693,7 @@ return function(d, i) {
                     }
 
                     scope.getFcount(scope.formattedWeek,scope.weeks,scope.client);
-			 scope.id = this.officeId || 1;
+			 		scope.id = this.officeId || 1;
                     resourceFactory.runReportsResource.get({reportSource: 'OrderTrendsByWeek',R_officeId:scope.id, genericResultSet:false} , function(data) {
                         scope.lweeks = [];
                         scope.lcount = [];
@@ -736,7 +738,7 @@ return function(d, i) {
                         scope.months[i] = scope.client[i].Months;
                     }
                     scope.getFcount(scope.formattedMonth,scope.months,scope.client);
-			 scope.id = this.officeId || 1;
+			 		scope.id = this.officeId || 1;
                     resourceFactory.runReportsResource.get({reportSource: 'OrderTrendsByMonth',R_officeId:scope.id, genericResultSet:false} , function(data) {
                         scope.lmonths = [];
                         scope.lcount = [];
@@ -751,7 +753,7 @@ return function(d, i) {
                 });
             };
 
-/* Paymode Collection Chart*/
+ 			//Paymode Collection Chart
 
             scope.getCollectionOffice = function () 
             {	var id = this.officeId || 1;
@@ -777,7 +779,7 @@ return function(d, i) {
                 					  }
                 	});
             };
-/* status wise orders */
+ 		//status wise orders 
             scope.getCumOffice = function () 
             {   var id = this.officeId || 1;
                 for(var i in scope.offices)	{ if(scope.offices[i].id== id){scope.dOfficeName = scope.offices[i].name;} }
@@ -803,7 +805,7 @@ return function(d, i) {
             		});
             };
 
-            /* Stock Item Details */
+            // Stock Item Details 
             scope.getStock = function () 
             {	var id = this.officeId || 1;
                 for(var i in scope.offices){if(scope.offices[i].id== id){scope.sOfficeName = scope.offices[i].name;}}
@@ -850,6 +852,22 @@ return function(d, i) {
                     return colorArrayPie[i];
                 };
             };
+            
+            
+*/          
+            var date = dateFilter(new Date(), 'dd MMMM yyyy');
+            resourceFactory.runReportsResource.get({reportSource: 'NetActiveCalendar',startDate:date,genericResultSet:false} , function(data) {
+                scope.lweeks = [];
+                scope.lcount = [];
+                for(var i in data)
+                {
+                    scope.lweeks[i] = data[i].Weeks;
+                }
+                scope.getLcount(scope.formattedWeek,scope.lweeks,data);
+                scope.getBarData(scope.formattedWeek,scope.fcount,scope.lcount);
+            });
+            
+            
             /* Calendar */
             $('#calendar').fullCalendar({
     			header: {
@@ -860,7 +878,11 @@ return function(d, i) {
     			defaultDate: dateFilter(new Date(), 'dd MMMM yyyy'),
     			editable: true,
     			eventLimit: true, // allow "more" link when too many events
-    			events: [
+    			
+    			
+    			//scope.id = this.officeId || 1;	
+                
+    			/*events: [
     				{
     					title: 'All Day Event',
     					start: '2015-07-01'
@@ -915,10 +937,11 @@ return function(d, i) {
     					url: 'http://google.com/',
     					start: '2015-07-28'
     				}
+    				
     			]
+*/    			
     		});
-
-        }
+            }
     });
     mifosX.ng.application.controller('DashboardController', ['$scope', 'ResourceFactory','dateFilter','$location', mifosX.controllers.DashboardController]).run(function($log) {
         $log.info("DashboardController initialized");

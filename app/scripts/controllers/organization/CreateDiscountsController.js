@@ -12,7 +12,14 @@
 	            scope.statusDatas = data.statusData;
 	            scope.formData = {};
 	        });
-	     
+	        
+	        scope.$watch('start.date', function() {
+	    	    scope.doSomething();  
+	    	});
+	        scope.doSomething =function(){
+	     	   scope.minDate=scope.start.date;
+	        };
+	        
 	        scope.submit = function() {  
 	        	
 	        	 this.formData.locale = $rootScope.locale.code;
