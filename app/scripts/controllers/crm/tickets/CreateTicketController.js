@@ -85,19 +85,6 @@
 				}else{
 					scope.formData.dueTime = reqDueDate+" "+$('#timepicker1').val()+':00';
 				}
-<<<<<<< HEAD
-	        	
-	        	
-	        	var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
-	            this.formData.ticketDate = reqDate;
-				this.formData.dateFormat = 'dd MMMM yyyy';
-				this.formData.ticketURL=locationOrigin+''+locationPathname+"#/viewTicket/"+scope.clientId+"/";
-				//alert(this.formData.ticketURL);
-				this.formData.ticketTime = ' '+new Date(scope.start.date).toLocaleTimeString().replace("IST","").trim();
-                resourceFactory.ticketResource.save({'clientId': routeParams.id},this.formData,function(data){
-                 location.path('/viewTicket/'+ routeParams.id+'/'+data.resourceId);
-               });
-=======
 				scope.formData.dateFormat = 'dd MMMM yyyy';
 				scope.formData.ticketURL=locationOrigin+''+locationPathname+"#/viewTicket/"+scope.clientId;
 				scope.formData.ticketTime = ' '+new Date().toLocaleTimeString().replace("IST","").trim();
@@ -127,7 +114,6 @@
 				              }
 				        	location.path('/assignedtickets');
 				        });	
->>>>>>> obsplatform-3.0
          };
     }
   });
