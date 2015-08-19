@@ -90,7 +90,7 @@
 					scope.ticketdata.comments=scope.formData.comments;
 					scope.ticketdata.status=scope.formData.status;
 					scope.ticketdata.priority = scope.formData.priority;
-					scope.ticketdata.ticketdata = scope.formData.problemCode;
+					scope.ticketdata.problemCode = scope.formData.problemCode;
 					scope.ticketdata.description=scope.formData.description;
 					scope.ticketdata.dateFormat = scope.formData.dateFormat;
 					scope.ticketdata.dueTime = scope.formData.dueTime;
