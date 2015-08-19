@@ -1,4 +1,4 @@
-EventsController = function(scope,RequestSender,paginatorService,rootScope) {
+EventsController = function(scope,RequestSender,paginatorService,rootScope,filter) {
 		
 		var totalVODSData =[];var retrivingVODSData = {};scope.VODSDatas = [];
 		scope.getVODSData = function(offset, limit, callback) {
@@ -31,4 +31,5 @@ selfcareApp.controller('EventsController', ['$scope',
                                             'RequestSender',
                                             'PaginatorService',
                                             '$rootScope',
+                                            '$filter',
                                              EventsController]);
