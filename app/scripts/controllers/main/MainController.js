@@ -69,12 +69,11 @@
        		localStorageService.add('recentClients', recentClientArray);
      	  }
        });
-      //console.log($window);
       scope.$on("UserAuthenticationSuccessEvent", function(event, data) {
     	  
     	localStorageService.add("permissionsArray",data.permissions);
         scope.currentSession = sessionManager.get(data);
-        $window.sessionStorage["logoutSession"] = "session";
+        $window.sessionStorage.setItem("key","loginSession");
 
         scope.start(scope.currentSession);
         

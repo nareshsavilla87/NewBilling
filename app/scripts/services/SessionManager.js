@@ -13,18 +13,19 @@
         webStorage.remove("sessionData");
         webStorage.remove("clientData");
         webStorage.remove("walletAmount");
-        $window.sessionStorage["logoutSession"] = null;
+        webStorage.clear();
+        localStorageService.clearAll();
+        $window.sessionStorage.removeItem("key");
         httpService.cancelAuthorization();
         return EMPTY_SESSION;
       };
 
       this.restore = function(handler) {
-    	  console.log(!$window.sessionStorage["logoutSession"]);
-          	if (!$window.sessionStorage["logoutSession"]) {
-          		console.log(webStorage.add("is-logout-cache"));
-          		if(webStorage.add("is-logout-cache")) this.clear();
-          	}else{
-          		console.log($window.sessionStorage["logoutSession"]);
+    	  
+          	if($window.sessionStorage.getItem("key") != "loginSession") {
+          		if(webStorage.get("is-logout-cache")){
+          			this.clear();
+          		}
           	}
         var sessionData = webStorage.get('sessionData');
         if (sessionData !== null) {

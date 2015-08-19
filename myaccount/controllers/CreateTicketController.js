@@ -61,10 +61,10 @@
 						scope.filedata.comments=scope.formData.comments;
 						scope.filedata.status=scope.formData.status;
 						scope.filedata.priority = scope.formData.priority;
-						scope.filedata.ticketdata = scope.formData.problemCode;
+						scope.filedata.problemCode = scope.formData.problemCode;
 						scope.filedata.description=scope.formData.description;
 						scope.filedata.dateFormat = scope.formData.dateFormat;
-						scope.filedata.dueTime = scope.formData.dueTime;
+						if(scope.formData.dueTime) scope.filedata.dueTime = scope.formData.dueTime;
 						scope.filedata.locale = rootScope.localeLangCode;
 						scope.filedata.priority = scope.formData.priority;
 						scope.filedata.sourceOfTicket = scope.formData.sourceOfTicket;

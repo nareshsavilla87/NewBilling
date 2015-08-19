@@ -37,8 +37,6 @@
 
                         }if(data.globalConfiguration[i].name=="is-logout-cache"){
                         	  webStorage.add("is-logout-cache",data.globalConfiguration[i].enabled);
-                        	  console.log(webStorage.add("is-logout-cache"));
-
                         }
                         
                         
