@@ -1914,30 +1914,43 @@
 		                  $modalInstance.dismiss('cancel');
 		            };
 		        }
-		      	
-		     	 scope.refundAmount = function(id,amount){
-			         	scope.errorDetails = [];
-			         	scope.errorStatus = [];
-			         	$modal.open({
-			                 templateUrl: 'refundamount.html',
-			                 controller: RefundAmountController,
-			                 resolve:{
-			                 	 	getPaymentId:function(){
-			                 	 		return id;
-			                 	 	},
-			                 	 	getAmount:function(){
-			                 	 		return amount;
-			                 	 	}
-			                 }
-			             });
-			         };
-			         
-			         var RefundAmountController = function($scope, $modalInstance, getPaymentId,getAmount){
-			        	$scope.formData = {};
-			        	resourceFactory.refundAmountResource.get({depositAmount:getAmount,depositId:scope.clientId} , function(data){
-			        		$scope.formData.refundAmount = data.availAmount;
-			        		$scope.refundModeData=data.data;
-			            },function(errorData){
+
+		      	 scope.refundAmount = function(id,amount){
+		         	scope.errorDetails = [];
+		         	scope.errorStatus = [];
+		         	$modal.open({
+		                 templateUrl: 'refundamount.html',
+		                 controller: RefundAmountController,
+		                 resolve:{
+		                 	 	getPaymentId:function(){
+		                 	 		return id;
+		                 	 	},
+		                 	 	getAmount:function(){
+		                 	 		return amount;
+		                 	 	}
+		                 }
+		             });
+		         };
+		         
+		         var RefundAmountController = function($scope, $modalInstance, getPaymentId,getAmount){
+		        	$scope.formData = {};
+		        	resourceFactory.refundAmountResource.get({depositAmount:getAmount,depositId:scope.clientId} , function(data){
+		        		$scope.formData.refundAmount = data.availAmount;
+		        		$scope.refundModeData=data.data;
+		            },function(errorData){
+  	                	$scope.stmError = errorData.data.errors[0].userMessageGlobalisationCode;
+  	                	
+  	                });
+		        	
+		        	$scope.formData.locale = "en";
+		 			$scope.accept = function(){
+		 				var depositId = getPaymentId;
+		 				resourceFactory.refundAmountResource.save({'depositId':depositId}, $scope.formData, function(data){
+		 					$modalInstance.close('delete');
+		 				    getDetails();
+		 				    scope.getAllFineTransactions();
+		 				},function(errorData){
+		   
 	  	                	$scope.stmError = errorData.data.errors[0].userMessageGlobalisationCode;
 	  	                	
 	  	                });
@@ -1959,7 +1972,7 @@
 			 				$modalInstance.dismiss('cancel');
 			 			};
 			 		};
-		      	
+		         };
 	  			//export financial csv 
 	  			scope.exportFinancialCSV = function(){
             	

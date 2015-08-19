@@ -138,12 +138,7 @@
   "label.eventactions":"Event Actions",
   "error.msg.staff.duplicate.displayName":"An employee with these details already exists",
   
-   
-  
-  
-  
-  
-  
+
   "placeholder.searchbar":"Enter text to Search#",
   
   "label.fromdate":"From Date",
@@ -321,17 +316,14 @@
   "validation.msg.schedulerjob.Username.cannot.be.blank":"User Name cannot be blank",
   "validation.msg.schedulerjob.Password.cannot.be.blank":"Password cannot be blank",
   "validation.msg.schedulerjob.URL.cannot.be.blank":"URL cannot be blank",
-  
-
-
+  "label.job.isDisconnectUnpaidCustomers":"is Disconnect Unpaid Customers",
+ 
   "#view employee":"....",
   "label.office.parentoffice":"Parent Office",
   "label.office.openedon":"Opened On",
   "label.office.namedecorated":"Name Decorated",
   "label.office.externalid":"External Id",
-  
-  
-  
+
   "#view client":"",
   "button.neworder":"Book Order",
   "button.redemption":"Redeem",
@@ -900,7 +892,7 @@
   "validation.msg.mediaasset.location.exceeds.max.length":"MAX 255 Characters",
   "validation.msg.mediaasset.mediaTitle.exceeds.max.length":"MAX 250 Characters",
   
-  "#Inventory":"......",
+  "#Inventory":".............................................................",
   "link.inventory":"Inventory",
   "tab.item":"Items",
   "table.item.code":"Item Code",
@@ -930,6 +922,7 @@
   "error.msg.cund.unknown.data.integrity.issue":"Duplicate Data added",
   "label.regionalprice":"Regional Prices",
   "error.msg.item.regional.price.not.found":"No Regional Price found for this Item",
+  "error.msg.hardware.quality.not.good":"Item Quality is not good",
   
   "#Import":"........",
   "label.heading.uploads":"Builk Uploads",
@@ -957,7 +950,7 @@
   "validation.msg.UploadStatus.description.cannot.be.blank":"Description Cannot be blank",
   "validation.msg.UploadStatus.fileName.cannot.be.blank":"File name Cannot be blank",
   
-  "#Order":".....",
+  "#Order":"......................................................................",
   "label.createorder":"Create New Order",
   "label.postpaidplans":"Postpaid Plans",
   "link.view.order":"View Order",
@@ -1035,6 +1028,8 @@
   "label.commandcenter":"Command Center",
   "label.scheduleorders":"Schedule Orders",
   "label.order.autorenew":"Is Auto Renew",
+  "error.msg.hardware.device.for.is.not.available.for.pairing":"Hardware Device for '{{params[0].value}}' is not available for pairing",
+  "error.msg.all.hardware.device.for.is.not.available.for.pairing.So Change.Plan.not.Worked":"All types of hardware devices for '{{params[0].value}}' is not available for pairing,So change plan not worked",
   
     "#Voucher pins":"....",
   "link.create.new.voucherpin":"Create Voucher Pin",
@@ -2014,6 +2009,8 @@
   "validation.msg.planmappig.itemCode.cannot.be.blank":"Item Code cannot be blank",
   "error.msg.service.mapping.duplicate":"Mapping has already done with this service",
   "validation.msg.ServiceMapping.provisionSystem.cannot.be.blank":"Please Select Provisioning system",
+  "label.item.type":"Item Type",
+  "validation.msg.ServiceMapping.itemId.cannot.be.blank":"Item Type cannot be blank",
   
   "#HardWareMapping":"...........",
   "table.hardwaremapping.id":"Id",
@@ -2834,16 +2831,14 @@
 "validation.msg.feemaster.regionPrices.not.greater.than.zero" :"Please add atleast one region price",
 "label.pgconfig.editconfig":"Edit Configurations",
 "label.form.module":"Module",
-
+"error.msg.fee.code.duplicate.name":"Fee Code already exists",
 "error.msg.fee.transaction.alredy.exists":"A Fee with this transaction already exists,Please Update it",
 
 "#Deposit and Refund  ":".......",
 "error.msg.hardware.unallocated":"Please Unallocate hardware",
 "error.msg.unable.to.refund.clientbalance.greater.than.refund.amount":"Unable refund client due balance is greater than refund balance",
-"error.msg.hardware.quality.not.good":"Item Quality is not good",
-"error.msg.fee.code.duplicate.name":"Fee Code already exists",
-"error.msg.fee.transaction.alredy.exists":"A Fee with this transaction already exists,Please Update it"
-
+"validation.msg.refund.refundMode.cannot.be.blank":"Please Select Refund Type",
+"validation.msg.refund.refundAmount.cannot.be.blank":"Please add Amount"
 
 
 

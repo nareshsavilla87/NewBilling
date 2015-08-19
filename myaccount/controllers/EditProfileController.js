@@ -18,7 +18,7 @@
 	        		 scope.date = {};
 					   RequestSender.clientDataResource.get({clientId: scope.clientId,template:'true'} , function(data) {
 						 	scope.editInfoBtn 				= true;
-						 	scope.maxDate 					= new Date();
+						 	scope.maxDate 					= new Date(data.date);
 						 	scope.nationalityDatas			= data.nationalityDatas;
 				            scope.genderDatas				= data.genderDatas;
 				            scope.ageGroupDatas 			= data.ageGroupDatas;
