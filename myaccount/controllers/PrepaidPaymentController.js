@@ -131,7 +131,7 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 				break;
 				
 			case internalPaymentPG :
-				
+				localStorageService.add("internalStorageData",{"email":clientData.email,"currency":clientData.currency});
 				scope.paymentURL =  "#/internalpayment/"+screenName+"/"+scope.clientId+"/0/0/"+scope.planData.price;
 				break;
 				

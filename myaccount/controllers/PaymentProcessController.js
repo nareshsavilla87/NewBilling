@@ -175,6 +175,7 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 				break;
 				
 			case internalPaymentPG :
+				localStorageService.add("internalStorageData",{"email":clientData.email,"currency":clientData.currency});
 				scope.paymentURL =  "#/internalpayment/"+scope.screenName+"/"+scope.clientId+"/"+scope.planId+"/"+scope.priceId+"/"+scope.price;
 				break;
 				
