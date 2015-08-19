@@ -101,6 +101,16 @@
 						<textarea data-ng-model="formData.description" name="description" style="width:77%; height:5.5em;" required data-late-Validate></textarea>
 						</div></div>
 		   </td></tr>
+		   <tr>
+				<td>
+					<div class="control-group">
+						<label class="control-label" for="Attachments"> {{'label.ticket.file' | translate }}</label>
+						<div class="controls">
+							<input type= "file" ng-file-select="onFileSelect($files)">
+						</div>
+					</div>
+				</td>
+			</tr> 
 		   <tr><td colspan="2" align="right">
 			<a id="cancel" href="#/tickets"><button type="reset" class="btn">{{'btn.cancel' | translate}}</button></a>
 			<button id="submit" type="submit" data-ng-disabled="!createticketform.$valid" class="btn btn-primary">{{'btn.save' | translate}}</button>

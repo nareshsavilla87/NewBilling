@@ -10,7 +10,7 @@
             scope.chargeId = routeParams.chargeId;
         });
         scope.routeTo = function(id){
-            location.path('/viewtaxmapping/'+ id);
+            location.path('/viewtaxmapping/'+ id+'/'+routeParams.chargeId);
         };
     }
   });

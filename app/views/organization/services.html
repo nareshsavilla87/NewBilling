@@ -38,8 +38,8 @@
         </tbody>
     </table>
     <ul class="pager">
-        <li class="previous"><a ng-click="services.previous()" href="" ng-disabled="!services.hasPrevious()">&larr; Prev</a></li>
-        <li class="next" ><a ng-click="services.next()" href="" ng-disabled="!services.hasNext()">Next &rarr;</a></li>
+        <li class="previous"><a ng-click="services.previous()" href="" ng-hide="!services.hasPrevious()">&larr; Prev</a></li>
+        <li class="next" ><a ng-click="services.next()" href="" ng-hide="!services.hasNext()">Next &rarr;</a></li>
 	</ul>
 </div>
 <script type="text/ng-template" id="deleteservice.html">
