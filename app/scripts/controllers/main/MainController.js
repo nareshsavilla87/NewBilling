@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    MainController: function(scope, location, sessionManager,$modal, translate,keyboardManager,$rootScope,webStorage,PermissionService,localStorageService,$idle,resourceFactory,tmhDynamicLocale) {
+    MainController: function(scope, location, sessionManager,$modal, translate,keyboardManager,$rootScope,webStorage,PermissionService,localStorageService,$idle,resourceFactory,tmhDynamicLocale,$window) {
       
     	/**
     	 * Logout the user if Idle
@@ -69,11 +69,11 @@
        		localStorageService.add('recentClients', recentClientArray);
      	  }
        });
-      
       scope.$on("UserAuthenticationSuccessEvent", function(event, data) {
     	  
     	localStorageService.add("permissionsArray",data.permissions);
         scope.currentSession = sessionManager.get(data);
+        $window.sessionStorage.setItem("key","loginSession");
 
         scope.start(scope.currentSession);
         
@@ -316,6 +316,7 @@
     '$idle',
     'ResourceFactory',
     'tmhDynamicLocale',
+    '$window',
     mifosX.controllers.MainController
   ]);
 }(mifosX.controllers || {}));

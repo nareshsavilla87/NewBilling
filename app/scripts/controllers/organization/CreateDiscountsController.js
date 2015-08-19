@@ -22,6 +22,9 @@
 	            scope.formData = {};
 	        });
 	        
+			scope.$watch('start.date', function() {
+			    scope.doSomething();  
+			});
 	        scope.doSomething =function(){
 	     	   scope.prevDate=scope.start.date;
 	        };
@@ -43,6 +46,7 @@
 		            scope.removeDiscountPrices = function (index) {
 		            scope.discountPrices.splice(index,1);
 		              };
+	        
 	        scope.submit = function() {  
 	        	
 	        	 this.formData.locale = $rootScope.locale.code;

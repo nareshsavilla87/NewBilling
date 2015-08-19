@@ -3,6 +3,7 @@
 	  ViewTaxMappingController: function(scope, routeParams, resourceFactory, PermissionService ) {
         scope.taxmapping = {};
         scope.PermissionService = PermissionService;
+        scope.chargeCodeId = routeParams.chargeCodeId;
         
         resourceFactory.getTaxmappingResource.get({taxId: routeParams.id}, function(data) {
             scope.taxmapping = data;

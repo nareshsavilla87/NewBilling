@@ -1,4 +1,4 @@
-	  CreateTicketController = function(scope, RequestSender, location, dateFilter,rootScope) {
+	  CreateTicketController = function(scope, RequestSender, location, dateFilter,rootScope,http,API_VERSION,$upload) {
             
 			
 			
@@ -41,9 +41,11 @@
 				   }
 			   });
 			 }
+			 scope.onFileSelect = function($files) {
+			        scope.file = $files[0];
+			      };
 					        
 			scope.submit = function() { 
-				scope.formData.locale = rootScope.localeLangCode;
 				scope.first.time=$('#timepicker1').val();
 				if(scope.first.date==null||scope.first.time==''){
 					delete scope.formData.dueTime;
@@ -51,20 +53,48 @@
 					scope.formData.dueTime = dateFilter(scope.first.date,'yyyy-MM-dd')+" "+$('#timepicker1').val()+':00';
 				}
 	        	
-	        	
 	            scope.formData.ticketDate = dateFilter(scope.start.date,'dd MMMM yyyy');
 				scope.formData.dateFormat = 'dd MMMM yyyy';
-				scope.formData.ticketTime = ' '+new Date(scope.formData.ticketDate).toLocaleTimeString().replace("IST","").trim();
-				RequestSender.ticketResource.save({'clientId': scope.clientId},scope.formData,function(data){
-					location.path('/tickets');
-               });
-         };
+				scope.formData.ticketTime = ' '+new Date().toLocaleTimeString().replace("IST","").trim();
+				scope.formData.ticketURL=locationOrigin+''+locationPathname+"#/viewTicket/"+scope.clientId;
+				
+						scope.filedata = {};
+						scope.filedata.assignedTo=scope.formData.assignedTo;
+						scope.filedata.comments=scope.formData.comments;
+						scope.filedata.status=scope.formData.status;
+						scope.filedata.priority = scope.formData.priority;
+						scope.filedata.problemCode = scope.formData.problemCode;
+						scope.filedata.description=scope.formData.description;
+						scope.filedata.dateFormat = scope.formData.dateFormat;
+						if(scope.formData.dueTime) scope.filedata.dueTime = scope.formData.dueTime;
+						scope.filedata.locale = rootScope.localeLangCode;
+						scope.filedata.priority = scope.formData.priority;
+						scope.filedata.sourceOfTicket = scope.formData.sourceOfTicket;
+						scope.filedata.ticketDate = dateFilter(scope.start.date,'dd MMMM yyyy');
+						scope.filedata.ticketTime = scope.formData.ticketTime;
+						scope.filedata.ticketURL = scope.formData.ticketURL;
+						
+					  $upload.upload({
+				          url: rootScope.hostUrl+ API_VERSION +'/tickets/'+scope.clientId,
+				          data: scope.filedata,
+				          file: scope.file
+				        }).then(function(data) {
+				        	if (!scope.$$phase) {
+				                scope.$apply();
+				              }
+				        	location.path('/tickets');
+				        });	
+					};
+					
     };
 
 selfcareApp.controller('CreateTicketController', ['$scope', 
                                                   'RequestSender',
                                                   '$location',
                                                   'dateFilter', 
-                                                  '$rootScope', 
+                                                  '$rootScope',
+                                                  '$http',
+                                                  'API_VERSION',
+                                                  '$upload',
                                                   CreateTicketController]);
 

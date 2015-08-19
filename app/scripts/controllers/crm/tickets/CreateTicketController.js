@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  CreateTicketController: function(scope,webStorage, resourceFactory, location, translate,dateFilter,routeParams,$rootScope) {
+	  CreateTicketController: function(scope,webStorage, resourceFactory, location, translate,dateFilter,routeParams,$rootScope,http,API_VERSION,$upload) {
            
 		  var locationOrigin = window.location.origin;
       	var locationPathname = window.location.pathname;
@@ -68,24 +68,24 @@
                 }
             });
             
-            
             scope.reset123 = function(){
          	   webStorage.add("callingTab", {someString: "Tickets" });
          	   delete scope.first.time;
             };
+            
+            scope.onFileSelect = function($files) {
+		        scope.file = $files[0];
+		      };
            
 			scope.submit = function() { 
-				this.formData.locale = $rootScope.locale.code;
 				scope.first.time=$('#timepicker1').val();
-				//console.log(scope.first.date);
-				//console.log(scope.first.time);
 				var reqDueDate = dateFilter(scope.first.date,'yyyy-MM-dd');
-				//alert(scope.first.time);
 				if(scope.first.date==null||scope.first.time==''){
-					delete this.formData.dueTime;
+					delete scope.formData.dueTime;
 				}else{
-					this.formData.dueTime = reqDueDate+" "+$('#timepicker1').val()+':00';
+					scope.formData.dueTime = reqDueDate+" "+$('#timepicker1').val()+':00';
 				}
+<<<<<<< HEAD
 	        	
 	        	
 	        	var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
@@ -97,10 +97,41 @@
                 resourceFactory.ticketResource.save({'clientId': routeParams.id},this.formData,function(data){
                  location.path('/viewTicket/'+ routeParams.id+'/'+data.resourceId);
                });
+=======
+				scope.formData.dateFormat = 'dd MMMM yyyy';
+				scope.formData.ticketURL=locationOrigin+''+locationPathname+"#/viewTicket/"+scope.clientId;
+				scope.formData.ticketTime = ' '+new Date().toLocaleTimeString().replace("IST","").trim();
+                	scope.ticketdata = {};
+					scope.ticketdata.assignedTo=scope.formData.assignedTo;
+					scope.ticketdata.comments=scope.formData.comments;
+					scope.ticketdata.status=scope.formData.status;
+					scope.ticketdata.priority = scope.formData.priority;
+					scope.ticketdata.ticketdata = scope.formData.problemCode;
+					scope.ticketdata.description=scope.formData.description;
+					scope.ticketdata.dateFormat = scope.formData.dateFormat;
+					scope.ticketdata.dueTime = scope.formData.dueTime;
+					scope.ticketdata.locale = $rootScope.locale.code;
+					scope.ticketdata.priority = scope.formData.priority;
+					scope.ticketdata.sourceOfTicket = scope.formData.sourceOfTicket;
+					scope.ticketdata.ticketDate = dateFilter(scope.start.date,'dd MMMM yyyy');
+					scope.ticketdata.ticketTime = scope.formData.ticketTime;
+					scope.ticketdata.ticketURL = scope.formData.ticketURL;
+					
+					$upload.upload({
+						  url: $rootScope.hostUrl+ API_VERSION +'/tickets/'+scope.clientId, 
+				          data: scope.ticketdata,
+				          file: scope.file
+				        }).then(function(data) {
+				        	if (!scope.$$phase) {
+				                scope.$apply();
+				              }
+				        	location.path('/assignedtickets');
+				        });	
+>>>>>>> obsplatform-3.0
          };
     }
   });
-  mifosX.ng.application.controller('CreateTicketController', ['$scope', 'webStorage','ResourceFactory', '$location', '$translate','dateFilter', '$routeParams','$rootScope', mifosX.controllers.CreateTicketController]).run(function($log) {
+  mifosX.ng.application.controller('CreateTicketController', ['$scope', 'webStorage','ResourceFactory', '$location', '$translate','dateFilter', '$routeParams','$rootScope','$http','API_VERSION','$upload', mifosX.controllers.CreateTicketController]).run(function($log) {
     $log.info("CreateTicketController initialized");
   });
 }(mifosX.controllers || {}));
