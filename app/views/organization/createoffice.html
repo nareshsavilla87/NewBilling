@@ -5,7 +5,7 @@
           <li class="active">{{'label.createoffice' | translate}}</li>
         </ul>
       </div>
-      <form class="form-horizontal well" data-ng-controller="CreateOfficeController" data-ng-submit="submit()">
+      <form name="createofficeform" class="form-horizontal well" data-ng-controller="CreateOfficeController" data-ng-submit="submit()">
           <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label data-ng-show="errorStatus">{{errorStatus}}</label>
@@ -59,7 +59,10 @@
                 <div class="control-group">
                   <label class="control-label">{{ 'label.externalId' | translate }}</label>
                   <div class="controls">
-                    <input type="text" name="externalId" data-ng-model="formData.externalId">
+                    <input type="text" id="eid" name="externalId" data-ng-model="formData.externalId" data-ng-pattern="/^[1-9\s]+$/"/></br>
+                    <span data-ng-show="createofficeform.externalId.$dirty">
+              			<small class="error" data-ng-show="createofficeform.externalId.$error.pattern">External Id must be Numaric(starts from 1 only)</small>
+              		</span>
                   </div>
                 </div>
               </td>

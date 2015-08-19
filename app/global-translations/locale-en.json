@@ -136,6 +136,7 @@
   "label.utsCustomerId":"UTS Customer Id",
   "label.preferredCommunication":"Preferred Communication",
   "label.eventactions":"Event Actions",
+  "error.msg.staff.duplicate.displayName":"An employee with these details already exists",
   
    
   
@@ -548,6 +549,9 @@
   "error.not.numeric.validation":"Enter Numeric Value",
   "error.not.decimal.validation":"Enter Decimal Value",
   "error.invalid.phone.validation":"MAX Length 15 Numbers",
+  "error.msg.office.duplicate.name":"Office Name Already Exist",
+  "error.msg.office.duplicate.externalId":"External Id Already Exist",
+
 
   "#Journal Entry Predefined Postings":"........",
   "label.select.accountingrule":"--Select accounting rule--",
@@ -1131,6 +1135,7 @@
  "validation.msg.promotioncode.duration.cannot.be.blank" : "Duration cannot be blank",
  "validation.msg.promotioncode.discounttype.cannot.be.blank" : "Discount Type cannot be blank",
  "validation.msg.promotioncode.discountRate.cannot.be.blank" : "Discount Rate cannot be blank",
+ "error.msg.promotionCode.duplicate.name" : "Promotion Code already exist",
   
   "#Prospects":"....",
   "link.prospects" : "Leads",
@@ -1193,6 +1198,7 @@
   "table.heading.regionCode":"Region Code",
   "table.heading.regionName":"Region Name",
   "link.admin.regions":"Manage Regions",
+  "dialog.region.message" : "Delete Region",
   
   "#countrycurrency":"....",
   "link.add.new.currencydetails" : "Add Currency Details",
@@ -1391,9 +1397,9 @@
   "table.heading.chargedes":"Charge Description",
   "table.heading.chargetype":"Charge Type",
   "table.heading.chargeduration":"Charge Duration",
-  "table.heading.duratintype":"Durtion Type",
+  "table.heading.duratintype":"Duration Type",
   "table.heading.taxinclusive":"Tax Inclusive",
-  "table.heading.billfrequencycode":"Bill Frequency code",
+  "table.heading.billfrequencycode":"Bill Frequency Code",
   "validation.msg.chargecode.chargeCode.cannot.be.blank":"Charge Code cannot be blank",
   "validation.msg.chargecode.chargeDescription.cannot.be.blank":"Charge Code Description cannot be blank",
   "validation.msg.chargecode.duplicate.chargecode":"Charge Code Already Exist",
@@ -2596,6 +2602,9 @@
 "validation.msg.partner.currency.cannot.be.blank":"Currency cannot be blank",
 "validation.msg.partner.partnerName.exceeds.max.length":"Please give partner name below 100 characters only",
 "validation.msg.partner.loginName.exceeds.max.length":"Please give login name below 100 characters only",
+"error.msg.partner.duplicate.name":"Partner name already exists",
+"error.msg.office or partner.duplicate.email":"Email already exists",
+"error.msg.office or partner.duplicate.phoneNumber":"Mobile Phone already exists",
 
 "label.createpartneragreement":"Create Partner Agreement",
 "label.editpartneragreement":"Edit Partner Agreement",
