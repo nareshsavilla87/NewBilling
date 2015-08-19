@@ -2,7 +2,6 @@ TwoCheckoutSuccessController = function(scope,RequestSender, location,localStora
  
     		var formData = {};
     		scope.isQueryString = true;
-    		
     		   if(window.location.search){
     			   scope.isQueryString = true;
     			   var qs = (function(a) {
@@ -19,7 +18,7 @@ TwoCheckoutSuccessController = function(scope,RequestSender, location,localStora
 	    			    return b;
     			   })(window.location.search.substr(1).split('&'));
     			   localStorageService.add("queryString",{transactionId:qs["order_number"],currency :qs["currency_code"],
-    				   				total_amount:qs["total"],otherData :{"clientName":qs["card_holder_name"]}});
+    				   				total_amount:qs["total"],otherData :{"clientName":qs["card_holder_name"],"invoiceId":qs["invoice_id"],"key":qs["key"],"type":qs["li_0_type"]}});
     			   window.location.search="";
     		   }else if(localStorageService.get("queryString")){
     			   
