@@ -55,6 +55,10 @@
 	        	
 	            scope.formData.ticketDate = dateFilter(scope.start.date,'dd MMMM yyyy');
 				scope.formData.dateFormat = 'dd MMMM yyyy';
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/master
 				scope.formData.ticketTime = ' '+new Date().toLocaleTimeString().replace("IST","").trim();
 				scope.formData.ticketURL=locationOrigin+''+locationPathname+"#/viewTicket/"+scope.clientId;
 				
@@ -86,6 +90,10 @@
 				        });	
 					};
 					
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/master
     };
 
 selfcareApp.controller('CreateTicketController', ['$scope', 
