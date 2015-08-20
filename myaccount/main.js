@@ -228,12 +228,24 @@ scope.$watch(function () {
 	 //fun executes when we click on logout link
 	   scope.signout = function(){
 			  var sessionData = localStorageService.get('loginHistoryId');
+			  
 			  if(sessionData){
 		          RequestSender.logoutResource.save({logout:'logout',id:sessionData},function(data){
 		        	  scope.currentSession = sessionManager.clear();
 	              });
 			  }
 	   };
+	   
+	   var logoutSession = false;
+	      scope.$watch(function () {
+	    	  var selfcare_sessionData = localStorageService.get('selfcare_sessionData');
+	    	  selfcare_sessionData == null ?logoutSession = true : logoutSession =false;
+	    	    return logoutSession;
+	    	}, function () {
+	    		if(logoutSession){
+	    			scope.currentSession = sessionManager.clear();
+	    		}
+	    	});
 	   
 	   
 };
