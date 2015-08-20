@@ -90,10 +90,10 @@
 					scope.ticketdata.comments=scope.formData.comments;
 					scope.ticketdata.status=scope.formData.status;
 					scope.ticketdata.priority = scope.formData.priority;
-					scope.ticketdata.ticketdata = scope.formData.problemCode;
+					scope.ticketdata.problemCode = scope.formData.problemCode;
 					scope.ticketdata.description=scope.formData.description;
 					scope.ticketdata.dateFormat = scope.formData.dateFormat;
-					scope.ticketdata.dueTime = scope.formData.dueTime;
+					if(scope.formData.dueTime) scope.ticketdata.dueTime = scope.formData.dueTime;
 					scope.ticketdata.locale = $rootScope.locale.code;
 					scope.ticketdata.priority = scope.formData.priority;
 					scope.ticketdata.sourceOfTicket = scope.formData.sourceOfTicket;
