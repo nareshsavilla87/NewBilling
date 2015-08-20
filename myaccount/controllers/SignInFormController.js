@@ -1,4 +1,4 @@
-	  SignInFormController = function(scope,localStorageService,RequestSender,authenticationService,rootScope,location,SessionManager) {
+	  SignInFormController = function(scope,localStorageService,RequestSender,authenticationService,rootScope,location,SessionManager,$window) {
 		  
 		  //set the default values
 		  scope.loginCredentials = {};
@@ -22,6 +22,7 @@
 	        	    	  rootScope.webtvURL = selfcareModels.webtvURL+"?id="+successData.clientId;
 	        			  localStorageService.add("selfcareAppUrl",selfcareModels.selfcareAppUrl);
 	        			  localStorageService.add("loginHistoryId", successData.loginHistoryId);
+	        			  $window.sessionStorage.setItem("key","loginSession");
 	            		  location.path('/profile');
 	            	  },function(errorData){
 	            		  scope.isProcessing = false;
@@ -53,4 +54,5 @@
                                                    '$rootScope', 
                                                    '$location', 
                                                    'SessionManager', 
+                                                   '$window', 
                                                    SignInFormController]);
