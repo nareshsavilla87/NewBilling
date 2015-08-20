@@ -37,6 +37,7 @@
 	   isPassport					: "passport",
 	   isRedemption					: "is-redemption",
 	   isClientAdditionalData		: "client-additional-data",
+	   isLogoutCache				: "is-logout-cache",
 	   globalPayCurrencyType		: "NGN",
 	   netellerCurrencyType			: "EUR",
 	   interswitchCurrencyType		: "566",
