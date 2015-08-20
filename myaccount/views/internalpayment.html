@@ -1,35 +1,19 @@
 <div data-ng-controller="InternalPaymentController">
-	 <div class="loading-widget-div" data-ng-show="blockUI">
-        <div id="circularG">
-        	<div id="circularG_1" class="circularG"></div><div id="circularG_2" class="circularG"></div>
-            <div id="circularG_3" class="circularG"></div><div id="circularG_4" class="circularG"></div>
-            <div id="circularG_5" class="circularG"></div><div id="circularG_6" class="circularG"></div>
-            <div id="circularG_7" class="circularG"></div><div id="circularG_8" class="circularG"></div>
-        </div>
-    </div>
-<form name="createPaymentform" novalidate class="form-horizontal well"  data-ng-submit="submit()">
-<br/>
+    <br/>
  	<div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.error' | translate}}</label>
 		<label data-ng-show="errorStatus">{{errorStatus}}</label>
 		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	</div>
-	<fieldset>
-		<table class="offset2">
-			<tr><td>
-			   <div class="control-group" >
-                  <label class="control-label">{{ 'label.voucher.pinNo' | translate }}<span class="required">*</span></label>
-                  <div class="controls">
-                     <input type="text" data-ng-model="formData.pinNumber" data-ng-onblur="pinNoValidationFun(formData.pinNumber)" 
-                    	 required data-late-Validate/>                        									
-                  </div>
-       			</div>	
-			</td></tr>
-		   <tr><td align="right">
-			<a data-ng-click="goBack()" class="btn">{{'btn.cancel' | translate}}</a> 
-			<button id="submit" type="submit" data-ng-disabled="!createPaymentform.$valid" class="btn btn-primary">{{'btn.save' | translate}}</button>
-		</td></tr></table>
-
-	</fieldset>
-</form>
+	<div data-ng-hide="errorStatus || errorDetails">
+		<div class="alert alert-success">
+		   <table><tr>
+		   		<td><span><img src="../images/info-icon.png" width="30"></span></td>
+	        		<td><span><strong class="marginleft40" ><i class="icon-refresh icon-spin"></i>
+	        				{{'label.pleasewait'|translate}}</strong><br/>
+	        			</span>
+	        		</td></tr>
+		   </table> 
+		</div>
+	</div>
 </div>

@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    MainController: function(scope, location, sessionManager,$modal, translate,keyboardManager,$rootScope,webStorage,PermissionService,localStorageService,$idle,resourceFactory,tmhDynamicLocale) {
+    MainController: function(scope, location, sessionManager,$modal, translate,keyboardManager,$rootScope,webStorage,PermissionService,localStorageService,$idle,resourceFactory,tmhDynamicLocale,$window,route) {
       
     	/**
     	 * Logout the user if Idle
@@ -69,11 +69,11 @@
        		localStorageService.add('recentClients', recentClientArray);
      	  }
        });
-      
       scope.$on("UserAuthenticationSuccessEvent", function(event, data) {
     	  
     	localStorageService.add("permissionsArray",data.permissions);
         scope.currentSession = sessionManager.get(data);
+        $window.sessionStorage.setItem("key","loginSession");
 
         scope.start(scope.currentSession);
         
@@ -135,14 +135,28 @@
       
       scope.logout = function() {
         var sessionData = webStorage.get('sessionData');
+        if(sessionData){
         resourceFactory.logoutResource.save({logout:'logout',id:sessionData.loginHistoryId},function(data){
                 	location.path('/').replace();
                 });
+        }
         scope.currentSession = sessionManager.clear();
         scope.clearCrendentials();
         scope.clearImage();
+        console.log("asd");
         
       };
+      
+      var logoutSession = false;
+      scope.$watch(function () {
+    	  var sessionData = webStorage.get('sessionData');
+    	  sessionData == null ?logoutSession = true : logoutSession =false;
+    	    return logoutSession;
+    	}, function () {
+    		if(logoutSession){
+    			scope.logout();
+    		}
+    	});
 
       scope.PermissionService=PermissionService;
       /**
@@ -316,6 +330,8 @@
     '$idle',
     'ResourceFactory',
     'tmhDynamicLocale',
+    '$window',
+    '$route',
     mifosX.controllers.MainController
   ]);
 }(mifosX.controllers || {}));

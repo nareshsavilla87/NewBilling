@@ -115,7 +115,6 @@
 				              }
 				        	location.path('/assignedtickets');
 				        });	
-
          };
     }
   });

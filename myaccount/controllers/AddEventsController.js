@@ -129,6 +129,7 @@ AddEventsController = function(scope,RequestSender,location,localStorageService,
 					
 				case internalPaymentPG :
 					
+					localStorageService.add("internalStorageData",{"email":clientData.email,"currency":clientData.currency});
 					scope.paymentURL =  "#/internalpayment/"+screenName+"/"+scope.clientId+"/0/0/"+scope.totalAmount;
 					break;
 					

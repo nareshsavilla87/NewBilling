@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.services = _.extend(module, {
-    SessionManager: function(webStorage, httpService, resourceFactory,localStorageService,location,TENANT) {
+    SessionManager: function(webStorage, httpService, resourceFactory,localStorageService,location,TENANT,$window) {
       var EMPTY_SESSION = {};
 
       this.get = function(data) {
@@ -13,11 +13,20 @@
         webStorage.remove("sessionData");
         webStorage.remove("clientData");
         webStorage.remove("walletAmount");
+        webStorage.clear();
+        localStorageService.clearAll();
+        $window.sessionStorage.removeItem("key");
         httpService.cancelAuthorization();
         return EMPTY_SESSION;
       };
 
       this.restore = function(handler) {
+    	  
+          	if($window.sessionStorage.getItem("key") != "loginSession") {
+          		if(webStorage.get("is-logout-cache")){
+          			this.clear();
+          		}
+          	}
         var sessionData = webStorage.get('sessionData');
         if (sessionData !== null) {
           if(sessionData.tenant == TENANT){
@@ -46,6 +55,7 @@
     'localStorageService',
     '$location',
     'TENANT',
+    '$window',
     mifosX.services.SessionManager
   ]).run(function($log) {
     $log.info("SessionManager initialized");

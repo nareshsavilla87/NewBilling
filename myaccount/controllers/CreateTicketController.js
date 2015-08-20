@@ -55,7 +55,10 @@
 	        	
 	            scope.formData.ticketDate = dateFilter(scope.start.date,'dd MMMM yyyy');
 				scope.formData.dateFormat = 'dd MMMM yyyy';
+<<<<<<< HEAD
+=======
 
+>>>>>>> upstream/master
 				scope.formData.ticketTime = ' '+new Date().toLocaleTimeString().replace("IST","").trim();
 				scope.formData.ticketURL=locationOrigin+''+locationPathname+"#/viewTicket/"+scope.clientId;
 				
@@ -67,7 +70,7 @@
 						scope.filedata.problemCode = scope.formData.problemCode;
 						scope.filedata.description=scope.formData.description;
 						scope.filedata.dateFormat = scope.formData.dateFormat;
-						scope.filedata.dueTime = scope.formData.dueTime;
+						if(scope.formData.dueTime) scope.filedata.dueTime = scope.formData.dueTime;
 						scope.filedata.locale = rootScope.localeLangCode;
 						scope.filedata.priority = scope.formData.priority;
 						scope.filedata.sourceOfTicket = scope.formData.sourceOfTicket;
@@ -87,7 +90,10 @@
 				        });	
 					};
 					
+<<<<<<< HEAD
+=======
 
+>>>>>>> upstream/master
     };
 
 selfcareApp.controller('CreateTicketController', ['$scope', 
