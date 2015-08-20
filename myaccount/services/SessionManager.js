@@ -1,5 +1,5 @@
-selfcareApp.service("SessionManager",['$rootScope','HttpService','$location','localStorageService','RequestSender',
-                                      			function(scope, httpService,location,localStorageService,RequestSender){
+selfcareApp.service("SessionManager",['$rootScope','HttpService','$location','localStorageService','RequestSender','$window',
+                                      			function(scope, httpService,location,localStorageService,RequestSender,$window){
 	
       var EMPTY_SESSION = {user:null};
 
@@ -9,6 +9,8 @@ selfcareApp.service("SessionManager",['$rootScope','HttpService','$location','lo
         localStorageService.remove('selfcareAppUrl');
         localStorageService.remove('loginHistoryId');
         localStorageService.remove('isAutoRenewConfig');
+        localStorageService.clearAll();
+        $window.sessionStorage.removeItem("key");
         httpService.cancelAuthorization();
         scope.isLandingPage= false;scope.isRegClientProcess = false;
 		location.path('/').replace();
@@ -33,6 +35,9 @@ selfcareApp.service("SessionManager",['$rootScope','HttpService','$location','lo
 						 if(configurationDatas[i].name==selfcareModels.isClientAdditionalData){
 							 scope.isClientAdditionalData = configurationDatas[i].enabled;
 						 }
+						 if(configurationDatas[i].name==selfcareModels.isLogoutCache){
+							 localStorageService.add("is-logout-cache",configurationDatas[i].enabled);
+						 }
 					  }
 					  
 					  handler(clientData);
@@ -41,6 +46,11 @@ selfcareApp.service("SessionManager",['$rootScope','HttpService','$location','lo
       };
 
         this.restore = function(handler) {
+        	if($window.sessionStorage.getItem("key") != "loginSession") {
+          		if(localStorageService.get("is-logout-cache") == 'true'){
+          			this.clear();
+          		}
+          	}
             scope.selfcare_sessionData = localStorageService.get('selfcare_sessionData');
             if (scope.selfcare_sessionData !== null) {
               httpService.setAuthorization(scope.selfcare_sessionData.authenticationKey);
