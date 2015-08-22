@@ -37,7 +37,7 @@
 				</div>
 			</div>
 
-			<div class="control-group" data-ng-show="formData.displayName =='STATEMENT'">
+			<div class="control-group" data-ng-show="formData.displayName =='STATEMENT' || formData.displayName == 'DISCONNECT_UNPAID_CUSTOMERS'">
 				<label class="control-label" for="startDate">{{'label.job.duedate' | translate }}</label>
 				<div class="controls">
 					<input type="text" data-datepicker-pop="dd MMMM yyyy"

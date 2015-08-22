@@ -78,6 +78,8 @@
 				if (this.formData.name == "Make PDFs") {this.formData.processDate = dateFilter(scope.date.processDate,'dd MMMM yyyy');}
 				if (this.formData.name == "Export Data") {this.formData.processDate = dateFilter(scope.date.processDate,'dd MMMM yyyy');}
 				if (this.formData.name == "Reseller Commission") {this.formData.processDate = dateFilter(scope.date.processDate,'dd MMMM yyyy');}
+				if (this.formData.name == "Disconnect Unpaid Customers") {this.formData.dueDate = dateFilter(scope.date.dueDate,'dd MMMM yyyy');}
+
 
 				delete this.formData.jobId;
 				delete this.formData.displayName;
