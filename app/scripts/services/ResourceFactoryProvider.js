@@ -504,7 +504,7 @@
                 }),
                 
                 statementResource: defineResource(apiVer + "/billmaster/:clientId", {clientId:'@clientId'}, {
-                    get: {method: 'GET', params: {}, isArray: true},
+                    get: {method: 'GET', params: {}},
                     update: { method: 'PUT'}
                 }),
                 clientInvoiceResource: defineResource(apiVer + "/billingorder/:clientId", {clientId:'@clientId'}, {

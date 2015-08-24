@@ -219,6 +219,7 @@
 	"label.change.dateformat"	 	: "Change Date Format",
 	"label.html"	 				: "HTML",
 	"label.pdf"	 					: "PDF",
+	"label.pay"	 					: "Pay",
 	"label.statement.transactions"	: "Transactions",
 	"label.statement.transactiontype"	: "Transaction Type",
 	"label.receiptpage"				: "Receipt Page",
@@ -247,7 +248,7 @@
 	  "label.ticket.description"			: "Description" ,
 	  "label.ticket.tooltip.description"	: "Please provide as much detail as possible so we can best assist you." ,
 	  "label.ticket.add.newticket"			: "Add New Ticket",
-	  
+	  "label.ticket.file"					:  "Attachments",
 	  
 	  "table.header.ticket.id"				: "Id",
 	  "table.header.ticket.priority"		: "Priority",
@@ -386,8 +387,9 @@
  	 "label.client.preferredcommunication": "Preferred Communication",
 	 
 	 "#EvoPaymentGatewayResources" :"------------------------------------",
-	 "label.evo.review.cart"		 : "Review Cart",
-	 "label.evo.billing.info"		 : "Billing Information",
+	 "label.evo.review.cart"		 : "1-Review Cart",
+	 "label.evo.billing.info"		 : "2-Billing Information",
+	 "label.evo.payment.method"		 : "3-Payment Method",
 	 "label.evo.description"	 	 : "Description",
 	 "label.evo.unit.price"	 		 : "Unit Price",
 	 "label.evo.quantity"	 		 : "Quantity",
@@ -1004,6 +1006,27 @@
 "btn.change.pack"									: "Change Pack",
 "btn.topup.pack"									: "Top Up Pack",
 "label.uncheck"										: "Uncheck",
+"label.addons"										: "AddOns",
+"label.header.addons"								: "Add Ons",
+"label.filter.servicename"							: "Filter by service name",
+"label.order.chargecode"							: "Charge Code",
+"table.order.addons.service"						: "Service",
+"table.order.addons.startdate"						: "Start Date",
+"table.order.addons.endDate"						: "End Date",
+"table.order.addons.status"							: "Status",
+"table.order.addons.actions"						: "Actions",
+"label.header.add.addons"							: "Add Addons",
+"label.header.disconnect.addons"					: "Disconnect Add Ons",
+
+"validation.msg.addons.planId.cannot.be.blank"			: "Select Plan from the List",
+"validation.msg.addons.chargeCode.cannot.be.blank"		: "Select charge code",
+"validation.msg.addons.priceRegionId.cannot.be.blank"	: "Select price region",
+"validation.msg.addons.addons.not.greater.than.zero"	: "Add at-least one service from category's",
+"validation.msg.addons.null.not.greater.than.zero"		: "Select at-least one service",
+"validation.msg.addons.price.cannot.be.blank"			: "Price cannot be blank",
+"validation.msg.addons.contractId.cannot.be.blank"		: "Contract period cannot be blank",
+"error.msg.addon.enddate.should.lessthan.order.enddate"	: "Add-ons end date should be less than order end-date", 
+"error.msg.select.addon.period.more.than"				: "contract is not applicable for this chargecode.", 
 
 "error.msg.paypal.recurring.notpossible":"Recurring Not Possible to this Contract Period"
 

@@ -1,4 +1,4 @@
-EventsController = function(scope,RequestSender,paginatorService,rootScope) {
+EventsController = function(scope,RequestSender,paginatorService,rootScope,filter) {
 		
 		var totalVODSData =[];var retrivingVODSData = {};scope.VODSDatas = [];
 		scope.getVODSData = function(offset, limit, callback) {
@@ -11,6 +11,9 @@ EventsController = function(scope,RequestSender,paginatorService,rootScope) {
 	  				break;
 	  			}
 	  		}
+	  		angular.forEach(retrivingVODSData.pageItems,function(val,key){
+	  				retrivingVODSData.pageItems[key].bookedDate = filter('DateFormat')(val.bookedDate);
+			  });
 	  		callback(retrivingVODSData);
 	  	};
 		
@@ -28,4 +31,5 @@ selfcareApp.controller('EventsController', ['$scope',
                                             'RequestSender',
                                             'PaginatorService',
                                             '$rootScope',
+                                            '$filter',
                                              EventsController]);

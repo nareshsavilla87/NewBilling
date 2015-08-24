@@ -31,8 +31,8 @@ PostpaidPlansController = function(scope,RequestSender,localStorageService,locat
 	      			   templateUrl: 'viewcontractperiods.html',
 	      			   controller: ViewContractPeriodsPopupController,
 	      			   resolve:{
-	      				   planId : function(){
-	      					   return planId;
+	      				 priceData : function(){
+	      					   return priceData;
 	      				   }
 	      			   }
 	      		   });
@@ -63,24 +63,34 @@ PostpaidPlansController = function(scope,RequestSender,localStorageService,locat
 		} 
        
      //View Contract Periods Popup Controller
-       function ViewContractPeriodsPopupController($scope, $modalInstance,$log,planId) {
-	    	RequestSender.gettingContractsResource.get({planId: planId,clientId:scope.clientId,template:'true'},function(data){
+       function ViewContractPeriodsPopupController($scope, $modalInstance,$log,priceData) {
+	    	RequestSender.gettingContractsResource.get({planId: priceData.planId,clientId:scope.clientId,template:'true'},function(data){
 	    			 $scope.subscriptiondatas = data.subscriptiondata;
 	    		 },function(errorData){
-	    			 $scope.contractError = errorData.data.errors[0].userMessageGlobalisationCode;
+	    			 $scope.errorDetails = rootScope.errorDetails;
+	            	 $scope.errorStatus = rootScope.errorStatus;
+	            	 rootScope.errorDetails = [];rootScope.errorStatus = [];
 	    		 });
 	    	 
 	    	$scope.approve = function (contractPeriod) {
 	    		
 	    		if(contractPeriod){
 	    			
-	    			angular.forEach($scope.subscriptiondatas,function(value,key){
-	    				if(value.id == contractPeriod){
-	    					scope.contractPeriod = value.Contractdata;
-	    					scope.contractId   = value.id;
-	    					$modalInstance.close([scope.contractId,scope.contractPeriod]);
-	    				}
-	    			});
+	    			RequestSender.finalPriceCheckingResource.get({priceId:priceData.id,clientId:scope.clientId,
+						contractId:contractPeriod,paytermCode:priceData.billingFrequency},function(data){
+							angular.forEach($scope.subscriptiondatas,function(value,key){
+								if(value.id == contractPeriod){
+									scope.contractPeriod = value.Contractdata;
+									scope.contractId   = value.id;
+									$modalInstance.close([scope.contractId,scope.contractPeriod]);
+								}
+							});
+						},function(errorData){
+				            	 $scope.errorDetails = rootScope.errorDetails;
+				            	 $scope.errorStatus = rootScope.errorStatus;
+				            	 rootScope.errorDetails = [];rootScope.errorStatus = [];
+				  	 });
+	    			
 	    		}
 	    	};
 	    	
@@ -130,8 +140,8 @@ PostpaidPlansController = function(scope,RequestSender,localStorageService,locat
 	      			   templateUrl: 'viewcontractperiods.html',
 	      			   controller: ViewContractPeriodsPopupController,
 	      			   resolve:{
-	      				   planId : function(){
-	      					   return priceData.planId;
+	      				 priceData : function(){
+	      					   return priceData;
 	      				   }
 	      			   }
 	      		   });

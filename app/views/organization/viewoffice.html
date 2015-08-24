@@ -17,19 +17,19 @@
 		<h3>&nbsp;&nbsp;&nbsp;{{office.name}}</h3>
 		<table width="100%">
 			<tr>
-				<td width="20%">{{ 'label.office.parentoffice' | translate }}</td>
+				<td width="20%"><strong>{{ 'label.office.parentoffice' | translate }}</strong></td>
 				<td width="70%">{{office.parentName}}</td>
 			</tr>
 			<tr>
-				<td>{{ 'label.office.openedon' | translate }}</td>
+				<td><strong>{{ 'label.office.openedon' | translate }}</strong></td>
 				<td>{{office.openingDate | DateFormat}}</td>
 			</tr>
 			<tr>
-				<td>{{ 'label.office.namedecorated' | translate }}</td>
+				<td><strong>{{ 'label.office.namedecorated' | translate }}</strong></td>
 				<td>{{office.nameDecorated}}</td>
 			</tr>
 			<tr>
-				<td>{{ 'label.office.externalid' | translate }}</td>
+				<td><strong>{{ 'label.office.externalid' | translate }}</strong></td>
 				<td>{{office.externalId}}</td>
 			</tr>
 		</table>

@@ -137,6 +137,15 @@ selfcareApp.config(function($provide) {
         	
         	gettingContractsResource: defineResource(apiVer + "/orders/:planId/template", {planId:'@planId'}, {}),
         	
+        	evoPaymentResource: defineResource(apiVer + "/evo/amount", {}, {}),
+        	
+        	orderaddonTemplateResource: defineResource(apiVer + "/orderaddons/template/:planId", {planId :'@planId',chargeCode :'@chargeCode'}, {}),
+        	
+        	orderaddonResource: defineResource(apiVer + "/orderaddons/:orderId", {orderId : '@orderId'}, {}),
+        	
+        	paymentTemplateResource: defineResource(apiVer + "/payments/template", {}, {}),
+        	
+        	paymentResource: defineResource(apiVer + "/payments/:clientId", {clientId : '@clientId'}, {}),
         	
         };
       }];

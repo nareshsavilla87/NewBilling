@@ -28,9 +28,9 @@
 	     		 </tr>
 	        </thead>
 	        <tbody>
-	            <tr data-ng-repeat="ticket in ticketsData  | filter:filterText">
+	            <tr data-ng-repeat="ticket in ticketsData | customFilter: filterText : ['priority','ticketDate','problemDescription','status','userName','lastComment']" >
 	                <td style="font-weight: inherit;color: #555555;">{{ticket.priority}}</td>  
-	                <td>{{ticket.ticketDate | DateFormat}}</td>
+	                <td>{{ticket.ticketDate}}</td>
 	                <td>{{ticket.problemDescription}}</td>
 	                <td>{{ticket.status}}</td>
 	                <td>{{ticket.userName}}</td>  

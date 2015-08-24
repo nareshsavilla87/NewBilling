@@ -43,7 +43,7 @@
 			<tr>
 				<td width="50%">
 					<div class="control-group">
-						<label class="control-label" for="countryId"> {{'label.region.country' | translate }} </label>
+						<label class="control-label" for="countryId"> {{'label.region.country' | translate }}<span class="required" >*</span> </label>
 						<div class="controls">
 							<select data-ng-model="formData.countryId" data-ng-change="countryDetails(formData.countryId)">
 								<option data-ng-repeat="country in countrydata" value="{{country.id}}">{{country.countryName}}</option>
@@ -83,7 +83,7 @@
 							</button>
 						</div>
 						<div class="span3">
-							<label class="control-label"> {{ 'label.region.selectedstates' | translate }} </label> 
+							<label class="control-label"> {{ 'label.region.selectedstates' | translate }} <span class="required" >*</span></label> 
 							<select multiple data-ng-model="restricted" data-ng-disabled="checked">
 								<option data-ng-repeat="selectedService in selectedServices" value="{{selectedService.id}}">{{selectedService.stateName}}</option>
 							</select>

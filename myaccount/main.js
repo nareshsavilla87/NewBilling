@@ -1,5 +1,5 @@
 var selfcareApp = angular.module('selfcareApp',['configurations','ngResource','ngRoute','ui.bootstrap','pascalprecht.translate','modified.datepicker',
-                                                	'webStorageModule','tmh.dynamicLocale','notificationWidget','LocalStorageModule','uiSwitch']);
+                                                	'webStorageModule','tmh.dynamicLocale','notificationWidget','LocalStorageModule','uiSwitch','angularFileUpload']);
 
 
 selfcareApp.config(function($httpProvider ,$translateProvider) {
@@ -29,6 +29,9 @@ SelfcareMainController = function(scope, translate,sessionManager,RequestSender,
 	   //index page hiding when client registration form appear
 	   (location.path().match('/active') == '/active') ? (scope.isLandingPage= true,scope.isRegClientProcess = true) : scope.isRegClientProcess = false;
 	   
+	   if(location.path().match('/evosuccess') == '/evosuccess'){
+ 		   scope.evoSuccesssPage = true;
+ 	   }
 	   
 //calling this method every time if session is exit or not
 	   sessionManager.restore(function(session) {
@@ -213,7 +216,7 @@ scope.$watch(function () {
 			 resolve:{}
 			});
     };
-	 
+    
 	//execute this fun when we click on header bar links 
 	 scope.isActive = function (route) {
 		 var active = route === location.path();
@@ -225,12 +228,24 @@ scope.$watch(function () {
 	 //fun executes when we click on logout link
 	   scope.signout = function(){
 			  var sessionData = localStorageService.get('loginHistoryId');
+			  
 			  if(sessionData){
 		          RequestSender.logoutResource.save({logout:'logout',id:sessionData},function(data){
 		        	  scope.currentSession = sessionManager.clear();
 	              });
 			  }
 	   };
+	   
+	   var logoutSession = false;
+	      scope.$watch(function () {
+	    	  var selfcare_sessionData = localStorageService.get('selfcare_sessionData');
+	    	  selfcare_sessionData == null ?logoutSession = true : logoutSession =false;
+	    	    return logoutSession;
+	    	}, function () {
+	    		if(logoutSession){
+	    			scope.currentSession = sessionManager.clear();
+	    		}
+	    	});
 	   
 	   
 };

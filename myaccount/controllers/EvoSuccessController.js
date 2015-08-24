@@ -1,4 +1,9 @@
-EvoSuccessController = function(scope,RequestSender, location,localStorageService,rootScope) {
+EvoSuccessController = function(scope,RequestSender, location,localStorageService,rootScope,dateFilter) {
+	
+		rootScope.evoSuccesssPage = true;
+		if(location.path().match('/evosuccess') != '/evosuccess'){
+			rootScope.showFrame 	= false;
+		}
  
     		//values getting form constants.js file
   		    scope.blowfishKey    	= selfcareModels.EVO_Blowfish;
@@ -44,17 +49,49 @@ EvoSuccessController = function(scope,RequestSender, location,localStorageServic
     			var cardNumber = "XXXX-XXXX-XXXX-X"+outputObj.PCNr.toString().substring(13, 16);
     			var cardType = outputObj.CCBrand;
     			if(angular.uppercase(outputObj.Status) == 'AUTHORIZED' || angular.uppercase(outputObj.Status) == 'OK' && outputObj.Code == 00000000){
-    			  RequestSender.paymentGatewayResource.update({},formData,function(data){
-					  localStorageService.add("paymentgatewayresponse", {data:data,cardType:cardType,cardNumber:cardNumber});
-					  var result = angular.uppercase(data.Result);
-		    		  location.$$search = {};
-		    		 if(screenName == 'payment'){
-							location.path('/paymentgatewayresponse/'+clientId);
-					 }else if(result == 'SUCCESS' || result == 'PENDING'){
-						localStorageService.add("gatewayStatus",result);
-						location.path("/orderbookingscreen/"+screenName+"/"+clientId+"/"+planId+"/"+priceId);
-					 }
-				  });
+    				if(localStorageService.get("statementsPayData")){
+    					
+    	   				 RequestSender.paymentTemplateResource.get(function(paymentTemplateData){
+    	   					 var paymentFormData = {};
+    	   					 paymentFormData.dateFormat = "dd MMMM yyyy";
+    	   					 paymentFormData.isSubscriptionPayment = false;
+    	   					 paymentFormData.locale = formData.locale;
+    	   					 paymentFormData.paymentDate = dateFilter(new Date(),'dd MMMM yyyy');
+    	   					 paymentFormData.receiptNo = formData.transactionId;
+    	   					 paymentFormData.amountPaid = formData.total_amount;
+    	   					 for(var m in paymentTemplateData.data){
+    	   							 if(angular.lowercase(paymentTemplateData.data[m].mCodeValue) == 'online payment'){
+    	   								 paymentFormData.paymentCode = paymentTemplateData.data[m].id;
+    	   								 break;
+    	   							 }
+    	   						 }
+    	   						
+    	   					RequestSender.paymentResource.save({clientId : formData.clientId},paymentFormData,function(data){
+    	   						var successData = {};
+    	   						successData.Result = "Success";
+    	   						successData.Description = "Transaction Successfully Completed";
+    	   						successData.Amount = formData.total_amount;
+    	   						successData.TransactionId = formData.transactionId;
+    	   						
+    	   						localStorageService.add("paymentgatewayresponse", {data:successData,cardType:cardType,cardNumber:cardNumber});
+    	   						location.$$search = {};
+    	   						  location.path('/paymentgatewayresponse/'+formData.clientId);
+    	   					});
+    	   				});
+    	   					
+    	   		   }else{
+		    			  RequestSender.paymentGatewayResource.update({},formData,function(data){
+							  localStorageService.add("paymentgatewayresponse", {data:data,cardType:cardType,cardNumber:cardNumber});
+							  var result = angular.uppercase(data.Result);
+				    		  location.$$search = {};
+				    		 if(screenName == 'payment'){
+									location.path('/paymentgatewayresponse/'+clientId);
+							 }else if(result == 'SUCCESS' || result == 'PENDING'){
+								localStorageService.add("gatewayStatus",result);
+								location.path("/orderbookingscreen/"+screenName+"/"+clientId+"/"+planId+"/"+priceId);
+							 }
+						  });
+    	   		   }
     			}else{
     				alert("Status Failed :"+outputObj.Description);
     			}
@@ -66,5 +103,6 @@ selfcareApp.controller('EvoSuccessController', ['$scope',
 	                                            '$location', 
 	                                            'localStorageService', 
 	                                            '$rootScope', 
+	                                            'dateFilter', 
 	                                            EvoSuccessController]);
 
