@@ -9,12 +9,15 @@
         scope.provisioning={};
         scope.commandData = [];
         scope.start = {};
-        scope.start.date = new Date();
+        //scope.start.date = new Date();
         var orderId=routeParams.id;
         scope.isextensionEnable=false;
         scope.clientId=routeParams.clientId;
         scope.walletConfig = webStorage.get('is-wallet-enable');
         scope.config = webStorage.get("client_configuration").orderActions;
+        scope.isServiceLevelMap = webStorage.get("service-device-mapping");
+        scope.serviceLevelPairEnabled=false;
+        scope.serviceLevelUnPairEnabled=false;
         
          var clientData = webStorage.get('clientData');
          webStorage.add("orderId",routeParams.id);
@@ -38,7 +41,8 @@
          scope.orderAddonsDatas =[];
       
         resourceFactory.getSingleOrderResource.get({orderId: routeParams.id} , function(data) {
-           
+        	scope.start.date = new Date(data.date);
+        	
         	scope.orderPriceDatas= data.orderPriceData;
             scope.orderHistorydata=data.orderHistory;
             scope.orderData=data.orderData;
@@ -51,7 +55,23 @@
             scope.formData.flag=data.flag;
             scope.orderServicesData=data.orderServices;
             scope.orderDiscountDatas=data.orderDiscountDatas;
-          
+            
+            for (var i in scope.orderServicesData){
+            	if(scope.orderServicesData[i].serialNo!=null){
+            		scope.serviceLevelPairEnabled=true;
+            		break;
+            	}
+            }
+            
+            var serviceKey = 0;
+            while(serviceKey != scope.orderServicesData.length-1&&scope.orderServicesData[serviceKey].associateId){
+            	serviceKey += 1;
+	            	if(scope.orderServicesData[0].associateId == scope.orderServicesData[serviceKey].associateId){
+	            		scope.serviceLevelUnPairEnabled=false;
+	            		break;
+	            	}else scope.serviceLevelUnPairEnabled=true;
+            }
+            
       
 	    if(data.orderData.isPrepaid == 'Y'){
             	scope.formData.isPrepaid="Pre Paid";
@@ -75,7 +95,7 @@
         
     
         
-       if(PermissionService.showMenu('READ_ASSOCIATION')){ 
+   /*    if(PermissionService.showMenu('READ_ASSOCIATION')){ 
     	   resourceFactory.associationResource.getAssociation({clientId: routeParams.clientId,id:routeParams.id} , function(data) {
     		   scope.association = data;
     		   if(data.orderId){
@@ -84,7 +104,52 @@
     			   scope.flag=false;
     		   }
     	   });
-       }
+       }*/
+        
+        scope.serviceLevelPairing = function (orderId,serviceId){
+          scope.errorStatus=[];scope.errorDetails=[];
+       	 $modal.open({
+                templateUrl: 'ApprovePairing.html',
+                controller: ApprovePairing,
+                resolve:{
+                	orderId : function(){
+                	 return orderId;
+                	},
+                	serviceId : function(){
+                		return serviceId;
+                		}
+                	}
+            });
+        	
+        };
+        
+      	function  ApprovePairing($scope, $modalInstance,orderId,serviceId) {
+      		 $scope.formData = {};
+      		 resourceFactory.associationTemplate.get({clientId: scope.clientId} , function(data) {  
+             	$scope.hardwareDatas=data.hardwareData;
+             	$scope.planData=data.planData;
+             });
+      		
+      		  $scope.approve = function () {
+      			 $scope.formData.orderId=orderId;
+      			 $scope.formData.serviceId=serviceId;
+                for ( var j in $scope.hardwareDatas) {																			
+     				 if ($scope.hardwareDatas[j].serialNum ==  $scope.formData.provisionNum ) {											
+     					 $scope.formData.allocationType= $scope.hardwareDatas[j].allocationType;
+     				}
+     			}
+              	resourceFactory.associationSaveResource.save({clientId: scope.clientId} ,$scope.formData, function(data) {
+                    route.reload();
+                    $modalInstance.dismiss('delete');
+              	},function(errData){
+              		scope.errorDetails=errData;
+              	});
+      		};
+            $scope.cancel = function () {
+                  $modalInstance.dismiss('cancel');
+            };
+        }
+        
         
         scope.reconnect = function (){
         	scope.errorStatus=[];scope.errorDetails=[];
@@ -523,9 +588,11 @@
 	 
 	 $scope.reasons = [];
 	 $scope.start = {};
-	 $scope.start.date = new Date();
-	 $scope.maxDate=new Date();
+	 /*$scope.start.date = new Date();
+	 $scope.maxDate=new Date();*/
 	  resourceFactory.OrderSuspensionResource.get(function(data) {
+		  $scope.start.date = new Date(data.date);
+		  $scope.maxDate=new Date(data.date);
          $scope.reasons = data.reasons;
      });
     		
@@ -614,8 +681,9 @@
               
         	  $scope.disconnectDetails = [];
         	  $scope.start = {};
-        	  $scope.start.date = new Date();
+        	  //$scope.start.date = new Date();
               resourceFactory.OrderDisconnectResource.get(function(data) {
+            	  $scope.start.date = new Date(data.date);
                   $scope.disconnectDetails = data.disconnectDetails;
               });
         	  
@@ -659,9 +727,9 @@
             	});
           }
         
-        scope.deAssociation=function (){
+        scope.deAssociation=function (associateId){
         	
-        	resourceFactory.deAssociationResource.update({id:scope.association.id} , function(data) {
+        	resourceFactory.deAssociationResource.update({id:associateId} , function(data) {
              
         		 route.reload();
             });

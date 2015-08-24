@@ -39,6 +39,15 @@
 				<td>{{'label.subcategory' | translate }}</td>
 				<td>{{sm.subCategory}}</td>
 			</tr>
+			
+			<tr  data-ng-show="isServiceLevelMap">
+				<td>{{'label.item.type' | translate }}</td>
+				<td>{{sm.itemDescription}}</td>
+			</tr>
+			<tr  data-ng-show="isServiceLevelMap">
+				<td>{{'label.plan.ishwreq' | translate }}</td>
+				<td>{{sm.isHwReq}}</td>
+			</tr>
 		</table>
 	</div>
 </div>

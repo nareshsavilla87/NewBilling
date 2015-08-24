@@ -5,6 +5,8 @@
         scope.id=[];
         scope.PermissionService =  PermissionService; 
         scope.configIPTV = webStorage.get("client_configuration").IPTV;
+        scope.isServiceLevelMap = webStorage.get("service-device-mapping");
+        
         resourceFactory.serviceMappingResource.get({serviceMappingId: routeParams.id} , function(data) {
             scope.sm = data;
             scope.id =  routeParams.id;

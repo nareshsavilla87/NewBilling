@@ -30,7 +30,7 @@
           }else{
               i.className = 'selected-row';
           }
-      }
+      };
       
       if (scope.reportType == 'Pentaho'||scope.reportType=='Table') {
           scope.formData.outputType = 'HTML';
