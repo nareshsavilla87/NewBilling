@@ -110,8 +110,17 @@
 	        	 }else{
 	        		 scope.lengthValidationError = true;
 	        	 }
-	          }
- 
+	          } else{
+	        	  
+	        	  scope.formData.locale = $rootScope.locale.code;
+	        		 scope.formData.dateFormat = "dd MMMM yyyy";
+		             var exipiryDate = dateFilter(scope.start.date,'dd MMMM yyyy');
+		             scope.formData.expiryDate=exipiryDate;
+	        	  resourceFactory.voucherpinResource.save(scope.formData,function(data){
+		            	location.path('/voucherpins');
+		          });
+	        	  
+	          } 
 	        	
 	        };
 	    }
