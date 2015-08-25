@@ -31,9 +31,9 @@ EvoIntegrationController = function(scope, RequestSender,location, localStorageS
     	  
     	  scope.evoPG = {reviewCart:true,billingInfo:true,paymentMethod:true,isFirstDisabled:true};
     	  
-   RequestSender.evoPaymentResource.save({"amount" : scope.price},function(data){
+   RequestSender.evoPaymentResource.save({"amount" : scope.price,"clientId":clientId,"merchantId":scope.merchantId,"currencyType":scope.currencyType},function(data){
 	   scope.evoPrice = data.map.amount;
-    		
+	   var MAC = data.map.macValue;
     	  
     	  
     	 var evoData = {screenName:scope.screenName,planId:evoStorageData.planId,priceId:evoStorageData.priceId,price:evoStorageData.price,
@@ -54,10 +54,10 @@ EvoIntegrationController = function(scope, RequestSender,location, localStorageS
 			};randomFun();
 			
 			
-	 var macDataString = "*"+clientId+"*"+scope.merchantId+"*"+scope.evoPrice+"*"+scope.currencyType; 
+	 /*var macDataString = "*"+clientId+"*"+scope.merchantId+"*"+scope.evoPrice+"*"+scope.currencyType; 
 	 
 	 var hashVal = CryptoJS.HmacSHA256(macDataString, scope.HMACKey);
-	 var MAC = CryptoJS.enc.Hex.stringify(hashVal);
+	 var MAC = CryptoJS.enc.Hex.stringify(hashVal);*/
 	 
 	 var dataString = "TransID="+clientId+"&RefNr="+scope.transactionId+"&amount="+scope.evoPrice+"&FirstName="+scope.firstname+"&" +
 	 					"LastName="+scope.lastname+"&AddrCity="+scope.city+"&AddrState="+scope.state+"&" +
