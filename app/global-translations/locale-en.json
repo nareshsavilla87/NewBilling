@@ -957,7 +957,7 @@
   "validation.msg.UploadStatus.description.cannot.be.blank":"Description Cannot be blank",
   "validation.msg.UploadStatus.fileName.cannot.be.blank":"File name Cannot be blank",
   
-  "#Order":".....",
+  "#Order":"..............................................",
   "label.createorder":"Create New Order",
   "label.postpaidplans":"Postpaid Plans",
   "link.view.order":"View Order",
@@ -1035,6 +1035,7 @@
   "label.commandcenter":"Command Center",
   "label.scheduleorders":"Schedule Orders",
   "label.order.autorenew":"Is Auto Renew",
+  "error.msg.plan.with.id.not.exists":"Plan not exists",
   
     "#Voucher pins":"....",
   "link.create.new.voucherpin":"Create Voucher Pin",
