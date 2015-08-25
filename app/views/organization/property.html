@@ -62,7 +62,7 @@
     		<li class="previous" ng-click="firstPageNo()"><a  ng-click="propertyCodes.firstPage()" href="" ng-hide="!propertyCodes.hasFirstPage()">First</a></li>
         	<li class="previous" ng-click="previousPageNo()"><a  id="prev" ng-click="propertyCodes.previous()"  href="" ng-hide="!propertyCodes.hasPrevious()">&larr; Prev</a></li>
        		<strong>Page No:&nbsp;&nbsp;{{pageNo}}/{{totalPages}}</strong>
-        	<li class="next" ng-click="lastPageNo()"><a  ng-click="propertyCodes.lastPage()" href="" ng-hide="!propertyCodes.hasLastPage()">Last</a></li>
+        	<li class="next" ng-click="lastPageNo()"><a  ng-click="propertyCodes.lastPage(15)" href="" ng-hide="!propertyCodes.hasLastPage()">Last</a></li>
          	<li class="next" ng-click="nextPageNo()"><a  id="next" ng-click="propertyCodes.next()" href="" ng-hide="!propertyCodes.hasNext()">Next &rarr;</a></li>
     </ul>
     	
@@ -119,7 +119,7 @@
     			<li class="previous" ng-click="firstPageNo()"><a  ng-click="propertyMasters.firstPage()" href="" ng-hide="!propertyMasters.hasFirstPage()">First</a></li>
        			<li class="previous" ng-click="previousPageNo()"><a  id="prev" ng-click="propertyMasters.previous()"  href="" ng-hide="!propertyMasters.hasPrevious()">&larr; Prev</a></li>
        			<strong>Page No:&nbsp;&nbsp;{{pageNo}}/{{totalPages}}</strong>
-        		<li class="next" ng-click="lastPageNo()"><a  ng-click="propertyMasters.lastPage()" href="" ng-hide="!propertyMasters.hasLastPage()">Last</a></li>
+        		<li class="next" ng-click="lastPageNo()"><a  ng-click="propertyMasters.lastPage(15)" href="" ng-hide="!propertyMasters.hasLastPage()">Last</a></li>
 				<li class="next" ng-click="nextPageNo()"><a  id="next" ng-click="propertyMasters.next()" href="" ng-hide="!propertyMasters.hasNext()">Next &rarr;</a></li>
    		 </ul>
     	
