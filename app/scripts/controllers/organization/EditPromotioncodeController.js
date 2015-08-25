@@ -9,7 +9,6 @@
 			scope.date = {};
 
 			resourceFactory.promotionResource.getPrmotioncodeDetails({promotioncodeId : routeParams.id, template : 'true'}, function(data) {
-				scope.minDate = new Date(data.date);
 				scope.promotiondata = data;
 				scope.promotiondatas = data.discountTypeData;
 				scope.durationTypes = data.contractTypedata;

@@ -35,9 +35,6 @@
                         }if(data.globalConfiguration[i].name=="client-additional-data"){
                         	  webStorage.add("client-additional-data",data.globalConfiguration[i].enabled);
 
-                        }if(data.globalConfiguration[i].name=="service-device-mapping"){
-                        	  webStorage.add("service-device-mapping",data.globalConfiguration[i].enabled);
-
                         }if(data.globalConfiguration[i].name=="is-logout-cache"){
                         	  webStorage.add("is-logout-cache",data.globalConfiguration[i].enabled);
                         }

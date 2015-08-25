@@ -15,7 +15,7 @@
         scope.gameAttributesFormData={};
         scope.mediaLocationFormData={};
         scope.release= {};
-        //scope.release.date = new Date();
+        scope.release.date = new Date();
         scope.hideForGame = true;
         scope.counter = 0;
         
@@ -24,7 +24,6 @@
         	resourceFactory.mediaTemplateResource.get(function(data) {
         		scope.formData = {  
                 };
-        		scope.release.date = new Date(data.date);
                 scope.mediaAttributes = data.mediaAttributes;
                 scope.mediaCategeorydatas = data.mediaCategeorydata;
                 for(var i=0;i<scope.mediaCategeorydatas.length;i++){

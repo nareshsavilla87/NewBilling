@@ -7,12 +7,11 @@
 	        scope.pinTypeDatas = [];
 	        scope.plandatas = [];
 	        scope.start={};
-	        //scope.start.date = dateFilter(new Date(),'dd MMMM yyyy');
+	        scope.start.date = dateFilter(new Date(),'dd MMMM yyyy');
 	        scope.lengthValidationError = false;
 	        scope.offices = [];
 	        
 	        resourceFactory.voucherpinTemplateResource.get(function(data) {
-	        	scope.start.date = new Date(data.date);
 	            scope.pinCategoryDatas = data.pinCategoryData;
 	            scope.pinTypeDatas.push({"value":"VALUE"},{"value":"PRODUCT"});
 	            scope.offices = data.offices;
@@ -20,7 +19,6 @@
 	        });
 	        
 	        resourceFactory.priceResource.query(function(data){
-	        	
 	        	if(data.length >=1){
 	        		scope.planDatas = _.filter(data, function(item) {
 	                      return item.isPrepaid != "N";
@@ -112,17 +110,8 @@
 	        	 }else{
 	        		 scope.lengthValidationError = true;
 	        	 }
-	          } else{
-	        	  
-	        	  scope.formData.locale = $rootScope.locale.code;
-	        		 scope.formData.dateFormat = "dd MMMM yyyy";
-		             var exipiryDate = dateFilter(scope.start.date,'dd MMMM yyyy');
-		             scope.formData.expiryDate=exipiryDate;
-	        	  resourceFactory.voucherpinResource.save(scope.formData,function(data){
-		            	location.path('/voucherpins');
-		          });
-	        	  
-	          } 
+	          }
+ 
 	        	
 	        };
 	    }

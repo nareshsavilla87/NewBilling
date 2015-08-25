@@ -357,15 +357,6 @@
             });
         };
         
-        /*scope.onetimedatas=data.onetimedatas;
-    	scope.onetimedatas = [];
-        angular.forEach(scope.onetimedatas,function(value,key){
-         scope.onetimesales.push({serialNo:value.serialNo});
-        });
-        scope.onetimesales = _.uniq(scope.onetimesales,function(item){
-         return item.serialNo;
-        });*/
-       
         /* view provisioning data        */
         scope.getAllProvisioningDetails = function () {
             
@@ -516,8 +507,6 @@
       			  resourceFactory.oneTimeSaleResource.getOneTimeSale({clientId: routeParams.id}, function(data) {
                   	scope.onetimesales = data.oneTimeSaleData;
                       scope.eventOrders = data.eventOrdersData;
-                 
-                      
                   });
       	            $modalInstance.close('delete');
       	        },function(orderErrorData){
@@ -529,7 +518,6 @@
             $scope.cancelAllocate = function () {
                 $modalInstance.dismiss('cancel');
             };
-           
             
             
         };
@@ -1369,17 +1357,6 @@
             resourceFactory.oneTimeSaleResource.getOneTimeSale({clientId: routeParams.id}, function(data) {
             	scope.onetimesales = data.oneTimeSaleData;
                 scope.eventOrders = data.eventOrdersData;
-                scope.onetimedatas = [];
-          		angular.forEach(scope.onetimesales,function(value,key){
-          			scope.onetimedatas.push({id:value.id , saleType:value.saleType , saleDate:value.saleDate,itemCode:value.itemCode, 
-          				chargeCode:value.chargeCode, quantity:value.quantity, units:value.units, totalPrice:value.totalPrice, 
-          				warrantyDate:value.warrantyDate, hardwareAllocated:value.hardwareAllocated, propertyCode:value.propertyCode, serialNo:value.serialNo});
-          		
-          		});
-          		
-          		scope.onetimedatas = _.uniq(scope.onetimedatas,function(item){
-          			return item.id;
-          		});
             });
         };
                 
@@ -1937,43 +1914,30 @@
 		                  $modalInstance.dismiss('cancel');
 		            };
 		        }
-
-		      	 scope.refundAmount = function(id,amount){
-		         	scope.errorDetails = [];
-		         	scope.errorStatus = [];
-		         	$modal.open({
-		                 templateUrl: 'refundamount.html',
-		                 controller: RefundAmountController,
-		                 resolve:{
-		                 	 	getPaymentId:function(){
-		                 	 		return id;
-		                 	 	},
-		                 	 	getAmount:function(){
-		                 	 		return amount;
-		                 	 	}
-		                 }
-		             });
-		         };
-		         
-		         var RefundAmountController = function($scope, $modalInstance, getPaymentId,getAmount){
-		        	$scope.formData = {};
-		        	resourceFactory.refundAmountResource.get({depositAmount:getAmount,depositId:scope.clientId} , function(data){
-		        		$scope.formData.refundAmount = data.availAmount;
-		        		$scope.refundModeData=data.data;
-		            },function(errorData){
-  	                	$scope.stmError = errorData.data.errors[0].userMessageGlobalisationCode;
-  	                	
-  	                });
-		        	
-		        	$scope.formData.locale = "en";
-		 			$scope.accept = function(){
-		 				var depositId = getPaymentId;
-		 				resourceFactory.refundAmountResource.save({'depositId':depositId}, $scope.formData, function(data){
-		 					$modalInstance.close('delete');
-		 				    getDetails();
-		 				    scope.getAllFineTransactions();
-		 				},function(errorData){
-		   
+		      	
+		     	 scope.refundAmount = function(id,amount){
+			         	scope.errorDetails = [];
+			         	scope.errorStatus = [];
+			         	$modal.open({
+			                 templateUrl: 'refundamount.html',
+			                 controller: RefundAmountController,
+			                 resolve:{
+			                 	 	getPaymentId:function(){
+			                 	 		return id;
+			                 	 	},
+			                 	 	getAmount:function(){
+			                 	 		return amount;
+			                 	 	}
+			                 }
+			             });
+			         };
+			         
+			         var RefundAmountController = function($scope, $modalInstance, getPaymentId,getAmount){
+			        	$scope.formData = {};
+			        	resourceFactory.refundAmountResource.get({depositAmount:getAmount,depositId:scope.clientId} , function(data){
+			        		$scope.formData.refundAmount = data.availAmount;
+			        		$scope.refundModeData=data.data;
+			            },function(errorData){
 	  	                	$scope.stmError = errorData.data.errors[0].userMessageGlobalisationCode;
 	  	                	
 	  	                });
@@ -1995,7 +1959,7 @@
 			 				$modalInstance.dismiss('cancel');
 			 			};
 			 		};
-		         };
+		      	
 	  			//export financial csv 
 	  			scope.exportFinancialCSV = function(){
             	

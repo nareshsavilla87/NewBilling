@@ -11,8 +11,7 @@
 							scope.date = {};
 							scope.first={};
 							
-							resourceFactory.eventEditResource.get({eventId: routeParams.id} , function(data) {		
-								scope.minDate = new Date(data.date);
+							resourceFactory.eventEditResource.get({eventId: routeParams.id} , function(data) {								
                                 scope.formData=data;                            
                                 //scope.formData.allowCancellation=false;
 								scope.eventStatus = data.statusData;
@@ -130,7 +129,6 @@
 								delete this.formData.selectedMedia;
 								delete this.formData.statusId;
 								delete this.formData.eventCategeorydata;
-								delete this.formData.date;
 								
 								if(scope.first.time ==''){
 									this.formData.eventStartDate = reqDate;
