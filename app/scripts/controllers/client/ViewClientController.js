@@ -350,6 +350,15 @@
             });
         };
         
+        /*scope.onetimedatas=data.onetimedatas;
+    	scope.onetimedatas = [];
+        angular.forEach(scope.onetimedatas,function(value,key){
+         scope.onetimesales.push({serialNo:value.serialNo});
+        });
+        scope.onetimesales = _.uniq(scope.onetimesales,function(item){
+         return item.serialNo;
+        });*/
+       
         /* view provisioning data        */
         scope.getAllProvisioningDetails = function () {
             
@@ -500,6 +509,8 @@
       			  resourceFactory.oneTimeSaleResource.getOneTimeSale({clientId: routeParams.id}, function(data) {
                   	scope.onetimesales = data.oneTimeSaleData;
                       scope.eventOrders = data.eventOrdersData;
+                 
+                      
                   });
       	            $modalInstance.close('delete');
       	        },function(orderErrorData){
@@ -511,6 +522,7 @@
             $scope.cancelAllocate = function () {
                 $modalInstance.dismiss('cancel');
             };
+           
             
             
         };
@@ -1326,6 +1338,17 @@
             resourceFactory.oneTimeSaleResource.getOneTimeSale({clientId: routeParams.id}, function(data) {
             	scope.onetimesales = data.oneTimeSaleData;
                 scope.eventOrders = data.eventOrdersData;
+                scope.onetimedatas = [];
+          		angular.forEach(scope.onetimesales,function(value,key){
+          			scope.onetimedatas.push({id:value.id , saleType:value.saleType , saleDate:value.saleDate,itemCode:value.itemCode, 
+          				chargeCode:value.chargeCode, quantity:value.quantity, units:value.units, totalPrice:value.totalPrice, 
+          				warrantyDate:value.warrantyDate, hardwareAllocated:value.hardwareAllocated, propertyCode:value.propertyCode, serialNo:value.serialNo});
+          		
+          		});
+          		
+          		scope.onetimedatas = _.uniq(scope.onetimedatas,function(item){
+          			return item.id;
+          		});
             });
         };
                 
