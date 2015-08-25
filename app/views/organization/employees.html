@@ -1,0 +1,31 @@
+<div  data-ng-controller="EmployeeController">
+<div>
+    <ul class="breadcrumb">
+        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.manageemployees' | translate}}&nbsp;&nbsp;{{employee.lastname}}</li>
+    </ul>
+    <div class="pull-right">
+        <a data-ng-show="PermissionService.showMenu('CREATE_STAFF')" href="#/createemployee" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{ 'link.create.new.employee' | translate }}</a>
+    </div>
+</div>
+<div class="row-fluid">
+    <input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Enter text to search">
+	<table class="table">
+        <thead>
+            <tr class="graybg">
+                <th>{{ 'table.heading.name' | translate }}</th>
+                <th>{{ 'table.heading.officename' | translate }}</th>
+                <th>{{ 'table.heading.actions' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="pointer-main" data-ng-repeat="employee in employees | orderBy:'displayName'| filter:filterText">
+                <td class="pointer" data-ng-click="routeTo(employee.id)">{{employee.displayName}}</td>            
+                <td class="pointer" data-ng-click="routeTo(employee.id)">{{employee.officeName}}</td> 
+                <td class="pointer"><a data-ng-show="PermissionService.showMenu('UPDATE_STAFF')"
+                  href="#/editemployee/{{employee.id}}" data-popover="Edit Employee" data-popover-trigger="mouseenter" class="icon-edit"></a></td>        
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>

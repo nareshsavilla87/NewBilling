@@ -1,0 +1,177 @@
+<div  ng-controller="EditProvisioningController">
+	<div><ul class="breadcrumb">
+        <table>
+        <tr>
+        <td>
+        	 <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+        </td>
+        <td>
+            <small style="color:black;">{{displayName}}</small>
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Uniquely identified  {{accountNo}}</small></td>
+        	</tr>
+        	<tr>
+        		<td><i class="icon-building"></i><small>Office "{{officeName}}"</small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Cell Phone {{phone}}</small></td>
+        	</tr>
+        	<tr>
+        		<td><small>Device # <strong>{{device}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Client Type "{{categoryType}}"</small></td>
+        	</tr>
+        	<tr>
+        		<td><small>Balance&nbsp;{{balanceAmount}}&nbsp;{{currency}} </small></td>
+        	</tr>
+        </table>
+        </td>
+        </tr>
+        </table>
+	</ul>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/viewclient/{{clientId}}">{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'link.provision' | translate}}</li>
+		</ul>
+	</div>
+<form class="form-horizontal well" ng-submit="submit()">
+
+	 <div class="error" ng-show="errorStatus || errorDetails">
+	 
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	<fieldset>
+		<legend>{{'label.provisioning.New' | translate}}</legend>
+		<div class="row-fluid span">
+
+		<div class="span6">
+		<table width="100%" class="table table-striped table-bordered" width="0px">
+			<tr>
+				<td width="50%">{{ 'label.order.orderId' | translate }}</td>
+				<td width="50%">{{orderNo}}</td>
+			</tr>
+			<tr>
+				<td width="30%">{{ 'label.provisioning.clientname' | translate }}</td>
+				<td width="70%">{{displayName}}</td>
+			</tr>
+		</table>
+	</div>	
+	<div class="span5">
+		<table width="100%" class="table table-striped table-bordered">
+			<tr>
+				<td width="30%">{{ 'label.plan.planname' | translate }}</td>
+				<td width="70%">{{planName}}</td>
+			</tr>
+			<tr>
+				<td width="30%">{{ 'label.provisioning.device' | translate }}</td>
+				<td width="70%">{{device}}</td>
+			</tr>
+		</table>
+	</div>			
+	</div>
+			    <table>
+		              <tr>
+					       <td>
+							 <div class="control-group">
+                        	  <label class="control-label">{{ 'label.provisioning.servicename' | translate }}</label>
+                        		<div class="controls">
+                            	 <select ng-model="formData.serviceName" ng-options="service.servicecode as service.servicecode for service in services" 
+                            	       value="{{itemData.id}}">
+             					 </select>
+                        	</div>
+          				  </div>
+					    </td>
+					   </tr>
+					   </table>
+					  <!-- <tr>
+					   <table>
+				<td>
+				 -->
+				<table  ng-repeat="parameterData in parameterDatas">
+			
+					    <tr>
+							<td>
+								<div class="control-group" ng-show="parameterData.paramName == 'SERVICE'">
+            					<label class="control-label" for="chargeCode">{{ 'label.provisioning.service' | translate }}</label>
+            					<div class="controls">
+              					<input type="text" id="service" ng-model="parameterData.paramValue" style="background-color:#FFFFFF;" readonly>
+            					</div>
+          						</div>
+							</td>
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group" ng-show="parameterData.paramName == 'GROUP_NAME'">
+            					<label class="control-label" for="itemId">{{ 'label.provisioning.group' | translate }}</label>
+            					<div class="controls">
+             					 <input type="text" id="groupName" ng-model="formData.groupName" style="background-color:#FFFFFF;" readonly>
+            					</div>
+          						</div>
+							</td>
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group" ng-show="parameterData.paramName == 'IP_ADDRESS'">
+            					<label class="control-label" for="ipAddress">{{ 'label.provisioning.ipaddress' | translate }}</label>
+            					<div class="controls">                                  	       
+             					 <input type="text" ng-model="formData.ipAddress" name="ipAddress" ng-change="getData(formData.ipAddress)"  typeahead="ipPoolData as ipPoolData for ipPoolData in ipPoolDatasData | filter:$viewValue" typeahead-min-length="0">  
+                                   <a ng-click="addIpAddresses()">&nbsp;<i class="icon-plus icon-white"></i></a>&nbsp;&nbsp;
+                                  <div ng-repeat="addipAddress in formData.addIpAddress">
+										<input type="text" class="input-small" ng-model="addipAddress.ipvalue">
+										<a ng-click="deleteAddIpAddress($index)"><i class="icon-remove icon-white"></i></a>							   					        
+						              </div>                            
+                                  </div>                           
+            					</div>                                                               
+							</td>
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group" ng-show="parameterData.paramName == 'VLAN_ID'">
+            					<label class="control-label" for="vLan">{{ 'label.provisioning.vlan' | translate }}</label>
+            					<div class="controls">
+              					 <select ng-model="formData.vLan"  ng-options="vlanData.mCodeValue as vlanData.mCodeValue for vlanData in vlanDatas" value="{{vlanData.mCodeValue}}">
+             					 </select>
+            					</div>
+          						</div>
+							</td>
+							
+							<!-- </tr>
+							</tr>
+					</table>
+			
+				</td> -->
+			</tr>
+			</table>
+			
+
+
+		<div class="offset3">
+			<a id="cancel" href="#/viewclient/{{clientId}}"><button type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
+
+				<!-- <button id="submit" type="submit" class="btn btn-primary" ng-disabled="flag">{{'button.save' | translate}}</button> -->
+				<button id="submit" type="submit" class="btn btn-primary">{{'button.provisioning' | translate}}</button>
+		</div>
+	</fieldset>
+</form>
+</div>

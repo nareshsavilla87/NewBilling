@@ -1,0 +1,150 @@
+<div data-ng-controller="CreateOrderAddonController">
+ 
+  <div>
+     <ul class="breadcrumb">
+      	<li><table>
+        <tr>
+        <td>
+         <img data-ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img data-ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+        </td>
+        <td>
+            <small style="color:black;">{{displayName}}</small>
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Uniquely identified&nbsp;<strong>{{accountNo}}</strong></small></td>
+        	</tr>
+        	<tr>
+        	    <td><small>Cell Phone&nbsp;<strong>{{phone}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        	   <td><i class="icon-building"></i><small>Office&nbsp;"<strong>{{officeName}}</strong>"</small></td>
+        	</tr>
+        	<tr>
+        	<td><small>Device # <strong>{{hwSerialNumber}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Client Type&nbsp;"<strong>{{categoryType}}</strong>"</small></td>
+        	</tr>
+        	<tr>
+        		<td><small>Balance&nbsp;<strong>{{balanceAmount}}</strong>&nbsp;{{currency}} </small></td>
+        		<td class="paddedleft0" data-ng-show="walletConfig"><small>[Wallet&nbsp;<strong>{{walletAmount}}</strong>&nbsp;{{currency}}]</small></td>
+        	</tr>
+        </table>
+        </td>
+        </tr>
+        </table></li>
+ </ul>
+<div>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/vieworder/{{orderId}}/{{clientId}}">{{'link.view.order' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">Order Addons</li>
+		</ul>
+   </div>
+   </div>
+ <form class="form-horizontal well" data-ng-submit="submit()">
+   
+	<div class="error" data-ng-show="errorStatus || errorDetails">
+			<label>{{'label.contract.error' | translate}}</label>
+			<label data-ng-show="errorStatus">{{errorStatus}}</label>
+			<label data-ng-hide="errorStatus"data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	</div>
+  
+<label><b>Order Info</b></label>
+<div>
+	<div class="row-fluid span">
+		<div class="span6">
+			<table width="100%" class="table table-striped table-bordered" width="0px">
+				<tr>
+					<td width="50%">{{ 'label.order.orderId' | translate }}</td>
+					<td width="50%">{{orderData.orderNo}}</td>
+				</tr>	
+				<tr>
+					<td width="30%">{{ 'label.order.contractperiod' | translate }}</td>
+					<td width="70%">{{orderData.contractPeriod}}</td>
+				</tr>
+				<tr>
+					<td width="30%">{{ 'label.order.startdate' | translate }}</td>
+					<td width="70%">{{orderData.startDate | DateFormat}}</td>
+				</tr>
+		</table>
+	</div>	
+	<div class="span5">
+		<table width="100%" class="table table-striped table-bordered">
+			<tr>
+				<td width="30%">{{ 'label.plan.planname' | translate }}</td>
+				<td width="70%">{{orderData.planName}}</td>
+			</tr>
+			<tr>
+					<td width="30%">{{ 'table.order.billingcycle' | translate }}</td>
+					<td width="70%">{{orderData.billingCycle}}</td>
+				</tr>
+			<tr>
+				<td width="30%">{{ 'table.order.endDate' | translate }}</td>
+				<td width="70%">{{orderData.endDate | DateFormat}}</td>
+			</tr>
+		</table>
+	</div>			
+	</div>
+	<label><b>Add Ons</b></label>
+	  <div class="control-group">
+                          <label class="control-label" for="startDate">{{ 'label.order.contractperiod' | translate }}</label>
+                            <div class="controls">
+                 <select id="{{addonsPriceData.id}}"  data-ng-model="formData.contractId" data-ng-options="subscriptiondata.id as subscriptiondata.Contractdata for subscriptiondata in subscriptiondatas" 
+				  value="{{subscriptiondata.Contractdata}}"></select>
+                          </div>
+                        </div>
+	
+		<div >
+     <input ng-model="filterText" type="text" ng-autofocus="true" class="span " style="width:500px;"
+       placeholder="Filter by service name">
+     <br/>
+    <accordion close-others="true">
+            <accordion-group  is-open = "$first" ng-repeat="serviceCategoryData in serviceCategoryDatas | filter:filterText" >
+             <accordion-heading>
+              <strong >{{serviceCategoryData.serviceCode}}</strong> 
+              <i class="pull-right" ng-class="{'icon-chevron-up': !$first, 'icon-chevron-down': $first }"></i> 
+         </accordion-heading>
+                 <table  class="table table-striped table-bordered fullwidth">
+      <thead>
+       <tr class="graybg">
+         <th>Select</th>
+	     <th>Charge Code</th>
+         <th>Price</th>
+       </tr>
+      </thead>
+       <tr data-ng-repeat="addonsPriceData in addonsPriceDatas" ng-if="serviceCategoryData.serviceCode == addonsPriceData.serviceCode">
+       <td width="10%">
+       <input type="checkbox" id="{{addonsPriceData.id}}"  data-ng-change="isSelected(addonsPriceData.serviceId,isActive,addonsPriceData.price,addonsPriceData.chargeCodeId,$index)" data-ng-model="isActive" ng-true-value="Y" ng-false-value="N"></td>
+				<td width="40%">{{addonsPriceData.chargecodeDescription}}</td>
+				<td width="60%">{{addonsPriceData.price}}</td>
+      </tr>
+    </table>
+                   
+      </accordion-group>
+    </accordion>
+   </div>
+          </div>
+          <div class="offset3">
+            <a href="#/vieworder/{{orderId}}/{{clientId}}"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+            <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+          </div>
+        </form>
+</div>
+

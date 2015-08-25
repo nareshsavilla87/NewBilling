@@ -1,0 +1,51 @@
+<div>
+    <ul class="breadcrumb">
+       <li class="active">{{ 'label.heading.usernotification' | translate }}</li>
+    </ul>
+</div>
+
+<div ng-controller="MessangerController">
+ 
+    <div>
+      <tabset  style="margin-bottom: 0px;">
+      
+      <tab heading="Inbox" select="updateRead()">
+      
+       <div class="pull-right btn-group">
+          <a ng-show="PermissionService.showMenu('CREATE_USERCHATMESSAGE')" href="#/addnewmesage" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.addmessage' | translate }}</a>
+        </div>
+        <div ng-repeat="userChatData in userChatDatas | orderBy:predicate:reverse" >
+          <div>
+           	  <p>&nbsp;</p>
+              <p>{{userChatData.message}}
+              		<span ng-show="PermissionService.showMenu('UPDATE_USERCHATMESSAGE')"><button type="button" class="btn btn-success flag pull-right" data-ng-hide="userChatData.isRead" data-ng-click="updateFlag(userChatData.id)"><i class="icon-flag-alt"></i></button></span>
+                	<button type="button" class="btn btn-danger flag pull-right" data-ng-show="(userChatData.isRead)&&(PermissionService.showMenu('DELETE_USERCHATMESSAGE'))" data-ng-click="deleteFlag(userChatData.id)"><i class="icon-remove"></i></button>
+              </p>
+              <blockquote>
+            
+               <small>From :&nbsp;{{userChatData.createdByUser}}  Received on :&nbsp;&nbsp;{{userChatData.messageDate | DateFormat}}</small>
+            </blockquote>
+          </div>
+        </div>
+        
+      </tab>	
+      
+      <tab heading="Sent Messages" select="getSentMessages()">
+       
+        <div ng-repeat="userChatData in userSentmessageDatas | orderBy:predicate:reverse" >
+          <div>
+           
+              <p>{{userChatData.message}}</p>
+              <blockquote>
+            
+               <small> To :&nbsp;{{userChatData.userName}}  Sent on :&nbsp;&nbsp;{{userChatData.messageDate | DateFormat}}</small>
+            </blockquote>
+          </div>
+        </div>
+       
+       		
+        
+      </tab>
+    </tabset>
+    </div>
+  </div>

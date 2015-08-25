@@ -1,0 +1,78 @@
+<div>
+	<ul class="breadcrumb">
+    	<li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+        <li><a href="#/mappingconfig">{{'label.provisioningMapping' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.createProvisioningmapping' | translate}}</li>
+   	</ul>
+</div>
+
+<form class="form-horizontal well" data-ng-controller="CreateProvisioningMappingController" data-ng-submit="submit()">
+	<div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	</div>
+	
+    <fieldset>
+    	<legend>{{'label.createProvisioningmapping' | translate}}</legend>
+									
+        	<table style="width:100%">
+		
+		    	<tr>
+					<td width="50%">
+						<div class="control-group">
+							<label class="control-label" for="provisioningSystem">{{'table.provisioningcommands.provisioningsystem' | translate}}</label>
+							<div class="controls">
+             					 <select data-ng-model="formData.provisioningSystem" data-ng-options="provisioningData.mCodeValue as provisioningData.mCodeValue for provisioningData in provisioning"></select>
+            				</div>
+						</div>
+					</td>
+				</tr>
+		    
+				<tr>
+					<td width="50%">
+						<div class="control-group">
+							<label class="control-label" for="commandName">{{'table.provisioningcommands.commandname' | translate}}</label>
+							<div class="controls">
+             					 <select data-ng-model="formData.commandName"  data-ng-options="commandData.mCodeValue as commandData.mCodeValue for commandData in commands"></select>
+            				</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+          						
+       		<table>
+          		<tr class="control-group">
+                	<td>
+                 		<label class="control-label"><h4>{{ 'table.provisioningsystem.parameters' | translate }}</h4></label>
+                	</td>
+                	<td class="blockquoteresult">
+                    	<form>
+                    		<input class="input-small" type="text" data-ng-model="parameterFormData.commandParam" placeholder="{{'table.provisioningsystem.commandParam' | translate}}" >&nbsp;&nbsp;
+                    		<input class="input-small" type="text" data-ng-model="parameterFormData.paramType"  placeholder="{{'table.provisioningsystem.paramType' | translate}}">&nbsp;&nbsp;                    
+                    		<a data-ng-click="addParameters()">&nbsp;<i class="icon-plus icon-white"></i></a>&nbsp;&nbsp;
+                    	</form>
+                    	<br><br>
+                  		<table class="table" width="100%" data-ng-show="commandParameters.length>0">
+                    		<tr></tr>
+                    		<tr class="graybg">         
+                      			<th>{{'table.provisioningsystem.commandParam' | translate}}</th>
+                      			<th>{{'table.provisioningsystem.paramType' | translate}}</th>                   
+                    		</tr>
+                    		<tr data-ng-repeat="commandParameter in commandParameters" >              
+                      			<td><input type="text" class="input-small" data-ng-model="commandParameter.commandParam" placeholder="{{'table.provisioningsystem.commandParam' | translate}}"></td>
+                      			<td><input type="text" class="input-small" data-ng-model="commandParameter.paramType" placeholder="{{'table.provisioningsystem.paramType' | translate}}"></td>                 
+                      			<td><a data-ng-click="deleteParameter($index)"><i class="icon-remove icon-white"></i></a></td>
+                    		</tr>
+                  		</table>
+                	</td>
+              	</tr>
+          	</table>
+		
+          <div class="offset3">
+            <a href="#/mappingconfig"><button type="reset" class="btn" data-ng-click="reset123()">{{'button.cancel'| translate}}</button></a>
+            <button type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+          </div>
+          
+    </fieldset>
+</form>

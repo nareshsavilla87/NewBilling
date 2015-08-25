@@ -1,0 +1,102 @@
+<div>
+ 	<ul class="breadcrumb">
+    	<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+        <li><a href="#/discounts">{{'label.managediscounts' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.createpromotioncode' | translate}}</li>
+    </ul>
+</div>
+<form name="createpromotionform" class="form-horizontal well" data-ng-controller="CreatePromotionController" data-ng-submit="submit()">
+        <div class="error" data-ng-show="errorStatus || errorDetails">
+		   <label>{{'label.contract.error' | translate}}</label>
+		   <label data-ng-show="errorStatus">{{errorStatus}}</label>
+		   <label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>{{'label.createpromotioncode' | translate}}</legend>
+					<table>
+						<tr>
+							<td>
+								<div class="control-group">
+           					 	<label class="control-label" for="promotionCode">{{ 'label.promotionCode' | translate }}<span class="required" >*</span></label>
+            					<div class="controls">
+             					 <input type="text" id="promotionCode" name="promotionCode" data-ng-model="formData.promotionCode" data-ng-maxlength="{{'code' | CodeValidate}}"/></br>
+             					 <span data-ng-show = "createpromotionform.promotionCode.$dirty && createpromotionform.promotionCode.$invalid">
+             					 	<small class="error-row">{{'error.code.definition.length.validation'| translate}}</small>
+             					 </span>
+           						</div>
+         						</div>	
+							 </td>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="discountType">{{ 'label.discountType' | translate }}<span class="required" >*</span></label>
+            					<div class="controls">
+             					 <select id="discountType" data-ng-model="formData.discountType"  data-ng-options="promotiondata.mCodeValue as promotiondata.mCodeValue for promotiondata in promotiondatas">
+             					 <option value="">{{'label.select.one' | translate}}</option></select>
+            					</div>
+          						</div>
+							</td>
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="promotionDescription">{{ 'label.promotionDescription' | translate }}<span class="required" >*</span></label>
+            					<div class="controls">
+             					 <input type="text" id="promotionDescription" data-ng-model="formData.promotionDescription"/>
+           						</div>
+          						</div>
+							</td>
+								<td>
+								<div class="control-group">
+            					<label class="control-label" for="discountRate">{{ 'label.discountRate' | translate }}<span class="required" >*</span></label>
+            					<div class="controls">
+              					<input type="text" id="discountRate" name="discountRate" data-ng-model="formData.discountRate" data-ng-pattern="{{'decimal' | CodeValidate}}"></br>
+              					<span data-ng-show="createpromotionform.discountRate.$dirty && createpromotionform.discountRate.$invalid">
+              						<small class="error-row">{{'error.not.decimal.validation' | translate}}</small>
+              					</span>
+            					</div>
+          						</div>
+							</td>
+							
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="durationType">{{ 'label.durationType' | translate }}<span class="required" >*</span></label>
+            					<div class="controls">
+              					 <select id="durationType" data-ng-model="formData.durationType"  data-ng-options="durationType.subscriptionType as durationType.subscriptionType for durationType in durationTypes">
+             					 <option value="">{{'label.select.one' | translate}}</option></select>
+            					</div>
+          						</div>
+							</td>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="promotionduration">{{ 'label.duration' | translate }}<span class="required" >*</span></label>
+            					<div class="controls">
+              					<input type="text" id="duration" name="duration" data-ng-model="formData.duration" data-ng-pattern="/^[1-9][0-9]*$/"></br>
+              					<span data-ng-show="createpromotionform.duration.$dirty && createpromotionform.duration.$invalid">
+          							  <small class="error-row" data-ng-show="createpromotionform.duration.$error.pattern">Duration should not 0 and Alphanumeric</small>
+              						 <!-- <small class="error-row">{{'error.not.numeric.validation' | translate}}</small> -->  
+              					</span>
+           						 </div>
+          						</div>
+							</td>
+							
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+                        		<label class="control-label">{{ 'label.startDate' | translate }}</label>
+                        		<div class="controls">
+                            	<input type="text" data-datepicker-pop="dd MMMM yyyy" data-ng-model="start.date" data-is-open="opened2" min="minDate" 
+                            	max="'2020-06-22'" data-date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
+                        		</div>
+          						</div>
+							</td>
+							<td align="right">
+							<a href="#/discounts"><button id="cancel" type="reset" data-ng-click="reset123()" class="btn">{{'button.cancel'| translate}}</button></a>
+                           <button id="submit" type="submit" data-ng-disabled="createpromotionform.$dirty && createpromotionform.$invalid" class="btn btn-primary">{{'button.save'| translate}}</button>
+							</td>
+							</tr>
+					</table>
+        </fieldset>
+</form>

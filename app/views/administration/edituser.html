@@ -1,0 +1,65 @@
+    <div ng-controller="EditUserController">
+      <div>
+        <ul class="breadcrumb">
+          <li><a href="#/users">{{'link.admin.users' | translate}}</a> <span class="divider">/</span></li>
+          <li><a href="#/viewuser/{{userId}}">{{formData.firstname}}{{formData.lastname}}</a> <span class="divider">/</span></li>
+          <li class="active">{{'label.edituser' | translate}}</li>
+        </ul>
+      </div>
+
+      <form class="form-horizontal well" ng-submit="submit()">
+        <fieldset>
+          <legend>{{'label.edituser' | translate}}</legend>
+          
+          <div class="control-group">
+            <label class="control-label" for="username">User Name</label>
+            <div class="controls">
+              <input type="text" id="username" ng-model="formData.username">
+            </div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label" for="firstname">First Name</label>
+            <div class="controls">
+              <input type="text" id="firstname" value="{{user.firstname}}" ng-model="formData.firstname">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="lastname">Last Name</label>
+            <div class="controls">
+              <input type="text" id="lastname" value="{{user.lastname}}" ng-model="formData.lastname">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="email">Email</label>
+            <div class="controls">
+              <input type="text" id="email" value="{{user.email}}" ng-model="formData.email">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="office">Office</label>
+            <div class="controls">
+              
+              <select ng-model="formData.officeId"  ng-options="office.id as office.name for office in offices" value="{{office.id}}">
+      		    </select>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="role">Select Roles</label>
+            <div class="controls">
+              <select ng-model="formData.selectedRoles"  ng-options="availablerole.name for availablerole in availableRoles" value="{{availablerole.id}}" multiple>
+      		    </select>
+            </div>
+          </div>
+
+          <div class="offset3">
+            <a href="#/users"><button type="reset" class="btn">{{'label.cancel' | translate}}</button></a>
+            <button type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
+          </div>
+        </fieldset>
+      </form>
+    </div>

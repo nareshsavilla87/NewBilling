@@ -1,0 +1,114 @@
+<div data-ng-controller="ViewVendorController">
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+	        <li><a href="#/vendormanagement">{{'label.vendor.vendormanagement' | translate}}</a> <span class="divider">/</span></li>
+	        <li class="active">{{vendorData.vendorCode}}&nbsp;&nbsp;</li>
+	    </ul>
+	    <div class="pull-right">
+	      <div class="btn-group">
+	      	  <a data-ng-show="PermissionService.showMenu('CREATE_VENDORAGREEMENT')" href="#/createvendoragreement/{{vendorData.id}}" class="btn btn-primary">
+	      	  	<i class="icon-plus icon-white"></i>Create VendorAgreement</a>
+	          <a data-ng-show="PermissionService.showMenu('UPDATE_VENDOR')" href="#/editvendormanagement/{{vendorData.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
+	     	  <a data-ng-hide="!PermissionService.showMenu('DELETE_VENDOR') || idActiveAgreement == 'Active'" data-ng-click="deleteVendor(vendorRouteParamId)" class="btn btn-primary"><i class="icon-edit icon-white"></i> Delete</a>
+	      </div>
+	    </div>
+	</div>
+	
+	<div class="row-fluid">
+		<h3>&nbsp;&nbsp;&nbsp;{{vendorData.vendorCode}}</h3>
+		<div class="span6">
+					<table class="fullwidth">
+					<tr>
+						<td width="35%"><strong>{{'label.vendor.code' | translate}}</strong></td>
+						<td width="65%">{{vendorData.vendorCode}}</td>
+					</tr>
+					<tr>
+						<td><strong>{{'label.vendor.name' | translate}}</strong></td>
+						<td>{{vendorData.vendorName}}</td>
+					</tr>
+					<tr>
+						<td><strong>{{'label.vendor.emailid' | translate}}</strong></td>
+						<td>{{vendorData.vendorEmailId}}</td>
+					</tr>
+					<tr>
+						<td><strong>{{'label.vendor.conatactname' | translate}}</strong></td>
+						<td>{{vendorData.contactName}}</td>
+					</tr>
+					<tr>
+						<td><strong>{{'label.vendor.mobileno' | translate}}</strong></td>
+						<td>{{vendorData.vendormobileNo}}</td>
+					</tr>
+					</table>
+		</div>
+				<div class="span4">
+					<table class="fullwidth">
+					<tr>
+						<td><strong>{{'label.vendor.vendorlandlineno' | translate}}</strong></td>
+						<td>{{vendorData.vendorLandlineNo}}</td>
+					</tr>
+					<tr>
+						<td><strong>{{'label.vendor.vendoraddress' | translate}}</strong></td>
+						<td>{{vendorData.vendorAddress}}</td>
+					</tr>
+					<tr>
+						<td><strong>{{'label.vendor.country' | translate}}</strong></td>
+						<td>{{vendorData.vendorCountryName}}</td>
+					</tr>
+					<tr>
+						<td><strong>{{'label.vendor.vendorcurrency' | translate}}</strong></td>
+						<td>{{vendorData.vendorCurrency}}</td>
+					</tr>
+			
+					</table>
+				</div>
+		
+			
+	</div>
+	
+	<div>
+	   <h3>&nbsp;&nbsp;&nbsp;Vendor Agreements</h3>
+       <input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.searchbar' | translate}}">
+        <table class="table">
+          <thead>
+            <tr class="graybg">
+				   <th>Status</th>
+                   <th>Start Date</th>
+                   <th>End Date</th>
+                   <th>Content Type</th>
+                   <th>Actions</th>
+                   <th></th>
+            </tr>
+          </thead>
+          <tbody>
+             <tr class="pointer-main" data-ng-show="agreement.id" data-ng-repeat="agreement in agreements | filter:filterText">      
+                <td class="pointer" data-ng-click="routeTo(vendorData.id,agreement.id)">{{agreement.agreementStatus}}</td>
+                <td class="pointer" data-ng-click="routeTo(vendorData.id,agreement.id)">{{agreement.agreementStartDate | DateFormat}}</td>
+                <td class="pointer" data-ng-click="routeTo(vendorData.id,agreement.id)">{{agreement.agreementEndDate | DateFormat}}</td> 
+                <td class="pointer" data-ng-click="routeTo(vendorData.id,agreement.id)">{{agreement.contentType}}</td>
+                <td class="pointer" data-ng-click="routeTo(vendorData.id,agreement.id)"><a data-ng-show="PermissionService.showMenu('UPDATE_VENDORAGREEMENT')" href="#/editvendoragreement/{{agreement.id}}/{{vendorData.id}}" 
+                       data-popover="Edit Vendor Agreement" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i> </a>
+                       
+                </td>  
+                <td><a data-ng-show="agreement.documentLocation.length > 0" ng-click="downloadFile(agreement.id)" popover="Download Uploaded File" popover-trigger="mouseenter"><i class="icon-cloud-download"></i></a></td>                
+             </tr>
+          </tbody>
+         </table>
+        </div>
+	
+	<script type="text/ng-template" id="deletePopupForVendor.html">
+    	<div class="modal-header silver">
+        	<h3 class="bolder">{{'label.vendordelete' | translate}}</h3>
+        </div>
+
+        <div class="modal-body style="height:60px;">
+            <h4>Are you sure?</h4>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+            <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+        </div>
+ 	</script>
+ 	
+</div>
+          

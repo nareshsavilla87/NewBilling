@@ -1,0 +1,93 @@
+  <div ng-controller="EditGRNController">  
+      <div>
+        <ul class="breadcrumb">
+          <li><a href="#/inventory" ng-click="selectedGRN()" select="getGRNdetails()">{{'link.admin.inventory' | translate}}</a> <span class="divider">/</span></li>
+          <li class="active">{{'label.create.new.editgrn' | translate}}</li>
+        </ul>
+      </div>
+      <form name="editgrnform" class="form-horizontal well" ng-submit="submit()">
+       <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>Edit GRN Details</legend>
+			
+			<table>
+				<tr>
+					<td>
+						<div class="control-group">
+            			<label class="control-label" for="purchaseDate">{{'label.grn.purchaseDate' | translate }}&nbsp;<span class="required">*</span></label>
+            			<div class="controls">
+              			<input type="text" id="purchaseDate" datepicker-pop="dd MMMM yyyy" ng-model="formData.purchaseDate" is-open="opened" 
+              				date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
+            			</div>	
+          				</div>
+					</td>
+					<td>
+						<div class="control-group">
+            			<label class="control-label" for="purchaseNo">{{'label.grn.purchaseNo' | translate }}&nbsp;<span class="required">*</span></label>
+            			<div class="controls">
+              			<input type="text" id="purchaseNo" ng-model="formData.purchaseNo" readonly>
+            			</div>
+          				</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<div class="control-group">
+            			<label class="control-label" for="supplierId">{{'label.grn.supplierCode' | translate }}&nbsp;<span class="required">*</span></label>
+            			<div class="controls">
+              				<select ng-model="formData.supplierId"  ng-options="supplierData.id as supplierData.supplierCode for supplierData in supplierDatas" value="{{supplierData.id}}">
+              				</select>
+            			</div>
+          				</div>
+					</td>
+					<td>
+						<div class="control-group">
+            			<label class="control-label" for="officeId">{{'label.grn.officeId' | translate }}&nbsp;<span class="required">*</span></label>
+            			<div class="controls">
+              			<select ng-model="formData.officeId"  ng-options="officeData.id as officeData.nameDecorated for officeData in officeDatas" value="{{officeData.id}}">
+              			</select>
+            			</div>
+          				</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<div class="control-group">
+            			<label class="control-label" for="itemMasterId">{{'label.grn.itemCode' | translate }}&nbsp;<span class="required">*</span></label>
+            			<div class="controls">
+              			<select disabled="disabled" ng-model="formData.itemMasterId"  ng-options="itemData.id as itemData.itemCode for itemData in itemDatas" value="{{itemData.id}}">
+              			</select>
+            			</div>
+          				</div>
+					</td>
+					<td>
+						<div class="control-group">
+            			<label class="control-label" for="orderdQuantity">{{'label.grn.orderedQuantity' | translate }}&nbsp;<span class="required">*</span></label>
+            			<div class="controls">
+              			<input type="text" id="orderdQuantity" name="orderdQuantity" ng-model="formData.orderdQuantity" data-ng-pattern="{{'integer' | CodeValidate}}"></br>
+            			<span data-ng-show="editgrnform.orderdQuantity.$dirty && editgrnform.orderdQuantity.$invalid">
+            				<small class="error-row">{{'error.not.numeric.validation' | translate}}</small>
+            			</span>
+            			</div>
+          				</div>
+					</td>
+				</tr>
+				<tr>
+				<td></td>
+				<td>
+					 <div class="pull-right">
+            			<a href="#/inventory" ><button id="cancel" type="reset" class="btn" ng-click="reset123()">{{'button.cancel'| translate}}</button></a>
+            			<button id="submit"  type="submit" data-ng-disabled="editgrnform.$dirty && editgrnform.$invalid" class="btn btn-primary">{{'button.save'| translate}}</button>
+          			 </div>
+          		</td>
+				</tr>
+			</table>
+        </fieldset>
+      </form>
+ </div>

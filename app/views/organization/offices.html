@@ -1,0 +1,152 @@
+<div  data-ng-controller="OfficesController">
+<div>
+	<ul class="breadcrumb">
+		<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+		<li class="active">{{'label.manageoffices' | translate}}</li>
+	</ul>
+</div>
+   <tabset  style="margin-bottom: 0px;">
+	<tab heading="{{'tab.offices' | translate}}" select="getOffices()">
+	<div class="pull-right">
+	    <a data-ng-show="isTreeView" data-ng-click="isTreeView=!isTreeView" class="btn btn-primary"><i class="icon-list icon-white"></i>List View</a>
+		<a data-ng-hide="isTreeView" data-ng-click="isTreeView=!isTreeView" class="btn btn-primary"><i class="icon-sitemap icon-white"></i>Tree View</a> 
+		<a data-ng-show="PermissionService.showMenu('CREATE_OFFICE')" href="#/createoffice" class="btn btn-primary"><i class="icon-plus icon-white"></i> Create Office</a>
+	</div>
+	<div data-ng-hide="isTreeView">
+		<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.searchbar' | translate}}">
+		<table class="table">
+			<thead>
+				<tr class="graybg">
+					<th>{{ 'table.heading.name' | translate }}</th>
+					<!-- <th>{{ 'table.heading.office type' | translate }}</th> -->
+					<th>{{ 'table.heading.external id' | translate }}</th>
+					<th>{{ 'table.heading.parent office' | translate }}</th>
+					<th>{{ 'table.heading.opened on' | translate }}</th>
+					<th>{{ 'table.heading.partner.amount' | translate }}</th> 
+					<th>{{ 'table.heading.actions' | translate }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="pointer-main" data-ng-repeat="office in offices  | filter:filterText">
+					<td class="pointer" data-ng-click="routeTo(office.id)">{{office.name}}</td>
+				<!-- 	<td class="pointer" data-ng-click="routeTo(office.id)">{{office.officeType}}</td> -->
+					<td class="pointer" data-ng-click="routeTo(office.id)">{{office.externalId}}</td>  
+					<td class="pointer" data-ng-click="routeTo(office.id)">{{office.parentName}}</td>
+					<td class="pointer" data-ng-click="routeTo(office.id)">{{office.openingDate | DateFormat}}</td>
+					<td class="pointer" data-ng-click="routeTo(office.id)">{{office.balance}}</td>
+					<td><a data-ng-show="PermissionService.showMenu('UPDATE_OFFICE')"
+					href="#/editoffice/{{office.id}}" data-popover="Edit Office" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div data-ng-show="isTreeView">
+	<div
+		data-angular-treeview="true"
+		data-tree-id="treeview"
+		data-tree-model="treedata"
+		data-node-id="id"
+		data-node-label="name"
+		data-node-children="children" >
+		</div>
+	</div>
+	</tab>
+	
+	<tab heading="{{'tab.partners' | translate}}" select="getPartners()" active="PartnersTab">
+	<div class="pull-right">
+<!-- 		<a data-ng-show="isTreeView" data-ng-click="isTreeView=!isTreeView" class="btn btn-primary"><i class="icon-list icon-white"></i>List View</a>
+		<a data-ng-hide="isTreeView" data-ng-click="isTreeView=!isTreeView" class="btn btn-primary"><i class="icon-sitemap icon-white"></i>Tree View</a> -->
+		<a data-ng-show="PermissionService.showMenu('CREATE_PARTNER')" href="#/createpartner" class="btn btn-primary"><i class="icon-plus icon-white"></i> Create Partner</a>
+	</div>
+	<div data-ng-hide="isTreeView">
+		<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.searchbar' | translate}}">
+		<table class="table">
+			<thead>
+				<tr class="graybg">
+					<th>{{ 'table.heading.name' | translate }}</th>
+			<!-- 		<th>{{ 'table.heading.partner type' | translate }}</th> -->
+					<th>{{ 'table.heading.parent office' | translate }}</th>
+					<th>{{ 'table.heading.partner currency' | translate }}</th>
+					<!-- <th>{{ 'table.heading.office type' | translate }}</th>  -->
+					<th>{{ 'table.heading.opened on' | translate }}</th>
+				    <th>{{ 'table.heading.partner.amount' | translate }}</th> 
+				    <th>{{ 'table.heading.actions' | translate }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="pointer-main" data-ng-repeat="partner in partners  | filter:filterText">
+					<td class="pointer" data-ng-click="routeToPartner(partner.id,partner.officeId)">{{partner.partnerName}}</td>
+				  <!--   <td class="pointer" data-ng-click="routeToPartner(partner.id)">{{partner.partnerType}}</td>  -->
+					<td class="pointer" data-ng-click="routeToPartner(partner.id,partner.officeId)">{{partner.parentName}}</td>
+					<td class="pointer" data-ng-click="routeToPartner(partner.id,partner.officeId)">{{partner.currency}}</td>  
+					<td class="pointer" data-ng-click="routeToPartner(partner.id,partner.officeId)">{{partner.openingDate | DateFormat}}</td>
+				    <td class="pointer" data-ng-click="routeToPartner(partner.id,partner.officeId)">{{partner.balanceAmount}}</td>
+				    <td><a data-ng-show="PermissionService.showMenu('UPDATE_PARTNER')"
+					href="#/editpartner/{{partner.id}}" data-popover="Edit Partner" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a></td>
+				</tr>
+			</tbody> 
+		</table>
+	</div>
+	<div data-ng-show="isTreeView">
+	<div
+		data-angular-treeview="true"
+		data-tree-id="treeview"
+		data-tree-model="treedata"
+		data-node-id="id"
+		data-node-label="name"
+		data-node-children="children" >
+		</div>
+	</div>
+	</tab>
+	<tab  heading="{{'tab.partnersDisbursements' | translate}}" select="getPartnerDisbursements()" active="PartnersDisbursementTab">
+	<div class="row-fluid" >
+	<form class="span marginbottom0px">
+	<select id="sourceDatas" data-ng-model="searchData.sourceType" chosen="sourceDatas" data-ng-autofocus="true" style="background: url("../images/chosen-sprite.png");" 
+		data-ng-options="sourceData.mCodeValue as sourceData.mCodeValue for sourceData in sourceDatas track by sourceData.id" data-placeholder="Source Type" value="{{sourceData.mCodeValue}}">  
+		 <option class="displaynone" value="">---Source Type---</option>
+	</select>
+	<select id="patnerDatas" data-ng-model="searchData.partnerType" chosen="patnerDatas" data-ng-autofocus="true" style="background: url("../images/chosen-sprite.png");" 
+		data-ng-options="patnerData.partnerName as patnerData.partnerName for patnerData in patnerDatas" data-placeholder="Partner Type" value="{{patnerData.partnerName}}">  
+		 <option class="displaynone" value="">---Partner Type---</option>
+	</select>
+	
+    <a data-ng-click="search()" class="btn btn-primary control" data-popover="Search" data-popover-placement="bottom"  data-popover-trigger="mouseenter"><i class="icon-search icon-white"></i></a>
+    <a data-ng-click="clearFilters()" class="btn btn-primary control" data-popover="Clear" data-popover-placement="bottom"  data-popover-trigger="mouseenter"><i class="icon-remove-sign"></i></a>
+	<input data-ng-model="filterText" type="text" data-ng-autofocus="true" class="span marginbottom0px" placeholder="{{'placehoder.searchbar' | translate}}">
+	</form>
+		<table class="table">
+			<thead>
+				<tr class="graybg">
+					<th>Id</th>
+					<th>Partner Name</th>
+					<th>Transaction Date</th>
+					<th>Source</th>
+					<th>Charge Amount</th>
+					<th>Commission Type</th>
+					<th>Commission Rate</th>
+					<th>Commission Amount</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr  data-ng-repeat="patnerDisbursementData in patnerDisbursementData.currentPageItems | filter:filterText">
+					<td >{{patnerDisbursementData.id}}</td>
+					<td >{{patnerDisbursementData.partnerName}}</td>
+					<td >{{patnerDisbursementData.transDate |DateFormat}}</td>
+					<td >{{patnerDisbursementData.source}}</td>
+					<td >{{patnerDisbursementData.netAmount}}</td>
+					<td >{{patnerDisbursementData.percentage}}</td>
+					<td >{{patnerDisbursementData.shareAmount}}</td>
+					<td >{{patnerDisbursementData.commissionAmount}}</td>
+					
+				</tr>
+			</tbody>
+		</table>
+		<ul class="pager">
+   			<li class="previous"><a data-ng-click="patnerDisbursementData.previous()" href="" data-ng-disabled="!patnerDisbursementData.hasPrevious()">&larr; Prev</a></li>
+   			<li class="next" ><a data-ng-click="patnerDisbursementData.next()" href="" data-ng-disabled="!patnerDisbursementData.hasNext()">Next &rarr;</a></li>
+		</ul>
+	</div>
+	</tab>
+	</tabset>
+</div>

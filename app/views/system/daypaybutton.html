@@ -1,0 +1,241 @@
+      <div>
+        <ul class="breadcrumb">
+          <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+          <li class="active">Dalpay Form</li>
+        </ul>
+      </div>
+      <form class="form-horizontal well" name="dalpayForm"  novalidate="" ng-controller="DalpayButtonController" ng-submit="submit()">
+         <div class="error" ng-show="errorStatus || errorDetails">
+		   <label>{{'label.contract.error' | translate}}</label>
+		   <label ng-show="errorStatus">{{errorStatus}}</label>
+		   <label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>Personal Details</legend>
+					<table>
+						<tr>
+							<td>
+								<div class="control-group">
+           					 	<label class="control-label" >Name<span class="required">*</span></label>
+            					<div class="controls">
+             					 <input type="text"  ng-model="name" required  late-Validate/>
+           						</div>
+         						</div>	
+							 </td>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" >{{ 'label.address' | translate }}<span class="required">*</span></label>
+            					<div class="controls">
+             					 <input type="text"  ng-model="address" required  late-Validate/>
+            					</div>
+          						</div>
+							</td>
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="city">{{'label.city' | translate}}<span class="required">*</span></label>
+            					<div class="controls">
+             					 <input type="text"  ng-model="city" required  late-Validate/>
+           						</div>
+          						</div>
+							</td>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="state">{{'label.state' | translate}}<span class="required">*</span></label>
+            					<div class="controls">
+             					 <input type="text"  ng-model="state" required  late-Validate/>
+           						</div>
+          						</div>
+							</td>
+							
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="country">Cardholder Country<span class="required">*</span></label>
+            					<div class="controls">
+             					 <!-- <input type="text"  ng-model="country" required  late-Validate/> -->
+             					 	<select ng-model="country"  ng-options="countryName.id as countryName.name for countryName in countryNames" value="{{countryName.id}}" required  late-Validate>
+             					 	</select> 
+           						</div>
+          						</div>
+							</td>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="zipCode">{{ 'label.zipcode' | translate }}<span class="required">*</span></label>
+            					<div class="controls">
+              					<input type="text" id="zipCode" ng-model="zipCode" name="zipCode" ng-pattern="/^[0-9]+$/" required  late-Validate>
+              					<div ng-show="dalpayForm.zipCode.$dirty && dalpayForm.zipCode.$invalid" >
+              						<small class="error" ng-show="dalpayForm.zipCode.$error.pattern">digits only!!</small>
+            					</div>
+          						</div>
+          						</div>
+							</td>
+							
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="email">{{ 'label.emailid' | translate }}<span class="required">*</span></label>
+            					<div class="controls">
+             					 <input type="email" name="email" ng-model="email" required  late-Validate/>
+             					 <div ng-show="dalpayForm.email.$dirty && dalpayForm.email.$invalid">
+              						<small class="error" ng-show="dalpayForm.email.$error.email">Invalid Email</small>
+              						</div>
+           						</div>
+          						</div>
+							</td>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="phoneNumber">Phone Number<span class="required">*</span></label>
+            					<div class="controls">
+              					<input type="text" id="phoneNumber" ng-model="phoneNumber" ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/" 
+              							name="phoneNumber"  required  late-Validate/>
+              					<div ng-show="dalpayForm.phoneNumber.$dirty && dalpayForm.phoneNumber.$invalid">
+        							<small class="error" ng-show="dalpayForm.phoneNumber.$error.pattern">wrong input or accepts only digits !</small>
+    							</div>
+            					</div>
+          						</div>
+							</td>
+							
+							</tr>
+							
+					</table>
+					<fieldset>
+          <legend>Payment Details</legend>
+					<table>
+						<tr>
+							<td>
+								<div class="control-group">
+           					 	<label class="control-label" >Select Payment Type<span class="required">*</span></label>
+            					<div class="controls">
+             					 <select ng-model="cardType"  ng-options="cardTypeData.id as cardTypeData.name for cardTypeData in cardTypeDatas" value="{{cardTypeData.id}}" required  late-Validate>
+           						</div>
+         						</div>	
+							 </td>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" >Product description<span class="required">*</span></label>
+            					<div class="controls">
+             					 <input type="text"  ng-model="productDesc" required  late-Validate/>
+            					</div>
+          						</div>
+							</td>
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="city">{{'label.city' | translate}}<span class="required">*</span></label>
+            					<div class="controls">
+             					 <input type="text"  ng-model="city" required  late-Validate/>
+           						</div>
+          						</div>
+							</td>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="state">{{'label.state' | translate}}<span class="required">*</span></label>
+            					<div class="controls">
+             					 <input type="text"  ng-model="state" required  late-Validate/>
+           						</div>
+          						</div>
+							</td>
+							
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="country">{{'label.country' | translate}}<span class="required">*</span></label>
+            					<div class="controls">
+             					 <input type="text"  ng-model="country" required  late-Validate/>
+             					 	<!-- <select ng-model="country"  ng-options="countryName.id as countryName.name for countryName in countryNames" value="{{countryName.id}}">
+             					 		</select> -->
+           						</div>
+          						</div>
+							</td>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="zipCode">{{ 'label.zipcode' | translate }}<span class="required">*</span></label>
+            					<div class="controls">
+              					<input type="text" id="zipCode" ng-model="zipCode" name="zipCode" ng-pattern="/^[0-9]+$/" required  late-Validate>
+              					<div ng-show="dalpayForm.zipCode.$dirty && dalpayForm.zipCode.$invalid" >
+              						<small class="error" ng-show="dalpayForm.zipCode.$error.pattern">digits only!!</small>
+            					</div>
+          						</div>
+          						</div>
+							</td>
+							
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="email">{{ 'label.emailid' | translate }}<span class="required">*</span></label>
+            					<div class="controls">
+             					 <input type="email" name="email" ng-model="email" required  late-Validate/>
+             					 <div ng-show="dalpayForm.email.$dirty && dalpayForm.email.$invalid">
+              						<small class="error" ng-show="dalpayForm.email.$error.email">Invalid Email</small>
+              						</div>
+           						</div>
+          						</div>
+							</td>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="phoneNumber">Phone Number<span class="required">*</span></label>
+            					<div class="controls">
+              					<input type="text" id="phoneNumber" ng-model="phoneNumber" ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/" 
+              							name="phoneNumber"  required  late-Validate/>
+              					<div ng-show="dalpayForm.phoneNumber.$dirty && dalpayForm.phoneNumber.$invalid">
+        							<small class="error" ng-show="dalpayForm.phoneNumber.$error.pattern">wrong input or accepts only digits !</small>
+    							</div>
+            					</div>
+          						</div>
+							</td>
+							
+							</tr>
+							
+					</table>
+  			
+          </fieldset>
+  			
+          <div class="offset3">
+            <a href="#/system"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+            <button id="submit" type="submit" class="btn btn-primary" ng-disabled="!dalpayForm.$valid"><i class="icon-ok-sign icon-white"></i> CheckOut</button>
+          </div>
+          
+        </fieldset>
+      </form>
+       <form name="PrePage" method = "post" action = "https://scotest.authorize.net/payment/CatalogPayment.aspx"> 
+       		<input type = "hidden" name = "LinkId" value ="5c0049a5-9aee-4f38-86ee-adcf60da8ad4" />
+        	<button id="submit" type = "submit" class="btn btn-primary">
+     			 <i class="icon-ok-sign icon-white"></i> 
+     	      Purchase
+     	    </button>
+       </form> 
+      
+
+
+
+
+
+
+
+<!-- <div class="span gray-head" style="margin-left:0%;margin-top:5px;">
+      <span style="margin-left: 10px;font-size:20px">
+            <strong>For Dalpay</strong>
+      </span>
+</div>
+
+<div class="form-horizontal">
+    <div class="control-group">
+        <hr/><br/>
+         <table width="%100">
+       	     <tr>
+               <td  align="center">
+       			 <a  class="btn btn-primary" target="_blank"
+       			  href="https://secure.dalpay.is/cgi-bin/order2/processorder1.pl?mer_id=999148&pageid=1&item1_qty=1&item1_price=100.00&item1_desc=book&user1=14">
+       			<i class="icon-ok-sign icon-white"></i> CheckOut</a>
+               </td>  
+              </tr>
+         </table>
+      </div>
+ </div> -->

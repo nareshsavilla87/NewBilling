@@ -1,0 +1,60 @@
+<div data-ng-controller="ViewChargeCodeController">
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+	        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+	        <li><a href="#/chargecode">{{'label.managechargecode' | translate}}</a> <span class="divider">/</span></li>
+	        <li class="active">{{chargecode.chargeCode}}&nbsp;&nbsp;</li>
+	    </ul>
+	    
+	    <div class="pull-right">
+	    	<div class="btn-group">
+	      		<a data-ng-show="PermissionService.showMenu('UPDATE_CHARGECODE')" href="#/editchargecode/{{chargeId}}" class="btn btn-primary">
+	      			<i class="icon-edit icon-white"></i> {{'button.edit' | translate}}
+	      		</a>
+	   	    	<a data-ng-show="PermissionService.showMenu('READ_TAXMAPPING')" href="#/taxmapping/{{chargecode.chargeCode}}/{{chargeId}}" class="btn btn-primary">
+	   	    		<i class="icon-edit icon-white"></i> {{'button.viewtax' | translate}}
+	   	    	</a>
+	        	<a data-ng-show="PermissionService.showMenu('CREATE_TAXMAPPING')&&PermissionService.showMenu('READ_TAXMAPPING')" href="#/createtaxmapping/{{chargecode.chargeCode}}" class="btn btn-primary">
+	        		<i class="icon-edit icon-white"></i> {{'button.addtax' | translate}}
+	        	</a>
+	      	</div>
+	    </div>
+	    
+	</div>
+
+	<div class="row paddedleft">
+		<h3>&nbsp;&nbsp;&nbsp;{{chargecode.chargeCode}}</h3>
+		<table style="width:100%;">
+			<tr>
+				<td ><strong>{{'label.chargecode' | translate }}</strong></td>
+				<td >{{chargecode.chargeCode}}</td>
+			</tr>
+			<tr>
+				<td><strong>{{'label.chargedes' | translate }}</strong></td>
+				<td>{{chargecode.chargeDescription}}</td>
+			</tr>
+			<tr>
+				<td><strong>{{'label.chargetype' | translate }}</strong></td>
+				<td>{{chargecode.chargeType}}</td>
+			</tr>
+			<tr>
+				<td><strong>{{'label.chargeDuration' | translate }}</strong></td>
+				<td>{{chargecode.chargeDuration}}</td>
+			</tr>
+			<tr>
+				<td><strong>{{'label.durationType' | translate }}</strong></td>
+				<td>{{chargecode.durationType}}</td>
+			</tr>
+			<tr>
+				<td><strong>{{'label.taxInclusive' | translate }}</strong></td>
+				<td>{{chargecode.taxInclusive}}</td>
+			</tr>
+			<tr>
+				<td><strong>{{'label.billFrequencyCode' | translate }}</strong></td>
+				<td>{{chargecode.billFrequencyCode}}</td>
+			</tr>
+			
+		</table>
+	</div>
+	
+</div>

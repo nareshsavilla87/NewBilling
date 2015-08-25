@@ -1,0 +1,52 @@
+<div data-ng-controller="ViewDataTableController">
+    <div id="viewlptop">
+        <div class="paddedbottom10">
+            <ul class="breadcrumb">
+                <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+                <li><a href="#/datatables">{{'label.managedatatables' | translate}}</a> <span class="divider">/</span></li>
+                <li class="active">{{datatable.registeredTableName}}</li>
+            </ul>
+        </div>
+    <div>
+        <div class="pull-right">
+            <div class="btn-group">
+                <a data-ng-show="PermissionService.showMenu('UPDATE_DATATABLE')&&PermissionService.showMenu('READ_CODE')" href="#/editdatatable/{{datatable.registeredTableName}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> {{'button.edit' | translate}}</a>
+                <button data-ng-show="PermissionService.showMenu('DELETE_DATATABLE')" type="button" class="btn btn-primary" data-ng-click="deleteTable()"><i class="icon-trash icon-white"></i> {{'button.delete' | translate}}</button>
+            </div>
+        </div>
+        <script type="text/ng-template" id="deletetable.html">
+             <div class="modal-header silver">
+                   <h3 class="bolder">{{'dialog.dataTable.title.message' | translate}}</h3>
+                 </div>
+                   <div class="modal-body modal-small">
+                       <h4>Are you sure?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+                    </div>
+         </script>
+        <legend>&nbsp;&nbsp;&nbsp;{{datatable.registeredTableName}}</legend>
+        <strong>&nbsp;&nbsp;&nbsp;&nbsp;{{'label.associatedwith' | translate}}</strong>&nbsp;&nbsp;{{datatable.applicationTableName}}
+        <table class="table" ui:sortable>
+            <thead>
+                <tr  class="graybg">
+                    <th>{{'table.heading.fieldname' | translate}}</th>
+                    <th>{{'table.heading.type' | translate}}</th>
+                    <th>{{'table.heading.length' | translate}}</th>
+                    <th>{{'table.heading.code' | translate}}</th>
+                    <th>{{'table.heading.mandatory' | translate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="column in datatable.columnHeaderData">
+                    <td>{{column.columnName}}</td>
+                    <td>{{column.columnDisplayType}}</td>
+                    <td>{{column.columnLength}}</td>
+                    <td>{{column.columnCode}}</td>
+                    <td>{{!column.isColumnNullable}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div></div>

@@ -1,0 +1,71 @@
+<div data-ng-controller="ViewPromotioncodeController">
+
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+			<li><a href="#/organization">{{'link.admin.organisation' |
+					translate}}</a> <span class="divider">/</span></li>
+
+			<li><a href="#/discounts" data-ng-click="promotionTab()">{{'label.managediscounts'
+					| translate}}</a> <span class="divider">/</span></li>
+
+			<li class="active">{{'label.viewPromotioncode' | translate}}</li>
+		</ul>
+		<div class="pull-right">
+			<div class="btn-group">
+				<a data-ng-show="PermissionService.showMenu('UPDATE_PROMOTIONCODE')"
+					href="#/editpromotioncode/{{promotiondata.id}}"
+					class="btn btn-primary"><i class="icon-edit icon-white"></i>
+					{{'button.edit' | translate}}</a>
+				<a data-ng-show="PermissionService.showMenu('DELETE_PROMOTIONCODE')"
+					data-ng-click="deletePromotion()" class="btn btn-primary"><i
+					class="icon-trash icon-white"></i> {{'button.delete' | translate}}</a>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/ng-template" id="approve.html">
+    	<div class="modal-header silver">
+        	<h3 class="bolder">{{'dialog.promotion.code.title.message' | translate}}</h3>
+        </div>
+
+        <div class="modal-body" style="height:60px;">
+        	<h4>Are you sure?</h4>
+        </div>
+
+        <div class="modal-footer">
+        	<button class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+            <button class="btn btn-primary" ng-click="approve(date.actDate)">{{'label.confirm' | translate}}</button>
+       	</div>
+    </script>
+
+	<div class="row paddedleft">
+		<h3>&nbsp&nbsp&nbsp{{promotiondata.promotionCode}}</h3>
+		<table style="width:100%;">
+			<tr>
+				<td>{{ 'label.promotionCode' | translate }}</td>
+				<td>{{promotiondata.promotionCode}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.promotionDescription' | translate }}</td>
+				<td>{{promotiondata.promotionDescription}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.durationType' | translate }}</td>
+				<td>{{promotiondata.durationType}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.duration' | translate }}</td>
+				<td>{{promotiondata.duration}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.discountType' | translate }}</td>
+				<td>{{promotiondata.discountType}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.discountRate' | translate }}</td>
+				<td>{{promotiondata.discountRate}}</td>
+			</tr>
+		</table>
+	</div>
+
+</div>

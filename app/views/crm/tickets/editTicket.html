@@ -1,0 +1,143 @@
+
+<div ng-controller="EditTicketController">
+<div>
+		<ul class="breadcrumb">
+			<table>
+        <tr>
+        <td>
+        	 <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+        </td>
+        <td>
+            <small style="color:black;">{{displayName}}</small>
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Uniquely identified  {{accountNo}}</small></td>
+        	</tr>
+        	<tr>
+        		<td><i class="icon-building"></i><small>Office "{{officeName}}"</small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Cell Phone {{phone}}</small></td>
+        	</tr>
+        	<tr>
+        	<td><small>Device # <strong>{{hwSerialNumber}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Client Type "{{categoryType}}"</small></td>
+        	</tr>
+        	<tr>
+        		<td><small>Balance&nbsp;{{balanceAmount}}&nbsp;{{currency}} </small></td>
+        	</tr>
+        </table>
+        </td>
+        </tr>
+        </table>
+		</ul>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/viewclient/{{clientId}}" ng-click="reset123()">{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<!-- <li><a href="#/viewTicket/{{clientId}}/{{ticketId}}">{{'label.viewticket' | translate}}</a> <span class="divider">/</span></li> -->
+			<li class="active">{{'label.editticket' | translate}}</li>
+		</ul>
+	</div>
+<form name="editticketform" class="form-horizontal well" ng-submit="submit()">
+
+	 <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	<fieldset>
+		<legend>Add Comment</legend>
+		<table>
+			<tr>
+				<td>
+					<div class="control-group">
+						<label class="control-label" for="status"> {{'label.ticket.status' | translate }} </label>
+						<div class="controls">
+							<select ng-model="formData.status"
+								ng-options="statusData.id as statusData.mCodeValue for statusData in statusTypes"
+								value="{{statusData.statusCode}}"></select>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="control-group">
+						<label class="control-label" for="assignedTo">{{'label.tickethistory.assignto' | translate }}<span class="required">*</span></label>
+						<div class="controls">
+							<select ng-model="formData.userId"
+								ng-options="users.id as users.userName for users in usersData"
+								value="{{users.id}}" required late-Validate></select>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="control-group">
+						<label class="control-label" for="Category"> {{'label.ticket.category' | translate }}<span class="required">*</span></label>
+						<div class="controls">
+							<select name="category" ng-model="formData.problemCode"
+								ng-options="problemsData.id as problemsData.mCodeValue for problemsData in problemsDatas"
+								value="{{problemsData.problemCode}}" required late-Validate></select>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="control-group">
+						<label class="control-label" for="priority">{{'label.ticket.priority' | translate }}<span class="required">*</span></label>
+						<div class="controls">
+							<select name="priority" ng-model="formData.priority"
+								ng-options="priorityType.value as priorityType.value for priorityType in priorityTypes"
+								value="{{priorityType.value}}" required late-Validate></select>
+						
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><div class="control-group">
+						<label style="margin-top:15px;" class="control-label" for="description"> {{
+							'label.ticket.comments' | translate }}</label>
+						<div class="controls">
+						<i>&nbsp;Please provide as much detail as possible so we can best assist you.</i><span class="required">*</span>
+							    <textarea ng-model="formData.comments" style="width:98%; height:8em;" required late-Validate></textarea>
+						</div>
+				</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="control-group">
+						<label class="control-label" for="Attachments"> {{'label.ticket.file' | translate }}</label>
+						<div class="controls">
+							<input type= "file" ng-file-select="onFileSelect($files)">
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+     		
+		<div class="pull-right">
+			<a href="#/viewclient/{{clientId}}"><button type="reset" class="btn" ng-click="reset123()">Cancel</button></a>
+			<button type="submit" ng-disabled="!editticketform.$valid" class="btn btn-primary">Save</button>
+		</div>
+	</fieldset>
+</form>
+</div>

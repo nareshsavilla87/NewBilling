@@ -1,0 +1,143 @@
+ <div>
+        <ul class="breadcrumb">
+          <li><a href="#/inventory">{{'link.inventory' | translate}}</a> <span class="divider">/</span></li>
+          <li class="active">{{'label.create.new.itemdetail' | translate}}</li>
+        </ul>
+ </div>
+      <form class="form-horizontal well" ng-controller="CreateItemDetailsController" ng-submit="submit()">
+       <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>Item Details</legend>
+
+			<table>
+				<tr>
+					<td>
+						<table>
+							<tr>
+							<td>
+								<div class="control-group">
+									<label class="control-label" for="grnId">{{'label.itemdetail.grnid'| translate }}&nbsp;<span class="required">*</span></label>
+									<div class="controls">
+										<select ng-model="formData.grnId"
+											ng-options="grnIdData.testId as getBoth(grnIdData.testId,grnIdData.itemDescription) for grnIdData in inventoryGrnDatas"
+											value="{{grnIdData.testId}}" ng-change="changeGrn(formData.grnId)">
+										</select>
+									</div>
+								</div>
+								</td>
+								<td>
+						          	<div class="control-group">
+										<label class="control-label" for="itemDescription">{{'label.itemdetail.itemdescription' | translate }}</label>
+										<div class="controls">
+											<input type="text" name="itemDescription" ng-model="itemDetailsData.itemDescription" readonly>
+										</div>
+									</div>
+								</td>
+								</tr>
+								<tr>
+								
+								<td>
+									<div class="control-group">
+										<label class="control-label" for="supplierName">{{'label.itemdetail.suppliername' | translate }}</label>
+										<div class="controls">
+											<input type="text" name="supplierName" ng-model="itemDetailsData.supplierName" readonly>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="control-group">
+										<label class="control-label" for="supplierName">{{'label.itemdetail.suppliername' | translate }}</label>
+										<div class="controls">
+											<input type="text" name="supplierName" ng-model="itemDetailsData.supplierName" readonly>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+								<div class="control-group">
+										<label class="control-label" for="orderdQuantity">{{'label.itemdetail.orderedquantity' | translate }}</label>
+										<div class="controls">
+											<input type="text" name="orderdQuantity" ng-model="itemDetailsData.orderdQuantity" readonly>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="control-group">
+										<label class="control-label" for="receivedQuantity">{{'label.itemdetail.receivedquantity' | translate }}</label>
+										<div class="controls">
+											<input type="text" name="receivedQuantity" ng-model="itemDetailsData.receivedQuantity" readonly>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+							<td>
+									<div class="control-group">
+										<label class="control-label" for="quality">{{'label.itemdetail.quality' | translate }}</label>
+										<div class="controls">
+											<select ng-model="itemDetailsData.quality"  ng-options="q.mCodeValue as q.mCodeValue for q in qualityDatas" value="{{q.mCodeValue}}">
+												<option value="">{{'label.select.one' | translate}}</option>
+											</select>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="control-group">
+										<label class="control-label" for="serialNumber">{{'label.itemdetail.serialnumber' | translate }}&nbsp;<span class="required">*</span></label>
+										<div class="controls">
+											<input type="text" name="serialNumber" ng-model="itemDetailsData.serialNumber">
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+							<td>
+							   <div class="control-group">
+								 <label class="control-label" for="provisioningSerialNumber">{{'label.itemdetail.provisioningserialnumber' | translate }}&nbsp;<span class="required">*</span></label>
+										<div class="controls">
+											<input type="text" name="provisioningSerialNumber" ng-model="itemDetailsData.provisioningSerialNumber">
+										</div>
+									</div>
+								</td>
+							    <td>
+									<div class="control-group">
+										<label class="control-label" for="itemModel">{{'label.itemdetail.itemModel' | translate }}</label>
+										<div class="controls">
+											<input type="text" name="itemModel" ng-model="formData.itemModel">
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+							<tr>
+								<td>
+									<div class="control-group">
+										<label class="control-label" for="remarks">{{'label.itemdetail.remarks' | translate }}</label>
+										<div class="controls">
+											<input type="text" name="remarks" ng-model="itemDetailsData.remarks">
+										</div>
+									</div>
+								</td>
+								<td>
+								<div class="control-group">
+								 <div class="pull-right">
+            						<a href="#/inventory"><button type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
+            						<button type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
+          						</div>
+          						</div>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+			
+          
+          
+        </fieldset>
+    </form>

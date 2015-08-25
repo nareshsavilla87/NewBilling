@@ -1,0 +1,47 @@
+<div data-ng-controller="ViewContractController">
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+	        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+	        <li><a href="#/contract">{{'label.manage.contracts' | translate}}</a> <span class="divider">/</span></li>
+	        <li class="active">{{contractPeriod.subscriptionPeriod}}</li>
+	    </ul>
+	    <div class="pull-right">
+	      <div class="btn-group">
+	          <a data-ng-show="PermissionService.showMenu('UPDATE_CONTRACT')" href="#/editcontract/{{contractPeriod.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
+	         <a data-ng-show="PermissionService.showMenu('DELETE_CONTRACT')" data-ng-click="deleteContract()" class="btn btn-primary"><i class="icon-trash icon-white"></i> Delete</a>
+	      </div>
+	    </div>
+	</div>
+	<div class="row paddedleft" >
+		<h3>{{contractPeriod.name}}</h3>
+		<table style="width:100%;">
+			<tr>
+				<td width="20%">{{ 'label.contract.contractperiod' | translate }}</td>
+				<td width="70%">{{contractPeriod.subscriptionPeriod}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.contract.contractype' | translate }}</td>
+				<td>{{contractPeriod.subscriptionType}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.contract.units' | translate }}</td>
+				<td>{{contractPeriod.units}}</td>
+			</tr>
+			
+		</table>
+	</div>
+	<script type="text/ng-template" id="approve.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">Delete Contract</h3>
+                    </div>
+                    <div class="modal-body style="height:60px;">
+                       <h4>Are you sure?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+                    </div>
+      </script>
+	
+</div>
+          

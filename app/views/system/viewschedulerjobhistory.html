@@ -1,0 +1,34 @@
+<div class="row-fluid" ng-controller="ViewSchedulerJobHistoryController">
+    <ul class="breadcrumb">
+        <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+        <li><a href="#/jobs">{{'label.manageschedulerjobs' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.schedularjobhistory' | translate}}</li>
+    </ul>
+    <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'label.filterbyversion' | translate}}">
+	<table class="table">
+        <thead>
+            <tr class="graybg">
+                <th>{{'table.heading.version' | translate}}</th>
+                <th>{{'table.heading.runstarttime' | translate}}</th>
+                <th>{{'table.heading.status' | translate}}</th>
+                <th>{{'table.heading.runtype' | translate}}</th>
+                <th>Log File</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr  ng-repeat="history in jobhistory.currentPageItems  | filter:filterText">
+                <td>{{history.version}}</td>
+                <td>{{history.jobRunEndTime}}</td>  
+                <td>{{history.status}}</td>
+                <td>{{history.triggerType}}</td>
+                <td><a ng-show ="history.runFilePath" ng-click="logFile(history.historyId)"><i class=" icon-download-alt icon-white"></i> Download</a></td>
+               <!--  <td>{{history.runFilePath}}</td> -->
+                
+            </tr>
+        </tbody>
+    </table>
+    <ul class="pager">
+        <li class="previous"><a ng-click="jobhistory.previous()" href="" ng-disabled="!jobhistory.hasPrevious()">&larr; Prev</a></li>
+        <li class="next" ><a ng-click="jobhistory.next()" href="" ng-disabled="!jobhistory.hasNext()">Next &rarr;</a></li>
+    </ul>
+</div>

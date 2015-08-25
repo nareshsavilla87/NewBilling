@@ -1,0 +1,109 @@
+<form name="createclientadditionalform" novalidate class="form-horizontal well" data-ng-controller="CreateClientAdditionalController" data-ng-submit="submit()">
+     
+      <div class="error" data-ng-show="errorStatus || errorDetails">
+			<label>{{'label.error' | translate}}</label>
+			<label data-ng-show="errorStatus">{{errorStatus}}</label>
+			<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	 </div>
+      <fieldset>
+        <legend>{{'label.createclientadditionalinfo' | translate}}</legend>
+       <table>
+         <tr>
+           <td>
+	          <div class="control-group">
+	            <label class="control-label">{{'label.gender' | translate}}</label>
+	            <div class="controls">
+	              <select data-ng-model="formData.gender"  data-ng-options="genderData.id as genderData.mCodeValue for genderData in genderDatas" ></select>
+	            </div>
+	          </div>
+	          <div class="control-group">
+	            <label class="control-label">{{'label.nationality' | translate}}</label>
+	            <div class="controls">
+	              <select data-ng-model="formData.nationality"  data-ng-options="nationalityData.id as nationalityData.mCodeValue for nationalityData in nationalityDatas" ></select>
+	            </div>
+	          </div>
+		      <div class="control-group">
+           		 <label class="control-label" for="jobTitle">{{'label.jobTitle' | translate}}</label>
+           		  <div class="controls">
+	               <input type="text" id="jobTitle" name="jobTitle" data-ng-model="formData.jobTitle"/><br/>
+	             </div>
+         	 </div>
+         	 <div class="control-group">
+	            		<label  class="control-label" for="middlename">{{'label.dateOfBirth' | translate}}</label>
+	            			<div class="controls">
+	                 			<input type="text" datepicker-pop="dd MMMM yyyy" data-ng-model="date.dateOfBirth" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"/>
+	            			</div>
+	          			</div>
+      
+       <div class="control-group">
+	            <label class="control-label">{{'label.preferredLang' | translate}}</label>
+	            <div class="controls">
+	              <select data-ng-model="formData.preferredLang"  data-ng-options="languagesData.id as languagesData.mCodeValue for languagesData in languagesDatas" ></select>
+	            </div>
+	          </div>
+      
+  <div class="control-group">
+
+      	<label class="control-label" for="homePhoneNumber">{{ 'label.remarks' | translate }}</label>
+      		<div class="controls">
+        			<input type="text" name="remarks" id="remarks" data-ng-model="formData.remarks"/>
+     		</div>
+    	</div>
+    
+     </td>
+     <td>
+     
+      <div class="control-group">
+         <label class="control-label">{{'label.idType' | translate}}</label>
+        <div class="controls">
+          <select data-ng-model="formData.idType"  data-ng-options="customeridentificationData.id as customeridentificationData.mCodeValue for customeridentificationData in customeridentificationDatas">
+          </select>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label">{{'label.idNumber' | translate}}</label>
+        <div class="controls">
+          <input type="text" id="idNumber" name="idNumber" data-ng-model="formData.idNumber"/>
+        </div>
+      </div>
+      <div class="control-group">
+	            <label class="control-label">{{'label.ageGroup' | translate}}</label>
+	            <div class="controls">
+	              <select data-ng-model="formData.ageGroup"  data-ng-options="ageGroupData.id as ageGroupData.mCodeValue for ageGroupData in ageGroupDatas" ></select>
+	            </div>
+	          </div>
+     <div class="control-group">
+	            <label class="control-label" for="utsCustomerId">{{'label.utsCustomerId' | translate}}</label>
+	            <div class="controls">
+	              <input type="text" id="utsCustomerId" data-ng-model="formData.utsCustomerId"/><br/>
+	            </div>
+	          </div>
+	 <div class="control-group">
+	            <label class="control-label" for="financeId">{{'label.financeId' | translate}}</label>
+	            <div class="controls">
+	              <input type="text" id="financeId" data-ng-model="formData.financeId"/><br/>
+	            </div>
+	          </div>       
+	             <div class="control-group">
+	            <label class="control-label">{{'label.preferredCommunication' | translate}}</label>
+	            <div class="controls">
+	              <select data-ng-model="formData.preferredCommunication"  data-ng-options="cummunitcationData.id as cummunitcationData.mCodeValue for cummunitcationData in cummunitcationDatas" ></select>
+	            </div>
+	          </div>
+	           
+     </td>
+     </tr>
+     <tr>
+       <td>
+      </td>
+       <td>
+        <div class="pull-right">
+        <a data-ng-click="goBack()"><button id="cancel" type="reset" class="btn">Cancel</button></a>
+        <button id="submit" type="submit" class="btn btn-primary">Save</button>
+      </div>
+      </td>
+     </tr>
+     </table>
+  </fieldset>
+</form>

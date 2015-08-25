@@ -1,0 +1,61 @@
+      <div>
+        <ul class="breadcrumb">
+          <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+          <li><a href="#/importing">{{'label.imports' | translate}}</a> <span class="divider">/</span></li>
+          <li class="active">{{'label.addimportfile' | translate}}</li>
+        </ul>
+      </div>
+      <form class="form-horizontal well" ng-controller="AddImportFileController" ng-submit="submit()">
+      <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>Upload File</legend>
+
+
+          <div class="control-group">
+            <label class="control-label" for="status">{{ 'label.import.name' | translate }}</label>
+            <div class="controls">
+              <select ng-model="formData.status" >
+               <option value="-1">--first choice--</option>
+                <option value="Hardware Items">Hardware Items</option>
+                <option value="Adjustments">Adjustments</option>
+                <option value="Payments">Payments</option>
+				<option value="Mrn">MRN</option>
+				<option value="Move Itemsale">Move Itemsale</option>
+				<option value="Epg">EPG</option>
+				<option value="MediaAssets">Media Assets</option>
+				<!-- 	<option value="ItemSale">Item Sale</option> -->
+              </select>
+              &nbsp;&nbsp;&nbsp;
+              <a ng-hide="formData.status =='-1'" ng-click="downloadFile(formData.status)"><i class=" icon-download-alt icon-white"></i> Download Sample File</a>
+    
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="description">{{ 'label.import.description' | translate }}</label>
+            <div class="controls">
+             <textarea rows="2" cols="2" ng-model="formData.description"></textarea>
+            </div>
+          </div>
+           <div class="control-group">
+              <label class="control-label" for="file">{{'label.client.select.file' | translate}}</label>
+              <div class="controls">
+                <input type="file" ng-file-select="onFileSelect($files)">
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="controls pull-middle">
+              <a href="#/importing"><button id="cancel" style="margin-left:100px;" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+            <button id="submit" type="submit"  class="btn btn-primary">{{'button.save'| translate}}</button>
+              </div>
+            </div>
+        
+
+       
+          
+        </fieldset>
+      </form>

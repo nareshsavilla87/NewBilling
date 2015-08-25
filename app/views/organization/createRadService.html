@@ -1,0 +1,229 @@
+<div data-ng-controller="CreateRadServiceController" >
+<div>
+	<ul class="breadcrumb">
+    	<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+        <li><a href="#/radius">{{'label.radius' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.createradservice' | translate}}</li>
+    </ul>
+</div>
+
+<form name="createradserviceform1" novalidate class="form-horizontal well" data-ng-submit="submit()" data-ng-show="radiusVersion=='version-1'">
+	<div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>Create RadService</legend>
+			<table>
+					<tr>
+							<td>
+								<div class="control-group">
+           					 	<label class="control-label" for="groupname">Group Name<span class="required">*</span></label>
+            					<div class="controls">
+             					 <input type="text" id="groupname" name="groupname" data-ng-model="formData.groupname" required data-late-Validate>
+             					  <span  data-ng-show="createradserviceform1.groupname.$invalid || createradserviceform1.groupname.$dirty">
+                                 <small class="error" data-ng-show="createradserviceform1.groupname.$error.req">{{'label.required.field' | translate}}</small></span>
+           						</div>
+         						</div>	
+							</td></tr>
+							<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="attribute">Attribute<span class="required">*</span></label>
+            					<div class="controls">
+             					 <input type="text" id="attribute" name="attribute" data-ng-model="formData.attribute" required data-late-Validate>
+             					  <span  data-ng-show="createradserviceform1.attribute.$invalid || createradserviceform1.attribute.$dirty">
+                                  <small class="error" data-ng-show="createradserviceform1.attribute.$error.req">{{'label.required.field' | translate}}</small></span>
+            					</div>
+          						</div>
+							</td>
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="op">Op</label>
+            					<div class="controls">
+              					<input type="text" id="secret" data-ng-model="formData.op">
+           						 </div>
+          						</div>
+							</td></tr>
+							<tr><td>
+								<div class="control-group">
+            					<label class="control-label" for="upRate">{{ 'label.upRate' | translate }}<span class="required">*</span></label>
+            					<div class="controls">
+              					<input type="text" class="input-medium" style="width:115px;" id="upRate" name="upRate" data-ng-model="formData.upRate" required data-late-Validate>
+              					<select id="type" class="input-small" data-ng-model="formData.upType" data-ng-options="type.key as type.value for type in types"  data-late-Validate></select>
+              					 <span  data-ng-show="createradserviceform1.upRate.$invalid || createradserviceform1.upRate.$dirty">
+                                 <small class="error" data-ng-show="createradserviceform1.upRate.$error.req">{{'label.required.field' | translate}}</small></span>
+            					</div>
+          						</div>
+							</td></tr>
+							<tr><td>
+								<div class="control-group">
+            					<label class="control-label" for="downRate">{{ 'label.downRate' | translate }}<span class="required">*</span></label>
+            					<div class="controls">
+              					<input type="text" class="input-medium" style="width:115px;" id="downRate" name="downRate" data-ng-model="formData.downRate" required data-late-Validate>
+              					<select id="type" class="input-small" data-ng-model="formData.downType" data-ng-options="type.key as type.value for type in types" data-late-Validate></select>
+              					 <span  data-ng-show="createradserviceform1.downRate.$invalid || createradserviceform1.downRate.$dirty">
+                                 <small class="error" data-ng-show="createradserviceform1.downRate.$error.req">{{'label.required.field' | translate}}</small></span>
+            					</div>
+          						</div>
+							</td></tr></table>
+							
+  	
+  			            <div class="offset3" style="padding-left:2%;">
+                         <a href="#/radius"><button id="cancel" type="reset" class="btn" data-ng-click="reset123()">{{'button.cancel'| translate}}</button></a>
+                         <button id="submit" type="submit" data-ng-disabled="!createradserviceform1.$valid" class="btn btn-primary">{{'button.save'| translate}}</button>
+                     </div>
+        </fieldset>
+</form>
+
+<form name="createradserviceform2" novalidate class="form-horizontal well" data-ng-show="radiusVersion=='version-2'">
+	<div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>Create radService</legend>
+			<table>
+					<tr>
+							<td>
+								<div class="control-group">
+           					 	<label class="control-label" for="srvname">{{'table.heading.serviceName'|translate}}<span class="required">*</span></label>
+            					<div class="controls">
+             					 <input type="text" id="srvname" name="srvname" data-ng-model="formData.srvname" required data-late-Validate>
+             					  <span  data-ng-show="createradserviceform2.srvname.$invalid || createradserviceform2.srvname.$dirty">
+                                 <small class="error" data-ng-show="createradserviceform2.srvname.$error.req">{{'label.required.field' | translate}}</small></span>
+           						</div>
+         						</div>	
+							</td>
+							<td>
+								<div class="control-group">
+								<div class="controls">
+								<input type="radio" data-ng-model="formData.srvtype" value="0">{{ 'label.prepay' | translate }}<br/>
+								<input type="radio" data-ng-model="formData.srvtype" value="2">{{ 'label.postpay' | translate }}
+								</div>
+								</div>
+							</td>
+							<!-- <td>
+								<div class="control-group">
+            					<label class="control-label" for="serviceId">{{'table.heading.service'|translate}}<span class="required">*</span></label>
+            					<div class="controls">
+             					 <!-- <input type="text" id="serviceId" name="serviceId" data-ng-model="formData.nextsrvid" required data-late-Validate> 
+
+             					 <select  name="serviceId" data-ng-model="formData.nextsrvid" data-ng-options="serviceCode.id as serviceCode.serviceName for serviceCode in serviceCodes" data-required data-late-Validate></select>
+             					  <span  data-ng-show="createradserviceform2.serviceId.$invalid || createradserviceform2.serviceId.$dirty">
+                                  <small class="error" data-ng-show="createradserviceform2.serviceId.$error.req">{{'label.required.field' | translate}}</small></span>
+            					</div>
+          						</div>
+							</td> -->
+							</tr>
+							<tr>
+							   <td valign="top">
+								<div class="control-group">
+            					<label class="control-label" for="uprate">{{ 'label.upRate' | translate }}<span class="required">*</span></label>
+            					<div class="controls">
+              					<input type="number" id="uprate" name="uprate" data-ng-model="formData.uprate" required data-late-Validate> &nbsp;in Kbps<br/>
+              					<!-- <select id="type" class="input-small"  data-ng-options="type.value as type.value for type in types"  ></select> -->
+              					 <span  data-ng-show="createradserviceform2.uprate.$invalid || createradserviceform2.uprate.$dirty">
+                                 <small class="error-row" data-ng-show="createradserviceform2.uprate.$error.req">{{'label.required.field' | translate}}</small></span>
+            					</div>
+          						</div>
+							</td>
+							<td valign="top">
+								<div class="control-group">
+            					<label class="control-label" for="downrate">{{ 'label.downRate' | translate }}<span class="required">*</span></label>
+            					<div class="controls">
+              					<input type="number" id="downrate" name="downrate" data-ng-model="formData.downrate" required data-late-Validate> &nbsp;in Kbps<br/>
+              					<!-- <select id="type" class="input-small"  data-ng-options="type.value as type.value for type in types" ></select> -->
+              					 <span  data-ng-show="createradserviceform2.downrate.$invalid || createradserviceform2.downrate.$dirty">
+                                 <small class="error-row" data-ng-show="createradserviceform2.downrate.$error.req">{{'label.required.field' | translate}}</small></span>
+            					</div>
+          						</div>
+							</td></tr>
+							<tr><td valign="top">
+								<div class="control-group">
+            					<label class="control-label" for="trafficId">{{'table.heading.trafficUnit'|translate}}<span class="required">*</span></label>
+            					<div class="controls">
+             					 <input type="number" id="trafficId" name="trafficId" data-ng-model="formData.trafficunitdl" required data-late-Validate> &nbsp;in GB<br/>
+             					  <span  data-ng-show="createradserviceform2.trafficId.$invalid || createradserviceform2.trafficId.$dirty">
+                                  <small class="error-row" data-ng-show="createradserviceform2.trafficId.$error.req">{{'label.required.field' | translate}}</small></span>
+            					</div>
+          						</div>
+							</td>
+							
+							<td valign="top">
+								<div class="control-group">
+            					<label class="control-label" for="serviceId">{{'table.heading.service'|translate}}</label>
+            					<div class="controls">
+             					 <!-- <input type="text" id="serviceId" name="serviceId" data-ng-model="formData.nextsrvid" required data-late-Validate> -->
+             					 <select  name="serviceId" data-ng-model="formData.nextsrvid" data-ng-options="serviceCode.id as serviceCode.serviceName for serviceCode in serviceCodes"></select>
+             					  <!-- <span  data-ng-show="createradserviceform2.serviceId.$invalid || createradserviceform2.serviceId.$dirty">
+                                  <small class="error" data-ng-show="createradserviceform2.serviceId.$error.req">{{'label.required.field' | translate}}</small></span> -->
+            					</div>
+          						</div>
+							</td>
+							
+							</tr>
+							<tr><td>
+								 <div class="control-group">
+            				   <label class="control-label" for="limitexpiration">{{ 'label.limitexpiration' | translate }}</label>
+            				     <div class="controls">
+              					    <label class="checkbox">
+                					   <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-checked="formData.limitexpiration=='1'" data-ng-model="formData.limitexpiration">
+              					</label>
+            				</div>
+          				</div>
+							</td>
+							<td>
+         				     <div class="control-group">
+            				   <label class="control-label" for="renew">{{ 'label.renew' | translate }}</label>
+            				     <div class="controls">
+              					    <label class="checkbox">
+                					   <input type="checkbox" ng-true-value="1" ng-false-value="0" data-ng-model="formData.renew" ng-checked="formData.renew=='1'">
+              					</label>
+            				</div>
+          				</div>
+         			</td>
+							</tr>
+							<tr>
+								<td>
+         				     		<div class="control-group">
+            				   			<label class="control-label" for="islimitdown">{{ 'label.limitdown' | translate }}</label>
+            				     		<div class="controls">
+              					    		<label class="checkbox">
+                					   		<input type="checkbox" data-ng-model="formData.limitdl" ng-true-value="1" ng-false-value="0" ng-checked="formData.limitdl=='1'" ng-click="updateSelection(formData.limitdl,'limitdl')">
+              								</label>
+            							</div>
+          							</div>
+         						</td>
+         						
+								<td>
+         				     		<div class="control-group">
+            				   			<label class="control-label" for="islimitcomb">{{ 'label.islimitcomb' | translate }}</label>
+            				     		<div class="controls">
+              					    		<label class="checkbox">
+                					   		<input type="checkbox" data-ng-model="formData.limitcomb" ng-true-value="1" ng-false-value="0" ng-checked="formData.limitcomb=='1'" ng-click="updateSelection(formData.limitcomb,'limitcomb')">
+              								</label>
+            							</div>
+          							</div>
+         						</td>
+							</tr>
+							<tr>
+								<td align="right" colspan="2">
+									<div >
+                         <a href="#/radius"><button id="cancel" type="reset" class="btn" data-ng-click="reset123()">{{'button.cancel'| translate}}</button></a>
+                         <button id="submit" type="submit" data-ng-click="submit('NO')" data-ng-disabled="!createradserviceform2.$valid" class="btn btn-primary">{{'button.save'| translate}}</button>
+                         <button id="submit" type="submit" data-ng-click="submit('YES')" data-ng-disabled="!createradserviceform2.$valid" class="btn btn-primary">Save With OBS</button>
+                     </div>
+								</td>
+							</tr>
+							</table>
+							
+  	
+  			            
+        </fieldset>
+</form>
+</div>

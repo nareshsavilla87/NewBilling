@@ -1,0 +1,312 @@
+      <div>
+        <ul class="breadcrumb">
+              <li><a href="#/mediadetails">{{'label.media.details' | translate}}</a> <span class="divider">/</span></li>
+              <li class="active">{{'label.media.editmedia' | translate}}</li>
+          </ul>
+      </div>
+      <form class="form-horizontal well" name="editmediaform" novalidate="" ng-controller="EditMediaController" ng-submit="submit()">
+       <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <!-- <legend>{{'label.media.editmedia' | translate}}</legend> -->
+          
+		<!--           
+			<table width="100%">
+           <tr>
+                  <td width="50%">
+          <div class="control-group">
+            <label class="control-label" for="mediaTitle">{{ 'label.media.title' | translate }}</label>
+            <div class="controls">
+              <input type="text" id="mediaTitle" ng-model="formData.mediaTitle">
+            </div>
+          </div>
+          
+            <td width="50%">
+          <div class="control-group">
+            <label class="control-label" for="contentProvider">{{ 'label.media.contentprovider' | translate }}</label>
+            <div class="controls">
+            <input type="text" id="contentProvider" ng-model="formData.contentProvider"> 
+            <select   id="contentProvider" ng-model="formData.contentProvider" ng-options="contentProviderData.id as contentProviderData.mCodeValue for contentProviderData in contentProviderDatas " value="{{contentProviderData.id}}"></select>
+            </div>
+          </div>
+          </td>
+          </tr>
+           <tr>
+            <td width="50%">
+          <div class="control-group">
+            <label class="control-label" for="mediaType">{{ 'label.media.mediaType' | translate }}</label>
+            <div class="controls">
+               <select ng-model="formData.mediatype" id="mediatype" ng-options="mediaTypeData.id as mediaTypeData.value for mediaTypeData in mediaTypeDatas" value="{{mediaTypeData.mediatype}}"></select>
+            </div>
+          </div>
+          </td>
+          
+                  <td width="50%">
+          <div class="control-group">
+            <label class="control-label" for="rated">{{ 'label.media.rated' | translate }}</label>
+            <div class="controls">
+            <input type="text" id="rated" ng-model="formData.rated">
+            </div>
+          </div>
+          </td>
+          </tr>
+          <tr>
+            <td width="50%">
+          <div class="control-group">
+            <label class="control-label" for="mediaCategoryId">{{ 'label.media.categeory' | translate }}</label>
+            <div class="controls">
+              <select ng-model="formData.catageoryId" id="catageoryId" ng-options="mediaCategeorydata.id as mediaCategeorydata.mCodeValue for mediaCategeorydata in mediaCategeorydatas" value="{{mediaCategeorydata.id}}"></select>
+            </div>
+          </div>
+          </td>
+            
+               <td width="50%">
+          <div class="control-group">
+            <label class="control-label" for="mediaRating">{{ 'label.media.rating' | translate }}</label>
+           <div class="controls">
+           <input type="text" id="mediaRating" name="mediaRating" ng-model="formData.mediaRating">
+           	<div ng-show="editmediaform.mediaRating.$dirty &&      editmediaform.mediaRating.$invalid">
+               <span class="error" ng-show="editmediaform.mediaRating.$error.pattern">digits only !</span>
+               <span class="error" ng-show="editmediaform.mediaRating.$error.maxlength">Exceeded max limit!</span>
+            </div>
+          </div>
+          </div>
+          </td>
+            </tr>
+            <tr>
+             <td>
+          <div class="control-group">
+            <label class="control-label" for="mediaImage">{{ 'label.media.poster' | translate }}</label>
+            <div class="controls">
+            <input type="text" id="mediaImage" ng-model="formData.mediaImage">
+            </div>
+          </div>
+          </td>
+          <td>
+          <div class="control-group">
+            <label class="control-label" for="status">{{ 'label.media.status' | translate }}</label>
+            <div class="controls">
+           <select ng-model="formData.status" id="status" ng-options="mediaStatus.value as mediaStatus.value for mediaStatus in mediaStatus" value="{{mediaStatus.value}}"></select>
+            </div>
+          </div>
+          </td>
+          </tr>
+          <tr>
+             <td>
+          <div class="control-group">
+            <label class="control-label" for="duration">{{ 'label.media.movieduration' | translate }}</label>
+            <div class="controls">
+            <input type="text" id="duration" ng-model="formData.duration">
+            </div>
+          </div>
+          </td>
+          <td>
+          <div class="control-group">
+            <label class="control-label" for="releaseDate">{{ 'label.media.releasedate' | translate }}</label>
+            <div class="controls">
+          <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.releaseDate" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"/>
+            </div>
+          </div>
+          </td>
+          </tr>
+          <tr>
+             <td>
+          <div class="control-group">
+            <label class="control-label" for="genre">{{ 'label.media.genre' | translate }}</label>
+            <div class="controls">
+            <input type="text" id="genre" ng-model="formData.genre">
+            </div>
+          </div>
+          </td>
+          <td>
+          <div class="control-group">
+            <label class="control-label" for="subject">{{ 'label.media.subject' | translate }}</label>
+            <div class="controls">
+            <input type="text" id="subject" ng-model="formData.subject">
+            </div>
+          </div>
+          </td>
+          </tr>
+          </table>
+           
+             <table width="100%">
+            <tr>
+              <td width="50%"> 
+              
+        <div class="control-group">
+			<label class="control-label" for="overview">{{'label.media.overview' | translate}}</label>
+			<div class="controls">
+				<textarea rows="2" cols="2" ng-model="formData.overview"></textarea>
+			</div>
+		</div>     
+                </td>
+            <td width="50%">
+            <div class="control-group">
+			    <label class="control-label" for="cpShareValue">Share(%)</label>
+			  <div class="controls">
+				<input type="text" id="cpShareValue" name="cpShareValue" ng-model="formData.cpShareValue"  ng-pattern="/^\d{0,2}(\.\d{0,2})?$/"  ng-maxlength="5"></input>
+				<div ng-show="editmediaform.cpShareValue.$dirty && editmediaform.cpShareValue.$invalid">
+               <span class="error" ng-show="editmediaform.cpShareValue.$error.pattern">Numbers below 100 only !</span>
+               <span class="error" ng-show="editmediaform.cpShareValue.$error.maxlength">Exceeded max limit!</span>
+           </div>
+			</div>
+		</div> 
+             </td>         
+                        
+         </tr>
+         </table>
+         <table>
+          <tr class="control-group">
+                <td>
+                  <label class="control-label"><h4>{{ 'label.media.mediadetails' | translate }}</h4></label>
+                </td>
+                <td class="blockquoteresult">
+                    <form>
+                    <input class="input-small" type="text" ng-model="attributesFormData.attributeType"  ng-init="attributesFormData.attributeType='Cast'"  readonly >&nbsp;&nbsp;
+                      <select ng-model="attributesFormData.attributeName" ng-options="mediaAttribute.id as mediaAttribute.mediaName for mediaAttribute in mediaAttributes" class="input-small" value="{{mediaAttribute.id}}">
+                      </select>&nbsp;&nbsp;
+                      <input class="input-small" type="text" ng-model="attributesFormData.attributeValue"  placeholder="{{'label.media.captionvalue' | translate}}">&nbsp;&nbsp;
+                      <input class="input-small" type="text" ng-model="attributesFormData.attributeNickname"  placeholder="{{'label.media.nickname' | translate}}">&nbsp;&nbsp;
+                      <input class="input-small"  type="text" ng-model="attributesFormData.attributeImage" placeholder="{{'label.media.image' | translate}}">
+                      
+                      <a ng-click="addMedia()">&nbsp;<i class="icon-plus icon-white"></i></a>&nbsp;&nbsp;
+                    </form>
+                    <br><br>
+                  <table class="table" width="100%" ng-show="mediaassetAttributes.length>0">
+                    <tr></tr>
+                    <tr class="graybg">
+                      <th>{{'table.media.cast' | translate}}</th>
+                      <th>{{'table.heading.attributetype' | translate}}</th>
+                      <th>{{'label.media.captionvalue' | translate}}</th>
+                      <th>{{'label.media.nickname' | translate}}</th>
+                       <th>{{'label.media.image' | translate}}</th>
+                    </tr>
+                    <tr ng-repeat="mediaassetAttribute in mediaassetAttributes" >
+                      <td><input type="text" class="input-small"  ng-model="mediaassetAttribute.attributeType" ng-init="mediaassetAttribute.attributeType='Cast'" readonly></td>
+                      <td><select ng-model="mediaassetAttribute.attributeName" ng-options="mediaAttribute.id as mediaAttribute.mediaName for mediaAttribute in mediaAttributes" class="input-small" value="{{mediaassetAttribute.attributeName}}"></select></td>
+                      <td><input type="text" class="input-small" ng-model="mediaassetAttribute.attributeValue" placeholder="{{'label.media.captionvalue' | translate}}"></td>
+                      <td><input type="text" class="input-small" ng-model="mediaassetAttribute.attributeNickname" placeholder="{{'label.media.nickname' | translate}}"></td>
+                      <td><input type="text" class="input-small" ng-model="mediaassetAttribute.attributeImage" placeholder="{{'label.media.image' | translate}}"></td>
+                      <td><a ng-click="deleteMedia($index)"><i class="icon-remove icon-white"></i></a></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr class="span2"></tr>
+          <tr class="control-group">
+                <td>
+                  <label class="control-label"><h4>{{ 'label.media.medialocation' | translate }}</h4></label>
+                </td>
+                <td class="blockquoteresult">
+                    <form>
+                      <select ng-model="mediaLocationFormData.languageId" ng-options="mediaLanguageData.id as mediaLanguageData.mCodeValue  for mediaLanguageData in mediaLanguageDatas" value="{{mediaLanguageData.languageId}}">
+                      </select>&nbsp;&nbsp;
+                      <select ng-model="mediaLocationFormData.formatType" ng-options="mediaFormat.mediaName as mediaFormat.mediaName for mediaFormat in mediaFormats" value="{{mediaFormat.mediaName}}">
+                      </select>&nbsp;&nbsp;&nbsp;
+                      <input type="text" ng-model="mediaLocationFormData.location" placeholder="{{'label.media.location' | translate}}">
+                      <a ng-click="addMediaLocation()">&nbsp;<i class="icon-plus icon-white"></i></a>
+                    </form>
+                  <table class="table" width="100%" ng-show="mediaAssetLocations.length>0">
+                    <tr class="graybg">
+                      <th>{{'table.heading.language' | translate}}</th>
+                      <th>{{'table.heading.format' | translate}}</th>
+                      <th>{{'table.heading.location' | translate}}</th>
+                    </tr>
+                    <tr ng-repeat="mediaAssetLocation in mediaAssetLocations" >
+                      <td><select ng-model="mediaAssetLocation.languageId" ng-options="mediaLanguageData.id as mediaLanguageData.mCodeValue  for mediaLanguageData in mediaLanguageDatas" value="{{mediaAssetLocation.languageId}}">
+                      </select></td>
+                      <td><select ng-model="mediaAssetLocation.formatType" ng-options="mediaFormat.mediaName as mediaFormat.mediaName for mediaFormat in mediaFormats" value="{{mediaAssetLocation.formatType}}">
+                      </select></td>
+                      <td> <input type="text" ng-model="mediaAssetLocation.location" placeholder="{{'label.media.location' | translate}}"></td>
+                      <td><a ng-click="removeMediaLocation($index)"><i class="icon-remove icon-white"></i></a></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+           </table>		 -->
+          <legend>{{'label.media.editmedia' | translate}}</legend> 
+           
+           <table>
+				<tr>
+					<td>
+						<div class="control-group">
+            			<label class="control-label" for="mediaTitle">{{ 'label.media.title' | translate }}<span class="required">*</span></label>
+            			<div class="controls">
+              			<input type="text" id="mediaTitle" ng-model="formData.mediaTitle">
+            			</div>
+          				</div>
+					</td>
+					
+					<td>
+						<div class="control-group">
+            			<label class="control-label" for="mediaCategoryId">{{ 'table.mediadetails.categeory' | translate }}<span class="required">*</span></label>
+            			<div class="controls">
+              			<select ng-model="formData.catageoryId" id="catageoryId" ng-options="mediaCategeorydata.id as mediaCategeorydata.mCodeValue for mediaCategeorydata in mediaCategeorydatas" value="{{mediaCategeorydata.id}}"></select>
+            			</div>
+          				</div>
+					</td>
+				</tr>       
+				
+				<tr>
+					<!-- <td>
+						<div class="control-group">
+            			<label class="control-label" for="mediaType">{{ 'label.media.mediaType' | translate }}</label>
+            			<div class="controls">
+               				<select ng-model="formData.mediatype" id="mediatype" ng-options="eventCategeorydata.id as eventCategeorydata.mCodeValue for eventCategeorydata in eventCategeorydatas" value="{{mediaTypeData.mediatype}}"></select>
+            			</div>
+          				</div>
+					</td> -->
+					<td>
+						<div class="control-group">
+            			<label class="control-label" for="contentProvider">{{ 'label.media.contentprovider' | translate }}</label>
+            			<div class="controls">
+            				<select   id="contentProvider" ng-model="formData.contentProvider" ng-options="contentProviderData.id as contentProviderData.mCodeValue for contentProviderData in contentProviderDatas " value="{{contentProviderData.id}}"></select>
+            			</div>
+          				</div>
+					</td>
+					<td>
+						<div class="control-group">
+			    		<label class="control-label" for="cpShareValue">Share(%)</label>
+			  			<div class="controls">
+							<input type="text" id="cpShareValue" name="cpShareValue" ng-model="formData.cpShareValue"  ng-pattern="/^\d{0,2}(\.\d{0,2})?$/" ></input>
+							<div ng-show="editmediaform.cpShareValue.$dirty && editmediaform.cpShareValue.$invalid">
+               					<span class="error" ng-show="editmediaform.cpShareValue.$error.pattern">Numbers below 100 only !</span>
+               					<span class="error" ng-show="editmediaform.cpShareValue.$error.maxlength">Exceeded max limit!</span>
+           					</div>
+						</div>
+						</div>
+					</td>
+				</tr>
+				</table>
+				<table>
+				<tr>
+					<td>
+						<div class="control-group">
+            					<label class="control-label" for="medialocation">Media Location<span class="required">*</span></label>
+            					<div class="controls">
+              						<input type="text" style="width:610px;" ng-model="formData.location">
+            					</div>
+          				</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+          				<div class="control-group">
+            			<label class="control-label" for="status">{{ 'label.media.status' | translate }}<span class="required">*</span></label>
+            			<div class="controls">
+           				<select ng-model="formData.status" id="status" ng-options="mediaStatus.value as mediaStatus.value for mediaStatus in mediaStatus" value="{{mediaStatus.value}}"></select>
+            			</div>
+          				</div>
+           			</td>
+				</tr>    
+           </table>
+           
+          <div class="offset3">
+            <a href="#/mediadetails"><button id="cancel" type="reset" class="btn">Cancel</button></a>
+            <button id="submit" type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </fieldset>
+      </form>

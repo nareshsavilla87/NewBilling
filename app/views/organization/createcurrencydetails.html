@@ -1,0 +1,95 @@
+<div data-ng-controller="CreateCurrencyDetailsController">
+	<ul class="breadcrumb">
+		<!-- <li><a href="#/currencydetails">{{'label.currencydetails' | translate}}</a> <span class="divider">/</span></li> -->
+		<li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+		<li><a href="#/currencydetails">{{'label.currencydetails' | translate}}</a> <span class="divider">/</span></li>
+		<li class="active">{{'label.createcurrencydetails' | translate}}</li>
+	</ul>
+<form class="form-horizontal well" data-ng-submit="submit()">
+	<div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label> <label
+			data-ng-show="errorStatus">{{errorStatus}}</label> <label
+			data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	</div>
+	<fieldset>
+					<table>
+						<tr>
+							<td>
+								<div class="control-group">
+									<label class="control-label" for="country">{{'label.country' | translate }}</label>
+									<div class="controls">
+										<select id="country" data-ng-model="formData.country"
+											data-ng-options="countryData as countryData for countryData in countryDatas"
+											data-value="{{countryData}}"><option value="">{{'label.select.one' | translate}}</option></select>
+										
+									</div>
+								</div>
+							</td>
+							<td>
+								<div class="control-group">
+									<label class="control-label" for="currency">{{
+										'label.currency' | translate }}</label>
+									<div class="controls">
+										<select id="currency" data-ng-model="formData.currency" 
+										    data-ng-options="currencydata.code as currencydata.displayLabel for currencydata in currencydatas"
+											data-value="{{currencydata.code}}"><option value="">{{'label.select.one' | translate}}</option></select>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="control-group">
+									<label class="control-label" for="baseCurrency">{{
+										'label.basecurrency' | translate }}</label>
+									<div class="controls">
+										<select id="baseCurrency" data-ng-model="formData.baseCurrency"
+											data-ng-options="currencydata.code as currencydata.displayLabel for currencydata in currencydatas"
+											data-value="{{currencydata.code}}"><option value="">{{'label.select.one' | translate}}</option></select>
+									</div>
+								</div>
+							</td>
+							<td>
+								<div class="control-group">
+									<label class="control-label" for="conversionRate">{{
+										'label.conversionrate' | translate }}</label>
+									<div class="controls">
+										<input type="text" id="conversionRate" data-ng-model="formData.conversionRate">
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="control-group">
+									<label class="control-label" for="status">{{
+										'label.status' | translate }}</label>
+									<div class="controls">
+										<select id="status" data-ng-model="formData.status"
+											data-ng-options="currencystatus.value as currencystatus.value for currencystatus in currencystatus"
+											data-value="{{currencystatus.value}}"><option value="">{{'label.select.one' | translate}}</option></select>
+									</div>
+								</div>
+							</td>
+							<td>
+								<div class="control-group">
+									<label class="control-label" for="status">{{
+										'label.isd' | translate }}</label>
+									<div class="controls">
+										<input type="text" id="currencyISD" data-ng-model="formData.countryISD">
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td align="right" colspan="2">
+								<div class="controls">
+									<a href="#/currencydetails"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+									<button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+								</div>
+							</td>
+						</tr>
+					</table>
+	</fieldset>
+</form>
+</div>

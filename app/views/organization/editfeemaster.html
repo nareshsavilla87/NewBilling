@@ -1,0 +1,162 @@
+    <div data-ng-controller="EditFeeMasterController">
+      <div>
+        <ul class="breadcrumb">
+          <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+	      <li><a href="#/feemaster">{{'label.feemaster' | translate}}</a> <span class="divider">/</span></li>
+          <li class="active">{{'label.edit.feemaster' | translate}}</li>
+        </ul>
+      </div>
+      <form name="editfeemasterform" novalidate class="form-horizontal well" data-ng-submit="submit()">
+       <div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}&nbsp;<span class="required">*</span></label>
+	    </div>
+        <fieldset>
+          <legend>{{'label.edit.feemaster' | translate}}</legend>
+			<table>
+			  <tr>
+				<td valign="top">
+				   <div class="control-group">
+            		 <label class="control-label" for="feeCode">{{'label.feemaster.code' | translate }}&nbsp;<span class="required">*</span></label>
+            		   <div class="controls">
+              			<input type="text" id="feeCode" name="feeCode" data-ng-model="formData.feeCode" required data-ng-maxlength="{{'code' | CodeValidate}}"  data-late-Validate><br/>
+              			  <span data-ng-show = "editfeemasterform.feeCode.$invalid">
+	              			<small class="error" data-ng-show="editfeemasterform.feeCode.$error.req">
+		                      {{'label.required.field' | translate}}
+		                    </small>
+              				<small class="error"  data-ng-show="editfeemasterform.feeCode.$error.maxlength">
+              						{{'error.code.definition.length.validation'| translate}}
+              				</small>
+		                  </span>
+            		   </div>
+          		     </div>
+				</td>
+				<td valign="top">
+					<div class="control-group">
+           				<label class="control-label" for="feeDescription">{{'label.feemaster.description' | translate }}&nbsp;<span class="required">*</span></label>
+           				<div class="controls">
+             				<input type="text" id="feeDescription" name="feeDescription" data-ng-model="formData.feeDescription"  required data-late-Validate><br/>
+             				<span data-ng-show = "editfeemasterform.feeDescription.$invalid">
+		              			<small class="error" data-ng-show="editfeemasterform.feeDescription.$error.req">
+			                      {{'label.required.field' | translate}}
+			                    </small>
+              				</span>
+           				</div>
+         			</div>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top">
+					<div class="control-group">
+           	 			<label class="control-label" for="transactionType">{{'label.feemaster.transactiontype' | translate }}&nbsp;<span class="required">*</span></label>
+            			<div class="controls">
+              				<select id="transactionType" data-ng-model="formData.transactionType" name="transactionType" 
+              				 	data-ng-options="transactionTypeData.mCodeValue as transactionTypeData.mCodeValue for transactionTypeData in transactionTypeDatas"  required data-late-Validate>
+              				</select><br/>
+              				<span data-ng-show = "editfeemasterform.transactionType.$invalid">
+		              			<small class="error" data-ng-show="editfeemasterform.transactionType.$error.req">
+			                      {{'label.required.field' | translate}}
+			                    </small>
+              				</span>
+            			</div>
+          			</div>
+				</td>
+				<td valign="top">
+				  <div class="control-group">
+            		<label class="control-label" for="chargeCode">{{'label.chargecode' | translate }}&nbsp;<span class="required">*</span></label>
+            		<div class="controls">
+              			<select id="chargeCode" name="chargeCode" data-ng-model="formData.chargeCode"  data-ng-options="chargesData.chargeCode as chargesData.chargeDescription for chargesData in chargeDatas"   required data-late-Validate>
+              			</select><br/>
+              			<span data-ng-show = "editfeemasterform.chargeCode.$invalid">
+	              			<small class="error" data-ng-show="editfeemasterform.chargeCode.$error.req">
+		                      {{'label.required.field' | translate}}
+		                    </small>
+             			</span>
+            		</div>
+          		  </div>
+				</td>
+			</tr>
+	<!-- 		<tr data-ng-show = "formData.transactionType == 'Deposit'">
+				<td valign="top">
+					<div class="control-group">
+           	 			<label class="control-label" for="itemId">Item&nbsp;<span class="required">*</span></label>
+            			<div class="controls">
+              				<select id="transactionType" data-ng-model="formData.itemId" name="itemId" 
+              				 	data-ng-options="itemTypeData.id as itemTypeData.itemDescription for itemTypeData in itemTypeDatas"  required data-late-Validate>
+              				</select><br/>
+              				<span data-ng-show = "createfeemasterform.itemId.$invalid">
+		              			<small class="error" data-ng-show="createfeemasterform.itemId.$error.req">
+			                      {{'label.required.field' | translate}}
+			                    </small>
+              				</span>
+            			</div>
+          			</div>
+				</td>
+				<td>
+					<div class="control-group">
+            			<label class="control-label" for="isRefundable">Refundable</label>
+                		<div class="controls">
+                			<label class="checkbox">
+                    		<input type="checkbox" data-ng-model="formData.isRefundable">
+                    		</label>
+                		</div>
+             		</div>
+				</td>
+			</tr> -->
+			<tr>
+				<!-- <td colspan="2" valign="top">
+					<div class="control-group">
+	         		   <label class="control-label" for="defaultFeeAmount ">{{'label.feemaster.defaultfeeamount' | translate }}&nbsp;<span class="required">*</span></label>
+	         		   <div class="controls">
+	           				<input type="text" id="defaultFeeAmount" name="defaultFeeAmount" data-ng-model="formData.defaultFeeAmount" required data-ng-pattern="{{'decimal' | CodeValidate}}"  data-late-Validate><br/>
+           					<span data-ng-show = "editfeemasterform.defaultFeeAmount.$invalid">
+		              			<small class="error" data-ng-show="editfeemasterform.defaultFeeAmount.$error.req">
+			                      {{'label.required.field' | translate}}
+			                    </small>
+	           					<small class="error" data-ng-show="editfeemasterform.defaultFeeAmount.$error.pattern&&!editfeemasterform.defaultFeeAmount.$error.req">
+	           						{{'error.not.decimal.validation'| translate}}
+	           					</small>
+	             			</span>
+	         			</div>
+	        		</div>
+				</td>  -->
+			</tr>
+		</table>
+        <table>
+          <tr class="control-group">
+            <td>
+              <h4><label class="control-label">{{'label.regionalprice' | translate}}</label></h4>
+                </td>
+                <td class="blockquoteresult">
+                    <form>
+                      <select data-ng-model="regionalPriceFormData.regionId" data-ng-options="regionData.id as regionData.regionName  for regionData in regionDatas" >
+                      		<option value="">--{{'label.feemaster.selete.regionname' | translate}}--</option>
+                      </select>
+                      <input type="text" name="amount" data-ng-model="regionalPriceFormData.amount" placeholder="Price" data-ng-pattern="{{'decimal' | CodeValidate}}">
+                      <a data-ng-click="addReginalPrice()">&nbsp;<i class="icon-plus icon-white"></i></a>
+                    </form>
+                  <table class="table fullwidth" data-ng-show="regionPrices.length>0">
+                    <tr class="graybg">
+                      <th>{{'table.heading.regionName' | translate}}</th>
+                      <th>{{'label.amount' | translate}}</th>
+                    </tr>
+                    <tr data-ng-repeat="regionPrice in regionPrices" >
+                      <td style="padding-left: 0"><select data-ng-model="regionPrice.regionId" data-ng-options="regionData.id as regionData.regionName  for regionData in regionDatas" >
+                      </select></td>
+                      <td> <input type="text" data-ng-model="regionPrice.amount" placeholder="amount"></td>
+                      <td><a data-ng-click="removeRegionPrices($index)"><i class="icon-remove icon-white"></i></a></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+         </table>
+     </fieldset>
+		<div class="offset6">
+            <a href="#/feemaster"><button id="cancel" type="reset" class="btn" >{{'button.cancel' | translate}}</button></a>
+            <button id="submit" type="submit" data-ng-disabled="editfeemasterform.$invalid" class="btn btn-primary">{{'label.save' | translate}}</button>
+        </div>
+          	
+      </form>
+      </div>
+ 

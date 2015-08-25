@@ -1,0 +1,45 @@
+
+<div ng-controller="EditSchedulerJobController">
+<div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+  	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+	        <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+	        <li><a href="#/jobs">{{'label.manageschedulerjobs' | translate}}</a> <span class="divider">/</span></li>
+	      <!--  <li><a href="#/viewschedulerjob/{{job.jobId}}">{{job.displayName}}</a> <span class="divider">/</span></li>-->
+	        <li class="active">{{'label.editschedulerjob' | translate}}</li>
+	    </ul>
+	</div>
+  	<form class="form-horizontal" ng-submit="submit()">
+	    <fieldset>
+	      <div class="control-group">
+	        <label class="control-label">{{ 'label.jobname' | translate }}</label>
+	        <div class="controls">
+	          <input type="text" ng-model="formData.displayName">
+	        </div>
+	      </div>
+
+	      <div class="control-group">
+	        <label class="control-label">{{ 'label.cornexpression' | translate }}</label>
+	        <div class="controls">
+	          <input type="text" ng-model="formData.cronExpression">
+	        </div>
+	      </div>
+	      
+	      <div class="control-group">
+	        <label class="control-label">{{ 'label.crondescritpion' | translate }}</label>
+	        <div class="controls">
+	          <input type="text" ng-model="formData.cronDescription">
+	        </div>
+	      </div>
+
+	      <div class="offset3">
+	        <button id="cancel" type="reset" ng-click="cancel()" class="btn">{{'label.cancel' | translate}}</button></a>
+	        <button id="submit" type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
+	      </div>
+	    </fieldset>
+  </form>
+</div>

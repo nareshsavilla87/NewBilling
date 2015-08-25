@@ -1,0 +1,209 @@
+<div>
+	<ul class="breadcrumb">
+    	<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+        <li><a href="#/plans">{{'link.admin.plans' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.editplan' | translate}}</li>
+    </ul>
+</div>
+<form name="editplan" class="form-horizontal well" data-ng-controller="EditPlanController" data-ng-submit="submit()">
+	<div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+    </div>
+    <fieldset>
+    	<legend>{{'label.editplan' | translate}}</legend>
+        	<table style="width:100%;">
+            	<tr>
+                	<td width="50%">
+		          		<div class="control-group">
+		            		<label class="control-label" for="planCode">{{ 'label.plan.plancode' | translate }}<span class="required">*</span></label>
+		            		<div class="controls">
+		              			<input type="text" id="planCode" name="planCode" data-ng-model="formData.planCode" data-ng-maxlength="{{ 'code' | CodeValidate }}"></br>
+		              			<span data-ng-show="editplan.planCode.$dirty && editplan.planCode.$invalid">
+								<small class="error-row" >{{'error.code.definition.length.validation'| translate}}</small>
+								</span>
+		            		</div>
+		          		</div>
+		      		</td>
+                	<td width="50%">
+	           			<div class="control-group">
+	            			<label class="control-label" for="status">{{ 'label.plan.status' | translate }}<span class="required">*</span></label>
+	            			<div class="controls">
+	              				<select id="status" data-ng-model="formData.status"  data-ng-options="planStatus.id as planStatus.value for planStatus in planStatus"></select>
+	            			</div>
+	          			</div>
+         			</td>
+         		</tr>
+          		<tr>
+              		<td width="50%">
+	          			<div class="control-group">
+	            			<label class="control-label" for="planDescription">{{ 'label.plan.plandescription' | translate }}<span class="required">*</span></label>
+	            			<div class="controls">
+	              				<input type="text" id="planDescription" data-ng-model="formData.planDescription">
+	            			</div>
+	          			</div>
+              		</td>
+              		<td width="50%">
+	           			<div class="control-group">
+		            		<label class="control-label" for="billRule">{{ 'label.plan.billingrule' | translate }}<span class="required">*</span></label>
+		            		<div class="controls">
+		              			<select id="billRule" data-ng-model="formData.billRule"  data-ng-options="billRuleData.id as billRuleData.billruleOptions for billRuleData in billRuleDatas"></select>
+		            		</div>
+	          			</div>
+         	   		</td>
+         		</tr>
+         		<tr>
+             		<td width="50%">
+	          			<div class="control-group">
+	            			<label class="control-label" for="startDate">{{ 'label.plan.startdate' | translate }}<span class="required">*</span></label>
+	            			<div class="controls">
+	                 			<input type="text" datepicker-pop="dd MMMM yyyy" data-ng-model="date.startDate" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"/>
+	            			</div>
+	          			</div>
+             		</td>
+              		<td width="50%">
+	          			<div class="control-group">
+	            			<label class="control-label" for="provisioingSystem">{{ 'label.plan.provisioningsystem' | translate }}<span class="required">*</span></label>
+	            			<div class="controls">
+	            				<select id="provisioingSystem" data-ng-model="formData.provisioingSystem" data-ng-options="provisionSysData.mCodeValue as provisionSysData.mCodeValue for provisionSysData in provisionSysDatas"></select>
+	            			</div>
+	          			</div>
+         	  		</td>
+         		</tr>
+         		<tr>
+             		<td>
+	          			<div class="control-group">
+	            			<label class="control-label" for="endDate">{{ 'label.plan.enddate' | translate }}</label>
+	            			<div class="controls">
+	            				<input type="text" datepicker-pop="dd MMMM yyyy" data-ng-model="date.endDate" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" />
+	            			</div>
+	          			</div>
+         	 		</td>
+         		</tr>
+       		</table>
+       		
+       		<table>
+       			<tr>
+              		<td>
+          	  	 		<div class="control-group">
+               	 			<div>
+               	 				<label class="control-label"></label>
+               	 			</div>
+              		 		<div class="span3">
+                   				<label class="control-label">{{ 'label.availableservice' | translate }}</label>
+                   				<select multiple data-ng-model="allowed" style="height:100px;">
+                       				<option data-ng-repeat="service in services" value="{{service.id}}">{{service.serviceDescription}}</option>
+                  				</select>
+               	 			</div>
+                 			<div class="paddedtop10 span1 paddedleft0" style="margin-left:90px;margin-right:82px;">
+                    			<button type="button" class="btn btn-primary" data-ng-click="restrict()"><i class="icon-double-angle-right"></i></button><br/>
+                    			<button type="button" class="btn btn-primary" data-ng-click="allow()"><i class="icon-double-angle-left"></i></button>
+                 			</div>
+                 			<div class="span3">
+                    			<label class="control-label">{{ 'label.selectedservice' | translate }}</label>
+                    			<select multiple data-ng-model="restricted" style="height:100px;">
+                        			<option data-ng-repeat="selectedService in selectedServices" value="{{selectedService.id}}">{{selectedService.serviceDescription}}</option>
+                    			</select>
+                			</div>
+          
+       					</div>
+            		</td>
+         		</tr>
+     		</table>
+     		
+     		<table>
+         		<tr>
+         			<td>
+            			<div class="controls">
+              				<label class="checkbox">
+                				<input type="checkbox" data-ng-model="formData.isHwReq">
+             				</label>
+            			</div>
+         			</td>
+         			<td>
+         				{{ 'label.plan.ishwreq' | translate }}
+         			</td>
+         		</tr>
+         		<tr>
+         			<td>
+         				<div class="control-group">
+            				<label class="control-label" for="isPrepaid">{{ 'label.plan.isprepaid' | translate }}</label>
+            				<div class="controls">
+              					<label class="checkbox">
+                					<input type="checkbox" data-ng-model="formData.isPrepaid">
+              					</label>
+            				</div>
+          				</div>
+         			</td>
+         		</tr>
+         	</table>
+     		
+     	     <!-- 		<div class="control-group" data-ng-show="formData.isPrepaid">
+         		<table>
+         			<tr>
+         				<td>
+         					<label class="control-label" for="allowTopup" style="margin-right:20px;">{{ 'label.plan.volume' | translate }}</label></td>
+         				<td>
+         					<input type="checkbox" style="margin-left:-2px;" data-ng-model="formData.allowTopup">
+         				</td>
+         				<td>
+         					<label class="control-label" for="volume">{{ 'label.plan.units' | translate }}<span class="required">*</span></label>&nbsp;&nbsp;&nbsp;
+         					<select data-ng-model="formData.volume"  data-ng-options="volumeType.value as volumeType.value for volumeType in volumeTypes" ></select>
+                 			<input type="text" name="units" class="input-small ng-pristine ng-valid" id="units" data-ng-pattern="{{ 'integer' | CodeValidate }}" data-ng-model="formData.units">
+                 			<span data-ng-show="editplan.units.$dirty && editplan.units.$invalid">
+								<small class="error-row" data-ng-show="editplan.units.$error.pattern">{{'error.not.numeric.validation' | translate }}</small>
+							</span>
+         				</td>
+         			</tr>
+         		</table>
+         	</div>
+         	
+	<!-- <table>
+         		<tr>
+           			<td width="50">
+            			<div class="control-group">
+            				<label class="control-label" for="isPrepaid">{{ 'label.plan.ishwreq' | translate }}</label>
+	            			<div class="controls">
+	              				<label class="checkbox"><input type="checkbox" data-ng-model="formData.isHwReq"></label>
+	            			</div>
+            			</div>
+             			<div class="control-group">
+          		    		<label class="control-label" for="isPrepaid">{{ 'label.plan.isprepaid' | translate }}</label>
+	            			<div class="controls">
+	              				<label class="checkbox"><input type="checkbox" data-ng-model="formData.isPrepaid"></label>
+	            			</div>
+         				</div> 
+         				<div data-ng-show="formData.isPrepaid">
+	            			<div class="control-group">
+	              				<label class="control-label" for="allowTopup">{{ 'label.plan.volume' | translate }}</label>
+	               				<div class="controls"> 
+	                  				<input type="checkbox" data-ng-model="formData.allowTopup">
+	               				</div>
+	            			</div>
+	            			<div class="control-group">
+	                			<label class="control-label" for="volume">{{ 'label.plan.units' | translate }}</label>
+	                			<div class="controls">
+	                   				<table>
+	                       				<tr>
+	                          				<td>
+	                 			 				<select data-ng-model="formData.volume"  data-ng-options="volumeType.value as volumeType.value for volumeType in volumeTypes" ></select>
+	                 		 				</td>
+	                		 				<td>
+	                							<input type="text" class="input-small ng-pristine ng-valid" id="units" data-ng-model="formData.units">
+	                		 				</td>
+	                	   				</tr>
+	                    			</table>
+	               				</div>
+	            			</div>
+            			</div>
+           			</td>
+          			<td></td>
+        		</tr>
+      		</table> -->
+      		<div class="offset3" align="right" style="margin-right:9.5%;">
+        		<a href="#/plans"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+        		<button id="submit" type="submit" data-ng-disabled="editplan.$dirty && editplan.$invalid" class="btn btn-primary">{{'button.save'| translate}}</button>
+      		</div>
+  		</fieldset>
+</form>

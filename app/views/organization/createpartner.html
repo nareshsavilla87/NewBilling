@@ -1,0 +1,225 @@
+<div data-ng-controller="CreatePartnerController">
+	<ul class="breadcrumb">
+		<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+		<li><a href="#/offices" data-ng-click="reset123()">{{'label.managepartners' | translate}}</a><span class="divider">/</span></li>
+		<li class="active">{{'label.createpartner' | translate}}</li>
+	</ul>
+<form name="createpartnerform"  novalidate class="form-horizontal well" data-ng-submit="submit()">
+	<div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label> <label data-ng-show="errorStatus">{{errorStatus}}</label> 
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code| translate}}</label>
+	</div>
+	<fieldset>
+		<legend>{{'label.createpartner' | translate}}</legend>
+		<table>
+			<tr>
+				<td>
+					<div class="control-group">
+						<label class="control-label">{{ 'label.partnername' | translate }}<span class="required">*</span>
+						</label>
+						<div class="controls">
+							<input type="text" id=partnerName name="partnerName" data-ng-model="formData.partnerName" data-ng-pattern="/^[a-zA-Z0-9\-\&\s]+$/" required data-ng-minlength=3 data-late-Validate/><br/> 
+							 <span data-ng-show="createpartnerform.partnerName.$invalid">
+								<small class="error" data-ng-show="createpartnerform.partnerName.$error.pattern">alphanumeric and spaces only!</small> 
+								<small class="error" data-ng-show="createpartnerform.partnerName.$error.req">{{'label.required.field' | translate}} </small> 
+								<small class="error" data-ng-show="createpartnerform.partnerName.$error.minlength && !createpartnerform.partnerName.$error.req">
+									      Partner Name is require at least 3 characters</small>
+							</span>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label">{{ 'label.loginname' |translate }}<span class="required">*</span>
+
+						</label>
+						<div class="controls">
+							<input type="text" id="loginName || username" name="loginName" data-ng-model="formData.loginName" data-ng-pattern="/^[a-zA-Z0-9\-\&\s]+$/" required data-ng-minlength=3 data-late-Validate/><br/>
+						     <span data-ng-show="createpartnerform.loginName.$invalid">
+								<small class="error" data-ng-show="createpartnerform.loginName.$error.pattern">alphanumeric and spaces only!</small> 
+								<small class="error" data-ng-show="createpartnerform.loginName.$error.req">{{'label.required.field' | translate}} </small> 
+								<small class="error" data-ng-show="createpartnerform.loginName.$error.minlength && !createpartnerform.loginName.$error.req">
+									   Login Name is require at least 3 characters</small>
+							</span>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label">{{ 'label.password' |translate }}<span class="required">*</span>
+						</label>
+						<div class="controls">
+							<input type="password" name="password" id="password" data-ng-model="formData.password" data-ng-minlength=4 data-late-Validate><br/>
+							<span data-ng-show="createpartnerform.password.$invalid">
+								<small class="error" data-ng-show="createpartnerform.password.$error.pattern">alphanumeric and spaces only!</small> 
+								<small class="error" data-ng-show="createpartnerform.password.$error.req">{{'label.required.field' | translate}} </small> 
+								<small class="error" data-ng-show="createpartnerform.password.$error.minlength && !createpartnerform.password.$error.req">
+									  Password is require at least 4 characters</small>
+							</span>
+						</div>
+					</div>
+					
+					<div class="control-group">
+						<label class="control-label">{{ 'label.repeatPassword' |translate }}<span class="required">*</span>
+						</label>
+						<div class="controls">
+							<input type="password" name="repeatPassword" id="repeatPassword" data-ng-model="formData.repeatPassword" data-ng-minlength=4 data-late-Validate><br/>
+							<span data-ng-show="createpartnerform.repeatPassword.$invalid">
+								<small class="error" data-ng-show="createpartnerform.repeatPassword.$error.pattern">alphanumeric and spaces only!</small> 
+								<small class="error" data-ng-show="createpartnerform.repeatPassword.$error.req">{{'label.required.field' | translate}} </small> 
+								<small class="error" data-ng-show="createpartnerform.repeatPassword.$error.minlength && !createpartnerform.repeatPassword.$error.req">
+									 Repeat Password is require at least 4 characters</small>
+							</span>
+						</div>
+					</div>
+					
+				<!-- 	<div class="control-group">
+						<label class="control-label" for="office">Credit Limit</label>
+						<div class="controls">
+							<input type="text" data-ng-model="formData.creditLimit" id="creditLimit" name="creditlimit">
+						</div>
+					</div> -->
+					
+					<div class="control-group">
+							<label class="control-label">{{ 'label.parentoffice' | translate }}</label>
+							<div class="controls">
+								<select data-ng-model="formData.parentId" data-ng-options="office.id as office.name for office in offices  | orderBy:'id'"></select>
+							</div>
+						</div>
+						
+					<div class="control-group">
+						<label class="control-label" for="currency">{{'label.currency' | translate }}<span class="required">*</span></label>
+						<div class="controls">
+							<select id="currency" data-ng-model="formData.currency"
+								data-ng-options="currencydata.code as currencydata.displayLabel for currencydata in currencydatas">
+								<!-- data-value="{{currencydata.code}}"><option value="">{{'label.select.one'| translate}}</option> --></select>
+						</div>
+					</div>
+					
+
+						<!-- <div class="control-group">
+							<label class="control-label" for="isCollective">{{'label.partner.isCollective' | translate }}</label>
+							<div class="controls">
+								<label class="checkbox"> <input type="checkbox" id="isCollective" data-ng-model="formData.isCollective">
+								</label>
+							</div>
+						</div> -->
+						
+						<div class="control-group">
+						<label class="control-label" for="file">{{'label.company.image'| translate}}</label>
+						<div class="controls">
+							<input type="file" data-ng-file-select="onFileSelect($files)">
+						</div>
+					</div>	
+						
+					</td>
+				<td>
+					<!-- <div class="control-group">
+						<label class="control-label">{{ 'label.organization' | translate }}<span class="required">*</span>
+						</label>
+						<div class="controls">
+							<input type="text" id="organization" data-ng-model="formData.organization">
+						</div>
+					</div> -->
+					
+						<div class="control-group">
+						<label class="control-label" for="contactName">Contact Name</label>
+						<div class="controls">
+							<input type="text" data-ng-model="formData.contactName" id="contactName" name="contactName">
+						</div>
+					</div> 
+					
+						
+						<div class="control-group">
+						<label class="control-label" for="officeNumber">{{'label.officephone' | translate}}</label>
+						<div class="controls">
+							<input type="text" id="officeNumber" name="officeNumber" data-ng-model="formData.officeNumber" maxlength="15" 
+								data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/"
+								name="phone" />
+							<div
+								data-ng-show="createpartnerform.officeNumber.$dirty && createpartnerform.officeNumber.$invalid">
+								<small class="error" data-ng-show="createpartnerform.officeNumber.$error.pattern">{{'error.invalid.phone.validation' | translate}} </small> 
+							</div>
+						</div>
+					</div>
+
+						<div class="control-group">
+						<label class="control-label" for="phoneNumber">{{'label.phone' | translate}}<span class="required">*</span>
+						</label>
+						<div class="controls">
+							<input type="text" id="phoneNumber" data-ng-model="formData.phoneNumber" maxlength="15"
+								data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/" 
+								name="phoneNumber" required data-late-Validate />
+							<div
+								data-ng-show="createpartnerform.phoneNumber.$dirty && createpartnerform.phoneNumber.$invalid">
+								<small class="error" data-ng-show="createpartnerform.phoneNumber.$error.pattern">{{'error.invalid.phone.validation' | translate}}</small>
+							</div>
+						</div>
+					</div>
+					
+					<div class="control-group">
+						<label class="control-label">{{ 'label.partner.email' | translate }}<span class="required">*</span>
+						</label>
+						<div class="controls">
+							<input type="email" id="email" data-ng-model="formData.email">
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="city">{{'label.city/area'	| translate}}<span class="required">*</span>
+						</label>
+						<div class="controls">
+							<input type="text" id="city" name="city" data-ng-model="formData.city" autocomplete="off" list="citylist"
+								data-ng-change="getStateAndCountry(formData.city)" required />
+						</div>
+						<datalist id="citylist">
+                   					<option  data-ng-repeat="cityData in cityDatas" value="{{cityData}}">
+            		</datalist>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="state">{{'label.state' |translate}}<span class="required">*</span>
+						</label>
+						<div class="controls">
+							<input type="text" id="state" data-ng-model="formData.state" readonly required />
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="country">{{'label.country'| translate}}<span class="required">*</span>
+						</label>
+						<div class="controls">
+							<input type="text" id="country" name="country"
+								data-ng-model="formData.country" readonly required />
+						</div>
+					</div>
+					
+				</td></tr>
+				
+	<!-- 		<tr>
+			<td>
+                <div class="control-group">
+                  <label class="control-label">{{ 'label.externalId' | translate }}</label>
+                  <div class="controls">
+                    <input type="text" name="externalId" data-ng-model="formData.externalId">
+                  </div>
+                </div>
+              </td>
+			<td>
+				<div class="control-group">
+						<label class="control-label" for="file">{{'label.company.image'| translate}}</label>
+						<div class="controls">
+							<input type="file" data-ng-file-select="onFileSelect($files)">
+						</div>
+					</div>	
+			</td></tr> -->
+			<tr>
+			<td colspan="2" align="right">
+					  
+				<a href="#/offices"><button id="cancel" type="reset" data-ng-click="reset123()" class="btn">{{'button.cancel'| translate}}</button></a>
+				<button id="submit" type="submit" data-ng-disabled="!createpartnerform.$valid" class="btn btn-primary">{{'label.save' | translate }}</button>
+			
+		   </td></tr>
+			
+		</table>
+	</fieldset>
+</form>
+</div>

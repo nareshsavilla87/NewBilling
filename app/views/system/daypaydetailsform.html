@@ -1,0 +1,77 @@
+<div ng-controller="DalpayDetailsFormController">
+	<form id="dalpayForm" name="dalpayForm" novalidate="" class="form-horizontal" ng-submit="submit()">
+	    <div class="error" ng-show="errorStatus || errorDetails">
+		  <label>{{'label.contract.error' | translate}}</label>
+		  <label ng-show="errorStatus">{{errorStatus}}</label>
+		   <label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	  <fieldset>
+		<legend>Dalpay Payment Details</legend>
+	   <table>
+		 <tr>
+		   <td>
+		  <div class="control-group">
+			<label class="control-label" for="name">{{'label.client.creditcard.name' | translate}}<span class="required">*</span></label>
+			<div class="controls">
+				<input type="text" id="cardName" name="cardName" ng-model="formData.name"  required late-Validate/>
+			</div>
+		  </div>
+		 </td>
+		</tr>
+		<tr>
+		  <td>
+		  <div class="control-group">
+			<label class="control-label" for="name">{{'label.client.creditcard.cardnumber' | translate}}<span class="required">*</span></label>
+			<div class="controls">
+				<input type="text" id="cardNumber" name="cardNumber" ng-model="formData.cardNumber" 
+				    ng-focus="cradNumberErrorHide()" ng-change="selectCardType(formData.cardNumber)" required late-Validate/>
+				<span class="error" ng-show="cardNumberDigit">Please enter only digits.</span>
+				<span class="error" ng-show="cardNumberValid">Please enter a valid credit card number.</span>
+			</div>
+		  </div>
+		 </td>
+		</tr>
+		<tr>
+			<td>
+				 <div class="control-group">
+					<label class="control-label" for="name">{{'label.client.creditcard.cardType' | translate}}<span class="required">*</span></label>
+					<div class="controls">
+						 <select id="cardType" name="cardType" ng-model="formData.cardType"  
+						 		ng-options="cardTypeData for cardTypeData in cardTypeDatas" required late-Validate></select>
+					</div>
+		  		</div>
+			</td>
+		</tr>
+		<tr>
+		 <td>
+		  <div class="control-group">
+			<label class="control-label" for="name">{{'label.client.creditcard.expirydate' | translate}}<span class="required">*</span></label>
+			<div class="controls">
+				<input type="text" id="cardExpiryDate" maxlength="7" class="input-small" name="cardExpiryDate" 
+					ng-focus="cardExpireErrorHide()" ng-model="formData.cardExpiryDate" required late-Validate/>(MM/yyyy)
+                <span class="error" ng-show="patternMatch">Expire Date Pattern Doesn't Match!</span>
+                <span class="error" ng-show="cardExpire">Card Expired!.</span>
+			</div>
+		  </div>
+		 </td>
+		</tr>
+		<tr>
+			<td>
+				 <div class="control-group">
+					<label class="control-label" for="name">{{'label.client.creditcard.cvvNumber' | translate}}<span class="required">*</span></label>
+					<div class="controls">
+						 <input type="text" id="cardCvvNo" maxlength="3" class="input-small" name="cardCvvNo" 
+								 ng-focus="cardCvvNoErrorHide()" ng-model="formData.cvvNumber"/>
+						<span class="error" ng-show="cardCvvNoDigit">Please enter only digits.</span>
+					</div>
+		  		</div>
+			</td>
+		</tr>
+		</table>
+		 <div class="offset3">
+			<a href="#/dalpaybtn"><button type="reset" class="btn" >{{'button.cancel' | translate}}</button></a>
+			<button type="submit" class="btn btn-primary" ng-disabled="!dalpayForm.$valid">{{'button.save' | translate}}</button>
+		</div>
+	  </fieldset>
+    </form>
+</div>

@@ -1,0 +1,74 @@
+<div data-ng-controller="StatementsController">
+	<div class="loading-widget-div" data-ng-show="blockUI">
+        <div id="circularG">
+        	<div id="circularG_1" class="circularG"></div><div id="circularG_2" class="circularG"></div>
+            <div id="circularG_3" class="circularG"></div><div id="circularG_4" class="circularG"></div>
+            <div id="circularG_5" class="circularG"></div><div id="circularG_6" class="circularG"></div>
+            <div id="circularG_7" class="circularG"></div><div id="circularG_8" class="circularG"></div>
+        </div>
+    </div><br/>
+	<div class="paddedbottom10 margintop10">
+		<div class="headersdiv" >
+		  <h3><b class="marginleft10">{{'link.statements'|translate}}</b></h3>
+		    <input id="searchStatements" type="text"  class="search-query span3 pull-right inputserach" data-ng-model="filterText"  
+		   		style="width:170px;min-height: 22px;" data-ng-autofocus="true" placeholder="{{ 'placeholder.enter.text.search' | translate }}">
+		</div>
+		<div><table class="table margintop10">
+		 <thead>
+  		   <tr class="graybg drakgraybg">
+             <th>{{'table.header.statement.billdate'|translate}}</th>
+             <th>{{'table.header.statement.duedate'|translate}}</th>
+             <th>{{'table.header.statement.amount'|translate}}({{currencyCode}})</th>
+             <th>{{'header.actions'|translate}}</th>
+        	</tr>
+		 </thead>
+		 <tbody>
+			<tr data-ng-repeat="statement in statementsData.currentPageItems  | customFilter: filterText : ['billDate','dueDate','amount']" >                 
+   				<td style="font-weight: inherit;color: #555555;">{{statement.billDate}}</td>
+   				<td>{{statement.dueDate}}</td>
+   				<td>{{statement.amount}}</td>
+   				<td>
+   					<a data-ng-click="routeTostatement(statement.id)" class="btn btn-primary">{{'label.html' | translate}}</a>&nbsp;
+   					<a data-ng-click="downloadFile(statement.id)" class="btn btn-primary"><i class=" icon-download-alt icon-white"></i>{{'label.pdf' | translate}}</a>&nbsp;
+   					<a data-ng-if="statement.amount > 0" data-ng-click="payment(statement.amount)" class="btn btn-primary"><i class="icon-usd icon-white"></i>{{'label.pay' | translate}}</a>&nbsp;
+  				</td>
+			</tr>
+		</tbody>
+ 	   </table></div>
+ 	   <ul class="pager">
+			<li class="previous"><a data-ng-click="statementsData.previous()" data-ng-disabled="!statementsData.hasPrevious()">&larr;{{'btn.previous'|translate}}</a></li>
+			<li class="next" ><a data-ng-click="statementsData.next()" data-ng-disabled="!statementsData.hasNext()">{{'btn.next'|translate}} &rarr;</a></li>
+       </ul>
+	</div><br/>
+	<div class="paddedbottom10 margintop10">
+		<div class="headersdiv" >
+		  <h3><b class="marginleft10">{{'link.payments'|translate}}</b></h3>
+		   <input id="searchPayments" type="text"  class="search-query span3 pull-right inputserach" data-ng-model="filterText1"  
+		   		style="width:170px;min-height: 22px;" placeholder="{{ 'placeholder.enter.text.search' | translate }}">
+		</div>
+		<div><table class="table margintop10">
+	        <thead>
+	             <tr class="graybg drakgraybg">
+	                <th>{{'table.header.payment.transactiondate'|translate}}</th>
+	                <th>{{'table.header.payment.transactiontype'|translate}}</th>
+	                <th>{{'table.header.payment.transactioncategory'|translate}}</th>
+	                <th>{{'table.header.payment.creditamount'|translate}}({{currencyCode}})</th>
+	                <th>{{'table.header.payment.debitamount'|translate}}({{currencyCode}})</th>
+            	</tr>
+	        </thead>
+	        <tbody>
+	            <tr data-ng-repeat="payment in paymentsData.currentPageItems  | customFilter: filterText1 : ['transDate','transactionType','transactionCategory','creditAmount','amount']" >
+	                <td style="font-weight: inherit;color: #555555;">{{payment.transDate}}</td>
+	                <td>{{payment.transactionType}}</td>
+	                <td>{{payment.transactionCategory}}</td>
+	                <td>{{payment.creditAmount}}</td>
+	                <td>{{payment.amount}}</td>
+	            </tr>
+	        </tbody>
+	    </table></div>
+	    <ul class="pager">
+			<li class="previous"><a data-ng-click="paymentsData.previous()" data-ng-disabled="!paymentsData.hasPrevious()">&larr;{{'btn.previous'|translate}}</a></li>
+			<li class="next" ><a data-ng-click="paymentsData.next()" data-ng-disabled="!paymentsData.hasNext()">{{'btn.next'|translate}} &rarr;</a></li>
+    	</ul>
+	</div>
+</div>

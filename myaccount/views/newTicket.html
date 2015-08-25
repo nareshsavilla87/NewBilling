@@ -1,0 +1,121 @@
+<div data-ng-controller="CreateTicketController">
+	 <div class="loading-widget-div" data-ng-show="blockUI">
+        <div id="circularG">
+        	<div id="circularG_1" class="circularG"></div><div id="circularG_2" class="circularG"></div>
+            <div id="circularG_3" class="circularG"></div><div id="circularG_4" class="circularG"></div>
+            <div id="circularG_5" class="circularG"></div><div id="circularG_6" class="circularG"></div>
+            <div id="circularG_7" class="circularG"></div><div id="circularG_8" class="circularG"></div>
+        </div>
+    </div>
+	<div>
+		<ul class="breadcrumb borderradius15">
+			<li><a href="#/tickets" class="colorwhite">{{'link.tickets' | translate}}</a> <span class="divider colorwhite">/</span></li>
+			<li class="active colorwhite">{{'label.ticket.add.newticket' | translate}}</li>
+		</ul>
+	</div>
+<form name="createticketform" class="form-horizontal well"  data-ng-submit="submit()">
+<br/>
+ 	<div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+    </div>
+	<fieldset>
+		<table>
+			<tr>
+				<td>
+					<div class="control-group">
+						<label class="control-label" for="Date">{{'label.ticket.date' | translate }}</label>
+						<div class = "controls">
+							 <input type="text" data-datepicker-pop="dd MMMM yyyy" data-ng-model="start.date" data-is-open="opened" min="minDate" max="maxDate" 
+							 data-date-disabled="disabled(date, mode)" required data-late-Validate style="background-color:#FFFFFF;"  readonly/>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="control-group">
+						<label class="control-label" for="priority">{{'label.ticket.priority' | translate }}<span class="required">*</span></label>
+						<div class="controls">
+							<select name="priority" data-ng-model="formData.priority"
+								data-ng-options="priorityType.value as priorityType.value for priorityType in priorityTypes"
+								 required data-late-Validate></select>
+						
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="control-group">
+						<label class="control-label" for="Category">{{'label.ticket.category' | translate }}<span class="required">*</span></label>
+						<div class="controls">
+							<select name="category" data-ng-model="formData.problemCode"
+								data-ng-options="problemsData.id as problemsData.mCodeValue for problemsData in problemsDatas"
+								required data-late-Validate></select>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="control-group">
+						<label class="control-label" for="chargeCode">{{'label.ticket.assignto' | translate }}<span class="required">*</span></label>
+						<div class="controls">
+							<select data-ng-model="formData.assignedTo"
+								data-ng-options="usersData.id as usersData.userName for usersData in usersDatas"
+								required data-late-Validate></select>
+						</div>
+					</div>
+				</td>
+				
+
+			</tr>
+			<tr>
+				<td>
+					<div class="control-group">
+            			<label class="control-label" for="sourceData">{{ 'label.source' | translate }}</label>
+            			<div class="controls">
+              				<select data-ng-model="formData.sourceOfTicket"  data-ng-options="sourcedata.mCodeValue as sourcedata.mCodeValue for sourcedata in sourceData" >
+             				</select>
+             									
+            			</div>
+          			</div>
+				</td>
+				
+				 <td>
+					<div class="control-group">
+                        <label class="control-label">{{ 'label.due.time' | translate }}</label>
+                        <div class="controls">
+                            <input type="text" id="preferredCallingTime" min="minDate" data-datepicker-pop="dd MMMM yyyy" data-ng-model="first.date"  style="width:130px;background-color:#FFFFFF;" />
+                            		 
+							<input id="timepicker1" type="text" readonly data-ng-model="first.time" style="width:60px;background-color:#FFFFFF;">
+									
+                        </div>
+          			</div>	
+				</td> 
+			</tr>
+			<tr>
+			<td colspan="2">
+					<div class="control-group">
+						<label class="control-label" for="description" style="margin-top:15px;">{{ 'label.ticket.description' | translate }}<span class="required">*</span></label>
+						<div class="controls">
+						<i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ 'label.ticket.tooltip.description' | translate }}</i><span class="required">*</span>
+						<textarea data-ng-model="formData.description" name="description" style="width:77%; height:5.5em;" required data-late-Validate></textarea>
+						</div></div>
+		   </td></tr>
+		   <tr>
+				<td>
+					<div class="control-group">
+						<label class="control-label" for="Attachments"> {{'label.ticket.file' | translate }}</label>
+						<div class="controls">
+							<input type= "file" ng-file-select="onFileSelect($files)">
+						</div>
+					</div>
+				</td>
+			</tr> 
+		   <tr><td colspan="2" align="right">
+			<a id="cancel" href="#/tickets"><button type="reset" class="btn">{{'btn.cancel' | translate}}</button></a>
+			<button id="submit" type="submit" data-ng-disabled="!createticketform.$valid" class="btn btn-primary">{{'btn.save' | translate}}</button>
+		</td></tr></table>
+
+	</fieldset>
+</form>
+</div>

@@ -1,0 +1,154 @@
+<form class="form-horizontal well" ng-submit="submit4()" >
+ <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+
+        <fieldset>
+          <legend>{{'label.createorder' | translate}}</legend>
+         <legend>{{'label.postpaidplans' | translate}}</legend>
+          <table>
+            <tr>
+              <td>
+             <table class="table table-striped table-condensed table-hover" ng-style="{ width:400 }">
+                <thead>
+                    <tr>
+                        <th class="id">Id&nbsp;<a ng-click="sort_by('id')"></a></th>
+                        <th class="planCode">Plan&nbsp;<a ng-click="sort_by('planCode')"><i class="icon-sort"></i></a></th>
+                         
+                        <!-- <th class="field3">Field 3&nbsp;<a ng-click="sort_by('field3')"><i class="icon-sort"></i></a></th>
+                        <th class="field4">Field 4&nbsp;<a ng-click="sort_by('field4')"><i class="icon-sort"></i></a></th>
+                        <th class="field5">Field 5&nbsp;<a ng-click="sort_by('field5')"><i class="icon-sort"></i></a></th>  -->
+                    </tr>
+                </thead>
+                <tfoot>
+                    <td colspan="2">
+                        <div class="pagination pull-right">
+                            <ul>
+                                <li ng-class="{disabled: currentPage == 0}">
+                                    <a href ng-click="prevPage()" class="icon-chevron-left"></a>
+                                </li>
+                                <li ng-repeat="n in range(pagedItems.length)"
+                                    ng-class="{active: n == currentPage}"
+                                ng-click="setPage()">
+                                    <a href ng-bind="n + 1">1</a>
+                                </li>
+                                <li ng-class="{disabled: currentPage == pagedItems.length - 1} ">
+                                    <a href ng-click="nextPage()" class="icon-chevron-right"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tfoot>
+                <tbody>
+                    <tr ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse"  ng-show="item.isPrepaid == 'N'">
+                        <td >
+                       <input type="radio" id="{{item.id}}" name="planCode" value="item.id" ng-click='setBillingFrequency(item.id)'>{{plandata.planCode}}
+                       </td>
+                        <td ng-show="item.isPrepaid == 'N'"><label for="{{item.id}}" >{{item.planCode}}-
+                         <any ng-repeat="services in item.availableServices">
+                         {{services.serviceDescription}} 
+                         <any ng-show="services">,</any>
+                        </label>
+                         <td>
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+               <legend>{{'label.prepaidplans' | translate}}</legend>
+              <table class="table table-striped table-condensed table-hover" ng-style="{ width:450 }">
+                <thead>
+                    <tr>
+                        <th class="id">Id&nbsp;<a ng-click="sort_by('id')"></a></th>
+                        <th class="planCode1">Plan&nbsp;<a ng-click="sort_by('planCode1')"></i></a></th>
+                         
+                        <!-- <th class="field3">Field 3&nbsp;<a ng-click="sort_by('field3')"><i class="icon-sort"></i></a></th>
+                        <th class="field4">Field 4&nbsp;<a ng-click="sort_by('field4')"><i class="icon-sort"></i></a></th>
+                        <th class="field5">Field 5&nbsp;<a ng-click="sort_by('field5')"><i class="icon-sort"></i></a></th>  -->
+                    </tr>
+                </thead>
+                <!--  <tfoot>
+                    <td colspan="2">
+                        <div class="pagination pull-right">
+                            <ul>
+                                <li ng-class="{disabled: currentPage == 0}">
+                                    <a href ng-click="prevPage()">� Prev</a>
+                                </li>
+                                <li ng-repeat="n in range(prepaidPlanspagedItems.length)"
+                                    ng-class="{active: n == currentPage}"
+                                ng-click="setPage()">
+                                    <a href ng-bind="n + 1">1</a>
+                                </li>
+                                <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+                                    <a href ng-click="nextPage()">Next �</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tfoot> -->
+                <tbody>
+                    <tr ng-repeat="item in prepaidPlanspagedItems[currentPage] | orderBy:sortingOrder:reverse " ng-show="item.isPrepaid == 'Y'">
+                        <td >
+                       <input type="radio" id="{{item.id}}" name="planCode" value="item.id" ng-click='setBillingFrequency(item.id)'>{{plandata.planCode}}
+                       </td>
+                        <td ng-show="item.isPrepaid == 'Y'"><label for="{{item.id}}" >{{item.planCode}}-
+                         <any ng-repeat="services in item.availableServices">
+                         {{services.serviceDescription}} 
+                         <any>,</any>
+                        </any>
+                        </label>
+                         <td>
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+              </td>
+              <td align="top">
+                      <div class="control-group">
+                          <label class="control-label" for="startDate">{{ 'label.order.startdate' | translate }}</label>
+                            <div class="controls">
+                          <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.date" is-open="opened" min="minDateOrder" max="maxDate" 
+                          date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
+                          </div>
+                        </div>
+                       <div class="control-group">
+                         <label class="control-label" for="contractPeriod">{{ 'label.order.contractperiod' | translate }}</label>
+
+                           <div class="controls">
+                              <select   ng-disabled="formData4.isPrepaid == 'Y'" ng-model="formData4.contractPeriod"  ng-options="subscriptiondata.id as subscriptiondata.Contractdata for subscriptiondata in subscriptiondatas" value="{{billRuleData.id}}"></select>
+                           </div>
+                        </div>
+                        <div class="control-group" ng-hide="formData4.isPrepaid == 'Y'">
+                          <label class="control-label" for="paytermCode">{{ 'label.order.billingfrequency' | translate }}</label>
+                             <div class="controls">
+                                <select ng-model="formData4.paytermCode"  ng-options="paytermdata.paytermtype as paytermdata.paytermtype for paytermdata in paytermdatas" value="{{billRuleData.id}}"></select>
+                            </div>
+                          </div>
+                        <div class="control-group" ng-hide="formData4.isPrepaid == 'Y'">
+                            <label class="control-label" for="billAlign">{{ 'label.order.billalign' | translate }}</label>
+                        <div class="controls">
+                            <label class="checkbox">
+                              <input type="checkbox" ng-model="formData4.billAlign">
+                       </label>
+            </div>
+          </div>
+              </td>
+            </tr>
+          </table>
+     
+        </fieldset>
+         <div class="jw-footer ui-widget-header ui-corner-bottom">
+              <div class="jw-buttons ui-helper-clearfix">
+                 <a href="#/clients"><button type="reset" class="btn">Cancel</button></a>
+                 <a href=""><button  class="jw-button-prev btn btn-primary" type="button" ng-show="previous" ng-click="previousStepmain()" style="display: inline-block;">Previous</button></a>
+                 
+             <!-- <button type="submit" class="jw-button-next btn btn-primary" ng-dblclick="dbClick()" ng-disabled="flag" ng-show="finish">Finish</button> -->
+             <button type="submit" class="jw-button-next btn btn-primary" ng-show="finish">Finish</button>
+             </div>
+          </div>
+            
+        
+      </form>

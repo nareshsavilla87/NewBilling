@@ -1,0 +1,167 @@
+<div ng-controller="ViewTicketController"> 
+<div><ul class="breadcrumb">
+  <!-- <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+     <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+     <li>
+          <h3>
+            &nbsp;
+            {{displayName}}
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+            &nbsp;
+          </h3>
+        </li>
+        <li><span class="divider">|</span>
+          <i class="icon-barcode"></i>
+          <small>Uniquely identified {{accountNo}}&nbsp;</small>
+        </li>
+        <li><span class="divider">|</span>
+          <i class="icon-building"></i>
+          <small>Office "{{officeName}}" </small>
+        </li>
+         <li><span class="divider">|</span>
+          <i></i>
+          <small>Balance {{balanceAmount}} &nbsp;{{currency}}</small>
+        </li> -->
+        <table>
+        <tr>
+        <td>
+        	 <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+        </td>
+        <td>
+            <small style="color:black;">{{displayName}}</small>
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Uniquely identified  {{accountNo}}</small></td>
+        	</tr>
+        	<tr>
+        		<td><i class="icon-building"></i><small>Office "{{officeName}}"</small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Cell Phone {{phone}}</small></td>
+        	</tr>
+        	<tr>
+        	<td><small>Device # <strong>{{hwSerialNumber}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Client Type "{{categoryType}}"</small></td>
+        	</tr>
+        	<tr>
+        		<td><small>Balance&nbsp;{{balanceAmount}}&nbsp;{{currency}} </small></td>
+        	</tr>
+        </table>
+        </td>
+        </tr>
+        </table>
+ </ul>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/viewclient/{{clientId}}" ng-click="reset123()">{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			  <li class="active">{{'label.viewticket' | translate}}</li>
+		</ul>
+	</div>
+    <div class="paddedbottom10">
+		
+	    <div class="pull-right">
+	      <div class="btn-group">
+	          <a  href="#/editTicket/{{clientId}}/{{ticket.id}}" ng-show="(ticket.status == 'OPEN')&&(PermissionService.showMenu('UPDATE_TICKET'))"  class="btn btn-primary"><i class="icon-edit icon-white"></i>Add Comment</a>
+	          <!-- <input type='image' href="#/closeTicket/{{clientId}}/{{ticket.id}}" ng-show="(ticket.status == 'OPEN')&&(PermissionService.showMenu('CLOSE_TICKET'))" src="./images/Close.ico" popover="Close" popover-trigger="mouseenter"  class="icon-large"/>	 -->        
+	          <a href="#/closeTicket/{{clientId}}/{{ticket.id}}" ng-show="(ticket.status == 'OPEN')&&(PermissionService.showMenu('CLOSE_TICKET'))" class="btn btn-primary"><i class="icon-trash icon-white"></i> Close</a> 
+	      </div>
+	    </div>
+	</div>
+
+	<div class="row paddedleft">
+					<h3>&nbsp;&nbsp;&nbsp;{{'label.viewticket' | translate}}</h3>	
+                          <table width="100%">
+                          		<!-- <tr><td><h3>&nbsp;&nbsp;&nbsp;{{'label.viewticket' | translate}}</h3>	</td></tr> -->
+                          		<tr>
+                          			<td>
+                          				<table>
+                          					<tr>
+                              					<td width="70%">{{ 'label.ticket.id' | translate}}</td>
+                              					<td>{{ticket.id}}</td>
+                            				</tr>
+                            				<tr>
+                              					<td>{{ 'label.ticket.priority' | translate}}</td>
+                              					<td>{{ticket.priority}}</td>
+                            				</tr>
+                            				<tr>
+                              					<td>{{ 'label.source' | translate }}</td>
+                              					<td>{{ticket.sourceOfTicket}}</td>
+                            				</tr>
+                            				<tr>
+                              					<td>{{ 'label.ticket.status' | translate }}</td>
+                              					<td>{{ticket.status}}</td>
+                            				</tr>
+                          				</table>
+                          			</td>
+                          			
+                          			<td>
+                          				<table>
+                          					<tr>
+                              					<td width="50%">{{ 'label.ticket.ticketdate' | translate }}</td>
+                              					<td>{{ticket.ticketDate | DateFormat}}</td>
+                            				</tr>
+                            				<tr>
+                              					<td>{{ 'label.ticket.duedate' | translate }}</td>
+                              					<td>{{ticket.dueDate}}</td>
+                            				</tr>
+                            				<tr>
+                              					<td>{{ 'label.ticket.problemcode' | translate}}</td>
+                              					<td>{{ticket.problemDescription}}</td>
+                            				</tr>
+                            				<tr>
+                              					<td>{{ 'label.ticket.assignto' | translate }}</td>
+                              					<td>{{ticket.userName}}</td>
+                            				</tr>
+                          				</table>
+                          			</td>
+                          		</tr>
+                          </table>
+                      </div>                    
+                                     
+    
+    <div class="row paddedleft">
+    	<h3>&nbsp;&nbsp;&nbsp;{{'label.tickethistory' | translate}}</h3>
+     <table class="table">
+         <thead>
+            <tr class="graybg">
+		        <th width="12%">{{'label.tickethistory.createddate' | translate}}</th>
+		        <th>{{'label.tickethistory.assignto' | translate}}</th>
+		        <th>{{ 'label.tickethistory.attachments' | translate }}</th>
+		        <th>{{'label.tickethistory.comments' | translate}}</th>
+		        <th>{{ 'label.tickethistory.problemdescription' | translate }}</th>
+	      </tr>
+	      
+        </thead>
+        <tbody>
+            <tr ng-repeat="history in historyData  | filter:filterText">    
+                <td>{{history.createdDate | DateFormat}}</td>  
+                <td>{{history.assignedTo}}</td>
+                <td>{{history.attachedFile}}&nbsp;
+                	<a ng-show="history.attachedFile" ng-click="downloadDocument(history.id)"><i class="icon-cloud-download"></i></a>
+                </td>
+                <td>{{history.statusDescription}}</td>
+                <td>{{problemDescription}}</td>             
+            </tr>
+        </tbody>
+        </table>
+    </div>
+</div>

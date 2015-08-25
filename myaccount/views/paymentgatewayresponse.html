@@ -1,0 +1,45 @@
+<div data-ng-controller="PaymentGatewayResponseController"> 
+
+    <div class="paddedbottom10">
+		<ul class="breadcrumb borderradius15">
+	        <li><a href="#/statements">{{'label.bill.statements' | translate}}</a> </li>
+	    </ul>
+	</div>
+
+	 <div class="span6">
+			<h3><b class="marginleft10">{{'label.receiptpage'|translate}}</b></h3>
+			<table class="table table-striped table-bordered fullwidth">
+					<tr>
+						<td width="40%">{{'label.paymentgateway.result' | translate }}</td>
+						<td width="60%">{{formData.Result}}</td>
+					</tr>	
+					<tr>
+						<td width="40%">{{'label.paymentgateway.description' | translate}}</td>
+						<td width="60%">{{formData.Description}}</td>
+					</tr>
+					<tr>
+						<td width="40%">{{'label.paymentgateway.amount' | translate}}</td>
+						<td width="60%">{{formData.Amount}}</td>
+					</tr>
+					<tr>
+						<td width="40%">{{'label.paymentgateway.receiptNo' | translate}}</td>
+						<td width="60%">{{formData.TransactionId}}</td>
+					</tr>
+					<tr data-ng-hide='formData.Result != "SUCCESS"'>
+						<td width="40%">{{'label.paymentgateway.paymentId' | translate}}</td>
+						<td width="60%">{{formData.ObsPaymentId}}</td>
+					</tr>
+					<tr data-ng-hide='cardType == ""'>
+						<td width="40%">{{'label.cardType' | translate}}</td>
+						<td width="60%">{{cardType}}</td>
+					</tr>
+					<tr data-ng-hide='cardNumber == ""'>
+						<td width="40%">{{'label.cardNumber' | translate}}</td>
+						<td width="60%">{{cardNumber}}</td>
+					</tr>
+					
+			  </table>
+	
+       </div>  
+                                     
+ </div>

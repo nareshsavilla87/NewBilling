@@ -1,0 +1,117 @@
+<div data-ng-controller="AdjustmentClientController">
+	<div><ul class="breadcrumb">
+ 	<li><table>
+        <tr>
+        <td>
+         <img data-ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img data-ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+        </td>
+        <td>
+            <small style="color:black;">{{displayName}}</small>
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Uniquely identified&nbsp;<strong>{{accountNo}}</strong></small></td>
+        	</tr>
+        	<tr>
+        	    <td><small>Cell Phone&nbsp;<strong>{{phone}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        	   <td><i class="icon-building"></i><small>Office&nbsp;"<strong>{{officeName}}</strong>"</small></td>
+        	</tr>
+        	<tr>
+        	<td><small>Device # <strong>{{hwSerialNumber}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Client Type&nbsp;"<strong>{{categoryType}}</strong>"</small></td>
+        	</tr>
+        	<tr>
+        		<td><small>Balance&nbsp;<strong>{{balanceAmount}}</strong>&nbsp;{{currency}} </small></td>
+        		<td class="paddedleft0" data-ng-show="walletConfig"><small>[Wallet&nbsp;<strong>{{walletAmount}}</strong>&nbsp;{{currency}}]</small></td>
+        	</tr>
+        </table>
+        </td>
+        </tr>
+        </table></li>
+ </ul>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href='#/viewclient/{{clientId}}'>{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'label.adjustments' | translate}}</li>
+		</ul>
+	</div>
+	<form  name="createadjustmentform" novalidate class="form-horizontal well" data-ng-submit="submit()">
+		<br>
+		 <div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+		<fieldset>
+		<table>
+		<tr>
+		<td>
+			<div class="control-group">
+                        	<label class="control-label">{{ 'label.adjustmentdate' | translate }}</label>
+                        	<div class="controls">
+                            <input type="text" datepicker-pop="dd MMMM yyyy" data-ng-model="start.date" is-open="opened2" min="minDate" max="'2020-06-22'" 
+                            date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
+                        	</div>
+                      	</div>
+            </td></tr>
+			<tr>
+			<td>
+			<div class="control-group">
+				<label class="control-label">{{ 'label.adjustmentcode' | translate }}</label>
+				<div class="controls">
+	                <select id="adjustment_code" data-ng-model="formData.adjustment_code"  data-ng-options="data.id as data.adjustmentCode for data in data" value="{{data.id}}"></select>
+	                    </div>
+			         </div>
+			</td></tr>
+				
+				<tr><td>
+				<div class="control-group">
+           				<label class="control-label" for="adjustment_type">{{ 'label.adjustmentamount' | translate }}</label>
+            			<div class="controls">
+              			<input type="text" id="amount_paid" name="adjustmentAmount" data-ng-model="formData.amount_paid" style="width:111px;" data-ng-pattern="/^\d+(\.\d{1,2})?$/">
+              			<select data-ng-model="formData.adjustment_type" data-ng-options="discountOption.discountType as discountOption.discountType for discountOption in discountOptions" class="input-small" value="{{discountOption.discountType}}">
+	               	 	<!-- <option ng-repeat="datas in datass" value="{{datas.discountOptions.discountType}}">{{datas.discountOptions.discountType}}</option> -->
+	               	 	</select><br/>
+	               	 	<span  data-ng-show="createadjustmentform.adjustmentAmount.$invalid">
+			              	<small class="error" data-ng-show="createadjustmentform.adjustmentAmount.$error.pattern">Not Valid Amount!</small>
+			              </span>
+            				</div>
+          			</div>
+          		</td></tr>
+          			
+			<tr><td>					
+			<div class="control-group">
+	          	<label class="control-label">{{'label.notes' | translate}}</label>
+		        <div class="controls">
+		          <textarea data-ng-click="hideError()" data-ng-model="formData.Remarks"></textarea>
+		        </div>
+	        </div>
+	        </td></tr>
+	         
+			<tr><td align="right">
+				<a id="cancel"  href='#/viewclient/{{clientId}}' class="btn">Cancel</a>
+                <button id="submit" type="submit" class="btn btn-primary" data-ng-disabled="createadjustmentform.adjustmentAmount.$invalid">Save</button>
+			</td></tr>
+			</table>
+		</fieldset>
+	</form>
+</div>

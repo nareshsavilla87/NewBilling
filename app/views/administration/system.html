@@ -1,0 +1,76 @@
+<div class="row paddedleft paddedtop" ng-controller="SystemModuleController">
+	<div class="span6">
+		<div class="list-group">
+
+			<a class="list-group-item" href="#/users">
+				<h4 class="list-group-item-heading"><i class="icon-user icon-large"></i>&nbsp;&nbsp;{{ 'link.admin.users' | translate }}</h4>
+				<p class="list-group-item-text">Define or modify users and associated roles</p>
+				
+			<a class="list-group-item" href="#/admin/roles" ng-show="PermissionService.showMenu('create_role','READ_role')">
+				<h4 class="list-group-item-heading"><i class="icon-key icon-large"></i>&nbsp;&nbsp;Manage Role & Permissions</h4>
+				<p class="list-group-item-text">Define or modify roles and associated permissions</p>
+			</a>
+			
+			<a class="list-group-item" href="#/admin/viewmctasks" ng-show="PermissionService.showMenu('UPDATE_PERMISSION')">
+				<h4 class="list-group-item-heading"><i class="icon-sitemap icon-large"></i>&nbsp;&nbsp;Configure Maker Checker Task</h4>
+				<p class="list-group-item-text">Define or modify maker checker tasks</p>
+			</a>
+			 <a class="list-group-item" href="#/currencydetails" ng-show="PermissionService.showMenu('READ_COUNTRYCURRENCY')">
+	      		<h4 class="list-group-item-heading"><i class="icon-briefcase icon-large"></i>&nbsp;&nbsp;Currency Details</h4>
+	      		<p class="list-group-item-text">Enter the Currency that will be mapped </p>
+	    	</a>
+			
+			<a class="list-group-item" href="#/provision" ng-show="PermissionService.showMenu('READ_PROVISIONINGADAPTERSYSTEM')">
+				<h4 class="list-group-item-heading"><i class="icon-tags icon-large"></i>&nbsp;&nbsp;Provision Interface</h4>
+				<p class="list-group-item-text">Manage the Adapter and Integration logs</p>
+			</a>
+			
+			<a class="list-group-item" href="#/audit" ng-show="PermissionService.showMenu('read_Audit')">
+				<h4 class="list-group-item-heading"><i class="icon-large icon-list-alt"></i>&nbsp;&nbsp;Audit Trails</h4>
+				<p class="list-group-item-text">Audit logs of all activities such as Client, Orders etc</p>
+			</a>
+			
+			<!-- </a>
+				<a class="list-group-item" href="#/dalpaybtn">
+				<h4 class="list-group-item-heading"><i class="icon-large icon-list-alt"></i>&nbsp;&nbsp;For Dalpay</h4>
+				<p class="list-group-item-text">To provide entire details</p>
+			</a>  -->
+		</div>
+	</div>
+	<div class="span6">
+		<div class="list-group">
+
+            <a class="list-group-item" href="#/global" ng-show="PermissionService.showMenu('READ_CONFIGURATION')">
+                <h4 class="list-group-item-heading"><i class="icon-large icon-gears"></i>&nbsp;&nbsp;{{'link.admin.configuration' | translate}}</h4>
+                <p class="list-group-item-text">Global configurations and Cache settings</p>
+            </a>
+            
+        <!--     <a class="list-group-item" href="#/paymentgatewayconfig" ng-show="PermissionService.showMenu('READ_PAYMENTGATEWAYCONFIG')">
+                <h4 class="list-group-item-heading"><i class="icon-large icon-gears"></i>&nbsp;&nbsp;{{'link.admin.paymentgatewayconfiguration' | translate}}</h4>
+                <p class="list-group-item-text">PaymentGateway configurations</p>
+            </a>
+             -->
+             <a class="list-group-item" href="#/mappingconfig" ng-show="PermissionService.showMenu('READ_SERVICEMAPPING','READ_PLANMAPPING','READ_PROVISIONINGSYSTEM','READ_EVENTACTIONMAP')">
+                <h4 class="list-group-item-heading"><i class="icon-large icon-gears"></i>&nbsp;&nbsp;{{'link.admin.mappingconfiguration' | translate}}</h4>
+                <p class="list-group-item-text">Service and Hardware mapping configurations</p>
+            </a>
+            <a class="list-group-item" href="#/datatables" ng-show="PermissionService.showMenu('READ_DATATABLE')">
+				<h4 class="list-group-item-heading"><i class="icon-table icon-large"></i>&nbsp;&nbsp;Manage Data Table</h4>
+				<p class="list-group-item-text">Add new extra feilds to any entity in the form of data table</p>
+			</a>
+			<a class="list-group-item" href="#/reports" ng-show="PermissionService.showMenu('READ_REPORT')">
+				<h4 class="list-group-item-heading"><i class="icon-large icon-bar-chart"></i>&nbsp;&nbsp;{{'label.managereports' | translate}}</h4>
+				<p class="list-group-item-text">Add new report and classify reports</p>
+			</a>
+			<a class="list-group-item" href="#/codes" ng-show="PermissionService.showMenu('CREATE_CODE','READ_CODE')">
+				<h4 class="list-group-item-heading"><i class="icon-list-ul icon-large"></i>&nbsp;&nbsp;Manage Codes</h4>
+				<p class="list-group-item-text">Codes are used defined drop down values</p>
+			</a>
+			<a class="list-group-item" href="#/aboutobs">
+				<h4 class="list-group-item-heading"><i class="icon-large icon-list-alt"></i>&nbsp;&nbsp;About OBS</h4>
+				<p class="list-group-item-text">Version / Release with features supported</p>
+			</a>
+            
+		</div>
+	</div>
+</div>

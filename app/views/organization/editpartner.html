@@ -1,0 +1,173 @@
+<div data-ng-controller="EditPartnerController">
+	<ul class="breadcrumb">
+		<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+		<li><a href="#/offices" data-ng-click="reset123()">{{'label.managepartners' | translate}}</a><span class="divider">/</span></li>
+		 <li><a href="#/viewpartner/{{partnerId}}/{{officeId}}">{{partnerName}}</a><span class="divider">/</span></li>
+		<li class="active">{{'label.editpartner' | translate}}</li>
+	</ul>
+<form name="editpartnerform" class="form-horizontal well" novalidate  data-ng-submit="submit()">
+	<div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label> <label data-ng-show="errorStatus">{{errorStatus}}</label> 
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code| translate}}</label>
+	</div>
+	<fieldset>
+		<legend>{{'label.editpartner' | translate}}</legend>
+		<table>
+			<tr>
+				<td>
+					<div class="control-group">
+						<label class="control-label">{{ 'label.partnername' | translate }}<span class="required">*</span>
+						</label>
+						<div class="controls">
+							<input type="text" id=partnerName name="partnerName" data-ng-model="formData.partnerName" data-ng-pattern="/^[a-zA-Z0-9\-\&\s]+$/" required data-ng-minlength=3 data-late-Validate/><br/> 
+							 <span data-ng-show="editpartnerform.partnerName.$invalid">
+								<small class="error" data-ng-show="editpartnerform.partnerName.$error.pattern">alphanumeric and spaces only!</small> 
+								<small class="error" data-ng-show="editpartnerform.partnerName.$error.req">{{'label.required.field' | translate}} </small> 
+								<small class="error" data-ng-show="editpartnerform.partnerName.$error.minlength && !editpartnerform.partnerName.$error.req">
+									      Partner Name is required at least 3 characters</small>
+							</span>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label">{{ 'label.loginname' |translate }}<span class="required">*</span>
+						</label>
+						<div class="controls">
+							<input type="text" id="loginName" name="loginName||username" data-ng-model="formData.loginName" data-ng-pattern="/^[a-zA-Z0-9\-\&\s]+$/" required data-ng-minlength=3 data-late-Validate/><br/>
+						     <span data-ng-show="editpartnerform.loginName.$invalid">
+								<small class="error" data-ng-show="editpartnerform.loginName.$error.pattern">alphanumeric and spaces only!</small> 
+								<small class="error" data-ng-show="editpartnerform.loginName.$error.req">{{'label.required.field' | translate}} </small> 
+								<small class="error" data-ng-show="editpartnerform.loginName.$error.minlength && !editpartnerform.loginName.$error.req">
+									   Login Name is required at least 3 characters</small>
+							</span>
+						</div>
+					</div>
+					
+					<div class="control-group">
+							<label class="control-label">{{ 'label.parentoffice' | translate }}</label>
+							<div class="controls">
+								<select data-ng-model="formData.parentId" data-ng-options="office.id as office.name for office in offices "></select>
+							</div>
+						</div>
+					
+					<div class="control-group">
+						<label class="control-label">{{ 'label.contact.name' | translate }}
+						</label>
+						<div class="controls">
+							<input type="text" id="contactName" data-ng-model="formData.contactName">
+						</div>
+					</div>
+					
+					<div class="control-group">
+						<label class="control-label" for="currency">{{'label.currency' | translate }}<span class="required">*</span></label>
+						<div class="controls">
+							<select id="currency" data-ng-model="formData.currency"
+								data-ng-options="currencydata.code as currencydata.displayLabel for currencydata in currencydatas"
+								data-value="{{currencydata.code}}"><option value="">{{'label.select.one'| translate}}</option></select>
+						</div>
+					</div>
+					
+
+					<!-- 	<div class="control-group">
+							<label class="control-label" for="isCollective">{{'label.partner.isCollective' | translate }}</label>
+							<div class="controls">
+								<label class="checkbox"> <input type="checkbox" id="isCollective" data-ng-model="formData.isCollective">
+								</label>
+							</div>
+						</div> -->
+						
+						<div class="control-group">
+						<label class="control-label" for="file">{{'label.company.image'| translate}}</label>
+						<div class="controls">
+							<input type="file" data-ng-file-select="onFileSelect($files)">
+						</div>
+					</div>	
+						
+					</td>
+				<td>
+					
+					<div class="control-group">
+						<label class="control-label">{{ 'label.partner.email' | translate }}<span class="required">*</span>
+						</label>
+						<div class="controls">
+							<input type="email" id="email" data-ng-model="formData.email">
+						</div>
+					</div>
+					
+					
+					<div class="control-group">
+						<label class="control-label" for="phoneNumber">{{'label.mobilephone' | translate}}<span class="required">*</span>
+						</label>
+						<div class="controls">
+							<input type="text" id="phoneNumber" data-ng-model="formData.phoneNumber" maxlength="15"
+								data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/"
+								name="phone" required data-late-Validate />
+							<div
+								data-ng-show="editpartnerform.phoneNumber.$dirty && editpartnerform.phoneNumber.$invalid">
+								<small class="error" data-ng-show="editpartnerform.phoneNumber.$error.pattern">{{'error.invalid.phone.validation' | translate}}</small>
+							</div>
+						</div>
+					</div>
+					
+					<div class="control-group">
+						<label class="control-label" for="officeNumber">{{'label.officephone' | translate}}
+						</label>
+						<div class="controls">
+							<input type="text" id="officeNumber" data-ng-model="formData.officeNumber" maxlength="15"
+								data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/"
+								name="officeNumber"  />
+							<div
+								data-ng-show="editpartnerform.officeNumber.$dirty && editpartnerform.officeNumber.$invalid">
+								<small class="error" data-ng-show="editpartnerform.officeNumber.$error.pattern">{{'error.invalid.phone.validation' | translate}}</small>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+					<div class="control-group">
+						<label class="control-label" for="city">{{'label.city/area'	| translate}}<span class="required">*</span>
+						</label>
+						<div class="controls">
+							<input type="text" id="city" name="city" data-ng-model="formData.city" autocomplete="off" list="citylist"
+								data-ng-change="getStateAndCountry(formData.city)" required />
+						</div>
+						<datalist id="citylist">
+                   					<option  data-ng-repeat="cityData in cityDatas" value="{{cityData}}">
+            		</datalist>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="state">{{'label.state' |translate}}<span class="required">*</span>
+						</label>
+						<div class="controls">
+							<input type="text" id="state" data-ng-model="formData.state" readonly required />
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="country">{{'label.country'| translate}}<span class="required">*</span>
+						</label>
+						<div class="controls">
+							<input type="text" id="country" name="country"
+								data-ng-model="formData.country" readonly required />
+						</div>
+					</div>
+					
+				</td></tr>
+				
+		<!-- 	<tr>
+			<td>
+			</td></tr> -->
+			<tr>
+			<td colspan="2" align="right">
+					  
+				<button id="cancel" data-ng-click="reset123(partnerId,officeId)"type="reset" class="btn">{{'button.cancel'| translate}}</button>
+				<button id="submit" type="submit" data-ng-disabled="!editpartnerform.$valid" class="btn btn-primary">{{'label.save' | translate }}</button>
+			
+		   </td></tr>
+			
+		</table>
+	</fieldset>
+</form>
+</div>

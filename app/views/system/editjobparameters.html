@@ -1,0 +1,156 @@
+<div data-ng-controller="EditJobParameters">
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+			<li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/jobs">{{'label.manageschedulerjobs' | translate}}</a> <span class="divider">/</span></li>
+			<!--  <li><a href="#/viewschedulerjob/{{formData.jobId}}">{{formData.displayName}}</a> <span class="divider">/</span></li>-->
+			<li class="active">{{'label.editschedulerjobparameters' | translate}}</li>
+		</ul>
+	</div>
+
+	<div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label> 
+		<label data-ng-show="errorStatus">{{errorStatus}}</label> 
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	</div>
+	
+	
+	<form class="form-horizontal" data-ng-submit="submit()">
+		<fieldset>
+
+			<div class="control-group" data-ng-show="formData.displayName !='RADIUS' && formData.displayName !='SIMULATOR' && formData.displayName !='EXPORTDATA' && formData.displayName !='RESELLERCOMMISSION'" >
+				<label class="control-label">{{'label.job.reportname' | translate }}<span class="required">*</span></label>
+				<div class="controls">
+					<select data-ng-model="jobparameters.batchName" 
+						data-ng-options="reportData.batchName as reportData.batchName for reportData in reportDatas"
+						data-value="{{office.id}}">
+					</select>
+				</div>
+			</div>
+
+			<div class="control-group" data-ng-show="formData.displayName =='INVOICING' || formData.displayName =='PDF' || formData.displayName =='EXPORTDATA' || formData.displayName =='RESELLERCOMMISSION'">
+				<label class="control-label" for="startDate">{{'label.job.processdate' | translate }}</label>
+				<div class="controls">
+					<input type="text" data-datepicker-pop="dd MMMM yyyy"
+						data-ng-model="date.processDate" data-is-open="opened2" min="minDate"
+						max="'2020-06-22'" data-date-disabled="disabled(date, mode)" />
+				</div>
+			</div>
+
+			<div class="control-group" data-ng-show="formData.displayName =='STATEMENT' || formData.displayName == 'DISCONNECT_UNPAID_CUSTOMERS'">
+				<label class="control-label" for="startDate">{{'label.job.duedate' | translate }}</label>
+				<div class="controls">
+					<input type="text" data-datepicker-pop="dd MMMM yyyy"
+						data-ng-model="date.dueDate" data-is-open="opened2" min="minDate"
+						max="'2020-06-22'" data-date-disabled="disabled(date, mode)" />
+				</div>
+			</div>
+
+			<div class="control-group" data-ng-show="formData.displayName =='PDF'">
+				<label class="control-label" for="promotionalMessage">{{'label.job.promotionalmessage' | translate}}</label>
+				<div class="controls">
+					<textarea rows="2" cols="2" data-ng-model="formData.promotionalMessage"></textarea>
+				</div>
+			</div>
+			
+			<div class="control-group" data-ng-show="formData.displayName =='MERGE_MESSAGE'">
+				<label class="control-label">{{ 'label.job.messagetemplate' | translate }}<span class="required">*</span> </label>
+				<div class="controls">
+					 <select data-ng-model="jobparameters.messageTemplate"
+						data-ng-options="billingMessageData.templateDescription as billingMessageData.templateDescription for billingMessageData in billingMessageDatas"
+						data-value="{{office.id}}">
+					</select> 
+					<!-- <select data-ng-model="jobparameters.messageTemplate"
+						data-ng-options="templateData.name as templateData.name for templateData in templateDatas">
+					</select> -->
+				</div>
+			</div>
+
+			<div class="control-group" data-ng-show="formData.name =='Auto Exipiry'">
+				<label class="control-label" for="startDate">{{'label.job.exipirydate' | translate }}</label>
+				<div class="controls">
+					<input type="text" data-datepicker-pop="dd MMMM yyyy"
+						data-ng-model="date.exipiryDate" data-is-open="opened2" min="minDate"
+						max="'2020-06-22'" data-date-disabled="disabled(date, mode)" />
+				</div>
+			</div>
+			
+			<div class="control-group" data-ng-show="formData.displayName =='REPORTER'">
+				<label class="control-label">{{ 'label.job.emailid' | translate }}<span class="required">*</span></label>
+				<div class="controls">
+					<input type="text" data-ng-model="jobparameters.emailId">
+				</div>
+			</div>
+			
+			<div class="control-group" data-ng-show="formData.displayName =='RADIUS'">             
+               <label class="control-label">{{ 'label.job.ProvSystem' | translate }}<span class="required">*</span></label>
+                <!-- <div class="controls">
+                <input type="text" data-ng-model="jobparameters.provSystem">
+                </div> -->          
+                <div class="controls">
+                  <select data-ng-model="jobparameters.provSystem"  ng-options="provisionSystemData.billruleOptions as provisionSystemData.billruleOptions for provisionSystemData in provisionSysData" value="{{provisionSystemData.mCodeValue}}">
+                </select>
+                </div>   
+           </div>
+           <div class="control-group" data-ng-show="formData.displayName =='RADIUS'">              
+               <label class="control-label">{{ 'label.job.url' | translate }}<span class="required">*</span></label>
+                <div class="controls">
+                <input type="text" data-ng-model="jobparameters.url">
+                </div>               
+           </div>
+           <div class="control-group" data-ng-show="formData.displayName =='RADIUS'">              
+                <label class="control-label">{{ 'label.job.username' | translate }}<span class="required">*</span></label>
+                <div class="controls">
+                <input type="text" data-ng-model="jobparameters.username">
+                </div>          
+           </div>
+           <div class="control-group" data-ng-show="formData.displayName =='RADIUS'">              
+                <label class="control-label">{{ 'label.job.password' | translate }}<span class="required">*</span></label>
+                <div class="controls">
+                <input type="text" data-ng-model="jobparameters.password">
+                </div>              
+           </div> 
+           
+			<div class="control-group" data-ng-show="formData.displayName =='SIMULATOR'">
+				<label class="control-label">{{ 'label.job.updateStatus' | translate }}</label>
+				<div class="controls">
+					<label class="checkbox"> <input type="checkbox" data-ng-model="formData.isUpdateStatus"></label>
+				</div>
+			</div>
+			
+			<div class="control-group" data-ng-show="formData.displayName =='SIMULATOR'">
+				<label class="control-label">{{ 'label.job.createticket' | translate }}</label>
+				<div class="controls">
+					<label class="checkbox"> <input type="checkbox" data-ng-model="formData.isCreateTicket"> </label>
+				</div>
+			</div>
+			
+			<div class="control-group" data-ng-hide="formData.displayName =='SIMULATOR'">
+				<label class="control-label" for="isDynamic">{{'label.job.isDynamic' | translate }}</label>
+				<div class="controls">
+					<label class="checkbox"> <input type="checkbox" data-ng-model="formData.isDynamic">
+					</label>
+				</div>
+			</div>
+			<div class="control-group" data-ng-show="formData.name =='Auto Exipiry'">
+				<label class="control-label" for="isDynamic">{{'label.job.isAutoRenewal' | translate }}</label>
+				<div class="controls">
+					<label class="checkbox"> <input type="checkbox" data-ng-model="formData.isAutoRenewal">
+					</label>
+				</div>
+			</div>
+			<div class="control-group" data-ng-show="formData.name =='Auto Exipiry'">
+				<label class="control-label">{{ 'label.job.addon.exipiry' | translate }}</label>
+				<div class="controls">
+					<label class="checkbox"> <input type="checkbox" data-ng-model="formData.addonExipiry"></label>
+				</div>
+			</div>
+			
+			<div class="offset3">
+				<button id="cancel" type="reset" data-ng-click="cancel()" class="btn">{{'label.cancel' | translate}}</button>
+				<button id="submit" type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
+			</div>
+			
+		</fieldset>
+	</form>
+</div>

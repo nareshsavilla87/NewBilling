@@ -1,0 +1,34 @@
+<div  data-ng-controller="ViewEmployeeController">
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+	        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+	        <li><a href="#/employees">{{'label.manageemployees' | translate}}</a> <span class="divider">/</span></li>
+	        <li class="active">{{employee.firstname}}&nbsp;&nbsp;{{employee.lastname}}</li>
+	    </ul>
+	    <div class="pull-right">
+	      <div class="btn-group">
+	          <a data-ng-show="PermissionService.showMenu('UPDATE_STAFF')" href="#/editemployee/{{employee.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
+	
+	      </div>
+	    </div>
+	</div>
+
+	<div class="row paddedleft">
+		<h3>&nbsp;&nbsp;&nbsp;{{employee.displayName}}</h3>
+		<table style="width:100%;">
+			<tr>
+				<td width="20%"><strong>{{ 'label.firstname' | translate }}</strong></td>
+				<td width="80%">{{employee.firstname}}</td>
+			</tr>
+			<tr>
+				<td><strong>{{ 'label.lastname' | translate }}</strong></td>
+				<td>{{employee.lastname}}</td>
+			</tr>
+			<tr>
+				<td><strong>{{ 'label.office.name' | translate }}</strong></td>
+				<td>{{employee.officeName}}</td>
+			</tr>
+		</table>
+	</div>
+</div>
+          

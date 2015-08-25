@@ -1,0 +1,40 @@
+<div ng-controller="AccountingClosureController">
+<div>
+    <ul class="breadcrumb">
+        <li><a href="#/accounting">{{'link.accounting' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.accountsclosure' | translate}}</li>
+    </ul>
+    <div class="pull-right">
+        <a ng-show="PermissionService.showMenu('CREATE_GLCLOSURE')" href="#/createclosure" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'label.createclosure' | translate}}</a>
+    </div>
+</div>
+<div >
+    <legend>&nbsp;&nbsp;&nbsp;{{ 'label.closed.accounting.details' | translate }}</legend>
+
+    <div class="pull-left">
+        <span for="officeId"><b>&nbsp;&nbsp;&nbsp;{{ 'label.office' | translate }}</b></span>&nbsp;&nbsp;&nbsp;
+        <select ng-model="formData.officeId" ng-change="closedAccountingDetails(formData.officeId)">
+            <option value="">--{{ 'label.filterbyoffice' | translate }}--</option>
+            <option ng-repeat="office in offices" value="{{office.id}}">{{office.name}}</option>
+        </select>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>{{ 'table.heading.officename' | translate }}</th>
+            <th>{{ 'label.accounting.closure.closing.date' | translate }}</th>
+            <th>{{ 'label.journalentry.comments' | translate }}</th>
+            <th>{{ 'label.close.accounting.created.by' | translate }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="pointer-main" ng-repeat="accountClosure in accountClosures">
+            <td class="pointer" data-ng-click="routeTo(accountClosure.id)">{{accountClosure.officeName}}</td>
+            <td class="pointer" data-ng-click="routeTo(accountClosure.id)">{{accountClosure.closingDate | DateFormat}}</td>
+            <td class="pointer" data-ng-click="routeTo(accountClosure.id)">{{accountClosure.comments}}</td>
+            <td class="pointer" data-ng-click="routeTo(accountClosure.id)">{{accountClosure.createdByUsername}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>

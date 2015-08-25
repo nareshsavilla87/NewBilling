@@ -1,0 +1,111 @@
+<div data-ng-controller="AuditController">
+    <ul class="breadcrumb">
+        <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.audit' | translate}}</li>
+    </ul>
+    <div class="row-fluid">
+        <span class="input-append grpinputicons" >
+                <span><a data-ng-click="isCollapsed = !isCollapsed" class="btn  control">{{'label.searchoptions' | translate}}<i class="icon-chevron-down"></i></a></span>
+                <span><a data-ng-click="search()" class="btn btn-primary control"><i class="icon-search icon-white"></i></a></span>
+        </span>
+    </div >
+    <br>
+    <div data-collapse="isCollapsed" class="blockoverlay" width="100%" style="overflow-y: scroll">
+        <div class="control-group">
+            <div class="controls">
+                <select data-ng-model="formData.status">
+                    <option value="">--Select Status--</option>
+                    <option data-ng-repeat="status in template.processingResults" value="{{status.id}}">{{status.processingResult}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label"></label>
+            <div class="controls">
+                <input type="text" placeholder="{{'label.fromdate' | translate}}" data-datepicker-pop="dd MMMM yyyy" data-ng-model="date.first" data-is-open="opened" min="minDate" max="'2020-06-22'" data-date-disabled="disabled(date, mode)" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label"></label>
+            <div class="controls">
+                <input type="text" placeholder="{{'label.todate' | translate}}" data-datepicker-pop="dd MMMM yyyy" data-ng-model="date.second" data-is-open="opened1" min="minDate" max="'2020-06-22'" data-date-disabled="disabled(date, mode)"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <select data-ng-model="formData.user">
+                    <option value="">--Select User--</option>
+                    <option selected="selected" value="ALL">All</option>
+                    <option data-ng-repeat="user in template.appUsers" value="{{user.id}}">{{user.username}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <select data-ng-model="formData.action">
+                    <option value="">--Select Action--</option>
+                    <option selected="selected" value="ALL">All</option>
+                    <option data-ng-repeat="action in template.actionNames" value="{{action}}">{{action}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <select data-ng-model="formData.entity">
+                    <option value="">--Select Entity--</option>
+                    <option selected="selected" value="ALL">All</option>
+                    <option data-ng-repeat="entity in template.entityNames" value="{{entity}}">{{entity}}</option>
+                 </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label"></label>
+            <div class="controls">
+                <input type="text" placeholder="{{'label.resourceid' | translate}}" data-ng-model="formData.resourceId">
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <select data-ng-model="formData.checkedBy">
+                    <option value="">--Select Checker--</option>
+                    <option selected="selected" value="ALL">All</option>
+                    <option data-ng-repeat="user in template.appUsers" value="{{user.id}}">{{user.username}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <input type="text" placeholder="{{'label.checkedfrom' | translate}}" data-datepicker-pop="dd MMMM yyyy" data-ng-model="date.third" data-is-open="opened2" min="minDate" max="'2020-06-22'" data-date-disabled="disabled(date, mode)"/>
+            </div>
+        </div>
+        <div class="control-group">
+             <div class="controls">
+                 <input type="text" placeholder="{{'label.checkedto' | translate}}" data-datepicker-pop="dd MMMM yyyy" data-ng-model="date.fourth" data-is-open="opened3" min="minDate" max="'2020-06-22'" data-date-disabled="disabled(date, mode)" />
+             </div>
+        </div>
+    </div>
+    <div data-ng-show="displayResults" class="row-fluid">
+        <table class="table">
+            <thead>
+            <tr class="graybg">
+                <th>{{'label.id' | translate}}</th>
+                <th>{{'label.status' | translate}}</th>
+                <th>{{'table.heading.user' | translate}}</th>
+                <th>{{'table.eventactionmapping.action' | translate}}</th>
+                <th>{{'table.heading.entity' | translate}}</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="pointer-main" data-ng-repeat="data in searchData">
+                <td class="pointer" data-ng-click="routeTo(data.id)">{{data.id}}</td>
+                <td class="pointer" data-ng-click="routeTo(data.id)">{{data.processingResult}}</td>
+                <td class="pointer" data-ng-click="routeTo(data.id)">{{data.maker}}</td>
+                <td class="pointer" data-ng-click="routeTo(data.id)">{{data.actionName}}</td>
+                <td class="pointer" data-ng-click="routeTo(data.id)">{{data.entityName}}</td>
+                <td class="pointer required" data-ng-click="routeTo(data.id)">Details</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

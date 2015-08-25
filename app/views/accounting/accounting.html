@@ -1,0 +1,32 @@
+<div class="row paddedleft paddedtop" ng-controller="AccountModuleController">
+	<div class="span6">
+		<div class="list-group">
+			<a class="list-group-item" href="#/freqposting" ng-show="PermissionService.showMenu('READ_JOURNALENTRY')">
+				<h4 class="list-group-item-heading"><i class="icon-repeat icon-large"></i>&nbsp;&nbsp;Frequent Postings</h4>
+				<p class="list-group-item-text">These are pre-defined posting</p>
+			</a>
+			<a class="list-group-item" href="#/journalentry" ng-show="PermissionService.showMenu('READ_JOURNALENTRY')">
+				<h4 class="list-group-item-heading"><i class="icon-plus icon-large"></i>&nbsp;&nbsp;Add Journal Entries</h4>
+				<p class="list-group-item-text">Manual Journal Entry transactions recorded in a journal</p>
+			</a>
+			<a class="list-group-item" href="#/searchtransaction" ng-show="PermissionService.showMenu('READ_JOURNALENTRY')">
+				<h4 class="list-group-item-heading"><i class="icon-search icon-large"></i>&nbsp;&nbsp;Search Journal Entries</h4>
+				<p class="list-group-item-text">Advance search option for Journal Entries</p>
+			</a>
+		</div>
+	</div>
+	<div class="span6">
+		<a class="list-group-item" href="#/accounting_coa" ng-show="PermissionService.showMenu('READ_GLACCOUNT')">
+			<h4 class="list-group-item-heading"><i class="icon-large icon-sitemap"></i>&nbsp;&nbsp;Chart of Accounts</h4>
+			<p class="list-group-item-text">List of the accounts used by the organization</p>
+		</a>
+		<a class="list-group-item" href="#/accounts_closure" ng-show="PermissionService.showMenu('READ_GLCLOSURE')">
+			<h4 class="list-group-item-heading"><i class="icon-large icon-folder-close"></i>&nbsp;&nbsp;Closing Entries</h4>
+			<p class="list-group-item-text">Journal entries made at the end of an accounting period</p>
+		</a>
+		<a class="list-group-item" href="#/accounting_rules" ng-show="PermissionService.showMenu('READ_ACCOUNTINGRULE')">
+			<h4 class="list-group-item-heading"><i class="icon-large icon-lock"></i>&nbsp;&nbsp;Accounting Rules</h4>
+			<p class="list-group-item-text">Lists all Accounting Rules</p>
+		</a>
+	</div>
+</div>

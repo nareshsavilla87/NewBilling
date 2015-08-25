@@ -1,0 +1,171 @@
+<div  ng-controller="IpchangeController">
+	<div><ul class="breadcrumb">
+        <table>
+        <tr>
+        <td>
+        	 <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+        </td>
+        <td>
+            <small style="color:black;">{{displayName}}</small>
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Uniquely identified  {{accountNo}}</small></td>
+        	</tr>
+        	<tr>
+        		<td><i class="icon-building"></i><small>Office "{{officeName}}"</small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Cell Phone {{phone}}</small></td>
+        	</tr>
+        	<tr>
+        		<td><small>Device # <strong>{{device}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Client Type "{{categoryType}}"</small></td>
+        	</tr>
+        	<tr>
+        		<td><small>Balance&nbsp;{{balanceAmount}}&nbsp;{{currency}} </small></td>
+        	</tr>
+        </table>
+        </td>
+        </tr>
+        </table>
+	</ul>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/viewclient/{{clientId}}">{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">Ipchange</li>
+		</ul>
+	</div>
+<form class="form-horizontal well" ng-submit="submit()">
+
+	 <div class="error" ng-show="errorStatus || errorDetails">
+	 
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	<fieldset>
+		<legend>IP Changes</legend>
+		<div class="row-fluid span">
+
+		<div class="span6">
+		<table width="100%" class="table table-striped table-bordered" width="0px">
+			<tr>
+				<td width="50%">{{ 'label.order.orderId' | translate }}</td>
+				<td width="50%">{{orderNo}}</td>
+			</tr>
+			<tr>
+				<td width="30%">{{ 'label.provisioning.clientname' | translate }}</td>
+				<td width="70%">{{displayName}}</td>
+			</tr>
+		</table>
+	</div>	
+	<div class="span5">
+		<table width="100%" class="table table-striped table-bordered">
+			<tr>
+				<td width="30%">{{ 'label.plan.planname' | translate }}</td>
+				<td width="70%">{{planName}}</td>
+			</tr>
+			<tr>
+				<td width="30%">{{ 'label.provisioning.device' | translate }}</td>
+				<td width="70%">{{device}}</td>
+			</tr>
+		</table>
+	</div>			
+	</div>
+	
+	<div class="pull-right">
+		<a  href="" class="btn btn-primary" tooltip-placement="top" tooltip="To See Click on Me" ng-click="freeIpsPopupFun()">
+        <i class="icon-list icon-white"></i>Free IPs</a>
+    </div>
+    
+    <table>
+    	<tr>
+    		<td>
+    		<h4>&nbsp;Existing</h4>
+    		</td>
+    	</tr>
+    </table>
+    
+    <table>
+    	<tr>
+    		<td valign="top">
+    			<table>
+            			<tr ng-repeat="ip in exitIpAddress track by $index | filter:filterText">
+                       		<td>{{ip}}&nbsp;&nbsp;</td>
+                			<td><a ng-click="existIpData(ip,$index)" class="icon-remove"></a></td>        
+               			</tr>
+    			</table>
+    		</td>
+    		<td valign="top">
+    			<div class="control-group">
+            		<label class="control-label" for="ipAddress">{{'label.provisioning.ipaddress' | translate}}</label>
+                        <div class="controls">                                  	       
+             			  <input type="text" ng-model="IPAddressObj.ipAddress" name="ipAddress" typeahead="ipPoolData as ipPoolData for ipPoolData in getData($viewValue)" typeahead-min-length="0">  
+                             <a ng-show="IPAddressType" ng-click="addIpAddresses()">&nbsp;<i class="icon-plus icon-white"></i></a>&nbsp;&nbsp;
+                              	<div  ng-show="IPAddressType" ng-repeat="addipAddress in addIpAddress track by $index">
+									 <input type="text" style="width:110px" readonly ng-model="addipAddress"> 
+									 <a ng-click="deleteAddIpAddress($index,addipAddress)"><i class="icon-remove icon-white"></i></a>					   					        
+								</div>                            
+               			</div>                         
+            	</div>  
+    			
+    		</td>
+    	</tr>
+   
+    </table>
+	
+
+		<div class="pull-right">
+			<a id="cancel" href="#/vieworder/{{orderId}}/{{clientId}}"><button type="reset" class="btn">{{'button.cancel' | translate}}</button></a>
+
+				<!-- <button id="submit" type="submit" class="btn btn-primary" ng-disabled="flag">{{'button.save' | translate}}</button> -->
+				<button id="submit" type="submit" class="btn btn-primary">Update</button>
+		</div>
+	</fieldset>
+</form>
+
+<script type="text/ng-template" id="freeIps.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">IP Details</h3>
+                    </div>
+                    <div class="modal-body modal-big">
+						<div class="span5">
+							<table width="100%" class="table table-striped table-bordered">
+								<thead>
+            						<tr class="graybg">
+             						   <th>Ip Address</th>
+               						   <th>Notes</th>
+           							</tr>
+        						</thead>
+       							 <tbody>
+    						        <tr  ng-repeat="ipAddressesData in ipAddressesData" >
+      							          <td >{{ipAddressesData.ip_address}}</td>
+             							  <td >{{ipAddressesData.notes}}</td>
+          						    </tr>
+        						 </tbody>
+							</table>
+						</div>	
+                    </div>
+                    <div class="modal-footer">
+                        <button id="cancel" class="btn btn-primary" ng-click="cancel()">{{'button.done' | translate}}</button>
+                    </div>
+ </script>
+</div>

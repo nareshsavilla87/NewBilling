@@ -1,0 +1,55 @@
+<div ng-controller="EditAssociationController">
+ <div>
+		<ul class="breadcrumb">
+			  <li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			  <li><a href="#/viewclient/{{clientId}}">{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			  <li><a href="#/viewAssociation/{{clientId}}/{{formData.id}}">{{'label.viewassociation' | translate}}</a> <span class="divider">/</span></li>
+			  <li class="active">{{'label.editassociation' | translate}}</li>
+		</ul>
+	</div>
+ <form class="form-horizontal well" ng-submit="submit()">
+	 <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	<fieldset>
+		<legend>{{'label.editassociation' | translate}}</legend>
+		
+		<table width="100%">
+			<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="status"> {{'label.association.plancode' | translate}} </label>
+						<div class="controls">
+							<select ng-model="formData.planId" ng-change="orderId(formData.planId)"
+								ng-options="planData.planId as planData.planCode for planData in planData" 
+								value="{{planData.planCode}}"></select>
+						</div>
+					</div>
+				
+			</tr>
+			<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="status"> {{'label.association.serialno' | translate}} </label>
+						<div class="controls">
+							<select ng-model="formData.serialNum"
+								ng-options="hardwareData.serialNum as hardwareData.serialNum for hardwareData in hardwareDatas"
+								value="{{data}}"></select>
+						</div>
+					</div>
+				
+			</tr>
+		</table>
+		<div class="offset3">
+			<a href="#/viewAssociation/{{clientId}}/{{formData.id}}"><button type="reset" class="btn">Cancel</button></a>
+			<button type="submit" class="btn btn-primary">Save</button>
+		</div>
+	</fieldset>
+</form>
+</div>
+
+
+
+

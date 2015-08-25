@@ -1,0 +1,43 @@
+<div data-ng-controller="EditHardwarePlanMappingController" >
+	<div>
+    	<ul class="breadcrumb">
+        	<li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+          	<li><a href="#/mappingconfig">{{'label.serviceMapping' | translate}}</a> <span class="divider">/</span></li>
+          	<li><a href="#/viewhardwareplanmapping/{{formData.id}}">{{formData.planCode}}</a> <span class="divider">/</span></li>
+          	<li class="active">{{'label.edithardwareplanmapping' | translate}}</li>
+        </ul>
+     </div>
+     <form class="form-horizontal well" data-ng-submit="submit()">
+     	<div class="error" data-ng-show="errorStatus || errorDetails">
+			<label>{{'label.contract.error' | translate}}</label>
+			<label data-ng-show="errorStatus">{{errorStatus}}</label>
+			<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	    
+        <fieldset>
+        	<legend>{{'label.edithardwareplan' | translate}}</legend>
+			<table>
+		   <tr><td>
+			<div class="control-group">
+            	<label class="control-label" for="planCode">{{ 'label.plancode' | translate }}</label>
+            	<div class="controls">
+             		<select data-ng-model="formData.planCode"  data-ng-options="planData.planCode as planData.planDescription for planData in planDatas">
+             		</select>
+            	</div>
+          	</div></td></tr>
+          	 
+          <tr><td>	<div class="control-group">
+            	<label class="control-label" for="itemCode">{{ 'label.itemCode' | translate }}</label>
+            	<div class="controls">
+             		<select data-ng-model="formData.itemCode" data-ng-options="itemData.itemCode as itemData.itemDescription for itemData in itemDatas">
+             		</select>
+            	</div>
+          	</div></td></tr>
+  			
+            <tr align="right"><td>
+            	<a href="#/mappingconfig"><button id="cancel" type="reset" class="btn">{{'label.cancel' | translate}}</button></a>
+            	<button type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+         </td></tr></table>
+        </fieldset>
+      </form>
+</div>

@@ -1,0 +1,53 @@
+<div  data-ng-controller="CurrencyDetailsController">
+<div>
+    <ul class="breadcrumb">
+        <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.currencydetails' | translate}}&nbsp;&nbsp;{{employee.lastname}}</li>
+    </ul>
+    <div class="pull-right">
+        <a data-ng-show="PermissionService.showMenu('CREATE_COUNTRYCURRENCY')" href="#/createcurrencydetails" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{ 'link.add.new.currencydetails' | translate }}</a>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+	<table class="table">
+        <thead>
+            <tr class="graybg">
+                <th>{{ 'table.heading.id' | translate }}</th>
+                <th>{{ 'table.heading.country' | translate }}</th>
+                <th>{{ 'table.heading.currency' | translate }}</th>
+                <th>{{ 'table.heading.isd' | translate }}</th>
+                <th>{{ 'table.heading.status' | translate }}</th>
+                <th>{{'table.actions' | translate}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="pointer-main" data-ng-repeat="currencydetail in currencydetails | filter:filterText">
+            
+                <td class="pointer" data-ng-click="routeTo(currencydetail.id)">{{currencydetail.id}}</td>  
+                <td class="pointer" data-ng-click="routeTo(currencydetail.id)">{{currencydetail.country}}</td>            
+                <td class="pointer" data-ng-click="routeTo(currencydetail.id)">{{currencydetail.currency}}</td> 
+                <td class="pointer" data-ng-click="routeTo(currencydetail.id)">{{currencydetail.countryISD}}</td>
+                <td class="pointer" data-ng-click="routeTo(currencydetail.id)">{{currencydetail.status}}</td>
+                <td><a data-ng-show="PermissionService.showMenu('UPDATE_COUNTRYCURRENCY')"
+					href="#/editcurrencydetails/{{currencydetail.id}}" popover="Edit" popover-trigger="mouseenter" class="icon-edit"></a>&nbsp;
+                <a data-ng-show="PermissionService.showMenu('DELETE_COUNTRYCURRENCY')"
+					data-ng-click="deleteCurrency(currencydetail.id)" popover="Delete" popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a></td>                   
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script type="text/ng-template" id="deleteCurrency.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">Delete Currency</h3>
+                    </div>
+                    <div class="modal-body modal-small">
+                       <h4>Are you sure?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+                    </div>
+      </script>
+</div>

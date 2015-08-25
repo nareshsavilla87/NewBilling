@@ -1,0 +1,144 @@
+<div data-ng-controller="ViewVouchersController" >
+  <div>
+    <ul class="breadcrumb">
+        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+        <li> <a href="#/voucherpins">{{'label.ManageVoucherpins' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{voucherId}}</li>
+    </ul>
+    <div class="error" data-ng-show="errorStatus || errorDetails" style="margin:0px;">
+			<label>{{'label.error' | translate}}</label>
+			<label data-ng-show="errorStatus">{{errorStatus}}</label>
+			<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	</div>
+    <div class="pull-right">
+        <button id="selectVouchers" data-ng-click="updateVouchers()" class="btn btn-primary" >Update</button>
+        <button id="selectVouchers" data-ng-click="deleteVouchers()" class="btn btn-primary" >Delete</button>
+    </div>
+</div><br/><br/>
+
+<div class="row-fluid">
+	   	<form data-ng-submit="search()" style="margin: -10px 0 1%;">
+        	<input ng-model="searchData.sqlSearch" type="text" data-ng-autofocus="true" style="width:81.3%;" placeholder="{{'placehoder.searchbar' | translate}}">
+          	<select ng-model="searchData.status" style="width:16.75%;" ng-change="search()">
+             <option value="">---Status---</option>
+             <option value="NEW" >NEW</option>
+			<option value="USED" >USED</option>
+			<option value="LOST" >LOST</option>
+			<option value="DAMAGE" >DAMAGE</option>
+    	  	</select>
+        </form>
+	<table class="table">
+        <thead>
+            <tr class="graybg">
+                <th>{{ 'table.heading.batchName' | translate }}</th>
+                <th>{{ 'table.heading.officeId' | translate }}</th>
+                <th>{{ 'table.heading.serialNo' | translate }}</th>
+                <th>{{ 'table.heading.pinType' | translate }}</th>
+                <th>{{ 'table.heading.pinValue' | translate }}</th>
+                <!-- <th>{{ 'table.heading.product' | translate }}</th> -->
+                <th>{{'table.ippooling.clientId' | translate}}</th>
+                <th>{{'table.heading.status' | translate}}</th>
+                <th><input type="checkbox" id="activeallId" ng-model="activeall" ng-true-value="true" ng-false-value="false"
+                     ng-change="selectAll(activeall)">{{'label.selectall' | translate}}</th>
+                     <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-ng-repeat="voucherpin in voucherpinsBatchwise.currentPageItems | filter:filterText">
+                       
+                <td>{{voucherpin.batchName}}</td>
+                <td>{{voucherpin.officeId}}</td>        
+                <td>{{voucherpin.serialNo}}</td>  
+                <td>{{voucherpin.pinType}}</td>        
+                <td data-ng-show="voucherpin.pinType == 'VALUE'">{{voucherpin.pinValue}}</td> 
+                <td data-ng-show="voucherpin.pinType == 'PRODUCT'  || voucherpin.pinType == 'COUPON'">&nbsp;</td>
+               <!--  <td>{{voucherpin.planCode}}</td>  -->
+                <td>{{voucherpin.clientId}}</td>
+                <td>{{voucherpin.status}}</td>
+                <td><input type="checkbox" id="{{voucherpin.id}}" ng-model="active" ng-true-value="true" ng-false-value="false"
+                     ng-change="checkSingle(voucherpin, active)" data-ng-hide="voucherpin.status=='USED'"></td>
+                 <td data-ng-show="voucherpin.pinType == 'VALUE'&& voucherpin.status =='USED'" ><a ng-click="cancelVoucher(voucherpin.id)"
+                                 popover="Cancel Voucher" popover-trigger="mouseenter" class="icon-remove"></a></td>
+				 <td data-ng-hide="voucherpin.pinType == 'VALUE'&& voucherpin.status =='USED'"></td>                        
+            </tr>
+        </tbody>
+    </table>
+    <ul class="pager">
+        <li class="previous"><a data-ng-click="voucherpinsBatchwise.previous()" href="" data-ng-disabled="!voucherpinsBatchwise.hasPrevious()">&larr; Prev</a></li>
+        <li class="next" ><a data-ng-click="voucherpinsBatchwise.next()" href="" data-ng-disabled="!voucherpinsBatchwise.hasNext()">Next &rarr;</a></li>
+	</ul>
+</div>
+<script type="text/ng-template" id="updateVouchers.html"> 
+	<form name="downloadCSVform" novalidate="" class="form-horizontal well">
+		<div class="error" ng-show="errorStatus || errorDetails">
+			<label>{{'label.contract.error' | translate}}</label>
+			<label ng-show="errorStatus">{{errorStatus}}</label>
+			<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	   	</div>
+		<fieldset>
+			<legend >Update</legend>
+			<table width="100%">
+			<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="status">{{ 'label.batchName' | translate }}<span class="required">*</span></label>
+						<div class="controls">
+							<select ng-model="batchNameId" required>
+								<option value="LOST">LOST</option>
+								<option value="DAMAGE">DAMAGE</option>
+          					</select>
+						</div>
+					</div>
+				</td>
+			</tr>
+			</table>
+			<div class="modal-footer">
+				<button id="cancel" class="btn btn-warning" ng-click="reject()">{{'button.cancel' | translate}}</button>
+				<button id="submit" class="btn btn-primary" ng-click="accept(batchNameId)" ng-disabled="!downloadCSVform.$valid||flag">{{'label.confirm' | translate}}</button>
+			</div>
+		</fieldset>
+	</form>
+</script>
+<script type="text/ng-template" id="CancelVoucher.html">
+		
+	<div class="modal-header silver">
+        <h3 class="bolder">Cancel Voucher</h3>
+    </div>
+    <div class="modal-body" style="height:160px;">
+ <div class="error" ng-show="errorStatus || errorDetails">
+		                 <label>{{'label.contract.error' | translate}}</label>
+		                 <label ng-show="errorStatus">{{errorStatus}}</label>
+		                 <label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	                     </div>
+       <fieldset>
+<div class="control-group">
+			<label class="control-label" for="quality">{{'label.voucher.cancelreason' | translate }}<span class="required">*</span></label>
+			<div class="controls">
+              <select ng-model="cancelReason"  ng-options="reasondata.mCodeValue as reasondata.mCodeValue for reasondata in reasondatas" value="{{q.mCodeValue}}" required>
+              </select>
+            </div>
+	   </div>
+ 
+    </fieldset>
+    </div>
+     <div class="modal-footer">
+        <button id="cancel" class="btn btn-warning" ng-click="cancelQuality()">{{'button.cancel' | translate}}</button>
+     	<button id="submit" class="btn btn-primary" ng-click="approve(cancelReason)" ng-disabled="flagEditQuality">{{'button.save' | translate}}</button>
+     </div>
+
+</script>
+<script type="text/ng-template" id="deletevouchers.html">
+	<div class="modal-header silver">
+    	<h3 class="bolder">Delete Vouchers</h3>
+    </div>
+    <div class="modal-body modal-small">
+    	<h4>Are you sure?</h4>
+    </div>
+    <div class="modal-footer">
+    	<button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+        <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+   	</div>
+</script>
+</div>
+
+ 

@@ -1,0 +1,54 @@
+<div  ng-controller="ViewMrnController">
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+	        <li><a href="#/inventory" ng-click="selectedMRN()">{{'link.inventory' | translate}}</a> <span class="divider">/</span></li>
+	        <li class="active">{{mrn.itemDescription}}&nbsp;&nbsp;</li>
+	    </ul>
+	    <div class="pull-right">
+	      <div class="btn-group">
+	          <!-- <a href="#/edititem/{{item.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
+	          <a data-ng-click="deleteItem()" class="btn btn-primary"><i class="icon-trash icon-white"></i> Delete</a> -->
+	      </div>
+	    </div>
+	</div>
+  
+	<div class="row paddedleft">
+		<h3>&nbsp;&nbsp;&nbsp;{{mrn.itemDescription}}</h3>
+		<table width="100%">
+			<tr>
+				<td width="20%">{{'label.mrn.id' | translate }}</td>
+				<td width="80%">{{mrn.id}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.mrn.requestdate' | translate}}</td>
+				<td>{{mrn.requestedDate  | DateFormat}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.mrn.item' | translate }}</td>
+				<td>{{mrn.itemDescription}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.mrn.fromoffice' | translate }}</td>
+				<td>{{mrn.fromOffice}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.mrn.tooffice' | translate }}</td>
+				<td>{{mrn.toOffice}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.mrn.requestedquantity' | translate }}</td>
+				<td>{{mrn.orderdQuantity}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.mrn.receivedquantity' | translate }}</td>
+				<td>{{mrn.receivedQuantity}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.mrn.status' | translate }}</td>
+				<td>{{mrn.status}}</td>
+			</tr>
+			
+		</table>
+	</div>
+</div>
+          

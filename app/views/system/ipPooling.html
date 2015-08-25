@@ -1,0 +1,89 @@
+<div>
+    <ul class="breadcrumb">
+          <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.manageippooling' | translate}}</li>
+    </ul>
+</div>
+
+<div data-ng-controller="IpPoolingController">
+
+	<div class="pull-right">
+        <a href="#/createippooling" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{'label.ippooling.createippool' | translate}}</a>
+        <a href="" data-ng-click="edit()" class="btn btn-primary"><i class="icon-edit icon-white"></i>{{'label.updatemask' | translate}}</a>
+        
+	</div>
+  
+    <div class="row-fluid">           
+           <form data-ng-submit="searchIpPool(filterText)" style="margin: 0 0 1%;">
+               <input data-ng-model="filterText" style="width:82.3%;" type="text" placeholder="Filter by IpAddress and Subnet">
+               
+ 				<select data-ng-model="formData.source" style="width:15.75%;" data-ng-change="changeSource(formData.source)">
+              		<option value="all">All</option>
+              		<option value="I">Intermediate</option>
+              		<option value="F">Free</option>
+              		<option value="A">Allocated</option>
+              		<option value="B">Blocked</option>
+              		<option value="T">Terminated</option>
+          		</select>
+           </form>
+         <table class="table">
+            <thead>
+              <tr class="graybg">
+                <th>{{'table.ippooling.ipaddress' | translate}}</th>  
+                <th>{{'table.ippooling.ippooldescription' | translate}}</th>
+                <th>{{'label.iptype' | translate}}</th>
+                <th>{{'table.ippooling.clientId' | translate}}</th>
+                <th>{{'table.ippooling.clientname' | translate}}</th>
+                <th>{{'table.ippooling.status' | translate}}</th>
+                <th>{{'table.ippooling.notes' | translate}}</th>
+                 <th>Actions</th>           
+              </tr>
+            </thead>
+            <tbody>
+            <!--  -->
+             <tr class="pointer-main" data-ng-repeat="ippoolingdata in ippoolingdatas.currentPageItems ">         
+                <td class="pointer" data-ng-click="routeTo(ippoolingdata.clientId)">{{ippoolingdata.ipAddress}}</td> 
+                <td class="pointer" data-ng-click="routeTo(ippoolingdata.clientId)">{{ippoolingdata.ipPoolDescription}}</td>
+                <td class="pointer" data-ng-click="routeTo(ippoolingdata.clientId)">{{ippoolingdata.typeCodeValue}}</td>
+                <td class="pointer" data-ng-click="routeTo(ippoolingdata.clientId)">{{ippoolingdata.clientId}}</td>
+                <td class="pointer" data-ng-click="routeTo(ippoolingdata.clientId)">{{ippoolingdata.clientName}}</td>  
+                <td class="pointer" data-ng-click="routeTo(ippoolingdata.clientId)">{{ippoolingdata.status}}</td>  
+                <td class="pointer" data-ng-click="routeTo(ippoolingdata.clientId)">{{ippoolingdata.notes}}</td>                                     
+              <td><a href="#/editippolling/{{ippoolingdata.id}}" style='color:#000000' data-popover="{{'label.ippooling.editippool' | translate}}" data-popover-trigger="mouseenter" ><i class="icon-edit"></i></a></td>                                   
+   			</tr>
+     		 </tbody>
+          </table>
+          <ul class="pager">
+              <li class="previous"><a  id="prev" data-ng-click="ippoolingdatas.previous()" href="" data-ng-disabled="!ippoolingdatas.hasPrevious()">&larr; {{'label.prev' | translate}}</a></li>
+              <li class="next" ><a  id="next"   data-ng-click="ippoolingdatas.next()" href="" data-ng-disabled="!ippoolingdatas.hasNext()">{{'label.next' | translate}} &rarr;</a></li>
+         </ul>
+    </div>
+</div>
+    
+    <script type="text/ng-template" id="updatedescription.html">
+
+	<form class="form-horizontal well" ng-submit="submit()">
+	 <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	<fieldset>
+		<legend>{{'label.updatemask' | translate}}</legend>
+		<table width="100%">
+			<div class="control-group">
+		 	<label class="control-label" for="status">{{'lable.ipaddrandsubnet' | translate}} </label>
+			<div class="controls">
+			<input type="text" ng-model="formData.ip" name="ipAddress">  
+            <input type="text" style="width:20px;" id="subnet" ng-model="formData.subNet" maxlength="2"/>
+			</div>
+			</div>
+		</table>
+	</fieldset>
+	</form>
+   <div class="modal-footer">
+         <button id="cancel" class="btn btn-warning" ng-click="reject()">{{'button.cancel' | translate}}</button>
+         <button id="submit" class="btn btn-primary" ng-click="accept()" ng-disabled="flag">{{'button.save' | translate}}</button>
+   </div>
+
+</script> 

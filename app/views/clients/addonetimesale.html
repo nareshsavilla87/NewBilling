@@ -1,0 +1,236 @@
+<div data-ng-controller="ClientOneTimeSaleController">
+	<div>
+   <ul class="breadcrumb">
+    <li>
+ 	   <table>
+        <tr>
+        <td>
+         <img data-ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img data-ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+        </td>
+        <td>
+            <small style="color:black;">{{displayName}}</small>
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Uniquely identified&nbsp;<strong>{{accountNo}}</strong></small></td>
+        	</tr>
+        	<tr>
+        	    <td><small>Cell Phone&nbsp;<strong>{{phone}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        	   <td><i class="icon-building"></i><small>Office&nbsp;"<strong>{{officeName}}</strong>"</small></td>
+        	</tr>
+        	<tr>
+        	<td><small>Device # <strong>{{hwSerialNumber}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Client Type&nbsp;"<strong>{{categoryType}}</strong>"</small></td>
+        	</tr>
+        	<tr>
+        		<td><small>Balance&nbsp;<strong>{{balanceAmount}}</strong>&nbsp;{{currency}} </small></td>
+        		<td class="paddedleft0" data-ng-show="walletConfig"><small>[Wallet&nbsp;<strong>{{walletAmount}}</strong>&nbsp;{{currency}}]</small></td>
+        	</tr>
+        </table>
+        </td>
+        </tr>
+        </table></li>
+		</ul>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span
+				class="divider">/</span></li>
+			<li><a href="#/viewclient/{{clientId}}">{{'link.view.client'
+					| translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'link.add.onetimesale' | translate}}</li>
+		</ul>
+	</div>
+	<form name="onetimesaleform" class="form-horizontal well" data-ng-submit="submit()">
+		<div class="error" data-ng-show="errorStatus || errorDetails">
+			<label>{{'label.contract.error' | translate}}</label> <label
+				data-ng-show="errorStatus">{{errorStatus}}</label> <label
+				data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code
+				| translate}}</label>
+		</div>
+		<fieldset>
+			<legend>New Sale</legend>
+			<input data-ng-hide="true" name="saleType" data-ng-model="saleType" data-ng-init="saleType='NEWSALE'">
+			<table>
+				<tr>
+					<td>
+						<table>
+
+							<tr>
+								<td>
+									<div class="control-group">
+										<label class="control-label" for="officeId">Office</label>
+
+										<div class="controls">
+											<select data-ng-model="formData.officeId"
+												data-ng-options="officesData.id as officesData.name for officesData in officesDatas"
+												value="{{itemData.id}}">
+											</select>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="control-group">
+										<label class="control-label">{{ 'label.saleDate' |
+											translate }}</label>
+										<div class="controls">
+											<input type="text" datepicker-pop="dd MMMM yyyy"
+												data-ng-model="date.saleDate" is-open="opened2" min="minDate"
+												max="maxDate" date-disabled="disabled(date, mode)"
+												style="background-color: #FFFFFF;" readonly />
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="control-group">
+										<label class="control-label" for="itemId">{{
+											'label.itemCode' | translate }}</label>
+										<div class="controls">
+											<select id="itemId" data-ng-model="formData.itemId" 
+												data-ng-change="itemData(formData.itemId,formData.officeId)"
+												data-ng-options="itemData.id as itemData.itemCode for itemData in itemDatas"
+												value="{{itemData.id}}">
+											</select>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="control-group">
+										<label class="control-label" for="chargeCode">{{
+											'label.chargeCode' | translate }}</label>
+										<div class="controls">
+											<input type="text" id="chargeCode"
+												data-ng-model="formData.chargeCode"
+												style="background-color: #FFFFFF;" readonly>
+										</div>
+									</div>
+								</td>
+
+							</tr>
+							<tr>
+								<td>
+									<div class="control-group">
+										<label class="control-label" for="quantity">{{
+											'label.quantity' | translate }}</label>
+										<div class="controls">
+											<input type="text" id="quantity" name="quantity" data-ng-model="formData.quantity"
+												data-ng-change="(formData.quantity) && !(onetimesaleform.quantity.$error.pattern) && (itemDataQuantity(formData.quantity,formData.itemId,formData.officeId,formData.units,formData.amount))"
+												data-ng-readonly="truefalse" data-ng-pattern="{{'integer' | CodeValidate}}"><br/>
+											<span data-ng-show ="onetimesaleform.quantity.$dirty && onetimesaleform.quantity.$invalid" >
+												<small class ="error-row">{{'error.not.numeric.validation' | translate}}</small>
+											</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="control-group">
+										<label class="control-label" for="unitPrice">{{
+											'label.unitPrice' | translate }}</label>
+										<div class="controls">
+											<input type="text" class="input-medium" id="unitPrice"  data-ng-model="formData.unitPrice" style="background-color: #FFFFFF;" readonly ><span data-ng-show="unitsValue" style="font-size:15px;"><img src="./images/slash.jpg" width="20">{{unit}}</span>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="control-group">
+										<label class="control-label" for="discountId">{{
+											'label.discountCode' | translate }}</label>
+										<div class="controls">
+											<select data-ng-model="formData.discountId"
+												data-ng-options="discountMasterData.id as discountMasterData.discountDescription for discountMasterData in discountMasterDatas"
+												value="{{discountMasterData.id}}">
+											</select>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="control-group">
+										<label class="control-label" for="totalPrice">{{
+											'label.totalPrice' | translate }}</label>
+										<div class="controls">
+											<input type="text" id="totalPrice"
+												data-ng-model="formData.totalPrice"
+												style="background-color: #FFFFFF;" readonly>
+										</div>
+									</div>
+								</td>
+							</tr>
+							
+							<tr>
+								<!-- <td>
+									<div class="control-group">
+										<label class="control-label" for="totalPrice">Deposit Amount </label>
+										<div class="controls">
+											<input type="text" id="amount" data-ng-model="formData.amount" style="background-color: #FFFFFF;" readonly/>
+										</div>
+									</div>
+								</td> -->
+								<td>
+									<div class="offset3">
+										<a id="cancel" href="#/viewclient/{{clientId}}"><button
+												type="reset" class="btn" ng-click="reset123()">{{'button.cancel'
+												| translate}}</button></a>
+
+										<!-- <button id="submit" type="submit" class="btn btn-primary" ng-disabled="flag">{{'button.save' | translate}}</button> -->
+										<button id="submit" type="submit" data-ng-disabled="onetimesaleform.$dirty && onetimesaleform.$invalid" class="btn btn-primary">{{'button.save'
+											| translate}}</button>
+									</div>
+								</td>
+								
+								<td>
+									<div class="control-group" data-ng-show="formData.quantity && unitsValue == 'PIECES' "
+										ng-repeat="item in getNumber(formData.quantity) track by $index"
+										name="serialNumberDiv">
+										<label class="control-label" for="serialNumber">{{'label.serialNumber' | translate }}&nbsp;<span class="required">*</span>
+										</label>
+										<div class="controls">
+											<input type="text" ng-model="itemDetail" name="serialNumber"
+												typeahead="itemDetail as itemDetail for itemDetail in getData($viewValue)" typeahead-min-length="0">
+										</div>
+									</div>
+								</td>
+							</tr>
+							
+							<!-- <tr>
+								<td>
+									<div class="offset3">
+										<a id="cancel" href="#/viewclient/{{clientId}}"><button
+												type="reset" class="btn" ng-click="reset123()">{{'button.cancel'
+												| translate}}</button></a>
+
+										<button id="submit" type="submit" class="btn btn-primary" ng-disabled="flag">{{'button.save' | translate}}</button>
+										<button id="submit" type="submit" data-ng-disabled="onetimesaleform.$dirty && onetimesaleform.$invalid" class="btn btn-primary">{{'button.save'
+											| translate}}</button>
+									</div>
+								</td>
+							</tr> -->
+						</table>
+
+					</td>
+				</tr>
+			</table>
+
+		</fieldset>
+	</form>
+</div>

@@ -1,0 +1,49 @@
+<div data-ng-controller="ContractController">
+   <div>
+    <ul class="breadcrumb">
+        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.contracts' | translate}}&nbsp;&nbsp;</li>
+    </ul>
+    </div>
+    <div class="pull-right">
+        <a data-ng-show="PermissionService.showMenu('CREATE_CONTRACT')" href="#/createContract" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{ 'link.create.new.contract' | translate }}</a>
+    </div>
+
+<div class="row-fluid">
+    <input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.searchbar' | translate}}">
+	<table class="table">
+        <thead>
+            <tr class="graybg">
+                <th>{{ 'table.contract.period' | translate }}</th>
+                <th>{{ 'table.contract.type' | translate }}</th>
+                <th>{{ 'table.contract.unit' | translate }}</th>
+                <th>{{ 'table.heading.actions' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="pointer-main" data-ng-repeat="contract in contracts | filter:filterText">
+                <td class="pointer"  data-ng-click="routeTo(contract.id)">{{contract.subscriptionPeriod}}</td>            
+                <td class="pointer"  data-ng-click="routeTo(contract.id)">{{contract.subscriptionType}}</td>        
+                <td class="pointer"  data-ng-click="routeTo(contract.id)">{{contract.units}}</td>
+                <td class="pointer">
+                 <a data-ng-show="PermissionService.showMenu('UPDATE_CONTRACT')" href="#/editcontract/{{contract.id}}"
+                    data-popover="Edit Contract" data-popover-trigger="mouseenter" class="icon-edit"></a>&nbsp;
+	             <a data-ng-show="PermissionService.showMenu('DELETE_CONTRACT')" data-ng-click="deleteContract(contract.id)"
+	                data-popover="Delete Contract" data-popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a></td>         
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script type="text/ng-template" id="contract.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">Delete Contract</h3>
+                    </div>
+                    <div class="modal-body modal-small">
+                       <h4>Are you sure?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+                    </div>
+      </script>
+</div>

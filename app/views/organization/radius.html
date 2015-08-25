@@ -1,0 +1,178 @@
+<div>
+	<ul class="breadcrumb">
+		<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+		<li class="active">Radius</li>
+	</ul>
+</div>
+
+<div data-ng-controller="RadiusController">
+	<tabset style="margin-bottom: 0px;"> 
+	<tab heading="{{'tab.nas' | translate}}" select="getNas()">
+	<div class="pull-right">
+		<a href="#/createNas/{{radiusVersion}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'link.create.new.nas' | translate }}</a>
+	</div>
+	<div>
+		<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Enter text to search"> <br>
+		<table class="table" data-ng-if="radiusVersion=='version-1'">
+			<thead>
+				<tr class="graybg">
+					<th>{{'label.heading.shortname' | translate }}</th>
+					<th>{{'label.heading.ip' | translate}}</th>
+					<th>{{'lable.heading.secret' | translate }}</th>
+					<th>{{'lable.heading.description' | translate }}</th>
+					<th>{{'table.heading.actions' | translate}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="pointer-main" data-ng-repeat="nasData in nasDatas | filter:filterText">
+					<td>{{nasData.shortname}}</td>
+					<td>{{nasData.nasname}}</td>
+					<td>{{nasData.secret}}</td>
+					<td>{{nasData.description}}</td>
+					<td>
+                    	<a data-ng-click="deleteNas(nasData.id)" data-popover="{{'label.nas.message' | translate}}" data-popover-trigger="mouseenter">
+                    		<i class="icon-remove icon-white"></i>
+                    	</a> 
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<table class="table" data-ng-if="radiusVersion=='version-2'">
+			<thead>
+				<tr class="graybg">
+					<th>{{ 'table.heading.shortName' | translate }}</th>
+					<th>Nas Ip</th>
+					<th>{{ 'table.heading.secret' | translate }}</th>
+					<th>{{ 'table.heading.description' | translate }}</th>
+					<th>Microtik User</th>
+					<th>Microtik Password</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="pointer-main" data-ng-repeat="nasData in nasDatas | filter:filterText">
+					<td class="pointer"
+						data-ng-click="routeToNas(nasData.id)">{{nasData.shortName}}</td>
+					<td class="pointer"
+						data-ng-click="routeToNas(nasData.id)">{{nasData.nasName}}</td>
+					<td class="pointer"
+						data-ng-click="routeToNas(nasData.id)">{{nasData.secret}}</td>
+					<td class="pointer"
+						data-ng-click="routeToNas(nasData.id)">{{nasData.description}}</td>
+					<td class="pointer"
+						data-ng-click="routeToNas(nasData.id)">{{nasData.apiusername}}</td>
+					<td class="pointer"
+						data-ng-click="routeToNas(nasData.id)">{{nasData.apipassword}}</td>
+					<td>
+						<a data-ng-click="reloadNases(nasData.nasName)" data-popover="Reload" data-popover-trigger="mouseenter">
+                    		<i class="icon-plus icon-white"></i>
+                    	</a> 
+                    	<a data-ng-click="deleteNas(nasData.id)" data-popover="{{'label.nas.message' | translate}}" data-popover-trigger="mouseenter">
+                    		<i class="icon-remove icon-white"></i>
+                    	</a> 
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	</tab>
+	
+	<tab heading="{{'tab.radService' | translate}}" select="getRadService()" active="radServiceTab">
+	<div class="pull-right">
+		<a href="#/createRadService/{{radiusVersion}}" class="btn btn-primary"><i
+			class="icon-plus icon-white"></i> {{ 'link.create.new.radService' | translate }}</a>
+	</div>
+	<div>
+		<input data-ng-model="filterText" type="text" class="span marginbottom0px"
+			placeholder="Enter text to search"> <br>
+		<table class="table" data-ng-show="radiusVersion=='version-1'">
+			<thead>
+				<tr class="graybg">
+					<th>{{ 'table.heading.serviceName' | translate }}</th>
+					<th>{{ 'table.heading.serviceType' | translate }}</th>
+					<th>{{ 'table.heading.upRate' | translate }}</th>
+					<th>{{ 'table.heading.downRate' | translate }}</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="pointer-main" data-ng-repeat="radService in radServices | filter:filterText">
+					<td class="pointer"  data-ng-click="routeToDiscounts(radService.id)">{{radService.groupname}}</td>
+					<td class="pointer"  data-ng-click="routeToDiscounts(radService.id)">{{radService.attribute}}</td>
+					<td class="pointer"  data-ng-click="routeToDiscounts(radService.id)">{{radService.upRate}}</td>	
+					<td class="pointer"  data-ng-click="routeToDiscounts(radService.id)">{{radService.downRate}}</td>
+					<td><a data-ng-click="deleteRadService(radService.id)" data-popover="{{'label.radService.message' | translate}}" data-popover-trigger="mouseenter">
+                    		<i class="icon-remove icon-white"></i> </a>
+                    	
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<table class="table" data-ng-show="radiusVersion=='version-2'">
+			<thead>
+				<tr class="graybg">
+				    <th>{{ 'table.heading.serviceId' | translate }}</th>
+					<th>{{ 'table.heading.serviceName' | translate }}</th>
+					<th>{{ 'table.heading.service' | translate }}</th>
+					<th>{{ 'table.heading.upRate' | translate }}</th>
+					<th>{{ 'table.heading.downRate' | translate }}</th>
+					<th>Combquota</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="pointer-main" data-ng-repeat="radService in radServices2 track by $index| filter:filterText">
+					<!-- data-ng-click="routeToRadService(radiusVersion,radService.serviceId) -->
+				    <td class="pointer" >{{radService.serviceId}}</td>
+					<td class="pointer" >{{radService.serviceName}}</td>
+					<td class="pointer" >{{radService.nextServicId}}</td>
+					<td class="pointer" >{{radService.uprate}}</td>	
+					<td class="pointer" >{{radService.downRate}}</td>
+					<td class="pointer" >{{radService.combquota}}</td>
+					<td>
+						<!-- <a data-ng-show="PermissionService.showMenu('UPDATE_RADSERVICE')" 
+							href="#/editRadService/{{radiusVersion}}/{{radService.serviceId}}" data-popover="{{'label.editradservice' | translate}}" data-popover-trigger="mouseenter">
+                    		<i class="icon-edit icon-white"></i>
+                    	</a>&nbsp; -->
+                    	<a data-ng-show="PermissionService.showMenu('DELETE_RADSERVICE')"
+                    	 	data-ng-click="deleteRadService(radService.serviceId)" data-popover="{{'label.deleteradservice' | translate}}" data-popover-trigger="mouseenter">
+                    		<i class="icon-remove icon-white"></i>
+                    	</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	</tab>  </tabset>
+		<script type="text/ng-template" id="deletePopupForNas.html">
+    	<div class="modal-header silver">
+        	<h3 class="bolder">{{'label.nas.message' | translate}}</h3>
+        </div>
+
+        <div class="modal-body style="height:60px;">
+            <h4>Are you sure?</h4>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+            <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+        </div>
+   </script>
+   
+     <script type="text/ng-template" id="deletePopupForRadService.html">
+   	<div class="modal-header silver">
+    	<h3 class="bolder">{{'label.radService.message' | translate}}</h3>
+    </div>
+
+    <div class="modal-body" style="height:60px;">
+    	<h4>Are you sure?</h4>
+    </div>
+
+   	<div class="modal-footer">
+    	<button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+       	<button class="btn btn-primary" ng-click="remove()">{{'label.confirm' | translate}}</button>
+    </div>
+   </script>
+   
+
+</div>

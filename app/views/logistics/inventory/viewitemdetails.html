@@ -1,0 +1,51 @@
+<div  ng-controller="ViewItemDetailController">
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+	        <li><a href="#/inventory">{{'link.inventory' | translate}}</a> <span class="divider">/</span></li>
+	        <li class="active">{{itemDetailData.id}}&nbsp;&nbsp;</li>
+	    </ul>
+	    <div class="pull-right">
+	      
+	    </div>
+	</div>
+
+	<div class="row paddedleft">
+		<h3>&nbsp;&nbsp;&nbsp;{{itemDetailData.id}}</h3>
+		<table width="100%">
+			<tr>
+				<td width="20%">{{'table.itemdetails.officeName' | translate }}</td>
+				<td width="80%">{{itemDetailData.officeName}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.itemdetail.itemdescription' | translate }}</td>
+				<td>{{itemDetailData.itemDescription}}</td>
+			</tr>
+			<tr>
+				<td>{{'table.itemdetails.serialNumber' | translate }}</td>
+				<td>{{itemDetailData.serialNumber}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.itemdetail.grnid' | translate }}</td>
+				<td>{{itemDetailData.grnId}}</td>
+			</tr>
+			<tr>
+				<td>{{'table.itemdetails.supplier' | translate }}</td>
+				<td>{{itemDetailData.supplier}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.itemdetail.quality' | translate }}</td>
+				<td>{{itemDetailData.quality}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.itemdetail.status' | translate }}</td>
+				<td>{{itemDetailData.status}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.item.warranty' | translate }}</td>
+				<td>{{itemDetailData.warranty}}</td>
+			</tr>
+			
+		</table>
+	</div>
+</div>
+          

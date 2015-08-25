@@ -1,0 +1,71 @@
+<div data-ng-controller="ViewEventController">
+
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+			<li><a href="#/event">{{'label.event' | translate}}</a>
+				<span class="divider">/</span></li>
+			<li class="active">{{'label.viewevent' | translate}}</li>
+		</ul>
+		 <div class="pull-right">
+	      <div class="btn-group">
+	          <a data-ng-show="PermissionService.showMenu('UPDATE_EVENT')" href="#/editEvent/{{event.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> {{'button.edit' | translate}}</a>	        
+	          <a data-ng-show="PermissionService.showMenu('DELETE_EVENT')" data-ng-click="deleteEvent()" class="btn btn-primary"><i class="icon-trash icon-white"></i> {{'button.delete' | translate}}</a>	
+	          <a data-ng-show="PermissionService.showMenu('CREATE_EVENTPRICE') &&
+	          			 PermissionService.showMenu('READ_EVENTPRICE')" href="#/addEventPrice/{{event.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> {{'label.addprice' | translate}}</a>
+	          <a data-ng-show="PermissionService.showMenu('READ_EVENTPRICE')" href="#/viewEventPrices/{{event.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> {{'label.viewprice' | translate}}</a>  
+	      </div>
+	    </div>
+	</div>
+
+	<div class="row paddedleft">
+		<h3>&nbsp;&nbsp;&nbsp;{{'label.viewevent' | translate}}</h3>
+		<table style="width:100%;">
+		    
+			<tr>
+				<td>{{'label.event.eventname' | translate}}</td>
+				<td>{{event.eventName}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.event.eventdescription' | translate}}</td>
+				<td>{{event.eventDescription}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.event.status' | translate }}</td>
+				<td>	<table>
+						<tr data-ng-repeat="selectedStatus in status">
+							<td>
+								<span data-ng-show="selectedStatus.id == event.statusId ">{{selectedStatus.value}}</span>
+							</td>
+						</tr>
+					</table></td>
+			</tr>
+			<tr>
+				<td>{{'label.event.startdate' | translate }}</td>
+				<td>{{event.eventStartDate | DateFormat}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.event.chargedata' | translate }}</td>
+				<td>{{event.chargeCode}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.event.enddate' | translate }}</td>
+				<td>{{event.eventEndDate | DateFormat}}</td>
+			</tr>
+		</table>
+	</div>
+
+</div>
+<script type="text/ng-template" id="deletePopupForEvent.html">
+    	<div class="modal-header silver">
+        	<h3 class="bolder">{{'label.heading.deletediscount' | translate}}</h3>
+        </div>
+
+        <div class="modal-body style="height:60px;">
+            <h4>Are you sure?</h4>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+            <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+        </div>
+ </script>

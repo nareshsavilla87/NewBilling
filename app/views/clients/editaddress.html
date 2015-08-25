@@ -1,0 +1,163 @@
+<div data-ng-controller="EditAddressController">
+<div><ul class="breadcrumb">
+       <li><table>
+        <tr>
+        <td>
+         <img data-ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img data-ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+        </td>
+        <td>
+            <small style="color:black;">{{displayName}}</small>
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Uniquely identified&nbsp;<strong>{{accountNo}}</strong></small></td>
+        	</tr>
+        	<tr>
+        	    <td><small>Cell Phone&nbsp;<strong>{{phone}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        	   <td><i class="icon-building"></i><small>Office&nbsp;"<strong>{{officeName}}</strong>"</small></td>
+        	</tr>
+        	<tr>
+        	<td><small>Device # <strong>{{hwSerialNumber}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Client Type&nbsp;"<strong>{{categoryType}}</strong>"</small></td>
+        	</tr>
+        	<tr>
+        		<td><small>Balance&nbsp;<strong>{{balanceAmount}}</strong>&nbsp;{{currency}} </small></td>
+        		<td class="paddedleft0" data-ng-show="walletConfig"><small>[Wallet&nbsp;<strong>{{walletAmount}}</strong>&nbsp;{{currency}}]</small></td>
+        	</tr>
+        </table>
+        </td>
+        </tr>
+        </table></li>
+ </ul>
+	<ul class="breadcrumb">
+		<li><a href="#/viewclient/{{formData.clientId}}">{{'label.viewclient' |
+				translate}}</a> <span class="divider">/</span></li>
+		<li class="active">{{'label.editaddress' | translate}}</li>
+	</ul>
+</div>
+<form name="editaddressform" novalidate class="form-horizontal well" data-ng-submit="submit()">
+ <div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	<fieldset>
+		<legend>{{'label.editaddress' | translate}}</legend>
+		<table>
+		  <tr>
+			<td>
+					<div class="control-group">
+						<label class="control-label" for="addressKey"> {{'label.addresstype' | translate }} </label>
+						<div class="controls">
+							<select ng-model="formData.addressType"
+								ng-options="address.value as address.value for address in addressTypeData"
+								value="{{address.value}}"></select>
+						</div>
+					</div>
+				</td>
+			</tr>	
+			<tr>
+				<td>
+					<div class="control-group" data-ng-hide="propertyMaster">
+						<label class="control-label" for="addressNo">{{'label.addressno' | translate}}</label>
+						<div class="controls">
+							<input type="text" id="addressNo" data-ng-model="formData.addressNo">
+						</div>
+					</div>
+					
+					<div class="control-group"  data-ng-show="propertyMaster">
+                    <label class="control-label">{{'label.buildingcode' | translate}}<span class="required">*</span></label>
+                   <div class="controls">
+                  <input type="text" id="addressNo" name="address" data-ng-model="formData.addressNo" data-typeahead="propertyCode.propertyCode as propertyCode.propertyCode for propertyCode in getPropertyCode($viewValue)"
+                     autocomplete="off" data-typeahead-min-length="0" data-ng-blur="getPropertyDetails(formData.addressNo)" required data-late-Validate/><br/>
+                 <span  data-ng-show="editaddressform.address.$invalid">
+                <small class="error" data-ng-show="editaddressform.address.$error.req">{{'label.required.field' | translate}}</small>
+          </span>
+        </div>
+      </div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="control-group">
+						<label class="control-label" for="street">{{'label.street' | translate}}</label>
+						<div class="controls">
+							<input type="text" id="street" ng-model="formData.street">
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="control-group">
+						<label class="control-label" for="city">{{'label.city' | translate}}</label>
+						<div class="controls" data-ng-hide="propertyMaster">
+							<input type="text" id="city" data-ng-model="formData.city" autocomplete="off" list="citylist" data-ng-change="getStateAndCountry(formData.city)">
+						</div>
+						    <div class="controls" data-ng-show="propertyMaster">
+                           <input type="text" id="city" name="city" data-ng-model="formData.city" readonly required />  
+                          </div>
+					</div>
+					<datalist id="citylist">
+                   					<option  data-ng-repeat="cityData in cityDatas" value="{{cityData}}">
+            		</datalist>
+					
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<div class="control-group">
+						<label class="control-label" for="state">{{'label.state' | translate}}</label>
+						<div class="controls">
+							<input type="text" id="state" ng-model="formData.state" readonly>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td >
+					<div class="control-group">
+						<label class="control-label" for="country">{{'label.country' | translate}}</label>
+						<div class="controls">
+							<input type="text" id="country" ng-model="formData.country" readonly>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="control-group">
+						<label class="control-label" for="zip">{{'label.zipcode' | translate}}</label>
+						<div class="controls">
+							<input type="text" id="zip" ng-model="formData.zip">
+						</div>
+					</div>
+				</td>
+			</tr>
+		<tr><td align="right">
+			<a id="cancel" href="#/viewclient/{{formData.clientId}}"><button type="reset" class="btn">Cancel</button></a>
+			<button id="submit" type="submit" data-ng-disabled="!editaddressform.$valid" class="btn btn-primary">Save</button>
+		</td></tr></table>
+	</fieldset>
+</form>
+</div>

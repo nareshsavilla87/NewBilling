@@ -1,0 +1,88 @@
+<div  ng-controller="ViewVendorController">
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+	        <li><a href="#/vendor">vendor</a> <span class="divider">/</span></li>
+	        <li class="active">{{vendorData.vendorCode}}&nbsp;&nbsp;</li>
+	    </ul>
+	    <div class="pull-right">
+	      <div class="btn-group">
+	          <a ng-show="PermissionService.showMenu('UPDATE_VENDOR')" href="#/editvendor/{{vendorData.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
+	      </div>
+	    </div>
+	</div>
+
+	<div class="row paddedleft">
+		<h3>{{vendorData.vendorCode}}</h3>
+		<table width="100%">
+			<tr>
+				<td width="20%">vendorCode</td>
+				<td width="80%">{{vendorData.vendorCode}}</td>
+			</tr>
+			<tr>
+				<td>vendorDescription</td>
+				<td>{{vendorData.vendorDescription}}</td>
+			</tr>
+			<tr>
+				<td>vendorEmailId</td>
+				<td>{{vendorData.vendorEmailId}}</td>
+			</tr>
+			<tr>
+				<td>contactName</td>
+				<td>{{vendorData.contactName}}</td>
+			</tr>
+			<tr>
+				<td>vendormobileNo</td>
+				<td>{{vendorData.vendormobileNo}}</td>
+			</tr>
+			<tr>
+				<td>vendorTelephoneNo</td>
+				<td>{{vendorData.vendorTelephoneNo}}</td>
+			</tr>
+			<tr>
+				<td>vendorAddress</td>
+				<td>{{vendorData.vendorAddress}}</td>
+			</tr>
+			<tr>
+				<td>vendorCountry</td>
+				<td>{{vendorData.vendorCountry}}</td>
+			</tr>
+			<tr>
+				<td>agreementStatus</td>
+				<td>{{vendorData.agreementStatus}}</td>
+			</tr>
+			<tr>
+				<td>vendorCurrency</td>
+				<td>{{vendorData.vendorCurrency}}</td>
+			</tr>
+			<tr>
+				<td>agreementStartDate</td>
+				<td>{{vendorData.agreementStartDate}}</td>
+			</tr>
+			
+		</table>
+	</div>
+
+	<div>
+	<h3>List of Loyalities</h3>
+		<table class="table">
+			<thead>
+				<tr class="graybg">
+					<th>contentCode</th>
+					<th>loyaltyType</th>
+					<th>loyaltyShare</th>
+					<th>priceRegion</th>
+					<th>contentCost</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="itemPricesData in vendorDetaildata">
+				<td>{{itemPricesData.contentCode}}</td>
+				<td>{{itemPricesData.loyaltyType}}</td>
+				<td>{{itemPricesData.loyaltyShare}}</td>
+				<td>{{itemPricesData.priceRegion}}</td>
+				<td>{{itemPricesData.contentCost}}</td>
+			</tbody>
+		</table>
+	</div>
+</div>
+          

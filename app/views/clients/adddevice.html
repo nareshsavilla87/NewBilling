@@ -1,0 +1,250 @@
+<div data-ng-controller="AddDeviceController">
+	<div>
+		<ul class="breadcrumb">
+      <li>
+ 	   <table>
+        <tr>
+        <td>
+         <img data-ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img data-ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+        </td>
+        <td>
+            <small style="color:black;">{{displayName}}</small>
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Uniquely identified&nbsp;<strong>{{accountNo}}</strong></small></td>
+        	</tr>
+        	<tr>
+        	    <td><small>Cell Phone&nbsp;<strong>{{phone}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        	   <td><i class="icon-building"></i><small>Office&nbsp;"<strong>{{officeName}}</strong>"</small></td>
+        	</tr>
+        	<tr>
+        	<td><small>Device # <strong>{{hwSerialNumber}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Client Type&nbsp;"<strong>{{categoryType}}</strong>"</small></td>
+        	</tr>
+        	<tr>
+        		<td><small>Balance&nbsp;<strong>{{balanceAmount}}</strong>&nbsp;{{currency}} </small></td>
+        		<td class="paddedleft0" data-ng-show="walletConfig"><small>[Wallet&nbsp;<strong>{{walletAmount}}</strong>&nbsp;{{currency}}]</small></td>
+        	</tr>
+        </table>
+        </td>
+        </tr>
+        </table>
+        </li>
+		</ul>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/viewclient/{{clientId}}" data-ng-click="reset123()">{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'label.add.device' | translate}}</li>
+		</ul>
+	</div>
+<form class="form-horizontal well">
+		<div class="error" data-ng-show="errorStatus || errorDetails">
+			<label>{{'label.contract.error' | translate}}</label> 
+			<label data-ng-show="errorStatus">{{errorStatus}}</label> 
+			<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate:error.args}}</label>
+		</div>
+		<fieldset>
+			<legend>{{'label.add.device' | translate}}</legend>
+			<table>
+			   <tr>
+			      <td>
+			      	<div class="control-group">
+					    <label class="control-label" for="serialNumber">{{'label.serialNumber' | translate }}&nbsp;<span class="required">*</span></label>
+						<div class="controls">
+							<input type="text" data-ng-model="itemDetail" name="serialNumber" data-typeahead="itemDetail as itemDetail for itemDetail in getData($viewValue)" 
+							autocomplete="off" data-typeahead-on-select="getItemData($item, $model, $label)" data-typeahead-min-length="0"><br/>
+						</div>
+					</div>	
+			      </td>
+			      <td>
+					<div class="control-group">
+						<label class="control-label" for="itemId">{{'label.itemCode' | translate }}&nbsp;<span class="required">*</span></label>
+					    <div class="controls">
+					    	<select id="itemId" data-ng-model="formData.itemId" disabled 
+					    			data-ng-options="itemData.id as itemData.itemCode for itemData in itemDatas">
+							 </select>
+						</div>
+					</div>
+			      </td>
+			   </tr>
+			   <tr>
+			   	  <td>
+					 <div class="control-group">
+						<label class="control-label">{{ 'label.saleDate' | translate }}&nbsp;<span class="required">*</span></label>
+						<div class="controls">
+						  <input type="text" data-datepicker-pop="dd MMMM yyyy" data-ng-model="date.saleDate" data-is-open="opened2" min="minDate"
+								max="maxDate" data-date-disabled="disabled(date, mode)" style="background-color: #FFFFFF;" readonly />
+						</div>
+					 </div>
+				  </td>
+				  <td>
+					 <div class="control-group">
+						<label class="control-label" for="officeId">{{'label.heading.office' | translate}}&nbsp;<span class="required">*</span></label>
+						  <div class="controls">
+							 <select data-ng-model="formData.officeId" data-ng-options="office.id as office.name for office in offices">
+							 </select>
+						</div>
+					  </div>
+				  </td>
+			   </tr>
+			   <tr>
+				  <td colspan="2" align="left">
+			 		 <br/><div class="control-group">
+			 			<div class="controls">
+			  				<span data-ng-show="PermissionService.showMenu('CREATE_NEWSALE')">
+			  					<input  id="newSale" type="radio" name="saleSelectionType" data-ng-click="selectedNewSale()"/>
+			  					<label class="radioBtnlabel" for="newSale">{{'label.device.newsale' | translate}}</label>&nbsp;&nbsp;
+			  				</span>
+			  				<!-- <span data-ng-show="PermissionService.showMenu('CREATE_SECONDSALE')">
+						  		<input  id="secondSale" type="radio" name="saleSelectionType"  data-ng-click="selectedSecondSale()"/>
+						  		<label class="radioBtnlabel" for="secondSale">{{'label.device.secondsale' | translate}}</label>&nbsp;&nbsp;
+						  	</span> -->
+						  	<!-- <span data-ng-show="PermissionService.showMenu('CREATE_DEVICERENTAL')">
+						  		<input  id="deviceRental" type="radio" name="saleSelectionType"  data-ng-click="selectedDeviceRental()"/>
+						  		<label class="radioBtnlabel" for="deviceRental">{{'label.device.rental' | translate}}</label>
+						  	</span> -->
+						</div>
+					 </div>
+			 	   </td>
+			    </tr>
+			</table><br/>
+			<table data-ng-show="newSaleType">
+				<tr>
+					<td>
+						<div class="control-group">
+							<label class="control-label" for="discountId">{{'label.discountCode' | translate }}</label>
+							<div class="controls">
+								<select data-ng-model="formData.discountId"
+									data-ng-options="discountMasterData.id as discountMasterData.discountDescription for discountMasterData in discountMasterDatas">
+								</select>
+							</div>
+						</div>
+					</td>
+					<td>
+						<div class="control-group">
+							<label class="control-label" for="totalPrice">{{'label.totalPrice' | translate }}</label>
+							<div class="controls">
+								<input type="text" id="totalPrice" data-ng-model="formData.totalPrice" style="background-color: #FFFFFF;" readonly/>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<!-- <tr>
+					<td colspan = "2" align="left">
+						<div class="control-group">
+            			<label class="control-label" for="addDeposit">Add Deposit</label>
+            			<div class="controls">
+              			<label class="checkbox">
+                		<input type="checkbox" id="addDeposit" data-ng-model="formData.addDeposit">
+              			</label>
+            			</div>
+          				</div>
+					</td>
+				</tr>
+				<tr data-ng-show = "formData.addDeposit" >
+					<td colspan = "2" align="left">
+						<div class="control-group">
+						<label class="control-label" for="totalPrice">Deposit Amount </label>
+						<div class="controls">
+						<input type="text" id="amount" data-ng-model="formData.amount" style="background-color: #FFFFFF;" readonly/>
+						</div>
+						</div></td>
+				</tr> -->
+				<tr>
+					<td colspan="2" align="left">
+						<div class="offset3" align="right">
+							<a id="cancel" href="#/viewclient/{{clientId}}">
+								<button type="reset" class="btn" data-ng-click="reset123()">{{'button.cancel' | translate}}</button>
+							</a>
+							<button id="submit1" class="btn btn-primary" data-ng-click="newSaleSaveBtnFun()">{{'button.save' | translate}}</button>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<table data-ng-show="secondSaleType" style="width:100%;">
+				<tr>
+					<td>
+						<div class="control-group offset2">
+            			   <label class="control-label" for="totalPrice">{{ 'label.totalPrice' | translate }}</label>
+            				<div class="controls">
+              				    <input type="text" id="totalPrice" data-ng-model="formData.totalPrice"/>
+            				</div>
+          				</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					  <div style="margin-left: 49.064%;">
+						 <a id="cancel" href="#/viewclient/{{clientId}}">
+						 	<button type="reset" class="btn" data-ng-click="reset123()">{{'button.cancel' | translate}}</button>
+						 </a>
+						  <button id="submit2" class="btn btn-primary" data-ng-click="secondSaleSaveBtnFun()">{{'button.save' | translate}}</button>
+					  </div>
+				     </td>
+								
+				</tr>
+			</table>
+			<table data-ng-show="deviceRentalType">
+				<tr>
+					<td>
+						<div class="control-group">
+          					<label class="control-label" for="totalPrice">{{ 'label.price' | translate }}</label>
+          					<div class="controls">
+            					<input type="text" id="totalPrice" data-ng-model="formData.totalPrice" style="background-color:#FFFFFF;" readonly>
+          					</div>
+        				</div>
+					</td>
+					<td>
+						<div class="control-group">
+          					<label class="control-label" for="discountId">{{ 'label.discountCode' | translate }}</label>
+          					<div class="controls">
+           					 	<select data-ng-model="formData.discountId"  data-ng-options="discountMasterData.id as discountMasterData.discountDescription for discountMasterData in discountMasterDatas">
+           						 </select>
+          					</div>
+        				</div>
+        			</td>
+				</tr>
+				<tr>
+        			<td colspan="2" align="left">
+        				<div class="control-group">
+                           <label class="control-label" for="contractPeriod">{{ 'label.contract' | translate }}</label>
+                           <div class="controls">
+                               <select data-ng-model="formData.contractPeriod"  data-ng-options="contractPeriod.id as contractPeriod.subscriptionPeriod for contractPeriod in contractPeriods"></select>
+                           </div>
+                        </div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="right">
+						<div class="offset9">
+							<a id="cancel" href="#/viewclient/{{clientId}}">
+								<button type="reset" class="btn" data-ng-click="reset123()">{{'button.cancel' | translate}}</button>
+							</a>
+							<button id="submit3" type="submit" class="btn btn-primary" data-ng-click="deviceRentalSaveBtnFun()">{{'button.save' | translate}}</button>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</fieldset>
+</form>
+</div>

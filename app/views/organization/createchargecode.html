@@ -1,0 +1,92 @@
+ <div  data-ng-controller="CreateChargeCodeController" >
+ 	<div>
+    	<ul class="breadcrumb">
+        	<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+          	<li><a href="#/chargecode">{{'label.chargecode' | translate}}</a> <span class="divider">/</span></li>
+          	<li class="active">{{'label.create.new.chargecode' | translate}}</li>
+        </ul>
+    </div>
+    
+    <div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	</div>
+	
+    <form name="createchargeform" class="form-horizontal well" data-ng-submit="submit()">
+    	<fieldset>
+        	<legend>{{'label.create.new.chargecode' | translate}}</legend>
+
+          	<div class="control-group">
+            	<label class="control-label" for="chargeCode">{{'label.chargecode' | translate }}<span class="required">*</span></label>
+            	<div class="controls">
+              		<input type="text" id="chargeCode" name="chargeCode" data-ng-model="formData.chargeCode" data-ng-maxlength="{{'code' | CodeValidate}}">
+              		<span data-ng-show = "createchargeform.chargeCode.$dirty && createchargeform.chargeCode.$invalid">
+              			<small class="error-row">
+              				{{'error.code.definition.length.validation'| translate}}
+              			</small>
+              		</span>
+            	</div>
+          	</div>
+          
+          	<div class="control-group">
+            	<label class="control-label" for="chargeDescription">{{'label.chargedes' | translate }}<span class="required">*</span></label>
+            	<div class="controls">
+              		<input type="text" id="chargeDescription" data-ng-model="formData.chargeDescription">
+            	</div>
+          	</div>
+
+          <div class="control-group">
+            <label class="control-label" for="chargeType">{{'label.chargetype' | translate }}<span class="required">*</span></label>
+            <div class="controls">
+              <select id="chargeType" data-ng-model="formData.chargeType" data-ng-options="chargeType.chargeType as chargeType.chargeType for chargeType in chargeTypes">
+              <option value="">{{'label.select.one' | translate}}</option></select>
+            </div>
+          </div>
+
+          	<div class="control-group">
+            	<label class="control-label" for="chargeDuration">{{'label.chargeDuration' | translate }}<span class="required">*</span></label>
+            	<div class="controls">
+              		<input type="text" id="chargeDuration" name="chargeDuration" data-ng-model="formData.chargeDuration" data-ng-pattern="{{'integer' | CodeValidate}}">
+              		<span data-ng-show="createchargeform.chargeDuration.$dirty && createchargeform.chargeDuration.$invalid">
+              			<small class="error-row">{{'error.not.numeric.validation' | translate}}</small>
+              		</span>
+            	</div>
+          	</div>
+
+           <div class="control-group">
+            <label class="control-label" for="durationType">{{'label.durationType' | translate }}<span class="required">*</span></label>
+            <div class="controls">
+					<select id="durationType" data-ng-model="formData.durationType"
+						data-ng-options="durationTypeCode.durationTypeCode as durationTypeCode.durationTypeCode for durationTypeCode in durationTypes">
+						<option value="">{{'label.select.one' | translate}}</option>
+					</select>
+				</div>
+          	</div>
+          
+          	<div class="control-group">
+            	<label class="control-label" for="taxInclusive">{{'label.taxInclusive' | translate}}</label>
+                <div class="controls">
+                	<label class="checkbox">
+                    	<input type="checkbox" data-ng-model="formData.taxInclusive">
+                    </label>
+                </div>
+             </div>
+         
+           <div class="control-group">
+            <label class="control-label" for="billFrequencyCode ">{{'label.billFrequencyCode' | translate }}<span class="required">*</span></label>
+            <div class="controls">
+              <select id="billFrequencyCode" data-ng-model="formData.billFrequencyCode" data-ng-options="billFrequencyCode.billFrequencyCode as billFrequencyCode.billFrequencyCode for billFrequencyCode in billFrequencyCodes">
+             <option value="">{{'label.select.one' | translate}}</option></select>
+            </div>
+            </div>
+         
+          	<div class="offset3">
+            	<a href="#/chargecode"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+            	<button  id="submit" type="submit" data-ng-disabled="createchargeform.$dirty && createchargeform.$invalid" class="btn btn-primary">{{'button.save'| translate}}</button>
+          	</div>
+          
+        </fieldset>
+        
+     </form>
+</div>

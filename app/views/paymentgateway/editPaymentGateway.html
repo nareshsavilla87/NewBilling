@@ -1,0 +1,55 @@
+<div data-ng-controller="EditPaymentGatewayController">
+	<div>
+		<ul class="breadcrumb">
+			<li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/paymentGateway">{{'link.paymentgateway' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'label.editpaymentgateway' | translate}}</li>
+		</ul>
+	</div>
+	
+	<form class="form-horizontal well" data-ng-submit="submit()">
+		<div class="error" data-ng-show="errorStatus || errorDetails">
+			<label>{{'label.contract.error' | translate}}</label> 
+			<label data-ng-show="errorStatus">{{errorStatus}}</label> 
+			<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		</div>
+		
+		<fieldset>
+			<legend>{{'label.editpaymentgateway' | translate}}</legend>
+			<table width="100%">
+
+				<tr>
+					<td width="50%">
+						<div class="control-group">
+							<label class="control-label" for="status">{{'label.paymentgateway.status' | translate }}</label>
+							<div class="controls">
+								<select data-ng-model="formData.paymentdata" 
+									data-ng-options="statusdata.code as statusdata.value for statusdata in statusData" data-value="{{statusdata.code}}">
+								</select>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td width="50%">
+						<div class="control-group">
+							<label class="control-label" for="remarks"> {{'label.paymentgateway.remarks' | translate }} </label>
+							<div class="controls">
+								<select data-ng-model="formData.remarks">
+									<option> {{'label.active' | translate }} </option>
+									<option> {{'label.done' | translate }} </option>
+								</select>
+							</div>
+						</div>
+					</td>
+				</tr>
+
+			</table>
+
+			<div class="offset3">
+				<a href="#/paymentGateway"><button type="reset" class="btn">{{'button.cancel' | translate }}</button></a>
+				<button type="submit" class="btn btn-primary"> {{'button.save' | translate }} </button>
+			</div>
+		</fieldset>
+	</form>
+</div>

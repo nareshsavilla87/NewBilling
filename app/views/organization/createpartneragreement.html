@@ -1,0 +1,92 @@
+<div data-ng-controller="CreatePartnerAgreementController">
+<ul class="breadcrumb">
+ <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+	        <li><a href="#/offices" data-ng-click="partnersTab()">{{'label.managepartners' | translate}}</a> <span class="divider">/</span></li>
+	        <li><a href="#/viewpartner/{{partnerId}}/{{officeId}}">{{partnerName}}</a><span class="divider">/</span></li>
+	        <li class="active">{{'label.createpartneragreement' | translate}}</li>
+        </ul>
+<form name="partneragreement" novalidate class="form-horizontal well"   data-ng-submit="submit()">
+
+  	<div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+
+	 <fieldset>
+	 <legend>{{'label.partneragreement'| translate}}</legend>
+	 <div>
+	 <table>		 
+		<tr>
+	      <td>
+	       	   <div class="control-group">
+	            <label class="control-label" for="agreementStatus">{{'label.agreementstatus' | translate}}&nbsp;<span class="required">*</span></label>
+	            <div class="controls">
+	              <select id="agreementStatus" data-ng-model="formData.agreementStatus"  data-ng-options="agreementType.mCodeValue as agreementType.mCodeValue for agreementType in agreementTypes">
+	              </select>
+	            </div>
+	       </div>
+	       </td>
+	   </tr>	
+		<tr><td>
+	       <div class="control-group">
+            <label class="control-label" for="startDate">{{'label.contreffectdate' | translate}}&nbsp;<span class="required">*</span></label>
+            <div class="controls">
+              <input type="text" id="startDate" data-datepicker-pop="dd MMMM yyyy" data-ng-model="formData.startDate" data-is-open="opened2"  
+              data-date-disabled="disabled(date, mode)"required data-late-Validate style="background-color:#FFFFFF;"  readonly/>
+            </div>	
+          </div>
+      
+      </td><td>
+      				  
+      		<div class="control-group">
+            <label class="control-label" for="endDate">{{'label.contrenddate' | translate}}&nbsp;<span class="required">*</span></label>
+            <div class="controls">
+              <input type="text" id="endDate" data-datepicker-pop="dd MMMM yyyy" data-ng-model="formData.endDate" data-is-open="opened2" min="minDate"
+              data-date-disabled="disabled(date, mode)"required data-late-Validate style="background-color:#FFFFFF;"  readonly/>
+            </div>	
+          </div>
+      
+      </td></tr>	
+    </table>
+     </div>      
+        <div class="control-group">
+         <table>
+          <tr>
+                <td>
+                    <h3>Add Source Category Data</h3>
+                      <button type="button" id="sourceData" data-ng-click="addSourceCategories()" class="btn btn-primary"><i class="icon-plus icon-white"></i></button>
+                </td>
+              </tr>
+              <tr class="span2"></tr>
+           </table>
+           
+           
+           <table class="table" data-ng-show="partnerSourceData.length>0">
+                    <tr></tr>
+                    <tr class="graybg">
+                      <th>{{'table.heading.source' | translate}}</th>
+                      <th>{{'table.heading.commisiontype' | translate}}</th>
+                      <th>{{'table.heading.commisionrate' | translate}}</th>
+                      <th></th>
+                    </tr>
+                    <tr data-ng-repeat="gd in partnerSourceData" >
+					  <td><select class="input-medium" id="source{{gd.index}}" name="source" data-ng-model="gd.source" data-ng-options="sourceData.id as sourceData.mCodeValue for sourceData in sourceDatas"></select></td>
+					  <td><select class="input-medium" id="shareType{{gd.index}}" name="shareType" data-ng-model="gd.shareType" data-ng-options="shareType.mCodeValue as shareType.mCodeValue for shareType in shareTypes"></select></td>
+                      <td><input  class="input-medium" id="shareAmount{{gd.index}}"  name="shareAmount" data-ng-model="gd.shareAmount" type="text"  maxlength="5" required ><br/>
+                      <!-- data-ng-pattern="/^0*([0-9]{1,2}){1}(\.[0-9]{1,2})?|^100$/" <span data-ng-show="partneragreement.shareAmount.$invalid && partneragreement.shareAmount.$dirty">
+        			  <small class="error" data-ng-show="partneragreement.shareAmount.$error.pattern">accept digits between 0-100 only!</small>
+    				 </span> --></td>
+                      <td><a data-ng-click="removeSourceCategories($index)"><i class="icon-remove icon-white"></i></a></td>
+                    </tr>
+                  </table>
+    	</div>           
+          
+           <div class="offset9" >
+            <a href="#/viewpartner/{{partnerId}}/{{officeId}}" ><button type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+            <button type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+          </div>
+	 </fieldset>
+</form>
+     		
+</div>

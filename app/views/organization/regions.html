@@ -1,0 +1,50 @@
+<div data-ng-controller="RegionController">
+	<div>
+		<ul class="breadcrumb">
+			<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'label.regions' | translate}}&nbsp;&nbsp;{{employee.lastname}}</li>
+		</ul>
+		<div class="pull-right">
+			<a data-ng-show="PermissionService.showMenu('CREATE_REGION')" href="#/createregions" class="btn btn-primary">
+				<i class="icon-plus icon-white"></i> {{ 'link.create.new.region' | translate }}</a>
+		</div>
+	</div>
+
+	<div class="row-fluid">
+		<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+		<table class="table">
+			<thead>
+				<tr class="graybg">
+					<th>{{ 'table.heading.regionCode' | translate }}</th>
+					<th>{{ 'table.heading.regionName' | translate }}</th>
+					<th>{{'table.action' | translate}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="pointer-main" data-ng-repeat="region in regions | filter:filterText">
+					<td class="pointer" data-ng-click="routeTo(region.id)">{{region.regionCode}}</td>
+					<td class="pointer" data-ng-click="routeTo(region.id)">{{region.regionName}}</td>
+					<td><a data-ng-show="PermissionService.showMenu('UPDATE_REGION') && region.regionCode !='Default'" href="#/editRegions/{{region.id}}" 
+						style='color: #000000' data-popover="Edit" data-popover-trigger="mouseenter">
+						<i class="icon-edit"></i></a> 
+						<a data-ng-show="PermissionService.showMenu('DELETE_REGION') && region.regionCode !='Default'" data-ng-click="deleteRegion(region.id)" 
+						style='color: #000000' data-popover="Delete" data-popover-trigger="mouseenter">
+						<i class="icon-remove"></i></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script type="text/ng-template" id="deleteregion.html">
+        <div class="modal-header silver">
+			<h3 class="bolder">{{'dialog.region.message' | translate}}</h3>
+        </div>
+		<div class="modal-body style="height:60px;">
+            <h4>Are you sure?</h4>
+        </div>
+        <div class="modal-body modal-middle">
+            <button class="btn btn-warning" ng-click="cancel()">{{'label.cancel' | translate}}</button>
+            <button class="btn btn-primary" ng-click="regionDelete()">{{'label.confirm' | translate}}</button>
+        </div>
+    </script>
+</div>

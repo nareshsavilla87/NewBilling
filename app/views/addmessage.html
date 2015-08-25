@@ -1,0 +1,47 @@
+<div ng-controller="MessangerController">
+
+    <h3 class="paddedleft"><strong>{{ 'label.heading.usernotification' | translate }}</strong></h3>
+  <form>
+  <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	    <label align="center" ng-show="flag"><font color="green">Message Sent Sucessfully....!</font></label>
+       <table width="100%">
+         <tr>
+           <td width="50%">
+       <div class="control-group">
+            <label class="control-label" for="status">{{ 'label.user.name' | translate }}</label>
+            <div class="controls">
+              <select ng-model="formData.userName"  ng-options="appUserData.username as appUserData.username for appUserData in appUserDatas" value="{{appUserData.id}}"></select>
+            </div>
+          </div>
+          </td>
+          <td width="50%">
+              <div class="control-group">
+           <label class="control-label">{{ 'label.systemdatetime' | translate }}</label>
+            <div class="controls">
+            <!-- <input type="text" readonly datepicker-pop="dd MMMM yyyy" ng-model="" is-open="opened2" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)" style="width:130px;background-color:#FFFFFF;" /> -->
+            <input type="text"  readonly datepicker-pop="dd MMMM yyyy" ng-model="first.date" min="minDate" is-open="opened2" date-disabled="disabled(date, mode)" required late-Validate style="width:130px;background-color:#FFFFFF;" /> 
+            <div class="input-append bootstrap-timepicker">
+				<input id="timepicker1"  readonly type="text" ng-model="first.time" style="width:60px;background-color:#FFFFFF;" >
+				<span class="add-on"><i class="icon-time"></i></span>
+			</div>
+           </div>
+    </div>
+          </td>
+         </tr> 
+        </table>  
+            <div class="control-group">
+              <div class="controls">
+                     <textarea rows="1" class="field span marginbottom0px" id="textarea" placeholder="Enter note" ng-model="formData.note"></textarea>
+                     <div class="notewrapper row-fluid">
+                        <span class="pull-right noteaddbuttonwrapper">
+                            <button class="btn btn-primary" type="submit" ng-click="saveMessage()">Add Message</button>
+                        </span>
+                     </div>
+              </div>
+            </div>  
+        </form>
+</div>

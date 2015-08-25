@@ -1,0 +1,89 @@
+<div ng-controller="ClientController">
+<div>
+    <ul class="breadcrumb">
+        <li class="active">{{'link.clients' | translate}}</li>
+    </ul>
+    <div class="pull-left">
+        <a  ng-show="PermissionService.showMenu('CREATE_CLIENT')" href="#/createclient" class="btn btn-primary"><i class="icon-plus icon-white"></i> Create Client</a>
+    <span ng-show="PermissionService.showMenu('ALL_FUNCTIONS')" style="padding:1.5em; font-style: oblique;"><img src="./images/Icons-users.png" alt="TotalClients" width="28px" height="15px"/>{{totalClients}}&nbsp;Total</span>
+    <span ng-show="PermissionService.showMenu('ALL_FUNCTIONS')" style="padding:1.5em; font-style: oblique;color:#FFA500;"><img src="./images/Icons-new.png" alt="NewClients" width="28px" height="15px"/>{{newClients}}&nbsp;New</span>
+    </div>
+   <div class="pull-right">
+     <span ng-show="PermissionService.showMenu('ALL_FUNCTIONS')"  style="padding:1.5em; font-style: oblique;color:#228b22;"><img src="./images/Icons-active.png" alt="ActiveClients" width="28px" height="15px"/>&nbsp;{{activeClients}}&nbsp;Active</span>
+    <span  ng-show="PermissionService.showMenu('ALL_FUNCTIONS')" style="padding:1.5em; font-style: oblique;color:#FF0000;"><img src="./images/Icons-inactive.png" alt="InActiveClients" width="28px" height="15px"/>&nbsp;{{InActiveClients}}&nbsp;DeActive</span>
+    <a ng-show="PermissionService.showMenu('ACTIVATIONPROCESS_ACTIVATE')" href="#/createsimpleActivation" class="btn btn-primary">Simple Activation <i class="icon-tasks icon-large"></i></a>
+    </div>
+</div>
+<div class="row-fluid" ng-show="PermissionService.showMenu('READ_CLIENT')">
+<form ng-submit="search(filterText)" style="margin: 0 0 1%;">
+    <input ng-model="filterText" type="text" style="width:81.15%;" placeholder="Filter by Account#/Name/Phone/Email/Identity/Device#">
+    <select ng-model="status" style="width:16.9%;" ng-change="searchSource(status)">
+              <option value="ALL">ALL</option>
+              <option value="NEW">NEW</option>
+              <option value="ACTIVE">ACTIVE</option>
+              <option value="DEACTIVE">DEACTIVE</option>
+              <option value="CLOSED">CLOSED</option>
+    </select>
+</form>
+	<table class="table">
+        <thead>
+            <tr class="graybg">
+                <th>Client Name</th>
+                <th>Status</th>
+                <th>Account #</th>
+                <th data-ng-show="config['group/parentId']">Group</th>
+                <th>Office</th>
+                <th>Serial No</th>
+                <th>Balance</th> 	   
+                <th data-ng-show="config.userName">UserName</th>
+                <th data-ng-show="config.password">Password</th>
+                <th data-ng-show="config.externalId">ExternalId</th>
+                <th data-ng-show="config.customerCategory">Customer Category</th>
+                <th data-ng-show="config['group/parentId']">ParentId </th>
+                <th data-ng-show="configValues.clientonlinecheck">Online</th> 
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr class="pointer-main" ng-repeat="client in clients.currentPageItems  | filter:filterText" > <!-- ng-hide="client.status.value == 'Closed'" --> 
+
+                <td class="pointer" data-ng-click="routeTo(client.id)" >{{client.displayName}}</td>
+                <td class="pointer" data-ng-click="routeTo(client.id)" ><i class="icon-stop {{client.status.value | StatusLookup}}"></i>&nbsp;{{client.status.value}}</td>
+                <td class="pointer" data-ng-click="routeTo(client.id)" >{{client.accountNo}}</td>
+                <td data-ng-show="config['group/parentId']" class="pointer" data-ng-click="routeToGroup(client.groupName)" >{{client.groupName}}</td>
+                <td class="pointer" data-ng-click="routeTo(client.id)" >{{client.officeName}}</td>
+                <td class="pointer" data-ng-click="routeTo(client.id)" >{{client.hwSerialNumber}}</td>
+                <td class="pointer" data-ng-click="routeTo(client.id)" >{{client.balanceAmount}}</td>
+                <td data-ng-show="config.userName" class="pointer" data-ng-click="routeTo(client.id)" >{{client.userName}}</td>
+
+                <td><a data-ng-show="config.password" class="pointer" data-ng-click="routeTo(client.id)" popover-placement="top" 
+                              popover="{{client.password}}" popover-trigger="mouseenter" >{{client.clientPassword}}</a></td>
+                <td data-ng-show="config.externalId" class="pointer" data-ng-click="routeTo(client.id)" >{{client.externalId}}</td>
+                <td data-ng-show="config.customerCategory" class="pointer" data-ng-click="routeTo(client.id)" >{{client.categoryType}}</td>
+                <td data-ng-show="config['group/parentId']" class="pointer" data-ng-click="routeTo(client.id)" >{{client.parentId}}</td> 
+                <td data-ng-show="configValues.clientonlinecheck" class="pointer" >
+                	<a ng-hide="isOnline== 'Online{{client.id}}' || isOnline== 'Offline{{client.id}}'" id='pop-over-link' class = "btn-disable" ng-click="routeToCheckOnline(client.userName,client.id)"> <!-- data-popover-trigger="focus" popover="{{isOnline}}" -->
+                	<i><img src="./images/Query.png" width="45px" height="15px"/></i>
+                	<!-- <i ng-show="isOnline== 'Online{{client.id}}'" class = "btn btn-success"></i>
+                	<i ng-show="isOnline== 'Offline{{client.id}}'" class = "btn btn-danger"></i> -->
+                	</a>
+                	<a ng-show="isOnline== 'Online{{client.id}}'" id='pop-over-link'  ng-click="routeToCheckOnline(client.userName,client.id)" >
+                	<i><img src="./images/Online.png" width="45px" height="15px"/></i>
+                	</a>
+                	<a ng-show="isOnline== 'Offline{{client.id}}'" id='pop-over-link'  ng-click="routeToCheckOnline(client.userName,client.id)" >
+                	<i><img src="./images/Untitled.png" width="45px" height="15px"/></i>
+                	</a> 
+                	
+                </td>
+            </tr>
+        </tbody>
+    </table>
+      <ul class="pager">
+    	<li class="previous" ng-click="firstPageNo()"><a  ng-click="clients.firstPage()" href="" ng-disabled="!clients.hasFirstPage()">First</a></li>
+        <li class="previous" ng-click="previousPageNo()"><a  id="prev" ng-click="clients.previous()"  href="" ng-disabled="!clients.hasPrevious()">&larr; Prev</a></li>
+        <strong>Page No:&nbsp;&nbsp;{{pageNo}}/{{totalPages}}</strong>
+        <li class="next" ng-click="lastPageNo()"><a  ng-click="clients.lastPage(25)" href="" ng-disabled="!clients.hasLastPage()">Last</a></li>
+        <li class="next" ng-click="nextPageNo()"><a  id="next" ng-click="clients.next()" href="" ng-disabled="!clients.hasNext()">Next &rarr;</a></li>
+    </ul>
+</div>
+</div>

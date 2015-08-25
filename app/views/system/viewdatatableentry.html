@@ -1,0 +1,136 @@
+<div data-ng-controller="ViewDataTableEntryController">
+	<div>
+		<ul class="breadcrumb">
+		<li>
+ 	   <table>
+        <tr>
+        <td>
+         <img data-ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img data-ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+        </td>
+        <td>
+            <small style="color:black;">{{displayName}}</small>
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Uniquely identified&nbsp;<strong>{{accountNo}}</strong></small></td>
+        	</tr>
+        	<tr>
+        	    <td><small>Cell Phone&nbsp;<strong>{{phone}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        	   <td><i class="icon-building"></i><small>Office&nbsp;"<strong>{{officeName}}</strong>"</small></td>
+        	</tr>
+        	<tr>
+        	<td><small>Device # <strong>{{hwSerialNumber}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Client Type&nbsp;"<strong>{{categoryType}}</strong>"</small></td>
+        	</tr>
+        	<tr>
+        		<td><small>Balance&nbsp;<strong>{{balanceAmount}}</strong>&nbsp;{{currency}} </small></td>
+        		<td class="paddedleft0" data-ng-show="walletConfig"><small>[Wallet&nbsp;<strong>{{walletAmount}}</strong>&nbsp;{{currency}}]</small></td>
+        	</tr>
+        </table>
+        </td>
+        </tr>
+        </table>
+        </li>
+		</ul>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span
+				class="divider">/</span></li>
+			<li><a href='#/viewclient/{{clientId}}'>{{'link.view.client'|
+					translate}}</a> <span class="divider">/</span></li>
+			<li class="active" data-ng-hide="isViewMode">Edit DataTable Entry</li>
+			<li class="active" data-ng-show="isViewMode">View DataTable Entry</li>
+		</ul>
+	</div>
+	<form class="form-horizontal" data-ng-submit="submit()">
+		<div class="error" data-ng-show="errorStatus || errorDetails">
+			<label>{{'label.contract.error' | translate}}</label> <label
+				data-ng-show="errorStatus">{{errorStatus}}</label> <label
+				data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">
+				{{error.code | translate:error.args}}-{{error.field}}</label>
+		</div>
+
+		<div  data-ng-show="isViewMode">
+			<div class="row pull-right btn-group">
+				<a data-ng-click="editDatatableEntry()" class="btn btn-primary"><i
+					class="icon-edit icon-white"></i>{{ 'button.edit' | translate }}</a>
+				<button type="button" data-ng-click="deleteDatatableEntry()" class="btn btn-primary">
+					<i class="icon-trash icon-white"></i> {{ 'button.delete' | translate }}
+				</button>
+			</div>
+			<script type="text/ng-template" id="deletedatatable.html">
+            <div class="modal-header silver">
+                <h3 class="bolder">{{'label.delete' | translate}}</h3>
+            </div>
+            <div class="modal-body modal-middle">
+                <button class="btn" ng-click="cancel()">{{'label.cancel' | translate}}</button>
+                <button class="btn btn-primary" ng-click="delete()">{{'label.confirm' | translate}}</button>
+            </div>
+        </script>
+			<h3>{{ 'label.datatable.name' | translate }}-<strong>{{tableName}}</strong></h3>
+			<hr>
+			<table class="fullwidth">
+				<tr data-ng-repeat="column in columnHeaders">
+					<td width="30%">{{column.columnName | prettifyDataTableColumn}}:</td>
+					<td width="70%" valign="top">{{column.value}}</td>
+				</tr>
+			</table>
+		</div>
+		<div class="well" data-ng-hide="isViewMode">
+			<fieldset>
+				<legend>
+					{{ 'label.datatable.name' | translate }}-<strong>{{tableName}}</strong>
+				</legend>
+			</fieldset>
+			<table>
+			<tr><td>
+			<div class="control-group" data-ng-repeat="columnHeader in columnHeaders">
+				<label class="control-label" for="colName">{{columnHeader.columnName | prettifyDataTableColumn}} <span
+					data-ng-show="!columnHeader.isColumnNullable" class="required">*</span></label>
+				<div class="controls">
+					<input data-ng-show="fieldType(columnHeader.columnDisplayType) == 'TEXT'"
+						  type="text" data-ng-model="formData[columnHeader.columnName]"/> 
+					<input data-ng-show="fieldType(columnHeader.columnDisplayType) == 'DATE'"type="text" datepicker-pop="dd MMMM yyyy"
+						data-ng-model="formDat[columnHeader.columnName]"is-open="opened{{$index}}" />
+				   <span data-ng-switch on="columnHeader.columnDisplayType"> 
+					<select data-ng-show="fieldType(columnHeader.columnDisplayType) == 'SELECT'"
+						data-ng-switch-when="CODELOOKUP"
+						data-ng-model="formData[columnHeader.columnName]"
+						data-ng-options="columnValue.id as columnValue.value for columnValue in columnHeader.columnValues">
+					   <option value="">{{'label.select.one' | translate}}</option>
+					   </select> 
+					<select	data-ng-show="fieldType(columnHeader.columnDisplayType) == 'SELECT'"
+						data-ng-switch-when="CODEVALUE"
+						data-ng-model="formData[columnHeader.columnName]"
+						data-ng-options="columnValue.value as columnValue.value for columnValue in columnHeader.columnValues">
+							<option value="">{{'label.select.one' | translate}}</option>
+					</select>
+					</span>
+				</div>
+			</div>
+			</td></tr>
+			<tr><td align="right">
+				<a class="btn" data-ng-click="cancel()">{{ 'button.cancel' | translate }}</a>
+				<button type="submit" class="btn btn-primary">{{ 'button.save' | translate }}</button>
+			</td></tr></table>
+		</div>
+	</form>
+</div>

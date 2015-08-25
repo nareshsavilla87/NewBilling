@@ -1,0 +1,42 @@
+<div ng-controller="ViewEventActionMappingController"> 
+
+    <div class="paddedbottom10">
+		<ul class="breadcrumb">
+	        <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+          <li><a href="#/mappingconfig">{{'label.managemappingconfigurations' | translate}}</a> <span class="divider">/</span></li>
+	        <li class="active">{{eventactions.id}}</li>
+	    </ul>
+	    <div class="pull-right">
+	      <div class="btn-group">
+	          <a ng-show="PermissionService.showMenu('UPDATE_EVENTACTIONMAP')" href="#/editeventactionmapping/{{eventactions.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>	
+	          <a ng-show="PermissionService.showMenu('DELETE_EVENTACTIONMAP')" ng-click="deleteEventAction()" class="btn btn-primary"><i class="icon-trash icon-white"></i> Delete</a>
+	      </div>
+	    </div>
+	</div>
+
+	<div class="row paddedleft">
+					<h3>&nbsp;&nbsp;&nbsp;{{eventactions.id}}</h3>	
+					
+                        <table  width="100%" >    
+                                         
+           	<tr>
+				<td width="20%">{{ 'label.id' | translate }}</td>
+				<td width="80%">{{eventactions.id}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'table.eventactionmapping.event' | translate }}</td>
+				<td>{{eventactions.eventName}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'table.eventactionmapping.action' | translate }}</td>
+				<td>{{eventactions.actionName}}</td>
+			</tr>
+			      
+			<tr>
+				<td>{{ 'table.eventactionmapping.process' | translate }}</td>
+				<td>{{eventactions.process}}</td>
+			</tr>                                                                                          
+             </table>
+                      </div>                    
+                                     
+    </div>

@@ -1,0 +1,134 @@
+<div ng-controller="AddACHController">
+	<div><ul class="breadcrumb">
+         	<li><table>
+        <tr>
+        <td>
+         <img data-ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img data-ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+        </td>
+        <td>
+            <small style="color:black;">{{displayName}}</small>
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Uniquely identified&nbsp;<strong>{{accountNo}}</strong></small></td>
+        	</tr>
+        	<tr>
+        	    <td><small>Cell Phone&nbsp;<strong>{{phone}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        	   <td><i class="icon-building"></i><small>Office&nbsp;"<strong>{{officeName}}</strong>"</small></td>
+        	</tr>
+        	<tr>
+        	<td><small>Device # <strong>{{hwSerialNumber}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Client Type&nbsp;"<strong>{{categoryType}}</strong>"</small></td>
+        	</tr>
+        	<tr>
+        		<td><small>Balance&nbsp;<strong>{{balanceAmount}}</strong>&nbsp;{{currency}} </small></td>
+        		<td class="paddedleft0" data-ng-show="walletConfig"><small>[Wallet&nbsp;<strong>{{walletAmount}}</strong>&nbsp;{{currency}}]</small></td>
+        	</tr>
+        </table>
+        </td>
+        </tr>
+        </table></li>
+	 </ul>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/viewclient/{{clientId}}" ng-click="reset123()">{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'link.view.achcard' | translate}}</li>
+		</ul>
+	</div>
+  <form name="achCard" novalidate="" class="form-horizontal" ng-submit="submit()">
+	 <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	  </div>
+	<fieldset>
+		<legend>&nbsp;&nbsp;&nbsp;{{'label.client.achcard' | translate}}</legend>
+	 <table>
+	   <tr>
+	   	<td>
+		<div class="control-group">
+			<label class="control-label" for="routingNumber">{{'label.client.achcard.routingNumber' | translate}}<span class="required">*</span></label>
+			<div class="controls">
+				<input type="text" name="routingNumber" ng-model="formData.routingNumber"  required late-Validate/>
+				 <!-- <span ng-show="achCard.routingNumber.$invalid">
+                   <small class="error" ng-show="achCard.routingNumber.$error.pattern">
+                        Please enter digits only..!
+                   </small>
+                </span> ng-pattern="/^(?!0+$)\d{1,30}$/"-->
+			</div>
+		</div>
+	   </td>
+	  </tr>
+	  <tr>
+	    <td>
+		<div class="control-group">
+			<label class="control-label" for="bankAccountNumber">{{'label.client.achcard.bankAccountNumber' | translate}}<span class="required">*</span></label>
+			<div class="controls">
+				<input type="text" name="bankAccountNumber" ng-model="formData.bankAccountNumber" ng-pattern="/^(?!0+$)\d{1,30}$/" required late-Validate/>
+				<span ng-show="achCard.bankAccountNumber.$invalid">
+                   <small class="error" ng-show="achCard.bankAccountNumber.$error.pattern">
+                        Please enter digits only..!
+                   </small>
+                </span>
+			</div>
+		</div>
+	   </td>
+	  </tr>
+	  <tr>
+	    <td>
+		  <div class="control-group">
+			<label class="control-label" for="bankName">{{'label.client.achcard.bankName' | translate}}<span class="required">*</span></label>
+			<div class="controls">
+				<input type="text" name="bankName" ng-model="formData.bankName" required late-Validate/>
+			</div>
+		   </div>
+		 </td>
+		</tr>
+		<tr>
+		  <td>
+		  <div class="control-group">
+			<label class="control-label" for="name">{{'label.client.achcard.name' | translate}}<span class="required">*</span></label>
+			<div class="controls">
+				<input type="text" name="name" ng-model="formData.name" required late-Validate/>
+			</div>
+		 </div>
+		</td>
+	   </tr>
+	   <tr>
+	     <td>
+		<div class="control-group">
+			<label class="control-label" for="accountType">{{'label.client.achcard.accountType' | translate}}<span class="required">*</span></label>
+			<div class="controls">
+				 <input  type="radio" name ="accountType" ng-model="formData.accountType" ng-checked="formData.accountType == 'false'" value="Checking" required late-Validate>Checking &nbsp;
+				 <input  type="radio" name ="accountType" ng-model="formData.accountType" ng-checked="formData.accountType == 'false'" value="Savings" required late-Validate>Savings
+			</div>
+		</div>
+	   </td>
+	  </tr>
+	 </table>
+		<div class="offset3">
+			<a href="#/viewclient/{{clientId}}"><button type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
+			<button type="submit" class="btn btn-primary" ng-disabled="!achCard.$valid">{{'button.save' | translate}}</button>
+		</div>
+	</fieldset>
+  </form>
+</div>

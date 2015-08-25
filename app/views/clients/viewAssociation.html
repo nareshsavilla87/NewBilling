@@ -1,0 +1,36 @@
+<div ng-controller="ViewAssociationController"> 
+    <div>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			 <li><a href="#/viewclient/{{clientId}}">{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			  <li class="active">{{'label.viewassociation' | translate}}</li>
+		</ul>
+	</div>
+     <div class="pull-right">
+	      <div class="btn-group">
+	          <a href="#/editAssociation/{{clientId}}/{{association.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>	        
+	      </div>
+	    </div>
+
+	<div class="row paddedleft">
+					<h3>{{'label.viewassociation' | translate}}</h3>	
+                        <table  width="100%" >                     
+                             <tr>
+                              <td>{{ 'label.association.id' | translate}}</td>
+                              <td>{{association.orderId}}</td>
+                            </tr>                                                
+                             <tr>
+                              <td>{{ 'label.association.plan' | translate }}</td>
+                              <td>{{association.planCode}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{ 'label.association.order' | translate }}</td>
+                              <td>{{association.orderId}}</td>
+                            </tr>                          
+                            <tr>
+                              <td>{{ 'label.association.serialno' | translate }}</td>
+                              <td>{{association.serialNum}}</td>
+                            </tr>                                                                                                 
+                          </table>
+                      </div>                    
+</div>

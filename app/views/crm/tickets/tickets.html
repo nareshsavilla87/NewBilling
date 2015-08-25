@@ -1,0 +1,37 @@
+<div >
+    <ul class="breadcrumb">
+        <li><a href="#/clients">{{'link.admin.client' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.ticket' | translate}}</li>
+    </ul>
+   
+</div>
+
+<div class="row-fluid" ng-controller="TicketController">
+    <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name/externalId">
+	<table class="table">
+         <thead>
+            <tr>
+				<th>{{ 'label.ticket.id' | translate}}</th>
+		        <th>{{ 'label.ticket.priority' | translate}}</th>
+		        <th>{{ 'label.ticket.ticketdate' | translate }}</th>
+		        <th>{{ 'label.ticket.problemcode' | translate}}</th>
+		        <th>{{ 'label.ticket.status' | translate }}</th>
+		        <th>{{ 'label.ticket.assignto' | translate }}</th>
+		        <th>{{ 'label.ticket.lastcomment' | translate }}</th>
+	
+	      </tr>
+	      
+        </thead>
+        <tbody>
+            <tr class="pointer-main" ng-repeat="ticket in tickets  | filter:filterText">
+                <td class="pointer" data-ng-click="routeTo(clientId,ticket.id)">{{ticket.id}}</td>
+                <td class="pointer" data-ng-click="routeTo(clientId,ticket.id)">{{ticket.priority}}</td>  
+                <td class="pointer" data-ng-click="routeTo(clientId,ticket.id)">{{ticket.ticketDate | DateFormat}}</td>
+                <td class="pointer" data-ng-click="routeTo(clientId,ticket.id)">{{ticket.problemDescription}}</td>
+                <td class="pointer" data-ng-click="routeTo(clientId,ticket.id)">{{ticket.status}}</td>
+                <td class="pointer" data-ng-click="routeTo(clientId,ticket.id)">{{ticket.userName}}</td>  
+                <td class="pointer" data-ng-click="routeTo(clientId,ticket.id)">{{ticket.lastComment}}</td>          
+            </tr>
+        </tbody>
+    </table>
+</div> 

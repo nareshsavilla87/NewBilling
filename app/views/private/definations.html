@@ -1,0 +1,79 @@
+<div id="expertsearch" data-ng-controller="ExpertSearchController">
+    <h3 class="paddedleft"><strong>{{'label.heading.definitions' | translate}}</strong>
+    	<div class="btn-group pull-right">
+	        <label class="btn btn-primary" ng-model="dashModel" btn-radio="'home'">{{'label.heading.home' | translate}}</label>
+	        <label class="btn btn-primary" ng-click="switch1()" ng-model="dashModel" btn-radio="'dashboard'">{{'label.heading.dashboard' | translate}}</label>
+	         <label class="btn btn-primary" ng-click="switchDef()" ng-model="definations" btn-radio="'definations'">{{'label.heading.definations' | translate}}</label>
+	    </div>
+    </h3>
+    <hr/>
+     <h3>Plan & Services</h3>
+	    <div class="row paddedleft paddedtop">
+	   
+  <div class="span6">
+	  <div class="list-group">
+	    <a class="list-group-item" href="#/contract" ng-show="PermissionService.showMenu('READ_CONTRACT')" style="border-bottom: 0" 
+	     popover="Create,Read and modify contract details here" popover-trigger="mouseenter" >
+	      <h4 class="list-group-item-heading" style="color: #3BB9FF;font-size: 17px;"><img src="./images/icon_duration.png" width=36px> &nbsp;&nbsp;Contract Period</h4>
+	      <p class="list-group-item-text" style="margin-left:10%;margin-top: -1%;">Define Order Contract Period</p>
+	    </a>
+	     <a class="list-group-item" href="#/discounts" ng-show="PermissionService.showMenu('READ_DISCOUNT','READ_PROMOTIONCODE')" style="border-bottom: 0"
+	      popover="Maintaining discount and Promotion details " popover-trigger="mouseenter" >
+	      <h4 class="list-group-item-heading" style="color: #3BB9FF;font-size: 17px;"><img src="./images/icon_discount.png" width=36px> &nbsp;&nbsp;Discount & Promotions</h4>
+	        <p class="list-group-item-text" style="margin-left:10%;margin-top: -1%;">Manage Discount and Promotion definitions</p>
+	      </a>
+	     <a class="list-group-item" href="#/services" ng-show="PermissionService.showMenu('READ_SERVICE')" style="border-bottom: 0"
+	     popover="A service is given to the client as a product that can be provisioned as well used as recurring billing under the package" popover-trigger="mouseenter" >
+	      <h4 class="list-group-item-heading" style="color: #3BB9FF;font-size: 17px;"><img src="./images/icon_service.png" width=36px> &nbsp;&nbsp;Services</h4>
+	      <p class="list-group-item-text" style="margin-left:10%;margin-top: -1%;">Define various types of Services </p>
+	    </a>
+	    
+	  </div>    
+  </div>
+  <div class="span6">
+  
+	  <div class="list-group">
+	   <a class="list-group-item" href="#/chargecode" ng-show="PermissionService.showMenu('READ_CHARGECODE')" style="border-bottom: 0"
+	   popover="Charge code is the key type which will be useful in defining the pricing based as it is linked to Periodicity of Billing" popover-trigger="mouseenter" >
+	      <h4 class="list-group-item-heading" style="color: #3BB9FF;font-size: 17px;"><img src="./images/icon_chargecode.png" width=36px> &nbsp;&nbsp;Charge Code</h4>
+	       <p class="list-group-item-text" style="margin-left:10%;margin-top: -1%;">Define the Billing Charge Codes</p>
+	      </a>
+	  
+	   	<a class="list-group-item" href="#/regions" ng-show="PermissionService.showMenu('READ_REGION')" style="border-bottom: 0"
+	   	 popover="You can add the region with different states or all the states in one region " popover-trigger="mouseenter" >
+	      <h4 class="list-group-item-heading"  style="color: #3BB9FF;font-size: 17px;"><img src="./images/icon_region.png" width=36px> &nbsp;&nbsp;Price Region</h4>
+	      <p class="list-group-item-text" style="margin-left:10%;margin-top: -1%;">Define the region for price variations</p>
+	      </a>
+	      
+	   <a class="list-group-item" href="#/plans" ng-show="PermissionService.showMenu('READ_PLAN')" style="border-bottom: 0"
+	    popover="Maintaining Plan and prices here " popover-trigger="mouseenter" >
+	      <h4 class="list-group-item-heading" style="color: #3BB9FF;font-size: 17px;"><img src="./images/icon_plan.png" width=36px> &nbsp;&nbsp;Plan & Pricing</h4>
+	      <p class="list-group-item-text" style="margin-left:10%;margin-top: -1%;">Define Plans for customers service</p>
+	       </a>
+	    
+	  </div>
+  </div>
+</div>
+
+ <h3>Value Added Services</h3>
+   <div class="row paddedleft paddedtop">
+  <div class="span6">
+	  <div class="list-group">
+	     <a class="list-group-item" href="#/mediadetails" ng-show="PermissionService.showMenu('READ_MEDIAASSET')" style="border-bottom: 0"
+	       popover="Create,Read and modify vods here " popover-trigger="mouseenter" >
+	      <h4 class="list-group-item-heading" style="color: #3BB9FF;font-size: 19px;"><img src="./images/icon_media.png" width=36px> &nbsp;&nbsp;Media Details</h4>
+	      <p class="list-group-item-text" style="margin-left:10%;margin-top: -1%;">Manage various Media Asset Information</p>
+	    </a>
+	  </div>    
+  </div>
+  <div class="span6">
+	  <div class="list-group">
+	       <a class="list-group-item" href="#/event" ng-show="PermissionService.showMenu('READ_EVENT')" style="border-bottom: 0"
+	         popover="create and maintain vod events and live events here " popover-trigger="mouseenter" >
+	      <h4 class="list-group-item-heading" style="color: #3BB9FF;font-size: 19px;"><img src="./images/icon_media.png" width=36px> &nbsp;&nbsp;Event & Pricing</h4>
+	      <p class="list-group-item-text" style="margin-left:10%;margin-top: -1%;">Define the Media Asset and it's Pricing</p>
+	    </a>
+	  </div>
+  </div>
+</div>
+</div>

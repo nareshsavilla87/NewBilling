@@ -1,0 +1,97 @@
+<div data-ng-controller="ViewOwnHardwareController"> 
+<div><ul class="breadcrumb">
+       <li><table>
+        <tr>
+        <td>
+         <img data-ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img data-ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+        </td>
+        <td>
+            <small style="color:black;">{{displayName}}</small>
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Uniquely identified&nbsp;<strong>{{accountNo}}</strong></small></td>
+        	</tr>
+        	<tr>
+        	    <td><small>Cell Phone&nbsp;<strong>{{phone}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        	   <td><i class="icon-building"></i><small>Office&nbsp;"<strong>{{officeName}}</strong>"</small></td>
+        	</tr>
+        	<tr>
+        	<td><small>Device # <strong>{{hwSerialNumber}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Client Type&nbsp;"<strong>{{categoryType}}</strong>"</small></td>
+        	</tr>
+        	<tr>
+        		<td><small>Balance&nbsp;<strong>{{balanceAmount}}</strong>&nbsp;{{currency}} </small></td>
+        		<td class="paddedleft0" data-ng-show="walletConfig"><small>[Wallet&nbsp;<strong>{{walletAmount}}</strong>&nbsp;{{currency}}]</small></td>
+        	</tr>
+        </table>
+        </td>
+        </tr>
+        </table></li>
+ </ul>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/viewclient/{{clientId}}">{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'link.view.ownhardware' | translate}}</li>
+		</ul>
+	</div>
+     
+       <div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	</div>
+    <div class="paddedbottom10">
+	    <div class="pull-right">
+	      <div class="btn-group">
+	          <a data-ng-show="PermissionService.showMenu('UPDATE_OWNEDHARDWARE')" href="#/editownhardware/{{id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>	        
+	          <a data-ng-show="PermissionService.showMenu('DELETE_OWNEDHARDWARE')" data-ng-click="deletemessage()" class="btn btn-primary"><i class="icon-trash icon-white"></i> Delete</a>
+	      </div>
+	    </div>
+	</div>
+
+	<div class="row paddedleft">
+					<h3>{{discounting.discountMasterId}}</h3>	
+         <table  class="fullwidth" >                     
+                 <tr>
+				<td width="20%">{{ 'label.form.allocationdate' | translate }}</td>
+				<td width="80%">{{ownhardwaredatas.allocationDate|DateFormat}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.serialNumber' | translate }}</td>
+				<td>{{ownhardwaredatas.serialNumber}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'lable.provisioningserialnumber' | translate }}</td>
+				<td>{{ownhardwaredatas.provisioningSerialNumber}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.itemtype' | translate }}</td>
+				<td>{{ownhardwaredatas.itemType}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.status' | translate }}</td>
+				<td>{{ownhardwaredatas.status}}</td>
+			</tr>                                                                                                 
+                          </table>
+                      </div>                    
+    </div>

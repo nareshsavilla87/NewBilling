@@ -1,0 +1,50 @@
+<div ng-controller="RedemptionController">
+     <div>
+        <ul class="breadcrumb">
+          <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+          <li class="active">Create Redemption</li>
+        </ul>
+      </div>
+      <form class="form-horizontal well" ng-submit="submit()">
+	  
+	     <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	    
+        <fieldset>
+          <legend>Create Redemption</legend>
+          
+		 <table>
+			<tr>
+				<td>
+					<div class="control-group">
+           			    <label class="control-label">Client Id&nbsp;:</label>
+            			<div class="controls">
+             			   <input type="text" ng-model="formData.clientId"/>
+           				</div>
+         		 	</div>	
+				</td>
+			</tr>
+			<tr>
+				<td>
+					 <div class="control-group">
+            		   <label class="control-label" >Pin Number&nbsp;:</label>
+            			<div class="controls">
+              			   <!--  <select ng-model="pinType"  ng-options="pinTypeData.value as pinTypeData.value for pinTypeData in pinTypeDatas">
+              			   </select> -->
+              			    <input type="text" id="pinNumber" ng-model="formData.pinNumber">
+
+            		     </div>
+          			</div>
+				</td>
+			 </tr>
+	      </table>
+		  <div class="offset3">
+            <a href='#/organization' class="btn">Cancel</a>
+          <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+       </div>
+     </fieldset>
+    </form>
+</div>

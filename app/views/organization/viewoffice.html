@@ -1,0 +1,74 @@
+<div data-ng-controller="ViewOfficeController">
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+	        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+	        <li><a href="#/offices">{{'label.manageoffices' | translate}}</a> <span class="divider">/</span></li>
+	        <li class="active">{{office.name}}</li>
+	    </ul>
+	    <div  class="pull-right">
+	     <!--  <div class="btn-group">
+	          <a href="#/itemsale/{{office.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Item Sale</a>
+	          <a href="#/officepayments/{{office.id}}" class="btn btn-primary"><i class="icon-usd icon-white"></i>Payment</a>
+	          <a href="#/officeadjustments/{{office.id}}" class="btn btn-primary"><i class="icon-adjust icon-white"></i>Adjustment</a>
+	      </div> -->
+	    </div>
+	</div>
+	<div class="row paddedleft">
+		<h3>&nbsp;&nbsp;&nbsp;{{office.name}}</h3>
+		<table width="100%">
+			<tr>
+				<td width="20%"><strong>{{ 'label.office.parentoffice' | translate }}</strong></td>
+				<td width="70%">{{office.parentName}}</td>
+			</tr>
+			<tr>
+				<td><strong>{{ 'label.office.openedon' | translate }}</strong></td>
+				<td>{{office.openingDate | DateFormat}}</td>
+			</tr>
+			<tr>
+				<td><strong>{{ 'label.office.namedecorated' | translate }}</strong></td>
+				<td>{{office.nameDecorated}}</td>
+			</tr>
+			<tr>
+				<td><strong>{{ 'label.office.externalid' | translate }}</strong></td>
+				<td>{{office.externalId}}</td>
+			</tr>
+		</table>
+	</div>
+	<br><br>
+	<!-- <tabset  style="margin-bottom: 0px;">
+     <tab heading="Office Financial Transactions">
+     <br>
+       <div>
+           <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by User Name">
+          
+        <table class="table">
+          <thead>
+            <tr class="graybg">
+				   <th>Transaction Id</th>
+                   <th>User Name</th>
+				   <th>Office Id</th>
+                   <th>Transaction Date</th>
+                   <th>Transaction Type</th>
+                   <th>Transaction Category</th>
+                   <th>Credit Amount</th>
+                   <th>Debit Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+             <tr ng-repeat="officeFinTran in officeFinanceTrans | filter:filterText">
+                <td>{{officeFinTran.transactionId}}</td>       
+                <td>{{officeFinTran.userName}}</td>
+                <td>{{officeFinTran.officeId}}</td>
+                <td>{{officeFinTran.transDate | DateFormat}}</td>         
+                <td>{{officeFinTran.transactionType}}</td>        
+                <td>{{officeFinTran.transactionCategory}}</td>         
+                <td>{{officeFinTran.creditAmount}}</td> 
+                <td>{{officeFinTran.amount}}</td>              
+             </tr>
+          </tbody>
+         </table>
+        </div>
+      </tab>
+    </tabset> -->
+</div>
+          

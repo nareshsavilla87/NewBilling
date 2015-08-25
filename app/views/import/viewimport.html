@@ -1,0 +1,52 @@
+<div ng-controller="ViewImportController">
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+	        <li><a href="#/importing">{{'label.imports' | translate}}</a> <span class="divider">/</span></li>
+	        
+	        <li class="active">{{import.uploadProcess}}</li>
+	    </ul>
+	    <div class="pull-right">
+	      <div class="btn-group">
+	         <a ng-show="import.processStatus == 'NEW'" ng-click="processFile()" class="btn btn-primary"><i class="icon-play icon-white"></i> Process File <img alt="Loading"  ng-src="./images/cubic_loader.gif" ng-show="loading"></a>
+	         <a ng-show="import.processStatus != 'NEW'" ng-click="logFile()" class="btn btn-primary"><i class=" icon-download-alt icon-white"></i> Log File</a>
+             <a ng-show="import.processStatus != 'NEW'" ng-click="downloadFile()" class="btn btn-primary"><i class=" icon-download-alt icon-white"></i> Download File</a>
+	      </div>
+	      
+		         	
+	         
+	    </div>
+	</div>
+	<div class="row paddedleft">
+		<h3>{{contractperiod.name}}</h3>
+		<table width="100%">
+			
+			<tr>
+				<td>{{ 'label.import.filepath' | translate }}</td>
+				<td>{{import.uploadFilePath}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.import.uploadprocess' | translate }}</td>
+				<td>{{import.uploadProcess}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.import.status' | translate }}</td>
+				<td>{{import.processStatus}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.import.processdate' | translate }}</td>
+				<td>{{import.processDate | DateFormat}}</td>
+			</tr>
+			<tr>
+				<td valign="top">{{ 'label.import.totalrecords' | translate }}</td>
+				<td>{{import.totalRecords}}</td>
+				
+			</tr>
+			<tr>
+				<td valign="top">{{ 'label.import.processrecords' | translate }}</td>
+				<td>{{import.processRecords}}</td>
+				
+			</tr>
+		</table>
+	</div>
+</div>
+          

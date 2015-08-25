@@ -1,0 +1,65 @@
+<div class="paddedleft paddedtop" ng-controller="SearchController">
+  <div class="row-fluid">
+    <div class="span5">
+      <div ng-repeat="result in searchResults">
+          <div class="blockquoteresult" ng-class="{grbgcolor: result.entityId == selected}">
+            <span><a href="#/viewclient/{{result.entityId}}">{{result.entityName}}</a>&nbsp;|&nbsp;#{{result.entityAccountNo}}</span>
+            <!-- <span ng-show = "result.entityType  == 'CLIENT'"> -->
+            <span>
+              <a ng-click="getClientDetails(result.entityId)" title="{{'label.additionalinformation'| translate}}"><i class="icon-zoom-in"></i></a>
+            </span>
+              <!--  <span ng-show = "result.entityType  == 'DEVICE'">
+              <a ng-click="getClientDetails(result.entityId)" title="{{'label.additionalinformation'| translate}}"><i class="icon-zoom-in"></i></a>
+            </span>
+            <span ng-show = "result.entityType  == 'GROUP'">
+              <a ng-click="getGroupDetails(result.entityId)" title="{{'label.additionalinformation'| translate}}"><i class="icon-zoom-in"></i></a>
+            </span>
+            <span ng-show = "result.entityType  == 'CENTER'">
+              <a ng-click="getCenterDetails(result.entityId)" title="{{'label.additionalinformation'| translate}}"><i class="icon-zoom-in"></i></a>
+            </span> -->
+            <br>
+            <span>{{result.entityType}}&nbsp;,&nbsp;Office:{{result.parentName}}</span><br>
+          </div>
+      </div>
+    </div>
+    <div class="span7">
+        <div ng-show="client">
+              <br/>
+              <div>
+                    <span class="pull-left">
+                      <i class="icon-user icon-3x"></i>
+                    </span>
+                    <span class="pull-left">
+                      <h3>
+                        &nbsp;
+                        {{client.displayName}}
+                        &nbsp;
+                        <i class="icon-circle {{client.status.value | StatusLookup}}"></i>
+                        &nbsp;
+                      </h3>
+                    </span>
+              </div>
+              <br/>
+              <table width="100%" class="table">
+                        <tr class="graybg">
+                              <th>Order No</th>
+                            <th>Plan</th>
+                            <th>Contract Period</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                        </tr>
+                        <tr ng-repeat="order in orders | filter:filterText" >
+                          <td>{{order.orderNo}}</td>
+                          <td>{{order.planCode}}</td>
+                          <td>{{order.contractPeriod}}</td>
+                          <td>{{order.price}}</td>
+                            <td><i class="icon-stop {{order.status | StatusLookup}}"></i>&nbsp;{{order.status}}</td>
+                        </tr>
+                        <tr><td colspan="7">&nbsp;</td></tr>
+                       
+                 </table>
+        </div>
+        
+    </div>
+  </div>
+</div>

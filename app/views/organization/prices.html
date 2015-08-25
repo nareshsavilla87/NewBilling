@@ -1,0 +1,49 @@
+<div data-ng-controller="PriceController">
+<div>
+    <ul class="breadcrumb">
+        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+        <li><a href="#/plans">{{'label.plans' | translate}}</a><span class="divider">/</span></li>
+        <li><a href="#/viewplan/{{planId}}">{{planName}}</a><span class="divider">/</span></li>
+        <li class="active">{{'label.viewprice' | translate}}</li>
+    </ul>
+</div>
+<div class="row-fluid" >
+    <input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.searchbar' | translate}}">
+	<table class="table">
+        <thead>
+            <tr class="graybg">
+                <th>{{ 'table.price.servcecode' | translate }}</th>
+                <th>{{ 'table.price.chargecode' | translate }}</th>
+                <th>{{ 'table.price.chargevaraint' | translate }}</th>
+                <th>{{ 'table.price.price' | translate }}</th>
+                <th>{{ 'table.price.region' | translate }}</th>
+                <th>{{ 'table.heading.actions' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+           <tr class="pointer-main" data-ng-repeat="price in prices | filter:filterText">
+                <td class="pointer" data-ng-click="routeTo(price.id,planId)">{{price.serviceCode}}</td>            
+                <td class="pointer" data-ng-click="routeTo(price.id,planId)">{{price.chargeCode}}</td>        
+                <td class="pointer" data-ng-click="routeTo(price.id,planId)">{{price.chargeVariant}}</td>
+                <td class="pointer" data-ng-click="routeTo(price.id,planId)">{{price.price}}</td>      
+                <td class="pointer" data-ng-click="routeTo(price.id,planId)">{{price.priceregion}}</td> 
+                <td>
+                	<a data-ng-show="PermissionService.showMenu('UPDATE_PRICE')" href="#/editprice/{{price.id}}" popover="Edit Price" popover-trigger="mouseenter" class="icon-edit"></a>&nbsp;
+                	<a data-ng-show="PermissionService.showMenu('DELETE_PRICE')" data-ng-click="deletePrice(price.id,planId)" popover="Delete Price" popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a>
+                </td>              
+            </tr>
+        </tbody>
+    </table>
+    <script type="text/ng-template" id="delete.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">{{'dialog.price.title.message' | translate}}</h3>
+                    </div>
+                    <div class="modal-body modal-small">
+                       <h4>Are you sure?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+                    </div>
+</script>
+</div></div>

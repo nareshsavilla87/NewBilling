@@ -1,0 +1,54 @@
+<div  data-ng-controller="ViewServiceMappingController">
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+	        <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+	        <li><a href="#/mappingconfig">{{'label.serviceMapping' | translate}}</a> <span class="divider">/</span></li>
+	        <li class="active">{{sm.serviceCode}}&nbsp;&nbsp;</li>
+	    </ul>
+	    <div class="pull-right">
+	      <div class="btn-group">
+	          <a data-ng-show="PermissionService.showMenu('UPDATE_SERVICEMAPPING')" href="#/editServiceMapping/{{id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
+	   	  </div>
+	    </div>
+	</div>
+
+	<div class="row paddedleft">
+		<h3>{{chargecode.id}}</h3>
+		<table style="width:100%;">
+			<tr>
+				<td width="20%">{{'label.serviceCode' | translate }}</td>
+				<td width="80%">{{sm.serviceCode}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.serviceIdentification' | translate }}</td>
+				<td>{{sm.serviceIdentification}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.status' | translate }}</td>
+				<td>{{sm.status}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.image' | translate }}</td>
+				<td>{{sm.image}}</td>
+			</tr>
+			<tr  data-ng-show="configIPTV == 'true'">
+				<td>{{'label.category' | translate }}</td>
+				<td>{{sm.category}}</td>
+			</tr>
+			<tr  data-ng-show="configIPTV == 'true'">
+				<td>{{'label.subcategory' | translate }}</td>
+				<td>{{sm.subCategory}}</td>
+			</tr>
+			
+			<tr  data-ng-show="isServiceLevelMap">
+				<td>{{'label.item.type' | translate }}</td>
+				<td>{{sm.itemDescription}}</td>
+			</tr>
+			<tr  data-ng-show="isServiceLevelMap">
+				<td>{{'label.plan.ishwreq' | translate }}</td>
+				<td>{{sm.isHwReq}}</td>
+			</tr>
+		</table>
+	</div>
+</div>
+          

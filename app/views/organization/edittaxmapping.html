@@ -1,0 +1,94 @@
+<div data-ng-controller="EditTaxMappingController">
+	<div>
+    	<ul class="breadcrumb">
+        	<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+          	<li><a href="#/taxmapping/{{formData.chargeCode}}/{{chargeCodeId}}">{{'label.managetaxmapping' | translate}}</a> <span class="divider">/</span></li>
+          	<li><a href="#/viewtaxmapping/{{taxMapId}}">&nbsp;{{formData.taxCode}}&nbsp;</a> <span class="divider">/</span></li>
+          	<li class="active">{{'label.edittaxmapping' | translate}}</li>
+        </ul>
+    </div>
+    
+    <form name="edittaxform" class="form-horizontal well" data-ng-submit="submit()">
+    	<div class="error" data-ng-show="errorStatus || errorDetails">
+			<label>{{'label.contract.error' | translate}}</label>
+			<label data-ng-show="errorStatus">{{errorStatus}}</label>
+			<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	    
+        <fieldset>
+        	<legend>{{'label.edittaxmapping' | translate}}</legend>   
+          
+          <table>
+          <tr><td>
+            <div class="control-group">
+            	<label class="control-label" for="chargeCode">{{'label.chargeCode' | translate }}<span class="required">*</span></label>
+            	<div class="controls">
+              		<select data-ng-model="formData.chargeCode"  data-ng-options="chargecodetax.chargeCode as chargecodetax.chargeCode for chargecodetax in chargecodetaxs" >
+              		</select>
+            	</div>
+          	</div>
+          	</td></tr>
+          	
+          <tr><td>
+          	<div class="control-group">
+            	<label class="control-label" for="taxCode">{{'label.taxCode' | translate }}<span class="required">*</span></label>
+            	<div class="controls">
+              		<input type="text" id="taxCode" name="taxCode" data-ng-model="formData.taxCode" data-ng-maxlength="{{'code' | CodeValidate}}"></br>
+              		<span data-ng-show="edittaxform.taxCode.$dirty && edittaxform.taxCode.$invalid">
+              			<small class="error-row">{{'error.code.definition.length.validation'| translate}}</small>
+              		</span>
+            	</div>
+          	</div>
+          	</td></tr>
+          
+           	<tr><td>
+           	<div class="control-group">
+            	<label class="control-label" for="startDate">{{'label.startDate' | translate }}<span class="required">*</span></label>
+            	<div class="controls">
+              		<input type="text" data-datepicker-pop="dd MMMM yyyy" data-ng-model="date.startDate" data-is-open="opened" min="minDate" max="maxDate" data-date-disabled="disabled(date, mode)" required data-late-Validate />
+            	</div>
+          	</div>
+          	</td></tr>
+          	
+          <tr><td>
+           	<div class="control-group">
+            	<label class="control-label" for="taxType">{{'label.type' | translate }}<span class="required">*</span></label>
+            	<div class="controls">
+              		<select data-ng-model="formData.taxType" data-ng-options="taxTypeData.mCodeValue as taxTypeData.mCodeValue for taxTypeData in taxTypeDatas">
+              		</select>
+            	</div>
+          	</div>
+          	</td></tr>
+          
+           	<tr><td>
+           	<div class="control-group">
+            	<label class="control-label" for="rate">{{'label.rate' | translate }}<span class="required">*</span></label>
+            	<div class="controls">
+              		<input type="text" id="rate" name="rate" data-ng-model="formData.rate" data-ng-pattern="{{'decimal' | CodeValidate}}"></br>
+              		<span data-ng-show="edittaxform.rate.$dirty && edittaxform.rate.$invalid">
+              			<small class="error-row">{{'error.not.decimal.validation' | translate}}</small>
+              		</span>
+            	</div>
+          	</div>
+          	</td></tr>
+           	
+           	<tr><td>
+           	<div class="control-group">
+            	<label class="control-label" for="taxregion">{{'label.taxRegion' | translate }}</label>
+            	<div class="controls">
+              		<select data-ng-model="formData.taxRegionId" data-ng-options="priceRegionData.id as priceRegionData.priceregion for priceRegionData in priceRegionDatas">
+              		</select>
+              		<!-- <small class="error-row">{{'validation.msg.taxmap.taxRegion.cannot.be.blank' | translate}}</small> -->
+            	</div>
+          	</div>
+          	</td></tr>
+          
+          	<tr><td align="right">
+            	<a href="#/viewtaxmapping/{{taxMapId}}/{{chargeCodeId}}"><button id="cancel" type="reset" class="btn">{{'label.cancel' | translate}}</button></a>
+            	<button id="submit" type="submit" data-ng-disabled="edittaxform.$dirty && edittaxform.$invalid" class="btn btn-primary">{{'label.save' | translate}}</button>
+          </td></tr>
+          </table>
+        </fieldset>
+      </form>
+      
+</div>

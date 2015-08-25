@@ -1,0 +1,20 @@
+<h3>User Settings</h3>
+<div id="systemUsers" data-ng-controller="UserSettingController">
+
+    <div class="control-group">
+        <label class="control-label">{{ 'label.change.language' | translate }}</label>
+        <div class="controls">
+            <select ng-model="optlang" ng-options="lang.name for lang in langs" ng-change="changeLang(optlang)">
+    		</select>
+        </div>
+    </div>
+    
+    <div class="control-group">
+        <label class="control-label">{{'label.change.dateformat' | translate}}</label>
+
+        <div class="controls">
+            <select ng-model="dateformat" ng-options="format for format in dates" class="form-control" ng-change="changeDateFormat(dateformat)"></select>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,33 @@
+ <div ng-controller="CancelProspectsController">
+  <div class="paddedbottom10">
+		<ul class="breadcrumb">
+	        <li><a href="#/leads">{{'link.prospects' | translate}}</a> <span class="divider">/</span></li>
+	        <li><a href="#/viewprospects/{{prospectsData.id}}">{{'link.viewprospects' | translate}}</a> <span class="divider">/</span></li>
+	        <li class="active">{{'label.cancel' | translate}}</li>
+	    </ul>
+	</div>
+	
+ <form class="form-horizontal well" ng-submit="submit()">
+  <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>Cancel Employee</legend>
+
+          <div class="control-group">
+            <label class="control-label" for="statusRemarkId">{{ 'label.statusremark' | translate }}</label>
+            <div class="controls">
+              <select ng-model="formData.statusRemarkId"  ng-options="statusRemarkData.statusRemarkId as statusRemarkData.statusRemark for statusRemarkData in statusRemarkDatas" value="{{statusRemarkData.statusRemarkId}}">
+              </select>
+            </div>
+          </div>
+          <div class="offset3">
+            <a href="#/viewprospects/{{prospectsData.id}}"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+            <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+          </div>
+          
+        </fieldset>
+      </form>
+</div>	

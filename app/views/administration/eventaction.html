@@ -1,0 +1,244 @@
+<div>
+	<ul class="breadcrumb">
+		<li><a href="#/system">{{'link.admin.system' | translate}}</a> <span
+			class="divider">/</span></li>
+		<li class="active">Event Action</li>
+
+	</ul>
+</div>
+
+<div data-ng-controller="EventActionController">
+	<div>
+		<tabset>
+		<tab heading="All" select="getEventAction()">
+		
+		<div class="row-fluid">
+			 <form data-ng-submit="searchEventActions(filterText,'all')">
+				<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by Event Action">
+			</form> 
+			
+			<table class="table">
+				<thead>
+					<tr class="graybg">
+						<th>Transaction Date</th>
+						<th>Event Action</th>
+						<th>Action</th>
+						<th>Status</th>
+						<th>Command</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-ng-repeat="eventactiondata in eventactionDatas.currentPageItems  | filter:filterText">
+						<td>{{eventactiondata.transactionDate | DateTimeFormat}}</td>
+						<td>{{eventactiondata.eventAction}} {{eventactiondata.entityName}}</td>
+						<td>{{eventactiondata.actionName}}</td>
+						<td>{{eventactiondata.status}}</td>
+						<!-- <td>{{eventactiondata.jsonData}}</td> -->
+						<td>
+							<button style="padding:3px 5px;" class="btn btn-primary" data-ng-hide="eventactiondata.jsonData == '{}'"
+								data-ng-click="messagePopup(eventactiondata.jsonData)" data-popover-trigger="mouseenter" data-popover="To See Click on Me">
+								<i class="icon-envelope icon-white"></i>
+							</button>
+						</td> 
+					</tr>
+				</tbody>
+			</table>
+			<ul class="pager">
+				<li class="previous"><a id="prev" data-ng-click="eventactionDatas.previous()" href=""
+					data-ng-disabled="!eventactionDatas.hasPrevious()">&larr; {{'label.prev' | translate}} </a>
+				</li>
+				<li class="next"><a id="next" data-ng-click="eventactionDatas.next()" href=""
+					data-ng-disabled="!eventactionDatas.hasNext()"> {{'label.next' | translate}} &rarr;</a>
+				</li>
+			</ul>
+		</div>
+		</tab> 
+		
+		<tab heading="Processed" select="getEventActionForProcessed()">
+		<div class="row-fluid">
+			<form data-ng-submit="searchEventActions(filterText,'Y')">		
+				<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by Event Action">
+			</form>
+			<table class="table">
+				<thead>
+					<tr class="graybg">
+						<tr class="graybg">
+						<th>Transaction Date</th>
+						<th>Event Action</th>
+						<th>Action</th>
+						<th>Status</th>
+						<th>Command</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+					<tr data-ng-repeat="eventactiondata in eventactionDatas.currentPageItems  | filter:filterText">
+						<td>{{eventactiondata.transactionDate | DateTimeFormat}}</td>
+						<td>{{eventactiondata.eventAction}} {{eventactiondata.entityName}}</td>
+						<td>{{eventactiondata.actionName}}</td>
+						<td>{{eventactiondata.status}}</td>
+						<!-- <td>{{eventactiondata.jsonData}}</td> -->
+						<td>
+							<button style="padding:3px 5px;" class="btn btn-primary" data-ng-hide="eventactiondata.jsonData == '{}'"
+								data-ng-click="messagePopup(eventactiondata.jsonData)" data-popover-trigger="mouseenter" data-popover="To See Click on Me">
+								<i class="icon-envelope icon-white"></i>
+							</button>
+						</td> 
+					</tr>
+				</tbody>
+			</table>
+			<ul class="pager">
+				<li class="previous"><a id="prev" data-ng-click="eventactionDatas.previous()" href=""
+					data-ng-disabled="!eventactionDatas.hasPrevious()">&larr; {{'label.prev' | translate}}</a></li>
+				<li class="next"><a id="next" data-ng-click="eventactionDatas.next()" href=""
+					data-ng-disabled="!eventactionDatas.hasNext()"> {{'label.next' | translate}} &rarr;</a></li>
+			</ul>
+		</div>
+		</tab> 
+		
+		<tab heading="UnProcessed" select="getEventActionForUnProcessed()">
+		<div class="row-fluid">
+			<form data-ng-submit="searchEventActions(filterText,'N')">		
+				<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by Event Action">
+			</form>
+			<table class="table">
+				<thead>
+					<tr class="graybg">
+						<tr class="graybg">
+						<th>Transaction Date</th>
+						<th>Event Action</th>
+						<th>Action</th>
+						<th>Status</th>
+						<th>Command</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+					<tr data-ng-repeat="eventactiondata in eventactionDatas.currentPageItems  | filter:filterText">
+						<td>{{eventactiondata.transactionDate | DateTimeFormat}}</td>
+						<td>{{eventactiondata.eventAction}} {{eventactiondata.entityName}}</td>
+						<td>{{eventactiondata.actionName}}</td>
+						<td>{{eventactiondata.status}}</td>
+						<!-- <td>{{eventactiondata.jsonData}}</td> -->
+						<td>
+							<button style="padding:3px 5px;" class="btn btn-primary" data-ng-hide="eventactiondata.jsonData == '{}'"
+								data-ng-click="messagePopup(eventactiondata.jsonData)" data-popover-trigger="mouseenter" data-popover="To See Click on Me">
+								<i class="icon-envelope icon-white"></i>
+							</button>
+						</td> 
+					</tr>
+				</tbody>
+			</table>
+			<ul class="pager">
+				<li class="previous"><a id="prev" data-ng-click="eventactionDatas.previous()" href=""
+					data-ng-disabled="!eventactionDatas.hasPrevious()">&larr; {{'label.prev' | translate}}</a></li>
+				<li class="next"><a id="next" data-ng-click="eventactionDatas.next()" href=""
+					data-ng-disabled="!eventactionDatas.hasNext()"> {{'label.next' | translate}} &rarr;</a></li>
+			</ul>
+		</div>
+		</tab> 
+		
+		<tab heading="Canceled" select="getEventActionForCanceled()">
+		<div class="row-fluid">
+			<form data-ng-submit="searchEventActions(filterText,'C')">		
+				<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by Event Action">
+			</form>
+			<table class="table">
+				<thead>
+					<tr class="graybg">
+						<tr class="graybg">
+						<th>Transaction Date</th>
+						<th>Event Action</th>
+						<th>Action</th>
+						<th>Status</th>
+						<th>Command</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+					<tr data-ng-repeat="eventactiondata in eventactionDatas.currentPageItems  | filter:filterText">
+						<td>{{eventactiondata.transactionDate | DateTimeFormat}}</td>
+						<td>{{eventactiondata.eventAction}} {{eventactiondata.entityName}}</td>
+						<td>{{eventactiondata.actionName}}</td>
+						<td>{{eventactiondata.status}}</td>
+						<!-- <td>{{eventactiondata.jsonData}}</td> -->
+						<td>
+							<button style="padding:3px 5px;" class="btn btn-primary" data-ng-hide="eventactiondata.jsonData == '{}'"
+								data-ng-click="messagePopup(eventactiondata.jsonData)" data-popover-trigger="mouseenter" data-popover="To See Click on Me">
+								<i class="icon-envelope icon-white"></i>
+							</button>
+						</td> 
+					</tr>
+				</tbody>
+			</table>
+			<ul class="pager">
+				<li class="previous"><a id="prev" data-ng-click="eventactionDatas.previous()" href=""
+					data-ng-disabled="!eventactionDatas.hasPrevious()">&larr; {{'label.prev' | translate}}</a></li>
+				<li class="next"><a id="next" data-ng-click="eventactionDatas.next()" href=""
+					data-ng-disabled="!eventactionDatas.hasNext()"> {{'label.next' | translate}} &rarr;</a></li>
+			</ul>
+		</div>
+		</tab> 
+		
+		<tab heading="Failed" select="getEventActionForFailed()">
+		<div class="row-fluid">
+			<form data-ng-submit="searchEventActions(filterText,'F')">		
+				<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by Event Action">
+			</form>
+			<table class="table">
+				<thead>
+					<tr class="graybg">
+						<tr class="graybg">
+						<th>Transaction Date</th>
+						<th>Event Action</th>
+						<th>Action</th>
+						<th>Status</th>
+						<th>Command</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+					<tr data-ng-repeat="eventactiondata in eventactionDatas.currentPageItems  | filter:filterText">
+						<td>{{eventactiondata.transactionDate | DateTimeFormat}}</td>
+						<td>{{eventactiondata.eventAction}} {{eventactiondata.entityName}}</td>
+						<td>{{eventactiondata.actionName}}</td>
+						<td>{{eventactiondata.status}}</td>
+						<!-- <td>{{eventactiondata.jsonData}}</td> -->
+						<td>
+							<button style="padding:3px 5px;" class="btn btn-primary" data-ng-hide="eventactiondata.jsonData == '{}'"
+								data-ng-click="messagePopup(eventactiondata.jsonData)" data-popover-trigger="mouseenter" data-popover="To See Click on Me">
+								<i class="icon-envelope icon-white"></i>
+							</button>
+						</td> 
+					</tr>
+				</tbody>
+			</table>
+			<ul class="pager">
+				<li class="previous"><a id="prev" data-ng-click="eventactionDatas.previous()" href=""
+					data-ng-disabled="!eventactionDatas.hasPrevious()">&larr; {{'label.prev' | translate}}</a></li>
+				<li class="next"><a id="next" data-ng-click="eventactionDatas.next()" href=""
+					data-ng-disabled="!eventactionDatas.hasNext()"> {{'label.next' | translate}} &rarr;</a></li>
+			</ul>
+		</div>
+		</tab>
+		
+	</tabset>
+	</div>
+</div>
+
+<script type="text/ng-template" id="message.html">
+	<div class="modal-header silver">
+    	<h3 class="bolder">Details</h3>
+    </div>
+    <div class="modal-body modal-medium">
+		<table style="margin-left:50px;">
+			<tr ng-repeat="messageData in messageData">
+				<td width="30%">{{messageData.key}}</td>
+				<td width="80%" style="color:#800080;">:&nbsp;&nbsp;{{messageData.value}}</td>
+			</tr>
+		</table>
+    </div>
+    <div class="modal-footer">
+    	<button id="cancel" class="btn btn-primary" ng-click="cancel()">{{'button.done' | translate}}</button>
+    </div>
+ </script>

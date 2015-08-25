@@ -1,0 +1,51 @@
+<div>
+  <ul class="breadcrumb">
+    <li><a href="#/accounting">{{'link.accounting' | translate}}</a> <span class="divider">/</span></li>
+    <li class="active">{{'label.coa' | translate}}</li>
+  </ul>
+</div>
+
+<div class="row-fluid" ng-controller="AccCoaController">
+    <div class="pull-right">
+      <a ng-show="isTreeView" ng-click="isTreeView=!isTreeView" class="btn btn-primary"><i class="icon-list icon-white"></i>List View</a>
+      <a ng-hide="isTreeView" ng-click="isTreeView=!isTreeView" class="btn btn-primary"><i class="icon-sitemap icon-white"></i>Tree View</a></span>
+      <a ng-show="PermissionService.showMenu('CREATE_GLACCOUNT')" href="#/createglaccount" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{'button.addaccount' | translate}}</a>
+    </div>
+    
+    <h3 class="bolder">&nbsp;&nbsp;&nbsp;Chart Of Accounts</h3>
+    <div ng-hide="isTreeView">
+      <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+      <table class="table">
+        <thead>
+          <tr class="graybg">
+            <th>{{'table.heading.accname' | translate}}</th>
+            <th>{{'table.heading.glcode' | translate}}</th>
+            <th>{{'table.heading.acctype' | translate}}</th>
+            <th>{{'table.heading.disabled' | translate}}</th>
+            <th>{{'table.heading.manualentriesallowed' | translate}}</th>
+            <th>{{'table.heading.usedas' | translate}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="pointer-main" ng-repeat="coadata in coadatas | orderBy:'type.value' | filter:filterText">
+            <td class="pointer" data-ng-click="routeTo(coadata.id)">{{coadata.name}}</td>
+            <td class="pointer" data-ng-click="routeTo(coadata.id)">{{coadata.glCode}}</td>
+            <td class="pointer" data-ng-click="routeTo(coadata.id)">{{coadata.type.value}}</td>
+            <td class="pointer" data-ng-click="routeTo(coadata.id)">{{coadata.disabled}}</td>
+            <td class="pointer" data-ng-click="routeTo(coadata.id)">{{coadata.manualEntriesAllowed}}</td>
+            <td class="pointer" data-ng-click="routeTo(coadata.id)">{{coadata.usage.value}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div ng-show="isTreeView">
+      <div
+        data-angular-treeview="true"
+        data-tree-id="treeview"
+        data-tree-model="treedata"
+        data-node-id="id"
+        data-node-label="name"
+        data-node-children="children" >
+    </div>
+    </div>
+</div>

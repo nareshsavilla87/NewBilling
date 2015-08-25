@@ -1,0 +1,109 @@
+<div data-ng-controller="ViewProspectsController">
+
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+			<li><a href="#/leads">{{'link.prospects' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{prospects.firstName}}&nbsp{{prospects.lastName}}</li>
+		</ul>
+
+		<div class="pull-right">
+			<div class="btn-group">	
+				<a href="#/followprospects/{{prospects.id}}" 
+					data-ng-show="getVal(prospects.status)&&PermissionService.showMenu('UPDATE_PROSPECT')"
+					class="btn btn-primary"><i class="icon-edit icon-white"></i> {{'label.prospects.followup' | translate}} </a> 
+				<a data-ng-click="convertProspect()"
+					data-ng-show="(getVal(prospects.status))&&(PermissionService.showMenu('CONVERT_PROSPECT')&&PermissionService.showMenu('CREATE_CLIENT'))"
+					class="btn btn-primary"><i class="icon-edit icon-white"></i> {{'label.prospects.convert' | translate}} </a> 
+				<a href="#/editprospects/{{prospects.id}}"
+					data-ng-show="getVal(prospects.status)&&(PermissionService.showMenu('EDIT_PROSPECT'))"
+					class="btn btn-primary"><i class="icon-edit icon-white"></i> {{'label.prospects.edit' | translate}} </a> 
+				<a href="#/cancelprospects/{{prospects.id}}"
+					data-ng-show="getVal(prospects.status)&&(PermissionService.showMenu('DELETE_PROSPECT'))"
+					class="btn btn-primary"><i class="icon-trash icon-white"></i> {{'label.prospects.cancel' | translate}}</a>
+			</div>
+		</div>
+	</div>
+	<div data-ng-show="errorStatus || errorDetails">
+		<br/><br/>
+		<div class="error">
+			<label>{{'label.contract.error' | translate}}</label> 
+			<label data-ng-show="errorStatus">{{errorStatus}}</label> 
+			<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		</div>
+	</div>
+
+	<div class="row paddedleft">
+		<h3>&nbsp;&nbsp;&nbsp;{{prospects.id}}</h3>
+		<table width="100%">
+			<tr>
+				<td width="20%">{{ 'label.name' | translate }}</td>
+				<td width="80%">{{prospects.firstName}}&nbsp{{prospects.lastName}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.emailId' | translate }}</td>
+				<td>{{prospects.email}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.phonenumber' | translate }}</td>
+				<td>{{prospects.mobileNumber}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.address' | translate }}</td>
+				<td>{{prospects.address}}&nbsp{{prospects.streetArea}}&nbsp{{prospects.cityDistrict}}&nbsp{{prospects.state}}&nbsp{{prospects.country}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.note' | translate }}</td>
+				<td>{{prospects.note}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.status' | translate }}</td>
+				<td>{{prospects.status}}</td>
+			</tr>
+		</table>
+		 
+		<h3>&nbsp;&nbsp;&nbsp;History Data</h3>
+		<!--                          
+      <table  width="100%" >                     
+                             <tr>
+				<td width="20%">{{ 'label.callstatus' | translate }}</td>
+				<td width="80%">{{prospectDetailData.callStatus}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.nextcall' | translate }}</td>
+				<td>{{prospectDetailData.nextTime}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.note' | translate }}</td>
+				<td>{{prospectDetailData.notes}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.assignedto' | translate }}</td>
+				<td>{{prospectDetailData.assignedTo}}</td>
+			</tr>
+		                                                                                                
+      </table> -->
+
+		<table class="table">
+			<thead>
+				<tr class="graybg">
+					<th>{{ 'table.heading.callstatus' | translate }}</th>
+					<th>{{ 'table.heading.nextcall' | translate }}</th>
+					<th>{{ 'table.heading.note' | translate }}</th>
+					<th>{{ 'table.heading.assignedto' | translate }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr
+					data-ng-repeat="prospectDetailData in prospectDetailData | filter:filterText">
+
+					<td>{{prospectDetailData.callStatus}}</td>
+					<td>{{prospectDetailData.nextTime}}</td>
+					<td>{{prospectDetailData.notes}}</td>
+					<td>{{prospectDetailData.assignedTo}}</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+</div>

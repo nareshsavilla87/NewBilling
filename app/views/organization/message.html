@@ -1,0 +1,55 @@
+<div data-ng-controller="MessageController" >
+<div>
+    <ul class="breadcrumb">
+        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.managemessage' | translate}}</li>
+    </ul>
+    <div class="pull-right">
+        <a data-ng-show="PermissionService.showMenu('CREATE_BILLINGMESSAGE')" href="#/createMessage" class="btn btn-primary"><i class="icon-plus icon-white"></i> Add Message</a>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="{{'placeholder.searchbar' | translate}}">
+	<table class="table">
+         <thead>
+            <tr class="graybg">
+		        <th>{{'table.heading.templateDescription' | translate}}</th>
+		        <th>{{'label.message.subject' | translate}}</th>
+		        <th>{{ 'table.heading.messageType' | translate }}</th>
+		        <th>{{'label.message.header' | translate}}</th>
+		        <th>{{ 'label.message.body' | translate }}</th>
+		        <th>{{ 'label.message.footer' | translate }}</th>
+		        <th>{{ 'table.heading.actions' | translate }}</th>
+	      </tr>
+        </thead>
+        <tbody>
+            <tr class="pointer-main" data-ng-repeat="messaging in message  | filter:filterText">
+                <td class="pointer" data-ng-click="routeTo(messaging.id)">{{messaging.templateDescription}}</td>  
+                <td class="pointer" data-ng-click="routeTo(messaging.id)">{{messaging.subject}}</td>
+                <td class="pointer" data-ng-click="routeTo(messaging.id)">{{messaging.messageType}}</td>
+                <td class="pointer" data-ng-click="routeTo(messaging.id)">{{messaging.header}}</td>
+                <td class="pointer" data-ng-click="routeTo(messaging.id)">{{messaging.body}}</td>  
+                <td class="pointer" data-ng-click="routeTo(messaging.id)">{{messaging.footer}}</td>
+               <td class="pointer">
+                 <a data-ng-show="PermissionService.showMenu('UPDATE_BILLINGMESSAGE')" href="#/editmessage/{{messaging.id}}"
+                    data-popover="Edit Message " data-popover-trigger="mouseenter" class="icon-edit"></a>&nbsp;
+	             <a data-ng-show="PermissionService.showMenu('DELETE_BILLINGMESSAGE')" data-ng-click="deletemessage(messaging.id)"
+	                data-popover="Delete Message" data-popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div> 
+<script type="text/ng-template" id="messagetemplate.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">Delete</h3>
+                    </div>
+                    <div class="modal-body style="height:60px;">
+                       <h4>Are you sure?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="messagetemplate()">{{'label.confirm' | translate}}</button>
+                    </div>
+      </script>
+</div>

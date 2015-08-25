@@ -1,0 +1,155 @@
+<div data-ng-controller="EditVendorAgreementController">
+<div>
+	<ul class="breadcrumb">
+		<li><a href="#/vendormanagement">{{'label.vendor.vendormanagement' | translate}}</a> <span class="divider">/</span></li>
+		<li><a href="#/viewvendormanagement/{{vendorId}}">viewvendor</a> <span class="divider">/</span></li>
+		<li class="active">Edit Agreement</li>
+	</ul>
+</div>
+<form name="editvendoragreeform" class="form-horizontal well" data-ng-submit="submit()">
+	<div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label> 
+		<label data-ng-show="errorStatus">{{errorStatus}}</label> 
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	</div>
+	<strong> Create Agreement </strong>
+
+	<table>
+		<tr>
+			<td>
+				<table>
+					<tr>
+						<td>
+							<div class="control-group">
+								<label class="control-label" for="contentType">Content Type<span class="required">*</span> </label>
+								<div class="controls" style="margin-top: 5px;">
+									<input type="radio" data-ng-model="formData.contentType" value="Service" data-ng-change="resetCredits()">Service &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+									<input type="radio" data-ng-model="formData.contentType" value="Package" data-ng-change="resetCredits()">Package
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</td>
+			</tr>
+			<tr>
+			<td>
+				<table>
+					
+					<tr>
+						<td>
+							<div class="control-group">
+								<label class="control-label" for="agreementStatus">Agreement Status</label>
+								<div class="controls">
+									<select data-ng-model="formData.agreementStatus"
+										data-ng-options="statusData.mCodeValue as statusData.mCodeValue for statusData in agreementTypes"
+										data-value="{{statusData.mCodeValue}}">
+										<option value="">{{'label.select.one' | translate}}</option>
+									</select>
+
+								</div>
+							</div>
+
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+            				<div class="control-group">
+            					<label class="control-label" for="agreementStartDate">Agreement StartDate<span class="required">*</span></label>
+            					<div class="controls">
+              						<input type="text" datepicker-pop="dd MMMM yyyy" readonly data-ng-model="start.date"  is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" style="background-color:#FFFFFF;" required late-Validate />
+            					</div>
+          					</div>
+          				</td>
+					</tr>
+					
+					<tr>
+						<td>
+            				<div class="control-group">
+            					<label class="control-label" for="agreementEndDate">Agreement EndDate<span class="required">*</span></label>
+            					<div class="controls">
+              						<input type="text" datepicker-pop="dd MMMM yyyy" readonly data-ng-model="end.date"  is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" style="background-color:#FFFFFF;" required late-Validate />
+            					</div>
+          					</div>
+          				</td>
+					</tr>
+					
+				</table>
+			</td>
+		</tr>
+	</table>
+	
+	<table>
+          <tr class="control-group">
+                <td>
+                  <h4><label class="control-label">VendorDetails<span class="required">*</span></label></h4>
+                </td>
+                <td class="blockquoteresult">
+                    <form>
+                      <select data-ng-show = "formData.contentType == 'Service'" data-ng-model="vendorAgreeDetailFormData.contentCodeId" data-ng-options="serviceData.id as serviceData.serviceCode for serviceData in servicesData" 
+                      	class="input-small" placeholder="contentCode">
+                      	<option value="">--ContentCode(Plan/Services)--</option>
+                      </select>
+                      <select data-ng-show = "formData.contentType == 'Package'" data-ng-model="vendorAgreeDetailFormData.contentCodeId" data-ng-options="planData.id as planData.planCode for planData in planDatas" 
+                      	class="input-small" placeholder="contentCode">
+                      	<option value="">--ContentCode(Plan/Services)--</option>
+                      </select>&nbsp;&nbsp;
+                      <select data-ng-model="vendorAgreeDetailFormData.loyaltyType" class="input-small" >
+                      <option value="">--LoyaltyType--</option>
+                      <option value="Flat">FLAT</option>
+                      <option value="Percentage">PERCENTAGE</option>
+                      <option value="None">NONE</option>
+                      </select>&nbsp;&nbsp;
+                      <input data-ng-hide = "vendorAgreeDetailFormData.loyaltyType == 'None'" class="input-small" type="text" data-ng-model="vendorAgreeDetailFormData.loyaltyShare"  placeholder="LoyaltyShare">&nbsp;&nbsp;
+                      <input data-ng-show = "vendorAgreeDetailFormData.loyaltyType == 'None'" class="input-small"  type="text" data-ng-model="vendorAgreeDetailFormData.contentCost" placeholder="ContentCost">
+                      <select data-ng-model="vendorAgreeDetailFormData.priceRegion" data-ng-options="priceregionData.id as priceregionData.priceregion for priceregionData in priceRegionDatas" class="input-small" >
+                      <option value="">--PriceRegion--</option>
+                      </select>&nbsp;&nbsp;
+                     
+                      <a data-ng-click="addVendorAgreeDetails()">&nbsp;<i class="icon-plus icon-white" style="color: #007fff;"></i></a>&nbsp;&nbsp;
+                    </form>
+                    <br><br>
+                  <table class="table fullwidth" data-ng-show="vendorAgreeDetails.length>0">
+                    <tr></tr>
+                    <tr class="graybg">
+                      <th>ContentCode</th>
+                      <th>LoyaltyType</th>
+                      <th>LoyaltyShare/ContentCost</th>
+                      <th>PriceRegion</th>
+                      <th>{{'label.media.image' | translate}}</th>
+                    </tr>
+                    <tr data-ng-repeat="vendorAgreeDetail in vendorAgreeDetails" >
+                      <td data-ng-show = "formData.contentType == 'Service'"><select data-ng-model="vendorAgreeDetail.contentCodeId" data-ng-options="service.id as service.serviceCode for service in servicesData" class="input-small" ></select></td>
+                      <td data-ng-show = "formData.contentType == 'Package'"><select data-ng-model="vendorAgreeDetail.contentCodeId" data-ng-options="planData.id as planData.planCode for planData in planDatas" class="input-small" ></select></td>
+                      <td><select data-ng-model="vendorAgreeDetail.loyaltyType" class="input-small" >
+                      	<option value="">--LoyaltyType--</option>
+                      	<option value="Flat">FLAT</option>
+                      	<option value="Percentage">PERCENTAGE</option>
+                      	<option value="None">NONE</option>
+                      </select></td>
+                      <td data-ng-hide = "vendorAgreeDetail.loyaltyType == 'None'"><input type="text" style="width:150px;" class="input-small" data-ng-model="vendorAgreeDetail.loyaltyShare" placeholder="LoyaltyShare"></td>
+                      <td data-ng-show = "vendorAgreeDetail.loyaltyType == 'None'"><input type="text" style="width:150px;" class="input-small" data-ng-model="vendorAgreeDetail.contentCost" placeholder="ContentCost"></td>
+                      <td><select data-ng-model="vendorAgreeDetail.priceRegion" data-ng-options="priceregionData.id as priceregionData.priceregion for priceregionData in priceRegionDatas" class="input-small" ></select></td>
+                      <td><a data-ng-click="deleteVendorAgreeDetails($index)"><i class="icon-remove icon-white"></i></a></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+    </table>
+    
+     <div class="control-group">
+     	<label class="control-label" for="file">{{'label.client.select.file' | translate}}</label>
+        	<div class="controls">
+            	<input type="file" ng-file-select="onFileSelect($files)">
+            </div>
+     </div>
+	
+	
+	<div class="offset3">
+		<a href="#/viewvendormanagement/{{vendorId}}"><button type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+		<button type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+	</div>
+
+</form>
+</div>

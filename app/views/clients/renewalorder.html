@@ -1,0 +1,57 @@
+<div  ng-controller="OrderRenewalController">
+  <ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/viewclient/{{clientId}}">{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">Renewal Order</li>
+		</ul>
+
+<form class="form-horizontal well" ng-submit="submit()">
+ <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+    <fieldset>
+        <legend>{{'label.renewalorder' | translate}}</legend>
+       <div class="control-group">
+            <label class="control-label" for="status">{{ 'label.order.renewalperiod' | translate }}</label>
+            <div class="controls">
+              <select ng-model="formData.renewalPeriod"  ng-options="subscriptiondata.id as subscriptiondata.Contractdata for subscriptiondata in subscriptiondatas" value="{{disconnectDetail.mCodeValue}}"></select>
+            </div>
+          </div>
+          <div ng-show="formData.ispaymentEnable==true">
+        <div class="control-group">
+           <label class="control-label" for="paymentCode">{{ 'label.paymentType' | translate }}</label>
+              <div class="controls">
+             	<select ng-model="formData.paymentCode" ng-options="paymode.id as paymode.mCodeValue for paymode in paymodes" value="{{paymode.id}}"></select>
+            </div>
+         </div>	
+         <div class="control-group">
+           	<label class="control-label" for="amountPaid">{{ 'label.amount' | translate }}</label>
+            	<div class="controls">
+             	<input type="text" id="amountPaid" ng-model="formData.amountPaid">
+           		</div>
+         	</div>
+         <div class="control-group">
+           <label class="control-label" for="receiptNo">{{ 'label.receiptno' | translate }}</label>
+           <div class="controls">
+             <input type="text" id="receiptNo" ng-model="formData.receiptNo">
+           	</div>
+         	</div>
+         	</div>
+           <div class="control-group">
+            <label class="control-label" for="status">{{ 'label.order.description' | translate }}</label>
+            <div class="controls">
+             <textarea rows="2" cols="2" ng-model="formData.description"></textarea>
+            </div>
+          </div><br>
+        <div class="offset3">
+            <a href='#/clients'><button type="reset" class="btn">Cancel</button></a>
+          
+            <button type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
+        </div>
+
+    </fieldset>
+ </form>
+ 
+ </div>

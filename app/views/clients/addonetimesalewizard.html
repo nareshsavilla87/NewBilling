@@ -1,0 +1,101 @@
+
+<form name="onetimesaleform" novalidate="" class="form-horizontal well" ng-submit="submit2()">
+	 <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	<fieldset>
+	<legend>{{'label.add.client.onetimesale' | translate}}</legend>
+			<table>
+						<tr>
+							<td >
+								<div class="control-group">
+                        		<label class="control-label">{{ 'label.saleDate' | translate }}</label>
+                        		<div class="controls">
+                            	<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.saleDate" is-open="opened2" min="minDateOnTimeSale" max="maxDate" 
+                            	date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
+                        		</div>
+          						</div>
+							</td>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="chargeCode">{{ 'label.chargeCode' | translate }}</label>
+            					<div class="controls">
+              					<input type="text" id="chargeCode" ng-model="formData2.chargeCode" style="background-color:#FFFFFF;" readonly>
+            					</div>
+          						</div>
+							</td>
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="itemId">{{ 'label.itemCode' | translate }}<span class="required">*</span></label>
+            					<div class="controls">
+             					 <select ng-model="formData2.itemId" name="itemcode" ng-change="itemData(formData2.itemId)" ng-options="itemData.id as itemData.itemCode for itemData in itemDatas" value="{{itemData.id}}">
+             					 </select>
+            					</div>
+          						</div>
+							</td>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="totalPrice">{{ 'label.totalPrice' | translate }}</label>
+            					<div class="controls">
+              					<input type="text" id="totalPrice" ng-model="formData2.totalPrice" style="background-color:#FFFFFF;" readonly>
+            					</div>
+          						</div>
+							</td>
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="quantity">{{ 'label.quantity' | translate }}<span class="required">*</span></label>
+            					<div class="controls">
+              					<input type="text" id="quantity" ng-change="itemDataQuantity(formData2.quantity,formData2.itemId)" ng-model="formData2.quantity" required />
+            					</div>
+          						</div>
+							</td>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="unitPrice">{{ 'label.unitPrice' | translate }}</label>
+            					<div class="controls">
+              					<input type="text" id="unitPrice" ng-model="formData2.unitPrice" style="background-color:#FFFFFF;" readonly>
+            					</div>
+          						</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="control-group">
+            					<label class="control-label" for="discountId">{{ 'label.discountCode' | translate }}</label>
+            					<div class="controls">
+             					 <select ng-model="formData2.discountId"  ng-options="discountMasterData.discountMasterId as discountMasterData.discountDescription for discountMasterData in discountMasterDatas" value="{{discountMasterData.id}}">
+             					 </select>
+            					</div>
+          						</div>
+          					</td>
+          					<td>
+									<div class="control-group"  ng-repeat="item in getNumber(formData2.quantity)" name="serialNumberDiv">
+                                     <label class="control-label" for="serialNumber">{{ 'label.serialNumber' | translate }}&nbsp;<span class="required">*</span></label>
+                                      <div class="controls">
+             	                        <input type="text" ng-model="itemDetail" name="serialNumber" ng-change="getData(itemDetail)" typeahead="itemDetail as itemDetail for itemDetail in itemDetails | limitTo:8" typeahead-min-length="0">
+                                      </div>
+                                    </div>	
+								</td>
+								
+							</tr>
+					</table>
+	</fieldset>
+	<div class="jw-footer ui-widget-header ui-corner-bottom"> 
+              <div class="jw-buttons ui-helper-clearfix">
+                 <a href="#/clients"><button type="reset" class="btn">Cancel</button></a>
+                 <a href=""><button  class="jw-button-prev btn btn-primary" type="button" ng-show="previous" ng-click="previousStepmain()" style="display: inline-block;">Previous</button></a>
+                 <button type="submit" class="jw-button-next btn btn-primary" ng-disabled="!onetimesaleform.$valid" ng-show="next" ng-click="nextStepmain()">Next</button>
+             </div>
+          </div>
+</form>
+   
+ 
+ 
+         
+    

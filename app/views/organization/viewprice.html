@@ -1,0 +1,64 @@
+<div data-ng-controller="ViewPriceController">
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+	        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+	          <li><a href="#/plans">{{'label.plans' | translate}}</a> <span class="divider">/</span></li>
+	        <li><a href="#/prices/{{formData.planId}}">{{formData.planCode}}</a> <span class="divider">/</span></li>
+	        <li class="active">{{plan.planCode}}</li>
+	    </ul><br/>
+	    <div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	    <div class="pull-right">
+	      <div class="btn-group">
+	          <a data-ng-show="PermissionService.showMenu('UPDATE_PRICE')" href="#/editprice/{{formData.priceId}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
+	         <a data-ng-show="PermissionService.showMenu('DELETE_PRICE')" data-ng-click="deletePrice()" class="btn btn-primary"><i class="icon-trash icon-white"></i> Delete</a>
+	         
+	      </div>
+	    </div>
+	</div>
+	<div class="row paddedleft">
+		<h3>{{contractperiod.name}}</h3>
+		<table style="width:100%;">
+			<tr data-ng-show="serviceData.serviceCode == formData.serviceCode" data-ng-repeat="serviceData in serviceDatas">
+				<td width="20%">{{ 'label.price.serviceCode' | translate }}</td>
+				<td width="70%">{{serviceData.serviceDescription}}</td>
+				</tr>		
+		    <tr data-ng-show="chargeData.chargeCode == formData.chargeCode" data-ng-repeat="chargeData in chargeDatas">
+				<td width="20%">{{ 'label.price.chargeCode' | translate }}</td>
+			    <td width="70%">{{chargeData.chargeDescription}} </td>
+			   </tr>
+			<tr data-ng-show="chargevariant.id == formData.chargeVariantId" data-ng-repeat="chargevariant in chargevariants">
+				<td>{{ 'label.price.chargevaraint' | translate }}</td>
+				<td>{{chargevariant.value}}</td>
+				</tr>
+			<tr>
+				<td>{{ 'label.price.price' | translate }}</td>
+				<td>{{formData.price}}</td>
+			   </tr>
+		     <tr data-ng-show="priceRegionData.id == formData.priceregion" data-ng-repeat="priceRegionData in priceRegionDatas">
+			     <td>{{ 'label.price.priceregion' | translate }}</td>
+				  <td>{{priceRegionData.priceregionCode}}</td>
+				 </tr>
+			<tr data-ng-show="formData.isPrepaid == 'Y'">
+				<td>{{ 'label.plan.duration' | translate }}</td>
+				<td>{{formData.contractPeriod}}</td>
+			   </tr>
+		</table>
+	</div>
+	<script type="text/ng-template" id="delete.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">{{'dialog.price.title.message' | translate}}</h3>
+                    </div>
+                    <div class="modal-body modal-small">
+                       <h4>Are you sure?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+                    </div>
+</script>
+</div>
+          

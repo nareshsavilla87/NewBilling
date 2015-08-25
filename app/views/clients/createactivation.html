@@ -1,0 +1,303 @@
+     <form name="createclientform" novalidate class="form-horizontal well" data-ng-controller="CreateActivationController" data-ng-submit="submit4()">
+       
+         <div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+
+        <fieldset>
+          <legend>Simple Activation</legend>
+        <table>
+         <tr>
+            <td>
+         <strong>Client Info</strong>
+         </td><td></td>
+         </tr>
+           <tr>
+             <td>
+          
+            	<div class="control-group">
+             		 <label class="control-label">{{'label.office' | translate}}<span class="required">*</span></label>
+              		<div class="controls">
+                		<select data-ng-model="formData1.officeId"  data-ng-options="office.id as office.name for office in offices" data-ng-change="changeOffice(formData.officeId)"></select>
+              		</div>
+           		 </div>
+            </td>
+            <td>
+            	<div class="control-group">
+             	 	<label class="control-label">{{'label.clientcategeory' | translate}}<span class="required">*</span></label>
+              		<div class="controls">
+               		 <select data-ng-model="formData1.clientCategory"  data-ng-options="clientCategoryData.id as clientCategoryData.categoryType for clientCategoryData in clientCategoryDatas" ></select>
+              		</div>
+           		 </div>
+           	</td>
+           	</tr>
+           	<tr>
+           	<td>
+  		      	<div class="control-group">
+
+              		<label class="control-label" for="firstname">{{'lable.fullname' | translate}}<span class="required">*</span></label>
+
+              		<div class="controls">
+                		<input type="text" id="firstname" name="firstname" data-ng-model="fullname" data-ng-change="formName(fullname)" data-ng-pattern="/^[a-zA-Z0-9\s]+$/" required data-ng-minlength=3 data-late-Validate/>
+                		<span  data-ng-show="createclientform.firstname.$invalid">
+                			<small class="error" data-ng-show="createclientform.firstname.$error.pattern">alphanumeric and spaces only!</small>
+                   			 <small class="error" data-ng-show="createclientform.firstname.$error.req">
+                       			 Required Field
+                    		</small>
+                    		<small class="error" data-ng-show="createclientform.firstname.$error.minlength && !createclientform.firstname.$error.req">Name is required at least 3 characters</small>
+                		</span>
+              		</div>
+           		 </div>
+           	</td>
+           	<td data-ng-hide="propertyMaster">
+           		 <div class="control-group">
+              		<label class="control-label" for="city">{{'label.city/area' | translate}}<span class="required">*</span></label>
+              		<div class="controls">
+               			 <select data-ng-model="formData1.city"  data-ng-options="citi for citi in  cities" data-ng-change="getStateAndCountry(formData1.city)" ></select>
+               
+              		</div>
+            	</div>
+            </td>
+          <td data-ng-show="propertyMaster"> 
+             <div class="control-group" >
+               <label class="control-label">{{'label.propertycode' | translate}}<span class="required">*</span></label>
+                 <div class="controls">
+                  <input type="text" id="propertyCode" name="address" data-ng-model="formData1.addressNo" data-typeahead="propertyData.propertyCode as propertyData.propertyCode for propertyData in getExistsProperty($viewValue)"
+                   autocomplete="off" data-typeahead-min-length="0"  data-typeahead-on-select="getPropertyDetails(formData1.addressNo)" data-typeahead-editable="false" /><br/>
+                    <span  data-ng-show="createclientform.address.$invalid">
+                    <small class="error" data-ng-show="createclientform.address.$error.req">{{'label.required.field' | translate}}</small>
+                    <small class="error" data-ng-show="createclientform.address.$error.editable&&!createclientform.address.$error.req">Invalid BuildingCode</small>
+                   </span>
+              </div>
+          </div>
+      </td>
+            </tr>
+            <tr>
+            <td>
+           		 <div class="control-group">
+             		 <label class="control-label" for="phone">{{'label.activation.phone' | translate}}<span class="required">*</span></label>
+              		<div class="controls">
+               			 <input type="text" id="phone" data-ng-model="formData1.phone" data-ng-pattern="/^(?!0+$)\d{1,19}$/"  data-ng-maxlength="10" name="phone" required  data-late-Validate/>
+               			 <span data-ng-show="createclientform.phone.$invalid">
+                		   <small class="error" data-ng-show="createclientform.phone.$error.req">
+                      		  Required Field
+                  		 </small>
+                		</span>
+                
+           				<div data-ng-show="createclientform.phone.$dirty && createclientform.phone.$invalid">
+             
+               			<span class="error" data-ng-show="createclientform.phone.$error.pattern">digits only !</span>
+              			 <span class="error" data-ng-show="createclientform.phone.$error.maxlength">Exceeded max limit!</span>
+           				</div>
+              		</div>
+            	</div>
+            </td>
+            <td>
+            	<div class="control-group">
+             		 <label class="control-label" for="email">{{'label.email' | translate}}</label>
+             		<div class="controls">
+               		 <input type="text" id="email" data-ng-model="formData1.email"/>
+              		</div>
+           		 </div>
+           	</td>
+           </tr>
+           
+         <tr data-ng-hide="config == 'NONE'">
+            	<td>
+         			<strong>Device Info({{config}})</strong>
+         		</td>
+         		<td></td>
+         </tr>
+         
+         <tr data-ng-show="(PermissionService.showMenu('CREATE_NEWSALE') || PermissionService.showMenu('CREATE_SECONDSALE')) && config == 'SALE'"><td>
+         <div class="control-group">
+           
+              <div class="controls">
+               <input type="radio" data-ng-show="PermissionService.showMenu('CREATE_NEWSALE')" id="type" data-ng-model="formData2.saleType" name="saleType" value="NEWSALE">
+               <any ng-show="PermissionService.showMenu('CREATE_NEWSALE')">&nbsp; New Sale &nbsp;&nbsp;</any>
+               <!-- <input type="radio" id="type" data-ng-show="PermissionService.showMenu('CREATE_SECONDSALE')" data-ng-model="formData2.saleType" name="saleType" value="SECONDSALE">
+               <any ng-show="PermissionService.showMenu('CREATE_SECONDSALE')">&nbsp; Second Sale &nbsp;&nbsp;</any>
+ -->            </div>
+
+          		</div>
+         </td>
+         </tr>
+         
+           	<tr data-ng-show="config == 'SALE'">
+          	<td>
+				<div class="control-group">
+            	<label class="control-label" for="officeId">Office</label>
+            	<div class="controls">
+
+             	<select data-ng-model="formData2.officeId" data-ng-options="officesData.id as officesData.name for officesData in officesDatas">
+             	</select>
+            	</div>
+          		</div>
+			</td>
+          	 <td data-ng-show="formData2.saleType == 'NEWSALE'">
+             	<div class="control-group">
+            		<label class="control-label" for="discountId">{{ 'label.discountCode' | translate }}</label>
+            		   <div class="controls">
+             			  <select data-ng-model="formData2.discountId"  data-ng-options="discountMasterData.id as discountMasterData.discountDescription for discountMasterData in discountMasterDatas" >
+             				  </select>
+            			</div>
+          		</div>
+          	</td>
+          	  <td data-ng-show="formData2.saleType == 'SECONDSALE'">
+				<div class="control-group">
+            	<label class="control-label" for="totalPrice">{{ 'label.totalPrice' | translate }}</label>
+            	   <div class="controls">
+              		 <input type="text" id="totalPrice" data-ng-model="formData2.totalPrice" style="background-color:#FFFFFF;">
+            		</div>
+          		</div>
+			</td>
+             </tr>
+             
+            <tr data-ng-hide="config == 'NONE'">
+             <td>
+          		  <div class="control-group">
+           	<label class="control-label" for="itemId">{{ 'label.itemCode' | translate }}<span class="required">*</span></label>
+            	<div class="controls">
+             	<select data-ng-show="config =='SALE'" data-ng-model="formData2.itemId" name="itemcode" data-ng-change="itemData(formData2.itemId,formData2.officeId)" data-ng-options="itemData.id as itemData.itemCode for itemData in itemDatas">
+             	</select>
+             	<select data-ng-show="config =='OWN'" data-ng-model="formData5.itemType"  data-ng-options="itemtypes.id as itemtypes.itemDescription for itemtypes in itemtypes" required data-late-Validate></select>
+              </div>
+           </div>
+          	</td>
+          	<td>
+          		<div class="control-group"  data-ng-repeat="item in getNumber(formData2.quantity)">
+                    <label class="control-label" for="serialNumber">{{ 'label.serialNumber' | translate }}&nbsp;<span class="required">*</span></label>
+                    <div class="controls">
+             	    <input type="text" data-ng-show="config == 'SALE'" data-ng-model="serial" name="serial" data-ng-change="getData(serial,formData2.officeId)" data-typeahead="itemDetail as itemDetail for itemDetail in itemDetails | limitTo:8" data-typeahead-min-length="0">
+             	     <input type="text" data-ng-show="config == 'OWN'" name="serialNumber" data-ng-model="formData5.serialNumber" required data-late-Validate>
+                    </div>
+               </div>
+             </td>
+             </tr>
+             
+             <tr data-ng-show="config == 'OWN'">
+             	<td>
+          		<div class="control-group"  data-ng-repeat="item in getNumber(formData2.quantity)">
+                    <label class="control-label" for="provisioningSerialNumber">Provisioning SerialNumber&nbsp;<span class="required">*</span></label>
+                    <div class="controls">
+             	     	<input type="text" data-ng-show="config == 'OWN'" name="provisioningSerialNumber" data-ng-model="formData5.provisioningSerialNumber">
+                    </div>
+               </div>
+             </td>
+             </tr>
+             
+              <tr>
+            <td>
+         <strong>Plan Info</strong>
+         </td><td></td>
+         </tr>
+             <tr>
+             <td>
+           		<div class="control-group" >
+                   <label class="control-label" for="paytermCode">{{ 'label.activation.plan' | translate }}</label>
+                     <div class="controls">
+                        <select data-ng-model="formData4.planCode"  data-ng-options="plandata.id as plandata.planCode for plandata in plandatas" data-ng-change='setBillingFrequency(formData4.planCode)'></select>
+                    </div>
+                 </div>	
+             </td>
+             <td>
+             	<div class="control-group">
+             		 <label class="control-label" for="startDate">{{ 'label.order.startdate' | translate }}</label>
+              		 <div class="controls">
+                		<input type="text" data-datepicker-pop="dd MMMM yyyy" data-ng-model="start.date" data-is-open="opened" min="minDate" max="maxDate" 
+                 		   data-date-disabled="disabled(date, mode)" required data-late-Validate style="background-color:#FFFFFF;"  readonly/>
+             		</div>
+           		</div>
+           	</td>
+             </tr>
+             <tr>
+             <td>
+           		<div class="control-group">
+               		<label class="control-label" for="contractPeriod">{{ 'label.order.contractperiod' | translate }}</label>
+                	 <div class="controls" ng-hide="formData4.isPrepaid == 'Y'">
+
+                              <select    ng-model="formData4.contractPeriod"  ng-options="subscriptiondata.id as subscriptiondata.Contractdata for subscriptiondata in subscriptiondatas" value="{{billRuleData.id}}"></select>
+                           </div>
+                           <div class="controls" ng-show="formData4.isPrepaid == 'Y'">
+                              <select    ng-model="formData4.contractPeriod"  ng-options="paytermdata.duration as paytermdata.duration for paytermdata in paytermdatas" value="{{billRuleData.id}}"></select>
+                           </div>
+             	</div>
+             </td>
+             <td>
+             	<div class="control-group" data-ng-hide="isPrepaidPlanFormData4 == 'Y'">
+                   <label class="control-label" for="paytermCode">{{ 'label.order.billingfrequency' | translate }}</label>
+                     <div class="controls">
+                        <select data-ng-model="formData4.paytermCode"  data-ng-options="paytermdata.paytermtype as paytermdata.paytermtype for paytermdata in paytermdatas" ></select>
+                    </div>
+                 </div>
+              </td>
+              </tr>
+              <tr data-ng-show="configPayment == 'true'">
+            <td>
+         <strong>Payment Info</strong>
+         </td><td></td>
+         </tr>
+         
+           	<tr data-ng-show="configPayment == 'true'">
+           	<td>
+          		  <div class="control-group">
+             		 <label class="control-label" for="amountPaid">{{'label.activation.amount' | translate}}<span class="required">*</span></label>
+             		<div class="controls">
+               		 <input type="text" id="amountPaid" data-ng-model="formData6.amountPaid"/>
+              		</div>
+              		</div>
+          	</td>
+          	<td>
+          		<div class="control-group">
+             		 <label class="control-label" for="receiptNo">{{'label.activation.recieptno' | translate}}<span class="required">*</span></label>
+             		<div class="controls">
+               		 <input type="text" id="receiptNo" data-ng-model="formData6.receiptNo"/>
+              		</div>
+              		</div>
+             </td>
+             </tr>
+              <tr>
+              <td>
+             	  <div class="control-group" data-ng-hide="configurationProperty==false">
+             		 <label class="control-label">Login<span class="required">*</span></label>
+              		<div class="controls">
+               			 <input type="text" id="login" name="login" data-ng-model="formData1.login"/>
+              		</div>
+            	</div>
+            </td>
+           <td>
+            	<div class="control-group" data-ng-hide="configurationProperty==false">
+              		<label class="control-label">Password<span class="required">*</span></label>
+             		 <div class="controls">
+               			 <input type="password"  data-ng-model="formData1.password"/>
+              		</div>
+            	</div>
+           	</td>
+             </tr>
+             <tr>
+             <td>
+            	 <div class="control-group">
+              		<label class="control-label" for="file">{{'label.client.select.image' | translate}}</label>
+              		<div class="controls">
+               			 <input type="file" data-ng-file-select="onFileSelect($files)">
+              		</div>
+            	</div>
+           	</td>
+           	<td>
+           	  <div class="pull-right">
+              <a href="#/clients"><button id="cancel" type="reset" class="btn">Cancel</button></a>
+              <button id="submit" type="submit"  class="btn btn-primary">Save</button>
+            </div>
+           	</td>
+           </tr>
+           </table> 
+            <div class="pull-right">
+            
+            	<datalist id="citylist">
+                   <option  data-ng-repeat="city in cities" value="{{city}}">
+             	</datalist>
+            </div>
+        </fieldset>
+      </form>

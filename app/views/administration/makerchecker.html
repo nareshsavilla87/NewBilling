@@ -1,0 +1,47 @@
+<form data-ng-controller="MakerCheckerController"  data-ng-submit="submit()">
+	<div data-ng-hide="isDisabled">
+		<ul class="breadcrumb">
+			<li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+			<!-- <li><a href="#/admin/viewmctasks">{{'label.view.makerchecker.settings' | translate}}</a> <span class="divider">/</span></li> -->
+			 <li class="active">{{'label.edit.makerchecker' | translate}}</li> 
+		</ul>
+	</div>
+	<div data-ng-show="isDisabled">
+		<ul class="breadcrumb">
+			<li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'label.view.makerchecker.settings' | translate}}</li>
+		</ul>
+	</div>
+	<h3>&nbsp;&nbsp;&nbsp;{{'label.makerchecker.tasks' | translate}}</h3>
+	<span data-ng-show="PermissionService.showMenu('PERMISSION_ROLE')">
+		<div class="pull-right" data-ng-show="isDisabled">
+			<div class="btn-group">
+				<a class="btn btn-primary" data-ng-click="editMCTasks();"><i class="icon-edit icon-white"></i>{{ 'button.edit' | translate }}</a>
+			</div>
+		</div>
+	</span>
+	<table class="fullwidth">
+		<tr>
+			<td width="15%"  valign="top">
+				<table>
+					<tr data-ng-repeat="grouping in groupings track by $index" data-ng-class="{graybg: grouping == previousGrouping}">
+						<td><a data-ng-click="showPermissions(grouping);"><span>{{formatName(grouping)}}</span></a></td>
+					</tr>
+				</table>
+			</td>
+			<td width="85%" valign="top">
+				<table class="fullwidth">
+					<tr data-ng-repeat="permission in permissions.permissions">
+						<td width="50%"><label for="{{permission.code}}">{{permissionName(permission.code)}}</label></td>
+						<td><input id="{{permission.code}}" type="checkbox" data-ng-model="formData[permission.code]" data-ng-disabled="isDisabled"></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+	<div class="offset3" data-ng-hide="isDisabled">
+		<a class="btn" data-ng-click="cancel()">{{ 'button.cancel' | translate}}</a>
+		<button type="submit" class="btn btn-primary">{{ 'button.save' | translate}}</button>
+	</div>
+</form>

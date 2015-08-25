@@ -1,0 +1,54 @@
+
+<form class="form-horizontal well"  ng-submit="submit3()">
+	 
+	  <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	 
+	 <fieldset>
+	
+		<table align="center">
+		 <tr>
+		    <td> <legend>{{'label.assignserialnumber' | translate}}</legend></td>
+		  </tr>
+		  <tr>
+		     <td>
+		<div class="control-group" ng-repeat="item in getNumber(formData3.quantity)" name="serialNumberDiv">
+            <label class="control-label" for="serialNumber">{{ 'label.serialNumber' | translate }}&nbsp;<span class="required">*</span></label>
+            <div class="controls">
+             	<!-- <select ng-model="itemDetail"  name="serialNumber" ng-options="itemDetail as itemDetail for itemDetail in itemDetails" value="{{itemDetail}}" >
+             	</select> -->
+             	<input type="text" ng-model="itemDetail" name="serialNumber" ng-change="getData(itemDetail)" typeahead="itemDetail as itemDetail for itemDetail in itemDetails | limitTo:8" typeahead-min-length="0">
+            </div>
+        </div>	
+        <!--  <div class="control-group" ng-repeat="item in getNumber(formData3.quantity)">
+        <input type="text" ng-model="itemDetail" list="allocatehardware" name="serialNumber"></br>
+        
+        </div>
+		<datalist id="allocatehardware">
+                  <option  data-ng-repeat="itemDetail in itemDetails" value="{{itemDetail}}">
+        </datalist> 
+ -->
+
+		<!-- <div class="offset3">
+			<a href="#/viewclient/{{clientId}}"><button type="reset" class="btn">{{'button.cancel' | translate}}</button></a>
+			<button type="submit" class="btn btn-primary">{{'button.save' | translate}}</button>
+		</div> -->
+		    </td>
+		   </tr>
+		</table>
+	</fieldset>
+	  
+	    
+	 
+	<div class="jw-footer ui-widget-header ui-corner-bottom">
+              <div class="jw-buttons ui-helper-clearfix">
+                 <a href="#/clients"><button type="reset" class="btn">Cancel</button></a>
+                 <a href=""><button  class="jw-button-prev btn btn-primary" type="button" ng-show="previous" ng-click="previousStepmain()" style="display: inline-block;">Previous</button></a>
+                  <button type="submit" class="jw-button-next btn btn-primary"  ng-show="next" ng-click="nextStepmain()">Next</button>
+             </div>
+          </div>
+</form>
+

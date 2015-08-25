@@ -1,0 +1,53 @@
+<div data-ng-controller="ViewCurrencyDetailsController">
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+			<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/currencydetails">{{'label.currencydetails' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{viewcurrencydetails.id}}</li>
+		</ul>
+		<div class="pull-right">
+			<div class="btn-group">
+				<a data-ng-show="PermissionService.showMenu('UPDATE_COUNTRYCURRENCY')"
+					href="#/editcurrencydetails/{{viewcurrencydetails.id}}"
+					class="btn btn-primary"><i class="icon-edit icon-white"></i>Edit</a> 
+				<a  data-ng-show="PermissionService.showMenu('DELETE_COUNTRYCURRENCY')"
+					data-ng-click="deleteCurrency()" class="btn btn-primary"><i
+					class="icon-trash icon-white"></i> Delete</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="row paddedleft">
+		<h3>&nbsp;&nbsp;&nbsp;{{viewcurrencydetails.id}}</h3>
+		<table class="fullwidth">
+			<tr>
+				<td width="20%">{{ 'label.country' | translate }}</td>
+				<td width="80%">{{viewcurrencydetails.country}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.currency' | translate }}</td>
+				<td>{{viewcurrencydetails.currency}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.isd' | translate }}</td>
+				<td>{{viewcurrencydetails.countryISD}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.status' | translate }}</td>
+				<td>{{viewcurrencydetails.status}}</td>
+			</tr>
+		</table>
+	</div>
+	<script type="text/ng-template" id="deleteCurrency.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">Delete Currency</h3>
+                    </div>
+                    <div class="modal-body modal-small">
+                       <h4>Are you sure?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+                    </div>
+      </script>
+</div>

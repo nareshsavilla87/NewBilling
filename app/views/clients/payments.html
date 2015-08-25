@@ -1,0 +1,226 @@
+<div ng-controller="PaymentsClientController">
+ <div>
+ <ul class="breadcrumb">
+  <!-- <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+     <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+     <li>
+          <h3>
+            &nbsp;
+            {{displayName}}
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+            &nbsp;
+          </h3>
+        </li>
+        <li><span class="divider">|</span>
+          <i class="icon-barcode"></i>
+          <small>Uniquely identified {{accountNo}}&nbsp;</small>
+        </li>
+        <li><span class="divider">|</span>
+          <i class="icon-building"></i>
+          <small>Office "{{officeName}}"</small>
+        </li>
+         <li><span class="divider">|</span>
+          <i></i>
+          <small>Balance {{balanceAmount}} &nbsp;{{currency}}</small>
+        </li> -->
+        <table>
+        <tr>
+        <td>
+        	 <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+        </td>
+        <td>
+            <small style="color:black;">{{displayName}}</small>
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Uniquely identified  {{accountNo}}</small></td>
+        	</tr>
+        	<tr>
+        		<td><i class="icon-building"></i><small>Office "{{officeName}}"</small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Cell Phone {{phone}}</small></td>
+        	</tr>
+        	<tr>
+        	<td><small>Device # {{hwSerialNumber}}</small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Client Type "{{categoryType}}"</small></td>
+        	</tr>
+        	<tr>
+        		<td><small>Balance&nbsp;{{balanceAmount}}&nbsp;{{currency}} </small></td>
+        	</tr>
+        </table>
+        </td>
+        </tr>
+        </table>
+ </ul>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href='#/viewclient/{{clientId}}'>{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'label.payments' | translate}}</li>
+		</ul>
+	</div>
+      <form name="paymentForm" novalidate="" class="form-horizontal well" ng-submit="submit()">
+	  
+	     <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div> 
+	    
+        <fieldset>
+          <legend>Make Payment</legend>
+          
+			<table>
+			<tr>
+				<td>
+					<table>
+						<tr>
+							<td>
+								<div class="control-group">
+           					 	<label class="control-label" for="paymentDate">{{ 'label.paymentdate' | translate }}</label>
+            					<div class="controls">
+             					  <input id="dateid" type="text" ng-change="test()" datepicker-pop="dd MMMM yyyy" ng-model="start.date" is-open="opened2" min="minDate" max="maxDate" 
+             					  date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly />
+           						</div>
+         						</div>	
+							</td>
+							
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="paymentCode">{{ 'label.paymentType' | translate }}</label>
+            					<div class="controls">
+             					 <select id="paymenttypeval" ng-model="formData.paymentCode" ng-options="data.id as data.mCodeValue for data in data" value="{{data.id}}" ng-change="paymentTypeData(formData.paymentCode)">
+             					 </select>
+            					</div>
+          						</div>		
+          					</td>
+							
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+           					 	<label class="control-label" for="amountPaid">{{ 'label.amount' | translate }}</label>
+            					<div class="controls">
+             					 <input name="amount" type="text" id="amountPaid" ng-pattern="/^\d*\.?\d*$/" ng-model="formData.amountPaid" required  late-Validate/>
+             					 <form-validate formName="paymentForm"  fieldName="amount" patternMsg="only integer values"/>
+           						</div>
+         						</div>
+							</td>
+							
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+           					 	<label class="control-label" for="receiptNo">{{ 'label.receiptno' | translate }}<!-- <span class="required">*</span> --></label>
+            					<div class="controls">
+             					 <input type="text" id="receiptNo" name="receiptno" ng-model="formData.receiptNo">
+             					  <!-- <span  ng-show="paymentForm.receiptno.$invalid">
+                                  <small class="error" ng-show="paymentForm.receiptno.$error.req">
+                                    Required Field
+                                  </small>
+                                 </span> -->
+           						</div>
+         						</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<div class="control-group">
+						          	<label class="control-label">{{'label.notes' | translate}}</label>
+							        <div class="controls">
+							          <textarea ng-model="formData.remarks"></textarea>
+							        </div>
+						        </div>
+							</td>
+						</tr>
+							
+
+					</table>
+			
+				</td>
+				
+				<td>
+				<div ng-show="paymentType == 'Cheque'">
+				<table>
+				<tr>
+							<td>
+								<div class="control-group">
+           					 	<label class="control-label" for="chequeNo">{{ 'label.chequeno' | translate }}</label>
+            					<div class="controls">
+             					 <input type="text" id="chequeNo" ng-model="formData.chequeNo">
+           						</div>
+         						</div>
+							</td>
+				</tr>
+				<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="chequeDate">{{ 'label.chequedate' | translate }}</label>
+            					<div class="controls">
+              					<input type="text" id="chequeDate" ng-model="formData.chequeDate">
+            					</div>
+          						</div>
+							</td>
+				
+				</tr>
+				<tr>
+							<td>
+								<div class="control-group">
+           					 	<label class="control-label" for="bankName">{{ 'label.bankname' | translate }}</label>
+            					<div class="controls">
+             					 <input type="text" id="bankName" ng-model="formData.bankName">
+           						</div>
+         						</div>
+							</td>
+				</tr>
+				<tr>
+							<td>
+							
+								<div class="control-group">
+           					 	<label class="control-label" for="branchName">{{ 'label.branchname' | translate }}</label>
+            					<div class="controls">
+             					 <input type="text" id="branchName" ng-model="formData.branchName">
+           						</div>
+         						</div>
+							</td>
+							
+				</tr>
+				</table>
+				</div>
+				</td>
+			</tr>
+			
+			</table>
+			
+			
+  			
+          <div class="offset3">
+            <a href='#/viewclient/{{clientId}}' class="btn">Cancel</a>
+          <!--  <button id="submit" type="submit" class="btn btn-primary" ng-dblclick="dbClick()" ng-disabled="flag">{{'button.save'| translate}}</button> -->
+          <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+          </div>
+          
+        </fieldset>
+      </form>
+</div>

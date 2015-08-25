@@ -1,0 +1,238 @@
+      <form name="editclientform" novalidate class="form-horizontal" data-ng-controller="EditClientController" data-ng-submit="submit()">
+        <div>
+           <ul class="breadcrumb">
+            <li><table>
+        <tr>
+        <td>
+         <img data-ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img data-ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+        </td>
+        <td>
+            <small style="color:black;">{{displayName}}</small>
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Uniquely identified&nbsp;<strong>{{accountNo}}</strong></small></td>
+        	</tr>
+        	<tr>
+        	    <td><small>Cell Phone&nbsp;<strong>{{phone}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        	   <td><i class="icon-building"></i><small>Office&nbsp;"<strong>{{officeName}}</strong>"</small></td>
+        	</tr>
+        	<tr>
+        	<td><small>Device # <strong>{{hwSerialNumber}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Client Type&nbsp;"<strong>{{categoryType}}</strong>"</small></td>
+        	</tr>
+        	<tr>
+        		<td><small>Balance&nbsp;<strong>{{balanceAmount}}</strong>&nbsp;{{currency}} </small></td>
+        		<td class="paddedleft0" data-ng-show="walletConfig"><small>[Wallet&nbsp;<strong>{{walletAmount}}</strong>&nbsp;{{currency}}]</small></td>
+        	</tr>
+        </table>
+        </td>
+        </tr>
+        </table></li>
+          </ul>
+          <ul class="breadcrumb">
+            <li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+            <li><a href='#/viewclient/{{clientId}}'>{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+              <li class="active">{{'label.editclient' | translate}}</li>
+          </ul>
+        </div>
+	 <div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>&nbsp;&nbsp;&nbsp;{{'label.editclient' | translate}}</legend>
+		<table>
+			<tr>
+				<td>
+				  <div class="control-group">
+                     <label class="control-label">{{ 'label.office' | translate }}<span class="required">*</span></label>
+                  <div class="controls">
+                     <select data-ng-model="officeId"  data-ng-options="office.id as office.name for office in offices">
+                  </select>
+                </div>
+              </div>
+		    </td>
+			 <td>
+			</td>
+			</tr>
+			<tr>
+			  <td>
+			 	<div class="control-group">
+                	<label class="control-label">Title</label>
+                   		<div class="controls">
+                      		<!-- <select data-ng-model="title">
+                        		<option  value="Mr.">Mr.</option>
+                        		<option  value="Mrs.">Mrs.</option>
+                        		<option  value="shaik">shiek</option>
+                     		</select> -->
+                     		<select ng-model="source">
+              <option value="Mr.">Mr.</option>
+              <option value="Mrs.">Mrs.</option>
+              <option value="shaik">shaik</option>
+    	  	</select>
+                 	</div>
+             	</div>
+             	</td>
+             	<td>
+             	<div class="control-group">
+                    <label class="control-label">{{'label.clientcategeory' | translate}}<span class="required">*</span></label>
+                <div class="controls">
+                   <select data-ng-model="clientCategory"  data-ng-options="clientCategoryData.id as clientCategoryData.categoryType for clientCategoryData in clientCategoryDatas">
+                   </select>
+                </div>
+              </div>
+             	</td>
+             	</tr>
+			<tr>
+				<td>
+				   <div class="control-group">
+				 
+            <label data-ng-hide="entryType =='ORP'" class="control-label" for="firstname">{{'label.firstname' | translate}}<span class="required">*</span></label> 
+             <label data-ng-show="entryType =='ORP'" class="control-label" for="firstname">{{'label.corporate' | translate}}<span class="required">*</span></label>
+                        <div class="controls">
+                           <input type="text" name="firstname" data-ng-model="formData.firstname" required data-ng-minlength=3 data-late-Validate/>
+                               <span  data-ng-show="editclientform.firstname.$invalid">
+                               <!-- <small class="error" data-ng-show="editclientform.firstname.$error.pattern">alphanumeric and spaces only!</small> -->
+                              <small class="error" data-ng-show="editclientform.firstname.$error.req">
+                               Required Field
+                             </small>
+                            <small class="error" data-ng-show="editclientform.firstname.$error.minlength && !editclientform.firstname.$error.req">Your name is required to be at least 3 characters</small>
+                          </span>
+                      </div>
+                   </div>
+				 </td>
+				<td>
+					<div class="control-group">
+              		<label class="control-label">CUG</label>
+              		<div class="controls">
+                	<select data-ng-model="groupId"  data-ng-options="groupNameData.id as groupNameData.groupName for groupNameData in groupNameDatas" >
+                     <option  value="">None</option> 
+                	</select>
+                	
+              		</div>
+            		</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="control-group">
+                  <label class="control-label" for="middlename">{{'label.corporatedetails' | translate}}</label>
+                  <div class="controls">
+                    <input type="text" data-ng-model="formData.middlename">
+                  </div>
+                </div>
+				</td>
+				<td>
+				 <div class="control-group">
+               <label data-ng-hide="entryType =='ORP'" class="control-label" for="lastname">{{'label.lastname' | translate}}<span class="required">*</span></label>
+              <label data-ng-show="entryType =='ORP'" class="control-label" for="firstname">{{'label.contactperson' | translate}}</label>
+                  <div class="controls">
+                    <input type="text" name="lastname" data-ng-model="formData.lastname"/>
+                   
+                  </div>
+                </div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				 <div class="control-group">
+                  <label class="control-label">{{ 'label.phone' | translate }}</label>
+                  <div class="controls">
+                    <input type="text" data-ng-model="formData.phone">
+                  </div>
+                </div>
+				</td>
+				
+				<td>
+				  <div class="control-group">
+                  <label class="control-label">{{ 'label.externalid' | translate }}</label>
+                  <div class="controls">
+                    <input type="text" data-ng-model="formData.externalId">
+                  </div>
+                </div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="control-group">
+                  <label class="control-label">{{'label.email' | translate }}</label>
+                  <div class="controls">
+                    <input type="text"  data-ng-model="formData.email">
+                  </div>
+                </div>
+				</td>
+				
+				<td>
+				  <div class="control-group">
+                  <label class="control-label">{{ 'label.homephone' | translate }}</label>
+                  <div class="controls">
+                    <input type="text" data-ng-model="formData.homePhoneNumber">
+                  </div>
+                </div>
+				</td>
+			</tr>
+			<tr data-ng-show="isSelfCareUser">
+				<td>
+					<div class="control-group">
+                  		<label class="control-label">{{ 'label.username' | translate }}</label>
+                  		<div class="controls">
+                    		<input type="text" data-ng-model="formData.userName">
+                  		</div>
+                	</div>
+				</td>
+				
+				<td>
+					<div class="control-group">
+                  		<label class="control-label">{{ 'label.password' | translate }}</label>
+                  		<div class="controls">
+                    		<input type="password" data-ng-model="formData.password">
+                  		</div>
+                	</div>
+				</td>
+			</tr>
+     	<tr >
+				<td>
+				<div class="offset3">
+                <label class="control-label">{{'label.client.select.image' | translate}}</label>
+                <div class="controls">
+                  <input type="file" id="file" data-ng-file-select="onFileSelect($files)">
+                </div>
+              </div>
+			 </td>
+			 <td></td>
+		</tr>
+     <tr>
+       <td>
+      </td>
+       <td>
+         <div align="right">
+			  <a id="cancel" href="#/viewclient/{{clientId}}"><button type="reset" class="btn" data-ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
+			   <button id="submit" type="submit" class="btn btn-primary">{{'button.save' | translate}}</button>
+			</div>
+		</td>
+     </tr>
+     </table>
+    
+	</fieldset>
+</form>

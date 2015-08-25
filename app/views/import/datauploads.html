@@ -1,0 +1,46 @@
+<div  ng-controller="DataUploadController">
+<div>
+    <ul class="breadcrumb">
+      <!--   <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li> -->
+        <li class="active">{{'label.imports' | translate}}&nbsp;&nbsp;</li>
+    </ul>
+    <div class="pull-right">
+        <a href="#/uploadFile" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{ 'link.create.new.file' | translate }}</a>
+    </div>
+</div>
+<div class="row-fluid">
+    <input ng-model="filterText" type="text" class="span marginbottom0px">
+	<table class="table">
+        <thead>
+            <tr class="graybg">
+                <th>{{ 'table.import.uploadprocess' | translate }}</th>
+                <th>{{ 'table.import.uploadfilepath' | translate }}</th>
+                <th>{{ 'table.import.processdate' | translate }}</th>
+                <th>{{ 'table.import.process.totalrecords' | translate }}</th>
+                <th>{{ 'table.import.status' | translate }}</th>
+                <th>{{'table.actions' | translate}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="import in imports.currentPageItems | filter:filterText">
+                <td>{{import.uploadProcess}}</td>            
+                <td>{{import.uploadFilePath}}</td>        
+                <td>{{import.processDate | DateFormat}}</td>         
+                <td>{{import.processRecords}}/{{import.totalRecords}}</td>
+                <td>{{import.processStatus}}</td>
+              
+              	<td>
+              	<a ng-show="getProcessStatus(import.processStatus)" ng-click="processFile(import.id)" popover="Process File" popover-trigger="mouseenter"><i class="icon-play icon-white"></i></a>
+              	<a ng-show="getLogStatus(import.processStatus)" ng-click="logFile(import.id)" popover="Download Log File" popover-trigger="mouseenter"><i class=" icon-download-alt icon-white"></i> </a>
+             	<a ng-show="getLogStatus(import.processStatus)" ng-click="downloadFile(import.id)" popover="Download Uploaded File" popover-trigger="mouseenter"><i class="icon-cloud-download"></i></a>
+              	</td>
+              
+            </tr>
+        </tbody>
+    </table>
+    <ul class="pager">
+        			<li class="previous"><a ng-click="imports.previous()" href="" ng-disabled="!imports.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="imports.next()" href="" ng-disabled="!imports.hasNext()">Next &rarr;</a></li>
+	</ul>
+</div>
+</div>

@@ -1,0 +1,132 @@
+ <div data-ng-controller="ItemSaleController">
+   <div data-ng-show="officeId != 0 && partnerId == 0">
+        <ul class="breadcrumb">
+          <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+          <li><a href="#/offices">{{'label.manageoffices' | translate}}</a> <span class="divider">/</span></li>
+           <li><a href="#/viewoffice/{{officeId}}">{{officeName}}</a> <span class="divider">/</span></li>
+          <li class="active">Item Sale</li>
+        </ul>
+      </div> 
+      <div data-ng-show="partnerId !=0 && officeId !=0">
+        <ul class="breadcrumb">
+          <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+          <li data-ng-show="officeId&&partnerId"><a href="#/offices" data-ng-click="partnersTab()">{{'label.managepartners' | translate}}</a> <span class="divider">/</span></li>
+          <li data-ng-show="officeId&&partnerId"><a href="#/viewpartner/{{partnerId}}/{{officeId}}">{{partnerName}}</a><span class="divider">/</span></li>
+          <li class="active">Item Sale</li>
+        </ul>
+      </div>
+        <div data-ng-show ="officeId == 0 && partnerId ==0 ">
+        <ul class="breadcrumb">
+          <li><a href="#/inventory" data-ng-click="selectedMRN()">{{'link.inventory' | translate}}</a> <span class="divider">/</span></li>
+          <li class="active">{{'label.create.new.mrn' | translate}}</li>
+        </ul>
+     </div>
+      <form name="itemSaleForm" novalidate class="form-horizontal well" data-ng-submit="submit()">
+       <div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>Create Item Sale</legend>
+           <table>
+		   <tr> 
+		    <td>
+		    	<div class="control-group">
+                          <label class="control-label" for="purchaseDate">Purchase Date&nbsp;</label>
+                            <div class="controls">
+                          <input type="text" datepicker-pop="dd MMMM yyyy" data-ng-model="purchase.date" is-open="opened" min="minDate" max="maxDate" 
+                          date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
+                          </div>
+                     </div>
+					</td>
+					<td>
+					  <div class="control-group">
+						<label class="control-label">Purchased From &nbsp;</label>
+						<div class="controls">
+							<select data-ng-model="formData.purchaseFrom" 
+							data-ng-options="officeData.id as officeData.name for officeData in officeDatas">
+							</select>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+			      <td>	
+			      <div class="control-group">
+            			<label class="control-label" for="itemId">{{ 'label.itemCode' | translate }}</label>
+            			<div class="controls">
+             				<select id="itemId" data-ng-model="formData.itemId" data-ng-change="itemData(formData.itemId)" 
+             				  data-ng-options="itemData.id as itemData.itemCode for itemData in itemDatas">
+             				</select>
+            			</div>
+          			</div>
+				</td>
+				 <td>
+				  <div class="control-group">
+            	   <label class="control-label" for="chargeCode">{{ 'label.chargeCode' | translate }}</label>
+            		 <div class="controls">
+                       <select data-ng-model="formData.chargeCode"  data-ng-options="chargeDatas.id as chargeDatas.chargeCode for chargeDatas in chargeDatas"></select>
+                       </div>
+          		</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<div class="control-group">
+						<label class="control-label">Order Quantity&nbsp;</label>
+						<div class="controls">
+							<input type="text" id="orderQuantity" data-ng-model="formData.orderQuantity" name="orderQuantity" 
+								data-ng-change="itemDataQuantity(formData.orderQuantity,formData.itemId)" 
+								data-ng-model="formData.quantity" data-ng-pattern="{{'integer' | CodeValidate}}"></br>
+							<span data-ng-show="itemSaleForm.orderQuantity.$dirty && itemSaleForm.orderQuantity.$invalid">
+								<small class="error-row">{{'error.not.numeric.validation' | translate}}</small>
+							</span>
+						</div>
+					</div>
+				
+				</td>
+				<td>
+				 <div class="control-group">
+					   <label class="control-label">Unit Price&nbsp;</label>
+					   <div class="controls">
+							<input  type="text" id="unitPrice" data-ng-model="formData.unitPrice" data-ng-change="itemDataQuantity(formData.orderQuantity,formData.itemId,formData.officeId)">
+						</div>
+					</div>
+			    </td>
+				</tr>
+			<tr>
+				 <td>
+				  <div class="control-group">
+						<label class="control-label">Total Item Price&nbsp;</label>
+						<div class="controls">
+							<input type="text" id="itemPrice"  data-ng-model="formData.chargeAmount" disabled>
+						</div>
+					</div>
+				</td>
+				<td data-ng-show="officeId == 0">
+				 <div class="control-group">
+						<label class="control-label">Purchase By &nbsp;</label>
+						<div class="controls">
+							<select data-ng-model="formData.purchaseBy"
+							   data-ng-options="officeData.id as officeData.name for officeData in officeDatas">
+							</select>
+						</div>
+					</div>
+				</td>
+				</tr>
+			  <tr>
+		 	  <td align="right" colspan="2">
+			    <div class="control-group">
+        	    <!-- <a data-ng-hide ="officeId ==0" href="#/viewoffice/{{officeId}}"><button id="cancel" type="reset" class="btn" data-ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
+        	     <a data-ng-show ="officeId ==0"  href="#/inventory"><button id="cancel" type="reset" class="btn" data-ng-click="reset123()">{{'button.cancel' | translate}}</button></a> -->
+        	    <a data-ng-click="goBack()"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+            	<button id="save" type="submit" data-ng-disabled="itemSaleForm.$dirty && itemSaleForm.$invalid" class="btn btn-primary">{{'label.save' | translate}}</button>
+
+          </div>
+          </td>
+          </tr>
+          </table>
+        </fieldset>
+      </form>
+ </div>

@@ -1,0 +1,50 @@
+
+   <div class="jw-widget jw-hasmenu jw-hasprogress" ng-controller="CreateClientControllerwizard">
+       <div class="jw-header ui-widget-header ui-corner-top ui-helper-clearfix">
+         
+         <div class="ui-progressbar  ui-widget-content ui-corner-all-progress jw-progress">
+             <div id="progress4" class="ui-progressbar-value ui-widget-header" style="display: block; width: 100%;background: none repeat scroll 0% 0% #E5E4E2;"></div>
+             <span id="progressno4" class="ui-progressbar-label" style="position: relative; top: -26px; left: 9.50006px;margin-left:12px"><span id="active4">3.Order</span></span>
+             <!-- <div id="progress" class="ui-progressbar-value ui-widget-header" style="display: block; width: 0%;"></div>
+                <span id="progressno" class="ui-progressbar-label" style="position: relative; top: 6.5px; left: 9.50006px;">{{no}} of 4 Complete</span>-->
+          </div> 
+        <!--   <div class="ui-progressbar  ui-widget-content ui-corner-all-progress jw-progress">
+              <div id="progress3" class="ui-progressbar-value ui-widget-header" style="display: block; width: 100%;background: none repeat scroll 0% 0% #E5E4E2;"></div>
+               <span id="progressno3" class="ui-progressbar-label" style="position: relative; top: -26px; left: 9.50006px;margin-left:12px"><span id="active3">3.Assign Device</span></span>
+          </div> -->
+          <div class="ui-progressbar  ui-widget-content ui-corner-all-progress jw-progress">
+             <div id="progress2" class="ui-progressbar-value ui-widget-header" style="display: block; width: 100%;background: none repeat scroll 0% 0% #E5E4E2;"></div>
+             <span id="progressno2" class="ui-progressbar-label" style="position: relative; top: -26px; left: 9.50006px;margin-left:12px"><span id="active2">2.Device Info</span></span>
+          </div>
+          <div class="ui-progressbar  ui-widget-content ui-corner-all-progressfirst jw-progress">
+             <div id="progress1" class="ui-progressbar-value ui-widget-header" style="display: block; width: 100%;background: none repeat scroll 0% 0% #FFA500;"></div>
+             <span id="progressno1" class="ui-progressbar-label" style="position: relative; top: -26px; left: 9.50006px;"><span id="active1">1.Client Information</span></span>
+          </div>
+       </div> 
+       <div class="jw-content ui-widget-contentclass ui-helper-clearfix">
+		 <div class="jw-steps-wrap" >
+		     <div id="test1-step1" class="jw-step" ng-show="step1"  style="display: block;">
+				<div ng-include="'views/clients/createclientwizard.html'"></div>
+   			</div>
+			<div class="jw-step" ng-show="step2" style="display: block;">
+				<div ng-include src="template2" ></div>
+			</div>
+		<!-- 	
+			 <div class="jw-step" ng-show="step3" style="display: block;">
+				<div ng-include src="template3" ></div>
+			</div>  -->
+			
+			<div class="jw-step" ng-show="step4" style="display: block;">
+				<div ng-include src="template4" ></div>
+			</div>
+		  </div>
+       </div> 
+
+   </div>
+
+
+
+
+
+
+

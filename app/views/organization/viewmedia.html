@@ -1,0 +1,68 @@
+<div data-ng-controller="ViewMediaDetailsController">
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+	        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+	        <li><a href="#/mediadetails">{{'label.media.details' | translate}}</a> <span class="divider">/</span></li>
+	        <li class="active">{{media.mediaTitle}}</li>
+	    </ul>
+	    <div class="pull-right">
+	      <div class="btn-group">
+	          <a data-ng-show="PermissionService.showMenu('UPDATE_MEDIAASSET')" href="#/editmedia/{{media.mediaId}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> {{'button.edit' | translate}}</a>
+	         <a data-ng-show="PermissionService.showMenu('DELETE_MEDIAASSET')" data-ng-click="deletemedia()" class="btn btn-primary"><i class="icon-trash icon-white"></i> {{'button.delete' | translate}}</a>
+	         
+	      </div>
+	    </div>
+	</div>
+	<div class="row paddedleft">
+		<h3>{{contractperiod.name}}</h3>
+		<table class="fullwidth">
+			<tr>
+				<td width="20%"><strong>{{ 'label.media.title' | translate }}</strong></td>
+				<td width="70%">{{media.mediaTitle}}</td>
+			</tr>
+			<tr>
+				<td><strong>{{'table.mediadetails.categeory' | translate }}</strong></td>
+				<td>{{catageoryId}}</td>
+			</tr>
+			<tr>
+				<td><strong>{{'table.mediadetails.contentprovider' | translate}}</strong></td>
+				<td>{{contentProviderValue}}</td>
+			</tr>
+			<tr>
+				<td><strong>{{ 'label.media.status' | translate }}</strong></td>
+				<td>{{media.status}}</td>
+			</tr>
+			<tr>
+				<td><strong>{{'table.mediadetails.share' | translate}}</strong></td>
+				<td>{{media.cpShareValue}}</td>
+			</tr>
+			
+			<tr> 
+				<td valign="top"><strong>{{ 'label.media.medialocation' | translate }}</strong></td>
+				<td class="paddedleftNone">
+					<table>
+						<tr data-ng-repeat="mediaLocationData in mediaLocationDatas">
+						<td data-ng-repeat="mediaLanguageData in mediaLanguageDatas" data-ng-show="mediaLanguageData.id ==mediaLocationData.languageId">
+                         {{mediaLocationData.formatType}},  {{mediaLanguageData.mCodeValue}},                                
+				                </td>
+								<td>{{mediaLocationData.location}}</td>
+						</tr>
+					</table>		
+				</td>
+			</tr>
+		</table>
+	</div>
+	<script type="text/ng-template" id="deletemedia.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">{{'label.delete.mediadetails' | translate}}</h3>
+                    </div>
+                    <div class="modal-body" style="height:60px;">
+                       <h3 align="center">{{'label.confirm.msg' | translate}}</h3>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approveDeleteMedia()">{{'label.confirm' | translate}}</button>
+                    </div>
+      </script>
+</div>
+          

@@ -1,0 +1,67 @@
+      <div>
+        <ul class="breadcrumb">
+          <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+          <li><a href="#/offices">{{'label.manageoffices' | translate}}</a> <span class="divider">/</span></li>
+          <li class="active">{{'label.editoffice' | translate}}</li>
+        </ul>
+      </div>
+      <form class="form-horizontal well" data-ng-controller="EditOfficeController" data-ng-submit="submit()">
+          <div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <table>
+            <tr>
+              <td>
+                <div class="control-group">
+                  <label class="control-label" for="name">{{ 'label.officename' | translate }}</label>
+                  <div class="controls">
+                    <input type="text" data-ng-model="formData.name">
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="control-group">
+                  <label class="control-label">{{ 'label.officetype' | translate }}</label>
+                  <div class="controls">
+                     <select data-ng-model="formData.officeType"  data-ng-options="officeType.id as officeType.name for officeType in officeTypes">
+                     </select>
+                  </div>
+                </div>
+              </td>
+            </tr> 
+            <tr>
+              <td>
+                <div class="control-group">
+                  <label class="control-label">{{ 'label.openedon' | translate }}</label>
+                  <div class="controls">
+                      <input type="text" datepicker-pop="dd MMMM yyyy" data-ng-model="first.date" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)" required late-Validate />
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="control-group">
+                  <label class="control-label">{{ 'label.externalId' | translate }}</label>
+                  <div class="controls">
+                    <input type="text" name="externalId" data-ng-model="formData.externalId">
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+            <td align="right">
+                <div class="offset3">
+                  <a href="#/offices"><button id="cancel" type="reset" class="btn">Cancel</button></a>
+                  <button id="submit" type="submit" class="btn btn-primary">Save</button>
+                   </div>
+             </td>
+              </tr>
+              </table>
+        </fieldset>
+      </form>

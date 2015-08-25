@@ -1,0 +1,133 @@
+<div class="paddedbottom10">
+    <ul class="breadcrumb">
+        <li><a href="#/reports/all">{{'label.anchor.reports' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.anchor.runreport' | translate}}</li>
+    </ul>
+</div>
+<div  data-ng-controller="RunReportsController">
+  <api-validate></api-validate>
+    <div class="span gray-head" style="margin-left:0%;height:20px;margin-top: -10px;" >
+      <span style="margin-left: 10px;font-size:20px;">
+                <strong>{{reportName}}</strong>
+                <button type="button" class="btn-primary pull-right" data-ng-show="checkStatus()" data-ng-click="isCollapsed=!isCollapsed"><i class="icon-chevron-down icon-white"></i>{{ 'label.button.parameters' | translate }}</button>
+                <button type="button" data-ng-hide="hideChart" class="btn-primary pull-right" data-ng-click="setTypePie()">{{ 'label.input.piechart' | translate }}</button>
+                <button type="button" data-ng-hide="hideChart" class="btn-primary pull-right" data-ng-click="setTypeBar()">{{ 'label.input.barchart' | translate }}</button>
+      </span>
+   </div>
+
+    <div data-ng-hide="isCollapsed" class="row alert-block span">
+        <br>
+        <div class="control-group info"  data-ng-repeat="reportParam in reportParams">
+            <label class="control-label" for="{{reportParam.variable}}">{{ reportParam.label }}</label>
+            <div class="controls">
+              <select id="{{reportParam.inputName}}" class="input-xlarge" data-ng-model="formData[reportParam.inputName]" data-ng-change="getDependencies(reportParam)" required>
+                <option data-ng-show="reportParam.selectAll == 'Y'" value="-1">{{ 'label.all' | translate }}</option>
+                <option data-ng-repeat="selectOption in reportParam.selectOptions" value="{{selectOption.id}}">{{selectOption.name}}</option>
+              </select>
+            </div>
+        </div>
+        <div class="control-group info"  data-ng-repeat="reportDateParam in reportDateParams">
+            <label class="control-label" for="{{reportDateParam.variable}}">{{ reportDateParam.label }}</label>
+            <div class="controls">
+                <input id="{{reportDateParam.inputName}}" type="text" data-datepicker-pop="yyyy-MM-dd" data-ng-model="formData[reportDateParam.inputName]" data-is-open="'opened'+$index" min="minDate" max="'2020-06-22'" 
+                   data-date-disabled="disabled(date, mode)" required data-late-Validate />
+            </div>
+        </div>
+         <div class="control-group info" data-ng-show="reportType == 'Table'" >
+            <label class="control-label" for="outputType">{{ 'label.report.output.type' | translate }}</label>
+            <div class="controls">
+              <select class="input-xlarge" data-ng-model="formData.outputType">
+                <option value="HTML">{{ 'label.input.showreport' | translate }}</option>
+                <option value="CSV">{{ 'label.input.exportcsv' | translate }}</option>
+                <option value="PDF">{{ 'label.input.pdfformat' | translate }}</option>
+               <!--  <option value="billingChart">{{ 'label.input.chartformat' | translate }}</option> -->
+              </select>
+            </div>
+        </div>
+        <div class="control-group info" data-ng-show="reportType == 'Pentaho'" >
+            <label class="control-label" for="outputType">{{ 'label.report.output.type' | translate }}</label>
+            <div class="controls">
+              <select class="input-xlarge" data-ng-model="formData.outputType">
+                <option value="HTML">{{ 'label.input.showreport' | translate }}</option>
+                <option value="XLS">{{ 'label.input.exportexcel' | translate }}</option>
+                <option value="CSV">{{ 'label.input.exportcsv' | translate }}</option>
+                <option value="PDF">{{ 'label.input.pdfformat' | translate }}</option>
+              </select>
+            </div>
+        </div>
+        <span><a id="run" data-ng-click="runReport()" class="btn btn-primary control"><i class="icon-play icon-white"></i>&nbsp;&nbsp;{{ 'label.button.runreport' | translate }}</a></span> 
+    </div>
+     <div style="visibility: hidden">
+        <table>
+            <tr>
+                <td width="30%"></td>
+                <td>
+                    <input type="radio" data-ng-model="type" value="pie">{{'label.input.pie' |
+                    translate}}<br/>
+                <td>
+                <td>
+                    <input type="radio" data-ng-model="type" value="bar">{{'label.input.bar' |
+                    translate}}<br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+     <div style="margin-left:-45px;overflow:auto">
+        <div data-ng-hide="hideChart">
+            <div data-ng-show="type=='pie'">
+                <nvd3-pie-chart
+                        data="chartData"
+                        id="pie"
+                        width="900"
+                        height="700"
+                        x="xFunction()"
+                        y="yFunction()"
+                        tooltips="true"
+                        showLegend="true"
+                        showLabels="true"
+                        labelType="percent">
+                    <svg height="1300"></svg>
+                </nvd3-pie-chart>
+            </div>
+            <div style="margin-left: 100px" data-ng-show="type=='bar'">
+                <nvd3-multi-bar-chart
+                        data="barData"
+                        id="barchart"
+                        width="700"
+                        height="400"
+                        showValues="true"
+                        tooltips="true"
+                        rotateLabels="90">
+                    <svg></svg>
+                </nvd3-multi-bar-chart>
+            </div>
+        </div>
+    </div>
+    
+    <div data-ng-hide="hideTable">
+      
+        <div data-scroll>
+         <table style="width: 1200px;white-space:nowrap"  class="table table-bordered" data-anchor>
+            <thead>
+                <tr class="graybg">
+                    <th data-ng-repeat="columnHeader in reportData.columnHeaders" >{{columnHeader.columnName}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="{{$index}}" data-ng-click="highlight($index)" data-ng-repeat="row in reportData.data" >
+                    <td data-ng-repeat="col in row.row track by $index" >{{col}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+   </div>
+    <div data-ng-hide="hideChartReport" class="row alert-block span tab-content">
+    <br>
+        <div id="StretchyReportOutput"></div>
+   </div>
+    <div data-ng-hide="hidePentahoReport" class="row alert-block span tab-content">
+        <br>
+        <iframe id=rptLoadingFrame src="{{baseURL}}" frameborder="0" width="100%" height="600px"></iframe>
+    </div>
+
+</div>

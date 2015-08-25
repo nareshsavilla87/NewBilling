@@ -1,0 +1,94 @@
+<div ng-controller="ViewCardDetailsController"> 
+
+    <div class="paddedbottom10">
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href='#/viewclient/{{clientcarddetails.clientId}}' ng-click="documentsTab()">{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'label.viewcarddetails' | translate}}</li>
+		</ul>
+	    <div class="pull-right">
+	      <div class="btn-group">
+	          <a href="#/editcarddetails/{{clientcarddetails.clientId}}/{{clientcarddetails.id}}/{{clientcarddetails.type}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>	        
+	          <a ng-click="deletecardDetails()" class="btn btn-primary"><i class="icon-trash icon-white"></i> Delete</a>
+	      </div>
+	    </div>
+	</div>
+
+	<div class="row paddedleft">
+					<h3>&nbsp;&nbsp;&nbsp;Card Details</h3>
+					<table width="100%">
+					  <tr>
+					  	<td>	
+                        <table  width="100%" ng-show="clientcarddetails.type=='ACH'">    
+                             <tr>
+                              <td width="20%">{{'label.carddetails.id' | translate}}</td>
+                              <td width="80%">{{clientcarddetails.id}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{'label.client.achcard.name' | translate}}</td>
+                              <td>{{clientcarddetails.name}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{'label.client.achcard.routingNumber' | translate }}</td>
+                              <td>{{clientcarddetails.routingNumber}}</td>
+                            </tr>
+                             <tr>
+                              <td>{{'label.client.achcard.bankAccountNumber' | translate }}</td>
+                              <td>{{clientcarddetails.bankAccountNumber}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{'label.client.achcard.bankName' | translate }}</td>
+                              <td>{{clientcarddetails.bankName}}</td>
+                            </tr>
+                             <tr>
+                              <td>{{'label.client.achcard.accountType' | translate}}</td>
+                              <td>{{clientcarddetails.accountType}}</td>
+                            </tr>
+                                                            
+                         </table>
+                        </td>
+                       </tr>
+                       <tr>
+                       	<td>    
+                          <table width="100%" ng-show="clientcarddetails.type=='CreditCard'">
+                          
+                            <tr>
+                              <td width="20%">{{'label.carddetails.id' | translate}}</td>
+                              <td width="80%">{{clientcarddetails.id}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{'label.client.creditcard.name' | translate}}</td>
+                              <td>{{clientcarddetails.name}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{'label.client.creditcard.cardType' | translate}}</td>
+                              <td>{{clientcarddetails.cardType}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{'label.client.creditcard.cardnumber' | translate }}</td>
+                              <td>{{clientcarddetails.cardNumber}}</td>
+                            </tr>   
+                            <tr>
+                              <td>{{'label.client.creditcard.expirydate' | translate }}</td>
+                              <td>{{clientcarddetails.cardExpiryDate}}</td>
+                            </tr>
+                          </table> 
+                         </td>
+                        </tr>
+                       </table>
+           </div>    
+           
+   <script type="text/ng-template" id="approve.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">{{'dialog.item.title.message' | translate}}</h3>
+                    </div>
+                    <div class="modal-body" style="height:60px;">
+                       <h4>Are you sure?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approve(date.actDate)">{{'label.confirm' | translate}}</button>
+                    </div>
+      </script>                
+                                     
+    </div>

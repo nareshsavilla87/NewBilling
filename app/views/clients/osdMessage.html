@@ -1,0 +1,36 @@
+<div ng-controller="OSDMessageController" >
+   <div>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'label.osdMessage' | translate}}</li>
+		</ul>
+	</div>
+<form class="form-horizontal well"  ng-submit="submit()">
+    <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	<fieldset>
+		<legend>{{'label.osdMessage' | translate}}</legend>
+		<table width="100%">
+			<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="message">{{'label.osdmessage.message' | translate}}
+							</label>
+						<div class="controls">
+							 <textarea maxlength="450" ng-model="formData.message"></textarea>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+		
+		<div class="offset3">
+			<a href="#/vieworder/{{orderId}}"><button type="reset" class="btn">Cancel</button></a>
+			<button type="submit" class="btn btn-primary">Save</button>
+		</div>
+	</fieldset>
+</form>
+</div>

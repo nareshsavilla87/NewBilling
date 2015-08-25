@@ -1,0 +1,74 @@
+<div data-ng-controller="OfficeAdjustmentsController">
+	<div>
+        <ul class="breadcrumb">
+          <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+           <li data-ng-hide="officeId&&partnerId"><a href="#/offices">{{'label.manageoffices' | translate}}</a> <span class="divider">/</span></li>
+           <li data-ng-hide="officeId&&partnerId"><a href="#/viewoffice/{{officeId}}">{{officeName}}</a> <span class="divider">/</span></li>
+           <li data-ng-show="officeId&&partnerId"><a href="#/offices" data-ng-click="partnersTab()">{{'label.managepartners' | translate}}</a> <span class="divider">/</span></li>
+           <li data-ng-show="officeId&&partnerId"><a href="#/viewpartner/{{partnerId}}/{{officeId}}">{{partnerName}}</a><span class="divider">/</span></li>
+          <li class="active">Create Adjustment</li>
+        </ul>
+      </div>
+	<form class="form-horizontal well" data-ng-submit="submit()">
+		<br>
+		 <div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+		<fieldset>
+		 <legend>Create Adjustment</legend>
+	  <table>
+	  	<tr>
+	  	  <td>
+			<div class="control-group">
+                <label class="control-label">{{ 'label.adjustmentdate' | translate }}</label>
+                <div class="controls">
+                   <input type="text" datepicker-pop="dd MMMM yyyy" data-ng-model="start.date" is-open="opened2" min="minDate" max="maxDate" 
+                      date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
+                </div>
+          	</div>
+          </td>
+         </tr>
+         <tr>
+           <td>
+			<div class="control-group">
+				<label class="control-label">{{ 'label.adjustmentcode' | translate }}</label>
+				<div class="controls">
+	                <select id="adjustmentCode" data-ng-model="formData.adjustmentCode" data-ng-options="data.id as data.adjustmentCode for data in data">
+	                </select>
+	             </div>
+			</div>
+		   </td>
+		  </tr>
+		  <tr>
+		  	<td>
+			  <div class="control-group">
+                 <label class="control-label">{{ 'label.adjustmentamount' | translate }}</label>
+            	 <div class="controls">
+              		<input id="amountPaid" style="width:112px;" type="text" data-ng-model="formData.amountPaid">
+              		<select class="input-small" data-ng-model="formData.adjustmentType" 
+              			data-ng-options="discountOpt.discountType as discountOpt.discountType for discountOpt in discountOptions">
+	               	 </select>
+            	 </div>
+          	   </div>
+          	  </td>
+          	</tr>
+          	<tr>
+          	  <td>
+			   <div class="control-group">
+	          	 <label class="control-label">{{'label.notes' | translate}}</label>
+		         <div class="controls">
+		           <textarea data-ng-model="formData.remarks"></textarea>
+		         </div>
+	            </div>
+	          </td>
+	         </tr>
+	        <tr align="right"><td>
+				 <button id="cancel" type="reset" class="btn" data-ng-click="goBack()">{{'button.cancel'| translate}}</button>
+                 <button id="submit" type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+			</td>
+			</tr></table>
+		</fieldset>
+	</form>
+</div>

@@ -1,0 +1,97 @@
+	<div ng-controller="AddressManageController" >
+<div>
+	<ul class="breadcrumb">
+		<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+		<li class="active">{{'label.manageaddresses' | translate}}</li>
+	</ul>
+</div>
+
+<div class="row-fluid" >
+	<div class="pull-right">
+		<a ng-show="PermissionService.showMenu('READ_Location')" href="#/addresstreeview" class="btn btn-primary"><i class="icon-sitemap icon-white"></i>Tree View</a>
+		<button ng-show="PermissionService.showMenu('CREATE_LOCATION')" type="button" class="btn btn-primary" ng-click="addCountry()" ><i class="icon-plus icon-white"></i>Add Country</button>
+	</div>
+	
+     <!-- <div ng-hide="isTreeView"> -->
+     <div>
+		<input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by Country/State/City Name " >
+		<table class="table">
+			<thead>
+				<tr class="graybg">
+					<th>{{'table.heading.countryName' | translate}}</th>
+					<th>{{'table.heading.StateName' | translate}}</th>
+					<th>{{'table.heading.cityName' | translate}}</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr  ng-repeat="addressManage in addressManages.currentPageItems| orderBy:'countryName' | orderBy:'stateName' |filter:filterText">
+					<td >{{addressManage.countryName}}</td>
+					<td >{{addressManage.stateName}}</td>  
+					<td >{{addressManage.cityName}}</td>
+					
+				</tr>
+			</tbody>
+		</table>
+		<ul class="pager">
+        			<li class="previous" ><a ng-click="addressManages.previous()" href="" ng-hide="!addressManages.hasPrevious()" >&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="addressManages.next()" href="" ng-hide="!addressManages.hasNext()">Next &rarr;</a></li>
+    			</ul>
+	</div>
+ </div> 
+ 
+ <script type="text/ng-template" id="addCountry.html">
+        <div class="modal-header silver">
+          <h3 class="bolder">Add Country</h3>
+        </div>
+	 <form name="createcountryform" novalidate="" class="form-horizontal well" ng-submit="submit()">
+		<div class="error" ng-show="errorStatus || errorDetails">
+				<label>{{'label.contract.error' | translate}}</label>
+				<label ng-show="errorStatus">{{errorStatus}}</label>
+				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate : error.args}}</label>
+	    </div>
+        <div class="modal-body">
+ 		  <fieldset>
+           	<div class="control-group">
+				<label class="control-label" for="entityCode">Country Code<span class="required">*</span></label>
+			 	<div class="controls">
+              		<input  type="text" name="countryCode" id="countryCode" ng-model="formData.entityCode" placeholder="enter code here" data-ng-maxlength="{{'code' | CodeValidate}}"/><br>
+					<span data-ng-show="createcountryform.countryCode.$dirty && createcountryform.countryCode.$invalid">
+						<small class="error-row">{{'error.code.definition.length.validation'| translate}}</small>
+					</span>
+            	</div>
+           	</div>
+          	<div class="control-group">
+            	 <label class="control-label" for="entityName">Country Name<span class="required">*</span></label>
+			 	 <div class="controls">
+              		<input type="text" name="countryName" id="countryName" ng-model="formData.entityName" placeholder="enter name here" /><br>
+            	 </div>
+	      	</div>
+		  </fieldset>
+        </div>
+        <div class="modal-footer">
+          <button id="cancel" class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+     	  <button id="submit" type="submit" data-ng-disabled="createcountryform.$dirty && createcountryform.$invalid" class="btn btn-primary" >{{'label.confirm' | translate}}</button>
+        </div>
+	</form>
+    </script>
+ </div>
+    
+    <!-- <div >
+      <span context="context2">Item three</span> 
+    </div>  -->   
+   
+    <!--  <ul id="context2" class="dropdown-menu">
+      <li><a >ADD</a></li>
+      <li><a>Edit</a></li>
+      <li><a >Delete</a></li>
+    </ul> -->
+  <!--  <div dropdown classlink="dropdownLink" linktext='treedata' classmenu="dropdownMenu">
+  <a href="http://www.google.com/">Google</a>
+  <a href="http://www.facebook.com/">Facebook</a>
+  <a href="http://www.amazon.com/">Amazon</a>
+  </div>   -->     
+          
+          
+          
+	

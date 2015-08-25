@@ -1,0 +1,117 @@
+ <div data-ng-controller="EditOwnHardwareController" >
+      <div><ul class="breadcrumb">
+      <li><table>
+        <tr>
+        <td>
+         <img data-ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img data-ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+        </td>
+        <td>
+            <small style="color:black;">{{displayName}}</small>
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Uniquely identified&nbsp;<strong>{{accountNo}}</strong></small></td>
+        	</tr>
+        	<tr>
+        	    <td><small>Cell Phone&nbsp;<strong>{{phone}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        	   <td><i class="icon-building"></i><small>Office&nbsp;"<strong>{{officeName}}</strong>"</small></td>
+        	</tr>
+        	<tr>
+        	<td><small>Device # <strong>{{hwSerialNumber}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Client Type&nbsp;"<strong>{{categoryType}}</strong>"</small></td>
+        	</tr>
+        	<tr>
+        		<td><small>Balance&nbsp;<strong>{{balanceAmount}}</strong>&nbsp;{{currency}} </small></td>
+        		<td class="paddedleft0" data-ng-show="walletConfig"><small>[Wallet&nbsp;<strong>{{walletAmount}}</strong>&nbsp;{{currency}}]</small></td>
+        	</tr>
+        </table>
+        </td>
+        </tr>
+        </table></li>
+ </ul>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/viewclient/{{clientId}}">{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'link.edit.ownhardware' | translate}}</li>
+		</ul>
+	</div>
+     
+      <form class="form-horizontal well" data-ng-submit="submit()">
+     
+       <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>{{'link.edit.ownhardware' | translate}}</legend>
+          <table>
+           <tr>
+              <td>
+                  <div class="control-group">
+                      <label class="control-label">{{ 'label.form.allocationdate' | translate }}&nbsp;<span class="required">*</span></label>
+                      <div class="controls">
+                          <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="first.date" is-open="opened" min="minDate" max="'2020-06-22'" 
+                          date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
+                      </div>
+                  </div>
+              </td>
+            </tr>
+           <tr>
+              <td>
+                <div class="control-group">
+                  <label class="control-label">{{ 'label.itemtype' | translate }}&nbsp;<span class="required">*</span></label>
+                  <div class="controls">
+                    <select ng-model="formData.itemType"  ng-options="itemtypes.id as itemtypes.itemDescription for itemtypes in itemtypes" value="{{itemtypes.id}}"></select>
+                  </div>
+                </div>
+              </td>
+            </tr> 
+            <tr>
+              <td>
+                <div class="control-group">
+                  <label class="control-label">{{ 'lable.serialnumber' | translate }}&nbsp;<span class="required">*</span></label>
+                  <div class="controls">
+                    <input type="text" name="serialnumber" ng-model="formData.serialNumber">
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="control-group">
+                  <label class="control-label">{{ 'lable.provisioningserialnumber' | translate }}&nbsp;<span class="required">*</span></label>
+                  <div class="controls">
+                    <input type="text" name="provisioningserialnumber" ng-model="formData.provisioningSerialNumber">
+                  </div>
+                </div>
+              </td>
+            </tr>
+         <tr><td align="right">
+            <a id="cancel" href="#/viewownhardware/{{ownHrdId}}"><button type="reset" class="btn" data-ng-click="reset123()">Cancel</button></a>
+            <button id="submit" type="submit" class="btn btn-primary">Save</button>
+        </td></tr>
+        </table>
+        </fieldset>
+      </form>
+ </div>                      
+                       

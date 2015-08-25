@@ -1,0 +1,37 @@
+<div ng-controller="ViewHardwarePlanMappingController"> 
+
+    <div class="paddedbottom10">
+		<ul class="breadcrumb">
+	        <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+          <li><a href="#/mappingconfig">{{'label.hardwareMapping' | translate}}</a> <span class="divider">/</span></li>
+	        <li class="active">{{hardwareplans.planCode}}</li>
+	    </ul>
+	    <div class="pull-right">
+	      <div class="btn-group">
+	          <a ng-show="PermissionService.showMenu('UPDATE_PLANMAPPING')" href="#/edithardwareplanmapping/{{hardwareplans.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>	
+	      </div>
+	    </div>
+	</div>
+
+	<div class="row paddedleft">
+					<h3>&nbsp;&nbsp;&nbsp;{{hardwareplans.id}}</h3>	
+					
+                        <table  width="100%" >    
+                                         
+                             <tr>
+				<td width="20%">{{ 'label.id' | translate }}</td>
+				<td width="80%">{{hardwareplans.id}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.itemCode' | translate }}</td>
+				<td>{{hardwareplans.itemCode}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.plan.plancode' | translate }}</td>
+				<td>{{hardwareplans.planCode}}</td>
+			</tr>
+			                                                                                                
+             </table>
+                      </div>                    
+                                     
+    </div>

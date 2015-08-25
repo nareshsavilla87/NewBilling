@@ -1,0 +1,64 @@
+
+<form name="ownedhardwareform" novalidate="" class="form-horizontal well" ng-submit="submit5()">
+     
+       <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>{{'label.ownedhardware' | translate}}</legend>
+          <table>
+           <tr>
+              <td>
+                  <div class="control-group">
+                      <label class="control-label">{{ 'label.form.allocationdate' | translate }}&nbsp;<span class="required">*</span></label>
+                      <div class="controls">
+                          <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="allocation.date" is-open="opened" min="minDate" max="maxDate" 
+                          date-disabled="disabled(date, mode)" style="background-color:#FFFFFF;"  readonly/>
+                      </div>
+                  </div>
+              </td>
+            </tr>
+           <tr>
+              <td>
+                <div class="control-group">
+                  <label class="control-label">{{ 'label.itemtype' | translate }}&nbsp;<span class="required">*</span></label>
+                  <div class="controls">
+                    <select ng-model="formData5.itemType"  ng-options="itemtypes.id as itemtypes.itemDescription for itemtypes in itemtypes" value="{{itemtypes.id}}" required late-Validate></select>
+                  </div>
+                </div>
+              </td>
+            </tr> 
+            <tr>
+              <td>
+                <div class="control-group">
+                  <label class="control-label">{{ 'lable.serialnumber' | translate }}&nbsp;<span class="required">*</span></label>
+                  <div class="controls">
+                    <input type="text" name="serialnumber" ng-model="formData5.serialNumber" required late-Validate>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="control-group">
+                  <label class="control-label">{{ 'lable.provisioningserialnumber' | translate }}&nbsp;<span class="required">*</span></label>
+                  <div class="controls">
+                    <input type="text" name="provisioningserialnumber" ng-model="formData5.provisioningSerialNumber" required late-Validate>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </fieldset>
+        <div class="jw-footer ui-widget-header ui-corner-bottom"> 
+              <div class="jw-buttons ui-helper-clearfix">
+                 <a href="#/clients"><button type="reset" class="btn">Cancel</button></a>
+                 <a href=""><button  class="jw-button-prev btn btn-primary" type="button" ng-show="previous" ng-click="previousStepmain()" style="display: inline-block;">Previous</button></a>
+                 <button type="submit" class="jw-button-next btn btn-primary" ng-disabled="!ownedhardwareform.$valid" ng-show="next" ng-click="nextStepmain()">Next</button>
+             </div>
+          </div>
+      </form>
+                    
+                       

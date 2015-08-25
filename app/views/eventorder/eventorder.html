@@ -1,0 +1,126 @@
+<div ng-controller="EventOrderController">
+	<div><ul class="breadcrumb">
+    <li>
+ 	   <table>
+        <tr>
+        <td>
+         <img data-ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img data-ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+        </td>
+        <td>
+            <small style="color:black;">{{displayName}}</small>
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Uniquely identified&nbsp;<strong>{{accountNo}}</strong></small></td>
+        	</tr>
+        	<tr>
+        	    <td><small>Cell Phone&nbsp;<strong>{{phone}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        	   <td><i class="icon-building"></i><small>Office&nbsp;"<strong>{{officeName}}</strong>"</small></td>
+        	</tr>
+        	<tr>
+        	<td><small>Device # <strong>{{hwSerialNumber}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Client Type&nbsp;"<strong>{{categoryType}}</strong>"</small></td>
+        	</tr>
+        	<tr>
+        		<td><small>Balance&nbsp;<strong>{{balanceAmount}}</strong>&nbsp;{{currency}} </small></td>
+        		<td class="paddedleft0" data-ng-show="walletConfig"><small>[Wallet&nbsp;<strong>{{walletAmount}}</strong>&nbsp;{{currency}}]</small></td>
+        	</tr>
+        </table>
+        </td>
+        </tr>
+        </table>
+        </li>
+ </ul>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href='#/viewclient/{{clientId}}'>{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'label.eventorder' | translate}}</li>
+		</ul>
+	</div>
+	<form class="form-horizontal well" ng-submit="submit()">
+		<br>
+		 <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+		<fieldset>
+					
+			<div class="control-group">
+                        	<label class="control-label">{{ 'label.eventdate' | translate }}</label>
+                        	<div class="controls">
+                            <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.date" is-open="opened2" min="minDate" max="'2020-06-22'" 
+                            date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
+                        	</div>
+          	</div>
+			
+			<div class="control-group" ng-show="requireDevice">
+				<label class="control-label">{{ 'label.deviceid' | translate }}</label>
+				<div class="controls">
+	                <select ng-model="formData.deviceId"  ng-options="device.serialNumber as device.serialNumber for device in devices" value="{{device.serialNumber}}"></select>
+	             </div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">{{ 'label.events' | translate }}</label>
+				<div class="controls">
+	                <select ng-model="formData.eventId"  ng-options="event.id as event.eventName for event in events" value="{{event.id}}"></select>
+	             </div>
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label">{{ 'label.formattype' | translate }}</label>
+				<div class="controls">
+	                <select ng-model="formData.formatType" ng-options="code.mCodeValue as code.mCodeValue for code in codes" value="{{code.mCodeValue}}"></select>
+	             </div>
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label">{{ 'label.opttype' | translate }}</label>
+				<div class="controls">
+	                <select ng-model="formData.optType"   ng-options="optType.value as optType.value for optType in optTypes" value="{{optType.value}}"></select>
+	             </div>
+			</div>
+			
+			<!-- <div class="control-group">
+				<label class="control-label">{{ 'label.clienttype' | translate }}</label>
+				<div class="controls">
+	                <select ng-model="formData.clientType"  ng-change="getEventPrice()" ng-options="clientType.id as clientType.type for clientType in clientTypes" value="{{clientType.id}}"></select>
+	            </div>	             
+			</div> -->
+			
+			<!-- <div class="control-group" ng-show="showPrice">
+					<label class="control-label">{{ 'label.eventprice' | translate }}</label>
+				<div class="controls">
+	                <input type="text" ng-model="price" value="price"/> <span class="btn btn-primary" ng-click="updatePrice()">Update Price</span>
+	            </div>            
+			</div> -->
+			
+	
+				         
+			<div class="offset3">
+				<a href='#/viewclient/{{clientId}}' class="btn" ng-click="reset123()">Cancel</a>
+				<button type="submit" class="btn btn-primary">Save</button>
+			</div>
+
+		</fieldset>
+	</form>
+</div>

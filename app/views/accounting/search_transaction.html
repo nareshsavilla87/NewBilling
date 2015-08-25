@@ -1,0 +1,80 @@
+<div ng-controller="SearchTransactionController">
+    <div>
+      <ul class="breadcrumb">
+        <li><a href="#/accounting">{{'link.accounting' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.searchjournalentries' | translate}}</li>
+      </ul>
+    </div><br>
+    <div class="row-fluid" >
+        <span class="input-append grpinputicons" >
+                <input ng-model="formData.transactionId" type="text" placeholder="Search by transaction #" />
+                <span><a ng-click="isCollapsed = !isCollapsed" class="btn  control"><i class="icon-chevron-down"></i></a></span>
+                <span><a ng-click="searchTransaction()" class="btn btn-primary control"><i class="icon-search icon-white"></i></a></span>
+        </span>
+    </div>
+    <div collapse="isCollapsed" class="blockoverlay" width="100%" style="overflow-y: scroll">
+        <br/><!-- The span is displaying the first line of the hiding div, making the first line of div as blank solved my problem -->
+        <div>
+            <label>Account Name</label>
+            <input ng-model="formData.glAccount" type="text" placeholder="Account Name" typeahead="glAccount as glAccount.name for glAccount in glAccounts | filter:$viewValue | limitTo:8" />
+            <div class="control-group">
+                <label class="control-label" for="officeId">{{ 'label.office' | translate }}</label>
+                <div class="controls">
+                  <select ng-model="formData.officeId"  ng-options="office.id as office.name for office in offices" value="{{office.id}}">
+                      <option style="display:none" value="">{{'label.select.office' | translate}}</option>
+                  </select>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="filter">{{ 'label.additional.filter' | translate }}</label>
+                <div class="controls">
+                  <select ng-model="formData.manualEntriesOnly"  ng-options="filter.value as filter.option for filter in filters" value="{{filter.value}}">
+                      <option style="display:none" value="">{{'label.select.filter' | translate}}</option>
+                  </select>
+                </div>
+            </div>
+            <label>{{ 'label.fromdate' | translate }}</label>
+            <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.first" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)" required late-Validate />
+            <label>{{ 'label.todate' | translate }}</label>
+            <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.second" is-open="opened1" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)" required late-Validate /><br>
+            <span><a ng-click="searchTransaction()" class="btn btn-primary control"><i class="icon-search icon-white"></i>Advance Search</a></span>
+        </div>
+    </div>
+
+    <div ng-show="displayResults" class="row-fluid">
+    	<table class="table">
+            <thead>
+                <tr class="graybg">
+                    <th>Office</th>
+                    <th>Transaction Date</th>
+                    <th>Type</th>
+                    <th>Account</th>
+                    <th>Debit</th>
+                    <th>Credit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="transaction in transactions.currentPageItems">
+                    <td>{{transaction.officeName}}</td>
+                    <td>{{transaction.transactionDate | DateFormat}}</td>
+                    <td>{{transaction.glAccountType.value}}</td>
+                    <td>{{transaction.glAccountName}}({{transaction.glAccountCode}})</td>
+                    <td>
+                        <div ng-show="transaction.entryType.value == 'CREDIT'">
+                            {{transaction.amount}}
+                        </div>
+                    </td>
+                    <td>
+                        <div ng-show="transaction.entryType.value == 'DEBIT'">
+                            {{transaction.amount}}
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <ul class="pager">
+            <li class="previous"><a ng-click="transactions.previous()" href="" ng-disabled="!transactions.hasPrevious()">&larr; Prev</a></li>
+            <li class="next" ><a ng-click="transactions.next()" href="" ng-disabled="!transactions.hasNext()">Next &rarr;</a></li>
+        </ul>
+    </div>
+</div>

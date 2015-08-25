@@ -1,0 +1,250 @@
+<div>
+	<ul class="breadcrumb">
+		<li><a href="#/leads">{{'link.prospects' | translate}}</a> <span class="divider">/</span></li>
+		<li class="active">{{'label.createprospect' | translate}}</li>
+	</ul>
+</div>
+<form name="createprospectsform" class="form-horizontal well" data-ng-controller="CreateVendorController" data-ng-submit="submit()">
+	<div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label> 
+		<label data-ng-show="errorStatus">{{errorStatus}}</label> 
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	</div>
+	<strong> {{'label.prospect.personaldetails' | translate}} </strong>
+
+	<table>
+		<tr>
+			<td>
+				<table>
+					<tr>
+						<td>
+							<div class="control-group">
+								<label class="control-label" for="prospectType">Content Type<span class="required">*</span> </label>
+								<div class="controls" style="margin-top: 5px;">
+									<input type="radio" data-ng-model="formData.contentType" value="Service" data-ng-change="resetCredits()">Service &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+									<input type="radio" data-ng-model="formData.contentType" value="Package" data-ng-change="resetCredits()">Package
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="control-group">
+								<label class="control-label" for="firstName">VendorCode<span class="required">*</span></label>
+								<div class="controls">
+									<input type="text" id="vendorCode" data-ng-model="formData.vendorCode" name="vendorCode" data-late-Validate>
+									<!-- <div data-ng-show="createprospectsform.vendorCode.$dirty && createprospectsform.vendorCode.$invalid">
+										<small class="error" data-ng-show="createprospectsform.firstname.$error.pattern"> {{'label.prospect.error.name' | translate}} </small> 
+										<small class="error" data-ng-show="createprospectsform.firstname.$error.req"> {{'label.prospect.error.required' | translate}} </small>
+									</div> -->
+								</div>
+							</div>
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<div class="control-group">
+								<label class="control-label" for="vendorDescription">vendorDescription</label>
+								<div class="controls">
+									<input type="text" id="vendorDescription" name="vendorDescription" ng-model="formData.vendorDescription">
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="control-group">
+								<label class="control-label" for="lastName">vendorEmailId<span class="required">*</span> </label>
+								<div class="controls">
+									<input type="text" id="vendorEmailId" data-ng-model="formData.vendorEmailId" name="vendorEmailId" data-late-Validate>
+									<!-- <div data-ng-show="createprospectsform.lastname.$dirty && createprospectsform.lastname.$invalid">
+										<small class="error" data-ng-show="createprospectsform.lastname.$error.pattern"> {{'label.prospect.error.name' | translate}} </small> 
+										<small class="error" data-ng-show="createprospectsform.lastname.$error.req"> {{'label.prospect.error.required' | translate}} </small>
+									</div> -->
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="control-group">
+								<label class="control-label" for="firstName">contactName<span class="required">*</span></label>
+								<div class="controls">
+									<input type="text" id="contactName" data-ng-model="formData.contactName" name="contactName" data-late-Validate>
+									<!-- <div data-ng-show="createprospectsform.vendorCode.$dirty && createprospectsform.vendorCode.$invalid">
+										<small class="error" data-ng-show="createprospectsform.firstname.$error.pattern"> {{'label.prospect.error.name' | translate}} </small> 
+										<small class="error" data-ng-show="createprospectsform.firstname.$error.req"> {{'label.prospect.error.required' | translate}} </small>
+									</div> -->
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="control-group">
+								<label class="control-label" for="vendormobileNo">vendormobileNo<span class="required">*</span></label>
+								<div class="controls">
+									<input type="text" id="vendormobileNo" data-ng-model="formData.vendormobileNo" name="vendormobileNo" data-late-Validate>
+									
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="control-group">
+								<label class="control-label" for="vendorTelephoneNo">vendorTelephoneNo<span class="required">*</span></label>
+								<div class="controls">
+									<input type="text" id="vendorTelephoneNo" data-ng-model="formData.vendorTelephoneNo" name="vendorTelephoneNo" data-late-Validate>
+									
+								</div>
+							</div>
+						</td>
+					</tr>
+					
+				</table>
+			</td>
+			<td>
+				<table>
+					<tr>
+						<td>
+							<div class="control-group">
+							<div class="controls">&nbsp;</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="control-group">
+								<label class="control-label" for="vendorTelephoneNo">vendorAddress<span class="required">*</span></label>
+								<div class="controls">
+									<input type="text" id="vendorAddress" data-ng-model="formData.vendorAddress" name="vendorAddress" data-late-Validate>
+									
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="control-group">
+								<label class="control-label" for="agreementStatus">agreementStatus</label>
+								<div class="controls">
+									<select data-ng-model="formData.agreementStatus"
+										data-ng-options="statusData.id as statusData.value for statusData in statusDatas"
+										data-value="{{sourceOfPublicityData.mCodeValue}}">
+									</select>
+
+								</div>
+							</div>
+
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="control-group">
+								<label class="control-label" for="vendorCountry">vendorCountry</label>
+								<div class="controls">
+									<select data-ng-model="formData.vendorCountry"
+										data-ng-options="sourceOfPublicityData.code as sourceOfPublicityData.displayLabel for sourceOfPublicityData in sourceOfPublicityDatas"
+										data-value="{{sourceOfPublicityData.mCodeValue}}">
+									</select>
+
+								</div>
+							</div>
+
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="control-group">
+								<label class="control-label" for="vendorCurrency">vendorCurrency</label>
+								<div class="controls">
+									<select data-ng-model="formData.vendorCurrency"
+										data-ng-options="currencyData.code as currencyData.displayLabel for currencyData in currencyDatas"
+										data-value="{{currencyData.code}}">
+									</select>
+
+								</div>
+							</div>
+
+						</td>
+					</tr>
+					<tr>
+						<td>
+            				<div class="control-group">
+            					<label class="control-label" for="agreementStartDate">agreementStartDate<span class="required">*</span></label>
+            					<div class="controls">
+              						<input type="text" datepicker-pop="dd MMMM yyyy" readonly data-ng-model="start.date"  is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" style="background-color:#FFFFFF;" required late-Validate />
+            					</div>
+          					</div>
+          				</td>
+					</tr>
+					
+					<tr>
+						<td>
+            				<div class="control-group">
+            					<label class="control-label" for="agreementEndDate">agreementEndDate<span class="required">*</span></label>
+            					<div class="controls">
+              						<input type="text" datepicker-pop="dd MMMM yyyy" readonly data-ng-model="end.date"  is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" style="background-color:#FFFFFF;" required late-Validate />
+            					</div>
+          					</div>
+          				</td>
+					</tr>
+					
+				</table>
+			</td>
+		</tr>
+	</table>
+	
+	<table>
+          <tr class="control-group">
+                <td>
+                  <h4><label class="control-label">VendorDetails<span class="required">*</span></label></h4>
+                </td>
+                <td class="blockquoteresult">
+                    <form>
+                      <select data-ng-model="attributesFormData.contentCode" data-ng-options="planData.id as planData.planCode for planData in planDatas" 
+                      	class="input-small" placeholder="contentCode">
+                      </select>&nbsp;&nbsp;
+                      <select data-ng-model="attributesFormData.loyaltyType" data-ng-options="mediaAttribute.id as mediaAttribute.mediaName for mediaAttribute in mediaAttributes" class="input-small" >
+                      </select>&nbsp;&nbsp;
+                      <input class="input-small" type="text" data-ng-model="attributesFormData.loyaltyShare"  placeholder="loyaltyShare">&nbsp;&nbsp;
+                      <select data-ng-model="attributesFormData.priceRegion" data-ng-options="priceregionData.id as priceregionData.priceregion for priceregionData in priceregionDatas" class="input-small" >
+                      </select>&nbsp;&nbsp;
+                      <input class="input-small"  type="text" data-ng-model="attributesFormData.contentCost" placeholder="contentCost">
+                      
+                      <a data-ng-click="addMedia()">&nbsp;<i class="icon-plus icon-white" style="color: #007fff;"></i></a>&nbsp;&nbsp;
+                    </form>
+                    <br><br>
+                  <table class="table fullwidth" data-ng-show="mediaassetAttributes.length>0">
+                    <tr></tr>
+                    <tr class="graybg">
+                      <th>contentCode</th>
+                      <th>loyaltyType</th>
+                      <th>loyaltyShare</th>
+                      <th>priceRegion</th>
+                      <th>contentCost</th>
+                       <th>{{'label.media.image' | translate}}</th>
+                    </tr>
+                    <tr data-ng-repeat="mediaassetAttribute in mediaassetAttributes" >
+                      <td><select data-ng-model="mediaassetAttribute.contentCode" data-ng-options="mediaAttribute.id as mediaAttribute.mediaName for mediaAttribute in mediaAttributes" class="input-small" ></select></td>
+                      <td><select data-ng-model="mediaassetAttribute.loyaltyType" data-ng-options="mediaAttribute.id as mediaAttribute.mediaName for mediaAttribute in mediaAttributes" class="input-small" ></select></td>
+                      <td><input type="text" class="input-small" data-ng-model="mediaassetAttribute.loyaltyShare" placeholder="{{'label.media.captionvalue' | translate}}"></td>
+                      <td><select data-ng-model="mediaassetAttribute.priceRegion" data-ng-options="mediaAttribute.id as mediaAttribute.mediaName for mediaAttribute in mediaAttributes" class="input-small" ></select></td>
+                      <td><input type="text" class="input-small" data-ng-model="mediaassetAttribute.contentCost" placeholder="{{'label.media.captionvalue' | translate}}"></td>
+                      <td><input type="text" class="input-small" data-ng-model="mediaassetAttribute.attributeImage" placeholder="{{'label.media.image' | translate}}"></td>
+                      <td><a data-ng-click="deleteMedia($index)"><i class="icon-remove icon-white"></i></a></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+    </table>
+	
+	
+	<div class="offset3">
+		<a href="#/leads"><button type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+		<button type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+	</div>
+
+</form>

@@ -1,0 +1,55 @@
+<div ng-controller="ReportsController">
+<div>
+    <ul class="breadcrumb">
+        <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.managereports' | translate}}</li>
+    </ul>
+    <div class="pull-right">
+        <a ng-show="PermissionService.showMenu('CREATE_REPORT')" href="#/createreport" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'label.createreport' | translate}}</a>
+    </div>
+</div>
+
+<div class="row-fluid">
+	<form ng-submit="search(filterText)">
+    	<input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name"/>
+	</form>
+	<table class="table">
+        <thead>
+            <tr class="graybg">
+                <th>{{'table.heading.reportname' | translate}}</th>
+                <th>{{'table.heading.reporttype' | translate}}</th>
+                <th>{{'table.heading.reportsubtype' | translate}}</th>
+                <th>{{'table.heading.reportcategory' | translate}}</th>
+                <th>{{'table.heading.corereport' | translate}}</th>
+                <th>{{'table.heading.userreport' | translate}}</th>
+                <th>{{'table.actions' | translate}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="pointer-main" ng-repeat="report in reports.currentPageItems | filter:filterText">
+                <td class="pointer" data-ng-click="routeToreport(report.reportId)">{{report.reportName}}</td>
+                <td class="pointer" data-ng-click="routeToreport(report.reportId)">{{report.reportType}}</td>
+                <td class="pointer" data-ng-click="routeToreport(report.reportId)">{{report.reportSubType}}</td>
+                <td class="pointer" data-ng-click="routeToreport(report.reportId)">{{report.reportCategory}}</td>
+                <td class="pointer" data-ng-click="routeToreport(report.reportId)">{{report.coreReport}}</td>
+                <td class="pointer" data-ng-click="routeToreport(report.reportId)">{{report.useReport}}</td>
+                <td><a ng-show="PermissionService.showMenu('UPDATE_REPORT')" href="#/editreport/{{report.reportId}}" popover="Edit" popover-trigger="mouseenter" class="icon-edit"></a>&nbsp;
+                <a ng-show="report.coreReport && PermissionService.showMenu('DELETE_REPORT')" ng-click="deletereport(report.reportId)" popover="Delete" popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+      <script type="text/ng-template" id="deletenoncorereport.html">
+        <div class="modal-header silver">
+            <h3 class="bolder">{{'label.delete' | translate}}</h3>
+        </div>
+        <div class="modal-body modal-middle">
+            <button class="btn btn-warning" ng-click="cancel()">{{'label.cancel' | translate}}</button>
+            <button class="btn btn-primary" ng-click="delete()">{{'label.confirm' | translate}}</button>
+        </div>
+    </script>
+    <ul class="pager">
+        <li class="previous"><a  id="prev" ng-click="reports.previous()" href="" ng-disabled="!reports.hasPrevious()">&larr; Prev</a></li>
+        <li class="next" ><a  id="next"   ng-click="reports.next()" href="" ng-disabled="!reports.hasNext()">Next &rarr;</a></li>
+    </ul>
+</div>
+</div>

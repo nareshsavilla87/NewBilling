@@ -1,0 +1,51 @@
+<div data-ng-controller="ViewProvisioningMappingController"> 
+
+    <div class="paddedbottom10">
+        <ul class="breadcrumb">
+          <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+          <li><a href="#/mappingconfig">{{'label.provisioningMapping' | translate}}</a> <span class="divider">/</span></li>
+          <li class="active">{{'label.viewprovisioningmapping' | translate}}</li>
+        </ul>
+	    <div class="pull-right">
+	      <div class="btn-group">
+	          <a data-ng-show="PermissionService.showMenu('UPDATE_PROVISIONINGSYSTEM')" href="#/editProvisioningMapping/{{provisiongdata.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
+	          <a data-ng-show="PermissionService.showMenu('DELETE_PROVISIONINGSYSTEM')" data-ng-click="deleteProvisioning()" class="btn btn-primary"><i class="icon-trash icon-white"></i> Delete</a>        
+	      </div>
+	    </div>
+	</div>
+
+	<div class="row paddedleft">
+					<h3>&nbsp;&nbsp;&nbsp;{{'label.viewprovisioningmapping' | translate}}</h3>	
+                        <table  style="width:100%;" >                     
+                             <tr>
+                              <td>{{'table.provisioningcommands.id' | translate}}</td>
+                              <td>{{provisiongdata.id}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{ 'table.provisioningcommands.provisioningsystem' | translate }}</td>
+                              <td>{{provisiongdata.provisioningSystem}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{ 'table.provisioningcommands.commandname' | translate }}</td>
+                              <td>{{provisiongdata.commandName}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{ 'table.provisioningcommands.status' | translate }}</td>
+                              <td>{{provisiongdata.status}}</td>
+                            </tr>                                                                                                                  
+                          </table>
+     </div> 
+      <script type="text/ng-template" id="provision.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">Delete Provision Command</h3>
+                    </div>
+                    <div class="modal-body modal-small">
+                       <h4>Are you sure?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+                    </div>
+      </script>                   
+                                     
+    </div>

@@ -1,0 +1,92 @@
+     <div>
+        <ul class="breadcrumb">
+          <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+          <li><a href="#/services">{{'label.services' | translate}}</a> <span class="divider">/</span></li>
+          <li class="active">{{'label.createservice' | translate}}</li>
+         </ul>
+      </div>
+      <form name="createServiceForm" novalidate="" class="form-horizontal well" data-ng-controller="CreateServiceController" data-rc-submit="submit()">
+       <div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>{{'label.createservice' | translate}}</legend>
+          <table>
+            <tr>
+              <td>
+                <div class="control-group">
+                  <label class="control-label" for="serviceCode">{{ 'label.service.servicecode' | translate }}<span class="required" >*</span></label>
+                  <div class="controls">
+                    <input type="text" name="serviceCode" data-ng-model="formData.serviceCode"  data-ng-maxlength="{{'code' | CodeValidate }}" />
+                    <!-- <form-validate formName="createServiceForm"  fieldName="serviceCode" maxLenMsg="10 characters"/>  -->
+                    <span data-ng-show="createServiceForm.serviceCode.$dirty && createServiceForm.serviceCode.$invalid">
+						<small class="error-row" >{{'error.code.definition.length.validation'| translate}}</small>
+					</span>
+                  </div>
+                </div>
+              </td>
+            </tr>
+             <tr>
+              <td>
+                <div class="control-group">
+                  <label class="control-label" for="serviceDescription">{{ 'label.service.servicedescription' | translate }}<span class="required" >*</span></label>
+                  <div class="controls">
+                    <input type="text" data-ng-model="formData.serviceDescription" >
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+            <td>
+             <div class="control-group">
+                  <label class="control-label" for="serviceType">{{ 'label.service.servicetype' | translate }}<span class="required" >*</span></label>
+                  <div class="controls">
+                    <select data-ng-model="formData.serviceType"  data-ng-options="serviceTypes.type as serviceTypes.type for serviceTypes in services" ></select>
+                  </div>
+                </div>
+                </td>
+                </tr>
+            <tr>
+            <td>
+             <div class="control-group">
+                  <label class="control-label" for="status">{{ 'label.service.status' | translate }}<span class="required" >*</span></label>
+                  <div class="controls">
+                    <select data-ng-model="formData.status"  data-ng-options="status.value as status.value for status in statuses" ></select>
+                  </div>
+                </div>
+                </td>
+                </tr>
+            <tr>
+            <td>
+            <div class="control-group">
+            <label class="control-label" for="isOptional">{{ 'label.service.isoptional' | translate }}</label>
+            <div class="controls">
+              <label class="checkbox">
+                <input type="checkbox" id="isOptional" data-ng-model="formData.isOptional">
+              </label>
+            </div>
+          </div>
+          </td>
+            </tr>
+            <tr>
+            <td>
+            <div class="control-group">
+            <label class="control-label" for="isOptional">{{ 'label.service.isautoprovision' | translate }}</label>
+            <div class="controls">
+              <label class="checkbox">
+                <input type="checkbox" id="isOptional" data-ng-model="formData.isAutoProvision">
+              </label>
+            </div>
+          </div>
+          </td>
+            </tr>
+          </table>
+          <div class="offset3" style="margin-left:33%;">
+            <a href="#/services"><button id="cancel" type="reset" class="btn">{{'button.cancel' | translate}}</button></a>
+            <button id="submit" type="submit" data-ng-disabled="createServiceForm.$dirty && createServiceForm.$invalid" class="btn btn-primary">{{'button.save' | translate}}</button>
+          </div>
+        </fieldset>
+      </form>
+ 

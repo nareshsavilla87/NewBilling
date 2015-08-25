@@ -1,0 +1,112 @@
+  <div data-ng-controller="EditDataTableController">
+        <div>
+          <ul class="breadcrumb">
+            <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+            <li><a href="#/datatables">{{'label.managedatatables' | translate}}</a> <span class="divider">/</span></li>
+            <li><a href="#/viewdatatable/{{datatable.registeredTableName}}">{{datatable.registeredTableName}}</a> <span class="divider">/</span></li>
+            <li class="active">{{'label.edit.datatable' | translate}}</li>
+          </ul>
+        </div>
+         <form name="editdatatableform" novalidate="" class="form-horizontal well" data-ng-submit="submit()">
+        <div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>{{ 'label.edit.datatable' | translate }}</legend>
+          <div class="control-group">
+            <label class="control-label">{{ 'label.datatable.name' | translate }}</label>
+            <div class="controls">
+              <input type="text" value="{{datatable.registeredTableName}}" readonly>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">{{ 'label.datatable.apptableName' | translate }}</label>
+            <div class="controls">
+               <select data-ng-model="formData.apptableName"  name="apptableName" data-required="required">
+                  <option style="display:none" value="">{{'label.select.apptableName' | translate}}</option>
+                  <option value="m_client">{{'apptable.m.client' | translate}}</option>
+                  <option value="m_office">{{'apptable.m.office' | translate}}</option>
+                  <option value="m_group">{{'apptable.m.group' | translate}}</option>
+                </select>
+                 <span data-ng-show="editdatatableform.apptableName.$invalid">
+                <small class="error" data-ng-show="editdatatableform.apptableName.$error.req">Required Field</small>
+               </span>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">{{ 'label.add.columns' | translate }}</label>
+            <div class="controls">
+                <input type="text" data-ng-model="datatableTemplate.columnName" placeholder="{{'label.column.name' | translate}}"/>&nbsp;&nbsp;
+                <select data-ng-model="datatableTemplate.columnType">
+                  <option style="display:none" value="">{{'label.select.columnType' | translate}}</option>
+                  <option value="string">{{'datatable.column.type.string' | translate}}</option>
+                  <option value="number">{{'datatable.column.type.number' | translate}}</option>
+                  <option value="decimal">{{'datatable.column.type.decimal' | translate}}</option>
+                  <option value="date">{{'datatable.column.type.date' | translate}}</option>
+                  <option value="text">{{'datatable.column.type.text' | translate}}</option>
+                  <option value="dropdown">{{'datatable.column.type.dropdown' | translate}}</option>
+              </select>&nbsp;&nbsp;
+              <a data-ng-click="addColumn()"><i class="icon-plus icon-white"></i></a>
+              <span data-ng-show="editdatatableform.columnname.$invalid || columnnameerror || columntypeerror">
+				  <small class="error" data-ng-show="editdatatableform.columnname.$error.req || columnnameerror || columntypeerror">
+							                                   {{ 'label.'+labelerror | translate }}</small>
+			 </span>
+            </div>
+          </div>
+          
+          <table style="width:100%;" data-ng-show="columns.length > 0" >
+            <tr class="control-group">
+             <td class="width11"><label>{{ 'label.heading.columns' | translate }}</label></td>
+              <td class="blockquoteresult width86">
+                <table data-ng-show="columns.length > 0" class="table">
+                  <thead>
+                    <tr class="graybg">
+                      <th>{{'table.heading.name' | translate}}</th>
+                      <th>{{'table.heading.new.name' | translate}}</th>
+                      <th>{{'table.heading.type' | translate}}</th>
+                      <th>{{'table.heading.mandatory' | translate}}</th>
+                      <th>{{'table.heading.length' | translate}}</th>
+                      <th>{{'table.heading.code' | translate}}</th>
+                      <th>{{'table.heading.new.code' | translate}}</th>
+                      <th>{{'table.heading.actions' | translate}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-ng-repeat="column in columns">
+                      <td class="paddedleftNone"><input class="input-small" type="text" data-ng-model="column.name" data-ng-readonly="column.originalName"  placeholder="{{'label.column.name' | translate}}"/></td>
+                      <td class="paddedleftNone"><input class="input-small" type="text" data-ng-model="column.newName"  data-ng-show="column.originalName"  placeholder="{{'label.column.name' | translate}}" /></td>
+                      <td>
+                        <select data-ng-model="column.type" class="input-small" data-ng-disabled="column.originalName" data-ng-change="updateDepenedencies($index)" data-required>
+                          <option style="display:none" value="">{{'label.select.columnType' | translate}}</option>
+                          <option value="string">{{'datatable.column.type.string' | translate}}</option>
+                          <option value="number">{{'datatable.column.type.number' | translate}}</option>
+                          <option value="decimal">{{'datatable.column.type.decimal' | translate}}</option>
+                          <option value="date">{{'datatable.column.type.date' | translate}}</option>
+                          <option value="text">{{'datatable.column.type.text' | translate}}</option>
+                          <option value="dropdown">{{'datatable.column.type.dropdown' | translate}}</option>
+                        </select>
+                      </td>
+                      <td class="center"><input data-ng-model="column.mandatory" type="checkbox"/></td>
+                      <td><input data-ng-show="column.type == 'string'" data-ng-model="column.length" type="text" class="input-small"/></td>
+                      <td class="paddedleft0"><select class="input-small" data-ng-show="column.type == 'dropdown'" data-ng-model="column.code" 
+                                                    data-ng-options="code.name as code.name for code in codes" data-ng-disabled="column.originalName"></select></td>
+                      <td class="paddedleft0"><select class="input-small" data-ng-show="column.type == 'dropdown'" data-ng-model="column.newCode" 
+                                                    data-ng-options="code.name as code.name for code in codes" data-ng-disabled="!column.originalName"></select></td>
+                      <td class="center"><a data-ng-click="removeColumn($index)"><i class="icon-remove icon-white"></i></a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+             <tr>
+               <td colspan="7" align="right">
+                <div class="offset3">
+                    <a href="#/datatables"><button id="cancel" type="reset" class="btn">{{ 'label.cancel' | translate }}</button></a>
+                    <button id="submit" type="submit" class="btn btn-primary" >{{ 'label.save' | translate }}</button>
+                    </div>
+          </table>
+        </fieldset>
+      </form>
+      </div>

@@ -1,0 +1,114 @@
+<div data-ng-controller="EditIpPoolingController">
+	<div>
+		<ul class="breadcrumb">
+			<li><a href="#/ipPooling">{{'label.manageippooling' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'label.ippooling.editippool' | translate}}</li>
+		</ul>
+	</div>
+
+	<form name="editippoolform" data-novalidate="" class="form-horizontal" data-ng-submit="submit()">
+		<div class="error" data-ng-show="errorStatus || errorDetails">
+			<label>{{'label.contract.error' | translate}}</label> <label
+				data-ng-show="errorStatus">{{errorStatus}}</label> <label
+				data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		</div>
+		
+		<fieldset>
+            <legend>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{'label.ippooling.editippool' | translate}}</legend>
+			<table style="width:100%;">
+				<tr>
+				
+					<td>
+						<table>
+							<tr>
+								<td>
+									<div class="control-group">
+									<label class="control-label" for="ipaddress">{{'label.ippooling.ipaddress' | translate }}</label>
+									<div class="controls">
+									<input type="text" id="ipaddress" data-ng-model="formData.ipAddress" readonly> 
+									<input data-ng-show="typeCodeValue.status=='Intermediate'" type="text" style="width:30px;" id="ipRange" 
+									  name="ipRange" data-ng-model="formData.ipRange"   maxlength="3" data-ng-pattern=/^([01]?\d\d?|2[0-4]\d|25[0-5])$/>
+									<span data-ng-show="editippoolform.ipRange.$invalid && editippoolform.ipRange.$dirty">
+        					        <small class="error" data-ng-show="editippoolform.ipRange.$error.pattern">accept digits between 0-255 only!</small>
+    					            </span>
+									 </div>
+									</div>
+								</td>
+							</tr>	
+
+							<tr data-ng-hide="typeCodeValue.status=='Assigned'">
+
+								<td>
+									<div class="control-group">
+									<label class="control-label">{{ 'table.ippooling.status' | translate }}</label>
+									<div class="controls">
+										<select data-ng-model="formData.statusType"
+										data-ng-options="status.statusType as status.status for status in ippoolstatusType">
+										</select>
+									</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="control-group">
+									<label class="control-label">{{ 'table.ippooling.notes' | translate }}</label>
+										<div class="controls">
+											<input type="text" data-ng-model="formData.notes">
+										</div>
+									</div>
+								</td>
+							</tr>
+										
+						</table>
+					</td>
+					
+					<td data-ng-show="typeCodeValue.codeValue=='Private'">
+						<table>
+								<tr>
+					 				<td>
+               							<div class="control-group">
+                  						<label class="control-label" for="serviceCode">{{'label.iptype' | translate }}</label>
+                    					<div class="controls">
+                        					<select data-ng-model="formData.type"  data-ng-options="ipType.id as ipType.mCodeValue for ipType in codeValueDatas">
+                           					<option value="">{{'label.select.one' | translate}}</option>
+                        					</select>
+                   						</div>
+             							</div>
+             						</td>
+								</tr>
+								<tr>
+									<td>
+										<div class="control-group">
+										<label class="control-label" for="subnet">{{'label.ippooling.subnet' | translate }}</label>
+										<div class="controls">
+										<input type="text" id="subnet" data-ng-model="formData.subnet">
+										</div>
+										</div>
+									</td>
+								</tr>	
+								<tr>
+									<td>
+										<div class="control-group">
+										<label class="control-label" for="description">{{'label.ippooling.description' | translate }}</label>
+										<div class="controls">
+										<input type="text" id="description" data-ng-model="formData.ipPoolDescription">
+										</div>
+										</div>
+									</td>
+								</tr>
+												
+						</table>
+					</td>
+				</tr>
+		
+			</table>
+
+			<div class="offset3">
+				<a href="#/ipPooling"><button id="cancel" type="reset" class="btn">Cancel</button></a>
+				<button id="submit" type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
+			</div>
+
+		</fieldset>
+	</form>
+</div>

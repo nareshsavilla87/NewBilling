@@ -1,0 +1,473 @@
+<div ng-controller="InventoryController">
+ 
+    <div>
+      <tabset  style="margin-bottom: 0px;">
+      
+      	 <tab heading="Item Details" select="getItemdetails()" ng-show="$parent.PermissionService.showMenu('READ_INVENTORY')">
+        <div class="pull-right btn-group">
+          <a ng-show="PermissionService.showMenu('CREATE_INVENTORY')" href="#/createitemdetails" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.additemdetails' | translate }}</a>
+        </div>
+       
+        <div class="row-fluid pull-right">
+        <form ng-submit="searchItemDetails(filterText)" style="margin: 0 0 1%;">
+        	<input ng-model="filterText" type="text" style="width:46.99%;" placeholder="Enter text to Search#">
+          	<select ng-model="source" style="width:16.75%;" ng-change="searchSource(source)">
+              <option value="ALL">ALL</option>
+              <option value="Available">Available</option>
+              <option value="UnAvailable">UnAvailable</option>
+              <option value="In use">In Use</option>
+    	  	</select>
+    	  	<select ng-model="officeName" style="width:16.75%;" ng-options="officeData.name as officeData.name for officeData in officeDatas"  ng-change="searchSource(officeName)">
+    	  		<option value="">--select office--</option>
+    	  	</select>
+    	  	<select ng-model="itemCode" style="width:16.75%;" ng-options="itemMasterData.itemCode as itemMasterData.itemCode for itemMasterData in itemMasterDatas"  ng-change="searchSource(itemCode)">
+    	  		<option value="">--select item--</option>
+    	  	</select>
+        </form>
+        <table class="table">
+            <thead>
+              <tr class="graybg">
+                <th>Id</th>
+                <th>{{'table.itemdetails.officeName' | translate}}</th>
+              	<th>{{'table.itemdetails.supplier' | translate}}</th>
+                <th>{{'table.itemdetails.itemDescription' | translate}}</th>
+                <th>{{'table.itemdetails.serialNumber' | translate}}</th>
+                <th>{{'table.itemdetails.provserialNumber' | translate}}</th>
+                <th>{{'table.itemdetails.quality' | translate}}</th>
+                <th>{{'table.itemdetails.status' | translate}}</th>
+                 <th>{{'table.itemdetails.allocated' | translate}}</th>
+		         <th colspan="3">{{'table.actions' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="pointer-main" ng-repeat="itemdetail in itemdetails.currentPageItems  | filter:filterText">
+                <td class="pointer" data-ng-click="routeTo(itemdetail.accountNumber)" style="text-align:left">{{itemdetail.id}}</td>
+              	<td class="pointer" data-ng-click="routeTo(itemdetail.accountNumber)" style="text-align:left">{{itemdetail.officeName}}</td>
+              	<td class="pointer" data-ng-click="routeTo(itemdetail.accountNumber)" style="text-align:left">{{itemdetail.supplier}}</td>
+                <td class="pointer" data-ng-click="routeTo(itemdetail.accountNumber)" style="text-align:left">{{itemdetail.itemDescription}}</td>
+                <td class="pointer" data-ng-click="routeTo(itemdetail.accountNumber)" style="text-align:left">{{itemdetail.serialNumber}}</td>
+                <td class="pointer" data-ng-click="routeTo(itemdetail.accountNumber)" style="text-align:left">{{itemdetail.provisioningSerialNumber}}</td>
+                <td class="pointer" data-ng-click="routeTo(itemdetail.accountNumber)" style="text-align:left">{{itemdetail.quality}}</td>
+                <td class="pointer" data-ng-click="routeTo(itemdetail.accountNumber)" style="text-align:left">{{itemdetail.status}}</td>
+                <td ng-show="itemdetail.accountNumber" class="pointer" data-ng-click="routeTo(itemdetail.accountNumber)" style="text-align:left">{{itemdetail.accountNumber}}</td>
+                <td ng-hide="itemdetail.accountNumber" class="pointer" data-ng-click="routeTo(itemdetail.accountNumber)" style="text-align:left">In Stock</td>
+                <td>
+                	<a ng-show="(itemdetail.clientId)&&PermissionService.showMenu('UPDATE_INVENTORY')" ng-click="editProvSerial(itemdetail.id,itemdetail.quality,itemdetail.provisioningSerialNumber)"
+                                 popover="Edit Provisioning" popover-trigger="mouseenter" class="icon-edit"></a>
+                	<a ng-show="(!itemdetail.clientId)&&PermissionService.showMenu('UPDATE_INVENTORY')" ng-click="editQuality(itemdetail.id,itemdetail.quality,itemdetail.provisioningSerialNumber,itemdetail.serialNumber)"
+                                 popover="Edit Item Details" popover-trigger="mouseenter" class="icon-edit"></a></td>
+                <td><a data-ng-show="PermissionService.showMenu('READ_MRNDETAILS')" ng-click="itemHistoryPopup(itemdetail.serialNumber)" popover="View Track" popover-trigger="mouseenter" class="icon-search"></a></td>
+                <td>  
+              		  <a ng-show="(!itemdetail.clientId)&&PermissionService.showMenu('UPDATE_INVENTORY')" ng-click="deleteItemDetail(itemdetail.id)" 
+                                popover="Delete Item Details" popover-trigger="mouseenter" class="icon-remove icon-white"></a>&nbsp;
+                </td>
+     		 </tbody>
+          </table>
+       			<ul class="pager">
+        			<li class="previous"><a ng-click="itemdetails.previous()" href="" ng-disabled="!itemdetails.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="itemdetails.next()" href="" ng-disabled="!itemdetails.hasNext()">Next &rarr;</a></li>
+    			</ul>
+         </div>
+      </tab>
+      
+      <tab heading="Goods Receipt" select="getGRNdetails()" active="grnTab" ng-show="$parent.PermissionService.showMenu('READ_GRN')">
+      
+        <div class="pull-right btn-group">
+          <a ng-show="PermissionService.showMenu('CREATE_GRN')" href="#/addgrndetails" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.addgoodreceipt' | translate }}</a>
+        </div>
+       
+        <div class="row-fluid">
+        <form ng-submit="searchGRN(filterText)">
+                   <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Enter text to search#">
+       </form>
+        <table class="table">
+            <thead>
+              <tr class="graybg">
+                <th>Id</th>
+                <th>{{'table.grn.purchaseDate' | translate}}</th>
+                <th style="text-align:left">{{'table.grn.supplierName' | translate}}</th>
+                <th style="text-align:center">{{'table.grn.officeName' | translate}}</th>
+                <th>{{'table.grn.itemDescription' | translate}}</th>
+                <th style="text-align:center">{{'table.grn.orderedQuantity' | translate}}</th>
+                <th style="text-align:center">{{'table.grn.receivedQuantity' | translate}}</th>
+                <th style="text-align:center">{{'table.grn.balanceQuantity' | translate}}</th>
+                <th style="text-align:center">{{'table.grn.status' | translate}}</th>
+                  <th>{{'table.actions' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="pointer-main" ng-repeat="g in grn.currentPageItems | filter:filterText">
+               <td class="pointer" data-ng-click="routeTogrn(g.id)">{{g.id}}</td>
+               <td class="pointer" data-ng-click="routeTogrn(g.id)">{{g.purchaseDate | DateFormat}}</td>
+               <td class="pointer" data-ng-click="routeTogrn(g.id)" style="text-align:left">{{g.supplierName}}</td>
+                <td class="pointer" data-ng-click="routeTogrn(g.id)" style="text-align:left">{{g.officeName}}</td>
+                <td class="pointer" data-ng-click="routeTogrn(g.id)">{{g.itemDescription}}</td>
+                <td class="pointer" data-ng-click="routeTogrn(g.id)" style="text-align: center">{{g.orderdQuantity}}</td>
+                <td class="pointer" data-ng-click="routeTogrn(g.id)" style="text-align: center">{{g.receivedQuantity}}</td>
+                <td class="pointer" data-ng-click="routeTogrn(g.id)" style="text-align: center">{{g.balanceQuantity}}</td>
+                <td class="pointer" data-ng-click="routeTogrn(g.id)" style="text-align: left" ng-show="g.orderdQuantity != g.receivedQuantity">Pending</td>
+                <td class="pointer" data-ng-click="routeTogrn(g.id)" style="text-align: left" ng-show="g.orderdQuantity == g.receivedQuantity">Completed</td>
+                <td><a ng-show="g.orderdQuantity != g.receivedQuantity" href="#/editgrn/{{g.id}}" popover="Edit Goods Reciept" popover-trigger="mouseenter" class="icon-edit"></a></td>
+     		 </tbody>
+          </table>
+       			<ul class="pager">
+        			<li class="previous"><a ng-click="grn.previous()" href="" ng-disabled="!grn.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="grn.next()" href="" ng-disabled="!grn.hasNext()">Next &rarr;</a></li>
+    			</ul>
+         </div>
+      </tab>
+      <tab heading="Items Transfer" select="getMRNdetails()" active="mrnTab"
+      ng-show="$parent.PermissionService.showMenu('READ_MRN','MOVE_MRN')">
+        <div class="pull-right btn-group">
+          <a ng-show="PermissionService.showMenu('CREATE_ITEMSALE')"  href="#/itemsale/0" class="btn btn-primary"><i class="icon-plus icon-white"></i>Add Item Sale</a>
+          <a ng-show="PermissionService.showMenu('CREATE_MRN')" href="#/createmrn" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'button.addmrn' | translate}}</a>
+          <a ng-show="PermissionService.showMenu('MOVE_MRN')" href="#/movemrn" class="btn btn-primary"><i class="icon-move icon-white"></i>{{'button.mrn.move' | translate}}</a>
+
+        </div>
+       
+        <div class="row-fluid" ng-show="PermissionService.showMenu('READ_MRN')">
+        <form ng-submit="searchMRN(filterText)">
+                   <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Enter text to search#">
+        </form>
+        <table class="table">
+            <thead>
+              <tr class="graybg">
+                <th>{{'table.mrn.id' | translate}}</th>
+                <th>{{'table.mrn.requestedDate' | translate}}</th>
+                <th>{{'table.mrn.fromOffice' | translate}}</th>
+                <th>{{'table.mrn.toOffice' | translate}}</th>
+                <th>{{'table.mrn.itemDescription' | translate}}</th>
+                <th>{{'label.mrn.orderedquantity' | translate}}</th>
+                <th>{{'table.mrn.receivedQuantity' | translate}}</th>
+                <th>{{'table.mrn.status' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="pointer-main" ng-repeat="m in mrn.currentPageItems  | filter:filterText">
+                <td class="pointer" data-ng-click="routeTomrn(m.id)" style="text-align:left">{{m.id}}</td>
+                <td class="pointer" data-ng-click="routeTomrn(m.id)" style="text-align:left" >{{m.requestedDate | DateFormat}}</td>
+                <td class="pointer" data-ng-click="routeTomrn(m.id)" style="text-align:left">{{m.fromOffice}}</td>
+                <td class="pointer" data-ng-click="routeTomrn(m.id)" style="text-align:left">{{m.toOffice}}</td>
+                <td class="pointer" data-ng-click="routeTomrn(m.id)" style="text-align:left">{{m.itemDescription}}</td>
+                <td class="pointer" data-ng-click="routeTomrn(m.id)" style="text-align:left">{{m.orderdQuantity}}</td>
+                <td class="pointer" data-ng-click="routeTomrn(m.id)" style="text-align:left">{{m.receivedQuantity}}</td>
+                <td class="pointer" data-ng-click="routeTomrn(m.id)" style="text-align:left">{{m.status}}</td>
+                
+            
+     		 </tbody>
+          </table>
+       			<ul class="pager">
+        			<li class="previous"><a ng-click="mrn.previous()" href="" ng-disabled="!mrn.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="mrn.next()" href="" ng-disabled="!mrn.hasNext()">Next &rarr;</a></li>
+    			</ul>
+         </div>
+      </tab>
+      
+      
+       <tab heading="{{'tab.item' | translate}}" select="getItems()" active="itemsTab" ng-show="$parent.PermissionService.showMenu('READ_ITEM')">
+ 
+              <div class="row-fluid">
+                      <div class="btn-group pull-right"> 
+                      <div class="pull-right">
+        				<a ng-show="PermissionService.showMenu('CREATE_ITEM')" href="#/createitem" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'label.create.new.item' | translate}}</a>
+                      </div>
+                  </div>
+                  <br/>
+                  <div class="row-fluid">
+                 <form ng-submit="searchItems(filterText)">
+                   <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Enter text to search#">
+                   </form>
+	               <table class="table">
+					<thead>	
+						<tr class="graybg">
+						  <th>Id</th>
+                          <th>{{ 'label.item.itemcode' | translate }}</th>
+                          <th>{{ 'label.item.itemdescription' | translate }}</th>
+                          <th>{{ 'label.item.units' | translate }}</th>
+                          <!-- <th>{{ 'label.item.unitprice' | translate }}</th> -->
+                          <th style="text-align:center">{{ 'label.item.warranty' | translate }}</th>
+                          <th>Used Items</th>
+                          <th>Available Items</th>
+                          <th>Total Items</th>
+                          <th>{{'table.actions' | translate}}</th>
+						</tr>
+					</thead>
+             	 <tbody>
+             		 <tr class="pointer-main" ng-repeat="item in items.currentPageItems | filter:filterText"> 
+             		    <td class="pointer" data-ng-click="routeToitem(item.id,item.totalItems)">{{item.id}}</td>       
+               			<td class="pointer" data-ng-click="routeToitem(item.id,item.totalItems)">{{item.itemCode}}</td>        
+                		<td class="pointer" data-ng-click="routeToitem(item.id,item.totalItems)">{{item.itemDescription}}</td> 
+                		<td class="pointer" data-ng-click="routeToitem(item.id,item.totalItems)">{{item.units}}</td>
+                		<!-- <td class="pointer" data-ng-click="routeToitem(item.id)">{{item.unitPrice || ISK}}</td>  -->
+                		<td class="pointer" data-ng-click="routeToitem(item.id,item.totalItems)" style="text-align:center">{{item.warranty}}</td> 
+                		<td class="pointer" data-ng-click="routeToitem(item.id,item.totalItems)">{{item.usedItems}}</td>
+                		<td class="pointer" data-ng-click="routeToitem(item.id,item.totalItems)">{{item.availableItems}}</td>
+                		<td class="pointer" data-ng-click="routeToitem(item.id,item.totalItems)">{{item.totalItems}}</td>
+
+                		<td><a  data-ng-click="showAudit(item.id,item.totalItems)" popover="Show Audit" popover-trigger="mouseenter" class="icon-list icon-white"></a> &nbsp; 
+                		<a ng-show="PermissionService.showMenu('UPDATE_ITEM')" href="#/edititem/{{item.id}}/{{item.totalItems}}" 
+                		                 popover="Edit Item" popover-trigger="mouseenter" class="icon-edit"></a>&nbsp;
+                		<a ng-show="PermissionService.showMenu('DELETE_ITEM') && item.totalItems == 0 "  data-ng-click="deleteItem(item.id)" 
+                		popover="Delete Item" popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a>
+                		</td>
+             		</tr>
+            	</tbody>
+       			</table>
+       			<ul class="pager">
+        			<li class="previous"><a ng-click="items.previous()" href="" ng-disabled="!items.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="items.next()" href="" ng-disabled="!items.hasNext()">Next &rarr;</a></li>
+    			</ul>
+    		</div>
+          </div>
+    </tab>
+      
+      
+      <tab heading="Supplier" select="getsupplierdetails()" active="supplierTab"
+      ng-show="$parent.PermissionService.showMenu('CREATE_SUPPLIER','READ_SUPPLIER')">
+        <div class="pull-right btn-group">
+          <a ng-show="PermissionService.showMenu('CREATE_SUPPLIER')" href="#/createsupplier" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.addsupplier' | translate }}</a>
+        </div>
+       
+        <div class="row-fluid" ng-show="PermissionService.showMenu('READ_SUPPLIER')">
+        <form ng-submit="searchSupplier(filterText)">
+                   <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Enter text to search#">
+       </form>
+        <table class="table">
+            <thead>
+              <tr class="graybg">
+                <th>{{'table.supplier.id' | translate}}</th>
+                <th>{{'table.supplier.supplierCode' | translate}}</th>
+                <th>{{'table.supplier.supplierDescription' | translate}}</th>
+                <th>{{'table.supplier.supplierAddress' | translate}}</th>
+                 <th>{{'table.actions' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+             <tr ng-repeat="su in supplier.currentPageItems  | filter:filterText">
+                <td >{{su.id}}</td>
+                <td>{{su.supplierCode}}</td>
+                <td>{{su.supplierDescription}}</td>
+                <td>{{su.supplierAddress}}</td>
+                <td><a ng-click="editSupplier(su.id)" popover="Edit Supplier" popover-trigger="mouseenter" class="icon-edit"></a></td>
+   			</tr>
+     		 </tbody>
+          </table>
+          <ul class="pager">
+        			<li class="previous"><a ng-click="supplier.previous()" href="" ng-disabled="!supplier.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="supplier.next()" href="" ng-disabled="!supplier.hasNext()">Next &rarr;</a></li>
+    			</ul>
+         </div>
+      </tab>
+    </tabset>
+    </div>
+    <script type="text/ng-template" id="itemhistory.html">
+      <div class="modal-header silver">
+           <h3 class="bolder">Track History</h3>
+       </div>
+       <div class="modal-body" style="height:auto;width:600px;">
+          <table class="table">
+	            <thead>
+	              <tr class="graybg">
+	                <th>{{'table.itemhistory.refType' | translate}}</th>
+	                <th>{{'table.itemhistory.transactionDate' | translate}}</th>
+	                <th>{{'table.itemhistory.movement' | translate}}</th>
+	                <th>{{'table.itemhistory.fromOffice' | translate}}</th>
+	                <th>{{'table.itemhistory.toOffice' | translate}}</th>
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <tr ng-repeat="ih in itemhistory.currentPageItems  | filter:filterText">
+	                <td>{{ih.refType}}</td>
+	                <td>{{ih.transactionDate | DateFormat}}</td>
+	                <td>{{ih.movement}}</td>
+	                <td>{{ih.fromOffice}}</td>
+	                <td>{{ih.toOffice}}</td>
+					<tr/>
+				  <tr><td colspan="5"><div data-ng-show="blockUI" class="offset3"><i class="icon-refresh icon-spin icon-large"></i>
+					</div></td></tr>
+	     		 </tbody>
+          	   </table>
+       </div>
+       <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="accept()">Done</button>
+        </div>
+	</script> 
+<script type="text/ng-template" id="EditQuality.html">
+		
+	<div class="modal-header silver">
+        <h3 class="bolder">Edit Quality</h3>
+    </div>
+    <div class="modal-body" style="height:200px;">
+ <div class="error" ng-show="errorStatus || errorDetails">
+		                 <label>{{'label.contract.error' | translate}}</label>
+		                 <label ng-show="errorStatus">{{errorStatus}}</label>
+		                 <label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	                     </div>
+       <fieldset>
+       <div class="control-group">
+			<label class="control-label" for="quality">{{'label.itemdetail.quality' | translate }}<span class="required">*</span></label>
+			<div class="controls">
+              <select ng-model="quality"  ng-options="q.mCodeValue as q.mCodeValue for q in qualityDatas" value="{{q.mCodeValue}}" required>
+              </select>
+            </div>
+	   </div>
+ <div class="control-group">
+			<label class="control-label" for="provisioningSerialNumber">{{'label.itemdetail.provisionserialnum' | translate }}&nbsp;<span class="required">*</span></label>
+			<div class="controls">
+             <input type="text" id="provisioningSerialNumber" ng-model="provserialnum">
+            </div>
+ <div class="control-group">
+			<label class="control-label" for="quality">{{'label.itemdetail.serialnumber' | translate }}&nbsp;<span class="required">*</span></label>
+			<div class="controls">
+             <input type="text" id="serialNumber" ng-model="serialNumber">
+            </div>
+	   </div>
+    </fieldset>
+    </div>
+     <div class="modal-footer">
+        <button id="cancel" class="btn btn-warning" ng-click="cancelQuality()">{{'button.cancel' | translate}}</button>
+     	<button id="submit" class="btn btn-primary" ng-click="approveQuality(quality,provserialnum,serialNumber)" ng-disabled="flagEditQuality">{{'button.save' | translate}}</button>
+     </div>
+
+</script>
+
+	<script type="text/ng-template" id="approve.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">{{'dialog.item.title.message' | translate}}</h3>
+                    </div>
+                    <div class="modal-body">
+                       <h4>Are you sure?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approve(date.actDate)">{{'button.save' | translate}}</button>
+                    </div>
+      </script>
+<script type="text/ng-template" id="EditProvSerial.html">
+		
+	<div class="modal-header silver">
+        <h3 class="bolder">Edit Provisioning SerialNumber</h3>
+    </div>
+    <div class="modal-body" style="height:160px;">
+ <div class="error" ng-show="errorStatus || errorDetails">
+		                 <label>{{'label.contract.error' | translate}}</label>
+		                 <label ng-show="errorStatus">{{errorStatus}}</label>
+		                 <label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	                     </div>
+       <fieldset>
+ <div class="control-group">
+			<label class="control-label" for="quality">{{'label.itemdetail.provisionserialnum' | translate }}</label>
+			<div class="controls">
+             <input type="text" id="serialnum" ng-model="provserialnum">
+            </div>
+	   </div>
+ 
+    </fieldset>
+    </div>
+     <div class="modal-footer">
+        <button id="cancel" class="btn btn-warning" ng-click="cancelQuality()">{{'button.cancel' | translate}}</button>
+     	<button id="submit" class="btn btn-primary" ng-click="approveQuality(quality,provserialnum)" ng-disabled="flagEditQuality">{{'button.save' | translate}}</button>
+     </div>
+
+</script>
+
+	<!--
+ 		This is for Edit Supplier
+ 	-->
+ 	 
+<script type="text/ng-template" id="editsuppliers.html">
+
+	<form name="editsupplierform" class="form-horizontal well" ng-submit="submit()">
+	 <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	<fieldset>
+		<legend>{{'label.editsupplier' | translate}}</legend>
+		  <div class="control-group">
+            <label class="control-label" for="supplierCode">{{ 'label.supplier.code' | translate }}&nbsp;<span class="required">*</span></label>
+            <div class="controls">
+              <input type="text" id="supplierCode" name="supplierCode" ng-model="formData.supplierCode" data-ng-maxlength="{{'code' | CodeValidate}}"></br>
+				<span data-ng-show = "editsupplierform.supplierCode.$dirty && editsupplierform.supplierCode.$invalid">
+					<small class ="error-row">{{'error.code.definition.length.validation'| translate}}</small>
+				</span>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="supplierDescription">{{ 'label.supplier.description' | translate }}&nbsp;<span class="required">*</span></label>
+            <div class="controls">
+              <input type="text" id="supplierDescription" ng-model="formData.supplierDescription">
+            </div>
+          </div>
+          <div class="control-group">
+			<label class="control-label" for="supplierAddress">{{'label.supplier.address' | translate}}&nbsp;<span class="required">*</span></label>
+			<div class="controls">
+				<textarea rows="2" cols="2" ng-model="formData.supplierAddress"></textarea>
+			</div>
+		  </div>
+
+	</fieldset>
+	</form>
+   <div class="modal-footer">
+         <button id="cancel" class="btn btn-warning" ng-click="reject()">{{'button.cancel' | translate}}</button>
+         <button id="submit" data-ng-disabled="editsupplierform.$dirty && editsupplierform.$invalid" class="btn btn-primary" ng-click="accept()" ng-disabled="flag">{{'label.save' | translate}}</button>
+   </div>
+
+</script> 
+  <!--This is itemdetail delete  -->
+	<script type="text/ng-template" id="approvedelete.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">Delete itemDetail</h3>
+                    </div>
+                    <div class="modal-body style="height:60px;">
+                       <h4>Are you sure?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-warning" ng-click="cancelItem()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approveToDelete()">{{'button.save' | translate}}</button>
+                    </div>
+      </script>
+</div>
+
+
+      <!--  <tab heading="Item Tracking" select="getitemhistorydetails()" ng-show="$parent.PermissionService.showMenu('READ_MRNDETAILS')">
+        <div class="pull-right btn-group">
+         
+        </div>
+       
+        <div class="row-fluid">
+        <form ng-submit="searchHistory(filterText)">
+                   <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Enter SerialNumber to search#">
+        </form>
+        <table class="table">
+            <thead>
+              <tr class="graybg">
+                <th>{{'table.itemhistory.refType' | translate}}</th>
+                <th>{{'table.itemhistory.itemDescription' | translate}}</th>
+                <th>{{'table.itemhistory.serialNumber' | translate}}</th>
+                <th>{{'table.itemhistory.transactionDate' | translate}}</th>
+                <th>{{'table.itemhistory.movement' | translate}}</th>
+                <th>{{'table.itemhistory.fromOffice' | translate}}</th>
+                <th>{{'table.itemhistory.toOffice' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="ih in itemhistory.currentPageItems  | filter:filterText">
+                <td>{{ih.refType}}</td>
+                <td>{{ih.itemDescription}}</td>
+                <td>{{ih.serialNumber}}</td>
+                <td>{{ih.transactionDate | DateFormat}}</td>
+                <td>{{ih.movement}}</td>
+                <td>{{ih.fromOffice}}</td>
+                <td>{{ih.toOffice}}</td>
+                
+            
+     		 </tbody>
+          </table>
+       			<ul class="pager">
+        			<li class="previous"><a ng-click="itemhistory.previous()" href="" ng-disabled="!itemhistory.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="itemhistory.next()" href="" ng-disabled="!itemhistory.hasNext()">Next &rarr;</a></li>
+    			</ul>
+         </div>
+      </tab> -->

@@ -1,0 +1,26 @@
+
+<div id="systemUsers" data-ng-controller="UserController">
+  <div class="users-actions">
+    <div class="action create" data-ng-click="newUserFormDialog()">New user</div>
+  </div>
+  <table id="usersTable" data-ng-show="users.length > 0"
+    data-mf-data-table="{sScrollY: 280, sPaginationType: 'full_numbers'}"
+    data-mf-data-table-columns="username,firstname,lastname"
+    data-mf-data-table-items="users">
+    <thead>
+      <tr>
+        <th>User Name</th>
+        <th>Given Name</th>
+        <th>Family Name</th>
+      </tr>
+    </thead>
+  </table>
+  <div class="hide" 
+    data-mf-overlay="{show: 'UserDataLoadingStartEvent', hide: 'UserDataLoadingCompleteEvent'}"
+    data-mf-overlay-target="#systemUsers">
+    <div class="overlay-msg element info">
+      <spam>Loading users... Please wait.</spam>
+    </div>
+  </div>
+  <div data-ng-include="'html/administration/userFormDialog.html'"></div>
+</div>

@@ -1,0 +1,45 @@
+<div>
+	<ul class="breadcrumb">
+    	<li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+        <li><a href="#/mappingconfig">{{'label.managemappingconfigurations' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.createhardwareplanmapping' | translate}}</li>
+    </ul>
+</div>
+
+<form class="form-horizontal well" data-ng-controller="CreateHardwarePlanMappingController" data-ng-submit="submit()">
+	<div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	</div>
+	
+    <fieldset>
+    	<legend>{{'label.createhardwareplan' | translate}}</legend>
+		<table>
+		<tr><td>
+		<div class="control-group">
+            <label class="control-label" for="planCode">{{ 'table.plan.code' | translate }}</label>
+            <div class="controls">
+             	<select data-ng-model="formData.planCode"  data-ng-options="planData.planCode as planData.planCode for planData in planDatas">
+             	</select>
+            </div>
+        </div></td></tr>
+          						
+       <tr><td> <div class="control-group">
+           <label class="control-label" for="itemCode">{{ 'label.itemCode' | translate }}</label>
+           <div class="controls">
+           		<select data-ng-model="formData.itemCode"  data-ng-options="itemData.itemCode as itemData.itemDescription for itemData in itemDatas">
+             	</select>
+           </div>
+        </div></td></tr>
+							
+  			
+        
+        <tr align="right"><td>
+        <a href="#/mappingconfig"><button type="reset" class="btn" data-ng-click="reset123()">{{'button.cancel'| translate}}</button></a>
+            <button type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+      </td></tr>
+      </table>
+          
+    </fieldset>
+</form>

@@ -1,0 +1,64 @@
+<div data-ng-controller="ProspectsController">
+<div>
+    <ul class="breadcrumb">
+        
+        <li class="active">{{'label.prospects' | translate}}&nbsp;&nbsp;{{employee.lastname}}</li>
+    </ul>
+    <div class="pull-right">
+        <a data-ng-show="PermissionService.showMenu('CREATE_PROSPECT')"  href="#/createprospects" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{ 'link.create.new.prospect' | translate }}</a>
+    </div>
+</div>
+
+<div class="row-fluid">
+<form data-ng-submit="search(filterText)">
+    <input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+</form>	
+		<div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	<table class="table">
+        <thead>
+            <tr class="graybg">
+                <!-- <th>{{ 'table.heading.prospectId' | translate }}</th> -->
+                <th>{{ 'table.heading.name' | translate }}</th>
+                <th>{{ 'table.heading.emailId' | translate }}</th>
+                <th>{{ 'table.heading.phonenumber' | translate }}</th>
+                <th>{{ 'table.heading.address' | translate }}</th>           
+                <th>{{ 'table.heading.status' | translate }}</th>
+                <th>{{ 'table.action' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="pointer-main" data-ng-repeat="prospect in prospects.currentPageItems | filter:filterText">                      
+                <!-- <td class="pointer" data-ng-click="routeTo(prospect.id)">{{prospect.id}}</td> -->
+                <td class="pointer" data-ng-click="routeTo(prospect.id)">{{prospect.firstName}}&nbsp{{prospect.lastName}}</td>
+                <td class="pointer" data-ng-click="routeTo(prospect.id)">{{prospect.email}}</td>         
+                <td class="pointer" data-ng-click="routeTo(prospect.id)">{{prospect.mobileNumber}}</td>  
+                <td class="pointer" data-ng-click="routeTo(prospect.id)">{{prospect.address}},{{prospect.streetArea}},{{prospect.cityDistrict}}</td>        
+                <td class="pointer" data-ng-click="routeTo(prospect.id)">{{prospect.status}}</td> 
+                <td>
+                <a href="#/followprospects/{{prospect.id}}" 
+					data-ng-show="getVal(prospect.status)&&PermissionService.showMenu('FOLLOWUP_PROSPECT')"
+					style='color:#000000' data-popover="followup" data-popover-trigger="mouseenter" ><i class="icon-time"></i></a> 
+				<a data-ng-click="convertProspect(prospect.id)"
+					data-ng-show="(getVal(prospect.status))&&(PermissionService.showMenu('CONVERT_PROSPECT')&&PermissionService.showMenu('CREATE_CLIENT'))"
+					style='color:#000000' data-popover="convert to client" data-popover-trigger="mouseenter" ><i class="icon-user"></i></a> 
+				<a href="#/editprospects/{{prospect.id}}"
+					data-ng-show="getVal(prospect.status)&&(PermissionService.showMenu('UPDATE_PROSPECT'))"
+					style='color:#000000' data-popover="Edit" data-popover-trigger="mouseenter" ><i class="icon-edit icon-white"></i></a> 
+				<a href="#/cancelprospects/{{prospect.id}}"
+					data-ng-show="getVal(prospect.status)&&(PermissionService.showMenu('DELETE_PROSPECT'))"
+					style='color:#000000' data-popover="cancel" data-popover-trigger="mouseenter" ><i class="icon-remove"></i></a>
+                </td>                     
+            </tr>	
+            
+        </tbody>
+    </table>
+    <ul class="pager">
+        			<li class="previous"><a data-ng-click="prospects.previous()" href="" data-ng-disabled="!prospects.hasPrevious()">&larr; {{ 'label.prev' | translate }} </a></li>
+        			<li class="next" ><a data-ng-click="prospects.next()" href="" data-ng-disabled="!prospects.hasNext()"> {{ 'label.next' | translate }} &rarr;</a></li>
+	</ul>
+</div>
+</div>

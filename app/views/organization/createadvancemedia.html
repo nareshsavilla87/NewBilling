@@ -1,0 +1,289 @@
+      <div>
+        <ul class="breadcrumb">
+              <li><a href="#/mediadetails">{{'label.media.details' | translate}}</a> <span class="divider">/</span></li>
+              <li class="active">{{'label.media.addmediadetails' | translate}}</li>
+          </ul>
+      </div>
+      <form class="form-horizontal well" name="createmediaform" novalidate data-ng-controller="CreateMediaController" data-ng-submit="submitAdvanceMedia()">
+       <div class="error" data-ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>{{'label.media.addmediadetails' | translate}}</legend>
+          <table class="fullwidth">
+          <tr>
+          <td>
+          	<div class="control-group">
+            <label class="control-label" for="mediaCategory">{{ 'label.media.type' | translate }}</label>
+	          	<div class="controls">
+			       <button type="button" class="btn btn-primary" data-ng-model="mediaCategory" data-btn-radio="'Left'" data-ng-click="setMovieScreen()">Movies</button>
+				</div>
+            </div>
+          </td>	
+          </tr>
+          <tr>
+          <td width="50%">
+          <div class="control-group">
+            <label  data-ng-show="hideForGame" class="control-label" for="mediaTitle">{{ 'label.media.title' | translate }}<span class="required">*</span></label>
+            <label  data-ng-show="!hideForGame" class="control-label" for="mediaTitle">{{ 'label.game.title' | translate }}<span class="required">*</span></label>
+            <div class="controls">
+              <input type="text" id="mediaTitle" data-ng-model="formData.mediaTitle">
+            </div>
+          </div>
+          
+            <td width="50%" data-ng-show="hideForGame">
+          <div class="control-group">
+            <label class="control-label" for="contentProvider">{{ 'table.mediadetails.contentprovider' | translate }}</label>
+            <div class="controls">
+             <select  id="contentProvider" data-ng-model="formData.contentProvider" data-ng-options="contentProviderData.id as contentProviderData.mCodeValue for contentProviderData in contentProviderDatas "></select>
+           <!--   <input type="text" id="contentProvider" ng-model="formData.contentProvider">  -->
+            </div>
+          </div>
+          </td>
+          <td>
+          <div class="control-group" data-ng-show="!hideForGame">
+            <label class="control-label" for="subject">{{ 'label.media.subject' | translate }}</label>
+            <div class="controls">
+            <input type="text" id="subject" data-ng-model="formData.subject">
+            </div>
+          </div>
+          </td>
+          </tr>
+           <tr>
+            <td width="50%" data-ng-show="hideForGame">
+          <div class="control-group" >
+            <label class="control-label" for="mediaType">{{ 'label.media.mediaType' | translate }}</label>
+            <div class="controls">
+               <select  id="mediatype" data-ng-model="formData.mediatype"   data-ng-options="mediaTypeData.id as mediaTypeData.value for mediaTypeData in mediaTypeDatas" ></select>
+            </div>
+          </div>
+          </td>
+          
+          <td width="50%" data-ng-show="hideForGame">
+          <div class="control-group">
+            <label class="control-label" for="rated">{{ 'label.media.rated' | translate }}</label>
+            <div class="controls">
+            <input type="text" id="rated" data-ng-model="formData.rated">
+            </div>
+          </div>
+          </td>
+          </tr>
+          <tr>
+            <td width="50%" data-ng-show="hideForGame">
+          <div class="control-group">
+            <label class="control-label" for="mediaCategoryId">{{ 'table.mediadetails.categeory' | translate }}<span class="required">*</span></label>
+            <div class="controls">
+              <select data-ng-model="formData.catageoryId" id="catageoryId"  data-ng-options="mediaCategeorydata.id as mediaCategeorydata.mCodeValue for mediaCategeorydata in mediaCategeorydatas"></select>
+            </div>
+          </div>
+          </td>
+          <td width="50%" data-ng-show="hideForGame">
+          <div class="control-group">
+            <label class="control-label" for="mediaRating">{{ 'label.media.rating' | translate }}</label>
+            <div class="controls">
+           <input type="text" id="mediaRating" name="mediaRating" data-ng-model="formData.mediaRating"  data-ng-pattern="/^[0-9]{1,5}$/" data-ng-maxlength="5">
+           	 <div data-ng-show="createmediaform.mediaRating.$dirty && createmediaform.mediaRating.$invalid">
+               <span class="error" data-ng-show="createmediaform.mediaRating.$error.pattern">digits only !</span>
+               <span class="error" data-ng-show="createmediaform.mediaRating.$error.maxlength">Exceeded max limit!</span>
+            </div> 
+          </div>
+          </div>
+          </td>
+            </tr>
+            <tr>
+             <td>
+          <div class="control-group" data-ng-show="hideForGame">
+            <label class="control-label" for="mediaImage">{{ 'label.media.poster' | translate }}</label>
+            <div class="controls">
+            <input type="text" id="mediaImage" data-ng-model="formData.mediaImage">
+            </div>
+          </div>
+          </td>
+          <td>
+          <div class="control-group" data-ng-show="hideForGame">
+            <label class="control-label" for="status">{{ 'label.media.status' | translate }}<span class="required">*</span></label>
+            <div class="controls">
+           <select data-ng-model="formData.status" id="status" data-ng-options="mediaStatus.value as mediaStatus.value for mediaStatus in mediaStatus"></select>
+            </div>
+          </div>
+          </td>
+          </tr>
+          <tr>
+          <td data-ng-show="hideForGame">
+          <div class="control-group">
+            <label class="control-label" for="duration">{{ 'label.media.movieduration' | translate }}</label>
+            <div class="controls">
+            <input type="text" id="duration" data-ng-model="formData.duration">
+            </div>
+          </div>
+          </td>
+          <td>
+          <div class="control-group" data-ng-show="hideForGame">
+            <label class="control-label" for="releaseDate">{{ 'label.media.releasedate' | translate }}</label>
+            <div class="controls">
+              <input type="text" data-datepicker-pop="dd MMMM yyyy" data-ng-model="release.date" data-is-open="opened" min="minDate" max="maxDate" data-date-disabled="disabled(date, mode)" required data-late-Validate  style="background-color:#FFFFFF;" readonly/>
+            </div>
+          </div>
+          </td>
+          </tr>
+          <tr>
+             <td>
+          <div class="control-group">
+            <label class="control-label" for="genre">{{ 'label.media.genre' | translate }}</label>
+            <div class="controls">
+            <input type="text" id="genre" data-ng-model="formData.genre">
+            </div>
+          </div>
+          </td>
+          <td data-ng-show="hideForGame">
+          <div class="control-group">
+            <label class="control-label" for="subject">{{ 'label.media.subject' | translate }}</label>
+            <div class="controls">
+            <input type="text" id="subject" data-ng-model="formData.subject">
+            </div>
+          </div>
+          </td>
+          </tr>
+          </table>
+          
+        <table class="fullwidth">
+            <tr>
+              <td width="50%"> 
+              
+        <div class="control-group">
+			<label class="control-label" for="overview">{{'label.media.overview' | translate}}</label>
+			<div class="controls">
+			<textarea  rows="2" cols="2" data-ng-model="formData.overview"></textarea>
+			</div>
+		</div>     
+                </td>
+             <td width="50%">
+            <div class="control-group">
+			    <label class="control-label" for="cpShareValue">Share(%)</label>
+			  <div class="controls">
+				<input type="text" id="cpShareValue" name="cpShareValue" data-ng-model="formData.cpShareValue"  data-ng-pattern="/^[0-9]{0,2}(\.\d{0,2})?$/" data-ng-maxlength="5"></input>
+				<div data-ng-show="createmediaform.cpShareValue.$dirty && createmediaform.cpShareValue.$invalid">
+               <span class="error" data-ng-show="createmediaform.cpShareValue.$error.pattern">Numbers below 100 only !</span>
+               <span class="error" data-ng-show="createmediaform.cpShareValue.$error.maxlength">Exceeded max limit!</span>
+           </div>
+			</div>
+		</div> 
+             </td>        
+         <td></td>              
+         </tr>
+         </table>    
+    	
+    	<table data-ng-show="hideForGame">
+          <tr class="control-group">
+                <td>
+                  <h4><label class="control-label">{{ 'label.media.mediadetails' | translate }}<span class="required">*</span></label></h4>
+                </td>
+                <td class="blockquoteresult">
+                    <form>
+                    <input class="input-small" type="text" data-ng-model="attributesFormData.attributeType" readonly >&nbsp;&nbsp;
+                      <select data-ng-model="attributesFormData.attributeName" data-ng-options="mediaAttribute.id as mediaAttribute.mediaName for mediaAttribute in mediaAttributes" class="input-small" >
+                      </select>&nbsp;&nbsp;
+                      <input class="input-small" type="text" data-ng-model="attributesFormData.attributevalue"  placeholder="{{'label.media.captionvalue' | translate}}">&nbsp;&nbsp;
+                      <input class="input-small" type="text" data-ng-model="attributesFormData.attributeNickname"  placeholder="{{'label.media.nickname' | translate}}">&nbsp;&nbsp;
+                      <input class="input-small"  type="text" data-ng-model="attributesFormData.attributeImage" placeholder="{{'label.media.image' | translate}}">
+                      
+                      <a data-ng-click="addMedia()">&nbsp;<i class="icon-plus icon-white" style="color: #007fff;"></i></a>&nbsp;&nbsp;
+                    </form>
+                    <br><br>
+                  <table class="table fullwidth" data-ng-show="mediaassetAttributes.length>0">
+                    <tr></tr>
+                    <tr class="graybg">
+                      <th>{{'table.media.cast' | translate}}</th>
+                      <th>{{'table.heading.attributetype' | translate}}</th>
+                      <th>{{'label.media.captionvalue' | translate}}</th>
+                      <th>{{'label.media.nickname' | translate}}</th>
+                       <th>{{'label.media.image' | translate}}</th>
+                    </tr>
+                    <tr data-ng-repeat="mediaassetAttribute in mediaassetAttributes" >
+                      <td><input type="text" class="input-small"  data-ng-model="mediaassetAttribute.attributeType" readonly></td>
+                      <td><select data-ng-model="mediaassetAttribute.attributeName" data-ng-options="mediaAttribute.id as mediaAttribute.mediaName for mediaAttribute in mediaAttributes" class="input-small" ></select></td>
+                      <td><input type="text" class="input-small" data-ng-model="mediaassetAttribute.attributevalue" placeholder="{{'label.media.captionvalue' | translate}}"></td>
+                      <td><input type="text" class="input-small" data-ng-model="mediaassetAttribute.attributeNickname" placeholder="{{'label.media.nickname' | translate}}"></td>
+                      <td><input type="text" class="input-small" data-ng-model="mediaassetAttribute.attributeImage" placeholder="{{'label.media.image' | translate}}"></td>
+                      <td><a data-ng-click="deleteMedia($index)"><i class="icon-remove icon-white"></i></a></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr class="span2"></tr>
+        	  <tr class="control-group">
+                <td>
+                  <h4><label class="control-label">{{ 'label.media.medialocation' | translate }}<span class="required">*</span></label></h4>
+                </td>
+                <td class="blockquoteresult">
+                    <form>
+                      <select data-ng-model="mediaLocationFormData.languageId" data-ng-options="mediaLanguageData.id as mediaLanguageData.mCodeValue  for mediaLanguageData in mediaLanguageDatas" >
+                      </select>&nbsp;&nbsp;
+                      <select  class="input-medium" data-ng-model="mediaLocationFormData.formatType" data-ng-options="mediaFormat.mediaName as mediaFormat.mediaName for mediaFormat in mediaFormats" >
+                      </select>&nbsp;&nbsp;
+                      <input type="text" data-ng-model="mediaLocationFormData.location" placeholder="{{'label.media.location' | translate}}">
+                      <a data-ng-click="addMediaLocation()">&nbsp;<i class="icon-plus icon-white"></i></a>
+                    </form>
+                  <table class="table fullwidth" data-ng-show="mediaAssetLocations.length>0">
+                    <tr class="graybg">
+                      <th>{{'table.heading.language' | translate}}</th>
+                      <th>{{'table.heading.format' | translate}}</th>
+                      <th>{{'table.heading.location' | translate}}</th>
+                    </tr>
+                    <tr data-ng-repeat="mediaAssetLocation in mediaAssetLocations" >
+                      <td><select data-ng-model="mediaAssetLocation.languageId" data-ng-options="mediaLanguageData.id as mediaLanguageData.mCodeValue  for mediaLanguageData in mediaLanguageDatas" >
+                      </select></td>
+                      <td><select  class="input-medium" data-ng-model="mediaAssetLocation.formatType" data-ng-options="mediaFormat.mediaName as mediaFormat.mediaName for mediaFormat in mediaFormats" >
+                      </select></td>
+                      <td> <input type="text" data-ng-model="mediaAssetLocation.location" placeholder="{{'label.media.location' | translate}}"></td>
+                      <td><a data-ng-click="removeMediaLocation($index)"><i class="icon-remove icon-white"></i></a></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+           </table>
+    	
+           <fieldset data-ng-show="!hideForGame">
+           <legend>Settlement's</legend>
+          <table data-ng-show="!hideForGame" id="gameTable">
+          <tr class="control-group">
+                <td>
+                    <form id="gameAttributes">
+                      <button data-ng-click="addGameMedia()" class="btn btn-primary"><i class="icon-plus icon-white"></i></button>
+                    </form>
+                </td>
+              </tr>
+              <tr class="span2"></tr>
+           </table>
+           <table class="table fullwidth" data-ng-show="gameData.length>0">
+                    <tr></tr>
+                    <tr class="graybg">
+                      <th>{{'table.game.sequence' | translate}}</th>
+                      <th>{{'table.game.contentprovider' | translate}}</th>
+                      <th>{{'table.game.category' | translate}}</th>
+                      <th>{{'table.game.source' | translate}}</th>
+                      <th>{{'table.game.service' | translate}}</th>
+                       <th>{{'table.game.type' | translate}}</th>
+                       <th>{{'table.game.amount' | translate}}</th>
+                    </tr>
+                    <tr data-ng-repeat="gd in gameData" >
+                      <td><input type="text" class="input-small" data-ng-model="gd.sequence" placeholder=""></td>
+                      <td><select data-ng-model="gd.mediaContentProvider" data-ng-options="mediaContentProvider.mCodeValue as mediaContentProvider.mCodeValue for mediaContentProvider in mediaContentProviders" class="input-large" ></select></td>
+                      <td><select data-ng-model="gd.mediaCategory" data-ng-options="category.mCodeValue as category.mCodeValue for category in categorys" class="input-small" ></select></td>
+                      <td><input type="text" class="input-small" data-ng-model="gd.source" placeholder="" readonly></td>
+                      <td><input type="text" class="input-small" data-ng-model="gd.service" placeholder="" readonly></td>
+                      <td><select data-ng-model="gd.mediaType" data-ng-options="mediaType.mCodeValue as mediaType.mCodeValue for mediaType in mediaTypes" class="input-small" ></select></td>
+                      <td><input type="text" class="input-small" data-ng-model="gd.amount" placeholder=""></td>
+                      <td><a data-ng-click="removeGameMedia($index)"><i class="icon-remove icon-white"></i></a></td>
+                    </tr>
+           </table>
+           </fieldset>
+
+          <div class="offset9">
+            <a href="#/mediadetails"><button id="cancel" type="reset" class="btn">{{'button.cancel' | translate}}</button></a>
+            <button id="submit" type="submit" class="btn btn-primary">{{'button.save' | translate}}</button>
+          </div>
+        </fieldset>
+      </form>

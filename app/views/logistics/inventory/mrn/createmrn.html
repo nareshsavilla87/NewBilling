@@ -1,0 +1,94 @@
+ <div ng-controller="CreateMrnController">
+   <div>
+        <ul class="breadcrumb">
+          <li><a href="#/inventory" ng-click="selectedMRN()">{{'link.inventory' | translate}}</a> <span class="divider">/</span></li>
+          <li class="active">{{'label.create.add.mrn' | translate}}</li>
+        </ul>
+   </div>
+      <form name="createMRNForm" novalidate="" class="form-horizontal well" rc-submit="submit()">
+       <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>Create Mrn</legend>
+
+			<table>
+				<tr>
+					<td>
+						<table>
+							<tr>
+								<td>
+								<div class="control-group">
+	            						<label class="control-label" for="requestedDate">{{'label.mrn.requestdate' | translate }}&nbsp;<span class="required">*</span></label>
+            						<div class="controls">
+              							<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="first.date" is-open="opened" min="minDate" max="maxDate" 
+              							date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
+            						</div>
+          						</div>
+								</td>
+								
+								<td>
+								<div class="control-group">
+	            						<label class="control-label" for="itemDescription">{{'label.mrn.item' | translate }}&nbsp;<span class="required">*</span></label>
+									<div class="controls">
+										<select ng-model="formData.itemDescription"
+											ng-options="itemMasterData.id as itemMasterData.itemCode for itemMasterData in itemMasterDatas"
+											value="{{itemMasterData.itemId}}">
+										</select>
+									</div>
+								</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+								<div class="control-group">
+	            						<label class="control-label" for="fromOffice">{{'label.mrn.fromoffice' | translate }}&nbsp;<span class="required">*</span></label>
+									<div class="controls">
+										<select ng-model="formData.fromOffice"
+											ng-options="officeData.id as officeData.nameDecorated for officeData in officeDatas"
+											value="{{officeData.id}}">
+										</select>
+									</div>
+								</div>
+								</td>
+								
+								<td>
+									<div class="control-group">
+										<label class="control-label" for="orderdQuantity">{{'label.mrn.orderedquantity' | translate }}&nbsp;<span class="required">*</span></label>
+										<div class="controls">
+											<input type="text" name="orderdQuantity" name="orderdQuantity" ng-model="formData.orderdQuantity" data-ng-pattern="{{'integer' | CodeValidate}}"></br>
+											<span data-ng-show="createMRNForm.orderdQuantity.$dirty && createMRNForm.orderdQuantity.$invalid">
+												<small class="error-row">{{'error.not.numeric.validation' | translate}}</small>
+											</span>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+								<div class="control-group">
+	            						<label class="control-label" for="toOffice">{{'label.mrn.tooffice' | translate }}&nbsp;<span class="required">*</span></label>
+									<div class="controls">
+										<select ng-model="formData.toOffice"
+											ng-options="officeData.id as officeData.nameDecorated for officeData in officeDatas"
+											value="{{officeData.id}}">
+										</select>
+									</div>
+								</div>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+			
+          <div class="offset3">
+            <a href="#/inventory"><button id="cancel" type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
+            <button id="save" type="submit" data-ng-disabled="createMRNForm.$dirty && createMRNForm.$invalid" class="btn btn-primary">{{'label.save' | translate}}</button>
+          </div>
+          
+        </fieldset>
+      </form>
+ </div>

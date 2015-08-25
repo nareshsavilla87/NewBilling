@@ -1,0 +1,54 @@
+<div  ng-controller="ViewMovedMrnController">
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+	        <li><a href="#/inventory">{{'link.inventory' | translate}}</a> <span class="divider">/</span></li>
+	        <li class="active">{{mrn.id}}&nbsp;&nbsp;</li>
+	    </ul>
+	    <div class="pull-right">
+	      <div class="btn-group">
+	          <!-- <a href="#/edititem/{{item.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
+	          <a data-ng-click="deleteItem()" class="btn btn-primary"><i class="icon-trash icon-white"></i> Delete</a> -->
+	      </div>
+	    </div>
+	</div>
+  
+	<div class="row paddedleft">
+		<h3>{{mrn.id}}</h3>
+		<table width="100%">
+			<tr>
+				<td>{{'label.mrn.refid' | translate}}</td>
+				<td>{{mrn.mrnId}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.mrn.reftype' | translate }}</td>
+				<td>{{mrn.refType}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.mrn.itemdescription' | translate }}</td>
+				<td>{{mrn.itemDescription}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.mrn.serialnumber' | translate }}</td>
+				<td>{{mrn.serialNumber}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.mrn.moveddate' | translate }}</td>
+				<td>{{mrn.transactionDate | DateFormat}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.mrn.movement' | translate }}</td>
+				<td>{{mrn.movement}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.mrn.movedfrom' | translate }}</td>
+				<td>{{mrn.fromOffice}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.mrn.movedto' | translate }}</td>
+				<td>{{mrn.toOffice}}</td>
+			</tr>
+			
+		</table>
+	</div>
+</div>
+          

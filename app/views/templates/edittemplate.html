@@ -1,0 +1,96 @@
+ <div data-ng-controller="EditTemplateController">
+ <div>
+        <ul class="breadcrumb">
+            <li><a href="#/templates">{{'label.anchor.templates' | translate}}</a><span class="divider">/</span></li>
+            <li><a href="#/viewtemplate/{{templateId}}">{{template.template.name}}</a><span class="divider">/</span></li>
+            <li class="active">{{'label.anchor.edittemplate' | translate}}</li>
+        </ul>
+    </div>
+	<form class="well" >
+	   <api-validate></api-validate> 
+	    <fieldset>
+	             <table class="fullwidth"><tbody><tr>
+	                     <td valign="top" class="paddedleftNone" style="width: 100%;">
+	                     <table>
+	                       <tr><td class="paddedleftNone">
+	                       <table><tr>
+	                       <td class="paddedleftNone">
+	                       <div class="control-group">
+	                            <label class="control-label">{{ 'label.input.entity' | translate }}&nbsp;</label>
+	                            <div class="controls">
+	                            <select id="entity" data-ng-model="formData.entity" data-ng-options="entity.id as entity.name for entity in template.entities"
+	                                    data-ng-change="entityChange(formData.entity)"> </select>
+	                           </div></div>
+	                        </td>
+	                        <td>
+	                       <div class="control-group">
+	                            <label class="control-label">{{ 'label.input.type' | translate }}&nbsp;</label>
+	                            <div class="controls">
+	                            <select id="type" data-ng-model="formData.type" data-ng-options="type.id as type.name for type in template.types"> </select>
+	                        </div></div>
+	                        </td></tr></table>
+	                        <div class="control-group">
+	                            <label class="control-label">{{ 'label.input.templatename' | translate }}&nbsp;</label>
+	                            <div class="controls">
+	                            <input id="name" type="text" data-ng-model="formData.name">
+	                        </div>
+	                    </div></td></tr>
+	         <!--         <tr><td class="paddedleftNone">
+	                 <div class="control-group">
+	                    <button class="btn" data-ng-click="advanceOptionClick()">{{'label.button.advancedoptions' | translate}}</button>
+	                    <table class="fullwidth" data-ng-show="advanceOption=='true'" data-ng-repeat="mapper in mappers">{{mapper}}
+	                        <tr data-ng-show="mapper.defaultAddIcon == 'true'">
+	                            <td width="3%">
+	                                <label class="control-label" style="text-align:center;">{{ 'label.input.mapperkey' | translate }}&nbsp;</label>
+	                                <input type="text" class="input-medium" data-ng-model="mapper.mapperskey">
+	                            </td>
+	                            <td>
+	                                <label class="control-label">{{ 'label.input.mappervalue' | translate }}&nbsp;</label>
+	                                <input type="text" class="input-large" style="width: 96%" data-ng-model="mapper.mappersvalue">
+	                            </td>
+	                            <td  class="paddedtop15">
+	                                  <button class="btn" data-ng-click="addMapperKeyValue()">
+	                                    <i class="icon-plus icon-white"></i>
+	                                </button>
+	                            </td>
+	                        </tr>
+	                        <tr data-ng-hide="mapper.defaultAddIcon == 'true'">
+	                            <td width="3%">
+	                                <label class="control-label" style="text-align:center;">{{ 'label.input.mapperkey' | translate }}&nbsp;</label>
+	                                <input type="text" class="input-medium" data-ng-model="mapper.mapperskey">
+	                           </td>
+	                            <td>
+	                                <label class="control-label">{{ 'label.input.mappervalue' | translate }}&nbsp;</label>
+	                                <input type="text" class="input-large" style="width: 96%"  data-ng-model="mapper.mappersvalue">
+	                              </td>  
+	                            <td class="paddedtop15">
+	                                <button class="btn" data-ng-click="deleteMapperKeyValue($index)">
+	                                <i class="icon-minus icon-white"></i>
+	                                </button>
+	                            </td>
+	                        </tr></table></div>
+	                   </td></tr> -->
+	                   <tr><td class="paddedleftNone" style="width:80%">
+	                    <textarea id="templateeditor" data-ng-model="formData.text" data-ck-Editor></textarea>
+	                     </td></tr>
+	                     </table>
+	                </td>
+	                   <td colspan="2" valign="top"> 
+	                   <div class="paddedleft">
+	                    <accordion close-others="true" data-ng-repeat="entity in templateEntity">
+	                    <accordion-group heading="{{entity.entityName}}">
+	                        <div data-ng-repeat="templateKey in entity.templateKeys" class="templatekeys"
+	                            data-ng-click="templateKeySelected(templateKey)">{{templateKey}}</div>
+	                    </accordion-group>
+	                </accordion>
+	                </div></td>
+	                 </tr>
+	                <tr><td align="right"><div>
+	                     <a href="#/viewtemplate/{{templateId}}"><button id="cancel" type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+	                    <button type="submit" data-ng-click="submit()" class="btn btn-primary">{{'button.save'| translate}}</button>
+	                </div></td></tr>
+	     </tbody> </table>
+	    </fieldset>
+	</form>
+	</div>
+

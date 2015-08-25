@@ -1,0 +1,218 @@
+<div ng-controller="EditCardDetailController">
+	<div><ul class="breadcrumb">
+        <table>
+        <tr>
+        <td>
+        	 <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+        </td>
+        <td>
+            <small style="color:black;">{{displayName}}</small>
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Uniquely identified  {{accountNo}}</small></td>
+        	</tr>
+        	<tr>
+        		<td><i class="icon-building"></i><small>Office "{{officeName}}"</small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Cell Phone {{phone}}</small></td>
+        	</tr>
+        	<tr>
+        			<td><small>Device # <strong>{{hwSerialNumber}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Client Type "{{categoryType}}"</small></td>
+        	</tr>
+        	<tr>
+        		<td><small>Balance&nbsp;{{balanceAmount}}&nbsp;{{currency}} </small></td>
+        	</tr>
+        </table>
+        </td>
+        </tr>
+        </table>
+ </ul>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/viewclient/{{clientId}}" ng-click="reset123()">{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'link.view.editcarddetails' | translate}}</li>
+		</ul>
+	</div>
+  <form name="editCardDetails" novalidate="" class="form-horizontal" ng-submit="submit()" ng-show="formData.type=='CreditCard'">
+	 <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	<fieldset>
+		<legend>&nbsp;&nbsp;&nbsp;{{'link.view.editcarddetails' | translate}}</legend>
+		<div class="error" ng-show="cardExpireMsg">
+			<label>Card Expired...!</label>
+			<label>Please Provide New Card Details..</label>
+        </div>
+		<div class="pull-right">
+          <a href="#/addnewcreditcarddetails/{{clientId}}/{{id}}/{{type}}" ng-show="expireCardDate" class="btn btn-primary"><i class="icon-plus icon-white"></i>New CreditCard Details</a>
+        </div>
+    <table>
+      <tr>
+        <td>
+		<div class="control-group">
+			<label class="control-label" for="name">{{'label.client.creditcard.name' | translate}}<span class="required">*</span></label>
+			<div class="controls">
+				<input id="cardName" type="text" name="name" ng-model="formData.name" ng-focus="cradNameErrorHide()" required late-Validate/>
+				<!-- <span class="error" ng-show="cardNameReq">This field is required.</span> -->
+			</div>
+		</div>
+	   </td>
+	  </tr>
+	  <tr>
+        <td>
+		<div class="control-group">
+			<label class="control-label" for="name">{{'label.client.creditcard.cardnumber' | translate}}<span class="required">*</span></label>
+			<div class="controls">
+				<input id="cardNumber" type="text" name="cardNumber" ng-model="formData.crdNumber" 
+				ng-focus="cradNumberErrorHide()" ng-change="selectCardType(formData.crdNumber)" required late-Validate/>
+				<!-- <span class="error" ng-show="cardNumberReq">This field is required.</span> -->
+				<span class="error" ng-show="cardNumberDigit">Please enter only digits.</span>
+				<span class="error" ng-show="cardNumberValid">Please enter a valid credit card number.</span>
+			</div>
+		</div>
+	   </td>
+	  </tr>
+	  <tr>
+        <td>
+		 <div class="control-group">
+				<label class="control-label" for="name">{{'label.client.creditcard.cardType' | translate}}<span class="required">*</span></label>
+				<div class="controls">
+					 <select id="cardType" name="cardType" ng-model="formData.cardType"  ng-options="cardTypeData for cardTypeData in cardTypeDatas" 
+					 ng-focus="cardTypeErrorHide()" value="{{data.id}}" required late-Validate></select>
+					<!--  <span class="error" ng-show="cardTypeReq">This field is required.</span> -->
+				</div>
+		 </div>
+		</td>
+	  </tr>
+	  <tr>
+        <td>
+		<div class="control-group">
+			<label class="control-label" for="name">{{'label.client.creditcard.expirydate' | translate}}<span class="required">*</span></label>
+			<div class="controls">
+				<input type="text" id="cardExpiryDate" class="input-small" name="cardExpiryDate" maxlength="7"
+				 ng-focus="cardExpireErrorHide()"  ng-model="formData.cardExpiryDate" required late-Validate/>(MM/yyyy)
+				 <!-- <span class="error" ng-show="cardExpiryDateReq">This field is required.</span> -->
+                <span class="error" ng-show="patternMatch">Expire Date Pattern Doesn't Match!</span>
+                <span class="error" ng-show="cardExpire">Card Expired!.</span>
+			</div>
+		</div>
+	   </td>
+	  </tr>
+	  <tr>
+        <td>
+		<!-- <div class="control-group">
+					<label class="control-label" for="name">{{'label.client.creditcard.cvvNumber' | translate}}<span class="required">*</span></label>
+					<div class="controls">
+						 <input type="text" id="cardCvvNo" maxlength="3" class="input-small" name="cardCvvNo" 
+						 ng-focus="cardCvvNoErrorHide()" ng-model="formData.cvvNum" />
+						 <span class="error" ng-show="cardCvvNoReq">This field is required.</span>
+						<span class="error" ng-show="cardCvvNoDigit">Please enter only digits.</span>
+					</div>
+		  </div> -->
+	    </td>
+	   </tr>
+	   </table>
+	   <div class="pull-left" ng-show="expireCardDate">
+	   		<a href="#/viewcarddetails/{{clientId}}/{{id}}/{{type}}"><button type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
+	   </div>
+		<div class="offset3" ng-hide="expireCardDate">
+			<a href="#/viewcarddetails/{{clientId}}/{{id}}/{{type}}"><button type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
+			<button type="submit" class="btn btn-primary" ng-disabled="!editCardDetails.$valid">{{'button.save' | translate}}</button>
+		</div>
+	</fieldset>
+  </form>
+  <form name="editACHDetails" novalidate="" class="form-horizontal" ng-submit="submit()" ng-show="formData.type=='ACH'">
+     <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	  </div>
+	<fieldset>
+		<legend>{{'link.view.editcarddetails' | translate}}</legend>
+    <table>
+	  <tr>
+        <td>
+		<div class="control-group">
+			<label class="control-label" for="routingNumber">{{'label.client.achcard.routingNumber' | translate}}<span class="required">*</span></label>
+			<div class="controls">
+				<input id="routingNum" type="text" name="routingNumber" ng-focus="hideRoutingNumError()" ng-model="formData.routingNum" required late-Validate/>
+				<span class="error" ng-show="errorMsg">Please Provide valid Number..!</span>
+			</div>
+		</div>
+	   </td>
+	  </tr>
+	  <tr>
+        <td>
+		<div class="control-group" >
+			<label class="control-label" for="bankAccountNumber">{{'label.client.achcard.bankAccountNumber' | translate}}<span class="required">*</span></label>
+			<div class="controls">
+				<input id="bankAccountNum" type="text" name="bankAccountNumber" ng-focus="hideBankAccountNumError()" ng-model="formData.bankAccountNum" required late-Validate/>
+				<span class="error" ng-show="bankAccountNumDigit">
+                        Please enter digits only..!
+                </span>
+			</div>
+		</div>
+	   </td>
+	  </tr>
+	   <tr>
+        <td>
+		<div class="control-group">
+			<label class="control-label" for="bankName">{{'label.client.achcard.bankName' | translate}}<span class="required">*</span></label>
+			<div class="controls">
+				<input type="text" name="bankName" ng-model="formData.bankName" required late-Validate/>
+			</div>
+		</div>
+	   </td>
+	  </tr>
+	  <tr>
+        <td>
+		<div class="control-group">
+			<label class="control-label" for="name">{{'label.client.creditcard.name' | translate}}<span class="required">*</span></label>
+			<div class="controls">
+				<input  type="text" name="name" ng-model="formData.name" required late-Validate/>
+			</div>
+		</div>
+	   </td>
+	  </tr>
+	  <tr>
+        <td>
+		<div class="control-group">
+			<label class="control-label" for="accountType">{{'label.client.achcard.accountType' | translate}}<span class="required">*</span></label>
+			<div class="controls">
+				 <input  type="radio" name ="accountType" ng-model="formData.accountType" value="Checking" required late-Validate>Checking &nbsp;
+				 <input  type="radio" name ="accountType" ng-model="formData.accountType" value="Savings" required late-Validate>Savings
+			</div>
+		</div>
+	   </td>
+	  </tr>
+	 </table>
+	 <div class="offset3">
+			<a href="#/viewcarddetails/{{clientId}}/{{id}}/{{type}}"><button type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
+			<button type="submit" class="btn btn-primary" ng-disabled="!editACHDetails.$valid">{{'button.save' | translate}}</button>
+		</div>
+	</fieldset>
+  </form>
+  
+</div>

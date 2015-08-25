@@ -1,0 +1,47 @@
+<div id="expertsearch" data-ng-controller="ExpertSearchController">
+    <h3 class="paddedleft  activity_color"><strong>{{'label.heading.welcome' | translate}} {{'label.heading.obs' | translate}}</strong>
+    	<div class="btn-group pull-right activity_color">
+	        <label class="btn btn-primary" ng-model="dashModel" btn-radio="'home'">{{'label.heading.home' | translate}}</label>
+	        <label class="btn btn-primary" ng-click="switch1()" ng-model="dashModel" btn-radio="'dashboard'">{{'label.heading.dashboard' | translate}}</label>
+	          <label class="btn btn-primary" ng-click="switchDef()" ng-model="definations" btn-radio="'definations'">{{'label.heading.definations' | translate}}</label>
+	    </div>
+    </h3>
+    <hr/>
+	     <input id="expert" data-ng-model="formData.search" type="text" ng-autofocus="true" class="span marginbottom0px" typeahead-on-select="search()"
+	     typeahead="param as param for param in searchParams | filter:$viewValue | limitTo:8" placeholder="{{'label.input.searchactivities' | translate}}" >
+    	<div class="control-label">
+    		<h3 class="paddedleft activity_color">{{'label.heading.navigation.guide' | translate}}: </h3>&nbsp;&nbsp;&nbsp;
+			<i class="icon-arrow-left"></i>{{'label.heading.left.shortcuts' | translate}} &nbsp;&nbsp;
+			<i class="icon-arrow-up"></i>{{'label.heading.top.menu' | translate}} &nbsp;&nbsp;
+			<i class="icon-arrow-down down-left"></i>{{'label.heading.down.shortcuts' | translate}} &nbsp;&nbsp;
+			<i class="icon-arrow-up top-right"></i>{{'label.heading.right.search' | translate}}
+    	</div>
+	    <div style="margin-top:20px; margin-left:100px;">
+	    	<div class="row-fluid span">
+				<div class="span5">
+					<table width="100%" class="table table-striped table-bordered activity_color" width="0px">
+						<tr>
+							<td ><strong style="font-size:15px;"><i class="icon-bolt"></i>{{'label.heading.recent.frequent.activities' | translate}}</strong></td>
+						</tr>	
+						<tr>
+							<td ng-hide="frequent.length==0" ><a href="#{{freq}}" data-ng-repeat="freq in frequent track by $index" class="list-group-item">
+					  	{{freq | UrlToString | translate}}</a></td>
+					  	<td ng-show="frequent.length==0"><span class="required offset3">None</span></td>
+						</tr>
+						</table>
+				</div>
+				<div class="span5" >
+					<table width="100%" class="table table-striped table-bordered activity_color" width="0px">
+						<tr>
+							<td ><strong style="font-size:15px;"><i class="icon-laptop"></i>{{'label.heading.visited.clients' | translate}}</strong></td>
+						</tr>	
+						<tr>
+							<td ng-hide="recentClients.length==0" ><a href="#{{recentClient.href}}" data-ng-repeat="recentClient in recentClients" class="list-group-item">
+						  	{{recentClient.accountNo}} --- {{recentClient.displayName}}</a></td>
+						  	<td ng-show="recentClients.length==0"><span class="required offset3">None</span></td>
+						</tr>
+						</table>
+				</div>
+	   </div>
+	</div>
+</div>

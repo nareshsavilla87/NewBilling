@@ -1,0 +1,172 @@
+    <div ng-controller="EditItemController">
+      <div>
+        <ul class="breadcrumb">
+          <li><a href="#/inventory">{{'link.inventory' | translate}}</a> <span class="divider">/</span></li>
+          <li><a href="#/viewitem/{{formData.id}}/item/{{totalItem}}">&nbsp;{{formData.itemCode}}&nbsp;</a> <span class="divider">/</span></li>
+          <li class="active">{{'label.item.edit' | translate}}</li>
+        </ul>
+      </div>
+      <form name="edititemform" class="form-horizontal well" ng-submit="submit()">
+       <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}&nbsp;<span class="required">*</span></label>
+	    </div>
+        <fieldset>
+          <legend>Edit Item</legend>   
+			
+			<table>
+			
+				<tr>
+					<td>
+						<div class="control-group">
+            			<label class="control-label" for="itemCode">{{'label.item.itemcode' | translate }}&nbsp;<span class="required">*</span></label>
+            			<div class="controls">
+              			<input type="text" id="itemCode" name="itemCode" ng-model="formData.itemCode" data-ng-maxlength="{{'code' | CodeValidate}}"></br>
+              			<span data-ng-show="edititemform.itemCode.$dirty && edititemform.itemCode.$invalid">
+              				<small class="error-row">{{'error.code.definition.length.validation'| translate}}</small>
+              			</span>
+            			</div>
+          				</div>
+					</td>
+					<td>
+						<div class="control-group">
+            			<label class="control-label" for="itemDescription">{{'label.item.itemdescription' | translate }}&nbsp;<span class="required">*</span></label>
+            			<div class="controls">
+              			<input type="text" id="itemDescription" ng-model="formData.itemDescription">
+            			</div>
+          				</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<div class="control-group">
+           	 			<label class="control-label" for="itemClass">{{'label.item.itemclass' | translate }}&nbsp;<span class="required">*</span></label>
+            			<div class="controls">
+              			<select ng-model="formData.itemClass"  ng-options="itemClassData.value as itemClassData.value for itemClassData in itemClassDatas" value="{{itemClassData.value}}">
+              			</select>
+            			</div>
+          				</div>
+					</td>
+					<td>
+						<div class="control-group">
+            			<label class="control-label" for="units">{{'label.item.units' | translate }}&nbsp;<span class="required">*</span></label>
+            			<div class="controls">
+              			<select ng-model="formData.units"  ng-options="unitData.value as unitData.value for unitData in unitDatas" value="{{unitData.value}}">
+              			</select>
+            			</div>
+          				</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<div class="control-group">
+            			<label class="control-label" for="chargeCode">{{'label.chargecode' | translate }}&nbsp;<span class="required">*</span></label>
+            			<div class="controls">
+              			<select ng-model="formData.chargeCode"  ng-options="chargesData.chargeCode as chargesData.chargeDescription for chargesData in chargesDatas" value="{{chargesData.chargeCode}}">
+              			</select>
+            			</div>
+          				</div>
+					</td>
+					<!-- <td>
+						<div class="control-group">
+           				<label class="control-label" for="unitPrice ">{{'label.item.unitprice' | translate }}&nbsp;<span class="required">*</span></label>
+           				<div class="controls">
+             			<input type="text" id="unitPrice" name="unitPrice" data-ng-model="formData.unitPrice" data-ng-pattern="{{'decimal' | CodeValidate}}"><br/>
+             			<span data-ng-show="edititemform.unitPrice.$dirty && edititemform.unitPrice.$invalid">
+             				<small class="error-row">{{'error.not.decimal.validation'| translate}}</small>
+             			</span>
+           				</div>
+          				</div>
+					</td> -->
+					<td>
+						<div class="control-group">
+            			<label class="control-label" for="reorderLevel">{{'label.item.reorderlevel' | translate }}&nbsp;<span class="required">*</span></label>
+            			<div class="controls">
+              			<input type="text" id="reorderLevel" name="reorderLevel" data-ng-model="formData.reorderLevel" data-ng-pattern="{{'integer' | CodeValidate}}"/><br/>
+              				<span data-ng-show="edititemform.reorderLevel.$dirty && edititemform.reorderLevel.$invalid">
+				        		<small class="error-row">{{'error.not.numeric.validation'|translate}}</small>
+				    		</span>
+ 	            			</div>
+          				</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<div class="control-group">
+            			<label class="control-label" for="warranty">{{'label.item.warranty' | translate }}&nbsp;<span class="required">*</span></label>
+            			<div class="controls">
+              			<input type="text" id="warranty" name="warranty" data-ng-model="formData.warranty" data-ng-pattern="{{'integer' | CodeValidate}}"><br/>
+              			<span data-ng-show="edititemform.warranty.$dirty && edititemform.warranty.$invalid">
+             				<small class="error-row">{{'error.not.numeric.validation'| translate}}</small>
+             			</span>
+            			</div>
+          				</div>
+					</td>
+
+					<!-- <!-- <td>
+
+						<div class="control-group">
+           				<label class="control-label" for="unitPrice ">Default Price&nbsp;<span class="required">*</span></label>
+           				<div class="controls">
+             			<input type="text" id="unitPrice" name="unitPrice" data-ng-model="formData.unitPrice" data-ng-pattern="{{'decimal' | CodeValidate}}"><br/>
+             			<span data-ng-show="edititemform.unitPrice.$dirty && edititemform.unitPrice.$invalid">
+             				<small class="error-row">{{'error.not.decimal.validation'| translate}}</small>
+             			</span>
+           				</div>
+          				</div>
+					</td> -->
+
+				</tr>
+			
+			</table>
+          	
+          	<table>
+          		
+          		<tr class="control-group">
+                <td>
+                  <h4><label class="control-label">{{'label.regionalprice' | translate}}</label></h4>
+                </td>
+                <td class="blockquoteresult">
+                    <form>
+                      <select data-ng-model="itemPricesFormData.regionId" data-ng-options="regionData.id as regionData.regionName  for regionData in regionDatas" >
+                      </select>&nbsp;&nbsp;
+                      
+                      <input type="text" name="price" data-ng-model="itemPricesFormData.price" placeholder="Price" data-ng-pattern="{{'decimal' | CodeValidate}}">
+                      <a data-ng-click="addItemPrice()">&nbsp;<i class="icon-plus icon-white"></i></a>
+                      <span data-ng-show="edititemform.price.$dirty && edititemform.price.$invalid">
+              		  	<small class="error-row">{{'error.not.decimal.validation' | translate}}</small>
+              		  </span>
+                    </form>
+                  <table class="table fullwidth" data-ng-show="itemPrices.length>0">
+                    <tr class="graybg">
+                      <th>{{'table.heading.regionName' | translate}}</th>
+                      <th>{{'label.price' | translate}}</th>
+                    </tr>
+                    <tr data-ng-repeat="itemPrice in itemPrices" >
+                      <td><select data-ng-model="itemPrice.regionId" data-ng-options="regionData.id as regionData.regionName  for regionData in regionDatas" >
+                      </select></td>
+                      <td> <input type="text" data-ng-model="itemPrice.price" placeholder="Price"></td>
+                      <td><a data-ng-click="removeItemPrice($index)"><i class="icon-remove icon-white"></i></a></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+          		
+          	</table>
+         
+          
+        </fieldset>
+        
+        
+		<div class="offset9">
+            <a href="#/inventory"><button id="cancel" type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
+            <button id="submit" type="submit" data-ng-disabled="edititemform.$dirty && edititemform.$invalid" class="btn btn-primary">{{'label.save' | translate}}</button>
+        </div>
+          	
+      </form>
+      </div>
+ 
