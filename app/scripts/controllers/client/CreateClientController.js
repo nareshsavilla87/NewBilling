@@ -46,7 +46,6 @@
         scope.clientAddInfo = webStorage.get("client-additional-data");
 
         resourceFactory.clientTemplateResource.get(function(data) {
-        	scope.activationDate = new Date(data.date);
             scope.offices = data.officeOptions;
             scope.formData.officeId = data.officeId;
             scope.cities=data.addressTemplateData.cityData;
@@ -405,11 +404,11 @@
         		 resourceFactory.propertyCodeResource.save({},scope.property,function(data){
         			 scope.propetyId=data.resourceId;
         	        	scope.flag = true;
-        	           // var reqDate = dateFilter(new Date(),'dd MMMM yyyy');
+        	            var reqDate = dateFilter(new Date(),'dd MMMM yyyy');
         	            scope.formData.locale = $rootScope.locale.code;
         	            scope.formData.active = true;
         	            scope.formData.dateFormat = 'dd MMMM yyyy';
-        	            scope.formData.activationDate = scope.activationDate;
+        	            scope.formData.activationDate = reqDate;
         	            scope.formData.flag=scope.configurationProperty;
         	            scope.formData.locale = $rootScope.locale.code;
         	            scope.formData.dateFormat = 'dd MMMM yyyy';
@@ -451,7 +450,7 @@
         		 });
         }else{
         	scope.flag = true;
-            var reqDate = dateFilter(new Date(scope.activationDate),'dd MMMM yyyy');
+            var reqDate = dateFilter(new Date(),'dd MMMM yyyy');
             this.formData.locale = $rootScope.locale.code;
             this.formData.active = true;
             this.formData.dateFormat = 'dd MMMM yyyy';

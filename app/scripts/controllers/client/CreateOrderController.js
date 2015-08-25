@@ -25,7 +25,6 @@
         scope.walletConfig = webStorage.get('is-wallet-enable');
         scope.clientConfiguration = webStorage.get('client_configuration');
         var isAutoRenew = scope.clientConfiguration.isAutoRenew== 'true';
-        var date;
 
         $("[name='autoRenewCheckbox']").bootstrapSwitch('state', isAutoRenew, true);
         var clientData = webStorage.get('clientData');
@@ -47,37 +46,11 @@
         scope.postpaid  ={};
         scope.postpaid.open = true;
         scope.isnow=true;
-        
-        resourceFactory.orderTemplateResource.get({'planId': routeParams.planId,'clientId': routeParams.id},function(data) {
-     	   scope.start.date = new Date(data.date);
-     	   date = data.date;
-     	   
-     	   scope.plandatas = data.plandata;	
-     	   for(var plan in scope.plandatas){
-     		   //assinging postpaid plans
-     		   if(scope.plandatas[plan].isPrepaid == 'N')
-     			   scope.postpaidPlanDatas.push(scope.plandatas[plan]);
-     		   //assinging prepaid plans
-     		   else if(scope.plandatas[plan].isPrepaid == 'Y')
-     			   scope.prepaidPlanDatas.push(scope.plandatas[plan]);
-     	   }
-            scope.subscriptiondatas=data.subscriptiondata;
-            scope.paytermdatas=data.paytermdata;
-            scope.clientId = routeParams.id;
-            scope.formData = {
-              		billAlign: true,
-              		autoRenew : isAutoRenew
-                    };
-     	   
-        });
-        
-        
         scope.$watch('start.date', function() {
     	    scope.doSomething();  
     	});
        scope.doSomething =function(){
-    	   
-    	   scope.todayDate=new Date(date).toDateString();
+    	   scope.todayDate=new Date().toDateString();
     	   scope.selectedDate=scope.start.date.toDateString();
     	   
     	   if(Date.parse(scope.todayDate) > Date.parse(scope.selectedDate)){
@@ -90,10 +63,29 @@
     		
     		   scope.isnow=true;
     	   }
-    	   /*console.log("todayDate:"+scope.todayDate);
-    	   console.log("selectedDate:"+scope.selectedDate);*/
+    	   console.log("todayDate:"+scope.todayDate);
+    	   console.log("selectedDate:"+scope.selectedDate);
        };
-       
+       resourceFactory.orderTemplateResource.get({'planId': routeParams.planId,'clientId': routeParams.id},function(data) {
+    	   
+    	   scope.plandatas = data.plandata;	
+    	   for(var plan in scope.plandatas){
+    		   //assinging postpaid plans
+    		   if(scope.plandatas[plan].isPrepaid == 'N')
+    			   scope.postpaidPlanDatas.push(scope.plandatas[plan]);
+    		   //assinging prepaid plans
+    		   else if(scope.plandatas[plan].isPrepaid == 'Y')
+    			   scope.prepaidPlanDatas.push(scope.plandatas[plan]);
+    	   }
+           scope.subscriptiondatas=data.subscriptiondata;
+           scope.paytermdatas=data.paytermdata;
+           scope.clientId = routeParams.id;
+           scope.formData = {
+             		billAlign: true,
+             		autoRenew : isAutoRenew
+                   };
+    	   
+       });
      
         
         scope.setBillingFrequency = function(value) {

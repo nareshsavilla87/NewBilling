@@ -83,27 +83,8 @@
               	<option value="">{{'label.select.one' | translate}}</option></select>
             	</div>
               </div>
-          </td></tr>
-
-			<tr data-ng-show="isServiceLevelMap"><td>
-				<div class="control-group">
-					<label class="control-label" for="isHwReq">{{'label.plan.ishwreq' | translate }}</label>
-						<div class="controls">
-						<label class="checkbox"> <input type="checkbox" data-ng-model="formData.isHwReq" /></label>
-						</div>
-					</div>
-			</td></tr>
-			
-				<tr data-ng-show="isServiceLevelMap&&formData.isHwReq"><td>
-				   <div class="control-group">
-						<label class="control-label" for="itemType">{{'label.item.type' | translate }}&nbsp;<span class="required">*</span></label>
-						<div class="controls">
-						<select id="itemId" data-ng-model="formData.itemId" data-ng-options="itemData.id as itemData.itemDescription for itemData in itemDatas">
-						<option value="">{{'label.select.one' | translate}}</option></select>
-						</div>
-					</div>
-				</td></tr>
-				<tr align="right"><td>
+          </td></tr>   
+            <tr align="right"><td>
             <a href="#/mappingconfig"><button id="cancel" type="reset" class="btn">{{'label.cancel' | translate}}</button></a>
             <button id="submit" type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
         </td></tr>
