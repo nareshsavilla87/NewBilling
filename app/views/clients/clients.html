@@ -80,7 +80,7 @@
     	<li class="previous" ng-click="firstPageNo()"><a  ng-click="clients.firstPage()" href="" ng-disabled="!clients.hasFirstPage()">First</a></li>
         <li class="previous" ng-click="previousPageNo()"><a  id="prev" ng-click="clients.previous()"  href="" ng-disabled="!clients.hasPrevious()">&larr; Prev</a></li>
         <strong>Page No:&nbsp;&nbsp;{{pageNo}}/{{totalPages}}</strong>
-        <li class="next" ng-click="lastPageNo()"><a  ng-click="clients.lastPage()" href="" ng-disabled="!clients.hasLastPage()">Last</a></li>
+        <li class="next" ng-click="lastPageNo()"><a  ng-click="clients.lastPage(25)" href="" ng-disabled="!clients.hasLastPage()">Last</a></li>
         <li class="next" ng-click="nextPageNo()"><a  id="next" ng-click="clients.next()" href="" ng-disabled="!clients.hasNext()">Next &rarr;</a></li>
     </ul>
 </div>

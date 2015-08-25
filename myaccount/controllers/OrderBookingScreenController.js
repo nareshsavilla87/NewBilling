@@ -106,7 +106,8 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 							successFun(planData);
 						});
 					}else if(gatewayStatus == "RECURRING"){
-						changeOrderData.status 	= gatewayStatus;
+						changeOrderData.status 		= gatewayStatus;
+						changeOrderData.orderId 	= orderId;
 						changeOrderData.actionType	= screenName;
 						RequestSender.scheduleOrderResource.save({clientId : clientId},changeOrderData,function(data){
 							successFun(planData);
