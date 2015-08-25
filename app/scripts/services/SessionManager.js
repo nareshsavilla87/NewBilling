@@ -13,8 +13,6 @@
         webStorage.remove("sessionData");
         webStorage.remove("clientData");
         webStorage.remove("walletAmount");
-        webStorage.clear();
-        localStorageService.clearAll();
         $window.sessionStorage.removeItem("key");
         httpService.cancelAuthorization();
         return EMPTY_SESSION;

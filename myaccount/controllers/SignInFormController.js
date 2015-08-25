@@ -22,7 +22,7 @@
 	        	    	  rootScope.webtvURL = selfcareModels.webtvURL+"?id="+successData.clientId;
 	        			  localStorageService.add("selfcareAppUrl",selfcareModels.selfcareAppUrl);
 	        			  localStorageService.add("loginHistoryId", successData.loginHistoryId);
-	        			  $window.sessionStorage.setItem("key","loginSession");
+	        			  $window.sessionStorage.setItem("myaccountKey","myaccountLoginSession");
 	            		  location.path('/profile');
 	            	  },function(errorData){
 	            		  scope.isProcessing = false;
