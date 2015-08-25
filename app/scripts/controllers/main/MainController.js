@@ -143,7 +143,6 @@
         scope.currentSession = sessionManager.clear();
         scope.clearCrendentials();
         scope.clearImage();
-        console.log("asd");
         
       };
       
