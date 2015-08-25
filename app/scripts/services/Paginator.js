@@ -23,12 +23,12 @@
             		  this._load();
             	  }
               },
-              lastPage :function(){
+              lastPage :function(count){
             	  if (this.hasNextVar) {
-            		  this.currentOffset = this.totalFilteredRecords - this.totalFilteredRecords % 15;
+            		  this.currentOffset = this.totalFilteredRecords - this.totalFilteredRecords % count;
             		  this.totalCount = this.currentOffset;
             		  if(this.currentOffset == this.totalFilteredRecords)
-            			  this.currentOffset = this.totalFilteredRecords -15;
+            			  this.currentOffset = this.totalFilteredRecords -count;
             		  this._load();
             	  }
               },

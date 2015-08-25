@@ -9,8 +9,7 @@ selfcareApp.service("SessionManager",['$rootScope','HttpService','$location','lo
         localStorageService.remove('selfcareAppUrl');
         localStorageService.remove('loginHistoryId');
         localStorageService.remove('isAutoRenewConfig');
-        localStorageService.clearAll();
-        $window.sessionStorage.removeItem("key");
+        $window.sessionStorage.removeItem("myaccountKey");
         httpService.cancelAuthorization();
         scope.isLandingPage= false;scope.isRegClientProcess = false;
 		location.path('/').replace();
@@ -36,7 +35,7 @@ selfcareApp.service("SessionManager",['$rootScope','HttpService','$location','lo
 							 scope.isClientAdditionalData = configurationDatas[i].enabled;
 						 }
 						 if(configurationDatas[i].name==selfcareModels.isLogoutCache){
-							 localStorageService.add("is-logout-cache",configurationDatas[i].enabled);
+							 localStorageService.add("isLogoutCache",configurationDatas[i].enabled);
 						 }
 					  }
 					  
@@ -46,8 +45,8 @@ selfcareApp.service("SessionManager",['$rootScope','HttpService','$location','lo
       };
 
         this.restore = function(handler) {
-        	if($window.sessionStorage.getItem("key") != "loginSession") {
-          		if(localStorageService.get("is-logout-cache") == 'true'){
+        	if($window.sessionStorage.getItem("myaccountKey") != "myaccountLoginSession") {
+          		if(localStorageService.get("isLogoutCache") == 'true'){
           			this.clear();
           		}
           	}
