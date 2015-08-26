@@ -1,8 +1,8 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    ViewClientController: function(scope,webStorage, routeParams , route, location, resourceFactory,paginatorService, http,$modal,dateFilter,API_VERSION,$rootScope,PermissionService,localStorageService,TENANT) {
-        scope.clientId = routeParams.id;
 
+    ViewClientController: function(scope,webStorage, routeParams , route, location, resourceFactory,paginatorService, http,$modal,dateFilter,API_VERSION,$rootScope,PermissionService,localStorageService,TENANT) {
+    	scope.clientId=routeParams.id;
     	 scope.client = [];
          scope.error = {};
          scope.identitydocuments = [];
@@ -13,7 +13,6 @@
          scope.orders = [];
          scope.scheduleorders=[];
          scope.ippoolDatas = [];
-         scope.trackingDatas = {};
          scope.formData = {};
  		 scope.start = {};
          scope.start.date = new Date();
@@ -21,7 +20,6 @@
          scope.invoice = "INVOICE";
          scope.adjustment = "ADJUSTMENT";
          scope.journal ="JOURNAL VOUCHER";
-         scope.depositAndRefund ="DEPOSIT&REFUND";
          
          scope.financialJournals =[];
          scope.PermissionService = PermissionService;
@@ -241,12 +239,6 @@
    	                                        ngShow : edit
                                            },
                                            {
-                                            name:"Deposit",
-                                            href:"#/depositPopup",
-                                            icon:"icon-briefcase",
-                                            ngShow : "true"
-                                           },
-                                           {
                                            	name:"Close",
                                            	href:"#/closeclient",
                                            	icon:"icon-remove",
@@ -357,6 +349,15 @@
             });
         };
         
+        /*scope.onetimedatas=data.onetimedatas;
+    	scope.onetimedatas = [];
+        angular.forEach(scope.onetimedatas,function(value,key){
+         scope.onetimesales.push({serialNo:value.serialNo});
+        });
+        scope.onetimesales = _.uniq(scope.onetimesales,function(item){
+         return item.serialNo;
+        });*/
+       
         /* view provisioning data        */
         scope.getAllProvisioningDetails = function () {
             
@@ -507,6 +508,8 @@
       			  resourceFactory.oneTimeSaleResource.getOneTimeSale({clientId: routeParams.id}, function(data) {
                   	scope.onetimesales = data.oneTimeSaleData;
                       scope.eventOrders = data.eventOrdersData;
+                 
+                      
                   });
       	            $modalInstance.close('delete');
       	        },function(orderErrorData){
@@ -518,6 +521,7 @@
             $scope.cancelAllocate = function () {
                 $modalInstance.dismiss('cancel');
             };
+           
             
             
         };
@@ -617,13 +621,6 @@
         		$modal.open({
                     templateUrl: 'Staticip.html',
                     controller: StaticIpPopController,
-                    resolve:{}
-                });
-        	}else if(href == "#/depositPopup"){
-
-        		$modal.open({
-                    templateUrl: 'depositpop.html',
-                    controller: depositPopController,
                     resolve:{}
                 });
         	}else if(href == "#/viewclient"){
@@ -996,7 +993,7 @@
         			 
 	        		 resourceFactory.clientAdditionalResource.get({clientId: routeParams.id,template:true}, function(data) {
 	        			 var nationalityDatas 				= data.nationalityDatas;
-	        			 var languagesDatas 				= data.languagesDatas;
+	        			 var languagesDatas 					= data.languagesDatas;
 	        			 
 	        			 
 	        			 scope.additionalDatas.remarks = data.remarks;
@@ -1203,19 +1200,14 @@
 		    /* resourceFactory.DataTablesResource.getAllDataTables({apptable: 'm_client'} , function(data) {
           	scope.clientdatatables = data;
         	});*/
-		
-		scope.getStatementsData = function(offset, limit, callback) {
-			resourceFactory.statementResource.get({clientId: routeParams.id ,offset: offset, limit: limit} , function(data){
-				scope.url = mifosX.models.url;
-                scope.mail = mifosX.models.mail;
-				  callback(data);
-			  });
-	  	   };
         
         scope.getClientStatements = function () {
-        	
-        	scope.states = [];
-        	scope.states = paginatorService.paginate(scope.getStatementsData, 9);
+            resourceFactory.statementResource.get({clientId: routeParams.id} , function(data) {	
+            	scope.states = data;
+                scope.url = mifosX.models.url;
+                scope.mail = mifosX.models.mail;
+            });
+           
         };
                
         scope.routeToEmail = function (statementId) {
@@ -1287,7 +1279,6 @@
         	scope.paymentsC = "";
         	scope.adjustmentsC = "";
         	scope.journalsC ="";
-        	scope.depositC = "";
         	scope.financialtransactions = paginatorService.paginate(scope.getFinancialTransactionsFetchFunction, 14);
         };
         scope.invoicesTab = function(){
@@ -1296,7 +1287,6 @@
         	scope.invoicesC = "active";
         	scope.adjustmentsC = "";
         	scope.journalsC ="";
-        	scope.depositC = "";
         	scope.financialInvoices = paginatorService.paginate(scope.getInvoice, 14);
         };
         scope.paymentsTab = function(){
@@ -1305,7 +1295,6 @@
         	scope.paymentsC = "active";
         	scope.adjustmentsC = "";
         	scope.journalsC ="";
-        	scope.depositC = "";
         	scope.financialPayments = paginatorService.paginate(scope.getPayments, 14);
         };
         scope.adjustmentsTab = function(){
@@ -1314,7 +1303,6 @@
         	scope.paymentsC = "";
         	scope.adjustmentsC = "active";
         	scope.journalsC ="";
-        	scope.depositC = "";
         	scope.financialAdjustments = paginatorService.paginate(scope.getAdjustments, 14);
         };
         
@@ -1324,21 +1312,8 @@
         	scope.paymentsC = "";
         	scope.adjustmentsC = "";
         	scope.journalsC ="active";
-        	scope.depositC = "";
         	scope.financialJournals = paginatorService.paginate(scope.getjournals, 14);
         };
-        
-        scope.depositsTab = function(){
-        	scope.financialsummaryC = "";
-        	scope.invoicesC = "";
-        	scope.paymentsC = "";
-        	scope.adjustmentsC = "";
-        	scope.journalsC ="";
-        	scope.depositC = "active";
-        	scope.financialDeposits = paginatorService.paginate(scope.getDeposits, 14);
-        	
-        };
-        
         scope.eventsaleTab = function(){
         	scope.eventsaleC = "active";
         	scope.mydeviceC = "";
@@ -1357,6 +1332,17 @@
             resourceFactory.oneTimeSaleResource.getOneTimeSale({clientId: routeParams.id}, function(data) {
             	scope.onetimesales = data.oneTimeSaleData;
                 scope.eventOrders = data.eventOrdersData;
+                scope.onetimedatas = [];
+          		angular.forEach(scope.onetimesales,function(value,key){
+          			scope.onetimedatas.push({id:value.id , saleType:value.saleType , saleDate:value.saleDate,itemCode:value.itemCode, 
+          				chargeCode:value.chargeCode, quantity:value.quantity, units:value.units, totalPrice:value.totalPrice, 
+          				warrantyDate:value.warrantyDate, hardwareAllocated:value.hardwareAllocated, propertyCode:value.propertyCode, serialNo:value.serialNo});
+          		
+          		});
+          		
+          		scope.onetimedatas = _.uniq(scope.onetimedatas,function(item){
+          			return item.id;
+          		});
             });
         };
                 
@@ -1562,18 +1548,12 @@
   	  scope.getjournals = function(offset, limit, callback,adjustment) {
 	  		resourceFactory.Filetrans.get({clientId: routeParams.id, offset: offset, limit: limit, type:scope.journal}, callback);
 	  	};
-	  	
-	  	scope.getDeposits = function(offset, limit, callback,adjustment) {
-	  		resourceFactory.Filetrans.get({clientId: routeParams.id, offset: offset, limit: limit, type:scope.depositAndRefund}, callback);
-	  	};
-	  	
         scope.getAllFineTransactions = function () {
         	scope.financialsummaryC = "active";
        	   	scope.invoicesC = "";
        	   	scope.paymentsC = "";
        	   	scope.adjustmentsC = "";
        	   	scope.journalsC = "";
-       	   	scope.depositC = "";
           	scope.financialtransactions = paginatorService.paginate(scope.getFinancialTransactionsFetchFunction, 14);
         };
           
@@ -1787,8 +1767,6 @@
 	  			
 	  			 scope.deleteaddress = function (id){
 			    	 scope.id=id;
-			    	 scope.errorDetails = [];
-			    	 scope.errorStatus = [];
 			    	 $modal.open({
 			    		 templateUrl: 'deletePopup.html',
 			  	         controller: approve3,
@@ -1801,8 +1779,6 @@
 			    		 resourceFactory.addressResource.remove({clientId:scope.id} , {} , function(data) {
 			    			 $modalInstance.dismiss('delete');
 			    			  route.reload();
-			             },function(errorData){
-			            	 $scope.orderError = errorData.data.errors[0].userMessageGlobalisationCode;
 			             });
 			      	 };
 			         $scope.cancel = function () {
@@ -1915,51 +1891,6 @@
 		            };
 		        }
 		      	
-		     	 scope.refundAmount = function(id,amount){
-			         	scope.errorDetails = [];
-			         	scope.errorStatus = [];
-			         	$modal.open({
-			                 templateUrl: 'refundamount.html',
-			                 controller: RefundAmountController,
-			                 resolve:{
-			                 	 	getPaymentId:function(){
-			                 	 		return id;
-			                 	 	},
-			                 	 	getAmount:function(){
-			                 	 		return amount;
-			                 	 	}
-			                 }
-			             });
-			         };
-			         
-			         var RefundAmountController = function($scope, $modalInstance, getPaymentId,getAmount){
-			        	$scope.formData = {};
-			        	resourceFactory.refundAmountResource.get({depositAmount:getAmount,depositId:scope.clientId} , function(data){
-			        		$scope.formData.refundAmount = data.availAmount;
-			        		$scope.refundModeData=data.data;
-			            },function(errorData){
-	  	                	$scope.stmError = errorData.data.errors[0].userMessageGlobalisationCode;
-	  	                	
-	  	                });
-			        	
-			        	$scope.formData.locale = "en";
-			 			$scope.accept = function(){
-			 				var depositId = getPaymentId;
-			 				resourceFactory.refundAmountResource.save({'depositId':depositId}, $scope.formData, function(data){
-			 					$modalInstance.close('delete');
-			 				    getDetails();
-			 				    scope.getAllFineTransactions();
-			 				},function(errorData){
-		  	                	$scope.stmError = errorData.data.errors[0].userMessageGlobalisationCode;
-		  	                	
-		  	                });         
-			 			};
-			 			
-			 			$scope.reject = function(){
-			 				$modalInstance.dismiss('cancel');
-			 			};
-			 		};
-		      	
 	  			//export financial csv 
 	  			scope.exportFinancialCSV = function(){
             	
@@ -2052,30 +1983,6 @@
 	  	        	};
 	  	        };
 	  	        
-	  	        
-	  	       function depositPopController($scope, $modalInstance){
-		        	$scope.formData = {};
-		        	resourceFactory.depositAmountResource.query({client:scope.clientId} , function(data){
-		        		$scope.depositAmount =data[0].defaultFeeAmount;
-		        		$scope.formData.feeId = data[0].id;
-		            },function(errorData){
- 	                	$scope.stmError = errorData.data.errors[0].userMessageGlobalisationCode;
- 	                	
- 	                });
-		        	
-		        	$scope.formData.clientId =scope.clientId;
-		 			$scope.accept = function(){
-		 				resourceFactory.depositAmountResource.save($scope.formData, function(data){
-		 					$modalInstance.close('delete');
-		 				},function(errorData){
-	  	                	$scope.stmError = errorData.data.errors[0].userMessageGlobalisationCode;
-	  	                	
-	  	                });         
-		 			};
-		 			$scope.reject = function(){
-		 				$modalInstance.dismiss('cancel');
-		 			};
-		 		};
 	  	      
     	}
   });

@@ -563,35 +563,122 @@
 							</div>
 			    			<div>
 								<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter By Name/Serial Number">
-								<table class="table">
+								<!-- <table class="fullwidth">
+										<thead >
+											<tr >
+												<td></td><td><strong>{{'table.heading.saletype' | translate}}</strong></td>
+												<td><td><strong>{{'table.heading.saledate' | translate}}</strong></td>
+												<td><strong>{{'table.heading.itemcode' | translate}}</strong></td>
+												<th>{{'table.heading.serialNo' | translate}}</th>
+												<td><strong>{{'table.heading.chargecode' | translate}}</strong></td>
+												<td><strong>{{'table.heading.quantity' | translate}}</strong></td>
+												<td><strong>{{'table.heading.totalprice' | translate}}</strong></td>
+												<td><strong>{{'table.heading.warrantyDate' | translate}}</strong></td>
+												<th>{{'table.heading.allocate' | translate}}</th>
+												<td ng-show="propertyMaster">{{'table.heading.propertycode' | translate}}</td>
+												<td colspan="2"><strong>{{'table.heading.actions' | translate}}</strong></td>
+												
+											</tr> 	
+										</thead>
+										
+											<tbody>
+											<tr>
+											<td  colspan="11" style="padding-left:0px, 0px;">
+										    	<accordion close-others="true">
+									            	<accordion-group  is-open = "$first" ng-repeat="onetimedata in onetimedatas | filter:filterText" >
+											             		<accordion-heading>
+											             			<table  class="fullwidth">
+											             			<thead>
+											             				<th><strong>{{'table.heading.saletype' | translate}}</strong></th>
+																		<th><strong>{{'table.heading.saledate' | translate}}</strong></th>
+																		<th><strong>{{'table.heading.itemcode' | translate}}</strong></th>
+																		<th><strong>{{'table.heading.chargecode' | translate}}</strong></th>
+																		<th><strong>{{'table.heading.quantity' | translate}}</strong></th>
+																		<th><strong>{{'table.heading.totalprice' | translate}}</strong></th>
+																		<th><strong>{{'table.heading.warrantyDate' | translate}}</strong></th>
+																		<td colspan="2"><strong>{{'table.heading.actions' | translate}}</strong></td>
+																	   </thead>
+															      	 	<tr>
+															   
+															      		<td align="center" class="pointer" >{{onetimedata.saleType}}</td>
+																		<td align="center"  class="pointer" >{{onetimedata.saleDate | DateFormat}}</td>
+																		<td align="center"  class="pointer" >{{onetimedata.itemCode}}</td>
+																		<td class="pointer" >{{onetimedata.serialNo}}</td>
+																		<td align="center"  class="pointer" >{{onetimedata.chargeCode}}</td> 
+																		<td align="center"  class="pointer">{{onetimedata.quantity}}/{{onetimedata.units}}</td> 
+																		<td align="center"  class="pointer" >{{onetimedata.totalPrice}}</td> 
+																		<td align="center"  class="pointer" >{{onetimedata.warrantyDate| DateFormat}}</td>
+																		<td align="center"  align="center" ><i class="pull-right" ng-class="{'icon-chevron-up': !$first, 'icon-chevron-down': $first }"></i> </td>
+															      		</tr>
+															 	</table>
+											              	</accordion-heading>
+											               	<table  class="fullwidth">
+											               	<thead>
+											               	<th>{{'table.heading.serialNo' | translate}} &nbsp;</th> 
+											               	<th>{{'table.heading.allocate' | translate}} &nbsp;</th>
+											               	<th ng-show="propertyMaster">{{'table.heading.propertycode' | translate}}</th>
+											               	<th align="left" colspan="2">{{'table.heading.actions' | translate}} &nbsp;</th>
+											               	</thead>
+											               	<tbody>
+																<tr data-ng-repeat="onetimesale in onetimesales" ng-if="onetimedata.id == onetimesale.id">
+															     	<td align="center" >{{onetimesale.serialNo}}</td >
+																	<td align="center"  ng-show="onetimesale.units=='PIECES'">{{onetimesale.hardwareAllocated}}</td>
+																	<td align="center"  ng-show="propertyMaster">{{onetimesale.propertyCode}}</td>
+																	<td align="left">
+													    			<a href="#/allocatehardwareonetimesale/{{onetimesale.itemCode}}/{{onetimesale.quantity}}/{{client.id}}/{{onetimesale.id}}" popover="Assign Device" popover-trigger="mouseenter"
+													    			data-ng-show="(onetimesale.hardwareAllocated == 'UNALLOCATED')&&(PermissionService.showMenu('READ_ALLOCATION') && PermissionService.showMenu('CREATE_ALLOCATION')) && (onetimesale.units=='PIECES')" >
+													    			<i class="icon-move"></i></a>
+													    			</td>
+													    			<td>
+							    										<a href="" data-ng-click="deletePopUp(onetimesale.id,onetimesale.serialNo,'','Unallocate Device')"  popover="UnAssign Device" popover-trigger="mouseenter"
+							    										data-ng-show="(onetimesale.hardwareAllocated == 'ALLOCATED')&&(PermissionService.showMenu('DEALLOCATE_INVENTORY')) " ><i class="icon-remove"></i></a>
+														    			<a href="" data-ng-click="deletePopUp(onetimesale.id,'',$index,'Cancel Sale')" popover="Cancel Sale" popover-trigger="mouseenter"
+														    			data-ng-show="(onetimesale.hardwareAllocated == 'UNALLOCATED')&&(PermissionService.showMenu('DELETE_ONETIMESALE')) && (onetimesale.units=='PIECES')" 
+														    			 ><i class="icon-remove"></i></a>
+														    			 <a href="" ng-show="propertyMaster && !onetimesale.propertyCode && onetimesale.serialNo" data-ng-click="allocateProperty(onetimesale.serialNo)" popover="Allocate Property" popover-trigger="mouseenter"
+														    			    data-ng-show="(onetimesale.hardwareAllocated == 'ALLOCATED')&&(PermissionService.showMenu('DELETE_ONETIMESALE')) && (onetimesale.units=='PIECES')" 
+														    			 ><i class="icon-lock"></i></a>
+														    			 </td> 
+															      </tr>
+															     </tbody>
+															   </table>								                   
+											    	</accordion-group>
+												</accordion>
+											</td>  
+											</tr>
+										</tbody>
+								</table> -->
+								 <table class="table">
 									<thead>
 										<tr class="graybg">
-											<th>{{'table.heading.saletype' | translate}}</th>
-											<th>{{'table.heading.saledate' | translate}}</th>
-											<th>{{'table.heading.itemcode' | translate}}</th>
-											<th>{{'table.heading.serialNo' | translate}}</th>
-											<th>{{'table.heading.chargecode' | translate}}</th>
-											<th>{{'table.heading.quantity' | translate}}</th>
-											<th>{{'table.heading.totalprice' | translate}}</th>
-											<th>{{'table.heading.warrantyDate' | translate}}</th>
-											<th>{{'table.heading.allocate' | translate}}</th>
-											<th ng-show="propertyMaster">{{'table.heading.propertycode' | translate}}</th>
-											<th colspan="2">{{'table.heading.actions' | translate}}</th>
+											<td align="center">{{'table.heading.saleid' | translate}}</td>	
+											<td align="center">{{'table.heading.saletype' | translate}}</td>
+											<td align="center">{{'table.heading.saledate' | translate}}</td>
+											<td align="center">{{'table.heading.itemcode' | translate}}</td>
+											<td align="center">{{'table.heading.serialNo' | translate}}</td>
+											<td align="center">{{'table.heading.chargecode' | translate}}</td>
+											<td align="center">{{'table.heading.totalprice' | translate}}</td>
+											<td align="center">{{'table.heading.warrantyDate' | translate}}</td>
+											<td align="center">{{'table.heading.allocate' | translate}}</td>
+											<!-- <th align="center" ng-show="propertyMaster">{{'table.heading.propertycode' | translate}}</th> -->
+											<td ng-show="propertyMaster">{{'table.heading.propertycode' | translate}}</td>
+											<td align="center" colspan="2">{{'table.heading.actions' | translate}}</td>
 											
 										</tr>
 									</thead>
 									<tbody>
 										<tr class="pointer-main" data-ng-repeat="onetimesale in onetimesales  | filter:filterText">
-											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.saleType}}</td>
-											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.saleDate | DateFormat}}</td>
-											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.itemCode}}</td>
-											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.serialNo}}</td>
-											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.chargeCode}}</td>
-											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.quantity}}/{{onetimesale.units}}</td> 
-											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.totalPrice}}</td> 
-											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.warrantyDate| DateFormat}}</td>
-											<td class="pointer" ng-show="onetimesale.units=='PIECES'" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.hardwareAllocated}}</td>
-											<td class="pointer" ng-show="propertyMaster">{{onetimesale.propertyCode}}</td>
+											<td>{{onetimesale.id}}</td>
+											<td>{{onetimesale.saleType}}</td>
+											<td>{{onetimesale.saleDate | DateFormat}}</td>
+											<td>{{onetimesale.itemCode}}</td>
+											<td>{{onetimesale.serialNo}}</td>
+											<td>{{onetimesale.chargeCode}}</td>
+											<!-- <td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.quantity}}/{{onetimesale.units}}</td> 
+											 --><td class="pointer" >{{onetimesale.totalPrice}}</td> 
+											<td>{{onetimesale.warrantyDate| DateFormat}}</td>
+											<td ng-show="onetimesale.units=='PIECES'" >{{onetimesale.hardwareAllocated}}</td>
+											<td ng-show="propertyMaster">{{onetimesale.propertyCode}}</td>
 							    			<td>
 							    			<a href="#/allocatehardwareonetimesale/{{onetimesale.itemCode}}/{{onetimesale.quantity}}/{{client.id}}/{{onetimesale.id}}" popover="Assign Device" popover-trigger="mouseenter"
 							    			data-ng-show="(onetimesale.hardwareAllocated == 'UNALLOCATED')&&(PermissionService.showMenu('READ_ALLOCATION') && PermissionService.showMenu('CREATE_ALLOCATION')) && (onetimesale.units=='PIECES')" >
@@ -603,7 +690,7 @@
 							    			<a href="" data-ng-click="deletePopUp(onetimesale.id,'',$index,'Cancel Sale')" popover="Cancel Sale" popover-trigger="mouseenter"
 							    			data-ng-show="(onetimesale.hardwareAllocated == 'UNALLOCATED')&&(PermissionService.showMenu('DELETE_ONETIMESALE')) && (onetimesale.units=='PIECES')" 
 							    			 ><i class="icon-remove"></i></a>
-							    			 <a href="" ng-show="propertyMaster && !onetimesale.propertyCode && onetimesale.serialNo" data-ng-click="allocateProperty(onetimesale.serialNo)" popover="Allocate Property" popover-trigger="mouseenter"
+							    			 <a href="" data-ng-show="propertyMaster && !onetimesale.propertyCode && onetimesale.serialNo" data-ng-click="allocateProperty(onetimesale.serialNo)" popover="Allocate Property" popover-trigger="mouseenter"
 							    			    data-ng-show="(onetimesale.hardwareAllocated == 'ALLOCATED')&&(PermissionService.showMenu('DELETE_ONETIMESALE')) && (onetimesale.units=='PIECES')" 
 							    			 ><i class="icon-lock"></i></a>
 							    			 </td> 
