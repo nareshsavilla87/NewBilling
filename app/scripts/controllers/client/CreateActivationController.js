@@ -62,6 +62,7 @@
           
           scope.property = {}; 
           scope.getExistsProperty = function(query){
+        	  scope.invalidBuildingCode = true;
 	           	return http.get($rootScope.hostUrl+API_VERSION+'/property/propertycode/', {
 	           	      params: {
 	           	    	  		query: query
@@ -76,6 +77,7 @@
 	            if(!angular.isUndefined(existsProperty)){
 	                 for(var j in scope.propertyCodesData)  {
 	            			 if(existsProperty == scope.propertyCodesData[j].propertyCode){
+	            				 scope.invalidBuildingCode = false;
 	            				 scope.formData1.addressNo = scope.propertyCodesData[j].propertyCode;
 	            				 if(scope.propertyCodesData[j].street.length > 0){
 	            					
