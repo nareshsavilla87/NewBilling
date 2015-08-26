@@ -648,7 +648,52 @@
 											</tr>
 										</tbody>
 								</table> -->
-								 <table class="table">
+								 <!-- <table class="table">
+									<thead>
+										<tr class="graybg">
+											<td align="center">{{'table.heading.saleid' | translate}}</td>	
+											<td align="center">{{'table.heading.saletype' | translate}}</td>
+											<td align="center">{{'table.heading.saledate' | translate}}</td>
+											<td align="center">{{'table.heading.itemcode' | translate}}</td>
+											<td align="center">{{'table.heading.serialNo' | translate}}</td>
+											<td align="center">{{'table.heading.chargecode' | translate}}</td>
+											<td align="center">{{'table.heading.totalprice' | translate}}</td>
+											<td align="center">{{'table.heading.warrantyDate' | translate}}</td>
+											<td align="center">{{'table.heading.allocate' | translate}}</td>
+											<th align="center" ng-show="propertyMaster">{{'table.heading.propertycode' | translate}}</th>
+											<td ng-show="propertyMaster">{{'table.heading.propertycode' | translate}}</td>
+											<td align="center" colspan="2">{{'table.heading.actions' | translate}}</td>
+											
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="pointer-main" data-ng-repeat="onetimesale in onetimesales  | filter:filterText">
+											<td>{{onetimesale.id}}</td>
+											<td>{{onetimesale.saleType}}</td>
+											<td>{{onetimesale.saleDate | DateFormat}}</td>
+											<td>{{onetimesale.itemCode}}</td>
+											<td>{{onetimesale.serialNo}}</td>
+											<td>{{onetimesale.chargeCode}}</td>
+											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.quantity}}/{{onetimesale.units}}</td> 
+											<td class="pointer" >{{onetimesale.totalPrice}}</td> 
+											<td>{{onetimesale.warrantyDate| DateFormat}}</td>
+											<td ng-show="onetimesale.units=='PIECES'" >{{onetimesale.hardwareAllocated}}</td>
+											<td ng-show="propertyMaster">{{onetimesale.propertyCode}}</td>
+							    			<td>
+							    			<a href="#/allocatehardwareonetimesale/{{onetimesale.itemCode}}/{{onetimesale.quantity}}/{{client.id}}/{{onetimesale.id}}" popover="Assign Device" popover-trigger="mouseenter"
+							    			data-ng-show="(onetimesale.hardwareAllocated == 'UNALLOCATED')&&(PermissionService.showMenu('READ_ALLOCATION') && PermissionService.showMenu('CREATE_ALLOCATION')) && (onetimesale.units=='PIECES')" >
+							    			<i class="icon-move"></i></a>
+							    			</td>
+							    			<td>
+							    			<a href="" data-ng-click="deletePopUp(onetimesale.id,onetimesale.serialNo,'','Unallocate Device')"  popover="UnAssign Device" popover-trigger="mouseenter"
+							    			data-ng-show="(onetimesale.hardwareAllocated == 'ALLOCATED')&&(PermissionService.showMenu('DEALLOCATE_INVENTORY')) " ><i class="icon-remove"></i></a>
+							    			<a href="" data-ng-click="deletePopUp(onetimesale.id,'',$index,'Cancel Sale')" popover="Cancel Sale" popover-trigger="mouseenter"
+							    			data-ng-show="(onetimesale.hardwareAllocated == 'UNALLOCATED')&&(PermissionService.showMenu('DELETE_ONETIMESALE')) && (onetimesale.units=='PIECES')" 
+							    			 ><i class="icon-remove"></i></a>
+							    			 <a href="" data-ng-show="propertyMaster && !onetimesale.propertyCode && onetimesale.serialNo" data-ng-click="allocateProperty(onetimesale.serialNo)" popover="Allocate Property" popover-trigger="mouseenter"
+							    			    data-ng-show="(onetimesale.hardwareAllocated == 'ALLOCATED')&&(PermissionService.showMenu('DELETE_ONETIMESALE')) && (onetimesale.units=='PIECES')" 
+							    			 ><i class="icon-lock"></i></a> -->
+							    			  <table class="table">
 									<thead>
 										<tr class="graybg">
 											<td align="center">{{'table.heading.saleid' | translate}}</td>	
@@ -1714,7 +1759,7 @@
 
 	<script type="text/ng-template" id="deletePopup.html">
     	<div class="modal-header silver">
-        	<h3 class="bolder">Vacate Property</h3>
+        	<h3 class="bolder">UnAssign Device</h3>
         </div>
         <div class="control-group">
 	            <label class="control-label" style="color:red;" ng-show="orderError.length>0">{{orderError | translate}}</label>

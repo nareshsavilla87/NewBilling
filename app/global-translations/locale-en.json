@@ -740,7 +740,8 @@
   "validation.msg.subscriptoins.subscriptionPeriod.cannot.be.blank":"Contract Period Cannot be Blank",
   "validation.msg.subscriptoins.units.cannot.be.blank":"UNITS Cannot be Blank",
   "error.msg.contract.code.duplicate.name":"A contract with the same name already exists. Please use a different name",
-   "error.code.definition.length.validation":"Value exceeded. Please enter a valid value",
+  "error.code.definition.length.validation":"Value exceeded. Please enter a valid value",
+  "error.msg.contract.type.with.given.units.already exists":"Contract type with given unit value already exists",
   
   "#Plan":"......",
   "link.create.new.plan":"Add Plan",
@@ -1029,9 +1030,11 @@
   "label.commandcenter":"Command Center",
   "label.scheduleorders":"Schedule Orders",
   "label.order.autorenew":"Is Auto Renew",
+  "error.msg.please.pair.hardware.with.plan":"Please pair hardware with plan",
   "error.msg.hardware.device.with.pairing.is.not.available":"Hardware Device with '{{params[0].value}}' pairing is not available",
   "error.msg.all.hardware.device.for.is.not.available.for.pairing":"All types of hardware devices for '{{params[0].value}}' is not available for pairing",
-  "error.msg.please.pair.hardware.with.plan":"Please pair hardware with plan",
+  "error.msg.serialNumber.unpaire.already.discon.orders" : "Disconnection Orders already Associated with the serialNumber `{{params[0].value}}` Please unpaire first",
+  "error.msg.serialNumber.pend.orders.request.alreadysent" :"Please wait until pending state orders to be active",
   
    "#Voucher pins":"...............................",
   "link.create.new.voucherpin":"Create Voucher Pin",
@@ -1253,6 +1256,7 @@
   "table.heading.transactiondate":"Transaction Date",
   "table.heading.transactiontype":"Transaction Type",
   "table.heading.history":"History",
+  "table.heading.saleid" : "Sale Id",
   "table.heading.saledate":"Sale Date",
   "table.heading.itemcode":"Item Code",
   "table.heading.chargecode":"Charge Code",
@@ -1265,7 +1269,9 @@
   "label.add.client.onetimesale":"Item Sale",
   "label.chargeCode":"Charge Code",
   "label.itemCode":"Item Code",
+  "label.allocateproperty": "Allocate Property",
   "label.totalPrice":"Total Price",
+  "table.heading.allocate":"Status",
   "label.unitPrice":"Unit Price",
   "label.regions":"Regions",
   "validation.msg.payment.paymentCode.cannot.be.blank":"Please Select Payment Type",
@@ -2842,10 +2848,9 @@
 "error.msg.hardware.unallocated":"Please Unallocate hardware",
 "error.msg.unable.to.refund.clientbalance.greater.than.refund.amount":"Unable refund client due balance is greater than refund balance",
 "validation.msg.refund.refundMode.cannot.be.blank":"Please Select Refund Type",
-"validation.msg.refund.refundAmount.cannot.be.blank":"Please add Amount",
+"validation.msg.refund.refundAmount.cannot.be.blank":"Please add Amount"
 
-"error.msg.serialNumber.unpaire.already.discon.orders" : "Disconnection Orders already Associated with the serialNumber `{{params[0].value}}` Please unpaire first",
-"error.msg.serialNumber.pend.orders.request.alreadysent" : "Please wait until pending state orders to be active"
+
 
 
 
