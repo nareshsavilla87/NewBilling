@@ -2211,6 +2211,8 @@
 "label.activation.amount":"Amount",
 "lable.fullname":"Full Name",
 
+"error.msg.propertycode.not.null":"Property Code can not be null",
+
 
 "#IpPooling Details":"....",
 "label.manageippooling":"Ip Pool Management",
