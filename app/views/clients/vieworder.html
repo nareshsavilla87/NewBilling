@@ -1,3 +1,4 @@
+
 <div data-ng-controller="OrderController">
   <div>
      <ul class="breadcrumb">
@@ -98,6 +99,7 @@
 	    </div>  
 	</span>
 	   <span data-ng-show="buttons.options" class="btn-group">
+
               <a class="btn btn-primary dropdown-toggle">
                 {{ 'label.button.more' | translate}}
                 <span class="caret"></span>
@@ -670,6 +672,7 @@
 		        		 </table>
                     </div>
                     <div class="modal-footer">
+
                         <button id="cancel" class="btn btn-primary" data-ng-click="cancel()">{{'button.done' | translate}}</button>
                     </div>
  </script>
@@ -712,5 +715,4 @@
      	<button id="submit" class="btn btn-primary" data-ng-click="approve()" data-ng-disabled="!formData.provisionNum">{{'label.confirm' | translate}}</button>
   </div>
 </script>
-
 </div>

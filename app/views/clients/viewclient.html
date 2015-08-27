@@ -58,6 +58,7 @@
 			<label data-ng-show="errorStatus">{{errorStatus}}</label>
 			<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
+	    </div>
 	    
 	    <!-- ------------ ********** Tabsets starts here ********** ------------- -->
 	    
@@ -648,52 +649,7 @@
 											</tr>
 										</tbody>
 								</table> -->
-								 <!-- <table class="table">
-									<thead>
-										<tr class="graybg">
-											<td align="center">{{'table.heading.saleid' | translate}}</td>	
-											<td align="center">{{'table.heading.saletype' | translate}}</td>
-											<td align="center">{{'table.heading.saledate' | translate}}</td>
-											<td align="center">{{'table.heading.itemcode' | translate}}</td>
-											<td align="center">{{'table.heading.serialNo' | translate}}</td>
-											<td align="center">{{'table.heading.chargecode' | translate}}</td>
-											<td align="center">{{'table.heading.totalprice' | translate}}</td>
-											<td align="center">{{'table.heading.warrantyDate' | translate}}</td>
-											<td align="center">{{'table.heading.allocate' | translate}}</td>
-											<th align="center" ng-show="propertyMaster">{{'table.heading.propertycode' | translate}}</th>
-											<td ng-show="propertyMaster">{{'table.heading.propertycode' | translate}}</td>
-											<td align="center" colspan="2">{{'table.heading.actions' | translate}}</td>
-											
-										</tr>
-									</thead>
-									<tbody>
-										<tr class="pointer-main" data-ng-repeat="onetimesale in onetimesales  | filter:filterText">
-											<td>{{onetimesale.id}}</td>
-											<td>{{onetimesale.saleType}}</td>
-											<td>{{onetimesale.saleDate | DateFormat}}</td>
-											<td>{{onetimesale.itemCode}}</td>
-											<td>{{onetimesale.serialNo}}</td>
-											<td>{{onetimesale.chargeCode}}</td>
-											<td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.quantity}}/{{onetimesale.units}}</td> 
-											<td class="pointer" >{{onetimesale.totalPrice}}</td> 
-											<td>{{onetimesale.warrantyDate| DateFormat}}</td>
-											<td ng-show="onetimesale.units=='PIECES'" >{{onetimesale.hardwareAllocated}}</td>
-											<td ng-show="propertyMaster">{{onetimesale.propertyCode}}</td>
-							    			<td>
-							    			<a href="#/allocatehardwareonetimesale/{{onetimesale.itemCode}}/{{onetimesale.quantity}}/{{client.id}}/{{onetimesale.id}}" popover="Assign Device" popover-trigger="mouseenter"
-							    			data-ng-show="(onetimesale.hardwareAllocated == 'UNALLOCATED')&&(PermissionService.showMenu('READ_ALLOCATION') && PermissionService.showMenu('CREATE_ALLOCATION')) && (onetimesale.units=='PIECES')" >
-							    			<i class="icon-move"></i></a>
-							    			</td>
-							    			<td>
-							    			<a href="" data-ng-click="deletePopUp(onetimesale.id,onetimesale.serialNo,'','Unallocate Device')"  popover="UnAssign Device" popover-trigger="mouseenter"
-							    			data-ng-show="(onetimesale.hardwareAllocated == 'ALLOCATED')&&(PermissionService.showMenu('DEALLOCATE_INVENTORY')) " ><i class="icon-remove"></i></a>
-							    			<a href="" data-ng-click="deletePopUp(onetimesale.id,'',$index,'Cancel Sale')" popover="Cancel Sale" popover-trigger="mouseenter"
-							    			data-ng-show="(onetimesale.hardwareAllocated == 'UNALLOCATED')&&(PermissionService.showMenu('DELETE_ONETIMESALE')) && (onetimesale.units=='PIECES')" 
-							    			 ><i class="icon-remove"></i></a>
-							    			 <a href="" data-ng-show="propertyMaster && !onetimesale.propertyCode && onetimesale.serialNo" data-ng-click="allocateProperty(onetimesale.serialNo)" popover="Allocate Property" popover-trigger="mouseenter"
-							    			    data-ng-show="(onetimesale.hardwareAllocated == 'ALLOCATED')&&(PermissionService.showMenu('DELETE_ONETIMESALE')) && (onetimesale.units=='PIECES')" 
-							    			 ><i class="icon-lock"></i></a> -->
-							    			  <table class="table">
+							     <table class="table">
 									<thead>
 										<tr class="graybg">
 											<td align="center">{{'table.heading.saleid' | translate}}</td>	
@@ -706,7 +662,7 @@
 											<td align="center">{{'table.heading.warrantyDate' | translate}}</td>
 											<td align="center">{{'table.heading.allocate' | translate}}</td>
 											<!-- <th align="center" ng-show="propertyMaster">{{'table.heading.propertycode' | translate}}</th> -->
-											<td ng-show="propertyMaster">{{'table.heading.propertycode' | translate}}</td>
+											<td data-ng-show="propertyMaster">{{'table.heading.propertycode' | translate}}</td>
 											<td align="center" colspan="2">{{'table.heading.actions' | translate}}</td>
 											
 										</tr>
@@ -819,7 +775,9 @@
 				</div> 
  			</tab>   
  			
-      		<!-- <tab heading="{{clientdatatable.registeredTableName}}" ng-repeat="clientdatatable in clientdatatables" select="dataTableChange(clientdatatable)">
+ 			<!-- ********** Datatables  Tab here ************************* -->
+ 			
+         <tab heading="{{clientdatatable.registeredTableName}}" ng-repeat="clientdatatable in clientdatatables" select="dataTableChange(clientdatatable)">
         		<div>
          			<div data-ng-hide="isClosedClient" class="btn-group pull-right">
           				<a data-ng-show="datatabledetails.isData" class="btn btn-primary pull-right" 
@@ -845,11 +803,11 @@
                 				<tr class="pointer-main" data-ng-repeat="data in datatabledetails.data">
                 					<td class="pointer" data-ng-repeat="row in data.row track by $index"
 		                            data-ng-click="viewDataTable(clientdatatable.registeredTableName,data)">{{row}}</td>
-                  					  <span ng-show="$index == 0">
+                  					<span data-ng-show="$index == 0">
                       				<a class="pointer" data-ng-click="routeTotable(clientdatatable.registeredTableName,client.id,data.row[0])"  ng-show="datatabledetails.isMultirow">{{row}}</a>
                       				<a  class="pointer" data-ng-click="routeTotable(clientdatatable.registeredTableName,client.id)" ng-hide="datatabledetails.isMultirow">{{row}}</a>
                     				</span> 
-                    				<span ng-hide="$index == 0">{{row}}</span>
+                    				<span data-ng-hide="$index == 0">{{row}}</span>
                 				</tr>
               				</tbody>
           				</table>
@@ -861,7 +819,7 @@
 		            	</table>
 		            </div>
         		</div>
-      		</tab> -->
+      		</tab> 
       		
       		<!-- ********** Event Sale Tab here ********** -->
       		
@@ -1253,8 +1211,7 @@
             				</tr>
         				</thead>
         				<tbody>
-
-            				<tr data-ng-repeat="statement in states.currentPageItems  | filter:filterText">                 
+                          	<tr data-ng-repeat="statement in states.currentPageItems  | filter:filterText">                 
                 				<td>{{statement.billDate | DateFormat}}</td>
                 				<td>{{statement.dueDate | DateFormat}}</td>
                 				<td>{{statement.amount}}</td>
@@ -1561,14 +1518,9 @@
        		 </div>
       		</tab> -->
       	<!-- ************************ end of InVenture code ************************ -->
-    	</tabset>
-    </div>
     
     
-    
-    <!--
-    	 popup screens code starts here
-   	-->
+    <!-- ************************ popup screens code starts here  ************************	-->
     
     <script type="text/ng-template" id="approve1.html">
     	<div class="modal-header silver">
@@ -1848,6 +1800,8 @@
 			<button id="submit" class="btn btn-primary" ng-click="removeIp()">Remove IP</button>
         </div>
 	</script>
+	
+	
 	<script type="text/ng-template" id="refundamount.html">
     	<div class="modal-header silver">
         	<h3 class="bolder">Refund</h3>
@@ -1881,8 +1835,6 @@
 	</td>
 </tr>
 </table>
-     
-			
         </div>
         <div class="modal-footer">
         	<button id="cancel" class="btn btn-warning" ng-click="reject()">{{'button.cancel' | translate}}</button>
@@ -1912,6 +1864,7 @@
             <button id="submit" class="btn btn-primary" ng-click="accept()">{{'label.confirm' | translate}}</button>
         </div>
 	</script>
+	
 	<script type="text/ng-template" id="ApproveConfirm.html">
    	<div class="modal-header silver">
   			<h3 class="bolder">{{'dialog.confirm.title.message' | translate}}</h3>
@@ -1929,6 +1882,7 @@
             <button id="submit" class="btn btn-primary" ng-click="approveTerminate()" ng-disabled="flagApproveTerminate">{{'label.confirm' | translate}}</button>
    </div>
 </script>
+
 <script type="text/ng-template" id="sentMessage.html">
                     <div class="modal-header silver">
                         <h3 class="bolder">Sent Message Details</h3>
@@ -1952,6 +1906,7 @@
                         <button id="cancel" class="btn btn-primary" ng-click="cancel()">{{'button.done' | translate}}</button>
                     </div>
  </script>
+
  <script type="text/ng-template" id="deviceswappopup.html">
     <div class="modal-header silver">
         <h3 class="bolder">{{'label.assignserialnumber' | translate}}</h3>
@@ -1987,6 +1942,5 @@
         <button class="btn">{{'button.processing' | translate}}</button>
     </div>
  </script>
-   		
 </div>
 

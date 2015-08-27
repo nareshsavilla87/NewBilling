@@ -31,11 +31,10 @@ EvoIntegrationController = function(scope, RequestSender,location, localStorageS
     	  
     	  scope.evoPG = {reviewCart:true,billingInfo:true,paymentMethod:true,isFirstDisabled:true};
     	  
-   RequestSender.evoPaymentResource.save({"amount" : scope.price},function(data){
+   RequestSender.evoPaymentResource.save({"amount" : scope.price,"clientId":clientId,"merchantId":scope.merchantId,"currencyType":scope.currencyType},function(data){
 	   scope.evoPrice = data.map.amount;
-    		
-	     var MAC = data.map.macValue; 
-    	  
+	   var MAC = data.map.macValue;
+
     	 var evoData = {screenName:scope.screenName,planId:evoStorageData.planId,priceId:evoStorageData.priceId,price:evoStorageData.price,
 						clientId:clientData.id,email:scope.email};
     	 var encryptedData = CryptoJS.AES.encrypt(encodeURIComponent(angular.toJson(evoData)),selfcareModels.encriptionKey).toString();

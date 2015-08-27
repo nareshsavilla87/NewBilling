@@ -1,11 +1,11 @@
   
- <div  ng-controller="CreateOrderController" >
+ <div  data-ng-controller="CreateOrderController" >
   <div>
   <ul class="breadcrumb">
         	<li><table>
         <tr>
         <td>
-         <img data-ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+         <img data-data-ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
           <img data-ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
         </td>
         <td>
@@ -57,10 +57,10 @@
 		</ul>
 	</div>
 <form class="form-horizontal well" >
- <div class="error" ng-show="errorStatus || errorDetails">
+ <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate : error.args}}</label>
+		<label data-ng-show="errorStatus">{{errorStatus}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate : error.args}}</label>
 	    </div>
 
         <fieldset>
@@ -73,14 +73,14 @@
             	 <accordion-group is-open="postpaid.open">
              		<accordion-heading>
             	 		<strong>{{'label.postpaidplans' | translate}}</strong> 
-            	 		<i class="pull-right" ng-class="{'icon-chevron-up': postpaid.open, 'icon-chevron-down': !postpaid.open}"></i>
+            	 		<i class="pull-right" data-ng-class="{'icon-chevron-up': postpaid.open, 'icon-chevron-down': !postpaid.open}"></i>
         			</accordion-heading>
         			<div style="max-height:250px; overflow-y:auto">
-        			<table class="table table-striped table-condensed table-hover" ng-style="{ width:400 }">
+        			<table class="table table-striped table-condensed table-hover" data-ng-style="{ width:400 }">
                		 <thead>
                		 	<tr>
                 		   <td  colspan="2" >
-                			  <input ng-model="filterText" type="text" style="width:23em;" placeholder="Filter by Plan">
+                			  <input data-ng-model="filterText" type="text" style="width:23em;" placeholder="Filter by Plan">
                 		   </td>
                 	    	</tr>
                     	<tr>
@@ -89,15 +89,15 @@
                  	   </tr>
                 	</thead>
                 	 <tbody>
-                	   <tr ng-repeat="postpaidPlanData in postpaidPlanDatas  | filter:filterText" ng-show="postpaidPlanData.isPrepaid == 'N'">
+                	   <tr data-ng-repeat="postpaidPlanData in postpaidPlanDatas  | filter:filterText" data-ng-show="postpaidPlanData.isPrepaid == 'N'">
                 	   		<td>
-                	   			<input type="radio" id="{{postpaidPlanData.id}}" name="planCode" value="postpaidPlanData.id" ng-click='setBillingFrequency(postpaidPlanData.id)'/>
+                	   			<input type="radio" id="{{postpaidPlanData.id}}" name="planCode" value="postpaidPlanData.id" data-ng-click='setBillingFrequency(postpaidPlanData.id)'/>
                 	   		</td>
-                	   		 <td ng-show="postpaidPlanData.isPrepaid == 'N'">
+                	   		 <td data-ng-show="postpaidPlanData.isPrepaid == 'N'">
                               <label for="{{postpaidPlanData.id}}" >{{postpaidPlanData.planCode}}-
-                     		     <any ng-repeat="services in postpaidPlanData.availableServices">
+                     		     <any data-ng-repeat="services in postpaidPlanData.availableServices">
                        			    {{services.serviceDescription}} 
-                         	  	   <any ng-hide="$last">,</any>
+                         	  	   <any data-ng-hide="$last">,</any>
                         	     </any>
                               </label>
                            </td>
@@ -110,14 +110,14 @@
     			  <accordion-group is-open="prepaid.open">
              		<accordion-heading>
             	 		<strong>{{'label.prepaidplans' | translate}}</strong>
-            	 		<i class="pull-right" ng-class="{'icon-chevron-up': prepaid.open, 'icon-chevron-down': !prepaid.open}"></i>
+            	 		<i class="pull-right" data-ng-class="{'icon-chevron-up': prepaid.open, 'icon-chevron-down': !prepaid.open}"></i>
         			</accordion-heading>
      					   <div style="max-height:250px; overflow-y:auto">
-        			<table class="table table-striped table-condensed table-hover" ng-style="{ width:400 }">
+        			<table class="table table-striped table-condensed table-hover" data-ng-style="{ width:400 }">
                		 <thead>
                		 	<tr>
                 		   <td colspan="2" >
-                			  <input ng-model="filterText" type="text" style="width:23em;" placeholder="Filter by Plan">
+                			  <input data-ng-model="filterText" type="text" style="width:23em;" placeholder="Filter by Plan">
                 		   </td>
                 	    	</tr>
                     	<tr>
@@ -126,15 +126,15 @@
                  	   </tr>
                 	</thead>
                 	 <tbody>
-                	   <tr ng-repeat="prepaidPlanData in prepaidPlanDatas  | filter:filterText" ng-show="prepaidPlanData.isPrepaid == 'Y'">
+                	   <tr data-ng-repeat="prepaidPlanData in prepaidPlanDatas  | filter:filterText" data-ng-show="prepaidPlanData.isPrepaid == 'Y'">
                 	   		<td>
-                	   			<input type="radio" id="{{prepaidPlanData.id}}" name="planCode" value="prepaidPlanData.id" ng-click='setBillingFrequency(prepaidPlanData.id)'/>
+                	   			<input type="radio" id="{{prepaidPlanData.id}}" name="planCode" value="prepaidPlanData.id" data-ng-click='setBillingFrequency(prepaidPlanData.id)'/>
                 	   		</td>
-                	   		 <td ng-show="prepaidPlanData.isPrepaid == 'Y'">
+                	   		 <td data-ng-show="prepaidPlanData.isPrepaid == 'Y'">
                               <label for="{{prepaidPlanData.id}}" >{{prepaidPlanData.planCode}}-
-                     		     <any ng-repeat="services in prepaidPlanData.availableServices">
+                     		     <any data-ng-repeat="services in prepaidPlanData.availableServices">
                        			    {{services.serviceDescription}} 
-                         	  	   <any ng-show="services">,</any>
+                         	  	   <any data-ng-show="services">,</any>
                         	     </any>
                               </label>
                            </td>
@@ -149,39 +149,39 @@
                       <div class="control-group">
                           <label class="control-label" for="startDate">{{ 'label.order.startdate' | translate }}</label>
                             <div class="controls">
-                          <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.date" is-open="opened" min="minDate" max="maxDate" 
+                          <input type="text" datepicker-pop="dd MMMM yyyy" data-ng-model="start.date" is-open="opened" min="minDate" max="maxDate" 
                           date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
                           </div>
                         </div>
                        <div class="control-group">
                          <label class="control-label" for="contractPeriod">{{ 'label.order.contractperiod' | translate }}</label>
 
-                           <div class="controls" ng-hide="formData.isPrepaid == 'Y'">
-                              <select    ng-model="formData.contractPeriod"  ng-options="subscriptiondata.id as subscriptiondata.Contractdata for subscriptiondata in subscriptiondatas" value="{{billRuleData.id}}"></select>
+                           <div class="controls" data-ng-hide="formData.isPrepaid == 'Y'">
+                              <select    data-ng-model="formData.contractPeriod"  data-ng-options="subscriptiondata.id as subscriptiondata.Contractdata for subscriptiondata in subscriptiondatas" value="{{billRuleData.id}}"></select>
                            </div>
-                           <div class="controls" ng-show="formData.isPrepaid == 'Y'">
-                              <select    ng-model="formData.contractPeriod"  ng-options="paytermdata.duration as paytermdata.duration for paytermdata in paytermdatas" value="{{billRuleData.id}}"></select>
+                           <div class="controls" data-ng-show="formData.isPrepaid == 'Y'">
+                              <select    data-ng-model="formData.contractPeriod"  data-ng-options="paytermdata.duration as paytermdata.duration for paytermdata in paytermdatas" value="{{billRuleData.id}}"></select>
                            </div>
                         </div>
-                        <div class="control-group" ng-hide="isPrepaidPlan == 'Y'">
+                        <div class="control-group" data-ng-hide="isPrepaidPlan == 'Y'">
                           <label class="control-label" for="paytermCode">{{ 'label.order.billingfrequency' | translate }}</label>
                              <div class="controls">
-                                <select ng-model="formData.paytermCode"  ng-options="paytermdata.paytermtype as paytermdata.paytermtype for paytermdata in paytermdatas" value="{{billRuleData.id}}"></select>
+                                <select data-ng-model="formData.paytermCode"  data-ng-options="paytermdata.paytermtype as paytermdata.paytermtype for paytermdata in paytermdatas" value="{{billRuleData.id}}"></select>
                             </div>
                           </div>
                          <div class="control-group">
                          <label class="control-label" for="autoRenew" style="padding-top: 0;">{{ 'label.order.autorenew' | translate }}</label>
                             <div class="controls">
-                              <input type="checkbox" id="autoRenewCheckbox" name="autoRenewCheckbox" data-bs-switch data-ng-model="formData.autoRenew" 
+                              <input type="checkbox" id="autoRenewCheckbox" name="autoRenewCheckbox" data-bs-switch data-data-ng-model="formData.autoRenew" 
                                data-readonly="readonly" data-size="mini" data-on-color="success" data-off-color="danger"
                                data-on-text="Yes" data-off-text="N0" >
                            </div>
                          </div> 
-                     <!--    <div class="control-group" ng-hide="formData.isPrepaid == 'Y'">
+                     <!--    <div class="control-group" data-ng-hide="formData.isPrepaid == 'Y'">
                             <label class="control-label" for="billAlign">{{ 'label.order.billalign' | translate }}</label>
                         <div class="controls">
                             <label class="checkbox">
-                              <input type="checkbox" ng-model="formData.billAlign">
+                              <input type="checkbox" data-ng-model="formData.billAlign">
                        </label>
             		</div>
           			</div> -->
@@ -189,8 +189,8 @@
             
                <a href='#/viewclient/{{clientId}}' class="btn">Cancel</a>
           <!--  <button id="submit" type="submit" class="btn btn-primary" ng-dblclick="dbClick()" ng-disabled="flag">Save</button> -->
-               <button id="submit" ng-click="submit()" class="btn btn-primary" ng-show="isnow">Save</button>
-               <button  ng-click="submitschedule()"  class="btn btn-primary" ng-hide="isnow">Save Later</button>
+               <button id="submit" data-ng-click="submit()" class="btn btn-primary" data-ng-show="isnow">Save</button>
+               <button  data-ng-click="submitschedule()"  class="btn btn-primary" data-ng-hide="isnow">Save Later</button>
           </div>
               </td>
             </tr>
@@ -206,31 +206,31 @@
 
 <!-- do not delete this comment code it is important.... -->
 
- <!--  <table class="table table-striped table-condensed table-hover" ng-style="{ width:450 }">
+ <!--  <table class="table table-striped table-condensed table-hover" data-ng-style="{ width:450 }">
                 <thead>
                     <tr>
-                        <th class="id">Select&nbsp;<a ng-click="sort_by('id')"></a></th>
-                        <th class="planCode">Plan(Service)&nbsp;<a ng-click="sort_by('planCode')"><i class="icon-sort"></i></a></th>
+                        <th class="id">Select&nbsp;<a data-ng-click="sort_by('id')"></a></th>
+                        <th class="planCode">Plan(Service)&nbsp;<a data-ng-click="sort_by('planCode')"><i class="icon-sort"></i></a></th>
                          
-                        <th class="field3">Field 3&nbsp;<a ng-click="sort_by('field3')"><i class="icon-sort"></i></a></th>
-                        <th class="field4">Field 4&nbsp;<a ng-click="sort_by('field4')"><i class="icon-sort"></i></a></th>
-                        <th class="field5">Field 5&nbsp;<a ng-click="sort_by('field5')"><i class="icon-sort"></i></a></th> 
+                        <th class="field3">Field 3&nbsp;<a data-ng-click="sort_by('field3')"><i class="icon-sort"></i></a></th>
+                        <th class="field4">Field 4&nbsp;<a data-ng-click="sort_by('field4')"><i class="icon-sort"></i></a></th>
+                        <th class="field5">Field 5&nbsp;<a data-ng-click="sort_by('field5')"><i class="icon-sort"></i></a></th> 
                     </tr>
                 </thead>
                 <tfoot>
                     <td colspan="2">
                         <div class="pagination pull-right">
                             <ul >
-                                <li ng-class="{disabled: currentPage == 0}">
-                                    <a href ng-click="prevPage()" class="icon-chevron-left"></a>
+                                <li data-ng-class="{disabled: currentPage == 0}">
+                                    <a href data-ng-click="prevPage()" class="icon-chevron-left"></a>
                                 </li>
-                                <li ng-repeat="n in range(pagedItems.length)"
-                                    ng-class="{active: n == currentPage}"
-                                ng-click="setPage()">
+                                <li data-ng-repeat="n in range(pagedItems.length)"
+                                    data-ng-class="{active: n == currentPage}"
+                                data-ng-click="setPage()">
                                     <a href ng-bind="n + 1">1</a>
                                 </li>
-                                <li ng-class="{disabled: currentPage == pagedItems.length - 1} ">
-                                    <a href ng-click="nextPage()" class="icon-chevron-right"></a>
+                                <li data-ng-class="{disabled: currentPage == pagedItems.length - 1} ">
+                                    <a href data-ng-click="nextPage()" class="icon-chevron-right"></a>
                                 </li>
                             </ul>
                         </div>
@@ -238,15 +238,15 @@
                 </tfoot>
                 <tbody>
 
-                    <tr ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse"  ng-show="item.isPrepaid == 'N'">
+                    <tr data-ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse"  data-ng-show="item.isPrepaid == 'N'">
                         <td >
-                       <input type="radio" id="{{item.id}}" name="planCode" value="item.id" ng-click='setBillingFrequency(item.id)'>{{plandata.planCode}}
+                       <input type="radio" id="{{item.id}}" name="planCode" value="item.id" data-ng-click='setBillingFrequency(item.id)'>{{plandata.planCode}}
                        </td>
-                        <td ng-show="item.isPrepaid == 'N'"><label for="{{item.id}}" >{{item.planCode}}-
+                        <td data-ng-show="item.isPrepaid == 'N'"><label for="{{item.id}}" >{{item.planCode}}-
 
-                         <any ng-repeat="services in item.availableServices">
+                         <any data-ng-repeat="services in item.availableServices">
                          {{services.serviceDescription}} 
-                         <any ng-show="services">,</any>
+                         <any data-ng-show="services">,</any>
                          </any>
                         </label>
                          <td>
@@ -256,16 +256,16 @@
                 </tbody>
              </table>
                <legend>{{'label.prepaidplans' | translate}}</legend>
-              <table class="table table-striped table-condensed table-hover" ng-style="{ width:450 }">
+              <table class="table table-striped table-condensed table-hover" data-ng-style="{ width:450 }">
                 <thead>
                 	
                     <tr>
-                        <th class="id">Select&nbsp;<a ng-click="sort_by('id')"></a></th>
-                        <th class="planCode1">Plan(Service)&nbsp;<a ng-click="sort_by('planCode1')"></i></a></th>
+                        <th class="id">Select&nbsp;<a data-ng-click="sort_by('id')"></a></th>
+                        <th class="planCode1">Plan(Service)&nbsp;<a data-ng-click="sort_by('planCode1')"></i></a></th>
                          
-                        <th class="field3">Field 3&nbsp;<a ng-click="sort_by('field3')"><i class="icon-sort"></i></a></th>
-                        <th class="field4">Field 4&nbsp;<a ng-click="sort_by('field4')"><i class="icon-sort"></i></a></th>
-                        <th class="field5">Field 5&nbsp;<a ng-click="sort_by('field5')"><i class="icon-sort"></i></a></th> 
+                        <th class="field3">Field 3&nbsp;<a data-ng-click="sort_by('field3')"><i class="icon-sort"></i></a></th>
+                        <th class="field4">Field 4&nbsp;<a data-ng-click="sort_by('field4')"><i class="icon-sort"></i></a></th>
+                        <th class="field5">Field 5&nbsp;<a data-ng-click="sort_by('field5')"><i class="icon-sort"></i></a></th> 
                     </tr>
                     
                 </thead>
@@ -273,30 +273,30 @@
                     <td colspan="2">
                         <div class="pagination pull-right">
                             <ul>
-                                <li ng-class="{disabled: currentPage == 0}">
-                                    <a href ng-click="prevPage()">� Prev</a>
+                                <li data-ng-class="{disabled: currentPage == 0}">
+                                    <a href data-ng-click="prevPage()">� Prev</a>
                                 </li>
-                                <li ng-repeat="n in range(prepaidPlanspagedItems.length)"
-                                    ng-class="{active: n == currentPage}"
-                                ng-click="setPage()">
+                                <li data-ng-repeat="n in range(prepaidPlanspagedItems.length)"
+                                    data-ng-class="{active: n == currentPage}"
+                                data-ng-click="setPage()">
                                     <a href ng-bind="n + 1">1</a>
                                 </li>
-                                <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
-                                    <a href ng-click="nextPage()">Next �</a>
+                                <li data-ng-class="{disabled: currentPage == pagedItems.length - 1}">
+                                    <a href data-ng-click="nextPage()">Next �</a>
                                 </li>
                             </ul>
                         </div>
                     </td>
                 </tfoot>
                 <tbody>
-                    <tr ng-repeat="item in prepaidPlanspagedItems[currentPage] | orderBy:sortingOrder:reverse " ng-show="item.isPrepaid == 'Y'">
+                    <tr data-ng-repeat="item in prepaidPlanspagedItems[currentPage] | orderBy:sortingOrder:reverse " data-ng-show="item.isPrepaid == 'Y'">
 
                         <td >
-                       <input type="radio" id="{{item.id}}" name="planCode" value="item.id" ng-click='setBillingFrequency(item.id)'>{{plandata.planCode}}
+                       <input type="radio" id="{{item.id}}" name="planCode" value="item.id" data-ng-click='setBillingFrequency(item.id)'>{{plandata.planCode}}
                        </td>
-                        <td ng-show="item.isPrepaid == 'Y'"><label for="{{item.id}}" >{{item.planCode}}-
+                        <td data-ng-show="item.isPrepaid == 'Y'"><label for="{{item.id}}" >{{item.planCode}}-
 
-                         <any ng-repeat="services in item.availableServices">
+                         <any data-ng-repeat="services in item.availableServices">
                          {{services.serviceDescription}} 
                          <any>,</any>
                         </any>

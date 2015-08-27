@@ -52,7 +52,6 @@
 				else {
 					scope.formData.isCreateTicket = false;
 				}
-				
 			});						
 
 			scope.cancel = function() {

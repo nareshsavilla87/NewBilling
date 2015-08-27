@@ -133,16 +133,6 @@ angular.module('notificationWidget', [])
   });
 
 
-
-
-
-
-
-
-
-
-
-
 // Declare module which depends on filters, and services
 /*angular.module('notificationWidget', [])
 // Declare an http interceptor that will signal the start and end of each request

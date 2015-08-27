@@ -13,6 +13,7 @@
 			 scope.start = {};
 			 /*scope.start.date = new Date();
 			 scope.minDate= scope.start.date;*/
+
 			 
 			 scope.first = {};
 			 //scope.first.date = new Date();

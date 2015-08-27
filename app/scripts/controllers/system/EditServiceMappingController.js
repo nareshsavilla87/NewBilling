@@ -8,7 +8,7 @@
         
         scope.configIPTV = webStorage.get("client_configuration").IPTV;
         scope.isServiceLevelMap = webStorage.get("service-device-mapping");
-        
+
          resourceFactory.serviceMappingResource.get({serviceMappingId: routeParams.id, template: 'true'} , function(data) {
             scope.serviceCodes = data.serviceCodeData;
             scope.statusDatas=data.statusData;
@@ -33,11 +33,10 @@
                delete this.formData.categories;
                delete this.formData.subCategories;
            	   delete this.formData.provisionSysData;
-           	   delete this.formData.provisionSysData;
+           	   delete this.formData.provisionSysDatas;
                delete this.formData.sortBy;
                delete this.formData.itemsData;
                delete this.formData.itemDescription;
-               
                resourceFactory.serviceMappingResource.update({'serviceMappingId': routeParams.id},scope.formData,function(data){
                location.path('/viewServiceMapping/' + data.resourceId);
           });

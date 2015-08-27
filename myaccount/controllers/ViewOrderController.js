@@ -14,7 +14,6 @@ ViewOrderController = function(scope,RequestSender,routeParams,$modal,dateFilter
 		            }else{
 		            	scope.orderData.isPrepaid="Post Paid";
 		            }
-				  
 				  scope.orderGetDate = data.date;
 			  });
 		  }

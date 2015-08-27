@@ -21,6 +21,7 @@
 	        
 	        resourceFactory.priceResource.query(function(data){
 	        	
+
 	        	if(data.length >=1){
 	        		scope.planDatas = _.filter(data, function(item) {
 	                      return item.isPrepaid != "N";
