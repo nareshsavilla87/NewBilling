@@ -318,7 +318,7 @@
 	  	    			 scope.formData1.city  =   scope.property.precinct; 
 	  	    			 scope.formData1.state =  $scope.formData.state;
 	  	    			 scope.formData1.country = $scope.formData.country;
-	  	    			 if($scope.formData.poBox.length > 0){
+	  	    			 if(angular.isDefined($scope.formData.poBox) && $scope.formData.poBox.length > 0){
         					
 	       					 scope.formData1.zipCode = $scope.formData.poBox;
 	       				 }
