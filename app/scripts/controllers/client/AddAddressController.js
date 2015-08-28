@@ -319,7 +319,7 @@
 						    			 scope.formData.city  =   scope.property.precinct;// $scope.formData.precinct;
 						    			 scope.formData.state =  $scope.formData.state;
 						    			 scope.formData.country = $scope.formData.country;
-						    			 scope.formData.zipCode = $scope.formData.poBox;
+						    			 scope.formData.zip = $scope.formData.poBox;
 						    			 scope.invalidBuildingCode = false;
 						    			 $modalInstance.dismiss('delete');
 						    			 if(!angular.isUndefined(scope.formData.addressNo)){
