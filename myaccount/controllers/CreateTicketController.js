@@ -1,7 +1,5 @@
 	  CreateTicketController = function(scope, RequestSender, location, dateFilter,rootScope,http,API_VERSION,$upload) {
-            
-			
-			
+
 			 scope.start = {};
 			 //scope.minDate= scope.start.date;
 			 
@@ -21,7 +19,7 @@
 			   RequestSender.ticketResourceTemplate.get(function(data){ 
 				   scope.start.date = new Date(data.date);
 				   scope.minDate= scope.start.date;
-				   
+
 				   scope.date = data.ticketDate;
 				   scope.priorityTypes=data.priorityType;
 				   for(var i=0;i<scope.priorityTypes.length;i++){

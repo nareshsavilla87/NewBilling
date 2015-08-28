@@ -13,6 +13,7 @@
     	   scope.itemDatas = [];
     	   scope.purchase = {};
     	   //scope.purchase.date = new Date();
+
     	   scope.formData={};
     	   scope.data={};
     	   scope.chargeDatas ={};

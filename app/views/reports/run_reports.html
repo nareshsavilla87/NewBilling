@@ -44,6 +44,7 @@
               </select>
             </div>
         </div>
+        
         <div class="control-group info" data-ng-show="reportType == 'Pentaho'" >
             <label class="control-label" for="outputType">{{ 'label.report.output.type' | translate }}</label>
             <div class="controls">
@@ -56,18 +57,17 @@
             </div>
         </div>
         <span><a id="run" data-ng-click="runReport()" class="btn btn-primary control"><i class="icon-play icon-white"></i>&nbsp;&nbsp;{{ 'label.button.runreport' | translate }}</a></span> 
+
     </div>
      <div style="visibility: hidden">
         <table>
             <tr>
                 <td width="30%"></td>
                 <td>
-                    <input type="radio" data-ng-model="type" value="pie">{{'label.input.pie' |
-                    translate}}<br/>
+                    <input type="radio" data-ng-model="type" value="pie">{{'label.input.pie' | translate}}<br/>
                 <td>
                 <td>
-                    <input type="radio" data-ng-model="type" value="bar">{{'label.input.bar' |
-                    translate}}<br/>
+                    <input type="radio" data-ng-model="type" value="bar">{{'label.input.bar' | translate}}<br/>
                 </td>
             </tr>
         </table>
@@ -105,7 +105,6 @@
     </div>
     
     <div data-ng-hide="hideTable">
-      
         <div data-scroll>
          <table style="width: 1200px;white-space:nowrap"  class="table table-bordered" data-anchor>
             <thead>

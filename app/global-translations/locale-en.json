@@ -137,8 +137,7 @@
   "label.preferredCommunication":"Preferred Communication",
   "label.eventactions":"Event Actions",
   "error.msg.staff.duplicate.displayName":"An employee with these details already exists",
-  
-
+ 
   "placeholder.searchbar":"Enter text to Search#",
   
   "label.fromdate":"From Date",
@@ -241,10 +240,10 @@
   "button.no":"NO",
   "button.yes":"YES",
   "button.create":"Create",
-   "button.close":"Close",
-   "button.processing":"Processing..",
+  "button.close":"Close",
+  "button.processing":"Processing..",
 
-  "#datatable":"",
+  "#datatable":"..............................................",
   "table.heading.datatablename":"Data Table Name",
   "table.heading.new.name":"New Name",
   "table.heading.new.code":"New Code",
@@ -257,7 +256,7 @@
   "validation.msg.datatable.code.must.be.provided.when.type.is.Dropdown":"please select code value",
   "error.msg.parameter.unsupported":"Unsupported parameter",
 
-  "#view datatable":"",
+  "#view datatable":"......................................................",
   "table.heading.fieldname":"Field Name",
   "table.heading.type":"Type",
   "table.heading.length":"Length",
@@ -265,10 +264,10 @@
   "table.heading.mandatory":"Mandatory",
   "label.associatedwith":"Associated with:",
 
- "#employee table":"....",
+ "#employee table":".........................................",
   "link.create.new.employee":"Create Employee",
 
-  "#jobs":"",
+  "#jobs":"....................................................",
   "label.button.suspend": "Suspend",
   "label.button.activate": "Activate",
   "table.heading.active":"Is Active",
@@ -318,14 +317,14 @@
   "validation.msg.schedulerjob.Password.cannot.be.blank":"Password cannot be blank",
   "validation.msg.schedulerjob.URL.cannot.be.blank":"URL cannot be blank",
   "label.job.isDisconnectUnpaidCustomers":"is Disconnect Unpaid Customers",
- 
-  "#view employee":"....",
+  
+  "#view employee":"................................................",
   "label.office.parentoffice":"Parent Office",
   "label.office.openedon":"Opened On",
   "label.office.namedecorated":"Name Decorated",
   "label.office.externalid":"External Id",
 
-  "#view client":"",
+  "#view client":"........................................................",
   "button.neworder":"Book Order",
   "button.redemption":"Redeem",
   "button.sale":"New Sale",
@@ -387,7 +386,7 @@
   "tab.activitylog":"Activity Log",
   "tab.old.activitylog":"Old Activity Log",
 
-  "#edit client":"",
+  "#edit client":".......................................",
   "label.individual":"Individual",
   "label.corporate":"Client Name",
   "label.externalid":"External Id",
@@ -740,7 +739,8 @@
   "validation.msg.subscriptoins.subscriptionPeriod.cannot.be.blank":"Contract Period Cannot be Blank",
   "validation.msg.subscriptoins.units.cannot.be.blank":"UNITS Cannot be Blank",
   "error.msg.contract.code.duplicate.name":"A contract with the same name already exists. Please use a different name",
-   "error.code.definition.length.validation":"Value exceeded. Please enter a valid value",
+  "error.code.definition.length.validation":"Value exceeded. Please enter a valid value",
+  "error.msg.contract.type.with.given.units.already exists":"Contract type with given unit value already exists",
   
   "#Plan":"......",
   "link.create.new.plan":"Add Plan",
@@ -893,6 +893,7 @@
   "validation.msg.mediaasset.location.exceeds.max.length":"MAX 255 Characters",
   "validation.msg.mediaasset.mediaTitle.exceeds.max.length":"MAX 250 Characters",
   
+
   "#Inventory":".............................................................",
   "link.inventory":"Inventory",
   "tab.item":"Items",
@@ -924,6 +925,7 @@
   "label.regionalprice":"Regional Prices",
   "error.msg.item.regional.price.not.found":"No Regional Price found for this Item",
   "error.msg.hardware.quality.not.good":"Item Quality is not good",
+
   
   "#Import":"........",
   "label.heading.uploads":"Builk Uploads",
@@ -1029,10 +1031,14 @@
   "label.commandcenter":"Command Center",
   "label.scheduleorders":"Schedule Orders",
   "label.order.autorenew":"Is Auto Renew",
-  "error.msg.hardware.device.for.is.not.available.for.pairing":"Hardware Device for '{{params[0].value}}' is not available for pairing",
+  "error.msg.plan.with.id.not.exists":"Plan not exists",
+  "error.msg.please.pair.hardware.with.plan":"Please pair hardware with plan",
+  "error.msg.hardware.device.with.pairing.is.not.available":"Hardware Device with '{{params[0].value}}' pairing is not available",
   "error.msg.all.hardware.device.for.is.not.available.for.pairing":"All types of hardware devices for '{{params[0].value}}' is not available for pairing",
+  "error.msg.serialNumber.unpaire.already.discon.orders" : "Disconnection Orders already Associated with the serialNumber `{{params[0].value}}` Please unpaire first",
+  "error.msg.serialNumber.pend.orders.request.alreadysent" :"Please wait until pending state orders to be active",
   
-    "#Voucher pins":"....",
+   "#Voucher pins":"...............................",
   "link.create.new.voucherpin":"Create Voucher Pin",
   "label.createvoucherpin":"Create Voucher Pin",
   "label.voucher.cancelreason":"Reason",
@@ -1252,11 +1258,12 @@
   "table.heading.transactiondate":"Transaction Date",
   "table.heading.transactiontype":"Transaction Type",
   "table.heading.history":"History",
+  "table.heading.saleid" : "Sale Id",
   "table.heading.saledate":"Sale Date",
   "table.heading.itemcode":"Item Code",
   "table.heading.chargecode":"Charge Code",
   "table.heading.totalprice":"Total Price",
-  "table.heading.allocate":"Allocate",
+  "table.heading.allocate":"Status",
   "table.heading.eventName":"Event Name",
   "table.heading.bookedDate":"Booked Date",
   "table.heading.eventPrice":"Event Price",
@@ -1264,6 +1271,7 @@
   "label.add.client.onetimesale":"Item Sale",
   "label.chargeCode":"Charge Code",
   "label.itemCode":"Item Code",
+  "label.allocateproperty": "Allocate Property",
   "label.totalPrice":"Total Price",
   "label.unitPrice":"Unit Price",
   "label.regions":"Regions",
@@ -2206,6 +2214,8 @@
 "label.activation.amount":"Amount",
 "lable.fullname":"Full Name",
 
+"error.msg.propertycode.not.null":"Property Code can not be null",
+
 
 "#IpPooling Details":"....",
 "label.manageippooling":"Ip Pool Management",
@@ -2824,7 +2834,7 @@
 "label.feemaster.list.regionprices" :  "List of Region Prices",
 "label.feemaster.selete.regionname" :  "Select Region Name",
 
-"#Fee Master  ":".......",
+"#Fee Master  ":"...............................",
 "validation.msg.feemaster.feeCode.cannot.be.blank"    		 : "Fee Code cannot be blank",
 "validation.msg.feemaster.feeDescription.cannot.be.blank"    : "Fee Description cannot be blank",
 "validation.msg.feemaster.transactionType.cannot.be.blank"   : "Transaction Type cannot be blank",
@@ -2837,14 +2847,13 @@
 "error.msg.fee.code.duplicate.name":"Fee Code already exists",
 "error.msg.fee.transaction.alredy.exists":"A Fee with this transaction already exists,Please Update it",
 
-"#Deposit and Refund  ":".......",
+"#Deposit and Refund  ":".............................",
 "error.msg.hardware.unallocated":"Please Unallocate hardware",
 "error.msg.unable.to.refund.clientbalance.greater.than.refund.amount":"Unable refund client due balance is greater than refund balance",
 "validation.msg.refund.refundMode.cannot.be.blank":"Please Select Refund Type",
-"validation.msg.refund.refundAmount.cannot.be.blank":"Please add Amount",
+"validation.msg.refund.refundAmount.cannot.be.blank":"Please add Amount"
 
-"error.msg.serialNumber.unpaire.already.discon.orders" : "Disconnection Orders already Associated with the serialNumber `{{params[0].value}}` Please unpaire first",
-"error.msg.serialNumber.pend.orders.request.alreadysent" : "Please wait until pending state orders to be active"
+
 
 
 

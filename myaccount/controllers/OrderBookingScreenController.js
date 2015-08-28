@@ -37,13 +37,12 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
     		(priceId == "amountZero")? location.path("/events") : location.path('/paymentgatewayresponse/'+clientId);
     	};
     }
-
 	var storageData = localStorageService.get("storageData");
 		  var clientData 			= storageData.clientData;
 		  var totalOrdersData 		= storageData.totalOrdersData;
 		  var eventData		 		= storageData.eventData || "";
 		  var orderId 				= storageData.orderId || null;
-  RequestSender.clientResource.get({clientId: scope.clientId} , function(clientsInfo) {
+  RequestSender.clientResource.get({clientId: clientId} , function(clientsInfo) {
     if(screenName != "vod"){
       if(screenName != 'additionalorders'){
 		for(var i in totalOrdersData){
@@ -206,7 +205,6 @@ OrderBookingScreenController = function(RequestSender,rootScope,location,dateFil
 			 }
 		 }
      }
-    
 	});
 		 
   };

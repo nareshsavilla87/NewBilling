@@ -77,7 +77,6 @@ ProfileController = function(scope,RequestSender,rootScope,location,paginatorSer
 	    	  localStorageService.add("statementsPayData",["invoicingPay",amount]);
 	    	location.path('/prepaidpayment');  
 	      };
-	      
     };
     
 selfcareApp.controller('ProfileController', ['$scope',

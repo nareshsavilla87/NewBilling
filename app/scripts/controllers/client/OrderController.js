@@ -10,6 +10,7 @@
         scope.commandData = [];
         scope.start = {};
         //scope.start.date = new Date();
+
         var orderId=routeParams.id;
         scope.isextensionEnable=false;
         scope.clientId=routeParams.clientId;
@@ -18,6 +19,7 @@
         scope.isServiceLevelMap = webStorage.get("service-device-mapping");
         scope.serviceLevelPairEnabled=false;
         scope.serviceLevelUnPairEnabled=false;
+
         
          var clientData = webStorage.get('clientData');
          webStorage.add("orderId",routeParams.id);
@@ -41,8 +43,8 @@
          scope.orderAddonsDatas =[];
       
         resourceFactory.getSingleOrderResource.get({orderId: routeParams.id} , function(data) {
-        	scope.start.date = new Date(data.date);
         	
+        	scope.start.date = new Date(data.date);
         	scope.orderPriceDatas= data.orderPriceData;
             scope.orderHistorydata=data.orderHistory;
             scope.orderData=data.orderData;
@@ -71,7 +73,7 @@
 	            		break;
 	            	}else scope.serviceLevelUnPairEnabled=true;
             }
-            
+
       
 	    if(data.orderData.isPrepaid == 'Y'){
             	scope.formData.isPrepaid="Pre Paid";
@@ -92,8 +94,6 @@
         	endDate : data.orderData.endDate,billingCycle :scope.orderPriceDatas[0].billingCycle,contractPeriod :data.orderData.contractPeriod });
         
         });
-        
-    
         
    /*    if(PermissionService.showMenu('READ_ASSOCIATION')){ 
     	   resourceFactory.associationResource.getAssociation({clientId: routeParams.clientId,id:routeParams.id} , function(data) {
@@ -149,8 +149,7 @@
                   $modalInstance.dismiss('cancel');
             };
         }
-        
-        
+
         scope.reconnect = function (){
         	scope.errorStatus=[];scope.errorDetails=[];
         	 $modal.open({
@@ -730,7 +729,6 @@
         scope.deAssociation=function (associateId){
         	
         	resourceFactory.deAssociationResource.update({id:associateId} , function(data) {
-             
         		 route.reload();
             });
         };
@@ -751,15 +749,13 @@
         	  scope.orderData.priceId=id;
         	
               resourceFactory.getSingleOrderResource.update({orderId: routeParams.id} ,scope.orderData, function(data) {
-                 
             	  //location.path('/vieworder/'+data.resourceId);
-            	
               },function(error){
             	  scope.errorStatus=[];scope.errorDetails=[];
               });
         
             };
-    }
+       }
   
   
   });

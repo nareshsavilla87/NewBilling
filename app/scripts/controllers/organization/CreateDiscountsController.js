@@ -44,7 +44,7 @@
 		            scope.removeDiscountPrices = function (index) {
 		            scope.discountPrices.splice(index,1);
 		              };
-		              
+
 	        scope.submit = function() {  
 	        	
 	        	 this.formData.locale = $rootScope.locale.code;
