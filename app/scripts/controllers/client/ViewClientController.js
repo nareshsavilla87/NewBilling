@@ -347,9 +347,10 @@
       
         getDetails();
         
-        scope.allocateProperty = function(serialnum){
+        scope.allocateProperty = function(serialnum,saleTypeValue){
       	  scope.errorStatus=[];scope.errorDetails=[];
       	  scope.serialnum = serialnum;
+      	  scope.saleType = saleTypeValue;
       	  $modal.open({
                 templateUrl: 'allocateproperty.html',
                 controller: AllocatePropertyController,
@@ -497,7 +498,7 @@
         
         
         var AllocatePropertyController = function ($scope, $modalInstance) {
-            
+           
       	  $scope.propertycodes = [];
             resourceFactory.propertydeviceMappingTemaplateResource.get({'clientId': routeParams.id},function(data) {
                 $scope.propertycodes = data;
@@ -513,23 +514,30 @@
       		  resourceFactory.propertydeviceMappingResource.update({'clientId': routeParams.id},this.formData,function(data){
       	            /*location.path('/viewclient/'+scope.orderPriceDatas[0].clientId);
       	            location.path('/vieworder/'+data.resourceId);*/
-      			  resourceFactory.oneTimeSaleResource.getOneTimeSale({clientId: routeParams.id}, function(data) {
-                  	scope.onetimesales = data.oneTimeSaleData;
-                    scope.eventOrders = data.eventOrdersData;
-                      scope.onetimedatas = [];
-                		angular.forEach(scope.onetimesales,function(value,key){
-                			scope.onetimedatas.push({id:value.id , saleType:value.saleType , saleDate:value.saleDate,itemCode:value.itemCode, 
-                				chargeCode:value.chargeCode, quantity:value.quantity, units:value.units, totalPrice:value.totalPrice, 
-                				warrantyDate:value.warrantyDate, hardwareAllocated:value.hardwareAllocated, propertyCode:value.propertyCode, serialNo:value.serialNo});
-                		
-                		});
-                		
-                		scope.onetimedatas = _.uniq(scope.onetimedatas,function(item){
-                			return item.id;
-                		});
-                 
-                      
-                  });
+      			  if(scope.saleType == 'sale'){
+      				resourceFactory.oneTimeSaleResource.getOneTimeSale({clientId: routeParams.id}, function(data) {
+                      	scope.onetimesales = data.oneTimeSaleData;
+                        scope.eventOrders = data.eventOrdersData;
+                          scope.onetimedatas = [];
+                    		angular.forEach(scope.onetimesales,function(value,key){
+                    			scope.onetimedatas.push({id:value.id , saleType:value.saleType , saleDate:value.saleDate,itemCode:value.itemCode, 
+                    				chargeCode:value.chargeCode, quantity:value.quantity, units:value.units, totalPrice:value.totalPrice, 
+                    				warrantyDate:value.warrantyDate, hardwareAllocated:value.hardwareAllocated, propertyCode:value.propertyCode, serialNo:value.serialNo});
+                    		
+                    		});
+                    		
+                    		scope.onetimedatas = _.uniq(scope.onetimedatas,function(item){
+                    			return item.id;
+                    		});
+                     
+                          
+                      });
+      			  }else if(scope.saleType == 'own'){
+      				 resourceFactory.HardwareResource.getAllOwnHardware({clientId: routeParams.id}, function(data) {
+      	            	scope.ownhardwares = data;
+      	            }); 
+      			  }
+
       	            $modalInstance.close('delete');
       	        },function(orderErrorData){
       	        	 $scope.flagOrderDisconnect=false;
