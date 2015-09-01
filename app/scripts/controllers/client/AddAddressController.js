@@ -379,7 +379,6 @@
 					            
 					        });*/
 							scope.submit = function() {
-								console.log(scope.formData);
 								if(scope.propertyMaster&&(angular.isUndefined(scope.propetyId))){
 					        		delete scope.property.precinctCode;
 					        		 resourceFactory.propertyCodeResource.save({},scope.property,function(data){
@@ -396,7 +395,7 @@
 											delete scope.formData.id;
 											delete scope.formData.addressKey;
 											delete scope.formData.addressTypeId;
-					        	        	resourceFactory.addressResource.save({clientId: routeParams.id},scope.formData, function(data) {
+					        	        	resourceFactory.addressResource.update({clientId: routeParams.id},scope.formData, function(data) {
 														location.path('/viewclient/'+ routeParams.id);
 													});
 					        	        	},function(errorData){
@@ -416,7 +415,7 @@
 								delete scope.formData.addressKey;
 								delete scope.formData.addressTypeId;
 								
-								resourceFactory.addressResource.save({clientId: routeParams.id},
+								resourceFactory.addressResource.update({clientId: routeParams.id},
 										scope.formData, function(data) {
 											location.path('/viewclient/'
 													+ routeParams.id);
