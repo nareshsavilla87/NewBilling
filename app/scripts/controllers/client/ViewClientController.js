@@ -339,9 +339,10 @@
       
         getDetails();
         
-        scope.allocateProperty = function(serialnum){
+        scope.allocateProperty = function(serialnum,saleTypeValue){
       	  scope.errorStatus=[];scope.errorDetails=[];
       	  scope.serialnum = serialnum;
+      	  scope.saleType = saleTypeValue;
       	  $modal.open({
                 templateUrl: 'allocateproperty.html',
                 controller: AllocatePropertyController,
@@ -489,7 +490,7 @@
         
         
         var AllocatePropertyController = function ($scope, $modalInstance) {
-            
+           
       	  $scope.propertycodes = [];
             resourceFactory.propertydeviceMappingTemaplateResource.get({'clientId': routeParams.id},function(data) {
                 $scope.propertycodes = data;
@@ -505,12 +506,18 @@
       		  resourceFactory.propertydeviceMappingResource.update({'clientId': routeParams.id},this.formData,function(data){
       	            /*location.path('/viewclient/'+scope.orderPriceDatas[0].clientId);
       	            location.path('/vieworder/'+data.resourceId);*/
-      			  resourceFactory.oneTimeSaleResource.getOneTimeSale({clientId: routeParams.id}, function(data) {
-                  	scope.onetimesales = data.oneTimeSaleData;
-                      scope.eventOrders = data.eventOrdersData;
-                 
-                      
-                  });
+      			  if(scope.saleType == 'sale'){
+      				resourceFactory.oneTimeSaleResource.getOneTimeSale({clientId: routeParams.id}, function(data) {
+                      	scope.onetimesales = data.oneTimeSaleData;
+                          scope.eventOrders = data.eventOrdersData;
+                          
+                      });
+      			  }else if(scope.saleType == 'own'){
+      				 resourceFactory.HardwareResource.getAllOwnHardware({clientId: routeParams.id}, function(data) {
+      	            	scope.ownhardwares = data;
+      	            }); 
+      			  }
+      			  
       	            $modalInstance.close('delete');
       	        },function(orderErrorData){
       	        	 $scope.flagOrderDisconnect=false;
