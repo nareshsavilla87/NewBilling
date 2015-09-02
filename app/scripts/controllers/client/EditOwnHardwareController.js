@@ -34,6 +34,7 @@
             scope.itemtypes=data.itemDatas;
             scope.clientId =scope.formData.clientId;
             scope.formData.itemType=parseInt(data.ownedHardwareDatas[0].itemType);
+           
         });
                  
         scope.reset123 = function(){
@@ -48,12 +49,14 @@
             this.formData.allocationDate = reqDate;
             delete this.formData.id;
             delete this.formData.clientId;
+            delete this.formData.propertyCode;
             resourceFactory.ownHardwareResource.update({'id':routeParams.id},this.formData,function(data){
             	// alert(routeParams.id);
             	location.path('/viewownhardware/' +routeParams.id);
 	           
 	          });
             webStorage.add("callingTab", {someString: "hardware" });
+            
         }; 
             
             
