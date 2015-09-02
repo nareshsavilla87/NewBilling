@@ -44,6 +44,12 @@
 						        scope.propertyMaster = webStorage.get("is-propertycode-enabled");
 							resourceFactory.addressEditResource.getAll({clientId: routeParams.id} , function(data) {	
 								scope.addressTypeData = data.addressOptionsData;
+								for(var i = 0; i<scope.addressTypeData.length; i++){
+									if(scope.addressTypeData[i].value == 'BILLING'){
+										scope.formData.addressType = scope.addressTypeData[i].value;
+									}
+									
+								}
                                 scope.cityDatas=data.cityData;
                                 /*$("#city").change(function(){               
                                 	scope.formData.state = '';
