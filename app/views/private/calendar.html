@@ -1,0 +1,15 @@
+<div class="col-md-12" data-ng-controller="CalendarController">  
+    <h3 class="paddedleft"><strong>{{'label.heading.calendar' | translate}}</strong>
+    	<span class="btn-group pull-right">
+	        <label class="btn btn-primary" ng-click="switch1()" ng-model="dashModel" btn-radio="'home'">{{'label.heading.home' | translate}}</label>
+	        <label class="btn btn-primary" ng-click="switchDash()" ng-model="dashModel" btn-radio="'dashboard'">{{'label.heading.dashboard' | translate}}</label>
+	        <label class="btn btn-primary" ng-click="switchDef()" ng-model="definations" btn-radio="'definations'">{{'label.heading.definations' | translate}}</label>
+	        <label class="btn btn-primary" ng-model="dashModel" btn-radio="'calendar'">{{'label.heading.calendar' | translate}}</label>
+	    </span>
+    </h3>
+    <div id='calendar'></div>
+</div>
+
+
+
+

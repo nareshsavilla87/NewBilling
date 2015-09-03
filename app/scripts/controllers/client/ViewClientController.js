@@ -1208,13 +1208,18 @@
           	scope.clientdatatables = data;
         	});*/
         
-        scope.getClientStatements = function () {
-            resourceFactory.statementResource.get({clientId: routeParams.id} , function(data) {	
-            	scope.states = data;
-                scope.url = mifosX.models.url;
+		scope.getStatementsData = function(offset, limit, callback) {
+			resourceFactory.statementResource.get({clientId: routeParams.id ,offset: offset, limit: limit} , function(data){
+				scope.url = mifosX.models.url;
                 scope.mail = mifosX.models.mail;
-            });
-           
+				  callback(data);
+			  });
+	  	   };
+        
+        scope.getClientStatements = function () {
+        	
+        	scope.states = [];
+        	scope.states = paginatorService.paginate(scope.getStatementsData, 9);
         };
                
         scope.routeToEmail = function (statementId) {
