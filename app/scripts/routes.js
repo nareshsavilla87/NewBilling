@@ -19,6 +19,10 @@
     	  templateUrl: 'views/private/definations.html'
       })
       
+      .when('/calendar', {
+    	  templateUrl: 'views/private/calendar.html'
+      })
+      
       .when('/templates', {
         templateUrl: 'views/templates/templates.html'
       })

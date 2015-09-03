@@ -136,6 +136,10 @@
 			  scope.switchDef = function() {
 		        	location.path('/definations');
 				};
+				
+				scope.calendarFun = function() {
+					location.path('/calendar');
+				};
             
             scope.searchParams = ['Leads','Create Prospect','Inventory','Create Itemdetail','Create GRN','Create MRN','Move MRN','Create Item Sale','Create Item','Create Supplier',
                                   'Create Client','Clients','New Activation','Tickets','System','Users','Create User','Configurations','Create SMTP',
