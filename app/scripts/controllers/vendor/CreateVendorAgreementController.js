@@ -36,15 +36,17 @@
 	        	if (scope.detailsFormData.contentCode && scope.detailsFormData.loyaltyType 
 	        			&& (scope.detailsFormData.loyaltyShare || scope.detailsFormData.contentCost) && scope.detailsFormData.priceRegion) {
 	        		
-	        			if(scope.detailsFormData.loyaltyShare){
+	        			//if(scope.detailsFormData.loyaltyShare){
 	        				scope.vendorDetailsDatas
 							.push({
 								loyaltyType : scope.detailsFormData.loyaltyType,
 								contentCode : scope.detailsFormData.contentCode,
 								loyaltyShare : scope.detailsFormData.loyaltyShare,
-								priceRegion : scope.detailsFormData.priceRegion
+								priceRegion : scope.detailsFormData.priceRegion,
+								contentCost : scope.detailsFormData.contentCost,
+								contentSellPrice : scope.detailsFormData.contentSellPrice
 							});
-	        				scope.detailsFormData.loyaltyShare = undefined;
+	        			/*	scope.detailsFormData.loyaltyShare = undefined;
 	        			}else{
 	        				
 	        				scope.vendorDetailsDatas
@@ -55,7 +57,7 @@
 								priceRegion : scope.detailsFormData.priceRegion
 							});
 	        				scope.detailsFormData.contentCost = undefined;
-	        			}
+	        			}*/
 	         
 	        	}
 	        };
@@ -90,6 +92,7 @@
 														loyaltyShare :scope.vendorDetailsDatas[i].loyaltyShare,
 														contentCost :scope.vendorDetailsDatas[i].contentCost,
 														priceRegion : scope.vendorDetailsDatas[i].priceRegion,
+														contentSellPrice :scope.vendorDetailsDatas[i].contentSellPrice,
 														locale : $rootScope.locale.code});
 	                 };
 	               }
