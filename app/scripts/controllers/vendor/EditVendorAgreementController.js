@@ -39,15 +39,17 @@
 	        	if (scope.vendorAgreeDetailFormData.contentCodeId && scope.vendorAgreeDetailFormData.loyaltyType 
 	        			&& (scope.vendorAgreeDetailFormData.loyaltyShare || scope.vendorAgreeDetailFormData.contentCost) && scope.vendorAgreeDetailFormData.priceRegion) {
 	        			
-	        		if(scope.vendorAgreeDetailFormData.loyaltyShare){
+	        		//if(scope.vendorAgreeDetailFormData.loyaltyShare){
 								scope.vendorAgreeDetails
 											.push({
 													loyaltyType : scope.vendorAgreeDetailFormData.loyaltyType,
 													contentCodeId : scope.vendorAgreeDetailFormData.contentCodeId,
 													loyaltyShare : scope.vendorAgreeDetailFormData.loyaltyShare,
-													priceRegion : scope.vendorAgreeDetailFormData.priceRegion
+													priceRegion : scope.vendorAgreeDetailFormData.priceRegion,
+													contentCost : scope.vendorAgreeDetailFormData.contentCost,
+													contentSellPrice : scope.vendorAgreeDetailFormData.contentSellPrice
 											});
-								scope.vendorAgreeDetailFormData.loyaltyShare = undefined;
+					/*			scope.vendorAgreeDetailFormData.loyaltyShare = undefined;
 	        		}else{
 	        			scope.vendorAgreeDetails
 						.push({
@@ -57,7 +59,7 @@
 								priceRegion : scope.vendorAgreeDetailFormData.priceRegion
 						});
 	        			scope.vendorAgreeDetailFormData.contentCost = undefined;
-	        		}
+	        		}*/
 	          
 	        	}
 	        };
@@ -97,6 +99,7 @@
 														loyaltyType : scope.vendorAgreeDetails[i].loyaltyType,
 														loyaltyShare : scope.vendorAgreeDetails[i].loyaltyShare,
 														contentCost :scope.vendorAgreeDetails[i].contentCost,
+														contentSellPrice :scope.vendorAgreeDetails[i].contentSellPrice,
 														priceRegion : scope.vendorAgreeDetails[i].priceRegion,
 														locale : $rootScope.locale.code});
 	                 };
