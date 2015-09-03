@@ -1259,7 +1259,7 @@ input#search:-ms-input-placeholder {
     right: 0px;
     } */
 #calendar {
-	max-width: 900px;
+	max-width: 1000px;
 	margin: 0 auto;
 }
 input.span3,
