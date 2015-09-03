@@ -690,7 +690,7 @@
 							    			<a href="" data-ng-click="deletePopUp(onetimesale.id,'',$index,'Cancel Sale')" popover="Cancel Sale" popover-trigger="mouseenter"
 							    			data-ng-show="(onetimesale.hardwareAllocated == 'UNALLOCATED')&&(PermissionService.showMenu('DELETE_ONETIMESALE')) && (onetimesale.units=='PIECES')" 
 							    			 ><i class="icon-remove"></i></a>
-							    			 <a href="" data-ng-show="propertyMaster && !onetimesale.propertyCode && onetimesale.serialNo" data-ng-click="allocateProperty(onetimesale.serialNo)" popover="Allocate Property" popover-trigger="mouseenter"
+							    			 <a href="" data-ng-show="propertyMaster && !onetimesale.propertyCode && onetimesale.serialNo" data-ng-click="allocateProperty(onetimesale.serialNo,'sale')" popover="Allocate Property" popover-trigger="mouseenter"
 							    			    data-ng-show="(onetimesale.hardwareAllocated == 'ALLOCATED')&&(PermissionService.showMenu('DELETE_ONETIMESALE')) && (onetimesale.units=='PIECES')" 
 							    			 ><i class="icon-lock"></i></a>
 							    			 </td> 
@@ -712,8 +712,10 @@
 											<th>{{'table.heading.serialnumber' | translate}}</th>
 											<th>{{'table.heading.provisioningserialnumber' | translate}}</th>
 											<th>{{'table.heading.allocationdate' | translate}}</th>
+											<td ng-show="propertyMaster">{{'table.heading.propertycode' | translate}}</td>
 											<th>{{'table.heading.status' | translate}}</th>
 											<th>{{'table.heading.itemtype' | translate}}</th>
+											<th>Actions</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -721,8 +723,14 @@
 											<td class="pointer" data-ng-click="routeToOwnHardware(ownhardware.id)">{{ownhardware.serialNumber}}</td>  
 											<td class="pointer" data-ng-click="routeToOwnHardware(ownhardware.id)">{{ownhardware.provisioningSerialNumber}}</td>
 											<td class="pointer" data-ng-click="routeToOwnHardware(ownhardware.id)">{{ownhardware.allocationDate | DateFormat}}</td>
+											<td ng-show="propertyMaster" class="pointer" data-ng-click="routeToOwnHardware(ownhardware.id)">{{ownhardware.propertyCode}}</td>
 											<td>{{ownhardware.status}}</td> 
 											<td>{{ownhardware.itemType}}</td> 
+											<td>
+											<a href="" data-ng-show="propertyMaster && !ownhardware.propertyCode" data-ng-click="allocateProperty(ownhardware.serialNumber,'own')" popover="Allocate Property" popover-trigger="mouseenter"
+							    			   " 
+							    			 ><i class="icon-lock"></i></a>
+							    			 </td>
 										</tr>
 									</tbody>
 								</table>
