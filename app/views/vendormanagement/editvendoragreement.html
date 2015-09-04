@@ -99,10 +99,11 @@
                       <option value="">--LoyaltyType--</option>
                       <option value="Flat">FLAT</option>
                       <option value="Percentage">PERCENTAGE</option>
-                      <option value="None">NONE</option>
+                      
                       </select>&nbsp;&nbsp;
-                      <input data-ng-hide = "vendorAgreeDetailFormData.loyaltyType == 'None'" class="input-small" type="text" data-ng-model="vendorAgreeDetailFormData.loyaltyShare"  placeholder="LoyaltyShare">&nbsp;&nbsp;
-                      <input data-ng-show = "vendorAgreeDetailFormData.loyaltyType == 'None'" class="input-small"  type="text" data-ng-model="vendorAgreeDetailFormData.contentCost" placeholder="ContentCost">
+                      <input class="input-small" type="text" data-ng-model="vendorAgreeDetailFormData.loyaltyShare"  placeholder="LoyaltyShare">&nbsp;&nbsp;
+                      <input class="input-small"  type="text" data-ng-model="vendorAgreeDetailFormData.contentCost" placeholder="ContentCost">
+                       <input class="input-small"  type="text" data-ng-model="vendorAgreeDetailFormData.contentSellPrice" placeholder="SellPrice">
                       <select data-ng-model="vendorAgreeDetailFormData.priceRegion" data-ng-options="priceregionData.id as priceregionData.priceregion for priceregionData in priceRegionDatas" class="input-small" >
                       <option value="">--PriceRegion--</option>
                       </select>&nbsp;&nbsp;
@@ -115,7 +116,9 @@
                     <tr class="graybg">
                       <th>ContentCode</th>
                       <th>LoyaltyType</th>
-                      <th>LoyaltyShare/ContentCost</th>
+                      <th>LoyaltyShare</th>
+                      <th>ContentCost</th>
+                      <th>SellPrice</th>
                       <th>PriceRegion</th>
                       <th>{{'label.media.image' | translate}}</th>
                     </tr>
@@ -128,8 +131,9 @@
                       	<option value="Percentage">PERCENTAGE</option>
                       	<option value="None">NONE</option>
                       </select></td>
-                      <td data-ng-hide = "vendorAgreeDetail.loyaltyType == 'None'"><input type="text" style="width:150px;" class="input-small" data-ng-model="vendorAgreeDetail.loyaltyShare" placeholder="LoyaltyShare"></td>
-                      <td data-ng-show = "vendorAgreeDetail.loyaltyType == 'None'"><input type="text" style="width:150px;" class="input-small" data-ng-model="vendorAgreeDetail.contentCost" placeholder="ContentCost"></td>
+                      <td><input type="text" style="width:120px;" class="input-small" data-ng-model="vendorAgreeDetail.loyaltyShare" placeholder="LoyaltyShare"></td>
+                      <td><input type="text" style="width:120px;" class="input-small" data-ng-model="vendorAgreeDetail.contentCost" placeholder="ContentCost"></td>
+                      <td><input type="text" style="width:120px;" class="input-small" data-ng-model="vendorAgreeDetail.contentSellPrice" placeholder="SellPrice"></td>
                       <td><select data-ng-model="vendorAgreeDetail.priceRegion" data-ng-options="priceregionData.id as priceregionData.priceregion for priceregionData in priceRegionDatas" class="input-small" ></select></td>
                       <td><a data-ng-click="deleteVendorAgreeDetails($index)"><i class="icon-remove icon-white"></i></a></td>
                     </tr>
