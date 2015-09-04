@@ -5,63 +5,116 @@
           <li class="active">{{'label.editoffice' | translate}}</li>
         </ul>
       </div>
-      <form class="form-horizontal well" data-ng-controller="EditOfficeController" data-ng-submit="submit()">
+      <form name="editofficeform" novalidate  class="form-horizontal well" data-ng-controller="EditOfficeController" data-ng-submit="submit()">
           <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label data-ng-show="errorStatus">{{errorStatus}}</label>
 		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
         <fieldset>
+          <legend>{{'label.editoffice' | translate}}</legend>
           <table>
             <tr>
               <td>
                 <div class="control-group">
-                  <label class="control-label" for="name">{{ 'label.officename' | translate }}</label>
+                  <label class="control-label">{{ 'label.officename' | translate }}<span class="required">*</span></label>
                   <div class="controls">
-                    <input type="text" data-ng-model="formData.name">
+                    <input type="text" data-ng-model="formData.name" required>
                   </div>
                 </div>
+                <div class="control-group">
+                  <label class="control-label">{{ 'label.parentoffice' | translate }}</label>
+                  <div class="controls">
+                    <select data-ng-model="formData.parentId"  data-ng-options="office.id as office.name for office in offices"></select>
+                  </div>
+                </div>
+                <div class="control-group">
+                      <label class="control-label">{{ 'label.openedon' | translate }}</label>
+                      <div class="controls">
+                          <input type="text" datepicker-pop="dd MMMM yyyy" data-ng-model="first.date" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)" required late-Validate />
+                      </div>
+                 </div>
+                 <div class="control-group">
+                  	<label class="control-label">{{ 'label.externalId' | translate }}</label>
+                 	<div class="controls">
+                      <input type="text" id="eid" name="externalId" data-ng-model="formData.externalId" data-ng-pattern="/^[1-9\s]+$/"/></br>
+                      <span data-ng-show="editofficeform.externalId.$dirty">
+              			<small class="error" data-ng-show="editofficeform.externalId.$error.pattern">External Id must be Numaric(starts from 1 only)</small>
+              		  </span>
+                    </div>
+                </div>
+                <div class="control-group">
+					<label class="control-label" for="officeNumber">{{'label.officephone' | translate}}</label>
+					<div class="controls">
+						<input type="text" id="officeNumber" name="officeNumber" data-ng-model="formData.officeNumber" maxlength="15" name="phone" 
+							data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/" />
+						<div data-ng-show="editofficeform.officeNumber.$invalid">
+							<small class="error" data-ng-show="editofficeform.officeNumber.$error.pattern">{{'error.invalid.phone.validation' | translate}} </small> 
+						</div>
+					</div>
+				</div>
+              </td>
+              <td>
+              	  <div class="control-group">
+					<label class="control-label" for="phoneNumber">{{'label.phone' | translate}}</label>
+					<div class="controls">
+						<input type="text" id="phoneNumber" data-ng-model="formData.phoneNumber" maxlength="15" name="phoneNumber" 
+							data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/" />
+						<div data-ng-show="editofficeform.phoneNumber.$invalid">
+							<small class="error" data-ng-show="editofficeform.phoneNumber.$error.pattern">{{'error.invalid.phone.validation' | translate}}</small>
+						</div>
+					</div>
+				  </div>
+				
+				  <div class="control-group">
+					<label class="control-label">{{ 'label.partner.email' | translate }}<span class="required">*</span>
+					</label>
+					<div class="controls">
+						<input type="text" id="email" data-ng-model="formData.email" required>
+					</div>
+				  </div>
+
+				  <div class="control-group">
+					<label class="control-label" for="city">{{'label.city/area'	| translate}}<span class="required">*</span></label>
+					<div class="controls">
+						<input type="text" id="city" name="city" data-ng-model="formData.city" autocomplete="off" list="citylist"
+							data-ng-change="getStateAndCountry(formData.city)" required />
+					</div>
+					 <datalist id="citylist"><option  data-ng-repeat="cityData in cityDatas" value="{{cityData}}"></datalist>
+				  </div>
+
+				  <div class="control-group">
+					 <label class="control-label" for="state">{{'label.state' |translate}}<span class="required">*</span></label>
+					 <div class="controls">
+						<input type="text" id="state" data-ng-model="formData.state" readonly required />
+					 </div>
+				  </div>
+
+				  <div class="control-group">
+					<label class="control-label" for="country">{{'label.country'| translate}}<span class="required">*</span></label>
+					<div class="controls">
+						<input type="text" id="country" name="country" data-ng-model="formData.country" readonly required />
+					</div>
+				  </div>
               </td>
             </tr>
-            <tr>
+           <!--  <tr>
               <td>
                 <div class="control-group">
                   <label class="control-label">{{ 'label.officetype' | translate }}</label>
                   <div class="controls">
-                     <select data-ng-model="formData.officeType"  data-ng-options="officeType.id as officeType.name for officeType in officeTypes">
-                     </select>
+                     <select data-ng-model="formData.officeType"  data-ng-options="officeType.id as officeType.name for officeType in officeTypes"></select>
                   </div>
                 </div>
               </td>
-            </tr> 
-            <tr>
-              <td>
-                <div class="control-group">
-                  <label class="control-label">{{ 'label.openedon' | translate }}</label>
-                  <div class="controls">
-                      <input type="text" datepicker-pop="dd MMMM yyyy" data-ng-model="first.date" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)" required late-Validate />
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="control-group">
-                  <label class="control-label">{{ 'label.externalId' | translate }}</label>
-                  <div class="controls">
-                    <input type="text" name="externalId" data-ng-model="formData.externalId">
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-            <td align="right">
-                <div class="offset3">
-                  <a href="#/offices"><button id="cancel" type="reset" class="btn">Cancel</button></a>
-                  <button id="submit" type="submit" class="btn btn-primary">Save</button>
-                   </div>
-             </td>
-              </tr>
-              </table>
+            </tr> -->
+        <tr>
+          <td align="right" colspan="2">
+            <div class="offset3">
+            <a href="#/offices"><button id="cancel" type="reset" class="btn">{{ 'label.cancel' | translate }}</button></a>
+            <button id="submit" type="submit" class="btn btn-primary" data-ng-disabled="!editofficeform.$valid">{{ 'label.save' | translate }}</button>
+          </div>
+           </td></tr>
+            </table>
         </fieldset>
       </form>

@@ -15,14 +15,27 @@
             		scope.formData.officeType = data.officeTypes[i].id;
             	}
             }
-            scope.formData = {
-              name : data.name,
-              externalId : data.externalId,
-              officeType : scope.formData.officeType
-              
-          };
+            scope.cityDatas = data.citiesData;
+            scope.offices = data.allowedParents;
+            
+            scope.formData.name = data.name;
+            scope.formData.parentId = data.parentId;
+            scope.formData.externalId = data.externalId;
+            scope.formData.officeNumber = data.officeNumber;
+            scope.formData.phoneNumber = data.phoneNumber;
+            scope.formData.email = data.email;
+            scope.formData.city = data.city;
+            scope.formData.state = data.state;
+            scope.formData.country = data.country;
            
         });
+        
+        scope.getStateAndCountry=function(city){
+      	  resourceFactory.AddressTemplateResource.get({city :city}, function(data) {
+          		scope.formData.state = data.state;
+          		scope.formData.country = data.country;
+      	  });
+        };
         
         scope.submit = function() {
             var reqDate = dateFilter(scope.first.date,'dd MMMM yyyy');

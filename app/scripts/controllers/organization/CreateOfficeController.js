@@ -10,6 +10,8 @@
             scope.offices = data.allowedParents;
             scope.officeTypes = data.officeTypes;
             scope.first.date = new Date(data.date);
+            scope.cityDatas = data.citiesData;
+            
             for(var i in data.officeTypes){
           	  if(data.officeTypes[i].name == "Office"){
           		scope.officeType = data.officeTypes[i].id;
@@ -22,6 +24,13 @@
             };
             
         });
+        	 
+		 scope.getStateAndCountry=function(city){
+	   	  resourceFactory.AddressTemplateResource.get({city :city}, function(data) {
+	       		scope.formData.state = data.state;
+	       		scope.formData.country = data.country;
+	   	  });
+	     };
         
         scope.submit = function() {   
           this.formData.locale = $rootScope.locale.code;
