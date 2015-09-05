@@ -5,7 +5,7 @@
           <li class="active">{{'label.createoffice' | translate}}</li>
         </ul>
       </div>
-      <form name="createofficeform" class="form-horizontal well" data-ng-controller="CreateOfficeController" data-ng-submit="submit()">
+      <form name="createofficeform" novalidate class="form-horizontal well" data-ng-controller="CreateOfficeController" data-ng-submit="submit()">
           <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label data-ng-show="errorStatus">{{errorStatus}}</label>
@@ -17,11 +17,85 @@
             <tr>
               <td>
                 <div class="control-group">
-                  <label class="control-label">{{ 'label.officename' | translate }}</label>
+                  <label class="control-label">{{ 'label.officename' | translate }}<span class="required">*</span></label>
                   <div class="controls">
-                    <input type="text" data-ng-model="formData.name">
+                    <input type="text" data-ng-model="formData.name" required>
                   </div>
                 </div>
+                <div class="control-group">
+                  <label class="control-label">{{ 'label.parentoffice' | translate }}</label>
+                  <div class="controls">
+                    <select data-ng-model="formData.parentId"  data-ng-options="office.id as office.name for office in offices"></select>
+                  </div>
+                </div>
+                <div class="control-group">
+                      <label class="control-label">{{ 'label.openedon' | translate }}</label>
+                      <div class="controls">
+                          <input type="text" datepicker-pop="dd MMMM yyyy" data-ng-model="first.date" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)" required late-Validate />
+                      </div>
+                 </div>
+                 <div class="control-group">
+                  	<label class="control-label">{{ 'label.externalId' | translate }}</label>
+                 	<div class="controls">
+                      <input type="text" id="eid" name="externalId" data-ng-model="formData.externalId" data-ng-pattern="/^[1-9\s]+$/"/></br>
+                      <span data-ng-show="createofficeform.externalId.$dirty">
+              			<small class="error" data-ng-show="createofficeform.externalId.$error.pattern">External Id must be Numaric(starts from 1 only)</small>
+              		  </span>
+                    </div>
+                </div>
+                <div class="control-group">
+					<label class="control-label" for="officeNumber">{{'label.officephone' | translate}}</label>
+					<div class="controls">
+						<input type="text" id="officeNumber" name="officeNumber" data-ng-model="formData.officeNumber" maxlength="15" name="phone" 
+							data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/" />
+						<div data-ng-show="createofficeform.officeNumber.$invalid">
+							<small class="error" data-ng-show="createofficeform.officeNumber.$error.pattern">{{'error.invalid.phone.validation' | translate}} </small> 
+						</div>
+					</div>
+				</div>
+              </td>
+              <td>
+              	  <div class="control-group">
+					<label class="control-label" for="phoneNumber">{{'label.phone' | translate}}</label>
+					<div class="controls">
+						<input type="text" id="phoneNumber" data-ng-model="formData.phoneNumber" maxlength="15" name="phoneNumber" 
+							data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/" />
+						<div data-ng-show="createofficeform.phoneNumber.$invalid">
+							<small class="error" data-ng-show="createofficeform.phoneNumber.$error.pattern">{{'error.invalid.phone.validation' | translate}}</small>
+						</div>
+					</div>
+				  </div>
+				
+				  <div class="control-group">
+					<label class="control-label">{{ 'label.partner.email' | translate }}<span class="required">*</span>
+					</label>
+					<div class="controls">
+						<input type="text" id="email" data-ng-model="formData.email" required>
+					</div>
+				  </div>
+
+				  <div class="control-group">
+					<label class="control-label" for="city">{{'label.city/area'	| translate}}<span class="required">*</span></label>
+					<div class="controls">
+						<input type="text" id="city" name="city" data-ng-model="formData.city" autocomplete="off" list="citylist"
+							data-ng-change="getStateAndCountry(formData.city)" required />
+					</div>
+					 <datalist id="citylist"><option  data-ng-repeat="cityData in cityDatas" value="{{cityData}}"></datalist>
+				  </div>
+
+				  <div class="control-group">
+					 <label class="control-label" for="state">{{'label.state' |translate}}<span class="required">*</span></label>
+					 <div class="controls">
+						<input type="text" id="state" data-ng-model="formData.state" readonly required />
+					 </div>
+				  </div>
+
+				  <div class="control-group">
+					<label class="control-label" for="country">{{'label.country'| translate}}<span class="required">*</span></label>
+					<div class="controls">
+						<input type="text" id="country" name="country" data-ng-model="formData.country" readonly required />
+					</div>
+				  </div>
               </td>
             </tr>
            <!--  <tr>
@@ -34,44 +108,11 @@
                 </div>
               </td>
             </tr> -->
-            <tr>
-              <td>
-                <div class="control-group">
-                  <label class="control-label">{{ 'label.parentoffice' | translate }}</label>
-                  <div class="controls">
-                    <select data-ng-model="formData.parentId"  data-ng-options="office.id as office.name for office in offices"></select>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                  <div class="control-group">
-                      <label class="control-label">{{ 'label.openedon' | translate }}</label>
-                      <div class="controls">
-                          <input type="text" datepicker-pop="dd MMMM yyyy" data-ng-model="first.date" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)" required late-Validate />
-                      </div>
-                  </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="control-group">
-                  <label class="control-label">{{ 'label.externalId' | translate }}</label>
-                  <div class="controls">
-                    <input type="text" id="eid" name="externalId" data-ng-model="formData.externalId" data-ng-pattern="/^[1-9\s]+$/"/></br>
-                    <span data-ng-show="createofficeform.externalId.$dirty">
-              			<small class="error" data-ng-show="createofficeform.externalId.$error.pattern">External Id must be Numaric(starts from 1 only)</small>
-              		</span>
-                  </div>
-                </div>
-              </td>
-            </tr>
         <tr>
-          <td align="right">
+          <td align="right" colspan="2">
             <div class="offset3">
             <a href="#/offices"><button id="cancel" type="reset" class="btn">{{ 'label.cancel' | translate }}</button></a>
-            <button id="submit" type="submit" class="btn btn-primary">{{ 'label.save' | translate }}</button>
+            <button id="submit" type="submit" class="btn btn-primary" data-ng-disabled="!createofficeform.$valid">{{ 'label.save' | translate }}</button>
           </div>
            </td></tr>
             </table>

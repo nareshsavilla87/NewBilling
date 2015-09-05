@@ -328,7 +328,9 @@
 			                			<td>{{document.documentType.name}}</td>
 			                			<td>
 			                  				<span data-ng-repeat="file in document.documents">
-			                    				<a data-ng-click="downloadClientIdentifierDocument(document.id, file.id)">{{file.fileName}}</a>&nbsp;&nbsp;
+			                    				<!-- <a data-ng-click="downloadClientIdentifierDocument(document.id, file.id)">{{file.fileName}}</a>&nbsp;&nbsp; -->
+			                    				<a>{{file.fileName}}</a>
+			                    				<a data-ng-click="downloadClientIdentifierDocument(file.id, file.parentEntityId)" data-popover="Download Identity" data-popover-trigger="mouseenter"><i class="icon-cloud-download"></i></a>&nbsp;
 			                  				</span>
 			                			</td>
 			                			<td>
