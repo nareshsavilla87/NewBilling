@@ -1605,8 +1605,10 @@
 	  		};
 
 	  		scope.downloadClientIdentifierDocument=function (identifierId, documentId){
-	  			console.log(identifierId, documentId);
-	  		};
+		  	      console.log(identifierId, documentId);
+		  	      window.open($rootScope.hostUrl+ API_VERSION +'/client_identifiers/'+documentId +'/documents/'+ identifierId+'/attachment?tenantIdentifier='+TENANT);
+		  	           
+		  	};
         
 	  		/* scope.getparent = function(query){
         	if(query.length>0){
