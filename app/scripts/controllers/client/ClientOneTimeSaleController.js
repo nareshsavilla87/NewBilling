@@ -24,9 +24,10 @@
 		        }
 		        scope.itemId=null;
 	            scope.data={};
-	            //scope.maxDate = new Date();
+	            scope.maxDate = new Date();
 	            scope.truefalse = true;
 	            scope.walletConfig = webStorage.get('is-wallet-enable');
+	           /* var IsSerialnumberRequired =  webStorage.get("client_configuration").IsSerialnumberRequired;*/
 	          
 	        resourceFactory.oneTimeSaleTemplateResource.getOnetimes(function(data) {
 	            
@@ -36,9 +37,9 @@
 	            scope.formData.discountId = scope.discountMasterDatas[0].discountMasterId;
 	            scope.onetimesales=data;
 	            scope.date= {};
-	            scope.date.saleDate = new Date(data.date);
-	            scope.maxDate = new Date(data.date);
+	            scope.date.saleDate = new Date();
 	            scope.formData.saleType=scope.saleType;
+	            
 
 	            if(scope.saleType == 'DEVICERENTAL'){
 	            	scope.formData.totalPrice=0;
@@ -103,10 +104,15 @@
 	        	    	  if(i == 7)
 	        	    		  break;
 	        	      }
+	        	      scope.selectedSerialNums = [];
+	        	      $("input[name='serialNumber']").each(function(){
+	        	    	  scope.selectedSerialNums.push ($(this).val());
+			        	});
+	        	      itemDetails = itemDetails.filter(function(x) { return scope.selectedSerialNums.indexOf(x) < 0 });
 	        	      return itemDetails;
 	        	    });
             };
-	        
+            
             scope.getNumber = function(num) {
 	        	
             	if(num){
@@ -117,10 +123,10 @@
 	        	
 	         };
 	         
-	         
 	        scope.reset123 = function(){
 	        	   webStorage.add("callingTab", {someString: "Sale" });
 	           };
+	           
 	        scope.submit = function() { 
 	        	
 	        	scope.flag = true;
@@ -136,8 +142,10 @@
 	             delete this.formData.itemCode;
 	             delete this.formData.id;
 	             delete this.formData.feeMasterData;
-	         
+	         /*    this.formData.IsSerialnumberRequired = IsSerialnumberRequired;*/
+	             
 	             if(scope.unitsValue == 'PIECES'){
+	            	 
 	            	 var temp1 = new Array();
 			        	
 			        	$("input[name='serialNumber']").each(function(){
@@ -151,10 +159,12 @@
 			    			temp1.push(temp);
 			        	});
 			        	this.formData.serialNumber=temp1;
+			        	
 	             }
 	             
 		            delete this.formData.serialNumbers;
 		            delete this.formData.chargesData;
+		            
 	            resourceFactory.oneTimeSaleResource.save({clientId:routeParams.id,devicesaleTpye:scope.saleType},this.formData,function(data){
 	            	 location.path('/viewclient/' + routeParams.id);
 	          },function(errData){

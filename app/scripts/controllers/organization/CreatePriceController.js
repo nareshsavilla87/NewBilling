@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    CreatePriceController: function(scope, routeParams, resourceFactory, location,$rootScope) {
+    CreatePriceController: function(scope, routeParams, resourceFactory, location,$rootScope,$modal) {
         
     	scope.chargeDatas = [];
         scope.chargevariants = [];
@@ -10,6 +10,7 @@
         scope.priceDatas=[];
         scope.formData = {};
         scope.prices = [];
+        scope.existedPrices = [];
         scope.planId = routeParams.id;
         scope.fieldserror = false;
         scope.labelerror = "requiredfields";
@@ -81,15 +82,34 @@
         	}
         };
         
-        scope.removePriceData = function (index,priceId) {
-            if(priceId !=undefined){/*Delete particular Price of plan */
-            	 resourceFactory.deletePriceResource.remove({priceId: priceId} , {} , function() {
-            		 scope.priceDatas.splice(index, 1);
-            		 //console.log(priceId);
-                });
-            }else{/*Remove Price Data which was newly added */
-            	scope.priceDatas.splice(index, 1);
-            }
+        scope.removePriceData = function (index,priceId,priceData) {
+            
+        	var modalInstance = $modal.open({
+                templateUrl: 'approvepopup.html',
+                controller: ApprovePopupController,
+                resolve:{}
+            });
+        	
+            modalInstance.result.then(function(){
+            	
+            	if(priceId !=undefined){/*Delete particular Price of plan */
+                  	 
+            		scope.existedPrices.push(priceData);
+            		scope.priceDatas.splice(index, 1);
+            		            		
+                  }else{/*Remove Price Data which was newly added */
+                  	scope.priceDatas.splice(index, 1);
+                  }
+            }); 
+        };
+        
+        function ApprovePopupController($scope, $modalInstance) {
+            $scope.approve = function () {
+           		 $modalInstance.close('delete');
+            };
+            $scope.cancel = function () {
+                $modalInstance.dismiss('cancel');
+            };
         };
 			 
         priceDataSendingOneByOneFun = function(val){
@@ -98,6 +118,8 @@
         		delete scope.priceDatas[val].chargeVariant;
         		delete scope.priceDatas[val].billingFrequency;
         		delete scope.priceDatas[val].contractId;
+        		
+        		scope.priceDatas[val].locale = $rootScope.locale.code;
         		resourceFactory.updatePriceResource.update({priceId:scope.planPriceId},scope.priceDatas[val],function(data){
    				 if(val == scope.priceDatas.length-1){
    					 location.path('viewplan/'+routeParams.id);
@@ -108,6 +130,7 @@
    			 });
         		
         }else{/*create new  plan price*/
+        	scope.priceDatas[val].locale = $rootScope.locale.code;
         	resourceFactory.priceResource.save({'planId':routeParams.id},scope.priceDatas[val],function(data){
 				 if(val == scope.priceDatas.length-1){
 					 location.path('viewplan/'+routeParams.id);
@@ -118,14 +141,27 @@
 			 });
            }
 		 };
+		 
+		 existedpriceDataSendingOneByOneFun = function(val){
+			 
+			     resourceFactory.deletePriceResource.remove({priceId: scope.existedPrices[val].id} , {} , function() {
+					 if(val == scope.existedPrices.length-1){
+						 priceDataSendingOneByOneFun(0);
+					 }else{
+						 val += 1;
+						 existedpriceDataSendingOneByOneFun(val);
+				 	 }
+				 });
+			 };
         
         scope.submit = function() {
-        	for(var i in scope.priceDatas){
-        		scope.priceDatas[i].locale = $rootScope.locale.code;
-        		if(i==scope.priceDatas.length-1){
-        			priceDataSendingOneByOneFun(0);
-        		}
+        	
+        	if(scope.existedPrices.length == 0){
+        		priceDataSendingOneByOneFun(0);
+        	}else{
+        		existedpriceDataSendingOneByOneFun(0);
         	}
+        	
         	 //this.formData.locale = $rootScope.locale.code;
         	/* resourceFactory.priceResource.save({'planId':routeParams.id},this.formData,function(data){
                  location.path('/viewprice/' + data.resourceId+'/'+routeParams.id);
@@ -139,6 +175,7 @@
     'ResourceFactory', 
     '$location',
     '$rootScope', 
+    '$modal', 
     mifosX.controllers.CreatePriceController]).run(function($log) {
     $log.info("CreatePriceController initialized");
   });
