@@ -100,10 +100,15 @@
 	        	    	  if(i == 7)
 	        	    		  break;
 	        	      }
+	        	      scope.selectedSerialNums = [];
+	        	      $("input[name='serialNumber']").each(function(){
+	        	    	  scope.selectedSerialNums.push ($(this).val());
+			        	});
+	        	      itemDetails = itemDetails.filter(function(x) { return scope.selectedSerialNums.indexOf(x) < 0 });
 	        	      return itemDetails;
 	        	    });
             };
-	        
+            
             scope.getNumber = function(num) {
 	        	
             	if(num){
@@ -114,10 +119,10 @@
 	        	
 	         };
 	         
-	         
 	        scope.reset123 = function(){
 	        	   webStorage.add("callingTab", {someString: "Sale" });
 	           };
+	           
 	        scope.submit = function() { 
 	        	
 	        	scope.flag = true;
