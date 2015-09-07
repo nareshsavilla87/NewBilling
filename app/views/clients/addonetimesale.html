@@ -195,7 +195,7 @@
 										<label class="control-label" for="serialNumber">{{'label.serialNumber' | translate }}&nbsp;<span class="required">*</span>
 										</label>
 										<div class="controls">
-											<input type="text" ng-model="itemDetail" name="serialNumber"
+											<input type="text" ng-model="serialNum" name="serialNumber" data-typeahead-on-select="onSelectionTypeaheadFun(serialNum)"
 												typeahead="itemDetail as itemDetail for itemDetail in getData($viewValue)" typeahead-min-length="0">
 										</div>
 									</div>

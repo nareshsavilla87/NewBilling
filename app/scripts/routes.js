@@ -450,7 +450,7 @@
       .when('/hardwareswap/:id/:clientId/:orderId', {
         templateUrl: 'views/clients/hardwareSwap.html'
       })
-     .when('/prices/:id', {
+     .when('/prices/:id/:planName', {
          templateUrl: 'views/organization/prices.html'
       })
       .when('/createprice/:id', {
