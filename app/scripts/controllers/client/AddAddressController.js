@@ -44,6 +44,12 @@
 						        scope.propertyMaster = webStorage.get("is-propertycode-enabled");
 							resourceFactory.addressEditResource.getAll({clientId: routeParams.id} , function(data) {	
 								scope.addressTypeData = data.addressOptionsData;
+								for(var i = 0; i<scope.addressTypeData.length; i++){
+									if(scope.addressTypeData[i].value == 'BILLING'){
+										scope.formData.addressType = scope.addressTypeData[i].value;
+									}
+									
+								}
                                 scope.cityDatas=data.cityData;
                                 /*$("#city").change(function(){               
                                 	scope.formData.state = '';
@@ -379,7 +385,6 @@
 					            
 					        });*/
 							scope.submit = function() {
-								console.log(scope.formData);
 								if(scope.propertyMaster&&(angular.isUndefined(scope.propetyId))){
 					        		delete scope.property.precinctCode;
 					        		 resourceFactory.propertyCodeResource.save({},scope.property,function(data){
@@ -396,7 +401,7 @@
 											delete scope.formData.id;
 											delete scope.formData.addressKey;
 											delete scope.formData.addressTypeId;
-					        	        	resourceFactory.addressResource.save({clientId: routeParams.id},scope.formData, function(data) {
+					        	        	resourceFactory.addressResource.update({clientId: routeParams.id},scope.formData, function(data) {
 														location.path('/viewclient/'+ routeParams.id);
 													});
 					        	        	},function(errorData){
@@ -416,7 +421,7 @@
 								delete scope.formData.addressKey;
 								delete scope.formData.addressTypeId;
 								
-								resourceFactory.addressResource.save({clientId: routeParams.id},
+								resourceFactory.addressResource.update({clientId: routeParams.id},
 										scope.formData, function(data) {
 											location.path('/viewclient/'
 													+ routeParams.id);
