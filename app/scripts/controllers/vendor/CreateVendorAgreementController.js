@@ -28,6 +28,25 @@
 				scope.agreementTypes = data.agreementTypes;
 			});
 			
+			scope.durationSelect = function(id,isDel){
+				
+				var count = 0;
+				for(var i=0; i<scope.planDatas.length;i++){
+					if(scope.planDatas[i].id == id && scope.planDatas[i].isPrepaid == "Y"){
+						
+						resourceFactory.VendorAgreementTDurationemplateResource.getTemplateData({'planId':id},function(data) {
+							scope.durationDatas = data;
+						});
+						count = count+1;
+					}
+				}console.log("isDel:"+isDel);
+				if(count == 1){console.log("if:"+isDel);
+					scope.isDurationEnable = true;
+				}else{console.log("elseif:"+isDel);
+					scope.isDurationEnable = false;
+					//scope.vendorDetailsData.durationId = undefined;
+				}
+			};
 			scope.addVendorDetails = function () {
 	        	if (scope.detailsFormData.contentCode && scope.detailsFormData.loyaltyType 
 	        			&& (scope.detailsFormData.loyaltyShare || scope.detailsFormData.contentCost) && scope.detailsFormData.priceRegion) {
@@ -40,7 +59,8 @@
 								loyaltyShare : scope.detailsFormData.loyaltyShare,
 								priceRegion : scope.detailsFormData.priceRegion,
 								contentCost : scope.detailsFormData.contentCost,
-								contentSellPrice : scope.detailsFormData.contentSellPrice
+								contentSellPrice : scope.detailsFormData.contentSellPrice,
+								durationId : scope.detailsFormData.durationId
 							});
 	        			/*	scope.detailsFormData.loyaltyShare = undefined;
 	        			}else{
@@ -89,6 +109,7 @@
 														contentCost :scope.vendorDetailsDatas[i].contentCost,
 														priceRegion : scope.vendorDetailsDatas[i].priceRegion,
 														contentSellPrice :scope.vendorDetailsDatas[i].contentSellPrice,
+														durationId:scope.vendorDetailsDatas[i].durationId,
 														locale : $rootScope.locale.code});
 	                 };
 	               }
