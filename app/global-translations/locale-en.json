@@ -2850,6 +2850,7 @@
 "label.form.module":"Module",
 
 "error.msg.fee.transaction.alredy.exists":"A Fee with this transaction already exists,Please Update it",
+"error.msg.active.plans.found.for.client":"Actvie plans found for this serial Number `{{params[0].value}}`",
 
 "#Deposit and Refund  ":".......",
 "error.msg.hardware.unallocated":"Please Unallocate hardware",
