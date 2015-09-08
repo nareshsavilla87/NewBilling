@@ -90,8 +90,7 @@
     		
     		   scope.isnow=true;
     	   }
-    	   /*console.log("todayDate:"+scope.todayDate);
-    	   console.log("selectedDate:"+scope.selectedDate);*/
+
        };
 
        resourceFactory.orderTemplateResource.get({'planId': routeParams.planId,'clientId': routeParams.id},function(data) {
@@ -104,6 +103,7 @@
     		   //assinging prepaid plans
     		   else if(scope.plandatas[plan].isPrepaid == 'Y')
     			   scope.prepaidPlanDatas.push(scope.plandatas[plan]);
+    		
     	   }
            scope.subscriptiondatas=data.subscriptiondata;
            scope.paytermdatas=data.paytermdata;
