@@ -2218,16 +2218,22 @@
 	  				
 	  	        	$scope.submit = function(){
 	  	        		
-	  	        		resourceFactory.itemDetailsResource.update({'itemId': onetimesaleData.itemDetailId},this.formData,function(data){
-	  	        			$modalInstance.close('delete');
-	  	        			webStorage.add("callingTab", {someString: "Sale" });
-	  	                    route.reload();
-	  	                },function(errorData){
-	  	                	$scope.flagStatementPop = false;
-	  	                	$scope.errorDetails = $rootScope.errorDetails; 
-	  		  				$scope.errorStatus = $rootScope.errorStatus;
-	  		  				$rootScope.errorDetails = []; $rootScope.errorStatus = [];
-	  	                });
+	  	        		if(onetimesaleData.provserialnumber == $scope.formData.provisioningSerialNumber &&
+	  	        				onetimesaleData.serialNo == $scope.formData.serialNumber){
+	  	        			$scope.noModifications = true;
+	  	        		}else{
+	  	        			$scope.noModifications = false;
+		  	        		resourceFactory.itemDetailsResource.update({'itemId': onetimesaleData.itemDetailId},this.formData,function(data){
+		  	        			$modalInstance.close('delete');
+		  	        			webStorage.add("callingTab", {someString: "Sale" });
+		  	                    route.reload();
+		  	                },function(errorData){
+		  	                	$scope.flagStatementPop = false;
+		  	                	$scope.errorDetails = $rootScope.errorDetails;$rootScope.errorDetails = [];
+		  	                	$scope.errorStatus = $rootScope.errorStatus;$rootScope.errorStatus = [];
+		  		  				 
+		  	                });
+	  	        		}
 	  	        	};
 	  	        	
 	  	        	$scope.cancel = function(){
