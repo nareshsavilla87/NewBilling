@@ -1919,15 +1919,18 @@
 <script type="text/ng-template" id="edititemdetails.html">
 		
 	<div class="modal-header silver">
-        <h3 class="bolder">Edit Quality</h3>
+        <h3 class="bolder">Edit Item Details</h3>
     </div>
     <div class="modal-body" style="height:230px;">
-			<div class="error" ng-show="errorStatus || errorDetails">
+       <fieldset>
+			<div class="error" ng-show="errorStatus.length > 0 || errorDetails.length > 0 && !noModifications">
                <label>{{'label.contract.error' | translate}}</label>
                <label ng-show="errorStatus">{{errorStatus}}</label>
-               <label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate : error.args}}</label>
+               <label ng-repeat="error in errorDetails">{{error.code | translate : error.args}}</label>
            </div>
-       <fieldset>
+			<div class="error" style="color:blue;" ng-show="noModifications">
+				<label>No Changes detected..!</label>
+			</div> 
 	 		<div class="control-group">
 				<label class="control-label" for="provisioningSerialNumber">{{'label.itemdetail.provisionserialnum' | translate }}&nbsp;<span class="required">*</span></label>
 				<div class="controls">
