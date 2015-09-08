@@ -92,7 +92,9 @@
 		<table class="margintop10 fullwidth">
 			<tr data-ng-repeat="orderServiceParent in orderServices"">                 
    			 <td style="padding :0 0 10px 20px;" data-ng-repeat="orderServiceChild in orderServiceParent">
-			   <img ng-src="{{orderServiceChild.image}}" alt="No image" width="50"/></td>
+			   <img ng-src="{{orderServiceChild.image}}" alt="No image" width="50"/><br>
+               {{ orderServiceChild.serviceDescription }}
+               </td>
 			</tr>
  	   </table>
      </div>
@@ -110,7 +112,9 @@
 		<table class="margintop10 fullwidth">
 			<tr data-ng-repeat="planserviceParent in planServices">                 
    				<td style="padding :0 0 10px 20px;" data-ng-repeat="planserviceChild in planserviceParent">
-					<img ng-src="{{planserviceChild.image}}" alt="No image" width="50"/></td>
+					<img ng-src="{{planserviceChild.image}}" alt="No image" width="50"/><br>
+                    {{planserviceChild.serviceDescription}}
+               </td>
 			</tr>
  	   </table>
      </div>
