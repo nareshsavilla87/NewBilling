@@ -65,4 +65,22 @@
             <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
         </div>
    </script>
+   <div>
+	<h3>&nbsp;&nbsp;&nbsp;List of Discounts</h3>
+		<table class="table">
+			<thead>
+				<tr class="graybg">
+					<th>{{ 'table.heading.id' | translate }}</th>
+					<th>{{'table.heading.customerCategory' | translate }}</th>
+					<th>{{'label.discountrate' | translate}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="discountDetailData in discountDetailDatas">
+				<td>{{discountDetailData.id}}</td>
+				<td>{{discountDetailData.categoryType}}</td>
+				<td>{{discountDetailData.discountRate}}</td>
+			</tbody>
+		</table>
+	</div>
 </div>

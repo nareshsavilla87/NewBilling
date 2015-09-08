@@ -1185,6 +1185,11 @@
             
             feeMasterResource: defineResource(apiVer + "/feemaster/:id", {id:'@id'},{update: { method: 'PUT' }}),
             feeMasterTemplateResource: defineResource(apiVer + "/feemaster/template", {},{}),
+            refundAmountResource: defineResource(apiVer + "/refund/:depositId", {depositId:'@depositId'}, {
+                get: {method: 'GET', params: {}},
+                update: { method: 'PUT'}
+            }), 
+            depositAmountResource: defineResource(apiVer + "/deposit/:client", {client:'@client'}, {}), 
       
         };
       }];

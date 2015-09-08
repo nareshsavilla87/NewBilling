@@ -6,7 +6,8 @@
         scope.PermissionService =  PermissionService; 
         
         resourceFactory.discountsResource.getDiscountDetails({discountId: routeParams.id} , function(data) {
-            scope.discounting = data;                                                
+            scope.discounting = data; 
+            scope.discountDetailDatas=data.discountDetailDatas;
         });
         scope.deletemessage = function (){
             resourceFactory.discountResource.remove({discountId: routeParams.id} , {} , function(data) {

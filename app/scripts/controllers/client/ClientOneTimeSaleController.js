@@ -27,6 +27,7 @@
 	            scope.maxDate = new Date();
 	            scope.truefalse = true;
 	            scope.walletConfig = webStorage.get('is-wallet-enable');
+	           /* var IsSerialnumberRequired =  webStorage.get("client_configuration").IsSerialnumberRequired;*/
 	          
 	        resourceFactory.oneTimeSaleTemplateResource.getOnetimes(function(data) {
 	            
@@ -38,6 +39,7 @@
 	            scope.date= {};
 	            scope.date.saleDate = new Date();
 	            scope.formData.saleType=scope.saleType;
+	            
 
 	            if(scope.saleType == 'DEVICERENTAL'){
 	            	scope.formData.totalPrice=0;
@@ -61,6 +63,7 @@
 	        		scope.formData.itemId=itemId;
 	        		scope.formData.discountId = scope.discountMasterDatas[0].discountMasterId;
 	        		scope.formData.officeId=officeId;
+	        		//scope.formData.amount = data.feeMasterData[0].defaultFeeAmount;
 	        		scope.truefalse = false;
 	        		 if(scope.saleType == 'DEVICERENTAL'){
 	 	            	scope.formData.totalPrice=0;
@@ -68,7 +71,7 @@
 		        });	
 	        };
 	        
-	        scope.itemDataQuantity=function(quantity,itemId,officeId,units){
+	        scope.itemDataQuantity=function(quantity,itemId,officeId,units,amount){
 	        	this.data.unitPrice=this.formData.unitPrice;
 	        	this.data.locale=$rootScope.locale.code;
 	        	this.data.quantity=quantity;
@@ -80,6 +83,7 @@
 	        		scope.formData.itemId=itemId;
 	        		scope.formData.discountId = scope.discountMasterDatas[0].discountMasterId;
 	        		scope.formData.officeId=officeId;
+	        		scope.formData.amount = amount;
 		            
 	        		 if(scope.saleType == 'DEVICERENTAL'){
 	 	            	scope.formData.totalPrice=0;
@@ -137,8 +141,11 @@
 	             delete this.formData.units;
 	             delete this.formData.itemCode;
 	             delete this.formData.id;
-	         
+	             delete this.formData.feeMasterData;
+	         /*    this.formData.IsSerialnumberRequired = IsSerialnumberRequired;*/
+	             
 	             if(scope.unitsValue == 'PIECES'){
+	            	 
 	            	 var temp1 = new Array();
 			        	
 			        	$("input[name='serialNumber']").each(function(){
@@ -152,10 +159,12 @@
 			    			temp1.push(temp);
 			        	});
 			        	this.formData.serialNumber=temp1;
+			        	
 	             }
 	             
 		            delete this.formData.serialNumbers;
 		            delete this.formData.chargesData;
+		            
 	            resourceFactory.oneTimeSaleResource.save({clientId:routeParams.id,devicesaleTpye:scope.saleType},this.formData,function(data){
 	            	 location.path('/viewclient/' + routeParams.id);
 	          },function(errData){

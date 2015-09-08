@@ -13,7 +13,6 @@
          scope.orders = [];
          scope.scheduleorders=[];
          scope.ippoolDatas = [];
-         scope.trackingDatas = {};
          scope.formData = {};
  		 scope.start = {};
          scope.start.date = new Date();
@@ -1001,7 +1000,7 @@
         			 
 	        		 resourceFactory.clientAdditionalResource.get({clientId: routeParams.id,template:true}, function(data) {
 	        			 var nationalityDatas 				= data.nationalityDatas;
-	        			 var languagesDatas 				= data.languagesDatas;
+	        			 var languagesDatas 					= data.languagesDatas;
 	        			 
 	        			 
 	        			 scope.additionalDatas.remarks = data.remarks;
@@ -1208,7 +1207,7 @@
 		    /* resourceFactory.DataTablesResource.getAllDataTables({apptable: 'm_client'} , function(data) {
           	scope.clientdatatables = data;
         	});*/
-		
+        
 		scope.getStatementsData = function(offset, limit, callback) {
 			resourceFactory.statementResource.get({clientId: routeParams.id ,offset: offset, limit: limit} , function(data){
 				scope.url = mifosX.models.url;

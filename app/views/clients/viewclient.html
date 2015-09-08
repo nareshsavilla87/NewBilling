@@ -344,7 +344,7 @@
 			  			</div>
 			  			
 			  			<div id="pane2" class="tab-pane" data-ng-class="{active:additionaldataSubTab }">
-			  				<div class="pull-right" data-ng-show="additionaladdress">
+			  				<div class="pull-right" data-ng-show="additionalDatas  && !editAdditionalDatasBtn">
 	         			 		<a href="#/clientadditionalinfo/{{clientId}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'label.add.additionalinfo' | translate}}
 			 			 		</a>
 	        				</div>
@@ -379,7 +379,7 @@
 			  			
 			  			<div id="pane3" class="tab-pane" data-ng-class="{active: additionaladdressdataSubTab}">
 					         <br/>
-			        		<table class="table" data-ng-show="additionaladdressDatas">
+			        		<table class="table">
 			            		<thead>
 			              			<tr class="graybg">
 			                			<th>{{'table.heading.propertycode' | translate}}</th>
@@ -781,13 +781,13 @@
 				</div> 
  			</tab>   
  			
-      		<!-- <tab heading="{{clientdatatable.registeredTableName}}" ng-repeat="clientdatatable in clientdatatables" select="dataTableChange(clientdatatable)">
+      		<tab heading="{{clientdatatable.registeredTableName}}" ng-repeat="clientdatatable in clientdatatables" select="dataTableChange(clientdatatable)">
         		<div>
          			<div data-ng-hide="isClosedClient" class="btn-group pull-right">
           				<a data-ng-show="datatabledetails.isData" class="btn btn-primary pull-right" 
              				data-ng-click="deleteAll(clientdatatable.registeredTableName, client.id)">
              			<i class="icon-trash icon-white"></i>{{'button.deleteall' | translate}}</a>
-         				 <span ng-show="!datatabledetails.isData || datatabledetails.isMultirow" class="pull-right ">
+         				<!--  <span ng-show="!datatabledetails.isData || datatabledetails.isMultirow" class="pull-right "> -->
             			<a data-ng-show="showDataTableAddButton"
                				data-ng-href="#/makedatatableentry/{{clientdatatable.registeredTableName}}/{{client.id}}" 
                				class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'button.add' | translate}}</a>
@@ -807,11 +807,11 @@
                 				<tr class="pointer-main" data-ng-repeat="data in datatabledetails.data">
                 					<td class="pointer" data-ng-repeat="row in data.row track by $index"
 		                            data-ng-click="viewDataTable(clientdatatable.registeredTableName,data)">{{row}}</td>
-                  					  <span ng-show="$index == 0">
+                  					<!--   <span ng-show="$index == 0">
                       				<a class="pointer" data-ng-click="routeTotable(clientdatatable.registeredTableName,client.id,data.row[0])"  ng-show="datatabledetails.isMultirow">{{row}}</a>
                       				<a  class="pointer" data-ng-click="routeTotable(clientdatatable.registeredTableName,client.id)" ng-hide="datatabledetails.isMultirow">{{row}}</a>
                     				</span> 
-                    				<span ng-hide="$index == 0">{{row}}</span>
+                    				<span ng-hide="$index == 0">{{row}}</span>-->
                 				</tr>
               				</tbody>
           				</table>
@@ -823,7 +823,7 @@
 		            	</table>
 		            </div>
         		</div>
-      		</tab> -->
+      		</tab>
       		
       		<!-- ********** Event Sale Tab here ********** -->
       		
@@ -867,6 +867,7 @@
 				    	<li class={{paymentsC}}><a data-ng-click="paymentsTab()" data-toggle="tab">{{'label.payments' | translate}}</a></li>
     			 		<li class={{adjustmentsC}}><a data-ng-click="adjustmentsTab()" data-toggle="tab">{{'label.adjustments' | translate}}</a></li>
     			 		<li class={{journalsC}}><a data-ng-click="journalsTab()" data-toggle="tab">{{'label.journals' | translate}}</a></li>
+    			 		<li class={{depositC}}><a data-ng-click="depositsTab()" data-toggle="tab">Deposit</a></li>
     			 		<div class="pull-right btn-group"><button id="download" class="btn btn-min btn-default " data-ng-click="exportFinancialCSV()">{{'button.exportfinancialcsv/pdf' | translate}}</button>
 			      		<a data-ng-show="PermissionService.showMenu('CREATE_ADJUSTMENT')" href="#/adjustments/{{client.id}}"  class="btn btn-primary"><i class="icon-adjust icon-white"></i>{{'button.adjustment' | translate}}</a></div>
 			    	</ul>
@@ -905,7 +906,7 @@
                 								{{financialtransaction.transactionType}}
               								</td>
               								<td class="pointer"  data-ng-click="routeTofinancial(financialtransaction.transactionId,financialtransaction.transactionType,client.id)">
-                								{{financialtransaction.transactionCategory}}
+                			 						{{financialtransaction.transactionCategory}}
               								</td>
               								<td class="pointer"  data-ng-click="routeTofinancial(financialtransaction.transactionId,financialtransaction.transactionType,client.id)">
                  								{{financialtransaction.creditAmount}}
@@ -914,9 +915,14 @@
                  								{{financialtransaction.amount}}
               								</td>
               								<td>
-                								<a data-ng-show="financialtransaction.transactionType == 'INVOICE'" data-ng-click="downloadInvoice(financialtransaction.transactionId)" popover="Print Invoice" popover-trigger="mouseenter"><i class=" icon-download-alt icon-white"></i></a>&nbsp;
+                								<a data-ng-show="financialtransaction.transactionType == 'PAYMENT'  && financialtransaction.flag==false" data-ng-click="cancelPayment(financialtransaction.transactionId)" popover="Cancel Payment" popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a>
+                								<a ng-show="financialtransaction.transactionCategory == 'Deposit' && financialtransaction.flag==false" data-ng-click="refundAmount(financialtransaction.transactionId,financialtransaction.amount)" 
+                								   		popover="Refund Amount" popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a>
+                								<!-- <a data-ng-hide="financialtransaction.flag==true" data-ng-click="cancelPayment(financialtransaction.transactionId)" popover="Cancel Payment" popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a> -->
+                								<a ng-show="financialtransaction.transactionType == 'INVOICE'" data-ng-click="downloadInvoice(financialtransaction.transactionId)" popover="Print Invoice" popover-trigger="mouseenter"><i class=" icon-download-alt icon-white"></i></a>&nbsp;
+                								<!-- <a data-ng-show="financialtransaction.transactionType == 'INVOICE'" data-ng-click="downloadInvoice(financialtransaction.transactionId)" popover="Print Invoice" popover-trigger="mouseenter"><i class=" icon-download-alt icon-white"></i></a>&nbsp; -->
                 								<a data-ng-show="financialtransaction.transactionType == 'PAYMENT'" data-ng-click="downloadPayment(financialtransaction.transactionId)" popover="Print Payment" popover-trigger="mouseenter"><i class=" icon-download-alt icon-white"></i></a>&nbsp;
-                								<a data-ng-hide="financialtransaction.flag==true" data-ng-click="cancelPayment(financialtransaction.transactionId)" popover="Cancel Payment" popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a>
+                								<!-- <a data-ng-hide="financialtransaction.flag==true" data-ng-click="cancelPayment(financialtransaction.transactionId)" popover="Cancel Payment" popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a> -->
                 								
               								</td>
            								</tr>
@@ -1132,6 +1138,60 @@
     							</ul>
 							</div>
 			    		</div>
+			    		
+			    		<div id="pane5" class="tab-pane" data-ng-class="{active: depositC}">
+			    			<div>
+								<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+								<table class="table">
+									<thead>
+										<tr class="graybg">
+											<th>{{'label.username' | translate}}</th>
+							 				<th>{{'label.transactionId' | translate}}</th>
+                							<th>{{'label.transaction.date' | translate}}</th>
+                							<th>{{'label.transaction.type' | translate}}</th>
+                							<th>{{'label.transaction.category' | translate}}</th>
+                							<th>{{'label.creditamount' | translate}}</th>
+                							<th>{{'label.denitamount' | translate}}</th>
+                							<th>Actions</th>	
+										</tr>
+									</thead>
+									<tbody>
+										<tr data-ng-repeat="financialtransaction in financialDeposits.currentPageItems  | filter:filterText" data-ng-show="financialtransaction.transactionType =='DEPOSIT&REFUND'"> 
+               								<td>
+                  								<any>{{financialtransaction.userName}}</any>
+              								</td>
+               								<td>
+                  								<any>{{financialtransaction.transactionId}}</any>
+              								</td>
+              								<td>
+                  								<any>{{financialtransaction.transDate | DateFormat}}</any>
+              								</td>
+              								<td>
+                  								<any>{{financialtransaction.transactionType}}</any>
+              								</td>
+              								<td>
+                  								<any>{{financialtransaction.transactionCategory}}</any>
+              								</td>
+              								<td>
+                  								<any>{{financialtransaction.creditAmount}}</any>
+              								</td>
+              								<td>
+                  								<any>{{financialtransaction.amount}}</any>
+              								</td>
+              								<td>
+                								<a ng-show="financialtransaction.transactionCategory == 'Deposit' && financialtransaction.flag==false" data-ng-click="refundAmount(financialtransaction.transactionId,financialtransaction.amount)" 
+                								   		popover="Refund Amount" popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a>
+              								</td>
+            							</tr>
+									</tbody>
+								</table>
+								<ul class="pager">
+        							<li class="previous"><a data-ng-click="financialDeposits.previous()" href="" data-ng-disabled="!financialDeposits.hasPrevious()">&larr; {{'label.prev' | translate}}</a></li>
+        							<li class="next" ><a data-ng-click="financialDeposits.next()" href="" data-ng-disabled="!financialDeposits.hasNext()">{{'label.next' | translate}} &rarr;</a></li>
+    							</ul>
+							</div>
+			    		</div>
+			    		
 					</div>
 				</div>
 			</tab>
@@ -1633,21 +1693,6 @@
 			</form>
 		</script> 
 		
-		<script type="text/ng-template" id="deletePopup.html">
-    		<div class="modal-header silver">
-        		<h3 class="bolder">{{deletePopupName}}</h3>
-        	</div>
-
-        	<div class="modal-body style="height:60px;">
-            	<h4>Are you sure?</h4>
-        	</div>
-
-        	<div class="modal-footer">
-            	<button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
-            	<button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
-        	</div>
-   		</script>
-   		
    <script type="text/ng-template" id="allocateproperty.html">
 		
 	<div class="modal-header silver">
@@ -1675,13 +1720,12 @@
 
 	<script type="text/ng-template" id="deletePopup.html">
     	<div class="modal-header silver">
-        	<h3 class="bolder">Delete Property Master</h3>
+        	<h3 class="bolder">Vacate Property</h3>
         </div>
-        <div class="error" ng-show="errorStatus || errorDetails">
-				<label>{{'label.contract.error' | translate}}</label>
-				<label ng-show="errorStatus">{{errorStatus}}</label>
-				<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
-	   		</div>
+        <div class="control-group">
+	            <label class="control-label" style="color:red;" ng-show="orderError.length>0">{{orderError | translate}}</label>
+            	<div class="controls"></div>
+        	</div>
         <div class="modal-body style="height:60px;">
             <h4>Are you sure?</h4>
         </div>
@@ -1765,6 +1809,70 @@
 			<button id="submit" class="btn btn-primary" ng-click="removeIp()">Remove IP</button>
         </div>
 	</script>
+	<script type="text/ng-template" id="refundamount.html">
+    	<div class="modal-header silver">
+        	<h3 class="bolder">Refund</h3>
+        </div>
+        <div class="modal-body" >
+        	<div class="control-group">
+				<div class="controls">
+					<span class="control-label" style="color:red;" ng-show="stmError.length>0">{{stmError | translate}}</span>
+				</div>	
+			</div>
+<table>
+<tr>
+	<td>
+		<div class="control-group">
+         <label class="control-label" for="refundMode">Refund Type<span class="required">*</span></label>
+           <div class="controls">
+             <select id="refundMode" data-ng-model="formData.refundMode" data-ng-options="data.id as data.mCodeValue for data in refundModeData">
+              <option value="">{{'label.select.one' | translate}}</option></select>
+           </div>
+        </div>
+	</td>
+</tr>
+<tr>
+	<td>
+		<div class="control-group">
+				<label class="control-label">Amount</label>
+				<div class="controls">
+					<input type="text" ng-model="formData.refundAmount" required readonly late-Validate style="background-color:#FFFFFF;"/> 
+				</div>	
+		</div>
+	</td>
+</tr>
+</table>
+     
+			
+        </div>
+        <div class="modal-footer">
+        	<button id="cancel" class="btn btn-warning" ng-click="reject()">{{'button.cancel' | translate}}</button>
+            <button id="submit" class="btn btn-primary" ng-click="accept(formData.cancelRemark)" ng-disabled="flagcancelpayment">{{'label.confirm' | translate}}</button>
+        </div>
+	</script>
+	
+	 <script type="text/ng-template" id="depositpop.html">
+    	<div class="modal-header silver">
+        	<h3 class="bolder">Deposit</h3>
+        </div>
+        <div class="modal-body modal-small">
+        	<div class="control-group">
+       			<div class="controls">
+					<span class="control-label" style="color:red;" ng-show="stmError.length>0">{{stmError | translate}}</span>
+                </div>
+			</div>            	
+         <div class="control-group">
+				<label class="control-label">Amount</label>
+				<div class="controls">
+					<input type="text" ng-model="depositAmount" required readonly late-Validate style="background-color:#FFFFFF;"/> 
+				</div>	
+			</div>
+        </div>
+        <div class="modal-footer">
+        	<button id="cancel" class="btn btn-warning" ng-click="reject()">{{'button.cancel' | translate}}</button>
+            <button id="submit" class="btn btn-primary" ng-click="accept()">{{'label.confirm' | translate}}</button>
+        </div>
+	</script>
 	<script type="text/ng-template" id="ApproveConfirm.html">
    	<div class="modal-header silver">
   			<h3 class="bolder">{{'dialog.confirm.title.message' | translate}}</h3>
@@ -1807,4 +1915,3 @@
  </script>
    		
 </div>
-

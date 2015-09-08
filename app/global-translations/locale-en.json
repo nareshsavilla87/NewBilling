@@ -8,7 +8,7 @@
   "label.signin":"Sign In",
   "label.systemid": "System Id :",
   "label.product.name" : "Open Billing System",
-  "label.product.version" : "Version 3.0",
+  "label.product.version" : "Version 3.01",
   "label.product.status" : "OBS is upto date",
   "label.product.aboutus1" : "Designed by ",
   "label.product.aboutus2" : "A global community",
@@ -225,6 +225,7 @@
   "#common button name":"",
   "button.edit":"Edit",
   "button.add":"Add",
+  "button.addmrn":"Add Mrn",
   "button.save":"Save",
   "button.cancel":"Cancel",
   "button.close":"Close",
@@ -549,9 +550,15 @@
   "error.code.definition.length.validation":"Max Length 10 Characters",
   "error.not.numeric.validation":"Enter Numeric Value",
   "error.not.decimal.validation":"Enter Decimal Value",
-  "error.invalid.phone.validation":"MAX Length 15 Numbers",
+  "error.invalid.phone.validation":"Invalid Mobile Phone",
   "error.msg.office.duplicate.name":"Office Name Already Exist",
   "error.msg.office.duplicate.externalId":"External Id Already Exist",
+  "validation.msg.office.phoneNumber.cannot.be.blank":"Mobile Phone cannot be blank",
+  "validation.msg.office.email.cannot.be.blank":"Email cannot be blank",
+  "validation.msg.office.city.cannot.be.blank":"City cannot be blank",
+  "validation.msg.office.state.cannot.be.blank":"State cannot be blank",
+  "validation.msg.office.country.cannot.be.blank":"Country cannot be blank",
+  "error.invalid.email.address":"Please provide valid email",
 
 
   "#Journal Entry Predefined Postings":"........",
@@ -747,7 +754,8 @@
   "validation.msg.subscriptoins.subscriptionPeriod.cannot.be.blank":"Contract Period Cannot be Blank",
   "validation.msg.subscriptoins.units.cannot.be.blank":"UNITS Cannot be Blank",
   "error.msg.contract.code.duplicate.name":"A contract with the same name already exists. Please use a different name",
-   "error.code.definition.length.validation":"Value exceeded. Please enter a valid value",
+  "error.code.definition.length.validation":"Value exceeded. Please enter a valid value",
+  "error.msg.contract.type.with.given.units.already exists":"Contract type with given unit value already exists",
   
   "#Plan":"......",
   "link.create.new.plan":"Add Plan",
@@ -818,6 +826,11 @@
   "label.editprice":"Edit Price",
   "label.viewprice":"View Price",
   "label.existsprices":"Exists Prices",
+  "label.discountdetails":"Discount Details",
+  "table.heading.customerCategory":"Customer Category",
+  "label.discountrate":"Discount Rate",
+  "validation.msg.discount.discountPrices.not.greater.than.zero":"Please Select atleast one Discount Details",
+  "error.msg.customer.category.discount.duplicate.name":"Duplicate customer category discount price found",
   "label.fieldserror":"Please add all fields",
   "dialog.price.title.message":"Delete Price",
   "validation.msg.price.chargeCode.cannot.be.blank":"Charge Code Cannot be Blank",
@@ -952,7 +965,7 @@
   "validation.msg.UploadStatus.description.cannot.be.blank":"Description Cannot be blank",
   "validation.msg.UploadStatus.fileName.cannot.be.blank":"File name Cannot be blank",
   
-  "#Order":".....",
+  "#Order":"..............................................",
   "label.createorder":"Create New Order",
   "label.postpaidplans":"Postpaid Plans",
   "link.view.order":"View Order",
@@ -1030,6 +1043,8 @@
   "label.commandcenter":"Command Center",
   "label.scheduleorders":"Schedule Orders",
   "label.order.autorenew":"Is Auto Renew",
+  "error.msg.plan.with.id.not.exists":"Plan not exists",
+  "error.msg.please.pair.hardware.with.plan":"Please pair hardware with plan",
   
     "#Voucher pins":"....",
   "link.create.new.voucherpin":"Create Voucher Pin",
@@ -1081,6 +1096,7 @@
   "table.heading.pinValue":"Pin Value",
   "table.heading.expiryDate":"Expiry Date",
   "table.heading.propertycode":"Property Code",
+  "label.allocateproperty":"Allocate Property",
   "table.heading.promotiondesc":"Promotion Description",
   
   "#Discounts":"....",
@@ -1250,11 +1266,12 @@
   "table.heading.transactiondate":"Transaction Date",
   "table.heading.transactiontype":"Transaction Type",
   "table.heading.history":"History",
+  "table.heading.saleid" : "Sale Id",
   "table.heading.saledate":"Sale Date",
   "table.heading.itemcode":"Item Code",
   "table.heading.chargecode":"Charge Code",
   "table.heading.totalprice":"Total Price",
-  "table.heading.allocate":"Allocate",
+  "table.heading.allocate":"Status",
   "table.heading.eventName":"Event Name",
   "table.heading.bookedDate":"Booked Date",
   "table.heading.eventPrice":"Event Price",
@@ -1262,6 +1279,7 @@
   "label.add.client.onetimesale":"Item Sale",
   "label.chargeCode":"Charge Code",
   "label.itemCode":"Item Code",
+  "label.allocateproperty": "Allocate Property",
   "label.totalPrice":"Total Price",
   "label.unitPrice":"Unit Price",
   "label.regions":"Regions",
@@ -1613,17 +1631,15 @@
    "table.heading.saledate":"Sale Date",
    "link.add.devicerental":"Device Renatal",
   "table.heading.itemcode":"Item Code",
-  "table.heading.saleid" : "saleId",
   "table.heading.chargecode":"Charge Code",
   "table.heading.totalprice":"Total Price",
-  "table.heading.allocate":"Status",
+  "table.heading.allocate":"Allocate",
   "link.add.onetimesale":"Add",
   "label.add.client.onetimesale":"Item Sale",
   "label.chargeCode":"Charge Code",
   "label.itemCode":"Item Code",
   "label.totalPrice":"Total Price",
   "label.price":"Price",
-  "label.allocateproperty": "Allocate Property",
   "label.contract":"Contract Period",
   "label.unitPrice":"Unit Price",
   "label.saleDate":"Sale Date",
@@ -2009,6 +2025,7 @@
   "validation.msg.planmappig.planCode.cannot.be.blank":"Plan Code cannot be blank",
   "validation.msg.planmappig.itemCode.cannot.be.blank":"Item Code cannot be blank",
   "error.msg.service.mapping.duplicate":"Mapping has already done with this service",
+  "validation.msg.ServiceMapping.provisionSystem.cannot.be.blank":"Please Select Provisioning system",
   
   "#HardWareMapping":"...........",
   "table.hardwaremapping.id":"Id",
@@ -2554,7 +2571,6 @@
 "lable.heading.secret"			: "Secret",
 "lable.heading.description"		: "Description",
 
-
 "#radService":".......",
 "tab.radService":"RadService",
 "label.createradservice":"Create RadService",
@@ -2742,6 +2758,7 @@
 "validation.msg.propertycodemaster.code.exceeds.max.length":"Code cannot be exceeds it's max length",
 "validation.msg.propertycodemaster.propertyCodeType.exceeds.max.length":"",
 "validation.msg.propertycodemaster.description.exceeds.max.length":"Code Description cannot be exceeds it's max length",
+"error.msg.property.code.device.mapping.exist":"Property Mapped with Device",
 
 
 "#vendor":".......",
@@ -2831,8 +2848,16 @@
 "validation.msg.feemaster.regionPrices.not.greater.than.zero" :"Please add atleast one region price",
 "label.pgconfig.editconfig":"Edit Configurations",
 "label.form.module":"Module",
+
+"error.msg.fee.transaction.alredy.exists":"A Fee with this transaction already exists,Please Update it",
+
+"#Deposit and Refund  ":".......",
+"error.msg.hardware.unallocated":"Please Unallocate hardware",
+"error.msg.unable.to.refund.clientbalance.greater.than.refund.amount":"Unable refund client due balance is greater than refund balance",
+"error.msg.hardware.quality.not.good":"Item Quality is not good",
 "error.msg.fee.code.duplicate.name":"Fee Code already exists",
 "error.msg.fee.transaction.alredy.exists":"A Fee with this transaction already exists,Please Update it"
+
 
 
 
