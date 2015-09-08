@@ -2197,6 +2197,44 @@
 		 				$modalInstance.dismiss('cancel');
 		 			};
 		 		};
+		 		
+	  	        scope.editItemDetails = function(onetimesaleData){
+	  				$modal.open({
+	                    templateUrl: 'edititemdetails.html',
+	                    controller: EditItemDetailsPopController,
+	                    resolve:{
+	                    	onetimesaleData : function(){
+	                    		return onetimesaleData;
+	                    	}
+	                    }
+	                });
+	  			};
+	  			
+	  			function EditItemDetailsPopController($scope, $modalInstance,onetimesaleData){
+	  				$scope.formData = {};
+	  				
+	                  $scope.formData.provisioningSerialNumber=onetimesaleData.provserialnumber;
+	                  $scope.formData.serialNumber= onetimesaleData.serialNo;
+	  				
+	  	        	$scope.submit = function(){
+	  	        		
+	  	        		resourceFactory.itemDetailsResource.update({'itemId': onetimesaleData.itemDetailId},this.formData,function(data){
+	  	        			$modalInstance.close('delete');
+	  	        			webStorage.add("callingTab", {someString: "Sale" });
+	  	                    route.reload();
+	  	                },function(errorData){
+	  	                	$scope.flagStatementPop = false;
+	  	                	$scope.errorDetails = $rootScope.errorDetails; 
+	  		  				$scope.errorStatus = $rootScope.errorStatus;
+	  		  				$rootScope.errorDetails = []; $rootScope.errorStatus = [];
+	  	                });
+	  	        	};
+	  	        	
+	  	        	$scope.cancel = function(){
+	  	        		$modalInstance.dismiss('cancel');
+	  	        	};
+	  	        };
+	  	        
 	  	      
     	}
   });
