@@ -90,10 +90,11 @@
                       	class="input-small" placeholder="contentCode">
                       	<option value="">--ContentCode(Plan/Services)--</option>
                       </select>
-                      <select data-ng-show = "formData.contentType == 'Package'" data-ng-model="detailsFormData.contentCode" data-ng-options="planData.id as planData.planCode for planData in planDatas" 
+                      <select data-ng-show = "formData.contentType == 'Package'" data-ng-model="detailsFormData.contentCode" data-ng-change="durationSelect(detailsFormData.contentCode, 'false')" data-ng-options="planData.id as planData.planCode for planData in planDatas" 
                       	class="input-small" placeholder="contentCode">
                       	<option value="">--ContentCode(Plan/Services)--</option>
                       </select>&nbsp;&nbsp;
+                      <select data-ng-show = "isDurationEnable" data-ng-model="detailsFormData.durationId" data-ng-options="durationData.id as durationData.duration for durationData in durationDatas" class="input-small" ></select>
                       <select data-ng-model="detailsFormData.loyaltyType" class="input-small" >
                       <option value="">--LoyaltyType--</option>
                       <option value="Flat">FLAT</option>
@@ -114,6 +115,7 @@
                     <tr></tr>
                     <tr class="graybg">
                       <th>ContentCode</th>
+                      <th data-ng-show = "isDurationEnable">Duration</th>
                       <th>LoyaltyType</th>
                       <th>LoyaltyShare&nbsp;</th>
                       <th>ContentCost&nbsp;</th>
@@ -124,7 +126,8 @@
                     </tr>
                     <tr data-ng-repeat="vendorDetailsData in vendorDetailsDatas" >
                       <td data-ng-show = "formData.contentType == 'Service'"><select data-ng-model="vendorDetailsData.contentCode" data-ng-options="service.id as service.serviceCode for service in servicesData" class="input-small" ><option value="">--ContentCode(Plan/Services)--</option></select></td>
-                      <td data-ng-show = "formData.contentType == 'Package'"><select data-ng-model="vendorDetailsData.contentCode" data-ng-options="planData.id as planData.planCode for planData in planDatas" class="input-small" ></select></td>
+                      <td data-ng-show = "formData.contentType == 'Package'"><select data-ng-model="vendorDetailsData.contentCode" data-ng-change="durationSelect(vendorDetailsData.contentCode, 'true')" data-ng-options="planData.id as planData.planCode for planData in planDatas" class="input-small" ></select></td>
+                      <td data-ng-show = "isDurationEnable"><select data-ng-model="vendorDetailsData.durationId" data-ng-options="durationData.id as durationData.duration for durationData in durationDatas" class="input-small" ></select></td>
                       <td><select data-ng-model="vendorDetailsData.loyaltyType" class="input-small" >
                       	<option value="">--LoyaltyType--</option>
                       	<option value="Flat">FLAT</option>
