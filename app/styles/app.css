@@ -1008,9 +1008,8 @@ nav:hover:after{
 	width: 100%;
 }
 
-.container td:first-child .paddedleftNone {
-	padding-left: 0;
-}
+.container td:first-child .paddedleftNone { padding-left: 0; }
+.container th:first-child .paddedleftNone { padding-left: 0; }
 
 .container td:last-child .paddedleftNone {
 	padding-left: 0;
