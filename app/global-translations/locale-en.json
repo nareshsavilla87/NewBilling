@@ -2801,6 +2801,7 @@
 "error.msg.vendor.contentcode.lshare.duplicate":"Duplicate data with same Contentcode and loyaltyshare",
 "error.msg.vendor.active.agreement.with.this.dates":"Active agreement, already exist with same effective start & end date",
 "validation.msg.vendormanagement.vendormobileNo.exceeds.max.length":"MobileNo exceeds maximum length",
+"dialog.contentdetail.title.message":"Delete Content Detail",
 
 "#Service Transfer ":".......",
 "label.service.transfer"		: "Service Transfer",

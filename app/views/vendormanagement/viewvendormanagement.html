@@ -85,7 +85,7 @@
                 <td class="pointer" data-ng-click="routeTo(vendorData.id,agreement.id)">{{agreement.agreementStartDate | DateFormat}}</td>
                 <td class="pointer" data-ng-click="routeTo(vendorData.id,agreement.id)">{{agreement.agreementEndDate | DateFormat}}</td> 
                 <td class="pointer" data-ng-click="routeTo(vendorData.id,agreement.id)">{{agreement.contentType}}</td>
-                <td class="pointer" data-ng-click="routeTo(vendorData.id,agreement.id)"><a data-ng-show="PermissionService.showMenu('UPDATE_VENDORAGREEMENT')" href="#/editvendoragreement/{{agreement.id}}/{{vendorData.id}}" 
+                <td class="pointer"><a data-ng-show="PermissionService.showMenu('UPDATE_VENDORAGREEMENT')" href="#/editvendoragreement/{{agreement.id}}/{{vendorData.id}}" 
                        data-popover="Edit Vendor Agreement" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i> </a>
                        
                 </td>  
