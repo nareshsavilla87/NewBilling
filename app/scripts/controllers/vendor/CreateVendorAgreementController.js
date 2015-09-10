@@ -1,84 +1,113 @@
 (function(module) {
 	mifosX.controllers = _.extend(module, {				
 		CreateVendorAgreementController : function(scope,routeParams,resourceFactory, 
-				location, dateFilter,validator, $rootScope, $upload, API_VERSION, routeParams) {
-			
-			scope.priceRegionDatas = [];
-			scope.servicesData = [];
-			scope.planDatas = [];
-			scope.agreementTypes = [];
+				location, dateFilter,validator, $rootScope, $upload, API_VERSION, routeParams,$modal) {
 			
 			scope.formData = {};
-			scope.json = {};
 			scope.detailsFormData={};
-			 scope.vendorDetailsDatas=[];
-			 scope.start ={};
-			 scope.end ={};
-			 var datetime = new Date();
-			 scope.start.date = datetime;
-			 scope.end.date = datetime;
+			
+			 
+			 scope.start ={date:new Date()};
+			 scope.end ={date:new Date()};
 			 scope.minDate = new Date();
 			 scope.vendorId = routeParams.vendorId;
+			 
 			 scope.formData.contentType = "Service";
 						
-			resourceFactory.VendorAgreementTemplateResource.getTemplateDetails({'vendorId':routeParams.vendorId},function(data) {
+			resourceFactory.VendorAgreementTemplateResource.get({'vendorId':scope.vendorId},function(data) {
 				scope.priceRegionDatas = data.priceRegionData;
 				scope.servicesData = data.servicesData;
 				scope.planDatas = data.planDatas;
 				scope.agreementTypes = data.agreementTypes;
 			});
 			
-			scope.durationSelect = function(id,isDel){
-				
-				var count = 0;
-				for(var i=0; i<scope.planDatas.length;i++){
+			
+			scope.durationSelect = function(id,param,index){
+				scope.durationDatas = [];
+				for(var i in scope.planDatas){
 					if(scope.planDatas[i].id == id && scope.planDatas[i].isPrepaid == "Y"){
 						
 						resourceFactory.VendorAgreementTDurationemplateResource.getTemplateData({'planId':id},function(data) {
-							scope.durationDatas = data;
+							if(param == 'false'){
+								scope.durationDatas = data;
+								scope.detailsFormData.durationId = scope.durationDatas[0].id;
+								scope.isDurationEnable = true;
+							}else{
+								scope.isExistedDurationEnable = true;
+								scope.vendorDetailsDatas[index].durationDatas = data;
+								scope.vendorDetailsDatas[index].durationId = data[0].id;
+							}
 						});
-						count = count+1;
+						break;
+					}else{
+						if(param == 'false') scope.isDurationEnable = false;
+						else{
+								delete scope.vendorDetailsDatas[index].durationId;
+							
+								for (var j in scope.vendorDetailsDatas){
+									if(scope.vendorDetailsDatas[j].durationId){
+										scope.isExistedDurationEnable = true;
+										break;
+									}else{
+										scope.isExistedDurationEnable = false;
+									}
+								}
+						}
 					}
-				}console.log("isDel:"+isDel);
-				if(count == 1){console.log("if:"+isDel);
-					scope.isDurationEnable = true;
-				}else{console.log("elseif:"+isDel);
-					scope.isDurationEnable = false;
-					//scope.vendorDetailsData.durationId = undefined;
 				}
+				
 			};
+			
+			 scope.vendorDetailsDatas=[];
 			scope.addVendorDetails = function () {
 	        	if (scope.detailsFormData.contentCode && scope.detailsFormData.loyaltyType 
 	        			&& (scope.detailsFormData.loyaltyShare || scope.detailsFormData.contentCost) && scope.detailsFormData.priceRegion) {
-	        		
-	        			//if(scope.detailsFormData.loyaltyShare){
-	        				scope.vendorDetailsDatas
-							.push({
-								loyaltyType : scope.detailsFormData.loyaltyType,
-								contentCode : scope.detailsFormData.contentCode,
-								loyaltyShare : scope.detailsFormData.loyaltyShare,
-								priceRegion : scope.detailsFormData.priceRegion,
-								contentCost : scope.detailsFormData.contentCost,
-								contentSellPrice : scope.detailsFormData.contentSellPrice,
-								durationId : scope.detailsFormData.durationId
-							});
-	        			/*	scope.detailsFormData.loyaltyShare = undefined;
-	        			}else{
 	        				
-	        				scope.vendorDetailsDatas
-							.push({
-								loyaltyType : scope.detailsFormData.loyaltyType,
-								contentCode : scope.detailsFormData.contentCode,
-								contentCost : scope.detailsFormData.contentCost,
-								priceRegion : scope.detailsFormData.priceRegion
-							});
-	        				scope.detailsFormData.contentCost = undefined;
-	        			}*/
+	        				var data = {};
+	        				data.contentCode 		= scope.detailsFormData.contentCode;
+							data.loyaltyType 		= scope.detailsFormData.loyaltyType;
+							data.loyaltyShare 		= scope.detailsFormData.loyaltyShare;
+							data.contentCost 		= scope.detailsFormData.contentCost;
+							data.contentSellPrice 	= scope.detailsFormData.contentSellPrice;
+							data.priceRegion 		= scope.detailsFormData.priceRegion;
+							if(scope.isDurationEnable){
+								data.durationId 	= scope.detailsFormData.durationId;
+								data.durationDatas 	= scope.durationDatas;
+								scope.isExistedDurationEnable = true;
+							}
+							
+	        				scope.vendorDetailsDatas.push(data);
+	        				
+	        				scope.detailsFormData={};
+	        				scope.isDurationEnable = false;
 	         
 	        	}
 	        };
+	        
 	        scope.deleteVendorDetails = function (index) {
-	              scope.vendorDetailsDatas.splice(index,1);
+	            
+	        	var modalInstance = $modal.open({
+	                templateUrl: 'approvepopup.html',
+	                controller: ApprovePopupController,
+	                resolve:{}
+	            });
+	        	
+	            modalInstance.result.then(function(){
+	            	
+	            	scope.vendorDetailsDatas.splice(index,1);
+	            }); 
+	        };
+	        
+	        function ApprovePopupController($scope, $modalInstance) {
+	            $scope.approve = function () { $modalInstance.close('delete'); };
+	            $scope.cancel = function () { $modalInstance.dismiss('cancel');};
+	        };
+	        
+	        scope.resetOptions = function(){
+	        	scope.vendorDetailsDatas  = [];
+	        	scope.detailsFormData={};
+	        	scope.isDurationEnable = false;
+	        	scope.isExistedDurationEnable = false;
 	        };
 	          
 			scope.onFileSelect = function($files) {
@@ -86,35 +115,34 @@
 	        };
 				
 			scope.submit = function() {			
-				this.formData.locale = $rootScope.locale.code;
-				this.formData.dateFormat = 'dd MMMM yyyy';
-				this.formData.vendorId = routeParams.vendorId;
+				scope.formData.locale = $rootScope.locale.code;
+				scope.formData.dateFormat = 'dd MMMM yyyy';
+				scope.formData.vendorId = scope.vendorId;
 				
-	        	var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
-	        	var reqEndDate = dateFilter(scope.end.date,'dd MMMM yyyy');
-	        	
-	            this.formData.startDate = reqDate;
-	            this.formData.endDate = reqEndDate;
+	            scope.formData.startDate = dateFilter(scope.start.date,'dd MMMM yyyy');
+	            scope.formData.endDate =  dateFilter(scope.end.date,'dd MMMM yyyy');
 				
-				scope.formData.vendorDetails =new Array();
+				scope.formData.vendorDetails =[];
 				
-				if (scope.vendorDetailsDatas.length > 0) {
-		              
-	                 for (var i in scope.vendorDetailsDatas) {
-						                   scope.formData.vendorDetails
-													.push({
-														contentCode : scope.vendorDetailsDatas[i].contentCode,
-														loyaltyType : scope.vendorDetailsDatas[i].loyaltyType,
-														loyaltyShare :scope.vendorDetailsDatas[i].loyaltyShare,
-														contentCost :scope.vendorDetailsDatas[i].contentCost,
-														priceRegion : scope.vendorDetailsDatas[i].priceRegion,
-														contentSellPrice :scope.vendorDetailsDatas[i].contentSellPrice,
-														durationId:scope.vendorDetailsDatas[i].durationId,
-														locale : $rootScope.locale.code});
-	                 };
-	               }
-					scope.json.jsonData = scope.formData;
-					console.log(scope.json);			
+				for (var i in scope.vendorDetailsDatas) {
+               	 
+						var data = {};
+    					data.contentCode 		= scope.vendorDetailsDatas[i].contentCode;
+						data.loyaltyType 		= scope.vendorDetailsDatas[i].loyaltyType;
+						data.loyaltyShare 		= scope.vendorDetailsDatas[i].loyaltyShare;
+						data.contentCost 		= scope.vendorDetailsDatas[i].contentCost;
+						data.contentSellPrice 	= scope.vendorDetailsDatas[i].contentSellPrice;
+						data.priceRegion 		= scope.vendorDetailsDatas[i].priceRegion;
+						data.locale 			= $rootScope.locale.code;
+						if(scope.vendorDetailsDatas[i].durationId){
+							data.durationId 	= scope.vendorDetailsDatas[i].durationId;
+						} 
+						
+						scope.formData.vendorDetails.push(data);
+                };
+				
+				scope.json = {};
+				scope.json.jsonData = scope.formData;
 				
 				$upload.upload({
 	                url: $rootScope.hostUrl+ API_VERSION +'/vendoragreement', 
@@ -141,6 +169,7 @@
 	'$upload',
 	'API_VERSION',
 	'$routeParams',
+	'$modal',
 	mifosX.controllers.CreateVendorAgreementController 
 	]).run(function($log) {
 		$log.info("CreateVendorAgreementController initialized");	
