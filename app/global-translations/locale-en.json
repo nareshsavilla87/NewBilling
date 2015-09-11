@@ -2801,6 +2801,7 @@
 "error.msg.vendor.contentcode.lshare.duplicate":"Duplicate data with same Contentcode and loyaltyshare",
 "error.msg.vendor.active.agreement.with.this.dates":"Active agreement, already exist with same effective start & end date",
 "validation.msg.vendormanagement.vendormobileNo.exceeds.max.length":"MobileNo exceeds maximum length",
+"dialog.contentdetail.title.message":"Delete Content Detail",
 
 "#Service Transfer ":".......",
 "label.service.transfer"		: "Service Transfer",
@@ -2850,6 +2851,7 @@
 "label.form.module":"Module",
 
 "error.msg.fee.transaction.alredy.exists":"A Fee with this transaction already exists,Please Update it",
+"error.msg.active.plans.found.for.client":"Actvie plans found for this serial Number `{{params[0].value}}`",
 
 "#Deposit and Refund  ":".......",
 "error.msg.hardware.unallocated":"Please Unallocate hardware",
