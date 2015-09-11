@@ -89,8 +89,9 @@
                 <th style="text-align:center">{{'table.grn.officeName' | translate}}</th>
                 <th>{{'table.grn.itemDescription' | translate}}</th>
                 <th style="text-align:center">{{'table.grn.orderedQuantity' | translate}}</th>
-                <th style="text-align:center">{{'table.grn.receivedQuantity' | translate}}</th>
                 <th style="text-align:center">{{'table.grn.balanceQuantity' | translate}}</th>
+                <th style="text-align:center">{{'table.grn.receivedQuantity' | translate}}</th>
+                <th style="text-align:center">StockQty</th>
                 <th style="text-align:center">{{'table.grn.status' | translate}}</th>
                   <th>{{'table.actions' | translate}}</th>
               </tr>
@@ -103,8 +104,9 @@
                 <td class="pointer" data-ng-click="routeTogrn(g.id)" style="text-align:left">{{g.officeName}}</td>
                 <td class="pointer" data-ng-click="routeTogrn(g.id)">{{g.itemDescription}}</td>
                 <td class="pointer" data-ng-click="routeTogrn(g.id)" style="text-align: center">{{g.orderdQuantity}}</td>
-                <td class="pointer" data-ng-click="routeTogrn(g.id)" style="text-align: center">{{g.receivedQuantity}}</td>
                 <td class="pointer" data-ng-click="routeTogrn(g.id)" style="text-align: center">{{g.balanceQuantity}}</td>
+                <td class="pointer" data-ng-click="routeTogrn(g.id)" style="text-align: center">{{g.receivedQuantity}}</td>
+                <td class="pointer" data-ng-click="routeTogrn(g.id)" style="text-align: center">{{g.availableQuantity}}</td>
                 <td class="pointer" data-ng-click="routeTogrn(g.id)" style="text-align: left" ng-show="g.orderdQuantity != g.receivedQuantity">Pending</td>
                 <td class="pointer" data-ng-click="routeTogrn(g.id)" style="text-align: left" ng-show="g.orderdQuantity == g.receivedQuantity">Completed</td>
                 <td><a ng-show="g.orderdQuantity != g.receivedQuantity" href="#/editgrn/{{g.id}}" popover="Edit Goods Reciept" popover-trigger="mouseenter" class="icon-edit"></a></td>
