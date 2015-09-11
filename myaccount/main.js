@@ -242,7 +242,7 @@ scope.$watch(function () {
 	    	  selfcare_sessionData == null ?logoutSession = true : logoutSession =false;
 	    	    return logoutSession;
 	    	}, function () {
-	    		if(logoutSession){
+	    		if(logoutSession && (location.path().match('/active') != '/active')){
 	    			scope.currentSession = sessionManager.clear();
 	    		}
 	    	});

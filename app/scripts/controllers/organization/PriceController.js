@@ -3,6 +3,7 @@
 	  PriceController: function(scope,routeParams, resourceFactory,location,route, $modal) {
         scope.prices = [];
         scope.planId=routeParams.id;
+        scope.planName=routeParams.planName;
         
         scope.routeTo = function(priceId,planId){
             location.path('/viewprice/'+priceId+"/"+planId);

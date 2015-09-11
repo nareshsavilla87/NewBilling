@@ -85,7 +85,7 @@
                 	    	</tr>
                     	<tr>
                        		<th class="id">Select&nbsp;</th>
-                        	<th class="planCode">Plan(Service)&nbsp;</th>
+                        	<th class="planCode">Plan - PlanDescription&nbsp;</th>
                  	   </tr>
                 	</thead>
                 	 <tbody>
@@ -95,10 +95,11 @@
                 	   		</td>
                 	   		 <td ng-show="postpaidPlanData.isPrepaid == 'N'">
                               <label for="{{postpaidPlanData.id}}" >{{postpaidPlanData.planCode}}-
-                     		     <any ng-repeat="services in postpaidPlanData.availableServices">
+                     		     <!-- <any ng-repeat="services in postpaidPlanData.availableServices">
                        			    {{services.serviceDescription}} 
                          	  	   <any ng-hide="$last">,</any>
-                        	     </any>
+                        	     </any> -->
+                        	     <any ng-show ="{{postpaidPlanData.id}}" >{{postpaidPlanData.planDescription}}</any>
                               </label>
                            </td>
                 	   </tr>
@@ -122,7 +123,7 @@
                 	    	</tr>
                     	<tr>
                        		<th class="id">Select&nbsp;</th>
-                        	<th class="planCode">Plan(Service)&nbsp;</th>
+                        	<th class="planCode">Plan - PlanDescription&nbsp;</th>
                  	   </tr>
                 	</thead>
                 	 <tbody>
@@ -132,10 +133,11 @@
                 	   		</td>
                 	   		 <td ng-show="prepaidPlanData.isPrepaid == 'Y'">
                               <label for="{{prepaidPlanData.id}}" >{{prepaidPlanData.planCode}}-
-                     		     <any ng-repeat="services in prepaidPlanData.availableServices">
+                     		    <!--  <any ng-repeat="services in prepaidPlanData.availableServices">
                        			    {{services.serviceDescription}} 
                          	  	   <any ng-show="services">,</any>
-                        	     </any>
+                        	     </any> -->
+                        	     <any ng-show ="{{prepaidPlanData.id}}" >{{prepaidPlanData.planDescription}}</any>
                               </label>
                            </td>
                 	   </tr>
