@@ -27,6 +27,7 @@
          scope.ipId;
          scope.walletconfig = webStorage.get('is-wallet-enable');
          scope.propertyMaster = webStorage.get("is-propertycode-enabled");
+         scope.isCubiwareConfiguration = webStorage.get("cubiware-configuration");
          
          var callingTab = webStorage.get('callingTab', null);
          if(callingTab == null){
@@ -54,6 +55,7 @@
         		 scope.SaleTab =  true;
         		 scope.eventsaleC="active";
         		 scope.mydeviceC="";
+        		 scope.cubeWareDeviceC="";
         		 webStorage.remove('callingTab');
         	 }
         	 else if(scope.displayTab == "StatementsTab"){
@@ -1329,17 +1331,21 @@
         scope.eventsaleTab = function(){
         	scope.eventsaleC = "active";
         	scope.mydeviceC = "";
+        	scope.cubeWareDeviceC = "";
         };
         scope.eventorderCTab = function(){
         	scope.eventsaleC = "";
         	scope.mydeviceC = "active";
+        	scope.cubeWareDeviceC = "";
         };
         scope.getOneTimeSale = function () {
             scope.eventsaleC = "active";
             scope.mydeviceC = "";
+            scope.cubeWareDeviceC = "";
             if(scope.displayTab == "eventOrders"){
             	scope.eventsaleC = "";
                 scope.mydeviceC = "active";
+                scope.cubeWareDeviceC = "";
             }
             resourceFactory.oneTimeSaleResource.getOneTimeSale({clientId: routeParams.id}, function(data) {
             	scope.onetimesales = data.oneTimeSaleData;
@@ -1509,9 +1515,19 @@
         scope.getAllOwnHardware = function () {
         	scope.eventsaleC = "";
        	 	scope.mydeviceC = "active";
+       	 	scope.cubeWareDeviceC = "";
             resourceFactory.HardwareResource.getAllOwnHardware({clientId: routeParams.id}, function(data) {
             	scope.ownhardwares = data;
             }); 
+        };
+        
+        scope.getCubeWareData = function () {
+        	scope.eventsaleC = "";
+        	scope.mydeviceC = "";
+        	scope.cubeWareDeviceC = "active";
+        	resourceFactory.cubewareDeviceResource.query({clientId: routeParams.id}, function(data) {
+        		scope.cubewareHardwares = data;
+        	}); 
         };
         
         scope.cancelSale = function(otsId,index){
@@ -1811,10 +1827,11 @@
 		         	scope.screenNamePopup = screenName;
 		         	
 		          	 $modal.open({
-		  	                templateUrl: 'deletePopup.html',
-		  	                controller: approve,
-		  	                resolve:{}			// scope.routeToCancelBill
-		  	         });
+						  	        templateUrl: 'deletePopup.html',
+						  	        controller: approve,
+						  	        resolve:{}			// scope.routeToCancelBill
+						  	     });
+		          	 
 		        };
 		        
 		        /** Delete Popup Controller */
@@ -2033,6 +2050,29 @@
 		  		  				 
 		  	                });
 	  	        		}
+	  	        	}
+	  			}
+	  	        		
+	  	        scope.unassignCubiwareDevice = function(id){
+	  	        	
+	  	        	var modalResult = $modal.open({
+	  	                templateUrl: 'unassigncubiwaredevice.html',
+	  	                controller: UnassignCubiwareDeviceController,
+	  	                resolve:{}
+	  	        	});
+	 
+					modalResult.result.then(function () {
+						
+							resourceFactory.cubewareUnAssignDeviceResource.save({clientId : routeParams.id,id:id}, {}, function(data) {
+							scope.getCubeWareData(); 
+						});
+					});
+	  	      }
+	  	        
+	  	      function UnassignCubiwareDeviceController($scope, $modalInstance){
+	  				
+	  	        	$scope.approve = function(){
+	  	        		$modalInstance.close('delete');
 	  	        	};
 	  	        	
 	  	        	$scope.cancel = function(){
