@@ -1184,7 +1184,12 @@
             KeyInfoResource: defineResource(apiVer + "/keyinfo", {},{}),
             
             feeMasterResource: defineResource(apiVer + "/feemaster/:id", {id:'@id'},{update: { method: 'PUT' }}),
+            
             feeMasterTemplateResource: defineResource(apiVer + "/feemaster/template", {},{}),
+            
+            cubewareDeviceResource: defineResource(apiVer + "/entitlements/:clientId/getDevice", {clientId:'@clientId'},{}),
+            
+            cubewareUnAssignDeviceResource: defineResource(apiVer + "/entitlements/:clientId/:id", {clientId:'@clientId',id:'@id'},{}),
       
         };
       }];
