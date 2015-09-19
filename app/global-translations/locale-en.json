@@ -2860,8 +2860,21 @@
 "error.msg.hardware.unallocated":"Please Unallocate hardware",
 "error.msg.unable.to.refund.clientbalance.greater.than.refund.amount":"Unable refund client due balance is greater than refund balance",
 "validation.msg.refund.refundMode.cannot.be.blank":"Please Select Refund Type",
-"validation.msg.refund.refundAmount.cannot.be.blank":"Please add Amount"
+"validation.msg.refund.refundAmount.cannot.be.blank":"Please add Amount",
 
+"error.msg.hardware.quality.not.good":"Item Quality is not good",
+"error.msg.fee.code.duplicate.name":"Fee Code already exists",
+"error.msg.fee.transaction.alredy.exists":"A Fee with this transaction already exists,Please Update it",
+
+"#Cubeware Device     " : "----------------------------------",
+"tab.cubeware.device" : "Cubeware Device",
+"table.heading.cubeware.id" : "Id",
+"table.heading.cubeware.serialnumber" : "Serial Number",
+"table.heading.cubeware.devicemodel" : "Device Model",
+"table.heading.cubeware.subscriberid" : "Subscriber Id",
+"table.heading.cubeware.clientid" : "Client Id",
+"dialog.cubiware.title.message" : "UnAssign Device",
+"error.msg.cubiware.subscriberId.not.exist" : "Please create customer in cubiware"
 
 
 

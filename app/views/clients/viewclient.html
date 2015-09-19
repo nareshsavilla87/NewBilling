@@ -554,6 +554,7 @@
 						<li class={{eventsaleC}}><a data-ng-click="eventsaleTab()" data-toggle="tab" >{{'tab.devicesale' | translate}}</a></li>
     					<!-- <li ng-show="PermissionService.showMenu('CREATE_EVENTORDER')&&PermissionService.showMenu('READ_EVENTORDER')" class={{eventorderC}}><a ng-click="eventorderCTab()" data-toggle="tab">Event Sale</a></li> -->
     					<li data-ng-show="PermissionService.showMenu('CREATE_ownedhardware')" class={{mydeviceC}}><a data-ng-click="getAllOwnHardware()" data-toggle="tab">{{'tab.mydevice' | translate}}</a></li> 
+    					<li data-ng-show="isCubiwareConfiguration" class={{cubeWareDeviceC}}><a data-ng-click="getCubeWareData()" data-toggle="tab">{{'tab.cubeware.device' | translate}}</a></li> 
     					<!-- <li class={{eventorderC}}><a ng-click="eventorderCTab()" data-toggle="tab">Event Sale</a></li> -->
 			    	</ul>
 					<div class="tab-content">
@@ -744,7 +745,36 @@
 									</tbody>
 								</table>
 							</div>
-			    		</div>  
+			    		</div> 
+			    		<div id="pane2" class="tab-pane" data-ng-class="{active: cubeWareDeviceC}" >
+     						<div>
+								<input data-ng-model="filterTextCubeWare" type="text" class="span marginbottom0px" placeholder="Enter text to search">
+								<table class="table">
+									<thead>
+							  			<tr class="graybg">
+											<th>{{'table.heading.cubeware.id' | translate}}</th>
+											<th>{{'table.heading.cubeware.serialnumber' | translate}}</th>
+											<th>{{'table.heading.cubeware.devicemodel' | translate}}</th>
+											<th>{{'table.heading.cubeware.subscriberid' | translate}}</th>
+											<th>{{'table.heading.cubeware.clientid' | translate}}</th>
+											<th>{{'table.heading.actions' | translate}}</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr data-ng-repeat="hardware in cubewareHardwares  | filter:filterTextCubeWare">
+											<td>{{hardware.id}}</td>  
+											<td>{{hardware.serialNo}}</td>
+											<td>{{hardware.deviceModel}}</td>
+											<td>{{hardware.subscriberId}}</td> 
+											<td>{{hardware.clientId}}</td>
+											<td>
+												<a data-ng-click="unassignCubiwareDevice(hardware.id)" popover="UnAssign Device" popover-trigger="mouseenter">
+												<i class="icon-remove"></i></a></td> 
+										</tr>
+									</tbody>
+								</table>
+							</div>
+			    		</div> 
 			  		</div>
 				</div>
 			</tab>
@@ -1896,6 +1926,23 @@
    </div>
 </script>
 
+<script type="text/ng-template" id="unassigncubiwaredevice.html">
+   	<div class="modal-header silver">
+  			<h3 class="bolder">{{'dialog.cubiware.title.message' | translate}}</h3>
+    </div>
+    <div class="modal-body modal-small">
+       	<div class="error" ng-show="errorStatus || errorDetails">
+			<label>{{'label.contract.error' | translate}}</label>
+			<label ng-show="errorStatus">{{errorStatus}}</label>
+			<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+      <h4>Are you sure?</h4>
+   </div>
+   <div class="modal-footer">
+   			<button id="cancel" class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+            <button id="submit" class="btn btn-primary" ng-click="approve()" >{{'label.confirm' | translate}}</button>
+   </div>
+</script>
 <script type="text/ng-template" id="sentMessage.html">
                     <div class="modal-header silver">
                         <h3 class="bolder">Sent Message Details</h3>
