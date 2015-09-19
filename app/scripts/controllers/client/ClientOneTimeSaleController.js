@@ -51,7 +51,9 @@
 	            	}
 	            }
 	        });
-	        
+	        scope.getBoth =function(id,description){
+	        	return id+"--"+description;
+	        };
 	        scope.itemData=function(itemId,officeId){
 	        	 
 	        	resourceFactory.oneTimeSaleTemplateResourceData.get({itemId: itemId,clientId:clientData.clientId}, function(data) {
@@ -65,6 +67,7 @@
 	        		scope.formData.officeId=officeId;
 	        		//scope.formData.amount = data.feeMasterData[0].defaultFeeAmount;
 	        		scope.truefalse = false;
+	        		scope.grnDatas = data.grnData;
 	        		 if(scope.saleType == 'DEVICERENTAL'){
 	 	            	scope.formData.totalPrice=0;
 	 	            }
