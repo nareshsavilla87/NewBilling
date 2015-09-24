@@ -2821,6 +2821,12 @@
 "label.feemaster.list.regionprices" :  "List of Region Prices",
 "label.feemaster.selete.regionname" :  "Select Region Name",
 
+"#Dash Board Calendar  ":".......",
+"label.form.accountno"			:	"Account No",
+"table.heading.displayname"		:	"Display Name",
+"table.heading.plan"			:	"Plan",
+
+
 "#Fee Master  ":".......",
 "validation.msg.feemaster.feeCode.cannot.be.blank"    		 : "Fee Code cannot be blank",
 "validation.msg.feemaster.feeDescription.cannot.be.blank"    : "Fee Description cannot be blank",
