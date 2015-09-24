@@ -37,6 +37,9 @@
 
                         }if(data.globalConfiguration[i].name=="is-logout-cache"){
                         	  webStorage.add("is-logout-cache",data.globalConfiguration[i].enabled);
+                        	  
+                        }if(data.globalConfiguration[i].name=="cubiware-configuration"){
+                        	webStorage.add("cubiware-configuration",data.globalConfiguration[i].enabled);
                         }
                         
                         
