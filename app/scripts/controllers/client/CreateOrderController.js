@@ -93,29 +93,6 @@
 
        };
 
-       resourceFactory.orderTemplateResource.get({'planId': routeParams.planId,'clientId': routeParams.id},function(data) {
-    	   
-    	   scope.plandatas = data.plandata;	
-    	   for(var plan in scope.plandatas){
-    		   //assinging postpaid plans
-    		   if(scope.plandatas[plan].isPrepaid == 'N')
-    			   scope.postpaidPlanDatas.push(scope.plandatas[plan]);
-    		   //assinging prepaid plans
-    		   else if(scope.plandatas[plan].isPrepaid == 'Y')
-    			   scope.prepaidPlanDatas.push(scope.plandatas[plan]);
-    		
-    	   }
-           scope.subscriptiondatas=data.subscriptiondata;
-           scope.paytermdatas=data.paytermdata;
-           scope.clientId = routeParams.id;
-           scope.formData = {
-             		billAlign: true,
-             		autoRenew : isAutoRenew
-                   };
-    	   
-       });
-     
-        
         scope.setBillingFrequency = function(value) {
         	  $('plancode').css({"color":"red"});
         	scope.paytermdatas=undefined;
