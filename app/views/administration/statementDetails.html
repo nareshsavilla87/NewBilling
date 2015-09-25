@@ -1,0 +1,46 @@
+<div  ng-controller="StatementDetailsController">
+<div>
+    <ul class="breadcrumb">
+        <li class="active">{{'label.statementdetails' | translate}}&nbsp;&nbsp;</li>
+    </ul>
+</div>
+<div class="row-fluid">
+    <input ng-model="filterText" type="text" class="span marginbottom0px">
+	<table class="table">
+        <thead>
+            <tr class="graybg">
+                <th>{{ 'table.statement.id' | translate }}</th>
+                <th>{{ 'table.statement.transactiondate' | translate }}</th>
+                <th>{{ 'table.statement.transactiontype' | translate }}</th>
+                <th>{{ 'table.statement.countvalue' | translate }}</th>
+                <th>{{ 'table.statement.batchid' | translate }}</th>
+                <th>{{'table.actions' | translate}}</th>
+            </tr>
+        </thead>
+         <tbody>
+            <tr ng-repeat="statement in statements | filter:filterText">
+                <td>{{statement.id}}</td>            
+                <td>{{statement.transactionDate}}</td>        
+                <td>{{statement.transactionType}}</td>         
+                <td>{{statement.countValue}}</td>
+                <td>{{statement.batchid}}</td>
+                <td>
+	             <a data-ng-show="PermissionService.showMenu('CANCEL_BILLMASTER')"  data-ng-click="cancelstatement(statement.batchid)"
+	                data-popover="Cancel Statement" data-popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a></td>
+            </tr>
+        </tbody> 
+    </table>
+</div>
+<script type="text/ng-template" id="cancelstatement.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">Cancel Statement</h3>
+                    </div>
+                    <div class="modal-body modal-small">
+                       <h4>Are you sure?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+                    </div>
+      </script>
+</div>
