@@ -2862,6 +2862,15 @@
 "error.msg.fee.transaction.alredy.exists":"A Fee with this transaction already exists,Please Update it",
 "error.msg.active.plans.found.for.client":"Actvie plans found for this serial Number `{{params[0].value}}`",
 
+"#Statement Details":".........",
+  "label.statementdetails":"Statement Details",
+  "table.statement.id":"ID",
+  "table.statement.transactiondate":"Transaction Date",
+  "table.statement.transactiontype":"Transaction Type",
+  "table.statement.countvalue":"No Of Accounts",
+  "table.statement.batchid":"Batch ID",
+
+
 "#Deposit and Refund  ":".............................",
 "error.msg.hardware.unallocated":"Please Unallocate hardware",
 "error.msg.unable.to.refund.clientbalance.greater.than.refund.amount":"Unable refund client due balance is greater than refund balance",

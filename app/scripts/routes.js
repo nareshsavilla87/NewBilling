@@ -978,6 +978,9 @@
       .when('/eventaction', {
         templateUrl: 'views/administration/eventaction.html'
       })
+      .when('/statement', {
+        templateUrl: 'views/administration/statementDetails.html'
+      })
        .when('/radius', {
         templateUrl: 'views/organization/radius.html'
       })
