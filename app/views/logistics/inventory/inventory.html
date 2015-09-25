@@ -54,9 +54,9 @@
                 <td>
                 	<a ng-show="(itemdetail.clientId)&&PermissionService.showMenu('UPDATE_INVENTORY')" ng-click="editProvSerial(itemdetail.id,itemdetail.quality,itemdetail.provisioningSerialNumber)"
                                  popover="Edit Provisioning" popover-trigger="mouseenter" class="icon-edit"></a>
-                	<a ng-show="(!itemdetail.clientId)&&PermissionService.showMenu('UPDATE_INVENTORY')" ng-click="editQuality(itemdetail.id,itemdetail.quality,itemdetail.provisioningSerialNumber,itemdetail.serialNumber)"
+                	<a ng-show="(!itemdetail.clientId)&&PermissionService.showMenu('UPDATE_INVENTORY')" ng-click="editQuality(itemdetail.id,itemdetail.quality,itemdetail.provisioningSerialNumber,itemdetail.serialNumber,itemdetail.units,itemdetail.quantity)"
                                  popover="Edit Item Details" popover-trigger="mouseenter" class="icon-edit"></a></td>
-                <td><a data-ng-show="PermissionService.showMenu('READ_MRNDETAILS')" ng-click="itemHistoryPopup(itemdetail.serialNumber)" popover="View Track" popover-trigger="mouseenter" class="icon-search"></a></td>
+                <td><a data-ng-show="PermissionService.showMenu('READ_MRNDETAILS') && itemdetail.units == 'PIECES'" ng-click="itemHistoryPopup(itemdetail.serialNumber)" popover="View Track" popover-trigger="mouseenter" class="icon-search"></a></td>
                 <td>  
               		  <a ng-show="(!itemdetail.clientId)&&PermissionService.showMenu('UPDATE_INVENTORY')" ng-click="deleteItemDetail(itemdetail.id)" 
                                 popover="Delete Item Details" popover-trigger="mouseenter" class="icon-remove icon-white"></a>&nbsp;
@@ -313,12 +313,18 @@
               </select>
             </div>
 	   </div>
- <div class="control-group">
+	   <div class="control-group" data-ng-show = "units != 'PIECES'">
+			<label class="control-label" for="quantity">Received Quantity&nbsp;<span class="required">*</span></label>
+			<div class="controls">
+             <input type="text" id="quantity" ng-model="quantity">
+       		</div>
+	   </div>
+ <div class="control-group" data-ng-show = "units == 'PIECES'">
 			<label class="control-label" for="provisioningSerialNumber">{{'label.itemdetail.provisionserialnum' | translate }}&nbsp;<span class="required">*</span></label>
 			<div class="controls">
              <input type="text" id="provisioningSerialNumber" ng-model="provserialnum">
             </div>
- <div class="control-group">
+ <div class="control-group" data-ng-show = "units == 'PIECES'">
 			<label class="control-label" for="quality">{{'label.itemdetail.serialnumber' | translate }}&nbsp;<span class="required">*</span></label>
 			<div class="controls">
              <input type="text" id="serialNumber" ng-model="serialNumber">
@@ -328,7 +334,7 @@
     </div>
      <div class="modal-footer">
         <button id="cancel" class="btn btn-warning" ng-click="cancelQuality()">{{'button.cancel' | translate}}</button>
-     	<button id="submit" class="btn btn-primary" ng-click="approveQuality(quality,provserialnum,serialNumber)" ng-disabled="flagEditQuality">{{'button.save' | translate}}</button>
+     	<button id="submit" class="btn btn-primary" ng-click="approveQuality(quality,provserialnum,serialNumber,quantity)" ng-disabled="flagEditQuality">{{'button.save' | translate}}</button>
      </div>
 
 </script>

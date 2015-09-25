@@ -1508,6 +1508,7 @@
   "table.itemdetails.quality":"Quality",
   "table.itemdetails.status":"Status",
   "table.itemdetails.allocated":"Allocated",
+  "error.msg.grn.duplicate.purchaseNo":"Purchase No already exist with given value",
   
   "table.mrn.id":"Id",
   "table.mrn.requestedDate":"Requested Date",
