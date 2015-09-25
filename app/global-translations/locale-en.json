@@ -2842,7 +2842,13 @@
 "label.feemaster.list.regionprices" :  "List of Region Prices",
 "label.feemaster.selete.regionname" :  "Select Region Name",
 
-"#Fee Master  ":"...............................",
+"#Dash Board Calendar  ":".......",
+"label.form.accountno"			:	"Account No",
+"table.heading.displayname"		:	"Display Name",
+"table.heading.plan"			:	"Plan",
+
+
+"#Fee Master  ":".......",
 "validation.msg.feemaster.feeCode.cannot.be.blank"    		 : "Fee Code cannot be blank",
 "validation.msg.feemaster.feeDescription.cannot.be.blank"    : "Fee Description cannot be blank",
 "validation.msg.feemaster.transactionType.cannot.be.blank"   : "Transaction Type cannot be blank",
@@ -2855,6 +2861,15 @@
 "error.msg.fee.code.duplicate.name":"Fee Code already exists",
 "error.msg.fee.transaction.alredy.exists":"A Fee with this transaction already exists,Please Update it",
 "error.msg.active.plans.found.for.client":"Actvie plans found for this serial Number `{{params[0].value}}`",
+
+"#Statement Details":".........",
+  "label.statementdetails":"Statement Details",
+  "table.statement.id":"ID",
+  "table.statement.transactiondate":"Transaction Date",
+  "table.statement.transactiontype":"Transaction Type",
+  "table.statement.countvalue":"No Of Accounts",
+  "table.statement.batchid":"Batch ID",
+
 
 "#Deposit and Refund  ":".............................",
 "error.msg.hardware.unallocated":"Please Unallocate hardware",

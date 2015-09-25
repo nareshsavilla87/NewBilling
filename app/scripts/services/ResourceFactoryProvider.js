@@ -1196,6 +1196,10 @@
                 update: { method: 'PUT'}
             }), 
             depositAmountResource: defineResource(apiVer + "/deposit/:client", {client:'@client'}, {}), 
+            
+            statementdetails: defineResource(apiVer + "/billmaster/:batchid", {batchid:'@batchid'}, {
+            	update: {method: 'PUT'}
+            }),
 
             deviceSwapAssociationResource: defineResource(apiVer + "/associations/:clientId/serialNum/:serialNum", {clientId:'@clientId',serialNum:'@serialNum'}, {}),
             cubewareDeviceResource: defineResource(apiVer + "/entitlements/:clientId/getDevice", {clientId:'@clientId'},{}),
