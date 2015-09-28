@@ -371,8 +371,8 @@
 						            	 //location.path('/inventory');
 						            	 webStorage.add("callingTab", {someString: "itemDetails"});
 
+						            	 $modalInstance.close('delete');
 						            });
-						                $modalInstance.close('delete');
 						            };
 						            $scope.cancelItem = function () {
 						                $modalInstance.dismiss('cancel');
