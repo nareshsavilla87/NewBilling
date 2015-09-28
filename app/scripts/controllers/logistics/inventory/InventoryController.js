@@ -191,11 +191,14 @@
 				  		};
 				  		
 		
-							scope.editQuality = function(itemId,valueQuality,provisionalserialNum,serialNumber){
+							scope.editQuality = function(itemId,valueQuality,provisionalserialNum,serialNumber,units,quantity){
 					            scope.itemid=itemId;
 					            scope.valueQuality=valueQuality;
 					            scope.provisionalserialNum=provisionalserialNum;
 					            scope.serialNumber=serialNumber;
+					           
+					            scope.units = units;
+					            scope.quantity = quantity;
 					        	  scope.errorStatus=[];scope.errorDetails=[];
 					        	  $modal.open({
 					                  templateUrl: 'EditQuality.html',
@@ -221,13 +224,16 @@
 					                  $scope.quality=scope.valueQuality;
 					                  $scope.provserialnum=scope.provisionalserialNum;
 					                  $scope.serialNumber= scope.serialNumber;
+					                  $scope.quantity = scope.quantity;
+					                  $scope.units = scope.units;
 					              });
-					        	  $scope.approveQuality = function (value,provserialnum,serialNumber) {
+					        	  $scope.approveQuality = function (value,provserialnum,serialNumber,quantity) {
 					        		//  alert(value);
 					        		  $scope.flagEditQuality=true;
 					        		  //if(this.formData == undefined || this.formData == null){
 					        			  this.formData = {"quality":value};
-					        			  this.formData = {"quality":value,"provisioningSerialNumber":provserialnum,"serialNumber":serialNumber};
+					        			  this.formData = {"quality":value,"provisioningSerialNumber":provserialnum,"serialNumber":serialNumber,
+					        					  			"quantity":quantity};
 					        		  //}
 					        		  resourceFactory.itemDetailsResource.update({'itemId': scope.itemid},this.formData,function(data){
 					        	      
@@ -365,8 +371,8 @@
 						            	 //location.path('/inventory');
 						            	 webStorage.add("callingTab", {someString: "itemDetails"});
 
+						            	 $modalInstance.close('delete');
 						            });
-						                $modalInstance.close('delete');
 						            };
 						            $scope.cancelItem = function () {
 						                $modalInstance.dismiss('cancel');

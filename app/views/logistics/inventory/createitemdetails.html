@@ -69,8 +69,13 @@
 								<td>
 									<div class="control-group">
 										<label class="control-label" for="receivedQuantity">{{'label.itemdetail.receivedquantity' | translate }}</label>
-										<div class="controls">
+										<div class="controls" data-ng-show = "itemDetailsData.units == 'PIECES'">
 											<input type="text" name="receivedQuantity" ng-model="itemDetailsData.receivedQuantity" readonly>
+										</div>
+										<div class="controls" data-ng-hide = "itemDetailsData.units == 'PIECES'">
+											<!-- <input type="text" name="receivedQuantity" ng-model="itemDetailsData.receivedQuantity"> -->
+											<input type="text" ng-model="itemDetailsData.receivedQuantity"  style="width:110px;" readonly/>
+											<input type="text" ng-model="itemDetailsData.balanceQuantity" popover="Edit Quantity" popover-trigger="mouseenter" style="width:78px;background-color:#FFFFFF;">
 										</div>
 									</div>
 								</td>
@@ -86,17 +91,17 @@
 										</div>
 									</div>
 								</td>
-								<td>
+								 <td>
 									<div class="control-group">
-										<label class="control-label" for="serialNumber">{{'label.itemdetail.serialnumber' | translate }}&nbsp;<span class="required">*</span></label>
+										<label class="control-label" for="itemModel">{{'label.itemdetail.itemModel' | translate }}</label>
 										<div class="controls">
-											<input type="text" name="serialNumber" ng-model="itemDetailsData.serialNumber">
+											<input type="text" name="itemModel" ng-model="formData.itemModel">
 										</div>
 									</div>
 								</td>
 							</tr>
 							<tr>
-							<td>
+							<td data-ng-hide = "itemDetailsData.units != 'PIECES'">
 							   <div class="control-group">
 								 <label class="control-label" for="provisioningSerialNumber">{{'label.itemdetail.provisioningserialnumber' | translate }}&nbsp;<span class="required">*</span></label>
 										<div class="controls">
@@ -104,11 +109,11 @@
 										</div>
 									</div>
 								</td>
-							    <td>
+							   <td data-ng-hide = "itemDetailsData.units != 'PIECES'">
 									<div class="control-group">
-										<label class="control-label" for="itemModel">{{'label.itemdetail.itemModel' | translate }}</label>
+										<label class="control-label" for="serialNumber">{{'label.itemdetail.serialnumber' | translate }}&nbsp;<span class="required">*</span></label>
 										<div class="controls">
-											<input type="text" name="itemModel" ng-model="formData.itemModel">
+											<input type="text" name="serialNumber" ng-model="itemDetailsData.serialNumber">
 										</div>
 									</div>
 								</td>

@@ -8,6 +8,7 @@
         resourceFactory.planResource.get({planId: routeParams.id} , function(data) {
             scope.plan = data;
             scope.billRuleDatas = data.billRuleDatas;
+            scope.planorders = data.datas.ordersFlag;
             
             for(var i in scope.billRuleDatas){
             	if(scope.billRuleDatas[i].id == scope.plan.billRule){
