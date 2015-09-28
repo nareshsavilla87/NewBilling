@@ -13,6 +13,9 @@
             
             resourceFactory.codeValueResource.getAllCodeValues({codeId: routeParams.id} , function(data) {
                 scope.codevalues = data;
+            	for(var i in scope.codevalues){
+					scope.codevalues[i].disable = true;				
+			}
             });
 
             scope.addCv = function(){
@@ -30,7 +33,22 @@
                           scope.stat=false;
                           location.path('/viewcode/'+routeParams.id);                                   
                       });                         
-            };               
+            };
+            scope.editCv = function(index,id){
+            	$(".configParam"+id).removeAttr("disabled");
+            	scope.codevalues[index].disable = false;
+            }
+            scope.cancelCv = function(index,id){
+            	$(".configParam"+id).attr("disabled", "disabled");
+            	scope.codevalues[index].disable = true;
+            }
+            scope.updateCv = function(index,id){
+            	scope.codevalues[index].disable = undefined;
+            	resourceFactory.codeValueResource.update({codeId: routeParams.id,codevalueId: id},scope.codevalues[index],function(data){
+                    scope.stat=false;
+                    location.path('/viewcode/'+routeParams.id);                                   
+                });                         
+      };
         }
    
     });
