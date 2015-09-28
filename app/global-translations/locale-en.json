@@ -2839,6 +2839,12 @@
 "label.feemaster.list.regionprices" :  "List of Region Prices",
 "label.feemaster.selete.regionname" :  "Select Region Name",
 
+"#Dash Board Calendar  ":".......",
+"label.form.accountno"			:	"Account No",
+"table.heading.displayname"		:	"Display Name",
+"table.heading.plan"			:	"Plan",
+
+
 "#Fee Master  ":".......",
 "validation.msg.feemaster.feeCode.cannot.be.blank"    		 : "Fee Code cannot be blank",
 "validation.msg.feemaster.feeDescription.cannot.be.blank"    : "Fee Description cannot be blank",
@@ -2858,7 +2864,17 @@
 "error.msg.unable.to.refund.clientbalance.greater.than.refund.amount":"Unable refund client due balance is greater than refund balance",
 "error.msg.hardware.quality.not.good":"Item Quality is not good",
 "error.msg.fee.code.duplicate.name":"Fee Code already exists",
-"error.msg.fee.transaction.alredy.exists":"A Fee with this transaction already exists,Please Update it"
+"error.msg.fee.transaction.alredy.exists":"A Fee with this transaction already exists,Please Update it",
+
+"#Cubeware Device     " : "----------------------------------",
+"tab.cubeware.device" : "Cubeware Device",
+"table.heading.cubeware.id" : "Id",
+"table.heading.cubeware.serialnumber" : "Serial Number",
+"table.heading.cubeware.devicemodel" : "Device Model",
+"table.heading.cubeware.subscriberid" : "Subscriber Id",
+"table.heading.cubeware.clientid" : "Client Id",
+"dialog.cubiware.title.message" : "UnAssign Device",
+"error.msg.cubiware.subscriberId.not.exist" : "Please create customer in cubiware"
 
 
 
