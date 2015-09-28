@@ -22,10 +22,19 @@
 		<i class="icon-plus icon-white"></i>{{'button.add' | translate}}</a>
 	</form>
 	<div data-ng-repeat="codevalue in codevalues">
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input disabled="" placeholder={{codevalue.name}} type="text" />&nbsp;&nbsp;<input
-			disabled="" placeholder={{codevalue.position}} type="text" />&nbsp;&nbsp;<a
-			data-ng-show="PermissionService.showMenu('DELETE_CODEVALUE')"
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="configParam{{codevalue.id}}" ng-model="codevalue.name"  placeholder={{codevalue.name}} type="text" input-disabled="{{codevalue.disable}}"/>&nbsp;&nbsp;
+		<input class="configParam{{codevalue.id}}"  ng-model="codevalue.position"  placeholder={{codevalue.position}} type="text" input-disabled="{{codevalue.disable}}"/>&nbsp;&nbsp;
+			<span data-ng-hide="!codevalue.disable">
+			<a data-ng-show="PermissionService.showMenu('DELETE_CODEVALUE')" data-popover-trigger="mouseenter" data-popover="Delete"
 			data-ng-click='deleteCv(codevalue.id)'><i class="icon-remove"></i></a>
+			<a style="color:#000000" data-popover-trigger="mouseenter" data-popover="Edit"
+			data-ng-click='editCv($index,codevalue.id)'><i class="icon-edit"></i></a></span>
+		   <a style="color:#000000" data-ng-click="updateCv($index,codevalue.id)" data-ng-hide="codevalue.disable" 
+		   data-popover-trigger="mouseenter" data-popover="Save">
+		   <i class="icon-circle-arrow-right"></i></a>
+		  <a data-ng-click="cancelCv($index,codevalue.id)" data-ng-hide="codevalue.disable" >
+		  <input class="ng-scope" width="10px" type="image" height="12px" src="./images/go-back-icon.png" 
+		  data-popover-trigger="mouseenter" data-popover="Cancel"></a>
 	</div>
 	<div class="pull-right" data-ng-show="stat">
 		<p>{{ 'error.delete.failed' | translate }}</p>
