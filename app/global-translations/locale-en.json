@@ -436,6 +436,10 @@
   "button.addgoodreceipt":"Goods Receipt",
   "button.addmrn":"Add Mrn",
   "button.addsupplier":"Add Supplier",
+  "validation.msg.item.quantity.cannot.be.blank":"Received Quantity cannot be blank",
+  "validation.msg.code.quantity.cannot.be.blank":"Received Quantity cannot be blank",
+  "error.msg.delete.items.assign.to.customer":"Items assigned to customers, unable to delete",
+  "error.msg.edit.items.assign.to.customer":"Items assigned to customers, unable to edit",
   
   
 
@@ -1508,6 +1512,7 @@
   "table.itemdetails.quality":"Quality",
   "table.itemdetails.status":"Status",
   "table.itemdetails.allocated":"Allocated",
+  "error.msg.grn.duplicate.purchaseNo":"Purchase No already exist with given value",
   
   "table.mrn.id":"Id",
   "table.mrn.requestedDate":"Requested Date",

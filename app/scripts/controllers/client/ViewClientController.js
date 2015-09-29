@@ -2251,7 +2251,11 @@
 		  		  				 
 		  	                });
 	  	        		}
-	  	        	}
+	  	        	};
+	  	        	$scope.cancel = function(){
+	  	        		console.log("Reject Statement");
+	  	        		$modalInstance.dismiss('cancel');
+	  	        	};
 	  			}
 	  	        		
 	  	        scope.unassignCubiwareDevice = function(id){
