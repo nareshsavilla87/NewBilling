@@ -108,7 +108,7 @@
          };
          
          scope.routeTofinancial = function(transactionId, transtype, clientid){
-        	 if(transtype == 'INVOICE'){
+        	 if(transtype == 'INVOICE' || transtype == 'SERVICE TRANSFER' ){
         		 location.path('/viewfinancialtran/'+ transactionId +'/'+ clientid);
         	 }
          };
