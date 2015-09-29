@@ -29,17 +29,18 @@
         <img src="../images/loading.gif" >
     </div> 
     <div data-ng-hide="isLandingPage || currentSession.user != null" data-ng-cloak >
+    <!-- <div class="container well bgimg" data-ng-cloak data-ng-hide="isLandingPage || currentSession.user != null" style="height: 580px;margin-bottom: 20;"> -->
       <div class="container well margintop20" style="height: 580px;margin-bottom: 0;">
         <div class="row form-search paddedbottom" >
 		<div>
 		<table class="fullwidth" id="header" style="-webkit-box-shadow: 0 6px 4px -4px #BABABA;box-shadow: 0 6px 4px -4px #BABABA;">
 		  <tr>
-		 	<td style="padding: 10px;background:#fff;" width="10%">
+		  <td style="padding: 10px;background:#fff;" width="10%" >
 				<div class="pull-left" style="margin: 0px 0px;background:#fff;">
 					<img src="../images/logo.png" alt="Billing" width="100">
 				</div>
 			</td>
-			<td style="background-color: #4c66a4">
+		 	<td style="background-color: #4c66a4">
 				<div id="lang-ch" class="dropdown pull-right colorwhite" style="margin-right:10px;">{{ 'label.change.language' | translate }}
 				  <a class="dropdown-toggle btn btn-primary ">{{localeLang.name}}<i class="icon-sort-down"></i></a>
 				  <ul class="dropdown-menu"><li data-ng-repeat="lang in langs">
@@ -47,6 +48,7 @@
 				  </ul>
 				</div>
 			</td>
+			
 		  </tr>
 		 </table></div>
 		 <div class="alert alert-success" data-ng-repeat="msgs in infoMsgs">
