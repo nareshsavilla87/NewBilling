@@ -17,7 +17,7 @@
              <table>
              <tr><td>
              <div class="control-group">
-            <label class="control-label" for="subscriptionPeriod">{{ 'label.contract.contractperiod' | translate }}</label>
+            <label class="control-label" for="subscriptionPeriod">{{ 'label.contract.contractperiod' | translate }}<span class="required">*</span></label>
             <div class="controls">
               <input type="text" id="subscriptionPeriod" name="subscriptionPeriod" data-ng-model="formData.subscriptionPeriod" data-ng-pattern="/^[a-zA-Z0-9\s]+$/"/></br>
               <span  data-ng-show="createcontractform.subscriptionPeriod.$invalid">
@@ -28,7 +28,7 @@
           </td></tr>
           <tr><td>
           <div class="control-group">
-            <label class="control-label" for="subscriptionType">{{ 'label.contract.contractype' | translate }}</label>
+            <label class="control-label" for="subscriptionType">{{ 'label.contract.contractype' | translate }}<span class="required">*</span></label>
             <div class="controls">
               <select data-ng-model="formData.subscriptionType"  data-ng-options="subscriptions.durationTypeCode as subscriptions.durationTypeCode for subscriptions in subscriptions" >
               </select>
@@ -37,7 +37,7 @@
           </td></tr>
           <tr><td>
           <div class="control-group">
-            <label class="control-label" for="units">{{ 'label.contract.units' | translate }}</label>
+            <label class="control-label" for="units">{{ 'label.contract.units' | translate }}<span class="required">*</span></label>
             <div class="controls">
               <input type="text" id="units" name="units" data-ng-model="formData.units" data-ng-pattern="/^[1-9\s]+$/" data-ng-maxlength="3" data-late-Validate></br>
               <span data-ng-show="createcontractform.units.$dirty && createcontractform.units.$invalid">
