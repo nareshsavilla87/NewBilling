@@ -17,7 +17,7 @@
 			<tr>
 				<td width="50%">
 					<div class="control-group">
-						<label class="control-label" for="eventName">{{'label.event.eventcode' | translate }} </label>
+						<label class="control-label" for="eventName">{{'label.event.eventcode' | translate }}<span class="required">*</span></label>
 						<div class="controls">
 							<input type="text" id="eventName" name="eventName" data-ng-model="formData.eventName" data-ng-maxlength="{{'code' | CodeValidate }}" required data-late-Validate></br>
 							<span data-ng-show="createeventform.eventName.$dirty && createeventform.eventName.$invalid">
@@ -41,7 +41,7 @@
 			<tr>
 				<td>
 					<div class="control-group" >
-            		<label class="control-label" for="eventCategory">Event Category</label>
+            		<label class="control-label" for="eventCategory">Event Category<span class="required">*</span></label>
             		<div class="controls">
                			<select  id="eventcategory" data-ng-model="formData.eventCategory" data-ng-options="eventCategeorydata.mCodeValue as eventCategeorydata.mCodeValue for eventCategeorydata in eventCategeorydatas"></select>
             		</div>
@@ -50,7 +50,7 @@
 			
 				<td width="50%">
 					<div class="control-group">
-						<label class="control-label" for="chargeCode"> {{'label.event.chargedata' | translate }}</label>
+						<label class="control-label" for="chargeCode"> {{'label.event.chargedata' | translate }}<span class="required">*</span></label>
 						<div class="controls">
 							<select data-ng-model="formData.chargeCode"
 								data-ng-options="chargeData.chargeCode as chargeData.chargeDescription for chargeData in chargeData"></select>
@@ -64,7 +64,7 @@
 			
 				<td width="50%">
 					<div class="control-group">
-						<label class="control-label" for="eventStartDate"> {{'label.event.startdate' | translate }}</label>
+						<label class="control-label" for="eventStartDate"> {{'label.event.startdate' | translate }}<span class="required">*</span></label>
 						<div class="controls">
 
 							<!-- <input type="text" id="eventStartDate" ng-model="formData.eventStartDate"> -->
@@ -92,7 +92,7 @@
 			<tr>
 				 <td>
 					<div class="control-group">
-						<label class="control-label" for="eventValidity"> {{'label.event.eventvalidity' | translate }}</label>
+						<label class="control-label" for="eventValidity"> {{'label.event.eventvalidity' | translate }}<span class="required">*</span></label>
 						<div class="controls">
 							<!-- <input type="text" id="eventValidity" ng-model="formData.eventValidity"> -->
 							<input type="text" data-datepicker-pop="dd MMMM yyyy" data-ng-model="date.eventValidity" data-is-open="opened2" min="minDate" max="'2020-06-22'" data-date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
