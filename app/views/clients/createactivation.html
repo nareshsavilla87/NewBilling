@@ -96,7 +96,7 @@
                 
            				<div data-ng-show="createclientform.phone.$dirty && createclientform.phone.$invalid">
              
-               			<span class="error" data-ng-show="createclientform.phone.$error.pattern">digits only !</span>
+               			<span class="error" data-ng-show="createclientform.phone.$error.pattern">Only digits</span>
               			 <span class="error" data-ng-show="createclientform.phone.$error.maxlength">Exceeded max limit!</span>
            				</div>
               		</div>
@@ -104,7 +104,7 @@
             </td>
             <td>
             	<div class="control-group">
-             		 <label class="control-label" for="email">{{'label.email' | translate}}</label>
+             		 <label class="control-label" for="email">{{'label.email' | translate}}<span class="required">*</span></label>
              		<div class="controls">
                		 <input type="text" id="email" data-ng-model="formData1.email"/>
               		</div>
