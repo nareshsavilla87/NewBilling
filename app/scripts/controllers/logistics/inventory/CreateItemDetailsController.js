@@ -11,6 +11,12 @@
         	scope.formData = data;
             scope.inventoryGrnDatas = data.inventoryGrnDatas;
             scope.qualityDatas=data.qualityDatas;
+            for(var i = 0 ; i < scope.qualityDatas.length; i++){
+            	if(scope.qualityDatas[i].mCodeValue == 'Good'){
+            		scope.itemDetailsData.quality = scope.qualityDatas[i].mCodeValue;
+            	}
+            }
+            
             scope.statusDatas=data.statusDatas;
 
         });
