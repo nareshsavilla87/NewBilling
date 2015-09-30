@@ -20,7 +20,7 @@
 							<tr>
 								<td>
 									<div class="control-group">
-           					 		<label class="control-label" for="promotionCode">{{ 'label.promotionCode' | translate }}</label>
+           					 		<label class="control-label" for="promotionCode">{{ 'label.promotionCode' | translate }}<span class="required">*</span></label>
             						<div class="controls">
              					 		<input type="text" id="promotionCode" name="promotionCode" data-ng-model="formData.promotionCode" data-ng-maxlength="{{'code' | CodeValidate}}"/></br>
              					 		<span data-ng-show = "editpromotionform.promotionCode.$dirty && editpromotionform.promotionCode.$invalid">
@@ -32,7 +32,7 @@
 							 	
 								<td>
 									<div class="control-group">
-            						<label class="control-label" for="discountType">{{ 'label.discountType' | translate }}</label>
+            						<label class="control-label" for="discountType">{{ 'label.discountType' | translate }}<span class="required">*</span></label>
             						<div class="controls">
              					 		<select data-ng-model="formData.discountType"  data-ng-options="promotiondata.mCodeValue as promotiondata.mCodeValue for promotiondata in promotiondatas">
              					 		</select>
@@ -44,7 +44,7 @@
 							<tr>
 								<td>
 									<div class="control-group">
-            						<label class="control-label" for="promotiondesc">{{ 'label.promotionDescription' | translate }}</label>
+            						<label class="control-label" for="promotiondesc">{{ 'label.promotionDescription' | translate }}<span class="required">*</span></label>
             						<div class="controls">
              					 		<input type="text" id="promotiondesc" data-ng-model="formData.promotionDescription"/>
            							</div>
@@ -53,7 +53,7 @@
 								
 								<td>
 									<div class="control-group">
-            						<label class="control-label" for="discountRate">{{ 'label.discountRate' | translate }}</label>
+            						<label class="control-label" for="discountRate">{{ 'label.discountRate' | translate }}<span class="required">*</span></label>
             						<div class="controls">
               							<input type="text" id="discountRate" name="discountRate" data-ng-model="formData.discountRate" data-ng-pattern="{{'decimal' | CodeValidate}}"></br>
               							<span data-ng-show="editpromotionform.discountRate.$dirty && editpromotionform.discountRate.$invalid">
@@ -67,7 +67,7 @@
 							<tr>
 								<td>
 									<div class="control-group">
-            						<label class="control-label" for="promotionduration">{{ 'label.durationType' | translate }}</label>
+            						<label class="control-label" for="promotionduration">{{ 'label.durationType' | translate }}<span class="required">*</span></label>
             						<div class="controls">
               					 		<select data-ng-model="formData.durationType"  data-ng-options="durationType.subscriptionType as durationType.subscriptionType for durationType in durationTypes">
              					 		</select>
@@ -77,7 +77,7 @@
 								
 								<td>
 									<div class="control-group">
-            						<label class="control-label" for="promotionduration">{{ 'label.duration' | translate }}</label>
+            						<label class="control-label" for="promotionduration">{{ 'label.duration' | translate }}<span class="required">*</span></label>
             						<div class="controls">
               							<input type="text" id="promotionduration" name="promotionduration" data-ng-model="formData.duration" data-ng-pattern="{{'integer' | CodeValidate}}"></br>
               							<span data-ng-show="editpromotionform.promotionduration.$dirty && editpromotionform.promotionduration.$invalid">
@@ -92,7 +92,7 @@
 							<tr>
 								<td>
 									<div class="control-group">
-                        			<label class="control-label">{{ 'label.startDate' | translate }}</label>
+                        			<label class="control-label">{{ 'label.startDate' | translate }}<span class="required">*</span></label>
                         			<div class="controls">
                             			<input type="text" data-datepicker-pop="dd MMMM yyyy" data-ng-model="start.startDate" data-is-open="opened2" min="minDate" 
                             			max="'2020-06-22'" data-date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
