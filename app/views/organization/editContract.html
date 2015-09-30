@@ -18,7 +18,7 @@
             <tr>
               <td>
                 <div class="control-group">
-                  <label class="control-label" for="name">{{ 'label.contract.contractperiod' | translate }}</label>
+                  <label class="control-label" for="name">{{ 'label.contract.contractperiod' | translate }}<span class="required">*</span></label>
                   <div class="controls">
                     <input type="text" data-ng-model="formData.subscriptionPeriod">
                   </div>
@@ -28,7 +28,7 @@
             <tr>
               <td>
                 <div class="control-group">
-                  <label class="control-label" for="name">{{ 'label.contract.contractype' | translate }}</label>
+                  <label class="control-label" for="name">{{ 'label.contract.contractype' | translate }}<span class="required">*</span></label>
                   <div class="controls">
                   <select data-ng-model="formData.subscriptionType"  data-ng-options="allowedperiods.durationTypeCode as allowedperiods.durationTypeCode for allowedperiods in allowedperiods">
       		      </select>
@@ -39,7 +39,7 @@
             <tr>
               <td>
                 <div class="control-group">
-                  <label class="control-label" for="units">{{ 'label.contract.units' | translate }}</label>
+                  <label class="control-label" for="units">{{ 'label.contract.units' | translate }}<span class="required">*</span></label>
                   <div class="controls">
                     <input type="text" name="units" data-ng-model="formData.units" data-ng-pattern="{{'integer' | CodeValidate}}"></br>
                     <span data-ng-show="editcontractform.units.$dirty && editcontractform.units.$invalid">
