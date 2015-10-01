@@ -28,19 +28,28 @@
 				 }
 		     }
 			 
-			$('#calendar').fullCalendar({
-		     	header: {
-		     		left: 'prev,next today',
-		     		center: 'title',
-		     		right: 'month,basicWeek,basicDay'
-		     	},
-		     	eventClick: scope.calendarDetailsPopup,
-		     	defaultDate: dateFilter(new Date(), 'yyyy-MM-dd'),
-		     	editable: true,
-		     	eventLimit: true, // allow "more" link when too many events
-		     	
-		     	events: scope.events
-		     });
+			 resourceFactory.runReportsResource.get({reportSource: 'opTicketsbyDays', genericResultSet:false} , function(tktData) {
+				 tktData = angular.fromJson(angular.toJson(tktData));
+				 for(var i in tktData){
+					 scope.events.push({
+						 title : "Open Tickets = "+tktData[i].tkt_cnt,
+						 start : dateFilter(new Date(tktData[i].days),"yyyy-MM-dd")
+					 });
+				 }
+				$('#calendar').fullCalendar({
+			     	header: {
+			     		left: 'prev,next today',
+			     		center: 'title',
+			     		right: 'month,basicWeek,basicDay'
+			     	},
+			     	eventClick: scope.calendarDetailsPopup,
+			     	defaultDate: dateFilter(new Date(), 'yyyy-MM-dd'),
+			     	editable: true,
+			     	eventLimit: true, // allow "more" link when too many events
+			     	
+			     	events: scope.events
+			     });
+			 });
 		 });
 		 
 		 /*popup details*/
@@ -53,34 +62,54 @@
 					scope.transactionType = "RENEWAL AFTER AUTOEXIPIRY";
 				}
 				scope.date = date.start._i; 
+				if(scope.transactionType == "Open Tickets "){
+					
+					$modal.open({
+		                templateUrl: 'ticketspopup.html',
+		                controller:TicketsDetailsPopupController ,
+		                resolve:{}
+		        	 });
+				}else{
 	        	  $modal.open({
 	                templateUrl: 'calendarDetailsPopup.html',
 	                controller:calendarDetailsPopupController ,
-	                /*resolve:{
-	                	configId : function(){
-	                		return configId;
-	                	}
-	                }*/
-	            });
+	                resolve:{}
+	        	  });
+				}
 	        	
 	        };
 	        
 	        function calendarDetailsPopupController($scope,$modalInstance){
 	      	  
 	      	  resourceFactory.runReportsResource.get({reportSource: 'ClientNotificationsByDay',R_transactionType:scope.transactionType,R_startDate : scope.date, genericResultSet:false} , function(data) {
-	      		  $scope.eventData=data;
+	      		  $scope.orderDatas=data;
 	    	  	});
-	  	        	for (var j in scope.configs){
-	        			if(configId == scope.configs[j].id){
-	        				$scope.module=scope.configs[j].module;
-	        				$scope.description=scope.configs[j].description;
-	        				break;
-	        			}
-	  	        	}
+	      	  
+	      	  $scope.routeToViewClient = function(clientId){
+	      		  $modalInstance.dismiss('cancel');
+	      		  location.path("/viewclient/"+clientId);
+	      	  };
+	      	  
 	  	    		$scope.reject = function(){
 	  	    			$modalInstance.dismiss('cancel');
 	  	    		};
-	  	        };
+	  	     };
+	  	     
+	  	     function TicketsDetailsPopupController($scope,$modalInstance){
+	  	    	 
+	  	    	 resourceFactory.runReportsResource.get({reportSource: 'Client Wise Tickets',R_startDate : scope.date,R_endDate : scope.date,R_officeId:-1, genericResultSet:false} , function(data) {
+	  	    		 $scope.ticketsData=data;
+	  	    	 });
+	  	    	 
+	  	    	$scope.routeToViewTicket = function(clientId,tktId){
+		      		  $modalInstance.dismiss('cancel');
+		      		  location.path("/viewTicket/"+clientId+"/"+tktId);
+		      	 };
+	  	    	 
+	  	    	 $scope.close = function(){
+	  	    		 $modalInstance.dismiss('cancel');
+	  	    	 };
+	  	     };
             
         }
     });
