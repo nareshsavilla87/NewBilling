@@ -1274,11 +1274,13 @@
   "validation.msg.itemsale.purchaseFrom.cannot.be.blank":"Please select office For purchase",
   "validation.msg.itemsale.chargeCode.cannot.be.blank":"Charge Code cannot be blank",
   "validation.msg.itemsale.unitPrice.cannot.be.blank":"Unit Price cannot be blank",
+  "validation.msg.itemsale.purchaseBy.cannot.be.blank":"Purchase By cannot be blank",
   "validation.msg.itemsale.itemId.cannot.be.blank":"Please select Item",
   "validation.msg.itemsale.orderQuantity.cannot.be.blank":"Order Quantity cannot be blank",
   "validation.msg.itemsale.chargeAmount.cannot.be.blank":"Charge amount cannot be blank",
   "validation.msg.itemsale.taxAmount.cannot.be.blank":"tax Amount cannot be blank",
   "error.msg.event.price.not.found":"No Price found for this Event ",
+  "received.quantity.is.full":"Received Quantity is out of Stock",
   
    "#service ":"....",
   "label.services":"Services",
