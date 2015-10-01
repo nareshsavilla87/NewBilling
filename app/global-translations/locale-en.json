@@ -2850,9 +2850,15 @@
 "label.feemaster.selete.regionname" :  "Select Region Name",
 
 "#Dash Board Calendar  ":".......",
+"label.heading.calendar.orders"	:	"Orders Details",
 "label.form.accountno"			:	"Account No",
 "table.heading.displayname"		:	"Display Name",
 "table.heading.plan"			:	"Plan",
+"table.heading.opentkts"		:	"Open Tickets",
+"table.heading.tkt.branch"		:	"Branch",
+"table.heading.tkt.clientName"	:	"Client Name",
+"table.heading.tkt.description"	:	"Description",
+"table.heading.tkt.assignedto"	:	"Assigned To",
 
 
 "#Fee Master  ":".......",
