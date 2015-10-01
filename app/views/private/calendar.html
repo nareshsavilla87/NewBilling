@@ -9,34 +9,72 @@
     </h3>
     <div id='calendar'></div>
     
-    <script type="text/ng-template" id="calendarDetailsPopup.html">
-	<form class="form-horizontal well" ng-submit="submit()">
-	 <div class="error" ng-show="errorStatus || errorDetails">
-		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+<script type="text/ng-template" id="calendarDetailsPopup.html">
+	<div class="modal-header silver">
+         <h3 class="bolder">{{'label.heading.calendar.orders'|translate}}</h3>
+     </div>
+     <div class="modal-body modal-small" style="width:650px;padding-bottom: 0;">
+	 	<div class="error" ng-show="errorStatus || errorDetails">
+			<label>{{'label.contract.error' | translate}}</label>
+			<label ng-show="errorStatus">{{errorStatus}}</label>
+			<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
+		<table class="table">
+       		<thead>
+       			<tr class="graybg">
+           			<th>{{'label.form.accountno' | translate}}</th>
+           			<th>{{'table.heading.displayname' | translate}}</th>
+					<th>{{'table.heading.plan' | translate}}</th>		
+       			</tr>
+       		</thead>
+       		<tbody>
+       			<tr  class="pointer-main"  ng-repeat="orderData in orderDatas">
+           			<td class="pointer" data-ng-click="routeToViewClient(orderData.clientId)">{{orderData.account_no}}</a></td>
+           			<td class="pointer" data-ng-click="routeToViewClient(orderData.clientId)">{{orderData.display_name}}</td> 
+           			<td class="pointer" data-ng-click="routeToViewClient(orderData.clientId)">{{orderData.plan}}</td> 
+       			</tr>
+				<tr data-ng-show="blockUI"><td colspan="5"><div class="offset3"><i class="icon-refresh icon-spin icon-large"></i>
+				</div></td></tr>
+       		</tbody>
+   	 	</table>
+   	</div>
+   	<div class="modal-footer">
+        <button id="cancel" class="btn btn-primary" ng-click="reject()">{{'button.close' | translate}}</button>
+   </div>
+</script>
+ <script type="text/ng-template" id="ticketspopup.html">
+	<div class="modal-header silver">
+         <h3 class="bolder">{{'table.heading.opentkts'|translate}}</h3>
+     </div>
+     <div class="modal-body modal-small" style="width:650px;padding-bottom: 0;">
+	 	<div class="error" ng-show="errorStatus || errorDetails">
+			<label>{{'label.contract.error' | translate}}</label>
+			<label ng-show="errorStatus">{{errorStatus}}</label>
+			<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		 </div>
 			<table class="table">
         		<thead>
         			<tr class="graybg">
-            			<th>{{'label.form.accountno' | translate}}</th>
-            			<th style="padding-left:20px;">{{'table.heading.displayname' | translate}}</th>
-						<th style="padding-left:20px;">{{'table.heading.plan' | translate}}</th>		
+            			<th>{{'table.heading.tkt.branch' | translate}}</th>
+            			<th>{{'table.heading.tkt.clientName' | translate}}</th>
+						<th>{{'table.heading.tkt.description' | translate}}</th>		
+						<th>{{'table.heading.tkt.assignedto' | translate}}</th>		
         			</tr>
         		</thead>
         		<tbody>
-        			<tr ng-repeat="eventData in eventData">
-            			<td>{{eventData.account_no}}</a></td>
-            			<td>{{eventData.display_name}}</td> 
-            			<td>{{eventData.plan}}</td> 
+        			<tr  class="pointer-main" ng-repeat="ticketData in ticketsData">
+            			<td class="pointer" data-ng-click="routeToViewTicket(ticketData['CLIENT ID'],ticketData['TICKET ID'])">{{ticketData.BRANCH}}</a></td>
+            			<td class="pointer" data-ng-click="routeToViewTicket(ticketData['CLIENT ID'],ticketData['TICKET ID'])">{{ticketData['CLIENT NAME']}}</td> 
+            			<td class="pointer" data-ng-click="routeToViewTicket(ticketData['CLIENT ID'],ticketData['TICKET ID'])" style="width:200px;">{{ticketData.DESCRIPTION}}</td> 
+            			<td class="pointer" data-ng-click="routeToViewTicket(ticketData['CLIENT ID'],ticketData['TICKET ID'])">{{ticketData['ASSIGNED TO']}}</td> 
         			</tr>
-					<tr><td colspan="5"><div data-ng-show="blockUI" class="offset3"><i class="icon-refresh icon-spin icon-large"></i>
+					<tr data-ng-show="blockUI"><td colspan="5"><div class="offset3"><i class="icon-refresh icon-spin icon-large"></i>
 					</div></td></tr>
         		</tbody>
-    			</table>
-	</form>
-   <div class="modal-footer">
-        <button id="cancel" class="btn btn-primary" ng-click="reject()">{{'button.close' | translate}}</button>
+    	   </table>
+     </div>
+	<div class="modal-footer">
+         <button id="cancel" class="btn btn-primary pull-right" ng-click="close()">{{'button.close' | translate}}</button>
    </div>
 </script>
 </div>
