@@ -1,5 +1,5 @@
-<form class="well" data-ng-controller="EditPermissionsController"  ng-submit="submit()">	
-	<div>
+<div data-ng-controller="EditPermissionsController">
+<div>
 		<ul class="breadcrumb">
 			<li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
 			<li><a href="#/admin/roles">{{'label.view.roles' | translate}}</a> <span class="divider">/</span></li>
@@ -7,6 +7,7 @@
 			<li class="active">{{'label.edit' | translate}}</li>
 		</ul>
 	</div>
+<form class="well" ng-submit="submit()">	
 	<div class="row-fluid">
 		<table width="100%">
 			<tr>
@@ -46,3 +47,4 @@
 		<button id="submit" type="submit" class="btn btn-primary">{{ 'button.save' | translate}}</button>
 	</div>
 </form>
+</div>

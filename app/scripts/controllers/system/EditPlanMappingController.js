@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  EditPlanMappingController: function(scope, routeParams, resourceFactory, location) {
+	  EditPlanMappingController: function(scope, routeParams, resourceFactory, location, webStorage) {
 		  
 		  scope.planCodes = [];
 	      scope.statusDatas = [];
@@ -12,7 +12,9 @@
             scope.planCodes = data.planCodeData;
             scope.statusDatas=data.status;
         });
-         
+         scope.reset123 = function(){
+	    	   webStorage.add("callingTab", {someString: "planMappingTab" });
+	       };
         scope.submit = function() {	
                
         	scope.formChangeData.planId = scope.formData.planId;
@@ -29,6 +31,7 @@
     '$routeParams', 
     'ResourceFactory', 
     '$location',
+    'webStorage',
     mifosX.controllers.EditPlanMappingController]).run(function($log) {
     $log.info("EditPlanMappingController initialized");
   });
