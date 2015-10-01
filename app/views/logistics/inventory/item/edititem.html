@@ -83,9 +83,9 @@
 					</td> -->
 					<td>
 						<div class="control-group">
-            			<label class="control-label" for="reorderLevel">{{'label.item.reorderlevel' | translate }}&nbsp;<span class="required">*</span></label>
+            			<label class="control-label" for="reorderLevel">{{'label.item.reorderlevel' | translate }}&nbsp;</label>
             			<div class="controls">
-              			<input type="text" id="reorderLevel" name="reorderLevel" data-ng-model="formData.reorderLevel" data-ng-pattern="{{'integer' | CodeValidate}}"/><br/>
+              			<input type="text" id="reorderLevel" name="reorderLevel" data-ng-model="formData.reorderLevel" data-ng-pattern="{{'integergtzero' | CodeValidate}}"/><br/>
               				<span data-ng-show="edititemform.reorderLevel.$dirty && edititemform.reorderLevel.$invalid">
 				        		<small class="error-row">{{'error.not.numeric.validation'|translate}}</small>
 				    		</span>
