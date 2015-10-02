@@ -138,7 +138,7 @@
   "label.preferredCommunication":"Preferred Communication",
   "label.eventactions":"Event Actions",
   "error.msg.staff.duplicate.displayName":"An employee with these details already exists",
- 
+  "label.heading.warning":"Warning",
   "placeholder.searchbar":"Enter text to Search#",
   
   "label.fromdate":"From Date",
@@ -2812,6 +2812,8 @@
 "error.msg.vendor.active.agreement.with.this.dates":"Active agreement, already exist with same effective start & end date",
 "validation.msg.vendormanagement.vendormobileNo.exceeds.max.length":"MobileNo exceeds maximum length",
 "dialog.contentdetail.title.message":"Delete Content Detail",
+"validation.msg.vendor.loyaltyShare.amount.is.not.within.min.max.range":"The loyaltyShare amount must be between 0 and 100 .",
+"validation.msg.invalid.decimal.format":"The parameter `{{field}}` has value `{{args.params[0].value}}` which is invalid decimal value ",
 
 "#Service Transfer ":".......",
 "label.service.transfer"		: "Service Transfer",
