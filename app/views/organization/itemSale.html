@@ -42,7 +42,7 @@
 					</td>
 					<td>
 					  <div class="control-group">
-						<label class="control-label">Purchased From &nbsp;</label>
+						<label class="control-label">Purchased From &nbsp;<span class="required">*</span></label>
 						<div class="controls">
 							<select data-ng-model="formData.purchaseFrom" 
 							data-ng-options="officeData.id as officeData.name for officeData in officeDatas">
@@ -54,7 +54,7 @@
 			<tr>
 			      <td>	
 			      <div class="control-group">
-            			<label class="control-label" for="itemId">{{ 'label.itemCode' | translate }}</label>
+            			<label class="control-label" for="itemId">{{ 'label.itemCode' | translate }}&nbsp;<span class="required">*</span></label>
             			<div class="controls">
              				<select id="itemId" data-ng-model="formData.itemId" data-ng-change="itemData(formData.itemId)" 
              				  data-ng-options="itemData.id as itemData.itemCode for itemData in itemDatas">
@@ -64,7 +64,7 @@
 				</td>
 				 <td>
 				  <div class="control-group">
-            	   <label class="control-label" for="chargeCode">{{ 'label.chargeCode' | translate }}</label>
+            	   <label class="control-label" for="chargeCode">{{ 'label.chargeCode' | translate }}&nbsp;<span class="required">*</span></label>
             		 <div class="controls">
                        <select data-ng-model="formData.chargeCode"  data-ng-options="chargeDatas.id as chargeDatas.chargeCode for chargeDatas in chargeDatas"></select>
                        </div>
@@ -74,7 +74,7 @@
 			<tr>
 				<td>
 				<div class="control-group">
-						<label class="control-label">Order Quantity&nbsp;</label>
+						<label class="control-label">Order Quantity&nbsp;<span class="required">*</span></label>
 						<div class="controls">
 							<input type="text" id="orderQuantity" data-ng-model="formData.orderQuantity" name="orderQuantity" 
 								data-ng-change="itemDataQuantity(formData.orderQuantity,formData.itemId)" 
@@ -88,7 +88,7 @@
 				</td>
 				<td>
 				 <div class="control-group">
-					   <label class="control-label">Unit Price&nbsp;</label>
+					   <label class="control-label">Unit Price&nbsp;<span class="required">*</span></label>
 					   <div class="controls">
 							<input  type="text" id="unitPrice" data-ng-model="formData.unitPrice" data-ng-change="itemDataQuantity(formData.orderQuantity,formData.itemId,formData.officeId)">
 						</div>
@@ -98,7 +98,7 @@
 			<tr>
 				 <td>
 				  <div class="control-group">
-						<label class="control-label">Total Item Price&nbsp;</label>
+						<label class="control-label">Total Item Price&nbsp;<span class="required">*</span></label>
 						<div class="controls">
 							<input type="text" id="itemPrice"  data-ng-model="formData.chargeAmount" disabled>
 						</div>
@@ -106,7 +106,7 @@
 				</td>
 				<td data-ng-show="officeId == 0">
 				 <div class="control-group">
-						<label class="control-label">Purchase By &nbsp;</label>
+						<label class="control-label">Purchase By &nbsp;<span class="required">*</span></label>
 						<div class="controls">
 							<select data-ng-model="formData.purchaseBy"
 							   data-ng-options="officeData.id as officeData.name for officeData in officeDatas">

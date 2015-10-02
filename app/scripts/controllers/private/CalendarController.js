@@ -1,6 +1,6 @@
 (function(module) {
     mifosX.controllers = _.extend(module, {
-    	CalendarController: function(scope, resourceFactory,location,dateFilter,filter) {
+    	CalendarController: function(scope, resourceFactory,location,dateFilter,filter,$modal) {
     		
             scope.dashModel = 'calendar';
             
@@ -28,80 +28,92 @@
 				 }
 		     }
 			 
-			$('#calendar').fullCalendar({
-		     	header: {
-		     		left: 'prev,next today',
-		     		center: 'title',
-		     		right: 'month,basicWeek,basicDay'
-		     	},
-		     	defaultDate: dateFilter(new Date(), 'yyyy-MM-dd'),
-		     	editable: true,
-		     	eventLimit: true, // allow "more" link when too many events
-		     	
-		     	events: scope.events
-		     		/*[
-		         				{
-		         					title: 'All Day Event',
-		         					start: '2015-07-01'
-		         				},
-		         				{
-		         					title: 'Long Event',
-		         					start: '2015-07-07',
-		         					end: '2015-07-08'
-		         				},
-		         				{
-		         					id: 999,
-		         					title: 'Repeating Event',
-		         					start: '2015-07-09T16:00:00'
-		         				},
-		         				{
-		         					id: 999,
-		         					title: 'Repeating Event',
-		         					start: '2015-07-16T16:00:00'
-		         				},
-		         				{
-		         					title: 'Conference',
-		         					start: '2015-07-15',
-		         					end: '2015-07-16'
-		         				},
-		         				{
-		         					title: 'Meeting',
-		         					start: '2015-07-12T10:30:00',
-		         					end: '2015-07-12T12:30:00'
-		         				},
-		         				{
-		         					title: 'Lunch',
-		         					start: '2015-07-12T12:00:00'
-		         				},
-		         				{
-		         					title: 'Meeting',
-		         					start: '2015-07-12T14:30:00'
-		         				},
-		         				{
-		         					title: 'Happy Hour',
-		         					start: '2015-07-12T17:30:00'
-		         				},
-		         				{
-		         					title: 'Dinner',
-		         					start: '2015-07-12T20:00:00'
-		         				},
-		         				{
-		         					title: 'Birthday Party',
-		         					start: '2015-07-13T07:00:00'
-		         				},
-		         				{
-		         					title: 'Click for Google',
-		         					url: 'http://google.com/',
-		         					start: '2015-07-28'
-		         				}
-		         				
-		         			]*/
-		     });
+			 resourceFactory.runReportsResource.get({reportSource: 'opTicketsbyDays', genericResultSet:false} , function(tktData) {
+				 tktData = angular.fromJson(angular.toJson(tktData));
+				 for(var i in tktData){
+					 scope.events.push({
+						 title : "Open Tickets = "+tktData[i].tkt_cnt,
+						 start : dateFilter(new Date(tktData[i].days),"yyyy-MM-dd")
+					 });
+				 }
+				$('#calendar').fullCalendar({
+			     	header: {
+			     		left: 'prev,next today',
+			     		center: 'title',
+			     		right: 'month,basicWeek,basicDay'
+			     	},
+			     	eventClick: scope.calendarDetailsPopup,
+			     	defaultDate: dateFilter(new Date(), 'yyyy-MM-dd'),
+			     	editable: true,
+			     	eventLimit: true, // allow "more" link when too many events
+			     	
+			     	events: scope.events
+			     });
+			 });
 		 });
+		 
+		 /*popup details*/
+			scope.calendarDetailsPopup= function(date, jsEvent, view){
+				var title = date.title.split("="); 
+				scope.transactionType = title[0];
+				if(scope.transactionType == "REN BEF AUTO EXP "){
+					scope.transactionType = "RENEWAL BEFORE AUTOEXIPIRY";
+				}else if(scope.transactionType == "REN AFT AUTO EXP "){
+					scope.transactionType = "RENEWAL AFTER AUTOEXIPIRY";
+				}
+				scope.date = date.start._i; 
+				if(scope.transactionType == "Open Tickets "){
+					
+					$modal.open({
+		                templateUrl: 'ticketspopup.html',
+		                controller:TicketsDetailsPopupController ,
+		                resolve:{}
+		        	 });
+				}else{
+	        	  $modal.open({
+	                templateUrl: 'calendarDetailsPopup.html',
+	                controller:calendarDetailsPopupController ,
+	                resolve:{}
+	        	  });
+				}
+	        	
+	        };
+	        
+	        function calendarDetailsPopupController($scope,$modalInstance){
+	      	  
+	      	  resourceFactory.runReportsResource.get({reportSource: 'ClientNotificationsByDay',R_transactionType:scope.transactionType,R_startDate : scope.date, genericResultSet:false} , function(data) {
+	      		  $scope.orderDatas=data;
+	    	  	});
+	      	  
+	      	  $scope.routeToViewClient = function(clientId){
+	      		  $modalInstance.dismiss('cancel');
+	      		  location.path("/viewclient/"+clientId);
+	      	  };
+	      	  
+	  	    		$scope.reject = function(){
+	  	    			$modalInstance.dismiss('cancel');
+	  	    		};
+	  	     };
+	  	     
+	  	     function TicketsDetailsPopupController($scope,$modalInstance){
+	  	    	 
+	  	    	 resourceFactory.runReportsResource.get({reportSource: 'Client Wise Tickets',R_startDate : scope.date,R_endDate : scope.date,R_officeId:-1, genericResultSet:false} , function(data) {
+	  	    		 $scope.ticketsData=data;
+	  	    	 });
+	  	    	 
+	  	    	$scope.routeToViewTicket = function(clientId,tktId){
+		      		  $modalInstance.dismiss('cancel');
+		      		  location.path("/viewTicket/"+clientId+"/"+tktId);
+		      	 };
+	  	    	 
+	  	    	 $scope.close = function(){
+	  	    		 $modalInstance.dismiss('cancel');
+	  	    	 };
+	  	     };
             
         }
     });
-    mifosX.ng.application.controller('CalendarController', ['$scope', 'ResourceFactory','$location','dateFilter','$filter', mifosX.controllers.CalendarController]).run(function($log) {
+    mifosX.ng.application.controller('CalendarController', ['$scope', 'ResourceFactory','$location','dateFilter','$filter','$modal', mifosX.controllers.CalendarController]).run(function($log) {
         $log.info("CalendarController initialized");
     });
 }(mifosX.controllers || {}));

@@ -436,6 +436,10 @@
   "button.addgoodreceipt":"Goods Receipt",
   "button.addmrn":"Add Mrn",
   "button.addsupplier":"Add Supplier",
+  "validation.msg.item.quantity.cannot.be.blank":"Received Quantity cannot be blank",
+  "validation.msg.code.quantity.cannot.be.blank":"Received Quantity cannot be blank",
+  "error.msg.delete.items.assign.to.customer":"Items assigned to customers, unable to delete",
+  "error.msg.edit.items.assign.to.customer":"Items assigned to customers, unable to edit",
   
   
 
@@ -1291,11 +1295,13 @@
   "validation.msg.itemsale.purchaseFrom.cannot.be.blank":"Please select office For purchase",
   "validation.msg.itemsale.chargeCode.cannot.be.blank":"Charge Code cannot be blank",
   "validation.msg.itemsale.unitPrice.cannot.be.blank":"Unit Price cannot be blank",
+  "validation.msg.itemsale.purchaseBy.cannot.be.blank":"Purchase By cannot be blank",
   "validation.msg.itemsale.itemId.cannot.be.blank":"Please select Item",
   "validation.msg.itemsale.orderQuantity.cannot.be.blank":"Order Quantity cannot be blank",
   "validation.msg.itemsale.chargeAmount.cannot.be.blank":"Charge amount cannot be blank",
   "validation.msg.itemsale.taxAmount.cannot.be.blank":"tax Amount cannot be blank",
   "error.msg.event.price.not.found":"No Price found for this Event ",
+  "received.quantity.is.full":"Received Quantity is out of Stock",
   
    "#service ":"....",
   "label.services":"Services",
@@ -1508,6 +1514,7 @@
   "table.itemdetails.quality":"Quality",
   "table.itemdetails.status":"Status",
   "table.itemdetails.allocated":"Allocated",
+  "error.msg.grn.duplicate.purchaseNo":"Purchase No already exist with given value",
   
   "table.mrn.id":"Id",
   "table.mrn.requestedDate":"Requested Date",
@@ -2842,7 +2849,19 @@
 "label.feemaster.list.regionprices" :  "List of Region Prices",
 "label.feemaster.selete.regionname" :  "Select Region Name",
 
-"#Fee Master  ":"...............................",
+"#Dash Board Calendar  ":".......",
+"label.heading.calendar.orders"	:	"Orders Details",
+"label.form.accountno"			:	"Account No",
+"table.heading.displayname"		:	"Display Name",
+"table.heading.plan"			:	"Plan",
+"table.heading.opentkts"		:	"Open Tickets",
+"table.heading.tkt.branch"		:	"Branch",
+"table.heading.tkt.clientName"	:	"Client Name",
+"table.heading.tkt.description"	:	"Description",
+"table.heading.tkt.assignedto"	:	"Assigned To",
+
+
+"#Fee Master  ":".......",
 "validation.msg.feemaster.feeCode.cannot.be.blank"    		 : "Fee Code cannot be blank",
 "validation.msg.feemaster.feeDescription.cannot.be.blank"    : "Fee Description cannot be blank",
 "validation.msg.feemaster.transactionType.cannot.be.blank"   : "Transaction Type cannot be blank",
@@ -2856,15 +2875,39 @@
 "error.msg.fee.transaction.alredy.exists":"A Fee with this transaction already exists,Please Update it",
 "error.msg.active.plans.found.for.client":"Actvie plans found for this serial Number `{{params[0].value}}`",
 
+"#Statement Details":".........",
+  "label.statementdetails":"Statement Details",
+  "table.statement.id":"ID",
+  "table.statement.transactiondate":"Transaction Date",
+  "table.statement.transactiontype":"Transaction Type",
+  "table.statement.countvalue":"No Of Accounts",
+  "table.statement.batchid":"Batch ID",
+
+
 "#Deposit and Refund  ":".............................",
 "error.msg.hardware.unallocated":"Please Unallocate hardware",
 "error.msg.unable.to.refund.clientbalance.greater.than.refund.amount":"Unable refund client due balance is greater than refund balance",
 "validation.msg.refund.refundMode.cannot.be.blank":"Please Select Refund Type",
-"validation.msg.refund.refundAmount.cannot.be.blank":"Please add Amount"
+"validation.msg.refund.refundAmount.cannot.be.blank":"Please add Amount",
 
+"error.msg.hardware.quality.not.good":"Item Quality is not good",
+"error.msg.fee.code.duplicate.name":"Fee Code already exists",
+"error.msg.fee.transaction.alredy.exists":"A Fee with this transaction already exists,Please Update it",
 
-
-
+"#Cubeware Device     " : "----------------------------------",
+"tab.cubeware.device" : "Cubeware Device",
+"table.heading.cubeware.id" : "Id",
+"table.heading.cubeware.serialnumber" : "Serial Number",
+"table.heading.cubeware.devicemodel" : "Device Model",
+"table.heading.cubeware.subscriberid" : "Subscriber Id",
+"table.heading.cubeware.clientid" : "Client Id",
+"dialog.cubiware.title.message" : "UnAssign Device",
+"error.msg.cubiware.subscriberId.not.exist" : "Please create customer in cubiware",
+"validation.msg.vendormanagement.vendorName.exceeds.max.length" : "vendor Name can not exceeds max length",
+"validation.msg.vendormanagement.contactName.exceeds.max.length" : "vendor ContactName can not exceeds max length",
+"validation.msg.vendormanagement.vendorEmailId.exceeds.max.length" : "Email can not exceeds max length",
+"validation.msg.vendormanagement.vendorAddress.exceeds.max.length" : "Address can not exceeds max length",
+"validation.msg.order.provisioningSystem.cannot.be.blank" : "Provisioning System can not be blank"
 
 
 }

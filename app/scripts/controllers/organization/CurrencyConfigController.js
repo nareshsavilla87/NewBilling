@@ -1,6 +1,6 @@
 (function(module) {
     mifosX.controllers = _.extend(module, {
-    CurrencyConfigController: function(scope, resourceFactory, route, PermissionService, location) {
+    CurrencyConfigController: function(scope, resourceFactory, route, PermissionService, location,webStorage) {
         
         scope.selectedCurrOptions = [];
         scope.allCurrOptions = [];
@@ -44,13 +44,15 @@
                 }
                 curr["currencies"] = currencies;
                 resourceFactory.currencyConfigResource.upd(curr , function(data){
-                	  location.path('/mappingconfig/');
+                	  //location.path('/mappingconfig/');
+                	webStorage.add("callingTab", {someString: "currencyConfigTab" });
                 });
 
         };
 
         scope.cancel = function() {
-        	 location.path('/mappingconfig/');
+        	 //location.path('/mappingconfig/');
+        	webStorage.add("callingTab", {someString: "currencyConfigTab" });
         };
 
      }
@@ -61,6 +63,7 @@
       '$route',
       'PermissionService',
       '$location',
+      'webStorage',
       mifosX.controllers.CurrencyConfigController
       ]).run(function($log) {
     	  $log.info("CurrencyConfigController initialized");

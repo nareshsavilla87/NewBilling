@@ -23,18 +23,20 @@
         </thead>
         <tbody>
            <tr class="pointer-main" data-ng-repeat="plan in plans | filter:filterText">
+          <!-- <td> {{plan.ordersFlag}}</td> -->
                 <td class="pointer" data-ng-click="routeTo(plan.id)">{{plan.planCode}}</td>            
                 <td class="pointer" data-ng-click="routeTo(plan.id)">{{plan.planDescription}}</td>        
                 <td class="pointer" data-ng-click="routeTo(plan.id)">{{plan.planstatus.value}}</td>
                 <td class="pointer" data-ng-click="routeTo(plan.id)">{{plan.provisionSystem}}</td>
                 <td class="pointer" data-ng-click="routeTo(plan.id)">{{plan.startDate|DateFormat}}</td>
-                <td><a data-ng-show="PermissionService.showMenu('UPDATE_PLAN')" href="#/editplan/{{plan.id}}" data-popover="Edit Plan" 
-                       data-popover-trigger="mouseenter" class="icon-edit"></a>&nbsp;
+                <td>
                 <a data-ng-show="PermissionService.showMenu('READ_PRICE')" href="#/prices/{{plan.id}}/{{plan.planCode}}" data-popover="View Price" 
                        data-popover-trigger="mouseenter" class="icon-eye-open"></a> &nbsp;  
                 <a data-ng-show="PermissionService.showMenu('CREATE_PRICE')&&PermissionService.showMenu('READ_PRICE')" href="#/createprice/{{plan.id}}" data-popover="Add Price" 
-                       data-popover-trigger="mouseenter" class="icon-plus-sign"></a>&nbsp; 
-                <a data-ng-show="PermissionService.showMenu('DELETE_PLAN')" data-ng-click="deleteplan(plan.id)" data-popover="Delete Plan" 
+                       data-popover-trigger="mouseenter" class="icon-plus-sign"></a>&nbsp;
+                <a data-ng-show="PermissionService.showMenu('UPDATE_PLAN')" data-ng-hide="plan.ordersFlag" href="#/editplan/{{plan.id}}" data-popover="Edit Plan" 
+                       data-popover-trigger="mouseenter" class="icon-edit"></a>&nbsp; 
+                <a data-ng-show="PermissionService.showMenu('DELETE_PLAN')" data-ng-hide="plan.ordersFlag" data-ng-click="deleteplan(plan.id)" data-popover="Delete Plan" 
                        data-popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a>
                       <!--  <a data-ng-show="PermissionService.showMenu('DELETE_PLAN')" data-ng-click="editPlanQualifier(plan.id)" data-popover="Delete Plan" 
                        data-popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a> -->

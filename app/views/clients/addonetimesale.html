@@ -209,6 +209,17 @@
 												typeahead="itemDetail as itemDetail for itemDetail in getData($viewValue)" typeahead-min-length="0">
 										</div>
 									</div>
+									
+									<!-- <div class="control-group" data-ng-show="formData.quantity && unitsValue == 'ACCESSORIES' ">
+										<label class="control-label" for="serialNumber">Grn&nbsp;<span class="required">*</span>
+										</label>
+										<div class="controls">
+											<select data-ng-model="formData.grnId"
+												data-ng-options="grnData.id as getBoth(grnData.id,grnData.itemDescription) for grnData in grnDatas"
+												value="{{grnData.id}}">
+											</select>
+										</div>
+									</div> -->
 								</td>
 							</tr>
 							

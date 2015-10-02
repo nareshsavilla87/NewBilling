@@ -29,7 +29,7 @@
                 	<td class="pointer" data-ng-click="routeTo(taxmapping.id)"> <!-- <a href="#/viewtaxmapping/{{taxmapping.id}}"></a> -->  {{taxmapping.rate}}</td> 
                 	<td class="pointer" data-ng-click="routeTo(taxmapping.id)"> <!-- <a href="#/viewtaxmapping/{{taxmapping.id}}"></a> -->  {{taxmapping.taxRegion}}</td> 
                 	<td>
-                		<a href="#/edittaxmapping/{{taxmapping.id}}" popover="Edit Tax" popover-trigger="mouseenter">
+                		<a href="#/edittaxmapping/{{taxmapping.id}}/{{chargeId}}" popover="Edit Tax" popover-trigger="mouseenter">
                     		<i class="icon-edit icon-white"></i>
                     	</a>
                     </td>

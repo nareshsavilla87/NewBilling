@@ -104,7 +104,7 @@
           currencyConfigResource: defineResource(apiVer + "/currencies", {}, {
             get: {method: 'GET', params: {}},
             update: { method: 'PUT'},
-            upd: { method: 'PUT', params:{}, isArray:true}
+            upd: { method: 'PUT', params:{}}
           }),
           userListResource: defineResource(apiVer + "/users/:userId", {userId:'@userId'}, {
             getAllUsers: {method: 'GET', params: {}, isArray: true},
@@ -1188,14 +1188,23 @@
             KeyInfoResource: defineResource(apiVer + "/keyinfo", {},{}),
             
             feeMasterResource: defineResource(apiVer + "/feemaster/:id", {id:'@id'},{update: { method: 'PUT' }}),
+            
             feeMasterTemplateResource: defineResource(apiVer + "/feemaster/template", {},{}),
+            
             refundAmountResource: defineResource(apiVer + "/refund/:depositId", {depositId:'@depositId'}, {
                 get: {method: 'GET', params: {}},
                 update: { method: 'PUT'}
             }), 
             depositAmountResource: defineResource(apiVer + "/deposit/:client", {client:'@client'}, {}), 
             
+            statementdetails: defineResource(apiVer + "/billmaster/:batchid", {batchid:'@batchid'}, {
+            	update: {method: 'PUT'}
+            }),
+
             deviceSwapAssociationResource: defineResource(apiVer + "/associations/:clientId/serialNum/:serialNum", {clientId:'@clientId',serialNum:'@serialNum'}, {}),
+            cubewareDeviceResource: defineResource(apiVer + "/entitlements/:clientId/getDevice", {clientId:'@clientId'},{}),
+            
+            cubewareUnAssignDeviceResource: defineResource(apiVer + "/entitlements/:clientId/:id", {clientId:'@clientId',id:'@id'},{}),
       
         };
       }];

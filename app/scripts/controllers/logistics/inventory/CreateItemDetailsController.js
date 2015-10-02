@@ -11,6 +11,12 @@
         	scope.formData = data;
             scope.inventoryGrnDatas = data.inventoryGrnDatas;
             scope.qualityDatas=data.qualityDatas;
+            for(var i = 0 ; i < scope.qualityDatas.length; i++){
+            	if(scope.qualityDatas[i].mCodeValue == 'Good'){
+            		scope.itemDetailsData.quality = scope.qualityDatas[i].mCodeValue;
+            	}
+            }
+            
             scope.statusDatas=data.statusDatas;
 
         });
@@ -39,6 +45,12 @@
         	this.formData.status = scope.itemDetailsData.status === undefined?'New':scope.itemDetailsData.status;
         	this.formData.remarks = scope.itemDetailsData.remarks;
         	this.formData.itemMasterId = scope.itemDetailsData.itemMasterId;
+        	if(scope.itemDetailsData.units != 'PIECES'){
+        		//this.formData.quantity = 1;
+        		this.formData.quantity = scope.itemDetailsData.balanceQuantity;
+        	}/*else{
+        		this.formData.quantity = scope.itemDetailsData.balanceQuantity;
+        	}*/   	
             delete this.formData.purchaseDate;
             delete this.formData.inventoryGrnDatas;
             delete this.formData.qualityDatas;
