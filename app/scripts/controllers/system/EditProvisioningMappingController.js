@@ -1,6 +1,6 @@
 (function(module) {
 	  mifosX.controllers = _.extend(module, {
-		  EditProvisioningMappingController: function(scope, routeParams, resourceFactory, location) {
+		  EditProvisioningMappingController: function(scope, routeParams, resourceFactory, location, webStorage) {
 	        scope.commands = [];
 	        scope.provisioning = [];
 	        scope.parameterFormData = {};
@@ -28,7 +28,9 @@
 	        scope.deleteParameter = function (index) {
 	        	scope.commandParameters.splice(index,1);
 	        };
-	          
+	        scope.reset123 = function(){
+		       	   webStorage.add("callingTab", {someString: "provisioningCommandTab" });
+		          };
 	        scope.submit = function() {  
 	        	
 	        	scope.formData.commandParameters = new Array();
@@ -54,6 +56,7 @@
 	      '$routeParams',
 	      'ResourceFactory',
 	      '$location',
+	      'webStorage',
 	      mifosX.controllers.EditProvisioningMappingController
 	      ]).run(function($log) {
 	    	  $log.info("EditProvisioningMappingController initialized");
