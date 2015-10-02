@@ -683,6 +683,7 @@
         	  //$scope.start.date = new Date();
               resourceFactory.OrderDisconnectResource.get(function(data) {
             	  $scope.start.date = new Date(data.date);
+            	  $scope.minDate = new Date(data.date);
                   $scope.disconnectDetails = data.disconnectDetails;
               });
         	  
