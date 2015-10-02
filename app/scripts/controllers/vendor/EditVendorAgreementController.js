@@ -28,12 +28,14 @@
 						resourceFactory.VendorAgreementTDurationemplateResource.getTemplateData({'planId':value.contentCodeId},function(data) {
 							scope.isExistedDurationEnable = true;
 							scope.vendorDetailsDatas[key].durationDatas = data;
+							scope.vendorDetailsDatas[key].planType = "Y";
 						});
 					}
 				});
 				
-				scope.formData .agreementStatus = data.agreementStatus;
-				scope.formData .contentType = data.contentType;
+				scope.formData.agreementStatus = data.agreementStatus;
+				scope.formData.contentType = data.contentType;
+				scope.contentType = data.contentType;
 			});
 			
 			scope.durationSelect = function(id,param,index){
@@ -44,28 +46,37 @@
 						resourceFactory.VendorAgreementTDurationemplateResource.getTemplateData({'planId':id},function(data) {
 							if(param == 'false'){
 								scope.durationDatas = data;
-								scope.detailsFormData.durationId = scope.durationDatas[0].id;
-								scope.isDurationEnable = true;
+								if(scope.durationDatas.length > 0){
+									scope.detailsFormData.durationId = scope.durationDatas[0].id;
+								}else scope.detailsFormData.durationId = 0;
+								
+								scope.detailsFormData.planType = "Y";
 							}else{
 								scope.isExistedDurationEnable = true;
 								scope.vendorDetailsDatas[index].durationDatas = data;
-								scope.vendorDetailsDatas[index].durationId = data[0].id;
+								if(data.length > 0){
+									scope.vendorDetailsDatas[index].durationId = data[0].id;
+								}else scope.vendorDetailsDatas[index].durationId = 0;
+								
+								scope.vendorDetailsDatas[index].planType = "Y";
 							}
 						});
 						break;
 					}else{
-						if(param == 'false') scope.isDurationEnable = false;
+						if(param == 'false'){
+							scope.detailsFormData.planType = "N";
+						}
 						else{
 								delete scope.vendorDetailsDatas[index].durationId;
+								scope.vendorDetailsDatas[index].planType = "N";
 							
-								for (var j in scope.vendorDetailsDatas){
-									if(scope.vendorDetailsDatas[j].durationId){
-										scope.isExistedDurationEnable = true;
-										break;
-									}else{
-										scope.isExistedDurationEnable = false;
+								scope.isExistedDurationEnable = false;
+				            	angular.forEach(scope.vendorDetailsDatas,function(value,key){
+									
+									if(value.planType=="Y"){
+											scope.isExistedDurationEnable = true;
 									}
-								}
+								});
 						}
 					}
 				}
@@ -74,7 +85,7 @@
 			
 			scope.addVendorDetails = function () {
 	        	if (scope.detailsFormData.contentCodeId && scope.detailsFormData.loyaltyType 
-	        			&& (scope.detailsFormData.loyaltyShare || scope.detailsFormData.contentCost) && scope.detailsFormData.priceRegion) {
+	        			&& scope.detailsFormData.loyaltyShare  && scope.detailsFormData.priceRegion) {
 	        				
 	        				var data = {};
 	        				data.contentCodeId 		= scope.detailsFormData.contentCodeId;
@@ -84,17 +95,22 @@
 							data.contentSellPrice 	= scope.detailsFormData.contentSellPrice;
 							data.priceRegion 		= scope.detailsFormData.priceRegion;
 							data.locale 			= $rootScope.locale.code;
-							if(scope.isDurationEnable){
+							
+							if(scope.detailsFormData.planType == "Y" && scope.detailsFormData.durationId){
 								data.durationId 	= scope.detailsFormData.durationId;
 								data.durationDatas 	= scope.durationDatas;
+								data.planType 		= "Y";
 								scope.isExistedDurationEnable = true;
+								
+		        				scope.vendorDetailsDatas.push(data);
+		        				scope.detailsFormData={};
+		        				
+							}else if(scope.detailsFormData.planType != "Y"){
+								data.planType 		= "N";
+								scope.vendorDetailsDatas.push(data);
+		        				scope.detailsFormData={};
 							}
 							
-	        				scope.vendorDetailsDatas.push(data);
-	        				
-	        				scope.detailsFormData={};
-	        				scope.isDurationEnable = false;
-	         
 	        	}
 	        };
 	        
@@ -108,12 +124,22 @@
 	        	
 	            modalInstance.result.then(function(){
 	            	
-	            	scope.deleteAttributes.push({
+	            	if(scope.vendorDetailsDatas[index].id){
+	            		scope.deleteAttributes.push({
 	            							contentCode	: scope.vendorDetailsDatas[index].contentCodeId,
 	            							locale		: $rootScope.locale.code, 
 	            							id			: scope.vendorDetailsDatas[index].id
-	            	});
+	            		});
+	            	}
 		            scope.vendorDetailsDatas.splice(index,1);
+		            
+		            scope.isExistedDurationEnable = false;
+	            	angular.forEach(scope.vendorDetailsDatas,function(value,key){
+						
+						if(value.planType == "Y"){
+								scope.isExistedDurationEnable = true;
+						}
+					});
 	            }); 
 	        };
 	        
@@ -123,11 +149,38 @@
 	        };
 	        
 	        scope.resetOptions = function(){
-	        	scope.vendorDetailsDatas  = [];
-	        	scope.detailsFormData={};
-	        	scope.isDurationEnable = false;
-	        	scope.isExistedDurationEnable = false;
-	        };
+	        	
+	        	scope.deleteAttributes = [];var existedVendorDetailsDatas =[];
+	          resourceFactory.VendorAgreementResource.getTemplateDetails({vendorAgreementId:scope.agreementId,resourceType:'details',template:true}, function(data) {
+	        		existedVendorDetailsDatas = data.vendorAgreementDetailsData;
+	        	
+	        	if(scope.contentType == scope.formData.contentType){
+	        		angular.forEach(existedVendorDetailsDatas,function(value,key){
+						
+						if(value.durationId){
+							resourceFactory.VendorAgreementTDurationemplateResource.getTemplateData({'planId':value.contentCodeId},function(data) {
+								scope.isExistedDurationEnable = true;
+								existedVendorDetailsDatas[key].durationDatas = data;
+								existedVendorDetailsDatas[key].planType = "Y";
+							});
+						}
+					});
+	        		scope.vendorDetailsDatas = existedVendorDetailsDatas;
+	        	}else{
+	        		
+	        		for(var index in existedVendorDetailsDatas){
+	        			scope.deleteAttributes.push({
+							contentCode	: existedVendorDetailsDatas[index].contentCodeId,
+							locale		: $rootScope.locale.code, 
+							id			: existedVendorDetailsDatas[index].id
+	        			});
+	        		}
+	        		scope.vendorDetailsDatas  = [];
+		        	scope.detailsFormData={};
+		        	scope.isExistedDurationEnable = false;
+	        	}
+	         });
+	      };
 	          
 			scope.onFileSelect = function($files) {
 	            scope.file = $files[0];
@@ -155,8 +208,8 @@
 						data.contentSellPrice 	= scope.vendorDetailsDatas[i].contentSellPrice;
 						data.priceRegion 		= scope.vendorDetailsDatas[i].priceRegion;
 						data.locale 			= $rootScope.locale.code;
-						if(scope.vendorDetailsDatas[i].durationId){
-							data.durationId 	= scope.vendorDetailsDatas[i].durationId;
+						if(scope.vendorDetailsDatas[i].planType == "Y"){
+							data.durationId 	= scope.vendorDetailsDatas[i].durationId || 0;
 						} 
 						
 						scope.formData.vendorDetails.push(data);
@@ -169,17 +222,46 @@
 				scope.json = {};
 				scope.json.jsonData = scope.formData;
 				
-				$upload.upload({
-	                url: $rootScope.hostUrl+ API_VERSION +'/vendoragreement/'+scope.agreementId, 
-	                data: scope.json,
-	                file: scope.file
-	              }).then(function(data) {
-	                // to fix IE not refreshing the model
-	                if (!scope.$$phase) {
-	                  scope.$apply();
-	                }
-	                location.path('/viewvendormanagement/'+routeParams.vendorId);
-	              });
+				for(var i in scope.vendorDetailsDatas){
+					if(scope.vendorDetailsDatas[i].planType == "Y" && !scope.vendorDetailsDatas[i].durationId){
+						$modal.open({
+			                templateUrl: 'nopricesnotifypopup.html',
+			                controller: NoPricesNotifyPopupController,
+			                resolve:{
+			                	contentCodeId : function(){
+			                		return scope.vendorDetailsDatas[i].contentCodeId;
+			                	}
+			                }
+			            });
+						scope.noPricesFound = true;
+						break;
+					}else{
+						scope.noPricesFound = false;
+					}
+				}
+				
+				function NoPricesNotifyPopupController($scope, $modalInstance,contentCodeId) {
+					for(var index in scope.planDatas){
+						if(scope.planDatas[index].id == contentCodeId){
+							$scope.planCode = scope.planDatas[index].planCode;
+							break;
+						}
+					}
+		            $scope.close = function () { $modalInstance.dismiss('cancel');};
+		        };
+				if(!scope.noPricesFound){
+					$upload.upload({
+		                url: $rootScope.hostUrl+ API_VERSION +'/vendoragreement/'+scope.agreementId, 
+		                data: scope.json,
+		                file: scope.file
+		              }).then(function(data) {
+		                // to fix IE not refreshing the model
+		                if (!scope.$$phase) {
+		                  scope.$apply();
+		                }
+		                location.path('/viewvendormanagement/'+routeParams.vendorId);
+		              });
+				}
 			};						
 		}			
 	});
