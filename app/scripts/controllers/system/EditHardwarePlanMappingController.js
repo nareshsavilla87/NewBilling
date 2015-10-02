@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  EditHardwarePlanMappingController: function(scope, resourceFactory, location, routeParams) {
+	  EditHardwarePlanMappingController: function(scope, resourceFactory, location, routeParams, webStorage) {
         
         scope.planDatas = [];
         scope.itemDatas = [];
@@ -11,6 +11,9 @@
             scope.itemDatas = data.itemDatas;
             scope.formData =  data; 
         });
+        scope.reset123 = function(){
+	       	   webStorage.add("callingTab", {someString: "hardwarePlanMapping" });
+	          };
         
         scope.submit = function() {
         	delete this.formData.itemDatas;
@@ -29,6 +32,7 @@
      'ResourceFactory',
      '$location',
      '$routeParams',
+     'webStorage',
      mifosX.controllers.EditHardwarePlanMappingController
      ]).run(function($log) {
     	 $log.info("EditHardwarePlanMappingController initialized");

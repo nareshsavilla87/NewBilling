@@ -44,7 +44,8 @@
                 }
                 curr["currencies"] = currencies;
                 resourceFactory.currencyConfigResource.upd(curr , function(data){
-                	  location.path('/mappingconfig/');
+                	  //location.path('/mappingconfig/');
+                	webStorage.add("callingTab", {someString: "currencyConfigTab" });
                 });
 
         };
