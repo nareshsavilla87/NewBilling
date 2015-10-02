@@ -615,6 +615,7 @@
         	  $scope.disconnectDetails = [];
         	  $scope.start = {};
         	  $scope.start.date = new Date();
+        	  $scope.minDate = new Date();
               resourceFactory.OrderDisconnectResource.get(function(data) {
                   $scope.disconnectDetails = data.disconnectDetails;
               });

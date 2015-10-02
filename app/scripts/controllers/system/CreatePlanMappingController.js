@@ -14,6 +14,7 @@
 	       };
         
         scope.submit = function() {
+        	webStorage.add("callingTab", {someString: "planMappingTab" });
             resourceFactory.planMappingResource.save(scope.formData,function(data){
             		location.path('/mappingconfig');
           });
