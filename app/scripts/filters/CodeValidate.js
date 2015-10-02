@@ -13,7 +13,7 @@
 					value = "/^[0-9]+$/";
 					break;
 				case "integergtzero":
-					value = "/^[1-9\s]+$/";
+					value = "/^[0-9\s]+$/";
 					break;
 				case "decimal":
 					value = "/^[0-9]*(\\.[0-9]{0,2})?$/";  /**   accepts two digits only after point('.')   */ 
