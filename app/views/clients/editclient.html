@@ -155,11 +155,24 @@
 				</td>
 			</tr>
 			<tr>
+			<!--<div class="control-group">
+		        <label class="control-label" for="phone">{{'label.phone' | translate}}<span class="required">*</span></label>
+		        <div class="controls">
+		          <input type="text" id="phone" data-ng-model="formData.phone" data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/" name="phone" maxlength="15" required  data-late-Validate/>
+		          	<div data-ng-show="createclientform.phone.$dirty && createclientform.phone.$invalid">
+		  				<small class="error" data-ng-show="createclientform.phone.$error.pattern">{{'label.prospect.error.mobileno' | translate}}</small>
+					</div>
+		        </div>
+      		</div>  -->
 				<td>
 				 <div class="control-group">
                   <label class="control-label">{{ 'label.phone' | translate }}</label>
                   <div class="controls">
-                    <input type="text" data-ng-model="formData.phone">
+                  	<input type="text" id="phone" data-ng-model="formData.phone" data-ng-pattern="/^(?!0+$)(?!1+$)(?!2+$)(?!3+$)(?!4+$)(?!5+$)(?!6+$)(?!7+$)(?!8+$)(?!9+$)\d{1,15}$/" name="phone" maxlength="15" required  data-late-Validate/>
+                    <!-- <input type="text" data-ng-model="formData.phone"> -->
+                    <div data-ng-show="editclientform.phone.$dirty && editclientform.phone.$invalid">
+		  				<small class="error" data-ng-show="createclientform.phone.$error.pattern">{{'label.prospect.error.mobileno' | translate}}</small>
+					</div>
                   </div>
                 </div>
 				</td>
