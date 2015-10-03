@@ -2895,7 +2895,8 @@
 "validation.msg.vendormanagement.contactName.exceeds.max.length" : "vendor ContactName can not exceeds max length",
 "validation.msg.vendormanagement.vendorEmailId.exceeds.max.length" : "Email can not exceeds max length",
 "validation.msg.vendormanagement.vendorAddress.exceeds.max.length" : "Address can not exceeds max length",
-"validation.msg.order.provisioningSystem.cannot.be.blank" : "Provisioning System can not be blank"
-
+"validation.msg.order.provisioningSystem.cannot.be.blank" : "Provisioning System can not be blank",
+"validation.msg.voucher.length.is.greater.than.max" :  "The Length of the Pin must be between 1 and 60",
+"error.msg.serianumber.isnot.mapped":	"Please map the device with proprtycode"
 
 }
