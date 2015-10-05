@@ -3,8 +3,8 @@
 		<ul class="breadcrumb">
 	        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
 	          <li><a href="#/plans">{{'label.plans' | translate}}</a> <span class="divider">/</span></li>
-	        <li><a href="#/prices/{{formData.planId}}">{{formData.planCode}}</a> <span class="divider">/</span></li>
-	        <li class="active">{{plan.planCode}}</li>
+	        <li><a href="#/viewplan/{{formData.planId}}">{{formData.planCode}}</a> <span class="divider">/</span></li>
+	        <li class="active">{{formData.planId}}</li>
 	    </ul><br/>
 	    <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
