@@ -19,7 +19,7 @@
 		          		<div class="control-group">
 		            		<label class="control-label" for="planCode">{{ 'label.plan.plancode' | translate }}<span class="required">*</span></label>
 		            		<div class="controls">
-		              			<input type="text" id="planCode" name="planCode" data-ng-model="formData.planCode" data-ng-maxlength="{{ 'code' | CodeValidate }}"></br>
+		              			<input type="text" id="planCode" name="planCode" data-ng-model="formData.planCode" ng-disabled="ordersFlag" data-ng-maxlength="{{ 'code' | CodeValidate }}"></br>
 		              			<span data-ng-show="editplan.planCode.$dirty && editplan.planCode.$invalid">
 								<small class="error-row" >{{'error.code.definition.length.validation'| translate}}</small>
 								</span>
@@ -30,7 +30,7 @@
 	           			<div class="control-group">
 	            			<label class="control-label" for="status">{{ 'label.plan.status' | translate }}<span class="required">*</span></label>
 	            			<div class="controls">
-	              				<select id="status" data-ng-model="formData.status"  data-ng-options="planStatus.id as planStatus.value for planStatus in planStatus"></select>
+	              				<select id="status" data-ng-model="formData.status" ng-disabled="ordersFlag" data-ng-options="planStatus.id as planStatus.value for planStatus in planStatus"></select>
 	            			</div>
 	          			</div>
          			</td>
@@ -40,7 +40,7 @@
 	          			<div class="control-group">
 	            			<label class="control-label" for="planDescription">{{ 'label.plan.plandescription' | translate }}<span class="required">*</span></label>
 	            			<div class="controls">
-	              				<input type="text" id="planDescription" data-ng-model="formData.planDescription">
+	              				<input type="text" id="planDescription" data-ng-model="formData.planDescription" ng-disabled="ordersFlag">
 	            			</div>
 	          			</div>
               		</td>
@@ -48,7 +48,7 @@
 	           			<div class="control-group">
 		            		<label class="control-label" for="billRule">{{ 'label.plan.billingrule' | translate }}<span class="required">*</span></label>
 		            		<div class="controls">
-		              			<select id="billRule" data-ng-model="formData.billRule"  data-ng-options="billRuleData.id as billRuleData.billruleOptions for billRuleData in billRuleDatas"></select>
+		              			<select id="billRule" data-ng-model="formData.billRule"  ng-disabled="ordersFlag" data-ng-options="billRuleData.id as billRuleData.billruleOptions for billRuleData in billRuleDatas"></select>
 		            		</div>
 	          			</div>
          	   		</td>
@@ -58,7 +58,7 @@
 	          			<div class="control-group">
 	            			<label class="control-label" for="startDate">{{ 'label.plan.startdate' | translate }}<span class="required">*</span></label>
 	            			<div class="controls">
-	                 			<input type="text" datepicker-pop="dd MMMM yyyy" data-ng-model="date.startDate" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"/>
+	                 			<input type="text" datepicker-pop="dd MMMM yyyy" ng-disabled="ordersFlag" data-ng-model="date.startDate" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"/>
 	            			</div>
 	          			</div>
              		</td>
@@ -66,7 +66,7 @@
 	          			<div class="control-group">
 	            			<label class="control-label" for="provisioingSystem">{{ 'label.plan.provisioningsystem' | translate }}<span class="required">*</span></label>
 	            			<div class="controls">
-	            				<select id="provisioingSystem" data-ng-model="formData.provisioingSystem" data-ng-options="provisionSysData.mCodeValue as provisionSysData.mCodeValue for provisionSysData in provisionSysDatas"></select>
+	            				<select id="provisioingSystem" data-ng-model="formData.provisioingSystem" ng-disabled="ordersFlag" data-ng-options="provisionSysData.mCodeValue as provisionSysData.mCodeValue for provisionSysData in provisionSysDatas"></select>
 	            			</div>
 	          			</div>
          	  		</td>
@@ -76,7 +76,7 @@
 	          			<div class="control-group">
 	            			<label class="control-label" for="endDate">{{ 'label.plan.enddate' | translate }}</label>
 	            			<div class="controls">
-	            				<input type="text" datepicker-pop="dd MMMM yyyy" data-ng-model="date.endDate" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" />
+	            				<input type="text" datepicker-pop="dd MMMM yyyy" ng-disabled="ordersFlag" data-ng-model="date.endDate" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" />
 	            			</div>
 	          			</div>
          	 		</td>
@@ -117,7 +117,7 @@
          			<td>
             			<div class="controls">
               				<label class="checkbox">
-                				<input type="checkbox" data-ng-model="formData.isHwReq">
+                				<input type="checkbox" data-ng-model="formData.isHwReq" ng-disabled="ordersFlag">
              				</label>
             			</div>
          			</td>
@@ -131,7 +131,7 @@
             				<label class="control-label" for="isPrepaid">{{ 'label.plan.isprepaid' | translate }}</label>
             				<div class="controls">
               					<label class="checkbox">
-                					<input type="checkbox" data-ng-model="formData.isPrepaid">
+                					<input type="checkbox" data-ng-model="formData.isPrepaid" ng-disabled="ordersFlag">
               					</label>
             				</div>
           				</div>
