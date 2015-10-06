@@ -24,6 +24,8 @@
             scope.planStatus=data.planStatus;
             scope.billRuleDatas = data.billRuleDatas;
             scope.provisionSysDatas=data.provisionSysData;
+            scope.ordersFlag = data.datas.ordersFlag;
+            console.log(scope.ordersFlag);
             
             var startDate =data.startDate; 
             var endDate =data.endDate;
