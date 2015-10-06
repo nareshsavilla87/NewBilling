@@ -2809,7 +2809,7 @@
 "validation.msg.vendor.contentCost.cannot.be.blank":"Content Cost cannot be blank",
 "error.msg.enddate.greater.than.startdate":"EndDate should be greater than StartDate",
 "error.msg.vendor.contentcode.lType.duplicate":"Duplicate data with same Contentcode and loyaltytype",
-"eerror.msg.vendor.contentcode.lType.duration.duplicate":"Duplicate Loyaltytype for Same Content Code and duration",
+"error.msg.vendor.contentcode.lType.duration.duplicate":"Duplicate Loyaltytype for Same Content Code and duration",
 "error.msg.vendor.active.agreement.with.this.dates":"Active agreement, already exist with same effective start & end date",
 "validation.msg.vendormanagement.vendormobileNo.exceeds.max.length":"MobileNo exceeds maximum length",
 "dialog.contentdetail.title.message":"Delete Content Detail",
