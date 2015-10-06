@@ -34,7 +34,7 @@
                        data-popover-trigger="mouseenter" class="icon-eye-open"></a> &nbsp;  
                 <a data-ng-show="PermissionService.showMenu('CREATE_PRICE')&&PermissionService.showMenu('READ_PRICE')" href="#/createprice/{{plan.id}}" data-popover="Add Price" 
                        data-popover-trigger="mouseenter" class="icon-plus-sign"></a>&nbsp;
-                <a data-ng-show="PermissionService.showMenu('UPDATE_PLAN')" data-ng-hide="plan.ordersFlag" href="#/editplan/{{plan.id}}" data-popover="Edit Plan" 
+                <a data-ng-show="PermissionService.showMenu('UPDATE_PLAN')" data-ng-show="plan.ordersFlag" href="#/editplan/{{plan.id}}" data-popover="Edit Plan" 
                        data-popover-trigger="mouseenter" class="icon-edit"></a>&nbsp; 
                 <a data-ng-show="PermissionService.showMenu('DELETE_PLAN')" data-ng-hide="plan.ordersFlag" data-ng-click="deleteplan(plan.id)" data-popover="Delete Plan" 
                        data-popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a>

@@ -162,7 +162,7 @@
 						if(scope.vendorDetailsDatas[i].planType == "Y"){
 							data.durationId 	= scope.vendorDetailsDatas[i].durationId || 0;
 						}else{
-							data.durationId 	= 0;
+							data.durationId = 0;
 						} 
 						
 						scope.formData.vendorDetails.push(data);
