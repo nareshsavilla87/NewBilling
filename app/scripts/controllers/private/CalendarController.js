@@ -144,7 +144,7 @@
 		      		  location.path("/viewclient/"+clientId);
 		      	  };
 		      	  
-		  	    		$scope.reject = function(){
+		  	    		$scope.close = function(){
 		  	    			$modalInstance.dismiss('cancel');
 		  	    		};
 		  	     };
