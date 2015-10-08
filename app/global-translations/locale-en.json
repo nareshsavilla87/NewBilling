@@ -1040,7 +1040,7 @@
   "label.deviceswap":"Device Swap",
   "label.changeplan":"Change Plan",
   "label.commandcenter":"Command Center",
-  "label.scheduleorders":"Schedule Orders",
+  "label.scheduleorders":"Scheduled Orders",
   "label.order.autorenew":"Is Auto Renew",
   "error.msg.plan.with.id.not.exists":"Plan not exists",
   "error.msg.please.pair.hardware.with.plan":"Please pair hardware with plan",
@@ -2708,7 +2708,7 @@
 "error.msg.tempalte.duplicate.name":"Template name already exists",
 
 "#Property Definition":"........",
-"label.current.device" :"Device",
+"label.current.device" :"Device for transfer",
 "table.heading.propertycode":"Property Code",
 "table.heading.propertytype":"Property Type",
 "table.heading.parcel":"Parcel",
@@ -2913,6 +2913,7 @@
 "validation.msg.vendormanagement.vendorAddress.exceeds.max.length" : "Address can not exceeds max length",
 "validation.msg.order.provisioningSystem.cannot.be.blank" : "Provisioning System can not be blank",
 "validation.msg.voucher.length.is.greater.than.max" :  "The Length of the Pin must be between 1 and 60",
-"error.msg.serianumber.isnot.mapped":	"Please map the device with proprtycode"
+"error.msg.serianumber.isnot.mapped":	"Please map the device with proprtycode",
+"table.order.propertycode":"PropertyCode"
 
 }

@@ -177,7 +177,9 @@
                 			<th>{{ 'table.order.serviceType' | translate }}</th>
                 			<th>{{ 'table.order.serviceDescription' | translate }}</th>
                 			<th>{{ 'table.order.pairing' | translate }}</th>
+							<th data-ng-show="propertyMaster">{{ 'table.order.propertycode' | translate }} </th>
                 			<th></th>
+
             			</tr>
         			</thead>
         		<tbody>
@@ -194,6 +196,8 @@
                 			<a data-ng-if="(orderData.status == 'DISCONNECTED')&&(serviceLevelUnPairEnabled&&isServiceLevelMap&&orderServicesData.serialNo)&&PermissionService.showMenu('DEASSOCIATION_ASSOCIATION')" 
                 				data-ng-click="deAssociation(orderServicesData.associateId)" class="btn btn-primary">
                 				<i class="icon-plus icon-white"></i>UnPairing</a></td>
+                		<td>{{association.serialNum}}</td>
+                		<td data-ng-show="propertyMaster">{{propertyCode}}</td>
             		</tr>
         	</tbody>
     	</table>
