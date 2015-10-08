@@ -77,6 +77,37 @@
          <button id="cancel" class="btn btn-primary pull-right" ng-click="close()">{{'button.close' | translate}}</button>
    </div>
 </script>
+<script type="text/ng-template" id="neworderspopup.html">
+	<div class="modal-header silver">
+         <h3 class="bolder">{{'table.heading.schedule.order'|translate}}</h3>
+     </div>
+     <div class="modal-body modal-small" style="width:650px;padding-bottom: 0;">
+	 	<div class="error" ng-show="errorStatus || errorDetails">
+			<label>{{'label.contract.error' | translate}}</label>
+			<label ng-show="errorStatus">{{errorStatus}}</label>
+			<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		 </div>
+			<table class="table">
+        		<thead>
+        			<tr class="graybg">
+            			<th>{{'label.form.accountno' | translate}}</th>
+            			<th>{{'table.heading.displayname' | translate}}</th>
+        			</tr>
+        		</thead>
+        		<tbody>
+        			<tr  class="pointer-main" ng-repeat="order in scheduleOrderDatas">
+            			<td class="pointer" data-ng-click="routeToViewClient(order.clientId)">{{order.accountNo}}</a></td>
+            			<td class="pointer" data-ng-click="routeToViewClient(order.clientId)">{{order.displayName}}</td> 
+        			</tr>
+					<tr data-ng-show="blockUI"><td colspan="5"><div class="offset3"><i class="icon-refresh icon-spin icon-large"></i>
+					</div></td></tr>
+        		</tbody>
+    	   </table>
+     </div>
+	<div class="modal-footer">
+         <button id="cancel" class="btn btn-primary pull-right" ng-click="close()">{{'button.close' | translate}}</button>
+   </div>
+</script>
 </div>
 
 
