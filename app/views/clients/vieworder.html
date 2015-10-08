@@ -175,6 +175,7 @@
                 			<th>{{ 'table.order.serviceType' | translate }}</th>
                 			<th>{{ 'table.order.serviceDescription' | translate }}</th>
                 			<th>{{ 'table.order.pairing' | translate }}</th>
+                			<th data-ng-show="propertyMaster">{{ 'table.order.propertycode' | translate }} </th>
             			</tr>
         			</thead>
         		<tbody>
@@ -184,6 +185,7 @@
                 		<td>{{orderServicesData.serviceType}}</td>
                 		<td>{{orderServicesData.serviceDescription}}</td>
                 		<td>{{association.serialNum}}</td>
+                		<td data-ng-show="propertyMaster">{{propertyCode}}</td>
             		</tr>
         	</tbody>
     	</table>
