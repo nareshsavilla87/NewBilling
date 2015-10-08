@@ -36,6 +36,20 @@
 						 start : dateFilter(new Date(tktData[i].days),"yyyy-MM-dd")
 					 });
 				 }
+				 
+			resourceFactory.runReportsResource.get({reportSource: 'ClientSchedulerOrders', genericResultSet:false} , function(schedulerOrdersData) {
+						
+				schedulerOrdersData = angular.fromJson(angular.toJson(schedulerOrdersData));
+				for(var i in schedulerOrdersData){
+					transactionDate = schedulerOrdersData[i].transactionDate.split(" ");
+					console.log(transactionDate);
+					 scope.events.push({
+						 title : schedulerOrdersData[i].cnt,
+						 start : transactionDate[0]
+					 });
+				 }
+					 
+					 
 				$('#calendar').fullCalendar({
 			     	header: {
 			     		left: 'prev,next today',
@@ -49,6 +63,7 @@
 			     	
 			     	events: scope.events
 			     });
+				});
 			 });
 		 });
 		 
@@ -67,6 +82,13 @@
 					$modal.open({
 		                templateUrl: 'ticketspopup.html',
 		                controller:TicketsDetailsPopupController ,
+		                resolve:{}
+		        	 });
+				}else if(scope.transactionType == "New Orders "){
+					
+					$modal.open({
+		                templateUrl: 'neworderspopup.html',
+		                controller:NewOrdersPopupController ,
 		                resolve:{}
 		        	 });
 				}else{
@@ -110,6 +132,22 @@
 	  	    		 $modalInstance.dismiss('cancel');
 	  	    	 };
 	  	     };
+	  	     
+	  	   function NewOrdersPopupController($scope,$modalInstance){
+		      	  
+		      	  resourceFactory.runReportsResource.get({reportSource: 'ClientSchedulerOrdersOnDay',R_startDate : scope.date, genericResultSet:false} , function(data) {
+		      		  $scope.scheduleOrderDatas=data;
+		    	  	});
+		      	  
+		      	  $scope.routeToViewClient = function(clientId){
+		      		  $modalInstance.dismiss('cancel');
+		      		  location.path("/viewclient/"+clientId);
+		      	  };
+		      	  
+		  	    		$scope.close = function(){
+		  	    			$modalInstance.dismiss('cancel');
+		  	    		};
+		  	     };
             
         }
     });
