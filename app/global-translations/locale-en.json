@@ -1040,7 +1040,7 @@
   "label.deviceswap":"Device Swap",
   "label.changeplan":"Change Plan",
   "label.commandcenter":"Command Center",
-  "label.scheduleorders":"Schedule Orders",
+  "label.scheduleorders":"Scheduled Orders",
   "label.order.autorenew":"Is Auto Renew",
   "error.msg.plan.with.id.not.exists":"Plan not exists",
   "error.msg.please.pair.hardware.with.plan":"Please pair hardware with plan",

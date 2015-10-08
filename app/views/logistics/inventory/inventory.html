@@ -64,8 +64,10 @@
      		 </tbody>
           </table>
        			<ul class="pager">
-        			<li class="previous"><a ng-click="itemdetails.previous()" href="" ng-disabled="!itemdetails.hasPrevious()">&larr; Prev</a></li>
-        			<li class="next" ><a ng-click="itemdetails.next()" href="" ng-disabled="!itemdetails.hasNext()">Next &rarr;</a></li>
+       				<li class="previous" ng-click="firstPageNo()"><a  ng-click="itemdetails.firstPage()" href="" ng-disabled="!itemdetails.hasFirstPage()">First</a></li>
+        			<li class="previous" ng-click="previousPageNo()"><a ng-click="itemdetails.previous()" href="" ng-disabled="!itemdetails.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ng-click="lastPageNo()"><a  ng-click="itemdetails.lastPage(15)" href="" ng-disabled="!itemdetails.hasLastPage()">Last</a></li>
+        			<li class="next" ng-click="nextPageNo()" ><a ng-click="itemdetails.next()" href="" ng-disabled="!itemdetails.hasNext()">Next &rarr;</a></li>
     			</ul>
          </div>
       </tab>
