@@ -2708,7 +2708,7 @@
 "error.msg.tempalte.duplicate.name":"Template name already exists",
 
 "#Property Definition":"........",
-"label.current.device" :"Device",
+"label.current.device" :"Device for transfer",
 "table.heading.propertycode":"Property Code",
 "table.heading.propertytype":"Property Type",
 "table.heading.parcel":"Parcel",
@@ -2862,6 +2862,7 @@
 "table.heading.tkt.clientName"	:	"Client Name",
 "table.heading.tkt.description"	:	"Description",
 "table.heading.tkt.assignedto"	:	"Assigned To",
+"table.heading.schedule.order"	:	"Schedule Orders",
 
 
 "#Fee Master  ":".......",
@@ -2912,6 +2913,7 @@
 "validation.msg.vendormanagement.vendorAddress.exceeds.max.length" : "Address can not exceeds max length",
 "validation.msg.order.provisioningSystem.cannot.be.blank" : "Provisioning System can not be blank",
 "validation.msg.voucher.length.is.greater.than.max" :  "The Length of the Pin must be between 1 and 60",
-"error.msg.serianumber.isnot.mapped":	"Please map the device with proprtycode"
+"error.msg.serianumber.isnot.mapped":	"Please map the device with proprtycode",
+"table.order.propertycode":"PropertyCode"
 
 }
