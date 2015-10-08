@@ -22,7 +22,8 @@
                         
                         
                        //order related data 
-                        "CREATE ORDER" : "PlanCode :"+jsonArray.planCode+" Contract Period :"+jsonArray.contractPeriod,
+                        "CREATE ORDER" : jsonArray.planDescription?"PlanCode :"+jsonArray.planDescription+" Contract Period :"+jsonArray.contractPeriod:
+                        		"PlanCode :"+jsonArray.planCode+" Contract Period :"+jsonArray.contractPeriod,
                         "CHANGEPLAN ORDER" : "PlanCode :"+jsonArray.planCode+" Contract Period :"+jsonArray.contractPeriod,
                         "DELETE ORDER" : "Order Deleted successfully",
                         "EXTENSION ORDER" : "Order Extended to "+jsonArray.extensionPeriod+" Due To "+jsonArray.extensionReason,
