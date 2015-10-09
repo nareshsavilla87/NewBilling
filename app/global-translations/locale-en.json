@@ -2900,6 +2900,10 @@
 "validation.msg.order.provisioningSystem.cannot.be.blank" : "Provisioning System can not be blank",
 "validation.msg.voucher.length.is.greater.than.max" :  "The Length of the Pin must be between 1 and 60",
 "error.msg.serianumber.isnot.mapped":	"Please map the device with proprtycode",
-"table.order.propertycode":"PropertyCode"
+"table.order.propertycode":"PropertyCode",
+"error.msg.clientIdentifier.identityKey.duplicate" : "Identity Key already existed"
+
+
+
 
 }

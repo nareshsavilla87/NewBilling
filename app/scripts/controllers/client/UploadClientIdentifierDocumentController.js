@@ -22,7 +22,7 @@
         }
      
       scope.onFileSelect = function($files) {
-        scope.file = $files[0];
+        scope.file = $files;
       };
 
       scope.reset123 = function(){
@@ -30,10 +30,11 @@
 	       };
 	       
       scope.submit = function () {
+    	  for(var i in scope.file){
         $upload.upload({
           url: $rootScope.hostUrl+ API_VERSION +'/client_identifiers/'+scope.identityId+'/documents', 
           data: scope.formData,
-          file: scope.file
+          file: scope.file[i]
         }).then(function(data) {
           // to fix IE not refreshing the model
           if (!scope.$$phase) {
@@ -43,6 +44,7 @@
           location.path('/viewclient/'+scope.clientId);
         });
       };
+      }
     }
   });
   mifosX.ng.application.controller('UploadClientIdentifierDocumentController', ['$scope','webStorage', '$location', '$http', '$routeParams','API_VERSION','$rootScope','$upload', mifosX.controllers.UploadClientIdentifierDocumentController]).run(function($log) {

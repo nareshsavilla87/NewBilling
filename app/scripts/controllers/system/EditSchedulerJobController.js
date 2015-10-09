@@ -4,7 +4,7 @@
       resourceFactory.jobsResource.getJobDetails({jobId : routeParams.id}, function(data) {
         scope.job = data;
         scope.formData = {
-          displayName : data.displayName,
+          displayName : data.name,
           cronExpression : data.cronExpression,
           cronDescription : data.cronDescription,
           active : data.active
