@@ -138,7 +138,7 @@
   "label.preferredCommunication":"Preferred Communication",
   "label.eventactions":"Event Actions",
   "error.msg.staff.duplicate.displayName":"An employee with these details already exists",
- 
+  "label.heading.warning":"Warning",
   "placeholder.searchbar":"Enter text to Search#",
   
   "label.fromdate":"From Date",
@@ -1040,7 +1040,7 @@
   "label.deviceswap":"Device Swap",
   "label.changeplan":"Change Plan",
   "label.commandcenter":"Command Center",
-  "label.scheduleorders":"Schedule Orders",
+  "label.scheduleorders":"Scheduled Orders",
   "label.order.autorenew":"Is Auto Renew",
   "error.msg.plan.with.id.not.exists":"Plan not exists",
   "error.msg.please.pair.hardware.with.plan":"Please pair hardware with plan",
@@ -2708,7 +2708,7 @@
 "error.msg.tempalte.duplicate.name":"Template name already exists",
 
 "#Property Definition":"........",
-"label.current.device" :"Device",
+"label.current.device" :"Device for transfer",
 "table.heading.propertycode":"Property Code",
 "table.heading.propertytype":"Property Type",
 "table.heading.parcel":"Parcel",
@@ -2808,10 +2808,13 @@
 "validation.msg.vendor.priceRegion.cannot.be.blank":"Price Region Cannot be blank",
 "validation.msg.vendor.contentCost.cannot.be.blank":"Content Cost cannot be blank",
 "error.msg.enddate.greater.than.startdate":"EndDate should be greater than StartDate",
-"error.msg.vendor.contentcode.lshare.duplicate":"Duplicate data with same Contentcode and loyaltyshare",
+"error.msg.vendor.contentcode.lType.duplicate":"Duplicate data with same Contentcode and loyaltytype",
+"error.msg.vendor.contentcode.lType.duration.duplicate":"Duplicate Loyaltytype for Same Content Code and duration",
 "error.msg.vendor.active.agreement.with.this.dates":"Active agreement, already exist with same effective start & end date",
 "validation.msg.vendormanagement.vendormobileNo.exceeds.max.length":"MobileNo exceeds maximum length",
 "dialog.contentdetail.title.message":"Delete Content Detail",
+"validation.msg.vendor.loyaltyShare.amount.is.not.within.min.max.range":"The loyaltyShare amount must be between 0 and 100 .",
+"validation.msg.invalid.decimal.format":"The parameter `{{field}}` has value `{{args.params[0].value}}` which is invalid decimal value ",
 
 "#Service Transfer ":".......",
 "label.service.transfer"		: "Service Transfer",
@@ -2859,6 +2862,7 @@
 "table.heading.tkt.clientName"	:	"Client Name",
 "table.heading.tkt.description"	:	"Description",
 "table.heading.tkt.assignedto"	:	"Assigned To",
+"table.heading.schedule.order"	:	"Schedule Orders",
 
 
 "#Fee Master  ":".......",
@@ -2907,7 +2911,9 @@
 "validation.msg.vendormanagement.contactName.exceeds.max.length" : "vendor ContactName can not exceeds max length",
 "validation.msg.vendormanagement.vendorEmailId.exceeds.max.length" : "Email can not exceeds max length",
 "validation.msg.vendormanagement.vendorAddress.exceeds.max.length" : "Address can not exceeds max length",
-"validation.msg.order.provisioningSystem.cannot.be.blank" : "Provisioning System can not be blank"
-
+"validation.msg.order.provisioningSystem.cannot.be.blank" : "Provisioning System can not be blank",
+"validation.msg.voucher.length.is.greater.than.max" :  "The Length of the Pin must be between 1 and 60",
+"error.msg.serianumber.isnot.mapped":	"Please map the device with proprtycode",
+"table.order.propertycode":"PropertyCode"
 
 }

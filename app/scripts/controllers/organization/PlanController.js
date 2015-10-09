@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  PlanController: function(scope, resourceFactory,location,PermissionService,$modal,route) {
+	  PlanController: function(scope, webStorage,resourceFactory,location,PermissionService,$modal,route) {
         scope.plans = [];
         scope.PermissionService = PermissionService;
         resourceFactory.planResource.query(function(data) {
@@ -101,7 +101,8 @@
     }
   });
   mifosX.ng.application.controller('PlanController', [
-     '$scope', 
+     '$scope',
+     'webStorage',
      'ResourceFactory',
      '$location',
      'PermissionService',
