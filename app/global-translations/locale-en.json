@@ -2856,7 +2856,8 @@
 "table.heading.cubeware.subscriberid" : "Subscriber Id",
 "table.heading.cubeware.clientid" : "Client Id",
 "dialog.cubiware.title.message" : "UnAssign Device",
-"error.msg.cubiware.subscriberId.not.exist" : "Please create customer in cubiware"
+"error.msg.cubiware.subscriberId.not.exist" : "Please create customer in cubiware",
+"error.msg.clientIdentifier.identityKey.duplicate" : "Identity Key already existed"
 
 
 

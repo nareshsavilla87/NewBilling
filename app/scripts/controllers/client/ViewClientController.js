@@ -1264,7 +1264,7 @@
                 data: {}
               })*/
              
-             window.open($rootScope.hostUrl+ API_VERSION +'/billmaster/invoice/'+ routeParams.id +'/'+invoiceId+'?email=false&tenantIdentifier='+TENANT);
+             window.open($rootScope.hostUrl+ API_VERSION +'/billmaster/invoice/'+ routeParams.id +'/'+invoiceId+'?email=false&tenantIdentifier='+TENANT+'&accessToken=c2VsZmNhcmU6c2VsZmNhcmU=');
              
        };
        
@@ -1620,7 +1620,13 @@
 	  				scope.identitydocuments.splice(index, 1);
 	  			});
 	  		};
-
+	  		scope.deleteFile = function (clientId, entityId, fileId){
+	  			resourceFactory.clientIdenfierResource.remove({clientId: clientId, id: entityId, fileId:fileId}, '', function(data) {
+	  				webStorage.add("callingTab", {someString: "moreInfo" });
+	  				route.reload();
+	  			});
+	  		};
+	  		
 	  		scope.downloadClientIdentifierDocument=function (identifierId, documentId){
 		  	      console.log(identifierId, documentId);
 		  	      window.open($rootScope.hostUrl+ API_VERSION +'/client_identifiers/'+documentId +'/documents/'+ identifierId+'/attachment?tenantIdentifier='+TENANT);
@@ -1834,6 +1840,22 @@
 						  	     });
 		          	 
 		        };
+		        /**
+		       	 * Delete File Popup Confirm Screens
+		       	 * */
+		        scope.deleteFilePopUp = function (firstId, secondId, fileId, screenName){
+		         	scope.idValuePopup = firstId;
+		         	scope.secondIdValuePopup = secondId;
+		         	scope.fileIdValuePopup = fileId;
+		         	scope.screenNamePopup = screenName;
+		         	
+		          	 $modal.open({
+						  	        templateUrl: 'deleteFilePopup.html',
+						  	        controller: approve,
+						  	        resolve:{}			// scope.routeToCancelBill
+						  	     });
+		          	 
+		        };
 		        
 		        /** Delete Popup Controller */
 		      	function  approve($scope, $modalInstance) {
@@ -1852,6 +1874,11 @@
 		      						scope.deleteDocument(scope.secondIdValuePopup, scope.indexPopup);
 		      						break;
 		      				
+		      				case 'Delete File' :
+	      						
+	      						    scope.deleteFile(scope.idValuePopup, scope.secondIdValuePopup, scope.fileIdValuePopup);
+	      						    break;
+		      						
 		      				case 'Delete Child' :
   						
 		      						scope.deleteChildsFromparent(scope.idValuePopup);
