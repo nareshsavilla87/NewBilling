@@ -679,7 +679,7 @@
 											<td>{{onetimesale.serialNo}}</td>
 											<td>{{onetimesale.chargeCode}}</td>
 											<!-- <td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.quantity}}/{{onetimesale.units}}</td> 
-											 --><td class="pointer" >{{onetimesale.totalPrice}}</td> 
+											 --><td class="pointer" >{{onetimesale.totalPrice/onetimesale.quantity}}</td> 
 											<td>{{onetimesale.warrantyDate| DateFormat}}</td>
 											<td ng-show="onetimesale.units=='PIECES'" >{{onetimesale.hardwareAllocated}}</td>
 											<td ng-show="propertyMaster">{{onetimesale.propertyCode}}</td>
