@@ -10,7 +10,8 @@
 	<div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label> 
 		<label data-ng-show="errorStatus">{{errorStatus}}</label> 
-		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate  :  error}}</label>
+		
 	</div>
 	<strong> Create Agreement </strong>
 
@@ -78,7 +79,7 @@
                  class="input-small" placeholder="contentCode">
             		<option value="">--ContentCode(Plan/Services)--</option>
             </select>
-            <select data-ng-show = "isDurationEnable" data-ng-model="detailsFormData.durationId" data-ng-options="durationData.id as durationData.duration for durationData in durationDatas" class="input-small" ></select>
+            <select data-ng-show = "detailsFormData.planType=='Y'" data-ng-model="detailsFormData.durationId" data-ng-options="durationData.id as durationData.duration for durationData in durationDatas" class="input-small" ></select>
             <select data-ng-model="detailsFormData.loyaltyType" class="input-small" >
                 <option value="">--LoyaltyType--</option>
                 <option value="Flat">FLAT</option>
@@ -111,9 +112,9 @@
                 	<select data-ng-if = "formData.contentType == 'Package'" data-ng-model="vendorDetailsData.contentCode" data-ng-change="durationSelect(vendorDetailsData.contentCode,'true',$index)" data-ng-options="planData.id as planData.planCode for planData in planDatas" class="input-small" >
                 	</select>
                 </td>
-                <td data-ng-show = "vendorDetailsData.durationId"><select data-ng-model="vendorDetailsData.durationId" 
+                <td data-ng-show = "vendorDetailsData.planType=='Y'"><select data-ng-model="vendorDetailsData.durationId" 
                 	data-ng-options="durationData.id as durationData.duration for durationData in vendorDetailsData.durationDatas" class="input-small" ></select></td>
-                <td data-ng-show = "!vendorDetailsData.durationId && isExistedDurationEnable && formData.contentType =='Package'"></td>
+                <td data-ng-show = "vendorDetailsData.planType!='Y' && isExistedDurationEnable && formData.contentType =='Package'"></td>
                 <td><select data-ng-model="vendorDetailsData.loyaltyType" class="input-small" >
                 	<option value="">--LoyaltyType--</option>
                 	<option value="Flat">FLAT</option>
@@ -139,7 +140,7 @@
      </div>
 	 <div class="offset3">
 		<a href="#/viewvendormanagement/{{vendorId}}"><button type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
-		<button type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+		<button type="submit" class="btn btn-primary" >{{'button.save'| translate}}</button>
 	 </div>
 
 </form>
@@ -153,6 +154,17 @@
               <div class="modal-footer">
                   <button class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
                   <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+              </div>
+     </script>
+     <script type="text/ng-template" id="nopricesnotifypopup.html">
+              <div class="modal-header silver">
+                  <h3 class="bolder">{{'label.heading.warning' | translate}}</h3>
+              </div>
+              <div class="modal-body modal-small">
+                 <h4><i class="icon-warning-sign error"></i>No prices found for `{{planCode}}` plan</h4>
+              </div>
+              <div class="modal-footer">
+                  <button class="btn btn-primary" ng-click="close()">{{'button.close' | translate}}</button>
               </div>
      </script>
 </div>

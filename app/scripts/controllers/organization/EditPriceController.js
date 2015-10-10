@@ -9,7 +9,7 @@
         resourceFactory.getPriceResource.get({priceId: routeParams.id, template: 'true'} , function(data) {
             scope.formData = data;
             scope.formData.duration=data.contractPeriod;
-            scope.planId = data.id;
+            scope.planId = data.planId;
             scope.serviceDatas = data.serviceData;
             scope.chargeDatas= data.chargeData;
             scope.priceRegionDatas=data.priceRegionData;
@@ -37,7 +37,7 @@
              delete this.formData.contractPeriod;
              
              resourceFactory.updatePriceResource.update({'priceId':routeParams.id},scope.formData,function(data){
-             location.path('/viewprice/' + data.resourceId+'/'+routeParams.id);
+             location.path('/viewprice/' + data.resourceId+'/'+scope.planId);
           });
         };
     }
