@@ -69,13 +69,13 @@
       resourceFactory.runReportsResource.get({reportSource: 'ClientCounts',genericResultSet:false} , function(data) {
     	  for(var i in data){
     		  if(data[i].status == 'New')
-    			  scope.newClients = data[i].counts;
+    			  scope.newClients = data[i].ccounts;
     		  if(data[i].status == 'Active')
-    			  scope.activeClients = data[i].counts;
+    			  scope.activeClients = data[i].ccounts;
     		  if(data[i].status == 'Inactive')
-    			  scope.InActiveClients = data[i].counts;
+    			  scope.InActiveClients = data[i].ccounts;
     		  if(data[i].status == 'Pending')
-    			  scope.PendingClients = data[i].counts;
+    			  scope.PendingClients = data[i].ccounts;
     	  }
     	  /*scope.totalClients = scope.newClients+scope.activeClients
     	  					   +scope.InActiveClients+scope.PendingClients;
