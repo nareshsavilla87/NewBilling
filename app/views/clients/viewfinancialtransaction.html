@@ -67,7 +67,8 @@
             </tr>
         </thead>
         <tbody>
-                   <tr data-ng-repeat="invoicedetail in invoicedetails" data-ng-show="invoicedetail.chargeType == 'RC' || invoicedetail.chargeType == 'NRC' || invoicedetail.chargeType == 'DC'">
+                   <tr data-ng-repeat="invoicedetail in invoicedetails" data-ng-show="invoicedetail.chargeType == 'RC' || invoicedetail.chargeType == 'NRC' 
+                    || invoicedetail.chargeType == 'DC' || invoicedetail.chargeType == 'UC'">
                     <td>{{invoicedetail.chargeId}}</td>
                     <td>{{invoicedetail.orderId}}</td> 
 					<td>{{invoicedetail.chargeType}}</td>  

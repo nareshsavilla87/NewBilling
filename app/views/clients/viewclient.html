@@ -331,7 +331,8 @@
 			                  				<span data-ng-repeat="file in document.documents">
 			                    				<!-- <a data-ng-click="downloadClientIdentifierDocument(document.id, file.id)">{{file.fileName}}</a>&nbsp;&nbsp; -->
 			                    				<a>{{file.fileName}}</a>
-			                    				<a data-ng-click="downloadClientIdentifierDocument(file.id, file.parentEntityId)" data-popover="Download Identity" data-popover-trigger="mouseenter"><i class="icon-cloud-download"></i></a>&nbsp;
+			                    				<a data-ng-click="downloadClientIdentifierDocument(file.id, file.parentEntityId)" data-popover="Download File" data-popover-trigger="mouseenter"><i class="icon-cloud-download"></i></a>&nbsp;
+			                    				<a data-ng-click="deleteFilePopUp(client.id,document.id,file.id,'Delete File')" data-popover="Delete File" data-popover-trigger="mouseenter"><i class="icon-remove"></i></a><br>
 			                  				</span>
 			                			</td>
 			                			<td>
@@ -679,7 +680,7 @@
 											<td>{{onetimesale.serialNo}}</td>
 											<td>{{onetimesale.chargeCode}}</td>
 											<!-- <td class="pointer" data-ng-click="routeToItemSale(onetimesale.id,client.id)">{{onetimesale.quantity}}/{{onetimesale.units}}</td> 
-											 --><td class="pointer" >{{onetimesale.totalPrice}}</td> 
+											 --><td class="pointer" >{{onetimesale.totalPrice/onetimesale.quantity}}</td> 
 											<td>{{onetimesale.warrantyDate| DateFormat}}</td>
 											<td ng-show="onetimesale.units=='PIECES'" >{{onetimesale.hardwareAllocated}}</td>
 											<td ng-show="propertyMaster">{{onetimesale.propertyCode}}</td>
@@ -1727,6 +1728,35 @@
 			</form>
 		</script> 
 		
+		<script type="text/ng-template" id="deletePopup.html">
+    		<div class="modal-header silver">
+        		<h3 class="bolder">{{deletePopupName}}</h3>
+        	</div>
+
+        	<div class="modal-body style="height:60px;">
+            	<h4>Are you sure?</h4>
+        	</div>
+
+        	<div class="modal-footer">
+            	<button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+            	<button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+        	</div>
+   		</script>
+   		<script type="text/ng-template" id="deleteFilePopup.html">
+    		<div class="modal-header silver">
+        		<h3 class="bolder">Delete File</h3>
+        	</div>
+
+        	<div class="modal-body style="height:60px;">
+            	<h4>Are you sure?</h4>
+        	</div>
+
+        	<div class="modal-footer">
+            	<button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+            	<button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+        	</div>
+   		</script>
+   		
    <script type="text/ng-template" id="allocateproperty.html">
 		
 	<div class="modal-header silver">

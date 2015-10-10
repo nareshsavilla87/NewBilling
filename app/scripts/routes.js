@@ -632,7 +632,7 @@
       .when('/taxmapping/:chargeCode/:chargeId', {
         templateUrl: 'views/organization/taxmapping.html'
       })
-      .when('/createtaxmapping/:chargeCode', {
+      .when('/createtaxmapping/:chargeCode/:chargeCodeId', {
         templateUrl: 'views/organization/createtaxmapping.html'
       })
       .when('/viewtaxmapping/:id/:chargeCodeId', {

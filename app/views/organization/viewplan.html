@@ -7,7 +7,7 @@
 	    </ul>
 	    <div class="pull-right">
 	      <div class="btn-group">
-	         <a data-ng-show="PermissionService.showMenu('UPDATE_PLAN')" data-ng-hide="planorders" href="#/editplan/{{plan.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
+	         <a data-ng-show="PermissionService.showMenu('UPDATE_PLAN')" href="#/editplan/{{plan.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
 	         <a data-ng-show="PermissionService.showMenu('DELETE_PLAN')" data-ng-hide="planorders" data-ng-click="deleteplan()" class="btn btn-primary"><i class="icon-trash icon-white"></i> Delete</a>
 	         <a data-ng-show="PermissionService.showMenu('READ_PRICE')" href="#/prices/{{plan.id}}/{{plan.planCode}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> View Price</a>
 	         <a data-ng-show="PermissionService.showMenu('CREATE_PRICE')&&PermissionService.showMenu('READ_PRICE')" href="#/createprice/{{plan.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Add Price</a>
