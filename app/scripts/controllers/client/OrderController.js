@@ -15,7 +15,7 @@
         scope.clientId=routeParams.clientId;
         scope.walletConfig = webStorage.get('is-wallet-enable');
         scope.config = webStorage.get("client_configuration").orderActions;
-        scope.propertyMaster = webStorage.get("is-propertycode-enabled");
+       /* scope.propertyMaster = webStorage.get("is-propertycode-enabled");*/
         
          var clientData = webStorage.get('clientData');
          webStorage.add("orderId",routeParams.id);
@@ -79,13 +79,13 @@
        if(PermissionService.showMenu('READ_ASSOCIATION')){ 
     	   resourceFactory.associationResource.getAssociation({clientId: routeParams.clientId,id:routeParams.id} , function(data) {
     		   scope.association = data;
-    		   var hardwareData = data.hardwareData;
+    		  /* var hardwareData = data.hardwareData;
     		   for(var i in hardwareData){
     			   if(hardwareData[i].serialNum == data.serialNum){
     				   scope.propertyCode = hardwareData[i].propertyCode;
     				   break;
     			   }
-    		   }
+    		   }*/
     		   if(data.orderId){
     			   scope.flag=true;
     		   }else{
