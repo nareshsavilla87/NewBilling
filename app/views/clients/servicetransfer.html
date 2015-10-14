@@ -312,6 +312,18 @@
 </div>
 </div>
 </script>
+<script type="text/ng-template" id="paringpopup.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">{{'dialog.service.transfer.message' | translate}}</h3>
+                    </div>
+                    <div class="modal-body modal-small">
+                       <h4>Are you want to Move schedule Order?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+                    </div>
+</script>
 </div>
 
  <!--         <table class="fullwidth" data-ng-hide="shiftingCheckbox == 'Yes'">

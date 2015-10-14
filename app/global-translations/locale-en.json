@@ -2901,9 +2901,9 @@
 "validation.msg.voucher.length.is.greater.than.max" :  "The Length of the Pin must be between 1 and 60",
 "error.msg.serianumber.isnot.mapped":	"Please map the device with proprtycode",
 "table.order.propertycode":"PropertyCode",
-"error.msg.clientIdentifier.identityKey.duplicate" : "Identity Key already existed"
-
-
-
+"error.msg.clientIdentifier.identityKey.duplicate" : "Identity Key already existed",
+"label.edit.order" : "Edit Schedule Order",
+"label.pairing" : "Pairing",
+"dialog.service.transfer.message" : "ScheduleOrder Transfer"
 
 }

@@ -379,22 +379,45 @@
     	   scope.formData.locale = "en"; 
     	   if(scope.shiftingCheckbox == "Yes"){
     		  scope.formData.newPropertyCode = scope.existingProperty; 
-    	   }/*else if(scope.shiftingCheckbox == "No"){
-    		   scope.formData.newPropertyCode = scope.formData.propertyCode; 
-    	   }*/
-    	   if(angular.isUndefined(scope.propertyId)){
-    		   delete scope.property.precinctCode;
-    		   resourceFactory.propertyCodeResource.save({},scope.property,function(data){
-    			   
-        		   resourceFactory.serviceTransferRequestResource.save({clientId:routeParams.clientId},scope.formData,function(data){
-        			   location.path("/viewclient/"+scope.clientId);
+    	   }
+    	   
+    	   for(var i=0;i<scope.deviceMappingDatas.length;i++){
+    		   if(scope.deviceMappingDatas[i].serialNumberFlag == true){
+    	
+    			              $modal.open({
+    		                  templateUrl: 'paringpopup.html',
+    		                  controller: Approve,
+    		                  resolve:{}
+    		              });
+    			             
+//    			   }
+    		   }
+    	   }
+    	   function Approve($scope, $modalInstance) {
+     		 $scope.approve = function () {
+     			 console.log("sanjay123");
+         	  if(angular.isUndefined(scope.propertyId)){
+        		   delete scope.property.precinctCode;
+        		   resourceFactory.propertyCodeResource.save({},scope.property,function(data){
+        			   
+            		   resourceFactory.serviceTransferRequestResource.save({clientId:routeParams.clientId},scope.formData,function(data){
+            			   location.path("/viewclient/"+scope.clientId);
+            		   });
         		   });
-    		   });
-    	   }else{
+         	  }else{
     		   resourceFactory.serviceTransferRequestResource.save({clientId:routeParams.clientId},scope.formData,function(data){
     			   location.path("/viewclient/"+scope.clientId);
-    		   });
-    	   }
+    		   });  
+         	  }
+         	 $modalInstance.close('delete');
+			 route.reload();
+           };
+           $scope.cancel = function () {
+               $modalInstance.dismiss('cancel');
+           };
+          
+       }
+    	   
        };
     }
   });
