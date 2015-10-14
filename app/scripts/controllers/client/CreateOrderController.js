@@ -342,7 +342,17 @@
                 	  scope.flag = false;
                   });
             	
-            */}
+            */
+            	this.formData.disconnectionDate= reqDate;
+            	this.formData.disconnectReason= "Not Interested";
+            	this.formData.actionType = "changeorder";
+            	this.formData.orderId = orderId;
+            	resourceFactory.OrderSchedulingResource.save({'clientId': routeParams.id},this.formData,function(data){
+                    location.path('/vieworder/' + orderId+'/'+routeParams.id);
+                  },function(errData){
+                	  scope.flag = false;
+                  });
+            	}
             
             };
         }
