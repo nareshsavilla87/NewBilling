@@ -18,15 +18,20 @@
 					        scope.email=clientData.email;
 					        scope.phone=clientData.phone;
 							resourceFactory.editTicketResource.get({clientId: routeParams.clientId, id: routeParams.id} , function(data) {	
-                                scope.formData=data;                            
+                                scope.formData=data;  
 								scope.statusTypes = data.statusType;
-								if(data.statusCode){
-									scope.formData.status = data.statusCode;
+								if(angular.uppercase(data.status)!='OPEN'){
+									//scope.formData.status = data.statusCode;
+									for(var i = 0; i < scope.statusTypes.length; i++){
+					                	if(scope.statusTypes[i].mCodeValue == data.status){
+					                		scope.formData.status = scope.statusTypes[i].mCodeValue;
+					                	}
+					              }
 								}else{
 									
 									for(var i = 0; i < scope.statusTypes.length; i++){
 					                	if(scope.statusTypes[i].mCodeValue == 'Working'){
-					                		scope.formData.status = scope.statusTypes[i].id;
+					                		scope.formData.status = scope.statusTypes[i].mCodeValue;
 					                	}
 					              }
 								}

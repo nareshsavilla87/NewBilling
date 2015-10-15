@@ -807,13 +807,13 @@
                 				<td class="pointer" data-ng-click="routeToticket(clientId,ticket.id)">{{ticket.priority}}</td>  
                 				<td class="pointer" data-ng-click="routeToticket(clientId,ticket.id)">{{ticket.ticketDate | DateFormat}}</td>
                 				<td class="pointer" data-ng-click="routeToticket(clientId,ticket.id)">{{ticket.problemDescription}}</td>
-                				<td data-ng-show="(ticket.status == 'OPEN') && ticket.ticketstatus" class="pointer" data-ng-click="routeToticket(clientId,ticket.id)">{{ticket.ticketstatus}}</td>
+                				<td data-ng-show="(ticket.status != 'CLOSED')&& ticket.ticketstatus" class="pointer" data-ng-click="routeToticket(clientId,ticket.id)">{{ticket.status}}</td>
                 				<td data-ng-show="(ticket.status == 'CLOSED') || !ticket.ticketstatus" class="pointer" data-ng-click="routeToticket(clientId,ticket.id)">{{ticket.status}}</td>
                 				<td class="pointer" data-ng-click="routeToticket(clientId,ticket.id)">{{ticket.userName}}</td>  
                 				<td class="pointer" data-ng-click="routeToticket(clientId,ticket.id)">{{ticket.lastComment}}</td>
                 				<td>
-                					<a data-ng-show="(ticket.status == 'OPEN')&&(PermissionService.showMenu('UPDATE_TICKET'))" data-ng-click="routeToFollowupTicket(clientId,ticket.id)" data-popover="Comment" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a>&nbsp;
-                					<a data-ng-show="(ticket.status == 'OPEN')&&(PermissionService.showMenu('CLOSE_TICKET'))" data-ng-click="routeToCloseTicket(clientId,ticket.id)" data-popover="Close" data-popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a>
+                					<a data-ng-show="(ticket.status != 'CLOSED')&&(PermissionService.showMenu('UPDATE_TICKET'))" data-ng-click="routeToFollowupTicket(clientId,ticket.id)" data-popover="Comment" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a>&nbsp;
+                					<a data-ng-show="(ticket.status != 'CLOSED')||(ticket.status == 'Working')||(ticket.status == 'Testing')||(ticket.status == 'Fixed')&&(PermissionService.showMenu('CLOSE_TICKET'))" data-ng-click="routeToCloseTicket(clientId,ticket.id)" data-popover="Close" data-popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a>
                 				</td>           
             				</tr>
         				</tbody>
