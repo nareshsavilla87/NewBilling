@@ -73,6 +73,7 @@
     	  
     	localStorageService.add("permissionsArray",data.permissions);
         scope.currentSession = sessionManager.get(data);
+        console.log(scope.currentSession);
         $window.sessionStorage.setItem("key","loginSession");
 
         scope.start(scope.currentSession);
