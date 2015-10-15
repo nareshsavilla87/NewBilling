@@ -302,6 +302,7 @@
         	
         	scope.flag = true;
         	this.formData.locale = $rootScope.locale.code;
+        	this.formData.serialnumber="";
            	var reqDate = dateFilter(scope.start.date,'dd MMMM yyyy');
             this.formData.dateFormat = 'dd MMMM yyyy';
             this.formData.start_date = reqDate;

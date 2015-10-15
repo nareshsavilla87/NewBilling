@@ -179,7 +179,7 @@
                 			<th>{{ 'table.order.pairing' | translate }}</th>
 							<th data-ng-show="propertyMaster">{{ 'table.order.propertycode' | translate }} </th>
                 			<th></th>
-
+                			<!-- <th data-ng-show="propertyMaster">{{ 'table.order.propertycode' | translate }} </th> -->
             			</tr>
         			</thead>
         		<tbody>
@@ -197,7 +197,7 @@
                 				data-ng-click="deAssociation(orderServicesData.associateId)" class="btn btn-primary">
                 				<i class="icon-plus icon-white"></i>UnPairing</a></td>
                 		<td>{{association.serialNum}}</td>
-                		<td data-ng-show="propertyMaster">{{propertyCode}}</td>
+                		<!-- <td data-ng-show="propertyMaster">{{propertyCode}}</td> -->
             		</tr>
         	</tbody>
     	</table>
