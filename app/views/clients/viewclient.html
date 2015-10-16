@@ -189,7 +189,7 @@
                           		<td class="pointer" data-ng-click="routeTogeneral(order.id,client.id)">{{order.endDate | DateFormat}}</td> 
                           		<td class="pointer" data-ng-click="routeTogeneral(order.id,client.id)">{{order.price}}</td>
                           		<td class="pointer" data-ng-click="routeTogeneral(order.id,client.id)"><i class="icon-stop {{order.status | StatusLookup}}"></i>&nbsp;{{order.status}}</td>
-                          		<td data-ng-show="propertyMaster">{{order.propertyCode}}</td>
+                          		<td class="pointer" data-ng-click="routeTogeneral(order.id,client.id)" data-ng-show="propertyMaster">{{order.propertyCode}}</td>
                           		<!-- <td>
                           			<span  class="btn-group" >
 				              		<a class="btn btn-primary dropdown-toggle">
