@@ -17,9 +17,18 @@
         /**
          * functions
          * */
-        scope.getOpenTickets = function () {
+         scope.getAllTickets = function () {
+         	
+     		scope.openTickets = paginatorService.paginate(scope.allTicketFetchFunction, 14);
+         };
+         scope.getOpenTickets = function () {
         	
     		scope.openTickets = paginatorService.paginate(scope.openTicketFetchFunction, 14);
+        };
+        
+        scope.getFixedTickets = function () {
+        	
+    		scope.openTickets = paginatorService.paginate(scope.fixedTicketFetchFunction, 14);
         };
     
         scope.getclosedTickets = function () {
@@ -48,9 +57,18 @@
          * statusType: 'Your Status type' do here if any changes needed to status type
          * */
         
+        scope.allTicketFetchFunction = function(offset, limit, callback) {
+        	
+			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit} , callback);
+		};
         scope.openTicketFetchFunction = function(offset, limit, callback) {
         	
 			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'OPEN'} , callback);
+		};
+		
+        scope.fixedTicketFetchFunction = function(offset, limit, callback) {
+        	
+			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'FIXED'} , callback);
 		};
 		
 		scope.closedTicketFetchFunction = function(offset, limit, callback) {

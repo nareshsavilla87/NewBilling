@@ -337,6 +337,15 @@
                   if(PermissionService.showMenu('READ_ORDER'))
                 	  resourceFactory.getOrderResource.getAllOrders({clientId: routeParams.id} , function(data) {
                 		  scope.orders = data.clientOrders;
+                		  scope.HardwareDatas = data.HardwareDatas;
+                		  for(var i in scope.orders){
+                			  for(var j in scope.HardwareDatas){
+                				  if(scope.orders[i].id == scope.HardwareDatas[j].orderId){
+                					  scope.orders[i].propertyCode = scope.HardwareDatas[j].propertyCode;
+                					  break;
+                				  }
+                			  }
+                		  }
                 	  });
                   	  resourceFactory.EventActionResource.get({clientId: routeParams.id} , function(data) {
                   		  scope.scheduleorders = data;   
@@ -1000,7 +1009,6 @@
   				        }
   				        bankAccountNumber = stars+bankAccountNumber.substr(bankAccountNumber.length-4, bankAccountNumber.length-1);
   				        scope.clientcarddetails[i].bankAccountNumber = bankAccountNumber;
-  				         
   				        var decrypted3 = CryptoJS.AES.decrypt(scope.clientcarddetails[i].bankName, key);
   					    scope.clientcarddetails[i].bankName = decrypted3.toString(CryptoJS.enc.Utf8);
                     }
@@ -1306,15 +1314,98 @@
         		route.reload();	
             });
         };
+       scope.paringScheduleOrder = function(id){
+       	
+       	scope.errorStatus=[];
+     	  scope.errorDetails=[];
+       	  $modal.open({
+               templateUrl: 'paringsheduleorder.html',
+               controller: PairingSheduleOrderController ,
+               resolve:{
+               	id:function(){
+               		return id;
+               	}
+               }
+           }); 
+	     };
+	     function  PairingSheduleOrderController($scope, $modalInstance,id) {
+	    	 resourceFactory.associationTemplate.get({clientId: routeParams.id} , function(data) {  
+	         	$scope.hardwareDatas=data.hardwareData;
+	         	/*console.log(scope.hardwareDatas);	 */
+	         	
+	         });
+	    	 
+	     		
+			   		$scope.formdata = {};
+			   		//$scope.hardwareDatas=[];
+			   	   	$scope.accept = function(serialNum){
+			   	   	$scope.formdata.serialnumber=serialNum;
+			   	   	var allocationType;
+			   	   for(var i in $scope.hardwareDatas)
+			   		   {
+			   	   	if(serialNum == $scope.hardwareDatas[i].serialNum)
+			   	   			{
+			   	   		allocationType = $scope.hardwareDatas[i].allocationType;
+			   	   			}
+			   	   	$scope.formdata.allcation_type =allocationType;
+			   		   }
+			   	  	resourceFactory.OrderSchedulingResource.update({'clientId':id}, $scope.formdata, function(data){
+			            $modalInstance.close('delete');
+			            route.reload();
+			      		});
+
+			     };  
+			     
+			 	$scope.rejectProvisioning = function(){
+			 		$modalInstance.dismiss('cancel');
+			 	};
+	     }
        
-        scope.getAllTickets=function(){      
-        	resourceFactory.ticketResource.getAll({clientId: routeParams.id}, function(data) {	        
-        		scope.tickets = data;
-   	            scope.clientId= routeParams.id;	  
-   	        });
-        };
-	
-        scope.financialsummeryTab = function(){
+        scope.editScheduleOrder = function(id){
+        	
+        	scope.errorStatus=[];
+      	  scope.errorDetails=[];
+        	  $modal.open({
+                templateUrl: 'editsheduleorder.html',
+                controller:EditSheduleOrderController ,
+                resolve:{
+                	id:function(){
+                		return id;
+                	}
+                }
+            });
+	     };
+	    
+	   function  EditSheduleOrderController($scope, $modalInstance,id) {
+		   $scope.formdata = {};
+		   $scope.start = {};
+		   	  $scope.start.date =new Date();
+		   	  	$scope.accept = function(){
+		      		/*$scope.flagPromo=true;*/
+		      		var reqDate = dateFilter($scope.start.date,'dd MMMM yyyy');
+		      		 $scope.formdata.dateFormat = 'dd MMMM yyyy';
+		      		 $scope.formdata.locale=$rootScope.locale.code;
+		      		 $scope.formdata.start_date = reqDate;
+			 resourceFactory.OrderSchedulingResource.update({'clientId':id},  $scope.formdata, function(data){
+				 $modalInstance.close('delete');
+				 route.reload();
+		   			     });
+
+		     };  
+		     
+		 	$scope.rejectProvisioning = function(){
+		 		$modalInstance.dismiss('cancel');
+		 	};
+		     
+	   }
+	    
+	   scope.getAllTickets=function(){      
+       	resourceFactory.ticketResource.getAll({clientId: routeParams.id}, function(data) {	        
+       		scope.tickets = data;
+  	            scope.clientId= routeParams.id;	  
+  	        });
+       };
+	   scope.financialsummeryTab = function(){
         	scope.financialsummaryC = "active";
         	scope.invoicesC = "";
         	scope.paymentsC = "";

@@ -178,6 +178,7 @@
                             	<th>{{'table.order.endDate' | translate}}</th>
                             	<th>{{'table.price.price' | translate}}</th>
                             	<th>{{'table.order.status' | translate}}</th> 
+                            	<th data-ng-show="propertyMaster">{{ 'table.order.propertycode' | translate }} </th>
                             	<!-- <th></th> -->
                         	</tr>
                           	<tr class="pointer-main" data-ng-repeat="order in orders | filter:filterText" >
@@ -189,6 +190,7 @@
                           		<td class="pointer" data-ng-click="routeTogeneral(order.id,client.id)">{{order.endDate | DateFormat}}</td> 
                           		<td class="pointer" data-ng-click="routeTogeneral(order.id,client.id)">{{order.price}}</td>
                           		<td class="pointer" data-ng-click="routeTogeneral(order.id,client.id)"><i class="icon-stop {{order.status | StatusLookup}}"></i>&nbsp;{{order.status}}</td>
+                          		<td data-ng-show="propertyMaster">{{order.propertyCode}}</td>
                           		<!-- <td>
                           			<span  class="btn-group" >
 				              		<a class="btn btn-primary dropdown-toggle">
@@ -228,6 +230,7 @@
                             	<th>{{'label.contract' | translate}}</th>
                             	<th>{{'label.form.activationdate' | translate}}</th>
                             	<th>{{'table.price.chargecode' | translate}}</th>
+                            	<th data-ng-show="propertyMaster">{{ 'table.order.propertycode' | translate }} </th>
                             	<th>&nbsp;</th> 
                         	</tr>
                           	<tr class="pointer-main" data-ng-repeat="scheduleorder in scheduleorders | filter:filterText" >
@@ -235,9 +238,12 @@
                           		<td class="pointer" >{{scheduleorder.contractPeriod}}</td>
                            		<td class="pointer" >{{scheduleorder.startDate | DateFormat}}</td>
                           		<td class="pointer" >{{scheduleorder.billingFreq}}</td>
-                          		<td><a data-ng-click="cancelScheduleOrder(scheduleorder.id)" class="btn btn-primary"><i class="icon-remove-circle icon-white"></i> Cancel</a></td>
-                          
-                        	</tr>
+                          		<td data-ng-show="propertyMaster">{{scheduleorder.propertyCode}}</td>
+                          		
+                          		<td><a data-ng-hide = "scheduleorder.isSerialnum" popover="Pairing" popover-trigger="mouseenter" data-ng-click="paringScheduleOrder(scheduleorder.id)"><i class="icon-plus"></i></a></td>
+	         					<td><a data-ng-click="editScheduleOrder(scheduleorder.id)"popover="Edit Order" popover-trigger="mouseenter"  href=""><i class="icon-edit"></i></a>
+	         					<a data-ng-click="cancelScheduleOrder(scheduleorder.id)" popover="Cancel Order" popover-trigger="mouseenter" ><i class="icon-remove"></i></a></td>
+                          			</tr>
                         	<tr><td colspan="8">&nbsp;</td></tr> 
                     	</table>
                 	</div>
@@ -805,13 +811,13 @@
                 				<td class="pointer" data-ng-click="routeToticket(clientId,ticket.id)">{{ticket.priority}}</td>  
                 				<td class="pointer" data-ng-click="routeToticket(clientId,ticket.id)">{{ticket.ticketDate | DateFormat}}</td>
                 				<td class="pointer" data-ng-click="routeToticket(clientId,ticket.id)">{{ticket.problemDescription}}</td>
-                				<td data-ng-show="(ticket.status == 'OPEN') && ticket.ticketstatus" class="pointer" data-ng-click="routeToticket(clientId,ticket.id)">{{ticket.ticketstatus}}</td>
+                				<td data-ng-show="(ticket.status != 'CLOSED')&& ticket.ticketstatus" class="pointer" data-ng-click="routeToticket(clientId,ticket.id)">{{ticket.status}}</td>
                 				<td data-ng-show="(ticket.status == 'CLOSED') || !ticket.ticketstatus" class="pointer" data-ng-click="routeToticket(clientId,ticket.id)">{{ticket.status}}</td>
                 				<td class="pointer" data-ng-click="routeToticket(clientId,ticket.id)">{{ticket.userName}}</td>  
                 				<td class="pointer" data-ng-click="routeToticket(clientId,ticket.id)">{{ticket.lastComment}}</td>
                 				<td>
-                					<a data-ng-show="(ticket.status == 'OPEN')&&(PermissionService.showMenu('UPDATE_TICKET'))" data-ng-click="routeToFollowupTicket(clientId,ticket.id)" data-popover="Comment" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a>&nbsp;
-                					<a data-ng-show="(ticket.status == 'OPEN')&&(PermissionService.showMenu('CLOSE_TICKET'))" data-ng-click="routeToCloseTicket(clientId,ticket.id)" data-popover="Close" data-popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a>
+                					<a data-ng-show="(ticket.status != 'CLOSED')&&(PermissionService.showMenu('UPDATE_TICKET'))" data-ng-click="routeToFollowupTicket(clientId,ticket.id)" data-popover="Comment" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a>&nbsp;
+                					<a data-ng-show="(ticket.status != 'CLOSED')||(ticket.status == 'Working')||(ticket.status == 'Testing')||(ticket.status == 'Fixed')&&(PermissionService.showMenu('CLOSE_TICKET'))" data-ng-click="routeToCloseTicket(clientId,ticket.id)" data-popover="Close" data-popover-trigger="mouseenter"><i class="icon-remove icon-white"></i></a>
                 				</td>           
             				</tr>
         				</tbody>
@@ -2068,6 +2074,55 @@
      </div>
 
 </script>
-   		
+   	<script type="text/ng-template" id ="editsheduleorder.html">
+	<div class="modal-header silver">
+        <h3 class="bolder">{{'label.edit.order' | translate}}</h3>
+    </div>
+    <div class="modal-body"  style="height:280px;">
+       <fieldset>
+		<div class="control-group">
+            <label class="control-label" style="color:red;" ng-show="renewError.length>0">{{renewError | translate}}</label>
+            <div class="controls">
+            </div>
+        </div>
+             <div class="control-group">
+                <label class="control-label" for="startDate">{{ 'label.order.startdate' | translate }}</label>
+                  <div class="controls">
+                  <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.date" is-open="opened" min="minDate" max="maxDate" 
+                          date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
+              </div>
+           </div>
+     	</fieldset>
+    </div>
+   <div class="modal-footer">
+         <button id="cancel" class="btn btn-warning" ng-click="rejectProvisioning()">{{'button.cancel' | translate}}</button>
+         <button id="submit" class="btn btn-primary" ng-click="accept()" ng-disabled="flagPromo">{{'label.confirm' | translate}}</button>
+   </div>
+   	</script>
+   	<script type="text/ng-template" id ="paringsheduleorder.html">
+	<div class="modal-header silver">
+        <h3 class="bolder">{{'label.pairing' | translate}}</h3>
+    </div>
+    <div class="modal-body"  style="height:280px;">
+       <fieldset>
+		<div class="control-group">
+            <label class="control-label" style="color:red;" ng-show="renewError.length>0">{{renewError | translate}}</label>
+            <div class="controls">
+            </div>
+      		 <div class="control-group">
+						<label class="control-label" for="status"> {{'label.association.serialno' | translate}} </label>
+						<div class="controls">
+							<select ng-model="formData.serialNum"
+								ng-options="hardwareData.serialNum as hardwareData.serialNum for hardwareData in hardwareDatas"
+								value="{{data}}"></select>
+						</div>
+					</div>
+     	</fieldset>
+    </div>
+    <div class="modal-footer">
+         <button id="cancel" class="btn btn-warning" ng-click="rejectProvisioning()">{{'button.cancel' | translate}}</button>
+         <button id="submit" class="btn btn-primary" ng-click="accept(formData.serialNum)" ng-disabled="flagPromo">{{'label.confirm' | translate}}</button>
+   </div>
+   	</script>
 </div>
 
