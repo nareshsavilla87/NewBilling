@@ -375,13 +375,15 @@
        
        scope.submit = function(){
     	   scope.formData.oldPropertyCode = scope.serviceTransferRequestData.propertyCode; 
-    	   scope.formData.serialNumber = scope.serialNumber
+    	   scope.formData.serialNumber = scope.serialNumber;
     	   scope.formData.locale = "en"; 
     	   if(scope.shiftingCheckbox == "Yes"){
     		  scope.formData.newPropertyCode = scope.existingProperty; 
     	   }
-    	   
-    	   for(var i=0;i<scope.deviceMappingDatas.length;i++){
+    	   for(var i in scope.deviceMappingDatas){
+    		   
+    		   if(scope.deviceMappingDatas[i].serialNumber == scope.serialNumber)
+    		   {
     		   if(scope.deviceMappingDatas[i].serialNumberFlag == true){
     	
     			              $modal.open({
@@ -390,12 +392,29 @@
     		                  resolve:{}
     		              });
     			             
-//    			   }
+
+    		   }  		   
+    		   else{
+    			   scope.formData.serialNumberFlag = false;
+    			   if(angular.isUndefined(scope.propertyId)){
+        		   resourceFactory.propertyCodeResource.save({},scope.property,function(data){
+            		   resourceFactory.serviceTransferRequestResource.save({clientId:routeParams.clientId},scope.formData,function(data){
+            			   location.path("/viewclient/"+scope.clientId);
+            		   });
+        		   });
+         	  }else{
+         		   //console.log("propertycode id checking else part");
+    		   resourceFactory.serviceTransferRequestResource.save({clientId:routeParams.clientId},scope.formData,function(data){
+    			   location.path("/viewclient/"+scope.clientId);
+    		   });  
+         	  }
+    			   
     		   }
     	   }
+       }
     	   function Approve($scope, $modalInstance) {
      		 $scope.approve = function () {
-     			 console.log("sanjay123");
+     			 scope.formData.serialNumberFlag = true;
          	  if(angular.isUndefined(scope.propertyId)){
         		   delete scope.property.precinctCode;
         		   resourceFactory.propertyCodeResource.save({},scope.property,function(data){
