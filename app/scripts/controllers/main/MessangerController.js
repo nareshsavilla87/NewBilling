@@ -26,6 +26,13 @@
             resourceFactory.userChatResource.get({} , function(data) {
             	scope.userChatDatas = data.userChatDatas;
             	scope.appUserDatas=data.appUserDatas;
+            	var countMsgs = 0;
+            	for(var i in scope.userChatDatas){
+            		if(!scope.userChatDatas[i].isRead){
+            			countMsgs ++;
+            		}
+            	}
+            	$rootScope.unreadMessage = countMsgs;
             });
             
                scope.getSentMessages=function(data){
