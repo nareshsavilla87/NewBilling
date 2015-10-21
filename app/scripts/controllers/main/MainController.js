@@ -84,7 +84,7 @@
             	location.path('/home').replace();
             }
         }
-        scope.unreadMessage=data.unReadMessages;
+        $rootScope.unreadMessage=data.unReadMessages;
       });
      
       scope.goBack = function(){
@@ -314,6 +314,26 @@
               $modalInstance.dismiss('cancel');
           };
       };
+      
+      window.setInterval(function(){
+
+    	  var countMsgs = 0;
+    		 if((scope.currentSession.user != null)){
+    			 $rootScope.userChatProcess = true;
+    			 resourceFactory.userChatResource.get({} , function(data) {
+    				 $rootScope.userChatProcess = false;
+    	            	var userChatDatas = data.userChatDatas;
+    	            	for(var i in userChatDatas){
+    	            		if(!userChatDatas[i].isRead){
+    	            			countMsgs ++;
+    	            		}
+    	            	}
+    	            	$rootScope.unreadMessage = countMsgs;
+    	            },function(errorData){
+    	            	$rootScope.userChatProcess = false;
+    	            });
+    		 }
+    	   },1000*60);
     }
   });
   mifosX.ng.application.controller('MainController', [
