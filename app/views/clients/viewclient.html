@@ -178,7 +178,7 @@
                             	<th>{{'table.price.price' | translate}}</th>
                             	<th>{{'table.order.status' | translate}}</th> 
                             	<th data-ng-show="propertyMaster">{{ 'table.order.propertycode' | translate }} </th>
-                            	<!-- <th></th> -->
+                            	
                         	</tr>
                           	<tr class="pointer-main" data-ng-repeat="order in orders | filter:filterText" >
                           		<td class="pointer" data-ng-click="routeTogeneral(order.id,client.id)">{{order.orderNo}}</td>
@@ -190,21 +190,9 @@
                           		<td class="pointer" data-ng-click="routeTogeneral(order.id,client.id)">{{order.price}}</td>
                           		<td class="pointer" data-ng-click="routeTogeneral(order.id,client.id)"><i class="icon-stop {{order.status | StatusLookup}}"></i>&nbsp;{{order.status}}</td>
                           		<td class="pointer" data-ng-click="routeTogeneral(order.id,client.id)" data-ng-show="propertyMaster">{{order.propertyCode}}</td>
-                          		<!-- <td>
-                          			<span  class="btn-group" >
-				              		<a class="btn btn-primary dropdown-toggle">
-				                 <span class="caret"></span>
-				              	</a>
-					              <ul style='margin-left:-95px;' class="dropdown dropdown-menu">
-					                <li>
-					                    <a href="#/strequest/{{clientId}}">{{'label.service.transfer' | translate}}</a>
-					                </li>
-					              </ul>
-          						</span>
-                          		</td> -->
-                          		<!-- <td><input type="radio" name="select" ng-click="selectedOrder(order.status)"/></td> -->
+                          		
                          	</tr>
-                        	<tr><td colspan="8">&nbsp;</td></tr>   
+                        	<tr><td colspan="9">&nbsp;</td></tr>   
                     	</table>
                 	</div>
                 	
@@ -230,20 +218,21 @@
                             	<th>{{'label.form.activationdate' | translate}}</th>
                             	<th>{{'table.price.chargecode' | translate}}</th>
                             	<th data-ng-show="propertyMaster">{{ 'table.order.propertycode' | translate }} </th>
-                            	<th>&nbsp;</th> 
+                            	<th></th>
+                            	
                         	</tr>
                           	<tr class="pointer-main" data-ng-repeat="scheduleorder in scheduleorders | filter:filterText" >
                           		<td class="pointer">{{scheduleorder.planDesc}}</td>
                           		<td class="pointer" >{{scheduleorder.contractPeriod}}</td>
                            		<td class="pointer" >{{scheduleorder.startDate | DateFormat}}</td>
                           		<td class="pointer" >{{scheduleorder.billingFreq}}</td>
-                          		<td data-ng-show="propertyMaster">{{scheduleorder.propertyCode}}</td>
+                          		<td class="pointer" data-ng-show="propertyMaster">{{scheduleorder.propertyCode}}</td>
                           		
-                          		<td><a data-ng-hide = "scheduleorder.isSerialnum" popover="Pairing" popover-trigger="mouseenter" data-ng-click="paringScheduleOrder(scheduleorder.id)"><i class="icon-plus"></i></a></td>
-	         					<td><a data-ng-click="editScheduleOrder(scheduleorder.id)"popover="Edit Order" popover-trigger="mouseenter"  href=""><i class="icon-edit"></i></a>
+                          		<td><a data-ng-hide = "scheduleorder.isSerialnum" popover="Pairing" popover-trigger="mouseenter" data-ng-click="paringScheduleOrder(scheduleorder.id)"><i class="icon-plus"></i></a>
+	         					<a data-ng-click="editScheduleOrder(scheduleorder.id)"popover="Edit Order" popover-trigger="mouseenter"  href=""><i class="icon-edit"></i></a>
 	         					<a data-ng-click="cancelScheduleOrder(scheduleorder.id)" popover="Cancel Order" popover-trigger="mouseenter" ><i class="icon-remove"></i></a></td>
-                          			</tr>
-                        	<tr><td colspan="8">&nbsp;</td></tr> 
+                          		</tr>
+                        	<tr><td colspan="9">&nbsp;</td></tr> 
                     	</table>
                 	</div>
           		</div>
