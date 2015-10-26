@@ -30,8 +30,7 @@
           };
           scope.onFileSelect = function($files) {
             scope.file = $files[0];
-            scope.file = new File([""], "filename");
-            console.log(scope.file);
+            //scope.file = new File([""], "filename");
           };
           
           scope.reset123 = function(partnerId,officeId){
