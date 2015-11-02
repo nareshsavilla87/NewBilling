@@ -64,7 +64,9 @@
      		 </tbody>
           </table>
        			<ul class="pager">
-        			<li class="previous"><a ng-click="itemdetails.previous()" href="" ng-disabled="!itemdetails.hasPrevious()">&larr; Prev</a></li>
+       			    <li class="previous"><a ng-click="itemdetails.firstPage()" href="" ng-disabled="!itemdetails.hasFirstPage()">First</a></li>
+       			    <li class="previous"><a ng-click="itemdetails.previous()" href="" ng-disabled="!itemdetails.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next"><a  ng-click="itemdetails.lastPage(15)" href="" ng-disabled="!itemdetails.hasLastPage()">Last</a></li>
         			<li class="next" ><a ng-click="itemdetails.next()" href="" ng-disabled="!itemdetails.hasNext()">Next &rarr;</a></li>
     			</ul>
          </div>
@@ -111,6 +113,8 @@
      		 </tbody>
           </table>
        			<ul class="pager">
+       			    <li class="previous"><a ng-click="grn.firstPage()" href="" ng-disabled="!grn.hasFirstPage()">First</a></li>
+        			<li class="next"><a  ng-click="grn.lastPage(15)" href="" ng-disabled="!grn.hasLastPage()">Last</a></li>
         			<li class="previous"><a ng-click="grn.previous()" href="" ng-disabled="!grn.hasPrevious()">&larr; Prev</a></li>
         			<li class="next" ><a ng-click="grn.next()" href="" ng-disabled="!grn.hasNext()">Next &rarr;</a></li>
     			</ul>
@@ -157,6 +161,8 @@
      		 </tbody>
           </table>
        			<ul class="pager">
+       			    <li class="previous"><a ng-click="mrn.firstPage()" href="" ng-disabled="!mrn.hasFirstPage()">First</a></li>
+        			<li class="next"><a  ng-click="mrn.lastPage(15)" href="" ng-disabled="!mrn.hasLastPage()">Last</a></li>
         			<li class="previous"><a ng-click="mrn.previous()" href="" ng-disabled="!mrn.hasPrevious()">&larr; Prev</a></li>
         			<li class="next" ><a ng-click="mrn.next()" href="" ng-disabled="!mrn.hasNext()">Next &rarr;</a></li>
     			</ul>
@@ -214,7 +220,9 @@
             	</tbody>
        			</table>
        			<ul class="pager">
+       			    <li class="previous"><a ng-click="items.firstPage()" href="" ng-disabled="!items.hasFirstPage()">First</a></li>
         			<li class="previous"><a ng-click="items.previous()" href="" ng-disabled="!items.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next"><a  ng-click="items.lastPage(15)" href="" ng-disabled="!items.hasLastPage()">Last</a></li>
         			<li class="next" ><a ng-click="items.next()" href="" ng-disabled="!items.hasNext()">Next &rarr;</a></li>
     			</ul>
     		</div>
@@ -253,6 +261,8 @@
      		 </tbody>
           </table>
           <ul class="pager">
+                    <li class="previous"><a ng-click="supplier.firstPage()" href="" ng-disabled="!supplier.hasFirstPage()">First</a></li>
+        			<li class="next"><a  ng-click="supplier.lastPage(15)" href="" ng-disabled="!supplier.hasLastPage()">Last</a></li>
         			<li class="previous"><a ng-click="supplier.previous()" href="" ng-disabled="!supplier.hasPrevious()">&larr; Prev</a></li>
         			<li class="next" ><a ng-click="supplier.next()" href="" ng-disabled="!supplier.hasNext()">Next &rarr;</a></li>
     			</ul>
