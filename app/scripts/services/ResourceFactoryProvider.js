@@ -616,11 +616,11 @@
                      get: {method: 'GET', params: {},isArray: true}	
                  }),
                  
-                 itemResource: defineResource(apiVer + "/items/:itemId", {itemId:'@itemId'}, {
+                 /*itemResource: defineResource(apiVer + "/items/:itemId", {itemId:'@itemId'}, {
                  	   getAllItems: {method: 'GET', params: {}, isArray: true},
                        get: {method: 'GET', params: {}},
                        update: {method: 'PUT', params: {}}
-                  }),
+                  }),*/
                  itemTemplateResource: defineResource(apiVer + "/items/template", {}, {
                	 getAllItems: {method: 'GET', params: {}, isArray: true},
                	 get: {method: 'GET', params: {}}

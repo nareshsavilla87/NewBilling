@@ -76,7 +76,7 @@
          
         
         scope.itemFetchFunction = function(offset, limit, callback) {
-			resourceFactory.itemResource.getAllItems({offset: offset, limit: limit} , callback);
+			resourceFactory.itemResource.getAllItems({offset: offset, limit: limit} ,callback);
 		};
 		
         scope.officeDatas = [];scope.itemMasterDatas = [];
