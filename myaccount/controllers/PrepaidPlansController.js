@@ -115,6 +115,20 @@ PrepaidPlansController = function(scope,RequestSender,localStorageService,locati
     	   scope.totalAmount = 0;
        };
        
+       //checkbox change
+       scope.checkboxSelection = function(position, pricingData) {
+    	   angular.forEach(pricingData, function(priceData, index) {
+    	     if (position != index) {
+    	    	 priceData.isCheck = 'no';
+    	    	 if(scope.previewCheckoutList.length != 0){
+	    			   scope.totalAmount -= priceData.price;
+	    		   }
+    	     scope.previewCheckoutList = scope.previewCheckoutList.filter(function( obj ) {
+		   			return obj.id != priceData.id;
+    	       });
+    	     }
+    	   });
+    	 };
        scope.submitFun = function(){
     	   localStorageService.add("isAutoRenew",scope.autoRenewBtn);
     	   localStorageService.add("planType",'Y');

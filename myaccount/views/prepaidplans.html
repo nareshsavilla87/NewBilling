@@ -55,7 +55,7 @@
 				<ul style="margin: 0 0 0 0px;padding: 5px 2px 0px 2px;height: 148px;">
 				  <li data-ng-repeat="priceData in plan.pricingData track by $index" class="nonecontent" style="margin-left: 15px;">
 					<input type="checkbox" name="addPackCheckbox" style="vertical-align: sub;" data-ng-model="priceData.isCheck" data-ng-change="durationCheckboxSelectionFun(priceData.id,priceData.price,priceData.isCheck,priceData.planId,$index)"
-					 data-ng-true-value="yes" data-ng-false-value="no">&nbsp;
+					 data-ng-click="checkboxSelection($index, plan.pricingData)" data-ng-true-value="yes" data-ng-false-value="no">&nbsp;
 					<span style="font-size: 14px;">
 						<span>{{priceData.duration}}</span><span style="color:blue;">({{priceData.price}}&nbsp;{{currencyCode}})</span>
 					</span>
