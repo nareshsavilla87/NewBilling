@@ -31,9 +31,9 @@
             <td><button type="button" class="btn btn-success flag" data-ng-hide="config.enabled" data-ng-click="enable(config.id,config.name)"><i class="icon-flag-alt"></i></button>
                 <button type="button" class="btn btn-danger flag" data-ng-show="config.enabled" data-ng-click="disable(config.id,config.name)"><i class="icon-remove"></i></button>
             </td>
-            <td><a data-ng-hide="config.name == 'smtp'" data-ng-click="edit(config.id)" data-popover="Edit" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a> 
+            <td><a data-ng-hide="config.name=='smtp'" data-ng-click="edit(config.id,config.name)" data-popover="Edit" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a> 
                 <a data-ng-show="config.name=='smtp'" href="#/createsmtp/{{config.id}}" data-popover="Edit" data-popover-trigger="mouseenter"><i class="icon-edit icon-white"></i></a></td>
-            <td> <a ng-click="globalConfigHelpPopup(config.id)" popover="Help" popover-trigger="mouseenter"><i class="icon-question-sign"></i></a></td>
+            <td> <a data-ng-click="globalConfigHelpPopup(config.id)" data-popover="Help" data-popover-trigger="mouseenter"><i class="icon-question-sign"></i></a></td>
         </tr>
         </tbody>
     </table>
@@ -402,4 +402,41 @@
    </div>
 
 </script> 
+
+   <script type="text/ng-template" id="editGlobalAlignBilling.html">
+
+   <div class="modal-header silver">
+    	<h3 class="bolder">Edit Align Billing flags</h3>
+    </div>
+    <div class="modal-body">
+<form class="form-horizontal well" >
+	 <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+  <table>
+    <tr>
+       <td>
+        <div class="control-group">
+           <label class="control-label" for="perpetual">Perpetual PC :</label>
+            <div class="controls">
+             <input type="checkbox" id="perpetual" data-ng-model="formData.perpetual" style="margin-top: 8px;">
+          </div>
+        </div>
+    </td></tr>
+      <tr><td>
+		<div class="control-group">
+           <label class="control-label" for="fixed">Fixed PC :</label>
+            <div class="controls">
+             <input type="checkbox" id="fixed" ng-model="formData.fixed" style="margin-top: 8px;">
+            </div>
+        </div></td></tr></table></form>
+    </div>
+   <div class="modal-footer">
+         <button id="cancel" class="btn btn-warning" ng-click="reject()">{{'button.cancel' | translate}}</button>
+         <button id="submit" class="btn btn-primary" ng-click="accept()">{{'label.confirm' | translate}}</button>
+   </div>
+
+</script>
 
