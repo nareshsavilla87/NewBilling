@@ -5,7 +5,8 @@
         scope.PermissionService = PermissionService;
       //  var clientData = webStorage.get('clientData');
         
-        resourceFactory.clientResource.get({clientId: routeParams.clientId} , function(data) {
+       
+        resourceFactory.clientResource.get({clientId: routeParams.clientId, id: routeParams.id} , function(data) {
             
             var clientData = data;
             scope.hwSerialNumber=clientData.hwSerialNumber;
@@ -41,7 +42,7 @@
         };
         
         scope.deletemessage = function (){
-            resourceFactory.messageSaveResource.delete({messageId: routeParams.id} , {} , function(data) {
+            resourceFactory.messageSaveResource.remove({messageId: routeParams.id} , {} , function(data) {
                   location.path('/tickets/'+routeParams.clientId);
                   // added dummy request param because Content-Type header gets removed 
                   // if the request does not contain any data (a request body)        

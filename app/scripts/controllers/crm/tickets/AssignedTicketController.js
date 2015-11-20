@@ -1,12 +1,12 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
 	  AssignedTicketController: function(scope,webStorage, routeParams, location,$modal, resourceFactory, paginatorService,PermissionService) {
-       
+		
 		scope.openTickets = [];
-        
-        scope.routeToticket = function(id){
-        	if(PermissionService.showMenu('READ_CLIENT'))
-        		location.path('/viewclient/'+id);
+        scope.routeToticket = function(id,ticketid){
+        	
+        	if(PermissionService.showMenu('READ_TICKET'))
+        		location.path('/editTicket/'+id+'/'+ticketid);
         	webStorage.add("callingTab", {someString: "Tickets" });
         };
         
@@ -66,6 +66,16 @@
 			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'OPEN'} , callback);
 		};
 		
+        scope.workingTicketFetchFunction = function(offset, limit, callback) {
+			
+			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'WORKING'} , callback);
+		};
+		
+        scope.testingTicketFetchFunction = function(offset, limit, callback) {
+			
+			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'TESTING'} , callback);
+		};
+		
         scope.fixedTicketFetchFunction = function(offset, limit, callback) {
         	
 			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'FIXED'} , callback);
@@ -76,10 +86,6 @@
 				resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'CLOSED'} , callback);
 		};
 		
-		scope.workingTicketFetchFunction = function(offset, limit, callback) {
-			
-			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'WORKING'} , callback);
-		};
 		
 		scope.overDueTicketFetchFunction = function(offset, limit, callback) {
 			
