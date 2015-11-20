@@ -223,7 +223,7 @@
 	       	 if(parcel !=undefined){
 	            for(var i in scope.parcelData){
 	           	 if(parcel== scope.parcelData[i].code){
-				    		scope.property.parcel = scope.parcelData[i].code.substr(0,2);
+				    		scope.property.parcel = scope.parcelData[i].code.substr(0,3);
 				    		scope.street = scope.parcelData[i].referenceValue;
 				    		$scope.getWatch(scope.property.parcel);
 			          		break;
@@ -283,16 +283,21 @@
 	      
 	      //Unit code Data
 	      $scope.getUnit = function(queryParam){
+        	  var paramLength = 4;
+        	  if(scope.property.parcel.length == 3){
+					paramLength = 3;
+  	  			}
 				return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
-	      	      params: {
-	      	    	  		query: 'Unit Codes',
-	      	    	  	queryParam:queryParam
-	      	      		   }
-	      	    }).then(function(res){   
-	      	    	 scope.unitData=res.data;	
-	      	      return scope.unitData;
-	      	    });
-	       };
+	        	      params: {
+	        	    	  		query: 'Unit Codes',
+	        	    	  		queryParam:queryParam,
+	        	    	  		paramLength:paramLength
+	        	      		   }
+	        	    }).then(function(res){   
+	        	    	 scope.unitData=res.data;	
+	        	      return scope.unitData;
+	        	    });
+             };
 	       
 	      $scope.getunitCode = function(unit){
 	      	 if(!angular.isUndefined(unit)){

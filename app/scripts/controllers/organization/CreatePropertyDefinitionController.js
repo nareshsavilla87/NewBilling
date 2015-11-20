@@ -20,10 +20,10 @@
 					  if (propertType.match("Parcel")) {
 						scope.minLength = 2;
 						scope.myMinLength = 2;
-						scope.maxLength = 2;
+						scope.maxLength = 3;
 					  } else if (propertType.match("Unit Codes")) {
-						scope.minLength = 4;
-						scope.myMinLength = 4;
+						scope.minLength = 3;
+						scope.myMinLength = 3;
 						scope.maxLength = 4;
 					  } else if (propertType.match("Building Codes")) {
 						scope.minLength = 3;

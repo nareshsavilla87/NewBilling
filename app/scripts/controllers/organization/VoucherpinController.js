@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  VoucherpinController: function(scope, resourceFactory,PermissionService,rootScope,API_VERSION,route,paginatorService,location,$http) {
+	  VoucherpinController: function(scope, resourceFactory,PermissionService,rootScope,API_VERSION,route,paginatorService,location,$http,TENANT) {
         scope.voucherpins = [];
         scope.PermissionService = PermissionService;
         scope.voucherpin = {};
@@ -10,7 +10,7 @@
         });
         
          scope.downloadFile = function (id){
-        	window.open(rootScope.hostUrl+ API_VERSION +'/vouchers/'+id+'?tenantIdentifier=default');
+        	window.open(rootScope.hostUrl+ API_VERSION +'/vouchers/'+id+'?tenantIdentifier='+TENANT);
         };
         
         scope.processFile = function(id){
@@ -44,6 +44,7 @@
                                                             'PaginatorService',
                                                             '$location',
                                                             '$http',
+                                                            'TENANT',
                                                             mifosX.controllers.VoucherpinController]).run(function($log) {
 	  
     $log.info("VoucherpinController initialized");
