@@ -1707,7 +1707,7 @@
   
    "#TicketResources":"....",
    "button.newTicket":"Record Ticket",
-    "label.ticket.id":"Id",
+  "label.ticket.issueid":"Issue Id",
   "label.tickets":"Ticket",
   "label.viewticket":"View Ticket",
   "label.editticket":"Edit Ticket",
@@ -1721,7 +1721,7 @@
   "label.ticket.description":"Description" ,
   "label.ticket.category":"Category",
   "label.ticket.status":"Status",
-  "label.ticket.assignedtO":"AssignTo",
+  "label.ticket.assignedto":"AssignTo",
   "label.ticket.comments":"Comment",
   "label.ticket.file":"Attachments",
   "label.ticket.resolutiondescription":"Resolution",
@@ -1735,6 +1735,13 @@
   "label.assignedto":"Assigned To",
   "label.closedby":"ClosedBy",
   "label.timelapsed":"Time Elapsed",
+  "label.ticket.repotedby":"Repoted",
+  "label.ticket.shortdescription":"Short Description",
+  "label.tickethistory.date":"Date",
+  "label.comment.history":"Comment History",
+  "label.tickethistory.commentedby":"Commented By",
+  "label.tickethistory.repotedby" : "Reported",
+  "label.tickethistory.status" : "Status" ,
   
   "#address":".........",
   "label.viewclient":"View Client",
@@ -2904,6 +2911,9 @@
 "error.msg.clientIdentifier.identityKey.duplicate" : "Identity Key already existed",
 "label.edit.order" : "Edit Schedule Order",
 "label.pairing" : "Pairing",
-"dialog.service.transfer.message" : "ScheduleOrder Transfer"
+"dialog.service.transfer.message" : "ScheduleOrder Transfer",
+"label.create":"Create",
+"btn.save":"Save",
+"link.view.tickets":"View Ticket"
 
 }

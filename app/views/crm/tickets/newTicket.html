@@ -58,23 +58,44 @@
 		</ul>
 	</div>
 <form name="createticketform" class="form-horizontal well"  ng-submit="submit()">
-
  <div class="error" ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label ng-show="errorStatus">{{errorStatus}}</label>
 		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	    </div>
 	<fieldset>
-		<legend> {{'label.creatticket' | translate}}</legend>
+		<legend><strong>{{'label.creatticket' | translate}}</strong></legend>
 		<table width="100%">
 			<tr>
 				<td width="50%">
 					<div class="control-group">
-						<label class="control-label" for="Date"> {{'label.ticket.date' | translate }} </label>
+						<label class="control-label" for="Date"> {{'label.ticket.date' | translate }}<span class="required">*</span> </label>
 						<div class="controls">
 							<!-- <input type="text" id="eventName" ng-model="formData.ticketDate"> -->
 							 <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.date" is-open="opened" min="minDate" max="maxDate" 
-							 date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
+							 date-disabled="disabled(date, mode)" style="background-color:#FFFFFF; width:55%;" required late-Validate />
+						</div>
+					</div>
+				</td>
+				<td width="50%">
+				     <div class="control-group">
+						<label class="control-label" for="status">{{'label.ticket.status' | translate }}<span class="required">*</span></label>
+						<div class="controls">
+							<select name="status" ng-model="formData.status" 
+								ng-options="statusType.mCodeValue as statusType.mCodeValue for statusType in statusTypes"
+								value="{{statusType.ststusCode}}" style="width:60%;" required late-Validate></select>
+						</div>
+						</div>
+				</td>
+			</tr>
+			<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="issueid">{{'label.ticket.issueid' | translate }}</label>
+						<div class="controls">
+							<input type="text" name="issueid" ng-model="formData.issueid" readonly 
+								ng-options="issueidType.value as issueidType.value for issueidType in issueidType"
+								value="{{issueidType.value}}" style="width:55%;" >
 						</div>
 					</div>
 				</td>
@@ -82,10 +103,9 @@
 					<div class="control-group">
 						<label class="control-label" for="priority">{{'label.ticket.priority' | translate }}<span class="required">*</span></label>
 						<div class="controls">
-							<select name="priority" ng-model="formData.priority"
+							<select name="priority" ng-model="formData.priority" 
 								ng-options="priorityType.value as priorityType.value for priorityType in priorityTypes"
-								value="{{priorityType.value}}" required late-Validate></select>
-						
+								value="{{priorityType.value}}" style="width:60%;" required late-Validate></select>
 						</div>
 					</div>
 				</td>
@@ -95,71 +115,58 @@
 					<div class="control-group">
 						<label class="control-label" for="Category"> {{'label.ticket.category' | translate }}<span class="required">*</span></label>
 						<div class="controls">
-							<select name="category" ng-model="formData.problemCode"
+							<select name="category" ng-model="formData.problemCode";"
 								ng-options="problemsData.id as problemsData.mCodeValue for problemsData in problemsDatas"
-								value="{{problemsData.problemCode}}" required late-Validate></select>
+								value="{{problemsData.problemCode}}" style="width:60%;" required late-Validate></select>
 						</div>
 					</div>
 				</td>
 				<td width="50%">
 					<div class="control-group">
-						<label class="control-label" for="chargeCode"> {{'label.ticket.assignto' | translate }}<span class="required">*</span></label>
+						<label class="control-label" for="assignedTo"> {{'label.ticket.assignto' | translate }}<span class="required">*</span></label>
 						<div class="controls">
 							<select ng-model="formData.assignedTo"
 								ng-options="usersData.id as usersData.userName for usersData in usersDatas"
-								value="{{usersData.id}}" required late-Validate></select>
+								value="{{usersData.id}}" style="width:60%;" required late-Validate></select>
 						</div>
 					</div>
 				</td>
-				
-
+			</tr>
+			<tr>      
+			    <td width="50%">
+			        <div class="control-group">
+						<label class="control-label" for="description">{{'label.ticket.shortdescription' | translate }}<span class="required">*</span></label>
+						<div class="controls">
+							    <textarea data-ng-model="formData.description" name="description" style="width:59%; height:2em;"  required late-Validate></textarea>
+						</div>
+					</div>
+				</td>
 			</tr>
 			<tr>
-				<td>
-					<div class="control-group">
-            			<label class="control-label" for="sourceData">{{ 'label.source' | translate }}</label>
-            			<div class="controls">
-              				<select ng-model="formData.sourceOfTicket"  ng-options="sourcedata.mCodeValue as sourcedata.mCodeValue for sourcedata in sourceData" value="{{sourcedata.mCodeValue}}">
-             				</select>
-             									
-            			</div>
-          			</div>
-				</td>
-				
-				<td>
-					<div class="control-group">
-                        <label class="control-label">Due Time</label>
-                        <div class="controls">
-                            <input type="text" id="preferredCallingTime" min="minDate" datepicker-pop="dd MMMM yyyy" ng-model="first.date"  style="width:130px;background-color:#FFFFFF;" />
-                            		 
-							<input id="timepicker1" type="text" readonly ng-model="first.time" style="width:60px;background-color:#FFFFFF;">
-									
-                        </div>
-          			</div>	
-				</td>
-			</tr>
-			</table>
-				<center><i>Please provide as much detail as possible so we can best assist you.</i><span class="required">*</span></center>
-		
-					<div class="control-group">
-						<label class="control-label" for="description">{{
-							'label.ticket.description' | translate }}<span class="required">*</span></label>
+			     <td width="50%">
+			        <div class="control-group">
+						<label class="control-label" for="statusDescription">{{'label.ticket.issue' | translate }}<span class="required">*</span></label>
 						<div class="controls">
-							    <textarea ng-model="formData.description" name="description" style="width:92%; height:8em;" required late-Validate></textarea>
+							    <textarea  data-ng-model="formData.statusDescription" name="issue" style="width:232%; height:4em;"  required late-Validate></textarea>
 						</div>
 					</div>
-				
+				</td>
+			</tr>
+			<tr>      
+			    <td width="50%">
 					<div class="control-group">
 						<label class="control-label" for="Attachments"> {{'label.ticket.file' | translate }}</label>
 						<div class="controls">
 							<input type= "file" ng-file-select="onFileSelect($files)">
 						</div>
 					</div>
-
-		<div class="pull-right">
-			<a id="cancel" href="#/viewclient/{{clientId}}"><button type="reset" class="btn" ng-click="reset123()">Cancel</button></a>
-			<button id="submit" type="submit" ng-disabled="!createticketform.$valid" class="btn btn-primary">Save</button>
-		</div>
+				</td>
+			</tr>
+			</table>
+		  <div class="pull-right">
+			<a id="cancel" href="#/tickets"><button type="reset" class="btn" ng-click="reset123()">Cancel</button></a>
+			<button id="submit" type="submit" ng-disabled="!createticketform.$valid" class="btn btn-primary">{{'btn.save' | translate}}</button>
+		     </div>
 	</fieldset>
 </form>
 </div>

@@ -20,9 +20,15 @@
         resourceFactory.ticketResourceTemplate.getForCloseTicket({templateFor: 'closeticket'}, function(data) {       	 	
         	scope.statusTypes = data;				
         	scope.clientId=routeParams.clientId;
-			scope.ticketId=routeParams.id;               
+			scope.ticketId=routeParams.id;    
+			if (angular.uppercase(data.status) == 'CLOSED') {
+				scope.statusTypes = [];
+				scope.statusTypes.push({
+					mCodeValue : "CLOSED"
+				});
+			}
+
         });
-        
         scope.reset123 = function(){
 	     	   webStorage.add("callingTab", {someString: "Tickets" });
 	    };

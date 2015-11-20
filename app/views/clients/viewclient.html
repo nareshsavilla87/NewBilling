@@ -775,7 +775,7 @@
       		
        		<tab  heading="Tickets" select="getAllTickets()" active="TicketsTab" data-ng-show="$parent.PermissionService.showMenu('READ_TICKET')">
      			<div class="pull-right">
-					<a data-ng-show="PermissionService.showMenu('CREATE_TICKET')" href="#/newTicket/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'label.add' | translate}}</a>
+					<a data-ng-show="PermissionService.showMenu('CREATE_TICKET')" href="#/newTicket/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'label.create' | translate}}</a>
 				</div>
    				<div>
     				<input data-ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name/externalId">
