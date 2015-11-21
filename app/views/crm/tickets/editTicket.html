@@ -236,32 +236,32 @@
 <script type="text/ng-template" id="history.html">
 <div class="modal-header silver">
         <h3 class="bolder"><strong>{{'label.tickethistory' | translate}}</strong></h3>
-    </div>
-    <div class="modal-body modal-big" align="left" style="height:80px; width:500px;">
+ <div style="position: absolute; top: 0; right: 0;">		
+<button id="cancel" class="md-icon-button md-accent close-modal-button md-button md-default-theme" ng-click="ok()" tabindex="0"><i class="icon-remove icon-white"></i></button>
+    </div></div><br/>
+   <div class="pp_pic_holder dark_rounded" align="center"style="top: 0px; left: 279px; display: block; width: 600px; opacity: 1;">
        <fieldset>
         <table class="table"  width="130%">
          <thead>
             <tr class="graybg">
-		        <th colspan="1" width="30%">{{'label.tickethistory.date' | translate}}</th>
-                <th colspan="1">{{'label.tickethistory.repotedby' | translate}}</th>
-		        <th colspan="1">{{'label.tickethistory.assignto' | translate}}</th>
-                <th colspan="1">{{'label.tickethistory.status' | translate}}</th>
+		        <th style="text-align: center" colspan="1">{{'label.tickethistory.date' | translate}}</th>
+                <th style="text-align: center" colspan="1">{{'label.tickethistory.repotedby' | translate}}</th>
+		        <th style="text-align: center" colspan="1">{{'label.tickethistory.assignto' | translate}}</th>
+                <th style="text-align: center" colspan="1">{{'label.tickethistory.status' | translate}}</th>
 	      </tr>
         </thead>
         <tbody >
             <tr ng-repeat="history in historyData  | filter:filterText">    
-                <td colspan="1">{{history.createdDate | date : 'dd/MM/yy'}}</td>
-                <td colspan="1">{{history.assignFrom}}</td>  
-                <td colspan="1">{{history.assignedTo}}</td>
-                <td colspan="1">{{history.status}}</td>
+                <td style="text-align: center" colspan="1">{{history.createdDate | date : 'dd/MM/yy'}}</td>
+                <td style="text-align: center" colspan="1">{{history.assignFrom}}</td>  
+                <td style="text-align: center" colspan="1">{{history.assignedTo}}</td>
+                <td style="text-align: center" colspan="1">{{history.status}}</td>
             </tr>
-        </tbody>
+       	</tbody>
         </table>     
      	</fieldset>
     </div>
-   <div class="modal-footer">
-		<button id="cancel" class="btn btn-primary" ng-click="ok()">{{'OK' | translate}}</button>
-   </div>
+   
 </script>
 <script type="text/ng-template" id="comment.html">
 <div class="modal-header silver">
