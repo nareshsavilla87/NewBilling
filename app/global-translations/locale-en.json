@@ -2914,6 +2914,7 @@
 "dialog.service.transfer.message" : "ScheduleOrder Transfer",
 "label.create":"Create",
 "btn.save":"Save",
-"link.view.tickets":"View Ticket"
+"link.view.tickets":"View Ticket",
+"label.ticket.issue": Issue
 
 }

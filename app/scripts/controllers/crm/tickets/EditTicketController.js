@@ -23,9 +23,8 @@
 					scope.ticket = data;
 					scope.clientId = routeParams.clientId;
 				});
-				resourceFactory.commentHistoryResource.get({
-					id : routeParams.id
-				}, function(data) {
+				resourceFactory.commentHistoryResource.get({id : routeParams.id,historyParam:"comment"	}, 
+						function(data) {
 					scope.historyData = data.masterData;
 					scope.problemDescription = data.problemDescription;
 					angular.forEach(scope.historyData,function(val,key){
@@ -138,17 +137,14 @@
 			scope.submit = function() {
 				scope.formData.dateFormat = 'dd MMMM yyyy';
 				this.data.assignedTo = this.formData.userId;
-				/*console.log(scope.formData.comments);
 				var input = scope.formData.comments;
 				if(angular.isUndefined(input) || input === null || input === '')
 				{
-					this.data.comments = null;
-					console.log("ifcondition:" +input);
+					this.data.comments = '';
 					}else{
 						this.data.comments =input;
-						console.log("elsecondition:" +input);
-					}*/
-				/* this.data.comments=this.formData.status; */
+					}
+				/*this.data.comments=this.formData.comments; */
 				this.data.status = this.formData.status;
 				this.data.ticketDate = dateFilter(scope.data.tickeDate,
 						'dd MMMM yyyy');
