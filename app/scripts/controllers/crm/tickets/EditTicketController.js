@@ -137,14 +137,14 @@
 			scope.submit = function() {
 				scope.formData.dateFormat = 'dd MMMM yyyy';
 				this.data.assignedTo = this.formData.userId;
-				var input = scope.formData.comments;
+				/*var input = scope.formData.comments;
 				if(angular.isUndefined(input) || input === null || input === '')
 				{
-					this.data.comments = '';
+					this.data.comments = 'undefined';
 					}else{
 						this.data.comments =input;
-					}
-				/*this.data.comments=this.formData.comments; */
+					}*/
+				this.data.comments=this.formData.comments; 
 				this.data.status = this.formData.status;
 				this.data.ticketDate = dateFilter(scope.data.tickeDate,
 						'dd MMMM yyyy');
