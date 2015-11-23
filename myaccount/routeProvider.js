@@ -17,6 +17,9 @@ selfcareApp.config(function($routeProvider, $locationProvider) {
     .when('/tickets', {
         templateUrl: 'views/tickets.html'
     })
+    .when('/editTicket/:clientId/:id', {
+          templateUrl : 'views/editTicket.html'
+        })
     .when('/newTicket', {
         templateUrl: 'views/newTicket.html'
     })

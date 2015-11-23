@@ -1,5 +1,8 @@
-TicketsController = function(scope,RequestSender,rootScope,filter) {
-		  
+TicketsController = function(scope,RequestSender,rootScope,filter,location) {
+	
+	 scope.openTickets = [];
+     
+     
 		  if(rootScope.selfcare_sessionData){
 			  scope.clientId = rootScope.selfcare_sessionData.clientId;
 			  scope.ticketsData = [];
@@ -10,10 +13,17 @@ TicketsController = function(scope,RequestSender,rootScope,filter) {
 				  });
 			  });
 		  }
+		  
+		  scope.routeProviderToticket = function(ticketid){
+		     	
+	     		location.path('/editTicket/'+scope.clientId+'/'+ticketid);
+	     };
+		 
     };
     
 selfcareApp.controller('TicketsController', ['$scope',
                                              'RequestSender',
                                              '$rootScope',
                                              '$filter',
+                                             '$location',
                                              TicketsController]);
