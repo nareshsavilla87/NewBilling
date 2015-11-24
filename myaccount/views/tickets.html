@@ -31,7 +31,7 @@
 	        <tbody>
 	            <tr data-ng-repeat="ticket in ticketsData | customFilter: filterText " >
 	                <td class="pointer" data-ng-click="routeProviderToticket(ticket.id)">{{ticket.id}}</td>
-					<td>{{ticket.ticketDate | DateFormat}}</td>
+					<td>{{ticket.ticketDate | date : 'DD/MM/YY'}}</td>
 					<td>{{ticket.problemDescription}}</td>
 					<td>{{ticket.priority}}</td>
 					<td>{{ticket.statusDescription}}</td>
@@ -41,10 +41,7 @@
 	        </tbody>
 	    </table>
 	    <ul class="pager">
-    	       <li class="previous" ng-click="firstPageNo()"><a  ng-click="openTickets.firstPage()" href="" ng-disabled="!openTickets.hasFirstPage()">First</a></li>
-               <li class="previous" ng-click="previousPageNo()"><a  id="prev" ng-click="openTickets.previous()"  href="" ng-disabled="!openTickets.hasPrevious()">&larr; Prev</a></li>
-               <strong>Page No:&nbsp;&nbsp;{{pageNo}}/{{totalPages}}</strong>
-               <li class="next" ng-click="lastPageNo()"><a  ng-click="openTickets.lastPage(1)" href="" ng-disabled="!openTickets.hasLastPage()">Last</a></li>
+    	       <li class="previous" ng-click="previousPageNo()"><a  id="prev" ng-click="openTickets.previous()"  href="" ng-disabled="!openTickets.hasPrevious()">&larr; Prev</a></li>
                <li class="next" ng-click="nextPageNo()"><a  id="next" ng-click="openTickets.next()" href="" ng-disabled="!openTickets.hasNext()">Next &rarr;</a></li>
             </ul>
 	    </div>

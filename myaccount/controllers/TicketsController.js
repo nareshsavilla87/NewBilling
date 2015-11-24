@@ -10,6 +10,9 @@ TicketsController = function(scope,RequestSender,rootScope,filter,location) {
 				  scope.ticketsData = data;
 				  angular.forEach(scope.ticketsData,function(val,key){
 					  scope.ticketsData[key].ticketDate = filter('DateFormat')(val.ticketDate);
+					  var date = filter('date')(new Date( scope.ticketsData[key].ticketDate), 'dd/MM/yyyy');
+					   scope.ticketsData[key].ticketDate = date;
+					  console.log(date);
 				  });
 			  });
 		  }

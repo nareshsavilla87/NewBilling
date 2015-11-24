@@ -1047,8 +1047,8 @@
 "error.msg.addon.enddate.should.lessthan.order.enddate"	: "Add-ons end date should be less than order end-date", 
 "error.msg.select.addon.period.more.than"				: "contract is not applicable for this chargecode.", 
 
-"error.msg.paypal.recurring.notpossible":"Recurring Not Possible to this Contract Period"
-
+"error.msg.paypal.recurring.notpossible":"Recurring Not Possible to this Contract Period",
+"label.ticket.resolutiondescription"  : "Resolution"
 
 
 

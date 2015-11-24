@@ -90,7 +90,7 @@
 							<div class="controls">
 								<select ng-model="formData.status"
 									ng-options="statusData.mCodeValue as statusData.mCodeValue for statusData in statusTypes"
-									data-ng-readonly="formData.status=='CLOSED'"
+									data-ng-readonly="formData.status=='Closed'"
 									value="{{statusData.statusCode}}" required late-Validate></select>
 							</div>
 						</div>
@@ -118,7 +118,7 @@
 							<div class="controls">
 								<select name="priority" ng-model="formData.priority"
 									ng-options="priorityType.value as priorityType.value for priorityType in priorityTypes"
-									data-ng-readonly="formData.status=='CLOSED'"
+									data-ng-readonly="formData.status=='Closed'"
 									value="{{priorityType.value}}" required late-Validate></select>
 							</div>
 						</div>
@@ -133,7 +133,7 @@
 							<div class="controls">
 								<select ng-model="formData.userId"
 									ng-options="users.id as users.userName for users in usersData"
-									data-ng-readonly="formData.status=='CLOSED'"
+									data-ng-readonly="formData.status=='Closed'"
 									value="{{users.id}}" required late-Validate></select>
 							</div>
 						</div>
@@ -159,6 +159,8 @@
 					 </div>
 				  </td>
 			    </tr>
+			    <tr>
+			    </tr>
 			</table>
 			<table width="100%">
 				<tr>
@@ -172,6 +174,17 @@
 						</div>
 					</td>
 				</tr>
+				<tr>
+				 <td width="50%">
+					   <div class="control-group" data-ng-show="formData.status=='Closed'">
+						   <label class="control-label" for="description"> {{
+							   'label.ticket.resolutiondescription' | translate }}<span class="required">*</span></label>
+						   <div class="controls">
+							     <textarea ng-model="formData.resolutionDescription" style="width: 194%; height: 4em;" ></textarea>
+						   </div>
+					</div>
+				   </td>
+				   </tr>
 				<!-- <tr>
 					<td width="100%">
 						<div class="control-group" 

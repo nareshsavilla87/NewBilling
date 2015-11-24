@@ -3,7 +3,6 @@ EditTicketController = function(scope, routeParams,
 		$upload, dateFilter,  $modal) {
 	
 			scope.formData = {};
-			/*scope.statusTypes = [];*/
 			scope.data = {};
 			scope.start = {};
 			var locationOrigin = window.location.origin;
@@ -30,18 +29,18 @@ EditTicketController = function(scope, routeParams,
 					scope.problemDescription = data.problemDescription;
 					angular.forEach(scope.historyData,function(val,key){
 						scope.historyData[key].createdDate= dateFilter(new Date(val.createdDate),'dd/MM/yyyy');
-						/*console.log(scope.historyData[key].createdDate);*/
 					});
 				});
 
-				if (angular.uppercase(data.status) == 'CLOSED') {
+				if (angular.uppercase(data.status) == 'Closed') {
 					scope.statusTypes = [];
 					scope.statusTypes.push({
-						mCodeValue : "CLOSED"
+						mCodeValue : "Closed"
 					});
 					scope.statusTypes.push({
-						mCodeValue : "Open"
+						mCodeValue : "Re-Open"
 					});
+					data.status = "Closed";
 				}
 
 				
@@ -50,11 +49,9 @@ EditTicketController = function(scope, routeParams,
 				scope.ticketissue = data.ticketissue;
 				scope.description = data.description;
 				scope.usersData = data.usersData;
-				// scope.formData.status=14;
 				scope.clientId = routeParams.clientId;
 				scope.ticketId = routeParams.id;
-				scope.data.ticketDate = dateFilter(new Date(data.ticketDate),
-						'dd MMMM yyyy');
+				scope.data.ticketDate = dateFilter(new Date(data.ticketDate),'dd MMMM yyyy');
 				var clientData = data.clientData;
 				scope.displayName = clientData.displayName;
 				scope.statusActive = clientData.statusActive;
@@ -67,6 +64,7 @@ EditTicketController = function(scope, routeParams,
 				scope.categoryType = clientData.categoryType;
 				scope.email = clientData.email;
 				scope.phone = clientData.phone;
+				scope.resolutionDescription=data.resolutionDescription;
 			});
 
 			scope.reset123 = function() {
@@ -87,14 +85,6 @@ EditTicketController = function(scope, routeParams,
 				});
 			};
 			
-			/*scope.statusTypes=data.statusType;
-            for(var i=0;i<scope.statusTypes.length;i++){
-          	  
-            	if(scope.statusTypes[i].mCodeValue=='New Open'){
-            		scope.formData.status=scope.statusTypes[i].mCodeValue;
-            	}
-            }
-            */
 			var CommentController = function($scope, $modalInstance) {
 
 				$scope.formData={};
@@ -120,22 +110,16 @@ EditTicketController = function(scope, routeParams,
 				scope.formData.dateFormat = 'dd MMMM yyyy';
 				this.data.assignedTo = this.formData.userId;
 				this.data.comments = this.formData.comments;
-				/* this.data.comments=this.formData.status; */
 				this.data.status = this.formData.status;
-				this.data.ticketDate = dateFilter(scope.data.tickeDate,
-						'dd MMMM yyyy');
+				this.data.ticketDate = dateFilter(scope.data.tickeDate,'dd MMMM yyyy');
 				this.data.priority = this.formData.priority;
 				this.data.description = this.formData.description;
 				this.data.issue = this.formData.issue;
 				this.data.problemCode = this.formData.problemCode;
-				this.data.ticketURL = locationOrigin + '' + locationPathname
-						+ "#/viewTicket/" + scope.clientId + "/";
+				this.data.ticketURL = locationOrigin + '' + locationPathname + "#/viewTicket/" + scope.clientId + "/";
 				$upload.upload(
 						{
-							url : $rootScope.hostUrl + API_VERSION
-									+ '/clients/' + routeParams.clientId
-									+ '/documents/' + routeParams.id
-									+ '/attachment',
+							url : $rootScope.hostUrl + API_VERSION + '/clients/' + routeParams.clientId + '/documents/' + routeParams.id + '/attachment',
 							data : scope.data,
 							file : scope.file
 						}).then(function(data) {
