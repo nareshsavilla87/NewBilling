@@ -111,6 +111,24 @@
            		 </div>
            	</td>
            </tr>
+              <tr>
+              <td>
+             	  <div class="control-group" data-ng-hide="configurationProperty==false">
+             		 <label class="control-label">Login<span class="required">*</span></label>
+              		<div class="controls">
+               			 <input type="text" id="login" name="login" data-ng-model="formData1.login"/>
+              		</div>
+            	</div>
+            </td>
+           <td>
+            	<div class="control-group" data-ng-hide="configurationProperty==false">
+              		<label class="control-label">Password<span class="required">*</span></label>
+             		 <div class="controls">
+               			 <input type="password"  data-ng-model="formData1.password"/>
+              		</div>
+            	</div>
+           	</td>
+             </tr>
            
          <tr data-ng-hide="config == 'NONE'">
             	<td>
@@ -274,24 +292,6 @@
               		</div>
              </td>
              </tr>
-              <tr>
-              <td>
-             	  <div class="control-group" data-ng-hide="configurationProperty==false">
-             		 <label class="control-label">Login<span class="required">*</span></label>
-              		<div class="controls">
-               			 <input type="text" id="login" name="login" data-ng-model="formData1.login"/>
-              		</div>
-            	</div>
-            </td>
-           <td>
-            	<div class="control-group" data-ng-hide="configurationProperty==false">
-              		<label class="control-label">Password<span class="required">*</span></label>
-             		 <div class="controls">
-               			 <input type="password"  data-ng-model="formData1.password"/>
-              		</div>
-            	</div>
-           	</td>
-             </tr>
              <tr>
              <td>
             	 <div class="control-group">
@@ -301,6 +301,18 @@
               		</div>
             	</div>
            	</td>
+           	<td data-ng-show="registrationFeeFlag">
+           	  <div class="control-group" >
+            	<label class="control-label" for="registrationFee">{{'label.registration.fee' | translate}}</label>
+                <div class="controls">
+                	<label class="checkbox">
+                    	<input type="checkbox" data-ng-model="formData1.registrationFee">
+                    </label>
+                </div>
+             </div>
+           	</td></tr>
+           	<tr>
+           	<td></td>
            	<td>
            	  <div class="pull-right">
               <a href="#/clients"><button id="cancel" type="reset" class="btn">Cancel</button></a>

@@ -108,6 +108,13 @@
           <input type="text" id="login" name="login" data-ng-model="formData.login"/>
         </div>
       </div>
+      
+        <div class="control-group">
+        <label class="control-label" for="file">{{'label.client.select.image' | translate}}</label>
+        <div class="controls">
+          <input type="file" data-ng-file-select="onFileSelect($files)">
+        </div>
+      </div> 
     
      </td>
      <td>
@@ -198,16 +205,26 @@
           <input type="password"  data-ng-model="formData.password"/>
         </div>
       </div>
+       
+       <div class="control-group" data-ng-show="registrationFeeFlag">
+            	<label class="control-label" for="registrationFee">{{'label.registration.fee' | translate}}</label>
+                <div class="controls">
+                	<label class="checkbox">
+                    	<input type="checkbox" data-ng-model="formData.registrationFee">
+                    </label>
+                </div>
+             </div>
+      
      </td>
      </tr>
      <tr>
        <td>
-      <div class="control-group">
+   <!--    <div class="control-group">
         <label class="control-label" for="file">{{'label.client.select.image' | translate}}</label>
         <div class="controls">
           <input type="file" data-ng-file-select="onFileSelect($files)">
         </div>
-      </div>
+      </div> -->
       </td>
       <td>
       <div class="pull-right">

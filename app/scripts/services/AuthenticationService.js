@@ -40,7 +40,14 @@
                         	  
                         }if(data.globalConfiguration[i].name=="cubiware-configuration"){
                         	webStorage.add("cubiware-configuration",data.globalConfiguration[i].enabled);
+                        
+                        }if(data.globalConfiguration[i].name=="is-registration-fee"){
+                        	webStorage.add("is-registration-fee",data.globalConfiguration[i].enabled);
+                        
+                        }if(data.globalConfiguration[i].name=="is-cancel-registration-fee"){
+                        	webStorage.add("is-cancel-registration-fee",data.globalConfiguration[i].enabled);
                         }
+                        
                         
                         
                     }
