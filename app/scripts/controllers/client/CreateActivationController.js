@@ -15,6 +15,7 @@
 		  scope.configPayment = webStorage.get("client_configuration").payment;
 		  scope.PermissionService = PermissionService;
 		  scope.propertyMaster = webStorage.get("is-propertycode-enabled");
+		  scope.registrationFeeFlag = webStorage.get("is-registration-fee");
 		 
 		  
 //create client controller

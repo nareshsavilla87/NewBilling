@@ -44,6 +44,7 @@
 
         scope.propertyMaster = webStorage.get("is-propertycode-enabled");
         scope.clientAddInfo = webStorage.get("client-additional-data");
+        scope.registrationFeeFlag = webStorage.get("is-registration-fee");
 
         resourceFactory.clientTemplateResource.get(function(data) {
             scope.offices = data.officeOptions;
