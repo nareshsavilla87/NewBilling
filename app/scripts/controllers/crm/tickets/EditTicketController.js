@@ -29,18 +29,18 @@
 					scope.problemDescription = data.problemDescription;
 					angular.forEach(scope.historyData,function(val,key){
 						scope.historyData[key].createdDate= dateFilter(new Date(val.createdDate),'dd/MM/yy');
-						/*console.log(scope.historyData[key].createdDate);*/
 					});
 				});
 
-				if (angular.uppercase(data.status) == 'CLOSED') {
+				if (angular.uppercase(data.status) == 'Closed') {
 					scope.statusTypes = [];
 					scope.statusTypes.push({
-						mCodeValue : "CLOSED"
+						mCodeValue : "Closed"
 					});
 					scope.statusTypes.push({
-						mCodeValue : "Open"
+						mCodeValue : "Re-Open"
 					});
+					data.status = "Closed";
 				}
 
 				scope.problemsDatas = data.problemsDatas;
@@ -133,25 +133,24 @@
 					$modalInstance.dismiss('cancel');
 				};
 			};
-						
+			 scope.beforeSubmit = function(){
+					if(scope.formData.status == 'Closed' && scope.formData.resolutionDescription){
+						scope.saveFunction();
+					}else if(scope.formData.status != 'Closed'){
+						scope.saveFunction();
+					}
+				};
 			scope.submit = function() {
 				scope.formData.dateFormat = 'dd MMMM yyyy';
 				this.data.assignedTo = this.formData.userId;
-				/*var input = scope.formData.comments;
-				if(angular.isUndefined(input) || input === null || input === '')
-				{
-					this.data.comments = 'undefined';
-					}else{
-						this.data.comments =input;
-					}*/
 				this.data.comments=this.formData.comments; 
 				this.data.status = this.formData.status;
 				this.data.ticketDate = dateFilter(scope.data.tickeDate,
 						'dd MMMM yyyy');
 				this.data.priority = this.formData.priority;
-			/*	this.data.description = this.formData.description;*/
 				this.data.issue = this.formData.issue;
 				this.data.problemCode = this.formData.problemCode;
+				this.data.resolutionDescription=this.formData.resolutionDescription;
 				this.data.ticketURL = locationOrigin + '' + locationPathname
 						+ "#/viewTicket/" + scope.clientId + "/";
 				$upload.upload(

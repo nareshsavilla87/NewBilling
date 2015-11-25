@@ -1,10 +1,8 @@
 	  CreateTicketController = function(scope, RequestSender, location, dateFilter,rootScope,http,API_VERSION,$upload) {
             
-			
-			
 			 scope.start = {date:new Date()};
 			 scope.minDate= scope.start.date;
-			 
+			 scope.statusTypes = [];
 			 scope.first = {};
 		     
 			 $('#timepicker1').timepicker({
@@ -21,6 +19,7 @@
 			   RequestSender.ticketResourceTemplate.get(function(data){ 
 				   
 				   scope.date = data.ticketDate;
+				   scope.issue = data.ticketissue;
 				   scope.priorityTypes=data.priorityType;
 				   for(var i=0;i<scope.priorityTypes.length;i++){
 					   
@@ -28,6 +27,21 @@
 						   scope.formData.priority=scope.priorityTypes[i].value;
 					   }
 				   }
+				   scope.statusTypes=data.statusType;
+		              for(var i=0;i<scope.statusTypes.length;i++){
+		            	  
+		              	if(scope.statusTypes[i].mCodeValue=='New Open'){
+		              		scope.formData.status=scope.statusTypes[i].mCodeValue;
+		              	}
+		              }
+		              
+				   /*scope.statusTypes=data.statusType;
+		              for(var i in scope.statusTypes){
+		         		 if(scope.statusTypes[i].value== "active"){
+		         			 scope.formData.status = scope.statusTypes[i].value;
+		         		 }
+		              }*/
+		              
 				   scope.problemsDatas=data.problemsDatas;
 				   scope.usersDatas=data.usersData;
 				   scope.sourceData=data.sourceData;
@@ -51,6 +65,7 @@
 					scope.formData.dueTime = dateFilter(scope.first.date,'yyyy-MM-dd')+" "+$('#timepicker1').val()+':00';
 				}
 	        	
+				scope.formData.status = 'New Open';
 	            scope.formData.ticketDate = dateFilter(scope.start.date,'dd MMMM yyyy');
 				scope.formData.dateFormat = 'dd MMMM yyyy';
 				scope.formData.ticketTime = ' '+new Date().toLocaleTimeString().replace("IST","").trim();
@@ -63,6 +78,7 @@
 						scope.filedata.priority = scope.formData.priority;
 						scope.filedata.problemCode = scope.formData.problemCode;
 						scope.filedata.description=scope.formData.description;
+						scope.filedata.issue=scope.formData.statusDescription;
 						scope.filedata.dateFormat = scope.formData.dateFormat;
 						if(scope.formData.dueTime) scope.filedata.dueTime = scope.formData.dueTime;
 						scope.filedata.locale = rootScope.localeLangCode;

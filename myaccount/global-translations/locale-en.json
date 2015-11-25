@@ -75,6 +75,10 @@
  	"label.confirm.msg"			: "Are You Sure?",
  	"label.payments"	 		: "Payments",
  	"label.tickets"	 			: "Tickets",
+ 	"label.tickets"	 			: "Tickets",
+ 	"label.ticket.repotedby"	: "Repoted",
+ 	"label.ticket.creationdate"	: "CreationDate",
+ 	"label.ticket.assignedto"	: "AssignedTo",
  	"label.change.password"	 	: "Change Password",
  	"label.signout"	 			: "Log Out",
  	"label.emailid"	 			: "Email ID",
@@ -240,7 +244,22 @@
  	
  	"#TicketResources "	 :"------------------------------------",
 	  "label.creatticket"					: "Create New Ticket",
-	  "label.ticket.date"					: "Ticket Date",
+	  "label.ticket.date"					: "Date",
+	  "label.ticket.date1"					: "Date",
+	  "label.ticket.issueid"				: "IssueId",
+	  "label.ticket.status"				    : "Status",
+	  "label.tickethistory.assignto"	    : "Assigned To",
+	  "label.ticket.comments"	            : "Comment",
+	  "label.tickethistory.createddate"	    : "Created Date",
+	  "label.tickethistory.date"	        : "Date",
+	  "label.tickethistory.commentedby"	    : "Commented By",
+	  "label.tickethistory.comments"	    : "Comments",
+	  "link.view.tickets"	                : "View Ticket",
+	  "label.editticket"	                : "Edit Ticket",
+	  "label.commenthistory"	            : "Comment History",
+	  "button.cancel"	                    : "Cancel",
+	  "label.ticket.shortdescription"       : "ShortDescription",
+	  "label.ticket.issue"				    : "Issue",
 	  "label.ticket.priority"				: "Priority",
 	  "label.ticket.category"				: "Category",
 	  "label.source"						: "Source",
@@ -1029,8 +1048,8 @@
 "error.msg.addon.enddate.should.lessthan.order.enddate"	: "Add-ons end date should be less than order end-date", 
 "error.msg.select.addon.period.more.than"				: "contract is not applicable for this chargecode.", 
 
-"error.msg.paypal.recurring.notpossible":"Recurring Not Possible to this Contract Period"
-
+"error.msg.paypal.recurring.notpossible":"Recurring Not Possible to this Contract Period",
+"label.ticket.resolutiondescription"  : "Resolution"
 
 
 

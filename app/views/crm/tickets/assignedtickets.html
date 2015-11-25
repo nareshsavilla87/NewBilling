@@ -42,8 +42,7 @@
 						ng-repeat="ticket in openTickets.currentPageItems  | filter:filterText">
 						<td class="pointer" data-ng-click="routeToticket(ticket.clientId,ticket.id)">{{ticket.id}}</td>
 						<td class="pointer" data-ng-click="routeToticket(ticket.clientId,ticket.id)">{{ticket.clientName}}</td>
-						<td class="pointer" data-ng-click="routeToticket(ticket.clientId,ticket.id)">{{ticket.ticketDate
-							| DateFormat}}</td>
+						<td class="pointer" data-ng-click="routeToticket(ticket.clientId,ticket.id)">{{ticket.ticketDate | DateFormat}}</td>
 						<td class="pointer" data-ng-click="routeToticket(ticket.clientId,ticket.id)">{{ticket.problemDescription}}</td>
 						<td class="pointer" data-ng-click="routeToticket(ticket.clientId,ticket.id)">{{ticket.priority}}</td>
 						<td class="pointer" data-ng-click="routeToticket(ticket.clientId,ticket.id)">{{ticket.shortdescription}}</td>
