@@ -42,7 +42,6 @@
 					});
 					data.status = "Closed";
 				}
-
 				scope.problemsDatas = data.problemsDatas;
 				scope.priorityTypes = data.priorityType;
 				scope.ticketissue = data.ticketissue;
@@ -118,13 +117,15 @@
      	           $scope.submit = function () {
      	        	   scope.formData.comments = $scope.formData.comments;
      	        	   //only view comment code
-     	        	   var assignedTo = "";
+     	        	   var user = "";
      	        	   for(var i in scope.usersData){
      	        		   if( scope.formData.userId == scope.usersData[i].id){
-     	        			  assignedTo = scope.usersData[i].userName;
+     	        			  //assignedTo = scope.usersData[i].userName;
+     	        			  user =scope.currentSession.user.name;
+     	        			  console.log(user);
      	        		   }
      	        	   }
-     	        	   scope.historyData.push({createdDate : dateFilter(new Date(scope.formData.ticketDate),'dd/MM/yy'),assignedTo:assignedTo,statusDescription:$scope.formData.comments});
+     	        	   scope.historyData.push({createdDate : dateFilter(new Date(scope.formData.ticketDate),'dd/MM/yy'),userName:user,statusDescription:$scope.formData.comments});
      	        	 
      	        	   
      	        	   $modalInstance.dismiss('cancel');
@@ -145,12 +146,12 @@
 				this.data.assignedTo = this.formData.userId;
 				this.data.comments=this.formData.comments; 
 				this.data.status = this.formData.status;
-				this.data.ticketDate = dateFilter(scope.data.tickeDate,
-						'dd MMMM yyyy');
+				this.data.ticketDate = dateFilter(scope.data.tickeDate,	'dd MMMM yyyy');
 				this.data.priority = this.formData.priority;
 				this.data.issue = this.formData.issue;
 				this.data.problemCode = this.formData.problemCode;
 				this.data.resolutionDescription=this.formData.resolutionDescription;
+				this.data.username= scope.currentSession.user.name;
 				this.data.ticketURL = locationOrigin + '' + locationPathname
 						+ "#/viewTicket/" + scope.clientId + "/";
 				$upload.upload(

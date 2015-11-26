@@ -237,7 +237,7 @@
         <tbody>
             <tr ng-repeat="history in historyData  | filter:filterText" data-ng-hide="formData.comments=='undefined'">    
                 <td>{{history.createdDate | date : 'dd/MM/yy'}}</td>  
-                <td>{{history.assignedTo}}</td>
+                <td>{{history.userName}}</td>
                 <td>{{history.statusDescription}}</td>
             </tr>
         </tbody>
