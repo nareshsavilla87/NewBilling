@@ -1,28 +1,5 @@
 <div ng-controller="ViewTicketController"> 
 <div><ul class="breadcrumb">
-  <!-- <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
-     <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
-     <li>
-          <h3>
-            &nbsp;
-            {{displayName}}
-            &nbsp;
-            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
-            &nbsp;
-          </h3>
-        </li>
-        <li><span class="divider">|</span>
-          <i class="icon-barcode"></i>
-          <small>Uniquely identified {{accountNo}}&nbsp;</small>
-        </li>
-        <li><span class="divider">|</span>
-          <i class="icon-building"></i>
-          <small>Office "{{officeName}}" </small>
-        </li>
-         <li><span class="divider">|</span>
-          <i></i>
-          <small>Balance {{balanceAmount}} &nbsp;{{currency}}</small>
-        </li> -->
         <table>
         <tr>
         <td>
@@ -76,68 +53,62 @@
 			  <li class="active">{{'label.viewticket' | translate}}</li>
 		</ul>
 	</div>
-    <div class="paddedbottom10">
+    <!-- <div class="paddedbottom10">
 		
 	    <div class="pull-right">
 	      <div class="btn-group">
 	          <a  href="#/editTicket/{{clientId}}/{{ticket.id}}" ng-show="(ticket.status == 'OPEN')&&(PermissionService.showMenu('UPDATE_TICKET'))"  class="btn btn-primary"><i class="icon-edit icon-white"></i>Add Comment</a>
-	          <!-- <input type='image' href="#/closeTicket/{{clientId}}/{{ticket.id}}" ng-show="(ticket.status == 'OPEN')&&(PermissionService.showMenu('CLOSE_TICKET'))" src="./images/Close.ico" popover="Close" popover-trigger="mouseenter"  class="icon-large"/>	 -->        
-	          <a href="#/closeTicket/{{clientId}}/{{ticket.id}}" ng-show="(ticket.status == 'OPEN')&&(PermissionService.showMenu('CLOSE_TICKET'))" class="btn btn-primary"><i class="icon-trash icon-white"></i> Close</a> 
+	          <a  href="#/closeTicket/{{clientId}}/{{ticket.id}}" ng-show="(ticket.status == 'OPEN')&&(PermissionService.showMenu('CLOSE_TICKET'))" src="./images/Close.ico" popover="Close" popover-trigger="mouseenter"  class="icon-large"/>	        
+	          <a  href="#/closeTicket/{{clientId}}/{{ticket.id}}" ng-show="(ticket.status == 'OPEN')&&(PermissionService.showMenu('CLOSE_TICKET'))" class="btn btn-primary"><i class="icon-trash icon-white"></i> Close</a> 
 	      </div>
 	    </div>
-	</div>
+	</div> -->
 
 	<div class="row paddedleft">
-					<h3>&nbsp;&nbsp;&nbsp;{{'label.viewticket' | translate}}</h3>	
+					<!-- <h3>&nbsp;&nbsp;&nbsp;{{'label.viewticket' | translate}}</h3> -->	
                           <table width="100%">
-                          		<!-- <tr><td><h3>&nbsp;&nbsp;&nbsp;{{'label.viewticket' | translate}}</h3>	</td></tr> -->
+                          		<tr><td><h3>&nbsp;&nbsp;&nbsp;{{'label.viewticket' | translate}}</h3>	</td></tr>
                           		<tr>
                           			<td>
                           				<table>
                           					<tr>
-                              					<td width="70%">{{ 'label.ticket.id' | translate}}</td>
-                              					<td>{{ticket.id}}</td>
+                              					<td width="70%">{{ 'label.ticket.date' | translate}}</td>
+                              					<td>{{ticket.date | DateFormat}}</td>
                             				</tr>
                             				<tr>
-                              					<td>{{ 'label.ticket.priority' | translate}}</td>
-                              					<td>{{ticket.priority}}</td>
+                              					<td>{{ 'label.ticket.issueid' | translate}}</td>
+                              					<td>{{ticket.issueid}}</td>
                             				</tr>
                             				<tr>
-                              					<td>{{ 'label.source' | translate }}</td>
-                              					<td>{{ticket.sourceOfTicket}}</td>
+                              					<td>{{ 'label.ticket.category' | translate }}</td>
+                              					<td>{{ticket.category}}</td>
                             				</tr>
-                            				<tr>
-                              					<td>{{ 'label.ticket.status' | translate }}</td>
-                              					<td>{{ticket.status}}</td>
-                            				</tr>
+                            				<!-- <tr>
+                              					<td>{{ 'label.ticket.issue' | translate }}</td>
+                              					<td>{{ticket.issue}}</td>
+                            				</tr> -->
                           				</table>
                           			</td>
                           			
                           			<td>
                           				<table>
                           					<tr>
-                              					<td width="50%">{{ 'label.ticket.ticketdate' | translate }}</td>
-                              					<td>{{ticket.ticketDate | DateFormat}}</td>
+                              					<td width="50%">{{ 'label.ticket.status' | translate }}</td>
+                              					<td>{{ticket.status}}</td>
                             				</tr>
                             				<tr>
-                              					<td>{{ 'label.ticket.duedate' | translate }}</td>
-                              					<td>{{ticket.dueDate}}</td>
+                              					<td>{{ 'label.ticket.priority' | translate }}</td>
+                              					<td>{{ticket.priority}}</td>
                             				</tr>
                             				<tr>
-                              					<td>{{ 'label.ticket.problemcode' | translate}}</td>
-                              					<td>{{ticket.problemDescription}}</td>
-                            				</tr>
-                            				<tr>
-                              					<td>{{ 'label.ticket.assignto' | translate }}</td>
-                              					<td>{{ticket.userName}}</td>
+                              					<td>{{ 'label.ticket.assignto' | translate}}</td>
+                              					<td>{{ticket.assignto}}</td>
                             				</tr>
                           				</table>
                           			</td>
                           		</tr>
                           </table>
                       </div>                    
-                                     
-    
     <div class="row paddedleft">
     	<h3>&nbsp;&nbsp;&nbsp;{{'label.tickethistory' | translate}}</h3>
      <table class="table">
@@ -149,7 +120,6 @@
 		        <th>{{'label.tickethistory.comments' | translate}}</th>
 		        <th>{{ 'label.tickethistory.problemdescription' | translate }}</th>
 	      </tr>
-	      
         </thead>
         <tbody>
             <tr ng-repeat="history in historyData  | filter:filterText">    
@@ -165,3 +135,188 @@
         </table>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div ng-controller="ViewTicketController"> 
+<div><ul class="breadcrumb">
+  <table>
+        <tr>
+        <td>
+        	 <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+        </td>
+        <td>
+            <small style="color:black;">{{displayName}}</small>
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Uniquely identified  {{accountNo}}</small></td>
+        	</tr>
+        	<tr>
+        		<td><i class="icon-building"></i><small>Office "{{officeName}}"</small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Cell Phone {{phone}}</small></td>
+        	</tr>
+        	<tr>
+        	<td><small>Device # <strong>{{hwSerialNumber}}</strong></small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Client Type "{{categoryType}}"</small></td>
+        	</tr>
+        	<tr>
+        		<td><small>Balance&nbsp;{{balanceAmount}}&nbsp;{{currency}} </small></td>
+        	</tr>
+        </table>
+        </td>
+        </tr>
+  </table>
+  </ul>
+		<ul class="breadcrumb">
+			<li><a href="#/tickets">{{'link.tickets' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#assignedtickets/{{ticketid}}" ng-click="reset123()">{{'link.assigned.tickets' | translate}}</a> <span class="divider">/</span></li>
+			  <li class="active">{{'label.viewticket' | translate}}</li>
+		</ul>
+	</div>
+ <form name="assignedticketsform" class="form-horizontal well">
+   <fieldset>
+           <legend>view tickett</legend >
+        	<table width="100%">
+			<tr>
+			     <td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="issueid">{{'label.ticket.issueid' | translate }}</label>
+						<div class="controls">
+							<input type="text" name="issueid" ng-model="formData.id" readonly
+								value="{{ticket.id}}" >
+						</div>
+					</div>
+				</td>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="status"> {{'label.ticket.status' | translate }} </label>
+						<div class="controls">
+							<select ng-model="formData.status"
+								ng-options="statusData.mCodeValue as statusData.mCodeValue for statusData in statusTypes"
+								value="{{statusData.statusCode}}"></select>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="Category"> {{'label.ticket.category' | translate }}<span class="required">*</span></label>
+						<div class="controls">
+							<select name="category" ng-model="formData.problemCode"
+								ng-options="problemsData.id as problemsData.mCodeValue for problemsData in problemsDatas"
+								value="{{problemsData.problemCode}}" required late-Validate></select>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="control-group">
+						<label class="control-label" for="priority">{{'label.ticket.priority' | translate }}<span class="required">*</span></label>
+						<div class="controls">
+							<select name="priority" ng-model="formData.priority"
+								ng-options="priorityType.value as priorityType.value for priorityType in priorityTypes"
+								value="{{priorityType.value}}" required late-Validate></select>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td width="50%">
+				<div class="control-group">
+						<label class="control-label" for="assignedTo">{{'label.tickethistory.assignto' | translate }}<span class="required">*</span></label>
+						<div class="controls">
+							<select ng-model="formData.userId"
+								ng-options="users.id as users.userName for users in usersData"
+								value="{{users.id}}" required late-Validate></select>
+						</div>
+					</div>
+					</td>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="Date">{{'label.ticket.date' | translate }}</label>
+						<div class="controls">
+							<input type="text" name="date" ng-model="formData.date" readonly
+								ng-options="dateType.value as dateType.value for dateType in dateType"
+								value="{{dateType.value}}" >
+						</div>
+					</div>
+				</td>
+			</tr>
+			</table>
+					<div class="control-group">
+						<label class="control-label" for="issue">{{'label.ticket.issue' | translate }}<span class="required">*</span></label>
+						<div class="controls">
+							    <textarea ng-model="formData.issue"  readonly name="issue" style="width:90%; height:2em; &ngsp" required late-Validate></textarea>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="comments">{{'label.ticket.comments' | translate }}<span class="required">*</span></label>
+						<div class="controls">
+							    <textarea ng-model="formData.comments" name="comments" style="width:90%; height:4em;" required late-Validate></textarea>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="Attachments"> {{'label.ticket.file' | translate }}</label>
+						<div class="controls">
+							<input type= "file" ng-file-select="onFileSelect($files)">
+						</div>
+					</div>
+					
+			<div class="pull-right">
+			<a href="#/assignedticket/{{ticket}}"><button type="reset" class="btn" ng-click="reset123()">Cancel</button></a>
+			<button type="submit" ng-disabled="viewticketform.$valid" class="btn btn-primary">Save</button>
+		</div>
+   			</fieldset>
+   	 </form> -->
+
+	

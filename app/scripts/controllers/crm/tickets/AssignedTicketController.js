@@ -1,12 +1,15 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
 	  AssignedTicketController: function(scope,webStorage, routeParams, location,$modal, resourceFactory, paginatorService,PermissionService) {
-       
+		
 		scope.openTickets = [];
-        
-        scope.routeToticket = function(id){
-        	if(PermissionService.showMenu('READ_CLIENT'))
-        		location.path('/viewclient/'+id);
+		scope.allDatas = [];
+		scope.pageNo = 1;
+		scope.totalPages = 1;
+        scope.routeToticket = function(id,ticketid){
+        	
+        	if(PermissionService.showMenu('READ_TICKET'))
+        		location.path('/editTicket/'+id+'/'+ticketid);
         	webStorage.add("callingTab", {someString: "Tickets" });
         };
         
@@ -20,6 +23,7 @@
          scope.getAllTickets = function () {
          	
      		scope.openTickets = paginatorService.paginate(scope.allTicketFetchFunction, 14);
+     		
          };
          scope.getOpenTickets = function () {
         	
@@ -59,11 +63,29 @@
         
         scope.allTicketFetchFunction = function(offset, limit, callback) {
         	
-			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit} , callback);
+			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit} , function(data){
+				scope.totalTickets = data.totalFilteredRecords;
+	        	scope.allDatas = data.pageItems;
+	     		if(scope.totalTickets%15 == 0)	
+	        		scope.totalPages = scope.totalTickets/15;
+	        	else
+	        		scope.totalPages = Math.floor(scope.totalTickets/15)+1;
+	     		callback(data);
+			});
 		};
         scope.openTicketFetchFunction = function(offset, limit, callback) {
         	
 			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'OPEN'} , callback);
+		};
+		
+        scope.workingTicketFetchFunction = function(offset, limit, callback) {
+			
+			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'WORKING'} , callback);
+		};
+		
+        scope.testingTicketFetchFunction = function(offset, limit, callback) {
+			
+			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'TESTING'} , callback);
 		};
 		
         scope.fixedTicketFetchFunction = function(offset, limit, callback) {
@@ -76,10 +98,6 @@
 				resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'CLOSED'} , callback);
 		};
 		
-		scope.workingTicketFetchFunction = function(offset, limit, callback) {
-			
-			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'WORKING'} , callback);
-		};
 		
 		scope.overDueTicketFetchFunction = function(offset, limit, callback) {
 			
@@ -90,7 +108,10 @@
 			
 			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'ASSIGNED'} , callback);
 		};
-		
+		scope.assignedTicketFetchFunction = function(offset, limit, callback) {
+					
+					resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'ASSIGNED'} , callback);
+		};
 		
 		/**
 		 * search function

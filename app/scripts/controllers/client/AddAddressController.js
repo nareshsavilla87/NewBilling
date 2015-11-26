@@ -214,7 +214,7 @@
 							            	 if(parcel !=undefined){
 							                 for(var i in scope.parcelData){
 							                	 if(parcel== scope.parcelData[i].code){
-											    		scope.property.parcel = scope.parcelData[i].code.substr(0,2);
+											    		scope.property.parcel = scope.parcelData[i].code.substr(0,3);
 											    		$scope.formData.street = scope.parcelData[i].referenceValue;
 											    		$scope.getWatch(scope.property.parcel);
 										          		break;
@@ -273,10 +273,15 @@
 							          
 							          
 							          $scope.getUnit = function(queryParam){
+							        	  var paramLength = 4;
+							        	  if(scope.property.parcel.length == 3){
+												paramLength = 3;
+							  	  			}
 											return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
 								        	      params: {
 								        	    	  		query: 'Unit Codes',
-								        	    	  		queryParam:queryParam		
+								        	    	  		queryParam:queryParam,
+								        	    	  		paramLength:paramLength
 								        	      		   }
 								        	    }).then(function(res){   
 								        	    	 scope.unitData=res.data;	
@@ -285,8 +290,12 @@
 							             };   
 							             $scope.getunitCode = function(unit){
 							            	 if(!angular.isUndefined(unit)){
-							                	 scope.property.unitCode=unit.substr(0,4);
-							                	if(angular.isUndefined($scope.formData.propertyCode)){
+							            		 if(scope.property.parcel.length == 3){
+							     	      			scope.property.unitCode=unit.substr(0,3);
+								     	      		}else{
+								     	      			scope.property.unitCode=unit.substr(0,4);
+								     	      		}							            
+							            		 if(angular.isUndefined($scope.formData.propertyCode)){
 							                	      $scope.getPropertyCode(scope.property.unitCode);
 							                	}else{
 							                		$scope.getWatch(scope.property.unitCode);

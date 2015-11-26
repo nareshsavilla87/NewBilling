@@ -6,7 +6,6 @@
             scope.temp = [];
             scope.myData = [];
             scope.showSmtp = true;
-            
         	
         	   var callingTab = webStorage.get('callingTab');
                if(callingTab == null){
@@ -89,44 +88,6 @@
                     });
                 }
             };
-            
-            scope.edit= function(id){
-		      	  scope.errorStatus=[];
-		      	  scope.errorDetails=[];
-		      	  scope.editId=id;
-		        	  $modal.open({
-		                templateUrl: 'editglobal.html',
-		                controller:editGlobalController ,
-		                resolve:{}
-		            });
-		        	
-		        };
-		        
-		        var editGlobalController=function($scope,$modalInstance){
-			      	  
-		        	$scope.formData = {}; 
-		            $scope.statusData=[];
-		            $scope.updateData={};
-		            //console.log(scope.editId);
-		            
-		            
-		           // DATA GET
-		            resourceFactory.configurationResource.get({configId: scope.editId}, function (data) {
-		                $scope.formData = data;//{value: data.value};
-		                $scope.formData.value=data.value;
-		            });
-		            
-		         	$scope.accept = function(){
-		         		this.updateData.value=this.formData.value;
-		         		resourceFactory.configurationResource.update({configId: scope.editId},this.updateData,function(data){ 
-		         			$modalInstance.close('delete');
-		         			configurationResourceData();cacheResouceData();
-		                 });
-		         	};  
-		    		$scope.reject = function(){
-		    			$modalInstance.dismiss('cancel');
-		    		};
-		        };
 		        
 		      scope.globalConfigHelpPopup= function(configId){
 			        	  $modal.open({
@@ -498,38 +459,59 @@
 	        };
 			
 			
-            scope.edit= function(id){
+            scope.edit= function(id,configName){
 		      	  scope.errorStatus=[];
 		      	  scope.errorDetails=[];
 		      	  scope.editId=id;
-		        	  $modal.open({
+		     	  console.log(configName);
+			        if(configName == 'align-billing-cycle'){
+			        	 $modal.open({
+				                templateUrl: 'editGlobalAlignBilling.html',
+				                controller:editGlobalController ,
+				                resolve:{}
+				            });
+			        	
+			        	
+			        } else{
+			        	$modal.open({
 		                templateUrl: 'editglobal.html',
 		                controller:editGlobalController ,
 		                resolve:{}
 		            });
+			     }
 		        	
 		        };
 
-		        var editGlobalController=function($scope,$modalInstance){
-			      	  
+		        function editGlobalController($scope,$modalInstance){
 		        	$scope.formData = {}; 
 		            $scope.statusData=[];
 		            $scope.updateData={};
 		            //console.log(scope.editId);
 		            
-		            
 		           // DATA GET
 		            resourceFactory.configurationResource.get({configId: scope.editId}, function (data) {
 		                $scope.formData = data;//{value: data.value};
 		                $scope.formData.value=data.value;
+		                if(data.name == 'align-billing-cycle'){
+		                	var json = angular.fromJson(data.value);
+		                	$scope.formData.fixed = json.fixed;
+		                	$scope.formData.perpetual = json.perpetual;
+		                }
+		                console.log($scope.formData.value);
 		            });
 		            
 		         	$scope.accept = function(){
 		         		$scope.flag=true;
+		         		var postJson = {};
+		         		if($scope.formData.name == 'align-billing-cycle'){
+		         			postJson.fixed = $scope.formData.fixed ;
+		         			postJson.perpetual = $scope.formData.perpetual ;
+		         			this.formData.value = angular.toJson(postJson);
+		         		}
 		         		this.updateData.value=this.formData.value;
 		         		resourceFactory.configurationResource.update({configId: scope.editId},this.updateData,function(data){ 
+		         		 $modalInstance.close('delete');
 		                  route.reload();
-		                  $modalInstance.close('delete');
 		                  },function(errData){
 		                  $scope.flag = false;
 		                });
@@ -538,7 +520,6 @@
 		    			$modalInstance.dismiss('cancel');
 		    		};
 		        };
-		        
 		        
 		        scope.popup= function(id){
 			      	  scope.errorStatus=[];

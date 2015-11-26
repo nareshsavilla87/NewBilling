@@ -70,11 +70,12 @@
 					<div class="control-group">
 						<label class="control-label" for="status"> {{'label.ticket.status' | translate }} </label>
 						<div class="controls">
-							<select ng-model="formData.status"
-								ng-options="statusData.id as statusData.mCodeValue for statusData in statusTypes"
-								value="{{statusData.id}}"></select>
+							<select name="status" ng-model="formData.status" 
+								ng-options="statusType.mCodeValue as statusType.mCodeValue for statusType in statusTypes"
+								value="{{statusType.ststusCode}}" ></select>
 						</div>
 					</div>
+					
 				
 			</tr>
 

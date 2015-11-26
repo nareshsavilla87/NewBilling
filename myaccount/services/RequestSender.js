@@ -35,6 +35,16 @@ selfcareApp.config(function($provide) {
         	
         	ticketResource: defineResource(apiVer + "/tickets/:clientId",{clientId:'@clientId'},  {}),
         	
+        	TicketsResource: defineResource(apiVer + "/tickets/Tickets", {}, {
+          	  get: {method: 'GET', params: {}, isArray: true},
+          	  update: {method: 'PUT'}
+              }),
+        	
+        	editTicketResource: defineResource(apiVer + "/tickets/:clientId/update/:id",{clientId:'@clientId', id:'@id'},  {
+          	  get: {method: 'GET', params: {}},
+          	  getAll: {method: 'GET', params: {}, isArray:true}
+        	}),
+          	  
         	changePwdResource: defineResource(apiVer + "/selfcare/changepassword",{},  {
         		update : {method: 'PUT', params: {}}
         	}),
@@ -148,6 +158,9 @@ selfcareApp.config(function($provide) {
         	paymentTemplateResource: defineResource(apiVer + "/payments/template", {}, {}),
         	
         	paymentResource: defineResource(apiVer + "/payments/:clientId", {clientId : '@clientId'}, {}),
+        	
+        	ticketHistoryResource: defineResource(apiVer + "/tickets/:id/history",{id:'@id'},  {}),
+        	commentHistoryResource: defineResource(apiVer + "/tickets/:id/history",{id:'@id'},  {}),
         	
         };
       }];

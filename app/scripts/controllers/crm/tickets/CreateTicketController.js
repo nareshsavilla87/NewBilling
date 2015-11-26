@@ -6,6 +6,7 @@
       	var locationPathname = window.location.pathname;
         	
 			scope.priorityTypes = [];
+			scope.statusTypes = [];
 			scope.formData={};						
 			scope.problemsDatas = [];
 			scope.usersDatas=[];
@@ -13,11 +14,9 @@
 			 scope.start = {};
 			 scope.start.date = new Date();
 			 scope.minDate= scope.start.date;
-			 
 			 scope.first = {};
 			 //scope.first.date = new Date();
 		     //scope.first.time = "10:10";
-		     
 			 $('#timepicker1').timepicker({
 		        	showInputs:false,
 		        	showMeridian:false
@@ -47,6 +46,7 @@
             resourceFactory.ticketResourceTemplate.get(function(data){ 
             	
               scope.date = data.ticketDate;
+              scope.issue = data.ticketissue;
               scope.priorityTypes=data.priorityType;
               for(var i=0;i<scope.priorityTypes.length;i++){
             	  
@@ -54,6 +54,19 @@
               		scope.formData.priority=scope.priorityTypes[i].value;
               	}
               }
+              scope.statusTypes=data.statusType;
+              for(var i=0;i<scope.statusTypes.length;i++){
+            	  
+              	if(scope.statusTypes[i].mCodeValue=='New Open'){
+              		scope.formData.status=scope.statusTypes[i].mCodeValue;
+              	}
+              }
+             /* scope.statusTypes=data.statusType;
+              for(var i in scope.statusTypes){
+         		 if(scope.statusTypes[i].value== "active"){
+         			 scope.formData.status = scope.statusTypes[i].value;
+         		 }
+              }*/
               scope.problemsDatas=data.problemsDatas;
               scope.usersDatas=data.usersData;
               scope.sourceData=data.sourceData;
@@ -74,44 +87,48 @@
 		        scope.file = $files[0];
 		      };
            
-			scope.submit = function() { 
-				scope.first.time=$('#timepicker1').val();
-				var reqDueDate = dateFilter(scope.first.date,'yyyy-MM-dd');
-				if(scope.first.date==null||scope.first.time==''){
-					delete scope.formData.dueTime;
-				}else{
-					scope.formData.dueTime = reqDueDate+" "+$('#timepicker1').val()+':00';
-				}
-				scope.formData.dateFormat = 'dd MMMM yyyy';
-				scope.formData.ticketURL=locationOrigin+''+locationPathname+"#/viewTicket/"+scope.clientId;
-				scope.formData.ticketTime = ' '+new Date().toLocaleTimeString().replace("IST","").trim();
-                	scope.ticketdata = {};
-					scope.ticketdata.assignedTo=scope.formData.assignedTo;
-					scope.ticketdata.comments=scope.formData.comments;
-					scope.ticketdata.status=scope.formData.status;
-					scope.ticketdata.priority = scope.formData.priority;
-					scope.ticketdata.problemCode = scope.formData.problemCode;
-					scope.ticketdata.description=scope.formData.description;
-					scope.ticketdata.dateFormat = scope.formData.dateFormat;
-					if(scope.formData.dueTime) scope.ticketdata.dueTime = scope.formData.dueTime;
-					scope.ticketdata.locale = $rootScope.locale.code;
-					scope.ticketdata.priority = scope.formData.priority;
-					scope.ticketdata.sourceOfTicket = scope.formData.sourceOfTicket;
-					scope.ticketdata.ticketDate = dateFilter(scope.start.date,'dd MMMM yyyy');
-					scope.ticketdata.ticketTime = scope.formData.ticketTime;
-					scope.ticketdata.ticketURL = scope.formData.ticketURL;
-					
-					$upload.upload({
-						  url: $rootScope.hostUrl+ API_VERSION +'/tickets/'+scope.clientId, 
-				          data: scope.ticketdata,
-				          file: scope.file
-				        }).then(function(data) {
-				        	if (!scope.$$phase) {
-				                scope.$apply();
-				              }
-				        	location.path('/assignedtickets');
-				        });	
-         };
+		      scope.submit = function() { 
+					scope.first.time=$('#timepicker1').val();
+					var reqDueDate = dateFilter(scope.first.date,'yyyy-MM-dd');
+					if(scope.first.date==null||scope.first.time==''){
+						delete scope.formData.dueTime;
+					}else{
+						scope.formData.dueTime = reqDueDate+" "+$('#timepicker1').val()+':00';
+					}
+					scope.formData.dateFormat = 'dd MMMM yyyy';
+					scope.formData.ticketURL=locationOrigin+''+locationPathname+"#/viewTicket/"+scope.clientId;
+					scope.formData.ticketTime = ' '+new Date().toLocaleTimeString().replace("IST","").trim();
+	                	scope.ticketdata = {};
+						scope.ticketdata.assignedTo=scope.formData.assignedTo;
+						scope.ticketdata.comments=scope.formData.comments;
+						scope.ticketdata.status=scope.formData.status;
+						/*console.log(scope.formData.status);*/
+						scope.ticketdata.priority = scope.formData.priority;
+						scope.ticketdata.problemCode = scope.formData.problemCode;
+						scope.ticketdata.issue = scope.formData.ticketissue;
+						/*console.log(scope.formData.ticketissue);*/
+						scope.ticketdata.description=scope.formData.description;
+						scope.ticketdata.issue=scope.formData.statusDescription;
+						scope.ticketdata.dateFormat = scope.formData.dateFormat;
+						if(scope.formData.dueTime) scope.ticketdata.dueTime = scope.formData.dueTime;
+						scope.ticketdata.locale = $rootScope.locale.code;
+						scope.ticketdata.priority = scope.formData.priority;
+						scope.ticketdata.sourceOfTicket = scope.formData.sourceOfTicket;
+						scope.ticketdata.ticketDate = dateFilter(scope.start.date,'dd MMMM yyyy');
+						scope.ticketdata.ticketTime = scope.formData.ticketTime;
+						scope.ticketdata.ticketURL = scope.formData.ticketURL;
+						
+						$upload.upload({
+							  url: $rootScope.hostUrl+ API_VERSION +'/tickets/'+scope.clientId, 
+					          data: scope.ticketdata,
+					          file: scope.file
+					        }).then(function(data) {
+					        	if (!scope.$$phase) {
+					                scope.$apply();
+					              }
+					        	location.path('/assignedtickets');
+					        });	
+	         };
     }
   });
   mifosX.ng.application.controller('CreateTicketController', ['$scope', 'webStorage','ResourceFactory', '$location', '$translate','dateFilter', '$routeParams','$rootScope','$http','API_VERSION','$upload', mifosX.controllers.CreateTicketController]).run(function($log) {

@@ -95,3 +95,5 @@ document.write("<script type='text/javascript' src='./controllers/PrepaidPlansCo
 document.write("<script type='text/javascript' src='./controllers/PostpaidPlansController.js'></script>");
 document.write("<script type='text/javascript' src='./controllers/AuthorizeGetController.js'></script>");
 document.write("<script type='text/javascript' src='./controllers/AuthorizeNetRedirectionController.js'></script>");
+document.write("<script type='text/javascript' src='./controllers/EditTicketController.js'></script>");
+
