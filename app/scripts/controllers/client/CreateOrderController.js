@@ -42,14 +42,16 @@
         if(scope.imagePresent){
          scope.image=clientData.image;
         }
-        //scope.minDate=scope.start.date;
+        if(routeParams.planId!=0){
+    	   scope.minDate=scope.start.date; 
+        }
         scope.postpaid  ={};
         scope.postpaid.open = true;
         scope.isnow=true;
         scope.$watch('start.date', function() {
     	    scope.doSomething();  
     	});
-       scope.doSomething =function(){
+        scope.doSomething =function(){
     	   scope.todayDate=new Date().toDateString();
     	   scope.selectedDate=scope.start.date.toDateString();
     	   

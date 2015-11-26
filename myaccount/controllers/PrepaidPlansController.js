@@ -44,7 +44,6 @@ PrepaidPlansController = function(scope,RequestSender,localStorageService,locati
 	      			$modalInstance.close('delete');
 	      		};
 		} 
-       
        //checkout process code start
        scope.durationCheckboxSelectionFun = function(priceId,price,isCheck,planId,index){
     	   if(scope.existOrderStatus == 'pending'){

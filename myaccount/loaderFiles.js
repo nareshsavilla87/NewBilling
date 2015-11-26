@@ -93,4 +93,7 @@ document.write("<script type='text/javascript' src='./controllers/EvoIntegration
 document.write("<script type='text/javascript' src='./controllers/EvoSuccessController.js'></script>");
 document.write("<script type='text/javascript' src='./controllers/PrepaidPlansController.js'></script>");
 document.write("<script type='text/javascript' src='./controllers/PostpaidPlansController.js'></script>");
+document.write("<script type='text/javascript' src='./controllers/AuthorizeGetController.js'></script>");
+document.write("<script type='text/javascript' src='./controllers/AuthorizeNetRedirectionController.js'></script>");
 document.write("<script type='text/javascript' src='./controllers/EditTicketController.js'></script>");
+

@@ -7,7 +7,7 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 	var encrytionKey 		= selfcareModels.encriptionKey;
 	scope.isRedirecting 	= false;
 	
-	//getting Payment Gateway names form constans.js
+	//getting Payment Gateway names from constants.js
 	var  kortaPG			=	paymentGatewayNames.korta || "",
 		 dalpayPG			=	paymentGatewayNames.dalpay || "",
 	     globalpayPG		=	paymentGatewayNames.globalpay || "",
@@ -15,8 +15,9 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 		 netellerPG			=	paymentGatewayNames.neteller || "",
 		 internalPaymentPG	=	paymentGatewayNames.internalPayment || "",
 		 two_checkoutPG		=	paymentGatewayNames.two_checkout || "",
-		 interswitchPG		=  paymentGatewayNames.interswitch || "",
+		 interswitchPG		=   paymentGatewayNames.interswitch || "",
 		 evoPG				=	paymentGatewayNames.evo || "";
+	     autherizeNetPG		=	paymentGatewayNames.autherizeNet || "";
 	
 	//getting locale value
 	 scope.optlang 			= rootScope.localeLangCode;
@@ -204,6 +205,16 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
 				
 				scope.paymentURL = "#/evointegration?key="+encryptedData;
 				break;
+			case autherizeNetPG :
+				console.log(scope.price);
+				localStorageService.add("AuthorizeData",{clientId:scope.clientId,screenName :scope.screenName,planId:scope.planId,
+					priceId:scope.priceId,price:scope.price,clientData:clientData,planCode:scope.planData.planCode});
+				RequestSender.getAuthorizedHash.get({amount: scope.price},function(data){
+					console.log(data);
+					localStorageService.add('hashdata',data);
+				});
+				scope.paymentURL = "#/authorize";
+				break;	
 				
 			default : break;
 			}
@@ -222,7 +233,8 @@ PaymentProcessController = function(scope,routeParams,RequestSender,localStorage
     			$scope.termsAndConditionsText = internalPayment[termsAndConditions] : (scope.paymentGatewayName == two_checkoutPG)?
     			$scope.termsAndConditionsText = two_checkout[termsAndConditions]	: (scope.paymentGatewayName == interswitchPG)?
 		    	$scope.termsAndConditionsText = interswitch[termsAndConditions]		: (scope.paymentGatewayName == evoPG)?
-    	    	$scope.termsAndConditionsText = evo[termsAndConditions]				: $scope.termsAndConditionsText = selectOnePaymentGatewayText[scope.optlang];
+    	    	$scope.termsAndConditionsText = evo[termsAndConditions]				: (scope.paymentGatewayName == autherizeNetPG)?
+    	    	$scope.termsAndConditionsText = autherizeNet[termsAndConditions]	: $scope.termsAndConditionsText = selectOnePaymentGatewayText[scope.optlang];
     	}
     	$scope.done = function(){
     		$modalInstance.dismiss('cancel');
