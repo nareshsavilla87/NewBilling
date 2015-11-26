@@ -127,11 +127,11 @@
 		                 }
 	            	 }	       	        
 	          };
-	          
+	          console.log(scope.parcelData.length);
 	          //unitcode auto complete
 	          scope.getUnit = function(queryParam){
 	        	  var paramLength = 4;
-	        	  if(scope.property.parcel.length == 3){
+	        	  if(scope.formData.parcel.length == 3){
 						paramLength = 3;
 	  	  			}
 					return http.get($rootScope.hostUrl+API_VERSION+'/propertymaster/type/', {
