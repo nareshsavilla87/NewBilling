@@ -61,6 +61,7 @@
 		   two_checkout 			: '2checkout',
 		   interswitch	 			: 'interswitch',
 		   evo	 					: 'evo',
+		   autherizeNet	 			: 'authorizenet',
    };
    
    paymentGatewaySourceNames  = {
@@ -73,4 +74,5 @@
 		   internalPayment 			: 'internalPayment',
 		   two_checkout 			: '2checkout',
 		   evo			 			: 'evo',
+		   autherizeNet	 			: 'authorizenet',
    };

@@ -97,7 +97,14 @@ selfcareApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/evosuccess',{
     	templateUrl: 'views/evosuccess.html'
+    })
+    .when('/authorize',{
+    	templateUrl: 'views/authorizepayment.html'
+    })
+    .when('/authorizenetredirection',{
+    	templateUrl: 'views/authorizenetredirection.html'
     });
+    
        
     $locationProvider.html5Mode(false);
  

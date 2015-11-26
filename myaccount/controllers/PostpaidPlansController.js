@@ -99,7 +99,6 @@ PostpaidPlansController = function(scope,RequestSender,localStorageService,locat
 	    	};
 	    	 
 	     };
-	    
 	     //checkout process code start
 	     scope.durationCheckboxSelectionFun = function(priceData,index){
 	    	 if(scope.existOrderStatus == 'pending'){
