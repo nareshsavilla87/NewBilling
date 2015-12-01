@@ -22,6 +22,14 @@
 	      <h4 class="list-group-item-heading"><i class="icon-globe icon-large"></i>&nbsp;&nbsp;Vendor Management</h4>
 	      <p class="list-group-item-text">Vendor Management and Agreements</p>
 	    </a>
+	    <a class="list-group-item" href="#/chargevariant" ng-show="PermissionService.showMenu('READ_CHARGEVARIANT')">
+	      <h4 class="list-group-item-heading"><i class=" icon-th-list icon-large"></i>&nbsp;&nbsp;Charge Variant</h4>
+	      <p class="list-group-item-text">Define the Charge Variant</p>
+	      </a>
+	      <a class="list-group-item" href="#/message" ng-show="PermissionService.showMenu('READ_MESSAGE')">
+	      <h4 class="list-group-item-heading"><i class="icon-book icon-large"></i>&nbsp;&nbsp; Message Template</h4>
+	      <p class="list-group-item-text">Define the Message Templates</p>
+	    </a>
 	     <a class="list-group-item" href="#/voucherpins" ng-show="PermissionService.showMenu('READ_RANDAMGENERATOR')">
 	      <h4 class="list-group-item-heading"><i class="icon-gift icon-large"></i>&nbsp;&nbsp;Voucher Pins</h4>
 	      <p class="list-group-item-text">Generate Voucher Pins for Redemption</p>
@@ -37,10 +45,6 @@
 	   <a class="list-group-item" href="#/radius">
 	      <h4 class="list-group-item-heading"><i class="icon-globe icon-large"></i>&nbsp;&nbsp;Radius</h4>
 	      <p class="list-group-item-text">Define AAA for Users</p>
-	    </a>
-	    <a class="list-group-item" href="#/message" ng-show="PermissionService.showMenu('READ_MESSAGE')">
-	      <h4 class="list-group-item-heading"><i class="icon-book icon-large"></i>&nbsp;&nbsp; Message Template</h4>
-	      <p class="list-group-item-text">Define the Message Templates</p>
 	    </a>
 	  </div>    
   </div>
