@@ -1068,6 +1068,15 @@
        .when('/editpropertydefinition/:id', {
         templateUrl: 'views/organization/editpropertydefinition.html'
       })
+      .when('/chargevariant', {
+        templateUrl: 'views/organization/chargevariant.html'
+      })
+      .when('/createchargevariant/', {
+        templateUrl: 'views/organization/createchargevariant.html'
+      })
+      .when('/editchargevariant/', {
+        templateUrl: 'views/organization/editchargevariant.html'
+      })
       ;
      
     $locationProvider.html5Mode(false);

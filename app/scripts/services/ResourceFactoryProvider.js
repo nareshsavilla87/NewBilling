@@ -1203,6 +1203,13 @@
             cubewareDeviceResource: defineResource(apiVer + "/entitlements/:clientId/getDevice", {clientId:'@clientId'},{}),
             
             cubewareUnAssignDeviceResource: defineResource(apiVer + "/entitlements/:clientId/:id", {clientId:'@clientId',id:'@id'},{}),
+            
+            chargevariantResource: defineResource(apiVer + "/chargevariant/:chargeVariantId", {chargeVariantId:'@chargeVariantId'}, {
+                update: { method: 'PUT' }
+            }),
+            chargevarianttemplateResource: defineResource(apiVer + "/chargevariant/template", {}, {
+          	  
+            }),
       
         };
       }];
