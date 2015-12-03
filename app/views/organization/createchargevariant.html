@@ -88,26 +88,26 @@
             	        <label class="control-label" for="amount">{{'label.chargevariantamount' | translate }}<span class="required">*</span></label>
                            <div class="control-group">
                                <input type="text" id="amount" name="amount" class="input-medium" data-ng-model="formData.amount" placeholder="Amount" data-ng-pattern="{{'decimal' | CodeValidate}}">
-                               <a data-ng-click="addReginalPrice()">&nbsp;<i class="icon-plus icon-white"></i></a>
+                               <a data-ng-click="addAmount()">&nbsp;<i class="icon-plus icon-white"></i></a>
                           </div>
                      </div>
                 </td> 
             </table>
-            <table class="table fullwidth" data-ng-show="regionPrices.length>0">
+            <table class="table fullwidth" data-ng-show="chargeVariantDetails.length>0">
                 <tr class="graybg">
-                    <th>{{'table.heading.regionName' | translate}}</th>
-                    <th>{{'table.heading.regionName' | translate}}</th>
+                    <th>{{'label.chargevariantnoofconnections' | translate }}</th>
+                    <th>{{'label.chargevarianttype' | translate }}</th>
                     <th>{{'label.amount' | translate}}</th>
                 </tr>
-                <tr data-ng-repeat="regionPrice in regionPrices" >
+                <tr data-ng-repeat="chargeVariant in chargeVariantDetails" >
                     <td style="padding-left: 0">
-                         <select data-ng-model="regionPrice.regionId" data-ng-options="regionData.id as regionData.regionName  for regionData in regionDatas" ></select>
+                         <select data-ng-model="chargeVariant.variantType" data-ng-options="noofConnections.id as noofConnections.mCodeValue for noofConnections in noofConnectionses" ></select>
                      </td>
                      <td style="padding-left: 0">
-                         <select data-ng-model="regionPrice.regionId" data-ng-options="regionData.id as regionData.regionName  for regionData in regionDatas" ></select>
+                         <select data-ng-model="chargeVariant.amountType" data-ng-options="type.id as type.mCodeValue for type in types" ></select>
                      </td>
                      <td> 
-                          <input type="text" data-ng-model="regionPrice.amount" placeholder="amount">
+                          <input type="text" data-ng-model="chargeVariant.amount" placeholder="amount">
                       </td>
                       <td>
                          <a data-ng-click="removeRegionPrices($index)"><i class="icon-remove icon-white"></i></a>

@@ -17,16 +17,13 @@
 				scope.statuses = data.statusData;
 				//scope.clientCategory = data.statusData;
 				scope.noofConnectionses = data.chargeVariantTypeData;
-				/*scope.formData = {
-					taxInclusive : false,	*//** Do not remove this one *//*
-				};*/
 			});
 			scope.formData={};scope.chargeVariantDetails = [];
 			  scope.addAmount = function () {
-		           if (scope.formData.variantType && scope.formData.amountType && scopeformData.amount) {
+		           if (scope.formData.variantType && scope.formData.amountType && scope.formData.amount) {
 		        	   
-		                scope.chargeVariantDetails.push({noofConnections:scope.formData.variantType, 
-		                	type:scope.formData.amountType, amount:scope.formData.amount
+		                scope.chargeVariantDetails.push({variantType:scope.formData.variantType, 
+		                	amountType:scope.formData.amountType, amount:scope.formData.amount, locale:$rootScope.locale.code
 		                });
 		              
 		                scope.formData.variantType = undefined;
@@ -42,6 +39,7 @@
 				this.formData.dateFormat = 'dd MMMM yyyy';
 				this.formData.startDate = dateFilter(scope.start.date,'dd MMMM yyyy');
 				this.formData.endDate = dateFilter(scope.end.date,'dd MMMM yyyy');
+				this.formData.chargeVariantDetails = scope.chargeVariantDetails;
 				resourceFactory.chargevariantResource.save(this.formData,function(data) {
 					location.path('/chargevariant');
 				});
