@@ -1,12 +1,20 @@
 (function(module) {
 	mifosX.controllers = _.extend(module, {
 		EditChargeVariantController : function(scope, routeParams,resourceFactory, location, $rootScope) {
-alert(routeParams.id);
+				scope.formData = {};
 			    resourceFactory.chargevariantResource.get({chargeVariantId : routeParams.id, template : 'true'}, function(data) {
-				scope.formData = data;
+				scope.formData.status = data.status;
+				scope.formData.startDate = data.startDate;
+				scope.formData.endDate = data.endDate;
+				scope.formData.chargeVariantCode = data.chargeVariantCode;
+				scope.statuses = data.statusData;
+				scope.noofConnectionses = data.chargeVariantTypeData;
+				scope.types = data.amountTypeData;
+				scope.chargeVariantDetailsDatas = data.chargeVariantDetailsDatas;
 				scope.chargeVarintId = routeParams.id;
 
 			});
+			    
 		}
 	});
 	mifosX.ng.application.controller('EditChargeVariantController',[
