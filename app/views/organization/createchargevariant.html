@@ -6,11 +6,11 @@
           	<li class="active">{{'label.create.new.chargevariant' | translate}}</li>
         </ul>
     </div>
-    <!-- <div class="error" data-ng-show="errorStatus || errorDetails">
+    <div class="error" data-ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label data-ng-show="errorStatus">{{errorStatus}}</label>
 		<label data-ng-hide="errorStatus" data-ng-repeat="error in errorDetails">{{error.code | translate}}</label>
-	</div> -->
+	</div> 
     <form name="createchargevariantform" class=" well" data-ng-submit="submit()">
     	<fieldset>
         	<legend>{{'label.create.new.chargevariant' | translate}}</legend>
@@ -34,7 +34,7 @@
           	          <div class="control-group">
             	          <label class="control-label" for="StartDate">{{'label.chargevariantstartdate' | translate }}<span class="required">*</span></label>
             	          <div class="controls">
-              		          <input type="text" id="startDate" name="startDate" data-ng-model="formData.startDate" class="input-medium"
+              		          <input type="text" id="startDate" name="startDate" data-ng-model="start.date" class="input-medium"
               		          datepicker-pop="dd MMMM yyyy" data-ng-model="first.date" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)" required late-Validate />
             	          </div>
           	          </div>
@@ -56,7 +56,7 @@
           	          <div class="control-group">
             	          <label class="control-label" for="endDate">{{'label.chargevariantenddate' | translate }}<span class="required">*</span></label>
             	          <div class="controls">
-              		          <input type="text" id="endDate" name="endDate" data-ng-model="formData.endDate" class="input-medium"
+              		          <input type="text" id="endDate" name="endDate" data-ng-model="end.date" class="input-medium"
               		          datepicker-pop="dd MMMM yyyy" data-ng-model="first.date" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)" required late-Validate />
             	          </div>
           	          </div>
@@ -69,7 +69,7 @@
                     <div class="control-group">
             	        <label class="control-label" for="noofConnections">{{'label.chargevariantnoofconnections' | translate }}<span class="required">*</span></label>
                             <div class="control-group">
-                                <select id="noofConnections" name="noofConnections" class="input-medium" style="width:95%" data-ng-model="formData.noofConnections" data-ng-options="noofConnections.value as noofConnections.value for noofConnections in noofConnectionses">
+                                <select id="noofConnections" name="noofConnections" class="input-medium" style="width:95%" data-ng-model="formData.variantType" data-ng-options="noofConnections.id as noofConnections.mCodeValue for noofConnections in noofConnectionses">
               		              <option value="">{{'label.select.one1' | translate}}</option></select>
                             </div>
                     </div>
@@ -78,7 +78,7 @@
                     <div class="control-group">
             	        <label class="control-label" for="type">{{'label.chargevarianttype' | translate }}<span class="required">*</span></label>
                            <div class="control-group">
-                              <select id="type" name="type" data-ng-model="formData.type" class="input-medium"style="width:95%" data-ng-options="type.value as type.value for type in types">
+                              <select id="type" name="type" data-ng-model="formData.amountType" class="input-medium"style="width:95%" data-ng-options="type.id as type.mCodeValue for type in types">
               		          <option value="">{{'label.select.one1' | translate}}</option></select>
                            </div>
                     </div>
