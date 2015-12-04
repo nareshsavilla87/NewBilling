@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  AssignedTicketController: function(scope,webStorage, routeParams, location,$modal, resourceFactory, paginatorService,PermissionService) {
+	  AssignedTicketController: function(scope,webStorage, routeParams, location,$modal, resourceFactory, paginatorService,PermissionService,dateFilter) {
 		
 		scope.openTickets = [];
 		scope.allDatas = [];
@@ -23,7 +23,6 @@
          scope.getAllTickets = function () {
          	
      		scope.openTickets = paginatorService.paginate(scope.allTicketFetchFunction, 14);
-     		
          };
          scope.getOpenTickets = function () {
         	
@@ -65,6 +64,9 @@
         	
 			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit} , function(data){
 				scope.totalTickets = data.totalFilteredRecords;
+				for(var k in data.pageItems){
+					data.pageItems[k].ticketDate = dateFilter(new Date(data.pageItems[k].ticketDate),'dd/MM/yy');
+				}
 	        	scope.allDatas = data.pageItems;
 	     		if(scope.totalTickets%15 == 0)	
 	        		scope.totalPages = scope.totalTickets/15;
@@ -75,12 +77,34 @@
 		};
         scope.openTicketFetchFunction = function(offset, limit, callback) {
         	
-			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'OPEN'} , callback);
+			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'OPEN'} , function(data){
+				scope.totalTickets = data.totalFilteredRecords;
+				for(var k in data.pageItems){
+					data.pageItems[k].ticketDate = dateFilter(new Date(data.pageItems[k].ticketDate),'dd/MM/yy');
+				}
+	        	scope.allDatas = data.pageItems;
+	     		if(scope.totalTickets%15 == 0)	
+	        		scope.totalPages = scope.totalTickets/15;
+	        	else
+	        		scope.totalPages = Math.floor(scope.totalTickets/15)+1;
+	     		callback(data);
+			});
 		};
 		
         scope.workingTicketFetchFunction = function(offset, limit, callback) {
 			
-			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'WORKING'} , callback);
+			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'WORKING'} , function(data){
+				scope.totalTickets = data.totalFilteredRecords;
+				for(var k in data.pageItems){
+					data.pageItems[k].ticketDate = dateFilter(new Date(data.pageItems[k].ticketDate),'dd/MM/yy');
+				}
+	        	scope.allDatas = data.pageItems;
+	     		if(scope.totalTickets%15 == 0)	
+	        		scope.totalPages = scope.totalTickets/15;
+	        	else
+	        		scope.totalPages = Math.floor(scope.totalTickets/15)+1;
+	     		callback(data);
+			});
 		};
 		
         scope.testingTicketFetchFunction = function(offset, limit, callback) {
@@ -90,23 +114,67 @@
 		
         scope.fixedTicketFetchFunction = function(offset, limit, callback) {
         	
-			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'FIXED'} , callback);
+			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'FIXED'} , function(data){
+				scope.totalTickets = data.totalFilteredRecords;
+				for(var k in data.pageItems){
+					data.pageItems[k].ticketDate = dateFilter(new Date(data.pageItems[k].ticketDate),'dd/MM/yy');
+				}
+	        	scope.allDatas = data.pageItems;
+	     		if(scope.totalTickets%15 == 0)	
+	        		scope.totalPages = scope.totalTickets/15;
+	        	else
+	        		scope.totalPages = Math.floor(scope.totalTickets/15)+1;
+	     		callback(data);
+			});
 		};
 		
 		scope.closedTicketFetchFunction = function(offset, limit, callback) {
 			
-				resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'CLOSED'} , callback);
+				resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'CLOSED'} , function(data){
+					scope.totalTickets = data.totalFilteredRecords;
+					for(var k in data.pageItems){
+						data.pageItems[k].ticketDate = dateFilter(new Date(data.pageItems[k].ticketDate),'dd/MM/yy');
+					}
+		        	scope.allDatas = data.pageItems;
+		     		if(scope.totalTickets%15 == 0)	
+		        		scope.totalPages = scope.totalTickets/15;
+		        	else
+		        		scope.totalPages = Math.floor(scope.totalTickets/15)+1;
+		     		callback(data);
+				});
 		};
 		
 		
 		scope.overDueTicketFetchFunction = function(offset, limit, callback) {
 			
-			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'OVERDUE'} , callback);
+			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'OVERDUE'} , function(data){
+				scope.totalTickets = data.totalFilteredRecords;
+				for(var k in data.pageItems){
+					data.pageItems[k].ticketDate = dateFilter(new Date(data.pageItems[k].ticketDate),'dd/MM/yy');
+				}
+	        	scope.allDatas = data.pageItems;
+	     		if(scope.totalTickets%15 == 0)	
+	        		scope.totalPages = scope.totalTickets/15;
+	        	else
+	        		scope.totalPages = Math.floor(scope.totalTickets/15)+1;
+	     		callback(data);
+			});
 		};
 		
 		scope.assignedTicketFetchFunction = function(offset, limit, callback) {
 			
-			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'ASSIGNED'} , callback);
+			resourceFactory.getAllTicketResource.getAllDetails({offset: offset, limit: limit,statusType:'ASSIGNED'} , function(data){
+				scope.totalTickets = data.totalFilteredRecords;
+				for(var k in data.pageItems){
+					data.pageItems[k].ticketDate = dateFilter(new Date(data.pageItems[k].ticketDate),'dd/MM/yy');
+				}
+	        	scope.allDatas = data.pageItems;
+	     		if(scope.totalTickets%15 == 0)	
+	        		scope.totalPages = scope.totalTickets/15;
+	        	else
+	        		scope.totalPages = Math.floor(scope.totalTickets/15)+1;
+	     		callback(data);
+			});
 		};
 		scope.assignedTicketFetchFunction = function(offset, limit, callback) {
 					
@@ -126,7 +194,7 @@
 	    
     }
   });
-  mifosX.ng.application.controller('AssignedTicketController', ['$scope','webStorage', '$routeParams', '$location','$modal', 'ResourceFactory','PaginatorService','PermissionService', mifosX.controllers.AssignedTicketController]).run(function($log) {
+  mifosX.ng.application.controller('AssignedTicketController', ['$scope','webStorage', '$routeParams', '$location','$modal', 'ResourceFactory','PaginatorService','PermissionService','dateFilter', mifosX.controllers.AssignedTicketController]).run(function($log) {
     $log.info("AssignedTicketController initialized");
   });
 }(mifosX.controllers || {}));

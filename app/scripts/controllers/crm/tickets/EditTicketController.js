@@ -50,7 +50,7 @@
 				// scope.formData.status=14;
 				scope.clientId = routeParams.clientId;
 				scope.ticketId = routeParams.id;
-				scope.data.ticketDate = dateFilter(new Date(data.ticketDate),'dd MMMM yyyy');
+				scope.data.ticketDate = dateFilter(new Date(data.ticketDate),'dd/MM/yy');
 				var clientData = data.clientData;
 				scope.displayName = clientData.displayName;
 				scope.statusActive = clientData.statusActive;
@@ -142,11 +142,11 @@
 					}
 				};
 			scope.submit = function() {
-				scope.formData.dateFormat = 'dd MMMM yyyy';
+				scope.formData.dateFormat = 'dd/MM/yy';
 				this.data.assignedTo = this.formData.userId;
 				this.data.comments=this.formData.comments; 
 				this.data.status = this.formData.status;
-				this.data.ticketDate = dateFilter(scope.data.tickeDate,	'dd MMMM yyyy');
+				this.data.ticketDate = dateFilter(scope.data.tickeDate,	'dd/MM/yy');
 				this.data.priority = this.formData.priority;
 				this.data.issue = this.formData.issue;
 				this.data.problemCode = this.formData.problemCode;
