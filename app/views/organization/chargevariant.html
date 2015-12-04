@@ -19,22 +19,22 @@
                 	<th>{{ 'table.heading.chargevariantcode' | translate }}</th>
                 	<th>{{ 'table.heading.chargevariantstartdate' | translate }}</th>
                 	<th>{{ 'table.heading.chargevariantenddate' | translate }}</th>
-                	<th>{{ 'table.heading.chargevariantnoofconnections' | translate }}</th>
+                	<!-- <th>{{ 'table.heading.chargevariantnoofconnections' | translate }}</th>
                 	<th>{{ 'table.heading.chargevarianttypes' | translate }}</th>
-                	<th>{{ 'table.heading.chargevariantamount' | translate }}</th>
+                	<th>{{ 'table.heading.chargevariantamount' | translate }}</th> -->
                 	<th>{{ 'table.heading.chargevariantstatus' | translate }}</th>
                     <th>Actions</th>           
             	</tr>
         	</thead>
         	<tbody>
-            	<tr class="pointer-main" >
+            	<tr ng-repeat="chargevariant in chargevariants  | filter:filterText" class="pointer-main" >
                         
                 	<td class="pointer" data-ng-click="routeTo(chargevariant.id)">{{chargevariant.chargeVariantCode}}</td>       
-                	<td class="pointer" data-ng-click="routeTo(chargevariant.id)">{{chargevariant.startDate}}</td>        
-                	<td class="pointer" data-ng-click="routeTo(chargevariant.id)">{{chargevariant.endDate}}</td> 
-                	<td class="pointer" data-ng-click="routeTo(chargevariant.id)">{{chargevariant.noofConnections}}</td> 
+                	<td class="pointer" data-ng-click="routeTo(chargevariant.id)">{{chargevariant.startDate | DateFormat}}</td>        
+                	<td class="pointer" data-ng-click="routeTo(chargevariant.id)">{{chargevariant.endDate | DateFormat}}</td> 
+                	<!-- <td class="pointer" data-ng-click="routeTo(chargevariant.id)">{{chargevariant.noofConnections}}</td> 
                 	<td class="pointer" data-ng-click="routeTo(chargevariant.id)">{{chargevariant.types}}</td> 
-                	<td class="pointer" data-ng-click="routeTo(chargevariant.id)">{{chargevariant.amount}}</td>
+                	<td class="pointer" data-ng-click="routeTo(chargevariant.id)">{{chargevariant.amount}}</td> -->
                 	<td class="pointer" data-ng-click="routeTo(chargevariant.id)">{{chargevariant.status}}</td> 
                     <td>
                     	<a href="#/editchargevariant/{{chargevariant.id}}" popover="Edit Charge Varient" popover-trigger="mouseenter" >
