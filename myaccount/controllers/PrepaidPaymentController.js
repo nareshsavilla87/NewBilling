@@ -48,6 +48,7 @@ PrepaidPaymentController = function(scope,routeParams,RequestSender,localStorage
 	//this function calls when comeout from amount field
 	scope.planData			= {};
 	scope.amountFieldFun = function(amount){
+		console.log(amount);
 		if(amount){
 			if(amount<=0 || isNaN(amount)){
 				scope.amountEmpty = true;

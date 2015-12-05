@@ -64,7 +64,7 @@ selfcareApp.config(function($provide) {
            	  update: { method: 'PUT' }
             }),
             
-            getAuthorizedHash:defineResource(apiVer + "/paymentgateways/authorize/:amount", {amount:'@amount'}, {}),
+            getAuthorizedHash:defineResource(apiVer + "/paymentgateways/authorize", {}, {}),
             
             OrderDisconnectResource: defineResource(apiVer + "/orders/disconnect", {}, {}),
             
