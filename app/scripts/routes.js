@@ -1074,7 +1074,7 @@
       .when('/createchargevariant/', {
         templateUrl: 'views/organization/createchargevariant.html'
       })
-      .when('/editchargevariant/', {
+      .when('/editchargevariant/:id', {
         templateUrl: 'views/organization/editchargevariant.html'
       })
       ;

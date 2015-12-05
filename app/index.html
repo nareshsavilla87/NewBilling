@@ -257,15 +257,15 @@
             		 + Scheduler Jobs<i class="icon-gears icon-large pull-right"></i>
             	</a>
             </li>
-            <li data-ng-show="jobs = PermissionService.showMenu('READ_SCHEDULERJOB')" class="divider"></li>
-            <!-- <li ng-show="PermissionService.showMenu('CREATE_CLIENT')" class="divider"></li> -->
-            <li>
+           <li data-ng-show="jobs = PermissionService.showMenu('READ_SCHEDULERJOB')" class="divider"></li>
+            <!--  <li ng-show="PermissionService.showMenu('CREATE_CLIENT')" class="divider"></li> 
+             <li>
             	<a class="black" data-ng-show="accounting = PermissionService.showMenu('READ_JOURNALENTRY','READ_GLACCOUNT','READ_GLCLOSURE','READ_ACCOUNTINGRULE')" href="#/accounting"> 
             		+ {{ 'link.accounting' | translate }}<i class="icon-money icon-large pull-right"></i>
             	</a>
             </li>
             <li data-ng-show="accounting = PermissionService.showMenu('READ_JOURNALENTRY','READ_GLACCOUNT','READ_GLCLOSURE','READ_ACCOUNTINGRULE')" class="divider"></li>
-            
+             -->
           	<li>
           		<a class="black" data-ng-show="PermissionService.showMenu('ALL_FUNCTIONS')" class="bolder black" href="#/help">
           			&nbsp; + {{ 'label.anchor.shortcuts' | translate }}<i class="icon-hand-left icon-large pull-right "></i>
@@ -313,11 +313,11 @@
                                 	</a>
                                 </li>
                                 
-                                <li>
+                               <!--  <li>
                                 	<a data-ng-show="accounting=PermissionService.showMenu('READ_JOURNALENTRY','READ_GLACCOUNT','READ_GLCLOSURE','READ_ACCOUNTINGRULE')" href="#/accounting">
                                 		{{ 'link.accounting' | translate }}
                                 	</a>
-                                </li>
+                                </li> -->
                                 
                                 <li>
                                 	<a data-ng-show="upload=PermissionService.showMenu('READ_UPLOADSTATUS')" href="#/importing">
@@ -347,6 +347,7 @@
                                 <li><a href="#/templates">Templates</a></li>
                                 <li><a href="#/disbursements">Disbursements</a></li>
                                 <li><a href="#/templates">Templates</a></li> -->
+                                <li><a href="#/statement">Statement Details</a></li>
                             </ul>
                         </li>
                         <li>

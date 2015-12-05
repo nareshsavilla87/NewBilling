@@ -69,7 +69,7 @@
                     <div class="control-group">
             	        <label class="control-label" for="noofConnections">{{'label.chargevariantnoofconnections' | translate }}<span class="required">*</span></label>
                             <div class="control-group">
-                                <select id="noofConnections" name="noofConnections" class="input-medium" style="width:95%" data-ng-model="formData.noofConnections" data-ng-options="noofConnections.value as noofConnections.value for noofConnections in noofConnectionses">
+                                <select id="noofConnections" name="noofConnections" class="input-medium" style="width:95%" data-ng-model="formData.noofConnections" data-ng-options="noofConnections.id as noofConnections.mCodeValue for noofConnections in noofConnectionses">
               		              <option value="">{{'label.select.one1' | translate}}</option></select>
                             </div>
                     </div>
@@ -78,7 +78,7 @@
                     <div class="control-group">
             	        <label class="control-label" for="type">{{'label.chargevarianttype' | translate }}<span class="required">*</span></label>
                            <div class="control-group">
-                              <select id="type" name="type" data-ng-model="formData.type" class="input-medium"style="width:95%" data-ng-options="type.value as type.value for type in types">
+                              <select id="type" name="type" data-ng-model="formData.type" class="input-medium"style="width:95%" data-ng-options="type.id as type.mCodeValue for type in types">
               		          <option value="">{{'label.select.one1' | translate}}</option></select>
                            </div>
                     </div>
@@ -93,21 +93,21 @@
                      </div>
                 </td> 
             </table>
-            <table class="table fullwidth" data-ng-show="regionPrices.length>0">
+            <table class="table fullwidth" data-ng-show="chargeVariantDetailsDatas.length>0">
                 <tr class="graybg">
-                    <th>{{'table.heading.regionName' | translate}}</th>
-                    <th>{{'table.heading.regionName' | translate}}</th>
+                    <th>{{'label.chargevariantnoofconnections' | translate }}</th>
+                    <th>{{'label.chargevarianttype' | translate }}</th>
                     <th>{{'label.amount' | translate}}</th>
                 </tr>
-                <tr data-ng-repeat="regionPrice in regionPrices" >
+                <tr data-ng-repeat="chargevariant in chargeVariantDetailsDatas" >
                     <td style="padding-left: 0">
-                         <select data-ng-model="regionPrice.regionId" data-ng-options="regionData.id as regionData.regionName  for regionData in regionDatas" ></select>
+                         <select data-ng-model="chargevariant.variantType" data-ng-options="noofConnections.id as noofConnections.mCodeValue for noofConnections in noofConnectionses" ></select>
                      </td>
                      <td style="padding-left: 0">
-                         <select data-ng-model="regionPrice.regionId" data-ng-options="regionData.id as regionData.regionName  for regionData in regionDatas" ></select>
+                         <select data-ng-model="chargevariant.amountType" data-ng-options="type.id as type.mCodeValue for type in types" ></select>
                      </td>
                      <td> 
-                          <input type="text" data-ng-model="regionPrice.amount" placeholder="amount">
+                          <input type="text" data-ng-model="chargevariant.amount" placeholder="amount">
                       </td>
                       <td>
                          <a data-ng-click="removeRegionPrices($index)"><i class="icon-remove icon-white"></i></a>

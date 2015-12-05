@@ -248,7 +248,7 @@
 	      </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="history in historyData  | filter:filterText" data-ng-hide="history.statusDescription =='undefined'">    
+            <tr ng-repeat="history in historyData  | filter:filterText" data-ng-hide="history.statusDescription=='undefined'">    
                 <td>{{history.createdDate | date : 'dd/MM/yy'}}</td>  
                 <td>{{history.userName}}</td>
                 <td>{{history.statusDescription}}</td>
