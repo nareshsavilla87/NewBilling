@@ -94,13 +94,16 @@
 						</div>
 					</td>
 				</tr>
+			</table>
+			</fieldset>
+			<table>
 				<tr>
 					<td width="25%">
 				         <div class="control-group">
 							<label class="control-label" for="description">{{'label.ticket.shortdescription' | translate }}</label>
 							<div class="controls">
 							   <textarea data-ng-model="formData.statusDescription" name="description" value="{{data.statusDescription}}"
-							        style="width:103%; height:2em;" readonly></textarea>
+							        style="width:27%; height:2em;" readonly></textarea>
 							</div>
 						 </div>
 					  </td>
@@ -113,11 +116,13 @@
 							<label class="control-label" for="issue">{{'label.ticket.issue'| translate }} </label>
 							<div class="controls">
 								<textarea ng-model="formData.issue" name="issue" value="{{data.issue}}"
-									style="width: 205%; height: 4em;" readonly ></textarea>
+									style="width: 82%; height: 4em;" readonly ></textarea>
 							</div>
 						</div>
 					</td>
 				</tr>
+			</table>
+			<table>
 				<tr>
 			        <td>
 					   <div class="control-group" data-ng-show="formData.status=='Closed'">
@@ -128,6 +133,8 @@
 					   </div>
 				    </td>
 				</tr>
+			</table>
+			<table>
 				<tr>
 					<td>
 						<div class="control-group" data-ng-hide="formData.status=='Closed'">
@@ -174,7 +181,6 @@
         </tbody>
         </table>
     </div>
-		</fieldset>
    	</form>
   </div>
 

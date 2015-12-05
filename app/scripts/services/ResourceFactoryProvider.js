@@ -761,6 +761,9 @@
             ticketHistoryResource: defineResource(apiVer + "/tickets/:id/history",{id:'@id'},  {
           	  get: {method: 'GET', params: {}}
             }),
+            ticketAttachmentResource: defineResource(apiVer + "/tickets/:id/history",{id:'@id'},  {
+            	  get: {method: 'GET', params: {}}
+              }),
             commentHistoryResource: defineResource(apiVer + "/tickets/:id/history",{id:'@id'},  {
           	  get: {method: 'GET', params: {}}
             }),

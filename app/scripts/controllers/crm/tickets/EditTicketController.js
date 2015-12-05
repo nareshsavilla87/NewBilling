@@ -1,8 +1,6 @@
 (function(module) {
 	mifosX.controllers = _.extend(module, {
-		EditTicketController : function(scope, webStorage, routeParams,
-				resourceFactory, location, http, API_VERSION, $rootScope,
-				$upload, dateFilter, $modal) {
+		EditTicketController : function(scope, webStorage, routeParams,resourceFactory, location, http, API_VERSION, $rootScope,$upload, dateFilter, $modal,TENANT) {
 			scope.formData = {};
 			scope.data = {};
 			scope.start = {};
@@ -72,6 +70,39 @@
 			};
 			scope.onFileSelect = function($files) {
 				scope.file = $files[0];
+			};
+			
+			
+			scope.attachment = function() {
+
+				$modal.open({
+					templateUrl : 'attachment.html',
+					controller : AttachmentController,
+					resolve : {}
+				});
+			};
+
+			var AttachmentController = function($scope, $modalInstance) {
+
+				resourceFactory.ticketAttachmentResource.get({id : routeParams.id, historyParam:"comment"}, function(data) {
+					$scope.attachmentData = data.masterData;
+					$scope.problemDescription = data.problemDescription;
+					angular.forEach($scope.attachmentData,function(val,key){
+						$scope.attachmentData[key].createdDate= dateFilter(new Date(val.createdDate),'dd/MM/yy');
+						/*console.log($scope.historyData[key].createdDate);*/
+					});
+				});
+
+				$scope.ok = function() {
+					$modalInstance.dismiss('cancel');
+				};
+				
+				$scope.downloadFile = function (ticketid){ 
+					console.log(ticketid);
+	            	/* window.open($rootScope.hostUrl+ API_VERSION +'/tickets/'+ticketid+'/print/?tenantIdentifier='+TENANT);*/
+	            	  window.open(API_VERSION +'/tickets/'+ ticketid +'/print?tenantIdentifier='+TENANT);
+	        };
+
 			};
 			
 			scope.history = function() {
@@ -174,10 +205,8 @@
 	});
 	mifosX.ng.application.controller(
 			'EditTicketController',
-			[ '$scope', 'webStorage', '$routeParams', 'ResourceFactory',
-					'$location', '$http', 'API_VERSION', '$rootScope',
-					'$upload', 'dateFilter', '$modal',
-					mifosX.controllers.EditTicketController ]).run(
+			[ '$scope', 'webStorage', '$routeParams', 'ResourceFactory','$location', '$http', 'API_VERSION', '$rootScope',
+					'$upload', 'dateFilter', '$modal','TENANT',mifosX.controllers.EditTicketController ]).run(
 			function($log) {
 				$log.info("EditTicketController initialized");
 			});
