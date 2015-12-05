@@ -1741,7 +1741,10 @@
   "label.comment.history":"Comment History",
   "label.tickethistory.commentedby":"Commented By",
   "label.tickethistory.repotedby" : "Reported",
-  "label.tickethistory.status" : "Status" ,
+  "label.tickethistory.status"  : "Status" ,
+  "label.ticketattachment.date" : "Date" ,
+  "label.ticketattachment.attachment" : "Attachment" ,
+  "label.ticketattachment" : "Ticket Attachments" ,
   
   "#address":".........",
   "label.viewclient":"View Client",

@@ -132,22 +132,27 @@
 					</div>
 				</td>
 			</tr>
+			</table>
+			</fieldset>
+			<table>
 			<tr>      
 			    <td width="50%">
 			        <div class="control-group">
 						<label class="control-label" for="description">{{'label.ticket.shortdescription' | translate }}<span class="required">*</span></label>
 						<div class="controls">
-							    <textarea data-ng-model="formData.description" name="description" style="width:59%; height:2em;"  required late-Validate></textarea>
+							    <textarea data-ng-model="formData.description" name="description" style="width:26%; height:2em;"  required late-Validate></textarea>
 						</div>
 					</div>
 				</td>
 			</tr>
+			</table>
+			<table>
 			<tr>
 			     <td width="50%">
 			        <div class="control-group">
 						<label class="control-label" for="statusDescription">{{'label.ticket.issue' | translate }}<span class="required">*</span></label>
 						<div class="controls">
-							    <textarea  data-ng-model="formData.statusDescription" name="issue" style="width:232%; height:4em;"  required late-Validate></textarea>
+							    <textarea  data-ng-model="formData.statusDescription" name="issue" style="width:88%; height:4em;"  required late-Validate></textarea>
 						</div>
 					</div>
 				</td>
@@ -167,6 +172,6 @@
 			<a id="cancel" href="#/tickets"><button type="reset" class="btn" ng-click="reset123()">Cancel</button></a>
 			<button id="submit" type="submit" ng-disabled="!createticketform.$valid" class="btn btn-primary">{{'btn.save' | translate}}</button>
 		     </div>
-	</fieldset>
+	
 </form>
 </div>
